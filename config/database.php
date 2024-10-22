@@ -31,7 +31,7 @@ return [
 
     'connections' => [
 
-        'prarang' => [
+        'main' => [
             'driver' => 'mysql',
             'host' => env('DB_HOST', '127.0.0.1'),
             'database' => env('DB_DATABASE', 'database1'),
@@ -57,8 +57,6 @@ return [
             'engine' => null,
         ],
     
-
-
     ],
 
     /*
