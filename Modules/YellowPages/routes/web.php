@@ -14,6 +14,6 @@ use Modules\YellowPages\Http\Controllers\YellowPagesController;
 |
 */
 
-Route::group([], function () {
-    Route::resource('yellowpages', YellowPagesController::class)->names('yellowpages');
+Route::group(['prefix'=>'yellow-pages'], function () {
+    // Route::resource('yellowpages', YellowPagesController::class)->names('yellowpages');
 });
