@@ -1868,12 +1868,12 @@ strong {
 
 
 #core{
-	/* position: fixed; */
-	/* top: 300px; */
+	
+	/* top: 300px;  */
 	position:relative;
 	z-index:10;
    }
-   
+ 
    /* Modal backUnknown */
    .modal-backdrop{
 	z-index:20;

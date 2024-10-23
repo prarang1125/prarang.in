@@ -1,4 +1,67 @@
 <div>
+    <style>
+        /* Column 10/12 */
+.hentry .tagListx{
+ display:inline;
+ justify-content:normal;
+ align-items:stretch;
+}
+
+/* Row */
+.mb-1 > .row{
+ justify-content:center;
+ align-items:center;
+}
+
+/* Heading */
+.hentry div h6{
+ margin-bottom:0px;
+ font-weight: 600;
+}
+
+/* Column 10/12 */
+#core .lsvr-container .lsvr-grid .columns__main #main .main__inner .hentry .page__content div .modal .modal-dialog .modal-content .modal-body .mb-1 .row .tagListx{
+ transform:translatex(0px) translatey(0px) !important;
+}
+
+/* Column 10/12 */
+.hentry .mb-1 .m-0{
+ padding-left:18px !important;
+}
+
+.tagListx{
+    padding: 25px,5px,5px,5px;
+    background-color:#7A7B7B;
+    color:#ffffff;
+}
+.tagListx:hover{
+     background-color:#ea420e; 
+    color:#ffffff;
+}
+/* Rounded circle */
+.hentry .tagListx .rounded-circle{
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ margin-right:62px;
+
+ color:#ffffff;
+ background-color:#7A7B7B;
+}
+
+/* Rounded circle */
+.hentry div .modal .modal-dialog .modal-content .modal-body .mb-1 .row .tagListx .row .col-2 .rounded-circle{
+ transform:translatex(0px) translatey(0px) !important;
+}
+
+/* Modal footer */
+.hentry div .modal-footer{
+ padding-top:2px;
+ padding-bottom:1px;
+}
+
+
+    </style>
     <section class="border borede bg-light p-3 pt-4">
         <div class="row">
             <div class="col-sm-6">
@@ -25,7 +88,7 @@
                                 id="style-mO25o"> <img src="https://prarang.in//sanskriti/samay-sima.png" width="30"
                                     class="img-tag">
                             </div>
-                            <div class="mdl-card mdl-shadow--2dp text-center col-md-9 col-xs-10 padngbox">
+                            <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_1" class="mdl-card mdl-shadow--2dp text-center col-md-9 col-xs-10 padngbox">
                                 <div class="timeline-heading">
                                     <span class="mb-10 prangtxt"><strong>समयसीमा
                                         </strong></span>
@@ -40,7 +103,7 @@
                                 id="style-tC6ly"> <img src="https://prarang.in//sanskriti/manav-wa-indirya.png"
                                     width="30" class="img-tag">
                             </div>
-                            <div class="mdl-card mdl-shadow--2dp text-center col-md-9 col-xs-10 padngbox">
+                            <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_2" class="mdl-card mdl-shadow--2dp text-center col-md-9 col-xs-10 padngbox">
                                 <div class="timeline-heading">
                                     <span class="mb-10 prangtxt"><strong>मानव
                                             व उनकी
@@ -56,7 +119,7 @@
                                 id="style-COp3Q"> <img src="https://prarang.in//sanskriti/manav-wa-awishkar.png"
                                     width="30" class="img-tag">
                             </div>
-                            <div class="mdl-card mdl-shadow--2dp text-center col-md-9 col-xs-10 padngbox">
+                            <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_3" class="mdl-card mdl-shadow--2dp text-center col-md-9 col-xs-10 padngbox">
                                 <div class="timeline-heading">
                                     <span class="mb-10 prangtxt"><strong>मानव
                                             व उसके
@@ -96,7 +159,7 @@
                                 id="style-mO25o"> <img src="https://prarang.in//sanskriti/samay-sima.png"
                                     width="30" class="img-tag">
                             </div>
-                            <div class="mdl-card mdl-shadow--2dp text-center col-md-9 col-xs-10 padngbox">
+                            <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_4" class="mdl-card mdl-shadow--2dp text-center col-md-9 col-xs-10 padngbox">
                                 <div class="timeline-heading">
                                     <span class="mb-10 prangtxt"><strong>भूगोल
                                         </strong></span>
@@ -111,7 +174,7 @@
                                 id="style-tC6ly"> <img src="https://prarang.in//sanskriti/manav-wa-indirya.png"
                                     width="30" class="img-tag">
                             </div>
-                            <div class="mdl-card mdl-shadow--2dp text-center col-md-9 col-xs-10 padngbox">
+                            <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_5" class="mdl-card mdl-shadow--2dp text-center col-md-9 col-xs-10 padngbox">
                                 <div class="timeline-heading">
                                     <span class="mb-10 prangtxt"><strong>जीव - जन्तु</strong></span>
                                 </div>
@@ -126,7 +189,7 @@
                                 id="style-COp3Q"> <img src="https://prarang.in//sanskriti/manav-wa-awishkar.png"
                                     width="30" class="img-tag">
                             </div>
-                            <div class="mdl-card mdl-shadow--2dp text-center col-md-9 col-xs-10 padngbox">
+                            <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_6" class="mdl-card mdl-shadow--2dp text-center col-md-9 col-xs-10 padngbox">
                                 <div class="timeline-heading">
                                     <span class="mb-10 prangtxt"><strong>वनस्पति</strong></span>
                                 </div>
@@ -140,30 +203,47 @@
         </div>
     </section>
 
-    @foreach ($tagSubCounts as $tagid => $tagCArray)
-    @endforeach
-    <!-- Button trigger modal -->
-    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-        Launch demo modal
-    </button>
+   
+    @foreach ($tagSubCounts as $tagid => $tagCArray) 
 
     <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" data-bs-backdrop="false" id="exampleModal{{ $tagid }}" tabindex="-1" aria-labelledby="exampleModalLabel{{ $tagid }}" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+               
                 <div class="modal-body">
-                    ...
+                @foreach ($tagCArray as $tag )
+                {{-- {{dd($tag)}} --}}
+                <div class="mb-1">
+                    <a target="_blank" href="">
+                    <div class="row">
+                        <div class="col-2">
+                            <img class="img-fluid rounded-circle border" src="https://{{$tag->tagIcon}}" alt="">
+                        </div>
+                        <div class="col-10 rounded-pill tagListx border">
+                            <div class="row">
+                                <div class="col-10 m-0 p-0">
+                                    {{-- {{$tag->tagInUnicode}} --}}
+                                    <h6 class="m--0 p-0">{{$tag->tagInEnglish}}</h6>
+                                 <small> {{$tag->tagInEnglish}}</small>
+                                </div>
+                                <div class="col-2">
+                                    <div class="w-100 h-100 rounded-circle border">{{$tag->count}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </a>
+                  </div>
+                @endforeach                  
+                 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+            
                 </div>
             </div>
         </div>
     </div>
+@endforeach   
 </div>
