@@ -127,8 +127,6 @@
                             About Us
                         </a>
                     </div>
-
-
                 </div>
             </div>
             <div class="container-fluid">
