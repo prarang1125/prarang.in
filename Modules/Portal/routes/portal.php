@@ -1,13 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\Portal\Http\Controllers\PortalController;
-
-
-
+use Modules\Portal\Http\Controllers\Portal;
 
 Route::group(['prefix' => 'portal'], function () {
-    Route::get('/{id}', function ($id) {
-        return $id;
-    });
+   Route::get('/{cityName}',[Portal::class,'portal']);
 });
