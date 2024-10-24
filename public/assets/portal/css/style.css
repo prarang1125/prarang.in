@@ -1865,11 +1865,8 @@ strong {
 strong { 
     font-weight: bold;
 } 
-
-
 #core{
-	
-	/* top: 300px;  */
+	top: 100px; 
 	position:relative;
 	z-index:10;
    }
@@ -2391,4 +2388,6 @@ strong {
        margin-bottom:7px;
       }
       
-         
+	  .city_matrix table tr{
+		border-bottom: 1px solid #d93a1e;
+	}

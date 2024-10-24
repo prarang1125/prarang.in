@@ -290,7 +290,7 @@
             <!-- HEADER : end -->
             <div class="header-background header-background--single" data-slideshow-speed="10">
                 <div class="header-background__image header-background__image--default"
-                    style="background-image: url('https://www.prarang.in/meerut/images/header-01.jpg'); ">
+                    style="background-image: url('{{ Storage::url($portal->header_image) }}'); ">
                 </div>
             </div>
             <!-- CORE : begin -->
@@ -310,7 +310,7 @@
                                                     <!-- MAIN HEADER : begin -->
                                                     <header class="main__header">
                                                         <h1 class="main__title m-0">
-                                                          मेरठ - लघु उद्योग 'क्रांति' का शहर
+                                                          {!! $portal->city_slogan!!}
                                                         </h1>
                                                     </header>
                                                     <!-- MAIN HEADER : end -->
@@ -350,271 +350,58 @@
                                                                             aria-expanded="false" aria-haspopup="true"
                                                                             aria-owns="lsvr-townpress-menu-widget__submenu-226-251"
                                                                             class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
-                                                                            href="https://preview.lsvr.sk/townpress/"
+                                                                            href="{{route('portal',['portal'=>$portal->slug])}}"
                                                                             id="lsvr-townpress-menu-widget__item-link-226-251"
                                                                             role="menuitem">
                                                                             <span
                                                                                 class="lsvr-townpress-menu-widget__item-link-label">
-                                                                                Home
+                                                                                HOME / होम
                                                                             </span>
                                                                         </a>
-                                                                        <button
-                                                                            aria-controls="lsvr-townpress-menu-widget__submenu-226-251"
-                                                                            aria-expanded="false" aria-haspopup="true"
-                                                                            aria-label="Expand submenu"
-                                                                            class="lsvr-townpress-menu-widget__toggle lsvr-townpress-menu-widget__toggle--level-0"
-                                                                            type="button">
-                                                                            <span aria-hidden="true"
-                                                                                class="lsvr-townpress-menu-widget__toggle-icon">
-                                                                            </span>
-                                                                        </button>
-                                                                        <ul aria-expanded="false"
-                                                                            aria-labelledby="lsvr-townpress-menu-widget__item-link-226-251"
-                                                                            class="lsvr-townpress-menu-widget__submenu lsvr-townpress-menu-widget__submenu--level-0"
-                                                                            id="lsvr-townpress-menu-widget__submenu-226-251"
-                                                                            role="menu">
-                                                                            <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-1 menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-207 current_page_item"
-                                                                                id="lsvr-townpress-menu-widget__item-227-995"
-                                                                                role="presentation">
-                                                                                <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-1"
-                                                                                    href="https://preview.lsvr.sk/townpress/"
-                                                                                    id="lsvr-townpress-menu-widget__item-link-227-995"
-                                                                                    role="menuitem">
-                                                                                    <span
-                                                                                        class="lsvr-townpress-menu-widget__item-link-label">
-                                                                                        Classic Home
-                                                                                    </span>
-                                                                                </a>
-                                                                            </li>
-                                                                            <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-1 menu-item menu-item-type-post_type menu-item-object-page"
-                                                                                id="lsvr-townpress-menu-widget__item-225-895"
-                                                                                role="presentation">
-                                                                                <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-1"
-                                                                                    href="https://preview.lsvr.sk/townpress/magazine-home/"
-                                                                                    id="lsvr-townpress-menu-widget__item-link-225-895"
-                                                                                    role="menuitem">
-                                                                                    <span
-                                                                                        class="lsvr-townpress-menu-widget__item-link-label">
-                                                                                        Magazine Home
-                                                                                    </span>
-                                                                                </a>
-                                                                            </li>
-                                                                            <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-1 menu-item menu-item-type-post_type menu-item-object-page"
-                                                                                id="lsvr-townpress-menu-widget__item-224-415"
-                                                                                role="presentation">
-                                                                                <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-1"
-                                                                                    href="https://preview.lsvr.sk/townpress/dashboard-home/"
-                                                                                    id="lsvr-townpress-menu-widget__item-link-224-415"
-                                                                                    role="menuitem">
-                                                                                    <span
-                                                                                        class="lsvr-townpress-menu-widget__item-link-label">
-                                                                                        Dashboard Home
-                                                                                    </span>
-                                                                                </a>
-                                                                            </li>
-                                                                        </ul>
+                                                                      
+                                                                       
                                                                     </li>
                                                                     <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-0 menu-item menu-item-type-post_type menu-item-object-page"
                                                                         id="lsvr-townpress-menu-widget__item-222-830"
                                                                         role="presentation">
                                                                         <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
-                                                                            href="https://preview.lsvr.sk/townpress/news/"
+                                                                            href=""
                                                                             id="lsvr-townpress-menu-widget__item-link-222-830"
                                                                             role="menuitem">
                                                                             <span
                                                                                 class="lsvr-townpress-menu-widget__item-link-label">
-                                                                                News
+                                                                                See All Posts /सभी रंग देखे
                                                                             </span>
                                                                         </a>
                                                                     </li>
-                                                                    <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-0 menu-item menu-item-type-custom menu-item-object-custom"
-                                                                        id="lsvr-townpress-menu-widget__item-229-136"
-                                                                        role="presentation">
-                                                                        <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
-                                                                            href="https://preview.lsvr.sk/townpress/notices/"
-                                                                            id="lsvr-townpress-menu-widget__item-link-229-136"
-                                                                            role="menuitem">
-                                                                            <span
-                                                                                class="lsvr-townpress-menu-widget__item-link-label">
-                                                                                Notices
-                                                                            </span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-0 menu-item menu-item-type-custom menu-item-object-custom"
-                                                                        id="lsvr-townpress-menu-widget__item-230-274"
-                                                                        role="presentation">
-                                                                        <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
-                                                                            href="https://preview.lsvr.sk/townpress/directory"
-                                                                            id="lsvr-townpress-menu-widget__item-link-230-274"
-                                                                            role="menuitem">
-                                                                            <span
-                                                                                class="lsvr-townpress-menu-widget__item-link-label">
-                                                                                Directory
-                                                                            </span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-0 menu-item menu-item-type-custom menu-item-object-custom"
-                                                                        id="lsvr-townpress-menu-widget__item-231-687"
-                                                                        role="presentation">
-                                                                        <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
-                                                                            href="https://preview.lsvr.sk/townpress/events"
-                                                                            id="lsvr-townpress-menu-widget__item-link-231-687"
-                                                                            role="menuitem">
-                                                                            <span
-                                                                                class="lsvr-townpress-menu-widget__item-link-label">
-                                                                                Events
-                                                                            </span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-0 menu-item menu-item-type-custom menu-item-object-custom"
-                                                                        id="lsvr-townpress-menu-widget__item-232-55"
-                                                                        role="presentation">
-                                                                        <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
-                                                                            href="https://preview.lsvr.sk/townpress/galleries"
-                                                                            id="lsvr-townpress-menu-widget__item-link-232-55"
-                                                                            role="menuitem">
-                                                                            <span
-                                                                                class="lsvr-townpress-menu-widget__item-link-label">
-                                                                                Galleries
-                                                                            </span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-0 menu-item menu-item-type-custom menu-item-object-custom"
-                                                                        id="lsvr-townpress-menu-widget__item-233-542"
-                                                                        role="presentation">
-                                                                        <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
-                                                                            href="https://preview.lsvr.sk/townpress/documents"
-                                                                            id="lsvr-townpress-menu-widget__item-link-233-542"
-                                                                            role="menuitem">
-                                                                            <span
-                                                                                class="lsvr-townpress-menu-widget__item-link-label">
-                                                                                Documents
-                                                                            </span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-0 menu-item menu-item-type-custom menu-item-object-custom"
-                                                                        id="lsvr-townpress-menu-widget__item-234-588"
-                                                                        role="presentation">
-                                                                        <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
-                                                                            href="https://preview.lsvr.sk/townpress/people"
-                                                                            id="lsvr-townpress-menu-widget__item-link-234-588"
-                                                                            role="menuitem">
-                                                                            <span
-                                                                                class="lsvr-townpress-menu-widget__item-link-label">
-                                                                                People
-                                                                            </span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-0 menu-item menu-item-type-custom menu-item-object-custom"
-                                                                        id="lsvr-townpress-menu-widget__item-343-282"
-                                                                        role="presentation">
-                                                                        <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
-                                                                            href="https://preview.lsvr.sk/townpress/forums/"
-                                                                            id="lsvr-townpress-menu-widget__item-link-343-282"
-                                                                            role="menuitem">
-                                                                            <span
-                                                                                class="lsvr-townpress-menu-widget__item-link-label">
-                                                                                Forums
-                                                                            </span>
-                                                                        </a>
-                                                                    </li>
-                                                                    <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-0 menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"
-                                                                        id="lsvr-townpress-menu-widget__item-223-293"
-                                                                        role="presentation">
-                                                                        <a aria-controls="lsvr-townpress-menu-widget__submenu-223-293"
-                                                                            aria-expanded="false" aria-haspopup="true"
-                                                                            aria-owns="lsvr-townpress-menu-widget__submenu-223-293"
-                                                                            class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
-                                                                            href="https://preview.lsvr.sk/townpress/typography/"
-                                                                            id="lsvr-townpress-menu-widget__item-link-223-293"
-                                                                            role="menuitem">
-                                                                            <span
-                                                                                class="lsvr-townpress-menu-widget__item-link-label">
-                                                                                Page Examples
-                                                                            </span>
-                                                                        </a>
-                                                                        <button
-                                                                            aria-controls="lsvr-townpress-menu-widget__submenu-223-293"
-                                                                            aria-expanded="false" aria-haspopup="true"
-                                                                            aria-label="Expand submenu"
-                                                                            class="lsvr-townpress-menu-widget__toggle lsvr-townpress-menu-widget__toggle--level-0"
-                                                                            type="button">
-                                                                            <span aria-hidden="true"
-                                                                                class="lsvr-townpress-menu-widget__toggle-icon">
-                                                                            </span>
-                                                                        </button>
-                                                                        <ul aria-expanded="false"
-                                                                            aria-labelledby="lsvr-townpress-menu-widget__item-link-223-293"
-                                                                            class="lsvr-townpress-menu-widget__submenu lsvr-townpress-menu-widget__submenu--level-0"
-                                                                            id="lsvr-townpress-menu-widget__submenu-223-293"
-                                                                            role="menu">
-                                                                            <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-1 menu-item menu-item-type-post_type menu-item-object-page"
-                                                                                id="lsvr-townpress-menu-widget__item-451-288"
-                                                                                role="presentation">
-                                                                                <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-1"
-                                                                                    href="https://preview.lsvr.sk/townpress/contact/"
-                                                                                    id="lsvr-townpress-menu-widget__item-link-451-288"
-                                                                                    role="menuitem">
-                                                                                    <span
-                                                                                        class="lsvr-townpress-menu-widget__item-link-label">
-                                                                                        Contact
-                                                                                    </span>
-                                                                                </a>
-                                                                            </li>
-                                                                            <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-1 menu-item menu-item-type-post_type menu-item-object-page"
-                                                                                id="lsvr-townpress-menu-widget__item-452-995"
-                                                                                role="presentation">
-                                                                                <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-1"
-                                                                                    href="https://preview.lsvr.sk/townpress/phone-numbers/"
-                                                                                    id="lsvr-townpress-menu-widget__item-link-452-995"
-                                                                                    role="menuitem">
-                                                                                    <span
-                                                                                        class="lsvr-townpress-menu-widget__item-link-label">
-                                                                                        Phone Numbers
-                                                                                    </span>
-                                                                                </a>
-                                                                            </li>
-                                                                            <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-1 menu-item menu-item-type-post_type menu-item-object-page"
-                                                                                id="lsvr-townpress-menu-widget__item-228-731"
-                                                                                role="presentation">
-                                                                                <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-1"
-                                                                                    href="https://preview.lsvr.sk/townpress/typography/"
-                                                                                    id="lsvr-townpress-menu-widget__item-link-228-731"
-                                                                                    role="menuitem">
-                                                                                    <span
-                                                                                        class="lsvr-townpress-menu-widget__item-link-label">
-                                                                                        Typography
-                                                                                    </span>
-                                                                                </a>
-                                                                            </li>
-                                                                            <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-1 menu-item menu-item-type-custom menu-item-object-custom"
-                                                                                id="lsvr-townpress-menu-widget__item-265-204"
-                                                                                role="presentation">
-                                                                                <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-1"
-                                                                                    href="https://preview.lsvr.sk/townpress/?s=town"
-                                                                                    id="lsvr-townpress-menu-widget__item-link-265-204"
-                                                                                    role="menuitem">
-                                                                                    <span
-                                                                                        class="lsvr-townpress-menu-widget__item-link-label">
-                                                                                        Search Results
-                                                                                    </span>
-                                                                                </a>
-                                                                            </li>
-                                                                            <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-1 menu-item menu-item-type-custom menu-item-object-custom"
-                                                                                id="lsvr-townpress-menu-widget__item-266-145"
-                                                                                role="presentation">
-                                                                                <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-1"
-                                                                                    href="https://preview.lsvr.sk/townpress/404"
-                                                                                    id="lsvr-townpress-menu-widget__item-link-266-145"
-                                                                                    role="menuitem">
-                                                                                    <span
-                                                                                        class="lsvr-townpress-menu-widget__item-link-label">
-                                                                                        Error 404
-                                                                                    </span>
-                                                                                </a>
-                                                                            </li>
-                                                                        </ul>
-                                                                    </li>
+                                                                    <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-0 menu-item menu-item-type-post_type menu-item-object-page"
+                                                                    id="lsvr-townpress-menu-widget__item-222-830"
+                                                                    role="presentation">
+                                                                    <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
+                                                                        href=""
+                                                                        id="lsvr-townpress-menu-widget__item-link-222-830"
+                                                                        role="menuitem">
+                                                                        <span
+                                                                            class="lsvr-townpress-menu-widget__item-link-label">
+                                                                            District Metrics / जिला मेट्रिक्स
+                                                                        </span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-0 menu-item menu-item-type-post_type menu-item-object-page"
+                                                                id="lsvr-townpress-menu-widget__item-222-830"
+                                                                role="presentation">
+                                                                <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
+                                                                    href="{{route('about-us')}}"
+                                                                    id="lsvr-townpress-menu-widget__item-link-222-830"
+                                                                    role="menuitem">
+                                                                    <span
+                                                                        class="lsvr-townpress-menu-widget__item-link-label">
+                                                                        ABOUT US / हमारे बारे में
+                                                                    </span>
+                                                                </a>
+                                                            </li>
+                                                            
+                                                                   
                                                                 </ul>
                                                             </nav>
                                                         </div>
@@ -623,171 +410,20 @@
                                                 <div class="widget lsvr-townpress-weather-widget lsvr-townpress-weather-widget--has-background"
                                                     id="lsvr_townpress_weather-2">
                                                     <div class="widget__inner"
-                                                        style="background-image: url(https://preview.lsvr.sk/townpress/wp-content/uploads/sites/3/2017/12/locale-widget-bg.jpg);">
+                                                        style="background-image: url();">
                                                         <h3 class="widget__title widget__title--has-icon">
-                                                            <span aria-hidden="true"
-                                                                class="widget__title-icon icon-cloud-sun">
-                                                            </span>
-                                                            Weather Info
+                                                            <i class="fa fa-map-marker"></i>
+                                                            स्थानीय जानकारी
                                                         </h3>
                                                         <div class="widget__content">
-                                                            <div class="lsvr-townpress-weather-widget__time">
-                                                                <h4 class="lsvr-townpress-weather-widget__time-title">
-                                                                    Local Time
-                                                                </h4>
-                                                                <p class="lsvr-townpress-weather-widget__time-value"
-                                                                    data-timezone="">
-                                                                    6:43 am
-                                                                </p>
-                                                            </div>
-                                                            <div class="lsvr-townpress-weather-widget__weather lsvr-townpress-weather-widget__weather--loading"
-                                                                data-ajax-params='{"address":"stowe,us","latitude":"","longitude":"","forecast_length":2,"units_format":"metric","update_interval":"3hours"}'
-                                                                data-forecast-length="2">
-                                                                <span
-                                                                    class="lsvr-townpress-weather-widget__weather-spinner c-spinner">
-                                                                </span>
-                                                                <ul class="lsvr-townpress-weather-widget__weather-list"
-                                                                    style="display: none;">
-                                                                    <li
-                                                                        class="lsvr-townpress-weather-widget__weather-item lsvr-townpress-weather-widget__weather-item--current">
-                                                                        <div
-                                                                            class="lsvr-townpress-weather-widget__weather-item-labels">
-                                                                            <h4
-                                                                                class="lsvr-townpress-weather-widget__weather-item-title">
-                                                                                Today
-                                                                            </h4>
-                                                                            <h5
-                                                                                class="lsvr-townpress-weather-widget__weather-item-date">
-                                                                                October 11, 2024
-                                                                            </h5>
-                                                                        </div>
-                                                                        <div
-                                                                            class="lsvr-townpress-weather-widget__weather-item-values">
-                                                                            <span aria-hidden="true"
-                                                                                class="lsvr-townpress-weather-widget__weather-item-icon">
-                                                                            </span>
-                                                                            <div class="lsvr-townpress-weather-widget__weather-item-temperature"
-                                                                                title="Temperature">
-                                                                                °C
-                                                                            </div>
-                                                                            <div class="lsvr-townpress-weather-widget__weather-item-wind"
-                                                                                title="Wind speed">
-                                                                                m/s
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="lsvr-townpress-weather-widget__weather-item lsvr-townpress-weather-widget__weather-item--forecast lsvr-townpress-weather-widget__weather-item--forecast-1"
-                                                                        data-timestamp="1728734400">
-                                                                        <div
-                                                                            class="lsvr-townpress-weather-widget__weather-item-labels">
-                                                                            <h4
-                                                                                class="lsvr-townpress-weather-widget__weather-item-title">
-                                                                                Saturday
-                                                                            </h4>
-                                                                            <h5
-                                                                                class="lsvr-townpress-weather-widget__weather-item-date">
-                                                                                October 12, 2024
-                                                                            </h5>
-                                                                        </div>
-                                                                        <div
-                                                                            class="lsvr-townpress-weather-widget__weather-item-values">
-                                                                            <span aria-hidden="true"
-                                                                                class="lsvr-townpress-weather-widget__weather-item-icon">
-                                                                            </span>
-                                                                            <div class="lsvr-townpress-weather-widget__weather-item-temperature"
-                                                                                title="Temperature">
-                                                                                °C
-                                                                            </div>
-                                                                            <div class="lsvr-townpress-weather-widget__weather-item-wind"
-                                                                                title="Wind speed">
-                                                                                m/s
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                    <li class="lsvr-townpress-weather-widget__weather-item lsvr-townpress-weather-widget__weather-item--forecast lsvr-townpress-weather-widget__weather-item--forecast-2"
-                                                                        data-timestamp="1728820800">
-                                                                        <div
-                                                                            class="lsvr-townpress-weather-widget__weather-item-labels">
-                                                                            <h4
-                                                                                class="lsvr-townpress-weather-widget__weather-item-title">
-                                                                                Sunday
-                                                                            </h4>
-                                                                            <h5
-                                                                                class="lsvr-townpress-weather-widget__weather-item-date">
-                                                                                October 13, 2024
-                                                                            </h5>
-                                                                        </div>
-                                                                        <div
-                                                                            class="lsvr-townpress-weather-widget__weather-item-values">
-                                                                            <span aria-hidden="true"
-                                                                                class="lsvr-townpress-weather-widget__weather-item-icon">
-                                                                            </span>
-                                                                            <div class="lsvr-townpress-weather-widget__weather-item-temperature"
-                                                                                title="Temperature">
-                                                                                °C
-                                                                            </div>
-                                                                            <div class="lsvr-townpress-weather-widget__weather-item-wind"
-                                                                                title="Wind speed">
-                                                                                m/s
-                                                                            </div>
-                                                                        </div>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                            <div class="lsvr-townpress-weather-widget__text">
-                                                                <p>
-                                                                    <em>
-                                                                        Weather data by
-                                                                        <strong>
-                                                                            <a href="http://openweathermap.org"
-                                                                                target="_blank">
-                                                                                OpenWeatherMap.org
-                                                                            </a>
-                                                                        </strong>
-                                                                    </em>
-                                                                </p>
-                                                            </div>
+                                                          
+                                                            <div class="city_matrix">
+                                                           {!! $portal->local_matrics!!}
+                                                        </div>
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="widget lsvr_gallery-featured-widget"
-                                                    id="lsvr_galleries_gallery_featured-2">
-                                                    <div class="widget__inner">
-                                                        <h3 class="widget__title widget__title--has-icon">
-                                                            <span aria-hidden="true"
-                                                                class="widget__title-icon icon-image">
-                                                            </span>
-                                                            Featured Gallery
-                                                        </h3>
-                                                        <div class="widget__content lsvr_gallery-featured-widget__content">
-                                                            <p class="lsvr_gallery-featured-widget__thumb">
-                                                                <a class="lsvr_gallery-featured-widget__thumb-link"
-                                                                    href="https://preview.lsvr.sk/townpress/galleries/streets-of-townpress/">
-                                                                    <img alt="town-02-large"
-                                                                        src="https://preview.lsvr.sk/townpress/wp-content/uploads/sites/3/2017/12/town-02-large-600x360.jpg"
-                                                                        title="" />
-                                                                </a>
-                                                            </p>
-                                                            <div class="lsvr_gallery-featured-widget__content-inner">
-                                                                <h4 class="lsvr_gallery-featured-widget__title">
-                                                                    <a class="lsvr_gallery-featured-widget__title-link"
-                                                                        href="https://preview.lsvr.sk/townpress/galleries/streets-of-townpress/">
-                                                                        Streets of TownPress
-                                                                    </a>
-                                                                </h4>
-                                                                <p class="lsvr_gallery-featured-widget__date">
-                                                                    November 17, 2018
-                                                                </p>
-                                                                <p class="widget__more">
-                                                                    <a class="widget__more-link"
-                                                                        href="https://preview.lsvr.sk/townpress/galleries/">
-                                                                        More Galleries
-                                                                    </a>
-                                                                </p>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                               
                                             </div>
                                         </aside>
                                         <!-- LEFT SIDEBAR : end -->
@@ -797,232 +433,12 @@
                                         <!-- RIGHT SIDEBAR : begin -->
                                         <aside id="sidebar-right">
                                             <div class="sidebar-right__inner">
-    
+                                                <x-portal.widgets.smart-meeting :portal="$portal"/>
                                                 <div class="widget text-center">
-                                                    <div id="openweathermap-widget-15"></div>
-                                                    <script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 15,cityid: '1263214',appid: '56f588215d2d5d31ddef488123660610',units: 'metric',containerid: 'openweathermap-widget-15',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();</script>
-                                                </div>
-                                                <div class="widget lsvr_notice-list-widget"
-                                                    id="lsvr_notices_notice_list-2">
-                                                    <div class="widget__inner">
-                                                        <h3 class="widget__title widget__title--has-icon">
-                                                            <span aria-hidden="true"
-                                                                class="widget__title-icon icon-bullhorn">
-                                                            </span>
-                                                            Notices
-                                                        </h3>
-                                                        <div class="widget__content">
-                                                            <ul class="lsvr_notice-list-widget__list">
-                                                                <li class="lsvr_notice-list-widget__item">
-                                                                    <h4 class="lsvr_notice-list-widget__item-title">
-                                                                        <a class="lsvr_notice-list-widget__item-title-link"
-                                                                            href="https://preview.lsvr.sk/townpress/notices/soccer-tournament-timetable/">
-                                                                            Soccer Tournament Timetable
-                                                                        </a>
-                                                                    </h4>
-                                                                    <ul class="lsvr_notice-list-widget__item-meta">
-                                                                        <li
-                                                                            class="lsvr_notice-list-widget__item-meta-item lsvr_notice-list-widget__item-meta-item--date">
-                                                                            June 1, 2021
-                                                                        </li>
-                                                                        <li
-                                                                            class="lsvr_notice-list-widget__item-meta-item lsvr_notice-list-widget__item-meta-item--category">
-                                                                            in
-                                                                            <a class="lsvr_notice-list-widget__item-category-link"
-                                                                                href="https://preview.lsvr.sk/townpress/notice-category/sport/">
-                                                                                Sport
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-                                                                <li class="lsvr_notice-list-widget__item">
-                                                                    <h4 class="lsvr_notice-list-widget__item-title">
-                                                                        <a class="lsvr_notice-list-widget__item-title-link"
-                                                                            href="https://preview.lsvr.sk/townpress/notices/annual-marathon-registration/">
-                                                                            Annual Marathon Registration
-                                                                        </a>
-                                                                    </h4>
-                                                                    <ul class="lsvr_notice-list-widget__item-meta">
-                                                                        <li
-                                                                            class="lsvr_notice-list-widget__item-meta-item lsvr_notice-list-widget__item-meta-item--date">
-                                                                            May 28, 2021
-                                                                        </li>
-                                                                        <li
-                                                                            class="lsvr_notice-list-widget__item-meta-item lsvr_notice-list-widget__item-meta-item--category">
-                                                                            in
-                                                                            <a class="lsvr_notice-list-widget__item-category-link"
-                                                                                href="https://preview.lsvr.sk/townpress/notice-category/sport/">
-                                                                                Sport
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-                                                                <li class="lsvr_notice-list-widget__item">
-                                                                    <h4 class="lsvr_notice-list-widget__item-title">
-                                                                        <a class="lsvr_notice-list-widget__item-title-link"
-                                                                            href="https://preview.lsvr.sk/townpress/notices/traffic-safety-notice/">
-                                                                            Traffic Safety Notice
-                                                                        </a>
-                                                                    </h4>
-                                                                    <ul class="lsvr_notice-list-widget__item-meta">
-                                                                        <li
-                                                                            class="lsvr_notice-list-widget__item-meta-item lsvr_notice-list-widget__item-meta-item--date">
-                                                                            May 23, 2021
-                                                                        </li>
-                                                                        <li
-                                                                            class="lsvr_notice-list-widget__item-meta-item lsvr_notice-list-widget__item-meta-item--category">
-                                                                            in
-                                                                            <a class="lsvr_notice-list-widget__item-category-link"
-                                                                                href="https://preview.lsvr.sk/townpress/notice-category/comunity/">
-                                                                                Comunity
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-                                                                <li class="lsvr_notice-list-widget__item">
-                                                                    <h4 class="lsvr_notice-list-widget__item-title">
-                                                                        <a class="lsvr_notice-list-widget__item-title-link"
-                                                                            href="https://preview.lsvr.sk/townpress/notices/upcoming-public-meetings/">
-                                                                            Upcoming Public Meetings
-                                                                        </a>
-                                                                    </h4>
-                                                                    <ul class="lsvr_notice-list-widget__item-meta">
-                                                                        <li
-                                                                            class="lsvr_notice-list-widget__item-meta-item lsvr_notice-list-widget__item-meta-item--date">
-                                                                            May 15, 2021
-                                                                        </li>
-                                                                        <li
-                                                                            class="lsvr_notice-list-widget__item-meta-item lsvr_notice-list-widget__item-meta-item--category">
-                                                                            in
-                                                                            <a class="lsvr_notice-list-widget__item-category-link"
-                                                                                href="https://preview.lsvr.sk/townpress/notice-category/comunity/">
-                                                                                Comunity
-                                                                            </a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </li>
-                                                            </ul>
-                                                            <p class="widget__more">
-                                                                <a class="widget__more-link"
-                                                                    href="https://preview.lsvr.sk/townpress/notices/">
-                                                                    More Notices
-                                                                </a>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="widget widget_media_image" id="media_image-2">
-                                                    <div class="widget__inner">
-                                                        <a href="https://preview.lsvr.sk/townpress/">
-                                                            <img alt="poster-01"
-                                                                class="image wp-image-347 attachment-full size-full"
-                                                                decoding="async" height="882" loading="lazy"
-                                                                sizes="(max-width: 600px) 100vw, 600px"
-                                                                src="https://preview.lsvr.sk/townpress/wp-content/uploads/sites/3/2017/12/poster-01.jpg"
-                                                                srcset="https://preview.lsvr.sk/townpress/wp-content/uploads/sites/3/2017/12/poster-01.jpg 600w, https://preview.lsvr.sk/townpress/wp-content/uploads/sites/3/2017/12/poster-01-408x600.jpg 408w"
-                                                                style="max-width: 100%; height: auto;" width="600" />
-                                                        </a>
-                                                    </div>
-                                                </div>                                          
-                                                <div class="widget lsvr_listing-list-widget"
-                                                    id="lsvr_directory_listing_list-2">
-                                                    <div class="widget__inner">
-                                                        <h3 class="widget__title widget__title--has-icon">
-                                                            <span aria-hidden="true"
-                                                                class="widget__title-icon icon-map-marker">
-                                                            </span>
-                                                            Interesting Places
-                                                        </h3>
-                                                        <div class="widget__content lsvr_listing-list-widget__content">
-                                                            <ul class="lsvr_listing-list-widget__list">
-                                                                <li
-                                                                    class="lsvr_listing-list-widget__item lsvr_listing-list-widget__item--has-thumb">
-                                                                    <p class="lsvr_listing-list-widget__item-thumb">
-                                                                        <a class="lsvr_listing-list-widget__item-thumb-link"
-                                                                            href="https://preview.lsvr.sk/townpress/directory/high-school/">
-                                                                            <img alt="White-Bird-Inn"
-                                                                                class="attachment-thumbnail size-thumbnail wp-post-image"
-                                                                                decoding="async" height="300"
-                                                                                loading="lazy"
-                                                                                sizes="(max-width: 300px) 100vw, 300px"
-                                                                                src="https://preview.lsvr.sk/townpress/wp-content/uploads/sites/3/2017/12/White-Bird-Inn-300x300.jpg"
-                                                                                srcset="https://preview.lsvr.sk/townpress/wp-content/uploads/sites/3/2017/12/White-Bird-Inn-300x300.jpg 300w, https://preview.lsvr.sk/townpress/wp-content/uploads/sites/3/2017/12/White-Bird-Inn-100x100.jpg 100w"
-                                                                                width="300">
-                                                                            </img>
-                                                                        </a>
-                                                                    </p>
-                                                                    <div class="lsvr_listing-list-widget__item-content">
-                                                                        <h4 class="lsvr_listing-list-widget__item-title">
-                                                                            <a class="lsvr_listing-list-widget__item-title-link"
-                                                                                href="https://preview.lsvr.sk/townpress/directory/high-school/">
-                                                                                High School
-                                                                            </a>
-                                                                        </h4>
-                                                                        <p class="lsvr_listing-list-widget__item-address"
-                                                                            title="Address">
-                                                                            28 School St,
-                                                                            <br>
-                                                                            TownPress, VT 24346
-                                                                            </br>
-                                                                        </p>
-                                                                        <p class="lsvr_listing-list-widget__item-category"
-                                                                            title="Category">
-                                                                            in
-                                                                            <a class="lsvr_listing-list-widget__item-category-link"
-                                                                                href="https://preview.lsvr.sk/townpress/directory-category/education/">
-                                                                                Education
-                                                                            </a>
-                                                                        </p>
-                                                                    </div>
-                                                                </li>
-                                                                <li
-                                                                    class="lsvr_listing-list-widget__item lsvr_listing-list-widget__item--has-thumb">
-                                                                    <p class="lsvr_listing-list-widget__item-thumb">
-                                                                        <a class="lsvr_listing-list-widget__item-thumb-link"
-                                                                            href="https://preview.lsvr.sk/townpress/directory/downtown-cinema/">
-                                                                            <img alt="Cinema"
-                                                                                class="attachment-thumbnail size-thumbnail wp-post-image"
-                                                                                decoding="async" height="300"
-                                                                                loading="lazy"
-                                                                                sizes="(max-width: 300px) 100vw, 300px"
-                                                                                src="https://preview.lsvr.sk/townpress/wp-content/uploads/sites/3/2017/12/Cinema-300x300.jpg"
-                                                                                srcset="https://preview.lsvr.sk/townpress/wp-content/uploads/sites/3/2017/12/Cinema-300x300.jpg 300w, https://preview.lsvr.sk/townpress/wp-content/uploads/sites/3/2017/12/Cinema-100x100.jpg 100w"
-                                                                                width="300" />
-                                                                        </a>
-                                                                    </p>
-                                                                    <div class="lsvr_listing-list-widget__item-content">
-                                                                        <h4 class="lsvr_listing-list-widget__item-title">
-                                                                            <a class="lsvr_listing-list-widget__item-title-link"
-                                                                                href="https://preview.lsvr.sk/townpress/directory/downtown-cinema/">
-                                                                                Downtown Cinema
-                                                                            </a>
-                                                                        </h4>
-                                                                        <p class="lsvr_listing-list-widget__item-address"
-                                                                            title="Address">
-                                                                            279 Main St,
-                                                                            <br />
-                                                                            TownPress, VT 24346
-                                                                        </p>
-                                                                        <p class="lsvr_listing-list-widget__item-category"
-                                                                            title="Category">
-                                                                            in
-                                                                            <a class="lsvr_listing-list-widget__item-category-link"
-                                                                                href="https://preview.lsvr.sk/townpress/directory-category/entertainment/">
-                                                                                Entertainment
-                                                                            </a>
-                                                                        </p>
-                                                                    </div>
-                                                                </li>
-                                                            </ul>
-                                                            <p class="widget__more">
-                                                                <a class="widget__more-link"
-                                                                    href="https://preview.lsvr.sk/townpress/directory/">
-                                                                    More Listings
-                                                                </a>
-                                                            </p>
-                                                        </div>
-                                                    </div>
-                                                </div>
+                                                    {!! $portal->weather_widget_code!!}
+                                                </div>                                         
+                                                                                     
+                                              
                                             </div>
                                         </aside>
                                         <!-- RIGHT SIDEBAR : end -->
@@ -1036,7 +452,8 @@
             </div>
             <!-- CORE : end -->
             <!-- FOOTER : begin -->
-            <footer class="footer--has-background" id="footer"
+            <div style="min-height:200px;"></div>
+            <footer class="footer--has-backgroundx " id="footer"
                 style="background-image: url( 'https://preview.lsvr.sk/townpress/wp-content/uploads/sites/3/2017/12/footer-bg.jpg' );">
                 <div class="footer__inner">
                     <!-- FOOTER WIDGETS : begin -->
