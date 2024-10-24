@@ -17,19 +17,19 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Montserrat:wght@100;300;400;500;600;700;900&family=Poppins:wght@100;300;400;500;600;700;900&display=swap" rel="stylesheet">
       
         <!-- Vendor CSS Files -->
-        <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-        <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-        <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-        <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
-      
+        <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+        
         <!-- Main CSS File -->
-        <link href="assets/css/main.css" rel="stylesheet">
+        <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
     </head>
 
     <body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f5f5f5;">
         <!-- Navbar Include -->
-        @include('layout.navbar');
+        @include('yellowpages::layout.navbar');
     
         <!-- Header with Background Color -->
         <div style="background-image: url('{{ asset('storage/categories/cate_bg.jpg') }}'); background-size: cover; background-position: center; padding: 60px; color: white; text-align: center;">
@@ -134,16 +134,18 @@
                 </div>
             </div>
         </div>
-        @include('layout.footer')
+        @include('yellowpages::layout.footer')
         <!-- Vendor JS Files -->
-        <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-        <script src="assets/vendor/aos/aos.js"></script>
-        <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-        <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-        <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+
+        
+        <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
+        <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
+        <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
+        <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
     
         <!-- Main JS File -->
-        <script src="assets/js/main.js"></script>
+        <script src="{{ asset('assets/js/main.js') }}"></script>
     
         <!-- Responsive Grid for Mobile -->
         <style>

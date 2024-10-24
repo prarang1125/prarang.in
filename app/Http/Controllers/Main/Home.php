@@ -22,7 +22,7 @@ class Home extends Controller
 
     public function index(){
         
-        return view('main.home');
+        return view('YellowPages::main.home');
     }
    
     // Function for Market page

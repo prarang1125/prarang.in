@@ -24,7 +24,7 @@ class HomeController extends Controller
         return view("Auth.auth");
     }
     public function category(){
-        return view("Home.categories");
+        return view('yellowpages::Home.categories');
     }
 
     public function showSearchcategory()

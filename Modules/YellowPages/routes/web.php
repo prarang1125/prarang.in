@@ -19,9 +19,9 @@ Route::post('/login', [AuthController::class, 'login'])->name('login');
 Route::post('/register', [AuthController::class, 'register'])->name('register');
 
 Route::group(['prefix' => 'yellow-pages'], function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/', [HomeController::class, 'index'])->name('yp.home');
     Route::get('/signIn', [HomeController::class, 'signIn'])->name('signIn');
-    Route::get('/category', [HomeController::class, 'category'])->name('category');
+    Route::get('/category', [HomeController::class, 'category'])->name('yp.category');
     Route::get('/showSearchcategory', [HomeController::class, 'showSearchcategory']);
 });
 
