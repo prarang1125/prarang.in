@@ -11,8 +11,7 @@ class PortalController extends Controller
 {
     public function portal($cityName)
     {
-        return DB::connection('main')->table()->get();
-        
+                
         return view('portal::portal.home', ['cityName' => $cityName]);
     }
 }
