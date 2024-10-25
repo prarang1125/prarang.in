@@ -52,7 +52,7 @@ return [
             'password' => env('DB2_PASSWORD', ''),
             'charset' => 'utf8mb4',
             'collation' => 'utf8mb4_unicode_ci',
-            'prefix' => 'yp',
+            'prefix' => '',
             'strict' => true,
             'engine' => null,
         ],
