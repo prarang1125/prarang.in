@@ -30,7 +30,7 @@
                 <ul>
                     <li><a href="#" id="toggleModal" data-bs-toggle="modal" data-bs-target="#signInModal">Sign In</a></li>
                     <li class="action-buttons">
-                        <a href="#" class="btn-add-listing"><i class="fa fa-plus"></i> Add Listing</a>
+                        <a href="{{ url('yellow-pages/listing_plan') }}" class="btn-add-listing"><i class="fa fa-plus"></i> Add Listing</a>
                     </li>
                     <li class="action-buttons">
                         <a href="#" class="btn-get-vcard"><i class="fa fa-id-card"></i> Get V-Card</a>

@@ -20,9 +20,14 @@ class HomeController extends Controller
         // Pass categories and cities to the view
         // return view('Home.home', compact('categories', var_names: 'cities'));
     }
-    public function signIn(){
-        return view("Auth.auth");
+    public function listing_plan(){
+        return view("yellowpages::Home.listing_plan");
     }
+
+    public function add_listing(){
+        return view('yellowpages::Home.add_listing');
+    }
+
     public function category(){
         return view('yellowpages::Home.categories');
     }
