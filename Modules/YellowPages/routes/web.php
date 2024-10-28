@@ -22,6 +22,8 @@ Route::group(['prefix' => 'yellow-pages'], function () {
     Route::get('/', [HomeController::class, 'index'])->name('yp.home');
     Route::get('/signIn', [HomeController::class, 'signIn'])->name('signIn');
     Route::get('/category', [HomeController::class, 'category'])->name('yp.category');
+    Route::get('/listing_plan', [HomeController::class, 'listing_plan'])->name('yp.listing_plan');
+    Route::get('/add_listing', [HomeController::class, 'add_listing'])->name('yp.add_listing');
     Route::get('/showSearchcategory', [HomeController::class, 'showSearchcategory']);
 });
 

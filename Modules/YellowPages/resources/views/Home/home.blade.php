@@ -29,7 +29,7 @@
 </head>
 
 <body class="index-page">
-@include('yellowpages::layout.navbar')
+@include('yellowpages::layout.navbar');
 
   <main class="main">
 
