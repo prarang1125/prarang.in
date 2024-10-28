@@ -25,6 +25,11 @@ class YellowPagesServiceProvider extends ServiceProvider
         $this->registerConfig();
         $this->registerViews();
         $this->loadMigrationsFrom(module_path($this->name, 'database/migrations'));
+
+        // $this->publishes([
+        //     __DIR__.'/../Assets' => public_path('modules/yello'),
+        // ], 'public');
+
     }
 
     /**
