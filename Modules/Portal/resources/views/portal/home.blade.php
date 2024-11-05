@@ -1,7 +1,6 @@
 <x-layout.portal.base>
       
-        <div id="wrapper">
-           
+        <div id="wrapper">           
             <header class="header--has-languages header--has-map" id="header">
                 <div class="header__inner">
                     <!-- HEADER MAP : begin -->
@@ -26,7 +25,7 @@
                                 <div class="header-logo header-logo--front">
                                     <a aria-label="Site logo" class="header-logo__link" href="{{ url()->current() }}">
                                         <img alt="TownPress" class="header-logo__image"
-                                            src="{{ asset('assets/portals/logos/logo.png') }}" />
+                                            src="{{ asset('https://www.prarang.in/meerut/images/header-logo.2x.png') }}" />
                                     </a>
                                 </div>
                                 <div class="header-toolbar-toggle header-toolbar-toggle--has-map">
@@ -320,7 +319,14 @@
                                                         <!-- TOWNPRESS SITEMAP : begin -->
                                                       <x-portal.tag-list cityId="r4" cityCode="c3"/>
                                                      
-    
+                                                      <div class=" p-2 mt-3" style="border:2px solid #FFB1A3">
+                                                        <h3 class="text-center">{{ $portal->city_name_local }} के आंकड़े
+                                                        </h3>
+                                                        <a target="_blank"
+                                                            href="{{ env('G2C_URL') }}/{{ $portal->city_name }}/hi"><img
+                                                                src="{{ asset('assets/portal/images/matrix-24.jpg') }}"
+                                                                alt=""></a> 
+                                                    </div>
                                                         <!-- TOWNPRESS SITEMAP : end -->
                                                     </div>
                                                     <!-- PAGE CONTENT : end -->
@@ -410,8 +416,8 @@
                                                 <div class="widget lsvr-townpress-weather-widget lsvr-townpress-weather-widget--has-background"
                                                     id="lsvr_townpress_weather-2">
                                                     <div class="widget__inner"
-                                                        style="background-image: url();">
-                                                        <h3 class="widget__title widget__title--has-icon">
+                                                       >
+                                                        <h3 class="widget__title widget__title--has-icon ps-2">
                                                             <i class="fa fa-map-marker"></i>
                                                             स्थानीय जानकारी
                                                         </h3>
@@ -423,6 +429,22 @@
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <div class="widget lsvr-townpress-weather-widget lsvr-townpress-weather-widget--has-background"
+                                                id="lsvr_townpress_weather-2">
+                                                <div class="widget__inner"
+                                                style="background:white; color:black; border:2px solid #FFB1A3;">
+                                                    <h3 class="widget__title widget__title--has-icon ps-2 text-dark">
+                                                        <i class="fa fa-newspaper-o"></i>
+                                                         {{$portal->city_name}} NEWS/ {{$portal->city_name_local}} समाचार 
+                                                    </h3>
+                                                    <div class="widget__content">
+                                                      
+                                                        <div class="city_matrix">
+                                                       <x-portal.widgets.news/>
+                                                    </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                                
                                             </div>
                                         </aside>

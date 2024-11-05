@@ -2391,3 +2391,29 @@ strong {
 	  .city_matrix table tr{
 		border-bottom: 1px solid #d93a1e;
 	}
+
+	/* Widget  inner */
+#sidebar-right section .widget__inner{
+	border-style:solid;
+	border-color:#ffb1a3;
+   }
+   
+   /* Light */
+   .hentry div .bg-light{
+	border-color:#ffb1a3 !important;
+	border-width:2px !important;
+   }
+   
+   /* Carousel wrap */
+   .hentry div .carousel-wrap{
+	border-width:2px;
+	border-color:#ffb1a3;
+   }
+   
+   /* Widget  inner */
+   #sidebar-left .widget .widget__inner{
+	border-width:2px;
+	border-color:#ffb1a3;
+   }
+   
+   
