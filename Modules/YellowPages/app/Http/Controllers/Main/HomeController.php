@@ -13,7 +13,7 @@ class HomeController extends Controller
     {
         // Fetch all categories and cities from the database
         $categories = Category::all();
-        $cities = City::all(); 
+        $cities = City::all();
 
         return view('yellowpages::Home.home', compact('categories', 'cities'));
 
@@ -42,7 +42,7 @@ class HomeController extends Controller
     {
         // Fetch all categories and cities from the database
         $categories = Category::all();
-        $cities = City::all(); 
+        $cities = City::all();
 
         return view('yellowpages::Home.home', compact('categories', 'cities'));
 

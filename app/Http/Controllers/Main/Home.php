@@ -21,39 +21,39 @@ class Home extends Controller
     }
 
     public function index(){
-        
-        return view('YellowPages::main.home');
+
+        return view('main.home');
     }
-   
+
     // Function for Market page
-  
+
 
     // Function for Content page
     public function content()
     {
-        return view('main.content'); 
+        return view('main.content');
 
     }
     public function semiotics()
     {
-        return view('main.semiotics');  
+        return view('main.semiotics');
 
     }
     public function analytics()
     {
-        return view('main.analytics');  
+        return view('main.analytics');
     }
 
 
     public function aboutUs()
     {
-        return view('main.about_us'); 
+        return view('main.about_us');
     }
 
 
     public function partners()
     {
-        return view('main.partners');  
+        return view('main.partners');
     }
 
     public function privacyPolicy()
@@ -125,6 +125,6 @@ class Home extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
 
-       
+
     }
 }
