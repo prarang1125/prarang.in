@@ -44,7 +44,7 @@
         <p style="text-align: center;  margin-bottom: 20px;">Add details about your listing</p>
     </div>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-        <form action="#" method="post" id="listingForm">
+        <form action="{{ route('listing.store') }}" method="POST" id="listingForm">
             @csrf
             <h5 style="margin-bottom: 15px;">Primary Listing Details</h5>
             <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
@@ -52,9 +52,9 @@
                 <label for="location" class="form-label">Location</label>
                 <select id="location" class="form-select">
                     <option selected>Select location</option>
-                    <option value="location1">Location 1</option>
-                    <option value="location2">Location 2</option>
-                    <option value="location3">Location 3</option>
+                    @foreach($cities as $city)
+                    <option value="{{ $city->id }}">{{ $city->name }}</option>
+                    @endforeach
                 </select>
             </div>
 
@@ -120,41 +120,46 @@
                 <div class="col-md-6 mb-3">
                     <label for="businessType" class="form-label">Business/Company Legal Type *</label>
                     <select id="businessType" name="businessType" class="form-select">
-                        <option value="food">Food & Beverages</option>
-                        <option value="fashion">Fashion</option>
-                        <option value="health">Health & Wellness</option>
+                        <option selected>Select Type</option>
+                        @foreach($company_legal_type as $Cl_type)
+                        <option value="{{ $Cl_type->id }}">{{ $Cl_type->name }}</option>
+                    @endforeach
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="businessType" class="form-label">Business/Company No. of Employees (approx.) *</label>
                     <select id="businessType" name="businessType" class="form-select">
-                        <option value="food">Food & Beverages</option>
-                        <option value="fashion">Fashion</option>
-                        <option value="health">Health & Wellness</option>
+                        <option selected>Select No. of Employees</option>
+                        @foreach($number_of_employees as $number_employee)
+                        <option value="{{ $number_employee->id }}">{{ $number_employee->range}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="businessType" class="form-label">Business/Company Monthly Turnover (approx.) *</label>
                     <select id="businessType" name="businessType" class="form-select">
-                        <option value="food">Food & Beverages</option>
-                        <option value="fashion">Fashion</option>
-                        <option value="health">Health & Wellness</option>
+                        <option selected>Select Turnover</option>
+                        @foreach($monthly_turnovers as $turnovers)
+                        <option value="{{ $turnovers->id }}">{{ $turnovers->range}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="businessType" class="form-label">Business/Company Monthly Advertising (Medium)</label>
                     <select id="businessType" name="businessType" class="form-select">
-                        <option value="food">Food & Beverages</option>
-                        <option value="fashion">Fashion</option>
-                        <option value="health">Health & Wellness</option>
+                        <option selected>Select Advertising</option>
+                        @foreach($monthly_advertising_mediums as $mediums)
+                        <option value="{{ $mediums->id }}">{{ $mediums->medium}}</option>
+                        @endforeach
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="businessType" class="form-label">Business/Company Advertising (Medium) price*</label>
                     <select id="businessType" name="businessType" class="form-select">
-                        <option value="food">Food & Beverages</option>
-                        <option value="fashion">Fashion</option>
-                        <option value="health">Health & Wellness</option>
+                        <option selected>Select Advertising Price</option>
+                        @foreach($monthly_turnovers as $turnovers)
+                        <option value="{{ $turnovers->id }}">{{ $turnovers->range}}</option>
+                        @endforeach
                     </select>
                 </div>
             </div>
@@ -187,8 +192,9 @@
                 <label for="state" class="form-label">cities</label>
                 <select id="state" class="form-select">
                     <option selected>Select cities</option>
-                    <option value="state1">State 1</option>
-                    <option value="state2">State 2</option>
+                    @foreach($cities as $city)
+                    <option value="{{ $city->id }}">{{ $city->name}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -204,10 +210,10 @@
             <div style="flex: 1;">
                 <label for="state" class="form-label">Category *</label>
                 <select id="state" class="form-select">
-                    <option selected>Select State</option>
-                    <option value="state1">State 1</option>
-                    <option value="state2">State 2</option>
-                    <option value="state3">State 3</option>
+                    <option selected>Select Category</option>
+                    @foreach($Category as $Cate)
+                    <option value="{{ $Cate->id }}">{{ $Cate->name}}</option>
+                    @endforeach
                 </select>
             </div>
         </div>
@@ -412,9 +418,8 @@
                 <input type="checkbox" id="existingAccountCheckbox" style="margin-right: 5px;"> I agree to the terms and conditions.
             </label>
         </div>
-        <button type="submit" id="submitBtn" class="btn btn-primary" disabled>
-            Submit
-        </button>
+        <button type="submit" class="btn btn-primary">Submit</button>
+
 
     </div>
     </form>
