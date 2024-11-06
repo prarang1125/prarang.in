@@ -93,19 +93,61 @@
     <div class="carousel-wrap shadow">
         <div class="owl-carousel">
             @foreach ($chittiArray as $post)
-                <div class="item shadow p-1" style="min-height:80px;">
-                    <img class="img-carousel" src="https://{{ $post->imageUrl }}" alt="Post Image">
-                    <small class="p-0 m-0" style="font-size:10px">{{ \Illuminate\Support\Str::limit($post->SubTitle, 15, '...') }}</small>
+                <div class="item shadow p-1" id="carousel-item" style="min-height:80px;">
+                    <img class="img-carousel"data-bs-toggle="modal" data-bs-target="#exampleModal{{$post->chittiId}}"  src="https://{{ $post->imageUrl }}" alt="Post Image">
+                    <small class="p-0 m-0" style="font-size:10px">s{{ \Illuminate\Support\Str::limit($post->SubTitle, 15, '...') }}</small>
   
                 </div>
             @endforeach
         </div>
     </div>
+    <!-- Button trigger modal -->
+
+  @foreach ($chittiArray as $post)
+  <!-- Modal -->
+  <div class="modal fade" data-bs-backdrop="false" id="exampleModal{{$post->chittiId}}" tabindex="-1" aria-labelledby="exampleModal{{$post->chittiId}}Label" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+      <div class="modal-content">
+      {{-- {{dd($post)}} --}}
+        <div class="modal-body">
+            <section>
+                <h3>{{$post->SubTitle}}</h3>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p class="text-start">
+                          {{$post->tagInEnglish}} <br>
+                            <small> {{$post->tagInEnglish}}</small>                           
+                        </p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p class="text-end">
+                            {{$post->dateOfApprove}}
+                            <br>
+                            {{$post->geography}}
+                        </p>
+                    </div>
+                </div>
+               
+                <img class="img-fluid rounded" src="https://{{$post->imageUrl}}" alt="{{$post->SubTitle}}">
+                <br><br>
+                {!! $post->description!!}
+            </section>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+        </div>
+      </div>
+    </div>
+  </div>
+  @endforeach
   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/owl.carousel.min.js"></script>
     <script>
+  
+        // Initialize Owl Carousel
         $('.owl-carousel').owlCarousel({
             loop: true,
             margin: 10,
@@ -127,7 +169,9 @@
                     items: 5
                 }
             }
-        })
+        });
+
+  
     </script>
   </div>
   

@@ -6,13 +6,13 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    protected $connection = 'yp';
+    // protected $connection = 'yp';
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('state', function (Blueprint $table) {
+        Schema::connection('yp')->create('state', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
             $table->string('code', 5)->unique();
