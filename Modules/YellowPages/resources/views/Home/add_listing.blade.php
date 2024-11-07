@@ -43,9 +43,21 @@
         <h5 style="text-align: center;">Add your Listing</h5>
         <p style="text-align: center;  margin-bottom: 20px;">Add details about your listing</p>
     </div>
+
+   
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-        <form action="{{ route('listing.store') }}" method="POST" id="listingForm">
+        <form action="{{ route('listing.store') }}" method="POST" id="listingForm" enctype="multipart/form-data">    
             @csrf
+
+             @if ($errors->any())
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
             <h5 style="margin-bottom: 15px;">Primary Listing Details</h5>
             <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
             <div class="mb-3">
@@ -412,15 +424,12 @@
 
     </div>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-
         <div style="margin-top: 15px; margin-bottom: 15px;">
             <label>
                 <input type="checkbox" id="existingAccountCheckbox" style="margin-right: 5px;"> I agree to the terms and conditions.
             </label>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
-
-
     </div>
     </form>
     </div>
@@ -431,6 +440,49 @@
     <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
     <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+       $(document).ready(function() {
+    $('#listingForm').on('submit', function(e) {
+        e.preventDefault();
+
+        // Create a FormData object to handle file uploads
+        var formData = new FormData(this);
+
+        // Add any additional data to the FormData object if needed
+        // For example, you can add hidden fields or dynamic data
+
+        $.ajax({
+            url: $(this).attr('action'), // Get the form's action URL
+            type: 'POST',
+            data: formData,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                // Handle successful submission
+                console.log(response); // Log the server's response
+                alert('Listing created successfully!');
+                // Redirect to a success page or perform other actions
+                window.location.href = '/success-page';
+            },
+            error: function(xhr, status, error) {
+                // Handle errors
+                console.error(xhr.responseText); // Log the error message
+                alert('An error occurred. Please try again later.');
+
+                // Display specific error messages if available
+                if (xhr.responseJSON && xhr.responseJSON.errors) {
+                    var errorMessage = '';
+                    $.each(xhr.responseJSON.errors, function(key, value) {
+                        errorMessage += value[0] + '\n';
+                    });
+                    alert(errorMessage);
+                }
+            }
+        });
+    });
+});
+    </script>
 </body>
 
 </html>
