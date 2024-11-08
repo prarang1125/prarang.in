@@ -30,7 +30,7 @@ Route::group(['prefix' => 'yellow-pages'], function () {
     ##------------------------- Drop Down data get ---------------------##
     
     Route::get('/getLocationData', [ListingController::class, 'getLocationData']);
-    Route::post('/store-listing', [ListingController::class, 'store'])->name('listing.store');
+    Route::post('/store-listing', [ListingController::class, 'store'])->name('yp.listing.store');
 
 
 });
