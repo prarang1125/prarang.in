@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -43,12 +42,9 @@
         <h5 style="text-align: center;">Add your Listing</h5>
         <p style="text-align: center;  margin-bottom: 20px;">Add details about your listing</p>
     </div>
-
-   
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-        <form action="{{ route('listing.store') }}" method="POST" id="listingForm" enctype="multipart/form-data">    
+  <form action="{{ route('yp.listing.store') }}" method="POST" id="listingForm" enctype="multipart/form-data">    
             @csrf
-
              @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
@@ -56,79 +52,66 @@
                 <li>{{ $error }}</li>
             @endforeach
         </ul>
-    </div>
-@endif
+       </div>
+      @endif
             <h5 style="margin-bottom: 15px;">Primary Listing Details</h5>
             <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
             <div class="mb-3">
                 <label for="location" class="form-label">Location</label>
-                <select id="location" class="form-select">
+                <select id="location" class="form-select" name="location">
                     <option selected>Select location</option>
                     @foreach($cities as $city)
                     <option value="{{ $city->id }}">{{ $city->name }}</option>
                     @endforeach
                 </select>
             </div>
-
             <div class="mb-3">
                 <label for="listingTitle" class="form-label">Listing Title</label>
-                <input type="text" id="listingTitle" class="form-control" placeholder="Enter listing title">
+                <input type="text" id="listingTitle" name="listingTitle" class="form-control">
             </div>
-
             <div class="form-check mb-3">
                 <input class="form-check-input" type="checkbox" id="hasTagline" onclick="document.getElementById('taglineField').style.display = this.checked ? 'block' : 'none'">
                 <label class="form-check-label" for="hasTagline">
                     Does Your Business have a tagline?
                 </label>
             </div>
-
             <div class="mb-3" id="taglineField" style="display: none;">
                 <label for="tagline" class="form-label">Tagline</label>
                 <input type="text" id="tagline" class="form-control" placeholder="Enter tagline">
             </div>
-
-            <!-- Two Column Layout for Form Fields -->
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="businessName" class="form-label">Business/Company Name</label>
                     <input type="text" id="businessName" name="businessName" class="form-control" placeholder="Enter business name">
                 </div>
-
                 <div class="col-md-6 mb-3">
                     <label for="businessAddress" class="form-label">Business/Company Address</label>
                     <input type="text" id="businessAddress" name="businessAddress" class="form-control" placeholder="Enter business address">
                 </div>
-
                 <div class="col-md-6 mb-3">
                     <label for="primaryPhone" class="form-label">Primary Phone Number</label>
                     <input type="text" id="primaryPhone" name="primaryPhone" class="form-control" placeholder="Enter primary phone">
                 </div>
-
                 <div class="col-md-6 mb-3">
                     <label for="secondaryPhone" class="form-label">Secondary Phone Number</label>
                     <input type="text" id="secondaryPhone" name="secondaryPhone" class="form-control" placeholder="Enter secondary phone">
                 </div>
-
                 <div class="col-md-6 mb-3">
                     <label for="primaryContact" class="form-label">Primary Contact Name</label>
                     <input type="text" id="primaryContact" name="primaryContact" class="form-control" placeholder="Enter primary contact name">
                 </div>
-
                 <div class="col-md-6 mb-3">
                     <label for="primaryEmail" class="form-label">Primary Contact Email</label>
                     <input type="email" id="primaryEmail" name="primaryEmail" class="form-control" placeholder="Enter primary email">
                 </div>
-
                 <div class="col-md-6 mb-3">
                     <label for="secondaryContact" class="form-label">Secondary Contact Name</label>
                     <input type="text" id="secondaryContact" name="secondaryContact" class="form-control" placeholder="Enter secondary contact name">
                 </div>
-
                 <div class="col-md-6 mb-3">
                     <label for="secondaryEmail" class="form-label">Secondary Contact Email</label>
                     <input type="email" id="secondaryEmail" name="secondaryEmail" class="form-control" placeholder="Enter secondary email">
                 </div>
-
                 <div class="col-md-6 mb-3">
                     <label for="businessType" class="form-label">Business/Company Legal Type *</label>
                     <select id="businessType" name="businessType" class="form-select">
@@ -139,8 +122,8 @@
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="businessType" class="form-label">Business/Company No. of Employees (approx.) *</label>
-                    <select id="businessType" name="businessType" class="form-select">
+                    <label for="employee_range" class="form-label">Business/Company No. of Employees (approx.) *</label>
+                    <select id="employee_range" name="employee_range" class="form-select">
                         <option selected>Select No. of Employees</option>
                         @foreach($number_of_employees as $number_employee)
                         <option value="{{ $number_employee->id }}">{{ $number_employee->range}}</option>
@@ -148,8 +131,8 @@
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="businessType" class="form-label">Business/Company Monthly Turnover (approx.) *</label>
-                    <select id="businessType" name="businessType" class="form-select">
+                    <label for="trunover" class="form-label">Business/Company Monthly Turnover (approx.) *</label>
+                    <select id="trunover" name="trunover" class="form-select">
                         <option selected>Select Turnover</option>
                         @foreach($monthly_turnovers as $turnovers)
                         <option value="{{ $turnovers->id }}">{{ $turnovers->range}}</option>
@@ -157,8 +140,8 @@
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="businessType" class="form-label">Business/Company Monthly Advertising (Medium)</label>
-                    <select id="businessType" name="businessType" class="form-select">
+                    <label for="advertising" class="form-label">Business/Company Monthly Advertising (Medium)</label>
+                    <select id="advertising" name="advertising" class="form-select">
                         <option selected>Select Advertising</option>
                         @foreach($monthly_advertising_mediums as $mediums)
                         <option value="{{ $mediums->id }}">{{ $mediums->medium}}</option>
@@ -166,8 +149,8 @@
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="businessType" class="form-label">Business/Company Advertising (Medium) price*</label>
-                    <select id="businessType" name="businessType" class="form-select">
+                    <label for="advertising_price" class="form-label">Business/Company Advertising (Medium) price*</label>
+                    <select id="advertising_price" name="advertising_price" class="form-select">
                         <option selected>Select Advertising Price</option>
                         @foreach($monthly_turnovers as $turnovers)
                         <option value="{{ $turnovers->id }}">{{ $turnovers->range}}</option>
@@ -175,42 +158,19 @@
                     </select>
                 </div>
             </div>
-
     </div>
-
     <br>
     <br>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
         <h5 style="margin-bottom: 15px;">Address Details</h5>
     <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
-
         <div style="display: flex; gap: 20px;">
             <!-- Pin Code Field -->
             <div style="flex: 1;">
                 <label for="pincode" class="form-label">Pin Code</label>
                 <input type="text" id="pincode" class="form-control" placeholder="Enter Pin Code">
             </div>
-
-            <!-- State Field -->
-            <div style="flex: 1;">
-                <label for="state" class="form-label">State</label>
-                <select id="state" class="form-select">
-                    <option selected>Select State</option>
-                    <option value="state1">State 1</option>
-                    <option value="state2">State 2</option>
-                </select>
-            </div>
-            <div style="flex: 1;">
-                <label for="state" class="form-label">cities</label>
-                <select id="state" class="form-select">
-                    <option selected>Select cities</option>
-                    @foreach($cities as $city)
-                    <option value="{{ $city->id }}">{{ $city->name}}</option>
-                    @endforeach
-                </select>
-            </div>
         </div>
-
     </div>
     <br>
     <br>
@@ -218,10 +178,9 @@
         <h5 style="margin-bottom: 15px;">CATEGORY & SERVICES</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
         <div style="display: flex; gap: 20px;">
-            <!-- State Field -->
             <div style="flex: 1;">
                 <label for="state" class="form-label">Category *</label>
-                <select id="state" class="form-select">
+                <select id="state" class="form-select" name="category">
                     <option selected>Select Category</option>
                     @foreach($Category as $Cate)
                     <option value="{{ $Cate->id }}">{{ $Cate->name}}</option>
@@ -230,17 +189,14 @@
             </div>
         </div>
     </div>
+    <br><br>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
         <h5 style="margin-bottom: 15px;">More Info</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
-
-        <!-- Description Field -->
         <div style="margin-top: 15px;">
             <label for="description">Description</label>
             <textarea id="description" name="description" rows="4" placeholder="Enter description here..." style="width: 100%;"></textarea>
         </div>
-
-        <!-- Tags or Keywords Field -->
         <div style="margin-top: 15px;">
             <label for="description">Tags or Keywords (Comma Separated)</label>
             <textarea id="description" name="description" rows="4" placeholder="Enter Tags or Keywords (Comma Separated)" style="width: 100%;"></textarea>
@@ -251,14 +207,11 @@
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
         <h5 style="margin-bottom: 15px;">Business Hours</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
-
-        <!-- Business Hours for Each Day -->
         <div id="day-schedule-container">
-            <!-- Day Template for JavaScript Duplication -->
             <div id="day-template" style="display: none;">
                 <div style="margin-bottom: 10px;">
                     <label>Select Day:</label>
-                    <select class="day-select" onchange="updateDaySelection(this)">
+                    <select class="day-select" name="days" onchange="updateDaySelection(this)">
                         <option value="">-- Select a Day --</option>
                         <option value="monday">Monday</option>
                         <option value="tuesday">Tuesday</option>
@@ -269,45 +222,31 @@
                         <option value="sunday">Sunday</option>
                     </select>
                 </div>
-
                 <div style="display: flex; align-items: center; gap: 10px; margin-top: 5px;">
-                    <!-- Opening Hour -->
                     <label class="day-label"></label>
                     <input type="time" class="day-open" name="open_time[]">
-
-                    <!-- Closing Hour -->
                     <label>Closing:</label>
                     <input type="time" class="day-close" name="close_time[]">
-
-                    <!-- 24 Hours Option -->
                     <label>
                         <input type="checkbox" class="day-24hours" onclick="toggle24Hours(this)"> 24 Hours
                     </label>
-
-                    <!-- Add Second Time Slot Option -->
                     <label>
                         <input type="checkbox" class="day-2nd-slot-toggle" onclick="toggleSecondSlot(this)"> Add 2nd Time Slot
                     </label>
                 </div>
-
-                <!-- Second Time Slot -->
                 <div class="second-time-slot" style="display: none; margin-top: 5px; padding-left: 20px;">
                     <label>Opening (2nd Slot):</label>
                     <input type="time" class="day-open-2" name="open_time_2[]">
-
                     <label>Closing (2nd Slot):</label>
                     <input type="time" class="day-close-2" name="close_time_2[]">
                 </div>
             </div>
         </div>
-
-        <!-- Add More Day Button -->
         <button type="button" onclick="addNewDay()">Add More Day</button>
     </div>
     <br>
     <br>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-
         <h5 style="margin-bottom: 15px;">Address Information</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
         <div style="margin-bottom: 10px;">
@@ -342,20 +281,13 @@
         </div>
     </div>
     <br>
-    <div style="max-width: 800px; margin: 0 auto; background
-: #fff; padding: 20px; border: 1px solid #ddd;">
+    <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
         <h5 style="margin-bottom: 15px;">Social Media Links</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
         <div class="social-media-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
             <select id="social_media" name="social_media[]" required style="flex: 1; padding: 8px;">
                 <option value="">-- Select a Platform --</option>
                 <option value="facebook">Facebook</option>
-                <option value="twitter">Twitter</option>
-                <option value="instagram">Instagram</option>
-                <option value="linkedin">LinkedIn</option>
-                <option value="youtube">YouTube</option>
-                <option value="pinterest">Pinterest</option>
-                <option value="tiktok">TikTok</option>
             </select>
             <input type="text" id="description" name="description[]" placeholder="Enter your link or details" style="flex: 2; padding: 8px;">
             <button type="button" id="addSocialMedia" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; cursor: pointer;">
@@ -372,12 +304,12 @@
         </div>
         <div style="display: flex; gap: 10px; justify-content: space-between; margin-bottom: 10px;">
             <div style="flex: 1; padding: 10px; border: 1px solid #ddd; text-align: center;">
-                <button type="button" style="padding: 5px 10px; color: #007bff; border: 1px solid #ddd; background-color: #f9f9f9; cursor: pointer;">Browse</button>
-                <p>Upload Featured Image</p>
+                <label for="coverImage" class="form-label">Cover Image</label>
+                <input type="file" id="coverImage" name="coverImage" class="form-control @error('coverImage') is-invalid @enderror">
             </div>
             <div style="flex: 1; padding: 10px; border: 1px solid #ddd; text-align: center;">
-                <button type="button" style="padding: 5px 10px; color: #007bff; border: 1px solid #ddd; background-color: #f9f9f9; cursor: pointer;">Browse</button>
-                <p>Upload Business Logo</p>
+                <label for="logo" class="form-label">Logo</label>
+                <input type="file" id="logo" name="logo" class="form-control @error('logo') is-invalid @enderror">
             </div>
         </div>
         <h5 style="margin-top: 20px; margin-bottom: 15px;">FEATURES</h5>
@@ -421,7 +353,6 @@
                 <input type="password" id="password" name="password" placeholder="Enter your password" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
             </div>
         </div>
-
     </div>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
         <div style="margin-top: 15px; margin-bottom: 15px;">
@@ -441,48 +372,5 @@
     <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-       $(document).ready(function() {
-    $('#listingForm').on('submit', function(e) {
-        e.preventDefault();
-
-        // Create a FormData object to handle file uploads
-        var formData = new FormData(this);
-
-        // Add any additional data to the FormData object if needed
-        // For example, you can add hidden fields or dynamic data
-
-        $.ajax({
-            url: $(this).attr('action'), // Get the form's action URL
-            type: 'POST',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(response) {
-                // Handle successful submission
-                console.log(response); // Log the server's response
-                alert('Listing created successfully!');
-                // Redirect to a success page or perform other actions
-                window.location.href = '/success-page';
-            },
-            error: function(xhr, status, error) {
-                // Handle errors
-                console.error(xhr.responseText); // Log the error message
-                alert('An error occurred. Please try again later.');
-
-                // Display specific error messages if available
-                if (xhr.responseJSON && xhr.responseJSON.errors) {
-                    var errorMessage = '';
-                    $.each(xhr.responseJSON.errors, function(key, value) {
-                        errorMessage += value[0] + '\n';
-                    });
-                    alert(errorMessage);
-                }
-            }
-        });
-    });
-});
-    </script>
 </body>
-
 </html>

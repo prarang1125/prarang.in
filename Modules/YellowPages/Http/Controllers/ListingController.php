@@ -15,28 +15,29 @@ use Illuminate\Support\Facades\DB;
 class ListingController extends Controller
 
 {
-    public function getLocationData()
-    {
-        $cities =  City::on('yp')->get();
-        $company_legal_type = DB::connection('yp')->select('SELECT * FROM company_legal_types');
-        $number_of_employees = DB::connection('yp')->select('SELECT * FROM number_of_employees');
-        $monthly_turnovers = DB::connection('yp')->select('SELECT * FROM monthly_turnovers');
-        $monthly_advertising_mediums = DB::connection('yp')->select('SELECT * FROM monthly_advertising_mediums');
-        $monthly_advertising_prices = DB::connection('yp')->select('SELECT * FROM monthly_advertising_prices');
-        $Category = DB::connection('yp')->select('SELECT * FROM monthly_advertising_prices');
-        $Category =  Category::on('yp')->get();
-        return view('yellowpages::Home.add_listing', compact('cities','company_legal_type','number_of_employees','monthly_turnovers','monthly_advertising_mediums','monthly_advertising_prices','Category'));
-    }
+   public function getLocationData()
+{
+    $cities = City::on('yp')->get();
+    $company_legal_type = DB::connection('yp')->select('SELECT * FROM company_legal_types');
+    $number_of_employees = DB::connection('yp')->select('SELECT * FROM number_of_employees');
+    $monthly_turnovers = DB::connection('yp')->select('SELECT * FROM monthly_turnovers');
+    $monthly_advertising_mediums = DB::connection('yp')->select('SELECT * FROM monthly_advertising_mediums');
+    $monthly_advertising_prices = DB::connection('yp')->select('SELECT * FROM monthly_advertising_prices');
+    $Category = Category::on('yp')->get(); // Double check this line to ensure Category model uses 'yp'
 
-
-
-
+    return view('yellowpages::Home.add_listing', compact(
+        'cities',
+        'company_legal_type',
+        'number_of_employees',
+        'monthly_turnovers',
+        'monthly_advertising_mediums',
+        'monthly_advertising_prices',
+        'Category'
+    ));
+}
     public function store(StoreListingRequest $request)
     {
-        // Step 1: The data is automatically validated here
         $validated = $request->validated(); 
-
-        // Step 2: Handle the image uploads
         $imagePath = null;
         if ($request->hasFile('Image')) {
             $imagePath = $request->file('Image')->store('images/business', 'public');
@@ -52,7 +53,6 @@ class ListingController extends Controller
             $businessLogoPath = $request->file('business_logo')->store('images/logos', 'public');
         }
 
-        // Step 3: Store the validated data in the database
         $listing = BusinessListing::create([
             'location_id' => $validated['location'],
             'listing_title' => $validated['listingTitle'],
@@ -82,7 +82,6 @@ class ListingController extends Controller
             'agree' => $validated['agree'],
         ]);
 
-        // Step 4: Return success response
-        return redirect()->route('yellowpages::listing.store')->with('success', 'Listing created successfully!');
+        return redirect()->route('yp.listing.store')->with('success', 'Listing created successfully!');
     }
 }
