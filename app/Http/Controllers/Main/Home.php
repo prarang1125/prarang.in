@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Exception;
+use Illuminate\Support\Facades\Hash;
 
 class Home extends Controller
 {
@@ -21,7 +22,7 @@ class Home extends Controller
     }
 
     public function index(){
-        
+        // return Hash::make('Pra@25@all');
         return view('YellowPages::main.home');
     }
    
