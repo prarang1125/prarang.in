@@ -10,44 +10,54 @@ class StoreListingRequest extends FormRequest
     {
         return [
             // Basic fields
-            'location' => 'required|exists:cities,id',
+            'location' => 'required|exists:yp.cities,id',
+            'tagline' => 'nullable|string',
             'listingTitle' => 'required|string|max:255',
             'businessName' => 'required|string|max:255',
             'businessAddress' => 'required|string',
             'primaryPhone' => 'required|string',
+            'secondary_phone' => 'nullable|string',
             'primaryContact' => 'required|string',
             'primaryEmail' => 'required|email',
-            'businessType' => 'required|exists:company_legal_types,id',
-            'employees' => 'required|exists:employee_ranges,id',
-            'turnover' => 'required|exists:monthly_turnovers,id',
-            'category' => 'required|exists:categories,id',
-            'description' => 'nullable|string',
-            'social_media' => 'nullable|array',
-            'social_media.*' => 'nullable|string',
-
+            'primary_contact_email' => 'nullable|string',
+            'secondaryContactName' => 'nullable|string',
+            'secondaryEmail' => 'nullable|string',
+            'pincode' => 'nullable|string',
+            'businessType' => 'required',
+            'employees' => 'required',
+            'turnover' => 'required',
+            'category' => 'required',
+            'description' => 'required',
+            'advertising' => 'required',
+            'advertising_price' => 'required',
+            'social_media' => 'nullable',
+            'tags_keywords' => 'nullable',
+            'fullAddress' => 'nullable|string',
+            'website' => 'nullable',
+            'phone' => 'nullable',
+            'whatsapp' => 'nullable',
+            'socialId' => 'nullable',
+            'socialDescription' => 'nullable',
+            'notificationEmail' => 'nullable|email',
+            'userName' => 'nullable',
+            'faq' => 'nullable',
+            'answer' => 'nullable',
+            
             // Business hours
-            'day' => 'required|array',
-            'open_time' => 'required|date_format:H:i',
-            'close_time' => 'required|date_format:H:i|after_or_equal:open_time',
-            'is_24_hours' => 'boolean',
-            'add_2nd_time_slot' => 'nullable|boolean',
+           'day.*' => 'required|string',
+           'open_time.*' => 'required',
+           'close_time.*' => 'required',
+            'is_24_hours.*' => 'nullable|boolean',
+            'add_2nd_time_slot.*' => 'nullable|boolean',
+            'email' => 'nullable',
+            'password' => 'nullable',
+            'agree' => 'nullable',
 
-            // Social media validation
-            'social_id' => 'required|array|min:1',
-            'social_id.*' => 'integer|gt:1000',
 
             // Image validation
-            'Image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'feature_image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'business_logo' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-
-            // Account info
-            'Email' => 'required|email',
-            'Password' => 'nullable|string|min:8',
-            'listing_approval' => 'required|boolean',
-
-            // Term conditions
-            'agree' => 'required|boolean',
+           'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+           'coverImage' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+           'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
     }
 
