@@ -43,7 +43,7 @@
         <p style="text-align: center;  margin-bottom: 20px;">Add details about your listing</p>
     </div>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-  <form action="{{ route('yp.listing.store') }}" method="POST" id="listingForm" enctype="multipart/form-data">    
+  <form action="{{ url('/yellow-pages/store-listing') }}" method="POST" id="listingForm" enctype="multipart/form-data">    
             @csrf
              @if ($errors->any())
     <div class="alert alert-danger">
@@ -77,7 +77,7 @@
             </div>
             <div class="mb-3" id="taglineField" style="display: none;">
                 <label for="tagline" class="form-label">Tagline</label>
-                <input type="text" id="tagline" class="form-control" placeholder="Enter tagline">
+                <input type="text" id="tagline" name="tagline" class="form-control" placeholder="Enter tagline">
             </div>
             <div class="row">
                 <div class="col-md-6 mb-3">
@@ -94,7 +94,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="secondaryPhone" class="form-label">Secondary Phone Number</label>
-                    <input type="text" id="secondaryPhone" name="secondaryPhone" class="form-control" placeholder="Enter secondary phone">
+                    <input type="text" id="secondaryPhone" name="secondary_phone" class="form-control" placeholder="Enter secondary phone">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="primaryContact" class="form-label">Primary Contact Name</label>
@@ -106,7 +106,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="secondaryContact" class="form-label">Secondary Contact Name</label>
-                    <input type="text" id="secondaryContact" name="secondaryContact" class="form-control" placeholder="Enter secondary contact name">
+                    <input type="text" id="secondaryContact" name="secondaryContactName" class="form-control" placeholder="Enter secondary contact name">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="secondaryEmail" class="form-label">Secondary Contact Email</label>
@@ -123,7 +123,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="employee_range" class="form-label">Business/Company No. of Employees (approx.) *</label>
-                    <select id="employee_range" name="employee_range" class="form-select">
+                    <select id="employee_range" name="employees" class="form-select">
                         <option selected>Select No. of Employees</option>
                         @foreach($number_of_employees as $number_employee)
                         <option value="{{ $number_employee->id }}">{{ $number_employee->range}}</option>
@@ -132,7 +132,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="trunover" class="form-label">Business/Company Monthly Turnover (approx.) *</label>
-                    <select id="trunover" name="trunover" class="form-select">
+                    <select id="trunover" name="turnover" class="form-select">
                         <option selected>Select Turnover</option>
                         @foreach($monthly_turnovers as $turnovers)
                         <option value="{{ $turnovers->id }}">{{ $turnovers->range}}</option>
@@ -143,8 +143,8 @@
                     <label for="advertising" class="form-label">Business/Company Monthly Advertising (Medium)</label>
                     <select id="advertising" name="advertising" class="form-select">
                         <option selected>Select Advertising</option>
-                        @foreach($monthly_advertising_mediums as $mediums)
-                        <option value="{{ $mediums->id }}">{{ $mediums->medium}}</option>
+                        @foreach($monthly_advertising_mediums as $advertising)
+                        <option value="{{ $advertising->id }}">{{ $advertising->medium}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -152,8 +152,8 @@
                     <label for="advertising_price" class="form-label">Business/Company Advertising (Medium) price*</label>
                     <select id="advertising_price" name="advertising_price" class="form-select">
                         <option selected>Select Advertising Price</option>
-                        @foreach($monthly_turnovers as $turnovers)
-                        <option value="{{ $turnovers->id }}">{{ $turnovers->range}}</option>
+                        @foreach($monthly_advertising_prices as $advertising)
+                        <option value="{{ $advertising->id }}">{{ $advertising->range}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -168,7 +168,7 @@
             <!-- Pin Code Field -->
             <div style="flex: 1;">
                 <label for="pincode" class="form-label">Pin Code</label>
-                <input type="text" id="pincode" class="form-control" placeholder="Enter Pin Code">
+                <input type="text" id="pincode" name="pincode" class="form-control" placeholder="Enter Pin Code">
             </div>
         </div>
     </div>
@@ -199,7 +199,7 @@
         </div>
         <div style="margin-top: 15px;">
             <label for="description">Tags or Keywords (Comma Separated)</label>
-            <textarea id="description" name="description" rows="4" placeholder="Enter Tags or Keywords (Comma Separated)" style="width: 100%;"></textarea>
+            <textarea id="description" name="tags_keywords" rows="4" placeholder="Enter Tags or Keywords (Comma Separated)" style="width: 100%;"></textarea>
         </div>
     </div>
     <br>
@@ -211,7 +211,7 @@
             <div id="day-template" style="display: none;">
                 <div style="margin-bottom: 10px;">
                     <label>Select Day:</label>
-                    <select class="day-select" name="days" onchange="updateDaySelection(this)">
+                    <select class="day-select" name="day" onchange="updateDaySelection(this)">
                         <option value="">-- Select a Day --</option>
                         <option value="monday">Monday</option>
                         <option value="tuesday">Tuesday</option>
@@ -228,10 +228,10 @@
                     <label>Closing:</label>
                     <input type="time" class="day-close" name="close_time[]">
                     <label>
-                        <input type="checkbox" class="day-24hours" onclick="toggle24Hours(this)"> 24 Hours
+                        <input type="checkbox" name ="is_24_hours" class="day-24hours" onclick="toggle24Hours(this)"> 24 Hours
                     </label>
                     <label>
-                        <input type="checkbox" class="day-2nd-slot-toggle" onclick="toggleSecondSlot(this)"> Add 2nd Time Slot
+                        <input type="checkbox"  name ="add_2nd_time_slot" class="day-2nd-slot-toggle" onclick="toggleSecondSlot(this)"> Add 2nd Time Slot
                     </label>
                 </div>
                 <div class="second-time-slot" style="display: none; margin-top: 5px; padding-left: 20px;">
@@ -251,19 +251,15 @@
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
         <div style="margin-bottom: 10px;">
             <label for="street_address">Full Address:</label>
-            <input type="text" id="street_address" name="street_address" placeholder="123 Main St" required style="width: 100%; padding: 8px;">
+            <input type="text" id="street_address" name="fullAddress" placeholder="123 Main St" style="width: 100%; padding: 8px;">
         </div>
         <div style="margin-bottom: 10px;">
             <label for="city">City:</label>
-            <input type="text" id="city" name="city" required style="width: 100%; padding: 8px;">
-        </div>
-        <div style="margin-bottom: 10px;">
-            <label for="state">State / Province:</label>
-            <input type="text" id="state" name="state" required style="width: 100%; padding: 8px;">
+            <input type="text" id="city" name="city"  style="width: 100%; padding: 8px;">
         </div>
         <div style="margin-bottom: 10px;">
             <label for="postal_code">Postal Code:</label>
-            <input type="text" id="postal_code" name="postal_code" required style="width: 100%; padding: 8px;">
+            <input type="text" id="postal_code" name="postal_code"  style="width: 100%; padding: 8px;">
         </div>
         <h5 style="margin-bottom: 15px;">Contact Information</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
@@ -285,11 +281,13 @@
         <h5 style="margin-bottom: 15px;">Social Media Links</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
         <div class="social-media-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-            <select id="social_media" name="social_media[]" required style="flex: 1; padding: 8px;">
-                <option value="">-- Select a Platform --</option>
-                <option value="facebook">Facebook</option>
+            <select id="social_media" name="socialId" required style="flex: 1; padding: 8px;">
+            <option selected>Select location</option>
+                    @foreach($social_media as $social)
+                    <option value="{{ $social->id }}">{{ $social->name }}</option>
+                    @endforeach
             </select>
-            <input type="text" id="description" name="description[]" placeholder="Enter your link or details" style="flex: 2; padding: 8px;">
+            <input type="text" id="description" name="socialDescription" placeholder="Enter your link or details" style="flex: 2; padding: 8px;">
             <button type="button" id="addSocialMedia" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; cursor: pointer;">
                 +
             </button>
@@ -300,8 +298,9 @@
         <h5 style="margin-bottom: 15px;">MEDIA</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
         <div style="border: 1px dashed #ddd; padding: 20px; text-align: center; color: #888; margin-bottom: 10px;">
-            Drop files here or click to upload
+        <input type="file" name="image" style="display: block; margin-top: 10px;">
         </div>
+
         <div style="display: flex; gap: 10px; justify-content: space-between; margin-bottom: 10px;">
             <div style="flex: 1; padding: 10px; border: 1px solid #ddd; text-align: center;">
                 <label for="coverImage" class="form-label">Cover Image</label>
@@ -320,8 +319,8 @@
         <div id="faqSection" style="display: none;">
             <div class="faq-item" style="margin-bottom: 10px;">
                 <label>Frequently Asked Questions</label>
-                <input type="text" placeholder="Frequently Asked Questions" style="width: 100%; margin-bottom: 5px;">
-                <textarea placeholder="Answer" style="width: 100%; height: 60px;"></textarea>
+                <input type="text" name="faq" placeholder="Frequently Asked Questions" style="width: 100%; margin-bottom: 5px;">
+                <textarea placeholder="Answer" name="answer" style="width: 100%; height: 60px;"></textarea>
             </div>
             <div class="add-new" style="color: #007bff; cursor: pointer; font-size: 14px; display: inline-block; margin-top: 10px;" onclick="addFAQ()">+ Add New</div>
         </div>
@@ -331,7 +330,7 @@
         <div id="signupFields" style="display: flex; gap: 20px; margin-bottom: 15px;">
             <div style="flex: 1;">
                 <label for="signupEmail">Enter email to signup & receive notification upon listing approval</label>
-                <input type="email" id="signupEmail" name="signupEmail" placeholder="Enter email here..." style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
+                <input type="email" id="signupEmail" name="notificationEmail" placeholder="Enter email here..." style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
             </div>
             <div style="flex: 1;">
                 <label for="userName">Enter User Name</label>
@@ -357,7 +356,7 @@
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
         <div style="margin-top: 15px; margin-bottom: 15px;">
             <label>
-                <input type="checkbox" id="existingAccountCheckbox" style="margin-right: 5px;"> I agree to the terms and conditions.
+                <input type="checkbox" name="agree" id="existingAccountCheckbox" style="margin-right: 5px;"> I agree to the terms and conditions.
             </label>
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
