@@ -8,9 +8,7 @@
     <!-- Include Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <style>
-        /* Add your custom styles here */
-    </style>
+  
 </head>
 <body>
 
@@ -30,7 +28,7 @@
                 <ul>
                     <li><a href="#" id="toggleModal" data-bs-toggle="modal" data-bs-target="#signInModal">Sign In</a></li>
                     <li class="action-buttons">
-                        <a href="#" class="btn-add-listing"><i class="fa fa-plus"></i> Add Listing</a>
+                        <a href="{{ url('yellow-pages/listing_plan') }}" class="btn-add-listing"><i class="fa fa-plus"></i> Add Listing</a>
                     </li>
                     <li class="action-buttons">
                         <a href="#" class="btn-get-vcard"><i class="fa fa-id-card"></i> Get V-Card</a>

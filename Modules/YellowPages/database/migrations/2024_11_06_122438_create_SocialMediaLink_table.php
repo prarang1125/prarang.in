@@ -6,16 +6,17 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-    // protected $connection = 'yp';
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::connection('yp')->create('state', function (Blueprint $table) {
+        Schema::create('SocialMediaLink', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('code', 5)->unique();
+            $table->id();
+            $table->foreignId('listing_id')->constrained('listings');
+            $table->string('platform');
+            $table->string('link');
             $table->timestamps();
         });
     }
@@ -25,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('state');
+        Schema::dropIfExists('SocialMediaLink');
     }
 };
