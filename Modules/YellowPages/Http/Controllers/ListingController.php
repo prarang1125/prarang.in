@@ -108,7 +108,6 @@ public function store(StoreListingRequest $request)
 
      // Create the business listing
  $listing = BusinessListing::create($data);
-
     // Insert business hours data
     if (isset($validated['day']) && is_array($validated['day'])) {
         foreach ($validated['day'] as $index => $day) {
