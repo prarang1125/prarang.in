@@ -44,13 +44,12 @@ class ListingController extends Controller
     ));
 
 }
+
+
 public function store(StoreListingRequest $request)
 {
     // Validate only necessary fields
     $validated = $request->validated(); 
-
-    dd($validated);die;
-
     // File upload handling
     $imagePath = $request->hasFile('image') 
                  ? $request->file('image')->store('images/business', 'public') 
@@ -107,25 +106,26 @@ public function store(StoreListingRequest $request)
     ];
 
      // Create the business listing
- $listing = BusinessListing::create($data);
+         $listing = BusinessListing::create($data);
 
     // Insert business hours data
-    if (isset($validated['day']) && is_array($validated['day'])) {
+    if (!empty($validated['day'])) {
         foreach ($validated['day'] as $index => $day) {
-            // Prepare data for business hours
             $hoursData = [
-                'business_id' => $listing->id,
+                'business_id' => $listing->id ?? null, // Ensure `$listing` is created
                 'day' => $day,
                 'open_time' => $validated['open_time'][$index] ?? null,
                 'close_time' => $validated['close_time'][$index] ?? null,
                 'open_time_2' => $validated['open_time_2'][$index] ?? null,
                 'close_time_2' => $validated['close_time_2'][$index] ?? null,
-                'is_24_hours' => $validated['is_24_hours'][$index] ?? false,
-                'add_2nd_time_slot' => $validated['add_2nd_time_slot'][$index] ?? false,
+                'is_24_hours' => !empty($validated['is_24_hours'][$index]) ? 1 : 0,
+                'add_2nd_time_slot' => !empty($validated['add_2nd_time_slot'][$index]) ? 1 : 0,
             ];
-
+    
             // Insert each day of business hours
             BusinessHour::create($hoursData);
+     
+    
         }
     }
 

@@ -44,11 +44,17 @@ class StoreListingRequest extends FormRequest
             'answer' => 'nullable',
             
             // Business hours
-           'day.*' => 'required|string',
-           'open_time.*' => 'required',
-           'close_time.*' => 'required',
-            'is_24_hours.*' => 'nullable|boolean',
-            'add_2nd_time_slot.*' => 'nullable|boolean',
+          'day' => 'nullable|array',
+          'day.*' => 'nullable|string',
+          'open_time' => 'nullable|array',
+          'open_time.*' => 'nullable|date_format:H:i',
+          'close_time' => 'nullable|array',
+          'close_time.*' => 'nullable|date_format:H:i',
+          'is_24_hours' => 'nullable|array',
+          'is_24_hours.*' => 'nullable|boolean',
+          'add_2nd_time_slot' => 'nullable|array',
+          'add_2nd_time_slot.*' => 'nullable|boolean',
+
             'email' => 'nullable',
             'password' => 'nullable',
             'agree' => 'nullable',

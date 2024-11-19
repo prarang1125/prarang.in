@@ -15,6 +15,7 @@
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
   <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
@@ -144,16 +145,14 @@
 
     </section><!-- /Hero Section -->
 
-  <section id="services" class="services">
-    <!-- Section Title -->
+  <!-- <section id="services" class="services">
     <div class="container section-title" data-aos="fade-up">
       <h2>Live Cities</h2>
       <p>Find the Best Services and Products in these Cities</p>
-    </div><!-- End Section Title -->
+    </div>
   
     <div class="container">
       <div class="row gy-4">
-        <!-- Meerut Card -->
         <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
           <a href="meerut-details.html" class="card-link">
             <div class="card">
@@ -163,9 +162,7 @@
               </div>
             </div>
           </a>
-        </div><!-- End Meerut Card -->
-  
-        <!-- Lucknow Card -->
+        </div>
         <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
           <a href="lucknow-details.html" class="card-link">
             <div class="card">
@@ -175,9 +172,7 @@
               </div>
             </div>
           </a>
-        </div><!-- End Lucknow Card -->
-  
-        <!-- Jaunpur Card -->
+        </div>
         <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
           <a href="jaunpur-details.html" class="card-link">
             <div class="card">
@@ -201,10 +196,37 @@
         </div>
       </div>
     </div>
-  </section>
+  </section> -->
 
-  <section id="listings" class="listings section">
-    <!-- Section Title -->
+
+  <!-- get cities  -->
+<section id="services" class="services">
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Live Cities</h2>
+    <p>Find the Best Services and Products in these Cities</p>
+  </div><!-- End Section Title -->
+
+  <div class="container">
+    <div class="row gy-4">
+      @foreach($cities as $index => $city)
+        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="{{ ($index + 1) * 100 }}">
+          <a href="#" class="card-link">
+            <div class="card">
+              <img src="{{ asset('storage/cities/' . $city->url) }}" class="card-img-top" alt="{{ $city->name }}">
+              <div class="card-body text-center">
+                <h5 class="card-title">{{ $city->name }}</h5>
+              </div>
+            </div>
+          </a>
+        </div><!-- End City Card -->
+      @endforeach
+    </div>
+  </div>
+</section>
+
+
+  <!-- <section id="listings" class="listings section">
     <div class="container section-title" data-aos="fade-up" style="text-align: center; margin-bottom: 40px;">
       <h2>Listings</h2>
       <p>Popular Listings In Our Directory</p>
@@ -239,7 +261,6 @@
         </script>
   
         <div class="swiper-wrapper">
-          <!-- Shop/Business 1 -->
           <div class="swiper-slide">
             <div class="listing-item" style="background: #fff; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); padding: 15px; text-align: center; transition: 0.3s;">
               <img src="{{ asset('storage/cities/meerut.jpg') }}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;" alt="Shop 1">
@@ -252,7 +273,6 @@
             </div>
           </div>
   
-          <!-- Shop/Business 2 -->
           <div class="swiper-slide">
             <div class="listing-item" style="background: #fff; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); padding: 15px; text-align: center; transition: 0.3s;">
               <img src="{{ asset('storage/cities/meerut.jpg') }}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;" alt="Shop 2">
@@ -265,7 +285,6 @@
             </div>
           </div>
   
-          <!-- Shop/Business 3 -->
           <div class="swiper-slide">
             <div class="listing-item" style="background: #fff; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); padding: 15px; text-align: center; transition: 0.3s;">
               <img src="{{ asset('storage/cities/meerut.jpg') }}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;" alt="Shop 3">
@@ -277,7 +296,6 @@
               </div>
             </div>
           </div>
-          <!-- Shop/Business 3 -->
           <div class="swiper-slide">
             <div class="listing-item" style="background: #fff; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); padding: 15px; text-align: center; transition: 0.3s;">
               <img src="{{ asset('storage/cities/meerut.jpg') }}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;" alt="Shop 3">
@@ -290,12 +308,57 @@
             </div>
           </div>
   
-          <!-- Add more shops/businesses as needed -->
         </div>
         <div class="swiper-pagination"></div>
       </div>
     </div>
-  </section> 
+  </section>  -->
+
+  <section id="listings" class="listings section">
+    <div class="container section-title" style="text-align: center; margin-bottom: 40px;">
+        <h2>Listings</h2>
+        <p>Popular Listings In Our Directory</p>
+    </div>
+
+    <div class="container">
+    <div class="swiper init-swiper">
+        <div class="swiper-wrapper">
+            @foreach($listings as $listing)
+                <div class="swiper-slide">
+                    <div class="listing-item" 
+                         style="background: #fff; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); padding: 15px; text-align: center; transition: 0.3s;">
+
+                        <!-- Listing Image -->
+                        <img src="{{ asset('storage/business_images/' . ($listing->feature_img ?? 'default.jpg')) }}" 
+                             style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;" 
+                             alt="{{ $listing->listing_title ?? 'No Title' }}">
+
+                        <!-- Listing Details -->
+                        <div class="listing-details">
+                            <h3 style="font-size: 1.5rem; margin-bottom: 10px;">
+                                {{ $listing->listing_title ?? 'No Title' }}
+                            </h3>
+                            <p style="font-size: 1rem; color: #555;">
+                                Category: {{ $listing->category->name ?? 'N/A' }}
+                            </p>
+                            <p style="font-size: 1rem; color: #555;">
+                                Address: {{ $listing->business_address ?? 'No Address' }}
+                            </p>
+                            <p style="font-size: 1rem; color: {{ $listing->is_open ? '#28a745' : '#dc3545' }};">
+                                {{ $listing->is_open ? 'Open' : 'Closed' }}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+</div>
+
+</section>
+
+
   </main>
     <!-- Include the footer -->
     {{-- @include('layout.footer') --}}
@@ -317,6 +380,8 @@
   <script src="{{ asset('assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
   <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
   <script src="{{ asset('assets/js/main.js') }}"></script>
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
  
 </body>
 </html>
