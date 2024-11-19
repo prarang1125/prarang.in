@@ -176,5 +176,5 @@ else
 	echo json_encode($code);
 }
 
-// close mysqli connection
+
 mysqli_close($dbconnect);

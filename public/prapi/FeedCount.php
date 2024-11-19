@@ -115,7 +115,6 @@ if(mysqli_num_rows($sqlSubName) > 0)
 		echo json_encode($code);     
 	}
 
-	// close mysqli connection
 	mysqli_close($dbconnect);
 }
 else

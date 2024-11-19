@@ -1,35 +1,19 @@
 <?php 
 header('Content-type: application/json');
 include "include/connect.php";
-//$link = mysqli_connect('localhost', 'prarang', '#riversanskriti123#', 'prarang_riverSanskiriti');
-//$link = mysqli_connect('localhost', 'prarang_1125', '#prarang1125#', 'prarang_riverSanskiriti');
-//$subscriberId = BlockSQLInjection($_REQUEST['subscriberId']); 
-//print_r($_REQUEST);exit();
-//$date = date("d-m-Y H:i:s"); 
-//$string = $_REQUEST['result'];
-/*$exp=explode(".",$string);
-$fileName = $exp[0];
-$ext = $exp[1];*/
-    @$data = json_decode(file_get_contents("php://input"));
+
+	$rawInput = file_get_contents("php://input");
+	// Decode the JSON input
+	$data = json_decode($rawInput);
+
     $subscriberId = $data->subscriberId; 
     $string = $data->result;
     $uploadpath   = 'profilePicture/';
     $file= $uploadpath . uniqid() . '.png';
-    //$json['base64string']=$base64string;
-    //$json['uploadpath']=$uploadpath;
-    //$json['parts']=$parts;
-    //$json['imageparts']=$imageparts;
-    //$json['imagetype']=$imagetype;
-    //$json['imagebase64']=$imagebase64;
-    //$json['file']=$file;
+ 
     file_put_contents($file, base64_decode($string));
-    //file_put_contents($file, $imagebase64);
 
-//$uploaddir = 'profilePicture/';
-//$uploadfile = $uploaddir .  $fileName."_".time().".".$ext;
 $url = "http://prarang.in/prapi/".$file; 
-//move_uploaded_file($_FILES['profilePic']['tmp_name'], $uploadfile);
-//$fileName = $_FILES["profilePic"]["name"];
 
  
 $sqlSubName= mysqli_query($dbconnect, "select * from msubscriberlist where subscriberId = '$subscriberId'");

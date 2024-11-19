@@ -85,19 +85,19 @@ else
 		  //  die;
 			$sqlChittiList = mysqli_query($dbconnect, "select distinct chittiId from chittigeographymapping WHERE geographyId = '2' and areaId=2");
 			
-            $y = 0;
-			$chittiIdList = '';
-			
-			$countt1=mysqli_num_rows($sqlChittiList);	
-			if($countt1 > 0)
-			{
-				while($displayChittiList = mysqli_fetch_array($sqlChittiList))
-				{
-					$chittiIdList[$y] = $displayChittiList['chittiId'];
-					$y++;
-				}
-				 @$chittiList= join(',',$chittiIdList);
-			}			
+           $y = 0;
+$chittiIdList = array(); // Initialize as an array
+$countt1 = mysqli_num_rows($sqlChittiList);    
+
+if ($countt1 > 0) {
+    while ($displayChittiList = mysqli_fetch_array($sqlChittiList)) {
+        $chittiIdList[$y] = $displayChittiList['chittiId'];
+        $y++;
+    }
+    $chittiList = implode(',', $chittiIdList); // No need for @ operator
+} else {
+    $chittiList = ''; // Initialize if no results
+}		
 		}
 		
 	}	
@@ -235,11 +235,10 @@ else
 		}
 		
 		// die if SQL statement failed
-		if (!$result1) 
-		{
-		  http_response_code(404);
-		  die(mysqli_error());
-		}
+		if (!$result1) {
+    http_response_code(404);
+    die(mysqli_error($conn)); // Pass the database connection to mysqli_error()
+}
 		 
 		// close mysqli connection
 		mysqli_close($dbconnect);

@@ -1,10 +1,10 @@
 <?php 
 header('Content-type: application/json');
 include "include/connect.php";
-//$link = mysqli_connect('localhost', 'prarang', '#riversanskriti123#', 'prarang_riverSanskiriti'); 
-//$link = mysqli_connect('localhost', 'prarang_1125', '#prarang1125#', 'prarang_riverSanskiriti');
+
+
  $languageCode = BlockSQLInjection($_REQUEST['languageCode']); 
-//  die;
+
 if($languageCode != '') 
 {
     if($languageCode == 'en')
@@ -229,5 +229,5 @@ else
 	$code = array('responseCode' => '0','message' => 'Language Code Not Found'); 
 	echo json_encode($code);  
 }
-// close mysql connection
+
 mysqli_close($dbconnect);

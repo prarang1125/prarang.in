@@ -39,7 +39,7 @@ else
 				$chittiIdList[$y] = $displayChittiList['chittiId'];
 				$y++;
 			}
-			 @$chittiList= join(',',$chittiIdList);
+			 @$chittiList= implode(',',$chittiIdList);
 		}
 	}
     else

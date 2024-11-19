@@ -1,8 +1,7 @@
 <?php 
 header('Content-type: application/json');
 include "include/connect.php";
-//$link = mysqli_connect('localhost', 'prarang', '#riversanskriti123#', 'prarang_riverSanskiriti'); 
-//$link = mysqli_connect('localhost', 'prarang_1125', '#prarang1125#', 'prarang_riverSanskiriti');
+
 $chittiId = BlockSQLInjection($_REQUEST['chittiId']); 
 $languageCode = BlockSQLInjection($_REQUEST['languageCode']); 
 if( $chittiId != '' )

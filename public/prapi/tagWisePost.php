@@ -1,4 +1,5 @@
 <?php 
+die();
 header('Content-type: application/json'); 
 include "include/connect.php";
 //$link = mysqli_connect('localhost', 'prarang', '#riversanskriti123#', 'prarang_riverSanskiriti'); 
@@ -40,30 +41,39 @@ if($tagId == '')
 	echo json_encode($code);
 }
 else
-{   	
+{   
 
     $sqlChittiList = mysqli_query($dbconnect, "SELECT DISTINCT cm.chittiId  from chittitagmapping cm inner join chittigeographymapping cg on cm.chittiId = cg.chittiId inner join chitti c on c.chittiId = cg.chittiId WHERE (cg.geographyId = '$geographyId' and cg.areaId ='$areaId') and cm.tagId IN ($tagId) and c.finalStatus='approved'");
 	$y = 0;
-		$chittiIdList = array();
-		
-		 $countt1=mysqli_num_rows($sqlChittiList);	
-		if($countt1 > 0)
-		{
-			while($displayChittiList = mysqli_fetch_array($sqlChittiList))
-			{
-				$chittiIdList[$y] = $displayChittiList['chittiId'];
-				$y++;
+	$chittiIdList = []; 
+
+	
+	if ($sqlChittiList) {
+		$countt1 = mysqli_num_rows($sqlChittiList);
+	
+	
+		if ($countt1 > 0) {
+			while ($displayChittiList = mysqli_fetch_array($sqlChittiList)) {
+				$chittiIdList[] = $displayChittiList['chittiId']; // Add the ID directly to the array
 			}
-			 @$chittiList= join(',',$chittiIdList);
 		}
-// 		if($offset < 1)
-// 		{
-// 			 $sql ="select  ch.Title,ch.chittiId,ch.SubTitle,vg.geography,ch.description,ch.languageId,ch.dateOfApprove,IFNULL(cl.likes,0) as totalLike,IFNULL(chc.comment,0) as totalComment,IFNULL(cl2.isLiked,'false') as isLiked,cli.colorcode from `chitti` ch inner join vChittiGeography as vcg on ch.chittiId = vcg.chittiId inner join vGeography as vg on vcg.Geography = vg.geographycode left join colorinfo as cli on cli.id=ch.color_value left join (select chittiId,count(id) as likes from `chittilike` where `isLiked`='true' GROUP BY chittiId) cl on ch.chittiId = cl.chittiId left join (select chittiId, count(id) as comment from `chitticomment` GROUP BY chittiId) chc on ch.chittiId = chc.chittiId left join (select chittiId, isLiked from `chittilike` where `subscriberId`='$subscriberId') cl2 on ch.chittiId = cl2.chittiId where ch.chittiId IN ($chittiList) and vcg.Geography='$geographyCode' and ch.finalStatus='approved' GROUP BY ch.chittiId,ch.languageId,ch.dateOfApprove ORDER BY STR_TO_DATE( dateOfApprove,  '%d-%m-%Y' ) DESC";
-// 		}
-// 		else
-// 		{ 
+
+		$chittiList = implode(',', $chittiIdList); // implode works fine with an empty array
+	} else {
+		
+		$chittiList = ''; 
+		
+	}
+	// print_r($chittiList);
+	// die();
+		if($offset < 1)
+		{
+			 $sql ="select  ch.Title,ch.chittiId,ch.SubTitle,vg.geography,ch.description,ch.languageId,ch.dateOfApprove,IFNULL(cl.likes,0) as totalLike,IFNULL(chc.comment,0) as totalComment,IFNULL(cl2.isLiked,'false') as isLiked,cli.colorcode from `chitti` ch inner join vChittiGeography as vcg on ch.chittiId = vcg.chittiId inner join vGeography as vg on vcg.Geography = vg.geographycode left join colorinfo as cli on cli.id=ch.color_value left join (select chittiId,count(id) as likes from `chittilike` where `isLiked`='true' GROUP BY chittiId) cl on ch.chittiId = cl.chittiId left join (select chittiId, count(id) as comment from `chitticomment` GROUP BY chittiId) chc on ch.chittiId = chc.chittiId left join (select chittiId, isLiked from `chittilike` where `subscriberId`='$subscriberId') cl2 on ch.chittiId = cl2.chittiId where ch.chittiId IN ($chittiList) and vcg.Geography='$geographyCode' and ch.finalStatus='approved' GROUP BY ch.chittiId,ch.languageId,ch.dateOfApprove ORDER BY STR_TO_DATE( dateOfApprove,  '%d-%m-%Y' ) DESC";
+		}
+		else
+		{ 
 			 $sql ="select ch.Title,ch.chittiId,ch.SubTitle,vg.geography,ch.description,ch.languageId,ch.dateOfApprove,IFNULL(cl.likes,0) as totalLike,IFNULL(chc.comment,0) as totalComment,IFNULL(cl2.isLiked,'false') as isLiked,cli.colorcode from `chitti` ch inner join vChittiGeography as vcg on ch.chittiId = vcg.chittiId inner join vGeography as vg on vcg.Geography = vg.geographycode left join colorinfo as cli on cli.id=ch.color_value left join (select chittiId,count(id) as likes from `chittilike` where `isLiked`='true' GROUP BY chittiId) cl on ch.chittiId = cl.chittiId left join (select chittiId, count(id) as comment from `chitticomment` GROUP BY chittiId) chc on ch.chittiId = chc.chittiId left join (select chittiId, isLiked from `chittilike` where `subscriberId`='$subscriberId') cl2 on ch.chittiId = cl2.chittiId where ch.chittiId IN ($chittiList)  and vcg.Geography='$geographyCode' and ch.finalStatus='approved' GROUP BY ch.chittiId,ch.languageId,ch.dateOfApprove ORDER BY STR_TO_DATE( dateOfApprove,  '%d-%m-%Y' ) DESC";
-// 		}
+		}
 		
 		// excecute SQL statement
 		$result = mysqli_query($dbconnect, $sql);

@@ -1,7 +1,7 @@
 <?php 
 header('Content-type: application/json');
 include "include/connect.php";
-//$link = mysqli_connect('localhost', 'prarang_1125', '123#prarang1125#123', 'prarang_riverSanskiriti');
+
 $languageCode = BlockSQLInjection($_REQUEST['languageCode']); 
  
 if($languageCode != '') 
@@ -38,5 +38,5 @@ else
 	$code = array('responseCode' => '0','message' => 'Record Not Found'); 
 	echo json_encode($code);  
 }
-// close mysql connection
+
 mysqli_close($dbconnect);

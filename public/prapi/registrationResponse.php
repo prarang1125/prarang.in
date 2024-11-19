@@ -1,40 +1,31 @@
 <?php 
 header('Content-type: application/json');
 include "include/connect.php";
-//$link = mysqli_connect('localhost', 'prarang', '#riversanskriti123#', 'prarang_riverSanskiriti');
-//$link = mysqli_connect('localhost', 'prarang_1125', '#prarang1125#', 'prarang_riverSanskiriti');
+
 $IP = $_SERVER['REMOTE_ADDR']; 
 date_default_timezone_set('Asia/Kolkata');
 $Date = date("d-m-y");
 $Time = date("h:i:sa");
-//echo $Date;
-//echo $Time;
-//generating otp
+
 mysqli_set_charset($dbconnect, 'utf8');
 $string = '123456789';
 $string_shuffled = str_shuffle($string);
 $otp = substr($string_shuffled, 1, 6);
-// $otp = '973258';
-// $_SERVER['QUERY_STRING']; 
-$profilePic = 'http://apps.prarang.in/profile.png';
+
+
 $name = $_REQUEST['name']; 
 $mobileNo = $_REQUEST['mobile'];
 @$mobileNo = str_replace('%2B','+',$mobileNo);
 @$userLocation = $_REQUEST['userLocation'];  
-@$u=split(",",$userLocation);
+@$u=explode(",",$userLocation);
 @$countryId = $u[1];
 @$cityId = $u[0];
 @$geographyid = $_REQUEST['geographyid']; 
-// @$geographyid = 'c2,r4,CON0'; 
-// @$geographyid = 'c2,c3,c1,r4'; 
+
 @$otpToBeSend = $_REQUEST['otpToBeSend']; 
 $gcmKey = $_REQUEST['gcmKey']; 
 
-
-// echo "STRING";die;
-// $input1= ['name'=>$_REQUEST['name'],'mobile'=>$_REQUEST['mobile'],'userlocation'=>$_REQUEST['userLocation'],'geographyid'=>$_REQUEST['geographyid'].'otpToBeSend'=>$_REQUEST['otpToBeSend'],'gcmKey'=>$_REQUEST['gcmKey']]; 
-// echo json_encode($input1);
-// die;
+$profilePic ="https://new.png";
 
 $payloaddata = array(); 
 if($name!= '' and $mobileNo != '')
@@ -50,9 +41,7 @@ if($name!= '' and $mobileNo != '')
 		
 		if($otpToBeSend == 1)
 		{
-		    // for login api details
-		    //   echo 'login';
-			//updating   msubscriberlist
+		
 			$sqlInsert=mysqli_query($dbconnect, "update msubscriberlist set name='$name',gcmKey='$gcmKey',otp='$otp',userCountryId='$countryId',userCityId='$cityId',IP = '$IP',Date='$Date',Time='$Time' where mobileNo='$mobileNo'");
 			
 			//returning back subscriber id and otp
@@ -95,7 +84,7 @@ if($name!= '' and $mobileNo != '')
 			$sql = "select msl.subscriberId , msl.otp , msl.profilePicUrl , msg.geographyId, msg.geographyCode from msubscriberlist msl inner join msubscribergeography msg on msg.subscriberId=msl.subscriberId WHERE msl.mobileNo='$mobileNo'";
 			
 			$sqlDelete=mysqli_query($dbconnect, "delete from msubscribergeography where subscriberId ='$subscriberId'");
-			$g=split(",",$geographyid);
+			$g=explode(",",$geographyid);
 			
 			$geographyLength = sizeof($g);
 			

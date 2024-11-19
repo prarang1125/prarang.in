@@ -36,8 +36,6 @@
                 $sqlInsert=mysqli_query($dbconnect, "Update misreport set UpdatedDate='$CurrentDate' where SubscriberId='$SubscriberId' and UserCity='$UserCity' and DATE_FORMAT(CreatedDate, '%Y-%m-%d') = DATE_FORMAT('$CurrentDate', '%Y-%m-%d')  ");
                 $appusageInsertId=mysqli_insert_id($dbconnect);
 
-                // $code = array('responseCode' => '1','message' => 'Update Success'); 
-	            // echo json_encode($code);
                 $sql = "select * from misreport where SubscriberId='$SubscriberId' and UserCity='$UserCity' and DATE_FORMAT(CreatedDate, '%Y-%m-%d') = DATE_FORMAT('$CurrentDate', '%Y-%m-%d')  ";
                     
                 $result = mysqli_query($dbconnect,$sql);
@@ -69,9 +67,6 @@
                 $sqlInsert=mysqli_query($dbconnect, "insert into misreport set UserName='$UserName', MobileNumber='$MobileNumber', SubscriberId='$SubscriberId',UserCity='$UserCity' ");
                 $appusageInsertId=mysqli_insert_id($dbconnect);
 
-                // $code = array('responseCode' => '1','message' => 'insert Success'); 
-	            // echo json_encode($code);
-                // $sql=mysqli_query($dbconnect, "select * from misreport where SubscriberId='$SubscriberId' order by Id desc ");
                 $sql="select * from misreport where SubscriberId='$SubscriberId' and UserCity='$UserCity' order by Id desc ";    
                 $result = mysqli_query($dbconnect,$sql);
 
