@@ -12,7 +12,11 @@ class BusinessHour extends Model
    protected $fillable = [
 
     'business_id', 'day', 'open_time', 'close_time', 'open_time_2', 'close_time_2', 'is_24_hours', 'add_2nd_time_slot'
-    
+
 ];
 
+public function business()
+    {
+        return $this->belongsTo(BusinessListing::class, 'business_id');
+    }
 }
