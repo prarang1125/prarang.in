@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Exception;
+use Illuminate\Support\Facades\Hash;
 
 class Home extends Controller
 {
@@ -25,9 +26,7 @@ class Home extends Controller
         return view('main.home');
     }
 
-    // Function for Market page
-
-
+  
     // Function for Content page
     public function content()
     {

@@ -1,10 +1,14 @@
 <?php
 
 use App\Http\Controllers\Main\Home;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
 
 
+// Route::get('/',function (){
+//     return Hash::make('#Pra@21#');
+// });
 Route::get('/', [Home::class, 'index'])->name('home');
 Route::get('/market', [Home::class, 'market'])->name('market');
 Route::get('/content', [Home::class, 'content'])->name('content');
