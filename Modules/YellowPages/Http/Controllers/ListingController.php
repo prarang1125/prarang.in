@@ -106,12 +106,9 @@ public function store(StoreListingRequest $request)
     ];
 
      // Create the business listing
-<<<<<<< HEAD
          $listing = BusinessListing::create($data);
 
-=======
- $listing = BusinessListing::create($data);
->>>>>>> cf5a514e712ca4b223b3be330104bf9814f5002f
+
     // Insert business hours data
     if (!empty($validated['day'])) {
         foreach ($validated['day'] as $index => $day) {
@@ -128,13 +125,9 @@ public function store(StoreListingRequest $request)
     
             // Insert each day of business hours
             BusinessHour::create($hoursData);
-     
-    
         }
     }
-
     // Redirect after successful creation
     return redirect()->route('yp.listing.submit')->with('success', 'Listing created successfully!');
-
 }
 }

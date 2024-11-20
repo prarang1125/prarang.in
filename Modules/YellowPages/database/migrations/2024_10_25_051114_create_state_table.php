@@ -12,19 +12,23 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::connection('yp')->create('state', function (Blueprint $table) {
-            $table->id();
-            $table->string('name')->unique();
-            $table->string('code', 5)->unique();
-            $table->timestamps();
+        Schema::connection('yp')->create('cities', function (Blueprint $table) {
+           
+                $table->id(); // Auto-incrementing primary key
+                $table->string('name'); // City name
+                $table->string('timezone'); // Timezone of the city
+                $table->timestamps(); // Created and updated timestamps
+            
         });
     }
 
     /**
      * Reverse the migrations.
      */
+
     public function down(): void
     {
-        Schema::dropIfExists('state');
+        Schema::dropIfExists('cities');
     }
+    
 };

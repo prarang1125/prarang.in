@@ -143,61 +143,7 @@
     
 
 
-    </section><!-- /Hero Section -->
-
-  <!-- <section id="services" class="services">
-    <div class="container section-title" data-aos="fade-up">
-      <h2>Live Cities</h2>
-      <p>Find the Best Services and Products in these Cities</p>
-    </div>
-  
-    <div class="container">
-      <div class="row gy-4">
-        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="100">
-          <a href="meerut-details.html" class="card-link">
-            <div class="card">
-              <img src="{{ asset('storage/cities/meerut.jpg') }}" class="card-img-top" alt="Meerut">
-              <div class="card-body text-center">
-                <h5 class="card-title">Meerut</h5>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="200">
-          <a href="lucknow-details.html" class="card-link">
-            <div class="card">
-              <img src="{{ asset('storage/cities/lucknow.jpg') }}" class="card-img-top" alt="Lucknow">
-              <div class="card-body text-center">
-                <h5 class="card-title">Lucknow</h5>
-              </div>
-            </div>
-          </a>
-        </div>
-        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="300">
-          <a href="jaunpur-details.html" class="card-link">
-            <div class="card">
-              <img src="{{ asset('storage/cities/jaunpur.jpg') }}" class="card-img-top" alt="Jaunpur">
-              <div class="card-body text-center">
-                <h5 class="card-title">Jaunpur</h5>
-              </div>
-            </div>
-          </a>
-        </div>
-  
-        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="400">
-          <a href="rampur-details.html" class="card-link">
-            <div class="card">
-              <img src="{{ asset('storage/cities/rampur.jpg') }}" class="card-img-top" alt="Rampur">
-              <div class="card-body text-center">
-                <h5 class="card-title">Rampur</h5>
-              </div>
-            </div>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section> -->
-
+    </section>
 
   <!-- get cities  -->
 <section id="services" class="services">

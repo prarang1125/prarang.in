@@ -253,14 +253,7 @@
             <label for="street_address">Full Address:</label>
             <input type="text" id="street_address" name="fullAddress" placeholder="123 Main St" style="width: 100%; padding: 8px;">
         </div>
-        <div style="margin-bottom: 10px;">
-            <label for="city">City:</label>
-            <input type="text" id="city" name="city"  style="width: 100%; padding: 8px;">
-        </div>
-        <div style="margin-bottom: 10px;">
-            <label for="postal_code">Postal Code:</label>
-            <input type="text" id="postal_code" name="postal_code"  style="width: 100%; padding: 8px;">
-        </div>
+       
         <h5 style="margin-bottom: 15px;">Contact Information</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
         <div style="margin-bottom: 10px;">
