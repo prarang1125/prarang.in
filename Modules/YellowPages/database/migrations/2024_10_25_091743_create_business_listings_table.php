@@ -13,6 +13,14 @@ return new class extends Migration
      */
     public function up(): void
     {
+
+        Schema::create('categories', function (Blueprint $table) {
+            $table->id(); 
+            $table->string('name'); 
+            $table->string('slug')->unique();
+            $table->timestamps(); 
+        });
+
         Schema::create('business_listings', function (Blueprint $table) {
             $table->id();
             $table->string('listing_title');
@@ -53,13 +61,12 @@ return new class extends Migration
 
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
             $table->foreign('legal_type_id')->references('id')->on('company_legal_types')->onDelete('set null');
-            $table->foreign('employee_range_id')->references('id')->on('employee_ranges')->onDelete('set null');
+            $table->foreign('employee_range_id')->references('id')->on('number_of_employees')->onDelete('set null');
             $table->foreign('turnover_id')->references('id')->on('monthly_turnovers')->onDelete('set null');
-            $table->foreign('advertising_medium_id')->references('id')->on('advertising_mediums')->onDelete('set null');
+            $table->foreign('advertising_medium_id')->references('id')->on('monthly_advertising_mediums')->onDelete('set null');
             $table->foreign('advertising_price_id')->references('id')->on('monthly_advertising_prices')->onDelete('set null');
-            $table->foreign('state_id')->references('id')->on('states')->onDelete('set null'); // assuming you have a states table
             $table->foreign('city_id')->references('id')->on('cities')->onDelete('set null'); // assuming you have a cities table
-            $table->foreign('social_id')->references('id')->on('social_media')->onDelete('set null'); // assuming you have a social media table
+            $table->foreign('social_id')->references('id')->on('social_media_platforms')->onDelete('set null'); // assuming you have a social media table
         });
     }
 
@@ -68,6 +75,7 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::dropIfExists('categories');
         Schema::dropIfExists('business_listings');
     }
 };

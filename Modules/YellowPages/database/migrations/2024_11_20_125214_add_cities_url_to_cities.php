@@ -6,18 +6,16 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
+    protected $connection = 'yp';
+
     /**
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('SocialMediaLink', function (Blueprint $table) {
-            $table->id();
-            $table->id();
-            $table->foreignId('listing_id')->constrained('listings');
-            $table->string('platform');
-            $table->string('link');
-            $table->timestamps();
+        Schema::table('cities', function (Blueprint $table) {
+            $table->string('cities_url')->nullable(); // Add a URL field for cities
+
         });
     }
 
@@ -26,6 +24,10 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('SocialMediaLink');
+        Schema::table('cities', function (Blueprint $table) {
+            
+            $table->dropColumn('cities_url');
+
+        });
     }
 };
