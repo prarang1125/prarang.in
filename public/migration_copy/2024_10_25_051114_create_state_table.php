@@ -16,6 +16,7 @@ return new class extends Migration
            
                 $table->id(); // Auto-incrementing primary key
                 $table->string('name'); // City name
+                $table->string('cities_url')->nullable(); // Add a URL field for cities
                 $table->string('timezone'); // Timezone of the city
                 $table->timestamps(); // Created and updated timestamps
             
