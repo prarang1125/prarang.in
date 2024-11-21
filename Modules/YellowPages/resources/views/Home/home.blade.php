@@ -83,60 +83,16 @@
       <div class="icon-boxes position-relative" data-aos="fade-up" data-aos-delay="200">
         <div class="container position-relative">
             <div class="row gy-4 mt-5">
-    
+              @foreach($categories as $index => $category)
                 <div class="col-xl-2 col-md-4">
                     <div class="icon-box" style="padding: 20px; text-align: center; border: 1px solid #ddd; border-radius: 10px;">
                         <div class="icon" style="width: 80px; height: 80px; margin: 0 auto;">
-                            <img src="{{ asset('storage/icons/Craft-Icon.png') }}" alt="Easel Icon" style="width: 100%; height: 100%; object-fit: cover;" />
+                            <img src="{{ asset('storage/'. $category->categories_url) }}" alt="{{ $category->name }}" style="width: 100%; height: 100%; object-fit: cover;" />
                         </div>
-                        <h4 class="title" style="font-size: 16px; margin-top: 10px;"><a href="" class="stretched-link">Craft (शिल्प)</a></h4>
+                        <h4 class="title" style="font-size: 16px; margin-top: 10px;"><a href="" class="stretched-link">{{ $category->name }}</a></h4>
                     </div>
-                </div><!--End Icon Box -->
-    
-                <div class="col-xl-2 col-md-4">
-                    <div class="icon-box" style="padding: 20px; text-align: center; border: 1px solid #ddd; border-radius: 10px;">
-                        <div class="icon" style="width: 80px; height: 80px; margin: 0 auto;">
-                            <img src="{{ asset('storage/icons/Government-Icon.jpg') }}" alt="Gem Icon" style="width: 100%; height: 100%; object-fit: cover;" />
-                        </div>
-                        <h4 class="title" style="font-size: 16px; margin-top: 10px;"><a href="" class="stretched-link">Government (सरकारी)</a></h4>
-                    </div>
-                </div><!--End Icon Box -->
-    
-                <div class="col-xl-2 col-md-4">
-                    <div class="icon-box" style="padding: 20px; text-align: center; border: 1px solid #ddd; border-radius: 10px;">
-                        <div class="icon" style="width: 80px; height: 80px; margin: 0 auto;">
-                            <img src="{{ asset('storage/icons/Industry-Icon.png') }}" alt="Location Icon" style="width: 100%; height: 100%; object-fit: cover;" />
-                        </div>
-                        <h4 class="title" style="font-size: 16px; margin-top: 10px;"><a href="" class="stretched-link">Industry (उद्योग)</a></h4>
-                    </div>
-                </div><!--End Icon Box -->
-    
-                <div class="col-xl-2 col-md-4">
-                    <div class="icon-box" style="padding: 20px; text-align: center; border: 1px solid #ddd; border-radius: 10px;">
-                        <div class="icon" style="width: 80px; height: 80px; margin: 0 auto;">
-                            <img src="{{ asset('storage/icons/Real-Estate-Icon.jpg') }}" alt="Command Icon" style="width: 100%; height: 100%; object-fit: cover;" />
-                        </div>
-                        <h4 class="title" style="font-size: 16px; margin-top: 10px;"><a href="" class="stretched-link">Real Estate (अचल संपत्ति)</a></h4>
-                    </div>
-                </div><!--End Icon Box -->
-    
-                <div class="col-xl-2 col-md-4">
-                    <div class="icon-box" style="padding: 20px; text-align: center; border: 1px solid #ddd; border-radius: 10px;">
-                        <div class="icon" style="width: 80px; height: 80px; margin: 0 auto;">
-                            <img src="{{ asset('storage/icons/icon-retail.png') }}" alt="Star Icon" style="width: 100%; height: 100%; object-fit: cover;" />
-                        </div>
-                        <h4 class="title" style="font-size: 16px; margin-top: 10px;"><a href="" class="stretched-link">Retail (फुटकर)</a></h4>
-                    </div>
-                </div><!--End Icon Box -->
-    
-                <div class="col-xl-2 col-md-4">
-                    <div class="icon-box" style="padding: 20px; text-align: center; border: 1px solid #ddd; border-radius: 10px;">
-                        <div class="icon" style="width: 80px; height: 80px; margin: 0 auto;">
-                            <img src="{{ asset('storage/icons/Services-Icon.png') }}" alt="Heart Icon" style="width: 100%; height: 100%; object-fit: cover;" />
-                        </div>
-                        <h4 class="title" style="font-size: 16px; margin-top: 10px;"><a href="" class="stretched-link">Services (सेवाएं)</a></h4>
-                    </div>
-                </div><!--End Icon Box -->
+                </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -159,7 +115,7 @@
         <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="{{ ($index + 1) * 100 }}">
           <a href="#" class="card-link">
             <div class="card">
-              <img src="{{ asset('storage/cities/' . $city->url) }}" class="card-img-top" alt="{{ $city->name }}">
+              <img src="{{ asset('storage/'. $city->cities_url) }}" class="card-img-top" alt="{{ $city->name }}">
               <div class="card-body text-center">
                 <h5 class="card-title">{{ $city->name }}</h5>
               </div>
@@ -172,141 +128,69 @@
 </section>
 
 
-  <!-- <section id="listings" class="listings section">
-    <div class="container section-title" data-aos="fade-up" style="text-align: center; margin-bottom: 40px;">
+<section id="listings" class="listings section">
+  <div class="container section-title" data-aos="fade-up" style="text-align: center; margin-bottom: 40px;">
       <h2>Listings</h2>
       <p>Popular Listings In Our Directory</p>
-    </div>
-  
-    <div class="container" data-aos="fade-up" data-aos-delay="100">
+  </div>
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
       <div class="swiper init-swiper">
-        <script type="application/json" class="swiper-config">
-          {
-            "loop": true,
-            "speed": 600,
-            "autoplay": {
-              "delay": 5000
-            },
-            "slidesPerView": "auto",
-            "pagination": {
-              "el": ".swiper-pagination",
-              "type": "bullets",
-              "clickable": true
-            },
-            "breakpoints": {
-              "320": {
-                "slidesPerView": 1,
-                "spaceBetween": 20
-              },
-              "1200": { 
-                "slidesPerView": 3,
-                "spaceBetween": 30
-              }
-            }
-          }
-        </script>
-  
-        <div class="swiper-wrapper">
-          <div class="swiper-slide">
-            <div class="listing-item" style="background: #fff; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); padding: 15px; text-align: center; transition: 0.3s;">
-              <img src="{{ asset('storage/cities/meerut.jpg') }}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;" alt="Shop 1">
-              <div class="listing-details">
-                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Shop 1</h3>
-                <p style="font-size: 1rem; color: #555;">Address: 123 Main Street, City, Country</p>
-                <p style="font-size: 1rem; color: #555;">Opening Hours: 9 AM - 9 PM</p>
-                <p style="font-size: 1rem; color: #555;">Contact: +123 456 7890</p>
+          <div class="swiper-wrapper">
+              @foreach($listings as $listing)
+              <div class="swiper-slide">
+                  <div class="listing-item" style="background: #fff; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); padding: 15px; text-align: center; transition: 0.3s;">
+                      <img src="{{ asset('storage/' . ($listing->feature_img ?? 'default.jpg')) }}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;" alt="{{ $listing->listing_title ?? 'No Title' }}">
+                      <div class="listing-details">
+                          <h3 style="font-size: 1.5rem; margin-bottom: 10px;">{{ $listing->listing_title ?? 'No Title' }}</h3>
+                          <p style="font-size: 1rem; color: #555;">Category: {{ $listing->category->name ?? 'N/A' }}</p>
+                          <p style="font-size: 1rem; color: #555;">Address: {{ $listing->business_address ?? 'No Address' }}</p>
+                          <p style="font-size: 1rem; color: #555;">{{ $listing->is_open ? 'Open' : 'Closed' }}</p>
+                      </div>
+                  </div>
               </div>
-            </div>
+              @endforeach
           </div>
-  
-          <div class="swiper-slide">
-            <div class="listing-item" style="background: #fff; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); padding: 15px; text-align: center; transition: 0.3s;">
-              <img src="{{ asset('storage/cities/meerut.jpg') }}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;" alt="Shop 2">
-              <div class="listing-details">
-                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Shop 2</h3>
-                <p style="font-size: 1rem; color: #555;">Address: 456 Side Street, City, Country</p>
-                <p style="font-size: 1rem; color: #555;">Opening Hours: 10 AM - 8 PM</p>
-                <p style="font-size: 1rem; color: #555;">Contact: +123 456 7891</p>
-              </div>
-            </div>
-          </div>
-  
-          <div class="swiper-slide">
-            <div class="listing-item" style="background: #fff; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); padding: 15px; text-align: center; transition: 0.3s;">
-              <img src="{{ asset('storage/cities/meerut.jpg') }}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;" alt="Shop 3">
-              <div class="listing-details">
-                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Shop 3</h3>
-                <p style="font-size: 1rem; color: #555;">Address: 789 Another St, City, Country</p>
-                <p style="font-size: 1rem; color: #555;">Opening Hours: 8 AM - 6 PM</p>
-                <p style="font-size: 1rem; color: #555;">Contact: +123 456 7892</p>
-              </div>
-            </div>
-          </div>
-          <div class="swiper-slide">
-            <div class="listing-item" style="background: #fff; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); padding: 15px; text-align: center; transition: 0.3s;">
-              <img src="{{ asset('storage/cities/meerut.jpg') }}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;" alt="Shop 3">
-              <div class="listing-details">
-                <h3 style="font-size: 1.5rem; margin-bottom: 10px;">Shop 3</h3>
-                <p style="font-size: 1rem; color: #555;">Address: 789 Another St, City, Country</p>
-                <p style="font-size: 1rem; color: #555;">Opening Hours: 8 AM - 6 PM</p>
-                <p style="font-size: 1rem; color: #555;">Contact: +123 456 7892</p>
-              </div>
-            </div>
-          </div>
-  
-        </div>
-        <div class="swiper-pagination"></div>
+
+          <!-- Pagination -->
+          <div class="swiper-pagination"></div>
       </div>
-    </div>
-  </section>  -->
-
-  <section id="listings" class="listings section">
-    <div class="container section-title" style="text-align: center; margin-bottom: 40px;">
-        <h2>Listings</h2>
-        <p>Popular Listings In Our Directory</p>
-    </div>
-
-    <div class="container">
-    <div class="swiper init-swiper">
-        <div class="swiper-wrapper">
-            @foreach($listings as $listing)
-                <div class="swiper-slide">
-                    <div class="listing-item" 
-                         style="background: #fff; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); padding: 15px; text-align: center; transition: 0.3s;">
-
-                        <!-- Listing Image -->
-                        <img src="{{ asset('storage/business_images/' . ($listing->feature_img ?? 'default.jpg')) }}" 
-                             style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;" 
-                             alt="{{ $listing->listing_title ?? 'No Title' }}">
-
-                        <!-- Listing Details -->
-                        <div class="listing-details">
-                            <h3 style="font-size: 1.5rem; margin-bottom: 10px;">
-                                {{ $listing->listing_title ?? 'No Title' }}
-                            </h3>
-                            <p style="font-size: 1rem; color: #555;">
-                                Category: {{ $listing->category->name ?? 'N/A' }}
-                            </p>
-                            <p style="font-size: 1rem; color: #555;">
-                                Address: {{ $listing->business_address ?? 'No Address' }}
-                            </p>
-                            <p style="font-size: 1rem; color: {{ $listing->is_open ? '#28a745' : '#dc3545' }};">
-                                {{ $listing->is_open ? 'Open' : 'Closed' }}
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            @endforeach
-        </div>
-        <div class="swiper-pagination"></div>
-    </div>
-</div>
-
+  </div>
 </section>
+
+<!-- Include Swiper JS and CSS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- Swiper Initialization Script -->
+<script>
+  const swiper = new Swiper('.init-swiper', {
+      loop: true,
+      speed: 600,
+      autoplay: {
+          delay: 5000
+      },
+      slidesPerView: 'auto',
+      pagination: {
+          el: '.swiper-pagination',
+          type: 'bullets',
+          clickable: true
+      },
+      breakpoints: {
+          320: {
+              slidesPerView: 1,
+              spaceBetween: 20
+          },
+          1200: {
+              slidesPerView: 3,
+              spaceBetween: 30
+          }
+      }
+  });
+</script>
 
 
   </main>
-    <!-- Include the footer -->
     {{-- @include('layout.footer') --}}
     @include('yellowpages::layout.footer')
 

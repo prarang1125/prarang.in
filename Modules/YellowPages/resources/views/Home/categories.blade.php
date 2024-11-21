@@ -68,75 +68,37 @@
                     </select>
                 </div>
             </div>
-            
-    
+
             <!-- Listings Grid -->
-            <div class="listings-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-                <!-- Listing Item 1 -->
-                <div style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
-                    <img src="{{ asset('storage/categories/cate_bg.jpg') }}" alt="Embroidery" style="width: 100%; height: auto;">
-                    <div style="padding: 20px;">
-                        <div style="background-color: #ff4d4d; color: white; padding: 5px; border-radius: 5px; font-size: 12px; display: inline-block; margin-bottom: 10px;">Closed Now!</div>
-                        <h3 style="font-size: 18px; margin-bottom: 10px;">Rampur Shanu Embroidery</h3>
-                        <p><a href="#" style="text-decoration: none; color: #333; font-weight: bold;">Business Listing</a></p>
-                
-                        <!-- Call and Location Options -->
-                        <div style="margin-top: 15px;">
-                            <a href="tel:+911234567890" style="text-decoration: none; color: white; background-color: #007bff; padding: 10px 20px; border-radius: 5px; font-size: 14px; margin-right: 10px; display: inline-block;">
-                                📞 Call Now
-                            </a>
-                            <a href="https://maps.google.com/?q=Rampur Shanu Embroidery" target="_blank" style="text-decoration: none; color: white; background-color: #28a745; padding: 10px 20px; border-radius: 5px; font-size: 14px; display: inline-block;">
-                                📍 View Location
-                            </a>
-                        </div>
-                    </div>
+<div class="listings-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+    @foreach($listings as $listing)
+        <div style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
+            <img src="{{ asset('storage/categories/cate_bg.jpg') }}" alt="{{ $listing->title }}" style="width: 100%; height: auto;">
+            <div style="padding: 20px;">
+                <div style="background-color: {{ $listing->status === 'Closed' ? '#ff4d4d' : '#28a745' }}; color: white; padding: 5px; border-radius: 5px; font-size: 12px; display: inline-block; margin-bottom: 10px;">
+                    {{ $listing->status === 'Closed' ? 'Closed Now!' : 'Open Now!' }}
                 </div>
-                
-    
-                <!-- Listing Item 2 -->
-                <div style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
-                    <img src="{{ asset('storage/categories/cate_bg.jpg') }}" alt="Embroidery" style="width: 100%; height: auto;">
-                    <div style="padding: 20px;">
-                        <div style="background-color: #ff4d4d; color: white; padding: 5px; border-radius: 5px; font-size: 12px; display: inline-block; margin-bottom: 10px;">Closed Now!</div>
-                        <h3 style="font-size: 18px; margin-bottom: 10px;">Rampur Shanu Embroidery</h3>
-                        <p><a href="#" style="text-decoration: none; color: #333; font-weight: bold;">Business Listing</a></p>
-                
-                        <!-- Call and Location Options -->
-                        <div style="margin-top: 15px;">
-                            <a href="tel:+911234567890" style="text-decoration: none; color: white; background-color: #007bff; padding: 10px 20px; border-radius: 5px; font-size: 14px; margin-right: 10px; display: inline-block;">
-                                📞 Call Now
-                            </a>
-                            <a href="https://maps.google.com/?q=Rampur Shanu Embroidery" target="_blank" style="text-decoration: none; color: white; background-color: #28a745; padding: 10px 20px; border-radius: 5px; font-size: 14px; display: inline-block;">
-                                📍 View Location
-                            </a>
-                        </div>
-                    </div>
-                </div>
-    
-                <!-- Listing Item 3 -->
-                <div style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
-                    <img src="{{ asset('storage/categories/cate_bg.jpg') }}" alt="Embroidery" style="width: 100%; height: auto;">
-                    <div style="padding: 20px;">
-                        <div style="background-color: #ff4d4d; color: white; padding: 5px; border-radius: 5px; font-size: 12px; display: inline-block; margin-bottom: 10px;">Closed Now!</div>
-                        <h3 style="font-size: 18px; margin-bottom: 10px;">Rampur Shanu Embroidery</h3>
-                        <p><a href="#" style="text-decoration: none; color: #333; font-weight: bold;">Business Listing</a></p>
-                
-                        <!-- Call and Location Options -->
-                        <div style="margin-top: 15px;">
-                            <a href="tel:+911234567890" style="text-decoration: none; color: white; background-color: #007bff; padding: 10px 20px; border-radius: 5px; font-size: 14px; margin-right: 10px; display: inline-block;">
-                                📞 Call Now
-                            </a>
-                            <a href="https://maps.google.com/?q=Rampur Shanu Embroidery" target="_blank" style="text-decoration: none; color: white; background-color: #28a745; padding: 10px 20px; border-radius: 5px; font-size: 14px; display: inline-block;">
-                                📍 View Location
-                            </a>
-                        </div>
-                    </div>
+                <h3 style="font-size: 18px; margin-bottom: 10px;">{{ $listing->title }}</h3>
+                <p><a href="#" style="text-decoration: none; color: #333; font-weight: bold;">Business Listing</a></p>
+
+                <!-- Call and Location Options -->
+                <div style="margin-top: 15px;">
+                    <a href="tel:+{{ $listing->phone }}" style="text-decoration: none; color: white; background-color: #007bff; padding: 10px 20px; border-radius: 5px; font-size: 14px; margin-right: 10px; display: inline-block;">
+                        📞 Call Now
+                    </a>
+                    <a href="https://maps.google.com/?q={{ urlencode($listing->business_address) }}" target="_blank" style="text-decoration: none; color: white; background-color: #28a745; padding: 10px 20px; border-radius: 5px; font-size: 14px; display: inline-block;">
+                        📍 View Location
+                    </a>
                 </div>
             </div>
         </div>
+    @endforeach
+</div>
+
+        </div>
         @include('yellowpages::layout.footer')
         <!-- Vendor JS Files -->
-
+        
         
         <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>

@@ -17,6 +17,14 @@ class ListingController extends Controller
 
 {
 
+    public function index()
+    {
+        $listings = BusinessListing::all(); 
+
+        // Pass the listings to the view
+        return view('yellowpages::Home.categories', compact('listings'));
+    }
+
     public function submit_listing(){
         return view("yellowpages::Home.submit_listing");
     }
@@ -106,28 +114,32 @@ public function store(StoreListingRequest $request)
     ];
 
      // Create the business listing
-         $listing = BusinessListing::create($data);
-
-
+        //  $listing = BusinessListing::create($data);
+        //  if (!$listing) {
+        //     return redirect()->back()->withErrors(['error' => 'Failed to create listing']);
+        // }
     // Insert business hours data
     if (!empty($validated['day'])) {
         foreach ($validated['day'] as $index => $day) {
-            $hoursData = [
-                'business_id' => $listing->id ?? null, // Ensure `$listing` is created
-                'day' => $day,
-                'open_time' => $validated['open_time'][$index] ?? null,
-                'close_time' => $validated['close_time'][$index] ?? null,
-                'open_time_2' => $validated['open_time_2'][$index] ?? null,
-                'close_time_2' => $validated['close_time_2'][$index] ?? null,
-                'is_24_hours' => !empty($validated['is_24_hours'][$index]) ? 1 : 0,
-                'add_2nd_time_slot' => !empty($validated['add_2nd_time_slot'][$index]) ? 1 : 0,
-            ];
-    
-            // Insert each day of business hours
-            BusinessHour::create($hoursData);
+            if (isset($validated['open_time'][$index]) && isset($validated['close_time'][$index])) {
+                $hoursData = [
+                    'business_id' => 1,
+                    'day' => $day,
+                    'open_time' => $validated['open_time'][$index],
+                    'close_time' => $validated['close_time'][$index],
+                    'open_time_2' => $validated['open_time_2'][$index] ?? null,
+                    'close_time_2' => $validated['close_time_2'][$index] ?? null,
+                    'is_24_hours' => !empty($validated['is_24_hours'][$index]) ? 1 : 0,
+                    'add_2nd_time_slot' => !empty($validated['add_2nd_time_slot'][$index]) ? 1 : 0,
+                ];
+
+                BusinessHour::create($hoursData);
+            }
         }
     }
-    // Redirect after successful creation
+
     return redirect()->route('yp.listing.submit')->with('success', 'Listing created successfully!');
 }
+
+
 }

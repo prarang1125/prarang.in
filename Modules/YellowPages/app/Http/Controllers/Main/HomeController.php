@@ -22,19 +22,22 @@ class HomeController extends Controller
         // Fetch business listings with related category and business hours
         $listings = BusinessListing::with(['category', 'hours'])->get()->map(function ($listing) {
             $currentTime = Carbon::now();
-    
+        
             if ($listing->hours) {
-                // Parse opening and closing times
+                // Parse the opening and closing times
                 $openTime = Carbon::parse($listing->hours->open_time);
                 $closeTime = Carbon::parse($listing->hours->close_time);
-    
-                // Determine open/closed status
+        
+                // Determine if the current time falls within the open and close times
                 $listing->is_open = $currentTime->between($openTime, $closeTime);
+
             } else {
-                $listing->is_open = false; 
+                // If no hours are defined, default to closed
+                $listing->is_open = false;
             }
-    
+        
             return $listing;
+      
         });
     
         // Return the view with data
@@ -47,10 +50,6 @@ class HomeController extends Controller
 
     public function add_listing(){
         return view('yellowpages::Home.add_listing');
-    }
-
-    public function category(){
-        return view('yellowpages::Home.categories');
     }
 
     public function showSearchcategory()

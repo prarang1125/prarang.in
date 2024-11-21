@@ -42,23 +42,17 @@ class StoreListingRequest extends FormRequest
             'userName' => 'nullable',
             'faq' => 'nullable',
             'answer' => 'nullable',
-            
-            // Business hours
-          'day' => 'nullable|array',
-          'day.*' => 'nullable|string',
-          'open_time' => 'nullable|array',
-          'open_time.*' => 'nullable|date_format:H:i',
-          'close_time' => 'nullable|array',
-          'close_time.*' => 'nullable|date_format:H:i',
-          'is_24_hours' => 'nullable|array',
-          'is_24_hours.*' => 'nullable|boolean',
-          'add_2nd_time_slot' => 'nullable|array',
-          'add_2nd_time_slot.*' => 'nullable|boolean',
-
             'email' => 'nullable',
             'password' => 'nullable',
             'agree' => 'nullable',
-
+            //business hours
+        'day.*' => 'required|string',
+        'open_time.*' => 'required|date_format:H:i',
+        'close_time.*' => 'required|date_format:H:i',
+        'is_24_hours.*' => 'nullable|boolean',
+        'add_2nd_time_slot.*' => 'nullable|boolean',
+        'open_time_2.*' => 'nullable|date_format:H:i',
+        'close_time_2.*' => 'nullable|date_format:H:i',
 
             // Image validation
            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
