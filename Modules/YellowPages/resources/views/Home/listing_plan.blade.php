@@ -50,7 +50,7 @@
         <div style="display: flex; justify-content: center; margin-bottom: 20px;">
             <button class="btn btn-primary" style="margin-right: 5px;">Business Plans</button>
             <button class="btn btn-outline-primary" style="margin-right: 5px;">Bazaar Plans</button>
-            <button class="btn btn-outline-primary">Get V-Card</button>
+            <button class="btn btn-outline-primary" onclick="window.location.href='{{ url('yellow-pages/vcard') }}'">Get V-Card</button>
         </div>
     </div>
 

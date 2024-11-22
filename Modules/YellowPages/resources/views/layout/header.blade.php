@@ -4,7 +4,7 @@
         <div id="menu" class="small-screen">
                     <a href="https://yellowpages.prarang.in/submit-listing/" class="lpl-button lpl-add-listing-loggedout">Add Listing</a>
                     <br><br><br>
-                     <a href="http://prarang.in/vCard/" class="lpl-button custom-v-card lpl-add-listing-loggedout">Get V-Cart</a><br><br>
+                     <a href="{{ url('/vcard') }}" class="lpl-button custom-v-card lpl-add-listing-loggedout">Get V-Cart</a><br><br>
                                                     <a class="lpl-button lp-right-15 app-view-popup-style" data-target="#app-view-login-popup">Sign In</a>
                                 </div>
         <div class="lp-menu-bar header-bg-color-class">
