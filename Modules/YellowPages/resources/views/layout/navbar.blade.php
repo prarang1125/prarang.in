@@ -31,7 +31,7 @@
                         <a href="{{ url('yellow-pages/listing_plan') }}" class="btn-add-listing"><i class="fa fa-plus"></i> Add Listing</a>
                     </li>
                     <li class="action-buttons">
-                        <a href="#" class="btn-get-vcard"><i class="fa fa-id-card"></i> Get V-Card</a>
+                        <a href="{{ url('yellow-pages/vcard') }}" class="btn-get-vcard"><i class="fa fa-id-card"></i> Get V-Card</a>
                     </li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
