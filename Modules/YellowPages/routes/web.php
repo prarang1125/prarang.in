@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Modules\YellowPages\Http\Controllers\YellowPagesController;
 use Modules\YellowPages\app\Http\Controllers\Main\HomeController;
 use Modules\YellowPages\Http\Controllers\ListingController;
+use Modules\YellowPages\Http\Controllers\VCardController;
 use App\Http\Controllers\Auth\AuthController;
 
 /*
@@ -31,6 +32,7 @@ Route::group(['prefix' => 'yellow-pages'], function () {
     Route::get('/getLocationData', [ListingController::class, 'getLocationData'])->name('yp.getLocationData');
     Route::post('/store-listing', [ListingController::class, 'store'])->name('yp.listing.store');
     Route::get('/submit-listing', [ListingController::class, 'submit_listing'])->name('yp.listing.submit');;
+    Route::get('/vcard', [VCardController::class, 'index'])->name('yp.vcard');;
 
 
 });

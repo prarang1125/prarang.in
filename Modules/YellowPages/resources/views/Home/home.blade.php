@@ -46,28 +46,33 @@
                 </h2>
                 <p>Let's uncover the best Businesses, Products and Services</p>
                 
-                <form class="search-form d-flex justify-content-center mt-4" style="margin-top: 20px;" action="{{ route('home') }}" method="GET">
-                      
+                <form action="{{ route('yp.listing') }}" method="GET" class="search-form d-flex justify-content-center mt-4">
                   <!-- Categories Dropdown -->
-                  <select name="category" id="category" class="form-select"  style="width: 300px; padding: 10px; margin-right: 10px; border: 1px solid #ccc; border-radius: 4px;" >
+                  <select name="category" class="form-select" style="width: 300px; padding: 10px; margin-right: 10px;">
                       <option value="">Select Category</option>
                       @foreach ($categories as $category)
-                          <option value="{{ $category->id }}">{{ $category->name }}</option>
+                          <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
+                              {{ $category->name }}
+                          </option>
                       @endforeach
                   </select>
-                
+              
                   <!-- Cities Dropdown -->
-                  <select name="city" id="city" class="form-select" style="width: 200px; padding: 10px; margin-right: 10px;">
+                  <select name="city" class="form-select" style="width: 200px; padding: 10px; margin-right: 10px;">
                       <option value="">Select City</option>
-                      @foreach ($cities as $city) <!-- Loop through cities -->
-                          <option value="{{ $city->id }}">{{ $city->name }}</option>
+                      @foreach ($cities as $city)
+                          <option value="{{ $city->id }}" {{ request('city') == $city->id ? 'selected' : '' }}>
+                              {{ $city->name }}
+                          </option>
                       @endforeach
                   </select>
-                  
-                  <button type="submit" style="padding: 10px 20px; background-color: #007bff; color: white; border: none; border-radius: 4px;">
+              
+                  <!-- Search Button -->
+                  <button type="submit" class="btn btn-primary">
                       <i class="bi bi-search" style="font-size: 1.2rem;"></i>
                   </button>
               </form>
+              
 
                 
     
@@ -80,52 +85,57 @@
         </div>
     </div>
 
-      <div class="icon-boxes position-relative" data-aos="fade-up" data-aos-delay="200">
-        <div class="container position-relative">
-            <div class="row gy-4 mt-5">
+    <div class="icon-boxes position-relative" data-aos="fade-up" data-aos-delay="200">
+      <div class="container position-relative">
+          <div class="row gy-4 mt-5">
               @foreach($categories as $index => $category)
-                <div class="col-xl-2 col-md-4">
-                    <div class="icon-box" style="padding: 20px; text-align: center; border: 1px solid #ddd; border-radius: 10px;">
-                        <div class="icon" style="width: 80px; height: 80px; margin: 0 auto;">
-                            <img src="{{ asset('storage/'. $category->categories_url) }}" alt="{{ $category->name }}" style="width: 100%; height: 100%; object-fit: cover;" />
-                        </div>
-                        <h4 class="title" style="font-size: 16px; margin-top: 10px;"><a href="" class="stretched-link">{{ $category->name }}</a></h4>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-        </div>
-    </div>
+                  <div class="col-xl-2 col-md-4">
+                      <div class="icon-box" style="padding: 20px; text-align: center; border: 1px solid #ddd; border-radius: 10px;">
+                          <div class="icon" style="width: 80px; height: 80px; margin: 0 auto;">
+                              <img src="{{ asset('storage/' . $category->categories_url) }}" alt="{{ $category->name }}" style="width: 100%; height: 100%; object-fit: cover;" />
+                          </div>
+                          <h4 class="title" style="font-size: 16px; margin-top: 10px;">
+                              <!-- Add the link to the listing page with the category ID -->
+                              <a href="{{ route('yp.listing') }}?category={{ $category->id }}" class="stretched-link">{{ $category->name }}</a>
+                          </h4>
+                      </div>
+                  </div>
+              @endforeach
+          </div>
+      </div>
+  </div>
+  
     
 
 
     </section>
 
   <!-- get cities  -->
-<section id="services" class="services">
-  <!-- Section Title -->
-  <div class="container section-title" data-aos="fade-up">
-    <h2>Live Cities</h2>
-    <p>Find the Best Services and Products in these Cities</p>
-  </div><!-- End Section Title -->
+  <section id="services" class="services">
+    <!-- Section Title -->
+    <div class="container section-title" data-aos="fade-up">
+        <h2>Live Cities</h2>
+        <p>Find the Best Services and Products in these Cities</p>
+    </div><!-- End Section Title -->
 
-  <div class="container">
-    <div class="row gy-4">
-      @foreach($cities as $index => $city)
-        <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="{{ ($index + 1) * 100 }}">
-          <a href="#" class="card-link">
-            <div class="card">
-              <img src="{{ asset('storage/'. $city->cities_url) }}" class="card-img-top" alt="{{ $city->name }}">
-              <div class="card-body text-center">
-                <h5 class="card-title">{{ $city->name }}</h5>
-              </div>
-            </div>
-          </a>
-        </div><!-- End City Card -->
-      @endforeach
+    <div class="container">
+        <div class="row gy-4">
+            @foreach($cities as $index => $city)
+                <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="{{ ($index + 1) * 100 }}">
+                    <a href="{{ route('yp.listing') }}?city={{ $city->id }}" class="card-link">
+                        <div class="card">
+                            <img src="{{ asset('storage/' . $city->cities_url) }}" class="card-img-top" alt="{{ $city->name }}">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">{{ $city->name }}</h5>
+                            </div>
+                        </div>
+                    </a>
+                </div><!-- End City Card -->
+            @endforeach
+        </div>
     </div>
-  </div>
 </section>
+
 
 
 <section id="listings" class="listings section">

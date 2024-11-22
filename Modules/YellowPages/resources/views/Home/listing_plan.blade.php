@@ -80,7 +80,9 @@
             <li style="margin: 10px 0; padding-left: 24px; position: relative;">Deals-Offers-Discounts</li>
             <li style="margin: 10px 0; padding-left: 24px; position: relative;">Lead Form</li>
         </ul>
-        <button style="padding: 15px; font-size: 16px; color: #fff; background-color: #000; border: none; cursor: pointer; width: 100%;">Continue</button>
+        <button style="padding: 15px; font-size: 16px; color: #fff; background-color: #000; border: none; cursor: pointer; width: 100%;" onclick="window.location.href='{{ route('yp.getLocationData') }}'">Continue</button>
+
+        {{-- <button style="padding: 15px; font-size: 16px; color: #fff; background-color: #000; border: none; cursor: pointer; width: 100%;">Continue</button> --}}
     </div>
 
     <!-- Featured Plan Box -->
@@ -113,7 +115,7 @@
             <li style="margin: 10px 0; padding-left: 24px; position: relative;">Lead Form</li>
             <li style="margin: 10px 0; padding-left: 24px; position: relative;">V Card</li>
         </ul>
-        <button style="padding: 15px; font-size: 16px; color: #fff; background-color: #000; border: none; cursor: pointer; width: 100%;">Continue</button>
+        <button style="padding: 15px; font-size: 16px; color: #fff; background-color: #000; border: none; cursor: pointer; width: 100%;" onclick="window.location.href='{{ route('yp.getLocationData') }}'">Continue</button>
     </div>
 </div>
 
