@@ -204,4 +204,8 @@ public function store(StoreListingRequest $request)
 }
 
 
+public function listing()
+{
+    return view('yellowpages::Home.listing');
+}
 }

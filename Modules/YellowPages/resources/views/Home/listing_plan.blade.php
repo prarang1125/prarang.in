@@ -83,6 +83,7 @@
         <button style="padding: 15px; font-size: 16px; color: #fff; background-color: #000; border: none; cursor: pointer; width: 100%;" onclick="window.location.href='{{ route('yp.getLocationData') }}'">Continue</button>
 
         {{-- <button style="padding: 15px; font-size: 16px; color: #fff; background-color: #000; border: none; cursor: pointer; width: 100%;">Continue</button> --}}
+        
     </div>
 
     <!-- Featured Plan Box -->

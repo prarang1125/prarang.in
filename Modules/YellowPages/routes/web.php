@@ -5,7 +5,9 @@ use Modules\YellowPages\Http\Controllers\YellowPagesController;
 use Modules\YellowPages\app\Http\Controllers\Main\HomeController;
 use Modules\YellowPages\Http\Controllers\ListingController;
 use Modules\YellowPages\Http\Controllers\VCardController;
-use App\Http\Controllers\Auth\AuthController;
+use Modules\YellowPages\Http\Controllers\ReviewController                                           ;
+use Modules\YellowPages\Http\Controllers\admin\AuthController;
+// use App\Http\Controllers\Auth\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,10 +31,17 @@ Route::group(['prefix' => 'yellow-pages'], function () {
 
     ##------------------------- Drop Down data get ---------------------##
     Route::get('/listing', [ListingController::class, 'index'])->name('yp.listing');
+    Route::get('/listing-details/{listingId}', [ListingController::class, 'listing'])->name('yp.listing');
     Route::get('/getLocationData', [ListingController::class, 'getLocationData'])->name('yp.getLocationData');
     Route::post('/store-listing', [ListingController::class, 'store'])->name('yp.listing.store');
     Route::get('/submit-listing', [ListingController::class, 'submit_listing'])->name('yp.listing.submit');;
-    Route::get('/vcard', [VCardController::class, 'index'])->name('yp.vcard');;
+    Route::get('/vcard', [VCardController::class, 'index'])->name('yp.vcard');
+    Route::post('/reviews/store', [ReviewController::class, 'store'])->name('reviews.store');
+
+    //Admin
+
+    Route::get('login', [AuthController::class, 'index'])->name('admin.login');
+
 
 
 });
