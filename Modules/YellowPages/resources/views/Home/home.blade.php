@@ -149,7 +149,7 @@
           <div class="swiper-wrapper">
               @foreach($listings as $listing)
               <div class="swiper-slide">
-                <a href="{{ route('listing', $listing->id) }}" style="display: block;">
+                <a href="{{ route('yp.listing-details', $listing->id) }}" style="display: block;">
                   <div class="listing-item" style="background: #fff; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); padding: 15px; text-align: center; transition: 0.3s;">
                       <img src="{{ asset('storage/' . ($listing->feature_img ?? 'default.jpg')) }}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;" alt="{{ $listing->listing_title ?? 'No Title' }}">
                       <div class="listing-details">

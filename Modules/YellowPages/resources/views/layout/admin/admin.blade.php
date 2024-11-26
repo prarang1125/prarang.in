@@ -1,16 +1,20 @@
-@include('layouts.partial.head')
+@include('yellowpages::layout.partial.head')
 <!-- header -->
-@include('layouts.partial.navbar')
+@include('yellowpages::layout.partial.navbar')
 <div class="wrapper">
     <!--sidebar wrapper -->
     <div class="sidebar-wrapper" data-simplebar="true">
-        @include('layouts.partial.sidebar')
+        @include('yellowpages::layout.partial.sidebar')
     </div>
-    <!--end sidebar wrapper -->
+    <!-- end sidebar wrapper -->
+
     <div class="page-wrapper">
+        
         @yield('content')
-        @include('layouts.partial.footer')
+        @include('yellowpages::layout.partial.footer')
+
     </div>
+
 </div>
-@include('layouts.partial.script')
+@include('yellowpages::layout.partial.script')
 

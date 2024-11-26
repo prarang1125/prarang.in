@@ -33,24 +33,28 @@
 
     <!-- Main Container -->
     <div style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+            
 
-        <!-- Image Section -->
-        <div style="background-color: #ffffff; padding: 20px; margin-bottom: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); display: flex; justify-content: center; align-items: center;">
-            <img src="{{ asset('storage/Vcard/vcard-2.png') }}" alt="Listing Image" 
-                style="max-width: 100%; height: auto; border-radius: 10px; display: block;">
-        </div>
+       <!-- Main Container -->
+<div style="max-width: 1200px; margin: 0 auto; padding-top: 100px; padding: 20px;">
+    <!-- Image Section -->
+    <div style="background-color: #ffffff; padding-top: 90px; display: flex; justify-content: center; align-items: center;">
+        <img src="{{ asset('storage/' . ($listing->feature_img ?? 'default.jpg')) }}" alt="Listing Image" 
+            style="max-width: 100%; height: auto; border-radius: 10px; display: block;">
+    </div>
+</div>
 
         <!-- Breadcrumb Navigation -->
         <div style="font-size: 14px; color: #555; margin-bottom: 15px;">
             <a href="#" style="text-decoration: none; color: #007bff;">Home</a> / 
             <a href="#" style="text-decoration: none; color: #007bff;">Services</a> / 
-            <span style="color: #555;">Ranjan Auto Service</span>
+            <span style="color: #555;">{{ $listing->listing_title ?? 'No Title' }}</span>
         </div>
 
         <!-- Listing Header -->
         <div style="display: flex; justify-content: space-between; align-items: center; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-bottom: 20px;">
             <div>
-                <h1 style="font-size: 28px; font-weight: bold; margin: 0;">Ranjan Auto Service</h1>
+                <h1 style="font-size: 28px; font-weight: bold; margin: 0;">{{ $listing->listing_title ?? 'No Title' }}</h1>
                 <p style="font-size: 16px; color: #777;">Be the first one to rate!</p>
             </div>
             <div>
@@ -61,11 +65,10 @@
 
         <!-- Main Content -->
         <div style="display: flex; gap: 20px; margin-bottom: 20px;">
-            
             <!-- Left Section -->
             <div style="flex: 2; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                 <p style="font-size: 16px; color: #555;">Detail description about your listing</p>
-                <p style="font-size: 16px; color: #555; margin-top: 10px;">Address: <span style="color: #000;">123 Main Street, Springfield, IL</span></p>
+                <p style="font-size: 16px; color: #555; margin-top: 10px;">Address: <span style="color: #000;">{{ $listing->business_address ?? 'No Address' }}</span></p>
             </div>            
 
             <!-- Business Hours Section -->
@@ -95,49 +98,68 @@
                 </ul>
                 <p style="font-size: 14px; color: #28a745; margin-top: 10px;">Open Now</p>
             </div>
+
         </div>
 
       <!-- Review Form -->
-<form method="POST" action="{{ route('reviews.store') }}" enctype="multipart/form-data">
-    @csrf
-    <div style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-        <h3 style="font-size: 20px; font-weight: bold; margin-bottom: 15px;">Rate Us and Write a Review</h3>
-        
-        <!-- Ratings Section -->
-        <div style="display: flex; flex-wrap: wrap; gap: 20px; margin-bottom: 20px;">
-            <div style="flex: 1;">
-                <label style="font-size: 14px; color: #555;">Cleanliness</label>
-                <input type="number" name="cleanliness" min="0" max="5" step="0.1" value="0" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+      <form method="POST" action="{{ route('reviews.store', $listing->id) }}" enctype="multipart/form-data">
+        @csrf
+        <div style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <h3 style="font-size: 20px; font-weight: bold; margin-bottom: 15px;">Rate Us and Write a Review</h3>
+            
+            <!-- Cleanliness Rating -->
+            <div style="margin-bottom: 20px;">
+                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">Cleanliness</label>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    @for ($i = 1; $i <= 5; $i++)
+                        <label for="cleanliness-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
+                            <input type="radio" name="cleanliness" id="cleanliness-{{ $i }}" value="{{ $i }}" style="position: absolute; opacity: 0;" 
+                            {{ old('cleanliness') == $i ? 'checked' : '' }}>
+                            <span style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
+                        </label>
+                    @endfor
+                </div>
+            </div>
+    
+            <!-- Service Rating -->
+            <div style="margin-bottom: 20px;">
+                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">Service</label>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    @for ($i = 1; $i <= 5; $i++)
+                        <label for="service-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
+                            <input type="radio" name="service" id="service-{{ $i }}" value="{{ $i }}" style="position: absolute; opacity: 0;" 
+                            {{ old('service') == $i ? 'checked' : '' }}>
+                            <span style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
+                        </label>
+                    @endfor
+                </div>
+            </div>
+    
+            <!-- Image Upload Section -->
+            <div style="margin-bottom: 20px;">
+                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">Select Images</label>
+                <input type="file" name="image[]" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" multiple>
             </div>
             
-            <div style="flex: 1;">
-                <label style="font-size: 14px; color: #555;">Service</label>
-                <input type="number" name="service" min="0" max="5" step="0.1" value="0" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+            <!-- Title Section -->
+            <div style="margin-bottom: 20px;">
+                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">Title</label>
+                <input type="text" name="title" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
             </div>
+    
+            <!-- Review Section -->
+            <div style="margin-bottom: 20px;">
+                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">Review</label>
+                <textarea name="review" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" rows="4"></textarea>
+            </div>
+    
+            <!-- Submit Button -->
+            <button type="submit" style="background-color: #007bff; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px; width: 100%;">Submit Review</button>
         </div>
-
-        <!-- Image Upload Section -->
-        <div style="margin-bottom: 20px;">
-            <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">Select Images</label>
-            <input type="file" name="image[]" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" multiple>
-        </div>
-        
-        <!-- Title Section -->
-        <div style="margin-bottom: 20px;">
-            <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">Title</label>
-            <input type="text" name="title" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
-        </div>
-
-        <!-- Review Section -->
-        <div style="margin-bottom: 20px;">
-            <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">Review</label>
-            <textarea name="review" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" rows="4"></textarea>
-        </div>
-
-        <!-- Submit Button -->
-        <button type="submit" style="background-color: #007bff; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px; width: 100%;">Submit Review</button>
-    </div>
-</form>
+    </form>
+    
+    
+    
 </div>
     @include('yellowpages::layout.footer')
 
