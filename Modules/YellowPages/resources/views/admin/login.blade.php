@@ -18,7 +18,7 @@
                                 <label for="inputLastEnterEmail" class="form-label">Enter Email</label>
                                 <div class="input-group input-group-lg">
                                     <span class="input-group-text bg-transparent"><i class="bx bxs-user"></i></span>
-                                    <input type="text" value="{{ old('emailId') }}" name="email" class="form-control border-start-1 @error('email') is-invalid @enderror" id="inputLastEnterEmail" placeholder="Enter Email">
+                                    <input type="text" value="{{ old('email') }}" name="email" class="form-control border-start-1 @error('email') is-invalid @enderror" id="inputLastEnterEmail" placeholder="Enter Email">
                                     @error('email')
                                         <p class="invalid-feedback">{{ $message }}</p>
                                     @enderror
@@ -60,5 +60,6 @@
         </div>
     </div>
 </div>
-@include('layouts.partial.script')
+@include('yellowpages::layout.partial.script')
+
 

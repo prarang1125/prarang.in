@@ -24,18 +24,21 @@ class ReviewController extends Controller
             'price' => 'required|numeric|min:0|max:5',
             'title' => 'nullable|string|max:255',
             'review' => 'nullable|string|max:1000',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|array|max:5',  // Allow multiple images with a maximum of 5
+            'image.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',  // Validate each image
         ]);
-
+    
         // Find the business listing to ensure it's valid
         $listing = BusinessListing::findOrFail($listingId);
-
-        $imagePath = null;
+    
+        // Handle image upload (multiple images)
+        $imagePaths = [];
         if ($request->hasFile('image')) {
-            // Store image and get the path
-            $imagePath = $request->file('image')->store('reviews', 'public');
+            foreach ($request->file('image') as $image) {
+                $imagePaths[] = $image->store('reviews', 'public');
+            }
         }
-
+    
         // Store the review data in the database
         Review::create([
             'user_id' => Auth::id(),
@@ -46,20 +49,13 @@ class ReviewController extends Controller
             'price' => $request->price,
             'title' => $request->title,
             'review' => $request->review,
-            'image' => $imagePath,
+            'image' => json_encode($imagePaths),  // Store image paths as JSON
         ]);
-
+    
         // Redirect to the listing page with a success message
         return redirect()->route('listing.show', $listingId)->with('success', 'Review submitted successfully!');
     }
-    // Show the listing with reviews
-    public function show($listingId)
-    {
-        // Fetch the listing and associated reviews
-        $listing = BusinessListing::with('reviews')->findOrFail($listingId);
-
-        return view('listing.show', compact('listing'));
-    }
+    
 
 
    

@@ -53,7 +53,6 @@ class ListingController extends Controller
     $categories = Category::all();
     $cities = City::all();
 
-    // Start building the query for business listings
     $query = BusinessListing::query();
 
     // Apply category filter if selected
@@ -204,8 +203,22 @@ public function store(StoreListingRequest $request)
 }
 
 
-public function listing()
+public function listing($listingId)
 {
-    return view('yellowpages::Home.listing');
+    $listing = BusinessListing::with(['hours'])->find($listingId);
+    if ($listing) {
+        $currentTime = Carbon::now();
+        if ($listing->hours) {
+            $openTime = Carbon::parse($listing->hours->open_time);
+            $closeTime = Carbon::parse($listing->hours->close_time);
+            $listing->is_open = $currentTime->between($openTime, $closeTime);
+        } else {
+            $listing->is_open = false;
+        }
+        return view('yellowpages::Home.listing', compact('listing'));
+    } else {
+        return redirect()->back()->with('error', 'Listing not found.');
+    }
 }
+
 }

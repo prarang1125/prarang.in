@@ -4,6 +4,15 @@ namespace Modules\YellowPages\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Category;
+use App\Models\City;
+use Carbon\Carbon;
+use App\Models\BusinessListing;
+use App\Models\User;
+use App\Models\CompanyLegalType;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -12,12 +21,20 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('yellowpages::index');
+        $totallisting  = BusinessListing::count();
+        $totalCategory   = Category::count();
+        $totalcitys    = City::count();
+        $totalUser    = User::count();
+        return view('yellowpages::Admin.dashboard', compact(
+             'totallisting', 'totalCategory', 'totalcitys','totalUser' 
+        ));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
+    public function userListing(Request $request) {
+            $users = User::all();
+        return view('yellowpages::Admin.user-listing', compact('users'));
+    }
+
     public function create()
     {
         return view('yellowpages::create');
