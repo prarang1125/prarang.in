@@ -16,9 +16,9 @@
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
-                    <li class="breadcrumb-item"><a href="{{ url('admin/user-listing')}}"><i class="bx bx-user"></i></a>
+                    <li class="breadcrumb-item"><a href="{{ url('admin/cities-listing')}}"><i class="bx bx-user"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">User Listing</li>
+                    <li class="breadcrumb-item active" aria-current="page">Cities Listing</li>
                 </ol>
             </nav>
         </div>
@@ -32,11 +32,11 @@
                     {{ session('success') }}
                 </div>
             @endif
-            <h6 class="mb-0 text-uppercase">User Listing</h6>
+            <h6 class="mb-0 text-uppercase">Cities Listing</h6>
             <hr/>
             <div class="card">
                 <div class="card-body d-flex justify-content-end align-items-end">
-                    <a href="{{ url('/yellow-pages/user-register') }}" class="btn btn-primary">Add New User</a>
+                    <a href="{{ url('/yellow-pages/cities-register') }}" class="btn btn-primary">Add New City</a>
                 </div>
                 <div class="card-body">
                     <table class="table mb-0 table-hover">
@@ -44,27 +44,26 @@
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Name</th>
-                                <th scope="col">Email ID</th>
-                                <th scope="col">Role</th>
-                                <th scope="col">status</th>
+                                <th scope="col">Image</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             @php $index = 1; @endphp
-                            @foreach($users as $user)
+                            @foreach($cities as $city)
                                 <tr>
-                                    <th scope="row">{{ $index }}</th>
-                                    <td>{{ $user->name }}</td>
-                                    <td>{{ $user->email }}</td>
-                                    <td class="{{ $user->role }}">{{ $user->role? 'Admin':'Customer' }}
+                                    <th scope="row" class="align-middle">{{ $index }}</th> <!-- Vertically center the row index -->
+                                    <td class="align-middle">{{ $city->name }}</td> <!-- Vertically center the Name column -->
+                                    <td class="align-middle">
+                                        @if($city->cities_url)
+                                            <img src="{{ asset('storage/' . $city->cities_url) }}" alt="{{ $city->name }}" style="width: 100px; height: 100px;">
+                                        @else
+                                            No image
+                                        @endif
                                     </td>
-
-                                    <td class="{{ $user->isActive? 'text-success':'text-danger' }}">{{ $user->isActive? 'Deactive':'Active' }}
-                                    </td>
-                                    <td class="text-right">
-                                        <a href="{{ route('admin.user-edit', $user->id) }}" class="btn btn-sm btn-primary edit-user">Edit</a>
-                                        <form action="{{ route('admin.users-delete', $user->id) }}" method="POST" style="display:inline;">
+                                    <td class="align-middle"> <!-- Center align and vertically align the Action column -->
+                                        <a href="{{ route('admin.cities-edit', $city->id) }}" class="btn btn-sm btn-primary edit-user">Edit</a>
+                                        <form action="{{ route('admin.cities-delete', $city->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             <button type="submit" class="btn btn-sm btn-danger delete-user">Delete</button>
                                         </form>
@@ -74,7 +73,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    
                 </div>
+                
             </div>
         </div>
     </div>

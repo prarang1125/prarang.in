@@ -21,28 +21,28 @@
         </li>
         <!-- Users -->
         <li>
-            <a href="#">
+            <a href="{{ url('yellow-pages/user-listing') }}">
                 <div class="parent-icon"><i class="lni lni-user"></i></div>
                 <div class="menu-title">Users</div>
             </a>
         </li>
         <!-- Category -->
         <li>
-            <a href="#">
+            <a href="{{ url('yellow-pages/category-listing') }}">
                 <div class="parent-icon"><i class="bx bx-category"></i></div>
                 <div class="menu-title">Category</div>
             </a>
         </li>
         <!-- Cities -->
         <li>
-            <a href="#">
+            <a href="{{ url('yellow-pages/cities-listing') }}">
                 <div class="parent-icon"><i class="bx bx-buildings"></i></div>
                 <div class="menu-title">Cities</div>
             </a>
         </li>
         <!-- Business Listing -->
         <li>
-            <a href="#">
+            <a href="{{ url('yellow-pages/business-listing') }}">
                 <div class="parent-icon"><i class="bx bx-briefcase"></i></div>
                 <div class="menu-title">Business Listing</div>
             </a>
