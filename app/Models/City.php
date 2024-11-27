@@ -10,4 +10,12 @@ class City extends Model
 
     protected $table = 'cities'; 
 
+    protected $fillable = [
+        'name',
+        'cities_url',
+        'timezone',
+        'created_at',
+        'updated_at'
+    ];
+
 }

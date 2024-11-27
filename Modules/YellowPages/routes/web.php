@@ -1,13 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\YellowPages\Http\Controllers\YellowPagesController;
 use Modules\YellowPages\app\Http\Controllers\Main\HomeController;
 use Modules\YellowPages\Http\Controllers\ListingController;
 use Modules\YellowPages\Http\Controllers\VCardController;
 use Modules\YellowPages\Http\Controllers\ReviewController                                           ;
 use Modules\YellowPages\Http\Controllers\admin\AuthController;
 use Modules\YellowPages\Http\Controllers\admin\AdminController;
+use Modules\YellowPages\Http\Controllers\admin\CitiesController;
 // use App\Http\Controllers\Auth\AuthController;
 
 /*
@@ -42,14 +42,23 @@ Route::group(['prefix' => 'yellow-pages'], function () {
     Route::get('login', [AuthController::class, 'index'])->name('admin.login');
     Route::post('authenticate', [AuthController::class, 'authenticate'])->name('admin.authenticate');
     Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+
      #this route is use for admin users
      Route::get('user-profile', [AdminController::class, 'userProfile'])->name('admin.user-profile');
      Route::get('user-listing', [AdminController::class, 'userListing'])->name('admin.user-listing');
-     Route::get('user-register', [AdminController::class, 'useruRegister'])->name('admin.user-register');
+     Route::get('user-register', [AdminController::class, 'userRegister'])->name('admin.user-register');
      Route::post('users-store', [AdminController::class, 'userStore'])->name('admin.users-store');
      Route::post('users-delete/{id}', [AdminController::class, 'userDelete'])->name('admin.users-delete');
      Route::get('user-edit/{id}', [AdminController::class, 'userEdit'])->name('admin.user-edit');
      Route::put('user-update/{id}', [AdminController::class, 'userUpdate'])->name('admin.user-update');
+
+     #this route is use for admin cities
+     Route::get('cities-listing', [CitiesController::class, 'citiesListing'])->name('admin.cities-listing');
+     Route::get('cities-register', [CitiesController::class, 'citiesRegister'])->name('admin.cities-register');
+     Route::post('cities-store', [CitiesController::class, 'citiesStore'])->name('admin.cities-store');
+     Route::post('cities-delete/{id}', [CitiesController::class, 'citiesDelete'])->name('admin.cities-delete');
+     Route::get('cities-edit/{id}', [CitiesController::class, 'citiesEdit'])->name('admin.cities-edit');
+     Route::put('cities-update/{id}', [CitiesController::class, 'citiesUpdate'])->name('admin.cities-update');
     
 });
 
