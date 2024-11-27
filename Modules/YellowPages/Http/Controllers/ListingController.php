@@ -7,6 +7,7 @@ use Modules\YellowPages\app\Http\Requests\StoreListingRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\City;
+use Carbon\Carbon;
 use App\Models\BusinessListing;
 use App\Models\BusinessHour;
 use App\Models\CompanyLegalType;
@@ -16,6 +17,74 @@ use Illuminate\Support\Facades\DB;
 class ListingController extends Controller
 
 {
+
+    // public function index()
+    // {
+    //     $categories = Category::all();
+    //     // Fetch business listings with related category and business hours
+    //     $listings = BusinessListing::with(['hours'])->get()->map(function ($listing) {
+    //         $currentTime = Carbon::now();
+        
+    //         if ($listing->hours) {
+    //             // Parse the opening and closing times
+    //             $openTime = Carbon::parse($listing->hours->open_time);
+    //             $closeTime = Carbon::parse($listing->hours->close_time);
+        
+    //             // Determine if the current time falls within the open and close times
+    //             $listing->is_open = $currentTime->between($openTime, $closeTime);
+
+    //         } else {
+    //             // If no hours are defined, default to closed
+    //             $listing->is_open = false;
+    //         }
+        
+    //         return $listing;
+      
+    //     });
+    
+    //     // Return the view with data
+    //     return view('yellowpages::Home.categories', compact( 'listings', 'categories'));
+    // }
+
+
+    public function index(Request $request)
+{
+    // Fetch all categories and cities for dropdowns
+    $categories = Category::all();
+    $cities = City::all();
+
+    $query = BusinessListing::query();
+
+    // Apply category filter if selected
+    if ($request->filled('category')) {
+        $query->where('category_id', $request->category);
+    }
+
+    // Apply city filter if selected
+    if ($request->filled('city')) {
+        $query->where('city_id', $request->city);
+    }
+
+    // Fetch business listings with related category and business hours
+    $listings = $query->with(['category', 'hours'])->get()->map(function ($listing) {
+        $currentTime = Carbon::now();
+
+        // Check if business hours exist
+        if ($listing->hours) {
+            $openTime = Carbon::parse($listing->hours->open_time);
+            $closeTime = Carbon::parse($listing->hours->close_time);
+            $listing->is_open = $currentTime->between($openTime, $closeTime); // Determine if open
+        } else {
+            // If no hours, consider it closed
+            $listing->is_open = false;
+        }
+
+        return $listing;
+    });
+
+    // Return the view with filtered data
+    return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities'));
+}
 
     public function submit_listing(){
         return view("yellowpages::Home.submit_listing");
@@ -44,13 +113,12 @@ class ListingController extends Controller
     ));
 
 }
+
+
 public function store(StoreListingRequest $request)
 {
     // Validate only necessary fields
     $validated = $request->validated(); 
-
-    dd($validated);die;
-
     // File upload handling
     $imagePath = $request->hasFile('image') 
                  ? $request->file('image')->store('images/business', 'public') 
@@ -107,29 +175,50 @@ public function store(StoreListingRequest $request)
     ];
 
      // Create the business listing
- $listing = BusinessListing::create($data);
+        //  $listing = BusinessListing::create($data);
+        //  if (!$listing) {
+        //     return redirect()->back()->withErrors(['error' => 'Failed to create listing']);
+        // }
     // Insert business hours data
-    if (isset($validated['day']) && is_array($validated['day'])) {
+    if (!empty($validated['day'])) {
         foreach ($validated['day'] as $index => $day) {
-            // Prepare data for business hours
-            $hoursData = [
-                'business_id' => $listing->id,
-                'day' => $day,
-                'open_time' => $validated['open_time'][$index] ?? null,
-                'close_time' => $validated['close_time'][$index] ?? null,
-                'open_time_2' => $validated['open_time_2'][$index] ?? null,
-                'close_time_2' => $validated['close_time_2'][$index] ?? null,
-                'is_24_hours' => $validated['is_24_hours'][$index] ?? false,
-                'add_2nd_time_slot' => $validated['add_2nd_time_slot'][$index] ?? false,
-            ];
+            if (isset($validated['open_time'][$index]) && isset($validated['close_time'][$index])) {
+                $hoursData = [
+                    'business_id' => 1,
+                    'day' => $day,
+                    'open_time' => $validated['open_time'][$index],
+                    'close_time' => $validated['close_time'][$index],
+                    'open_time_2' => $validated['open_time_2'][$index] ?? null,
+                    'close_time_2' => $validated['close_time_2'][$index] ?? null,
+                    'is_24_hours' => !empty($validated['is_24_hours'][$index]) ? 1 : 0,
+                    'add_2nd_time_slot' => !empty($validated['add_2nd_time_slot'][$index]) ? 1 : 0,
+                ];
 
-            // Insert each day of business hours
-            BusinessHour::create($hoursData);
+                BusinessHour::create($hoursData);
+            }
         }
     }
 
-    // Redirect after successful creation
     return redirect()->route('yp.listing.submit')->with('success', 'Listing created successfully!');
-
 }
+
+
+public function listing($listingId)
+{
+    $listing = BusinessListing::with(['hours'])->find($listingId);
+    if ($listing) {
+        $currentTime = Carbon::now();
+        if ($listing->hours) {
+            $openTime = Carbon::parse($listing->hours->open_time);
+            $closeTime = Carbon::parse($listing->hours->close_time);
+            $listing->is_open = $currentTime->between($openTime, $closeTime);
+        } else {
+            $listing->is_open = false;
+        }
+        return view('yellowpages::Home.listing', compact('listing'));
+    } else {
+        return redirect()->back()->with('error', 'Listing not found.');
+    }
+}
+
 }

@@ -39,113 +39,110 @@
         <!-- Listings Section -->
         <div style="max-width: 1200px; margin: 20px auto; padding: 0 20px;">
             <div style="font-size: 24px; margin-bottom: 20px;">
-                Results For <strong>Craft (शिल्प)</strong> Listings
+                Results For <strong></strong> Listings
             </div>
-    
+
             <!-- Filters Section -->
-            <div style="display: flex; justify-content: space-evenly; align-items: center; margin-bottom: 20px; padding: 20px; background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
-                <!-- Filter Options with Checkboxes -->
-                <div>
-                    <label for="credit-cards" style="margin-right: 15px; padding: 10px 15px; border: 1px solid #ccc; border-radius: 20px; background-color: #fff; cursor: pointer;">
-                        <input type="checkbox" id="credit-cards" name="credit-cards" style="margin-right: 5px;"> Accepts Credit Cards
-                    </label>
-                    <label for="wireless-internet" style="padding: 10px 15px; border: 1px solid #ccc; border-radius: 20px; background-color: #fff; cursor: pointer;">
-                        <input type="checkbox" id="wireless-internet" name="wireless-internet" style="margin-right: 5px;"> Wireless Internet
-                    </label>
+<div style="display: flex; justify-content: space-evenly; align-items: center; margin-bottom: 20px; padding: 20px; background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
+    <!-- Filter Options with Checkboxes -->
+    <div>
+        <label for="credit-cards" style="margin-right: 15px; padding: 10px 15px; border: 1px solid #ccc; border-radius: 20px; background-color: #fff; cursor: pointer;">
+            <input type="checkbox" id="credit-cards" name="credit-cards" style="margin-right: 5px;"> Accepts Credit Cards
+        </label>
+        <label for="wireless-internet" style="padding: 10px 15px; border: 1px solid #ccc; border-radius: 20px; background-color: #fff; cursor: pointer;">
+            <input type="checkbox" id="wireless-internet" name="wireless-internet" style="margin-right: 5px;"> Wireless Internet
+        </label>
+    </div>
+
+    <!-- Filter Buttons -->
+    <div style="display: flex; gap: 10px;">
+        <button style="padding: 10px 15px; border-radius: 20px; border: 1px solid ;  cursor: pointer;">
+            Near Me
+        </button>
+        <button style="padding: 10px 15px; border-radius: 20px; border: 1px solid;  cursor: pointer;">
+            Price
+        </button>
+        <button style="padding: 10px 15px; border-radius: 20px; border: 1px solid;  cursor: pointer;">
+            Open Now
+        </button>
+        <button style="padding: 10px 15px; border-radius: 20px; border: 1px solid; cursor: pointer;">
+            Best Match
+        </button>
+        <button style="padding: 10px 15px; border-radius: 20px; border: 1px solid; cursor: pointer;">
+            Sort By
+        </button>
+        
+    </div>
+
+    <!-- Sort By Buttons -->
+   
+        <div>
+            <select 
+                style="padding: 10px 15px; border-radius: 20px; border: 1px solid ; cursor: pointer; width: 100%; max-width: 300px;">
+                @foreach($categories as $cate)
+                    <option value="{{ $cate->id }}">{{ $cate->name }}</option>
+                @endforeach
+            </select>
+        </div>        
+</div>
+
+<!-- Listings Grid -->
+<div class="listings-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+    @foreach($listings as $listing)
+        <div style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
+            <img src="{{ asset('storage/' . ($listing->feature_img ?? 'default.jpg')) }}" alt="{{ $listing->listing_title }}" style="width: 100%; height: auto;">
+            <div style="padding: 20px;">
+                <div style="background-color: {{ $listing->status === 'Closed' ? '#ff4d4d' : '#28a745' }}; color: white; padding: 5px; border-radius: 5px; font-size: 12px; display: inline-block; margin-bottom: 10px;">
+                    {{ $listing->is_open ? 'Open' : 'Closed' }}
                 </div>
-            
-                <!-- Dropdown Filters -->
-                <div style="display: flex; gap: 10px;">
-                    <select style="padding: 10px 15px; border-radius: 20px; border: 1px solid #007bff; background-color: #007bff; color: white; cursor: pointer;">
-                        <option>Near Me</option>
-                        <option>Price</option>
-                        <option>Open Now</option>
-                        <option>Best Match</option>
-                    </select>
-                    <select style="padding: 10px 15px; border-radius: 20px; border: 1px solid #007bff; background-color: #007bff; color: white; cursor: pointer;">
-                        <option>Sort By</option>
-                        <option>Craft (शिल्प)</option>
-                    </select>
-                </div>
-            </div>
-            
-    
-            <!-- Listings Grid -->
-            <div class="listings-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
-                <!-- Listing Item 1 -->
-                <div style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
-                    <img src="{{ asset('storage/categories/cate_bg.jpg') }}" alt="Embroidery" style="width: 100%; height: auto;">
-                    <div style="padding: 20px;">
-                        <div style="background-color: #ff4d4d; color: white; padding: 5px; border-radius: 5px; font-size: 12px; display: inline-block; margin-bottom: 10px;">Closed Now!</div>
-                        <h3 style="font-size: 18px; margin-bottom: 10px;">Rampur Shanu Embroidery</h3>
-                        <p><a href="#" style="text-decoration: none; color: #333; font-weight: bold;">Business Listing</a></p>
+                <h3 style="font-size: 18px; margin-bottom: 10px;">{{ $listing->listing_title ?? 'No Title' }}</h3>
+                <p><a href="#" style="text-decoration: none; color: #333; font-weight: bold;">{{ $listing->listing_title }}</a></p>
+
+                <div style="margin-top: 15px;">
+                    <!-- Call Now Button -->
+                    <a href="tel:+{{ $listing->phone }}" 
+                       style="text-decoration: none; color: white; background-color: #007bff; padding: 10px 20px; border-radius: 5px; font-size: 14px; margin-right: 10px; display: inline-block;"
+                       onmouseover="replaceContent(this, '{{ $listing->phone }}')" 
+                       onmouseout="restoreContent(this, '📞 Call Now')">
+                        📞 Call Now
+                    </a>
                 
-                        <!-- Call and Location Options -->
-                        <div style="margin-top: 15px;">
-                            <a href="tel:+911234567890" style="text-decoration: none; color: white; background-color: #007bff; padding: 10px 20px; border-radius: 5px; font-size: 14px; margin-right: 10px; display: inline-block;">
-                                📞 Call Now
-                            </a>
-                            <a href="https://maps.google.com/?q=Rampur Shanu Embroidery" target="_blank" style="text-decoration: none; color: white; background-color: #28a745; padding: 10px 20px; border-radius: 5px; font-size: 14px; display: inline-block;">
-                                📍 View Location
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                
-    
-                <!-- Listing Item 2 -->
-                <div style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
-                    <img src="{{ asset('storage/categories/cate_bg.jpg') }}" alt="Embroidery" style="width: 100%; height: auto;">
-                    <div style="padding: 20px;">
-                        <div style="background-color: #ff4d4d; color: white; padding: 5px; border-radius: 5px; font-size: 12px; display: inline-block; margin-bottom: 10px;">Closed Now!</div>
-                        <h3 style="font-size: 18px; margin-bottom: 10px;">Rampur Shanu Embroidery</h3>
-                        <p><a href="#" style="text-decoration: none; color: #333; font-weight: bold;">Business Listing</a></p>
-                
-                        <!-- Call and Location Options -->
-                        <div style="margin-top: 15px;">
-                            <a href="tel:+911234567890" style="text-decoration: none; color: white; background-color: #007bff; padding: 10px 20px; border-radius: 5px; font-size: 14px; margin-right: 10px; display: inline-block;">
-                                📞 Call Now
-                            </a>
-                            <a href="https://maps.google.com/?q=Rampur Shanu Embroidery" target="_blank" style="text-decoration: none; color: white; background-color: #28a745; padding: 10px 20px; border-radius: 5px; font-size: 14px; display: inline-block;">
-                                📍 View Location
-                            </a>
-                        </div>
-                    </div>
-                </div>
-    
-                <!-- Listing Item 3 -->
-                <div style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
-                    <img src="{{ asset('storage/categories/cate_bg.jpg') }}" alt="Embroidery" style="width: 100%; height: auto;">
-                    <div style="padding: 20px;">
-                        <div style="background-color: #ff4d4d; color: white; padding: 5px; border-radius: 5px; font-size: 12px; display: inline-block; margin-bottom: 10px;">Closed Now!</div>
-                        <h3 style="font-size: 18px; margin-bottom: 10px;">Rampur Shanu Embroidery</h3>
-                        <p><a href="#" style="text-decoration: none; color: #333; font-weight: bold;">Business Listing</a></p>
-                
-                        <!-- Call and Location Options -->
-                        <div style="margin-top: 15px;">
-                            <a href="tel:+911234567890" style="text-decoration: none; color: white; background-color: #007bff; padding: 10px 20px; border-radius: 5px; font-size: 14px; margin-right: 10px; display: inline-block;">
-                                📞 Call Now
-                            </a>
-                            <a href="https://maps.google.com/?q=Rampur Shanu Embroidery" target="_blank" style="text-decoration: none; color: white; background-color: #28a745; padding: 10px 20px; border-radius: 5px; font-size: 14px; display: inline-block;">
-                                📍 View Location
-                            </a>
-                        </div>
-                    </div>
+                    <!-- View Location Button -->
+                    <a href="https://maps.google.com/?q={{ urlencode($listing->full_address) }}" 
+                       target="_blank" 
+                       style="text-decoration: none; color: white; background-color: #28a745; padding: 10px 20px; border-radius: 5px; font-size: 14px; display: inline-block;"
+                       onmouseover="replaceContent(this, '{{ $listing->full_address }}')" 
+                       onmouseout="restoreContent(this, '📍 View Location')">
+                        📍 View Location
+                    </a>
                 </div>
             </div>
         </div>
+    @endforeach
+</div>
+
+        </div>
         @include('yellowpages::layout.footer')
         <!-- Vendor JS Files -->
-
+        
         
         <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
         <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
         <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
         <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
         <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-    
         <!-- Main JS File -->
         <script src="{{ asset('assets/js/main.js') }}"></script>
+        <script>
+            function replaceContent(element, newText) {
+                element.textContent = newText;
+            }
+        
+            function restoreContent(element, originalText) {
+                element.textContent = originalText;
+            }
+        </script>
+        
     
         <!-- Responsive Grid for Mobile -->
         <style>

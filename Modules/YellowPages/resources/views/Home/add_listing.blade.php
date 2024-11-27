@@ -211,7 +211,7 @@
             <div id="day-template" style="display: none;">
                 <div style="margin-bottom: 10px;">
                     <label>Select Day:</label>
-                    <select class="day-select" name="day" onchange="updateDaySelection(this)">
+                    <select class="day-select" name="day[]" onchange="updateDaySelection(this)">
                         <option value="">-- Select a Day --</option>
                         <option value="monday">Monday</option>
                         <option value="tuesday">Tuesday</option>
@@ -220,7 +220,7 @@
                         <option value="friday">Friday</option>
                         <option value="saturday">Saturday</option>
                         <option value="sunday">Sunday</option>
-                    </select>
+                    </select>                    
                 </div>
                 <div style="display: flex; align-items: center; gap: 10px; margin-top: 5px;">
                     <label class="day-label"></label>
@@ -228,10 +228,10 @@
                     <label>Closing:</label>
                     <input type="time" class="day-close" name="close_time[]">
                     <label>
-                        <input type="checkbox" name ="is_24_hours" class="day-24hours" onclick="toggle24Hours(this)"> 24 Hours
+                        <input type="checkbox" name="is_24_hours[]" class="day-24hours" onclick="toggle24Hours(this)"> 24 Hours
                     </label>
                     <label>
-                        <input type="checkbox"  name ="add_2nd_time_slot" class="day-2nd-slot-toggle" onclick="toggleSecondSlot(this)"> Add 2nd Time Slot
+                        <input type="checkbox"  name="add_2nd_time_slot[]" class="day-2nd-slot-toggle" onclick="toggleSecondSlot(this)"> Add 2nd Time Slot
                     </label>
                 </div>
                 <div class="second-time-slot" style="display: none; margin-top: 5px; padding-left: 20px;">
@@ -253,14 +253,7 @@
             <label for="street_address">Full Address:</label>
             <input type="text" id="street_address" name="fullAddress" placeholder="123 Main St" style="width: 100%; padding: 8px;">
         </div>
-        <div style="margin-bottom: 10px;">
-            <label for="city">City:</label>
-            <input type="text" id="city" name="city"  style="width: 100%; padding: 8px;">
-        </div>
-        <div style="margin-bottom: 10px;">
-            <label for="postal_code">Postal Code:</label>
-            <input type="text" id="postal_code" name="postal_code"  style="width: 100%; padding: 8px;">
-        </div>
+       
         <h5 style="margin-bottom: 15px;">Contact Information</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
         <div style="margin-bottom: 10px;">

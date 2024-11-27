@@ -5,10 +5,23 @@ let selectedDays = [];
 function addNewDay() {
     const container = document.getElementById('day-schedule-container');
     const template = document.getElementById('day-template').cloneNode(true);
+
+    // Set attributes for cloned elements to avoid ID duplication and ensure array input
     template.style.display = 'block';
-    template.removeAttribute('id'); // Remove the ID so we can use it for multiple days
+    template.removeAttribute('id');
+    
+    // Set unique name attributes for array input
+    template.querySelector('.day-select').setAttribute('name', 'day[]');
+    template.querySelector('.day-open').setAttribute('name', 'open_time[]');
+    template.querySelector('.day-close').setAttribute('name', 'close_time[]');
+    template.querySelector('.day-open-2').setAttribute('name', 'open_time_2[]');
+    template.querySelector('.day-close-2').setAttribute('name', 'close_time_2[]');
+    template.querySelector('.day-24hours').setAttribute('name', 'is_24_hours[]');
+    template.querySelector('.day-2nd-slot-toggle').setAttribute('name', 'add_2nd_time_slot[]');
+
     container.appendChild(template);
 
+    // Update day options (disable already selected days)
     updateDayOptions();
 }
 
@@ -30,21 +43,25 @@ function updateDayOptions() {
 function updateDaySelection(selectElement) {
     const dayLabel = selectElement.closest('div').querySelector('.day-label');
     const selectedDay = selectElement.value;
+    const prevSelectedDay = selectElement.dataset.prevSelectedDay;
 
+    // Remove the previously selected day if changed
+    if (prevSelectedDay && prevSelectedDay !== selectedDay) {
+        const index = selectedDays.indexOf(prevSelectedDay);
+        if (index > -1) selectedDays.splice(index, 1);
+    }
+
+    // Add new selection to selected days
     if (selectedDay) {
-        // Add to selected days if it’s not already included
         if (!selectedDays.includes(selectedDay)) {
             selectedDays.push(selectedDay);
         }
         dayLabel.textContent = selectedDay.charAt(0).toUpperCase() + selectedDay.slice(1) + " Opening:";
-    } else {
-        // Remove from selected days if the selection is cleared
-        const index = selectedDays.indexOf(selectElement.dataset.prevSelectedDay);
-        if (index > -1) selectedDays.splice(index, 1);
     }
 
-    selectElement.dataset.prevSelectedDay = selectedDay; // Track previously selected day
-    updateDayOptions(); // Refresh options in all selects
+    // Update the previously selected day and refresh dropdown options
+    selectElement.dataset.prevSelectedDay = selectedDay;
+    updateDayOptions();
 }
 
 // Function to toggle 24 hours option
@@ -58,6 +75,16 @@ function toggle24Hours(checkbox) {
 function toggleSecondSlot(checkbox) {
     const secondSlot = checkbox.closest('div').nextElementSibling;
     secondSlot.style.display = checkbox.checked ? 'flex' : 'none';
+}
+
+// Optional: Reset selectedDays array when a row is removed
+function removeDay(selectElement) {
+    const day = selectElement.value;
+    if (day) {
+        const index = selectedDays.indexOf(day);
+        if (index > -1) selectedDays.splice(index, 1);
+    }
+    updateDayOptions();  // Refresh the options
 }
 
 // Wait for the DOM to be fully loaded

@@ -50,7 +50,7 @@
         <div style="display: flex; justify-content: center; margin-bottom: 20px;">
             <button class="btn btn-primary" style="margin-right: 5px;">Business Plans</button>
             <button class="btn btn-outline-primary" style="margin-right: 5px;">Bazaar Plans</button>
-            <button class="btn btn-outline-primary">Get V-Card</button>
+            <button class="btn btn-outline-primary" onclick="window.location.href='{{ url('yellow-pages/vcard') }}'">Get V-Card</button>
         </div>
     </div>
 
@@ -80,7 +80,10 @@
             <li style="margin: 10px 0; padding-left: 24px; position: relative;">Deals-Offers-Discounts</li>
             <li style="margin: 10px 0; padding-left: 24px; position: relative;">Lead Form</li>
         </ul>
-        <button style="padding: 15px; font-size: 16px; color: #fff; background-color: #000; border: none; cursor: pointer; width: 100%;">Continue</button>
+        <button style="padding: 15px; font-size: 16px; color: #fff; background-color: #000; border: none; cursor: pointer; width: 100%;" onclick="window.location.href='{{ route('yp.getLocationData') }}'">Continue</button>
+
+        {{-- <button style="padding: 15px; font-size: 16px; color: #fff; background-color: #000; border: none; cursor: pointer; width: 100%;">Continue</button> --}}
+        
     </div>
 
     <!-- Featured Plan Box -->
@@ -113,7 +116,7 @@
             <li style="margin: 10px 0; padding-left: 24px; position: relative;">Lead Form</li>
             <li style="margin: 10px 0; padding-left: 24px; position: relative;">V Card</li>
         </ul>
-        <button style="padding: 15px; font-size: 16px; color: #fff; background-color: #000; border: none; cursor: pointer; width: 100%;">Continue</button>
+        <button style="padding: 15px; font-size: 16px; color: #fff; background-color: #000; border: none; cursor: pointer; width: 100%;" onclick="window.location.href='{{ route('yp.getLocationData') }}'">Continue</button>
     </div>
 </div>
 
