@@ -1,8 +1,6 @@
 <?php 
 header('Content-type: application/json'); 
 include "include/connect.php";
-//$link = mysqli_connect('localhost', 'prarang', '#riversanskriti123#', 'prarang_riverSanskiriti'); 
-//$link = mysqli_connect('localhost', 'prarang_1125', '#prarang1125#', 'prarang_riverSanskiriti');
 @$tagId = BlockSQLInjection($_REQUEST['tagId']); 
 @$subscriberId = BlockSQLInjection($_REQUEST['subscriberId']); 
 @$offset = BlockSQLInjection($_REQUEST['offset']); 
@@ -29,8 +27,7 @@ switch($geographyCode){
 	case "0":
 		$areaId=0;
 		$geographyId=0;
-		break;
-		
+		break;		
 }
 
  

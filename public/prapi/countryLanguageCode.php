@@ -15,7 +15,7 @@ if($languageCode != '')
 	{
 		$sql = "select countryCode,countryNameInUnicode as languageUnicode from mcountry "; 
 	}	 
-	$result = mysqli_query($dbconnect, ,$sql);
+	$result = mysqli_query($dbconnect,$sql);
 	 
 	if(mysqli_num_rows($result) > 0)
 	{

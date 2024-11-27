@@ -1,16 +1,16 @@
 <x-layout.portal.base>
-      
+      <style>
+        #header .header-map--gmaps{
+            height: 100vh;
+        }
+      </style>
         <div id="wrapper">           
             <header class="header--has-languages header--has-map" id="header">
                 <div class="header__inner">
                     <!-- HEADER MAP : begin -->
-                    <div class="header-map header-map--loading header-map--gmaps">
-                        <div class="header-map__canvas header-map__canvas--loading" data-latlong="44.465446,-72.687425"
-                            data-map-platform="gmaps" data-map-provider="gmaps" data-maptype="hybrid"
-                            data-mousewheel="false" data-zoom="17" id="header-map-canvas">
-                        </div>
-                        <span class="c-spinner">
-                        </span>
+                    <div class="header-map header-map--loading header-map--gmaps">                        
+                                    {!! $portal->map_link !!}                        
+                 
                         <button aria-label="Close map" class="header-map__close" type="button">
                             <i aria-hidden="true" class="header-map__close-ico fa fa-times">
                             </i>
@@ -780,6 +780,28 @@
         </div>
      
       
-      
+      <script>
+        // Wait for the DOM to load
+document.addEventListener("DOMContentLoaded", function () {
+    // Select the parent element with the class 'header-map'
+    const headerMapElement = document.querySelector('.header-map');
+
+    if (headerMapElement) {
+        // Find the iframe inside the 'header-map' element
+        const iframe = headerMapElement.querySelector('iframe');
+
+        if (iframe) {
+            // Apply the desired classes to the iframe
+            iframe.classList.add('header-map__canvas', 'header-map__canvas--loading');
+            console.log("Classes added to the iframe inside header-map.");
+        } else {
+            console.warn("No iframe found inside the 'header-map' element.");
+        }
+    } else {
+        console.error("The 'header-map' element is not found in the DOM.");
+    }
+});
+
+      </script>
 
 </x-layout.portal.base>
