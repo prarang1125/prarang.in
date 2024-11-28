@@ -29,30 +29,23 @@
                     @endif
                 <h6 class="mb-0 text-uppercase">User Edit</h6>
                 <hr/>
-                <form  action="{{ route('admin.user-update', $user->userId) }}" method="POST">
+                <form  action="{{ route('admin.user-update', $user->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="inputFirstName" class="form-label">First Name</label>
-                            <input type="text" class="form-control  @error('firstName') is-invalid @enderror" id="inputFirstName" name="firstName" value="{{ old('firstName', $user->firstName) }}" >
-                            @error('firstName')
-                                <p class="invalid-feedback">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="col-md-6">
-                            <label for="inputLastName" class="form-label">Last Name</label>
-                            <input type="text" class="form-control @error('lastName') is-invalid @enderror" id="inputLastName" name="lastName" value="{{ old('lastName', $user->lastName) }}" >
-                            @error('lastName')
+                            <label for="name" class="form-label">Name</label>
+                            <input type="text" class="form-control  @error('name') is-invalid @enderror" id="inputName" name="name" value="{{ old('name', $user->name) }}" >
+                            @error('name')
                                 <p class="invalid-feedback">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-6">
-                            <label for="inputEmail" class="form-label">Email ID/ User Name</label>
-                            <input type="email" class="form-control @error('emailId') is-invalid @enderror" id="inputEmail" name="emailId" value="{{ old('emailId', $user->emailId) }}">
-                            @error('emailId')
+                            <label for="inputEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="inputEmail" name="email" value="{{ old('email', $user->email) }}">
+                            @error('email')
                                 <p class="invalid-feedback">{{ $message }}</p>
                             @enderror
                         </div>
@@ -62,48 +55,21 @@
                             @php
                             $userPassword =  $user->empPassword
                             @endphp
-                            <input type="password" class="form-control @error('empPassword') is-invalid @enderror" id="inputPassword" name="empPassword" value="{{ old('empPassword', $user->empPassword) }}">
-                            @error('empPassword')
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="inputPassword" name="password" value="{{ old('password', $user->password) }}">
+                            @error('password')
                                 <p class="invalid-feedback">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-6">
-                            <label for="inputRole" class="form-label">Role</label>
-                            <select id="inputRole" class="form-select @error('roleId') is-invalid @enderror" name="roleId">
-                                <option selected disabled>Choose...</option>
-                                @foreach($roles as $role)
-                                    <option value="{{ $role->roleID }}" {{ $role->roleID == $user->roleId ? 'selected' : '' }}>
-                                        {{ $role->roleName }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            @error('roleId')
-                                <p class="invalid-feedback">{{ $message }}</p>
-                            @enderror
-                        </div>
-                        <div class="col-md-6">
-                            <label for="languageId" class="form-label">Language Script</label>
-                            <select id="languageId" class="form-select @error('languageId') is-invalid @enderror" name="languageId" >
-                                <option selected disabled>Choose...</option>
-                                <option value="1" {{ old('languageId', $user->languageId) == '1' ? 'selected' : '' }}>English</option>
-                                <option value="0" {{ old('languageId', $user->languageId) == '2' ? 'selected' : '' }}>हिंदी</option>
-                            </select>
-                            @error('languageId')
-                                <p class="invalid-feedback">{{ $message }}</p>
-                            @enderror
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-md-6">
-                            <label for="isActive" class="form-label">Status</label>
-                            <select id="isActive" class="form-select @error('isActive') is-invalid @enderror" name="isActive">
+                            <label for="is_active" class="form-label">Status</label>
+                            <select id="is_active" class="form-select @error('is_active') is-invalid @enderror" name="is_active">
                                 <option disabled>Choose...</option>
-                                <option value="1" {{ old('isActive', $user->isActive) == '1' ? 'selected' : '' }}>Active</option>
-                                <option value="0" {{ old('isActive', $user->isActive) == '0' ? 'selected' : '' }}>Deactive</option>
+                                <option value="1" {{ old('is_active', $user->is_active) == '1' ? 'selected' : '' }}>Active</option>
+                                <option value="0" {{ old('is_active', $user->is_active) == '0' ? 'selected' : '' }}>Deactive</option>
                             </select>
-                            @error('isActive')
+                            @error('is_active')
                                 <p class="invalid-feedback">{{ $message }}</p>
                             @enderror
                         </div>
