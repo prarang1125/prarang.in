@@ -75,9 +75,9 @@ class CitiesController extends Controller
     try {
         $ciies = City::findOrFail($id);
         $ciies->delete();
-        return redirect()->route('admin.cities-listing')->with('success', 'User deleted successfully.');
+        return redirect()->route('admin.cities-listing')->with('success', 'Category deleted successfully.');
     } catch (ModelNotFoundException $e) {
-        return redirect()->route('admin.cities-listing')->withErrors(['error' => 'User not found.']);
+        return redirect()->route('admin.cities-listing')->withErrors(['error' => 'Category not found.']);
     } catch (\Exception $e) {
         return redirect()->route('admin.cities-listing')->withErrors(['error' => 'An error occurred while trying to delete the user.']);
     }
