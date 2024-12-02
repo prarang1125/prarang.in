@@ -28,7 +28,7 @@
         </li>
         <!-- Category -->
         <li>
-            <a href="{{ url('yellow-pages/category-listing') }}">
+            <a href="{{ url('yellow-pages/categories-listing') }}">
                 <div class="parent-icon"><i class="bx bx-category"></i></div>
                 <div class="menu-title">Category</div>
             </a>

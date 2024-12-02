@@ -8,4 +8,7 @@ class Category extends Model
 {
     protected $connection = 'yp';
     protected $table = 'categories';
+
+    protected $fillable = ['name', 'slug', 'categories_url', 'created_at'];
+
 }
