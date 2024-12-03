@@ -60,6 +60,7 @@ class postController extends Controller
                 'created_at' => $chitti->created_at,
             ];
         });
+        dd($geography->geographycode);die;
     
         // Step 5: Pass data to the view
         return view('portal.post', [

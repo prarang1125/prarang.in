@@ -20,7 +20,7 @@ Route::get('/refund-cancellation', [Home::class, 'refundCancellation'])->name('r
 Route::get('/terms-conditions', [Home::class, 'termsConditions'])->name('terms-conditions');
 Route::get('/terms-conditions', [Home::class, 'termsConditions'])->name('terms-conditions');
 // Route::get('/{slug}/post', [postController::class, 'index'])->name('posts.slug');
-Route::get('{city}/post/', [postController::class, 'getChittiData'])->name('posts.city');
+Route::get('{city}/post', [postController::class, 'getChittiData'])->name('posts.city');
 Route::get('/post-summary/{id}', [postController::class, 'post_summary']);
 Route::get('/decode', [postController::class, 'decodeText']);
 
