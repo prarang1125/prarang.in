@@ -6,18 +6,11 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Geography;
 use App\Models\Chitti;
+use Carbon\Carbon;
 use App\Models\ChittiGeography;
-
 
 class postController extends Controller
 {
-    // public function index($slug)
-    // {
-    //     $posts = Portal::where('slug', $slug)->get();
-    //     print_r($posts);die;
-    //     return view('portal.post', compact('posts'));
-    // }
-
     public function decodeText()
     {
         // Misencoded text
@@ -58,7 +51,7 @@ class postController extends Controller
         // Step 4: Map chitti data with optional image handling
         $posts = $chittis->map(function ($chitti) {
             // Use optional() to prevent errors if images or tags are null
-            $imageUrl = optional($chitti->images->first())->chittiUrl ?? null;
+            $imageUrl = optional($chitti->images->first())->chittiUrl ?? 'default-image-url.jpg'; // Fallback to default image
             return [
                 'title' => $chitti->Title,  // Ensure 'Title' field contains Hindi text
                 'subTitle' => $chitti->SubTitle,
@@ -75,4 +68,62 @@ class postController extends Controller
         ]);
     }
 
+    public function post_summary($postId)
+    {
+        // Fetch the post
+        $post = Chitti::where('chittiId', $postId)
+                      ->where('finalStatus', 'approved')
+                      ->with(['images', 'tags.tag'])
+                      ->first();
+    
+        if (!$post) {
+            return view('no_data', ['message' => 'Post not found']);
+        }
+    
+        // Ensure the 'createDate' is a Carbon instance
+        $createDate = Carbon::parse($post->createDate); // Convert string to Carbon instance
+    
+        // Format the date as desired (example format: 'Y-m-d H:i:s')
+        $formattedDate = $createDate->format('Y-m-d H:i:s'); 
+    
+        // Fetch recent posts
+        $recentPosts = Chitti::where('finalStatus', 'approved')
+                             ->where('chittiId', '!=', $postId) 
+                             ->orderBy('createDate', 'desc')
+                             ->take(5)
+                             ->get();
+    
+        // Prepare post details with formatted date
+        $postDetails = [
+            'title' => $post->Title,
+            'subTitle' => $post->SubTitle,
+            'description' => $this->filterHindiContent($post->description),  // Use the helper function
+            'imageUrl' => optional($post->images->first())->chittiUrl ?? 'default-image-url.jpg', // Fallback to default image
+            'createDate' => $formattedDate, // Use the formatted date here
+        ];
+    
+        // Format recent posts' created_at field
+        $recentPostsFormatted = $recentPosts->map(function ($recent) {
+            $recent->formattedDate = Carbon::parse($recent->createDate)->format('d-m-Y H:i A');
+            return $recent;
+        });
+    
+        // Return the data to the view
+        return view('portal.post-summary', [
+            'post' => $postDetails,
+            'recentPosts' => $recentPostsFormatted,
+        ]);
+    }
+    
+    /**
+     * Helper function to filter Hindi content from the description
+     */
+    private function filterHindiContent($text)
+    {
+        // Strip HTML tags
+        $cleanText = strip_tags($text);
+    
+        // Filter for only Hindi characters (regex for Hindi script)
+        return preg_replace('/[^अ-ह़ा-ह]+/', ' ', $cleanText); // Keep only Hindi characters
+    }
 }
