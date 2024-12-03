@@ -11,7 +11,7 @@
 </head>
 <body>
 
-  <x-post.navbar cityId="672" cityCode="c2"/>
+
 
 </body>
 </html>

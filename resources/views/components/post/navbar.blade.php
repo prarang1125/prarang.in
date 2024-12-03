@@ -91,7 +91,7 @@
     <div class="container-fluid">
         <!-- Logo -->
         <a class="navbar-brand" href="#">
-            <img src="https://via.placeholder.com/50" alt="Logo" width="40" height="40">
+            <img src="https://prarang.in/cimg/logo2.png" alt="Logo" >
         </a>
 
         <!-- Toggler for mobile view -->
@@ -102,7 +102,7 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">रामपुर पोर्टल</a>
+                    <a class="nav-link" href="#">{{$portal->city_name_local}} पोर्टल</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#cultureModal">

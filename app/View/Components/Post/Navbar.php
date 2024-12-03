@@ -19,7 +19,8 @@ class Navbar extends Component
     public $cityCode, $cityId ,$tagCounts,$tagSubCounts,$portal;
     public function __construct($cityId, $cityCode)
     {
-        $this->portal=Portal::where('city_code',$cityCode)->first();
+        $this->portal = Portal::where('city_code', $cityCode)->firstOrFail();
+
          $cacheKey="tag_counts_{$cityCode}";        
 
         $taglist = Cache::remember($cacheKey.'_list', now()->addMinutes(330), function () use ($cityId, $cityCode) {

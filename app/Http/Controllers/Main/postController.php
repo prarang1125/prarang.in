@@ -72,6 +72,7 @@ class postController extends Controller
         return view('portal.post', [
             'city_name' => $city,
             'posts' => $posts,
+            'cityCode'=>$geography->geographycode,
         ]);
     }
 
