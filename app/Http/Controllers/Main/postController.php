@@ -22,7 +22,7 @@ class postController extends Controller
     {
         // Step 1: Fetch Geography based on City Name
         $geography = Geography::where('geography', 'like', $city)->first();
-    
+        // dd($geography);
         if (!$geography) {
             return response()->json(['message' => 'City not found'], 404);
         }
@@ -42,7 +42,6 @@ class postController extends Controller
                          
         // Step 3: Map chitti data to structure response
         $result = $chittis->map(function ($chitti) {
-
             return [
                 'title' => $chitti->Title,
                 'subTitle' => $chitti->SubTitle,
