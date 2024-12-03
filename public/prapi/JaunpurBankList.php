@@ -178,7 +178,7 @@ else
         if (!$result1) 
 		{
 		  http_response_code(404);
-		  die(mysqli_error());
+		//   die(mysqli_error());
 		}
 		 
 		// close mysqli connection
