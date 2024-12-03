@@ -2,9 +2,9 @@
     <style>
         .dropdown-menu-fullwidth {
           width: 100vw; /* Full width dropdown */
-          left: 0; /* Align to left edge of the screen */
+          left: 0; 
         }
-        .prangtxt + strong {
+  .prangtxt + strong {
     display: inline-block; /* Ensure it behaves like a box */
     padding: 0px 5px 0px 5px;
     border: 2px solid #ccc; /* Add a border */
