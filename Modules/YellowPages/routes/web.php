@@ -8,6 +8,8 @@ use Modules\YellowPages\Http\Controllers\ReviewController                       
 use Modules\YellowPages\Http\Controllers\admin\AuthController;
 use Modules\YellowPages\Http\Controllers\admin\AdminController;
 use Modules\YellowPages\Http\Controllers\admin\CitiesController;
+use Modules\YellowPages\Http\Controllers\admin\CategoriesController;
+use Modules\YellowPages\Http\Controllers\admin\BusinessController;
 // use App\Http\Controllers\Auth\AuthController;
 
 /*
@@ -60,6 +62,16 @@ Route::group(['prefix' => 'yellow-pages'], function () {
      Route::get('cities-edit/{id}', [CitiesController::class, 'citiesEdit'])->name('admin.cities-edit');
      Route::put('cities-update/{id}', [CitiesController::class, 'citiesUpdate'])->name('admin.cities-update');
     
+     #this route is use for admin Categories
+     Route::get('categories-listing', [CategoriesController::class, 'categoriesListing'])->name('admin.categories-listing');
+     Route::get('categories-register', [CategoriesController::class, 'categoriesRegister'])->name('admin.categories-register');
+     Route::post('categories-store', [CategoriesController::class, 'categoriesStore'])->name('admin.categories-store');
+     Route::post('categories-delete/{id}', [CategoriesController::class, 'categoriesDelete'])->name('admin.categories-delete');
+     Route::get('categories-edit/{id}', [CategoriesController::class, 'categoriesEdit'])->name('admin.categories-edit');
+     Route::put('categories-update/{id}', [CategoriesController::class, 'categoriesUpdate'])->name('admin.categories-update');
+  
+      #this route is use for admin Categories
+      Route::get('business-listing', [BusinessController::class, 'businessListing'])->name('admin.business-listing');
 });
 
 
