@@ -3,6 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta property="og:locale" content="en_IN" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:type" content="article" />
+    <meta property="og:image:width" content="600" />                               
+    <meta property="og:image:height" content="315"/>
+    <meta property="og:site_name" content="" />
     <title>{{ $post['title'] }}</title>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -95,6 +101,7 @@
     </style>
 </head>
 <body>
+    <x-post.navbar cityId="12" :cityCode="$cityCode"/>
 
 <!-- Navbar -->
 @include('layout.navbar')
@@ -108,22 +115,19 @@
             <p>{{ $post['createDate'] }}</p>
         </div>
     </div>
-
-    
-
     <div class="main-content">
         <!-- Main Post -->
         <div class="main-post">
             <!-- Post Image -->
             @if($post['imageUrl'])
-                <img src="{{ asset('storage/' . $post['imageUrl']) }}" alt="Post Image">
+                <img src="{{ $post['imageUrl'] }}" alt="Post Image">
             @endif
             <!-- Post Content -->
             <p>{{ $post['description'] }}</p>
             <h4 style="font-weight: bold; font-size: 20px; margin-bottom: 10px;">{{ $post['title'] }}</h4>
             <p>{{ $post['description'] }}</p>
             @if($post['imageUrl'])
-                <img src="{{ asset('storage/' . $post['imageUrl']) }}" alt="Extra Image" style="margin-top: 20px;">
+                <img src="{{ $post['imageUrl'] }}" alt="Extra Image" style="margin-top: 20px;">
             @endif
         </div>
 
@@ -132,8 +136,9 @@
             <h3>Recent Posts</h3>
             @foreach($recentPosts as $recent)
                 <div class="recent-post">
-                    <img src="{{ asset('storage/' . optional($recent->images->first())->chittiUrl) }}" alt="Thumbnail">
+                    <img src="{{ $recent['imageUrl'] }}" alt="Thumbnail">
                     <div class="text-content">
+                        <a href="/post-summary/{{ $recent['chittiId'] }}" class="text-decoration-none">
                         <p class="title">{{ $recent->Title }}</p>
                         <p class="date">{{ $recent->formattedDate }}</p>
                     </div>
