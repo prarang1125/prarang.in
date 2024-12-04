@@ -123,12 +123,9 @@
                 <img src="{{ $post['imageUrl'] }}" alt="Post Image">
             @endif
             <!-- Post Content -->
-            <p>{{ $post['description'] }}</p>
             <h4 style="font-weight: bold; font-size: 20px; margin-bottom: 10px;">{{ $post['title'] }}</h4>
-            <p>{{ $post['description'] }}</p>
-            @if($post['imageUrl'])
-                <img src="{{ $post['imageUrl'] }}" alt="Extra Image" style="margin-top: 20px;">
-            @endif
+            <p>{!! $post['description'] !!}</p>
+
         </div>
 
         <!-- Sidebar (Recent Posts) -->
