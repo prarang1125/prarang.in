@@ -88,6 +88,61 @@
             object-fit: cover;
             /* Maintain aspect ratio, crop overflow if necessary */
         }
+        /* Column 10/12 */
+.hentry a .m-0{
+ padding-top:8px !important;
+ /* cursor:alias; */
+}
+
+/* Column 10/12 */
+.hentry div .modal .modal-dialog .modal-content .modal-body .mb-1 a .row .tagListx .row .m-0{
+ transform:translatex(0px) translatey(0px) !important;
+}
+
+/* Rounded circle */
+.hentry .tagListx .rounded-circle{
+ padding-left:4px;
+ margin-left:0px;
+ position:relative;
+ left:8px;
+}
+
+/* Rounded circle */
+.hentry div .modal .modal-dialog .modal-content .modal-body .mb-1 a .row .tagListx .row .col-2 .rounded-circle{
+ width:112% !important;
+}
+.hentry div .modal{
+    /* border: 1px solid #cd3308; */
+    background: rgba(83, 81, 81, 0.8); 
+}
+/* Small Tag */
+.hentry a small{
+ position:relative;
+ top:-2px;
+}
+/* Modal body */
+.hentry div .modal-body{
+ padding-right:26px;
+}
+/* Modal body */
+#core .lsvr-container .lsvr-grid .columns__main #main .main__inner .hentry .page__content div .modal .modal-dialog .modal-content .modal-body{
+ transform:translatex(0px) translatey(0px) !important;
+}
+
+/* Heading */
+.hentry a h6{
+ font-weight:500 !important;
+ font-size:14px;
+}
+/* Img fluid */
+.hentry a .img-fluid{
+ border-style:solid;
+ border-width:2px !important;
+ border-color:#cd3308 !important;
+ width:44px;
+ position:relative;
+ top:4px;
+}
     </style>
     {{-- {{dd($chittiArray)}} --}}
     <div class="carousel-wrap shadow">
