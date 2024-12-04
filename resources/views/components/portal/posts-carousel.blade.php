@@ -95,7 +95,7 @@
             @foreach ($chittiArray as $post)
                 <div class="item shadow p-1" id="carousel-item" style="min-height:80px;">
                     <img class="img-carousel"data-bs-toggle="modal" data-bs-target="#exampleModal{{$post->chittiId}}"  src="https://{{ $post->imageUrl }}" alt="Post Image">
-                    <small class="p-0 m-0" style="font-size:10px">s{{ \Illuminate\Support\Str::limit($post->SubTitle, 15, '...') }}</small>
+                    <small class="p-0 m-0" style="font-size:10px">{{ \Illuminate\Support\Str::limit($post->Title, 15, '...') }}</small>
   
                 </div>
             @endforeach
@@ -111,11 +111,11 @@
       {{-- {{dd($post)}} --}}
         <div class="modal-body">
             <section>
-                <h3>{{$post->SubTitle}}</h3>
+                <h3>{{$post->Title}}</h3>
                 <div class="row">
                     <div class="col-sm-6">
                         <p class="text-start">
-                          {{$post->tagInEnglish}} <br>
+                          {{$post->tagInUnicode}} <br>
                             <small> {{$post->tagInEnglish}}</small>                           
                         </p>
                     </div>

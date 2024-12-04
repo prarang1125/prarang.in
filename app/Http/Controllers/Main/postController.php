@@ -8,6 +8,7 @@ use App\Models\Geography;
 use App\Models\Chitti;
 use Carbon\Carbon;
 use App\Models\ChittiGeography;
+use Illuminate\Support\Facades\DB;
 
 class postController extends Controller
 {

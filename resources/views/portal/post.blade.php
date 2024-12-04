@@ -34,9 +34,9 @@
         @forelse ($posts as $post)
             <div class="col-lg-3 col-md-4 col-sm-6">
                 <div class="thumbnail post-thumbnail">
-                    <img src="{{ $post['imageUrl'] ?? 'default-image.jpg' }}" alt="{{ $post['title'] }}" class="img-responsive">
+                    <img src="{{ $post['imageUrl'] ?? 'default-image.jpg' }}" class="img-responsive">
                     <div class="caption">
-                        <h4>{{ $post['title'] }}</h4>
+                        <h4>{{   $post['title'] }}</h4>
                         <p>{{ $post['subTitle'] }}</p>
                         <p><small>{{ \Carbon\Carbon::parse($post['created_at'])->format('d M Y') }}</small></p>
                     </div>
