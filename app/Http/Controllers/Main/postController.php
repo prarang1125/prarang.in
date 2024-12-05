@@ -91,15 +91,12 @@ class postController extends Controller
         $imageUrl = ChittiImageMapping::where('chittiId', $postId)->value('imageName') ?? 'images/default_image.jpg';    
         // Format the creation date of the main post
         $formattedDate = $post->createDate ? Carbon::parse($post->createDate)->format('Y-m-d H:i:s') : 'N/A';
-    
-        // Fetch recent posts excluding the current one
+
         $recentPosts = Chitti::where('finalStatus', 'approved')
                              ->where('chittiId', '!=', $postId)
                              ->orderBy('chittiId', 'desc')
                              ->take(5)
                              ->get();
-    
-        // Add image URL and formatted date for recent posts
         $recentPostsFormatted = $recentPosts->map(function ($recent) {
           
             // Get the first image for the recent post
@@ -109,6 +106,7 @@ class postController extends Controller
             $recent->formattedDate = $recent->createDate ? Carbon::parse($recent->createDate)->format('d-m-Y H:i A') : 'N/A';
             return $recent;
         });
+
         $postDetails = [
             'title' => $post->Title,
             'subTitle' => $post->SubTitle,
@@ -116,7 +114,7 @@ class postController extends Controller
             'imageUrl' => $imageUrl,
             'createDate' => $formattedDate,
         ];
-        
+
         return view('portal.post-summary', [
             'post' => $postDetails,
             'recentPosts' => $recentPostsFormatted,
