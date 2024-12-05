@@ -115,13 +115,11 @@
 </head>
 <body>
     <x-post.navbar cityId="12" :cityCode="$cityCode"/>
-
-   
-
 <div class="container">
     <div class="row">
         <!-- Page Header -->
         @if (\Carbon\Carbon::parse($post['createDate'])->addDays(5)->lte(now()))
+        @if (!empty($post['totalViewerCount']) && $post['totalViewerCount'] > 0)
         <table>
             <thead>
                 <tr>
@@ -146,7 +144,7 @@
             </tbody>
         </table>
     @endif
-    
+    @endif
         <br>
         <div class="post-header">
             <h1>{{ $post['Title'] }}</h1>
@@ -164,7 +162,6 @@
             <!-- Post Content -->
             <h4 style="font-weight: bold; font-size: 20px; margin-bottom: 10px;">{{ $post['title'] }}</h4>
             <p>{!! $post['description'] !!}</p>
-
         </div>
 
         <!-- Sidebar (Recent Posts) -->
