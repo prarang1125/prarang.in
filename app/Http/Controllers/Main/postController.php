@@ -5,6 +5,8 @@ namespace App\Http\Controllers\main;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Geography;
+use App\Models\ChittiImageMapping;
+use App\Models\Portal;
 use App\Models\Chitti;
 use Carbon\Carbon;
 use App\Models\ChittiGeography;
@@ -22,110 +24,116 @@ class postController extends Controller
 
         // Return the decoded text
         return response()->json([
-            'decoded_text' => $decodedText,  // Expected output: "मेरे और तैमूर"
+            'decoded_text' => $decodedText,  
         ]);
     }
 
     public function getChittiData($city)
     {
-        // Step 1: Fetch Geography based on City Name
-        $geography = Geography::where('geography', 'like', '%' . $city . '%')->first(); // Improved search for city
-    
-        if (!$geography) {
-            return view('no_data', ['message' => 'City not found']);
-        }
-    
-        // Step 2: Fetch approved chitti IDs related to the geography
-        $chittiIds = ChittiGeography::where('Geography', $geography->geographycode)
-                                    ->pluck('chittiId'); // Ensure it's pulling the correct data
+        // Fetch portal by city slug
+        $portal = Portal::where('slug', $city)->firstOrFail(); // Use firstOrFail to handle missing city
         
-        if ($chittiIds->isEmpty()) {
-            return view('no_data', ['message' => 'No chitti found for this city']);
+        // Fetch related geography data
+        $geography = Geography::where('geographycode', $portal->city_code)->first();
+        if (!$geography) {
+            return abort(404, 'Geography not found');
         }
     
-        // Step 3: Fetch chittis with related data, improve error handling with optional images
+        // Get Chitti IDs related to the geography
+        $chittiIds = ChittiGeography::where('Geography', $geography->geographycode)
+                                     ->pluck('chittiId');
+        
+        // Fetch Chittis with eager loading for images and tags, ordered by createDate desc
         $chittis = Chitti::whereIn('chittiId', $chittiIds)
                          ->where('finalStatus', 'approved')
-                         ->with(['images', 'tags.tag']) // Eager load images and tags
-                         ->get();
-    
-        // Step 4: Map chitti data with optional image handling
-        $posts = $chittis->map(function ($chitti) {
-            // Use optional() to prevent errors if images or tags are null
-            $imageUrl = optional($chitti->images->first())->chittiUrl ?? 'default-image-url.jpg'; // Fallback to default image
-            return [
-                'title' => $chitti->Title,  // Ensure 'Title' field contains Hindi text
-                'subTitle' => $chitti->SubTitle,
-                'description' => $chitti->description,  // Ensure 'description' field contains Hindi text
-                'imageUrl' => $imageUrl,
-                'created_at' => $chitti->created_at,
-            ];
+                         ->orderBy('chittiId', 'desc') // Add ordering by createDate desc
+                         ->with(['images', 'tags.tag'])                         
+                         ->paginate(35);
+        
+        $postsByMonth = $chittis->groupBy(function ($chitti) {
+            return \Carbon\Carbon::parse($chitti->createDate)->format('F Y');
+        })->map(function ($chittis) {
+            return $chittis->map(function ($chitti) {
+                // Retrieve image or use default
+                $imageUrl = ChittiImageMapping::where('chittiId', $chitti->chittiId)->value('imageName') ?? asset('default_image.jpg');
+                // Return formatted data
+                return [
+                    'id'=> $chitti->chittiId,
+                    'title' => $chitti->Title,
+                    'subTitle' => $chitti->SubTitle,
+                    'description' => $chitti->description,
+                    'imageUrl' => $imageUrl,
+                    'createDate' => $chitti->createDate,
+                ];
+            });
         });
     
-        // Step 5: Pass data to the view
+        // Return view with data
         return view('portal.post', [
             'city_name' => $city,
-            'posts' => $posts,
+            'postsByMonth' => $postsByMonth,
             'cityCode'=>$geography->geographycode,
+            'chittis'=>$chittis
         ]);
     }
-
+    
     public function post_summary($postId)
     {
-        // Fetch the post
+        // Fetch the specific post along with related images
         $post = Chitti::where('chittiId', $postId)
                       ->where('finalStatus', 'approved')
-                      ->with(['images', 'tags.tag'])
+                      ->with('images') // Ensure the 'images' relationship is defined in Chitti model
                       ->first();
+
+        $geography = ChittiGeography::where('chittiId', $postId)->first();
+
+        // Get the main image URL from the ChittiImageMapping table or fallback to default
+        $imageUrl = ChittiImageMapping::where('chittiId', $postId)->value('imageName') ?? 'images/default_image.jpg';    
+        // Format the creation date of the main post
+        $formattedDate = $post->createDate ? Carbon::parse($post->createDate)->format('Y-m-d H:i:s') : 'N/A';
     
-        if (!$post) {
-            return view('no_data', ['message' => 'Post not found']);
-        }
-    
-        // Ensure the 'createDate' is a Carbon instance
-        $createDate = Carbon::parse($post->createDate); // Convert string to Carbon instance
-    
-        // Format the date as desired (example format: 'Y-m-d H:i:s')
-        $formattedDate = $createDate->format('Y-m-d H:i:s'); 
-    
-        // Fetch recent posts
+        // Fetch recent posts excluding the current one
         $recentPosts = Chitti::where('finalStatus', 'approved')
-                             ->where('chittiId', '!=', $postId) 
-                             ->orderBy('createDate', 'desc')
+                             ->where('chittiId', '!=', $postId)
+                             ->orderBy('chittiId', 'desc')
                              ->take(5)
                              ->get();
     
-        // Prepare post details with formatted date
+        // Add image URL and formatted date for recent posts
+        $recentPostsFormatted = $recentPosts->map(function ($recent) {
+          
+            // Get the first image for the recent post
+            $recent->imageUrl  = ChittiImageMapping::where('chittiId', $recent->chittiId)->value('imageName') ?? 'images/default_image.jpg';
+
+            // Format the creation date
+            $recent->formattedDate = $recent->createDate ? Carbon::parse($recent->createDate)->format('d-m-Y H:i A') : 'N/A';
+            return $recent;
+        });
+        
+    
+        // Prepare main post details for the view
         $postDetails = [
             'title' => $post->Title,
             'subTitle' => $post->SubTitle,
-            'description' => $this->filterHindiContent($post->description),  // Use the helper function
-            'imageUrl' => optional($post->images->first())->chittiUrl ?? 'default-image-url.jpg', // Fallback to default image
-            'createDate' => $formattedDate, // Use the formatted date here
+            'description' => $post->description,
+            'imageUrl' => $imageUrl,
+            'createDate' => $formattedDate,
         ];
     
-        // Format recent posts' created_at field
-        $recentPostsFormatted = $recentPosts->map(function ($recent) {
-            $recent->formattedDate = Carbon::parse($recent->createDate)->format('d-m-Y H:i A');
-            return $recent;
-        });
-    
-        // Return the data to the view
+        // Return the view with post details and recent posts
         return view('portal.post-summary', [
             'post' => $postDetails,
             'recentPosts' => $recentPostsFormatted,
+            'cityCode'=>$geography->Geography,
         ]);
     }
     
-    /**
-     * Helper function to filter Hindi content from the description
-     */
+    
     private function filterHindiContent($text)
     {
-        // Strip HTML tags
         $cleanText = strip_tags($text);
-    
-        // Filter for only Hindi characters (regex for Hindi script)
+
         return preg_replace('/[^अ-ह़ा-ह]+/', ' ', $cleanText); // Keep only Hindi characters
     }
+
 }
