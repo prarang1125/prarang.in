@@ -71,7 +71,11 @@ Route::group(['prefix' => 'yellow-pages'], function () {
      Route::put('categories-update/{id}', [CategoriesController::class, 'categoriesUpdate'])->name('admin.categories-update');
   
       #this route is use for admin Categories
-      Route::get('business-listing', [BusinessController::class, 'businessListing'])->name('admin.business-listing');
+     Route::get('business-listing', [BusinessController::class, 'businessListing'])->name('admin.business-listing');
+     Route::post('listing-delete/{id}', [BusinessController::class, 'listingDelete'])->name('admin.listing-delete');
+     Route::get('listing-edit/{id}', [BusinessController::class, 'listingEdit'])->name('admin.listing-edit');
+     Route::put('listing-update/{id}', [BusinessController::class, 'listingUpdate'])->name('admin.listing-update');
+  
 });
 
 

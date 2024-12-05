@@ -1,78 +1,105 @@
 // Array to keep track of selected days to disable them in other dropdowns
-let selectedDays = [];
+// let selectedDays = [];
 
-// Function to duplicate the day template for adding a new day
-function addNewDay() {
-    const container = document.getElementById('day-schedule-container');
-    const template = document.getElementById('day-template').cloneNode(true);
+// // Function to duplicate the day template for adding a new day
+// function addNewDay() {
+//     const container = document.getElementById('day-schedule-container');
+//     const template = document.getElementById('day-template').cloneNode(true);
 
-    // Set attributes for cloned elements to avoid ID duplication and ensure array input
-    template.style.display = 'block';
-    template.removeAttribute('id');
-    
-    // Set unique name attributes for array input
-    template.querySelector('.day-select').setAttribute('name', 'day[]');
-    template.querySelector('.day-open').setAttribute('name', 'open_time[]');
-    template.querySelector('.day-close').setAttribute('name', 'close_time[]');
-    template.querySelector('.day-open-2').setAttribute('name', 'open_time_2[]');
-    template.querySelector('.day-close-2').setAttribute('name', 'close_time_2[]');
-    template.querySelector('.day-24hours').setAttribute('name', 'is_24_hours[]');
-    template.querySelector('.day-2nd-slot-toggle').setAttribute('name', 'add_2nd_time_slot[]');
+//     template.style.display = 'block';
+//     template.removeAttribute('id'); // Remove the id attribute for each duplicated template
 
-    container.appendChild(template);
+//     // Set unique names for dynamically added inputs
+//     template.querySelector('.day-select').setAttribute('name', 'day[]');
+//     template.querySelector('.day-open').setAttribute('name', 'open_time[]');
+//     template.querySelector('.day-close').setAttribute('name', 'close_time[]');
+//     template.querySelector('.day-open-2').setAttribute('name', 'open_time_2[]');
+//     template.querySelector('.day-close-2').setAttribute('name', 'close_time_2[]');
+//     template.querySelector('.day-24hours').setAttribute('name', 'is_24_hours[]');
+//     template.querySelector('.day-2nd-slot-toggle').setAttribute('name', 'add_2nd_time_slot[]');
 
-    // Update day options (disable already selected days)
-    updateDayOptions();
-}
+//     container.appendChild(template); // Append the new day template to the container
 
-// Function to update the dropdown options for all day selects to exclude selected days
-function updateDayOptions() {
-    const daySelects = document.querySelectorAll('.day-select');
-    daySelects.forEach(select => {
-        Array.from(select.options).forEach(option => {
-            if (selectedDays.includes(option.value)) {
-                option.disabled = true;
-            } else {
-                option.disabled = false;
-            }
-        });
-    });
-}
+//     updateDayOptions(); // Update the day options after adding the new day
+// }
 
-// Function to handle day selection and update label and selectedDays array
-function updateDaySelection(selectElement) {
-    const dayLabel = selectElement.closest('div').querySelector('.day-label');
-    const selectedDay = selectElement.value;
-    const prevSelectedDay = selectElement.dataset.prevSelectedDay;
+// // Function to update the dropdown options for all day selects to exclude selected days
+// function updateDayOptions() {
+//     const daySelects = document.querySelectorAll('.day-select');
+//     daySelects.forEach(select => {
+//         Array.from(select.options).forEach(option => {
+//             if (selectedDays.includes(option.value)) {
+//                 option.disabled = true;
+//             } else {
+//                 option.disabled = false;
+//             }
+//         });
+//     });
+// }
 
-    // Remove the previously selected day if changed
-    if (prevSelectedDay && prevSelectedDay !== selectedDay) {
-        const index = selectedDays.indexOf(prevSelectedDay);
-        if (index > -1) selectedDays.splice(index, 1);
-    }
+// // Function to handle day selection and update label and selectedDays array
+// // Function to handle day selection and update label and selectedDays array
+// function updateDaySelection(selectElement) {
+//     const dayLabel = selectElement.closest('div').querySelector('.day-label');
+//     if (!dayLabel) {
+//         console.error("Day label not found for day select element.");
+//         return; // Exit early if no day label is found
+//     }
 
-    // Add new selection to selected days
-    if (selectedDay) {
-        if (!selectedDays.includes(selectedDay)) {
-            selectedDays.push(selectedDay);
-        }
-        dayLabel.textContent = selectedDay.charAt(0).toUpperCase() + selectedDay.slice(1) + " Opening:";
-    }
+//     const selectedDay = selectElement.value;
+//     const prevSelectedDay = selectElement.dataset.prevSelectedDay;
 
-    // Update the previously selected day and refresh dropdown options
-    selectElement.dataset.prevSelectedDay = selectedDay;
-    updateDayOptions();
-}
+//     // Remove the previously selected day if changed
+//     if (prevSelectedDay && prevSelectedDay !== selectedDay) {
+//         const index = selectedDays.indexOf(prevSelectedDay);
+//         if (index > -1) selectedDays.splice(index, 1);
+//     }
+
+//     // Add new selection to selected days
+//     if (selectedDay) {
+//         if (!selectedDays.includes(selectedDay)) {
+//             selectedDays.push(selectedDay);
+//         }
+//         dayLabel.textContent = selectedDay.charAt(0).toUpperCase() + selectedDay.slice(1) + " Opening:"; // Update the label with the selected day
+//     }
+
+//     // Update the previously selected day and refresh dropdown options
+//     selectElement.dataset.prevSelectedDay = selectedDay;
+//     updateDayOptions(); // Disable selected days in the dropdown
+// }
+
+
 
 // Function to toggle 24 hours option
+// function toggle24Hours(checkbox) {
+//     const container = checkbox.closest('div');
+//     container.querySelector('.day-open').disabled = checkbox.checked;
+//     container.querySelector('.day-close').disabled = checkbox.checked;
+// }
 function toggle24Hours(checkbox) {
+
+    alert('nnn');
     const container = checkbox.closest('div');
-    container.querySelector('.day-open').disabled = checkbox.checked;
-    container.querySelector('.day-close').disabled = checkbox.checked;
+    const openInput = container.querySelector('.day-open');
+    const closeInput = container.querySelector('.day-close');
+    const isChecked = checkbox.checked;
+
+    openInput.disabled = isChecked;
+    closeInput.disabled = isChecked;
+
+    // Ensure empty values for disabled fields
+    if (isChecked) {
+        openInput.value = "";
+        closeInput.value = "";
+    }
 }
+
+
 
 // Function to toggle the display of the second time slot
 function toggleSecondSlot(checkbox) {
+
+    alert('jjjjgkfgj');
     const secondSlot = checkbox.closest('div').nextElementSibling;
     secondSlot.style.display = checkbox.checked ? 'flex' : 'none';
 }

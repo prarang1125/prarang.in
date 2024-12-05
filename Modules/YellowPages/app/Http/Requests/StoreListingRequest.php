@@ -2,13 +2,17 @@
 
 namespace Modules\YellowPages\app\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Http\Request;
+
 
 class StoreListingRequest extends FormRequest
 
 {
-    public function rules()
+    public function rules(Request $request)
     {
-        return [
+      
+         $data = [
             // Basic fields
             'location' => 'required|exists:yp.cities,id',
             'tagline' => 'nullable|string',
@@ -46,20 +50,33 @@ class StoreListingRequest extends FormRequest
             'password' => 'nullable',
             'agree' => 'nullable',
             //business hours
-        'day.*' => 'required|string',
-        'open_time.*' => 'required|date_format:H:i',
-        'close_time.*' => 'required|date_format:H:i',
-        'is_24_hours.*' => 'nullable|boolean',
-        'add_2nd_time_slot.*' => 'nullable|boolean',
-        'open_time_2.*' => 'nullable|date_format:H:i',
-        'close_time_2.*' => 'nullable|date_format:H:i',
+            'day' => 'required|array|min:1',
+            'day.*' => 'required|string|in:monday,tuesday,wednesday,thursday,friday,saturday,sunday',
+            'open_time' => 'required|array|min:1',
+            'open_time.*' => 'required|date_format:H:i',
+            'close_time' => 'required|array|min:1',
+            'close_time.*' => 'required|date_format:H:i',
+            'is_24_hours' => 'nullable|array',
+            'is_24_hours.*' => 'nullable|boolean',
+            'add_2nd_time_slot' => 'nullable|array',
+            'add_2nd_time_slot.*' => 'nullable|boolean',
+            'open_time_2' => 'nullable|array',
+            'open_time_2.*' => 'nullable|date_format:H:i',
+            'close_time_2' => 'nullable|array',
+            'close_time_2.*' => 'nullable|date_format:H:i',
 
             // Image validation
            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
            'coverImage' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
            'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ];
+
+        $validated = $request->validate($data);
+
+    // Debug validated data
+    dd($validated);
     }
+
 
     /**
      * Get the custom error messages for validation.

@@ -204,46 +204,49 @@
     </div>
     <br>
     <br>
-    <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-        <h5 style="margin-bottom: 15px;">Business Hours</h5>
-        <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
-        <div id="day-schedule-container">
-            <div id="day-template" style="display: none;">
-                <div style="margin-bottom: 10px;">
-                    <label>Select Day:</label>
-                    <select class="day-select" name="day[]" onchange="updateDaySelection(this)">
-                        <option value="">-- Select a Day --</option>
-                        <option value="monday">Monday</option>
-                        <option value="tuesday">Tuesday</option>
-                        <option value="wednesday">Wednesday</option>
-                        <option value="thursday">Thursday</option>
-                        <option value="friday">Friday</option>
-                        <option value="saturday">Saturday</option>
-                        <option value="sunday">Sunday</option>
-                    </select>                    
-                </div>
-                <div style="display: flex; align-items: center; gap: 10px; margin-top: 5px;">
-                    <label class="day-label"></label>
-                    <input type="time" class="day-open" name="open_time[]">
-                    <label>Closing:</label>
-                    <input type="time" class="day-close" name="close_time[]">
-                    <label>
-                        <input type="checkbox" name="is_24_hours[]" class="day-24hours" onclick="toggle24Hours(this)"> 24 Hours
-                    </label>
-                    <label>
-                        <input type="checkbox"  name="add_2nd_time_slot[]" class="day-2nd-slot-toggle" onclick="toggleSecondSlot(this)"> Add 2nd Time Slot
-                    </label>
-                </div>
-                <div class="second-time-slot" style="display: none; margin-top: 5px; padding-left: 20px;">
-                    <label>Opening (2nd Slot):</label>
-                    <input type="time" class="day-open-2" name="open_time_2[]">
-                    <label>Closing (2nd Slot):</label>
-                    <input type="time" class="day-close-2" name="close_time_2[]">
-                </div>
+    
+
+<div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
+    <h5 style="margin-bottom: 15px;">Business Hours</h5>
+    <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
+    <div id="day-schedule-container">
+        <div id="day-template" style="display: none;">
+            <div style="margin-bottom: 10px;">
+                <label>Select Day:</label>
+                <select class="day-select" name="day[]">
+                    <option value="">-- Select a Day --</option>
+                    <option value="monday">Monday</option>
+                    <option value="tuesday">Tuesday</option>
+                    <option value="wednesday">Wednesday</option>
+                    <option value="thursday">Thursday</option>
+                    <option value="friday">Friday</option>
+                    <option value="saturday">Saturday</option>
+                    <option value="sunday">Sunday</option>
+                </select>                    
+            </div>
+            <div style="display: flex; align-items: center; gap: 10px; margin-top: 5px;">
+                <label class="day-label"></label>
+                <input type="time" class="day-open" name="open_time[]">
+                <label>Closing:</label>
+                <input type="time" class="day-close" name="close_time[]">
+                <label>
+                    <input type="checkbox" name="is_24_hours[]" class="day-24hours"> 24 Hours
+                </label>
+                <label>
+                    <input type="checkbox" name="add_2nd_time_slot[]" class="day-2nd-slot-toggle"> Add 2nd Time Slot
+                </label>
+            </div>
+            <div class="second-time-slot" style="display: none; margin-top: 5px; padding-left: 20px;">
+                <label>Opening (2nd Slot):</label>
+                <input type="time" class="day-open-2" name="open_time_2[]">
+                <label>Closing (2nd Slot):</label>
+                <input type="time" class="day-close-2" name="close_time_2[]">
             </div>
         </div>
-        <button type="button" onclick="addNewDay()">Add More Day</button>
     </div>
+    <button type="button" id="add-day-btn">Add More Day</button>
+    <button type="button" id="get-schedule-btn">Get Schedule</button>
+</div>
     <br>
     <br>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
@@ -364,5 +367,46 @@
     <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        // Event listener for adding a new day schedule
+        document.getElementById('add-day-btn').addEventListener('click', function() {
+            let template = document.getElementById('day-template').cloneNode(true);
+            template.style.display = 'block'; // Make the template visible
+            document.getElementById('day-schedule-container').appendChild(template);
+        });
+    
+        // Event listener for collecting the schedule data
+        document.getElementById('get-schedule-btn').addEventListener('click', function() {
+            let schedules = [];
+            let daySelectors = document.querySelectorAll('.day-select');
+            
+            daySelectors.forEach(function(daySelect) {
+                let day = daySelect.value;
+                let openTime = daySelect.closest('div').querySelector('.day-open').value;
+                let closeTime = daySelect.closest('div').querySelector('.day-close').value;
+                let is24Hours = daySelect.closest('div').querySelector('.day-24hours').checked;
+                let addSecondSlot = daySelect.closest('div').querySelector('.day-2nd-slot-toggle').checked;
+                let secondOpenTime = '';
+                let secondCloseTime = '';
+    
+                if (addSecondSlot) {
+                    secondOpenTime = daySelect.closest('div').querySelector('.day-open-2').value;
+                    secondCloseTime = daySelect.closest('div').querySelector('.day-close-2').value;
+                }
+    
+                // Add schedule to the array
+                schedules.push({
+                    day: day,
+                    open_time: openTime,
+                    close_time: closeTime,
+                    is_24_hours: is24Hours,
+                    second_time_slot: addSecondSlot ? { open: secondOpenTime, close: secondCloseTime } : null
+                });
+            });
+    
+            // Output or process the schedule data
+            console.log(schedules);
+        });
+    </script>
 </body>
 </html>
