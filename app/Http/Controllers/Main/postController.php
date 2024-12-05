@@ -109,9 +109,6 @@ class postController extends Controller
             $recent->formattedDate = $recent->createDate ? Carbon::parse($recent->createDate)->format('d-m-Y H:i A') : 'N/A';
             return $recent;
         });
-        
-    
-        // Prepare main post details for the view
         $postDetails = [
             'title' => $post->Title,
             'subTitle' => $post->SubTitle,
@@ -119,8 +116,7 @@ class postController extends Controller
             'imageUrl' => $imageUrl,
             'createDate' => $formattedDate,
         ];
-    
-        // Return the view with post details and recent posts
+        
         return view('portal.post-summary', [
             'post' => $postDetails,
             'recentPosts' => $recentPostsFormatted,
