@@ -13,20 +13,6 @@ use App\Models\ChittiGeography;
 
 class postController extends Controller
 {
-    public function decodeText()
-    {
-        // Misencoded text
-        $encodedText = "à¤®à¥‡à¤°à¤  à¤”à¤° à¤¤à¥ˆà¤®à¥‚à¤°";
-        
-        // Decode from ISO-8859-1 to UTF-8
-        $decodedText = iconv('ISO-8859-1', 'UTF-8', $encodedText);
-
-        // Return the decoded text
-        return response()->json([
-            'decoded_text' => $decodedText,  
-        ]);
-    }
-
     public function getChittiData($city)
     {
         // Fetch portal by city slug
@@ -48,6 +34,7 @@ class postController extends Controller
                          ->orderBy('chittiId', 'desc') // Add ordering by createDate desc
                          ->with(['images', 'tags.tag'])                         
                          ->paginate(35);
+
         
         $postsByMonth = $chittis->groupBy(function ($chitti) {
             return \Carbon\Carbon::parse($chitti->createDate)->format('F Y');
@@ -108,31 +95,25 @@ class postController extends Controller
             $recent->formattedDate = $recent->createDate ? Carbon::parse($recent->createDate)->format('d-m-Y H:i A') : 'N/A';
             return $recent;
         });
-        
+      
     
         // Prepare main post details for the view
-        $postDetails = [
-            'title' => $post->Title,
-            'subTitle' => $post->SubTitle,
-            'description' => $post->description,
-            'imageUrl' => $imageUrl,
-            'createDate' => $formattedDate,
-        ];
+        // $postDetails = [
+        //     'title' => $post->Title,
+        //     'subTitle' => $post->SubTitle,
+        //     'description' => $post->description,
+        //     'imageUrl' => $imageUrl,
+        //     'createDate' => $formattedDate,
+        //     ''
+
+        // ];
     
         // Return the view with post details and recent posts
         return view('portal.post-summary', [
-            'post' => $postDetails,
+            'post' => $post,
             'recentPosts' => $recentPostsFormatted,
             'cityCode'=>$geography->Geography,
         ]);
-    }
-    
-    
-    private function filterHindiContent($text)
-    {
-        $cleanText = strip_tags($text);
-
-        return preg_replace('/[^अ-ह़ा-ह]+/', ' ', $cleanText); // Keep only Hindi characters
     }
 
 }

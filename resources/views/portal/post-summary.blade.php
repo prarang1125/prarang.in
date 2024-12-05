@@ -98,20 +98,59 @@
             font-size: 14px;
             color: gray;
         }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-family: Arial, sans-serif;
+        }
+        th, td {
+            border: 1px solid #0000FF;
+            text-align: center;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
     <x-post.navbar cityId="12" :cityCode="$cityCode"/>
 
-<!-- Navbar -->
-@include('layout.navbar')
+   
 
 <div class="container">
     <div class="row">
         <!-- Page Header -->
+        @if (\Carbon\Carbon::parse($post['createDate'])->addDays(5)->lte(now()))
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="5">Post Viewership from Post Date to {{ $post['createDate'] }} (31st Day)</th>
+                </tr>
+                <tr>
+                    <th>City Subscribers (FB+App)</th>
+                    <th>Website (Direct+Google)</th>
+                    <th>Email</th>
+                    <th>Instagram</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ $post['citySubscriber'] }}</td>
+                    <td>{{ $post['websiteCount'] }}</td>
+                    <td>{{ $post['emailCount'] }}</td>
+                    <td>{{ $post['instagramCount'] }}</td>
+                    <td>{{ $post['totalViewerCount'] }}</td>
+                </tr>
+            </tbody>
+        </table>
+    @endif
+    
+        <br>
         <div class="post-header">
-            <h1>{{ $post['title'] }}</h1>
-            <p>{{ $post['subTitle'] }}</p>
+            <h1>{{ $post['Title'] }}</h1>
+            <p>{{ $post['SubTitle'] }}</p>
             <p>{{ $post['createDate'] }}</p>
         </div>
     </div>
