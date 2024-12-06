@@ -115,15 +115,73 @@ class ListingController extends Controller
 }
 
 
-public function store(StoreListingRequest $request)
+public function store(Request $request)
 {
-    // Validate only necessary fields
-    $validated = $request->validated(); 
+    // Validation rules
+    $validated = $request->validate([
+        // Basic fields
+        // 'location' => 'required|exists:yp.cities,id',
+        // 'tagline' => 'nullable|string',
+        // 'listingTitle' => 'required|string|max:255',
+        // 'businessName' => 'required|string|max:255',
+        // 'businessAddress' => 'required|string',
+        // 'primaryPhone' => 'required|string',
+        // 'secondary_phone' => 'nullable|string',
+        // 'primaryContact' => 'required|string',
+        // 'primaryEmail' => 'required|email',
+        // 'primary_contact_email' => 'nullable|string|email',
+        // 'secondaryContactName' => 'nullable|string',
+        // 'secondaryEmail' => 'nullable|string|email',
+        // 'pincode' => 'nullable|string',
+        // 'businessType' => 'required',
+        // 'employees' => 'required',
+        // 'turnover' => 'required',
+        // 'category' => 'required',
+        // 'description' => 'required',
+        // 'advertising' => 'required',
+        // 'advertising_price' => 'required',
+        // 'social_media' => 'nullable|string',
+        // 'tags_keywords' => 'nullable|string',
+        // 'fullAddress' => 'nullable|string',
+        // 'website' => 'nullable|url',
+        // 'phone' => 'nullable|string',
+        // 'whatsapp' => 'nullable|string',
+        // 'socialId' => 'nullable|string',
+        // 'socialDescription' => 'nullable|string',
+        // 'notificationEmail' => 'nullable|email',
+        // 'userName' => 'nullable|string',
+        // 'faq' => 'nullable|string',
+        // 'answer' => 'nullable|string',
+        // 'email' => 'nullable|email',
+        // 'password' => 'nullable|string|min:8', // Password should be at least 8 characters
+        // 'agree' => 'nullable|accepted', // Ensure user agreement with checkbox
+
+        // Business hours
+        'day' => 'required',
+        'day.*' => 'required',
+        'open_time' => 'required',
+        'open_time.*' => 'required',
+        'close_time' => 'required',
+        'close_time.*' => 'required',
+        'is_24_hours' => 'nullable',
+        'is_24_hours.*' => 'nullable',
+        'add_2nd_time_slot' => 'nullable',
+        'add_2nd_time_slot.*' => 'nullable',
+        'open_time_2' => 'nullable',
+        'open_time_2.*' => 'nullable',
+        'close_time_2' => 'nullable',
+        'close_time_2.*' => 'nullable',
+
+        // // Image validation
+        // 'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        // 'coverImage' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        // 'logo' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+    ]);
+
     // File upload handling
     $imagePath = $request->hasFile('image') 
                  ? $request->file('image')->store('images/business', 'public') 
-                : null;
-
+                 : null;
 
     $featureImagePath = $request->hasFile('coverImage') 
                         ? $request->file('coverImage')->store('images/feature', 'public') 
@@ -133,58 +191,60 @@ public function store(StoreListingRequest $request)
                         ? $request->file('logo')->store('images/logo', 'public') 
                         : null;
 
-    // Assign data with default values for optional fields
+
+                        dd( $validated);
+    // Prepare data for insertion
     $data = [
-        'city_id' => $validated['location'] ?? null,
-        'listing_title' => $validated['listingTitle'] ?? null,
+        'city_id' => $validated['location'],
+        'listing_title' => $validated['listingTitle'],
         'tagline' => $validated['tagline'],
-        'business_name' => $validated['businessName'] ?? null,
-        'business_address' => $validated['businessAddress'] ?? null,
-        'primary_phone' => $validated['primaryPhone'] ?? null,
-        'secondary_phone' => $validated['secondary_phone'] ?? null,
-        'primary_contact_name' => $validated['primaryContact'] ?? null,
-        'primary_contact_email' => $validated['primaryEmail'] ?? null,
-        'secondary_contact_name' => $validated['secondaryContactName'] ?? null,
-        'secondary_contact_email' => $validated['secondaryEmail'] ?? null,
-        'legal_type_id' => $validated['businessType'] ?? null,
-        'employee_range_id' => $validated['employees'] ?? null,
-        'turnover_id' => $validated['turnover'] ?? null,
-        'advertising_medium_id' => $validated['advertising'] ?? null,
-        'advertising_price_id' => $validated['advertising_price'] ?? null,
-        'category_id' => $validated['category'] ?? null,
-        'full_address' => $validated['fullAddress'] ?? null,
-        'website' => $validated['website'] ?? null,
-        'phone' => $validated['phone'] ?? null,
-        'whatsapp' => $validated['whatsapp'] ?? null,
-        'notification_email' => $validated['notificationEmail'] ?? null,
-        'user_name' => $validated['userName'] ?? null,
-        'faq' => $validated['faq'] ?? null,
-        'answer' => $validated['answer'] ?? null,
-        'description' => is_array($validated['description']) ? implode(',', $validated['description']) : $validated['description'] ?? null,
-        'tags_keywords' => $validated['tags_keywords'] ?? null,
-        'social_id' => $validated['socialId'] ?? null,
-        'social_media_description' => $validated['socialDescription'] ?? null,
-        'pincode' => $validated['pincode'] ?? null,
+        'business_name' => $validated['businessName'],
+        'business_address' => $validated['businessAddress'],
+        'primary_phone' => $validated['primaryPhone'],
+        'secondary_phone' => $validated['secondary_phone'],
+        'primary_contact_name' => $validated['primaryContact'],
+        'primary_contact_email' => $validated['primaryEmail'],
+        'secondary_contact_name' => $validated['secondaryContactName'],
+        'secondary_contact_email' => $validated['secondaryEmail'],
+        'legal_type_id' => $validated['businessType'],
+        'employee_range_id' => $validated['employees'],
+        'turnover_id' => $validated['turnover'],
+        'advertising_medium_id' => $validated['advertising'],
+        'advertising_price_id' => $validated['advertising_price'],
+        'category_id' => $validated['category'],
+        'full_address' => $validated['fullAddress'],
+        'website' => $validated['website'],
+        'phone' => $validated['phone'],
+        'whatsapp' => $validated['whatsapp'],
+        'notification_email' => $validated['notificationEmail'],
+        'user_name' => $validated['userName'],
+        'faq' => $validated['faq'],
+        'answer' => $validated['answer'],
+        'description' => is_array($validated['description']) ? implode(',', $validated['description']) : $validated['description'],
+        'tags_keywords' => $validated['tags_keywords'],
+        'social_id' => $validated['socialId'],
+        'social_media_description' => $validated['socialDescription'],
+        'pincode' => $validated['pincode'],
         'logo' =>  $businessLogoPath,
         'feature_img' => $featureImagePath,
-        'business_img' =>$imagePath,
-        'email' => $validated['email'] ?? null,
+        'business_img' => $imagePath,
+        'email' => $validated['email'],
         'password' => isset($validated['password']) ? bcrypt($validated['password']) : null,
         'agree' => isset($validated['agree']) && $validated['agree'] === 'on' ? 1 : 0, // Explicitly handle 'on' as 1
-
     ];
 
-     // Create the business listing
-        //  $listing = BusinessListing::create($data);
-        //  if (!$listing) {
-        //     return redirect()->back()->withErrors(['error' => 'Failed to create listing']);
-        // }
-    // Insert business hours data
+    // Create the business listing
+    $listing = BusinessListing::create($data);
+    if (!$listing) {
+        return redirect()->back()->withErrors(['error' => 'Failed to create listing']);
+    }
+
+    // Process business hours if present
     if (!empty($validated['day'])) {
         foreach ($validated['day'] as $index => $day) {
-            if (isset($validated['open_time'][$index]) && isset($validated['close_time'][$index])) {
-                $hoursData = [
-                    'business_id' => 1,
+            if (!empty($validated['open_time'][$index]) && !empty($validated['close_time'][$index])) {
+                BusinessHour::create([
+                    'business_id' => $listing->id, // Use actual business ID
                     'day' => $day,
                     'open_time' => $validated['open_time'][$index],
                     'close_time' => $validated['close_time'][$index],
@@ -192,9 +252,7 @@ public function store(StoreListingRequest $request)
                     'close_time_2' => $validated['close_time_2'][$index] ?? null,
                     'is_24_hours' => !empty($validated['is_24_hours'][$index]) ? 1 : 0,
                     'add_2nd_time_slot' => !empty($validated['add_2nd_time_slot'][$index]) ? 1 : 0,
-                ];
-
-                BusinessHour::create($hoursData);
+                ]);
             }
         }
     }
