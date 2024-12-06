@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Chitti Posts</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         .post-thumbnail {
@@ -38,12 +39,12 @@
                    
                         <div class="col-lg-3 col-md-4 col-sm-6">
                             <!-- Wrap the card in a clickable link -->
-                            <a href="/post-summary/{{ $post['id'] }}" class="text-decoration-none">
+                            <a href="{{ route('post-summary', ['id' => $post['id'], 'subTitle' => str_replace(' ', '-', $post['subTitle'])]) }}" class="text-decoration-none">
                                 <div class="card post-thumbnail">
                                     <img src="{{ $post['imageUrl'] ?? 'default-image.jpg' }}" alt="{{ $post['title'] }}" class="card-img-top">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $post['title'] }}</h5>
-                                        <p class="card-text">{{ $post['subTitle'] }}</p>
+                                        <p class="card-text">{{ $post['tags'] }}</p>
                                         <p><small>{{ \Carbon\Carbon::parse($post['createDate'])->format('d M Y') }}</small></p>
                                     </div>
                                 </div>
@@ -62,7 +63,9 @@
         {{ $chittis->links('pagination::bootstrap-5') }}
     </div>
 
-    @include('layout.footer')
+    {{-- @include('layout.footer') --}}
+
+    <x-post.footer />
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

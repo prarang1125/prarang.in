@@ -31,24 +31,30 @@ class postController extends Controller
         // Fetch Chittis with eager loading for images and tags, ordered by createDate desc
         $chittis = Chitti::whereIn('chittiId', $chittiIds)
                          ->where('finalStatus', 'approved')
-                         ->orderBy('chittiId', 'desc') // Add ordering by createDate desc
-                         ->with(['images', 'tags.tag'])                         
+                         ->orderBy('chittiId', 'desc')
+                         ->with(['tagMappings.tag', 'images'])  // Eager load tagMappings and related tag
                          ->paginate(35);
-
         
         $postsByMonth = $chittis->groupBy(function ($chitti) {
             return \Carbon\Carbon::parse($chitti->createDate)->format('F Y');
         })->map(function ($chittis) {
             return $chittis->map(function ($chitti) {
                 // Retrieve image or use default
-                $imageUrl = ChittiImageMapping::where('chittiId', $chitti->chittiId)->value('imageName') ?? asset('default_image.jpg');
+                $imageUrl = $chitti->images->first()->imageName ?? asset('default_image.jpg');  // Get the first image
+    
+                // Get all tags related to this Chitti and join them by commas
+                $tags = $chitti->tagMappings->map(function ($tagMapping) {
+                    return $tagMapping->tag->tagInEnglish;  // Access the related tag's tagInEnglish
+                })->filter()->join(', ');  // Join tags by comma if there are multiple
+    
                 // Return formatted data
                 return [
-                    'id'=> $chitti->chittiId,
+                    'id' => $chitti->chittiId,
                     'title' => $chitti->Title,
                     'subTitle' => $chitti->SubTitle,
                     'description' => $chitti->description,
                     'imageUrl' => $imageUrl,
+                    'tags' => $tags,
                     'createDate' => $chitti->createDate,
                 ];
             });
@@ -58,62 +64,69 @@ class postController extends Controller
         return view('portal.post', [
             'city_name' => $city,
             'postsByMonth' => $postsByMonth,
-            'cityCode'=>$geography->geographycode,
-            'chittis'=>$chittis
+            'cityCode' => $geography->geographycode,
+            'chittis' => $chittis,
         ]);
     }
     
+    
+    
+    
     public function post_summary($postId)
     {
-        // Fetch the specific post along with related images
+        // Fetch the specific post along with related images and tags
         $post = Chitti::where('chittiId', $postId)
                       ->where('finalStatus', 'approved')
-                      ->with('images') // Ensure the 'images' relationship is defined in Chitti model
+                      ->with(['tagMappings.tag', 'images'])  // Eager load related data
                       ->first();
-
+                     
+        
+        if (!$post) {
+            abort(404, 'Post not found');
+        }
+    
+        // Fetch related geography data
         $geography = ChittiGeography::where('chittiId', $postId)->first();
-
-        // Get the main image URL from the ChittiImageMapping table or fallback to default
-        $imageUrl = ChittiImageMapping::where('chittiId', $postId)->value('imageName') ?? 'images/default_image.jpg';    
-        // Format the creation date of the main post
+        
         $formattedDate = $post->createDate ? Carbon::parse($post->createDate)->format('Y-m-d H:i:s') : 'N/A';
     
+        // Fetch the previous and next post IDs
+        $previousPost = Chitti::where('chittiId', '<', $postId)
+                              ->where('finalStatus', 'approved')
+                              ->orderBy('chittiId', 'desc')
+                              ->first();
+    
+        $nextPost = Chitti::where('chittiId', '>', $postId)
+                          ->where('finalStatus', 'approved')
+                          ->orderBy('chittiId', 'asc')
+                          ->first();
+        
         // Fetch recent posts excluding the current one
         $recentPosts = Chitti::where('finalStatus', 'approved')
                              ->where('chittiId', '!=', $postId)
                              ->orderBy('chittiId', 'desc')
                              ->take(5)
                              ->get();
-    
+        
         // Add image URL and formatted date for recent posts
         $recentPostsFormatted = $recentPosts->map(function ($recent) {
-          
-            // Get the first image for the recent post
-            $recent->imageUrl  = ChittiImageMapping::where('chittiId', $recent->chittiId)->value('imageName') ?? 'images/default_image.jpg';
-
-            // Format the creation date
+            
+            $recent->imageUrl = ChittiImageMapping::where('chittiId', $recent->chittiId)->value('imageName') ?? 'images/default_image.jpg';
             $recent->formattedDate = $recent->createDate ? Carbon::parse($recent->createDate)->format('d-m-Y H:i A') : 'N/A';
             return $recent;
         });
-      
-    
-        // Prepare main post details for the view
-        // $postDetails = [
-        //     'title' => $post->Title,
-        //     'subTitle' => $post->SubTitle,
-        //     'description' => $post->description,
-        //     'imageUrl' => $imageUrl,
-        //     'createDate' => $formattedDate,
-        //     ''
+        $post->tagInUnicode = $post->tagMappings->first()->tag->tagInUnicode;
 
-        // ];
     
-        // Return the view with post details and recent posts
+        // Return the view with all necessary data
         return view('portal.post-summary', [
             'post' => $post,
+            'previousPost' => $previousPost,
+            'nextPost' => $nextPost,
             'recentPosts' => $recentPostsFormatted,
-            'cityCode'=>$geography->Geography,
+            'cityCode' => $geography ? $geography->Geography : null,
         ]);
     }
-
+    
+    
 }
