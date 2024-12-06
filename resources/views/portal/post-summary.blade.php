@@ -10,7 +10,7 @@
     <meta property="og:image:height" content="315"/>
     <meta property="og:site_name" content="" />
     <title>{{ $post['title'] }}</title>
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -98,24 +98,62 @@
             font-size: 14px;
             color: gray;
         }
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            font-family: Arial, sans-serif;
+        }
+        th, td {
+            border: 1px solid #0000FF;
+            text-align: center;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
     <x-post.navbar cityId="12" :cityCode="$cityCode"/>
-
-<!-- Navbar -->
-@include('layout.navbar')
-
 <div class="container">
-    <div class="row">
+    <div class="row w-75 mb-4">
         <!-- Page Header -->
+        @if (\Carbon\Carbon::parse($post['createDate'])->addDays(5)->lte(now()))
+        @if (!empty($post['totalViewerCount']) && $post['totalViewerCount'] > 0)
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="5">Post Viewership from Post Date to {{ $post['createDate'] }} (31st Day)</th>
+                </tr>
+                <tr>
+                    <th>City Subscribers (FB+App)</th>
+                    <th>Website (Direct+Google)</th>
+                    <th>Email</th>
+                    <th>Instagram</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>{{ $post['citySubscriber'] }}</td>
+                    <td>{{ $post['websiteCount'] }}</td>
+                    <td>{{ $post['emailCount'] }}</td>
+                    <td>{{ $post['instagramCount'] }}</td>
+                    <td>{{ $post['totalViewerCount'] }}</td>
+                </tr>
+            </tbody>
+        </table>
+    @endif
+    @endif
+        <br> <br>
         <div class="post-header">
-            <h1>{{ $post['title'] }}</h1>
-            <p>{{ $post['subTitle'] }}</p>
+            <h1>{{ $post['Title'] }}</h1>
+            <p>{{ $post['SubTitle'] }}</p>
             <p>{{ $post['createDate'] }}</p>
         </div>
     </div>
     <div class="main-content">
+        
         <!-- Main Post -->
         <div class="main-post">
             <!-- Post Image -->
@@ -125,7 +163,6 @@
             <!-- Post Content -->
             <h4 style="font-weight: bold; font-size: 20px; margin-bottom: 10px;">{{ $post['title'] }}</h4>
             <p>{!! $post['description'] !!}</p>
-
         </div>
 
         <!-- Sidebar (Recent Posts) -->
