@@ -192,7 +192,6 @@ public function store(Request $request)
                         : null;
 
 
-                        dd( $validated);
     // Prepare data for insertion
     $data = [
         'city_id' => $validated['location'],

@@ -33,13 +33,14 @@ Route::group(['prefix' => 'yellow-pages'], function () {
     Route::get('/showSearchcategory', [HomeController::class, 'showSearchcategory']);
 
     ##------------------------- Drop Down data get ---------------------##
-     Route::get('/listing', [ListingController::class, 'index'])->name('yp.listing');
+    Route::get('/listing', [ListingController::class, 'index'])->name('yp.listing');
     Route::get('/listing-details/{listingId}', [ListingController::class, 'listing'])->name('yp.listing-details');
     Route::get('/getLocationData', [ListingController::class, 'getLocationData'])->name('yp.getLocationData');
     Route::post('/store-listing', [ListingController::class, 'store'])->name('yp.listing.store');
     Route::get('/submit-listing', [ListingController::class, 'submit_listing'])->name('yp.listing.submit');;
     Route::get('/vcard', [VCardController::class, 'index'])->name('yp.vcard');
-    Route::post('/reviews/store', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::post('/reviews/store/{listing}', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::get('/reviews/submit', [ReviewController::class, 'submit_review'])->name('review.submit');
     //Admin
     Route::get('login', [AuthController::class, 'index'])->name('admin.login');
     Route::post('authenticate', [AuthController::class, 'authenticate'])->name('admin.authenticate');

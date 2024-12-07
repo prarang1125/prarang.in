@@ -264,13 +264,14 @@
 <!-- Add Previous and Next buttons below the post content -->
 <div class="post-navigation">
     @if($previousPost)
-        <a href="/post-summary/{{ $previousPost->chittiId }}" class="btn btn-primary">पिछला</a>
+        <a href="/post-summary/{{ $previousPost->chittiId }}/{{ $previousPost->SubTitle }}" class="btn btn-primary">पिछला</a>
     @endif
 
     @if($nextPost)
-        <a href="/post-summary/{{ $nextPost->chittiId }}" class="btn btn-primary">अगला</a>
+        <a href="/post-summary/{{ $nextPost->chittiId }}/{{ $nextPost->SubTitle }}" class="btn btn-primary">अगला</a>
     @endif
 </div>
+
 
 </div>
     <x-post.footer />

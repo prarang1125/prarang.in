@@ -3,23 +3,19 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+
 
 class Review extends Model
 {
-    
+    use HasFactory;
+
     protected $connection = 'yp';
 
     protected $table = 'review';
     protected $fillable = [
-        'user_id',
-        'listing_id',
-        'cleanliness',
-        'service',
-        'ambience',
-        'price',
-        'title',
-        'review',
-        'image',
+        'user_id', 'listing_id', 'cleanliness', 'service',
+        'ambience', 'price', 'title', 'review', 'image',
     ];
 
     // Define the relationship with the BusinessListing model

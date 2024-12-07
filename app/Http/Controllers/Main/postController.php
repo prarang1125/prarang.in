@@ -95,7 +95,7 @@ class postController extends Controller
                               ->where('finalStatus', 'approved')
                               ->orderBy('chittiId', 'desc')
                               ->first();
-    
+       
         $nextPost = Chitti::where('chittiId', '>', $postId)
                           ->where('finalStatus', 'approved')
                           ->orderBy('chittiId', 'asc')

@@ -25,6 +25,32 @@
     
     <!-- Main CSS File -->
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+    <style>
+        /* Style for Rating Stars */
+    .rating-star {
+        width: 40px;
+        height: 40px;
+        background-color: #ccc;
+        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        transition: background-color 0.3s;
+    }
+
+    /* On hover, change background color */
+    label:hover .rating-star {
+        background-color: rgba(255, 215, 0, 0.7); /* Gold color for hover */
+    }
+
+    /* When radio button is checked, change background color */
+    input[type="radio"]:checked + .rating-star {
+        background-color: rgba(255, 215, 0, 0.9); /* Gold color for selected */
+    }
+
+    /* Highlight the stars on hover */
+    label:hover ~ label .rating-star,
+    label:hover .rating-star {
+        background-color: rgba(255, 215, 0, 0.7); /* Gold on hover */
+    }
+    </style>
 </head>
 
 <body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4;">
@@ -106,7 +132,7 @@
         @csrf
         <div style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
             <h3 style="font-size: 20px; font-weight: bold; margin-bottom: 15px;">Rate Us and Write a Review</h3>
-            
+    
             <!-- Cleanliness Rating -->
             <div style="margin-bottom: 20px;">
                 <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">Cleanliness</label>
@@ -115,7 +141,7 @@
                         <label for="cleanliness-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
                             <input type="radio" name="cleanliness" id="cleanliness-{{ $i }}" value="{{ $i }}" style="position: absolute; opacity: 0;" 
                             {{ old('cleanliness') == $i ? 'checked' : '' }}>
-                            <span style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
+                            <span class="rating-star" style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
                         </label>
                     @endfor
                 </div>
@@ -129,7 +155,35 @@
                         <label for="service-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
                             <input type="radio" name="service" id="service-{{ $i }}" value="{{ $i }}" style="position: absolute; opacity: 0;" 
                             {{ old('service') == $i ? 'checked' : '' }}>
-                            <span style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
+                            <span class="rating-star" style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
+                        </label>
+                    @endfor
+                </div>
+            </div>
+    
+            <!-- Ambience Rating -->
+            <div style="margin-bottom: 20px;">
+                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">Ambience</label>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    @for ($i = 1; $i <= 5; $i++)
+                        <label for="ambience-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
+                            <input type="radio" name="ambience" id="ambience-{{ $i }}" value="{{ $i }}" style="position: absolute; opacity: 0;" 
+                            {{ old('ambience') == $i ? 'checked' : '' }}>
+                            <span class="rating-star" style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
+                        </label>
+                    @endfor
+                </div>
+            </div>
+    
+            <!-- Price Rating -->
+            <div style="margin-bottom: 20px;">
+                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">Price</label>
+                <div style="display: flex; gap: 10px; align-items: center;">
+                    @for ($i = 1; $i <= 5; $i++)
+                        <label for="price-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
+                            <input type="radio" name="price" id="price-{{ $i }}" value="{{ $i }}" style="position: absolute; opacity: 0;" 
+                            {{ old('price') == $i ? 'checked' : '' }}>
+                            <span class="rating-star" style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
                         </label>
                     @endfor
                 </div>
@@ -140,7 +194,7 @@
                 <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">Select Images</label>
                 <input type="file" name="image[]" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" multiple>
             </div>
-            
+    
             <!-- Title Section -->
             <div style="margin-bottom: 20px;">
                 <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">Title</label>
@@ -158,8 +212,7 @@
         </div>
     </form>
     
-    
-    
+       
 </div>
     @include('yellowpages::layout.footer')
 
@@ -172,6 +225,18 @@
 
     <!-- Main JS File -->
     <script src="{{ asset('assets/js/main.js') }}"></script>
+    <script>
+        document.querySelectorAll('input[type="radio"]').forEach(input => {
+            input.addEventListener('change', function () {
+                const stars = this.closest('div').querySelectorAll('.rating-star');
+                stars.forEach(star => star.style.backgroundColor = 'rgba(128, 128, 128, 0.7)'); // Reset colors
+                for (let i = 0; i < this.value; i++) {
+                    stars[i].style.backgroundColor = 'yellow'; // Highlight selected stars
+                }
+            });
+        });
+    </script>
+    
 </body>
 
 
