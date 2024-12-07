@@ -12,5 +12,7 @@ class ChittiImageMapping extends Model
     {
         return $this->belongsTo(Chitti::class, 'chittiId', 'chittiId');
     }
+
+    
     
 }

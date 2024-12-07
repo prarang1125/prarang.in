@@ -17,9 +17,11 @@ class Chitti extends Model
     {
         return $this->hasMany(ChittiImageMapping::class, 'chittiId', 'chittiId');
     }
-
-    public function tags()
+    public function tagMappings()
     {
         return $this->hasMany(ChittiTagMapping::class, 'chittiId', 'chittiId');
     }
+   
+
+
 }

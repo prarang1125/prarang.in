@@ -10,11 +10,13 @@ class ChittiTagMapping extends Model
 
     public function chitti()
     {
-        return $this->belongsTo(Chitti::class, 'chittiId', 'chittiId');
+        return $this->belongsTo(Chitti::class, 'chittiId');
     }
-
+    
     public function tag()
     {
-        return $this->belongsTo(Tag::class, 'tagId', 'tagId');
+        return $this->belongsTo(Mtag::class, 'tagId', 'tagId');  // Assuming 'tagId' is the foreign key in ChittiTagMapping and 'tagId' is the primary key in Mtag
     }
+    // Assuming post belongs to a user
+    
 }
