@@ -14,12 +14,12 @@ use Illuminate\Support\Facades\DB;
 
 class postController extends Controller
 {
-    public function getChittiData($city)
+    public function getChittiData($city,$name=null)
     {
         // Fetch portal by city slug
-        $portal = Portal::where('slug', $city)->firstOrFail(); // Use firstOrFail to handle missing city
+        $portal = Portal::where('slug', $city)->firstOrFail(); 
         
-        // Fetch related geography data
+        // Fetch related geography data2
         $geography = Geography::where('geographycode', $portal->city_code)->first();
         if (!$geography) {
             return abort(404, 'Geography not found');
@@ -60,7 +60,8 @@ class postController extends Controller
             'city_name' => $city,
             'postsByMonth' => $postsByMonth,
             'cityCode'=>$geography->geographycode,
-            'chittis'=>$chittis
+            'chittis'=>$chittis,
+            'name'=>$name
         ]);
     }
     
