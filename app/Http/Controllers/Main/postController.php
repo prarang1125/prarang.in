@@ -119,7 +119,6 @@ class postController extends Controller
         });
         $post->tagInUnicode = $post->tagMappings->first()->tag->tagInUnicode;
 
-    
         // Return the view with all necessary data
         return view('portal.post-summary', [
             'post' => $post,
