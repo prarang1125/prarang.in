@@ -205,7 +205,6 @@
     <br>
     <br>
     
-
 <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
     <h5 style="margin-bottom: 15px;">Business Hours</h5>
     <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>

@@ -25,10 +25,13 @@
     <x-post.navbar cityId="12" :cityCode="$cityCode"/>
 
     <div class="container">
+        @isset($name)
         <div class="page-header">
-            <h1>Posts from {{ $city_name }}</h1>
-            <p>Browse the latest posts for this city.</p>
+            <h1>{{ $name }}</h1>
+            {{-- <small>Browse the latest posts for this city.</small> --}}
         </div>
+        @endisset
+        <br><br>
 
         <!-- Grouped Posts by Month -->
         @forelse ($postsByMonth as $month => $posts)

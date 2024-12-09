@@ -224,7 +224,7 @@
                             <div class="row">
                                 <div class="col-10 m-0 p-0">
                                     {{-- {{$tag->tagInUnicode}} --}}
-                                    <h6 class="m--0 p-0">{{$tag->tagInEnglish}}</h6>
+                                    <h6 class="m--0 p-0">{{$tag->tagInUnicode}}</h6>
                                  <small> {{$tag->tagInEnglish}}</small>
                                 </div>
                                 <div class="col-2">
