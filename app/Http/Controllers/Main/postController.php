@@ -59,7 +59,6 @@ class postController extends Controller
                     'imageUrl' => $imageUrl,
                     'tags' => $tags,
                     'createDate' => $chitti->dateOfApprove,
-                    // 'color'=>$chitti->;
                 ];
             });
         });
