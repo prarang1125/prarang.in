@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\DB;
 
 class postController extends Controller
 {
-    public function getChittiData($city,$name=null)
+    public function getChittiData($city,$name=null,$forAbour=null)
     {
         // Fetch portal by city slug
         $portal = Portal::where('slug', $city)->firstOrFail(); 

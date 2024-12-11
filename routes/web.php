@@ -22,7 +22,7 @@ Route::prefix('/')->group(function () {
 });
 
 
-Route::get('{city}/posts/{name?}', [postController::class, 'getChittiData'])->name('posts.city');
+Route::get('{city}/posts/{name?}/{forabour}', [postController::class, 'getChittiData'])->name('posts.city');
 Route::get('/post-summary/{id}/{subTitle?}', [PostController::class, 'post_summary'])->name('post-summary');
 Route::get('/decode', [postController::class, 'decodeText']);
 
