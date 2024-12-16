@@ -6,16 +6,21 @@
             <div class="col-md-4">
                 <h5>{{ $linksTitle ?? 'Quick Links' }}</h5>
                 <ul>
-                    <li><a href="{{ $homeLink ?? '#' }}">मेरठ होम</a></li>
-                    <li><a href="{{ $servicesLink ?? '#' }}">मेरठ स्मार्ट सर्विसेज</a></li>
+                    <li>
+                        <a href="{{ $homeLink ?? 'https://www.prarang.in/' . $city }}"> {{ ucfirst($city) }} होम </a>
+                    </li>
+                    <li>
+                        <a href="{{ $servicesLink ?? 'https://www.prarang.in/' . $city . '/smart.php' }}"> {{ ucfirst($city) }} स्मार्ट सर्विसेज </a>
+                    </li>
                 </ul>
+                
             </div>
 
             <!-- Contact Section -->
             <div class="col-md-4">
                 <h5>Address</h5>
                 <ul>
-                    <li> 1125, The i-Thum , A-40, Sector 62, Noida, Uttar Pradesh 201301</li>
+                    <li> 1125, The i-Thumb , A-40, Sector 62, Noida, Uttar Pradesh 201301</li>
                 </ul>
             </div>
 
@@ -23,10 +28,10 @@
             <div class="col-md-4">
                 <h5>Connect With Us</h5>
                 <ul class="social-links">
-                    <li><a href="{{ $facebook ?? '#' }}" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
-                    <li><a href="{{ $instagram ?? '#' }}" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
-                    <li><a href="{{ $playstore ?? '#' }}" target="_blank"><i class="fab fa-google-play"></i> Play Store</a></li>
-                    <li><a href="{{ $twitter ?? '#' }}" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="{{ $facebook ?? 'https://www.facebook.com/prarang.in/' }}" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="{{ $instagram ?? 'https://www.instagram.com/prarang_in/?hl=en' }}" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="{{ $playstore ?? 'https://play.google.com/store/apps/details?id=com.riversanskiriti.prarang&hl=en_IN' }}" target="_blank"><i class="fab fa-google-play"></i> Play Store</a></li>
+                    <li><a href="{{ $twitter ?? 'https://x.com/prarang_in?lang=en' }}" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
                 </ul>
             </div>
         </div>

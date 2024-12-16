@@ -42,22 +42,24 @@
         @endif
 
         <!-- Primary Details Section -->
-        <div class="form-section">
+        <div class="form-section" style="max-width: 900px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
             <h5>Primary Listing Details</h5>
+            <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
             <div class="mb-3">
                 <label for="location" class="form-label">Location</label>
                 <select id="location" name="location" class="form-select">
                     <option selected disabled>Select location</option>
                     @foreach($cities as $city)
-                        <option value="{{ $city->id }}" {{ $listing->location == $city->id ? 'selected' : '' }}>
-                            {{ $city->name }}
-                        </option>
+                    <option value="{{ $city->id }}" 
+                        {{ (old('legal_type_id', $listing->city_id) == $city->id) ? 'selected' : '' }}>
+                        {{ $city->name }}
+                    </option>
                     @endforeach
                 </select>
             </div>
             <div class="mb-3">
                 <label for="listingTitle" class="form-label">Listing Title</label>
-                <input type="text" id="listingTitle" name="listingTitle" class="form-control" value="{{ old('listingTitle', $listing->title) }}">
+                <input type="text" id="listingTitle" name="listingTitle" class="form-control" value="{{ old('listing_title', $listing->listing_title) }}">
             </div>
             <div class="form-check mb-3">
                 <input type="checkbox" class="form-check-input" id="hasTagline" {{ $listing->tagline ? 'checked' : '' }}
@@ -162,7 +164,7 @@
                     </select>
                 </div>
             </div>
-        <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
+        <div style="max-width: 900px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
             <h5 style="margin-bottom: 15px;">Address Details</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
             <div style="display: flex; gap: 20px;">
@@ -175,7 +177,7 @@
         </div>
         <br>
         <br>
-        <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
+        <div style="max-width: 900px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
             <h5 style="margin-bottom: 15px;">CATEGORY & SERVICES</h5>
             <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
             <div style="display: flex; gap: 20px;">
@@ -194,7 +196,7 @@
             </div>
         </div>
         <br><br>
-        <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
+        <div style="max-width: 900px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
             <h5 style="margin-bottom: 15px;">More Info</h5>
             <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
             <div style="margin-top: 15px;">
@@ -208,7 +210,7 @@
         </div>
             <br>
             <br>
-            <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
+            <div style="max-width: 900px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
                 <h5 style="margin-bottom: 15px;">Address Information</h5>
                 <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
                 <div style="margin-bottom: 10px;">
@@ -232,7 +234,7 @@
                 </div>
             </div>
             <br>
-            <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
+            <div style="max-width: 900px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
                 <h5 style="margin-bottom: 15px;">Social Media Links</h5>
                 <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
                 <div class="social-media-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
@@ -252,7 +254,7 @@
                 </div>
             </div>
             <br>
-            <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 0 5px rgba(0,0,0,0.1);">
+            <div style="max-width: 900px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 0 5px rgba(0,0,0,0.1);">
                 <h5 style="margin-bottom: 15px;">MEDIA</h5>
                 <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
                 <div style="border: 1px dashed #ddd; padding: 20px; text-align: center; color: #888; margin-bottom: 10px;">
@@ -284,7 +286,7 @@
                 </div>
             </div>
             <br>
-            <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
+            <div style="max-width: 900px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
                 <div id="signupFields" style="display: flex; gap: 20px; margin-bottom: 15px;">
                     <div style="flex: 1;">
                         <label for="signupEmail">Enter email to signup & receive notification upon listing approval</label>
@@ -292,7 +294,7 @@
                     </div>
                     <div style="flex: 1;">
                         <label for="userName">Enter User Name</label>
-                        <input type="text" id="userName" name="userName" placeholder="Enter User Name" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
+                        <input type="text" id="userName" name="userName" value="{{ old('user_name', $listing->user_name) }}" placeholder="Enter User Name" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
                     </div>
                 </div>
                 <div style="margin-top: 15px; margin-bottom: 15px;">
@@ -303,20 +305,21 @@
                 <div id="accountFields" style="display: none; flex-direction: row; gap: 20px;">
                     <div style="flex: 1;">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" placeholder="Enter your email" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
+                        <input type="email" id="email" name="email" value="{{ old('email', $listing->email) }}" placeholder="Enter your email" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
                     </div>
                     <div style="flex: 1;">
                         <label for="password">Password</label>
-                        <input type="password" id="password" name="password" placeholder="Enter your password" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
+                        <input type="password" id="password" name="password" value="{{ old('password', $listing->password) }}" placeholder="Enter your password" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
                     </div>
                 </div>
             </div>
-</div>
+
         <!-- Submit Button -->
         <div class="text-center mt-4">
             <button type="submit" class="btn btn-primary">Update Listing</button>
         </div>
     </form>
+</div>
 </div>
 
 <script>

@@ -15,9 +15,6 @@ class VCardController extends Controller
         return view("yellowpages::Home.vcard");
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('yellowpages::create');

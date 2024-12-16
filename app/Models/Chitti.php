@@ -21,6 +21,13 @@ class Chitti extends Model
     {
         return $this->hasMany(ChittiTagMapping::class, 'chittiId', 'chittiId');
     }
+
+
+public function portal()
+{
+    return $this->belongsTo(Portal::class, 'city_code', 'city_code');
+}
+
    
 
 

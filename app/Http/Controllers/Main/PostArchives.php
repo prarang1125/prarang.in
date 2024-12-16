@@ -4,11 +4,11 @@ namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
 use App\Models\Chitti;
-use App\Models\ChittiGeography;
+// use App\Models\ChittiGeography;
 use App\Models\ChittiImageMapping;
-use App\Models\ChittiTagMapping;
+// use App\Models\ChittiTagMapping;
 use App\Models\Portal;
-use Illuminate\Http\Request;
+// use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class PostArchives extends Controller
@@ -84,39 +84,41 @@ class PostArchives extends Controller
 
         // Fetch Chittis with eager loading for images and tags, ordered by createDate desc
         $chittis = Chitti::whereIn('chittiId', $chittiIds)
-            ->where('finalStatus', 'approved')
-            ->orderBy('chittiId', 'desc') // Add ordering by createDate desc
-            ->with(['images', 'tags.tag'])
-            ->paginate(35);
+         ->where('finalStatus', 'approved')
+        ->orderBy('chittiId', 'desc')
+        ->with(['tagMappings.tag', 'images'])  // Eager load tagMappings and related tag
+        ->paginate(35);
 
 
-        $postsByMonth = $chittis->groupBy(function ($chitti) {
+      $postsByMonth = $chittis->groupBy(function ($chitti) {
             return \Carbon\Carbon::parse($chitti->createDate)->format('F Y');
         })->map(function ($chittis) {
             return $chittis->map(function ($chitti) {
                 // Retrieve image or use default
-                $imageUrl = ChittiImageMapping::where('chittiId', $chitti->chittiId)->value('imageName') ?? asset('default_image.jpg');
-                // Return formatted data
+                $imageUrl = $chitti->images->first()->imageName ?? asset('default_image.jpg');  // Get the first image
+    
+                // Get all tags related to this Chitti and join them by commas
+                $tags = $chitti->tagMappings->map(function ($tagMapping) {
+                    return $tagMapping->tag->tagInEnglish;  // Access the related tag's tagInEnglish
+                })->filter()->join(', ');  // Join tags 
                 return [
                     'id' => $chitti->chittiId,
                     'title' => $chitti->Title,
                     'subTitle' => $chitti->SubTitle,
                     'description' => $chitti->description,
                     'imageUrl' => $imageUrl,
+                    'tags' => $tags,
                     'createDate' => $chitti->createDate,
                 ];
             });
         });
-
-        // Return view with data
+    
         return view('portal.post', [
-            'city_name' => $portal->city_name ,
+            'city_name' => $portal->city_name,
             'postsByMonth' => $postsByMonth,
-            'cityCode' => $portal->city_code,
-            'chittis' => $chittis,
-            'name' => ucfirst($name)
-        ]);
-
-        // return $citySlug;
-    }
+             'cityCode' => $portal->city_code,
+            'chittis'=>$chittis,
+             'name' => ucfirst($name)
+        ]);    
+    }   
 }

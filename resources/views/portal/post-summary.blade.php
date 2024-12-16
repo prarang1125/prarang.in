@@ -6,9 +6,16 @@
     <meta property="og:locale" content="en_IN" />
     <meta name="robots" content="index, follow" />
     <meta property="og:type" content="article" />
-    <meta property="og:image:width" content="600" />                               
+    <meta property="og:image:width" content="600" />
     <meta property="og:image:height" content="315"/>
-    <meta property="og:site_name" content="" />
+    <meta property="og:site_name" content="{{ $post['siteName'] ?? 'Prarang' }}" />
+    
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="{{ $post['title'] ?? 'Default Title' }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="{{ $post['imageUrl'] ?? 'default-image-url.jpg' }}" />
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:description" content="{{ $post['description'] ?? 'Default description for the post.' }}" />
     <title>{{ $post['title'] }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
@@ -222,7 +229,7 @@
                 @endif
                 <!-- Post Content -->
                 <h2 style="font-weight: bold; font-size: 20px; margin-bottom: 10px;">{{ $post['title'] }}</h2>
-                <p>{!! $post['description'] !!}</p>
+                <p style="background-color: {{ $ColorCode }};">{!! $post['description'] !!}</p>
             </div>
     
             <!-- Sidebar (Recent Posts) -->
@@ -244,7 +251,7 @@
             {{ $post['tagInUnicode'] }}
         </a>
         
-        <div class="definitions">
+        <div class="definitions" style="background-color: {{ $ColorCode }};">
             <h3>Definitions of the Post Viewership Metrics</h3>
             <p>
                 <strong>A. City Subscribers (FB + App) -</strong> This is the Total city-based unique subscribers from the Prarang Hindi FB page and the Prarang App who reached this specific post.
@@ -274,7 +281,7 @@
 
 
 </div>
-    <x-post.footer />
+<x-post.footer :city="$city_name" />
   
     {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> --}}
 </body>
