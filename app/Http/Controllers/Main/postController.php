@@ -70,16 +70,15 @@ class postController extends Controller
         ]);
     }
     
-    public function post_summary($postId,$slug)
+    public function post_summary($slug,$postId)
     {
        
         $post = Chitti::where('chittiId', $postId)
                       ->where('finalStatus', 'approved')
                       ->with(['tagMappings.tag', 'images'])  // Eager load related data
                       ->first();
-
+                     
         $color=Color::where('id', $post->color_value)->first();
-
         $ColorCode=$color->colorcode;           
         if (!$post) {
             abort(404, 'Post not found');
@@ -95,13 +94,12 @@ class postController extends Controller
         // Fetch the previous and next post IDs
         $previousPost = Chitti::where('chittiId', '<', $postId)
                               ->where('finalStatus', 'approved')
-                             // ->where('areaId', $portal->city_code)
+                               
                               ->orderBy('chittiId', 'desc')
                               ->first();
        
         $nextPost = Chitti::where('chittiId', '>', $postId)
                           ->where('finalStatus', 'approved')
-                            // ->where('areaId', $portal->city_code)
                           ->orderBy('chittiId', 'asc')
                           ->first();
         
@@ -135,5 +133,73 @@ class postController extends Controller
         ]);
 
     }
+
+    //updated 
+//     public function post_summary($slug, $postId)
+// {
+//     // Fetch the post based on chittiId and slug
+//     $post = Chitti::where('chittiId', $postId)
+//                   ->where('slug', $slug)
+//                   ->with(['tagMappings.tag', 'images'])  // Eager load related data
+//                   ->first();
+
+//     if (!$post) {
+//         abort(404, 'Post not found');
+//     }
+
+//     // Fetch color based on the post's color_value
+//     $color = Color::where('id', $post->color_value)->first();
+//     $ColorCode = $color ? $color->colorcode : null;
+
+//     // Fetch related geography data
+//     $geography = ChittiGeography::where('chittiId', $postId)->first();
+//     $formattedDate = $post->createDate ? Carbon::parse($post->createDate)->format('Y-m-d H:i:s') : 'N/A';
+
+//     // Fetch portal based on geography's city code
+//     $portal = Portal::where('city_code', $geography->Geography)->firstOrFail();
+
+//     // Fetch the previous and next post IDs
+//     $previousPost = Chitti::whereHas('geography', function($query) use ($postId) {
+//                         $query->where('chittiId', '<', $postId);
+//                     })
+//                     ->where('slug', $slug)
+//                     ->orderBy('chittiId', 'desc')
+//                     ->first();
+
+//     $nextPost = Chitti::whereHas('geography', function($query) use ($postId) {
+//                         $query->where('chittiId', '>', $postId);
+//                     })
+//                     ->where('slug', $slug)
+//                     ->orderBy('chittiId', 'asc')
+//                     ->first();
+
+//     // Fetch recent posts excluding the current one
+//     $recentPosts = Chitti::where('slug', $slug)
+//                          ->where('chittiId', '!=', $postId)
+//                          ->orderBy('chittiId', 'desc')
+//                          ->take(5)
+//                          ->get();
+
+//     // Add image URL and formatted date for recent posts
+//     $recentPostsFormatted = $recentPosts->map(function ($recent) {
+//         $recent->imageUrl = ChittiImageMapping::where('chittiId', $recent->chittiId)->value('imageName') ?? 'images/default_image.jpg';
+//         $recent->formattedDate = $recent->createDate ? Carbon::parse($recent->createDate)->format('d-m-Y H:i A') : 'N/A';
+//         return $recent;
+//     });
+
+//     $post->tagInUnicode = $post->tagMappings->first()->tag->tagInUnicode;
+
+//     // Return the view with all necessary data
+//     return view('portal.post-summary', [
+//         'city_name' => $portal->slug,
+//         'post' => $post,
+//         'previousPost' => $previousPost,
+//         'ColorCode' => $ColorCode,
+//         'nextPost' => $nextPost,
+//         'recentPosts' => $recentPostsFormatted,
+//         'cityCode' => $geography ? $geography->Geography : null,
+//     ]);
+// }
+
     
 }
