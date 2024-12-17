@@ -70,136 +70,138 @@ class postController extends Controller
         ]);
     }
     
-    public function post_summary($slug,$postId)
-    {
+    // public function post_summary($slug,$postId)
+    // {
        
-        $post = Chitti::where('chittiId', $postId)
-                      ->where('finalStatus', 'approved')
-                      ->with(['tagMappings.tag', 'images'])  // Eager load related data
-                      ->first();
+    //     $post = Chitti::where('chittiId', $postId)
+    //                   ->where('finalStatus', 'approved')
+    //                   ->with(['tagMappings.tag', 'images'])  // Eager load related data
+    //                   ->first();
                      
-        $color=Color::where('id', $post->color_value)->first();
-        $ColorCode=$color->colorcode;           
-        if (!$post) {
-            abort(404, 'Post not found');
-        }
+    //     $color=Color::where('id', $post->color_value)->first();
+    //     $ColorCode=$color->colorcode;           
+    //     if (!$post) {
+    //         abort(404, 'Post not found');
+    //     }
 
-        // Fetch related geography data
-        $geography = ChittiGeography::where('chittiId', $postId)->first();
+    //     // Fetch related geography data
+    //     $geography = ChittiGeography::where('chittiId', $postId)->first();
     
-        $formattedDate = $post->createDate ? Carbon::parse($post->createDate)->format('Y-m-d H:i:s') : 'N/A';
+    //     $formattedDate = $post->createDate ? Carbon::parse($post->createDate)->format('Y-m-d H:i:s') : 'N/A';
 
-        $portal = Portal::where('city_code', $geography->Geography)->firstOrFail(); 
+    //     $portal = Portal::where('city_code', $geography->Geography)->firstOrFail(); 
 
-        // Fetch the previous and next post IDs
-        $previousPost = Chitti::where('chittiId', '<', $postId)
-                              ->where('finalStatus', 'approved')
+    //     // Fetch the previous and next post IDs
+    //     $previousPost = Chitti::where('chittiId', '<', $postId)
+    //                           ->where('finalStatus', 'approved')
                                
-                              ->orderBy('chittiId', 'desc')
-                              ->first();
+    //                           ->orderBy('chittiId', 'desc')
+    //                           ->first();
        
-        $nextPost = Chitti::where('chittiId', '>', $postId)
-                          ->where('finalStatus', 'approved')
-                          ->orderBy('chittiId', 'asc')
-                          ->first();
+    //     $nextPost = Chitti::where('chittiId', '>', $postId)
+    //                       ->where('finalStatus', 'approved')
+    //                       ->orderBy('chittiId', 'asc')
+    //                       ->first();
         
-        // Fetch recent posts excluding the current one
-        $recentPosts = Chitti::where('finalStatus', 'approved')
-                             ->where('chittiId', '!=', $postId)
-                            //  ->where('areaId', $portal->city_code)
-                             ->orderBy('chittiId', 'desc')
-                             ->take(5)
-                             ->get();
+    //     // Fetch recent posts excluding the current one
+    //     $recentPosts = Chitti::where('finalStatus', 'approved')
+    //                          ->where('chittiId', '!=', $postId)
+    //                         //  ->where('areaId', $portal->city_code)
+    //                          ->orderBy('chittiId', 'desc')
+    //                          ->take(5)
+    //                          ->get();
         
-        // Add image URL and formatted date for recent posts
-        $recentPostsFormatted = $recentPosts->map(function ($recent) {
+    //     // Add image URL and formatted date for recent posts
+    //     $recentPostsFormatted = $recentPosts->map(function ($recent) {
             
-            $recent->imageUrl = ChittiImageMapping::where('chittiId', $recent->chittiId)->value('imageName') ?? 'images/default_image.jpg';
-            $recent->formattedDate = $recent->createDate ? Carbon::parse($recent->createDate)->format('d-m-Y H:i A') : 'N/A';
-            return $recent;
-        });
+    //         $recent->imageUrl = ChittiImageMapping::where('chittiId', $recent->chittiId)->value('imageName') ?? 'images/default_image.jpg';
+    //         $recent->formattedDate = $recent->createDate ? Carbon::parse($recent->createDate)->format('d-m-Y H:i A') : 'N/A';
+    //         return $recent;
+    //     });
 
-        $post->tagInUnicode = $post->tagMappings->first()->tag->tagInUnicode;
+    //     $post->tagInUnicode = $post->tagMappings->first()->tag->tagInUnicode;
 
-        // Return the view with all necessary data
-        return view('portal.post-summary', [
-            'city_name' =>$portal->slug,
-            'post' => $post,
-            'previousPost' => $previousPost,
-            'ColorCode' => $ColorCode,
-            'nextPost' => $nextPost,
-            'recentPosts' => $recentPostsFormatted,
-            'cityCode' => $geography ? $geography->Geography : null,
-        ]);
+    //     // Return the view with all necessary data
+    //     return view('portal.post-summary', [
+    //         'city_name' =>$portal->slug,
+    //         'post' => $post,
+    //         'previousPost' => $previousPost,
+    //         'ColorCode' => $ColorCode,
+    //         'nextPost' => $nextPost,
+    //         'recentPosts' => $recentPostsFormatted,
+    //         'cityCode' => $geography ? $geography->Geography : null,
+    //     ]);
 
-    }
+    // }
 
-    //updated 
-//     public function post_summary($slug, $postId)
-// {
-//     // Fetch the post based on chittiId and slug
-//     $post = Chitti::where('chittiId', $postId)
-//                   ->where('slug', $slug)
-//                   ->with(['tagMappings.tag', 'images'])  // Eager load related data
-//                   ->first();
+    //updated public function post_summary($slug, $postId)
 
-//     if (!$post) {
-//         abort(404, 'Post not found');
-//     }
-
-//     // Fetch color based on the post's color_value
-//     $color = Color::where('id', $post->color_value)->first();
-//     $ColorCode = $color ? $color->colorcode : null;
-
-//     // Fetch related geography data
-//     $geography = ChittiGeography::where('chittiId', $postId)->first();
-//     $formattedDate = $post->createDate ? Carbon::parse($post->createDate)->format('Y-m-d H:i:s') : 'N/A';
-
-//     // Fetch portal based on geography's city code
-//     $portal = Portal::where('city_code', $geography->Geography)->firstOrFail();
-
-//     // Fetch the previous and next post IDs
-//     $previousPost = Chitti::whereHas('geography', function($query) use ($postId) {
-//                         $query->where('chittiId', '<', $postId);
-//                     })
-//                     ->where('slug', $slug)
-//                     ->orderBy('chittiId', 'desc')
-//                     ->first();
-
-//     $nextPost = Chitti::whereHas('geography', function($query) use ($postId) {
-//                         $query->where('chittiId', '>', $postId);
-//                     })
-//                     ->where('slug', $slug)
-//                     ->orderBy('chittiId', 'asc')
-//                     ->first();
-
-//     // Fetch recent posts excluding the current one
-//     $recentPosts = Chitti::where('slug', $slug)
-//                          ->where('chittiId', '!=', $postId)
-//                          ->orderBy('chittiId', 'desc')
-//                          ->take(5)
-//                          ->get();
-
-//     // Add image URL and formatted date for recent posts
-//     $recentPostsFormatted = $recentPosts->map(function ($recent) {
-//         $recent->imageUrl = ChittiImageMapping::where('chittiId', $recent->chittiId)->value('imageName') ?? 'images/default_image.jpg';
-//         $recent->formattedDate = $recent->createDate ? Carbon::parse($recent->createDate)->format('d-m-Y H:i A') : 'N/A';
-//         return $recent;
-//     });
-
-//     $post->tagInUnicode = $post->tagMappings->first()->tag->tagInUnicode;
-
-//     // Return the view with all necessary data
-//     return view('portal.post-summary', [
-//         'city_name' => $portal->slug,
-//         'post' => $post,
-//         'previousPost' => $previousPost,
-//         'ColorCode' => $ColorCode,
-//         'nextPost' => $nextPost,
-//         'recentPosts' => $recentPostsFormatted,
-//         'cityCode' => $geography ? $geography->Geography : null,
-//     ]);
-// }
-
+    public function post_summary($slug, $postId)
+    {
+        // Fetch the current post with relationships
+        $post = Chitti::where('chittiId', $postId)
+            ->where('finalStatus', 'approved')
+            ->with(['tagMappings.tag', 'images', 'color'])
+            ->firstOrFail();
     
-}
+        // Post color
+        $ColorCode = $post->color->colorcode ?? '#FFFFFF';
+    
+        // Geography and Portal
+        $geography = $post->geography;
+        $portal = Portal::where('slug', $slug)->firstOrFail();
+    
+        // Previous and Next Posts
+        $startDate = Carbon::createFromFormat('d-m-Y H:i A', trim($post->dateOfApprove))->subDay()->format('d-m-Y') . ' 00:00';
+        $endDate = Carbon::createFromFormat('d-m-Y H:i A', trim($post->dateOfApprove))->subDay()->format('d-m-Y') . ' 23:59';
+    
+        $previousPost = DB::table('Chitti')
+            ->join('vchittigeography as vg', 'vg.chittiId', '=', 'Chitti.chittiId')
+            ->whereBetween('Chitti.dateOfApprove', [$startDate, $endDate])
+            ->where('Chitti.finalStatus', 'approved')
+            ->where('vg.Geography', $portal->city_code)
+            ->first();
+    
+        $startDate = Carbon::createFromFormat('d-m-Y H:i A', trim($post->dateOfApprove))->addDay()->format('d-m-Y') . ' 00:00';
+        $endDate = Carbon::createFromFormat('d-m-Y H:i A', trim($post->dateOfApprove))->addDay()->format('d-m-Y') . ' 23:59';
+    
+        $nextPost = DB::table('Chitti')
+            ->join('vchittigeography as vg', 'vg.chittiId', '=', 'Chitti.chittiId')
+            ->whereBetween('Chitti.dateOfApprove', [$startDate, $endDate])
+            ->where('Chitti.finalStatus', 'approved')
+            ->where('vg.Geography', $portal->city_code)
+            ->first();
+    
+        // Recent Posts
+        $recentPosts = Chitti::whereHas('geography.portal', function ($query) use ($slug) {
+                $query->where('slug', $slug);
+            })
+            ->where('chittiId', '!=', $postId)
+            ->orderBy('chittiId', 'desc')
+            ->where('finalStatus', 'approved')
+            ->take(5)
+            ->get()
+            ->map(function ($recent) {
+                $recent->imageUrl = optional($recent->images->first())->imageName ?? 'images/default_image.jpg';
+                $recent->formattedDate = $recent->createDate ? Carbon::parse($recent->createDate)->format('d-m-Y H:i A') : 'N/A';
+                return $recent;
+            });
+    
+        $post->tagInUnicode = $post->tagMappings->first()->tag->tagInUnicode;
+    
+        // Return view
+        return view('portal.post-summary', [
+            'post' => $post,
+            'slug' => $slug,
+            'previousPost' => $previousPost,
+            'nextPost' => $nextPost,
+            'recentPosts' => $recentPosts,
+            'cityCode' => $geography->Geography ?? null,
+            'ColorCode' => $ColorCode,
+            'city_name' => $portal->slug ?? 'Unknown',
+        ]);
+    }
+    
+}    
+
+

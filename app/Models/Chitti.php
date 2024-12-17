@@ -22,11 +22,15 @@ class Chitti extends Model
         return $this->hasMany(ChittiTagMapping::class, 'chittiId', 'chittiId');
     }
 
-
-public function portal()
+    public function geography()
+    {
+        return $this->hasOne(ChittiGeography::class, 'chittiId', 'chittiId');
+    }
+    public function color()
 {
-    return $this->belongsTo(Portal::class, 'city_code', 'city_code');
+    return $this->belongsTo(Color::class, 'color_value', 'id');
 }
+    
 
    
 
