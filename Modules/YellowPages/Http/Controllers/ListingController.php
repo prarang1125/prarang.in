@@ -165,7 +165,6 @@ class ListingController extends Controller
      }
  
      // Debugging output (to match your desired response)
-     dd($businessHours);
  
      // Uncomment this part to save the data to the database
      // foreach ($businessHours as $hour) {

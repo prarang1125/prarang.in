@@ -26,7 +26,7 @@
     
 
     <!-- Main Form -->
-    <form action="#" method="POST" enctype="multipart/form-data" class="form-container">
+    <form action="{{ route('admin.listing-update', $listing->id) }}" method="POST" enctype="multipart/form-data" class="form-container">
         @csrf
         @method('PUT')
 
@@ -201,14 +201,50 @@
             <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
             <div style="margin-top: 15px;">
                 <label for="description">Description</label>
-                <textarea id="description" name="description" rows="4" value="{{ old('primary_contact_email', $listing->description) }}" placeholder="Enter description here..." style="width: 100%;"></textarea>
+                <textarea id="description" name="description" rows="4" value="{{ old('description', $listing->description) }}" placeholder="Enter description here..." style="width: 100%;"></textarea>
             </div>
             <div style="margin-top: 15px;">
                 <label for="description">Tags or Keywords (Comma Separated)</label>
-                <textarea id="description" name="tags_keywords" rows="4" placeholder="Enter Tags or Keywords (Comma Separated)"  value="{{ old('primary_contact_email', $listing->tags_keywords) }}" style="width: 100%;"></textarea>
+                <textarea id="description" name="tags_keywords" rows="4" placeholder="Enter Tags or Keywords (Comma Separated)"  value="{{ old('tags', $listing->tags_keywords) }}" style="width: 100%;"></textarea>
             </div>
         </div>
             <br>
+            <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd; font-family: Arial, sans-serif;">
+                <h5 style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Business Hours</h5>
+                <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
+            
+                <!-- Schedule Container -->
+                <div id="schedule-container">
+                    @foreach($listinghours as $hour)
+                        <div class="day-schedule">
+                            <select name="day[]" style="padding: 5px; border: 1px solid #ccc; border-radius: 3px; width: 120px;">
+                                <option value="">-- Select a Day --</option>
+                                <option value="monday" {{ $hour->day == 'monday' ? 'selected' : '' }}>Monday</option>
+                                <option value="tuesday" {{ $hour->day == 'tuesday' ? 'selected' : '' }}>Tuesday</option>
+                                <option value="wednesday" {{ $hour->day == 'wednesday' ? 'selected' : '' }}>Wednesday</option>
+                                <option value="thursday" {{ $hour->day == 'thursday' ? 'selected' : '' }}>Thursday</option>
+                                <option value="friday" {{ $hour->day == 'friday' ? 'selected' : '' }}>Friday</option>
+                                <option value="saturday" {{ $hour->day == 'saturday' ? 'selected' : '' }}>Saturday</option>
+                                <option value="sunday" {{ $hour->day == 'sunday' ? 'selected' : '' }}>Sunday</option>
+                            </select>
+            
+                            <input type="time" name="open_time[]" value="{{ $hour->open_time }}" style="padding: 5px; border: 1px solid #ccc; border-radius: 3px;">
+                            <label style="font-weight: bold;">to</label>
+                            <input type="time" name="close_time[]" value="{{ $hour->close_time }}" style="padding: 5px; border: 1px solid #ccc; border-radius: 3px;">
+            
+                            <label>
+                                <input type="checkbox" name="is_24_hours[]" {{ $hour->is_24_hours ? 'checked' : '' }} style="cursor: pointer;"> 24 Hours
+                            </label>
+            
+                            <button type="button" class="remove-day-btn" style="background: none; border: none; color: red; font-size: 16px; cursor: pointer;">&#x2716;</button>
+                        </div>
+                    @endforeach
+                </div>
+            
+                <!-- Add New Day Button -->
+                <button type="button" id="add-day-btn" style="margin-top: 10px; padding: 8px 12px; background: #007bff; color: #fff; border: none; border-radius: 3px; cursor: pointer; font-size: 14px;">+ Add Day</button>
+            </div>
+            
             <br>
             <div style="max-width: 900px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
                 <h5 style="margin-bottom: 15px;">Address Information</h5>
@@ -242,15 +278,15 @@
                     <option selected>Select location</option>
                             @foreach($social_media as $social)
                             <option value="{{ $social->id }}" 
-                                {{ (old('advertising_medium_id ', $listing->social_id) == $social->id) ? 'selected' : '' }}>
+                                {{ (old('advertising_medium_id', $listing->social_id) == $social->id) ? 'selected' : '' }}>
                                 {{ $social->name }}
-                            </option>
+                    </option>
                             @endforeach
                     </select>
                     <input type="text" id="description" name="socialDescription" placeholder="Enter your link or details" style="flex: 2; padding: 8px;">
-                    <button type="button" id="addSocialMedia" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; cursor: pointer;">
+                    {{-- <button type="button" id="addSocialMedia" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; cursor: pointer;">
                         +
-                    </button>
+                    </button> --}}
                 </div>
             </div>
             <br>
@@ -297,11 +333,6 @@
                         <input type="text" id="userName" name="userName" value="{{ old('user_name', $listing->user_name) }}" placeholder="Enter User Name" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
                     </div>
                 </div>
-                <div style="margin-top: 15px; margin-bottom: 15px;">
-                    <label>
-                        <input type="checkbox" id="existingAccountCheckbox" style="margin-right: 5px;"> Already Have Account?
-                    </label>
-                </div>
                 <div id="accountFields" style="display: none; flex-direction: row; gap: 20px;">
                     <div style="flex: 1;">
                         <label for="email">Email</label>
@@ -328,6 +359,64 @@
         const taglineField = document.getElementById('taglineField');
         taglineField.style.display = taglineField.style.display === 'none' ? 'block' : 'none';
     }
+
+  // Add new day schedule
+document.getElementById('add-day-btn').addEventListener('click', () => {
+    const container = document.getElementById('schedule-container');
+    const firstSchedule = container.querySelector('.day-schedule');
+
+    if (firstSchedule) {
+        // Clone the first schedule
+        const newSchedule = firstSchedule.cloneNode(true);
+
+        // Clear the input values in the new schedule
+        newSchedule.querySelectorAll('select, input').forEach((input) => {
+            if (input.type === 'checkbox') {
+                input.checked = false; // Uncheck checkboxes
+            } else {
+                input.value = ''; // Clear other inputs
+            }
+        });
+
+        // Hide second time slot by default
+        const secondTimeSlot = newSchedule.querySelector('.second-time-slot');
+        if (secondTimeSlot) {
+            secondTimeSlot.style.display = 'none';
+        }
+
+        // Append the new schedule to the container
+        container.appendChild(newSchedule);
+    } else {
+        console.error("Initial schedule not found.");
+    }
+});
+
+// Handle "24 Hours" functionality
+document.addEventListener('change', (e) => {
+    if (e.target.name === 'is_24_hours[]') {
+        const parent = e.target.closest('.day-schedule');
+        const timeInputs = parent.querySelectorAll('input[type="time"]');
+        timeInputs.forEach(input => input.disabled = e.target.checked); // Disable time inputs if "24 Hours" is checked
+    }
+});
+
+// Handle "Add 2nd Slot" functionality
+document.addEventListener('change', (e) => {
+    if (e.target.classList.contains('add-2nd-slot')) {
+        const parent = e.target.closest('.day-schedule');
+        const secondSlot = parent.querySelector('.second-time-slot');
+        secondSlot.style.display = e.target.checked ? 'block' : 'none'; // Show or hide second slot
+    }
+});
+
+// Remove day schedule
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('remove-day-btn')) {
+        e.target.closest('.day-schedule').remove(); // Remove the current schedule
+    }
+});
+
+
 </script>
 
 @endsection

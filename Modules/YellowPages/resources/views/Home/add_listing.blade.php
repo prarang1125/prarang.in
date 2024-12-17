@@ -409,7 +409,7 @@ document.addEventListener('change', (e) => {
     }
 });
 
-// Handle "Add 2nd Slot" functionality
+
 document.addEventListener('change', (e) => {
     if (e.target.classList.contains('add-2nd-slot')) {
         const parent = e.target.closest('.day-schedule');

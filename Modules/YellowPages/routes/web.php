@@ -43,12 +43,19 @@ Route::group(['prefix' => 'yellow-pages'], function () {
     Route::get('/getLocationData', [ListingController::class, 'getLocationData'])->name('yp.getLocationData');
     Route::post('/store-listing', [ListingController::class, 'store'])->name('yp.listing.store');
     Route::get('/submit-listing', [ListingController::class, 'submit_listing'])->name('yp.listing.submit');;
-    Route::get('/vcard', [VCardController::class, 'index'])->name('yp.vcard');
     Route::post('/reviews/store/{listing}', [ReviewController::class, 'store'])->name('reviews.store');
     Route::get('/reviews/submit', [ReviewController::class, 'submit_review'])->name('review.submit');
+
+});
     //Admin
+    Route::group(['prefix' => 'yellow-pages'], function(){
+        Route::group(['middleware' => 'guest'], function(){
     Route::get('login', [AuthController::class, 'index'])->name('admin.login');
     Route::post('authenticate', [AuthController::class, 'authenticate'])->name('admin.authenticate');
+    });
+
+     Route::group(['middleware' => 'auth'], function(){
+
     Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
 
      #this route is use for admin users
@@ -81,8 +88,13 @@ Route::group(['prefix' => 'yellow-pages'], function () {
      Route::post('listing-delete/{id}', [BusinessController::class, 'listingDelete'])->name('admin.listing-delete');
      Route::get('listing-edit/{id}', [BusinessController::class, 'listingEdit'])->name('admin.listing-edit');
      Route::put('listing-update/{id}', [BusinessController::class, 'listingUpdate'])->name('admin.listing-update');
-  
+
+     //vCardpanel
+     Route::get('/vCard/dashboard', [VCardController::class, 'dashboard'])->name('yp.dashboard');
+
+     
+     //payment
+     Route::get('/vcard', [VCardController::class, 'index'])->name('yp.vcard');
+     Route::get('stripePayment', [VCardController::class, 'stripePayment'])->name('yp.stripe');
+    });
 });
-
-
-
