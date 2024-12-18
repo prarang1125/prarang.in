@@ -11,6 +11,7 @@ use Modules\YellowPages\Http\Controllers\admin\AdminController;
 use Modules\YellowPages\Http\Controllers\admin\CitiesController;
 use Modules\YellowPages\Http\Controllers\admin\CategoriesController;
 use Modules\YellowPages\Http\Controllers\admin\BusinessController;
+use Modules\YellowPages\Http\Controllers\VCard\vCardAuthcontroller;
 // use App\Http\Controllers\Auth\AuthController;
 
 /*
@@ -49,14 +50,16 @@ Route::group(['prefix' => 'yellow-pages'], function () {
 });
     //Admin
     Route::group(['prefix' => 'yellow-pages'], function(){
-        Route::group(['middleware' => 'guest'], function(){
+     Route::group(['middleware' => 'admin.guest'], function(){
     Route::get('login', [AuthController::class, 'index'])->name('admin.login');
     Route::post('authenticate', [AuthController::class, 'authenticate'])->name('admin.authenticate');
     });
 
-     Route::group(['middleware' => 'auth'], function(){
+     Route::group(['middleware' => 'admin.auth'], function(){
 
     Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
+
 
      #this route is use for admin users
      Route::get('user-profile', [AdminController::class, 'userProfile'])->name('admin.user-profile');
@@ -90,11 +93,17 @@ Route::group(['prefix' => 'yellow-pages'], function () {
      Route::put('listing-update/{id}', [BusinessController::class, 'listingUpdate'])->name('admin.listing-update');
 
      //vCardpanel
-     Route::get('/vCard/dashboard', [VCardController::class, 'dashboard'])->name('yp.dashboard');
-
-     
+     Route::get('/vCard/plan', [VCardController::class, 'vCardPayment'])->name('yp.payment');;
+     Route::get('/vCard/plan/sucess', [VCardController::class, 'paymentSucesss'])->name('payment.success');;
+     Route::get('/vCard/plan/cancel', [VCardController::class, 'paymentCancel'])->name('payment.cancel');;
      //payment
      Route::get('/vcard', [VCardController::class, 'index'])->name('yp.vcard');
      Route::get('stripePayment', [VCardController::class, 'stripePayment'])->name('yp.stripe');
     });
+
+    Route::get('/vCard/login', [vCardAuthcontroller::class, 'index'])->name('vCard.Login');
+    Route::post('authenticate', [vCardAuthcontroller::class, 'authenticate'])->name('vCard.authenticate');
+    Route::get('/vCard/dashboard', [VCardController::class, 'dashboard'])->name('vCard.dashboard');
+    Route::get('/vCard/createCard', [VCardController::class, 'createCard'])->name('vCard.createCard');
+
 });

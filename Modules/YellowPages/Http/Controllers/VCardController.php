@@ -5,6 +5,8 @@ namespace Modules\YellowPages\Http\Controllers;
 use App\Http\Controllers\Controller;
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
+use Stripe\StripeClient;
+use Stripe\Checkout\Session;
 use Illuminate\Http\Request;
 
 class VCardController extends Controller
@@ -20,34 +22,42 @@ class VCardController extends Controller
     {
         return view("yellowpages::Vcard.dashboard");
     }
-    public function stripePayment(Request $request)
+    public function vCardPayment(Request $request)
     {
-        Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+        $amount = 100; // Convert to cents
+    try {
+        // Create a new Stripe client instance
+        $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
+        // Create the checkout session
+        $session = $stripe->checkout->sessions->create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'usd',
+                    'product_data' => [
+                        'name' => 'Standard Plan',
+                    ],
+                    'unit_amount' => $amount,
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => route('payment.success'),
+            'cancel_url' => route('payment.cancel'),
+        ]);
 
-        try {
-            
-            $paymentIntent = PaymentIntent::create([
-                'amount' => 2000,  // Amount in cents
-                'currency' => 'usd',
-                'payment_method_types' => ['card'],
-                'metadata' => [
-                    'order_id' => $request->input('order_id')
-                ]
-            ]);
+        return response()->json(['id' => $session->id]);
 
-            return response()->json([
-                'clientSecret' => $paymentIntent->client_secret
-            ]);
-        } catch (\Exception $e) {
-            return response()->json(['error' => $e->getMessage()], 500);
-        }
+    } catch (\Exception $e) {
+        return response()->json(['error' => $e->getMessage()], 500);
+    }
     }
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function createCard(Request $request)
     {
-        //
+        return view("yellowpages::Vcard.Card");
     }
 
     /**
