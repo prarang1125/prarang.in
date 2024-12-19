@@ -24,21 +24,22 @@
         <!-- Other Cards -->
         <div class="col">
             <a href="#">
-            <div class="card radius-10 bg-gradient-deepblue">
-                 <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <h5 class="mb-0 text-white">50</h5> <!-- Static Total Categories -->
-                        <div class="ms-auto">
-                            <i class='bx bx-world fs-3 text-white'></i>
+                <div class="card radius-10 bg-gradient-deepblue">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <h5 class="mb-0 text-white">Free Plan</h5> <!-- Static Total Categories -->
+                            <div class="ms-auto">
+                                <i class='bx bx-user fs-3 text-white'></i> <!-- Updated icon -->
+                            </div>
+                        </div>
+                        <div class="d-flex align-items-center text-white">
+                            <p class="mb-0">Membership</p>
                         </div>
                     </div>
-                    <div class="d-flex align-items-center text-white">
-                        <p class="mb-0">TOTAL CATEGORIES</p>
-                    </div>
                 </div>
-            </div>
             </a>
         </div>
+        
         <!-- Other Static Cards -->
     </div>
 
