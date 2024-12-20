@@ -18,30 +18,30 @@ class ReviewController extends Controller
     {
         // Validate the incoming request
         $request->validate([
-            'cleanliness' => 'required|numeric|min:0|max:5',
-            'service' => 'required|numeric|min:0|max:5',
-            'ambience' => 'required|numeric|min:0|max:5',
-            'price' => 'required|numeric|min:0|max:5',
+            'cleanliness' => 'required|numeric|min:1|max:5',
+            'service' => 'required|numeric|min:1|max:5',
+            'ambience' => 'required|numeric|min:1|max:5',
+            'price' => 'required|numeric|min:1|max:5',
             'title' => 'nullable|string|max:255',
             'review' => 'nullable|string|max:1000',
-            'image' => 'nullable|array|max:5',  // Allow multiple images with a maximum of 5
-            'image.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',  // Validate each image
+            'image' => 'nullable|array|max:5',
+            'image.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
-    
-        // Find the business listing to ensure it's valid
+
+        // Find the listing
         $listing = BusinessListing::findOrFail($listingId);
-    
-        // Handle image upload (multiple images)
+
+        // Handle image uploads
         $imagePaths = [];
         if ($request->hasFile('image')) {
             foreach ($request->file('image') as $image) {
                 $imagePaths[] = $image->store('reviews', 'public');
             }
         }
-    
-        // Store the review data in the database
+
+        // Create the review
         Review::create([
-            'user_id' => Auth::id(),
+            'user_id' => Auth::user(),
             'listing_id' => $listingId,
             'cleanliness' => $request->cleanliness,
             'service' => $request->service,
@@ -49,14 +49,15 @@ class ReviewController extends Controller
             'price' => $request->price,
             'title' => $request->title,
             'review' => $request->review,
-            'image' => json_encode($imagePaths),  // Store image paths as JSON
+            'image' => json_encode($imagePaths),
         ]);
-    
-        // Redirect to the listing page with a success message
-        return redirect()->route('listing.show', $listingId)->with('success', 'Review submitted successfully!');
+
+        // Redirect
+        return redirect()->route('review.submit')->with('success', 'Review submitted successfully!');
     }
     
+    public function submit_review(){
+        return view("yellowpages::Home.review-submit");
+    }
 
-
-   
 }

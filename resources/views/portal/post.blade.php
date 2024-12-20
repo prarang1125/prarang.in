@@ -39,11 +39,14 @@
                 <h2>{{ $month }}</h2>
                 <div class="row">
                     @foreach ($posts as $post)
-                   
                         <div class="col-lg-3 col-md-4 col-sm-6">
                             <!-- Wrap the card in a clickable link -->
-                            <a href="{{ route('post-summary', ['id' => $post['id'], 'subTitle' => str_replace(' ', '-', $post['subTitle'])]) }}" class="text-decoration-none">
-                                <div class="card post-thumbnail">
+                            <a href="{{ route('post-summary', [
+                                'id' => $post['id'],
+                                'slug' => $city_name, 
+                                'subTitle' => isset($post['subTitle']) ? str_replace(' ', '-', $post['subTitle']) : null
+                            ]) }}" class="text-decoration-none">
+                                                            <div class="card post-thumbnail">
                                     <img src="{{ $post['imageUrl'] ?? 'default-image.jpg' }}" alt="{{ $post['title'] }}" class="card-img-top">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $post['title'] }}</h5>
@@ -68,7 +71,9 @@
 
     {{-- @include('layout.footer') --}}
 
-    <x-post.footer />
+    {{-- <x-post.footer /> --}}
+    <x-post.footer :city="$city_name" />
+
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>

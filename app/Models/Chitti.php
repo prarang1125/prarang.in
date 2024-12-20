@@ -21,6 +21,17 @@ class Chitti extends Model
     {
         return $this->hasMany(ChittiTagMapping::class, 'chittiId', 'chittiId');
     }
+
+    public function geography()
+    {
+        return $this->hasOne(ChittiGeography::class, 'chittiId', 'chittiId');
+    }
+    public function color()
+{
+    return $this->belongsTo(Color::class, 'color_value', 'id');
+}
+    
+
    
 
 

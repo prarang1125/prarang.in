@@ -121,6 +121,9 @@ public function userStore(Request $request)
     }
 }
 
-
+public function logout() {
+    Auth::guard('admin')->logout();
+    return redirect()->route('admin.login');
+}
   
 }

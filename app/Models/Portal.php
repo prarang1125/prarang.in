@@ -7,4 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Portal extends Model
 {
     protected $table = 'portals'; 
+
+    public function geography()
+    {
+        return $this->belongsTo(ChittiGeography::class, 'city_code', 'geography');
+    }
 }
