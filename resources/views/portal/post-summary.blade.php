@@ -182,7 +182,7 @@
     <div class="container">
         <div class="row">
             <!-- Page Header -->
-            @if (\Carbon\Carbon::parse($post['createDate'])->addDays(5)->lte(now()))
+            @if (\Carbon\Carbon::parse($post['dateOfApprove'])->addDays(5)->lte(now()))
             @if (!empty($post['totalViewerCount']) && $post['totalViewerCount'] > 0)
             <table>
                 <thead>
@@ -207,8 +207,8 @@
                     </tr>
                 </tbody>
             </table>
-        @endif
-        @endif
+            @endif
+            @endif
             <br>
             <div class="post-header">
                 <h1>{{ $post['Title'] }}</h1>
@@ -217,7 +217,7 @@
                         {{ $post['tagInUnicode'] }}
                     </a>
                 </p>     
-                <p>{{ $post['createDate'] }}</p>
+                <p>{{ $post['dateOfApprove'] }}</p>
             </div>
         </div>
         <div class="main-content">
@@ -247,10 +247,23 @@
                 @endforeach
             </aside>
         </div>
-        <a href="#" class="tag-link" style="background-color: #007bff; color: white; padding: 10px 20px; border-radius: 5px; display: inline-block; text-decoration: none; cursor: default; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#007bff';">
+    
+        <!-- Navigation Buttons (Previous and Next Posts) -->
+        <div class="post-navigation">
+            @if($previousPost)
+                <a href="{{ route('post-summary', ['slug' => $slug, 'id' => $previousPost->chittiId, 'subTitle' => Str::slug($previousPost->SubTitle)]) }}" class="btn btn-primary">पिछला</a>
+            @endif
+        
+            @if($nextPost)
+                <a href="{{ route('post-summary', ['slug' => $slug, 'id' => $nextPost->chittiId, 'subTitle' => Str::slug($nextPost->SubTitle)]) }}" class="btn btn-primary">अगला</a>
+            @endif
+        </div>
+        
+    
+        <a href="#" class="tag-link" style="background-color: #ff0000; color: white; padding: 10px 20px; border-radius: 5px; display: inline-block; text-decoration: none; cursor: default; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#007bff';">
             {{ $post['tagInUnicode'] }}
         </a>
-        
+    
         <div class="definitions" style="background-color: {{ $ColorCode }};">
             <h3>Definitions of the Post Viewership Metrics</h3>
             <p>
@@ -266,21 +279,9 @@
                 <strong>D. The Reach (Viewership) -</strong> The reach on the post is updated either on the 6th day from the day of posting or on the completion (Day 31 or 32) of one month from the day of posting.
             </p>
         </div>
-
-        <!-- Navigation Buttons (Previous and Next Posts) -->
-<!-- Add Previous and Next buttons below the post content -->
-<div class="post-navigation">
-    @if($previousPost)
-        <a href="/post-summary/{{ $previousPost->chittiId }}/{{ $previousPost->SubTitle }}" class="btn btn-primary">पिछला</a>
-    @endif
-
-    @if($nextPost)
-        <a href="/post-summary/{{ $nextPost->chittiId }}/{{ $nextPost->SubTitle }}" class="btn btn-primary">अगला</a>
-    @endif
-</div>
-
-
-</div>
+    
+    </div>
+    
 <x-post.footer :city="$city_name" />
   
     {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> --}}

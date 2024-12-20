@@ -23,7 +23,7 @@ Route::prefix('/')->group(function () {
 
 
 Route::get('{city}/posts', [postController::class, 'getChittiData'])->name('posts.city');
-Route::get('{slug}/post-summary/{id}/{subTitle?}', [PostController::class, 'post_summary'])->name('post-summary');
+Route::get('/post-summary/{slug}/{id}/{subTitle?}', [PostController::class, 'post_summary'])->name('post-summary');
 Route::get('/decode', [postController::class, 'decodeText']);
 
 
@@ -32,3 +32,5 @@ Route::prefix('archives')->group(function () {
     Route::get('/{cityCode}/{catg}', [PostArchives::class, 'archiveCatg'])->name('archive-catg');
     Route::get('/{cityCode}/{catg}/{ids}/{name}', [PostArchives::class, 'archivePosts'])->name('post-archive');
 });
+
+//payment

@@ -17,9 +17,15 @@ class ChittiGeography extends Model
     {
         return $this->belongsTo(Chitti::class, 'chittiId', 'chittiId');
     }
-    public function portal()
+//     public function portal()
+// {
+//     return $this->belongsTo(Portal::class, 'Geography', 'city_code');
+// }
+public function portal()
 {
-    return $this->belongsTo(Portal::class, 'Geography', 'city_code');
+    return $this->hasOne(Portal::class, 'city_code', 'Geography');
 }
+
+
 
 }

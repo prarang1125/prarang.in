@@ -1,25 +1,18 @@
 <?php
 
-namespace Modules\YellowPages\Http\Controllers\Admin;
+namespace Modules\YellowPages\Http\Controllers\VCard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Category;
-use App\Models\City;
-use Carbon\Carbon;
-use App\Models\BusinessListing;
-use App\Models\BusinessHour;
-use App\Models\CompanyLegalType;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
-class AuthController extends Controller
+class vCardAuthcontroller extends Controller
 {
-   
     public function index()
     {
-        return view('yellowpages::admin.login');
+        return view('yellowpages::Vcard.login');
     }
 
     public function authenticate(Request $request)
@@ -29,25 +22,27 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
         if($validator->passes()){
-
             $credentials = [
                 'email' => $request->email,
-                'password' => $request->password, // Use 'password' key here
+                'password' => $request->password,
+                'role'=>3
             ];
-            if(Auth::guard('admin')->attempt($credentials)){
-                $user = Auth::guard('admin')->user();
+            if(Auth::guard('vCard')->attempt($credentials)){
+                $user = Auth::guard('vCard')->user();
+
                 if($user){    
-                    return redirect()->route('admin.dashboard');
-                }
-            }else{
-                return redirect()->route('admin.login')->with('error', 'Either mail or password is incorrect');
+                    return redirect()->route('vCard.dashboard');
             }
+            }else{
+                return redirect()->route('vCard.login')->with('error', 'Either mail or password is incorrect');
+            }
+
         }else{
-            return redirect()->route('admin.login')
+
+            return redirect()->route('vCard.login')
                 ->withInput()
                 ->withErrors($validator);
         }
-
     }
 
     /**
@@ -57,7 +52,6 @@ class AuthController extends Controller
     {
         return view('yellowpages::create');
     }
-
     /**
      * Store a newly created resource in storage.
      */

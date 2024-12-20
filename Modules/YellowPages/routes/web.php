@@ -4,13 +4,15 @@ use Illuminate\Support\Facades\Route;
 use Modules\YellowPages\app\Http\Controllers\Main\HomeController;
 use Modules\YellowPages\Http\Controllers\ListingController;
 use Modules\YellowPages\Http\Controllers\VCardController;
-use Modules\YellowPages\Http\Controllers\ReviewController                                           ;
-use Modules\YellowPages\Http\Controllers\AuthModalController                                           ;
+use Modules\YellowPages\Http\Controllers\ReviewController;
+use Modules\YellowPages\Http\Controllers\AuthModalController;
 use Modules\YellowPages\Http\Controllers\admin\AuthController;
 use Modules\YellowPages\Http\Controllers\admin\AdminController;
 use Modules\YellowPages\Http\Controllers\admin\CitiesController;
 use Modules\YellowPages\Http\Controllers\admin\CategoriesController;
 use Modules\YellowPages\Http\Controllers\admin\BusinessController;
+use Modules\YellowPages\Http\Controllers\VCard\vCardAuthcontroller;
+use Modules\YellowPages\Http\Controllers\VCard\CreateVCardController;
 // use App\Http\Controllers\Auth\AuthController;
 
 /*
@@ -43,13 +45,22 @@ Route::group(['prefix' => 'yellow-pages'], function () {
     Route::get('/getLocationData', [ListingController::class, 'getLocationData'])->name('yp.getLocationData');
     Route::post('/store-listing', [ListingController::class, 'store'])->name('yp.listing.store');
     Route::get('/submit-listing', [ListingController::class, 'submit_listing'])->name('yp.listing.submit');;
-    Route::get('/vcard', [VCardController::class, 'index'])->name('yp.vcard');
     Route::post('/reviews/store/{listing}', [ReviewController::class, 'store'])->name('reviews.store');
     Route::get('/reviews/submit', [ReviewController::class, 'submit_review'])->name('review.submit');
+
+});
     //Admin
+    Route::group(['prefix' => 'yellow-pages'], function(){
+     Route::group(['middleware' => 'admin.guest'], function(){
     Route::get('login', [AuthController::class, 'index'])->name('admin.login');
     Route::post('authenticate', [AuthController::class, 'authenticate'])->name('admin.authenticate');
+    });
+
+     Route::group(['middleware' => 'admin.auth'], function(){
+
     Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
+
 
      #this route is use for admin users
      Route::get('user-profile', [AdminController::class, 'userProfile'])->name('admin.user-profile');
@@ -81,8 +92,22 @@ Route::group(['prefix' => 'yellow-pages'], function () {
      Route::post('listing-delete/{id}', [BusinessController::class, 'listingDelete'])->name('admin.listing-delete');
      Route::get('listing-edit/{id}', [BusinessController::class, 'listingEdit'])->name('admin.listing-edit');
      Route::put('listing-update/{id}', [BusinessController::class, 'listingUpdate'])->name('admin.listing-update');
-  
+
+     //vCardpanel
+     Route::get('/vCard/plan', [VCardController::class, 'vCardPayment'])->name('yp.payment');;
+     Route::get('/vCard/plan/sucess', [VCardController::class, 'paymentSucesss'])->name('payment.success');;
+     Route::get('/vCard/plan/cancel', [VCardController::class, 'paymentCancel'])->name('payment.cancel');;
+     //payment
+     Route::get('/vcard', [VCardController::class, 'index'])->name('yp.vcard');
+     Route::get('stripePayment', [VCardController::class, 'stripePayment'])->name('yp.stripe');
+    });
+
+    Route::get('/vCard/login', [vCardAuthcontroller::class, 'index'])->name('vCard.Login');
+    Route::post('authenticate', [vCardAuthcontroller::class, 'authenticate'])->name('vCard.authenticate');
+    Route::get('/vCard/dashboard', [VCardController::class, 'dashboard'])->name('vCard.dashboard');
+    Route::get('/vCard/createCard', [VCardController::class, 'createCard'])->name('vCard.createCard');
+    Route::post('/vCard/CardStore', [CreateVCardController::class, 'store'])->name('vCard.store');
+    Route::get('/vcard/view/{id}', [CreateVCardController::class, 'view'])->name('vCard.view');
+
+
 });
-
-
-
