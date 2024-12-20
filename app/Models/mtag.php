@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class mtag extends Model
+class Mtag extends Model
 {
     protected $table = 'mtag'; 
     protected $fillable = ['tagId', 'tagInEnglish'];

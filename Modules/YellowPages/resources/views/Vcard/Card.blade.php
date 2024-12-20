@@ -11,7 +11,7 @@
             <div class="card border-0">
                 <div class="card-body">
                     <h5 class="mb-4">VCard Information</h5>
-                    <form action="#" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('vCard.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <!-- Choose Color -->
                         <div class="mb-3">
@@ -21,8 +21,8 @@
 
                         <!-- Upload Banner -->
                         <div class="mb-3">
-                            <label for="banner" class="form-label">Upload Banner</label>
-                            <input type="file" class="form-control" id="banner" name="banner">
+                            <label for="banner_img" class="form-label">Upload Banner</label>
+                            <input type="file" class="form-control" id="banner_img" name="banner_img">
                         </div>
 
                         <!-- Upload Logo -->
@@ -63,6 +63,11 @@
                             <button type="submit" class="btn btn-primary">Save VCard</button>
                         </div>
                     </form>
+                </div>
+                <div class="col-3 text-center">
+                    <a href="{{ url('/vcard/view/{id}') }}" target="_blank">
+                        <i class='bx bx-show' title="View Card" style="font-size: 24px;"></i>
+                    </a>
                 </div>
             </div>
         </div>
@@ -193,22 +198,26 @@
 @endsection
 <script>
     // Define the addField function globally
-    function addField(label, name) {
-        const fieldHTML = `
-            <div class="mb-3">
-                <label for="${name}" class="form-label">${label}</label>
-                <input type="text" class="form-control" id="${name}" name="${name}" placeholder="Enter ${label.toLowerCase()}">
-            </div>
-        `;
-        const dynamicFields = document.getElementById('dynamic-fields'); // Ensure 'dynamic-fields' exists
-        if (dynamicFields) {
-            dynamicFields.insertAdjacentHTML('beforeend', fieldHTML);
-        }
+    function addField(label, fieldName) {
+    const fieldHTML = `
+        <div class="mb-3">
+            <label for="${fieldName}" class="form-label">${label}</label>
+            <input type="text" class="form-control" id="${fieldName}" name="data[]" placeholder="Enter ${label.toLowerCase()}">
+            <input type="hidden" name="name[]" value="${label}">
+        </div>
+    `;
+    const dynamicFields = document.getElementById('dynamic-fields');
+    if (dynamicFields) {
+        dynamicFields.insertAdjacentHTML('beforeend', fieldHTML);
     }
+}
+
 
     // Ensure the script runs after DOM is loaded
     document.addEventListener("DOMContentLoaded", function () {
         console.log('Page fully loaded and DOM is ready.');
     });
 </script>
+
+
 
