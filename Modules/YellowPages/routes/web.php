@@ -49,6 +49,35 @@ Route::group(['prefix' => 'yellow-pages'], function () {
     Route::get('/reviews/submit', [ReviewController::class, 'submit_review'])->name('review.submit');
 
 });
+
+Route::group(['prefix' => 'yellow-pages'], function(){
+        Route::get('/vCard/login', [vCardAuthcontroller::class, 'index'])->name('vCard.login');
+        Route::post('/vCard/authenticate', [vCardAuthcontroller::class, 'authenticate'])->name('vCard.authenticate');
+    
+
+
+Route::group(['middleware' => 'auth.custom'], function(){
+
+  //vCardpanel
+  Route::get('/vCard/plan', [VCardController::class, 'vCardPayment'])->name('yp.payment');
+  Route::get('/vCard/plan/sucess', [VCardController::class, 'paymentSucesss'])->name('payment.success');;
+  Route::get('/vCard/plan/cancel', [VCardController::class, 'paymentCancel'])->name('payment.cancel');;
+  //payment
+  Route::get('/vcard', [VCardController::class, 'index'])->name('yp.vcard');
+  Route::get('stripePayment', [VCardController::class, 'stripePayment'])->name('yp.stripe');
+
+ Route::get('/vCard/dashboard', [VCardController::class, 'dashboard'])->name('vCard.dashboard');
+ Route::get('/vCard/logout', [VCardController::class, 'logout'])->name('vCard.logout');
+ Route::get('/vCard/createCard', [VCardController::class, 'createCard'])->name('vCard.createCard');
+ Route::post('/vCard/CardStore', [CreateVCardController::class, 'store'])->name('vCard.store');
+ Route::get('/vcard/view/', [CreateVCardController::class, 'view'])->name('vCard.view');
+ Route::get('/vcard/scan/{qrCode}', [CreateVCardController::class, 'scanAndView'])->name('vCard.scanView');
+ Route::get('/vcard/qr/', [CreateVCardController::class, 'generateQrCode'])->name('vCard.generateQr');
+ Route::get('/vcard/ActivePlan', [CreateVCardController::class, 'plan'])->name('vCard.plan');
+
+});
+});
+
     //Admin
     Route::group(['prefix' => 'yellow-pages'], function(){
      Route::group(['middleware' => 'admin.guest'], function(){
@@ -92,22 +121,8 @@ Route::group(['prefix' => 'yellow-pages'], function () {
      Route::post('listing-delete/{id}', [BusinessController::class, 'listingDelete'])->name('admin.listing-delete');
      Route::get('listing-edit/{id}', [BusinessController::class, 'listingEdit'])->name('admin.listing-edit');
      Route::put('listing-update/{id}', [BusinessController::class, 'listingUpdate'])->name('admin.listing-update');
-
-     //vCardpanel
-     Route::get('/vCard/plan', [VCardController::class, 'vCardPayment'])->name('yp.payment');;
-     Route::get('/vCard/plan/sucess', [VCardController::class, 'paymentSucesss'])->name('payment.success');;
-     Route::get('/vCard/plan/cancel', [VCardController::class, 'paymentCancel'])->name('payment.cancel');;
-     //payment
-     Route::get('/vcard', [VCardController::class, 'index'])->name('yp.vcard');
-     Route::get('stripePayment', [VCardController::class, 'stripePayment'])->name('yp.stripe');
     });
 
-    Route::get('/vCard/login', [vCardAuthcontroller::class, 'index'])->name('vCard.Login');
-    Route::post('authenticate', [vCardAuthcontroller::class, 'authenticate'])->name('vCard.authenticate');
-    Route::get('/vCard/dashboard', [VCardController::class, 'dashboard'])->name('vCard.dashboard');
-    Route::get('/vCard/createCard', [VCardController::class, 'createCard'])->name('vCard.createCard');
-    Route::post('/vCard/CardStore', [CreateVCardController::class, 'store'])->name('vCard.store');
-    Route::get('/vcard/view/{id}', [CreateVCardController::class, 'view'])->name('vCard.view');
 
-
+   
 });

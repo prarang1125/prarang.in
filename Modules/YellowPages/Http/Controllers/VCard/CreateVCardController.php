@@ -7,11 +7,15 @@ use Illuminate\Http\Request;
 use App\Models\Vcard;
 use App\Models\DynamicVcard;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Auth;
 
 class CreateVCardController extends Controller
 {
+
+    
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -33,6 +37,11 @@ class CreateVCardController extends Controller
         if ($request->hasFile('logo')) {
             $validatedData['logo'] = $request->file('logo')->store('logos', 'public');
         }
+        $userId = Auth::id();
+    
+        // Ensure user ID is included
+        $validatedData['user_id'] = $userId;
+
     
         // Save card
         $card = Vcard::create($validatedData);
@@ -54,16 +63,55 @@ class CreateVCardController extends Controller
             }
         }
     
-        return redirect()->route('vCard.createCard', ['id' => $card->id])->with('success', 'Card saved successfully.');
+    
+        return redirect()->route('vCard.createCard')->with('success', 'Card saved successfully.');
     }
     
-    public function view($id)
-{
-    dd($id);
-    $vcard = Vcard::with('dynamicFields')->findOrFail($id);
+    
+    public function view()
+    {
+        $userId = Auth::id();
+        $vcard = Vcard::where('user_id', $userId)->with('dynamicFields')->firstOrFail();
+        return view('yellowpages::VCard.CardView', compact('vcard'));
+    }
+    
+    public function generateQrCode()
+    {
+        $userId = Auth::id();
+        $vcard = Vcard::where('user_id', $userId)->latest()->firstOrFail();
+    
+        // Generate QR code
+        $qrCode = QrCode::size(200)->generate(route('vCard.scanView', ['qrCode' => $vcard->slug]));
+    
+        return view('yellowpages::VCard.QRvCard', compact('qrCode'));
+    }
+    
 
+public function scanAndView($qrCode, $count = 1)
+{
+
+    $vcard = Vcard::where('slug', $qrCode)->orWhere('id', $qrCode)->first();
+
+    if ($vcard) {
+        // Update scan_count for the found vCard using its ID
+        Vcard::where('id', $vcard->id)->increment('scan_count', $count);
+
+        // Refresh the vCard instance to reflect the updated count
+        $vcard->refresh();
+
+        Log::info("Scan count updated for vCard ID: {$vcard->id}, New Scan Count: {$vcard->scan_count}");
+    } else {
+        Log::error("vCard not found for QR Code: {$qrCode}");
+        abort(404, 'vCard not found');
+    }
+
+    // Return the view with the updated vCard details
     return view('yellowpages::VCard.CardView', compact('vcard'));
 }
 
+public function plan()
+{
+    return view("yellowpages::Vcard.plan");
+}
 
 }

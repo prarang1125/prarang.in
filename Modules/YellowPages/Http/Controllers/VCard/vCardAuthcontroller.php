@@ -17,33 +17,27 @@ class vCardAuthcontroller extends Controller
 
     public function authenticate(Request $request)
     {
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required',
         ]);
-        if($validator->passes()){
-            $credentials = [
-                'email' => $request->email,
-                'password' => $request->password,
-                'role'=>3
-            ];
-            if(Auth::guard('vCard')->attempt($credentials)){
-                $user = Auth::guard('vCard')->user();
-
-                if($user){    
-                    return redirect()->route('vCard.dashboard');
-            }
-            }else{
-                return redirect()->route('vCard.login')->with('error', 'Either mail or password is incorrect');
-            }
-
-        }else{
-
+    
+        if ($validator->fails()) {
             return redirect()->route('vCard.login')
                 ->withInput()
                 ->withErrors($validator);
         }
+    
+        $credentials = $request->only('email', 'password');
+    
+        if (Auth::guard('web')->attempt($credentials, $request->remember)) {
+            return redirect()->route('vCard.dashboard'); // Redirect to the custom dashboard route
+        } else {
+            return redirect()->route('vCard.login')
+                ->with('error', 'Invalid email or password.');
+        }
     }
+    
 
     /**
      * Show the form for creating a new resource.

@@ -6,7 +6,10 @@ use App\Http\Controllers\Controller;
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
 use Stripe\StripeClient;
+use App\Models\Vcard;
+use App\Models\DynamicVcard;
 use Stripe\Checkout\Session;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 
 class VCardController extends Controller
@@ -20,76 +23,58 @@ class VCardController extends Controller
     }
     public function dashboard()
     {
-        return view("yellowpages::Vcard.dashboard");
+        $userId = Auth::id();
+    
+        // Retrieve the Vcard associated with the authenticated user
+        $totalscan = Vcard::where('user_id', $userId)->firstOrFail();
+    
+        return view('yellowpages::Vcard.dashboard', compact('totalscan'));
     }
+    
+    
     public function vCardPayment(Request $request)
     {
-        $amount = 100; // Convert to cents
-    try {
-        // Create a new Stripe client instance
-        $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
-        // Create the checkout session
-        $session = $stripe->checkout->sessions->create([
-            'payment_method_types' => ['card'],
-            'line_items' => [[
-                'price_data' => [
-                    'currency' => 'usd',
-                    'product_data' => [
-                        'name' => 'Standard Plan',
+        $amount = 100; // Amount in cents
+    
+        try {
+            \Stripe\Stripe::setApiKey(env('STRIPE_SECRET_KEY'));
+    
+            $session = \Stripe\Checkout\Session::create([
+                'payment_method_types' => ['card'],
+                'line_items' => [[
+                    'price_data' => [
+                        'currency' => 'usd',
+                        'product_data' => [
+                            'name' => 'Standard Plan',
+                        ],
+                        'unit_amount' => $amount,
                     ],
-                    'unit_amount' => $amount,
-                ],
-                'quantity' => 1,
-            ]],
-            'mode' => 'payment',
-            'success_url' => route('payment.success'),
-            'cancel_url' => route('payment.cancel'),
-        ]);
-
-        return response()->json(['id' => $session->id]);
-
-    } catch (\Exception $e) {
-        return response()->json(['error' => $e->getMessage()], 500);
+                    'quantity' => 1,
+                ]],
+                'mode' => 'payment',
+                'success_url' => route('payment.success'),
+                'cancel_url' => route('payment.cancel'),
+            ]);
+    
+            return redirect($session->url);
+    
+        } catch (\Exception $e) {
+            // Log the error
+            \Log::error('Stripe payment error: ' . $e->getMessage());
+            
+            return redirect()->route('payment.error')->with('error', 'Something went wrong, please try again later.');
+        }
     }
-    }
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function createCard(Request $request)
     {
         return view("yellowpages::Vcard.Card");
     }
+    public function logout()
+{
+    Auth::guard('web')->logout(); // Use the default Laravel authentication guard
+    return redirect()->route('vCard.login'); // Redirect to login page
+}
 
-    /**
-     * Show the specified resource.
-     */
-    public function show($id)
-    {
-        return view('yellowpages::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        return view('yellowpages::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
-    {
-        //
-    }
     
 }

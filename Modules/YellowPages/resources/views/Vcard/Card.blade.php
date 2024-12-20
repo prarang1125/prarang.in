@@ -10,16 +10,20 @@
         <div class="col-md-6">
             <div class="card border-0">
                 <div class="card-body">
-                    <h5 class="mb-4">VCard Information</h5>
+                    <h5 class="mb-4 d-flex align-items-center">
+                        <span>VCard Information</span>
+                        <div class="ms-3" style="border: 1px solid #ccc; border-radius: 4px;">
+                            <a href="{{ url('yellow-pages/vcard/view/', ) }}" target="_blank">
+                                <i class='bx bx-show' title="View Card" style="font-size: 24px;"></i>
+                            </a>
+                        </div>
+                    </h5>                  
                     <form action="{{ route('vCard.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        <!-- Choose Color -->
                         <div class="mb-3">
                             <label for="color_code" class="form-label">Choose Color</label>
                             <input type="color" class="form-control form-control-color" id="color_code" name="color_code" value="#007bff">
                         </div>
-
-                        <!-- Upload Banner -->
                         <div class="mb-3">
                             <label for="banner_img" class="form-label">Upload Banner</label>
                             <input type="file" class="form-control" id="banner_img" name="banner_img">
@@ -60,15 +64,10 @@
 
                         <!-- Save Button -->
                         <div class="text-end">
-                            <button type="submit" class="btn btn-primary">Save VCard</button>
+                            <button type="submit" class="btn btn-primary"value="Save_VCard" name="action">Save VCard</button>
                         </div>
                     </form>
-                </div>
-                <div class="col-3 text-center">
-                    <a href="{{ url('/vcard/view/{id}') }}" target="_blank">
-                        <i class='bx bx-show' title="View Card" style="font-size: 24px;"></i>
-                    </a>
-                </div>
+                </div>              
             </div>
         </div>
 
@@ -159,7 +158,7 @@
                             <i class='bx bxl-behance' title="Behance" style="font-size: 24px;"></i>
                             <p class="mt-1">Behance</p>
                         </div>
-                        <div class="col-3 text-center" onclick="addField('Email', 'email')">
+                        <div class="col-3 text-center" onclick="addField('Flickr', 'flickr')">
                             <i class='bx bxl-flickr' title="Flickr" style="font-size: 24px;"></i>
                             <p class="mt-1">Flickr</p>
                         </div>
@@ -191,7 +190,6 @@
                 </div>
             </div>
         </div>
-           
     </div>
 </div>
 
@@ -212,12 +210,9 @@
     }
 }
 
-
     // Ensure the script runs after DOM is loaded
     document.addEventListener("DOMContentLoaded", function () {
         console.log('Page fully loaded and DOM is ready.');
     });
 </script>
-
-
 

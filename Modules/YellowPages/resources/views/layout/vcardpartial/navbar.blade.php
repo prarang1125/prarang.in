@@ -76,7 +76,7 @@
                                         <div class="notify bg-light-danger text-danger"><i class="bx bx-cart-alt"></i>
                                         </div>
                                         <div class="flex-grow-1">
-                                            <h6 class="msg-name">New Orders <span class="msg-time float-end">2 min
+                                            <h6 class="msg-name">New Orders<span class="msg-time float-end">2 min
                                         ago</span></h6>
                                             <p class="msg-info">You have recived new orders</p>
                                         </div>
@@ -249,7 +249,7 @@
                         <li>
                             <div class="dropdown-divider mb-0"></div>
                         </li>
-                        <a class="dropdown-item" href="{{ route('accounts.logout') }}"><i class='bx bx-log-out-circle'></i><span>Logout</span></a>
+                        <a class="dropdown-item" href="{{ route('vCard.logout') }}"><i class='bx bx-log-out-circle'></i><span>Logout</span></a>
                     @endif
                 </ul>
             </div>

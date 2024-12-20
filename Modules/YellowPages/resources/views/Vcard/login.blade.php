@@ -11,7 +11,7 @@
                             <h5 class="mb-5 mt-2 text-dark">VCard Login</h5>
                         </div>
                         <hr>
-                        <form class="row g-3" action="{{ route('vCard.authenticate') }}" method="POST">
+                        <form class="row g-3" action="{{ url('/yellow-pages/vCard/authenticate') }}" method="POST">
                             @csrf
                             <div class="col-12">
                                 <label for="inputLastEnterEmail" class="form-label">Enter Email</label>
