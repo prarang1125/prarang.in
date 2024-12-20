@@ -157,7 +157,7 @@ class postController extends Controller
         $endDate = Carbon::createFromFormat('d-m-Y H:i A', trim($post->dateOfApprove))->subDay()->format('d-m-Y').' 23:59';
 
         $previousPost = DB::table('chitti')
-            ->join('vChittiGeography as vg', 'vg.chittiId', '=', 'Chitti.chittiId')
+            ->join('vChittiGeography as vg', 'vg.chittiId', '=', 'chitti.chittiId')
             ->whereBetween('chitti.dateOfApprove', [$startDate, $endDate])
             ->where('chitti.finalStatus', 'approved')
             ->where('vg.Geography', $portal->city_code)
@@ -167,7 +167,7 @@ class postController extends Controller
         $endDate = Carbon::createFromFormat('d-m-Y H:i A', trim($post->dateOfApprove))->addDay()->format('d-m-Y').' 23:59';
 
         $nextPost = DB::table('chitti')
-            ->join('vChittiGeography as vg', 'vg.chittiId', '=', 'Chitti.chittiId')
+            ->join('vChittiGeography as vg', 'vg.chittiId', '=', 'chitti.chittiId')
             ->whereBetween('chitti.dateOfApprove', [$startDate, $endDate])
             ->where('chitti.finalStatus', 'approved')
             ->where('vg.Geography', $portal->city_code)
