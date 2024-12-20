@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,10 +11,12 @@
         .post-thumbnail {
             margin-bottom: 20px;
         }
+
         .card-img-top {
             height: 200px;
             object-fit: cover;
         }
+
         .caption h4 {
             font-size: 16px;
             font-weight: bold;
@@ -21,15 +24,16 @@
         }
     </style>
 </head>
+
 <body>
-    <x-post.navbar cityId="12" :cityCode="$cityCode"/>
+    <x-post.navbar cityId="12" :cityCode="$cityCode" />
 
     <div class="container">
         @isset($name)
-        <div class="page-header">
-            <h1>{{ $name }}</h1>
-            {{-- <small>Browse the latest posts for this city.</small> --}}
-        </div>
+            <div class="page-header">
+                <h1>{{ $name }}</h1>
+                {{-- <small>Browse the latest posts for this city.</small> --}}
+            </div>
         @endisset
         <br><br>
 
@@ -43,15 +47,18 @@
                             <!-- Wrap the card in a clickable link -->
                             <a href="{{ route('post-summary', [
                                 'id' => $post['id'],
-                                'slug' => $city_name, 
-                                'subTitle' => isset($post['subTitle']) ? str_replace(' ', '-', $post['subTitle']) : null
-                            ]) }}" class="text-decoration-none">
-                                                            <div class="card post-thumbnail">
-                                    <img src="{{ $post['imageUrl'] ?? 'default-image.jpg' }}" alt="{{ $post['title'] }}" class="card-img-top">
+                                'slug' => $city_name,
+                                'subTitle' => isset($post['subTitle']) ? str_replace(' ', '-', $post['subTitle']) : null,
+                            ]) }}"
+                                class="text-decoration-none">
+                                <div class="card post-thumbnail">
+                                    <img src="{{ $post['imageUrl'] ?? 'default-image.jpg' }}" alt="{{ $post['title'] }}"
+                                        class="card-img-top">
                                     <div class="card-body">
                                         <h5 class="card-title">{{ $post['title'] }}</h5>
                                         <p class="card-text">{{ $post['tags'] }}</p>
-                                        <p><small>{{ \Carbon\Carbon::parse($post['createDate'])->format('d M Y') }}</small></p>
+                                        <p><small>{{ \Carbon\Carbon::parse($post['createDate'])->format('d M Y') }}</small>
+                                        </p>
                                     </div>
                                 </div>
                             </a>
@@ -78,4 +85,5 @@
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>
