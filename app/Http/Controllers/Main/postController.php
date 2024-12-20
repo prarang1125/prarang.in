@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 
 class postController extends Controller
 {
-    public function getChittiData($city,$name=null)
+    public function getChittiData($city,$name=null,$forAbour=null)
     {
         $portal = Portal::where('slug', $city)->firstOrFail(); 
       
@@ -31,12 +31,14 @@ class postController extends Controller
         // Fetch Chittis with eager loading for images and tags, ordered by createDate desc
         $chittis = Chitti::whereIn('chittiId', $chittiIds)
                          ->where('finalStatus', 'approved')
-                         ->orderBy('chittiId', 'desc')
+                        //  ->orderByRaw('CAST(approveDate AS DATE) DESC')
+                         ->orderByRaw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y') DESC")
+                        //   ->orderBy('chittiId', 'desc')
                          ->with(['tagMappings.tag', 'images'])  // Eager load tagMappings and related tag
                          ->paginate(35);
         
         $postsByMonth = $chittis->groupBy(function ($chitti) {
-            return \Carbon\Carbon::parse($chitti->createDate)->format('F Y');
+            return \Carbon\Carbon::parse($chitti->dateOfApprove)->format('F Y');
         })->map(function ($chittis) {
             return $chittis->map(function ($chitti) {
                 // Retrieve image or use default
@@ -55,7 +57,7 @@ class postController extends Controller
                     'description' => $chitti->description,
                     'imageUrl' => $imageUrl,
                     'tags' => $tags,
-                    'createDate' => $chitti->createDate,
+                    'createDate' => $chitti->dateOfApprove,
                 ];
             });
         });
