@@ -30,9 +30,9 @@ class postController extends Controller
         // Fetch Chittis with eager loading for images and tags, ordered by createDate desc
         $chittis = Chitti::whereIn('chittiId', $chittiIds)
             ->where('finalStatus', 'approved')
-                         //  ->orderByRaw('CAST(approveDate AS DATE) DESC')
-            // ->orderByRaw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y') DESC")
-            ->orderBy('chittiId', 'desc')
+                        //  ->orderByRaw('CAST(approveDate AS DATE) DESC')
+            ->orderByRaw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y') DESC")
+                        //   ->orderBy('chittiId', 'desc')
             ->with(['tagMappings.tag', 'images'])  // Eager load tagMappings and related tag
             ->paginate(35);
 
