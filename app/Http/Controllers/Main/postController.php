@@ -24,15 +24,15 @@ class postController extends Controller
         }
 
         // Get Chitti IDs related to the geography
-        return $chittiIds = ChittiGeography::where('Geography', $geography->geographycode)
+        $chittiIds = ChittiGeography::where('Geography', $geography->geographycode)
             ->pluck('chittiId');
 
         // Fetch Chittis with eager loading for images and tags, ordered by createDate desc
-        $chittis = Chitti::whereIn('chittiId', $chittiIds)
+        return $chittis = Chitti::whereIn('chittiId', $chittiIds)
             ->where('finalStatus', 'approved')
-                        //  ->orderByRaw('CAST(approveDate AS DATE) DESC')
+                         //  ->orderByRaw('CAST(approveDate AS DATE) DESC')
             ->orderByRaw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y') DESC")
-                        //   ->orderBy('chittiId', 'desc')
+                         //   ->orderBy('chittiId', 'desc')
             ->with(['tagMappings.tag', 'images'])  // Eager load tagMappings and related tag
             ->paginate(35);
 
