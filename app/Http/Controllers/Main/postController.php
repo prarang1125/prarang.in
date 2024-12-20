@@ -24,7 +24,7 @@ class postController extends Controller
         }
 
         // Get Chitti IDs related to the geography
-        $chittiIds = ChittiGeography::where('Geography', $geography->geographycode)
+        return $chittiIds = ChittiGeography::where('Geography', $geography->geographycode)
             ->pluck('chittiId');
 
         // Fetch Chittis with eager loading for images and tags, ordered by createDate desc
