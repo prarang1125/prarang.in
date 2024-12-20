@@ -12,7 +12,7 @@ class PortalController extends Controller
 {
     public function portal(Portal $portal)
     {
-         $cityCode=$portal->city_code;
+        $cityCode=$portal->city_code;
         return view('portal::portal.home',compact('cityCode','portal'));
     }
 }

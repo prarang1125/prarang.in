@@ -315,9 +315,9 @@
                                                     <!-- MAIN HEADER : end -->
                                                     <!-- PAGE CONTENT : begin -->
                                                     <div class="page__content">
-                                                        <x-portal.posts-carousel  cityId="r4" cityCode="c3"/>
+                                                        <x-portal.posts-carousel  :cityId="$cityCode" :cityCode="$cityCode"/>
                                                         <!-- TOWNPRESS SITEMAP : begin -->
-                                                      <x-portal.tag-list cityId="r4" cityCode="c3"/>
+                                                      <x-portal.tag-list :cityId="$cityCode" :cityCode="$cityCode"/>
                                                      
                                                       <div class=" p-2 mt-3" style="border:2px solid #FFB1A3">
                                                         <h3 class="text-center">{{ $portal->city_name_local }} के आंकड़े
@@ -371,7 +371,7 @@
                                                                         id="lsvr-townpress-menu-widget__item-222-830"
                                                                         role="presentation">
                                                                         <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
-                                                                            href=""
+                                                                            href="{{route('posts.city',['city'=>$portal->slug])}}"
                                                                             id="lsvr-townpress-menu-widget__item-link-222-830"
                                                                             role="menuitem">
                                                                             <span
