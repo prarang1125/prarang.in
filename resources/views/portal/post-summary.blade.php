@@ -211,7 +211,7 @@
 
 <body>
     <x-post.navbar cityId="12" :cityCode="$cityCode" />
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
             <!-- Page Header -->
             @if (\Carbon\Carbon::parse($post['dateOfApprove'])->addDays(5)->lte(now()))
@@ -254,9 +254,9 @@
                 <p>{{ $post['dateOfApprove'] }}</p>
             </div>
         </div>
-        <div class="main-content " style="background-color: {{ $ColorCode }};">
+        <div class="main-content">
             <!-- Main Post -->
-            <div class="main-post">
+            <div class="p-2 main-post" style="background-color: {{ $ColorCode }};">
                 @if ($post->images[0]->VideoExist == 1)
                     {!! $post->images[0]->VideoURL !!}
                 @else
