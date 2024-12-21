@@ -87,7 +87,7 @@ class PostArchives extends Controller
         $portal = Portal::where('slug', $citySlug)->firstOrFail();
         $cityCode = $portal->city_code;
         $chittiIds = DB::table('chittitagmapping as tag')
-            ->join('vchittigeography as vg', 'vg.chittiId', '=', 'tag.chittiId')
+            ->join('vChittiGeography as vg', 'vg.chittiId', '=', 'tag.chittiId')
             ->where('vg.Geography', $cityCode);
 
         if ($catg == 'place') {
