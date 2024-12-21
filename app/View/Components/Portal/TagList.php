@@ -17,10 +17,12 @@ class TagList extends Component
     public $cityCode;
     public $tagCounts;
     public $tagSubCounts;
-    public function __construct($cityId,$cityCode)
+    public $citySlug;
+    public function __construct($cityId,$cityCode,$citySlug)
     {
         $this->cityId=$cityId;
         $this->cityCode=$cityCode;
+        $this->citySlug=$citySlug;
         $cacheKey = 'tag_counts_' . $cityCode;
         $this->tagCounts = Cache::remember($cacheKey, 60*60, function () use ($cityCode) {
             return $this->getCounts($cityCode); // Fetch counts if not in cache
