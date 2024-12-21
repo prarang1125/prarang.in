@@ -7,6 +7,7 @@ use Stripe\Stripe;
 use Stripe\PaymentIntent;
 use Stripe\StripeClient;
 use App\Models\Vcard;
+use App\Models\Plan;
 use App\Models\DynamicVcard;
 use Stripe\Checkout\Session;
 use Illuminate\Support\Facades\Auth;
@@ -26,8 +27,9 @@ class VCardController extends Controller
     
         // Retrieve the Vcard associated with the authenticated user
         $totalscan = Vcard::where('user_id', $userId)->firstOrFail();
+        $plan = Plan::where('id', Auth::user()->plan_id)->firstOrFail();
     
-        return view('yellowpages::Vcard.dashboard', compact('totalscan'));
+        return view('yellowpages::Vcard.dashboard', compact('totalscan', 'plan' ));
     }
     
     

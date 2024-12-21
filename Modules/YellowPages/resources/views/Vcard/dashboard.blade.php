@@ -27,7 +27,7 @@
                 <div class="card radius-10 bg-gradient-deepblue">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
-                            <h5 class="mb-0 text-white">Free Plan</h5> <!-- Static Total Categories -->
+                            <h5 class="mb-0 text-white">{{ $plan->name }}</h5> <!-- Static Total Categories -->
                             <div class="ms-auto">
                                 <i class='bx bx-user fs-3 text-white'></i> <!-- Updated icon -->
                             </div>

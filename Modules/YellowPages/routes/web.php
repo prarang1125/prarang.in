@@ -59,10 +59,11 @@ Route::group(['prefix' => 'yellow-pages'], function(){
 
 Route::group(['middleware' => 'auth.custom'], function(){
 
-  //vCardpanel
-  Route::get('/vCard/plan', [VCardController::class, 'vCardPayment'])->name('yp.payment');
-  Route::get('/vCard/plan/sucess', [VCardController::class, 'paymentSucesss'])->name('payment.success');;
-  Route::get('/vCard/plan/cancel', [VCardController::class, 'paymentCancel'])->name('payment.cancel');;
+
+    Route::post('vCard/stripe-checkout', [CreateVCardController::class, 'stripeCheckout'])->name('vcard.stripeCheckout');
+Route::get('vCard/payment-success', [CreateVCardController::class, 'paymentSuccess'])->name('vcard.paymentSuccess');
+Route::get('vCard/payment-cancel', [CreateVCardController::class, 'paymentCancel'])->name('vcard.paymentCancel');
+  
   //payment
   Route::get('stripePayment', [VCardController::class, 'stripePayment'])->name('yp.stripe');
 
@@ -75,6 +76,7 @@ Route::group(['middleware' => 'auth.custom'], function(){
  Route::get('/vcard/qr/', [CreateVCardController::class, 'generateQrCode'])->name('vCard.generateQr');
  Route::get('/vcard/ActivePlan', [CreateVCardController::class, 'plan'])->name('vCard.plan');
  Route::get('/vcard/MembershipPlan', [CreateVCardController::class, 'planDetails'])->name('vCard.planDetails');
+ Route::get('/vcard/paymentHistory', [CreateVCardController::class, 'paymentHistory'])->name('vCard.paymentHistory');
 
 });
 });

@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Vcard;
 use App\Models\Plan;
+use App\Models\User;
+use Stripe\Stripe;
+use Stripe\StripeClient;
+use App\Models\PaymentHistory;
 use App\Models\DynamicVcard;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -15,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
 
 class CreateVCardController extends Controller
 {
+    
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -109,13 +114,100 @@ public function scanAndView($qrCode, $count = 1)
 
 public function plan()
 {
-    return view("yellowpages::Vcard.plan");
+    $userPlanId = Auth::user()->plan_id;
+
+    // Fetch Payment History
+    $planHistory = PaymentHistory::where('id', $userPlanId)->first();
+
+    // Fetch Plan Details
+    $planDetails = Plan::where('id', $userPlanId)->first();
+
+    return view('yellowpages::Vcard.plan', compact('planHistory', 'planDetails'));
 }
+
 public function planDetails()
 {
     $plans = Plan::all();
-    return view("yellowpages::Vcard.planDetails", compact('plans'));
+    $userPlanId = Auth::user()->plan_id;
+    return view("yellowpages::Vcard.planDetails", compact('plans', 'userPlanId'));
 }
 
+public function stripeCheckout(Request $request)
+{
+    $plan = Plan::findOrFail($request->plan_id);
+
+    try {
+        // Create Stripe Checkout Session with metadata
+        $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
+
+        $checkoutSession = $stripe->checkout->sessions->create([
+            'payment_method_types' => ['card'],
+            'line_items' => [[
+                'price_data' => [
+                    'currency' => 'INR',
+                    'product_data' => [
+                        'name' => $plan->name,
+                    ],
+                    'unit_amount' => $plan->price * 100, // Amount in cents
+                ],
+                'quantity' => 1,
+            ]],
+            'mode' => 'payment',
+            'success_url' => url('yellow-pages/vCard/payment-success') . '?session_id={CHECKOUT_SESSION_ID}',
+            'cancel_url' => url('yellow-pages/vCard/payment-cancel'),
+            'metadata' => [
+                'plan_id' => $plan->id,
+            ],
+        ]);
+
+        // Redirect user to Stripe Checkout
+        return redirect($checkoutSession->url);
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'Stripe error: ' . $e->getMessage());
+    }
+}
+
+public function paymentSuccess(Request $request)
+{
+    try {
+        $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
+        $session = $stripe->checkout->sessions->retrieve($request->session_id);
+
+        if (!$session) {
+            return redirect()->back()->with('error', 'Invalid session ID');
+        }
+
+        // Access the plan_id from the metadata
+        $plan_id = $session->metadata->plan_id ?? null;
+
+        // Save payment history in the database
+        PaymentHistory::create([
+            'user_id' => auth::id(),
+            'plan_id' => $plan_id,
+            'transaction_id' => $session->payment_intent,
+            'amount' => $session->amount_total / 100,
+            'currency' => $session->currency,
+            'status' => $session->payment_status,
+        ]);
+
+        User::where('id', Auth::id())->update(['plan_id' => $plan_id]);
+       
+
+        return redirect()->route('vCard.planDetails')->with('success', 'Payment successful and plan activated!');
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'Stripe error: ' . $e->getMessage());
+    }
+}
+
+
+public function paymentCancel()
+{
+    return redirect()->route('vCard.planDetails')->with('error', 'Payment was canceled.');
+}
+public function paymentHistory()
+{
+    $paymentHistories = PaymentHistory::with('plan')->get(); // Assuming 'plan' relationship exists
+    return view('yellowpages::Vcard.payment_history', compact('paymentHistories'));
+}
 }
 

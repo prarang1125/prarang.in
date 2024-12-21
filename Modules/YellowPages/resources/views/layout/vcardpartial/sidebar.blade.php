@@ -50,7 +50,7 @@
         <br>
         <h6>Account</h6>
         <li>
-            <a href="{{ url('yellow-pages/business-listing') }}">
+            <a href="{{ url('yellow-pages/vcard/paymentHistory') }}">
                 <div class="parent-icon"><i class="bx bx-briefcase"></i></div>
                 <div class="menu-title">Transaction</div>
             </a>
