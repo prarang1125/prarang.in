@@ -211,7 +211,7 @@
 
 <body>
     <x-post.navbar cityId="12" :cityCode="$cityCode" />
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <!-- Page Header -->
             @if (\Carbon\Carbon::parse($post['dateOfApprove'])->addDays(5)->lte(now()))
