@@ -254,7 +254,7 @@
                 <p>{{ $post['dateOfApprove'] }}</p>
             </div>
         </div>
-        <div class="main-content">
+        <div class="main-content " style="background-color: {{ $ColorCode }};">
             <!-- Main Post -->
             <div class="main-post">
                 @if ($post->images[0]->VideoExist == 1)
@@ -265,7 +265,7 @@
 
                 <!-- Post Content -->
                 {{-- <h2 style="font-weight: bold; font-size: 20px; margin-bottom: 10px;">{{ $post['title'] }}</h2> --}}
-                <p class="p-2" style="background-color: {{ $ColorCode }};">{!! $post['description'] !!}</p>
+                <p>{!! $post['description'] !!}</p>
 
             </div>
 
