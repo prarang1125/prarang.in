@@ -183,7 +183,7 @@
                         <li style="font-size: 16px; color: #555;">50 Scans Per Month</li>
                         <li style="font-size: 16px; color: #555;">Hide QuickVCard Branding</li>
                     </ul>
-                    <a href="#" style="background-color: #007bff; color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block;">Current Plan</a>
+                    <a onclick="window.location.href='{{ url('yellow-pages/vCard/dashboard') }}'" style="background-color: #007bff; color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block;">Current Plan</a>
                 </div>
             </div>
     
@@ -197,7 +197,7 @@
                         <li style="font-size: 16px; color: #fff;">50 Scans Per Month</li>
                         <li style="font-size: 16px; color: #fff;">Hide QuickVCard Branding</li>
                     </ul>
-                    <a href="#" style="background-color: #fff; color: #ff9800; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block;">Join Now</a>
+                    <a onclick="window.location.href='{{ url('yellow-pages/vCard/dashboard') }}'" style="background-color: #fff; color: #ff9800; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block;">Join Now</a>
                 </div>
             </div>
     
@@ -211,16 +211,15 @@
                         <li style="font-size: 16px; color: #fff;">100 Scans Per Month</li>
                         <li style="font-size: 16px; color: #fff;">Hide QuickVCard Branding</li>
                     </ul>
-                    <a href="#" id="checkout-button" style="background-color: #fff; color: #66bb6a; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block;">Join Now</a>
+                    <a onclick="window.location.href='{{ url('yellow-pages/vCard/dashboard') }}'" id="checkout-button" style="background-color: #fff; color: #66bb6a; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block;">Join Now</a>
                 </div>
             </div>
         </div>
     </div>
     
-    
-    <!-- JavaScript for Plan Selection -->
-    <script>
-   document.getElementById("monthly").addEventListener("click", function() {
+  <script>
+
+  document.getElementById("monthly").addEventListener("click", function() {
     updatePrice("monthly");
 });
 
@@ -258,8 +257,7 @@ document.getElementById('checkout-button').addEventListener('click', function ()
 });
 
   </script>
-  
-  
+
     {{-- @include('layout.footer') --}}
     @include('yellowpages::layout.footer')
 </body>

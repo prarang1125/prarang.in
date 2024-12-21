@@ -53,7 +53,8 @@ Route::group(['prefix' => 'yellow-pages'], function () {
 Route::group(['prefix' => 'yellow-pages'], function(){
         Route::get('/vCard/login', [vCardAuthcontroller::class, 'index'])->name('vCard.login');
         Route::post('/vCard/authenticate', [vCardAuthcontroller::class, 'authenticate'])->name('vCard.authenticate');
-    
+        Route::get('/vcard', [VCardController::class, 'index'])->name('yp.vcard');
+
 
 
 Route::group(['middleware' => 'auth.custom'], function(){
@@ -63,7 +64,6 @@ Route::group(['middleware' => 'auth.custom'], function(){
   Route::get('/vCard/plan/sucess', [VCardController::class, 'paymentSucesss'])->name('payment.success');;
   Route::get('/vCard/plan/cancel', [VCardController::class, 'paymentCancel'])->name('payment.cancel');;
   //payment
-  Route::get('/vcard', [VCardController::class, 'index'])->name('yp.vcard');
   Route::get('stripePayment', [VCardController::class, 'stripePayment'])->name('yp.stripe');
 
  Route::get('/vCard/dashboard', [VCardController::class, 'dashboard'])->name('vCard.dashboard');
@@ -74,6 +74,7 @@ Route::group(['middleware' => 'auth.custom'], function(){
  Route::get('/vcard/scan/{qrCode}', [CreateVCardController::class, 'scanAndView'])->name('vCard.scanView');
  Route::get('/vcard/qr/', [CreateVCardController::class, 'generateQrCode'])->name('vCard.generateQr');
  Route::get('/vcard/ActivePlan', [CreateVCardController::class, 'plan'])->name('vCard.plan');
+ Route::get('/vcard/MembershipPlan', [CreateVCardController::class, 'planDetails'])->name('vCard.planDetails');
 
 });
 });

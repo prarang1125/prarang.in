@@ -34,6 +34,12 @@
                 <div class="menu-title">Membership</div>
             </a>
         </li>
+        <li>
+            <a href="{{ url('yellow-pages/vcard/MembershipPlan') }}">
+                <div class="parent-icon"><i class="bx bx-category"></i></div>
+                <div class="menu-title">Membership Plan</div>
+            </a>
+        </li>
         <!-- Cities -->
         <li>
             <a href="{{ url('yellow-pages/vcard/qr/') }}">

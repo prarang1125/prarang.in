@@ -5,6 +5,7 @@ namespace Modules\YellowPages\Http\Controllers\VCard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Vcard;
+use App\Models\Plan;
 use App\Models\DynamicVcard;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
@@ -14,8 +15,6 @@ use Illuminate\Support\Facades\Auth;
 
 class CreateVCardController extends Controller
 {
-
-    
     public function store(Request $request)
     {
         $validatedData = $request->validate([
@@ -42,7 +41,6 @@ class CreateVCardController extends Controller
         // Ensure user ID is included
         $validatedData['user_id'] = $userId;
 
-    
         // Save card
         $card = Vcard::create($validatedData);
     
@@ -113,5 +111,11 @@ public function plan()
 {
     return view("yellowpages::Vcard.plan");
 }
+public function planDetails()
+{
+    $plans = Plan::all();
+    return view("yellowpages::Vcard.planDetails", compact('plans'));
+}
 
 }
+

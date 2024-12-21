@@ -10,13 +10,12 @@ use App\Models\Vcard;
 use App\Models\DynamicVcard;
 use Stripe\Checkout\Session;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\log;
 use Illuminate\Http\Request;
 
 class VCardController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+    
     public function index()
     {
         return view("yellowpages::Home.vcard");
@@ -60,10 +59,11 @@ class VCardController extends Controller
     
         } catch (\Exception $e) {
             // Log the error
-            \Log::error('Stripe payment error: ' . $e->getMessage());
+            Log::error('Stripe payment error: ' . $e->getMessage());
             
             return redirect()->route('payment.error')->with('error', 'Something went wrong, please try again later.');
         }
+
     }
     
     public function createCard(Request $request)
@@ -75,6 +75,5 @@ class VCardController extends Controller
     Auth::guard('web')->logout(); // Use the default Laravel authentication guard
     return redirect()->route('vCard.login'); // Redirect to login page
 }
-
     
 }
