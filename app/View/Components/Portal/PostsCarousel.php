@@ -17,6 +17,7 @@ class PostsCarousel extends Component
 
     public function __construct($cityId, $cityCode)
     {
+        // dd($this->getPosts($cityCode));
         $cacheKey = 'carousal_post_'.$cityCode;
 
         $this->chittiArray = Cache::remember($cacheKey, 60 * 60 * 60, function () use ($cityCode) {
@@ -39,7 +40,7 @@ class PostsCarousel extends Component
         return DB::connection('main')->table('chittitagmapping as ct')
             ->join('chitti as ch', 'ct.chittiId', '=', 'ch.chittiId')
             ->join('vChittiGeography as vCg', 'ch.chittiId', '=', 'vCg.chittiId')
-            ->Join('chittiimagemapping as cimg', 'cimg.imageId', '=', 'ch.chittiId')
+            ->Join('chittiimagemapping as cimg', 'cimg.chittiId', '=', 'ch.chittiId')
             ->join('vGeography as vg', 'vg.geographycode', '=', 'vCg.Geography')
             ->join('mtag as mt', 'mt.tagId', '=', 'ct.tagId')
             ->join('mtagcategory as mtc', 'mtc.tagCategoryId', '=', 'mt.tagCategoryId')

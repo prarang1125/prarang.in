@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Main;
 use App\Http\Controllers\Controller;
 use App\Models\Chitti;
 // use App\Models\ChittiGeography;
-use App\Models\ChittiImageMapping;
 // use App\Models\ChittiTagMapping;
 use App\Models\Portal;
 // use Illuminate\Http\Request;
@@ -13,7 +12,6 @@ use Illuminate\Support\Facades\DB;
 
 class PostArchives extends Controller
 {
-
     public function archive($cityCode = null)
     {
         if ($cityCode == null) {
@@ -23,14 +21,16 @@ class PostArchives extends Controller
             $portal = [];
             $portals = Portal::orderBy('city_name', 'asc')->where('slug', $cityCode)->first();
         }
+
         return view('main.archive.index', compact('cityCode', 'portal', 'portals'));
     }
+
     public function archiveCatg($cityCode, $catg)
     {
         //    return  $portal = Portal::orderBy('city_name', 'asc')->where('slug',$cityCode)->get();
         switch ($catg) {
             case 'time':
-                return redirect()->route('posts.city', ['city' => $cityCode, 'name' => ucfirst($cityCode) . ' Archive']);
+                return redirect()->route('posts.city', ['city' => $cityCode, 'name' => ucfirst($cityCode).' Archive']);
 
             case 'work':
                 $profession = DB::table('professionmapping')
@@ -43,10 +43,12 @@ class PostArchives extends Controller
                             $firstItem = $items->first();
                             $profession = collect($firstItem)->except('tagid')->toArray();
                             $profession['tags'] = $items->pluck('tagid')->filter()->toArray();
+
                             return $profession;
                         })->values();
                     });
-              return view('main.archive.catg', compact('profession', 'catg', 'cityCode'));
+
+                return view('main.archive.catg', compact('profession', 'catg', 'cityCode'));
             case 'education':
                 $education = DB::table('subjectmapping')
                     ->leftJoin('submaptag', 'subjectmapping.subjectcode', '=', 'submaptag.subjectcode')
@@ -58,17 +60,19 @@ class PostArchives extends Controller
                             $firstItem = $items->first();
                             $education = collect($firstItem)->except('tagid')->toArray();
                             $education['tags'] = $items->pluck('tagid')->filter()->toArray();
+
                             return $education;
                         })->values();
                     });
+
                 return view('main.archive.catg', compact('education', 'catg', 'cityCode'));
             case 'place':
                 return view('main.archive.catg', compact('catg', 'cityCode'));
             case 'emotion':
-                    return view('main.archive.catg', compact('catg', 'cityCode'));
+                return view('main.archive.catg', compact('catg', 'cityCode'));
 
-                
         }
+
         return view('main.archive.catg');
     }
 
@@ -76,6 +80,7 @@ class PostArchives extends Controller
     {
         return 1;
     }
+
     public function archivePosts($citySlug, $catg, $ids, $name)
     {
         $ids = explode('-', $ids);
@@ -89,16 +94,14 @@ class PostArchives extends Controller
             $chittiIds = $chittiIds
                 ->join('facity', 'tag.chittiId', '=', 'facity.chittiId')
                 ->where('facity.value', $ids);
-            }
-        elseif($catg == 'emotion'){
+        } elseif ($catg == 'emotion') {
             $chittiIds = $chittiIds
-            ->join('chitti', 'tag.chittiId', '=', 'chitti.chittiId')            
-            ->whereIn('chitti.color_value', $ids);
+                ->join('chitti', 'tag.chittiId', '=', 'chitti.chittiId')
+                ->whereIn('chitti.color_value', $ids);
         } else {
             $chittiIds = $chittiIds->whereIn('tag.tagId', $ids);
         }
         $chittiIds = $chittiIds->pluck('tag.chittiId');
-
 
         // Fetch Chittis with eager loading for images and tags, ordered by createDate desc
         $chittis = Chitti::whereIn('chittiId', $chittiIds)
@@ -112,12 +115,13 @@ class PostArchives extends Controller
         })->map(function ($chittis) {
             return $chittis->map(function ($chitti) {
                 // Retrieve image or use default
-                $imageUrl = 'https://' . $chitti->images->first()->imageUrl ?? asset('default_image.jpg');  // Get the first image
+                $imageUrl = 'https://'.$chitti->images->first()->imageUrl ?? asset('default_image.jpg');  // Get the first image
 
                 // Get all tags related to this Chitti and join them by commas
                 $tags = $chitti->tagMappings->map(function ($tagMapping) {
                     return $tagMapping->tag->tagInEnglish;  // Access the related tag's tagInEnglish
-                })->filter()->join(', ');  // Join tags 
+                })->filter()->join(', ');  // Join tags
+
                 return [
                     'id' => $chitti->chittiId,
                     'title' => $chitti->Title,
@@ -135,7 +139,7 @@ class PostArchives extends Controller
             'postsByMonth' => $postsByMonth,
             'cityCode' => $portal->city_code,
             'chittis' => $chittis,
-            'name' => ucfirst($name)
+            'name' => ucfirst($name),
         ]);
     }
 }
