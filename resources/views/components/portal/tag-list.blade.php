@@ -215,7 +215,7 @@
                 @foreach ($tagCArray as $tag )
                 {{-- {{dd($tag)}} --}}
                 <div class="mb-1">
-                    <a target="_blank" href="">
+                    <a target="_blank" href="{{route('post-archive',['ids'=>$tag->tagId,'catg'=>'tags','name'=>$tag->tagInEnglish,'cityCode'=>$citySlug])}}">
                     <div class="row">
                         <div class="col-2">
                             <img class="img-fluid rounded-circle border" src="https://{{$tag->tagIcon}}" alt="">

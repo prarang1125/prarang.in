@@ -148,7 +148,7 @@
                             @foreach ($tagSubCounts['tag_1'] as $tag)
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
-                                    <a target="_blank" href="">
+                                    <a target="_blank" href="{{route('post-archive',['ids'=>$tag->tagId,'catg'=>'tags','name'=>$tag->tagInEnglish,'cityCode'=>$portal->slug])}}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle" src="https://{{ $tag->tagIcon }}"
@@ -182,7 +182,7 @@
                             @foreach ($tagSubCounts['tag_2'] as $tag)
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
-                                    <a target="_blank" href="">
+                                    <a target="_blank" href="{{route('post-archive',['ids'=>$tag->tagId,'catg'=>'tags','name'=>$tag->tagInEnglish,'cityCode'=>$portal->slug])}}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle" src="https://{{ $tag->tagIcon }}"
@@ -216,7 +216,7 @@
                             @foreach ($tagSubCounts['tag_3'] as $tag)
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
-                                    <a target="_blank" href="">
+                                    <a target="_blank" href="{{route('post-archive',['ids'=>$tag->tagId,'catg'=>'tags','name'=>$tag->tagInEnglish,'cityCode'=>$portal->slug])}}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle" src="https://{{ $tag->tagIcon }}"
@@ -264,7 +264,7 @@
                             @foreach ($tagSubCounts['tag_4'] as $tag)
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
-                                    <a target="_blank" href="">
+                                    <a target="_blank" href="{{route('post-archive',['ids'=>$tag->tagId,'catg'=>'tags','name'=>$tag->tagInEnglish,'cityCode'=>$portal->slug])}}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
@@ -296,7 +296,7 @@
                             @foreach ($tagSubCounts['tag_5'] as $tag)
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
-                                    <a target="_blank" href="">
+                                    <a target="_blank" href="{{route('post-archive',['ids'=>$tag->tagId,'catg'=>'tags','name'=>$tag->tagInEnglish,'cityCode'=>$portal->slug])}}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
@@ -328,7 +328,7 @@
                             @foreach ($tagSubCounts['tag_6'] as $tag)
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
-                                    <a target="_blank" href="">
+                                    <a target="_blank" href="{{route('post-archive',['ids'=>$tag->tagId,'catg'=>'tags','name'=>$tag->tagInEnglish,'cityCode'=>$portal->slug])}}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
