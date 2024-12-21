@@ -275,7 +275,7 @@
                 <h3>Recent Posts</h3>
                 @foreach ($recentPosts as $recent)
                     <div class="recent-post">
-                        <img src="{{ $recent['imageUrl'] }}" alt="Thumbnail">
+                        {{-- <img src="{{ $recent['imageUrl'] }}" alt="Thumbnail"> --}}
                         {{-- <div class="text-content">
                             <a href="/post-summary/{{ $recent['chittiId'] }}" class="text-decoration-none">
                                 <p class="title">{{ $recent->Title }}</p>
