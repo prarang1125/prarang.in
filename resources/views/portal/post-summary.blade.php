@@ -265,7 +265,7 @@
 
                 <!-- Post Content -->
                 {{-- <h2 style="font-weight: bold; font-size: 20px; margin-bottom: 10px;">{{ $post['title'] }}</h2> --}}
-                <p style="background-color: {{ $ColorCode }};">{!! $post['description'] !!}</p>
+                <p class="p-2" style="background-color: {{ $ColorCode }};">{!! $post['description'] !!}</p>
 
             </div>
 
