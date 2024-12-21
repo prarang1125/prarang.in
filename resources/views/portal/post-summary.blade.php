@@ -260,13 +260,11 @@
                 @if ($post->images[0]->VideoExist == 1)
                     {!! $post->images[0]->VideoURL !!}
                 @else
-                    @if ($post['imageUrl'])
-                        <img src="{{ $post['imageUrl'] }}" alt="Post Image">
-                    @endif
+                    <img src="{{ $post->images[0]->imageUrl }}" alt="Post Image">
                 @endif
 
                 <!-- Post Content -->
-                <h2 style="font-weight: bold; font-size: 20px; margin-bottom: 10px;">{{ $post['title'] }}</h2>
+                {{-- <h2 style="font-weight: bold; font-size: 20px; margin-bottom: 10px;">{{ $post['title'] }}</h2> --}}
                 <p style="background-color: {{ $ColorCode }};">{!! $post['description'] !!}</p>
             </div>
 
