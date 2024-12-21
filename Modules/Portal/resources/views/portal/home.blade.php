@@ -3,6 +3,17 @@
         #header .header-map--gmaps {
             height: 100vh;
         }
+
+        @media (max-width:991px) {
+            #main .hentry {
+                position: relative;
+                top: 65px;
+            }
+        }
+
+        #wrapper footer>.container-fluid {
+            background-color: rgba(213, 209, 209, 0.34);
+        }
     </style>
     <div id="wrapper">
         <header class="header--has-languages header--has-map" id="header">
@@ -69,59 +80,27 @@
                                     data-label-collapse-submenu="Collapse submenu"
                                     data-label-expand-submenu="Expand submenu" id="header-mobile-menu">
                                     <ul class="header-mobile-menu__list" id="menu-main-menu" role="menu">
-                                        <li class="header-mobile-menu__item header-mobile-menu__item--level-0 menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-207 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children"
-                                            id="header-mobile-menu__item-226" role="presentation">
+                                        <li class="header-mobile-menu__item header-mobile-menu__item--level-0 menu-item menu-item-type-post_type menu-item-object-page"
+                                            id="header-mobile-menu__item-222" role="presentation">
                                             <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-0"
-                                                href="https://preview.lsvr.sk/townpress/"
-                                                id="header-mobile-menu__item-link-226" role="menuitem">
+                                                href="{{ route('portal', ['portal' => $portal->slug]) }}"
+                                                id="header-mobile-menu__item-link-222" role="menuitem">
                                                 <span class="header-mobile-menu__item-link-label">
-                                                    Home
+                                                    HOME / होम
                                                 </span>
                                             </a>
-                                            <button aria-controls="header-mobile-menu__submenu-226"
-                                                aria-expanded="false" aria-haspopup="true" aria-label="Expand submenu"
-                                                class="header-mobile-menu__toggle header-mobile-menu__toggle--level-0"
-                                                id="header-mobile-menu__toggle-226" type="button">
-                                                <span aria-hidden="true" class="header-mobile-menu__toggle-icon">
-                                                </span>
-                                            </button>
-                                            <ul aria-expanded="false"
-                                                aria-labelledby="header-mobile-menu__item-link-226"
-                                                class="header-mobile-menu__submenu sub-menu header-mobile-menu__submenu--level-0"
-                                                id="header-mobile-menu__submenu-226" role="menu">
-                                                <li class="header-mobile-menu__item header-mobile-menu__item--level-1 menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-207 current_page_item"
-                                                    id="header-mobile-menu__item-227" role="presentation">
-                                                    <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-1"
-                                                        href="https://preview.lsvr.sk/townpress/"
-                                                        id="header-mobile-menu__item-link-227" role="menuitem">
-                                                        <span class="header-mobile-menu__item-link-label">
-                                                            Classic Home
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li class="header-mobile-menu__item header-mobile-menu__item--level-1 menu-item menu-item-type-post_type menu-item-object-page"
-                                                    id="header-mobile-menu__item-225" role="presentation">
-                                                    <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-1"
-                                                        href="https://preview.lsvr.sk/townpress/magazine-home/"
-                                                        id="header-mobile-menu__item-link-225" role="menuitem">
-                                                        <span class="header-mobile-menu__item-link-label">
-                                                            Magazine Home
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li class="header-mobile-menu__item header-mobile-menu__item--level-1 menu-item menu-item-type-post_type menu-item-object-page"
-                                                    id="header-mobile-menu__item-224" role="presentation">
-                                                    <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-1"
-                                                        href="https://preview.lsvr.sk/townpress/dashboard-home/"
-                                                        id="header-mobile-menu__item-link-224" role="menuitem">
-                                                        <span class="header-mobile-menu__item-link-label">
-                                                            Dashboard Home
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                            </ul>
                                         </li>
                                         <li class="header-mobile-menu__item header-mobile-menu__item--level-0 menu-item menu-item-type-post_type menu-item-object-page"
+                                            id="header-mobile-menu__item-222" role="presentation">
+                                            <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-0"
+                                                href="{{ route('posts.city', ['city' => $portal->slug]) }}"
+                                                id="header-mobile-menu__item-link-222" role="menuitem">
+                                                <span class="header-mobile-menu__item-link-label">
+                                                    See All Posts /सभी रंग देखे
+                                                </span>
+                                            </a>
+                                        </li>
+                                        {{-- <li class="header-mobile-menu__item header-mobile-menu__item--level-0 menu-item menu-item-type-post_type menu-item-object-page"
                                             id="header-mobile-menu__item-222" role="presentation">
                                             <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-0"
                                                 href="https://preview.lsvr.sk/townpress/news/"
@@ -130,151 +109,17 @@
                                                     News
                                                 </span>
                                             </a>
-                                        </li>
-                                        <li class="header-mobile-menu__item header-mobile-menu__item--level-0 menu-item menu-item-type-custom menu-item-object-custom"
-                                            id="header-mobile-menu__item-229" role="presentation">
+                                        </li> --}}
+                                        <li class="header-mobile-menu__item header-mobile-menu__item--level-0 menu-item menu-item-type-post_type menu-item-object-page"
+                                            id="header-mobile-menu__item-222" role="presentation">
                                             <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-0"
-                                                href="https://preview.lsvr.sk/townpress/notices/"
-                                                id="header-mobile-menu__item-link-229" role="menuitem">
+                                                href="{{ env('G2C_URL') }}/{{ $portal->city_name }}/{{ $portal->local_lang }}"
+                                                id="header-mobile-menu__item-link-222" role="menuitem">
                                                 <span class="header-mobile-menu__item-link-label">
-                                                    Notices
+                                                    District Metrics / जिला मेट्रिक्स
                                                 </span>
                                             </a>
                                         </li>
-                                        <li class="header-mobile-menu__item header-mobile-menu__item--level-0 menu-item menu-item-type-custom menu-item-object-custom"
-                                            id="header-mobile-menu__item-230" role="presentation">
-                                            <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-0"
-                                                href="https://preview.lsvr.sk/townpress/directory"
-                                                id="header-mobile-menu__item-link-230" role="menuitem">
-                                                <span class="header-mobile-menu__item-link-label">
-                                                    Directory
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li class="header-mobile-menu__item header-mobile-menu__item--level-0 menu-item menu-item-type-custom menu-item-object-custom"
-                                            id="header-mobile-menu__item-231" role="presentation">
-                                            <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-0"
-                                                href="https://preview.lsvr.sk/townpress/events"
-                                                id="header-mobile-menu__item-link-231" role="menuitem">
-                                                <span class="header-mobile-menu__item-link-label">
-                                                    Events
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li class="header-mobile-menu__item header-mobile-menu__item--level-0 menu-item menu-item-type-custom menu-item-object-custom"
-                                            id="header-mobile-menu__item-232" role="presentation">
-                                            <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-0"
-                                                href="https://preview.lsvr.sk/townpress/galleries"
-                                                id="header-mobile-menu__item-link-232" role="menuitem">
-                                                <span class="header-mobile-menu__item-link-label">
-                                                    Galleries
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li class="header-mobile-menu__item header-mobile-menu__item--level-0 menu-item menu-item-type-custom menu-item-object-custom"
-                                            id="header-mobile-menu__item-233" role="presentation">
-                                            <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-0"
-                                                href="https://preview.lsvr.sk/townpress/documents"
-                                                id="header-mobile-menu__item-link-233" role="menuitem">
-                                                <span class="header-mobile-menu__item-link-label">
-                                                    Documents
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li class="header-mobile-menu__item header-mobile-menu__item--level-0 menu-item menu-item-type-custom menu-item-object-custom"
-                                            id="header-mobile-menu__item-234" role="presentation">
-                                            <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-0"
-                                                href="https://preview.lsvr.sk/townpress/people"
-                                                id="header-mobile-menu__item-link-234" role="menuitem">
-                                                <span class="header-mobile-menu__item-link-label">
-                                                    People
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li class="header-mobile-menu__item header-mobile-menu__item--level-0 menu-item menu-item-type-custom menu-item-object-custom"
-                                            id="header-mobile-menu__item-343" role="presentation">
-                                            <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-0"
-                                                href="https://preview.lsvr.sk/townpress/forums/"
-                                                id="header-mobile-menu__item-link-343" role="menuitem">
-                                                <span class="header-mobile-menu__item-link-label">
-                                                    Forums
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li class="header-mobile-menu__item header-mobile-menu__item--level-0 menu-item menu-item-type-post_type menu-item-object-page menu-item-has-children"
-                                            id="header-mobile-menu__item-223" role="presentation">
-                                            <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-0"
-                                                href="https://preview.lsvr.sk/townpress/typography/"
-                                                id="header-mobile-menu__item-link-223" role="menuitem">
-                                                <span class="header-mobile-menu__item-link-label">
-                                                    Page Examples
-                                                </span>
-                                            </a>
-                                            <button aria-controls="header-mobile-menu__submenu-223"
-                                                aria-expanded="false" aria-haspopup="true"
-                                                aria-label="Expand submenu"
-                                                class="header-mobile-menu__toggle header-mobile-menu__toggle--level-0"
-                                                id="header-mobile-menu__toggle-223" type="button">
-                                                <span aria-hidden="true" class="header-mobile-menu__toggle-icon">
-                                                </span>
-                                            </button>
-                                            <ul aria-expanded="false"
-                                                aria-labelledby="header-mobile-menu__item-link-223"
-                                                class="header-mobile-menu__submenu sub-menu header-mobile-menu__submenu--level-0"
-                                                id="header-mobile-menu__submenu-223" role="menu">
-                                                <li class="header-mobile-menu__item header-mobile-menu__item--level-1 menu-item menu-item-type-post_type menu-item-object-page"
-                                                    id="header-mobile-menu__item-451" role="presentation">
-                                                    <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-1"
-                                                        href="https://preview.lsvr.sk/townpress/contact/"
-                                                        id="header-mobile-menu__item-link-451" role="menuitem">
-                                                        <span class="header-mobile-menu__item-link-label">
-                                                            Contact
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li class="header-mobile-menu__item header-mobile-menu__item--level-1 menu-item menu-item-type-post_type menu-item-object-page"
-                                                    id="header-mobile-menu__item-452" role="presentation">
-                                                    <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-1"
-                                                        href="https://preview.lsvr.sk/townpress/phone-numbers/"
-                                                        id="header-mobile-menu__item-link-452" role="menuitem">
-                                                        <span class="header-mobile-menu__item-link-label">
-                                                            Phone Numbers
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li class="header-mobile-menu__item header-mobile-menu__item--level-1 menu-item menu-item-type-post_type menu-item-object-page"
-                                                    id="header-mobile-menu__item-228" role="presentation">
-                                                    <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-1"
-                                                        href="https://preview.lsvr.sk/townpress/typography/"
-                                                        id="header-mobile-menu__item-link-228" role="menuitem">
-                                                        <span class="header-mobile-menu__item-link-label">
-                                                            Typography
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li class="header-mobile-menu__item header-mobile-menu__item--level-1 menu-item menu-item-type-custom menu-item-object-custom"
-                                                    id="header-mobile-menu__item-265" role="presentation">
-                                                    <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-1"
-                                                        href="https://preview.lsvr.sk/townpress/?s=town"
-                                                        id="header-mobile-menu__item-link-265" role="menuitem">
-                                                        <span class="header-mobile-menu__item-link-label">
-                                                            Search Results
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                                <li class="header-mobile-menu__item header-mobile-menu__item--level-1 menu-item menu-item-type-custom menu-item-object-custom"
-                                                    id="header-mobile-menu__item-266" role="presentation">
-                                                    <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-1"
-                                                        href="https://preview.lsvr.sk/townpress/404"
-                                                        id="header-mobile-menu__item-link-266" role="menuitem">
-                                                        <span class="header-mobile-menu__item-link-label">
-                                                            Error 404
-                                                        </span>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                    </ul>
                                 </nav>
                                 <!-- HEADER MOBILE MENU : end -->
                             </div>
@@ -299,8 +144,7 @@
                     <div class="columns__inner">
                         <div class="lsvr-container">
                             <div class="lsvr-grid">
-                                <div
-                                    class="columns__main lsvr-grid__col lsvr-grid__col--span-6 lsvr-grid__col--push-3">
+                                <div class="columns__main lsvr-grid__col lsvr-grid__col--span-6 lsvr-grid__col--push-3">
                                     <!-- MAIN : begin -->
                                     <main id="main">
                                         <div class="main__inner">
@@ -384,7 +228,7 @@
                                                                     id="lsvr-townpress-menu-widget__item-222-830"
                                                                     role="presentation">
                                                                     <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
-                                                                        href=""
+                                                                        href="{{ env('G2C_URL') }}/{{ $portal->city_name }}/{{ $portal->local_lang }}"
                                                                         id="lsvr-townpress-menu-widget__item-link-222-830"
                                                                         role="menuitem">
                                                                         <span
@@ -475,7 +319,7 @@
         <!-- CORE : end -->
         <!-- FOOTER : begin -->
         <div style="min-height:200px;"></div>
-        <footer class="footer--has-backgroundx " id="footer"
+        {{-- <footer class="footer--has-backgroundx " id="footer"
             style="background-image: url( 'https://preview.lsvr.sk/townpress/wp-content/uploads/sites/3/2017/12/footer-bg.jpg' );">
             <div class="footer__inner">
                 <!-- FOOTER WIDGETS : begin -->
@@ -493,10 +337,7 @@
                                                 </h3>
                                                 <div class="textwidget">
                                                     <p>
-                                                        TownPress is a premium Municipality WordPress theme. It is best
-                                                        suited to be used as a presentation site for small to medium
-                                                        towns. You will find an extensive list of features to help
-                                                        create the website your town needs!
+
                                                     </p>
                                                     <p>
                                                         <strong>
@@ -775,8 +616,67 @@
                 </div>
                 <!-- FOOTER BOTTOM : end -->
             </div>
-        </footer>
+        </footer> --}}
         <!-- FOOTER : end -->
+        <footer>
+            <div class="container-fluid">
+                <br>
+                <div class="container mt-3">
+                    <div class="footer-design row">
+                        <div class="col-sm-3">
+                            <a href="{{ route('privacy-policy') }}" class="">
+                                Privacy Policy
+                            </a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a href="{{ route('terms-conditions') }}" class="">
+                                Terms &amp; Conditions
+                            </a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a href="{{ route('refund-cancellation') }}">
+                                Cancellations and Refund
+                            </a>
+                        </div>
+                        <div class="col-sm-3">
+                            <a href="{{ route('about-us') }}">
+                                About Us
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="container-fluid">
+
+                </div>
+                <p class="container"><br>
+                    <b>Please read this disclaimer carefully before using our website. By accessing and using our
+                        website,
+                        you
+                        agree to the terms and conditions stated in this disclaimer. </b> <br>
+
+                    1. Copyright and Intellectual Property: <br> a) The content, design, graphics, and data presented on
+                    this
+                    website are protected by copyright and intellectual property laws. <br> b) Unauthorized use,
+                    reproduction, or
+                    distribution of any material from this website, whether free or paid, is strictly prohibited. <br>
+                    2. Changes to Disclaimer: <br> a) We reserve the right to modify or update this disclaimer at any
+                    time
+                    without
+                    prior notice. <br> b) Any changes will be effective immediately upon posting on the website.
+                    By using our website, you acknowledge that you have read, understood, and agree to this
+                    disclaimer
+                    in
+                    its entirety. If you do not agree with any part of this disclaimer, please refrain from using
+                    our
+                    website. For
+                    any questions or clarifications, please contact us at query@prararag.in
+                </p>
+                <p id="demo">
+                </p>
+                <br>
+            </div>
+        </footer>
+
     </div>
 
 
