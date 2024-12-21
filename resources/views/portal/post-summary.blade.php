@@ -266,6 +266,7 @@
                 <!-- Post Content -->
                 {{-- <h2 style="font-weight: bold; font-size: 20px; margin-bottom: 10px;">{{ $post['title'] }}</h2> --}}
                 <p style="background-color: {{ $ColorCode }};">{!! $post['description'] !!}</p>
+
             </div>
 
 
@@ -275,35 +276,37 @@
                 @foreach ($recentPosts as $recent)
                     <div class="recent-post">
                         <img src="{{ $recent['imageUrl'] }}" alt="Thumbnail">
-                        <div class="text-content">
+                        {{-- <div class="text-content">
                             <a href="/post-summary/{{ $recent['chittiId'] }}" class="text-decoration-none">
                                 <p class="title">{{ $recent->Title }}</p>
                                 <p class="date">{{ $recent->formattedDate }}</p>
-                        </div>
+                        </div> --}}
                     </div>
                 @endforeach
             </aside>
+
         </div>
-
-        <!-- Navigation Buttons (Previous and Next Posts) -->
-        <div class="post-navigation">
-            @if ($previousPost)
-                <a href="{{ route('post-summary', ['slug' => $slug, 'id' => $previousPost->chittiId, 'subTitle' => Str::slug($previousPost->SubTitle)]) }}"
-                    class="btn btn-primary">पिछला</a>
-            @endif
-
-            @if ($nextPost)
-                <a href="{{ route('post-summary', ['slug' => $slug, 'id' => $nextPost->chittiId, 'subTitle' => Str::slug($nextPost->SubTitle)]) }}"
-                    class="btn btn-primary">अगला</a>
-            @endif
-        </div>
-
-
         <a href="#" class="tag-link"
             style="background-color: #ff0000; color: white; padding: 10px 20px; border-radius: 5px; display: inline-block; text-decoration: none; cursor: default; transition: background-color 0.3s ease;"
             onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#007bff';">
             {{ $post['tagInUnicode'] }}
         </a>
+        <br> <br>
+        <!-- Navigation Buttons (Previous and Next Posts) -->
+        <div class="text-center post-navigation">
+            @if ($previousPost)
+                <a href="{{ route('post-summary', ['slug' => $slug, 'id' => $previousPost->chittiId, 'subTitle' => Str::slug($previousPost->SubTitle)]) }}"
+                    class="btn btn-primary">पिछला / Previous</a>
+            @endif
+
+            @if ($nextPost)
+                <a href="{{ route('post-summary', ['slug' => $slug, 'id' => $nextPost->chittiId, 'subTitle' => Str::slug($nextPost->SubTitle)]) }}"
+                    class="btn btn-primary">अगला / Next</a>
+            @endif
+        </div>
+
+
+
 
         <div class="definitions" style="background-color: {{ $ColorCode }};">
             <h3>Definitions of the Post Viewership Metrics</h3>
