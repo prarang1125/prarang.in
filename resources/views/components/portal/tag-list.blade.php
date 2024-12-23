@@ -222,7 +222,7 @@
                             {{-- {{dd($tag)}} --}}
                             <div class="mb-1">
                                 <a target="_blank"
-                                    href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => $tag->tagInEnglish, 'cityCode' => $citySlug]) }}">
+                                    href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => preg_replace('/[^\w\s]/', ' ', $tag->tagInEnglish), 'cityCode' => $citySlug]) }}">
                                     <div class="row">
                                         <div class="col-2">
                                             <img class="border img-fluid rounded-circle"

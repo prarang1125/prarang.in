@@ -24,14 +24,12 @@
                     <td>₹{{ $plan->price }}</td>
                     <td>{{ $plan->description }}</td>
                     <td>{{ $plan->duration }}Day's</td>
-                    
                     <td>
                         <form action="{{ url('yellow-pages/vCard/stripe-checkout') }}" method="POST" nctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="plan_id" value="{{ $plan->id }}">
                             <input type="hidden" name="price" value="{{ $plan->price }}">
                             {{-- <button type="submit" class="btn btn-danger">Purchase</button> --}}
-                            <td>
                                 @if($userPlanId == $plan->id)
                                     <button type="button" class="btn btn-success">Current Plan</button>
                                 @else
@@ -41,7 +39,7 @@
                                         <button type="submit" class="btn btn-danger">Purchase Plan</button>
                                     </form>
                                 @endif
-                            </td>
+                        
                         </form>
                     </td>
                 </tr>

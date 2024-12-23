@@ -48,10 +48,15 @@
             </a>
         </li>
         <li>
-            <a href="#">
+            <a href="{{ url('yellow-pages/paymentHistory') }}">
+                <div class="parent-icon"><i class="bx bx-briefcase"></i></div>
+                <div class="menu-title">Payment Transaction</div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('yellow-pages/vcard/paymentHistory') }}">
                 <div class="parent-icon"><i class="bx bx-home-circle"></i></div>
-                <div class="menu-title">User Dashboard</div>
+                <div class="menu-title">Review</div>
             </a>
         </li>
 </ul>
-<!-- End Navigation -->

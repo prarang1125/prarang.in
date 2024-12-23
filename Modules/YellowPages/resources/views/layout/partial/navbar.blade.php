@@ -31,15 +31,9 @@
                 <ul class="dropdown-menu dropdown-menu-end">
                     @if (Auth::guard('admin')->check())
                         {{-- @if (Auth::guard('admin')->user()->roleId === '1') --}}
-                        <li><a class="dropdown-item" href="{{ route('admin.user-profile') }}"><i class="bx bx-user"></i><span>Profile</span></a>
-                        </li>
-                        <li><a class="dropdown-item" href="javascript:;"><i class="bx bx-cog"></i><span>Settings</span></a>
+                        <li><a class="dropdown-item" href="{{ url('yellow-pages/user-edit/'. Auth::guard('admin')->id()) }}"><i class="bx bx-user"></i><span>Profile</span></a>
                         </li>
                         <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}"><i class='bx bx-home-circle'></i><span>Dashboard</span></a>
-                        </li>
-                        <li><a class="dropdown-item" href="javascript:;"><i class='bx bx-dollar-circle'></i><span>Earnings</span></a>
-                        </li>
-                        <li><a class="dropdown-item" href="javascript:;"><i class='bx bx-download'></i><span>Downloads</span></a>
                         </li>
                         <li>
                             <div class="dropdown-divider mb-0"></div>

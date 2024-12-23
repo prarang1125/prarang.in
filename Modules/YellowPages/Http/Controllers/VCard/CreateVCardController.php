@@ -14,6 +14,7 @@ use App\Models\DynamicVcard;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Support\Facades\Auth;
 
@@ -66,11 +67,64 @@ class CreateVCardController extends Controller
             }
         }
     
-    
         return redirect()->route('vCard.createCard')->with('success', 'Card saved successfully.');
     }
+
+    public function vCardEdit($id) {
+        $vcard = Vcard::findOrFail($id);
+        $vcardInfo = DynamicVcard::where('vcard_id', $vcard->id)->get(); // Corrected the query for related information
+        return view('yellowpages::VCard.vcardEdit', compact('vcard', 'vcardInfo'));
+    }
+    public function vCardUpdate(Request $request, $id) {
+        $validatedData = $request->validate([
+            'color_code' => 'nullable|string',
+            'slug' => 'required|string',
+            'banner_img' => 'nullable|image|max:2048',
+            'logo' => 'nullable|image|max:2048',
+            'title' => 'required|string',
+            'subtitle' => 'nullable|string',
+            'description' => 'nullable|string',
+            'name' => 'nullable|array',
+            'data' => 'nullable|array',
+        ]);
     
+        // Handle file uploads
+        if ($request->hasFile('banner_img')) {
+            $validatedData['banner_img'] = $request->file('banner_img')->store('banners', 'public');
+        }
+        if ($request->hasFile('logo')) {
+            $validatedData['logo'] = $request->file('logo')->store('logos', 'public');
+        }
     
+        $userId = Auth::id();
+    
+        // Ensure user ID is included
+        $validatedData['user_id'] = $userId;
+    
+        // Update card
+        $card = Vcard::find($id)->update($validatedData);
+    
+        if (!$card) {
+            return redirect()->back()->withErrors(['error' => 'Failed to update listing']);
+        }
+    
+        // Save dynamic fields
+        if (!empty($validatedData['name'])) {
+            foreach ($validatedData['name'] as $index => $name) {
+                if (!empty($name) && !empty($validatedData['data'][$index])) {
+                    DynamicVcard::updateOrCreate(
+                        ['vcard_id' => $id, 'title' => $name],
+                        ['data' => $validatedData['data'][$index]]
+                    );
+                }
+            }
+        }
+    
+        return redirect()->route('vCard.view', $id)->with('success', 'Card updated successfully.');
+    }
+    
+
+
     public function view()
     {
         $userId = Auth::id();
@@ -82,11 +136,28 @@ class CreateVCardController extends Controller
     {
         $userId = Auth::id();
         $vcard = Vcard::where('user_id', $userId)->latest()->firstOrFail();
+        $vcardId= $vcard->id;
+        // Generate QR code
+        $qrCode = QrCode::size(200)->generate(route('vCard.scanView', ['qrCode' => $vcard->slug]));
+        return view('yellowpages::VCard.QRvCard', compact('qrCode' ,'vcardId'));
+
+    }
+    
+    // controller
+    public function downloadQrCode()
+    {
+        $userId = Auth::id();
+        $vcard = Vcard::where('user_id', $userId)->latest()->firstOrFail();
     
         // Generate QR code
         $qrCode = QrCode::size(200)->generate(route('vCard.scanView', ['qrCode' => $vcard->slug]));
     
-        return view('yellowpages::VCard.QRvCard', compact('qrCode'));
+        // Create a temporary file to store the QR code image
+        $tempFile = tempnam(sys_get_temp_dir(), 'qr_'); 
+        file_put_contents($tempFile, $qrCode);
+    
+        return response()->download($tempFile, 'vcard_qr_code.png')->deleteFileAfterSend(true);
+
     }
     
 
@@ -191,7 +262,6 @@ public function paymentSuccess(Request $request)
         ]);
 
         User::where('id', Auth::id())->update(['plan_id' => $plan_id]);
-       
 
         return redirect()->route('vCard.planDetails')->with('success', 'Payment successful and plan activated!');
     } catch (\Exception $e) {
