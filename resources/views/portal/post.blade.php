@@ -72,7 +72,7 @@
     </div>
 
     <!-- Pagination Controls -->
-    <div class="d-flex justify-content-center mt-4">
+    <div class="mt-4 d-flex justify-content-center">
         {{ $chittis->links('pagination::bootstrap-5') }}
     </div>
 

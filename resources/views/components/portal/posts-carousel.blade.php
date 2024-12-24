@@ -156,7 +156,7 @@
             @foreach ($chittiArray as $postImg)
                 <div class="p-1 shadow item" id="carousel-item" style="min-height:80px;">
                     <img class="img-carousel"data-bs-toggle="modal" data-bs-target="#exampleModal{{ $postImg->chittiId }}"
-                        src="https://{{ $postImg->imageUrl }}" alt="Post Image">
+                        src="{{ $postImg->imageUrl }}" alt="Post Image">
                     <small class="p-0 m-0"
                         style="font-size:10px">{{ \Illuminate\Support\Str::limit($postImg->Title, 15, '...') }}</small>
                 </div>
@@ -191,8 +191,7 @@
                                 </div>
                             </div>
 
-                            <img class="rounded img-fluid" src="https://{{ $post->imageUrl }}"
-                                alt="{{ $post->SubTitle }}">
+                            <img class="rounded img-fluid" src="{{ $post->imageUrl }}" alt="{{ $post->SubTitle }}">
                             <br><br>
                             {!! $post->description !!}
                         </section>

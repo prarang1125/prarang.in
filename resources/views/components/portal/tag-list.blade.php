@@ -85,8 +85,8 @@
                             class="style-eg4E2"> </a><a href="#" onclick="Tagsfunction(1);"
                             contenteditable="false" id="style-ULjVO" class="style-ULjVO">
                             <div class="text-center mdl-card mdl-shadow--2dp col-md-3 col-xs-2 padngbox inner-border1 style-mO25o"
-                                id="style-mO25o"> <img src="https://prarang.in//sanskriti/samay-sima.png" width="30"
-                                    class="img-tag">
+                                id="style-mO25o"> <img src="{{ asset('assets/images/icons/culture/samay-sima.png') }}"
+                                    width="30" class="img-tag">
                             </div>
                             <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_1"
                                 class="text-center mdl-card mdl-shadow--2dp col-md-9 col-xs-10 padngbox">
@@ -101,8 +101,9 @@
                     <div class="col-md-12 mb-15"> <a href="#" onclick="Tagsfunction(2);" contenteditable="false"
                             id="style-mgvYD" class="style-mgvYD">
                             <div class="text-center mdl-card mdl-shadow--2dp col-md-3 col-xs-2 padngbox inner-border2 style-tC6ly"
-                                id="style-tC6ly"> <img src="https://prarang.in//sanskriti/manav-wa-indirya.png"
-                                    width="30" class="img-tag">
+                                id="style-tC6ly"> <img
+                                    src="{{ asset('assets/images/icons/culture/manav-wa-indirya.png') }}" width="30"
+                                    class="img-tag">
                             </div>
                             <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_2"
                                 class="text-center mdl-card mdl-shadow--2dp col-md-9 col-xs-10 padngbox">
@@ -118,7 +119,8 @@
                     <div class="col-md-12 mb-15"> <a href="#" onclick="Tagsfunction(3);" contenteditable="false"
                             id="style-tokkM" class="style-tokkM">
                             <div class="text-center mdl-card mdl-shadow--2dp col-md-3 col-xs-2 padngbox inner-border3 style-COp3Q"
-                                id="style-COp3Q"> <img src="https://prarang.in//sanskriti/manav-wa-awishkar.png"
+                                id="style-COp3Q"> <img
+                                    src="{{ asset('assets/images/icons/culture/manav-wa-awishkar.png') }}"
                                     width="30" class="img-tag">
                             </div>
                             <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_3"
@@ -159,7 +161,7 @@
                             class="style-eg4E2"> </a><a href="#" onclick="Tagsfunction(1);"
                             contenteditable="false" id="style-ULjVO" class="style-ULjVO">
                             <div class="text-center mdl-card mdl-shadow--2dp col-md-3 col-xs-2 padngbox inner-border1 style-mO25o"
-                                id="style-mO25o"> <img src="https://prarang.in//sanskriti/samay-sima.png"
+                                id="style-mO25o"> <img src="{{ asset('assets/images/icons/nature/bhugol.png') }}"
                                     width="30" class="img-tag">
                             </div>
                             <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_4"
@@ -175,7 +177,7 @@
                     <div class="col-md-12 mb-15"> <a href="#" onclick="Tagsfunction(2);"
                             contenteditable="false" id="style-mgvYD" class="style-mgvYD">
                             <div class="text-center mdl-card mdl-shadow--2dp col-md-3 col-xs-2 padngbox inner-border2 style-tC6ly"
-                                id="style-tC6ly"> <img src="https://prarang.in//sanskriti/manav-wa-indirya.png"
+                                id="style-tC6ly"> <img src="{{ asset('assets/images/icons/nature/jiw-jantu.png') }}"
                                     width="30" class="img-tag">
                             </div>
                             <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_5"
@@ -191,7 +193,7 @@
                         <a href="#" onclick="Tagsfunction(3);" contenteditable="false" id="style-tokkM"
                             class="style-tokkM">
                             <div class="text-center mdl-card mdl-shadow--2dp col-md-3 col-xs-2 padngbox inner-border3 style-COp3Q"
-                                id="style-COp3Q"> <img src="https://prarang.in//sanskriti/manav-wa-awishkar.png"
+                                id="style-COp3Q"> <img src="{{ asset('assets/images/icons/nature/vanaspati.png') }}"
                                     width="30" class="img-tag">
                             </div>
                             <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_6"
@@ -226,7 +228,8 @@
                                     <div class="row">
                                         <div class="col-2">
                                             <img class="border img-fluid rounded-circle"
-                                                src="https://{{ $tag->tagIcon }}" alt="">
+                                                src="{{ Storage::url($tag->tagIcon) }}"
+                                                alt="{{ $tag->tagInEnglish }}">
                                         </div>
                                         <div class="border col-10 rounded-pill tagListx">
                                             <div class="row">
