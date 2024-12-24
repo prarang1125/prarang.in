@@ -1,0 +1,26 @@
+=> Prarang Migration 
+
+1. Old Assets:
+    i. https://www.prarang.in/home-assets/image/
+    ii.https://www.prarang.in/meeting-data/pdfs
+    iii.https://www.prarang.in/cimg/      (cimg changed to 2024-posts) : Also Changed For Databases.
+    iv. Portals Images 
+    v About Us 
+    vi prarang.in/images     to   assets/images Manage assets/images for all 
+    https://www.prarang.in/sanskriti/ sanskriti
+    https://admin.prarang.in/img/geography/geography_rivers.png need to change From DB Also  img in AWS s3
+
+     
+
+
+
+
+
+
+
+2. Pages For Edit :
+    https://test.prarang.com/market    image paths /cimg/=>popups 
+    https://test.prarang.com/content   href link / New .env()
+    https://test.prarang.com/about-us  all Images
+    https://www.prarang.in/meerut/images/header-logo.2x.png save in assets ans logo2x
+    
