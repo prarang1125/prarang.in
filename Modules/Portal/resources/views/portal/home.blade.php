@@ -32,13 +32,11 @@
             background-attachment: fixed;
         }
 
-        /* Paragraph */
         #wrapper footer p {
             color: #ffffff;
             font-size: 18px;
         }
 
-        /* Text center */
         #wrapper footer .text-center {
             font-size: 24px;
             color: #ffffff;
