@@ -64,6 +64,10 @@ class postController extends Controller
         ]);
     }
 
+
+    //updated public function post_summary($slug, $postId)
+
+
     public function post_summary($slug, $postId)
     {
 

@@ -7,6 +7,7 @@
     <title>Chitti Posts</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
         .post-thumbnail {
             margin-bottom: 20px;
@@ -22,6 +23,179 @@
             font-weight: bold;
             margin-bottom: 10px;
         }
+
+
+        .blog-card {
+            border: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .image-wrapper {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card-img-top {
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .category-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: rgba(255, 255, 255, 0.95);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #333;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .card-title a {
+            color: #2d3436;
+            transition: color 0.2s;
+        }
+
+        .card-title a:hover {
+            color: #0d6efd;
+        }
+
+        .meta-info {
+            font-size: 0.9rem;
+        }
+
+        .tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            font-weight: 500;
+            padding: 0.5em 1em;
+            border-radius: 20px;
+        }
+
+        .post-info {
+            color: #6c757d;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .post-info i {
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .card-title {
+                font-size: 1.1rem;
+            }
+
+            .card-img-top {
+                height: 200px;
+            }
+        }
+        body {
+  background-color: #f8f9fa !important;
+}
+/* Link */
+.container .mb-5 a{
+ font-weight:400;
+ font-size:16px;
+ line-height:0.6em !important;
+ letter-spacing:-0.3px;
+ word-spacing:-0.7px;
+}
+
+/* Image */
+.container .mb-5 img{
+ width:100%;
+}
+
+
+ /* Image */
+ .container .mb-5 img{
+  height:160px;
+ }
+/* Month bar */
+.container .mb-5 .month-bar{
+ font-weight:600;
+ text-shadow:rgba(0, 0, 0, 0.3) 0px 1px 1px;
+ font-size:16px;
+ background-color:rgba(233,230,230,0.88);
+ background-blend-mode:color-dodge;
+ border-top-left-radius:8px;
+ border-top-right-radius:8px;
+ border-bottom-left-radius:8px;
+ border-bottom-right-radius:8px;
+}
+/* Import Google Fonts */
+@import url("//fonts.googleapis.com/css2?family=Alice:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+/* Heading */
+.container h3{
+ font-weight:700;
+ font-family:'Alice', serif;
+ text-align:center;
+ font-size:30px;
+ margin-bottom:16px;
+ margin-top:28px;
+}
+
+/* Navigation */
+section nav{
+ border-bottom-style:none;
+ border-bottom-width:1px !important;
+ box-shadow:-15px -10px 19px 7px #dcdddf;
+}
+
+/* Link */
+.navbar-nav .nav-item a{
+ padding-top:6px !important;
+ padding-bottom:6px !important;
+}
+/* Heading */
+.container h3{
+ font-size:45px;
+ margin-top:58px;
+ margin-bottom:35px;
+}
+
+/* Body */
+body{
+ background-color:rgba(234,234,239,0.67) !important;
+}
+
+/* Month bar */
+.container .mb-5 .month-bar{
+ background-color:rgba(255,255,255,0.9);
+
+}
+.container .mb-5 .mt-3{
+ padding-bottom:44px;
+}
+
+
+
     </style>
 </head>
 
@@ -30,44 +204,51 @@
 
     <div class="container">
         @isset($name)
-            <div class="page-header">
-                <h1>{{ $name }}</h1>
-                {{-- <small>Browse the latest posts for this city.</small> --}}
-            </div>
+        <div class="page-header">
+            <h3 class="main-title-city">{{ $name }}</h3>
+           
+        </div>
+        @else
+          <h3 class="main-title-city">{{ucfirst($city_name)}} Posts</h3>
         @endisset
-        <br><br>
-
-        <!-- Grouped Posts by Month -->
+       
         @forelse ($postsByMonth as $month => $posts)
-            <div class="mb-5">
-                <h2>{{ $month }}</h2>
-                <div class="row">
-                    @foreach ($posts as $post)
-                        <div class="col-lg-3 col-md-4 col-sm-6">
-                            <!-- Wrap the card in a clickable link -->
-                            <a href="{{ route('post-summary', [
+        <div class="mb-5">
+            <!-- <h2 class="p-2 month-bar">{{ $month }}</h2> -->
+            <div class="row">
+                @foreach ($posts as $post)
+                <div class="col-md-3 col-sm-3 col-lg-3 mt-3 mb-3">
+                    <div class="card blog-card h-100">
+                        <div class="image-wrapper">
+                            <img src="{{ $post['imageUrl'] ?? 'default-image.jpg' }}" class="card-img-top"alt="{{ $post['title'] }}">
+                            <div class="category-badge">Featured</div>
+                        </div>
+                        <div class="card-body">
+                            <h2 class="card-title">
+                                <a href="{{ route('post-summary', [
                                 'id' => $post['id'],
                                 'slug' => $city_name,
                                 'subTitle' => isset($post['subTitle']) ? str_replace(' ', '-', $post['subTitle']) : null,
-                            ]) }}"
-                                class="text-decoration-none">
-                                <div class="card post-thumbnail">
-                                    <img src="{{ $post['imageUrl'] ?? 'default-image.jpg' }}" alt="{{ $post['title'] }}"
-                                        class="card-img-top">
-                                    <div class="card-body">
-                                        <h5 class="card-title">{{ $post['title'] }}</h5>
-                                        <p class="card-text">{{ $post['tags'] }}</p>
-                                        <p><small>{{ \Carbon\Carbon::parse($post['createDate'])->format('d M Y') }}</small>
-                                        </p>
-                                    </div>
+                            ]) }}" class="text-decoration-none">{{ $post['title'] }}</a>
+                            </h2>
+                            <div class="meta-info mb-3">
+                                <div class="tags mb-2">
+                                    <span class="badge bg-primary">{{ $post['tags'] }}</span>
+                                    <!-- <span class="badge bg-secondary">Web Dev</span> -->
                                 </div>
-                            </a>
+                                <div class="post-info">
+                                    <i class="bi bi-calendar3"></i>
+                                    <small class="text-muted">{{ \Carbon\Carbon::parse($post['createDate'])->format('d M Y') }}</small>
+                                </div>
+                            </div>
                         </div>
-                    @endforeach
+                    </div>
                 </div>
+                @endforeach
             </div>
+        </div>
         @empty
-            <p>No posts found for this city.</p>
+        <p>No posts found for this city.</p>
         @endforelse
     </div>
 
