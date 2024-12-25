@@ -136,6 +136,7 @@ class CreateVCardController extends Controller
     {
         $userId = Auth::id();
         $vcard = Vcard::where('user_id', $userId)->latest()->firstOrFail();
+        
         $vcardId= $vcard->id;
         // Generate QR code
         $qrCode = QrCode::size(200)->generate(route('vCard.scanView', ['qrCode' => $vcard->slug]));
@@ -186,9 +187,8 @@ public function scanAndView($qrCode, $count = 1)
 public function plan()
 {
     $userPlanId = Auth::user()->plan_id;
-
     // Fetch Payment History
-    $planHistory = PaymentHistory::where('id', $userPlanId)->first();
+    $planHistory = PaymentHistory::where('plan_id', $userPlanId)->first();
 
     // Fetch Plan Details
     $planDetails = Plan::where('id', $userPlanId)->first();
@@ -201,41 +201,6 @@ public function planDetails()
     $plans = Plan::all();
     $userPlanId = Auth::user()->plan_id;
     return view("yellowpages::Vcard.planDetails", compact('plans', 'userPlanId'));
-}
-
-public function stripeCheckout(Request $request)
-{
-    $plan = Plan::findOrFail($request->plan_id);
-
-    try {
-        // Create Stripe Checkout Session with metadata
-        $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
-
-        $checkoutSession = $stripe->checkout->sessions->create([
-            'payment_method_types' => ['card'],
-            'line_items' => [[
-                'price_data' => [
-                    'currency' => 'INR',
-                    'product_data' => [
-                        'name' => $plan->name,
-                    ],
-                    'unit_amount' => $plan->price * 100, // Amount in cents
-                ],
-                'quantity' => 1,
-            ]],
-            'mode' => 'payment',
-            'success_url' => url('yellow-pages/vCard/payment-success') . '?session_id={CHECKOUT_SESSION_ID}',
-            'cancel_url' => url('yellow-pages/vCard/payment-cancel'),
-            'metadata' => [
-                'plan_id' => $plan->id,
-            ],
-        ]);
-
-        // Redirect user to Stripe Checkout
-        return redirect($checkoutSession->url);
-    } catch (\Exception $e) {
-        return redirect()->back()->with('error', 'Stripe error: ' . $e->getMessage());
-    }
 }
 
 public function paymentSuccess(Request $request)

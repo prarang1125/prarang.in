@@ -12,8 +12,10 @@ use Modules\YellowPages\Http\Controllers\admin\PaymentController;
 use Modules\YellowPages\Http\Controllers\admin\CitiesController;
 use Modules\YellowPages\Http\Controllers\admin\CategoriesController;
 use Modules\YellowPages\Http\Controllers\admin\BusinessController;
+use Modules\YellowPages\Http\Controllers\admin\RatingController;
 use Modules\YellowPages\Http\Controllers\VCard\vCardAuthcontroller;
 use Modules\YellowPages\Http\Controllers\VCard\CreateVCardController;
+use Modules\YellowPages\Http\Controllers\VCard\BusinessListingController;
 // use App\Http\Controllers\Auth\AuthController;
 
 /*
@@ -58,10 +60,10 @@ Route::group(['prefix' => 'yellow-pages'], function(){
 
 
 
+        
 Route::group(['middleware' => 'auth.custom'], function(){
 
-
-    Route::post('vCard/stripe-checkout', [CreateVCardController::class, 'stripeCheckout'])->name('vcard.stripeCheckout');
+Route::post('vCard/stripe-checkout', [CreateVCardController::class, 'stripeCheckout'])->name('vcard.stripeCheckout');
 Route::get('vCard/payment-success', [CreateVCardController::class, 'paymentSuccess'])->name('vcard.paymentSuccess');
 Route::get('vCard/payment-cancel', [CreateVCardController::class, 'paymentCancel'])->name('vcard.paymentCancel');
   
@@ -87,6 +89,11 @@ Route::get('vCard/payment-cancel', [CreateVCardController::class, 'paymentCancel
  Route::get('/vcard/MembershipPlan', [CreateVCardController::class, 'planDetails'])->name('vCard.planDetails');
  Route::get('/vcard/paymentHistory', [CreateVCardController::class, 'paymentHistory'])->name('vCard.paymentHistory');
 
+Route::get('/vcard/business-listing', [BusinessListingController::class, 'businessListing'])->name('vCard.business-listing');
+Route::post('/vcard/listing-delete/{id}', [BusinessListingController::class, 'listingDelete'])->name('vCard.listing-delete');
+Route::get('/vcard/listing-edit/{id}', [BusinessListingController::class, 'listingEdit'])->name('vCard.listing-edit');
+Route::put('/vcard/listing-update/{id}', [BusinessListingController::class, 'listingUpdate'])->name('vCard.listing-update');
+
 });
 });
 
@@ -99,7 +106,7 @@ Route::get('vCard/payment-cancel', [CreateVCardController::class, 'paymentCancel
 
      Route::group(['middleware' => 'admin.auth'], function(){
 
-    Route::get('dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
 
 
@@ -137,5 +144,8 @@ Route::get('vCard/payment-cancel', [CreateVCardController::class, 'paymentCancel
 
      #this route is use for admin paymnet details
      Route::get('paymentHistory', [PaymentController::class, 'paymentHistory'])->name('admin.paymentHistory');
+
+     #this route is use for admin Rating details
+     Route::get('Rating', [RatingController::class, 'Rating'])->name('admin.Rating');
    
 });

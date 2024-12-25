@@ -1,4 +1,4 @@
-@extends('yellowpages::layouts.admin')
+@extends('yellowpages::layout.admin.admin')
 
 @section('content')
 <div class="container mt-4">
@@ -33,36 +33,43 @@
                             <th>Comment</th>
                             <th>Image</th>
                             <th>Created At</th>
-                            <th>Actions</th>
+                            {{-- <th>Actions</th> --}}
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($reviews as $review)
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
+                            <td>{{ $review->id }}</td>
                             <td>{{ $review->user->name ?? 'N/A' }}</td>
-                            <td>{{ $review->business_title ?? 'N/A' }}</td>
-                            <td>{{ $review->cleanliness_rating ?? 'N/A' }}</td>
-                            <td>{{ $review->service_rating ?? 'N/A' }}</td>
-                            <td>{{ $review->ambience_rating ?? 'N/A' }}</td>
-                            <td>{{ $review->price_rating ?? 'N/A' }}</td>
-                            <td>{{ Str::limit($review->comment, 50) }}</td>
+                            <td>{{ $review->listing->business_name?? 'N/A' }}</td>                            
+                             <td>{{ $review->cleanliness ?? 'N/A' }}</td>
+                            <td>{{ $review->service ?? 'N/A' }}</td>
+                            <td>{{ $review->ambience ?? 'N/A' }}</td>
+                            <td>{{ $review->price ?? 'N/A' }}</td>
+                            <td>{{ Str::limit($review->review, 50) }}</td>
                             <td>
-                                @if($review->image)
-                                    <img src="{{ asset('storage/reviews/' . $review->image) }}" alt="Review Image" width="50" height="50">
+                                @php
+                                    $images = json_decode($review->image, true); // Decode JSON into an array
+                                @endphp
+                            
+                                @if(!empty($images) && is_array($images))
+                                    @foreach($images as $image)
+                                        <img src="{{ asset('storage/' . $image) }}" alt="Review Image" width="50" height="50">
+                                    @endforeach
                                 @else
                                     N/A
                                 @endif
                             </td>
+                            
                             <td>{{ $review->created_at->format('d M Y, h:i A') }}</td>
-                            <td>
-                                <a href="{{ route('admin.review.edit', $review->id) }}" class="btn btn-sm btn-warning">Edit</a>
-                                <form action="{{ route('admin.review.destroy', $review->id) }}" method="POST" class="d-inline">
+                            {{-- <td>
+                                <a href="#" class="btn btn-sm btn-warning">Edit</a>
+                                <form action="#" method="POST" class="d-inline">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this review?')">Delete</button>
                                 </form>
-                            </td>
+                            </td> --}}
                         </tr>
                         @endforeach
                     </tbody>

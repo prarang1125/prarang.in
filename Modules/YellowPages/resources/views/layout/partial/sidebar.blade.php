@@ -54,7 +54,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ url('yellow-pages/vcard/paymentHistory') }}">
+            <a href="{{ url('yellow-pages/Rating') }}">
                 <div class="parent-icon"><i class="bx bx-home-circle"></i></div>
                 <div class="menu-title">Review</div>
             </a>

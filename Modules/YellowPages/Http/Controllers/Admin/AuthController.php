@@ -32,10 +32,13 @@ class AuthController extends Controller
 
             $credentials = [
                 'email' => $request->email,
-                'password' => $request->password, // Use 'password' key here
+                'password' => $request->password,
+                'role'=>1
             ];
+
             if(Auth::guard('admin')->attempt($credentials)){
                 $user = Auth::guard('admin')->user();
+
                 if($user){    
                     return redirect()->route('admin.dashboard');
                 }
@@ -47,12 +50,8 @@ class AuthController extends Controller
                 ->withInput()
                 ->withErrors($validator);
         }
-
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('yellowpages::create');

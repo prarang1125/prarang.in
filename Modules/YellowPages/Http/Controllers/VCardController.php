@@ -22,15 +22,16 @@ class VCardController extends Controller
         return view("yellowpages::Home.vcard");
     }
     public function dashboard()
-    {
-        $userId = Auth::id();
-    
-        // Retrieve the Vcard associated with the authenticated user
-        $totalscan = Vcard::where('user_id', $userId)->firstOrFail();
-        $plan = Plan::where('id', Auth::user()->plan_id)->firstOrFail();
-    
-        return view('yellowpages::Vcard.dashboard', compact('totalscan', 'plan' ));
-    }
+{
+    $userId = Auth::id();
+
+    // Retrieve the Vcard record for the authenticated user or default to null
+    $totalscan = Vcard::where('user_id', $userId)->first();
+    $plan = Plan::find(Auth::user()->plan_id) ?? 'Not Active Any';
+
+    return view('yellowpages::Vcard.dashboard', compact('totalscan', 'plan'));
+}
+
     
     
     public function vCardPayment(Request $request)

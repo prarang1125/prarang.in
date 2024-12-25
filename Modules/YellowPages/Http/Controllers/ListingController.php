@@ -170,7 +170,6 @@ class ListingController extends Controller
      // foreach ($businessHours as $hour) {
      //     BusinessHour::create($hour);
      // }
- 
      // Redirect with success message
      return redirect()->back()->with('success', 'Business hours saved successfully!');
  }

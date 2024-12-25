@@ -56,5 +56,13 @@
             </a>
         </li>
       
+        <h6>Business</h6>
+        <li>
+            <a href="{{ url('yellow-pages/vcard/business-listing') }}">
+                <div class="parent-icon"><i class="bx bx-briefcase"></i></div>
+                <div class="menu-title">Business Listing</div>
+            </a>
+        </li>
+      
 </ul>
 <!-- End Navigation -->

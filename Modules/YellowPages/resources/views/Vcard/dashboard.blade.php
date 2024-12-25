@@ -9,7 +9,7 @@
             <div class="card radius-10 bg-gradient-deepblue">
                  <div class="card-body">
                     <div class="d-flex align-items-center">
-                        <h5 class="mb-0 text-white">{{ $totalscan->scan_count }}</h5> <!-- Static Total Scans -->
+                        <h5 class="mb-0 text-white">{{ $totalscan ? $totalscan->scan_count : 0 }}</h5>
                         <div class="ms-auto">
                             <i class='bx bx-scan fs-3 text-white'></i>
                         </div>
@@ -27,7 +27,8 @@
                 <div class="card radius-10 bg-gradient-deepblue">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
-                            <h5 class="mb-0 text-white">{{ $plan->name }}</h5> <!-- Static Total Categories -->
+                            <h5 class="mb-0 text-white">{{ is_object($plan) ? $plan->name : 'No Plan Active' }}</h5>
+                            <!-- Static Total Categories -->
                             <div class="ms-auto">
                                 <i class='bx bx-user fs-3 text-white'></i> <!-- Updated icon -->
                             </div>

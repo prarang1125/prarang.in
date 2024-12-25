@@ -39,7 +39,6 @@ class ReviewController extends Controller
             }
         }
 
-        // Create the review
         Review::create([
             'user_id' => Auth::user(),
             'listing_id' => $listingId,
