@@ -114,88 +114,112 @@
                 height: 200px;
             }
         }
+
+
+        /* Link */
+        .container .mb-5 a {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 0.6em !important;
+            letter-spacing: -0.3px;
+            word-spacing: -0.7px;
+        }
+
+        /* Image */
+        .container .mb-5 img {
+            width: 100%;
+        }
+
+
+        /* Image */
+        .container .mb-5 img {
+            height: 160px;
+        }
+
+        /* Month bar */
+        .container .mb-5 .month-bar {
+            font-weight: 600;
+            text-shadow: rgba(0, 0, 0, 0.3) 0px 1px 1px;
+            font-size: 16px;
+            background-color: rgba(233, 230, 230, 0.88);
+            background-blend-mode: color-dodge;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
+
+        /* Import Google Fonts */
+        @import url("//fonts.googleapis.com/css2?family=Alice:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+        /* Heading */
+        .container h3 {
+            font-weight: 700;
+            font-family: 'Alice', serif;
+            text-align: center;
+            font-size: 30px;
+            margin-bottom: 16px;
+            margin-top: 28px;
+        }
+
+        /* Navigation */
+        section nav {
+            border-bottom-style: none;
+            border-bottom-width: 1px !important;
+            box-shadow: -15px -10px 19px 7px #dcdddf;
+        }
+
+        /* Link */
+        .navbar-nav .nav-item a {
+            padding-top: 6px !important;
+            padding-bottom: 6px !important;
+        }
+
+        /* Heading */
+        .container h3 {
+            font-size: 45px;
+            margin-top: 58px;
+            margin-bottom: 35px;
+        }
+
+        /* Body */
         body {
-  background-color: #f8f9fa !important;
-}
-/* Link */
-.container .mb-5 a{
- font-weight:400;
- font-size:16px;
- line-height:0.6em !important;
- letter-spacing:-0.3px;
- word-spacing:-0.7px;
-}
+            background-color: rgba(234, 234, 239, 0.67) !important;
+        }
 
-/* Image */
-.container .mb-5 img{
- width:100%;
-}
+        /* Month bar */
+        .container .mb-5 .month-bar {
+            background-color: rgba(255, 255, 255, 0.9);
 
+        }
 
- /* Image */
- .container .mb-5 img{
-  height:160px;
- }
-/* Month bar */
-.container .mb-5 .month-bar{
- font-weight:600;
- text-shadow:rgba(0, 0, 0, 0.3) 0px 1px 1px;
- font-size:16px;
- background-color:rgba(233,230,230,0.88);
- background-blend-mode:color-dodge;
- border-top-left-radius:8px;
- border-top-right-radius:8px;
- border-bottom-left-radius:8px;
- border-bottom-right-radius:8px;
-}
-/* Import Google Fonts */
-@import url("//fonts.googleapis.com/css2?family=Alice:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+        .container .mb-5 .mt-3 {
+            padding-bottom: 44px;
+        }
 
-/* Heading */
-.container h3{
- font-weight:700;
- font-family:'Alice', serif;
- text-align:center;
- font-size:30px;
- margin-bottom:16px;
- margin-top:28px;
-}
+        /* Image */
+        .container .mb-5 img {
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-top: 5px;
+            border-top-left-radius: 12px;
+            border-top-right-radius: 12px;
+        }
 
-/* Navigation */
-section nav{
- border-bottom-style:none;
- border-bottom-width:1px !important;
- box-shadow:-15px -10px 19px 7px #dcdddf;
-}
+        /* Link */
+        .container .mb-5 a {
+            font-weight: 600;
+            text-align: left;
+            letter-spacing: 0.2px;
+            word-spacing: -0.3px;
+        }
 
-/* Link */
-.navbar-nav .nav-item a{
- padding-top:6px !important;
- padding-bottom:6px !important;
-}
-/* Heading */
-.container h3{
- font-size:45px;
- margin-top:58px;
- margin-bottom:35px;
-}
-
-/* Body */
-body{
- background-color:rgba(234,234,239,0.67) !important;
-}
-
-/* Month bar */
-.container .mb-5 .month-bar{
- background-color:rgba(255,255,255,0.9);
-
-}
-.container .mb-5 .mt-3{
- padding-bottom:44px;
-}
-
-
-
+        /* Heading */
+        .container .mb-5 h2 {
+            max-height: 55px !important;
+            min-height: 55px !important;
+            overflow: hidden;
+        }
     </style>
 </head>
 
@@ -204,51 +228,56 @@ body{
 
     <div class="container">
         @isset($name)
-        <div class="page-header">
-            <h3 class="main-title-city">{{ $name }}</h3>
-           
-        </div>
+            <div class="page-header">
+                <h3 class="main-title-city">{{ $name }}</h3>
+
+            </div>
         @else
-          <h3 class="main-title-city">{{ucfirst($city_name)}} Posts</h3>
+            <h3 class="main-title-city">{{ ucfirst($city_name) }} Posts</h3>
         @endisset
-       
+
         @forelse ($postsByMonth as $month => $posts)
-        <div class="mb-5">
-            <!-- <h2 class="p-2 month-bar">{{ $month }}</h2> -->
-            <div class="row">
-                @foreach ($posts as $post)
-                <div class="col-md-3 col-sm-3 col-lg-3 mt-3 mb-3">
-                    <div class="card blog-card h-100">
-                        <div class="image-wrapper">
-                            <img src="{{ $post['imageUrl'] ?? 'default-image.jpg' }}" class="card-img-top"alt="{{ $post['title'] }}">
-                            <div class="category-badge">Featured</div>
-                        </div>
-                        <div class="card-body">
-                            <h2 class="card-title">
-                                <a href="{{ route('post-summary', [
-                                'id' => $post['id'],
-                                'slug' => $city_name,
-                                'subTitle' => isset($post['subTitle']) ? str_replace(' ', '-', $post['subTitle']) : null,
-                            ]) }}" class="text-decoration-none">{{ $post['title'] }}</a>
-                            </h2>
-                            <div class="meta-info mb-3">
-                                <div class="tags mb-2">
-                                    <span class="badge bg-primary">{{ $post['tags'] }}</span>
-                                    <!-- <span class="badge bg-secondary">Web Dev</span> -->
+            <div class="mb-5">
+                <h6 class="p-0 ps-2 fw-bold">{{ $month }}</h6>
+                <div class="row">
+                    @foreach ($posts as $post)
+                        <div class="mt-3 mb-3 col-md-3 col-sm-3 col-lg-3">
+                            <div class="card blog-card h-100" style="background-color: {{ $post['color'] }}">
+                                <div class="image-wrapper">
+                                    <img src="{{ $post['imageUrl'] ?? 'default-image.jpg' }}"
+                                        class="card-img-top"alt="{{ $post['title'] }}">
+                                    <div class="category-badge" style="background-color: {{ $post['color'] }}">
+                                    </div>
                                 </div>
-                                <div class="post-info">
-                                    <i class="bi bi-calendar3"></i>
-                                    <small class="text-muted">{{ \Carbon\Carbon::parse($post['createDate'])->format('d M Y') }}</small>
+                                <div class="card-body">
+                                    <h2 class="card-title">
+                                        <a href="{{ route('post-summary', [
+                                            'id' => $post['id'],
+                                            'slug' => $city_name,
+                                            'subTitle' => isset($post['subTitle']) ? str_replace(' ', '-', $post['subTitle']) : null,
+                                        ]) }}"
+                                            class="text-decoration-none {{ $post['color'] === '#4d4d4d' ? 'text-light' : '' }}">{{ $post['title'] }}</a>
+                                    </h2>
+                                    <div class="mb-3 meta-info">
+                                        <div class="mb-2 tags">
+                                            <span class="badge bg-primary">{{ $post['tags'] }}</span>
+                                            <!-- <span class="badge bg-secondary">Web Dev</span> -->
+                                        </div>
+                                        <div
+                                            class="post-info {{ $post['color'] === '#4d4d4d' ? 'text-light' : 'text-dark' }}">
+                                            <i class="bi bi-calendar3"></i>
+                                            <small
+                                                class="{{ $post['color'] === '#4d4d4d' ? 'text-light' : 'text-dark' }}">{{ \Carbon\Carbon::parse($post['createDate'])->format('d M Y') }}</small>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    @endforeach
                 </div>
-                @endforeach
             </div>
-        </div>
         @empty
-        <p>No posts found for this city.</p>
+            <p>No posts found for this city.</p>
         @endforelse
     </div>
 

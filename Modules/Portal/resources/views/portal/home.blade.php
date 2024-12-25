@@ -41,6 +41,21 @@
             font-size: 24px;
             color: #ffffff;
         }
+
+        /* Image */
+        #carousel-item img {
+            height: 70px !important;
+            text-align: center;
+            overflow: hidden;
+            min-height: 80px !important;
+            max-height: 80px !important;
+        }
+
+        /* Small Tag */
+        #carousel-item small {
+            white-space: break-spaces;
+            text-align: center;
+        }
     </style>
     <div id="wrapper">
         <header class="header--has-languages header--has-map" id="header">
