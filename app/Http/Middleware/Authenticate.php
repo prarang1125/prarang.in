@@ -8,20 +8,19 @@ use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 
 
-class vCardAuth
+class Authenticate
 {
     /**
      * Handle an incoming request.
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
+    public function handle($request, Closure $next)
     {
-        if(!Auth::guard('vcard')->check()){
-            // return redirect()->route('admin.login');
-             return redirect()->route('vCard.dashboard');
-         }
-         return $next($request);
+        if (!Auth::check()) {
+            return redirect()->route('vCard.login');
+        }
+
+        return $next($request);
     }
 }
-

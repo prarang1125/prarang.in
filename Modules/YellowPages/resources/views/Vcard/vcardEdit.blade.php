@@ -13,58 +13,72 @@
                     <h5 class="mb-4 d-flex align-items-center">
                         <span>VCard Information</span>
                         <div class="ms-3" style="border: 1px solid #ccc; border-radius: 4px;">
-                            <a href="{{ url('yellow-pages/vcard/view/', ) }}" target="_blank">
+                            <a href="{{ url('yellow-pages/vcard/view') }}" target="_blank">
                                 <i class='bx bx-show' title="View Card" style="font-size: 24px;"></i>
                             </a>
                         </div>
                     </h5>                  
-                    <form action="{{ route('vCard.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('vCard.update', $vcard->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')  
+
                         <div class="mb-3">
                             <label for="color_code" class="form-label">Choose Color</label>
-                            <input type="color" class="form-control form-control-color" id="color_code" name="color_code" value="#007bff">
+                            <input type="color" class="form-control form-control-color" id="color_code" name="color_code" value="{{ old('color_code', $vcard->color_code ?? '#007bff') }}">
                         </div>
                         <div class="mb-3">
                             <label for="banner_img" class="form-label">Upload Banner</label>
                             <input type="file" class="form-control" id="banner_img" name="banner_img">
+                            @if($vcard->banner_img)
+                                <img src="{{ asset($vcard->banner_img) }}" alt="Banner Image" class="img-fluid mt-2">
+                            @endif
                         </div>
 
                         <!-- Upload Logo -->
                         <div class="mb-3">
                             <label for="logo" class="form-label">Upload Logo</label>
                             <input type="file" class="form-control" id="logo" name="logo">
+                            @if($vcard->logo)
+                                <img src="{{ asset($vcard->logo) }}" alt="Logo Image" class="img-fluid mt-2">
+                            @endif
                         </div>
 
                         <!-- Slug -->
                         <div class="mb-3">
                             <label for="slug" class="form-label">Slug</label>
-                            <input type="text" class="form-control" id="slug" name="slug" placeholder="Enter unique slug value">
+                            <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug', $vcard->slug) }}" placeholder="Enter unique slug value">
                         </div>
 
                         <!-- Title -->
                         <div class="mb-3">
                             <label for="title" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter title">
+                            <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $vcard->title) }}" placeholder="Enter title">
                         </div>
 
                         <!-- Subtitle -->
                         <div class="mb-3">
                             <label for="subtitle" class="form-label">Subtitle</label>
-                            <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="Enter subtitle">
+                            <input type="text" class="form-control" id="subtitle" name="subtitle" value="{{ old('subtitle', $vcard->subtitle) }}" placeholder="Enter subtitle">
                         </div>
 
                         <!-- Description -->
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter description"></textarea>
+                            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter description">{{ old('description', $vcard->description) }}</textarea>
                         </div>
 
-                          <!-- Dynamic Fields will be appended here -->
-                          <div id="dynamic-fields"></div>
+                        <!-- Dynamic Fields from DynamicVcard Table -->
+                        @foreach($vcardInfo as $dynamicField)
+                            <div class="mb-3">
+                                <label for="{{ $dynamicField->title }}" class="form-label">{{ $dynamicField->title }}</label>
+                                <input type="text" class="form-control" id="{{ $dynamicField->title }}" name="data[]" value="{{ old('data.'.$loop->index, $dynamicField->data) }}">
+                                <input type="hidden" name="name[]" value="{{ $dynamicField->title }}">
+                            </div>
+                        @endforeach
 
                         <!-- Save Button -->
                         <div class="text-end">
-                            <button type="submit" class="btn btn-primary"value="Save_VCard" name="action">Save VCard</button>
+                            <button type="submit" class="btn btn-primary" value="Save_VCard" name="action">Update VCard</button>
                         </div>
                     </form>
                 </div>              
@@ -77,7 +91,7 @@
                 <div class="card-body text-center">
                     <h5 class="mb-4">Add New Information</h5>
                     <div class="icon-box row gx-3 gy-3 justify-content-center">
-                          <!-- Iterate icons and their corresponding labels -->
+                        <!-- Iterate icons and their corresponding labels -->
                         <div class="col-3 text-center" onclick="addField('Phone', 'phone')">
                             <i class='bx bx-phone' title="Phone" style="font-size: 24px;"></i>
                             <p class="mt-1">Phone</p>
@@ -194,25 +208,25 @@
 </div>
 
 @endsection
+
 <script>
     // Define the addField function globally
     function addField(label, fieldName) {
-    const fieldHTML = `
-        <div class="mb-3">
-            <label for="${fieldName}" class="form-label">${label}</label>
-            <input type="text" class="form-control" id="${fieldName}" name="data[]" placeholder="Enter ${label.toLowerCase()}">
-            <input type="hidden" name="name[]" value="${label}">
-        </div>
-    `;
-    const dynamicFields = document.getElementById('dynamic-fields');
-    if (dynamicFields) {
-        dynamicFields.insertAdjacentHTML('beforeend', fieldHTML);
+        const fieldHTML = `
+            <div class="mb-3">
+                <label for="${fieldName}" class="form-label">${label}</label>
+                <input type="text" class="form-control" id="${fieldName}" name="data[]" placeholder="Enter ${label.toLowerCase()}">
+                <input type="hidden" name="name[]" value="${label}">
+            </div>
+        `;
+        const dynamicFields = document.getElementById('dynamic-fields');
+        if (dynamicFields) {
+            dynamicFields.insertAdjacentHTML('beforeend', fieldHTML);
+        }
     }
-}
 
     // Ensure the script runs after DOM is loaded
     document.addEventListener("DOMContentLoaded", function () {
         console.log('Page fully loaded and DOM is ready.');
     });
 </script>
-

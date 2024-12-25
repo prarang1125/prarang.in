@@ -15,6 +15,9 @@ use Illuminate\Foundation\Configuration\Middleware;
         $middleware->alias([
             'admin.guest' => \App\Http\Middleware\AdminRedirect::class,
             'admin.auth'  => \App\Http\Middleware\AdminAuthenticate::class,
+            'auth.custom' => \App\Http\Middleware\Authenticate::class,
+
+
         ]);
         //
         $middleware->redirectTo(

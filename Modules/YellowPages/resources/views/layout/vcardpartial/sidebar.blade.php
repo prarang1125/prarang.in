@@ -13,31 +13,36 @@
 <!-- Navigation -->
 <ul class="metismenu" id="menu">
     <h6>Membership</h6>
-    
         <!-- Dashboard -->
         <li>
-            <a href="{{ url('yellow-pages/dashboard') }}">
+            <a href="{{ url('yellow-pages/vCard/dashboard') }}">
                 <div class="parent-icon"><i class="bx bx-home-circle"></i></div>
                 <div class="menu-title">Dashboard</div>
             </a>
         </li>
         <!-- Users -->
         <li>
-            <a href="{{ url('yellow-pages/user-listing') }}">
+            <a href="{{ url('yellow-pages/vCard/createCard') }}">
                 <div class="parent-icon"><i class="lni lni-user"></i></div>
                 <div class="menu-title">VCard</div>
             </a>
         </li>
         <!-- Category -->
         <li>
-            <a href="{{ url('yellow-pages/categories-listing') }}">
+            <a href="{{ url('yellow-pages/vcard/ActivePlan') }}">
                 <div class="parent-icon"><i class="bx bx-category"></i></div>
                 <div class="menu-title">Membership</div>
             </a>
         </li>
+        <li>
+            <a href="{{ url('yellow-pages/vcard/MembershipPlan') }}">
+                <div class="parent-icon"><i class="bx bx-category"></i></div>
+                <div class="menu-title">Membership Plan</div>
+            </a>
+        </li>
         <!-- Cities -->
         <li>
-            <a href="{{ url('yellow-pages/cities-listing') }}">
+            <a href="{{ url('yellow-pages/vcard/qr/') }}">
                 <div class="parent-icon"><i class="bx bx-buildings"></i></div>
                 <div class="menu-title">QR Builder</div>
             </a>
@@ -45,16 +50,11 @@
         <br>
         <h6>Account</h6>
         <li>
-            <a href="{{ url('yellow-pages/business-listing') }}">
+            <a href="{{ url('yellow-pages/vcard/paymentHistory') }}">
                 <div class="parent-icon"><i class="bx bx-briefcase"></i></div>
                 <div class="menu-title">Transaction</div>
             </a>
         </li>
-        <li>
-            <a href="#">
-                <div class="parent-icon"><i class="bx bx-home-circle"></i></div>
-                <div class="menu-title">Account setting</div>
-            </a>
-        </li>
+      
 </ul>
 <!-- End Navigation -->

@@ -138,7 +138,7 @@
                     <div class="d-flex justify-content-end">
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="row text-center">
+                    <div class="text-center row">
                         <div class="col-sm-4">
                             <p class="border-bottom">
                                 <span class="mb-10 prangtxt"><strong>समयसीमा</strong></span>
@@ -148,21 +148,22 @@
                             @foreach ($tagSubCounts['tag_1'] as $tag)
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
-                                    <a target="_blank" href="{{route('post-archive',['ids'=>$tag->tagId,'catg'=>'tags','name'=>$tag->tagInEnglish,'cityCode'=>$portal->slug])}}">
+                                    <a target="_blank"
+                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => preg_replace('/[^\w\s]/', ' ', $tag->tagInEnglish), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle" src="https://{{ $tag->tagIcon }}"
                                                     alt="">
                                             </div>
-                                            <div class="col-10 rounded-pill tagListx border">
+                                            <div class="border col-10 rounded-pill tagListx">
                                                 <div class="row">
-                                                    <div class="col-10 m-0 p-0">
+                                                    <div class="p-0 m-0 col-10">
                                                         {{-- {{$tag->tagInUnicode}} --}}
-                                                        <h6 class="m--0 p-0">{{ $tag->tagInEnglish }}</h6>
+                                                        <h6 class="p-0 m--0">{{ $tag->tagInEnglish }}</h6>
                                                         {{-- <small> {{$tag->tagInEnglish}}</small> --}}
                                                     </div>
                                                     <div class="col-2">
-                                                        <div class="w-100 h-100 rounded-circle border">
+                                                        <div class="border w-100 h-100 rounded-circle">
                                                             {{ $tag->count }}</div>
                                                     </div>
                                                 </div>
@@ -182,21 +183,22 @@
                             @foreach ($tagSubCounts['tag_2'] as $tag)
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
-                                    <a target="_blank" href="{{route('post-archive',['ids'=>$tag->tagId,'catg'=>'tags','name'=>$tag->tagInEnglish,'cityCode'=>$portal->slug])}}">
+                                    <a target="_blank"
+                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => preg_replace('/[^\w\s]/', ' ', $tag->tagInEnglish), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle" src="https://{{ $tag->tagIcon }}"
                                                     alt="">
                                             </div>
-                                            <div class="col-10 rounded-pill tagListx border">
+                                            <div class="border col-10 rounded-pill tagListx">
                                                 <div class="row">
-                                                    <div class="col-10 m-0 p-0">
+                                                    <div class="p-0 m-0 col-10">
                                                         {{-- {{$tag->tagInUnicode}} --}}
-                                                        <h6 class="m--0 p-0">{{ $tag->tagInEnglish }}</h6>
+                                                        <h6 class="p-0 m--0">{{ $tag->tagInEnglish }}</h6>
                                                         {{-- <small> {{$tag->tagInEnglish}}</small> --}}
                                                     </div>
                                                     <div class="col-2">
-                                                        <div class="w-100 h-100 rounded-circle border">
+                                                        <div class="border w-100 h-100 rounded-circle">
                                                             {{ $tag->count }}</div>
                                                     </div>
                                                 </div>
@@ -216,21 +218,22 @@
                             @foreach ($tagSubCounts['tag_3'] as $tag)
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
-                                    <a target="_blank" href="{{route('post-archive',['ids'=>$tag->tagId,'catg'=>'tags','name'=>$tag->tagInEnglish,'cityCode'=>$portal->slug])}}">
+                                    <a target="_blank"
+                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => preg_replace('/[^\w\s]/', ' ', $tag->tagInEnglish), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle" src="https://{{ $tag->tagIcon }}"
                                                     alt="">
                                             </div>
-                                            <div class="col-10 rounded-pill tagListx border">
+                                            <div class="border col-10 rounded-pill tagListx">
                                                 <div class="row">
-                                                    <div class="col-10 m-0 p-0">
+                                                    <div class="p-0 m-0 col-10">
                                                         {{-- {{$tag->tagInUnicode}} --}}
-                                                        <h6 class="m--0 p-0">{{ $tag->tagInEnglish }}</h6>
+                                                        <h6 class="p-0 m--0">{{ $tag->tagInEnglish }}</h6>
                                                         {{-- <small> {{$tag->tagInEnglish}}</small> --}}
                                                     </div>
                                                     <div class="col-2">
-                                                        <div class="w-100 h-100 rounded-circle border">
+                                                        <div class="border w-100 h-100 rounded-circle">
                                                             {{ $tag->count }}</div>
                                                     </div>
                                                 </div>
@@ -255,7 +258,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
-                    <div class="row text-center">
+                    <div class="text-center row">
                         <div class="col-sm-4">
                             <p class="border-bottom">
                                 <span class="mb-10 prangtxt"><strong>भूगोल</strong></span>
@@ -264,21 +267,22 @@
                             @foreach ($tagSubCounts['tag_4'] as $tag)
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
-                                    <a target="_blank" href="{{route('post-archive',['ids'=>$tag->tagId,'catg'=>'tags','name'=>$tag->tagInEnglish,'cityCode'=>$portal->slug])}}">
+                                    <a target="_blank"
+                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => preg_replace('/[^\w\s]/', ' ', $tag->tagInEnglish), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
                                                     src="https://{{ $tag->tagIcon }}" alt="">
                                             </div>
-                                            <div class="col-10 rounded-pill tagListx border">
+                                            <div class="border col-10 rounded-pill tagListx">
                                                 <div class="row">
-                                                    <div class="col-10 m-0 p-0">
+                                                    <div class="p-0 m-0 col-10">
                                                         {{-- {{$tag->tagInUnicode}} --}}
-                                                        <h6 class="m--0 p-0">{{ $tag->tagInEnglish }}</h6>
+                                                        <h6 class="p-0 m--0">{{ $tag->tagInEnglish }}</h6>
                                                         {{-- <small> {{$tag->tagInEnglish}}</small> --}}
                                                     </div>
                                                     <div class="col-2">
-                                                        <div class="w-100 h-100 rounded-circle border">
+                                                        <div class="border w-100 h-100 rounded-circle">
                                                             {{ $tag->count }}</div>
                                                     </div>
                                                 </div>
@@ -296,21 +300,22 @@
                             @foreach ($tagSubCounts['tag_5'] as $tag)
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
-                                    <a target="_blank" href="{{route('post-archive',['ids'=>$tag->tagId,'catg'=>'tags','name'=>$tag->tagInEnglish,'cityCode'=>$portal->slug])}}">
+                                    <a target="_blank"
+                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => preg_replace('/[^\w\s]/', ' ', $tag->tagInEnglish), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
                                                     src="https://{{ $tag->tagIcon }}" alt="">
                                             </div>
-                                            <div class="col-10 rounded-pill tagListx border">
+                                            <div class="border col-10 rounded-pill tagListx">
                                                 <div class="row">
-                                                    <div class="col-10 m-0 p-0">
+                                                    <div class="p-0 m-0 col-10">
                                                         {{-- {{$tag->tagInUnicode}} --}}
-                                                        <h6 class="m--0 p-0">{{ $tag->tagInEnglish }}</h6>
+                                                        <h6 class="p-0 m--0">{{ $tag->tagInEnglish }}</h6>
                                                         {{-- <small> {{$tag->tagInEnglish}}</small> --}}
                                                     </div>
                                                     <div class="col-2">
-                                                        <div class="w-100 h-100 rounded-circle border">
+                                                        <div class="border w-100 h-100 rounded-circle">
                                                             {{ $tag->count }}</div>
                                                     </div>
                                                 </div>
@@ -328,21 +333,22 @@
                             @foreach ($tagSubCounts['tag_6'] as $tag)
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
-                                    <a target="_blank" href="{{route('post-archive',['ids'=>$tag->tagId,'catg'=>'tags','name'=>$tag->tagInEnglish,'cityCode'=>$portal->slug])}}">
+                                    <a target="_blank"
+                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => preg_replace('/[^\w\s]/', ' ', $tag->tagInEnglish), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
                                                     src="https://{{ $tag->tagIcon }}" alt="">
                                             </div>
-                                            <div class="col-10 rounded-pill tagListx border">
+                                            <div class="border col-10 rounded-pill tagListx">
                                                 <div class="row">
-                                                    <div class="col-10 m-0 p-0">
+                                                    <div class="p-0 m-0 col-10">
                                                         {{-- {{$tag->tagInUnicode}} --}}
-                                                        <h6 class="m--0 p-0">{{ $tag->tagInEnglish }}</h6>
+                                                        <h6 class="p-0 m--0">{{ $tag->tagInEnglish }}</h6>
                                                         {{-- <small> {{$tag->tagInEnglish}}</small> --}}
                                                     </div>
                                                     <div class="col-2">
-                                                        <div class="w-100 h-100 rounded-circle border">
+                                                        <div class="border w-100 h-100 rounded-circle">
                                                             {{ $tag->count }}</div>
                                                     </div>
                                                 </div>

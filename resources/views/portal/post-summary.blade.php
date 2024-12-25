@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,9 @@
     <meta name="robots" content="index, follow" />
     <meta property="og:type" content="article" />
     <meta property="og:image:width" content="600" />
-    <meta property="og:image:height" content="315"/>
+    <meta property="og:image:height" content="315" />
     <meta property="og:site_name" content="{{ $post['siteName'] ?? 'Prarang' }}" />
-    
+
     <!-- Open Graph Tags -->
     <meta property="og:title" content="{{ $post['title'] ?? 'Default Title' }}" />
     <meta property="og:type" content="website" />
@@ -27,51 +28,62 @@
             padding: 0;
             background-color: #f9f9f9;
         }
+
         .container {
             max-width: 1200px;
             margin: auto;
             padding: 20px;
         }
+
         .post-header {
             margin-bottom: 15px;
         }
+
         .post-header h1 {
             font-size: 28px;
             color: #333;
             margin: 0;
         }
+
         .post-header p {
             margin: 5px 0;
             color: gray;
             font-size: 16px;
         }
+
         .main-content {
             display: flex;
             gap: 20px;
         }
+
         .main-post {
             flex: 3;
         }
+
         .main-post img {
             width: 100%;
             height: auto;
             margin-bottom: 15px;
         }
+
         .main-post p {
             font-size: 18px;
             color: #333;
         }
+
         .recent-posts {
             flex: 1;
             border-left: 2px solid #ddd;
             padding-left: 20px;
         }
+
         .recent-posts h3 {
             position: relative;
             font-size: 22px;
             color: #333;
             margin-bottom: 20px;
         }
+
         .recent-posts h3:after {
             border-bottom: 2px solid #f1c40f;
             width: 150px;
@@ -81,44 +93,54 @@
             padding-bottom: 10px;
             bottom: -5px;
         }
+
         .recent-post {
             display: flex;
             margin-bottom: 15px;
             align-items: center;
         }
+
         .recent-post img {
             width: 120px;
             height: 80px;
             object-fit: cover;
             margin-right: 10px;
         }
+
         .recent-post .text-content {
             flex: 1;
         }
+
         .recent-post .text-content p.title {
             margin: 0;
             font-size: 18px;
             font-weight: bold;
             color: #333;
         }
+
         .recent-post .text-content p.date {
             margin: 5px 0 0;
             font-size: 14px;
             color: gray;
         }
+
         table {
             border-collapse: collapse;
             width: 100%;
             font-family: Arial, sans-serif;
         }
-        th, td {
+
+        th,
+        td {
             border: 1px solid #0000FF;
             text-align: center;
             padding: 8px;
         }
+
         th {
             background-color: #f2f2f2;
         }
+
         .definitions {
             margin: 30px 0;
             padding: 20px;
@@ -148,7 +170,7 @@
             font-weight: bold;
             color: #000;
         }
-        
+
         /* Navigation buttons */
         .post-navigation .btn {
             margin: 10px;
@@ -156,134 +178,162 @@
             font-size: 16px;
             border-radius: 5px;
         }
+
         /* Styling for the hover effect */
-.hover-button {
-    position: relative;
-    display: inline-block;
-}
+        .hover-button {
+            position: relative;
+            display: inline-block;
+        }
 
-.tag-button {
-    display: inline-block;
-    background-color: #007bff; /* Blue button color */
-    color: black;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
+        .tag-button {
+            display: inline-block;
+            background-color: #007bff;
+            /* Blue button color */
+            color: black;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
 
-.tag-button:hover {
-    background-color: #0056b3; /* Darker blue when hovered */
-}
+        .tag-button:hover {
+            background-color: #0056b3;
+            /* Darker blue when hovered */
+        }
+
+        /* Frame vid */
+        .container .main-content .main-post .frameVid {
+            width: 100% !important;
+            height: 20% !important;
+        }
     </style>
 </head>
+
 <body>
-    <x-post.navbar cityId="12" :cityCode="$cityCode"/>
+    <x-post.navbar cityId="12" :cityCode="$cityCode" />
     <div class="container">
         <div class="row">
             <!-- Page Header -->
             @if (\Carbon\Carbon::parse($post['dateOfApprove'])->addDays(5)->lte(now()))
-            @if (!empty($post['totalViewerCount']) && $post['totalViewerCount'] > 0)
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="5">Post Viewership from Post Date to {{ $post['createDate'] }} (31st Day)</th>
-                    </tr>
-                    <tr>
-                        <th>City Subscribers (FB+App)</th>
-                        <th>Website (Direct+Google)</th>
-                        <th>Email</th>
-                        <th>Instagram</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>{{ $post['citySubscriber'] }}</td>
-                        <td>{{ $post['websiteCount'] }}</td>
-                        <td>{{ $post['emailCount'] }}</td>
-                        <td>{{ $post['instagramCount'] }}</td>
-                        <td>{{ $post['totalViewerCount'] }}</td>
-                    </tr>
-                </tbody>
-            </table>
-            @endif
+                @if (!empty($post['totalViewerCount']) && $post['totalViewerCount'] > 0)
+                    <table>
+                        <thead>
+                            <tr>
+                                <th colspan="5">Post Viewership from Post Date to {{ $post['createDate'] }} (31st
+                                    Day)</th>
+                            </tr>
+                            <tr>
+                                <th>City Subscribers (FB+App)</th>
+                                <th>Website (Direct+Google)</th>
+                                <th>Email</th>
+                                <th>Instagram</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>{{ $post['citySubscriber'] }}</td>
+                                <td>{{ $post['websiteCount'] }}</td>
+                                <td>{{ $post['emailCount'] }}</td>
+                                <td>{{ $post['instagramCount'] }}</td>
+                                <td>{{ $post['totalViewerCount'] }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                @endif
             @endif
             <br>
             <div class="post-header">
+
                 <h1>{{ $post['Title'] }}</h1>
                 <p>
                     <a href="#" class="tag-link">
                         {{ $post['tagInUnicode'] }}
                     </a>
-                </p>     
+                </p>
                 <p>{{ $post['dateOfApprove'] }}</p>
             </div>
         </div>
         <div class="main-content">
             <!-- Main Post -->
-            <div class="main-post">
-                <!-- Post Image -->
-                @if($post['imageUrl'])
-                    <img src="{{ $post['imageUrl'] }}" alt="Post Image">
+            <div class="p-2 main-post" style="background-color: {{ $ColorCode }};">
+                @if ($post->images[0]->VideoExist == 1)
+                    {!! $post->images[0]->VideoURL !!}
+                @else
+                    <img src="{{ $post->images[0]->imageUrl }}" alt="Post Image">
                 @endif
+
                 <!-- Post Content -->
-                <h2 style="font-weight: bold; font-size: 20px; margin-bottom: 10px;">{{ $post['title'] }}</h2>
-                <p style="background-color: {{ $ColorCode }};">{!! $post['description'] !!}</p>
+                {{-- <h2 style="font-weight: bold; font-size: 20px; margin-bottom: 10px;">{{ $post['title'] }}</h2> --}}
+                <p>{!! $post['description'] !!}</p>
+
             </div>
-    
+
+
             <!-- Sidebar (Recent Posts) -->
             <aside class="recent-posts">
                 <h3>Recent Posts</h3>
-                @foreach($recentPosts as $recent)
+                @foreach ($recentPosts as $recent)
                     <div class="recent-post">
-                        <img src="{{ $recent['imageUrl'] }}" alt="Thumbnail">
-                        <div class="text-content">
+                        {{-- <img src="{{ $recent['imageUrl'] }}" alt="Thumbnail"> --}}
+                        {{-- <div class="text-content">
                             <a href="/post-summary/{{ $recent['chittiId'] }}" class="text-decoration-none">
-                            <p class="title">{{ $recent->Title }}</p>
-                            <p class="date">{{ $recent->formattedDate }}</p>
-                        </div>
+                                <p class="title">{{ $recent->Title }}</p>
+                                <p class="date">{{ $recent->formattedDate }}</p>
+                        </div> --}}
                     </div>
                 @endforeach
             </aside>
+
         </div>
-    
-        <!-- Navigation Buttons (Previous and Next Posts) -->
-        <div class="post-navigation">
-            @if($previousPost)
-                <a href="{{ route('post-summary', ['slug' => $slug, 'id' => $previousPost->chittiId, 'subTitle' => Str::slug($previousPost->SubTitle)]) }}" class="btn btn-primary">पिछला</a>
-            @endif
-        
-            @if($nextPost)
-                <a href="{{ route('post-summary', ['slug' => $slug, 'id' => $nextPost->chittiId, 'subTitle' => Str::slug($nextPost->SubTitle)]) }}" class="btn btn-primary">अगला</a>
-            @endif
-        </div>
-        
-    
-        <a href="#" class="tag-link" style="background-color: #ff0000; color: white; padding: 10px 20px; border-radius: 5px; display: inline-block; text-decoration: none; cursor: default; transition: background-color 0.3s ease;" onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#007bff';">
+        <a href="#" class="tag-link"
+            style="background-color: #ff0000; color: white; padding: 10px 20px; border-radius: 5px; display: inline-block; text-decoration: none; cursor: default; transition: background-color 0.3s ease;"
+            onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#007bff';">
             {{ $post['tagInUnicode'] }}
         </a>
-    
+        <br> <br>
+        <!-- Navigation Buttons (Previous and Next Posts) -->
+        <div class="text-center post-navigation">
+            @if ($previousPost)
+                <a href="{{ route('post-summary', ['slug' => $slug, 'id' => $previousPost->chittiId, 'subTitle' => Str::slug($previousPost->SubTitle)]) }}"
+                    class="btn btn-primary">पिछला / Previous</a>
+            @endif
+
+            @if ($nextPost)
+                <a href="{{ route('post-summary', ['slug' => $slug, 'id' => $nextPost->chittiId, 'subTitle' => Str::slug($nextPost->SubTitle)]) }}"
+                    class="btn btn-primary">अगला / Next</a>
+            @endif
+        </div>
+
+
+
+
         <div class="definitions" style="background-color: {{ $ColorCode }};">
             <h3>Definitions of the Post Viewership Metrics</h3>
             <p>
-                <strong>A. City Subscribers (FB + App) -</strong> This is the Total city-based unique subscribers from the Prarang Hindi FB page and the Prarang App who reached this specific post.
+                <strong>A. City Subscribers (FB + App) -</strong> This is the Total city-based unique subscribers from
+                the Prarang Hindi FB page and the Prarang App who reached this specific post.
             </p>
             <p>
-                <strong>B. Website (Google + Direct) -</strong> This is the Total viewership of readers who reached this post directly through their browsers and via Google search.
+                <strong>B. Website (Google + Direct) -</strong> This is the Total viewership of readers who reached this
+                post directly through their browsers and via Google search.
             </p>
             <p>
-                <strong>C. Total Viewership —</strong> This is the Sum of all Subscribers (FB+App), Website (Google+Direct), Email, and Instagram who reached this Prarang post/page.
+                <strong>C. Total Viewership —</strong> This is the Sum of all Subscribers (FB+App), Website
+                (Google+Direct), Email, and Instagram who reached this Prarang post/page.
             </p>
             <p>
-                <strong>D. The Reach (Viewership) -</strong> The reach on the post is updated either on the 6th day from the day of posting or on the completion (Day 31 or 32) of one month from the day of posting.
+                <strong>D. The Reach (Viewership) -</strong> The reach on the post is updated either on the 6th day from
+                the day of posting or on the completion (Day 31 or 32) of one month from the day of posting.
             </p>
         </div>
-    
+
     </div>
-    
-<x-post.footer :city="$city_name" />
-  
+
+    <x-post.footer :city="$city_name" />
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> --}}
 </body>
+
 </html>

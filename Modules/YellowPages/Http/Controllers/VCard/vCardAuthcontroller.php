@@ -5,8 +5,12 @@ namespace Modules\YellowPages\Http\Controllers\VCard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class vCardAuthcontroller extends Controller
 {
@@ -17,78 +21,54 @@ class vCardAuthcontroller extends Controller
 
     public function authenticate(Request $request)
     {
-        $validator = Validator::make($request->all(),[
+        $validator = Validator::make($request->all(), [
             'email' => 'required|email',
             'password' => 'required',
         ]);
-        if($validator->passes()){
-            $credentials = [
-                'email' => $request->email,
-                'password' => $request->password,
-                'role'=>3
-            ];
-            if(Auth::guard('vCard')->attempt($credentials)){
-                $user = Auth::guard('vCard')->user();
-
-                if($user){    
-                    return redirect()->route('vCard.dashboard');
-            }
-            }else{
-                return redirect()->route('vCard.login')->with('error', 'Either mail or password is incorrect');
-            }
-
-        }else{
-
+    
+        if ($validator->fails()) {
             return redirect()->route('vCard.login')
                 ->withInput()
                 ->withErrors($validator);
         }
+    
+        $credentials = $request->only('email', 'password');
+    
+        if (Auth::guard('web')->attempt($credentials, $request->remember)) {
+            return redirect()->route('vCard.dashboard'); // Redirect to the custom dashboard route
+        } else {
+            return redirect()->route('vCard.login')
+                ->with('error', 'Invalid email or password.');
+        }
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        return view('yellowpages::create');
-    }
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
+    public function userEdit($id){
+        $user = User::findOrFail($id);
+        return view('yellowpages::Vcard.userUpdate', compact('user'));
+
     }
 
-    /**
-     * Show the specified resource.
-     */
-    public function show($id)
+    
+    public function userUpdate(Request $request, $id)
     {
-        return view('yellowpages::show');
-    }
+     
+        try {
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        return view('yellowpages::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
-    {
-        //
-    }
+            // Find user or handle if not found
+            $user = User::findOrFail($id);
+            // Update user details
+            $user->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'password' => Hash::make($request->password),
+                'is_active' => $request->is_active,
+                'updated_at' => Carbon::now(),
+            ]);
+    
+            return redirect()->route('vCard.userEdit',$id)->with('success', 'User updated successfully.');
+        } catch (ModelNotFoundException $e) {
+            return redirect()->back()->withErrors(['error' => 'User not found.']);
+        }
+    }    
+    
 }
