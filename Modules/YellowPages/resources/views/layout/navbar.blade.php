@@ -15,7 +15,7 @@
     <div class="branding d-flex align-items-center">
         <div class="container position-relative d-flex align-items-center justify-content-between">       
             <a href="{{ url('/yellow-pages/home') }}" class="logo d-flex align-items-center">
-                <img src="{{ asset('assets/img/yellow_logo.png') }}" alt="Logo">
+                <img src="{{ asset('storage/images/logo/yellow_logo.png') }}" alt="Logo">
             </a>
             <nav id="navmenu" class="navmenu">
                 <div class="signature-image">

@@ -356,7 +356,7 @@
                 <input type="checkbox" name="agree" id="existingAccountCheckbox" style="margin-right: 5px;"> I agree to the terms and conditions.
             </label>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit"  id="submit-btn" class="btn btn-primary">Submit</button>
     </div>
     </form>
     </div>
@@ -369,63 +369,90 @@
     <script src="{{ asset('assets/js/main.js') }}"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
    <script>
-  // Add new day schedule
-document.getElementById('add-day-btn').addEventListener('click', () => {
+ document.getElementById('add-day-btn').addEventListener('click', () => {
     const container = document.getElementById('schedule-container');
     const firstSchedule = container.querySelector('.day-schedule');
 
     if (firstSchedule) {
-        // Clone the first schedule
         const newSchedule = firstSchedule.cloneNode(true);
 
-        // Clear the input values in the new schedule
-        newSchedule.querySelectorAll('select, input').forEach((input) => {
+        // Clear select and input values
+        newSchedule.querySelectorAll('select, input').forEach(input => {
             if (input.type === 'checkbox') {
-                input.checked = false; // Uncheck checkboxes
+                input.checked = false;
             } else {
-                input.value = ''; // Clear other inputs
+                input.value = '';
+                input.disabled = false;
             }
         });
 
-        // Hide second time slot by default
-        const secondTimeSlot = newSchedule.querySelector('.second-time-slot');
-        if (secondTimeSlot) {
-            secondTimeSlot.style.display = 'none';
-        }
+        // Hide the second time slot
+        const secondSlot = newSchedule.querySelector('.second-time-slot');
+        secondSlot.style.display = 'none';
 
-        // Append the new schedule to the container
+        // Append the new schedule
         container.appendChild(newSchedule);
     } else {
-        console.error("Initial schedule not found.");
+        console.error('Initial schedule not found.');
     }
 });
 
-// Handle "24 Hours" functionality
+// Toggle time inputs when 24 Hours checkbox is checked
 document.addEventListener('change', (e) => {
     if (e.target.name === 'is_24_hours[]') {
         const parent = e.target.closest('.day-schedule');
         const timeInputs = parent.querySelectorAll('input[type="time"]');
-        timeInputs.forEach(input => input.disabled = e.target.checked); // Disable time inputs if "24 Hours" is checked
+        timeInputs.forEach(input => input.disabled = e.target.checked);
     }
 });
 
-
+// Show or hide the second time slot
 document.addEventListener('change', (e) => {
     if (e.target.classList.contains('add-2nd-slot')) {
         const parent = e.target.closest('.day-schedule');
         const secondSlot = parent.querySelector('.second-time-slot');
-        secondSlot.style.display = e.target.checked ? 'block' : 'none'; // Show or hide second slot
+        secondSlot.style.display = e.target.checked ? 'block' : 'none';
     }
 });
 
-// Remove day schedule
+// Remove a day schedule
 document.addEventListener('click', (e) => {
     if (e.target.classList.contains('remove-day-btn')) {
-        e.target.closest('.day-schedule').remove(); // Remove the current schedule
+        e.target.closest('.day-schedule').remove();
     }
 });
 
-   </script>
+// Collect and log schedules
+document.getElementById('submit-btn').addEventListener('click', () => {
+    const schedules = [];
+    const container = document.getElementById('schedule-container');
+
+    container.querySelectorAll('.day-schedule').forEach(schedule => {
+        const day = schedule.querySelector('select[name="day[]"]').value;
+        const openTime = schedule.querySelector('input[name="open_time[]"]').value;
+        const closeTime = schedule.querySelector('input[name="close_time[]"]').value;
+        const is24Hours = schedule.querySelector('input[name="is_24_hours[]"]').checked;
+
+        let openTime2 = '';
+        let closeTime2 = '';
+        const secondSlot = schedule.querySelector('.second-time-slot');
+        if (secondSlot && secondSlot.style.display !== 'none') {
+            openTime2 = secondSlot.querySelector('input[name="open_time_2[]"]').value;
+            closeTime2 = secondSlot.querySelector('input[name="close_time_2[]"]').value;
+        }
+
+        schedules.push({
+            day,
+            openTime: is24Hours ? '24 Hours' : openTime,
+            closeTime: is24Hours ? '24 Hours' : closeTime,
+            secondSlot: openTime2 && closeTime2 ? { openTime2, closeTime2 } : null,
+        });
+    });
+
+    console.log(schedules);
+});
+
+</script>
     
 </body>
 </html>

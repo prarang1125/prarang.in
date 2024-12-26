@@ -154,11 +154,12 @@
     <div class="shadow carousel-wrap">
         <div class="owl-carousel">
             @foreach ($chittiArray as $postImg)
-                <div class="p-1 shadow item" id="carousel-item" style="min-height:80px;">
-                    <img class="img-carousel"data-bs-toggle="modal" data-bs-target="#exampleModal{{ $postImg->chittiId }}"
-                        src="https://{{ $postImg->imageUrl }}" alt="Post Image">
-                    <small class="p-0 m-0"
-                        style="font-size:10px">{{ \Illuminate\Support\Str::limit($postImg->Title, 15, '...') }}</small>
+                <div class="p-1 rounded shadow item" id="carousel-item" style="min-height:80px;">
+                    <img class="img-carousel rounded-top"data-bs-toggle="modal"
+                        data-bs-target="#exampleModal{{ $postImg->chittiId }}" src="{{ $postImg->imageUrl }}"
+                        alt="Post Image">
+                    <small class="p-0 m-0 test-center"
+                        style="font-size:12px">{{ \Illuminate\Support\Str::limit($postImg->Title, 30, '...') }}</small>
                 </div>
             @endforeach
         </div>
@@ -191,8 +192,7 @@
                                 </div>
                             </div>
 
-                            <img class="rounded img-fluid" src="https://{{ $post->imageUrl }}"
-                                alt="{{ $post->SubTitle }}">
+                            <img class="rounded img-fluid" src="{{ $post->imageUrl }}" alt="{{ $post->SubTitle }}">
                             <br><br>
                             {!! $post->description !!}
                         </section>

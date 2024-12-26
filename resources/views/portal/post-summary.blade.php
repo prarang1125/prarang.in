@@ -26,7 +26,31 @@
             line-height: 1.8;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            background-color: rgba(234, 234, 239, 0.67) !important;
+        }
+
+        .recent-poet .rounded h6 {
+            text-decoration: none !important;
+        }
+
+
+        /* Navigation */
+        section nav {
+            border-bottom-style: none;
+            border-bottom-width: 1px !important;
+            box-shadow: -15px -10px 19px 7px #dcdddf;
+        }
+
+        /* Link */
+        .navbar-nav .nav-item a {
+            padding-top: 6px !important;
+            padding-bottom: 6px !important;
+        }
+
+        .badge {
+            font-weight: 500;
+            padding: 0.5em 1em;
+            border-radius: 20px;
         }
 
         .container {
@@ -206,6 +230,89 @@
             width: 100% !important;
             height: 20% !important;
         }
+
+        /* Span Tag */
+        .navbar-nav .nav-item span {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Post descreption */
+        .col-sm-9 .main-post .post-descreption {
+            line-height: 2em;
+            word-spacing: 3.5px;
+            text-align: justify;
+        }
+
+        /* Col 9 */
+        .container .col-sm-9 {
+            transform: translatex(0px) translatey(0px);
+        }
+
+        /* Post descreption */
+        .container .post-descreption {
+            white-space: normal;
+            letter-spacing: -0.5px;
+        }
+
+        /* Th */
+        .table-sm tr th {
+            font-size: 14px;
+            /* color: #aba4a4; */
+            border-style: none;
+        }
+
+        /* Table Data */
+        .table-sm tr td {
+            font-size: 14px;
+            /* color: #7c6e6e; */
+            border-right-style: none;
+            border-left-style: none;
+        }
+
+        /* Main image */
+        .col-sm-9 .main-post .main-image {
+            margin-bottom: -17px;
+        }
+
+        /* Post description */
+        .col-sm-9 .main-post .post-description {
+            padding-top: 26px !important;
+        }
+
+        /* App */
+        .container .app-fb {
+            margin-top: 126px !important;
+        }
+
+        /* Paragraph */
+        .container .app-fb p {
+            transform: translatex(0px) translatey(0px);
+            font-weight: 700;
+            font-size: 20px;
+            margin-bottom: 1px;
+        }
+
+        /* App */
+        .container .stk-side {
+            position: sticky;
+            top: 1px;
+        }
+
+        .main-post .main-image .frameVid {
+            width: 100% !important;
+            height: 500px !important;
+        }
+
+        .recent-image {
+            width: 100% !important;
+            max-height: 170px !important;
+        }
+
+        .recent-poet .img-fluid {
+            max-height: 111px;
+        }
     </style>
 </head>
 
@@ -213,120 +320,134 @@
     <x-post.navbar cityId="12" :cityCode="$cityCode" />
     <div class="container">
         <div class="row">
-            <!-- Page Header -->
-            @if (\Carbon\Carbon::parse($post['dateOfApprove'])->addDays(5)->lte(now()))
-                @if (!empty($post['totalViewerCount']) && $post['totalViewerCount'] > 0)
-                    <table>
-                        <thead>
-                            <tr>
-                                <th colspan="5">Post Viewership from Post Date to {{ $post['createDate'] }} (31st
-                                    Day)</th>
-                            </tr>
-                            <tr>
-                                <th>City Subscribers (FB+App)</th>
-                                <th>Website (Direct+Google)</th>
-                                <th>Email</th>
-                                <th>Instagram</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>{{ $post['citySubscriber'] }}</td>
-                                <td>{{ $post['websiteCount'] }}</td>
-                                <td>{{ $post['emailCount'] }}</td>
-                                <td>{{ $post['instagramCount'] }}</td>
-                                <td>{{ $post['totalViewerCount'] }}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                @endif
-            @endif
-            <br>
-            <div class="post-header">
-
-                <h1>{{ $post['Title'] }}</h1>
-                <p>
-                    <a href="#" class="tag-link">
-                        {{ $post['tagInUnicode'] }}
-                    </a>
-                </p>
-                <p>{{ $post['dateOfApprove'] }}</p>
-            </div>
-        </div>
-        <div class="main-content">
-            <!-- Main Post -->
-            <div class="p-2 main-post" style="background-color: {{ $ColorCode }};">
-                @if ($post->images[0]->VideoExist == 1)
-                    {!! $post->images[0]->VideoURL !!}
-                @else
-                    <img src="{{ $post->images[0]->imageUrl }}" alt="Post Image">
-                @endif
-
-                <!-- Post Content -->
-                {{-- <h2 style="font-weight: bold; font-size: 20px; margin-bottom: 10px;">{{ $post['title'] }}</h2> --}}
-                <p>{!! $post['description'] !!}</p>
-
-            </div>
-
-
-            <!-- Sidebar (Recent Posts) -->
-            <aside class="recent-posts">
-                <h3>Recent Posts</h3>
-                @foreach ($recentPosts as $recent)
-                    <div class="recent-post">
-                        {{-- <img src="{{ $recent['imageUrl'] }}" alt="Thumbnail"> --}}
-                        {{-- <div class="text-content">
-                            <a href="/post-summary/{{ $recent['chittiId'] }}" class="text-decoration-none">
-                                <p class="title">{{ $recent->Title }}</p>
-                                <p class="date">{{ $recent->formattedDate }}</p>
-                        </div> --}}
+            <div class="col-sm-9">
+                <div class="mt-4 post-header">
+                    <h1 class="fw-bold">{{ $post['Title'] }}</h1>
+                    <div class="mt-3 row">
+                        <div class="col-sm-6 text-start"> <span
+                                class="p-1 bg-primary rounded-pill ps-3 pe-3 text-light">{{ $post['tagInUnicode'] }}</span>
+                        </div>
+                        <div class="col-sm-6 text-end"> <i class="fa fa-calendar"> </i> {{ $post['dateOfApprove'] }}
+                        </div>
                     </div>
-                @endforeach
-            </aside>
+
+                </div>
+                <div class="mt-4 main-post">
+                    <div class="analytics">
+                        @if (\Carbon\Carbon::parse($post['dateOfApprove'])->addDays(5)->lte(now()))
+                            @if (!empty($post['totalViewerCount']) && $post['totalViewerCount'] > 0)
+                                <table class="mb-0 table-sm" border="1">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="5">Post Viewership from Post Date to
+                                                {{ $post['createDate'] }} (31st
+                                                Day)</th>
+                                        </tr>
+                                        <tr>
+                                            <th>City Subscribers (FB+App)</th>
+                                            <th>Website (Direct+Google)</th>
+                                            <th>Email</th>
+                                            <th>Instagram</th>
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ $post['citySubscriber'] }}</td>
+                                            <td>{{ $post['websiteCount'] }}</td>
+                                            <td>{{ $post['emailCount'] }}</td>
+                                            <td>{{ $post['instagramCount'] }}</td>
+                                            <td>{{ $post['totalViewerCount'] }}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            @endif
+                        @endif
+                    </div>
+                    <div class="main-image">
+                        @if ($post->images[0]->VideoExist == 1)
+                            {!! $post->images[0]->VideoURL !!}
+                        @else
+                            <img class="img-fluid" src="{{ $post->images[0]->imageUrl }}" alt="{{ $post->Title }}">
+                        @endif
+                    </div>
+
+                    <div class="p-2 m-0 post-description"
+                        style="font-size: 18px; background-color: {{ $ColorCode }};">
+                        {!! $post['description'] !!}
+                    </div>
+
+                    <div class="m-3">
+                        <a href="" class="tag-link"
+                            style="background-color: #ff0000; color: white; padding: 10px 20px; border-radius: 5px; display: inline-block; text-decoration: none; cursor: default; transition: background-color 0.3s ease;"
+                            onmouseover="this.style.backgroundColor='#0056b3';"
+                            onmouseout="this.style.backgroundColor='#007bff';">
+                            {{ $post['tagInUnicode'] }}
+                        </a>
+                    </div>
+                    <div class="text-center post-navigation">
+                        @if ($previousPost)
+                            <a href="{{ route('post-summary', ['slug' => $slug, 'id' => $previousPost->chittiId, 'subTitle' => Str::slug($previousPost->SubTitle)]) }}"
+                                class="btn btn-primary">पिछला / Previous</a>
+                        @endif
+
+                        @if ($nextPost)
+                            <a href="{{ route('post-summary', ['slug' => $slug, 'id' => $nextPost->chittiId, 'subTitle' => Str::slug($nextPost->SubTitle)]) }}"
+                                class="btn btn-primary">अगला / Next</a>
+                        @endif
+                    </div>
+                </div>
+
+            </div>
+            <div class="text-center col-sm-3 ps-1">
+                <div class="stk-side">
+                    <div class="p-2 text-center shadow app-fb">
+                        <p class="p-0">Follow Us on</p>
+                        <a class="text-center btn btn-primary" href="" target="_blank"><i class=""></i>
+                            Facebook</a>
+                        <a class="text-center btn btn-success " href="" target="_blank"><i
+                                class="fa fa-mobile"></i>
+                            Mobile
+                            App</a>
+                    </div>
+                    <div class="pt-2 pb-2 mt-3 recent-poet text-start">
+                        <h6 class="ps-2 fw-bold">Recent Posts</h6>
+                        @foreach ($recentPosts as $post)
+                            <a
+                                href="{{ route('post-summary', ['slug' => $slug, 'id' => $post->chittiId, 'subTitle' => Str::slug($post->SubTitle)]) }}">
+                                <div class="p-2 mt-3 rounded shadow">
+                                    <img class="img-fluid rounded-top w-100" src="{{ $post->imageUrl }}"
+                                        alt="{{ $post->Title }}">
+                                    <h6 class="mt-2 text-dark ">{{ $post->Title }}</h6>
+                            </a>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
 
         </div>
-        <a href="#" class="tag-link"
-            style="background-color: #ff0000; color: white; padding: 10px 20px; border-radius: 5px; display: inline-block; text-decoration: none; cursor: default; transition: background-color 0.3s ease;"
-            onmouseover="this.style.backgroundColor='#0056b3';" onmouseout="this.style.backgroundColor='#007bff';">
-            {{ $post['tagInUnicode'] }}
-        </a>
-        <br> <br>
-        <!-- Navigation Buttons (Previous and Next Posts) -->
-        <div class="text-center post-navigation">
-            @if ($previousPost)
-                <a href="{{ route('post-summary', ['slug' => $slug, 'id' => $previousPost->chittiId, 'subTitle' => Str::slug($previousPost->SubTitle)]) }}"
-                    class="btn btn-primary">पिछला / Previous</a>
-            @endif
-
-            @if ($nextPost)
-                <a href="{{ route('post-summary', ['slug' => $slug, 'id' => $nextPost->chittiId, 'subTitle' => Str::slug($nextPost->SubTitle)]) }}"
-                    class="btn btn-primary">अगला / Next</a>
-            @endif
-        </div>
+    </div>
 
 
-
-
-        <div class="definitions" style="background-color: {{ $ColorCode }};">
-            <h3>Definitions of the Post Viewership Metrics</h3>
-            <p>
-                <strong>A. City Subscribers (FB + App) -</strong> This is the Total city-based unique subscribers from
-                the Prarang Hindi FB page and the Prarang App who reached this specific post.
-            </p>
-            <p>
-                <strong>B. Website (Google + Direct) -</strong> This is the Total viewership of readers who reached this
-                post directly through their browsers and via Google search.
-            </p>
-            <p>
-                <strong>C. Total Viewership —</strong> This is the Sum of all Subscribers (FB+App), Website
-                (Google+Direct), Email, and Instagram who reached this Prarang post/page.
-            </p>
-            <p>
-                <strong>D. The Reach (Viewership) -</strong> The reach on the post is updated either on the 6th day from
-                the day of posting or on the completion (Day 31 or 32) of one month from the day of posting.
-            </p>
-        </div>
+    <div class="definitions" style="background-color: {{ $ColorCode }};">
+        <h3>Definitions of the Post Viewership Metrics</h3>
+        <p>
+            <strong>A. City Subscribers (FB + App) -</strong> This is the Total city-based unique subscribers from
+            the Prarang Hindi FB page and the Prarang App who reached this specific post.
+        </p>
+        <p>
+            <strong>B. Website (Google + Direct) -</strong> This is the Total viewership of readers who reached this
+            post directly through their browsers and via Google search.
+        </p>
+        <p>
+            <strong>C. Total Viewership —</strong> This is the Sum of all Subscribers (FB+App), Website
+            (Google+Direct), Email, and Instagram who reached this Prarang post/page.
+        </p>
+        <p>
+            <strong>D. The Reach (Viewership) -</strong> The reach on the post is updated either on the 6th day from
+            the day of posting or on the completion (Day 31 or 32) of one month from the day of posting.
+        </p>
+    </div>
 
     </div>
 
