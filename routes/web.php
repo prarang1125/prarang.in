@@ -33,4 +33,3 @@ Route::prefix('archives')->group(function () {
     Route::get('/{cityCode}/{catg}/{ids}/{name}', [PostArchives::class, 'archivePosts'])->name('post-archive');
 });
 
-//payment

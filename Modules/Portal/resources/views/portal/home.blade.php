@@ -14,6 +14,48 @@
         #wrapper footer>.container-fluid {
             background-color: rgba(213, 209, 209, 0.34);
         }
+
+        #wrapper footer {
+            background-color: rgba(0, 0, 0, 0.79) !important;
+
+            background-size: auto;
+            background-blend-mode: darken;
+            background-attachment: fixed;
+            transform: translatex(0px) translatey(0px);
+        }
+
+        #wrapper .header-background--single {
+            background-color: rgba(0, 0, 0, 0.79) !important;
+
+            background-size: auto;
+            background-blend-mode: darken;
+            background-attachment: fixed;
+        }
+
+        #wrapper footer p {
+            color: #ffffff;
+            font-size: 18px;
+        }
+
+        #wrapper footer .text-center {
+            font-size: 24px;
+            color: #ffffff;
+        }
+
+        /* Image */
+        #carousel-item img {
+            height: 70px !important;
+            text-align: center;
+            overflow: hidden;
+            min-height: 80px !important;
+            max-height: 80px !important;
+        }
+
+        /* Small Tag */
+        #carousel-item small {
+            white-space: break-spaces;
+            text-align: center;
+        }
     </style>
     <div id="wrapper">
         <header class="header--has-languages header--has-map" id="header">
@@ -36,7 +78,7 @@
                             <div class="header-logo header-logo--front">
                                 <a aria-label="Site logo" class="header-logo__link" href="{{ url()->current() }}">
                                     <img alt="TownPress" class="header-logo__image"
-                                        src="{{ asset('https://www.prarang.in/meerut/images/header-logo.2x.png') }}" />
+                                        src="{{ asset('assets/images/logo2x.png') }}" />
                                 </a>
                             </div>
                             <div class="header-toolbar-toggle header-toolbar-toggle--has-map">
@@ -303,377 +345,82 @@
                                             <div class="text-center widget">
                                                 {!! $portal->weather_widget_code !!}
                                             </div>
-
-
+                                            <p class="text-center">
+                                                <a href=""><img class="img-fluid" style="height:450px;"
+                                                        src="{{ asset('assets/images/yellowpages.jpg') }}"
+                                                        alt=""></a>
+                                            </p>
                                         </div>
                                     </aside>
-                                    <!-- RIGHT SIDEBAR : end -->
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <!-- COLUMNS : end -->
             </div>
         </div>
-        <!-- CORE : end -->
-        <!-- FOOTER : begin -->
-        <div style="min-height:200px;"></div>
-        {{-- <footer class="footer--has-backgroundx " id="footer"
-            style="background-image: url( 'https://preview.lsvr.sk/townpress/wp-content/uploads/sites/3/2017/12/footer-bg.jpg' );">
-            <div class="footer__inner">
-                <!-- FOOTER WIDGETS : begin -->
-                <div class="footer-widgets">
-                    <div class="footer-widgets__inner">
-                        <div class="lsvr-container">
-                            <div class="lsvr-grid lsvr-grid--4-cols lsvr-grid--md-2-cols">
-                                <div
-                                    class="footer-widgets__column lsvr-grid__col lsvr-grid__col--span-3 lsvr-grid__col--md lsvr-grid__col--md-span-6 lsvr-grid__col--lg lsvr-grid__col--lg-span-6">
-                                    <div class="footer-widgets__column-inner">
-                                        <div class="widget widget_text" id="text-2">
-                                            <div class="widget__inner">
-                                                <h3 class="widget__title">
-                                                    About TownPress
-                                                </h3>
-                                                <div class="textwidget">
-                                                    <p>
+        <style>
+            #wrapper footer .row .col p {
+                margin-bottom: 5px !important;
+            }
+        </style>
 
-                                                    </p>
-                                                    <p>
-                                                        <strong>
-                                                            <a href="https://themeforest.net/user/lsvrthemes/portfolio?ref=LSVRthemes"
-                                                                rel="noopener" target="_blank">
-                                                                Purchase TownPress
-                                                            </a>
-                                                        </strong>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div
-                                    class="footer-widgets__column lsvr-grid__col lsvr-grid__col--span-3 lsvr-grid__col--md lsvr-grid__col--md-span-6 lsvr-grid__col--lg lsvr-grid__col--lg-span-6">
-                                    <div class="footer-widgets__column-inner">
-                                        <div class="widget lsvr_event-list-widget" id="lsvr_events_event_list-2">
-                                            <div class="widget__inner">
-                                                <h3 class="widget__title widget__title--has-icon">
-                                                    <span aria-hidden="true"
-                                                        class="widget__title-icon icon-calendar-full">
-                                                    </span>
-                                                    Upcoming Events
-                                                </h3>
-                                                <div class="widget__content">
-                                                    <ul
-                                                        class="lsvr_event-list-widget__list lsvr_event-list-widget__list--has-bold-date">
-                                                        <li
-                                                            class="lsvr_event-list-widget__item lsvr_event-list-widget__item--has-thumb">
-                                                            <p class="lsvr_event-list-widget__item-date lsvr_event-list-widget__item-date--bold"
-                                                                title="October 12, 2024">
-                                                                <span aria-hidden="true"
-                                                                    class="lsvr_event-list-widget__item-date-month">
-                                                                    Oct
-                                                                </span>
-                                                                <span aria-hidden="true"
-                                                                    class="lsvr_event-list-widget__item-date-day">
-                                                                    12
-                                                                </span>
-                                                            </p>
-                                                            <h4 class="lsvr_event-list-widget__item-title">
-                                                                <a class="lsvr_event-list-widget__item-title-link"
-                                                                    href="https://preview.lsvr.sk/townpress/events/sunday-townpress-run/">
-                                                                    Sunday TownPress Run
-                                                                </a>
-                                                            </h4>
-                                                            <p class="lsvr_event-list-widget__item-info">
-                                                                <span class="lsvr_event-list-widget__item-time"
-                                                                    title="Event Time">
-                                                                    All-day event
-                                                                </span>
-                                                                <span class="lsvr_event-list-widget__item-location"
-                                                                    title="Event Location">
-                                                                    at
-                                                                    <a class="lsvr_event-list-widget__item-location-link"
-                                                                        href="https://preview.lsvr.sk/townpress/event-location/downtown/">
-                                                                        Downtown
-                                                                    </a>
-                                                                </span>
-                                                            </p>
-                                                        </li>
-                                                        <li
-                                                            class="lsvr_event-list-widget__item lsvr_event-list-widget__item--has-thumb">
-                                                            <p class="lsvr_event-list-widget__item-date lsvr_event-list-widget__item-date--bold"
-                                                                title="October 13, 2024">
-                                                                <span aria-hidden="true"
-                                                                    class="lsvr_event-list-widget__item-date-month">
-                                                                    Oct
-                                                                </span>
-                                                                <span aria-hidden="true"
-                                                                    class="lsvr_event-list-widget__item-date-day">
-                                                                    13
-                                                                </span>
-                                                            </p>
-                                                            <h4 class="lsvr_event-list-widget__item-title">
-                                                                <a class="lsvr_event-list-widget__item-title-link"
-                                                                    href="https://preview.lsvr.sk/townpress/events/town-meeting/">
-                                                                    Town Meeting
-                                                                </a>
-                                                            </h4>
-                                                            <p class="lsvr_event-list-widget__item-info">
-                                                                <span class="lsvr_event-list-widget__item-time"
-                                                                    title="Event Time">
-                                                                    6:00 pm - 7:30 pm
-                                                                </span>
-                                                                <span class="lsvr_event-list-widget__item-location"
-                                                                    title="Event Location">
-                                                                    at
-                                                                    <a class="lsvr_event-list-widget__item-location-link"
-                                                                        href="https://preview.lsvr.sk/townpress/event-location/downtown-theater/">
-                                                                        Downtown Theater
-                                                                    </a>
-                                                                </span>
-                                                            </p>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div
-                                    class="footer-widgets__column lsvr-grid__col lsvr-grid__col--span-3 lsvr-grid__col--md lsvr-grid__col--md-span-6 lsvr-grid__col--lg lsvr-grid__col--lg-span-6">
-                                    <div class="footer-widgets__column-inner">
-                                        <div class="widget lsvr_document-list-widget"
-                                            id="lsvr_documents_document_list-2">
-                                            <div class="widget__inner">
-                                                <h3 class="widget__title widget__title--has-icon">
-                                                    <span aria-hidden="true"
-                                                        class="widget__title-icon icon-file-text-o">
-                                                    </span>
-                                                    Important Forms
-                                                </h3>
-                                                <div class="widget__content">
-                                                    <ul class="lsvr_document-list-widget__list">
-                                                        <li class="lsvr_document-list-widget__item">
-                                                            <h4 class="lsvr_document-list-widget__item-title">
-                                                                <a class="lsvr_document-list-widget__item-title-link"
-                                                                    href="https://preview.lsvr.sk/townpress/documents/town-board-applications/">
-                                                                    Town Board Applications
-                                                                </a>
-                                                            </h4>
-                                                            <div class="lsvr_document-list-widget__item-info">
-                                                                <p class="lsvr_document-list-widget__item-date">
-                                                                    December 2, 2018
-                                                                </p>
-                                                            </div>
-                                                        </li>
-                                                        <li class="lsvr_document-list-widget__item">
-                                                            <h4 class="lsvr_document-list-widget__item-title">
-                                                                <a class="lsvr_document-list-widget__item-title-link"
-                                                                    href="https://preview.lsvr.sk/townpress/documents/temporary-sign-permit-application/">
-                                                                    Temporary Sign Permit Application
-                                                                </a>
-                                                            </h4>
-                                                            <div class="lsvr_document-list-widget__item-info">
-                                                                <p class="lsvr_document-list-widget__item-date">
-                                                                    November 26, 2018
-                                                                </p>
-                                                            </div>
-                                                        </li>
-                                                    </ul>
-                                                    <p class="widget__more">
-                                                        <a class="widget__more-link"
-                                                            href="https://preview.lsvr.sk/townpress/documents/">
-                                                            More Documents
-                                                        </a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div
-                                    class="footer-widgets__column lsvr-grid__col lsvr-grid__col--span-3 lsvr-grid__col--md lsvr-grid__col--md-span-6 lsvr-grid__col--lg lsvr-grid__col--lg-span-6">
-                                    <div class="footer-widgets__column-inner">
-                                        <div class="widget widget_text" id="text-3">
-                                            <div class="widget__inner">
-                                                <h3 class="widget__title widget__title--has-icon">
-                                                    <span aria-hidden="true"
-                                                        class="widget__title-icon icon-envelope-o">
-                                                    </span>
-                                                    Quick Contact
-                                                </h3>
-                                                <div class="textwidget">
-                                                    <p>
-                                                        P.O. Box 123 TownPress
-                                                        <br />
-                                                        VT 12345
-                                                    </p>
-                                                    <p>
-                                                        Phone: (123) 456-7890
-                                                        <br />
-                                                        Fax: (123) 456-7891
-                                                        <br />
-                                                        Email:
-                                                        <a href="http://wpdemos.lsvr.sk/townpress/#">
-                                                            townpress@example.org
-                                                        </a>
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+        <footer class="p-4 ps-4 pe-4"
+            style="background-color: #FFB1A3; margin-top:200px;  background-image: url('{{ Storage::url($portal->footer_image) }}');">
+            <div class="row g-2">
+                <div class="col-sm">
+                    <h4 class="text-center">प्रारंग के बारे में </h4>
+                    <p>प्रारंग एक स्टार्ट-अप उद्यम है जो वर्तमान के नोएडा, नई दिल्ली में स्थित शब्दचित्र अनुसंधान केंद्
+                        द्वारा संचालित है। 4 शहरों में शुरुआती दौर के पूरे होने के बाद मध्य 2018 में यह एक अलग प्राइवेट
+                        लिमिटेड कंपनी के रूप में जारी किया जाएगा ।
+                        अधिक जानकारी और Prarang टीम के संपर्कों के लिए, <br> कृपया वेबसाइट देखें – <a
+                            href="https://www.prarang.in">www.prarang.in</a></p>
+                </div>
+                <div class="text-center col-sm">
+                    <h4 class="text-center">हमें फॉलो करें</h4>
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="https://www.facebook.com/prarang.in" target="_blank">
+                                <i class="p-2 shadow fa fa-facebook rounded-circle fa-2x"></i> <span
+                                    class="h4">Facebook</span>
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="https://twitter.com/prarangin" target="_blank">
+                                <i class="p-2 shadow fa fa-twitter rounded-circle fa-2x"></i><span class="h4">
+                                    Twitter</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <a href="https://www.instagram.com/prarang.in/" target="_blank">
+                                <i class="p-2 shadow fa fa-instagram rounded-circle fa-2x"></i> <span
+                                    class="h4">Instagram</span>
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="https://www.linkedin.com/company/prarang-in" target="_blank">
+                                <i class="p-2 shadow fa fa-linkedin rounded-circle fa-2x"></i> <span class="h4">
+                                    LinkedIn</span>
+
+                            </a>
                         </div>
                     </div>
                 </div>
-                <!-- FOOTER WIDGETS : end -->
-                <!-- FOOTER BOTTOM : begin -->
-                <div class="footer-bottom">
-                    <div class="lsvr-container">
-                        <div class="footer-bottom__inner">
-                            <!-- FOOTER SOCIAL LINKS : begin -->
-                            <div class="footer-social">
-                                <ul class="footer-social__list" title="Social Media Links">
-                                    <li class="footer-social__item footer-social__item--facebook">
-                                        <a class="footer-social__link footer-social__link--facebook" href="#facebook"
-                                            target="_blank" title="Facebook">
-                                            <span aria-hidden="true" class="footer-social__icon icon-facebook">
-                                                <span class="screen-reader-text">
-                                                    Facebook
-                                                </span>
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="footer-social__item footer-social__item--twitter">
-                                        <a class="footer-social__link footer-social__link--twitter" href="#x"
-                                            target="_blank" title="X">
-                                            <span aria-hidden="true" class="footer-social__icon icon-x">
-                                                <span class="screen-reader-text">
-                                                    X
-                                                </span>
-                                            </span>
-                                        </a>
-                                    </li>
-                                    <li class="footer-social__item footer-social__item--youtube">
-                                        <a class="footer-social__link footer-social__link--youtube" href="#youtube"
-                                            target="_blank" title="YouTube">
-                                            <span aria-hidden="true" class="footer-social__icon icon-youtube">
-                                                <span class="screen-reader-text">
-                                                    YouTube
-                                                </span>
-                                            </span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <!-- FOOTER SOCIAL LINKS : end -->
-                            <!-- FOOTER MENU : begin -->
-                            <nav aria-label="Footer Menu" class="footer-menu">
-                                <ul class="footer-menu__list" id="menu-footer-menu" role="menu">
-                                    <li class="footer-menu__item footer-menu__item--level-0 menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-207 current_page_item"
-                                        role="presentation">
-                                        <a class="footer-menu__item-link footer-menu__item-link--level-0"
-                                            href="https://preview.lsvr.sk/townpress/" role="menuitem">
-                                            Home
-                                        </a>
-                                    </li>
-                                    <li class="footer-menu__item footer-menu__item--level-0 menu-item menu-item-type-custom menu-item-object-custom"
-                                        role="presentation">
-                                        <a class="footer-menu__item-link footer-menu__item-link--level-0"
-                                            href="http://docs.lsvr.sk/townpress.wp/" role="menuitem" target="_blank">
-                                            Documentation
-                                        </a>
-                                    </li>
-                                    <li class="footer-menu__item footer-menu__item--level-0 menu-item menu-item-type-custom menu-item-object-custom"
-                                        role="presentation">
-                                        <a class="footer-menu__item-link footer-menu__item-link--level-0"
-                                            href="https://themeforest.net/item/townpress-municipality-wordpress-theme/11490395"
-                                            role="menuitem" target="_blank">
-                                            Purchase
-                                        </a>
-                                    </li>
-                                    <li class="footer-menu__item footer-menu__item--level-0 menu-item menu-item-type-post_type menu-item-object-page"
-                                        role="presentation">
-                                        <a class="footer-menu__item-link footer-menu__item-link--level-0"
-                                            href="https://preview.lsvr.sk/townpress/demo-credits/" role="menuitem">
-                                            Demo Credits
-                                        </a>
-                                    </li>
-                                </ul>
-                            </nav>
-                            <!-- FOOTER MENU : end -->
-                            <!-- FOOTER TEXT : begin -->
-                            <div class="footer-text">
-                                <p>
-                                    TownPress - Municipal WordPress Theme
-                                </p>
-                            </div>
-                            <!-- FOOTER TEXT : end -->
-                        </div>
-                    </div>
+                <div class="col-sm ps-3">
+                    <h4 class="text-center"><i class="tp tp-eye"></i> पता</h4>
+                    <p>ऑफिस #25,11th फ्लोर,दा आई- थम,A40,</p>
+                    <p>सेक्टर 62,नॉएडा(U.P),इंडिया 201309</p>
+                    <p>फ़ोन: 0120-4561284</p>
+                    <p>मेल: <a href="mailto:query@prarangin">Query@prarang.in</a> </p>
                 </div>
-                <!-- FOOTER BOTTOM : end -->
             </div>
-        </footer> --}}
-        <!-- FOOTER : end -->
-        <footer>
-            <div class="container-fluid">
-                <br>
-                <div class="container mt-3">
-                    <div class="footer-design row">
-                        <div class="col-sm-3">
-                            <a href="{{ route('privacy-policy') }}" class="">
-                                Privacy Policy
-                            </a>
-                        </div>
-                        <div class="col-sm-3">
-                            <a href="{{ route('terms-conditions') }}" class="">
-                                Terms &amp; Conditions
-                            </a>
-                        </div>
-                        <div class="col-sm-3">
-                            <a href="{{ route('refund-cancellation') }}">
-                                Cancellations and Refund
-                            </a>
-                        </div>
-                        <div class="col-sm-3">
-                            <a href="{{ route('about-us') }}">
-                                About Us
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="container-fluid">
-
-                </div>
-                <p class="container"><br>
-                    <b>Please read this disclaimer carefully before using our website. By accessing and using our
-                        website,
-                        you
-                        agree to the terms and conditions stated in this disclaimer. </b> <br>
-
-                    1. Copyright and Intellectual Property: <br> a) The content, design, graphics, and data presented on
-                    this
-                    website are protected by copyright and intellectual property laws. <br> b) Unauthorized use,
-                    reproduction, or
-                    distribution of any material from this website, whether free or paid, is strictly prohibited. <br>
-                    2. Changes to Disclaimer: <br> a) We reserve the right to modify or update this disclaimer at any
-                    time
-                    without
-                    prior notice. <br> b) Any changes will be effective immediately upon posting on the website.
-                    By using our website, you acknowledge that you have read, understood, and agree to this
-                    disclaimer
-                    in
-                    its entirety. If you do not agree with any part of this disclaimer, please refrain from using
-                    our
-                    website. For
-                    any questions or clarifications, please contact us at query@prararag.in
-                </p>
-                <p id="demo">
-                </p>
-                <br>
+            <div class="p-4">
+                <p>© - {{ date('Y') }} All content on this website, such as text, graphics, logos, button icons,
+                    software, images
+                    and its selection, arrangement, presentation & overall design, is the property of Indoeuropeans
+                    India Pvt. Ltd. and protected by international copyright laws.</p>
             </div>
         </footer>
 

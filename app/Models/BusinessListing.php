@@ -9,6 +9,7 @@ class BusinessListing extends Model
     protected $table = 'business_listings'; 
 
     protected $fillable = [
+        'user_id',
         'city_id',
         'listing_title',
         'tagline' ,

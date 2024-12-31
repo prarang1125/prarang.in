@@ -152,8 +152,8 @@
                                         href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => preg_replace('/[^\w\s]/', ' ', $tag->tagInEnglish), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
-                                                <img class="img-fluid rounded-circle" src="https://{{ $tag->tagIcon }}"
-                                                    alt="">
+                                                <img class="img-fluid rounded-circle"
+                                                    src="{{ Storage::url($tag->tagIcon) }}" alt="">
                                             </div>
                                             <div class="border col-10 rounded-pill tagListx">
                                                 <div class="row">
@@ -187,8 +187,8 @@
                                         href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => preg_replace('/[^\w\s]/', ' ', $tag->tagInEnglish), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
-                                                <img class="img-fluid rounded-circle" src="https://{{ $tag->tagIcon }}"
-                                                    alt="">
+                                                <img class="img-fluid rounded-circle"
+                                                    src="{{ Storage::url($tag->tagIcon) }}" alt="">
                                             </div>
                                             <div class="border col-10 rounded-pill tagListx">
                                                 <div class="row">
@@ -222,8 +222,8 @@
                                         href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => preg_replace('/[^\w\s]/', ' ', $tag->tagInEnglish), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
-                                                <img class="img-fluid rounded-circle" src="https://{{ $tag->tagIcon }}"
-                                                    alt="">
+                                                <img class="img-fluid rounded-circle"
+                                                    src="{{ Storage::url($tag->tagIcon) }}" alt="">
                                             </div>
                                             <div class="border col-10 rounded-pill tagListx">
                                                 <div class="row">
@@ -272,7 +272,7 @@
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
-                                                    src="https://{{ $tag->tagIcon }}" alt="">
+                                                    src="{{ Storage::url($tag->tagIcon) }}" alt="">
                                             </div>
                                             <div class="border col-10 rounded-pill tagListx">
                                                 <div class="row">
@@ -305,7 +305,7 @@
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
-                                                    src="https://{{ $tag->tagIcon }}" alt="">
+                                                    src="{{ Storage::url($tag->tagIcon) }}" alt="">
                                             </div>
                                             <div class="border col-10 rounded-pill tagListx">
                                                 <div class="row">
@@ -331,14 +331,13 @@
                                 <strong>{{ $tagCounts['flora_count'] }}</strong>
                             </p>
                             @foreach ($tagSubCounts['tag_6'] as $tag)
-                                {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
                                     <a target="_blank"
                                         href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => preg_replace('/[^\w\s]/', ' ', $tag->tagInEnglish), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
-                                                    src="https://{{ $tag->tagIcon }}" alt="">
+                                                    src="{{ Storage::url($tag->tagIcon) }}" alt="">
                                             </div>
                                             <div class="border col-10 rounded-pill tagListx">
                                                 <div class="row">

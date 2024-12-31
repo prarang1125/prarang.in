@@ -18,7 +18,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function dashboard()
     {
         $totallisting  = BusinessListing::count();
         $totalCategory   = Category::count();
@@ -111,7 +111,7 @@ public function userStore(Request $request)
 
         } catch (\Exception $e) {
             // Handle errors in user creation
-            return back()->with('error', 'There was an issue with user registration: ' . $e->getMessage());
+            return back()->with('error', 'There was an issue with user registration:' . $e->getMessage());
         }
     } else {
         // Validation failed, return back with errors

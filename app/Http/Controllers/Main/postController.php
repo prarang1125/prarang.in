@@ -15,7 +15,6 @@ class postController extends Controller
     public function getChittiData($city, $name = null, $forAbour = null)
     {
         $portal = Portal::where('slug', $city)->firstOrFail();
-
         $geography = Geography::where('geographycode', $portal->city_code)->first();
         if (! $geography) {
             return abort(404, 'Geography not found');
@@ -37,7 +36,7 @@ class postController extends Controller
         })->map(function ($chittis) {
             return $chittis->map(function ($chitti) {
 
-                $imageUrl = $chitti->images->first()->imageName ?? asset('default_image.jpg');
+                $imageUrl = $chitti->images->first()->imageUrl ?? asset('default_image.jpg');
 
                 $tags = $chitti->tagMappings->map(function ($tagMapping) {
                     return $tagMapping->tag->tagInEnglish;
@@ -50,6 +49,7 @@ class postController extends Controller
                     'description' => $chitti->description,
                     'imageUrl' => $imageUrl,
                     'tags' => $tags,
+                    'color' => $chitti->color->colorcode,
                     'createDate' => $chitti->dateOfApprove,
                 ];
             });
@@ -63,6 +63,8 @@ class postController extends Controller
             'name' => $name,
         ]);
     }
+
+    //updated public function post_summary($slug, $postId)
 
     public function post_summary($slug, $postId)
     {
@@ -86,10 +88,10 @@ class postController extends Controller
             ->where('chittiId', '!=', $postId)
             ->orderBy('chittiId', 'desc')
             ->where('finalStatus', 'approved')
-            ->take(5)
+            ->take(3)
             ->get()
             ->map(function ($recent) {
-                $recent->imageUrl = optional($recent->images->first())->imageName ?? 'images/default_image.jpg';
+                $recent->imageUrl = optional($recent->images->first())->imageUrl ?? 'images/default_image.jpg';
                 $recent->formattedDate = $recent->createDate ? Carbon::parse($recent->createDate)->format('d-m-Y H:i A') : 'N/A';
 
                 return $recent;

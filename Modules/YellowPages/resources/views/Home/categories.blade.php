@@ -45,32 +45,32 @@
             <!-- Filters Section -->
 <div style="display: flex; justify-content: space-evenly; align-items: center; margin-bottom: 20px; padding: 20px; background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
     <!-- Filter Options with Checkboxes -->
-    <div>
+    {{-- <div>
         <label for="credit-cards" style="margin-right: 15px; padding: 10px 15px; border: 1px solid #ccc; border-radius: 20px; background-color: #fff; cursor: pointer;">
             <input type="checkbox" id="credit-cards" name="credit-cards" style="margin-right: 5px;"> Accepts Credit Cards
         </label>
         <label for="wireless-internet" style="padding: 10px 15px; border: 1px solid #ccc; border-radius: 20px; background-color: #fff; cursor: pointer;">
             <input type="checkbox" id="wireless-internet" name="wireless-internet" style="margin-right: 5px;"> Wireless Internet
         </label>
-    </div>
+    </div> --}}
 
     <!-- Filter Buttons -->
     <div style="display: flex; gap: 10px;">
-        <button style="padding: 10px 15px; border-radius: 20px; border: 1px solid ;  cursor: pointer;">
+        {{-- <button style="padding: 10px 15px; border-radius: 20px; border: 1px solid ;  cursor: pointer;">
             Near Me
         </button>
         <button style="padding: 10px 15px; border-radius: 20px; border: 1px solid;  cursor: pointer;">
             Price
-        </button>
-        <button style="padding: 10px 15px; border-radius: 20px; border: 1px solid;  cursor: pointer;">
+        </button> --}}
+        {{-- <button style="padding: 10px 15px; border-radius: 20px; border: 1px solid;  cursor: pointer;">
             Open Now
-        </button>
-        <button style="padding: 10px 15px; border-radius: 20px; border: 1px solid; cursor: pointer;">
+        </button> --}}
+        {{-- <button style="padding: 10px 15px; border-radius: 20px; border: 1px solid; cursor: pointer;">
             Best Match
         </button>
         <button style="padding: 10px 15px; border-radius: 20px; border: 1px solid; cursor: pointer;">
             Sort By
-        </button>
+        </button> --}}
         
     </div>
 
@@ -90,6 +90,7 @@
 <div class="listings-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
     @foreach($listings as $listing)
         <div style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
+            <a href="{{ route('yp.listing-details', $listing->id) }}" style="display: block;">
             <img src="{{ asset('storage/' . ($listing->feature_img ?? 'default.jpg')) }}" alt="{{ $listing->listing_title }}" style="width: 100%; height: auto;">
             <div style="padding: 20px;">
                 <div style="background-color: {{ $listing->status === 'Closed' ? '#ff4d4d' : '#28a745' }}; color: white; padding: 5px; border-radius: 5px; font-size: 12px; display: inline-block; margin-bottom: 10px;">

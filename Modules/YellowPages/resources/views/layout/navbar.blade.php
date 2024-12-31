@@ -14,8 +14,8 @@
 <header id="header" class="header fixed-top">
     <div class="branding d-flex align-items-center">
         <div class="container position-relative d-flex align-items-center justify-content-between">       
-            <a href="{{ url('/home') }}" class="logo d-flex align-items-center">
-                <img src="{{ asset('assets/img/yellow_logo.png') }}" alt="Logo">
+            <a href="{{ url('/yellow-pages/home') }}" class="logo d-flex align-items-center">
+                <img src="{{ asset('storage/images/logo/yellow_logo.png') }}" alt="Logo">
             </a>
             <nav id="navmenu" class="navmenu">
                 <div class="signature-image">
@@ -31,7 +31,7 @@
                             {{ Auth::user()->name }} <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Dashboard</a></li>
+                            <li><a class="dropdown-item" href="{{ url('yellow-pages/vCard/dashboard') }}">Dashboard</a></li>
                             <li><a class="dropdown-item" href="{{ route('yp.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
                         </ul>
                     </li>
@@ -40,7 +40,7 @@
                     </form>
                 @else
                     <!-- Sign In link for guests -->
-                    <li><a href="#" id="toggleModal" data-bs-toggle="modal" data-bs-target="#signInModal">Sign In</a></li>
+                    <li><a href="{{ url('yellow-pages/vCard/dashboard') }}" id="toggleModal" data-bs-toggle="modal" data-bs-target="#signInModal">Sign In</a></li>
                 @endif
                     <li class="action-buttons">
                         <a href="{{ url('yellow-pages/listing_plan') }}" class="btn-add-listing"><i class="fa fa-plus"></i> Add Listing</a>
@@ -123,7 +123,6 @@
 <!-- Include jQuery and Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 
 </body>
 </html>

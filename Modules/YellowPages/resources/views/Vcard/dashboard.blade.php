@@ -9,7 +9,7 @@
             <div class="card radius-10 bg-gradient-deepblue">
                  <div class="card-body">
                     <div class="d-flex align-items-center">
-                        <h5 class="mb-0 text-white">100</h5> <!-- Static Total Scans -->
+                        <h5 class="mb-0 text-white">{{ $totalscan ? $totalscan->scan_count : 0 }}</h5>
                         <div class="ms-auto">
                             <i class='bx bx-scan fs-3 text-white'></i>
                         </div>
@@ -27,7 +27,8 @@
                 <div class="card radius-10 bg-gradient-deepblue">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
-                            <h5 class="mb-0 text-white">Free Plan</h5> <!-- Static Total Categories -->
+                            <h5 class="mb-0 text-white">{{ is_object($plan) ? $plan->name : 'No Plan Active' }}</h5>
+                            <!-- Static Total Categories -->
                             <div class="ms-auto">
                                 <i class='bx bx-user fs-3 text-white'></i> <!-- Updated icon -->
                             </div>
@@ -44,7 +45,7 @@
     </div>
 
     <!-- Chart Section -->
-    <div class="row mt-4">
+    {{-- <div class="row mt-4">
         <div class="col">
             <div class="card">
                 <div class="card-body">
@@ -52,24 +53,20 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 </div>
 
 <!-- Chart.js Integration -->
-<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+{{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const ctx = document.getElementById('scanChart').getContext('2d');
     const scanChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: [
-                '01 Dec', '03 Dec', '05 Dec', '07 Dec', '09 Dec', 
-                '11 Dec', '13 Dec', '15 Dec', '17 Dec', '19 Dec', 
-                '21 Dec', '23 Dec', '25 Dec', '27 Dec', '30 Dec'
-            ], // Static Dates
+            labels: @json($labels), // Dynamic Dates
             datasets: [{
                 label: 'Scans',
-                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0], // Static Scan Counts
+                data: @json($data), // Dynamic Scan Counts
                 borderColor: 'blue',
                 backgroundColor: 'rgba(0, 0, 255, 0.1)',
                 pointBorderColor: 'blue',
@@ -89,5 +86,5 @@
             }
         }
     });
-</script>
+</script> --}}
 @endsection

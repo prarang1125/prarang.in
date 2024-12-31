@@ -15,7 +15,16 @@ class Vcard extends Model
         'logo', 
         'title', 
         'subtitle', 
-        'description'
+        'description',
+        'user_id'
     ];
+
+    public function dynamicFields()
+{
+    return $this->hasMany(DynamicVcard::class, 'vcard_id');
+}
+
+
+    
 
 }
