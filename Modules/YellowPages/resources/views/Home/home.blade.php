@@ -4,14 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Prarang - YellowPages</title>
+  <title>प्रारंग - येलोपेजेस</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
   <!-- Favicons -->
   <link href="assets/img/favicon.png" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-
   <!-- Fonts -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
   <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
@@ -36,33 +35,29 @@
 
     <!-- Hero Section -->
     <section id="hero" class="hero section-bg accent-background">
-
       <div class="container position-relative text-center" data-aos="fade-up" data-aos-delay="100">
         <div class="row gy-5 justify-content-center">
             <div class="col-lg-8 order-2 order-lg-1 d-flex flex-column justify-content-center mx-auto">
                 <h2>
-                    <span>Explore Your</span> 
-                    <span class="accent">City</span>
+                    <span>{{ __('messages.explore_your_city') }}</span>
                 </h2>
-                <p>Let's uncover the best Businesses, Products and Services</p>
-                
+                <p>{{ __('messages.Let_uncover_the_best_Businesses') }}</p>
                 <form action="{{ route('yp.listing') }}" method="GET" class="search-form d-flex justify-content-center mt-4">
                   <!-- Categories Dropdown -->
                   <select name="category" class="form-select" style="width: 300px; padding: 10px; margin-right: 10px;">
-                      <option value="">Select Category</option>
-                      @foreach ($categories as $category)
-                          <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
-                              {{ $category->name }}
-                          </option>
-                      @endforeach
+                    <option value="">{{ __('messages.select_category') }}</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
+                            {{ __('messages.' . $category->name) }}
+                        </option>
+                    @endforeach                    
                   </select>
               
-                  <!-- Cities Dropdown -->
                   <select name="city" class="form-select" style="width: 200px; padding: 10px; margin-right: 10px;">
-                      <option value="">Select City</option>
+                      <option value="">{{ __('messages.select_city') }}</option>
                       @foreach ($cities as $city)
                           <option value="{{ $city->id }}" {{ request('city') == $city->id ? 'selected' : '' }}>
-                              {{ $city->name }}
+                            {{ __('messages.' .$city->name) }}
                           </option>
                       @endforeach
                   </select>
@@ -72,19 +67,13 @@
                       <i class="bi bi-search" style="font-size: 1.2rem;"></i>
                   </button>
               </form>
-              
-
-                
-    
-                <!-- Description and arrow image below the search bar -->
                 <div class="text-center lp-search-description" style="margin-top: 20px;">
-                    <p>Looking for a service? Discover the most popular and reliable service providers and products in your city</p>
+                    <p>{{ __('messages.Looking_for_a_service') }}</p>
                     <img src="{{ asset('storage/images/banner-arrow.png') }}" alt="banner-arrow" class="banner-arrow" style="margin-top: 10px;" />
                 </div>
             </div>
         </div>
     </div>
-
     <div class="icon-boxes position-relative" data-aos="fade-up" data-aos-delay="200">
       <div class="container position-relative">
           <div class="row gy-4 mt-5">
@@ -96,7 +85,7 @@
                           </div>
                           <h4 class="title" style="font-size: 16px; margin-top: 10px;">
                               <!-- Add the link to the listing page with the category ID -->
-                              <a href="{{ route('yp.listing') }}?category={{ $category->id }}" class="stretched-link">{{ $category->name }}</a>
+                              <a href="{{ route('yp.listing') }}?category={{ $category->id }}" class="stretched-link">   {{ __('messages.' . $category->name) }}</a>
                           </h4>
                       </div>
                   </div>

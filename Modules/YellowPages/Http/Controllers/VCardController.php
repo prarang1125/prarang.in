@@ -16,7 +16,6 @@ use Illuminate\Http\Request;
 
 class VCardController extends Controller
 {
-    
     public function index()
     {
         return view("yellowpages::Home.vcard");
@@ -24,7 +23,6 @@ class VCardController extends Controller
     public function dashboard()
 {
     $userId = Auth::id();
-
     // Retrieve the Vcard record for the authenticated user or default to null
     $totalscan = Vcard::where('user_id', $userId)->first();
     $plan = Plan::find(Auth::user()->plan_id) ?? 'Not Active Any';
@@ -65,6 +63,7 @@ class VCardController extends Controller
             Log::error('Stripe payment error: ' . $e->getMessage());
             
             return redirect()->route('payment.error')->with('error', 'Something went wrong, please try again later.');
+            
         }
 
     }

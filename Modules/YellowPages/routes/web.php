@@ -16,6 +16,8 @@ use Modules\YellowPages\Http\Controllers\admin\RatingController;
 use Modules\YellowPages\Http\Controllers\VCard\vCardAuthcontroller;
 use Modules\YellowPages\Http\Controllers\VCard\CreateVCardController;
 use Modules\YellowPages\Http\Controllers\VCard\BusinessListingController;
+use Illuminate\Support\Facades\App;
+
 // use App\Http\Controllers\Auth\AuthController;
 
 /*
@@ -28,13 +30,14 @@ use Modules\YellowPages\Http\Controllers\VCard\BusinessListingController;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-
-Route::group(['prefix' => 'yellow-pages'], function () {
+                       
+Route::group(['prefix' => 'yellow-pages','middleware' => 'language'], routes: function () {
+  // dd((App::get_local()));
 
     Route::post('/authLogin', [AuthModalController::class, 'login'])->name('yp.authLogin');
     Route::post('/register', [AuthModalController::class, 'register'])->name('yp.register');
     Route::post('/logout', [AuthModalController::class, 'logout'])->name('yp.logout');
+    
     Route::get('/home', [HomeController::class, 'index'])->name('yp.home');
     Route::get('/signIn', [HomeController::class, 'signIn'])->name('signIn');
     Route::get('/listing_plan', [HomeController::class, 'listing_plan'])->name('yp.listing_plan');
@@ -46,20 +49,20 @@ Route::group(['prefix' => 'yellow-pages'], function () {
     Route::get('/listing', [ListingController::class, 'index'])->name('yp.listing');
     Route::get('/listing-details/{listingId}', [ListingController::class, 'listing'])->name('yp.listing-details');
     Route::get('/getLocationData', [ListingController::class, 'getLocationData'])->name('yp.getLocationData');
+
+    Route::group(['middleware' => 'auth.custom'], function(){
     Route::post('/store-listing', [ListingController::class, 'store'])->name('yp.listing.store');
     Route::get('/submit-listing', [ListingController::class, 'submit_listing'])->name('yp.listing.submit');;
+  });
+
+
     Route::post('/reviews/store/{listing}', [ReviewController::class, 'store'])->name('reviews.store');
     Route::get('/reviews/submit', [ReviewController::class, 'submit_review'])->name('review.submit');
 
-});
 
-Route::group(['prefix' => 'yellow-pages'], function(){
         Route::get('/vCard/login', [vCardAuthcontroller::class, 'index'])->name('vCard.login');
         Route::post('/vCard/authenticate', [vCardAuthcontroller::class, 'authenticate'])->name('vCard.authenticate');
         Route::get('/vcard', [VCardController::class, 'index'])->name('yp.vcard');
-
-
-
         
 Route::group(['middleware' => 'auth.custom'], function(){
 
@@ -95,17 +98,13 @@ Route::get('/vcard/listing-edit/{id}', [BusinessListingController::class, 'listi
 Route::put('/vcard/listing-update/{id}', [BusinessListingController::class, 'listingUpdate'])->name('vCard.listing-update');
 
 });
-});
 
     //Admin
-    Route::group(['prefix' => 'yellow-pages'], function(){
      Route::group(['middleware' => 'admin.guest'], function(){
     Route::get('login', [AuthController::class, 'index'])->name('admin.login');
     Route::post('authenticate', [AuthController::class, 'authenticate'])->name('admin.authenticate');
     });
-
-     Route::group(['middleware' => 'admin.auth'], function(){
-
+    Route::group(['middleware' => 'admin.auth'], function(){
     Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
     Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
 

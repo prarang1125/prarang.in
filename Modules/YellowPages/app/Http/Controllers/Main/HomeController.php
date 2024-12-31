@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\City;
 use App\Models\BusinessListing;
 use App\Models\BusinessHour;
+use Illuminate\Support\Facades\App;
 
 class HomeController extends Controller
 {
@@ -19,25 +20,19 @@ class HomeController extends Controller
         $categories = Category::all();
         $cities = City::all();
     
-        // Fetch business listings with related category and business hours
         $listings = BusinessListing::with(['category', 'hours'])->get()->map(function ($listing) {
             $currentTime = Carbon::now();
         
             if ($listing->hours) {
-                // Parse the opening and closing times
                 $openTime = Carbon::parse($listing->hours->open_time);
                 $closeTime = Carbon::parse($listing->hours->close_time);
         
-                // Determine if the current time falls within the open and close times
                 $listing->is_open = $currentTime->between($openTime, $closeTime);
-
             } else {
-                // If no hours are defined, default to closed
                 $listing->is_open = false;
             }
         
             return $listing;
-      
         });
     
         // Return the view with data
