@@ -93,18 +93,14 @@
           </div>
       </div>
   </div>
-  
-    
-
-
-    </section>
+</section>
 
   <!-- get cities  -->
   <section id="services" class="services">
     <!-- Section Title -->
     <div class="container section-title" data-aos="fade-up">
-        <h2>Live Cities</h2>
-        <p>Find the Best Services and Products in these Cities</p>
+        <h2>{{__('messages.Live_Cities')}}</h2>
+        <p>{{__('messages.Find_the_Best_Services')}}</p>
     </div><!-- End Section Title -->
 
     <div class="container">
@@ -115,11 +111,11 @@
                         <div class="card">
                             <img src="{{ asset('storage/' . $city->cities_url) }}" class="card-img-top" alt="{{ $city->name }}">
                             <div class="card-body text-center">
-                                <h5 class="card-title">{{ $city->name }}</h5>
+                                <h5 class="card-title">{{__('messages.'.$city->name)}}</h5>
                             </div>
                         </div>
                     </a>
-                </div><!-- End City Card -->
+                </div>
             @endforeach
         </div>
     </div>
@@ -129,8 +125,8 @@
 
 <section id="listings" class="listings section">
   <div class="container section-title" data-aos="fade-up" style="text-align: center; margin-bottom: 40px;">
-      <h2>Listings</h2>
-      <p>Popular Listings In Our Directory</p>
+      <h2>{{__('messages.Listings')}}</h2>
+      <p>{{__('messages.Popular_Listings_In_Our_Directory')}}</p>
   </div>
 
   <div class="container" data-aos="fade-up" data-aos-delay="100">

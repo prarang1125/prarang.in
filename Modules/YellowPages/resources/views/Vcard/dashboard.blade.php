@@ -15,7 +15,7 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center text-white">
-                        <p class="mb-0">TOTAL SCANS</p>
+                        <p class="mb-0">कुल स्कैन</p>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center text-white">
-                            <p class="mb-0">Membership</p>
+                            <p class="mb-0">सदस्यता</p>
                         </div>
                     </div>
                 </div>
