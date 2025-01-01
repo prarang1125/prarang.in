@@ -29,13 +29,12 @@ use Modules\YellowPages\Http\Controllers\VCard\BusinessListingController;
 |
 */
 
-
 Route::group(['prefix' => 'yellow-pages'], function () {
 
     Route::post('/authLogin', [AuthModalController::class, 'login'])->name('yp.authLogin');
     Route::post('/register', [AuthModalController::class, 'register'])->name('yp.register');
     Route::post('/logout', [AuthModalController::class, 'logout'])->name('yp.logout');
-    Route::get('/home', [HomeController::class, 'index'])->name('yp.home');
+    Route::get('/', [HomeController::class, 'index'])->name('yp.home');
     Route::get('/signIn', [HomeController::class, 'signIn'])->name('signIn');
     Route::get('/listing_plan', [HomeController::class, 'listing_plan'])->name('yp.listing_plan');
     Route::get('/add_listing', [HomeController::class, 'add_listing'])->name('yp.add_listing');
