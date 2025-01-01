@@ -118,7 +118,7 @@ class PostArchives extends Controller
             return $chittis->map(function ($chitti) {
 
                  $imageUrl = $chitti->images->first()->imageUrl ?? asset('default_image.jpg');
-                  dd($imageUrl);  
+               
                 $tags = $chitti->tagMappings->map(function ($tagMapping) {
                     return $tagMapping->tag->tagInEnglish;
                 })->filter()->join(', ');
