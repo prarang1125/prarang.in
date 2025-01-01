@@ -2,12 +2,12 @@
 @section('title', 'YellowPages')
 @section('content')
 <div class="page-content">
-    <!-- Cards Section -->
+   
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
         <div class="col">
             <a href="#">
             <div class="card radius-10 bg-gradient-deepblue">
-                 <div class="card-body">
+                <div class="card-body">
                     <div class="d-flex align-items-center">
                         <h5 class="mb-0 text-white">{{ $totalscan ? $totalscan->scan_count : 0 }}</h5>
                         <div class="ms-auto">
@@ -15,7 +15,7 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center text-white">
-                        <p class="mb-0">TOTAL SCANS</p>
+                        <p class="mb-0">कुल स्कैन</p>
                     </div>
                 </div>
             </div>
@@ -34,7 +34,7 @@
                             </div>
                         </div>
                         <div class="d-flex align-items-center text-white">
-                            <p class="mb-0">Membership</p>
+                            <p class="mb-0">सदस्यता</p>
                         </div>
                     </div>
                 </div>

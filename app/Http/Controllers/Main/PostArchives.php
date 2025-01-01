@@ -117,8 +117,8 @@ class PostArchives extends Controller
         })->map(function ($chittis) {
             return $chittis->map(function ($chitti) {
 
-                $imageUrl = $chitti->images->first()->imageUrl ?? asset('default_image.jpg');
-
+                 $imageUrl = $chitti->images->first()->imageUrl ?? asset('default_image.jpg');
+                  dd($imageUrl);  
                 $tags = $chitti->tagMappings->map(function ($tagMapping) {
                     return $tagMapping->tag->tagInEnglish;
                 })->filter()->join(', ');
@@ -130,7 +130,7 @@ class PostArchives extends Controller
                     'description' => $chitti->description,
                     'imageUrl' => $imageUrl,
                     'tags' => $tags,
-                    'color' => $chitti->color->colorcode,
+                    'color' => isset($chitti->color->colorcode) ?$chitti->color->colorcode:'',
                     'createDate' => $chitti->dateOfApprove,
                 ];
             });

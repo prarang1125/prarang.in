@@ -431,25 +431,25 @@
                     <div class="col-sm-2">
                         <div class="city-btn">
                             <a class="btn btn-warning w-75 btn-sm" target="_blank"
-                                href="https://prarang.in/lucknow/">Lucknow</a>
+                                href="{{route('portal',['portal'=>'lucknow'])}}">Lucknow</a>
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="city-btn">
                             <a class="btn btn-warning w-75 btn-sm" target="_blank"
-                                href="https://prarang.in/meerut/">Meerut</a>
+                                href="{{route('portal',['portal'=>'meerut'])}}">Meerut</a>
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="city-btn">
                             <a class="btn btn-warning w-75 btn-sm" target="_blank"
-                                href="https://prarang.in/rampur/">Rampur</a>
+                                href="{{route('portal',['portal'=>'rampur'])}}">Rampur</a>
                         </div>
                     </div>
                     <div class="col-sm-2">
                         <div class="city-btn">
                             <a class="btn btn-warning w-75 btn-sm" target="_blank"
-                                href="https://prarang.in/jaunpur/">Jaunpur</a>
+                                href="{{route('portal',['portal'=>'jaunpur'])}}">Jaunpur</a>
                         </div>
                     </div>
 
