@@ -330,18 +330,18 @@
                         <div class="col-sm-6 text-end"> <i class="fa fa-calendar"> </i> {{ $post['dateOfApprove'] }}
                         </div>
                     </div>
-
                 </div>
                 <div class="mt-4 main-post">
                     <div class="analytics">
                         @if (\Carbon\Carbon::parse($post['dateOfApprove'])->addDays(5)->lte(now()))
                             @if (!empty($post['totalViewerCount']) && $post['totalViewerCount'] > 0)
+                                {{-- @if ($post['postStatusMakerChecker'] === 'approved' && $post['totalViewerCount'] > 0) --}}
                                 <table class="mb-0 table-sm" border="1">
                                     <thead>
                                         <tr>
                                             <th colspan="5">Post Viewership from Post Date to
-                                                {{ $post['createDate'] }} (31st
-                                                Day)</th>
+                                                {{ \Carbon\Carbon::parse($post['dateOfApprove'])->format('d-M-Y') }}
+                                                {{ $post['monthDay'] }}</th>
                                         </tr>
                                         <tr>
                                             <th>City Subscribers (FB+App)</th>
@@ -353,7 +353,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>{{ $post['citySubscriber'] }}</td>
+                                            <td>{{ $post['citySubscriber'] + $post['prarangApplication'] }}</td>
                                             <td>{{ $post['websiteCount'] }}</td>
                                             <td>{{ $post['emailCount'] }}</td>
                                             <td>{{ $post['instagramCount'] }}</td>
