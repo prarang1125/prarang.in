@@ -340,7 +340,7 @@
                                     <thead>
                                         <tr>
                                             <th colspan="5">Post Viewership from Post Date to
-                                                {{ \Carbon\Carbon::parse($post['dateOfApprove'])->format('d-M-Y') }}
+                                                {{ \Carbon\Carbon::parse($post['postViewershipDateTO'])->format('d- M-Y') }}
                                                 {{ $post['monthDay'] }}</th>
                                         </tr>
                                         <tr>
