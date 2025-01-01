@@ -241,16 +241,16 @@
                       <b>Portals:</b>       
                   </div>
                   <div class="col-sm-2 ">
-                      <a href="https://www.prarang.in/lucknow" target="_blank" class="btn btn-sm btn-warning w-75 ">Lucknow</a>
+                      <a href="/lucknow" target="_blank" class="btn btn-sm btn-warning w-75 ">Lucknow</a>
                   </div>
                   <div class="col-sm-2">
-                        <a href="https://www.prarang.in/meerut" target="_blank" class="btn btn-sm btn-warning w-75">Meerut</a>
+                        <a href="/meerut" target="_blank" class="btn btn-sm btn-warning w-75">Meerut</a>
                   </div>
                   <div class="col-sm-2">
-                        <a href="https://www.prarang.in/rampur" target="_blank" class="btn btn-sm btn-warning w-75">Rampur</a>
+                        <a href="/rampur" target="_blank" class="btn btn-sm btn-warning w-75">Rampur</a>
                   </div>
                     <div class="col-sm-2">
-                        <a href="https://www.prarang.in/jaunpur" target="_blank" class="btn btn-sm btn-warning w-75">Jaunpur</a>
+                        <a href="/jaunpur" target="_blank" class="btn btn-sm btn-warning w-75">Jaunpur</a>
                   </div>
                   </div>
                    <div class="row mt-2">
@@ -258,16 +258,16 @@
                       <b>Daily Posts:</b>       
                   </div>
                   <div class="col-sm-2 ">
-                      <a href="https://www.prarang.in/lucknow/post-summary.php" target="_blank" class="btn btn-sm btn-warning w-75 ">Lucknow</a>
+                      <a href="/lucknow/posts" target="_blank" class="btn btn-sm btn-warning w-75 ">Lucknow</a>
                   </div>
                   <div class="col-sm-2">
-                        <a href="https://www.prarang.in/meerut/post-summary.php" target="_blank" class="btn btn-sm btn-warning w-75">Meerut</a>
+                        <a href="/meerut/posts" target="_blank" class="btn btn-sm btn-warning w-75">Meerut</a>
                   </div>
                   <div class="col-sm-2">
-                        <a href="https://www.prarang.in/rampur/post-summary.php" target="_blank" class="btn btn-sm btn-warning w-75">Rampur</a>
+                        <a href="/rampur/posts" target="_blank" class="btn btn-sm btn-warning w-75">Rampur</a>
                   </div>
                     <div class="col-sm-2">
-                        <a href="https://www.prarang.in/jaunpur/post-summary.php" target="_blank" class="btn btn-sm btn-warning w-75">Jaunpur</a>
+                        <a href="/jaunpur/posts" target="_blank" class="btn btn-sm btn-warning w-75">Jaunpur</a>
                   </div>
                   </div>
                    <div class="row mt-2">
@@ -275,16 +275,16 @@
                       <b>Business:</b>       
                   </div>
                   <div class="col-sm-2 ">
-                      <a href="https://yellowpages.prarang.in/location/lucknow/" target="_blank" class="btn btn-sm btn-warning w-75 ">Lucknow</a>
+                      <a href="/yellow-pages/lucknow/" target="_blank" class="btn btn-sm btn-warning w-75 ">Lucknow</a>
                   </div>
                   <div class="col-sm-2">
-                        <a href="https://yellowpages.prarang.in/location/meerut" target="_blank" class="btn btn-sm btn-warning w-75">Meerut</a>
+                        <a href="/yellow-pages/meerut" target="_blank" class="btn btn-sm btn-warning w-75">Meerut</a>
                   </div>
                   <div class="col-sm-2">
-                        <a href="https://yellowpages.prarang.in/location/rampur" target="_blank" class="btn btn-sm btn-warning w-75">Rampur</a>
+                        <a href="/yellow-pages/rampur" target="_blank" class="btn btn-sm btn-warning w-75">Rampur</a>
                   </div>
                     <div class="col-sm-2">
-                        <a href="https://yellowpages.prarang.in/location/jaunpur" target="_blank" class="btn btn-sm btn-warning w-75">Jaunpur</a>
+                        <a href="/yellow-pages/jaunpur" target="_blank" class="btn btn-sm btn-warning w-75">Jaunpur</a>
                   </div>
                   </div>
               </section>
@@ -314,22 +314,22 @@
               </div>
               <div class="col-sm-2">
                   <div class="city-btn">
-                      <a target="_blank" href="https://prarang.in/lucknow/post-summary.php" contenteditable="false" id="style-itfDe" class="style-itfDe  w-75">Lucknow, U.P</a>
+                      <a target="_blank" href="/lucknow/posts" contenteditable="false" id="style-itfDe" class="style-itfDe  w-75">Lucknow, U.P</a>
                   </div>
               </div>
               <div class="col-sm-2">
                   <div class="city-btn">
-                      <a target="_blank" href="https://prarang.in/meerut/post-summary.php" contenteditable="false" id="style-MN296" class="style-MN296  w-75">Meerut, U.P</a>
+                      <a target="_blank" href="/meerut/posts" contenteditable="false" id="style-MN296" class="style-MN296  w-75">Meerut, U.P</a>
                   </div>
               </div>
               <div class="col-sm-2">
                   <div class="city-btn">
-                      <a target="_blank" href="https://prarang.in/rampur/post-summary.php" contenteditable="false" id="style-OsSpX" class="style-OsSpX w-75">Rampur, U.P</a>
+                      <a target="_blank" href="/rampur/posts" contenteditable="false" id="style-OsSpX" class="style-OsSpX w-75">Rampur, U.P</a>
                   </div>
               </div>
               <div class="col-sm-2">
                   <div class="city-btn">
-                      <a target="_blank" href="https://prarang.in/jaunpur/post-summary.php" contenteditable="false" id="style-yHeTB" class="style-yHeTB  w-75">Jaunpur, U.P</a>
+                      <a target="_blank" href="/jaunpur/posts" contenteditable="false" id="style-yHeTB" class="style-yHeTB  w-75">Jaunpur, U.P</a>
                   </div>
               </div>
           </div>
@@ -343,7 +343,7 @@
                       </span>
                   </h3>
                   <p id="style-Qy8gD" class="style-Qy8gD"> Daily connect with 20% population </p>
-                  <img src="https://prarang.in/imgs/reach-gif.gif" class="img-responsive">
+                  <img src="/imgs/reach-gif.gif" class="img-responsive">
                   <ul>
                       <li> Daily Picture-Centric Content Curation for Netizens of each City (365 days/ Year) </li>
                       <li> Pushed to 10,000 (approx) Subscribers of the City's Netizens everyday through Social-Media, Subscriptions and SEO </li>
@@ -361,7 +361,7 @@
                       </span>
                   </h3>
                   <p id="style-toVlt" class="style-toVlt"> Balanced Nature &amp; Culture Knowledge </p>
-                  <img src="https://prarang.in/imgs/reorganize-gif.gif" class="img-responsive">
+                  <img src="/imgs/reorganize-gif.gif" class="img-responsive">
                   <ul>
                       <li> City-Centric classification of high volume content in local language - Unique 60 Point Culture-Nature Grid </li>
                       <li> One-Stop Portal for the Netizen needs of the City - Weather, Maps, News, Cinema, Smart Services, Classifieds, B2B, B2C &amp; G2C integrated </li>
@@ -377,7 +377,7 @@
                       </span>
                   </h3>
                   <p id="style-56qcP" class="style-56qcP"> Reminder of Roots and Relevance </p>
-                  <img src="https://prarang.in/imgs/reconnect-gif.gif" class="img-responsive">
+                  <img src="/imgs/reconnect-gif.gif" class="img-responsive">
                   <ul>
                       <li> Glocal Content - Content contextualized to local, through global learnings. </li>
                       <li> A balance between Culture &amp; Nature towards a bio-regional &amp; healthy life. </li>
@@ -412,22 +412,22 @@
               </div>
               <div class="col-sm-2">
                   <div class="city-btn">
-                      <a target="_blank" href="https://prarang.in/lucknow/" contenteditable="false" id="style-WWxjE" class="style-WWxjE btn btn-sm w-75">Lucknow, U.P</a>
+                      <a target="_blank" href="/lucknow/" contenteditable="false" id="style-WWxjE" class="style-WWxjE btn btn-sm w-75">Lucknow, U.P</a>
                   </div>
               </div>
               <div class="col-sm-2">
                   <div class="city-btn">
-                      <a target="_blank" href="https://prarang.in/meerut/" contenteditable="false" id="style-GqsVF" class="style-GqsVF btn btn-sm w-75">Meerut, U.P</a>
+                      <a target="_blank" href="/meerut/" contenteditable="false" id="style-GqsVF" class="style-GqsVF btn btn-sm w-75">Meerut, U.P</a>
                   </div>
               </div>
               <div class="col-sm-2">
                   <div class="city-btn">
-                      <a target="_blank" href="https://prarang.in/rampur/" contenteditable="false" id="style-2sWRI" class="style-2sWRI btn btn-sm w-75">Rampur, U.P</a>
+                      <a target="_blank" href="/rampur/" contenteditable="false" id="style-2sWRI" class="style-2sWRI btn btn-sm w-75">Rampur, U.P</a>
                   </div>
               </div>
               <div class="col-sm-2">
                   <div class="city-btn">
-                      <a target="_blank" href="https://prarang.in/jaunpur/" contenteditable="false" id="style-SB9YH" class="style-SB9YH btn btn-sm w-75">Jaunpur, U.P</a>
+                      <a target="_blank" href="/jaunpur/" contenteditable="false" id="style-SB9YH" class="style-SB9YH btn btn-sm w-75">Jaunpur, U.P</a>
                   </div>
               </div>
           </div>
@@ -455,7 +455,7 @@
       <p>Intra-City start-ups &amp; small business eco-system in local language for facilitating local economics.</p>
       <h3 class="text-primary">City Yellow-Pages<a href="https://yellowpages.prarang.in/" target="_blank" contenteditable="false" id="style-Eqsoa" class="style-Eqsoa"><i class="bi bi-arrow-up-right-square"></i></a></h3>
       <p>Free browsing of City retail, businesses, government offices &amp; entrepreneurs. Integrated city employment listing &amp; related product/services listing. Secure password controlled &amp; easy updation in local languages.</p>
-      <h3 class="text-primary">City e-Cards<a href="https://prarang.in/vCard/" target="_blank" contenteditable="false" id="style-o178n" class="style-o178n"><i class="bi bi-arrow-up-right-square"></i></a></h3>
+      <h3 class="text-primary">City e-Cards<a href="/vCard/" target="_blank" contenteditable="false" id="style-o178n" class="style-o178n"><i class="bi bi-arrow-up-right-square"></i></a></h3>
       <p>Free web-address to enable first step of digitization for informal sector workers &amp; micro/small businesses with low literacy</p>
       <div class="live-cities">
           <div class="row mt-5">
@@ -464,22 +464,22 @@
               </div>
               <div class="col-sm-2">
                   <div class="city-btn">
-                      <a target="_blank" href="https://yellowpages.prarang.in/location/lucknow/" contenteditable="false" id="style-9wwWF" class="style-9wwWF">Lucknow, U.P</a>
+                      <a target="_blank" href="/yellow-pages/lucknow/" contenteditable="false" id="style-9wwWF" class="style-9wwWF">Lucknow, U.P</a>
                   </div>
               </div>
               <div class="col-sm-2">
                   <div class="city-btn">
-                      <a target="_blank" href="https://yellowpages.prarang.in/location/meerut/" contenteditable="false" id="style-AOr3N" class="style-AOr3N">Meerut, U.P</a>
+                      <a target="_blank" href="/yellow-pages/meerut/" contenteditable="false" id="style-AOr3N" class="style-AOr3N">Meerut, U.P</a>
                   </div>
               </div>
               <div class="col-sm-2">
                   <div class="city-btn">
-                      <a target="_blank" href="https://yellowpages.prarang.in/location/rampur/" contenteditable="false" id="style-FWbYm" class="style-FWbYm">Rampur, U.P</a>
+                      <a target="_blank" href="/yellow-pages/rampur/" contenteditable="false" id="style-FWbYm" class="style-FWbYm">Rampur, U.P</a>
                   </div>
               </div>
               <div class="col-sm-2">
                   <div class="city-btn">
-                      <a target="_blank" href="https://yellowpages.prarang.in/location/jaunpur/" contenteditable="false" id="style-twSAO" class="style-twSAO">Jaunpur, U.P</a>
+                      <a target="_blank" href="/yellow-pages/jaunpur/" contenteditable="false" id="style-twSAO" class="style-twSAO">Jaunpur, U.P</a>
                   </div>
               </div>
           </div>
