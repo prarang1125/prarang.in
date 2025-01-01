@@ -106,21 +106,22 @@ class PostArchives extends Controller
         // Fetch Chittis with eager loading for images and tags, ordered by createDate desc
         $chittis = Chitti::whereIn('chittiId', $chittiIds)
             ->where('finalStatus', 'approved')
+
             ->orderByRaw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y') DESC")
-            ->with(['tagMappings.tag', 'images'])  // Eager load tagMappings and related tag
+
+            ->with(['tagMappings.tag', 'images'])
             ->paginate(35);
 
         $postsByMonth = $chittis->groupBy(function ($chitti) {
             return \Carbon\Carbon::parse($chitti->dateOfApprove)->format('F Y');
         })->map(function ($chittis) {
             return $chittis->map(function ($chitti) {
-                // Retrieve image or use default
-                $imageUrl = 'https://'.$chitti->images->first()->imageUrl ?? asset('default_image.jpg');  // Get the first image
 
-                // Get all tags related to this Chitti and join them by commas
+                $imageUrl = $chitti->images->first()->imageUrl ?? asset('default_image.jpg');
+
                 $tags = $chitti->tagMappings->map(function ($tagMapping) {
-                    return $tagMapping->tag->tagInEnglish;  // Access the related tag's tagInEnglish
-                })->filter()->join(', ');  // Join tags
+                    return $tagMapping->tag->tagInEnglish;
+                })->filter()->join(', ');
 
                 return [
                     'id' => $chitti->chittiId,
@@ -129,6 +130,7 @@ class PostArchives extends Controller
                     'description' => $chitti->description,
                     'imageUrl' => $imageUrl,
                     'tags' => $tags,
+                    'color' => $chitti->color->colorcode,
                     'createDate' => $chitti->dateOfApprove,
                 ];
             });
