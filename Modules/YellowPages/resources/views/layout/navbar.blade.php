@@ -31,22 +31,23 @@
                             {{ Auth::user()->name }} <i class="fa fa-caret-down"></i>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ url('yellow-pages/vCard/dashboard') }}">Dashboard</a></li>
-                            <li><a class="dropdown-item" href="{{ route('yp.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Logout</a></li>
+                            <li><a class="dropdown-item" href="{{ url('yellow-pages/vCard/dashboard') }}">डैशबोर्ड</a></li>
+                            <li><a class="dropdown-item" href="{{ route('yp.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">लॉग आउट</a>
+                            </li>
                         </ul>
                     </li>
                     <form id="logout-form" action="{{ route('yp.logout') }}" method="POST" style="display: none;">
                         @csrf
                     </form>
                 @else
-                    <!-- Sign In link for guests -->
-                    <li><a href="{{ url('yellow-pages/vCard/dashboard') }}" id="toggleModal" data-bs-toggle="modal" data-bs-target="#signInModal">Sign In</a></li>
+                    <li><a href="{{ url('yellow-pages/vCard/dashboard') }}" id="toggleModal" data-bs-toggle="modal" data-bs-target="#signInModal">दाखिल करना</a>
+                    </li>
                 @endif
                     <li class="action-buttons">
-                        <a href="{{ url('yellow-pages/listing_plan') }}" class="btn-add-listing"><i class="fa fa-plus"></i> Add Listing</a>
+                        <a href="{{ url('yellow-pages/listing_plan') }}" class="btn-add-listing"><i class="fa fa-plus"></i>सूची जोड़ें</a>
                     </li>
                     <li class="action-buttons">
-                        <a href="{{ url('yellow-pages/vcard') }}" class="btn-get-vcard"><i class="fa fa-id-card"></i> Get V-Card</a>
+                        <a href="{{ url('yellow-pages/vcard') }}" class="btn-get-vcard"><i class="fa fa-id-card"></i>वी-कार्ड प्राप्त करें</a>
                     </li>
                 </ul>
                 <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -55,29 +56,28 @@
     </div>
 </header>
 
-<!-- Sign In Modal -->
 <div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="border-radius: 8px; border: 1px solid #ccc;">
             <div class="modal-header" style="background-color: #007bff; color: white;">
-                <h5 class="modal-title" id="signInModalLabel">Sign In</h5>
+                <h5 class="modal-title" id="signInModalLabel">दाखिल करना</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color: white;"></button>
             </div>
             <div class="modal-body" style="padding: 20px;">
                 <div id="loginError" class="text-danger mt-2" style="display: none;"></div>
                 <form method="POST" action="{{ route('yp.authLogin') }}">
-
                     @csrf
                     <div class="form-group">
-                        <label for="loginEmail">Email address</label>
+                        <label for="loginEmail">मेल पता</label>
                         <input type="email" class="form-control" id="loginEmail" name="email" required>
                     </div>
                     <div class="form-group">
-                        <label for="loginPassword">Password</label>
+                        <label for="loginPassword">पासवर्ड</label>
                         <input type="password" class="form-control" id="loginPassword" name="password" required>
                     </div>
-                    <button type="submit" class="btn btn-primary">Log In</button>
-                    <p style="margin-top: 10px;">Don't have an account? <a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal">Register</a></p>
+                    <button type="submit" class="btn btn-primary">लॉग इन करें</button>
+                    <p style="margin-top: 10px;">क्या आपके पास खाता नहीं है?<a href="#" data-bs-toggle="modal" data-bs-target="#registerModal" data-bs-dismiss="modal">पंजीकरण करवाना</a>
+                    </p>
                 </form>
             </div>
         </div>
@@ -89,7 +89,7 @@
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="border-radius: 8px; border: 1px solid #ccc;">
             <div class="modal-header" style="background-color: #007bff; color: white;">
-                <h5 class="modal-title" id="registerModalLabel">Register</h5>
+                <h5 class="modal-title" id="registerModalLabel">पंजीकरण करवाना</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="color: white;"></button>
             </div>
             <div class="modal-body" style="padding: 20px;">
@@ -98,22 +98,22 @@
 
                     @csrf
                     <div class="form-group">
-                        <label for="registerName">Full Name</label>
+                        <label for="registerName">पूरा नाम</label>
                         <input type="text" class="form-control" id="registerName" name="name" >
                     </div>
                     <div class="form-group">
-                        <label for="registerEmail">Email address</label>
+                        <label for="registerEmail">मेल पता</label>
                         <input type="email" class="form-control" id="registerEmail" name="email" >
                     </div>
                     <div class="form-group">
-                        <label for="registerPassword">Password</label>
+                        <label for="registerPassword">पासवर्ड</label>
                         <input type="password" class="form-control" id="registerPassword" name="password" >
                     </div>
                     <div class="form-group">
-                        <label for="password_confirmation">Confirm Password</label>
+                        <label for="password_confirmation">पासवर्ड की पुष्टि कीजिये</label>
                         <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" >
                     </div>
-                    <button type="submit" class="btn btn-primary">Register</button>
+                    <button type="submit" class="btn btn-primary">पंजीकरण करवाना</button>
                 </form>
             </div>
         </div>

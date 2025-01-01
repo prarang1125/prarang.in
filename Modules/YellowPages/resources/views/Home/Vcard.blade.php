@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Prarang - YellowPages</title>
+  <title>प्रारंग - येलोपेजेस</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -36,12 +36,12 @@
     
     <!-- Text Content -->
     <div style="flex: 1; max-width: 600px; padding: 20px; box-sizing: border-box;">
-      <h1 style="font-size: 2.5em; color: #333; margin-bottom: 20px; font-weight: bold;">It all starts with a digital business card.</h1>
+      <h1 style="font-size: 2.5em; color: #333; margin-bottom: 20px; font-weight: bold;">यह सब एक डिजिटल बिजनेस कार्ड से शुरू होता है।</h1>
       <p style="font-size: 1.2em; color: #555; line-height: 1.5; margin-bottom: 20px;">
-        Quick vCard is a digital business card maker SAAS script, an easy way to share your contacts and grow your professional relationships.
+        क्विक वीकार्ड एक डिजिटल बिजनेस कार्ड निर्माता SAAS स्क्रिप्ट है, जो आपके संपर्कों को साझा करने और अपने पेशेवर संबंधों को बढ़ाने का एक आसान तरीका है।
       </p>
       <a href="#demo" style="padding: 12px 24px; background-color: #6200ea; color: #fff; border-radius: 8px; font-size: 1.2em; text-decoration: none; font-weight: bold;">
-        TRY DEMO
+        डेमो आज़माएं
       </a>
     </div>
 
@@ -52,7 +52,7 @@
   </div>
     <!-- First Step -->
     <div class="container" style="padding: 0px 0; background-color: #f9f9f9;">
-        <h2 style="text-align: center; font-size: 2.5em; margin-bottom: 40px; font-weight: bold; color: #333;">How It Works?</h2>
+        <h2 style="text-align: center; font-size: 2.5em; margin-bottom: 40px; font-weight: bold; color: #333;">यह काम किस प्रकार करता है?</h2>
         <div class="row justify-content-center">
           <!-- Column 1 -->
           <div class="col-lg-4 col-md-6 text-center" style="margin-bottom: 30px;">
@@ -67,9 +67,9 @@
                 </div>
               </div>
               <!-- Text -->
-              <h3 style="font-size: 1.5em; margin-bottom: 15px; font-weight: bold; color: #333;">Create Digital Business Card</h3>
+              <h3 style="font-size: 1.5em; margin-bottom: 15px; font-weight: bold; color: #333;">डिजिटल बिजनेस कार्ड बनाएं</h3>
               <p style="font-size: 1em; color: #555; line-height: 1.5;">
-                Easily create QR codes for your visiting card and make a great first impression. Fill your profile—it’s simple!
+                अपने विज़िटिंग कार्ड के लिए आसानी से QR कोड बनाएँ और पहली बार में ही शानदार प्रभाव डालें। अपना प्रोफ़ाइल भरें—यह बहुत आसान है!
               </p>
             </div>
           </div>
@@ -87,9 +87,9 @@
                 </div>
               </div>
               <!-- Text -->
-              <h3 style="font-size: 1.5em; margin-bottom: 15px; font-weight: bold; color: #333;">Share Your Card with Anyone</h3>
+              <h3 style="font-size: 1.5em; margin-bottom: 15px; font-weight: bold; color: #333;">अपना कार्ड किसी के साथ साझा करें</h3>
               <p style="font-size: 1em; color: #555; line-height: 1.5;">
-                Easily share your digital business card using a QR code, email, link, and more. Share and grow connections effortlessly.
+                QR कोड, ईमेल, लिंक और अन्य चीज़ों का उपयोग करके आसानी से अपना डिजिटल बिज़नेस कार्ड शेयर करें। आसानी से शेयर करें और कनेक्शन बढ़ाएँ।
               </p>
             </div>
           </div>
@@ -107,9 +107,9 @@
                 </div>
               </div>
               <!-- Text -->
-              <h3 style="font-size: 1.5em; margin-bottom: 15px; font-weight: bold; color: #333;">Get More Customers</h3>
+              <h3 style="font-size: 1.5em; margin-bottom: 15px; font-weight: bold; color: #333;">अधिक ग्राहक प्राप्त करें</h3>
               <p style="font-size: 1em; color: #555; line-height: 1.5;">
-                Your customers will find a way to reach you. All they need to do is scan your QR code and choose the best way to connect.
+                आपके ग्राहक आप तक पहुँचने का कोई न कोई रास्ता ढूँढ़ ही लेंगे। उन्हें बस आपका QR कोड स्कैन करना होगा और कनेक्ट होने का सबसे अच्छा तरीका चुनना होगा।
               </p>
             </div>
           </div>
@@ -124,9 +124,9 @@
               </div>
         <!-- Text Content -->
         <div style="flex: 1; max-width: 600px; padding: 20px; box-sizing: border-box;">
-          <h1 style="font-size: 2.5em; color: #333; margin-bottom: 20px; font-weight: bold;">Contactless digital business cards</h1>
+          <h1 style="font-size: 2.5em; color: #333; margin-bottom: 20px; font-weight: bold;">संपर्क रहित डिजिटल बिज़नेस कार्ड</h1>
           <p style="font-size: 1.2em; color: #555; line-height: 1.5; margin-bottom: 20px;">
-            Quick vCard helps easily overcome any new sanitary friction with an ideal contactless experience and grow your professional relationships with its viral features. No physical contact is required to send or receive a virtual business card. You can create as many business cards as you’d like, with different information on each card. Make a card for your work contacts, one for clients or customers, and one for your friends.
+            क्विक वीकार्ड एक आदर्श संपर्क रहित अनुभव के साथ किसी भी नए सैनिटरी घर्षण को आसानी से दूर करने और इसके वायरल फीचर्स के साथ आपके पेशेवर संबंधों को बढ़ाने में मदद करता है। वर्चुअल बिजनेस कार्ड भेजने या प्राप्त करने के लिए किसी भौतिक संपर्क की आवश्यकता नहीं है। आप जितने चाहें उतने बिजनेस कार्ड बना सकते हैं, प्रत्येक कार्ड पर अलग-अलग जानकारी के साथ। अपने कार्य संपर्कों के लिए एक कार्ड बनाएं, एक क्लाइंट या ग्राहकों के लिए और एक अपने दोस्तों के लिए।
           </p>
         </div>
       </div>
@@ -135,9 +135,9 @@
     
         <!-- Text Content -->
         <div style="flex: 1; max-width: 600px; padding: 20px; box-sizing: border-box;">
-          <h1 style="font-size: 2.5em; color: #333; margin-bottom: 20px; font-weight: bold;">Share your card with anyone        </h1>
+          <h1 style="font-size: 2.5em; color: #333; margin-bottom: 20px; font-weight: bold;">अपना कार्ड किसी के साथ साझा करें</h1>
           <p style="font-size: 1.2em; color: #555; line-height: 1.5; margin-bottom: 20px;">
-            Easily share your digital business card with anyone using a QR code or send it through email, a link, and more. you can download QR code and print on anything like flyers, newsletters, or a billboard.
+            क्यूआर कोड का उपयोग करके आसानी से अपने डिजिटल बिजनेस कार्ड को किसी के साथ साझा करें या इसे ईमेल, लिंक आदि के माध्यम से भेजें। आप क्यूआर कोड डाउनलोड कर सकते हैं और इसे फ्लायर्स, न्यूज़लेटर्स या बिलबोर्ड जैसी किसी भी चीज़ पर प्रिंट कर सकते हैं।
           </p>
         
         </div>
@@ -149,17 +149,17 @@
         
       </div>
       <div class="container" style="padding: 50px 0; background-color: #f9f9f9;">
-        <h2 style="text-align: center; font-size: 2.5em; margin-bottom: 40px; font-weight: bold; color: #333;">Membership Plan</h2>
+        <h2 style="text-align: center; font-size: 2.5em; margin-bottom: 40px; font-weight: bold; color: #333;">सदस्यता योजना</h2>
         
         <!-- Radio Button Options for Monthly/Yearly -->
         <div style="text-align: center; margin-bottom: 30px;">
             <label for="monthly" style="font-size: 1.5em; color: #333; margin-right: 20px;">
                 <input type="radio" id="monthly" name="plan" value="100" checked>
-                Monthly
+                महीने के
             </label>
             <label for="yearly" style="font-size: 1.5em; color: #333;">
                 <input type="radio" id="yearly" name="plan" value="1000">
-                Yearly
+                सालाना
             </label>
         </div>
     
@@ -168,7 +168,7 @@
     
         <!-- Plan Prices Based on Radio Selection -->
         <div id="plan-price" style="text-align: center; margin-bottom: 40px;">
-            <p style="font-size: 1.5em; font-weight: bold; color: #333;" id="price-display">₹100/Monthly</p>
+            <p style="font-size: 1.5em; font-weight: bold; color: #333;" id="price-display">₹100/मासिक</p>
         </div>
     
         <!-- Plan Details -->
@@ -176,42 +176,44 @@
             <!-- Free Plan Column -->
             <div class="col-lg-4 col-md-6 col-sm-12 text-center" style="margin-bottom: 30px;">
                 <div style="background: linear-gradient(145deg, #f0f0f0, #d4d4d4); border-radius: 15px; padding: 30px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
-                    <h3 style="font-size: 28px; font-weight: bold; color: #333;">Free Plan</h3>
-                    <p style="font-size: 22px; color: #007bff;">₹0/Monthly</p>
+                    <h3 style="font-size: 28px; font-weight: bold; color: #333;">निःशुल्क योजना</h3>
+                    <p style="font-size: 22px; color: #007bff;">₹0/मासिक</p>
                     <ul style="list-style: none; padding: 0; margin-bottom: 20px; text-align: center;">
-                        <li style="font-size: 16px; color: #555;">5 Additional fields on card</li>
-                        <li style="font-size: 16px; color: #555;">50 Scans Per Month</li>
-                        <li style="font-size: 16px; color: #555;">Hide QuickVCard Branding</li>
+                        <li style="font-size: 16px; color: #555;">5 कार्ड पर अतिरिक्त फ़ील्ड </li>
+                        <li style="font-size: 16px; color: #555;">50 स्कैन प्रति माह</li>
+                        <li style="font-size: 16px; color: #555;">QuickVCard ब्रांडिंग छिपाएँ</li>
                     </ul>
-                    <a onclick="window.location.href='{{ url('yellow-pages/vCard/dashboard') }}'" style="background-color: #007bff; color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block;">Current Plan</a>
+                    <a onclick="window.location.href='{{ url('yellow-pages/vCard/dashboard') }}'" style="background-color: #007bff; color: white; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block;">वर्तमान योजना
+                    </a>
                 </div>
             </div>
-    
-            <!-- Trial Plan Column -->
+
             <div class="col-lg-4 col-md-6 col-sm-12 text-center" style="margin-bottom: 30px;">
                 <div style="background: linear-gradient(145deg, #ffb74d, #ff9800); border-radius: 15px; padding: 30px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);">
-                    <h3 style="font-size: 28px; font-weight: bold; color: #fff;">Trial Plan</h3>
-                    <p style="font-size: 22px; color: #fff;">₹0/Monthly</p>
+                    <h3 style="font-size: 28px; font-weight: bold; color: #fff;">परीक्षण योजना</h3>
+                    <p style="font-size: 22px; color: #fff;">₹0/मासिक</p>
                     <ul style="list-style: none; padding: 0; margin-bottom: 20px; text-align: center;">
-                        <li style="font-size: 16px; color: #fff;">15 Additional fields on card</li>
-                        <li style="font-size: 16px; color: #fff;">50 Scans Per Month</li>
-                        <li style="font-size: 16px; color: #fff;">Hide QuickVCard Branding</li>
+                        <li style="font-size: 16px; color: #fff;">15 कार्ड पर अतिरिक्त फ़ील्ड</li>
+                        <li style="font-size: 16px; color: #fff;">50 स्कैन प्रति माह</li>
+                        <li style="font-size: 16px; color: #fff;">QuickVCard ब्रांडिंग छिपाएँ</li>
                     </ul>
-                    <a onclick="window.location.href='{{ url('yellow-pages/vCard/dashboard') }}'" style="background-color: #fff; color: #ff9800; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block;">Join Now</a>
+                    <a onclick="window.location.href='{{ url('yellow-pages/vCard/dashboard') }}'" style="background-color: #fff; color: #ff9800; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block;">अब शामिल हों
+                    </a>
                 </div>
             </div>
     
             <!-- Standard Plan Column (Recommended) -->
             <div class="col-lg-4 col-md-6 col-sm-12 text-center" style="margin-bottom: 30px;">
                 <div style="background: linear-gradient(145deg, #81c784, #66bb6a); border-radius: 15px; padding: 30px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); position: relative;">
-                    <h3 style="font-size: 28px; font-weight: bold; color: #fff;" id="standard-plan-title">Standard Plan</h3>
-                    <p id="standard-plan-price" style="font-size: 22px; color: #fff;">₹100/Monthly</p>
+                    <h3 style="font-size: 28px; font-weight: bold; color: #fff;" id="standard-plan-title">मानक योजना</h3>
+                    <p id="standard-plan-price" style="font-size: 22px; color: #fff;">₹100/मासिक</p>
                     <ul style="list-style: none; padding: 0; margin-bottom: 20px; text-align: center;">
-                        <li style="font-size: 16px; color: #fff;">10 Additional fields on card</li>
-                        <li style="font-size: 16px; color: #fff;">100 Scans Per Month</li>
-                        <li style="font-size: 16px; color: #fff;">Hide QuickVCard Branding</li>
+                        <li style="font-size: 16px; color: #fff;">10 कार्ड पर अतिरिक्त फ़ील्डमानक योजना</li>
+                        <li style="font-size: 16px; color: #fff;">100 स्कैन प्रति माह</li>
+                        <li style="font-size: 16px; color: #fff;">QuickVCard ब्रांडिंग छिपाएँ</li>
                     </ul>
-                    <a onclick="window.location.href='{{ url('yellow-pages/vCard/dashboard') }}'" id="checkout-button" style="background-color: #fff; color: #66bb6a; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block;">Join Now</a>
+                    <a onclick="window.location.href='{{ url('yellow-pages/vCard/dashboard') }}'" id="checkout-button" style="background-color: #fff; color: #66bb6a; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block;">अब शामिल हों
+                    </a>
                 </div>
             </div>
         </div>
@@ -221,7 +223,7 @@
 
   document.getElementById("monthly").addEventListener("click", function() {
     updatePrice("monthly");
-});
+  });
 
 document.getElementById("yearly").addEventListener("click", function() {
     updatePrice("yearly");
@@ -250,7 +252,7 @@ document.getElementById('checkout-button').addEventListener('click', function ()
     })
     .then(response => response.json())
     .then(session => {
-        const stripe = Stripe('your_stripe_public_key'); // Replace with your actual public key
+        const stripe = Stripe('your_stripe_public_key'); 
         stripe.redirectToCheckout({ sessionId: session.id });
     })
     .catch(error => console.error('Error:', error));

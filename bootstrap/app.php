@@ -16,16 +16,14 @@ use Illuminate\Foundation\Configuration\Middleware;
             'admin.guest' => \App\Http\Middleware\AdminRedirect::class,
             'admin.auth'  => \App\Http\Middleware\AdminAuthenticate::class,
             'auth.custom' => \App\Http\Middleware\Authenticate::class,
-
-
+            'language' => \App\Http\Middleware\SetLocale::class, 
         ]);
-        //
+        
         $middleware->redirectTo(
             guests: 'yellow-pages/login',
             users: 'yellow-pages/dashboard'
         );
     })
-    ->withExceptions(function (Exceptions $exceptions) {
-        //
+    ->withExceptions(function (Exceptions $exceptions) {        
     })->create();
 

@@ -2,10 +2,11 @@
     <header class="header-without-topbar header-normal pos-relative lp-header-full-width">
          <div class="lp-header-overlay"></div>
         <div id="menu" class="small-screen">
-                    <a href="https://yellowpages.prarang.in/submit-listing/" class="lpl-button lpl-add-listing-loggedout">Add Listing</a>
+                    <a href="https://yellowpages.prarang.in/submit-listing/" class="lpl-button lpl-add-listing-loggedout">सूची जोड़ें</a>
                     <br><br><br>
-                     <a href="{{ url('/vcard') }}" class="lpl-button custom-v-card lpl-add-listing-loggedout">Get V-Cart</a><br><br>
-                                                    <a class="lpl-button lp-right-15 app-view-popup-style" data-target="#app-view-login-popup">Sign In</a>
+                     <a href="{{ url('/vcard') }}" class="lpl-button custom-v-card lpl-add-listing-loggedout">वी-कार्ट प्राप्त करें</a><br><br>
+                                                    <a class="lpl-button lp-right-15 app-view-popup-style" data-target="#app-view-login-popup">दाखिल करना
+</a>
                                 </div>
         <div class="lp-menu-bar header-bg-color-class">
             <div class="fullwidth-header">
@@ -39,7 +40,6 @@
 						<ul>
 							<li><a href="#" class="signInClick active">Sign In</a></li>
 							<li><a href="#" class="signUpClick">Sign Up</a></li>
-						   
 						</ul>
 						 <a class="md-close" class="close" data-dismiss="modal" aria-label="Close"><i class="fa fa-close"></i></a>
 					</div>
@@ -48,8 +48,6 @@
 					
 					<div class="lp-border-radius-8 login-form-popup-outer">
 						<div class="siginincontainer2">
-							
-
 							                                    <ul class="social-login list-style-none">
                                                                             <li>
                                             <a id="logingoogle" class="google flaticon-googleplus"
