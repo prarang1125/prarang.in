@@ -313,6 +313,101 @@
         .recent-poet .img-fluid {
             max-height: 111px;
         }
+        @media (max-width:1316px){
+
+/* Th */
+.table-sm tr th{
+ font-weight:500;
+ font-size:12px;
+ border-width:0px;
+ padding-top:0px;
+ padding-bottom:0px;
+ padding-right:0px;
+ padding-left:0px;
+}
+
+/* Table Data */
+.table-sm tr td{
+ font-size:12px;
+ border-style:solid;
+ border-width:1px;
+}
+
+}
+
+@media (max-width:768px){
+
+/* Th */
+.table-sm tr th{
+ font-size:12px;
+ font-weight:500;
+}
+
+/* Table Data */
+.table-sm tr td{
+ font-size:10px;
+ font-weight:500;
+}
+
+/* Frame vid */
+.main-post .main-image .frameVid{
+ margin-top:6px;
+}
+
+}
+@media (max-width:1316px){
+
+/* Th */
+.table-sm tr th{
+ font-weight:500;
+ font-size:12px;
+ border-width:0px;
+ padding-top:0px;
+ padding-bottom:0px;
+ padding-right:0px;
+ padding-left:0px;
+}
+
+/* Table Data */
+.table-sm tr td{
+ font-size:12px;
+ border-style:solid;
+ border-width:1px;
+}
+
+}
+
+@media (max-width:768px){
+
+/* Th */
+.table-sm tr th{
+ font-size:12px;
+ font-weight:500;
+}
+
+/* Table Data */
+.table-sm tr td{
+ font-size:10px;
+ font-weight:500;
+}
+
+/* Frame vid */
+.main-post .main-image .frameVid{
+ margin-top:6px;
+}
+
+/* Heading */
+.col-sm-9 .post-header h1{
+ font-size:22px;
+ font-weight:500 !important;
+}
+
+/* Container */
+.container{
+ padding-top:4px;
+}
+
+}
     </style>
 </head>
 
