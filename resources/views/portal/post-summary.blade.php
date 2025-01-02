@@ -435,7 +435,7 @@
                                     <thead>
                                         <tr>
                                             <th colspan="5">Post Viewership from Post Date to
-                                                {{ \Carbon\Carbon::parse($post['postViewershipDateTO'])->format('d- M-Y') }}
+                                                {{ \Carbon\Carbon::parse($post['postViewershipDateTo'])->format('d- M-Y') }}
                                                 {{ $post['monthDay'] }}</th>
                                         </tr>
                                         <tr>
@@ -448,7 +448,7 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>{{ $post['citySubscriber'] + $post['prarangApplication'] }}</td>
+                                            <td>{{ intval($post['citySubscriber']) + intval($post['prarangApplication']) }}</td>
                                             <td>{{ $post['websiteCount'] }}</td>
                                             <td>{{ $post['emailCount'] }}</td>
                                             <td>{{ $post['instagramCount'] }}</td>
