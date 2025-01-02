@@ -44,6 +44,7 @@ class PostsCarousel extends Component
             ->join('vGeography as vg', 'vg.geographycode', '=', 'vCg.Geography')
             ->join('mtag as mt', 'mt.tagId', '=', 'ct.tagId')
             ->join('mtagcategory as mtc', 'mtc.tagCategoryId', '=', 'mt.tagCategoryId')
+            ->rightJoin('colorinfo','colorinfo.id','=','ch.color_value')
             ->where('ch.finalStatus', 'approved')
             ->where('vg.geographycode', $city)
             ->orderBy(DB::raw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y')"), 'desc')

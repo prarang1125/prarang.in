@@ -12,10 +12,11 @@ class News extends Component
     /**
      * Create a new component instance.
      */
-    public $newsItems;
-    public function __construct()
+   
+     public $newsItems;
+    public function __construct($url)
     {
-        $response = Http::get('https://www.amarujala.com/rss/meerut.xml');
+        $response = Http::get($url);
         if ($response->ok()) {           
             $rss = simplexml_load_string($response->body());                    
             $newsItems = [];             
