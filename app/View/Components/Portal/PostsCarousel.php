@@ -20,10 +20,9 @@ class PostsCarousel extends Component
         // dd($this->getPosts($cityCode));
         $cacheKey = 'carousal_post_'.$cityCode;
 
-        $this->chittiArray = Cache::remember($cacheKey, 120*30, function () use ($cityCode) {
+        $this->chittiArray = Cache::remember($cacheKey, 60 * 60 * 60, function () use ($cityCode) {
             return $this->getPosts($cityCode); // Fetch counts if not in cache
         });
-      
 
     }
 
@@ -44,8 +43,8 @@ class PostsCarousel extends Component
             ->Join('chittiimagemapping as cimg', 'cimg.chittiId', '=', 'ch.chittiId')
             ->join('vGeography as vg', 'vg.geographycode', '=', 'vCg.Geography')
             ->join('mtag as mt', 'mt.tagId', '=', 'ct.tagId')
-            ->join('mtagcategory as mtc', 'mtc.tagCategoryId', '=', 'mt.tagCategoryId')
             ->rightJoin('colorinfo','colorinfo.id','=','ch.color_value')
+            ->join('mtagcategory as mtc', 'mtc.tagCategoryId', '=', 'mt.tagCategoryId')
             ->where('ch.finalStatus', 'approved')
             ->where('vg.geographycode', $city)
             ->orderBy(DB::raw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y')"), 'desc')

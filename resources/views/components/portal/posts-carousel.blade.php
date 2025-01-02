@@ -194,7 +194,8 @@
 
                             <img class="rounded img-fluid" src="{{ $post->imageUrl }}" alt="{{ $post->SubTitle }}">
                             <br><br>
-                            {!! $post->description !!}
+                            <div class="main-dec{{$post->colorcode=='#4d4d4d' ? 'text-light' : ''}}">
+                            {!! $post->description !!}</div>
                         </section>
                     </div>
                     <div class="modal-footer">
