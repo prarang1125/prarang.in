@@ -326,7 +326,8 @@
                                                     <div class="widget__content">
 
                                                         <div class="city_matrix">
-                                                            <x-portal.widgets.news />
+                                                            <!-- TODO: News Update link -->
+                                                            <x-portal.widgets.news :url="$portal->news_widget_code" />
                                                         </div>
                                                     </div>
                                                 </div>
