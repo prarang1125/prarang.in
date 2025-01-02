@@ -173,7 +173,7 @@
             <div class="modal-dialog modal-lg modal-dialog-scrollable">
                 <div class="modal-content">
                     {{-- {{dd($post)}} --}}
-                    <div class="modal-body">
+                    <div class="modal-body" style="background:{{$post->colorcode}};">
                         <section>
                             <h3>{{ $post->Title }}</h3>
                             <div class="row">
@@ -194,7 +194,8 @@
 
                             <img class="rounded img-fluid" src="{{ $post->imageUrl }}" alt="{{ $post->SubTitle }}">
                             <br><br>
-                            {!! $post->description !!}
+                            <div class="main-dec{{$post->colorcode=='#4d4d4d' ? 'text-light text-white' : ''}}">
+                            {!! $post->description !!}</div>
                         </section>
                     </div>
                     <div class="modal-footer">
