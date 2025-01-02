@@ -1,3 +1,3 @@
 <footer class="page-footer">
-    <p class="mb-0">Copyright © 2021. All right reserved.</p>
+    <p class="mb-0">कॉपीराइट © 2021. सभी अधिकार सुरक्षित.</p>
 </footer>

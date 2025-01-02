@@ -3,19 +3,19 @@
 @section('content')
 
 <div class="container my-5">
-    <h2 class="text-center mb-4">Payment History</h2>
+    <h2 class="text-center mb-4">भुगतान इतिहास</h2>
 
     @if($paymentHistories->isEmpty())
-        <p class="text-center">No payment history found.</p>
+        <p class="text-center">कोई भुगतान इतिहास नहीं मिला.</p>
     @else
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th>Transaction ID</th>
-                    <th>Plan Name</th>
-                    <th>Amount (INR)</th>
-                    <th>Status</th>
-                    <th>Payment Date</th>
+                    <th>लेन-देन आईडी</th>
+                    <th>योजना का नाम</th>
+                    <th>राशि (भारतीय रुपये)</th>
+                    <th>स्थिति</th>
+                    <th>भुगतान तिथि</th>
                 </tr>
             </thead>
             <tbody>

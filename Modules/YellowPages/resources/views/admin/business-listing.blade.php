@@ -12,13 +12,13 @@
 <div class="page-content">
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">Admin</div>
+        <div class="breadcrumb-title pe-3">व्यवस्थापक</div>
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="{{ url('admin/cities-listing')}}"><i class="bx bx-user"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Business Listing</li>
+                    <li class="breadcrumb-item active" aria-current="page">व्यवसाय सूचीकरण</li>
                 </ol>
             </nav>
         </div>
@@ -32,7 +32,7 @@
                     {{ session('success') }}
                 </div>
             @endif
-            <h6 class="mb-0 text-uppercase">Business Listing</h6>
+            <h6 class="mb-0 text-uppercase">व्यवसाय सूचीकरण</h6>
             <hr/>
             <div class="card">
                 <div class="card-body">
@@ -40,13 +40,13 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Listing_title</th>
-                                <th scope="col">Business_name</th>
-                                <th scope="col">Business_address</th>
-                                <th scope="col">Primary_phone</th>
-                                <th scope="col">Primary_contact_email</th>
-                                <th scope="col">pincode</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">सूची_शीर्षक</th>
+                                <th scope="col">व्यवसाय का नाम</th>
+                                <th scope="col">बिज़नेस_पता</th>
+                                <th scope="col">प्राथमिक_फ़ोन</th>
+                                <th scope="col">प्राथमिक_संपर्क_ईमेल</th>
+                                <th scope="col">पिनकोड</th>
+                                <th scope="col">कार्रवाई</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -61,10 +61,10 @@
                                     <td class="align-middle">{{ $business->primary_contact_email }}</td>
                                     <td class="align-middle">{{ $business->pincode }}</td> 
                                     <td class="align-middle"> 
-                                        <a href="{{ route('admin.listing-edit', $business->id) }}" class="btn btn-sm btn-primary edit-user">Edit</a>
+                                        <a href="{{ route('admin.listing-edit', $business->id) }}" class="btn btn-sm btn-primary edit-user">संपादन करना</a>
                                         <form action="{{ route('admin.listing-delete', $business->id) }}" method="POST" style="display:inline;">
                                             @csrf
-                                            <button type="submit" class="btn btn-sm btn-danger delete-user">Delete</button>
+                                            <button type="submit" class="btn btn-sm btn-danger delete-user">मिटाना</button>
                                         </form>
                                     </td>
                                 </tr>
