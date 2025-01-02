@@ -173,7 +173,7 @@
             <div class="modal-dialog modal-lg modal-dialog-scrollable">
                 <div class="modal-content">
                     {{-- {{dd($post)}} --}}
-                    <div class="modal-body">
+                    <div class="modal-body" style="background:{{$post->colorcode}};">
                         <section>
                             <h3>{{ $post->Title }}</h3>
                             <div class="row">
