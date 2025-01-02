@@ -46,7 +46,15 @@ class Home extends Controller
 
     public function aboutUs()
     {
-        return view('main.about_us');
+        $url = env('ADMIN_URL').'/get-our-teams';
+        $response = Http::get($url);
+        $teamData = $response->json();    
+        if ($teamData['status'] === 'success') {
+            $team = $teamData['data'];
+        }else{
+            $team=[];
+        }
+        return view('main.about_us',compact('team'));
     }
 
 
