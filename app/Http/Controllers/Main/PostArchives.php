@@ -122,7 +122,6 @@ class PostArchives extends Controller
                 $tags = $chitti->tagMappings->map(function ($tagMapping) {
                     return $tagMapping->tag->tagInEnglish;
                 })->filter()->join(', ');
-
                 return [
                     'id' => $chitti->chittiId,
                     'title' => $chitti->Title,

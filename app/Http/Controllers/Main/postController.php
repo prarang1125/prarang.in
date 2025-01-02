@@ -49,7 +49,7 @@ class postController extends Controller
                     'description' => $chitti->description,
                     'imageUrl' => $imageUrl,
                     'tags' => $tags,
-                    'color' => $chitti->color->colorcode,
+                    'color' => $chitti->color->colorcode ?? '',
                     'createDate' => $chitti->dateOfApprove,
                 ];
             });
@@ -74,7 +74,7 @@ class postController extends Controller
             ->with(['tagMappings.tag', 'images', 'color'])
             ->firstOrFail();
 
-        $ColorCode = $post->color->colorcode ?? '#FFFFFF';
+        $ColorCode = $post->color->colorcode ?? '';
 
         $geography = $post->geography;
         $portal = Portal::where('slug', $slug)->firstOrFail();
