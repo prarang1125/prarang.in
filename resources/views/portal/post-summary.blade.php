@@ -53,11 +53,11 @@
             border-radius: 20px;
         }
 
-        .container {
+        /* .container {
             max-width: 1200px;
             margin: auto;
             padding: 20px;
-        }
+        } */
 
         .post-header {
             margin-bottom: 15px;
@@ -245,10 +245,7 @@
             text-align: justify;
         }
 
-        /* Col 9 */
-        .container .col-sm-9 {
-            transform: translatex(0px) translatey(0px);
-        }
+       
 
         /* Post descreption */
         .container .post-descreption {
