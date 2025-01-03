@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Prarang - YellowPages</title>
+    <title>प्रारंग - येलोपेजेस</title>
     <meta name="description" content="Find local crafts and businesses in your area. Listings for furniture, embroidery, and more.">
     <meta name="keywords" content="craft, furniture, embroidery, local business">
 
@@ -72,8 +72,8 @@
 
         <!-- Breadcrumb Navigation -->
         <div style="font-size: 14px; color: #555; margin-bottom: 15px;">
-            <a href="#" style="text-decoration: none; color: #007bff;">Home</a> / 
-            <a href="#" style="text-decoration: none; color: #007bff;">Services</a> / 
+            <a href="#" style="text-decoration: none; color: #007bff;">होम </a> / 
+            <a href="#" style="text-decoration: none; color: #007bff;">सेवाएं</a> / 
             <span style="color: #555;">{{ $listing->listing_title ?? 'No Title' }}</span>
         </div>
 
@@ -81,11 +81,13 @@
         <div style="display: flex; justify-content: space-between; align-items: center; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-bottom: 20px;">
             <div>
                 <h1 style="font-size: 28px; font-weight: bold; margin: 0;">{{ $listing->listing_title ?? 'No Title' }}</h1>
-                <p style="font-size: 16px; color: #777;">Be the first one to rate!</p>
+                <p style="font-size: 16px; color: #777;">रेटिंग देने वाले पहले व्यक्ति बनें!
+                </p>
             </div>
             <div>
-                <button style="background-color: #007bff; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px; cursor: pointer; margin-right: 10px;">Share</button>
-                <button style="background-color: #28a745; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px; cursor: pointer;">Save</button>
+                <button style="background-color: #007bff; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px; cursor: pointer; margin-right: 10px;">शेयर करना
+                </button>
+                <button style="background-color: #28a745; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px; cursor: pointer;">बचाना</button>
             </div>
         </div>
 
@@ -93,13 +95,13 @@
         <div style="display: flex; gap: 20px; margin-bottom: 20px;">
             <!-- Left Section -->
             <div style="flex: 2; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                <p style="font-size: 16px; color: #555;">Detail description about your listing</p>
-                <p style="font-size: 16px; color: #555; margin-top: 10px;">Address: <span style="color: #000;">{{ $listing->business_address ?? 'No Address' }}</span></p>
+                <p style="font-size: 16px; color: #555;">आपकी लिस्टिंग के बारे में विस्तृत विवरण</p>
+                <p style="font-size: 16px; color: #555; margin-top: 10px;">पता:<span style="color: #000;">{{ $listing->business_address ?? 'No Address' }}</span></p>
             </div>            
 
             <!-- Business Hours Section -->
             <div style="flex: 1; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                <h3 style="font-size: 20px; font-weight: bold; margin-bottom: 15px;">Business Hours</h3>
+                <h3 style="font-size: 20px; font-weight: bold; margin-bottom: 15px;">काम करने के घंटे</h3>
                 <ul style="list-style: none; padding: 0; margin: 0;">
                     <li style="display: flex; justify-content: space-between; margin-bottom: 5px;">
                         <span>Monday</span>
@@ -131,11 +133,11 @@
       <form method="POST" action="{{ route('reviews.store', $listing->id) }}" enctype="multipart/form-data">
         @csrf
         <div style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-            <h3 style="font-size: 20px; font-weight: bold; margin-bottom: 15px;">Rate Us and Write a Review</h3>
+            <h3 style="font-size: 20px; font-weight: bold; margin-bottom: 15px;">हमें रेटिंग दें और समीक्षा लिखें</h3>
     
             <!-- Cleanliness Rating -->
             <div style="margin-bottom: 20px;">
-                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">Cleanliness</label>
+                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">साफ़-सफ़ाई</label>
                 <div style="display: flex; gap: 10px; align-items: center;">
                     @for ($i = 1; $i <= 5; $i++)
                         <label for="cleanliness-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
@@ -149,7 +151,7 @@
     
             <!-- Service Rating -->
             <div style="margin-bottom: 20px;">
-                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">Service</label>
+                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">सेवा</label>
                 <div style="display: flex; gap: 10px; align-items: center;">
                     @for ($i = 1; $i <= 5; $i++)
                         <label for="service-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
@@ -163,7 +165,7 @@
     
             <!-- Ambience Rating -->
             <div style="margin-bottom: 20px;">
-                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">Ambience</label>
+                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">माहौल</label>
                 <div style="display: flex; gap: 10px; align-items: center;">
                     @for ($i = 1; $i <= 5; $i++)
                         <label for="ambience-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
@@ -177,7 +179,7 @@
     
             <!-- Price Rating -->
             <div style="margin-bottom: 20px;">
-                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">Price</label>
+                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">कीमत</label>
                 <div style="display: flex; gap: 10px; align-items: center;">
                     @for ($i = 1; $i <= 5; $i++)
                         <label for="price-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
@@ -191,24 +193,24 @@
     
             <!-- Image Upload Section -->
             <div style="margin-bottom: 20px;">
-                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">Select Images</label>
+                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">छवियाँ चुनें</label>
                 <input type="file" name="image[]" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" multiple>
             </div>
     
             <!-- Title Section -->
             <div style="margin-bottom: 20px;">
-                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">Title</label>
+                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">शीर्षक</label>
                 <input type="text" name="title" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
             </div>
     
             <!-- Review Section -->
             <div style="margin-bottom: 20px;">
-                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">Review</label>
+                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">समीक्षा</label>
                 <textarea name="review" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" rows="4"></textarea>
             </div>
     
             <!-- Submit Button -->
-            <button type="submit" style="background-color: #007bff; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px; width: 100%;">Submit Review</button>
+            <button type="submit" style="background-color: #007bff; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px; width: 100%;">समीक्षा सबमिट करें</button>
         </div>
     </form>
     

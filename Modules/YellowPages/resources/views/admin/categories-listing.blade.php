@@ -12,13 +12,13 @@
 <div class="page-content">
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">Admin</div>
+        <div class="breadcrumb-title pe-3">व्यवस्थापक</div>
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="{{ url('admin/cities-listing')}}"><i class="bx bx-user"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">Categories Listing</li>
+                    <li class="breadcrumb-item active" aria-current="page">श्रेणियाँ सूचीकरण</li>
                 </ol>
             </nav>
         </div>
@@ -32,21 +32,21 @@
                     {{ session('success') }}
                 </div>
             @endif
-            <h6 class="mb-0 text-uppercase">Categories Listing</h6>
+            <h6 class="mb-0 text-uppercase">श्रेणियाँ सूचीकरण</h6>
             <hr/>
             <div class="card">
                 <div class="card-body d-flex justify-content-end align-items-end">
-                    <a href="{{ url('/yellow-pages/categories-register') }}" class="btn btn-primary">Add New Categories</a>
+                    <a href="{{ url('/yellow-pages/categories-register') }}" class="btn btn-primary">नई श्रेणियाँ जोड़ें</a>
                 </div>
                 <div class="card-body">
                     <table class="table mb-0 table-hover">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Slug</th>
-                                <th scope="col">Categories_url</th>
-                                <th scope="col">Action</th>
+                                <th scope="col">नाम</th>
+                                <th scope="col">काउंटर</th>
+                                <th scope="col">श्रेणियाँ_यूआरएल</th>
+                                <th scope="col">कार्रवाई</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -61,14 +61,14 @@
                                         @if($category->categories_url)
                                             <img src="{{ asset('storage/' . $category->categories_url) }}" alt="{{ $category->name }}" style="width: 100px; height: 100px;">
                                         @else
-                                            No image
+                                          चित्र उपलब्द नहीं है
                                         @endif
                                     </td>
                                     <td class="align-middle"> <!-- Center align and vertically align the Action column -->
-                                        <a href="{{ route('admin.categories-edit', $category->id) }}" class="btn btn-sm btn-primary edit-user">Edit</a>
+                                        <a href="{{ route('admin.categories-edit', $category->id) }}" class="btn btn-sm btn-primary edit-user">संपादन करना</a>
                                         <form action="{{ route('admin.categories-delete', $category->id) }}" method="POST" style="display:inline;">
                                             @csrf
-                                            <button type="submit" class="btn btn-sm btn-danger delete-user">Delete</button>
+                                            <button type="submit" class="btn btn-sm btn-danger delete-user">मिटाना</button>
                                         </form>
                                     </td>
                                 </tr>

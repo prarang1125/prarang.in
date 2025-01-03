@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container mt-4">
-    <h1 class="mb-4">Review Management</h1>
+    <h1 class="mb-4">प्रबंधन की समीक्षा करें</h1>
 
     <!-- Display error or success messages -->
     @if(session('error'))
@@ -15,24 +15,24 @@
 
     <!-- Reviews Table -->
     <div class="card">
-        <div class="card-header">All Reviews</div>
+        <div class="card-header">सभी समीक्षाएँ</div>
         <div class="card-body">
             @if($reviews->isEmpty())
-                <p>No reviews found.</p>
+                <p>कोई समीक्षा नहीं मिली.</p>
             @else
                 <table class="table table-striped">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>User</th>
-                            <th>Business Title</th>
-                            <th>Cleanliness Rating</th>
-                            <th>Service Rating</th>
-                            <th>Ambience Rating</th>
-                            <th>Price Rating</th>
-                            <th>Comment</th>
-                            <th>Image</th>
-                            <th>Created At</th>
+                            <th>उपयोगकर्ता</th>
+                            <th>व्यवसाय शीर्षक</th>
+                            <th>स्वच्छता रेटिंग</th>
+                            <th>सेवा रेटिंग</th>
+                            <th>परिवेश रेटिंग</th>
+                            <th>मूल्य रेटिंग</th>
+                            <th>टिप्पणी</th>
+                            <th>छवि</th>
+                            <th>पर बनाया गया</th>
                             {{-- <th>Actions</th> --}}
                         </tr>
                     </thead>

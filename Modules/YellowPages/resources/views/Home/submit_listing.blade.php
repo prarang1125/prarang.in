@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thank You for Listing</title>
+    <title>सूचीबद्ध करने के लिए धन्यवाद</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -54,10 +54,10 @@
 <body>
 
 <div class="thank-you-container">
-    <h1>Thank You for Listing!</h1>
-    <p>Your listing has been submitted successfully.</p>
-    <p>We appreciate your contribution and will review your submission soon.</p>
-    <a href="/" class="back-home-btn">Back to Home</a>
+    <h1>आपकी समीक्षा के लिए धन्यवाद!</h1>
+    <p>आपकी समीक्षा सफलतापूर्वक प्रस्तुत कर दी गई है।</p>
+    <p>हम आपके योगदान की सराहना करते हैं तथा शीघ्र ही आपकी प्रस्तुति की समीक्षा करेंगे।</p>
+    <a href="/" class="back-home-btn">वापस जाओ</a>
 </div>
 
 </body>

@@ -5,13 +5,13 @@
 <div class="page-content">
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">Admin</div>
+        <div class="breadcrumb-title pe-3">व्यवस्थापक</div>
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="{{ url('admin/user-listing')}}"><i class="bx bx-user"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">User Edit</li>
+                    <li class="breadcrumb-item active" aria-current="page">उपयोगकर्ता संपादित करें</li>
                 </ol>
             </nav>
         </div>
@@ -27,14 +27,14 @@
                             {{ session('success') }}
                         </div>
                     @endif
-                <h6 class="mb-0 text-uppercase">User Edit</h6>
+                <h6 class="mb-0 text-uppercase">उपयोगकर्ता संपादित करें</h6>
                 <hr/>
                 <form  action="{{ route('admin.user-update', $user->id) }}" method="POST">
                     @csrf
                     @method('PUT')
                     <div class="row">
                         <div class="col-md-6">
-                            <label for="name" class="form-label">Name</label>
+                            <label for="name" class="form-label">नाम</label>
                             <input type="text" class="form-control  @error('name') is-invalid @enderror" id="inputName" name="name" value="{{ old('name', $user->name) }}" >
                             @error('name')
                                 <p class="invalid-feedback">{{ $message }}</p>
@@ -43,7 +43,7 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-6">
-                            <label for="inputEmail" class="form-label">Email</label>
+                            <label for="inputEmail" class="form-label">ईमेल</label>
                             <input type="email" class="form-control @error('email') is-invalid @enderror" id="inputEmail" name="email" value="{{ old('email', $user->email) }}">
                             @error('email')
                                 <p class="invalid-feedback">{{ $message }}</p>
@@ -51,7 +51,7 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="inputPassword" class="form-label">Password</label>
+                            <label for="inputPassword" class="form-label">पासवर्ड</label>
                             @php
                             $userPassword =  $user->empPassword
                             @endphp
@@ -63,11 +63,11 @@
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-6">
-                            <label for="is_active" class="form-label">Status</label>
+                            <label for="is_active" class="form-label">स्थिति</label>
                             <select id="is_active" class="form-select @error('is_active') is-invalid @enderror" name="is_active">
-                                <option disabled>Choose...</option>
-                                <option value="1" {{ old('is_active', $user->is_active) == '1' ? 'selected' : '' }}>Active</option>
-                                <option value="0" {{ old('is_active', $user->is_active) == '0' ? 'selected' : '' }}>Deactive</option>
+                                <option disabled>चुनना...</option>
+                                <option value="1" {{ old('is_active', $user->is_active) == '1' ? 'selected' : '' }}>सक्रिय</option>
+                                <option value="0" {{ old('is_active', $user->is_active) == '0' ? 'selected' : '' }}>अक्रिय</option>
                             </select>
                             @error('is_active')
                                 <p class="invalid-feedback">{{ $message }}</p>
@@ -75,7 +75,7 @@
                         </div>
                     </div>
                     <div class="modal-footer mt-3">
-                        <button type="submit" class="btn btn-primary">Update</button>
+                        <button type="submit" class="btn btn-primary">अद्यतन</button>
                     </div>
                 </form>
             </div>
