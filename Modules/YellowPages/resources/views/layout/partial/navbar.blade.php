@@ -18,47 +18,47 @@
                     <div class="user-info ps-3">
                         @if (Auth::guard('admin')->check())
                             <p class="user-name mb-0" id="{{ Auth::guard('admin')->user()->userId }}">{{ Auth::guard('admin')->user()->firstName }} {{ Auth::guard('admin')->user()->lastName }}</p>
-                            <p class="designattion mb-0">Web Admin profile</p>
+                            <p class="designattion mb-0">वेब व्यवस्थापक प्रोफ़ाइल</p>
                         @elseif (Auth::check())
                             <p class="user-name mb-0">{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</p>
-                            <p class="designattion mb-0">Web User profile</p>
+                            <p class="designattion mb-0">वेब उपयोगकर्ता प्रोफ़ाइल</p>
                         @else
-                            <p class="user-name mb-0">Guest</p>
-                            <p class="designattion mb-0">Not Logged In</p>
+                            <p class="user-name mb-0">अतिथि</p>
+                            <p class="designattion mb-0">अंदर प्रवेश की अनुमति नहीं है</p>
                         @endif
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     @if (Auth::guard('admin')->check())
                         {{-- @if (Auth::guard('admin')->user()->roleId === '1') --}}
-                        <li><a class="dropdown-item" href="{{ url('yellow-pages/user-edit/'. Auth::guard('admin')->id()) }}"><i class="bx bx-user"></i><span>Profile</span></a>
+                        <li><a class="dropdown-item" href="{{ url('yellow-pages/user-edit/'. Auth::guard('admin')->id()) }}"><i class="bx bx-user"></i><span>प्रोफ़ाइल</span></a>
                         </li>
-                        <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}"><i class='bx bx-home-circle'></i><span>Dashboard</span></a>
+                        <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}"><i class='bx bx-home-circle'></i><span>डैशबोर्ड</span></a>
                         </li>
                         <li>
                             <div class="dropdown-divider mb-0"></div>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{{ route('admin.logout') }}"><i class='bx bx-log-out-circle'></i><span>Logout</span></a>
+                            <a class="dropdown-item" href="{{ route('admin.logout') }}"><i class='bx bx-log-out-circle'></i><span>लॉग आउट</span></a>
                         {{-- @elseif (Auth::check())
                             <a class="dropdown-item" href="{{ route('accounts.logout') }}"><i class='bx bx-log-out-circle'></i><span>Logout</span></a>
                         @endif --}}
                         </li>
                     @elseif (Auth::check())
-                        <li><a class="dropdown-item" href="javascript:;"><i class="bx bx-user"></i><span>Profile</span></a>
+                        <li><a class="dropdown-item" href="javascript:;"><i class="bx bx-user"></i><span>प्रोफ़ाइल</span></a>
                         </li>
-                        <li><a class="dropdown-item" href="javascript:;"><i class="bx bx-cog"></i><span>Settings</span></a>
+                        <li><a class="dropdown-item" href="javascript:;"><i class="bx bx-cog"></i><span>सेटिंग्स</span></a>
                         </li>
-                        <li><a class="dropdown-item" href="javascript:;"><i class='bx bx-home-circle'></i><span>Dashboard</span></a>
+                        <li><a class="dropdown-item" href="javascript:;"><i class='bx bx-home-circle'></i><span>डैशबोर्ड</span></a>
                         </li>
-                        <li><a class="dropdown-item" href="javascript:;"><i class='bx bx-dollar-circle'></i><span>Earnings</span></a>
+                        <li><a class="dropdown-item" href="javascript:;"><i class='bx bx-dollar-circle'></i><span>आय</span></a>
                         </li>
-                        <li><a class="dropdown-item" href="javascript:;"><i class='bx bx-download'></i><span>Downloads</span></a>
+                        <li><a class="dropdown-item" href="javascript:;"><i class='bx bx-download'></i><span>डाउनलोड</span></a>
                         </li>
                         <li>
                             <div class="dropdown-divider mb-0"></div>
                         </li>
-                        <a class="dropdown-item" href="{{ route('accounts.logout') }}"><i class='bx bx-log-out-circle'></i><span>Logout</span></a>
+                        <a class="dropdown-item" href="{{ route('accounts.logout') }}"><i class='bx bx-log-out-circle'></i><span>लॉग आउट</span></a>
                     @endif
                 </ul>
             </div>

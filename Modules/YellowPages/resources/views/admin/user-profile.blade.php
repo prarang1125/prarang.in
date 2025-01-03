@@ -5,14 +5,14 @@
     <div class="page-content">
         <!--breadcrumb-->
         <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-            <div class="breadcrumb-title pe-3">User Profile</div>
+            <div class="breadcrumb-title pe-3">उपयोगकर्ता रूपरेखा</div>
             <div class="ps-3">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb mb-0 p-0">
                         <li class="breadcrumb-item"><a href="{{ url('/admin/user-profile')}}"><i class="bx bx-user"></i>
                         </a>
                         </li>
-                        <li class="breadcrumb-item active" aria-current="page">User Profilep</li>
+                        <li class="breadcrumb-item active" aria-current="page">उपयोगकर्ता रूपरेखा</li>
                     </ol>
                 </nav>
             </div>
@@ -28,7 +28,7 @@
                                     <img src="{{ asset('assets/images/avatars/avatar-2.png') }}" alt="Admin" class="rounded-circle p-1 bg-primary" width="110">
                                     <div class="mt-3">
                                         <h4>{{ Auth::guard('admin')->user()->firstName }} {{ Auth::guard('admin')->user()->lastName }}</h4>
-                                        <p class="text-secondary mb-1">Web Admin profile</p>
+                                        <p class="text-secondary mb-1">वेब व्यवस्थापक प्रोफ़ाइल</p>
                                     </div>
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                                     @csrf
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Full Name</h6>
+                                            <h6 class="mb-0">पूरा नाम</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" class="form-control" value="{{ Auth::guard('admin')->user()->firstName }} {{ Auth::guard('admin')->user()->lastName }}" />
@@ -49,7 +49,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Email</h6>
+                                            <h6 class="mb-0">ईमेल</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" class="form-control" value="{{ Auth::guard('admin')->user()->emailId }}" />
@@ -57,7 +57,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Role</h6>
+                                            <h6 class="mb-0">भूमिका</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" class="form-control" value="{{ $roleName }}" />
@@ -65,7 +65,7 @@
                                     </div>
                                     <div class="row mb-3">
                                         <div class="col-sm-3">
-                                            <h6 class="mb-0">Language</h6>
+                                            <h6 class="mb-0">भाषा</h6>
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                             <input type="text" class="form-control" value="{{ $language }}" />

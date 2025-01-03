@@ -48,7 +48,7 @@
                     <option value="">{{ __('messages.select_category') }}</option>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
-                            {{ __('messages.' . $category->name) }}
+                            {{ $category->name}}
                         </option>
                     @endforeach                    
                   </select>
@@ -57,7 +57,7 @@
                       <option value="">{{ __('messages.select_city') }}</option>
                       @foreach ($cities as $city)
                           <option value="{{ $city->id }}" {{ request('city') == $city->id ? 'selected' : '' }}>
-                            {{ __('messages.' .$city->name) }}
+                            {{$city->name}}
                           </option>
                       @endforeach
                   </select>
@@ -85,7 +85,7 @@
                           </div>
                           <h4 class="title" style="font-size: 16px; margin-top: 10px;">
                               <!-- Add the link to the listing page with the category ID -->
-                              <a href="{{ route('yp.listing') }}?category={{ $category->id }}" class="stretched-link">   {{ __('messages.' . $category->name) }}</a>
+                              <a href="{{ route('yp.listing') }}?category={{ $category->id }}" class="stretched-link">   {{$category->name}}</a>
                           </h4>
                       </div>
                   </div>
@@ -111,7 +111,7 @@
                         <div class="card">
                             <img src="{{ asset('storage/' . $city->cities_url) }}" class="card-img-top" alt="{{ $city->name }}">
                             <div class="card-body text-center">
-                                <h5 class="card-title">{{__('messages.'.$city->name)}}</h5>
+                                <h5 class="card-title">{{$city->name}}</h5>
                             </div>
                         </div>
                     </a>

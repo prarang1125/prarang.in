@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>Prarang - YellowPages</title>
+    <title>प्रारंग - येलोपेजेस</title>
     <meta name="description" content="Find local crafts and businesses in your area. Listings for furniture, embroidery, and more.">
     <meta name="keywords" content="craft, furniture, embroidery, local business">
     <!-- Favicons -->
@@ -39,8 +39,8 @@
         <h1 style="position: relative; z-index: 1; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);">Submit Your Listing</h1>
     </div>
     <div style="max-width: 800px; margin: 0 auto; padding: 20px;">
-        <h5 style="text-align: center;">Add your Listing</h5>
-        <p style="text-align: center;  margin-bottom: 20px;">Add details about your listing</p>
+        <h5 style="text-align: center;">अपनी सूची जोड़ें</h5>
+        <p style="text-align: center;  margin-bottom: 20px;">अपनी लिस्टिंग के बारे में विवरण जोड़ें</p>
     </div>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
   <form action="{{ url('/yellow-pages/store-listing') }}" method="POST" id="listingForm" enctype="multipart/form-data">    
@@ -54,84 +54,85 @@
         </ul>
        </div>
       @endif
-            <h5 style="margin-bottom: 15px;">Primary Listing Details</h5>
+            <h5 style="margin-bottom: 15px;">प्राथमिक सूची विवरण</h5>
             <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
             <div class="mb-3">
-                <label for="location" class="form-label">Location</label>
+                <label for="location" class="form-label">जगह</label>
                 <select id="location" class="form-select" name="location">
-                    <option selected>Select location</option>
+                    <option selected>स्थान चुनें</option>
                     @foreach($cities as $city)
                     <option value="{{ $city->id }}">{{ $city->name }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="mb-3">
-                <label for="listingTitle" class="form-label">Listing Title</label>
+                <label for="listingTitle" class="form-label">लिस्टिंग शीर्षक</label>
                 <input type="text" id="listingTitle" name="listingTitle" class="form-control">
             </div>
             <div class="form-check mb-3">
                 <input class="form-check-input" type="checkbox" id="hasTagline" onclick="document.getElementById('taglineField').style.display = this.checked ? 'block' : 'none'">
                 <label class="form-check-label" for="hasTagline">
-                    Does Your Business have a tagline?
+                    क्या आपके व्यवसाय की कोई टैगलाइन है?
                 </label>
             </div>
             <div class="mb-3" id="taglineField" style="display: none;">
-                <label for="tagline" class="form-label">Tagline</label>
+                <label for="tagline" class="form-label">टैगलाइन</label>
                 <input type="text" id="tagline" name="tagline" class="form-control" placeholder="Enter tagline">
             </div>
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <label for="businessName" class="form-label">Business/Company Name</label>
+                    <label for="businessName" class="form-label">व्यवसाय/कंपनी का नाम</label>
                     <input type="text" id="businessName" name="businessName" class="form-control" placeholder="Enter business name">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="businessAddress" class="form-label">Business/Company Address</label>
+                    <label for="businessAddress" class="form-label">व्यवसाय/कंपनी का पता</label>
                     <input type="text" id="businessAddress" name="businessAddress" class="form-control" placeholder="Enter business address">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="primaryPhone" class="form-label">Primary Phone Number</label>
+                    <label for="primaryPhone" class="form-label">प्राथमिक फ़ोन नंबर</label>
                     <input type="text" id="primaryPhone" name="primaryPhone" class="form-control" placeholder="Enter primary phone">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="secondaryPhone" class="form-label">Secondary Phone Number</label>
+                    <label for="secondaryPhone" class="form-label">द्वितीय फ़ोन नंबर
+                    </label>
                     <input type="text" id="secondaryPhone" name="secondary_phone" class="form-control" placeholder="Enter secondary phone">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="primaryContact" class="form-label">Primary Contact Name</label>
+                    <label for="primaryContact" class="form-label">प्राथमिक संपर्क नाम</label>
                     <input type="text" id="primaryContact" name="primaryContact" class="form-control" placeholder="Enter primary contact name">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="primaryEmail" class="form-label">Primary Contact Email</label>
+                    <label for="primaryEmail" class="form-label">प्राथमिक संपर्क ईमेल</label>
                     <input type="email" id="primaryEmail" name="primaryEmail" class="form-control" placeholder="Enter primary email">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="secondaryContact" class="form-label">Secondary Contact Name</label>
+                    <label for="secondaryContact" class="form-label">द्वितीयक संपर्क नाम</label>
                     <input type="text" id="secondaryContact" name="secondaryContactName" class="form-control" placeholder="Enter secondary contact name">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="secondaryEmail" class="form-label">Secondary Contact Email</label>
+                    <label for="secondaryEmail" class="form-label">द्वितीयक संपर्क ईमेल</label>
                     <input type="email" id="secondaryEmail" name="secondaryEmail" class="form-control" placeholder="Enter secondary email">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="businessType" class="form-label">Business/Company Legal Type *</label>
+                    <label for="businessType" class="form-label">व्यवसाय/कंपनी कानूनी प्रकार *</label>
                     <select id="businessType" name="businessType" class="form-select">
-                        <option selected>Select Type</option>
+                        <option selected>प्रकार चुनें</option>
                         @foreach($company_legal_type as $Cl_type)
                         <option value="{{ $Cl_type->id }}">{{ $Cl_type->name }}</option>
                     @endforeach
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="employee_range" class="form-label">Business/Company No. of Employees (approx.) *</label>
+                    <label for="employee_range" class="form-label">व्यवसाय/कंपनी कर्मचारियों की संख्या (लगभग) *</label>
                     <select id="employee_range" name="employees" class="form-select">
-                        <option selected>Select No. of Employees</option>
+                        <option selected>कर्मचारियों की संख्या चुनें</option>
                         @foreach($number_of_employees as $number_employee)
                         <option value="{{ $number_employee->id }}">{{ $number_employee->range}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="trunover" class="form-label">Business/Company Monthly Turnover (approx.) *</label>
+                    <label for="trunover" class="form-label">व्यवसाय/कंपनी का मासिक कारोबार (लगभग) *</label>
                     <select id="trunover" name="turnover" class="form-select">
                         <option selected>Select Turnover</option>
                         @foreach($monthly_turnovers as $turnovers)
@@ -140,18 +141,18 @@
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="advertising" class="form-label">Business/Company Monthly Advertising (Medium)</label>
+                    <label for="advertising" class="form-label">व्यवसाय/कंपनी मासिक विज्ञापन (मध्यम)</label>
                     <select id="advertising" name="advertising" class="form-select">
-                        <option selected>Select Advertising</option>
+                        <option selected>विज्ञापन का चयन करें</option>
                         @foreach($monthly_advertising_mediums as $advertising)
                         <option value="{{ $advertising->id }}">{{ $advertising->medium}}</option>
                         @endforeach
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="advertising_price" class="form-label">Business/Company Advertising (Medium) price*</label>
+                    <label for="advertising_price" class="form-label">व्यवसाय/कंपनी विज्ञापन (मध्यम) मूल्य*</label>
                     <select id="advertising_price" name="advertising_price" class="form-select">
-                        <option selected>Select Advertising Price</option>
+                        <option selected>विज्ञापन मूल्य चुनें</option>
                         @foreach($monthly_advertising_prices as $advertising)
                         <option value="{{ $advertising->id }}">{{ $advertising->range}}</option>
                         @endforeach
@@ -162,12 +163,12 @@
     <br>
     <br>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-        <h5 style="margin-bottom: 15px;">Address Details</h5>
+        <h5 style="margin-bottom: 15px;">पता विवरण</h5>
     <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
         <div style="display: flex; gap: 20px;">
             <!-- Pin Code Field -->
             <div style="flex: 1;">
-                <label for="pincode" class="form-label">Pin Code</label>
+                <label for="pincode" class="form-label">पिन कोड</label>
                 <input type="text" id="pincode" name="pincode" class="form-control" placeholder="Enter Pin Code">
             </div>
         </div>
@@ -175,13 +176,13 @@
     <br>
     <br>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-        <h5 style="margin-bottom: 15px;">CATEGORY & SERVICES</h5>
+        <h5 style="margin-bottom: 15px;">श्रेणी और सेवाएँ</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
         <div style="display: flex; gap: 20px;">
             <div style="flex: 1;">
-                <label for="state" class="form-label">Category *</label>
+                <label for="state" class="form-label">वर्ग *</label>
                 <select id="state" class="form-select" name="category">
-                    <option selected>Select Category</option>
+                    <option selected>श्रेणी चुनना</option>
                     @foreach($Category as $Cate)
                     <option value="{{ $Cate->id }}">{{ $Cate->name}}</option>
                     @endforeach
@@ -191,14 +192,14 @@
     </div>
     <br><br>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-        <h5 style="margin-bottom: 15px;">More Info</h5>
+        <h5 style="margin-bottom: 15px;">और जानकारी</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
         <div style="margin-top: 15px;">
-            <label for="description">Description</label>
+            <label for="description">विवरण</label>
             <textarea id="description" name="description" rows="4" placeholder="Enter description here..." style="width: 100%;"></textarea>
         </div>
         <div style="margin-top: 15px;">
-            <label for="description">Tags or Keywords (Comma Separated)</label>
+            <label for="description">टैग या कीवर्ड (अल्पविराम से अलग)</label>
             <textarea id="description" name="tags_keywords" rows="4" placeholder="Enter Tags or Keywords (Comma Separated)" style="width: 100%;"></textarea>
         </div>
     </div>
@@ -206,7 +207,7 @@
     <br>
     
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd; font-family: Arial, sans-serif;">
-        <h5 style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">Business Hours</h5>
+        <h5 style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">काम करने के घंटे</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
     
         <!-- Schedule Container -->
@@ -214,23 +215,23 @@
             <!-- Initial Day Schedule -->
             <div class="day-schedule">
                 <select name="day[]" style="padding: 5px; border: 1px solid #ccc; border-radius: 3px; width: 120px;">
-                    <option value="">-- Select a Day --</option>
-                    <option value="monday">Monday</option>
-                    <option value="tuesday">Tuesday</option>
-                    <option value="wednesday">Wednesday</option>
-                    <option value="thursday">Thursday</option>
-                    <option value="friday">Friday</option>
-                    <option value="saturday">Saturday</option>
-                    <option value="sunday">Sunday</option>
+                    <option value="">-- दिन चुनें --</option>
+                    <option value="monday">सोमवार</option>
+                    <option value="tuesday">मंगलवार</option>
+                    <option value="wednesday">बुधवार</option>
+                    <option value="thursday">गुरुवार</option>
+                    <option value="friday">शुक्रवार</option>
+                    <option value="saturday">शनिवार</option>
+                    <option value="sunday">रविवार</option>
                 </select>
                 <input type="time" name="open_time[]" style="padding: 5px; border: 1px solid #ccc; border-radius: 3px;">
                 <label style="font-weight: bold;">to</label>
                 <input type="time" name="close_time[]" style="padding: 5px; border: 1px solid #ccc; border-radius: 3px;">
                 <label>
-                    <input type="checkbox" name="is_24_hours[]" style="cursor: pointer;"> 24 Hours
+                    <input type="checkbox" name="is_24_hours[]" style="cursor: pointer;"> 24 घंटे
                 </label>
                 <label>
-                    <input type="checkbox" class="add-2nd-slot" style="cursor: pointer;"> Add 2nd Slot
+                    <input type="checkbox" class="add-2nd-slot" style="cursor: pointer;">दूसरा स्लॉट जोड़ें
                 </label>
                 <button type="button" class="remove-day-btn" style="background: none; border: none; color: red; font-size: 16px; cursor: pointer;">&#x2716;</button>
         
@@ -251,35 +252,35 @@
     <br>
     <br>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-        <h5 style="margin-bottom: 15px;">Address Information</h5>
+        <h5 style="margin-bottom: 15px;">पते की जानकारी</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
         <div style="margin-bottom: 10px;">
-            <label for="street_address">Full Address:</label>
+            <label for="street_address">पूरा पता:</label>
             <input type="text" id="street_address" name="fullAddress" placeholder="123 Main St" style="width: 100%; padding: 8px;">
         </div>
        
-        <h5 style="margin-bottom: 15px;">Contact Information</h5>
+        <h5 style="margin-bottom: 15px;">संपर्क जानकारी</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
         <div style="margin-bottom: 10px;">
-            <label for="website">Website:</label>
+            <label for="website">वेबसाइट:</label>
             <input type="url" id="website" name="website" placeholder="https://example.com" style="width: 100%; padding: 8px;">
         </div>
         <div style="margin-bottom: 10px;">
-            <label for="phone">Phone:</label>
+            <label for="phone">फ़ोन:</label>
             <input type="tel" id="phone" name="phone" placeholder="+1 234 567 8900" style="width: 100%; padding: 8px;">
         </div>
         <div style="margin-bottom: 10px;">
-            <label for="whatsapp">WhatsApp:</label>
+            <label for="whatsapp">व्हाट्सएप:</label>
             <input type="tel" id="whatsapp" name="whatsapp" placeholder="+1 234 567 8900" style="width: 100%; padding: 8px;">
         </div>
     </div>
     <br>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-        <h5 style="margin-bottom: 15px;">Social Media Links</h5>
+        <h5 style="margin-bottom: 15px;">सोशल मीडिया लिंक</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
         <div class="social-media-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
             <select id="social_media" name="socialId" required style="flex: 1; padding: 8px;">
-            <option selected>Select location</option>
+            <option selected>स्थान चुनें</option>
                     @foreach($social_media as $social)
                     <option value="{{ $social->id }}">{{ $social->name }}</option>
                     @endforeach
@@ -292,7 +293,7 @@
     </div>
     <br>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 0 5px rgba(0,0,0,0.1);">
-        <h5 style="margin-bottom: 15px;">MEDIA</h5>
+        <h5 style="margin-bottom: 15px;">मिडिया</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
         <div style="border: 1px dashed #ddd; padding: 20px; text-align: center; color: #888; margin-bottom: 10px;">
         <input type="file" name="image" style="display: block; margin-top: 10px;">
@@ -300,52 +301,54 @@
 
         <div style="display: flex; gap: 10px; justify-content: space-between; margin-bottom: 10px;">
             <div style="flex: 1; padding: 10px; border: 1px solid #ddd; text-align: center;">
-                <label for="coverImage" class="form-label">Cover Image</label>
+                <label for="coverImage" class="form-label">कवर छवि</label>
                 <input type="file" id="coverImage" name="coverImage" class="form-control @error('coverImage') is-invalid @enderror">
             </div>
             <div style="flex: 1; padding: 10px; border: 1px solid #ddd; text-align: center;">
-                <label for="logo" class="form-label">Logo</label>
+                <label for="logo" class="form-label">प्रतीक चिन्ह </label>
                 <input type="file" id="logo" name="logo" class="form-control @error('logo') is-invalid @enderror">
             </div>
         </div>
-        <h5 style="margin-top: 20px; margin-bottom: 15px;">FEATURES</h5>
+        <h5 style="margin-top: 20px; margin-bottom: 15px;">विशेषताएँ</h5>
         <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-            <label for="featuresToggle" style="font-weight: bold;">Features</label>
+            <label for="featuresToggle" style="font-weight: bold;">विशेषताएँ</label>
             <input type="checkbox" id="featuresToggle" style="cursor: pointer;">
         </div>
         <div id="faqSection" style="display: none;">
             <div class="faq-item" style="margin-bottom: 10px;">
-                <label>Frequently Asked Questions</label>
+                <label>अक्सर पूछे जाने वाले प्रश्नों </label>
                 <input type="text" name="faq" placeholder="Frequently Asked Questions" style="width: 100%; margin-bottom: 5px;">
                 <textarea placeholder="Answer" name="answer" style="width: 100%; height: 60px;"></textarea>
             </div>
-            <div class="add-new" style="color: #007bff; cursor: pointer; font-size: 14px; display: inline-block; margin-top: 10px;" onclick="addFAQ()">+ Add New</div>
+            <div class="add-new" style="color: #007bff; cursor: pointer; font-size: 14px; display: inline-block; margin-top: 10px;" onclick="addFAQ()">+ नया जोड़ें
+            </div>
         </div>
     </div>
     <br>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
         <div id="signupFields" style="display: flex; gap: 20px; margin-bottom: 15px;">
             <div style="flex: 1;">
-                <label for="signupEmail">Enter email to signup & receive notification upon listing approval</label>
+                <label for="signupEmail">साइनअप करने के लिए ईमेल दर्ज करें और लिस्टिंग अनुमोदन पर अधिसूचना प्राप्त करें
+                </label>
                 <input type="email" id="signupEmail" name="notificationEmail" placeholder="Enter email here..." style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
             </div>
             <div style="flex: 1;">
-                <label for="userName">Enter User Name</label>
+                <label for="userName">उपयोगकर्ता नाम दर्ज करें</label>
                 <input type="text" id="userName" name="userName" placeholder="Enter User Name" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
             </div>
         </div>
         <div style="margin-top: 15px; margin-bottom: 15px;">
             <label>
-                <input type="checkbox" id="existingAccountCheckbox" style="margin-right: 5px;"> Already Have Account?
+                <input type="checkbox" id="existingAccountCheckbox" style="margin-right: 5px;">क्या आपके पास पहले से ही खाता है?
             </label>
         </div>
         <div id="accountFields" style="display: none; flex-direction: row; gap: 20px;">
             <div style="flex: 1;">
-                <label for="email">Email</label>
+                <label for="email">ईमेल</label>
                 <input type="email" id="email" name="email" placeholder="Enter your email" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
             </div>
             <div style="flex: 1;">
-                <label for="password">Password</label>
+                <label for="password">पासवर्ड</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
             </div>
         </div>
@@ -353,10 +356,11 @@
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
         <div style="margin-top: 15px; margin-bottom: 15px;">
             <label>
-                <input type="checkbox" name="agree" id="existingAccountCheckbox" style="margin-right: 5px;"> I agree to the terms and conditions.
+                <input type="checkbox" name="agree" id="existingAccountCheckbox" style="margin-right: 5px;">मैं नियमों और शर्तों से सहमत हूं।
+
             </label>
         </div>
-        <button type="submit"  id="submit-btn" class="btn btn-primary">Submit</button>
+        <button type="submit"  id="submit-btn" class="btn btn-primary">जमा करना</button>
     </div>
     </form>
     </div>

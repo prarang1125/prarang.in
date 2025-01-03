@@ -135,7 +135,10 @@ class CreateVCardController extends Controller
     public function generateQrCode()
     {
         $userId = Auth::id();
-        $vcard = Vcard::where('user_id', $userId)->latest()->firstOrFail();
+        $vcard = Vcard::where('user_id', $userId)->latest()->first();
+        if(!$vcard){
+            return redirect()->route('vCard.createCard')->with('message', 'No VCard found for this user. Please create a new one.');
+        }
         
         $vcardId= $vcard->id;
         // Generate QR code

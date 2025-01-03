@@ -3,33 +3,33 @@
 @section('content')
 
 <div class="container my-5">
-    <h2 class="d-flex justify-content-center align-items-center" style="height: 10vh;">Active Subscription Plan</h2>
+    <h2 class="d-flex justify-content-center align-items-center" style="height: 10vh;">सक्रिय सदस्यता योजना</h2>
 
     <div class="d-flex justify-content-center align-items-center" style="height: 60vh;">
         <!-- Subscription Details Section -->
         <div class="border p-4" style="width: 50%; border-radius: 8px;">
-            <h3 class="mb-3 text-center">Your Active Plan</h3>
+            <h3 class="mb-3 text-center">आपकी सक्रिय योजना</h3>
             @if($planHistory && $planDetails)
                 <table class="table table-bordered">
                     <tbody>
                         <tr>
-                            <th>Plan Name:</th>
+                            <th>योजना का नाम:</th>
                             <td>{{ $planDetails->name }}</td>
                         </tr>
                         <tr>
-                            <th>Status:</th>
+                            <th>स्थिति:</th>
                             <td>{{ ucfirst($planHistory->status) }}</td>
                         </tr>
                         <tr>
-                            <th>Transaction ID:</th>
+                            <th>लेनदेन आईडी:</th>
                             <td>{{ $planHistory->transaction_id }}</td>
                         </tr>
                         <tr>
-                            <th>Amount:</th>
+                            <th>मात्रा:</th>
                             <td>₹{{ number_format($planHistory->amount, 2) }}</td>
                         </tr>
                         <tr>
-                            <th>Next Billing Date:</th>
+                            <th>अगली बिलिंग तिथि:</th>
                             <td>
                                 @if($planDetails->duration)
                                     {{ \Carbon\Carbon::parse($planHistory->created_at)->addDays($planDetails->duration)->format('d-m-Y') }}
@@ -41,7 +41,7 @@
                     </tbody>
                 </table>
             @else
-                <p class="text-center">You are not subscribed to any plan.</p>
+                <p class="text-center">आपने किसी भी योजना की सदस्यता नहीं ली है।</p>
             @endif
         </div>
     </div>

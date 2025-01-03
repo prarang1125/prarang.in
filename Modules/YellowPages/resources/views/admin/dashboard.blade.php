@@ -14,7 +14,7 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center text-white">
-                        <p class="mb-0">User  </p>
+                        <p class="mb-0">उपयोगकर्ता</p>
                     </div>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center text-white">
-                        <p class="mb-0">TOTAL CATEGORIES</p>
+                        <p class="mb-0">कुल श्रेणियाँ</p>
                     </div>
                 </div>
             </div>
@@ -48,7 +48,7 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center text-white">
-                        <p class="mb-0">TOTAL CITIES</p>
+                        <p class="mb-0">कुल शहर</p>
                     </div>
                 </div>
             </div>
@@ -65,7 +65,7 @@
                         </div>
                     </div>
                     <div class="d-flex align-items-center text-white">
-                        <p class="mb-0">TOTAL BUSINESS LISTING</p>
+                        <p class="mb-0">कुल व्यापार सूची</p>
                     </div>
                 </div>
             </div>
