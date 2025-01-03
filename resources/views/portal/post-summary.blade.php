@@ -410,7 +410,7 @@
 
 <body>
     <x-post.navbar cityId="12" :cityCode="$cityCode" />
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="col-sm-9">
                 <div class="mt-4 post-header">
