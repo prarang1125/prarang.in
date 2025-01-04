@@ -1,4 +1,4 @@
-function collectAndSendInformation() {
+function collectAndSendInformation(postId,city) {
     // Author: Vivek Yadav (dev.vivek16@gmail.com)
     // Copyright: Prarang
 
@@ -36,6 +36,8 @@ function collectAndSendInformation() {
 
             // Prepare the data as query parameters
             const queryParams = new URLSearchParams({
+                city:city,
+                post_id:postId,
                 currentUrl: currentUrl,
                 ipAddress: ipAddress,
                 latitude: latitude,
@@ -70,4 +72,4 @@ function collectAndSendInformation() {
 }
 
 // Trigger the function when the page loads
-window.onload = collectAndSendInformation;
+
