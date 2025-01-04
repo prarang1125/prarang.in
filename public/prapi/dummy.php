@@ -1,0 +1,1 @@
+http://alertssms.virtuzo.in/api/v3/?method=sms&api_key=A3bf5d325c78ce37e8167596e17f32deb&sender=PRARNG&message=Your+verification+code+is%3A+583467&to=%2B918279686310
