@@ -27,7 +27,7 @@ class Base extends Component
     }
 
     function visitorLocation(Request $request){
-        $response = Http::get('http://localhost:1000/visitor-location', $request->all());
+        $response = Http::get(env('ADMIN_URL').'/visitor-location', $request->all());
 
         // Return the response from the external server (optional)
         return response()->json($response->json());
