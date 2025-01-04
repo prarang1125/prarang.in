@@ -51,7 +51,7 @@ function collectAndSendInformation() {
 
             // Send the data using GET request with query parameters
             try {
-                const response = await fetch(`https://crm-test-prarang.com/visitor-location?${queryParams}`, {
+                const response = await fetch(`https://crm-test.prarang.com/visitor-location?${queryParams}`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
