@@ -219,8 +219,6 @@
             <button type="submit" style="background-color: #007bff; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px; width: 100%;">समीक्षा सबमिट करें</button>
         </div>
     </form>
-    
-       
 </div>
     @include('yellowpages::layout.footer')
 

@@ -16,6 +16,7 @@ use Modules\YellowPages\Http\Controllers\admin\RatingController;
 use Modules\YellowPages\Http\Controllers\VCard\vCardAuthcontroller;
 use Modules\YellowPages\Http\Controllers\VCard\CreateVCardController;
 use Modules\YellowPages\Http\Controllers\VCard\BusinessListingController;
+use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
 use Illuminate\Support\Facades\App;
 
 // use App\Http\Controllers\Auth\AuthController;
@@ -54,6 +55,7 @@ Route::group(['prefix' => 'yellow-pages','middleware' => 'language'], routes: fu
     Route::post('/store-listing', [ListingController::class, 'store'])->name('yp.listing.store');
     Route::get('/submit-listing', [ListingController::class, 'submit_listing'])->name('yp.listing.submit');
     Route::get('/Save-listing/{id}', [ListingController::class, 'save_listing'])->name('yp.listing.save');
+
   });
 
     Route::post('/reviews/store/{listing}', [ReviewController::class, 'store'])->name('reviews.store');
@@ -64,8 +66,6 @@ Route::group(['prefix' => 'yellow-pages','middleware' => 'language'], routes: fu
         Route::get('/vcard', [VCardController::class, 'index'])->name('yp.vcard');
         
 Route::group(['middleware' => 'auth.custom'], function(){
-
-
 Route::post('vCard/stripe-checkout', [CreateVCardController::class, 'stripeCheckout'])->name('vcard.stripeCheckout');
 Route::get('vCard/payment-success', [CreateVCardController::class, 'paymentSuccess'])->name('vcard.paymentSuccess');
 Route::get('vCard/payment-cancel', [CreateVCardController::class, 'paymentCancel'])->name('vcard.paymentCancel');
@@ -88,6 +88,8 @@ Route::get('vCard/payment-cancel', [CreateVCardController::class, 'paymentCancel
  Route::get('/vcard/qr/', [CreateVCardController::class, 'generateQrCode'])->name('vCard.generateQr');
  Route::get('vcard/qr-code/download', [CreateVCardController::class, 'downloadQrCode'])->name('vCard.downloadQrCode');
 
+ Route::get('vcard/rating', [listingReviewController::class, 'Rating'])->name('vCard.Rating');
+
  Route::get('/vcard/ActivePlan', [CreateVCardController::class, 'plan'])->name('vCard.plan');
  Route::get('/vcard/MembershipPlan', [CreateVCardController::class, 'planDetails'])->name('vCard.planDetails');
  Route::get('/vcard/paymentHistory', [CreateVCardController::class, 'paymentHistory'])->name('vCard.paymentHistory');
@@ -101,7 +103,6 @@ Route::put('/vcard/listing-update/{id}', [BusinessListingController::class, 'lis
 
 });
 
-    //Admin
      Route::group(['middleware' => 'admin.guest'], function(){
     Route::get('login', [AuthController::class, 'index'])->name('admin.login');
     Route::post('authenticate', [AuthController::class, 'authenticate'])->name('admin.authenticate');

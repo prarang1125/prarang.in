@@ -69,5 +69,11 @@
                 <div class="menu-title">सहेजें व्यवसाय</div>
             </a>
         </li>
+        <li>
+            <a href="{{ url('yellow-pages/vcard/rating') }}">
+                <div class="parent-icon"><i class="bx bx-star"></i></div>
+                <div class="menu-title">समीक्षा</div>
+            </a>
+        </li>
 </ul>
 <!-- End Navigation -->
