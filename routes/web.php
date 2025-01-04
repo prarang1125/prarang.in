@@ -3,6 +3,7 @@
 use App\Http\Controllers\Main\Home;
 use App\Http\Controllers\Main\PostArchives;
 use App\Http\Controllers\Main\postController;
+use App\View\Components\Layout\Main\Base;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('/')->group(function () {
@@ -27,3 +28,4 @@ Route::prefix('archives')->group(function () {
     Route::get('/{cityCode}/{catg}', [PostArchives::class, 'archiveCatg'])->name('archive-catg');
     Route::get('/{cityCode}/{catg}/{ids}/{name}', [PostArchives::class, 'archivePosts'])->name('post-archive');
 });
+// Route::get('visitor-location', [Base::class,'visitorLocation']);
