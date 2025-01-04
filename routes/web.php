@@ -28,4 +28,4 @@ Route::prefix('archives')->group(function () {
     Route::get('/{cityCode}/{catg}', [PostArchives::class, 'archiveCatg'])->name('archive-catg');
     Route::get('/{cityCode}/{catg}/{ids}/{name}', [PostArchives::class, 'archivePosts'])->name('post-archive');
 });
-// Route::get('visitor-location', [Base::class,'visitorLocation']);
+Route::get('visitor-location', [Base::class,'visitorLocation']);
