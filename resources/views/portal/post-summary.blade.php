@@ -496,9 +496,9 @@
                 <div class="stk-side">
                     <div class="p-2 text-center shadow app-fb">
                         <p class="p-0">Follow Us on</p>
-                        <a class="text-center btn btn-primary" href="" target="_blank"><i class=""></i>
+                        <a class="text-center btn btn-primary" href="https://www.facebook.com/prarang.in" target="_blank"><i class=""></i>
                             Facebook</a>
-                        <a class="text-center btn btn-success " href="" target="_blank"><i
+                        <a class="text-center btn btn-success " href="https://play.google.com/store/apps/details?id=com.riversanskiriti.prarang&pcampaignid=web_share" target="_blank"><i
                                 class="fa fa-mobile"></i>
                             Mobile
                             App</a>
