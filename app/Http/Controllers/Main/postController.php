@@ -39,7 +39,7 @@ class postController extends Controller
                 $imageUrl = $chitti->images->first()->imageUrl ?? asset('default_image.jpg');
 
                 $tags = $chitti->tagMappings->map(function ($tagMapping) {
-                    return $tagMapping->tag->tagInEnglish;
+                    return $tagMapping->tag->tagInEnglish ?? " " ;
                 })->filter()->join(', ');
 
                 return [
