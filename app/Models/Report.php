@@ -15,7 +15,7 @@ class Report extends Model
         'business_email',
         'number',
         'message',
-        'file_path',
+        'file',
     ];
 
 }

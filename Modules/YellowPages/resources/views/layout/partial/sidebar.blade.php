@@ -59,4 +59,10 @@
                 <div class="menu-title">समीक्षा</div>
             </a>
         </li>
+        <li>
+            <a href="{{ url('yellow-pages/Report') }}">
+                <div class="parent-icon"><i class="bx bx-chart"></i></div>
+                <div class="menu-title">संदेश</div>
+            </a>
+        </li>
 </ul>

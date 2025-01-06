@@ -103,7 +103,7 @@ Route::get('/vcard/listing-edit/{id}', [BusinessListingController::class, 'listi
 Route::put('/vcard/listing-update/{id}', [BusinessListingController::class, 'listingUpdate'])->name('vCard.listing-update');
 
 Route::get('/vcard/report', [ReportController::class, 'index'])->name('vCard.report');
-Route::post('/vcard/Report-submit', [ReportController::class, 'store'])->name('vCard.report');
+Route::post('/vcard/Report-submit', [ReportController::class, 'store'])->name('vCard.report-submit');
 
 });
 
@@ -153,5 +153,9 @@ Route::post('/vcard/Report-submit', [ReportController::class, 'store'])->name('v
 
      #this route is use for admin Rating details
      Route::get('Rating', [RatingController::class, 'Rating'])->name('admin.Rating');
+
+
+     #this route is use for admin Rating details
+     Route::get('Report', [RatingController::class, 'Report'])->name('admin.Report');
    
 });

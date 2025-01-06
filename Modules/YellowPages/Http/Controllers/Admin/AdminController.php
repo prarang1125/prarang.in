@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\City;
 use Carbon\Carbon;
+use App\Models\Report;
+use App\Models\PaymentHistory;
 use App\Models\BusinessListing;
 use App\Models\User;
 use App\Models\CompanyLegalType;
@@ -24,8 +26,10 @@ class AdminController extends Controller
         $totalCategory   = Category::count();
         $totalcitys    = City::count();
         $totalUser    = User::count();
+        $report      =  Report::count();
+        $Subscribers = PaymentHistory::distinct('user_id')->count('user_id');
         return view('yellowpages::Admin.dashboard', compact(
-             'totallisting', 'totalCategory', 'totalcitys','totalUser' 
+             'totallisting', 'totalCategory', 'totalcitys','totalUser' ,'report','Subscribers'
         ));
     }
 

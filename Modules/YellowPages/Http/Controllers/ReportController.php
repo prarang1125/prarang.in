@@ -43,7 +43,7 @@ class ReportController extends Controller
             'business_email' => $request->business_email,
             'number' => $request->number,
             'message' => $request->message,
-            'file_path' => $filePath,
+            'file' => $filePath,
         ]);
 
         return redirect()->back()->with('success', 'Report submitted successfully.');
