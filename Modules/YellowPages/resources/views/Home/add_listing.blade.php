@@ -456,6 +456,87 @@ document.getElementById('submit-btn').addEventListener('click', () => {
     console.log(schedules);
 });
 
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('addSocialMedia').addEventListener('click', function () {
+    const socialMediaForm = document.querySelector('.social-media-row');
+
+    // Create a new row for social media input
+    const newRow = document.createElement('div');
+    newRow.className = 'social-media-row';
+    newRow.style.display = 'flex';
+    newRow.style.alignItems = 'center';
+    newRow.style.gap = '10px';
+    newRow.style.marginBottom = '10px';
+
+    // Create the select element for social media
+    const select = document.createElement('select');
+    select.name = 'socialId[]';
+    select.required = true;
+    select.style.flex = '1';
+    select.style.padding = '8px';
+
+    const defaultOption = document.createElement('option');
+    defaultOption.selected = true;
+    defaultOption.textContent = 'स्थान चुनें';
+    select.appendChild(defaultOption);
+
+    // Ensure the select element is appended to the DOM before populating
+    newRow.appendChild(select);
+
+    // Populate the select options dynamically
+    fetch('/get-social-media') // Replace with your endpoint
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(social => {
+                const option = document.createElement('option');
+                option.value = social.id;
+                option.textContent = social.name;
+                select.appendChild(option);
+            });
+        });
+
+    // Create the input field for description
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.name = 'socialDescription[]';
+    input.placeholder = 'अपना लिंक या विवरण दर्ज करें';
+    input.style.flex = '2';
+    input.style.padding = '8px';
+
+    // Append input to the new row
+    newRow.appendChild(input);
+
+    // Append the new row to the form
+    socialMediaForm.parentNode.insertBefore(newRow, socialMediaForm.nextSibling);
+});
+    // FAQ Toggle
+    const faqToggle = document.getElementById('featuresToggle');
+    if (faqToggle) {
+        faqToggle.addEventListener('change', function () {
+            const faqSection = document.getElementById('faqSection');
+            faqSection.style.display = this.checked ? 'block' : 'none';
+        });
+    }
+});
+
+// FAQ: Add new FAQ item
+function addFAQ() {
+    const faqSection = document.getElementById('faqSection');
+
+    // Create a new FAQ item
+    const faqItem = document.createElement('div');
+    faqItem.className = 'faq-item';
+    faqItem.style.marginBottom = '10px';
+
+    faqItem.innerHTML = `
+        <input type="text" name="faq[]" placeholder="अक्सर पूछे जाने वाले प्रश्न" style="width: 100%; margin-bottom: 5px;">
+        <textarea name="answer[]" placeholder="उत्तर" style="width: 100%; height: 60px;"></textarea>
+    `;
+
+    faqSection.insertBefore(faqItem, faqSection.querySelector('.add-new'));
+}
+
+
 </script>
     
 </body>

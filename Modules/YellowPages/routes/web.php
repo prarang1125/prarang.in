@@ -6,6 +6,7 @@ use Modules\YellowPages\Http\Controllers\ListingController;
 use Modules\YellowPages\Http\Controllers\VCardController;
 use Modules\YellowPages\Http\Controllers\ReviewController;
 use Modules\YellowPages\Http\Controllers\AuthModalController;
+use Modules\YellowPages\Http\Controllers\ReportController;
 use Modules\YellowPages\Http\Controllers\admin\AuthController;
 use Modules\YellowPages\Http\Controllers\admin\AdminController;
 use Modules\YellowPages\Http\Controllers\admin\PaymentController;
@@ -100,6 +101,9 @@ Route::post('/vcard/listing-delete/{id}', [BusinessListingController::class, 'li
 Route::post('/vcard/Savelisting-delete/{id}', [BusinessListingController::class, 'SavelistingDelete'])->name('vCard.Savelisting-delete');
 Route::get('/vcard/listing-edit/{id}', [BusinessListingController::class, 'listingEdit'])->name('vCard.listing-edit');
 Route::put('/vcard/listing-update/{id}', [BusinessListingController::class, 'listingUpdate'])->name('vCard.listing-update');
+
+Route::get('/vcard/report', [ReportController::class, 'index'])->name('vCard.report');
+Route::post('/vcard/Report-submit', [ReportController::class, 'store'])->name('vCard.report');
 
 });
 

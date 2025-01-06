@@ -18,7 +18,7 @@ class ReportController extends Controller
      */
     public function index()
     {
-        return view('yellowpages::report.create');
+        return view("yellowpages::Vcard.report");
     }
     public function store(Request $request)
     {

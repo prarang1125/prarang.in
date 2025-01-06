@@ -50,7 +50,7 @@
         <br>
         <h6>खाता</h6>
         <li>
-            <a href="{{ url('yellow-pages/vcard/paymentHistory') }}">
+            <a href="{{ url('yellow-pages/vcard/report') }}">
                 <div class="parent-icon"><i class="bx bx-wallet"></i></div>
                 <div class="menu-title">लेन-देन</div>
             </a>
@@ -75,5 +75,10 @@
                 <div class="menu-title">समीक्षा</div>
             </a>
         </li>
+        <li>
+            <a href="{{ url('yellow-pages/vcard/report') }}">
+                <div class="parent-icon"><i class="bx bx-chart"></i></div>
+                <div class="menu-title">संदेश</div>
+            </a>
+        </li>
 </ul>
-<!-- End Navigation -->
