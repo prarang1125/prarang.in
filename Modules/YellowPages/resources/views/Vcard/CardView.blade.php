@@ -14,7 +14,7 @@
                 <!-- Banner -->
                 @if ($vcard->banner_img)
                     <div class="text-center mb-3">
-                        <img src="{{ asset('storage/' . $vcard->banner_img) }}" alt="Cover Photo" class="img-fluid rounded" style="object-fit: cover; width: 100%; height: auto;">
+                        <img src="{{ Storage::url($vcard->banner_img) }}" alt="Cover Photo" class="img-fluid rounded" style="object-fit: cover; width: 100%; height: auto;">
                     </div>
                 @endif
 

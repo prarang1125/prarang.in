@@ -69,7 +69,7 @@
               </form>
                 <div class="text-center lp-search-description" style="margin-top: 20px;">
                     <p>{{ __('messages.Looking_for_a_service') }}</p>
-                    <img src="{{ asset('storage/images/banner-arrow.png') }}" alt="banner-arrow" class="banner-arrow" style="margin-top: 10px;" />
+                    <img src="{{ asset('assets/images/banner-arrow.png') }}" alt="banner-arrow" class="banner-arrow" style="margin-top: 10px;" />
                 </div>
             </div>
         </div>
@@ -81,7 +81,7 @@
                   <div class="col-xl-2 col-md-4">
                       <div class="icon-box" style="padding: 20px; text-align: center; border: 1px solid #ddd; border-radius: 10px;">
                           <div class="icon" style="width: 80px; height: 80px; margin: 0 auto;">
-                              <img src="{{ asset('storage/' . $category->categories_url) }}" alt="{{ $category->name }}" style="width: 100%; height: 100%; object-fit: cover;" />
+                              <img src="{{ Storage::url($category->categories_url) }}" alt="{{ $category->name }}" style="width: 100%; height: 100%; object-fit: cover;" />
                           </div>
                           <h4 class="title" style="font-size: 16px; margin-top: 10px;">
                               <!-- Add the link to the listing page with the category ID -->
@@ -109,7 +109,8 @@
                 <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="{{ ($index + 1) * 100 }}">
                     <a href="{{ route('yp.listing') }}?city={{ $city->id }}" class="card-link">
                         <div class="card">
-                            <img src="{{ asset('storage/' . $city->cities_url) }}" class="card-img-top" alt="{{ $city->name }}">
+                            
+                            <img src="{{ Storage::url($city->cities_url) }}" class="card-img-top" alt="{{ $city->name }}">
                             <div class="card-body text-center">
                                 <h5 class="card-title">{{$city->name}}</h5>
                             </div>
@@ -136,7 +137,7 @@
               <div class="swiper-slide">
                 <a href="{{ route('yp.listing-details', $listing->id) }}" style="display: block;">
                   <div class="listing-item" style="background: #fff; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); padding: 15px; text-align: center; transition: 0.3s;">
-                      <img src="{{ asset('storage/' . ($listing->feature_img ?? 'default.jpg')) }}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;" alt="{{ $listing->listing_title ?? 'No Title' }}">
+                      <img src="{{ Storage::url($listing->feature_img?? 'default.jpg') }}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;" alt="{{ $listing->listing_title ?? 'No Title' }}">
                       <div class="listing-details">
                           <h3 style="font-size: 1.5rem; margin-bottom: 10px;">{{ $listing->listing_title ?? 'No Title' }}</h3>
                           <p style="font-size: 1rem; color: #555;">Category: {{ $listing->category->name ?? 'N/A' }}</p>

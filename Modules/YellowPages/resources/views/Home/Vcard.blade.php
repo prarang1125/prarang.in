@@ -47,7 +47,7 @@
 
     <!-- Image Content -->
     <div style="flex: 1; max-width: 400px; padding: 20px; box-sizing: border-box; text-align: center;">
-      <img src="{{ asset('storage/Vcard/vcard.png') }}" alt="Digital Business Card" style="width: 100%; height: auto; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);">
+      <img src="{{ asset('assets/Vcard/vcard.png') }}" alt="Digital Business Card" style="width: 100%; height: auto; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);">
     </div>
   </div>
     <!-- First Step -->
@@ -120,7 +120,7 @@
     
             <!-- Image Content -->
             <div style="flex: 1; max-width: 400px; padding: 20px; box-sizing: border-box; text-align: center;">
-                <img src="{{ asset('storage/Vcard/vcard-1.png') }}" alt="Digital Business Card" style="width: 100%; height: auto; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);">
+                <img src="{{ asset('assets/Vcard/vcard-1.png') }}" alt="Digital Business Card" style="width: 100%; height: auto; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);">
               </div>
         <!-- Text Content -->
         <div style="flex: 1; max-width: 600px; padding: 20px; box-sizing: border-box;">
@@ -144,7 +144,7 @@
     
         <!-- Image Content -->
         <div style="flex: 1; max-width: 400px; padding: 20px; box-sizing: border-box; text-align: center;">
-          <img src="{{ asset('storage/Vcard/vcard-2.png') }}" alt="Digital Business Card" style="width: 100%; height: auto; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);">
+          <img src="{{ asset('assets/Vcard/vcard-2.png') }}" alt="Digital Business Card" style="width: 100%; height: auto; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);">
         </div>
         
       </div>

@@ -16,6 +16,7 @@ class vCardAuthcontroller extends Controller
 {
     public function index()
     {
+        
         return view('yellowpages::Vcard.login');
     }
 

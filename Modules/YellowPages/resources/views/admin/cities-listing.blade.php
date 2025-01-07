@@ -56,7 +56,7 @@
                                     <td class="align-middle">{{ $city->name }}</td> <!-- Vertically center the Name column -->
                                     <td class="align-middle">
                                         @if($city->cities_url)
-                                            <img src="{{ asset('storage/' . $city->cities_url) }}" alt="{{ $city->name }}" style="width: 100px; height: 100px;">
+                                            <img src="{{ Stoage::url($cities->cities_url) }}" alt="{{ $city->name }}" style="width: 100px; height: 100px;">
                                         @else
                                         चित्र उपलब्द नहीं है
                                         @endif

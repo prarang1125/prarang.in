@@ -33,13 +33,14 @@ use Illuminate\Support\Facades\App;
 |
 */
                        
-Route::group(['prefix' => 'yellow-pages','middleware' => 'language'], routes: function () {
-  // dd((App::get_local()));
+Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function () {
+  Route::get('/home', [HomeController::class, 'index'])->name('yp.home');
 
+    Route::get('/login', [AuthModalController::class, 'index'])->name('yp.login');
     Route::post('/authLogin', [AuthModalController::class, 'login'])->name('yp.authLogin');
     Route::post('/register', [AuthModalController::class, 'register'])->name('yp.register');
     Route::post('/logout', [AuthModalController::class, 'logout'])->name('yp.logout');
-    Route::get('/home', [HomeController::class, 'index'])->name('yp.home');
+   
     Route::get('/signIn', [HomeController::class, 'signIn'])->name('signIn');
     Route::get('/listing_plan', [HomeController::class, 'listing_plan'])->name('yp.listing_plan');
     Route::get('/bazzar_plan', [HomeController::class, 'bazzar_plan'])->name('yp.bazzar_plan');
@@ -108,7 +109,7 @@ Route::post('/vcard/Report-submit', [ReportController::class, 'store'])->name('v
 });
 
      Route::group(['middleware' => 'admin.guest'], function(){
-    Route::get('login', [AuthController::class, 'index'])->name('admin.login');
+    Route::get('/admin/login', [AuthController::class, 'index'])->name('admin.login');
     Route::post('authenticate', [AuthController::class, 'authenticate'])->name('admin.authenticate');
     });
     Route::group(['middleware' => 'admin.auth'], function(){

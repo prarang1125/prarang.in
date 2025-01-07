@@ -27,5 +27,14 @@ return [
     'Find_the_Best_Services'=>'इन शहरों में सर्वोत्तम सेवाएँ और उत्पाद पाएँ',
     'Listings'=>'लिस्टिंग',
     'Popular_Listings_In_Our_Directory'=>'हमारी निर्देशिका में लोकप्रिय सूचियाँ',
+
+    'attributes' => [
+    'email' => 'ईमेल',
+    'password' => 'पासवर्ड',
+    'name' => 'नाम',
+],
+'required' => ':attribute फ़ील्ड अनिवार्य है।',
+
+
     
 ];

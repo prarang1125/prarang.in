@@ -15,14 +15,11 @@
     <div class="branding d-flex align-items-center">
         <div class="container position-relative d-flex align-items-center justify-content-between">       
             <a href="{{ url('/yellow-pages/home') }}" class="logo d-flex align-items-center">
-                <img src="{{ asset('storage/images/logo/yellow_logo.png') }}" alt="Logo">
+                <img src="{{ asset('assets/images/logo/yellow_logo.png') }}" alt="Logo">
+                
             </a>
             <nav id="navmenu" class="navmenu">
-                <div class="signature-image">
-                    <img src="https://yellowpages.prarang.in/wp-content/themes/listingpro/assets/images/cnsignature.png" 
-                         alt="Signature Image" 
-                         class="custom-image img-fluid">
-                </div>
+                
                 <ul>
                     @if(Auth::check())
                     <!-- Dropdown for logged-in users -->
@@ -40,7 +37,7 @@
                         @csrf
                     </form>
                 @else
-                    <li><a href="{{ url('yellow-pages/vCard/dashboard') }}" id="toggleModal" data-bs-toggle="modal" data-bs-target="#signInModal">दाखिल करना</a>
+                    <li><a href="{{ url('yellow-pages/login') }}">दाखिल करना</a>
                     </li>
                 @endif
                     <li class="action-buttons">
@@ -56,7 +53,7 @@
     </div>
 </header>
 
-<div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="signInModal" tabindex="-1" role="dialog" aria-labelledby="signInModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="border-radius: 8px; border: 1px solid #ccc;">
             <div class="modal-header" style="background-color: #007bff; color: white;">
@@ -82,10 +79,10 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <!-- Registration Modal -->
-<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content" style="border-radius: 8px; border: 1px solid #ccc;">
             <div class="modal-header" style="background-color: #007bff; color: white;">
@@ -95,7 +92,6 @@
             <div class="modal-body" style="padding: 20px;">
                 <div id="registerError" class="text-danger mt-2" style="display: none;"></div>
                 <form method="POST" action="{{ route('yp.register') }}">
-
                     @csrf
                     <div class="form-group">
                         <label for="registerName">पूरा नाम</label>
@@ -118,11 +114,9 @@
             </div>
         </div>
     </div>
-</div>
-
+</div> --}}
 <!-- Include jQuery and Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </body>
 </html>

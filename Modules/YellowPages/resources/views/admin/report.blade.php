@@ -59,7 +59,7 @@
                                     <td class="align-middle">{{ $report->message }}</td>
                                     <td class="align-middle">
                                         @if($report->file)
-                                            <img src="{{ asset('storage/' . $report->file) }}" alt="{{ $report->name }}" style="width: 100px; height: 100px;">
+                                            <img src="{{ Storage::url($report->file) }}" alt="{{ $report->name }}" style="width: 100px; height: 100px;">
                                         @else
                                             <p>कोई छवि उपलब्ध नहीं</p>
                                         @endif

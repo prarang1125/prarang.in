@@ -59,7 +59,7 @@
                                     <td class="align-middle">{{ $category->slug }}</td> <!-- Vertically center the Name column -->
                                     <td class="align-middle">
                                         @if($category->categories_url)
-                                            <img src="{{ asset('storage/' . $category->categories_url) }}" alt="{{ $category->name }}" style="width: 100px; height: 100px;">
+                                            <img src="{{ storage::url($category->categories_url) }}" alt="{{ $category->name }}" style="width: 100px; height: 100px;">
                                         @else
                                           चित्र उपलब्द नहीं है
                                         @endif

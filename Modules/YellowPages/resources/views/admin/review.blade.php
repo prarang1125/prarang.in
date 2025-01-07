@@ -54,7 +54,7 @@
                             
                                 @if(!empty($images) && is_array($images))
                                     @foreach($images as $image)
-                                        <img src="{{ asset('storage/' . $image) }}" alt="Review Image" width="50" height="50">
+                                        <img src="{{ Storage::url($image) }}" alt="Review Image" width="50" height="50">
                                     @endforeach
                                 @else
                                     N/A
