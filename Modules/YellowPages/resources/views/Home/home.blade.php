@@ -42,7 +42,7 @@
                     <span>{{ __('messages.explore_your_city') }}</span>
                 </h2>
                 <p>{{ __('messages.Let_uncover_the_best_Businesses') }}</p>
-                <form action="{{ route('yp.listing') }}" method="GET" class="search-form d-flex justify-content-center mt-4">
+                {{-- <form action="{{ route('yp.listing') }}" method="GET" class="search-form d-flex justify-content-center mt-4">
                     <!-- Categories Dropdown -->
                     <select name="category" class="form-select" style="width: 300px; padding: 10px; margin-right: 10px;">
                       <option value="">{{ __('messages.select_category') }}</option>
@@ -66,7 +66,36 @@
                     <button type="submit" class="btn btn-primary">
                         <i class="bi bi-search" style="font-size: 1.2rem;"></i>
                     </button>
-                </form>            
+                </form>             --}}
+
+                <form action="{{ url('yellow-pages/listing/' . request('') . '/' . request('')) }}" method="GET" class="search-form d-flex justify-content-center mt-4">
+                    <!-- Categories Dropdown -->
+                    <select name="category" class="form-select" style="width: 300px; padding: 10px; margin-right: 10px;" >
+                        <option value="">{{ __('messages.select_category') }}</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->slug }}" {{ request('category') == $category->slug ? 'selected' : '' }}>
+                                {{ $category->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                
+                    <!-- Cities Dropdown -->
+                    <select name="city" class="form-select" style="width: 200px; padding: 10px; margin-right: 10px;" onchange="updateFormAction()">
+                        <option value="">{{ __('messages.select_city') }}</option>
+                        @foreach ($cities as $city)
+                            <option value="{{ $city->name }}" {{ request('city') == $city->name ? 'selected' : '' }}>
+                                {{ $city->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                
+                    <!-- Search Button -->
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-search" style="font-size: 1.2rem;"></i>
+                    </button>
+                </form>
+                
+                
                 
                 <div class="text-center lp-search-description" style="margin-top: 20px;">
                     <p>{{ __('messages.Looking_for_a_service') }}</p>
@@ -82,14 +111,14 @@
                   <div class="col-xl-2 col-md-4">
                       <div class="icon-box" style="padding: 20px; text-align: center; border: 1px solid #ddd; border-radius: 10px;">
                           <div class="icon" style="width: 80px; height: 80px; margin: 0 auto;">
-                            <a href="{{ url('yellow-pages/' .$category->slug) }}">
+                            <a href="{{ url('yellow-pages/category' .$category->slug) }}">
                                 <img src="{{ Storage::url($category->categories_url) }}" alt="{{ $category->name }}" style="width: 100%; height: 100%; object-fit: cover;" />
                             </a>
                 
                           </div>
                           <h4 class="title" style="font-size: 16px; margin-top: 10px;">
                               <!-- Add the link to the listing page with the category ID -->
-                              <a href="{{ url('yellow-pages/' .$category->slug) }}" class="stretched-link">{{$category->name}}</a>
+                              <a href="{{ route('category.show', ['category_name' => $category->slug]) }}" class="stretched-link">{{$category->name}}</a>
                           </h4>
                       </div>
                   </div>
@@ -111,7 +140,7 @@
         <div class="row gy-4">
             @foreach($cities as $index => $city)
                 <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="{{ ($index + 1) * 100 }}">
-                    <a href="{{ url('yellow-pages/' .$city->name) }}" class="card-link">
+                    <a href="{{ route('city.show', ['city_name' => $city->name]) }}" class="card-link">
                         <div class="card">
                             
                             <img src="{{ Storage::url($city->cities_url) }}" class="card-img-top" alt="{{ $city->name }}">
@@ -188,6 +217,7 @@
       }
   });
 </script>
+
 
 
   </main>

@@ -48,12 +48,19 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
     Route::get('/showSearchcategory', [HomeController::class, 'showSearchcategory']);
 
     ##------------------------- Drop Down data get ---------------------##
-    // Route::get('/{category_name}', [ListingController::class, 'show'])->name('category.show');
+// Route for filtering by category only
+Route::get('category/{category_name}', [ListingController::class, 'show'])->name('category.show');
+
+// Route for filtering by city only
+Route::get('city/{city_name}', [ListingController::class, 'show'])->name('city.show');
+
+// Route for filtering by category and city
+    Route::get('/listing/{category_name}/{city_name}', [ListingController::class, 'show'])->name('category.city.show');
     Route::get('/listing', [ListingController::class, 'index'])->name('yp.listing');
     Route::get('/listing-details/{listingId}', [ListingController::class, 'listing'])->name('yp.listing-details');
-    Route::get('/getLocationData', [ListingController::class, 'getLocationData'])->name('yp.getLocationData');
-
+    
     Route::group(['middleware' => 'auth.custom'], function(){
+      Route::get('/getLocationData', [ListingController::class, 'getLocationData'])->name('yp.getLocationData');
     Route::post('/store-listing', [ListingController::class, 'store'])->name('yp.listing.store');
     Route::get('/submit-listing', [ListingController::class, 'submit_listing'])->name('yp.listing.submit');
     Route::get('/Save-listing/{id}', [ListingController::class, 'save_listing'])->name('yp.listing.save');

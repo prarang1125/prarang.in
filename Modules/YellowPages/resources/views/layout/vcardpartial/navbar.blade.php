@@ -36,6 +36,8 @@
                         </li>
                         <li><a class="dropdown-item" href="{{ route('vCard.dashboard') }}"><i class='bx bx-home-circle'></i><span>डैशबोर्ड</span></a>
                         </li>
+                        <li><a class="dropdown-item" href="{{ route('yp.getLocationData') }}"><i class='bx bx-home-circle'></i><span>सूची जोड़ें</span></a>
+                        </li>
                         <li>
                             <div class="dropdown-divider mb-0"></div>
                         </li>

@@ -50,49 +50,36 @@ class ListingController extends Controller
 
 
 
-    public function show($category_name)
+    public function show($category_name, $city_name)
     {
-        // Retrieve all categories and cities
+        // Retrieve category and city based on URL parameters
+        $category = Category::where('slug', $category_name)->firstOrFail();
+        $city = City::where('name', $city_name)->firstOrFail();
+    
+        // Retrieve all categories and cities to populate the dropdowns
         $categories = Category::all();
         $cities = City::all();
     
         // Initialize the query for Business Listings
         $query = BusinessListing::query();
     
-        // Apply category filter based on the category_name from URL
-        if ($category_name) {
-            $query->whereHas('category', function ($q) use ($category_name) {
-                $q->where('name', $category_name);  // Filter by category name
-            });
-        }
-    
-        // Apply city filter if selected (if the city ID is passed in the request)
-        if (request()->filled('city')) {
-            $query->where('city_id', request()->city);
-        }
-    
-        // Fetch business listings with related category and business hours
-        $listings = $query->with(['category', 'hours'])->get()->map(function ($listing) {
-            $currentTime = Carbon::now();
-    
-            // Check if business hours exist
-            if ($listing->hours) {
-                $openTime = Carbon::parse($listing->hours->open_time);
-                $closeTime = Carbon::parse($listing->hours->close_time);
-                $listing->is_open = $currentTime->between($openTime, $closeTime); // Determine if open
-            } else {
-                // If no hours, consider it closed
-                $listing->is_open = false;
-            }
-    
-            return $listing;
+        // Filter by category
+        $query->whereHas('category', function ($q) use ($category) {
+            $q->where('slug', $category->slug);
         });
     
+        // Filter by city
+        $query->where('city_id', $city->id);
+    
+        // Fetch the listings
+        $listings = $query->with(['category', 'hours'])->get();
+    
         // Return the view with filtered data
-        return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities'));
+        return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities', 'category', 'city'));
     }
     
-
+    
+    
     public function index(Request $request)
     {
         $categories = Category::all();

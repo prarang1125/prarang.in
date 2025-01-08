@@ -29,7 +29,7 @@ class AuthModalController extends Controller
         // Attempt login with credentials
         $credentials = $request->only('email', 'password');
         if (Auth::attempt($credentials + ['role' => 2])) {
-            return redirect()->route('yp.home'); // Redirect if authenticated
+            return redirect()->route('vCard.dashboard'); // Redirect if authenticated
         }
         // Return with error if login fails
         return redirect()->back()->withErrors(['loginError' => 'Invalid credentials'])->withInput();
@@ -60,7 +60,7 @@ class AuthModalController extends Controller
         // Log in the new user
         Auth::login($user);
 
-        return redirect()->route('yp.home'); // Redirect after registration
+        return redirect()->route('vCard.dashboard'); // Redirect after registration
     }
 
     // Logout method
