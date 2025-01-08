@@ -31,7 +31,6 @@ class AuthModalController extends Controller
         if (Auth::attempt($credentials + ['role' => 2])) {
             return redirect()->route('yp.home'); // Redirect if authenticated
         }
-
         // Return with error if login fails
         return redirect()->back()->withErrors(['loginError' => 'Invalid credentials'])->withInput();
     }

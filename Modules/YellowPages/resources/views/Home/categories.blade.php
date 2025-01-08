@@ -91,7 +91,7 @@
     @foreach($listings as $listing)
         <div style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
             <a href="{{ route('yp.listing-details', $listing->id) }}" style="display: block;">
-            <img src="{{ storage::url($listing->feature_img ?? 'default.jpg')) }}" alt="{{ $listing->listing_title }}" style="width: 100%; height: auto;">
+            <img src="{{ storage::url($listing->feature_img ?? 'default.jpg') }}" alt="{{ $listing->listing_title }}" style="width: 100%; height: auto;">
             <div style="padding: 20px;">
                 <div style="background-color: {{ $listing->status === 'Closed' ? '#ff4d4d' : '#28a745' }}; color: white; padding: 5px; border-radius: 5px; font-size: 12px; display: inline-block; margin-bottom: 10px;">
                     {{ $listing->is_open ? 'Open' : 'Closed' }}

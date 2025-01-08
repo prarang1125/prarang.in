@@ -49,42 +49,85 @@ class ListingController extends Controller
     // }
 
 
-    public function index(Request $request)
-{
-    // Fetch all categories and cities for dropdowns
-    $categories = Category::all();
-    $cities = City::all();
-    $query = BusinessListing::query();
 
-    // Apply category filter if selected
-    if ($request->filled('category')) {
-        $query->where('category_id', $request->category);
-    }
-
-    // Apply city filter if selected
-    if ($request->filled('city')) {
-        $query->where('city_id', $request->city);
-    }
-
-    // Fetch business listings with related category and business hours
-    $listings = $query->with(['category', 'hours'])->get()->map(function ($listing) {
-        $currentTime = Carbon::now();
-
-        // Check if business hours exist
-        if ($listing->hours) {
-            $openTime = Carbon::parse($listing->hours->open_time);
-            $closeTime = Carbon::parse($listing->hours->close_time);
-            $listing->is_open = $currentTime->between($openTime, $closeTime); // Determine if open
-        } else {
-            // If no hours, consider it closed
-            $listing->is_open = false;
+    public function show($category_name)
+    {
+        // Retrieve all categories and cities
+        $categories = Category::all();
+        $cities = City::all();
+    
+        // Initialize the query for Business Listings
+        $query = BusinessListing::query();
+    
+        // Apply category filter based on the category_name from URL
+        if ($category_name) {
+            $query->whereHas('category', function ($q) use ($category_name) {
+                $q->where('name', $category_name);  // Filter by category name
+            });
         }
-        return $listing;
-    });
+    
+        // Apply city filter if selected (if the city ID is passed in the request)
+        if (request()->filled('city')) {
+            $query->where('city_id', request()->city);
+        }
+    
+        // Fetch business listings with related category and business hours
+        $listings = $query->with(['category', 'hours'])->get()->map(function ($listing) {
+            $currentTime = Carbon::now();
+    
+            // Check if business hours exist
+            if ($listing->hours) {
+                $openTime = Carbon::parse($listing->hours->open_time);
+                $closeTime = Carbon::parse($listing->hours->close_time);
+                $listing->is_open = $currentTime->between($openTime, $closeTime); // Determine if open
+            } else {
+                // If no hours, consider it closed
+                $listing->is_open = false;
+            }
+    
+            return $listing;
+        });
+    
+        // Return the view with filtered data
+        return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities'));
+    }
+    
 
-    // Return the view with filtered data
-    return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities'));
-}
+    public function index(Request $request)
+    {
+        $categories = Category::all();
+        $cities = City::all();
+        $query = BusinessListing::query();
+    
+        // Apply category filter if selected
+        if ($request->filled('category')) {
+            $query->where('category_id', $request->category);
+        }
+    
+        // Apply city filter if selected
+        if ($request->filled('city')) {
+            $query->where('city_id', $request->city);
+        }
+    
+        // Fetch business listings with related category and business hours
+        $listings = $query->with(['category', 'hours'])->get()->map(function ($listing) {
+            $currentTime = Carbon::now();
+    
+            // Check if business hours exist
+            if ($listing->hours) {
+                $openTime = Carbon::parse($listing->hours->open_time);
+                $closeTime = Carbon::parse($listing->hours->close_time);
+                $listing->is_open = $currentTime->between($openTime, $closeTime); // Determine if open
+            } else {
+                // If no hours, consider it closed
+                $listing->is_open = false;
+            }
+            return $listing;
+        });
+    
+        // Return the view with filtered data
+        return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities'));
+    }    
 
     public function submit_listing(){
         return view("yellowpages::Home.submit_listing");

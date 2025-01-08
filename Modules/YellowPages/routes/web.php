@@ -48,7 +48,7 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
     Route::get('/showSearchcategory', [HomeController::class, 'showSearchcategory']);
 
     ##------------------------- Drop Down data get ---------------------##
-
+    Route::get('/{category_name}', [ListingController::class, 'show'])->name('category.show');
     Route::get('/listing', [ListingController::class, 'index'])->name('yp.listing');
     Route::get('/listing-details/{listingId}', [ListingController::class, 'listing'])->name('yp.listing-details');
     Route::get('/getLocationData', [ListingController::class, 'getLocationData'])->name('yp.getLocationData');
