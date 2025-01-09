@@ -164,6 +164,5 @@ Route::post('/vcard/Report-submit', [ReportController::class, 'store'])->name('v
 
 
      Route::get('{category}/{city}', [ListingController::class, 'index'])->name('yp.listing');
-
    
 });
