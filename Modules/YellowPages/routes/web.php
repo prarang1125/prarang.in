@@ -52,23 +52,18 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
     Route::get('city/{city_name}', [ListingController::class, 'showByCity'])->name('city.show');
     Route::get('/listing-details/{listingId}', [ListingController::class, 'listing'])->name('yp.listing-details');
 
-
-    
-    
     Route::group(['middleware' => 'auth.custom'], function(){
     Route::get('/getLocationData', [ListingController::class, 'getLocationData'])->name('yp.getLocationData');
     Route::post('/store-listing', [ListingController::class, 'store'])->name('yp.listing.store');
     Route::get('/submit-listing', [ListingController::class, 'submit_listing'])->name('yp.listing.submit');
     Route::get('/Save-listing/{id}', [ListingController::class, 'save_listing'])->name('yp.listing.save');
-
   });
 
     Route::post('/reviews/store/{listing}', [ReviewController::class, 'store'])->name('reviews.store');
     Route::get('/reviews/submit', [ReviewController::class, 'submit_review'])->name('review.submit');
-
-        Route::get('/vCard/login', [vCardAuthcontroller::class, 'index'])->name('vCard.login');
-        Route::post('/vCard/authenticate', [vCardAuthcontroller::class, 'authenticate'])->name('vCard.authenticate');
-        Route::get('/vcard', [VCardController::class, 'index'])->name('yp.vcard');
+    Route::get('/vCard/login', [vCardAuthcontroller::class, 'index'])->name('vCard.login');
+    Route::post('/vCard/authenticate', [vCardAuthcontroller::class, 'authenticate'])->name('vCard.authenticate');
+    Route::get('/vcard', [VCardController::class, 'index'])->name('yp.vcard');
         
 Route::group(['middleware' => 'auth.custom'], function(){
 Route::post('vCard/stripe-checkout', [CreateVCardController::class, 'stripeCheckout'])->name('vcard.stripeCheckout');
@@ -161,7 +156,6 @@ Route::post('/vcard/Report-submit', [ReportController::class, 'store'])->name('v
 
      #this route is use for admin Rating details
      Route::get('Report', [RatingController::class, 'Report'])->name('admin.Report');
-
 
      Route::get('{category}/{city}', [ListingController::class, 'index'])->name('yp.listing');
    
