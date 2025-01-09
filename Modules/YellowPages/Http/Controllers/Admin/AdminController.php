@@ -24,8 +24,8 @@ class AdminController extends Controller
     public function dashboard()
     {
         $totallisting  = BusinessListing::count();
-        $totalCategory   = Category::count();
-        $totalcitys    = City::count();
+        $totalCategory   = Category::where('is_active', 1)->count();
+        $totalcitys    = City::where('is_active', 1)->count();
         $totalUser    = User::count();
         $report      =  Report::count();
         $Subscribers = PaymentHistory::distinct('user_id')->count('user_id');

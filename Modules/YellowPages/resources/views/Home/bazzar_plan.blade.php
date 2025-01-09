@@ -1,46 +1,17 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>प्रारंग - येलोपेजेस</title>
-    <meta name="description" content="Find local crafts and businesses in your area. Listings for furniture, embroidery, and more.">
-    <meta name="keywords" content="craft, furniture, embroidery, local business">
+@extends('yellowpages::layout.script')
 
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+@section('title', __('messages.yellow_pages'))
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect">
-    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+@section('content')
 
-    <!-- Vendor CSS Files -->
-    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-    
-    <!-- Main CSS File -->
-    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
-</head>
-
-<body style="font-family: Arial, sans-serif; background-color: #f5f9fc; margin: 0; padding: 0;">
-
-    <!-- Navbar Include -->
-    @include('yellowpages::layout.navbar');
-<br><br>
     <!-- Header Section -->
+    <br><br>
     <div style="position: relative; background-image: url('{{ Storage::url('categories/cate_bg.jpg') }}'); background-size: cover; background-position: center; padding: 60px; text-align: center; color: white;">
         <!-- Optional Overlay for better text visibility -->
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5);"></div>
         <h1 style="position: relative; z-index: 1; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);">अपनी योजना चुनें</h1>
     </div>
-    
 
-    <!-- Info Section -->
     <div style="text-align: center; padding: 20px;">
         <h6 style="color: #d9534f; font-weight: revert;">
             कृपया हमारे बाज़ार लिस्टिंग का उपयोग करके अपने व्यवसाय के अंतर्गत उत्पादों को सूचीबद्ध करना शुरू करने से पहले हमारे व्यवसाय लिस्टिंग का उपयोग करके अपने व्यवसाय को प्रारंग के साथ सूचीबद्ध करें।
@@ -116,18 +87,12 @@
         <button style="padding: 15px; font-size: 16px; color: #fff; background-color: #000; border: none; cursor: pointer; width: 100%;" onclick="window.location.href='{{ route('yp.getLocationData') }}'">जारी रखना</button>
     </div>
 </div>
+  
+@endsection
+@push('scripts')
+@endpush
 
-    @include('yellowpages::layout.footer')
 
-    <!-- Vendor JS Files -->
-    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
-    <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
-    <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
 
-    <!-- Main JS File -->
-    <script src="{{ asset('assets/js/main.js') }}"></script>
 
-</body>
-</html>
+

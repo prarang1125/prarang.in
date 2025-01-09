@@ -1,35 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <title>Prarang - YellowPages</title>
-        <meta name="description" content="Find local crafts and businesses in your area. Listings for furniture, embroidery, and more.">
-        <meta name="keywords" content="craft, furniture, embroidery, local business">
-      
-        <!-- Favicons -->
-        <link href="assets/img/favicon.png" rel="icon">
-        <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-      
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com" rel="preconnect">
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Montserrat:wght@100;300;400;500;600;700;900&family=Poppins:wght@100;300;400;500;600;700;900&display=swap" rel="stylesheet">
-      
-        <!-- Vendor CSS Files -->
-        <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-        
-        <!-- Main CSS File -->
-        <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
-    </head>
+@extends('yellowpages::layout.script')
 
-    <body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f5f5f5;">
-        <!-- Navbar Include -->
-        @include('yellowpages::layout.navbar');
+@section('title', __('messages.yellow_pages'))
+
+@section('content')
+<br>
     
         <!-- Header with Background Color -->
         <div style="background-image: url('{{ Storage::url('categories/cate_bg.jpg') }}'); background-size: cover; background-position: center; padding: 60px; color: white; text-align: center;">
@@ -123,17 +97,10 @@
 </div>
 
         </div>
-        @include('yellowpages::layout.footer')
-        <!-- Vendor JS Files -->
-        
-        
-        <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-        <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
-        <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-        <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
-        <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-        <!-- Main JS File -->
-        <script src="{{ asset('assets/js/main.js') }}"></script>
+
+        @endsection
+    @push('scripts')
+
         <script>
             function replaceContent(element, newText) {
                 element.textContent = newText;
@@ -153,6 +120,4 @@
                 }
             }
         </style>
-    </body>
-    
-</html>
+  @endpush

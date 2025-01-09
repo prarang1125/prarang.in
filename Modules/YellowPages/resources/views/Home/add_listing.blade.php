@@ -1,35 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>प्रारंग - येलोपेजेस</title>
-    <meta name="description" content="Find local crafts and businesses in your area. Listings for furniture, embroidery, and more.">
-    <meta name="keywords" content="craft, furniture, embroidery, local business">
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+@extends('yellowpages::layout.script')
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect">
-    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+@section('title', __('messages.yellow_pages'))
 
-    <!-- Vendor CSS Files -->
-    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-
-    <!-- Main CSS File -->
-    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/script.js') }}"></script>
-</head>
-
-<body style="font-family: Arial, sans-serif; background-color: #f5f9fc; margin: 0; padding: 0;">
-    <!-- Navbar Include -->
-    @include('yellowpages::layout.navbar');
+@section('content')
     <br>
     <br>
     <!-- Header Section -->
@@ -364,14 +337,11 @@
     </div>
     </form>
     </div>
-    @include('yellowpages::layout.footer')
-    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
-    <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
-    <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    @endsection
+    @push('scripts')
+
+    
+  
    <script>
  document.getElementById('add-day-btn').addEventListener('click', () => {
     const container = document.getElementById('schedule-container');
@@ -538,6 +508,4 @@ function addFAQ() {
 
 
 </script>
-    
-</body>
-</html>
+@endpush

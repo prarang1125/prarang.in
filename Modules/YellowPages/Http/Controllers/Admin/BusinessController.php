@@ -35,8 +35,8 @@ class BusinessController extends Controller
          // Retrieve data for the form
          $listing = BusinessListing::findOrFail($id);
          $listinghours = BusinessHour::where('business_id', $listing->id)->get();
-         $cities = City::all();
-         $categories = Category::all();
+         $categories = Category::where('is_active', 1)->get();
+         $cities = City::where('is_active', 1)->get();
          $company_legal_types = CompanyLegalType::all();
          $number_of_employees = EmployeeRange::all();
          $monthly_turnovers = MonthlyTurnover::all();

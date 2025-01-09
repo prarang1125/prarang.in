@@ -116,7 +116,7 @@ Route::post('/vcard/Report-submit', [ReportController::class, 'store'])->name('v
 
 
      #this route is use for admin users
-     Route::get('user-profile', [AdminController::class, 'userProfile'])->name('admin.user-profile');
+     
      Route::get('user-listing', [AdminController::class, 'userListing'])->name('admin.user-listing');
      Route::get('user-register', [AdminController::class, 'userRegister'])->name('admin.user-register');
      Route::post('users-store', [AdminController::class, 'userStore'])->name('admin.users-store');
@@ -158,5 +158,4 @@ Route::post('/vcard/Report-submit', [ReportController::class, 'store'])->name('v
      Route::get('Report', [RatingController::class, 'Report'])->name('admin.Report');
 
      Route::get('{category}/{city}', [ListingController::class, 'index'])->name('yp.listing');
-   
 });

@@ -11,6 +11,7 @@ use Stripe\Stripe;
 use Stripe\StripeClient;
 use App\Models\PaymentHistory;
 use App\Models\DynamicVcard;
+use App\Models\UserPurchasePlan;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
@@ -244,27 +245,51 @@ public function paymentSuccess(Request $request)
 {
     try {
         $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
+
+        // Retrieve the session details from Stripe
         $session = $stripe->checkout->sessions->retrieve($request->session_id);
 
         if (!$session) {
-            return redirect()->back()->with('error', 'Invalid session ID');
+            return redirect()->back()->with('error', 'Invalid session ID.');
         }
 
         // Access the plan_id from the metadata
         $plan_id = $session->metadata->plan_id ?? null;
+
+        // Ensure the plan exists
+        $plan = Plan::find($plan_id);
+        if (!$plan) {
+            return redirect()->back()->with('error', 'Invalid plan ID.');
+        }
+
+        // Calculate expiration date (assuming the plan has a 'duration' in days)
+        $expiresAt = now()->addDays($plan->duration);
 
         // Save payment history in the database
         PaymentHistory::create([
             'user_id' => auth::id(),
             'plan_id' => $plan_id,
             'transaction_id' => $session->payment_intent,
-            'amount' => $session->amount_total / 100,
+            'amount' => $session->amount_total / 100, // Stripe amount is in cents
             'currency' => $session->currency,
             'status' => $session->payment_status,
         ]);
 
-        User::where('id', Auth::id())->update(['plan_id' => $plan_id]);
-       
+        // Save user purchase plan details using Eloquent
+        UserPurchasePlan::create([
+            'user_id' => auth::id(),
+            'plan_id' => $plan_id,
+            'purchased_at' => now(),
+            'expires_at' => $expiresAt,
+            'amount' => $session->amount_total / 100,
+            'payment_status' => $session->payment_status,
+            'transaction_id' => $session->payment_intent,
+        ]);
+
+        // Update user's active plan
+        User::where('id', auth::id())->update([
+            'plan_id' => $plan_id,
+        ]);
 
         return redirect()->route('vCard.planDetails')->with('success', 'Payment successful and plan activated!');
     } catch (\Exception $e) {

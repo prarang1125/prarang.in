@@ -20,7 +20,7 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class CitiesController extends Controller
 {
     public function citiesListing(Request $request) {
-        $cities = City::all();
+        $cities = City::where('is_active', 1)->get();
     return view('yellowpages::Admin.cities-listing', compact('cities'));
     }
     public function citiesEdit($id){

@@ -1,9 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>सूचीबद्ध करने के लिए धन्यवाद</title>
+@extends('yellowpages::layout.script')
+
+@section('title', __('messages.yellow_pages'))
+
+@section('content')
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -60,5 +59,6 @@
     <a href="/" class="back-home-btn">वापस जाओ</a>
 </div>
 
-</body>
-</html>
+@endsection
+@push('scripts')
+@endpush
