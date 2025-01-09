@@ -25,17 +25,27 @@ class AuthModalController extends Controller
             'email' => ['required', 'regex:/^[^\s@]+@[^\s@]+\.[^\s@]+$/u'],
             'password' => 'required',
         ]);
-        
-
+    
         // Attempt login with credentials
         $credentials = $request->only('email', 'password');
+    
         if (Auth::attempt($credentials)) {
-            return redirect()->route('vCard.dashboard'); // Redirect if authenticated
+            // Get the authenticated user
+            $user = Auth::user();
+    
+            // Check if the user's role is '2' (Customer)
+            if ($user->role == 2) {
+                return redirect()->route('vCard.dashboard'); // Redirect if role is '2'
+            } else {
+                // Log out if the role is not '2'
+                Auth::logout();
+                return redirect()->back()->withErrors(['loginError' => 'Access restricted. You do not have customer rights.'])->withInput();
+            }
         }
+    
         // Return with error if login fails
         return redirect()->back()->withErrors(['loginError' => 'Invalid credentials'])->withInput();
     }
-
     
     // Registration method
     public function register(Request $request)
