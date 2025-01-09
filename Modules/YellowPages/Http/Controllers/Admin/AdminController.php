@@ -12,6 +12,7 @@ use App\Models\PaymentHistory;
 use App\Models\BusinessListing;
 use App\Models\User;
 use App\Models\CompanyLegalType;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;

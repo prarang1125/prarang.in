@@ -51,26 +51,27 @@
                         <tbody>
                             @php $index = 1; @endphp
                             @foreach($cities as $city)
-                                <tr>
-                                    <th scope="row" class="align-middle">{{ $index }}</th> <!-- Vertically center the row index -->
-                                    <td class="align-middle">{{ $city->name }}</td> <!-- Vertically center the Name column -->
-                                    <td class="align-middle">
-                                        @if($city->cities_url)
-                                            <img src="{{ Stoage::url($cities->cities_url) }}" alt="{{ $city->name }}" style="width: 100px; height: 100px;">
-                                        @else
+                            <tr>
+                                <th scope="row" class="align-middle">{{ $index }}</th>
+                                <td class="align-middle">{{ $city->name }}</td>
+                                <td class="align-middle">
+                                    @if($city->cities_url)
+                                        <img src="{{ Storage::url($city->cities_url) }}" alt="{{ $city->name }}" style="width: 100px; height: 100px;">
+                                    @else
                                         चित्र उपलब्द नहीं है
-                                        @endif
-                                    </td>
-                                    <td class="align-middle"> <!-- Center align and vertically align the Action column -->
-                                        <a href="{{ route('admin.cities-edit', $city->id) }}" class="btn btn-sm btn-primary edit-user">संपादन करना</a>
-                                        <form action="{{ route('admin.cities-delete', $city->id) }}" method="POST" style="display:inline;">
-                                            @csrf
-                                            <button type="submit" class="btn btn-sm btn-danger delete-user">मिटाना</button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @php $index++; @endphp
-                            @endforeach
+                                    @endif
+                                </td>
+                                <td class="align-middle">
+                                    <a href="{{ route('admin.cities-edit', $city->id) }}" class="btn btn-sm btn-primary edit-user">संपादन करना</a>
+                                    <form action="{{ route('admin.cities-delete', $city->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        <button type="submit" class="btn btn-sm btn-danger delete-user">मिटाना</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            @php $index++; @endphp
+                        @endforeach
+                        
                         </tbody>
                     </table>
                     

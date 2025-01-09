@@ -68,9 +68,9 @@
                     </button>
                 </form>             --}}
 
-                <form action="{{ url('yellow-pages/listing/' . request('') . '/' . request('')) }}" method="GET" class="search-form d-flex justify-content-center mt-4">
+                <div class="search-form d-flex justify-content-center mt-4">
                     <!-- Categories Dropdown -->
-                    <select name="category" class="form-select" style="width: 300px; padding: 10px; margin-right: 10px;" >
+                    <select id="category" class="form-select" style="width: 300px; padding: 10px; margin-right: 10px;">
                         <option value="">{{ __('messages.select_category') }}</option>
                         @foreach ($categories as $category)
                             <option value="{{ $category->slug }}" {{ request('category') == $category->slug ? 'selected' : '' }}>
@@ -78,9 +78,9 @@
                             </option>
                         @endforeach
                     </select>
-                
+
                     <!-- Cities Dropdown -->
-                    <select name="city" class="form-select" style="width: 200px; padding: 10px; margin-right: 10px;" onchange="updateFormAction()">
+                    <select id="city" class="form-select" style="width: 200px; padding: 10px; margin-right: 10px;">
                         <option value="">{{ __('messages.select_city') }}</option>
                         @foreach ($cities as $city)
                             <option value="{{ $city->name }}" {{ request('city') == $city->name ? 'selected' : '' }}>
@@ -90,12 +90,11 @@
                     </select>
                 
                     <!-- Search Button -->
-                    <button type="submit" class="btn btn-primary">
+                    <button id="submitCatForm" class="btn btn-primary">
                         <i class="bi bi-search" style="font-size: 1.2rem;"></i>
                     </button>
-                </form>
-                
-                
+                </div>
+                 <p class="text-danger citymsg"></p>
                 
                 <div class="text-center lp-search-description" style="margin-top: 20px;">
                     <p>{{ __('messages.Looking_for_a_service') }}</p>
@@ -216,6 +215,19 @@
           }
       }
   });
+
+const submitCatForm = document.getElementById('submitCatForm').addEventListener('click', function() {
+    const catg = document.getElementById('category').value;
+    const city = document.getElementById('city').value;
+    if(catg !=="" && city !==""){
+        const url="{{url('yellow-pages')}}/"+catg+"/"+city;
+        window.location.href = url; 
+    }else{
+        document.querySelector('.citymsg').innerHTML="Please Select Category and City";
+    }
+    
+});
+
 </script>
 
 

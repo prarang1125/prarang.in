@@ -65,5 +65,11 @@ class BusinessListing extends Model
     {
         return $this->belongsTo(Category::class);
     }
+    // In BusinessListing model
+public function city()
+{
+    return $this->belongsTo(City::class);
+}
+
 
 }

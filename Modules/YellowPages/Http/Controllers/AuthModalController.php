@@ -25,16 +25,18 @@ class AuthModalController extends Controller
             'email' => ['required', 'regex:/^[^\s@]+@[^\s@]+\.[^\s@]+$/u'],
             'password' => 'required',
         ]);
+        
 
         // Attempt login with credentials
         $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials + ['role' => 2])) {
+        if (Auth::attempt($credentials)) {
             return redirect()->route('vCard.dashboard'); // Redirect if authenticated
         }
         // Return with error if login fails
         return redirect()->back()->withErrors(['loginError' => 'Invalid credentials'])->withInput();
     }
 
+    
     // Registration method
     public function register(Request $request)
     {
