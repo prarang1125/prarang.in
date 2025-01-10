@@ -1,6 +1,6 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
+
 use Modules\YellowPages\Http\Controllers\ListingController;
 use Modules\YellowPages\Http\Controllers\HomeController;
 use Modules\YellowPages\Http\Controllers\VCardController;

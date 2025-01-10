@@ -351,8 +351,8 @@ h6 {
   .navmenu a,
   .navmenu a:focus {
     color: var(--nav-color);
-    font-size: 15px;
-    padding: 0 2px;
+    /* font-size: 15px;
+    padding: 0 2px; */
     font-family: var(--nav-font);
     font-weight: 500;
     display: flex;
@@ -844,7 +844,7 @@ section,
  /* Prevents the image from repeating */
 }
 .section-bg {
-  background-image: url('/storage/images/background-image.jpg'); /* Replace with your actual image path */
+  /* background-image: url('{{ asset('assets/images/background-image.jpg') }}'); */
   background-size: cover; /* Ensures the image covers the entire section */
   background-position: center; /* Positions the image at the center */
   background-repeat: no-repeat;
@@ -985,7 +985,7 @@ section,
     left: 0;
     right: 0;
     height: calc(50% + 20px);
-    background-color: var(--default-color);
+    /* background-color: var(--default-color); */
     border-top: 1px solid color-mix(in srgb, var(--default-color), transparent 90%);
   }
 }

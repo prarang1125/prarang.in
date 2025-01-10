@@ -3,7 +3,8 @@
 @section('content')
 
     <!-- Hero Section -->
-    <section id="hero" class="hero section-bg accent-background">
+    <section id="hero" class="hero section-bg" style="background-image: url('{{ asset('assets/images/background-image.jpg') }}');">
+      
         <div class="container position-relative text-center" data-aos="fade-up" data-aos-delay="100">
           <div class="row gy-5 justify-content-center">
               <div class="col-lg-8 order-2 order-lg-1 d-flex flex-column justify-content-center mx-auto">
