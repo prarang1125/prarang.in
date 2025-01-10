@@ -77,7 +77,7 @@ class VCardController extends Controller
     {
         try {
             Auth::guard('web')->logout(); // Use the default Laravel authentication guard
-            return redirect()->route('vCard.login'); // Redirect to login page
+            return redirect()->route('yp.login'); // Redirect to login page
         } catch (\Exception $e) {
             Log::error('Error in logout method: ' . $e->getMessage());
             return redirect()->back()->withErrors(['error' => 'Unable to logout.']);

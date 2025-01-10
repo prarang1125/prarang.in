@@ -422,11 +422,23 @@ form.sign-in-form {
 </style>
 <body>
   <div class="container">
+    
     <div class="forms-container">
+      
       <div class="signin-signup">
+        
         <!-- Sign In Form -->
-        <form action="{{ route('yp.authLogin') }}" class="sign-in-form" method="POST" id="auth-form">
+        <form action="{{ route('yp.authLogin') }}" class="sign-in-form" method="POST" id="login-form">
           @csrf
+          @if ($errors->any() && !session('show_signup')) <!-- Check if it's login form and errors exist -->
+          <div class="alert alert-danger" style="color: red;">
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+          @endif
           <h2 class="title">साइन इन</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
@@ -448,6 +460,15 @@ form.sign-in-form {
         <!-- Sign Up Form -->
         <form action="{{ route('yp.register') }}" method="POST" class="sign-up-form" id="register-form">
           @csrf
+          @if ($errors->any() && session('show_signup')) <!-- Check if it's sign-up form and errors exist -->
+          <div class="alert alert-danger" style="color: red;">
+            <ul>
+              @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+              @endforeach
+            </ul>
+          </div>
+          @endif
           <h2 class="title">साइन अप</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
@@ -482,6 +503,7 @@ form.sign-in-form {
           <p>
             संभावनाओं की दुनिया की खोज करें! हमारे साथ जुड़ें और एक जीवंत समुदाय में भाग लें जहाँ विचार फलते-फूलते हैं और कनेक्शन मजबूत होते हैं।
           </p>
+          <!-- Button to navigate to sign up page -->
           <button class="btn transparent" id="sign-up-btn">
             साइन अप करें
           </button>
@@ -494,6 +516,7 @@ form.sign-in-form {
           <p>
             हमारे समुदाय का हिस्सा बनने के लिए धन्यवाद। आपकी उपस्थिति हमारे साझा अनुभवों को समृद्ध करती है। चलिए इस यात्रा को एक साथ जारी रखते हैं!
           </p>
+          <!-- Button to navigate to sign-in page -->
           <button class="btn transparent" id="sign-in-btn">
             साइन इन करें
           </button>
@@ -507,22 +530,32 @@ form.sign-in-form {
     const sign_in_btn = document.querySelector("#sign-in-btn");
     const sign_up_btn = document.querySelector("#sign-up-btn");
     const container = document.querySelector(".container");
-    const authForm = document.querySelector("#auth-form");
+    const loginForm = document.querySelector("#login-form");
+    const registerForm = document.querySelector("#register-form");
 
+    // Function to toggle forms and update URL
     sign_up_btn.addEventListener("click", () => {
-      container.classList.add("sign-up-mode");
-      // Change form action to 'register'
-      authForm.action = "{{ route('yp.register') }}";
-      authForm.querySelector("input[type='submit']").value = "साइन अप करें";
+      container.classList.add("sign-up-mode"); // Show the sign-up form
+      history.pushState({}, "", "/yellow-pages/new-account"); // Change the URL without reloading the page
+      sessionStorage.setItem('show_signup', true); // Set session to show signup errors
+      
     });
 
     sign_in_btn.addEventListener("click", () => {
-      container.classList.remove("sign-up-mode");
-      // Change form action to 'login'
-      authForm.action = "{{ route('yp.authLogin') }}";
-      authForm.querySelector("input[type='submit']").value = "लॉग इन";
+      container.classList.remove("sign-up-mode"); // Show the login form
+      history.pushState({}, "", "/yellow-pages/login"); // Change the URL without reloading the page
+      sessionStorage.setItem('show_signup', false); // Set session to show login errors
+
     });
+
+    // Optionally, handle the back button
+    window.onpopstate = function() {
+      if (window.location.pathname === "/yellow-pages/login") {
+        container.classList.remove("sign-up-mode"); // Show login form
+      } else if (window.location.pathname === "/yellow-pages/new-account") {
+        container.classList.add("sign-up-mode"); // Show sign-up form
+      }
+    };
   </script>
 </body>
-
 </html>

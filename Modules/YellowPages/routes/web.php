@@ -40,7 +40,7 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
     ##------------------------- Auth ---------------------##
     Route::get('/login', [AuthModalController::class, 'index'])->name('yp.login');
     Route::post('/authLogin', [AuthModalController::class, 'login'])->name('yp.authLogin');
-    Route::post('/new-account', [AuthModalController::class, 'newAccount'])->name('yp.newAccount');
+    Route::get('/new-account', [AuthModalController::class, 'newAccount'])->name('yp.newAccount');
     Route::post('/register', [AuthModalController::class, 'register'])->name('yp.register');
     Route::post('/logout', [AuthModalController::class, 'logout'])->name('yp.logout');
     ##------------------------- END ---------------------##
