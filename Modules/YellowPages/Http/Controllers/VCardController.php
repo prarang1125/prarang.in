@@ -9,49 +9,80 @@ use Stripe\StripeClient;
 use App\Models\Vcard;
 use App\Models\Plan;
 use App\Models\Visits;
-use App\Models\user;
+use App\Models\User;
 use App\Models\BusinessListing;
 use App\Models\DynamicVcard;
 use Stripe\Checkout\Session;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\log;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 
 class VCardController extends Controller
 {
+
+    ##------------------------- Vcard Page Show ---------------------##
+
     public function index()
     {
-        return view("yellowpages::Home.vcard");
+        try {
+            return view("yellowpages::Home.vcard");
+        } catch (\Exception $e) {
+            Log::error('Error in index method: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'Unable to load the VCard page.']);
+        }
     }
+
+    ##------------------------- END ---------------------##
+
+    ##------------------------- Vcard/User Dashboard ---------------------##
     public function dashboard()
     {
-        $userId = Auth::id();
-    
-        // Retrieve the Vcard record for the authenticated user or default to null
-        $totalscan = Vcard::where('user_id', $userId)->first();
-        $plan = Plan::find(Auth::user()->plan_id) ?? 'Not Active Any';
-    
-        // Get business listings for the authenticated user
-        $listing = BusinessListing::where('user_id', Auth::id());
-    
-        // If listings exist, calculate the view count
-        if ($listing->exists()) {
-            $viewcount = Visits::where('business_id', $listing->first()->id)->count('business_id');
-        } else {
-            $viewcount = 0; // Default to 0 if no listings exist
+        try {
+            $userId = Auth::id();
+
+            // Retrieve the Vcard record for the authenticated user or default to null
+            $totalscan = Vcard::where('user_id', $userId)->first();
+            $plan = Plan::find(Auth::user()->plan_id) ?? 'Not Active Any';
+
+            // Get business listings for the authenticated user
+            $listing = BusinessListing::where('user_id', $userId);
+
+            // Calculate the view count
+            $viewcount = $listing->exists() 
+                ? Visits::where('business_id', $listing->first()->id)->count('business_id') 
+                : 0;
+
+            return view('yellowpages::Vcard.dashboard', compact('totalscan', 'plan', 'viewcount'));
+        } catch (\Exception $e) {
+            Log::error('Error in dashboard method: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'Unable to load the dashboard.']);
         }
-    
-        return view('yellowpages::Vcard.dashboard', compact('totalscan', 'plan', 'viewcount'));
     }
-    
+    ##------------------------- END ---------------------##
+
+    ##------------------------- Create Card ---------------------##
     public function createCard(Request $request)
     {
-        return view("yellowpages::Vcard.Card");
+        try {
+            return view("yellowpages::Vcard.Card");
+        } catch (\Exception $e) {
+            Log::error('Error in createCard method: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'Unable to load the Create Card page.']);
+        }
     }
+    ##------------------------- END ---------------------##
+
+    ##------------------------- logut ---------------------##
     public function logout()
-{
-    Auth::guard('web')->logout(); // Use the default Laravel authentication guard
-    return redirect()->route('vCard.login'); // Redirect to login page
-}
-    
+    {
+        try {
+            Auth::guard('web')->logout(); // Use the default Laravel authentication guard
+            return redirect()->route('vCard.login'); // Redirect to login page
+        } catch (\Exception $e) {
+            Log::error('Error in logout method: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'Unable to logout.']);
+        }
+    }
+    ##------------------------- END ---------------------##
+
 }

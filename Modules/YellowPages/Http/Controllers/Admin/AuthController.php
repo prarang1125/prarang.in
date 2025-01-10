@@ -14,96 +14,63 @@ use App\Models\CompanyLegalType;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use Exception;
 
 class AuthController extends Controller
 {
-   
+    ##------------------------- Admin Authenticate page ---------------------##
     public function index()
     {
         return view('yellowpages::admin.login');
     }
+    ##------------------------------- End ------------------------------------##
+
+
+    ##------------------------- Admin Authenticate function ---------------------##
 
     public function authenticate(Request $request)
     {
-        // Validate input
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-    
-        if ($validator->passes()) {
-    
-            // Credentials to attempt login
-            $credentials = [
-                'email' => $request->email,
-                'password' => $request->password,
-            ];
-    
-            // Attempt to authenticate with the provided credentials
-            if (Auth::guard('admin')->attempt($credentials)) {
-                $user = Auth::guard('admin')->user();
-    
-                // Check if the user's role is '1' (Admin)
-                if ($user && $user->role == 1) {
-                    return redirect()->route('admin.dashboard'); // Redirect to admin dashboard
+        try {
+            // Validate input
+            $validator = Validator::make($request->all(), [
+                'email' => 'required|email',
+                'password' => 'required',
+            ]);
+        
+            if ($validator->passes()) {
+        
+                // Credentials to attempt login
+                $credentials = [
+                    'email' => $request->email,
+                    'password' => $request->password,
+                ];
+        
+                // Attempt to authenticate with the provided credentials
+                if (Auth::guard('admin')->attempt($credentials)) {
+                    $user = Auth::guard('admin')->user();
+        
+                    // Check if the user's role is '1' (Admin)
+                    if ($user && $user->role == 1) {
+                        return redirect()->route('admin.dashboard'); // Redirect to admin dashboard
+                    } else {
+                        // If user is not admin (role != 1), log out and show error
+                        Auth::guard('admin')->logout();
+                        return redirect()->route('admin.login')->with('error', 'You do not have admin rights');
+                    }
                 } else {
-                    // If user is not admin (role != 1), log out and show error
-                    Auth::guard('admin')->logout();
-                    return redirect()->route('admin.login')->with('error', 'You do not have admin rights');
+                    return redirect()->route('admin.login')->with('error', 'Either mail or password is incorrect');
                 }
+        
             } else {
-                return redirect()->route('admin.login')->with('error', 'Either mail or password is incorrect');
+                return redirect()->route('admin.login')
+                    ->withInput()
+                    ->withErrors($validator);
             }
-    
-        } else {
-            return redirect()->route('admin.login')
-                ->withInput()
-                ->withErrors($validator);
+
+        } catch (Exception $e) {
+            return redirect()->route('admin.login')->with('error', 'Error during authentication: ' . $e->getMessage());
         }
-    }    
-
-    public function create()
-    {
-        return view('yellowpages::create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Show the specified resource.
-     */
-    public function show($id)
-    {
-        return view('yellowpages::show');
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit($id)
-    {
-        return view('yellowpages::edit');
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy($id)
-    {
-        //
-    }
+    ##------------------------- END ---------------------##
 }

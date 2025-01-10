@@ -420,54 +420,55 @@ form.sign-in-form {
   }
 }
 </style>
-
 <body>
   <div class="container">
     <div class="forms-container">
       <div class="signin-signup">
-        <form action="{{ route('yp.authLogin') }}" class="sign-in-form" method="POST">
-            @csrf
+        <!-- Sign In Form -->
+        <form action="{{ route('yp.authLogin') }}" class="sign-in-form" method="POST" id="auth-form">
+          @csrf
           <h2 class="title">साइन इन</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
             <input type="text" value="{{ old('email') }}" name="email" class="form-control border-start-1 @error('email') is-invalid @enderror" id="inputLastEnterEmail" placeholder="ईमेल दर्ज करें">
             @error('email')
-                <p class="invalid-feedback">{{ $message }}</p>
+              <p class="invalid-feedback">{{ $message }}</p>
             @enderror
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
             <input type="password" name="password" class="form-control border-start-1 @error('password') is-invalid @enderror" id="inputLastEnterPassword" placeholder="पास वर्ड दर्ज करें">
-             @error('password')
-                <p class="invalid-feedback">{{ $message }}</p>
-             @enderror
+            @error('password')
+              <p class="invalid-feedback">{{ $message }}</p>
+            @enderror
           </div>
           <input type="submit" value="लॉग इन" class="btn solid" />
         </form>
-        <form action="{{ route('yp.register') }}" method="POST" class="sign-up-form">
-            @csrf
+
+        <!-- Sign Up Form -->
+        <form action="{{ route('yp.register') }}" method="POST" class="sign-up-form" id="register-form">
+          @csrf
           <h2 class="title">साइन अप</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
             <input type="text" name="name" placeholder="उपयोगकर्ता नाम" value="{{ old('name') }}" />
             @error('name')
-                <p class="invalid-feedback">{{ $message }}</p>
+              <p class="invalid-feedback">{{ $message }}</p>
             @enderror
           </div>
-          
           <div class="input-field">
             <i class="fas fa-envelope"></i>
             <input type="text" name="email" placeholder="ईमेल" />
             @error('email')
-            <p class="invalid-feedback">{{ $message }}</p>
+              <p class="invalid-feedback">{{ $message }}</p>
             @enderror
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
             <input type="password" name="password" placeholder="पासवर्ड" />
             @error('password')
-            <p class="invalid-feedback">{{ $message }}</p>
-          @enderror
+              <p class="invalid-feedback">{{ $message }}</p>
+            @enderror
           </div>
           <input type="submit" class="btn" value="साइन अप करें" />
         </form>
@@ -506,14 +507,22 @@ form.sign-in-form {
     const sign_in_btn = document.querySelector("#sign-in-btn");
     const sign_up_btn = document.querySelector("#sign-up-btn");
     const container = document.querySelector(".container");
+    const authForm = document.querySelector("#auth-form");
 
     sign_up_btn.addEventListener("click", () => {
       container.classList.add("sign-up-mode");
+      // Change form action to 'register'
+      authForm.action = "{{ route('yp.register') }}";
+      authForm.querySelector("input[type='submit']").value = "साइन अप करें";
     });
 
     sign_in_btn.addEventListener("click", () => {
       container.classList.remove("sign-up-mode");
+      // Change form action to 'login'
+      authForm.action = "{{ route('yp.authLogin') }}";
+      authForm.querySelector("input[type='submit']").value = "लॉग इन";
     });
   </script>
 </body>
+
 </html>

@@ -7,69 +7,60 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Log;
 
 class vCardAuthcontroller extends Controller
 {
-    public function index()
+    ##------------------------- userEdit ---------------------##
+    public function userEdit($id)
     {
-        
-        return view('yellowpages::Vcard.login');
-    }
-
-    public function authenticate(Request $request)
-    {
-        $validator = Validator::make($request->all(), [
-            'email' => 'required|email',
-            'password' => 'required',
-        ]);
-    
-        if ($validator->fails()) {
-            return redirect()->route('vCard.login')
-                ->withInput()
-                ->withErrors($validator);
-        }
-    
-        $credentials = $request->only('email', 'password');
-    
-        if (Auth::guard('web')->attempt($credentials, $request->remember)) {
-            return redirect()->route('vCard.dashboard'); // Redirect to the custom dashboard route
-        } else {
-            return redirect()->route('vCard.login')
-                ->with('error', 'Invalid email or password.');
+        try {
+            $user = User::findOrFail($id);
+            return view('yellowpages::Vcard.userUpdate', compact('user'));
+        } catch (ModelNotFoundException $e) {
+            Log::error('User not found: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'User not found.']);
+        } catch (\Exception $e) {
+            Log::error('Error editing user: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'Unable to fetch user details.']);
         }
     }
+    ##------------------------- END ---------------------##
 
-    public function userEdit($id){
-        $user = User::findOrFail($id);
-        return view('yellowpages::Vcard.userUpdate', compact('user'));
-
-    }
-
-    
+    ##------------------------- userUpdate ---------------------##
     public function userUpdate(Request $request, $id)
     {
-     
         try {
+            // Validate the request
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|max:255',
+                'password' => 'nullable|string|min:8',
+                'is_active' => 'required|boolean',
+            ]);
 
             // Find user or handle if not found
             $user = User::findOrFail($id);
+
             // Update user details
             $user->update([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'is_active' => $request->is_active,
+                'name' => $validatedData['name'],
+                'email' => $validatedData['email'],
+                'password' => $request->password ? Hash::make($validatedData['password']) : $user->password,
+                'is_active' => $validatedData['is_active'],
                 'updated_at' => Carbon::now(),
             ]);
-    
-            return redirect()->route('vCard.userEdit',$id)->with('success', 'User updated successfully.');
+
+            return redirect()->route('vCard.userEdit', $id)->with('success', 'User updated successfully.');
         } catch (ModelNotFoundException $e) {
+            Log::error('User not found: ' . $e->getMessage());
             return redirect()->back()->withErrors(['error' => 'User not found.']);
+        } catch (\Exception $e) {
+            Log::error('Error updating user: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'Unable to update user details.']);
         }
-    }    
-    
+    }
+    ##------------------------- END ---------------------##
 }

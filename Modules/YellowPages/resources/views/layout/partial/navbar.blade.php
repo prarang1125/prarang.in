@@ -31,7 +31,7 @@
                 <ul class="dropdown-menu dropdown-menu-end">
                     @if (Auth::guard('admin')->check())
                         {{-- @if (Auth::guard('admin')->user()->roleId === '1') --}}
-                        <li><a class="dropdown-item" href="{{ url('yellow-pages/user-edit/'. Auth::guard('admin')->id()) }}"><i class="bx bx-user"></i><span>प्रोफ़ाइल</span></a>
+                        <li><a class="dropdown-item" href="{{ url('yellow-pages/admin/user-edit/'. Auth::guard('admin')->id()) }}"><i class="bx bx-user"></i><span>प्रोफ़ाइल</span></a>
                         </li>
                         <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}"><i class='bx bx-home-circle'></i><span>डैशबोर्ड</span></a>
                         </li>

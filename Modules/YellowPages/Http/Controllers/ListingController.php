@@ -18,133 +18,135 @@ use Illuminate\Support\Facades\Auth;
 
 class ListingController extends Controller
 {
+
+    ##------------------------- Show Category---------------------##
+
     public function showByCategory($category_name)
-    {
-        $categories = Category::where('is_active', 1)->get();
-    $cities = City::where('is_active', 1)->get();
-
-        $category = Category::where('slug', $category_name)->firstOrFail();
-        $listings = BusinessListing::with(['category', 'hours'])
-            ->whereHas('category', fn($q) => $q->where('slug', $category->slug))
-            ->get();
+        {
+            try {
+                $categories = Category::where('is_active', 1)->get();
+                $cities = City::where('is_active', 1)->get();
     
-        return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities', 'category_name'));
-    }
+                $category = Category::where('slug', $category_name)->firstOrFail();
+                $listings = BusinessListing::with(['category', 'hours'])
+                    ->whereHas('category', fn($q) => $q->where('slug', $category->slug))
+                    ->get();
     
-    public function showByCity($city_name)
-    {
-        $categories = Category::where('is_active', 1)->get();
-        $cities = City::where('is_active', 1)->get();
-    
-    
-        $city = City::where('name', $city_name)->firstOrFail();
-        $listings = BusinessListing::with(['category', 'hours','city'])
-            ->whereHas('city', fn($q) => $q->where('city_id', $city->id))
-            ->get();
-    
-        return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities', 'city_name'));
-    }
-    
-    public function show($category, $city)
-{
-    $query = BusinessListing::query();
-
-    $query->whereHas('category', function ($q) use ($category) {
-        $q->where('slug', $category);
-    });
-
-    $query->whereHas('city', function ($q) use ($city) {
-        $q->where('name', $city); 
-    });
-   
-}
-
-public function index(Request $request, $category, $city)
-{
-    // Fetch all active categories and cities
-    $categories = Category::where('is_active', 1)->get();
-    $cities = City::where('is_active', 1)->get();
-
-    // Initialize the query for business listings
-    $query = BusinessListing::query();
-
-    // Apply category filter if category is provided
-    if ($category) {
-        // Fetch category ID based on the category name passed in the URL
-        $categoryId = Category::where('name', 'like', '%' . $category . '%')
-                              ->where('is_active', true)  // Ensure category is active
-                              ->pluck('id')->first();
-
-        if ($categoryId) {
-            // Filter by category_id
-            $query->where('category_id', $categoryId);
-        }
-    }
-
-    // Apply city filter if city is provided
-    if ($city) {
-        // Fetch city ID based on the city name passed in the URL
-        $cityId = City::where('name', 'like', '%' . $city . '%')
-                      ->where('is_active', true)  // Ensure city is active
-                      ->pluck('id')->first();
-
-        if ($cityId) {
-            // Filter by city_id
-            $query->where('city_id', $cityId);
-        }
-    }
-
-    // Fetch the filtered business listings with their related category, hours, and city
-    $listings = $query->with(['category', 'hours', 'city'])->get()->map(function ($listing) {
-        $currentTime = Carbon::now();
-
-        // Check if business hours exist
-        if ($listing->hours) {
-            $openTime = Carbon::parse($listing->hours->open_time);
-            $closeTime = Carbon::parse($listing->hours->close_time);
-            $listing->is_open = $currentTime->between($openTime, $closeTime); // Determine if open
-        } else {
-            // If no hours, consider it closed
-            $listing->is_open = false;
+                return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities', 'category_name'));
+            } catch (\Exception $e) {
+                return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+            }
         }
 
-        return $listing;
-    });
+    ##------------------------- END---------------------##
 
-    // Return the view with the filtered business listings, categories, and cities
-    return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities'));
-}
+    ##------------------------- Show City---------------------##
+        public function showByCity($city_name)
+        {
+            try {
+                $categories = Category::where('is_active', 1)->get();
+                $cities = City::where('is_active', 1)->get();
+    
+                $city = City::where('name', $city_name)->firstOrFail();
+                $listings = BusinessListing::with(['category', 'hours', 'city'])
+                    ->whereHas('city', fn($q) => $q->where('city_id', $city->id))
+                    ->get();
+    
+                return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities', 'city_name'));
+            } catch (\Exception $e) {
+                return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+            }
+        }
+    ##------------------------- END---------------------##
 
+    ##------------------------- Seaching Listing---------------------##
+        public function index(Request $request, $category, $city)
+        {
+            try {
+                $categories = Category::where('is_active', 1)->get();
+                $cities = City::where('is_active', 1)->get();
+    
+                $query = BusinessListing::query();
+    
+                if ($category) {
+                    $categoryId = Category::where('name', 'like', '%' . $category . '%')
+                        ->where('is_active', true)
+                        ->pluck('id')->first();
+    
+                    if ($categoryId) {
+                        $query->where('category_id', $categoryId);
+                    }
+                }
+    
+                if ($city) {
+                    $cityId = City::where('name', 'like', '%' . $city . '%')
+                        ->where('is_active', true)
+                        ->pluck('id')->first();
+    
+                    if ($cityId) {
+                        $query->where('city_id', $cityId);
+                    }
+                }
+    
+                $listings = $query->with(['category', 'hours', 'city'])->get()->map(function ($listing) {
+                    $currentTime = Carbon::now();
+    
+                    if ($listing->hours) {
+                        $openTime = Carbon::parse($listing->hours->open_time);
+                        $closeTime = Carbon::parse($listing->hours->close_time);
+                        $listing->is_open = $currentTime->between($openTime, $closeTime);
+                    } else {
+                        $listing->is_open = false;
+                    }
+    
+                    return $listing;
+                });
+    
+                return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities'));
+            } catch (\Exception $e) {
+                return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+            }
+        }
+    ##------------------------- END---------------------##
+
+    ##------------------------- Submit Listing---------------------##
     public function submit_listing(){
         return view("yellowpages::Home.submit_listing");
     }
+    ##------------------------- END---------------------##
 
-   public function getLocationData()
-{
-    $cities = City::on('yp')->get();
-    $company_legal_type = DB::connection('yp')->select('SELECT * FROM company_legal_types');
-    $number_of_employees = DB::connection('yp')->select('SELECT * FROM number_of_employees');
-    $monthly_turnovers = DB::connection('yp')->select('SELECT * FROM monthly_turnovers');
-    $monthly_advertising_mediums = DB::connection('yp')->select('SELECT * FROM monthly_advertising_mediums');
-    $monthly_advertising_prices = DB::connection('yp')->select('SELECT * FROM monthly_advertising_prices');
-    $social_media = DB::connection('yp')->select('SELECT * FROM social_media_platforms');
-    $Category = Category::on('yp')->get(); // Double check this line to ensure Category model uses 'yp'
+    ##------------------------- Show Listing Form ---------------------##
+    public function getLocationData()
+    {
+        try {
+            $cities = City::on('yp')->get();
+            $company_legal_type = DB::connection('yp')->select('SELECT * FROM company_legal_types');
+            $number_of_employees = DB::connection('yp')->select('SELECT * FROM number_of_employees');
+            $monthly_turnovers = DB::connection('yp')->select('SELECT * FROM monthly_turnovers');
+            $monthly_advertising_mediums = DB::connection('yp')->select('SELECT * FROM monthly_advertising_mediums');
+            $monthly_advertising_prices = DB::connection('yp')->select('SELECT * FROM monthly_advertising_prices');
+            $social_media = DB::connection('yp')->select('SELECT * FROM social_media_platforms');
+            $Category = Category::on('yp')->get();
 
-    return view('yellowpages::Home.add_listing', compact(
-        'cities',
-        'company_legal_type',
-        'number_of_employees',
-        'monthly_turnovers',
-        'monthly_advertising_mediums',
-        'monthly_advertising_prices',
-        'Category',
-        'social_media'
-    ));
+            return view('yellowpages::Home.add_listing', compact(
+                'cities',
+                'company_legal_type',
+                'number_of_employees',
+                'monthly_turnovers',
+                'monthly_advertising_mediums',
+                'monthly_advertising_prices',
+                'Category',
+                'social_media'
+            ));
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+        }
+    }
+    ##------------------------- END---------------------##
 
-}
- 
-public function store(Request $request)
-{
+    ##------------------------- Add Listing ---------------------##
+    public function store(Request $request)
+    {
     try {
         // Validation rules
         $validated = $request->validate([
@@ -276,11 +278,13 @@ public function store(Request $request)
         // Catch any exceptions and return error message
         return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
     }
-}
+    }
+    ##------------------------- END---------------------##
 
-public function listing($listingId)
-{
- try {
+    ##------------------------- Listing Details---------------------##
+    public function listing($listingId)
+    {
+     try {
         // Fetch the listing or fail with a 404
         $listing = BusinessListing::findOrFail($listingId);
         $listingHours = BusinessHour::where('business_id', $listing->id)->get();
@@ -329,32 +333,35 @@ public function listing($listingId)
     } catch (\Exception $e) {
         return redirect()->back()->with('error', 'Listing not found.');
     }
-}
-
-
-public function save_listing($id)
-{
-    $userId = Auth::id(); 
-
-    // Check if the same business_id and user_id pair already exists
-    $exists = Savelisting::where('user_id', $userId)
-                         ->where('business_id', $id)
-                         ->exists();
-
-    if ($exists) {
-        return redirect()->back()->with('error', 'This business is already saved!');
     }
 
-    // Save the listing
-    Savelisting::create([
-        'user_id' => $userId,
-        'business_id' => $id,
-    ]);
-
-    // Redirect with a success message
-    return redirect()->back()->with('success', 'Saved successfully!');
-}
+    ##-------------------------END ---------------------##
 
 
+    ##------------------------- Save Listing  ---------------------##
+    public function save_listing($id)
+    {
+        try {
+            $userId = Auth::id();
 
+            $exists = Savelisting::where('user_id', $userId)
+                ->where('business_id', $id)
+                ->exists();
+
+            if ($exists) {
+                return redirect()->back()->with('error', 'This business is already saved!');
+            }
+
+            Savelisting::create([
+                'user_id' => $userId,
+                'business_id' => $id,
+            ]);
+
+            return redirect()->back()->with('success', 'Saved successfully!');
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+        }
+    }
+    ##------------------------- Save Listing ---------------------##
+    
 }

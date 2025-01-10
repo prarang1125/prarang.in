@@ -36,7 +36,7 @@
             <hr/>
             <div class="card">
                 <div class="card-body d-flex justify-content-end align-items-end">
-                    <a href="{{ url('/yellow-pages/categories-register') }}" class="btn btn-primary">नई श्रेणियाँ जोड़ें</a>
+                    <a href="{{ url('/yellow-pages/admin/categories-register') }}" class="btn btn-primary">नई श्रेणियाँ जोड़ें</a>
                 </div>
                 <div class="card-body">
                     <table class="table mb-0 table-hover">

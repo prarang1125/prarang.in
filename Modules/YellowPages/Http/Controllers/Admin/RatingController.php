@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\LOG;
 
 class RatingController extends Controller
 {
+
+    ##------------------------------------------ Rating -----------------------------------##
     public function Rating()
     {
         try {
@@ -23,6 +25,9 @@ class RatingController extends Controller
             return redirect()->back()->with('error', 'Unable to fetch reviews. Please try again later.');
         }
     }
+    ##------------------------------------------ END -----------------------------------##
+
+    ##------------------------------------------ Report -----------------------------------##
     public function Report()
     {
         try {
@@ -33,5 +38,6 @@ class RatingController extends Controller
             return redirect()->back()->with('error', 'Unable to fetch Report. Please try again later.');
         }
     }
-    
+    ##------------------------------------------ END -----------------------------------##
+
 }
