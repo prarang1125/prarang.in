@@ -14,6 +14,7 @@
                     <th>कीमत</th>
                     <th>विवरण</th>
                     <th>अवधि</th>
+                    <th></th>
                     <th>कार्रवाई</th>
                 </tr>
             </thead>
@@ -23,7 +24,8 @@
                     <td><strong>{{ $plan->name }}</strong></td>
                     <td>₹{{ $plan->price }}</td>
                     <td>{{ $plan->description }}</td>
-                    <td>{{ $plan->duration }}Day's</td>
+                    <td>{{ $plan->duration }}दिन</td>
+                    <td>{{ $plan->type }}</td>
                     <td>
                         <form action="{{ url('yellow-pages/vCard/stripe-checkout') }}" method="POST" nctype="multipart/form-data">
                             @csrf

@@ -51,6 +51,7 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
     Route::get('/bazzar_plan', [HomeController::class, 'bazzar_plan'])->name('yp.bazzar_plan');
     Route::get('/add_listing', [HomeController::class, 'add_listing'])->name('yp.add_listing');
     Route::get('/showSearchcategory', [HomeController::class, 'showSearchcategory']);
+    Route::get('/plans', [HomeController::class, 'plan'])->name('yp.plan');
     ##------------------------- END ---------------------##
 
     ##------------------------- Business Listing ---------------------##
@@ -73,14 +74,14 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
 
     ##------------------------- Vcard  ---------------------##
     Route::get('/vcard', [VCardController::class, 'index'])->name('yp.vcard');
-    Route::get('/vCard/dashboard', [VCardController::class, 'dashboard'])->name('vCard.dashboard');
+    Route::get('/user/dashboard', [VCardController::class, 'dashboard'])->name('vCard.dashboard');
     Route::get('/vCard/logout', [VCardController::class, 'logout'])->name('vCard.logout');
-    Route::get('/vCard/createCard', [VCardController::class, 'createCard'])->name('vCard.createCard');
+    Route::get('/user/createCard', [VCardController::class, 'createCard'])->name('vCard.createCard');
     ##------------------------- END ---------------------##
 
     Route::group(['middleware' => 'auth.custom'], function(){
     ##------------------------- Carete VCard ---------------------##
-    Route::post('/vCard/CardStore', [CreateVCardController::class, 'store'])->name('vCard.store');
+    Route::post('/user/CardStore', [CreateVCardController::class, 'store'])->name('vCard.store');
     Route::get('/vcard-edit/{id}', [CreateVCardController::class, 'vcardEdit'])->name('vCard.vcard-edit');
     Route::put('/vcard-update/{id}', [CreateVCardController::class, 'vcardUpdate'])->name('vCard.update');
     Route::get('/vcard/view/', [CreateVCardController::class, 'view'])->name('vCard.view');
@@ -88,43 +89,46 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
 
     ##------------------------- VCard QR ---------------------##
     Route::get('/vcard/scan/{qrCode}', [VcardQRController::class, 'scanAndView'])->name('vCard.scanView');
-    Route::get('/vcard/qr/', [VcardQRController::class, 'generateQrCode'])->name('vCard.generateQr');
+    Route::get('/user/qr/', [VcardQRController::class, 'generateQrCode'])->name('vCard.generateQr');
     Route::get('vcard/qr-code/download', [VcardQRController::class, 'downloadQrCode'])->name('vCard.downloadQrCode');
     ##------------------------- END ---------------------##
 
     ##------------------------- Vcard Stripe Integrate ---------------------##
-    Route::get('/vcard/ActivePlan', [PlanController::class, 'plan'])->name('vCard.plan');
-    Route::get('/vcard/MembershipPlan', [PlanController::class, 'planDetails'])->name('vCard.planDetails');
-    Route::get('/vcard/paymentHistory', [PlanController::class, 'paymentHistory'])->name('vCard.paymentHistory');
-    Route::post('vCard/stripe-checkout', [PlanController::class, 'stripeCheckout'])->name('vcard.stripeCheckout');
-    Route::get('vCard/payment-success', [PlanController::class, 'paymentSuccess'])->name('vcard.paymentSuccess');
-    Route::get('vCard/payment-cancel', [PlanController::class, 'paymentCancel'])->name('vcard.paymentCancel');
+    Route::get('/user/ActivePlan', [PlanController::class, 'plan'])->name('vCard.plan');
+    Route::get('/user/MembershipPlan', [PlanController::class, 'planDetails'])->name('vCard.planDetails');
+    Route::get('/user/paymentHistory', [PlanController::class, 'paymentHistory'])->name('vCard.paymentHistory');
+    Route::post('user/stripe-checkout', [PlanController::class, 'stripeCheckout'])->name('vcard.stripeCheckout');
+    Route::get('user/payment-success', [PlanController::class, 'paymentSuccess'])->name('vcard.paymentSuccess');
+    Route::get('user/payment-cancel', [PlanController::class, 'paymentCancel'])->name('vcard.paymentCancel');
     ##------------------------- END ---------------------##
 
     ##------------------------- Dashboard User data ---------------------##
-    Route::get('/vCard/user-edit/{id}', [vCardAuthcontroller::class, 'userEdit'])->name('vCard.userEdit');
-    Route::put('/vCard/user-update/{id}', [vCardAuthcontroller::class, 'userUpdate'])->name('vCard.userUpdate');
+    Route::get('/user/user-edit/{id}', [vCardAuthcontroller::class, 'userEdit'])->name('vCard.userEdit');
+    Route::put('/user/user-update/{id}', [vCardAuthcontroller::class, 'userUpdate'])->name('vCard.userUpdate');
     ##------------------------- END ---------------------##
 
     ##------------------------- Dashboard Listing data ---------------------##
-    Route::get('/vcard/business-listing', [BusinessListingController::class, 'businessListing'])->name('vCard.business-listing');
-    Route::get('/vcard/save-listing', [BusinessListingController::class, 'saveBusiness'])->name('vCard.business-save');
-    Route::post('/vcard/listing-delete/{id}', [BusinessListingController::class, 'listingDelete'])->name('vCard.listing-delete');
-    Route::post('/vcard/Savelisting-delete/{id}', [BusinessListingController::class, 'SavelistingDelete'])->name('vCard.Savelisting-delete');
-    Route::get('/vcard/listing-edit/{id}', [BusinessListingController::class, 'listingEdit'])->name('vCard.listing-edit');
-    Route::put('/vcard/listing-update/{id}', [BusinessListingController::class, 'listingUpdate'])->name('vCard.listing-update');
+    Route::get('/user/business-listing', [BusinessListingController::class, 'businessListing'])->name('vCard.business-listing');
+    Route::get('/user/business-listing-register', [BusinessListingController::class, 'businessRegister'])->name('vCard.business-listing-register');
+    Route::get('/user/save-listing', [BusinessListingController::class, 'saveBusiness'])->name('vCard.business-save');
+    Route::post('/user/listing-delete/{id}', [BusinessListingController::class, 'listingDelete'])->name('vCard.listing-delete');
+    Route::post('/user/Savelisting-delete/{id}', [BusinessListingController::class, 'SavelistingDelete'])->name('vCard.Savelisting-delete');
+    Route::get('/user/listing-edit/{id}', [BusinessListingController::class, 'listingEdit'])->name('vCard.listing-edit');
+    Route::put('/user/listing-update/{id}', [BusinessListingController::class, 'listingUpdate'])->name('vCard.listing-update');
     ##------------------------- END ---------------------##
 
     ##------------------------- Dashboard Review data ---------------------##
-    Route::get('vcard/rating', [listingReviewController::class, 'Rating'])->name('vCard.Rating');
+    Route::get('user/rating', [listingReviewController::class, 'Rating'])->name('vCard.Rating');
     ##------------------------- END ---------------------##
 
     ##------------------------- Dashboard Report ---------------------##
-    Route::get('/vcard/report', [ReportController::class, 'index'])->name('vCard.report');
-    Route::post('/vcard/Report-submit', [ReportController::class, 'store'])->name('vCard.report-submit');
+    Route::get('/user/report', [ReportController::class, 'index'])->name('vCard.report');
+    Route::post('/user/Report-submit', [ReportController::class, 'store'])->name('vCard.report-submit');
+    Route::get('/user/list', [ReportController::class, 'list'])->name('vCard.report-list');
     ##------------------------- END ---------------------##
 
   });
+  
 
   // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    End yellowPages user Side   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -195,7 +199,7 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
 
 
 
-    Route::get('{category}/{city}', [ListingController::class, 'index'])->name('yp.listing');
+   Route::get('{category}/{city}', [ListingController::class, 'index'])->name('yp.listing');
 
       ##------------------------- Not require ---------------------##
     Route::get('/signIn', [HomeController::class, 'signIn'])->name('signIn');

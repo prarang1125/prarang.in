@@ -19,9 +19,7 @@ use Illuminate\Http\Request;
 
 class VCardController extends Controller
 {
-
     ##------------------------- Vcard Page Show ---------------------##
-
     public function index()
     {
         try {

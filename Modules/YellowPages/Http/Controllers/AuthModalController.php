@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Validator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\log;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Validation\Rule;
 
@@ -28,43 +29,45 @@ class AuthModalController extends Controller
     
     ##------------------------- Login Logic ---------------------##
     public function login(Request $request)
-    {
+{
+        // Validate the input fields
+        $request->validate([
+            'email' => ['required', 'regex:/^[^\s@]+@[^\s@]+\.[^\s@]+$/u'],
+            'password' => 'required',
+        ]);
+
         try {
-            // Validate the input fields
-            $request->validate([
-                'email' => ['required', 'regex:/^[^\s@]+@[^\s@]+\.[^\s@]+$/u'],
-                'password' => 'required',
-            ]);
+        // Attempt login with credentials
+        $credentials = $request->only('email', 'password');
 
-            // Attempt login with credentials
-            $credentials = $request->only('email', 'password');
+        if (Auth::attempt($credentials)) {
+            // Get the authenticated user
+            $user = Auth::user();
 
-            if (Auth::attempt($credentials)) {
-                // Get the authenticated user
-                $user = Auth::user();
-
-                // Check if the user's role is '2' (Customer)
-                if ($user->role == 2) {
-                    return redirect()->route('vCard.dashboard'); // Redirect if role is '2'
-                } else {
-                    // Log out if the role is not '2'
-                    Auth::logout();
-                    return redirect()->back()->withErrors(['loginError' => 'Access restricted. You do not have customer rights.'])->withInput();
-                }
+            // Check if the user's role is '2' (Customer)
+            if ($user->role == 2) {
+                return redirect()->route('vCard.dashboard'); // Redirect if role is '2'
+            } else {
+                // Log out if the role is not '2'
+                Auth::logout();
+                return redirect()->back()->withErrors(['loginError' => 'Access restricted. You do not have customer rights.'])->withInput();
             }
-
-            // Return with error if login fails
-            return redirect()->back()->withErrors(['loginError' => 'Invalid credentials'])->withInput();
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred during login: ' . $e->getMessage()]);
         }
+
+        // Return with error if login fails
+        return redirect()->back()->withErrors(['loginError' => 'Invalid credentials'])->withInput();
+    } catch (\Exception $e) {
+        return redirect()->back()->withErrors(['error' => 'An error occurred during login: ' . $e->getMessage()])->withInput();
     }
+}
+
+    
     ##------------------------- END ---------------------##
      ##------------------------- Register View ---------------------##
      public function newAccount()
      {
          try {
-             return view('yellowpages::Vcard.login');
+             return view('yellowpages::Vcard.register');
          } catch (\Exception $e) {
              return back()->withErrors(['error' => 'An error occurred while loading the login page.']);
          }
@@ -78,13 +81,13 @@ class AuthModalController extends Controller
         try {
             // Validate the input fields
             $request->validate([
-                'name' => 'required|string|max:255',
+                'name' => ['required', 'string', 'max:255', 'regex:/^[^@]+$/'],
                 'email' => [
                     'required',
                     'regex:/^[^\s@]+@[^\s@]+\.[^\s@]+$/u',
                     Rule::unique('users', 'email'),
                 ],
-                'password' => 'required',
+                'password' => 'required|confirmed', // password confirmation should be part of the form
             ]);
 
             // Create a new user
@@ -98,8 +101,13 @@ class AuthModalController extends Controller
             // Log in the new user
             Auth::login($user);
 
-            return redirect()->route('vCard.dashboard'); // Redirect after registration
+            // Redirect after registration
+            return redirect()->route('vCard.dashboard'); // Replace with your desired redirect route
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // If validation fails, return errors and old input
+            return redirect()->back()->withErrors($e->errors())->withInput();
         } catch (\Exception $e) {
+            // Handle general errors and provide feedback
             return redirect()->back()->withErrors(['error' => 'An error occurred during registration: ' . $e->getMessage()])->withInput();
         }
     }

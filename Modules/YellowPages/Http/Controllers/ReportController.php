@@ -45,6 +45,7 @@ class ReportController extends Controller
 
             // Store the report in the database
             Report::create([
+                'user_id'=>Auth::id(),
                 'name' => $request->name,
                 'business_email' => $request->business_email,
                 'number' => $request->number,
@@ -59,4 +60,16 @@ class ReportController extends Controller
     }
 
     ##------------------------- END ---------------------##
+    
+    ##------------------------- Report list ---------------------##
+    public function list(Request $request) {
+        try {
+            $report_list = Report::where('user_id', Auth::id())->get();
+            return view('yellowpages::VCard.report-list', compact('report_list'));
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Error fetching report listings: ' . $e->getMessage());
+        }
+    }
+    ##------------------------- END ---------------------##
+
 }

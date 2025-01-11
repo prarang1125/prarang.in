@@ -1,8 +1,8 @@
-@extends('yellowpages::layout.script')
+{{-- @extends('yellowpages::layout.script')
 
 @section('title', __('messages.yellow_pages'))
 
-@section('content')
+@section('content') --}}
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -59,6 +59,6 @@
     <a href="/" class="back-home-btn">वापस जाओ</a>
 </div>
 
-@endsection
+{{-- @endsection
 @push('scripts')
-@endpush
+@endpush --}}

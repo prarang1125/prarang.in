@@ -11,7 +11,6 @@
         <h1 style="position: relative; z-index: 1; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);">अपनी योजना चुनें</h1>
     </div>
     
-
     <!-- Info Section -->
     <div style="text-align: center; padding: 20px;">
         <h6 style="color: #d9534f; font-weight: revert;">

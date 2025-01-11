@@ -8,9 +8,9 @@ use Carbon\Carbon;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\BusinessListing;
+use App\Models\plan;
 use App\Models\BusinessHour;
 use Illuminate\Support\Facades\App;
-
 
 class HomeController extends Controller
 {
@@ -18,8 +18,8 @@ class HomeController extends Controller
     {
         try {
             // Fetch categories and cities
-            $categories = Category::all();
-            $cities = City::all();
+            $categories = Category::where('is_active', 1)->get();
+            $cities = City::where('is_active', 1)->get();
 
             $listings = BusinessListing::with(['category', 'hours'])->get()->map(function ($listing) {
                 $currentTime = Carbon::now();
@@ -105,5 +105,23 @@ class HomeController extends Controller
         }
     }
     ##------------------------- END ---------------------##
+    #------------------------- Plan -----------------##
+    
+    public function plan()
+    {
+        try {
+            $plans= plan::all();
+
+            return view('yellowpages::Home.plan', compact('plans'));
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'An error occurred while fetching dropdown data: ' . $e->getMessage()]);
+        }
+    }
+
+    ##------------------------- END ---------------------##
+
+
+
+
     
 }

@@ -182,8 +182,8 @@ class ListingController extends Controller
             'userName' => 'nullable|string',
             'faq' => 'nullable|string',
             'answer' => 'nullable|string',
-            'email' => 'nullable|email',
-            'password' => 'nullable|string|min:8',
+            'email' => 'nullable',
+            'password' => 'nullable',
             'agree' => 'nullable|accepted',
             'day' => 'required|array',
             'day.*' => 'required|string',
@@ -250,6 +250,7 @@ class ListingController extends Controller
             'business_img' => $imagePath,
             'agree' => isset($validated['agree']) ? 1 : 0,
         ];
+      
 
         // Create the business listing
         $listing = BusinessListing::create($data);
@@ -270,7 +271,7 @@ class ListingController extends Controller
                 'add_2nd_time_slot' => !empty($validated['add_2nd_time_slot'][$index]) ? 1 : 0,
             ]);
         }
-
+        
         // Redirect to the success page
         return redirect()->route('yp.listing.submit')->with('success', 'Listing created successfully!');
         

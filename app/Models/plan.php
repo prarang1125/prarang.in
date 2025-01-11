@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class plan extends Model
 {
     protected $connection = 'yp';
-    protected $table = 'subscription_plans'; 
+    protected $table = 'plan';
 
-    protected $fillable = ['name', 'description', 'price','duration','is_active'];
+    protected $fillable = ['name', 'description', 'price','duration','type','is_active'];
 
 }

@@ -36,6 +36,33 @@ class BusinessListingController extends Controller
         }
     }
     ##------------------------- END ---------------------##
+    ##------------------------- Business Listing Register ---------------------##
+    public function businessRegister(Request $request) {
+        try {
+            $cities = City::on('yp')->get();
+            $company_legal_type = DB::connection('yp')->select('SELECT * FROM company_legal_types');
+            $number_of_employees = DB::connection('yp')->select('SELECT * FROM number_of_employees');
+            $monthly_turnovers = DB::connection('yp')->select('SELECT * FROM monthly_turnovers');
+            $monthly_advertising_mediums = DB::connection('yp')->select('SELECT * FROM monthly_advertising_mediums');
+            $monthly_advertising_prices = DB::connection('yp')->select('SELECT * FROM monthly_advertising_prices');
+            $social_media = DB::connection('yp')->select('SELECT * FROM social_media_platforms');
+            $Category = Category::on('yp')->get();
+
+            return view('yellowpages::VCard.business-listing-register', compact(
+                'cities',
+                'company_legal_type',
+                'number_of_employees',
+                'monthly_turnovers',
+                'monthly_advertising_mediums',
+                'monthly_advertising_prices',
+                'Category',
+                'social_media'
+            ));
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+        }
+    }
+    ##------------------------- END ---------------------##
 
     ##------------------------- Save Business ---------------------##
     public function saveBusiness(Request $request) {

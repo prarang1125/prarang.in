@@ -49,7 +49,6 @@
 <body class="index-page">
     <!-- Navbar -->
     @include('yellowpages::layout.navbar')
-
     <!-- Main Content -->
     <main class="main">
         @yield('content')
