@@ -15,10 +15,8 @@
                 <p style="font-size: 16px; color: #555;">{{ $plan->description }}</p>
                 <p style="font-size: 16px; color: #555;">Duration: {{ $plan->duration }}</p>
                 <ul style="list-style: none; padding: 0; margin-bottom: 20px; text-align: center;">
-                    <!-- You can add any list items here if needed -->
                 </ul>
-                <!-- Single button for all plans -->
-                <a href="#" style="background-color: #007bff; color: #fff; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block;">View Plan</a>
+                <a href="{{ Auth::check() ? route('vCard.dashboard') : route('vcard.stripeCheckout') }}" style="background-color: #007bff; color: #fff; padding: 12px 25px; border-radius: 50px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block;">View Plan</a>
             </div>
         </div>
     @endforeach
