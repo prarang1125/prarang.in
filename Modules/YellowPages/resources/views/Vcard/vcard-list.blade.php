@@ -75,6 +75,8 @@
                                             @csrf
                                             <button type="submit" class="btn btn-sm btn-danger delete-user">मिटाना</button>
                                         </form>
+                                        <a href="{{ route('vCard.view', ['vcard_id' => $vcard->id]) }}" class="btn btn-sm btn-primary edit-user">देखे</a>
+                                    </div>
                                     </td>
                                 </tr>
                                 @php $index++; @endphp

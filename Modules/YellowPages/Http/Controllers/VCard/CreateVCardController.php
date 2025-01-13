@@ -15,18 +15,19 @@ class CreateVCardController extends Controller
     ##------------------------- store ---------------------##
     public function store(Request $request)
     {
-        try {
+       
             $validatedData = $request->validate([
                 'color_code' => 'nullable|string',
                 'slug' => 'required|string',
-                'banner_img' => 'nullable|image|max:2048',
-                'logo' => 'nullable|image|max:2048',
+                'banner_img' => 'required|image|max:2048',
+                'logo' => 'required|image|max:2048',
                 'title' => 'required|string',
-                'subtitle' => 'nullable|string',
-                'description' => 'nullable|string',
+                'subtitle' => 'required|string',
+                'description' => 'required|string',
                 'name' => 'nullable|array',
                 'data' => 'nullable|array',
             ]);
+            try {
 
             // Handle file uploads
             if ($request->hasFile('banner_img')) {
@@ -135,11 +136,11 @@ class CreateVCardController extends Controller
     ##------------------------- END ---------------------##
 
     ##------------------------- VCard view ---------------------##
-    public function view()
+    public function view($vcard_id)
     {
         try {
             $userId = Auth::id();
-            $vcard = Vcard::where('user_id', $userId)->with('dynamicFields')->firstOrFail();
+            $vcard = Vcard::where('id', $vcard_id)->with('dynamicFields')->firstOrFail();
 
             return view('yellowpages::VCard.CardView', compact('vcard'));
         } catch (\Exception $e) {

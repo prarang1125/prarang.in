@@ -7,6 +7,7 @@ use Stripe\Stripe;
 use Stripe\PaymentIntent;
 use Stripe\StripeClient;
 use App\Models\Vcard;
+use App\Models\DynamicFeild;
 use App\Models\Plan;
 use App\Models\Visits;
 use App\Models\User;
@@ -62,7 +63,8 @@ class VCardController extends Controller
     public function createCard(Request $request)
     {
         try {
-            return view("yellowpages::Vcard.Card");
+            $dynamicFields = DynamicFeild::where('is_active', 1)->get();
+            return view('yellowpages::Vcard.Card', compact('dynamicFields'));
         } catch (\Exception $e) {
             Log::error('Error in createCard method: ' . $e->getMessage());
             return redirect()->back()->withErrors(['error' => 'Unable to load the Create Card page.']);
@@ -81,6 +83,7 @@ class VCardController extends Controller
             return redirect()->back()->withErrors(['error' => 'Unable to logout.']);
         }
     }
+
     ##------------------------- END ---------------------##
 
 }

@@ -26,7 +26,7 @@ class VcardQRController extends Controller
             $vcardId = $vcard->id;
 
             // Generate QR code
-            $qrCode = QrCode::size(200)->generate(route('vCard.scanView', ['qrCode' => $vcard->slug]));
+            $qrCode = QrCode::size(200)->generate(route('vCard.scanView', ['id'=>$vcard->id,'slug' => $vcard->slug]));
             return view('yellowpages::VCard.QRvCard', compact('qrCode', 'vcardId'));
         } catch (\Exception $e) {
             Log::error('Error generating QR code: ' . $e->getMessage());
@@ -43,7 +43,7 @@ class VcardQRController extends Controller
             $vcard = Vcard::where('user_id', $userId)->latest()->firstOrFail();
 
             // Generate QR code
-            $qrCode = QrCode::size(200)->generate(route('vCard.scanView', ['qrCode' => $vcard->slug]));
+            $qrCode = QrCode::size(200)->generate(route('vCard.scanView', ['id'=>$vcard->id,'slug' => $vcard->slug]));
 
             // Create a temporary file to store the QR code image
             $tempFile = tempnam(sys_get_temp_dir(), 'qr_');
@@ -59,26 +59,23 @@ class VcardQRController extends Controller
     ##------------------------- END ---------------------##
 
     ##------------------------- QR Scan ---------------------##
-    public function scanAndView($qrCode, $count = 1)
+    public function scanAndView($id, $slug ,$count = 1)
     {
         try {
-            $vcard = Vcard::where('slug', $qrCode)->orWhere('id', $qrCode)->first();
+            $vcard = Vcard::where('slug', $slug)->orWhere('id', $id)->first();
 
             if ($vcard) {
-                // Update scan_count for the found vCard using its ID
                 Vcard::where('id', $vcard->id)->increment('scan_count', $count);
-
-                // Refresh the vCard instance to reflect the updated count
                 $vcard->refresh();
 
                 Log::info("Scan count updated for vCard ID: {$vcard->id}, New Scan Count: {$vcard->scan_count}");
             } else {
-                Log::error("vCard not found for QR Code: {$qrCode}");
+                Log::error("vCard not found for QR Code: {$slug}");
                 abort(404, 'vCard not found');
             }
 
-            // Return the view with the updated vCard details
             return view('yellowpages::VCard.CardView', compact('vcard'));
+            
         } catch (\Exception $e) {
             Log::error('Error in scanAndView: ' . $e->getMessage());
             return redirect()->back()->withErrors(['error' => 'Unable to view the vCard.']);

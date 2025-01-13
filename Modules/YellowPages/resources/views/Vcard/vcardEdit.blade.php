@@ -13,7 +13,7 @@
                     <h5 class="mb-4 d-flex align-items-center">
                         <span>VCard Information</span>
                         <div class="ms-3" style="border: 1px solid #ccc; border-radius: 4px;">
-                            <a href="{{ url('yellow-pages/vcard/view') }}" target="_blank">
+                            <a href="{{ route('vCard.view', ['vcard_id' => $vcard->id]) }}" target="_blank">
                                 <i class='bx bx-show' title="View Card" style="font-size: 24px;"></i>
                             </a>
                         </div>

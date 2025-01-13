@@ -46,7 +46,7 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
     ##------------------------- END ---------------------##
 
     ##------------------------- Home ---------------------##
-    Route::get('/home', [HomeController::class, 'index'])->name('yp.home');
+    Route::get('/', [HomeController::class, 'index'])->name('yp.home');
     Route::get('/listing_plan', [HomeController::class, 'listing_plan'])->name('yp.listing_plan');
     Route::get('/bazzar_plan', [HomeController::class, 'bazzar_plan'])->name('yp.bazzar_plan');
     Route::get('/add_listing', [HomeController::class, 'add_listing'])->name('yp.add_listing');
@@ -78,7 +78,8 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
     Route::get('/user/createCard', [VCardController::class, 'createCard'])->name('vCard.createCard');
     ##------------------------- END ---------------------##
 
-    Route::get('/vcard/view/', [CreateVCardController::class, 'view'])->name('vCard.view');
+    Route::get('/vcard/{vcard_id}', [CreateVCardController::class, 'view'])->name('vCard.view');
+    Route::get('/vcard/{vcard_id}/{slug}', [VcardQRController::class, 'scanAndView'])->name('vCard.scanView');
 
     Route::group(['middleware' => 'auth.custom'], function(){
     ##------------------------- Carete VCard ---------------------##
@@ -89,7 +90,6 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
     ##------------------------- END ---------------------##
 
     ##------------------------- VCard QR ---------------------##
-    Route::get('/vcard/scan/{qrCode}', [VcardQRController::class, 'scanAndView'])->name('vCard.scanView');
     Route::get('/user/qr/', [VcardQRController::class, 'generateQrCode'])->name('vCard.generateQr');
     Route::get('vcard/qr-code/download', [VcardQRController::class, 'downloadQrCode'])->name('vCard.downloadQrCode');
     ##------------------------- END ---------------------##
