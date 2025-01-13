@@ -36,7 +36,7 @@
             <hr/>
             <div class="card">
                 <div class="card-body d-flex justify-content-end align-items-end">
-                    <a href="{{ url('/yellow-pages/vcard/business-listing-register') }}" class="btn btn-primary">नई लिस्टिंग करें</a>
+                    <a href="{{ route('vCard.business-listing-register') }}" class="btn btn-primary">नई लिस्टिंग करें</a>
                 </div>
                 <div class="card-body">
                     <table class="table mb-0 table-hover">

@@ -74,8 +74,8 @@ class PlanController extends Controller
                     'quantity' => 1,
                 ]],
                 'mode' => 'payment',
-                'success_url' => url('yellow-pages/vCard/payment-success') . '?session_id={CHECKOUT_SESSION_ID}',
-                'cancel_url' => url('yellow-pages/vCard/payment-cancel'),
+                'success_url' => url('yellow-pages/plan/payment-success') . '?session_id={CHECKOUT_SESSION_ID}',
+                'cancel_url' => url('yellow-pages/plan/payment-cancel'),
                 'metadata' => [
                     'plan_id' => $plan->id,
                 ],

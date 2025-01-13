@@ -27,7 +27,7 @@
                     <td>{{ $plan->duration }}दिन</td>
                     <td>{{ $plan->type }}</td>
                     <td>
-                        <form action="{{ url('yellow-pages/vCard/stripe-checkout') }}" method="POST" nctype="multipart/form-data">
+                        <form action="{{ route('vcard.stripeCheckout') }}" method="POST" nctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="plan_id" value="{{ $plan->id }}">
                             <input type="hidden" name="price" value="{{ $plan->price }}">

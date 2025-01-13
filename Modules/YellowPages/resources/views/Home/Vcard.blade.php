@@ -15,7 +15,6 @@
         डेमो आज़माएं
       </a>
     </div>
-
     <!-- Image Content -->
     <div style="flex: 1; max-width: 400px; padding: 20px; box-sizing: border-box; text-align: center;">
       <img src="{{ asset('assets/Vcard/vcard.png') }}" alt="Digital Business Card" style="width: 100%; height: auto; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);">
@@ -119,7 +118,7 @@
         </div>
         
       </div>
-      <div class="container" style="padding: 50px 0; background-color: #f9f9f9;">
+      {{-- <div class="container" style="padding: 50px 0; background-color: #f9f9f9;">
         <h2 style="text-align: center; font-size: 2.5em; margin-bottom: 40px; font-weight: bold; color: #333;">सदस्यता योजना</h2>
         
         <!-- Radio Button Options for Monthly/Yearly -->
@@ -188,7 +187,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     
   <script>
 

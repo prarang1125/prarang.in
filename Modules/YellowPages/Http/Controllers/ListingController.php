@@ -283,58 +283,58 @@ class ListingController extends Controller
     ##------------------------- END---------------------##
 
     ##------------------------- Listing Details---------------------##
-    public function listing($listingId)
+    public function listing($city_slug, $listing_title, $listingId)
     {
-     try {
-        // Fetch the listing or fail with a 404
-        $listing = BusinessListing::findOrFail($listingId);
-        $listingHours = BusinessHour::where('business_id', $listing->id)->get();
-
-        // Check if the user is not the owner
-        $checkCreator = BusinessListing::where('user_id', '!=', Auth::id())->first();
-
-        if ($checkCreator) {
-            $ipAddress = request()->ip();
-
-            // Check if the visit already exists
-            $visitExists = Visits::where('business_id', $listing->id)
-                ->where('ip_address', $ipAddress)
-                ->first();
-
-            if (!$visitExists) {
-                // Log the visit
-                Visits::insert([
-                    'business_id' => $listingId,
-                    'ip_address' => $ipAddress,
-                    'user_type' => Auth::check() ? 'user' : 'guest',
-                    'username' => Auth::check() ? Auth::user()->name : 'Guest',
-                    'created_at' => now(),
-                    'updated_at' => now(),
-                ]);
-            }
-        }
-
-        $currentDay = Carbon::now()->format('l');
-        $currentTime = Carbon::now();
-        $isOpen = false;
-
-        foreach ($listingHours as $hour) {
-            if (strtolower($hour->day) === strtolower($currentDay)) {
-                $openTime = Carbon::parse($hour->open_time);
-                $closeTime = Carbon::parse($hour->close_time);
-
-                if ($currentTime->between($openTime, $closeTime)) {
-                    $isOpen = true;
-                    break;
+        try {
+            // Fetch the listing or fail with a 404
+            $listing = BusinessListing::findOrFail($listingId);
+            $listingHours = BusinessHour::where('business_id', $listing->id)->get();
+    
+            // Check if the user is not the owner
+            $checkCreator = BusinessListing::where('user_id', '!=', Auth::id())->first();
+    
+            if ($checkCreator) {
+                $ipAddress = request()->ip();
+    
+                // Check if the visit already exists
+                $visitExists = Visits::where('business_id', $listing->id)
+                    ->where('ip_address', $ipAddress)
+                    ->first();
+    
+                if (!$visitExists) {
+                    // Log the visit
+                    Visits::insert([
+                        'business_id' => $listingId,
+                        'ip_address' => $ipAddress,
+                        'user_type' => Auth::check() ? 'user' : 'guest',
+                        'username' => Auth::check() ? Auth::user()->name : 'Guest',
+                        'created_at' => now(),
+                        'updated_at' => now(),
+                    ]);
                 }
             }
+    
+            $currentDay = Carbon::now()->format('l');
+            $currentTime = Carbon::now();
+            $isOpen = false;
+    
+            foreach ($listingHours as $hour) {
+                if (strtolower($hour->day) === strtolower($currentDay)) {
+                    $openTime = Carbon::parse($hour->open_time);
+                    $closeTime = Carbon::parse($hour->close_time);
+    
+                    if ($currentTime->between($openTime, $closeTime)) {
+                        $isOpen = true;
+                        break;
+                    }
+                }
+            }
+    
+            return view('yellowpages::Home.listing', compact('listing', 'listingHours', 'isOpen'));
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Listing not found.');
         }
-
-        return view('yellowpages::Home.listing', compact('listing', 'listingHours', 'isOpen'));
-    } catch (\Exception $e) {
-        return redirect()->back()->with('error', 'Listing not found.');
-    }
-    }
+    }    
 
     ##-------------------------END ---------------------##
 

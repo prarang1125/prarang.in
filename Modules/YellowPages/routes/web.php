@@ -57,7 +57,6 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
     ##------------------------- Business Listing ---------------------##
     Route::get('category/{category_name}', [ListingController::class, 'showByCategory'])->name('category.show');
     Route::get('city/{city_name}', [ListingController::class, 'showByCity'])->name('city.show');
-    Route::get('/listing-details/{listingId}', [ListingController::class, 'listing'])->name('yp.listing-details');
 
     Route::group(['middleware' => 'auth.custom'], function(){
       Route::get('/getLocationData', [ListingController::class, 'getLocationData'])->name('yp.getLocationData');
@@ -79,12 +78,14 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
     Route::get('/user/createCard', [VCardController::class, 'createCard'])->name('vCard.createCard');
     ##------------------------- END ---------------------##
 
+    Route::get('/vcard/view/', [CreateVCardController::class, 'view'])->name('vCard.view');
+
     Route::group(['middleware' => 'auth.custom'], function(){
     ##------------------------- Carete VCard ---------------------##
     Route::post('/user/CardStore', [CreateVCardController::class, 'store'])->name('vCard.store');
     Route::get('/vcard-edit/{id}', [CreateVCardController::class, 'vcardEdit'])->name('vCard.vcard-edit');
     Route::put('/vcard-update/{id}', [CreateVCardController::class, 'vcardUpdate'])->name('vCard.update');
-    Route::get('/vcard/view/', [CreateVCardController::class, 'view'])->name('vCard.view');
+    Route::get('user/vcard-list', [CreateVCardController::class, 'VcardList'])->name('vCard.list');
     ##------------------------- END ---------------------##
 
     ##------------------------- VCard QR ---------------------##
@@ -97,9 +98,9 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
     Route::get('/user/ActivePlan', [PlanController::class, 'plan'])->name('vCard.plan');
     Route::get('/user/MembershipPlan', [PlanController::class, 'planDetails'])->name('vCard.planDetails');
     Route::get('/user/paymentHistory', [PlanController::class, 'paymentHistory'])->name('vCard.paymentHistory');
-    Route::post('user/stripe-checkout', [PlanController::class, 'stripeCheckout'])->name('vcard.stripeCheckout');
-    Route::get('user/payment-success', [PlanController::class, 'paymentSuccess'])->name('vcard.paymentSuccess');
-    Route::get('user/payment-cancel', [PlanController::class, 'paymentCancel'])->name('vcard.paymentCancel');
+    Route::post('plan/stripe-checkout', [PlanController::class, 'stripeCheckout'])->name('vcard.stripeCheckout');
+    Route::get('plan/payment-success', [PlanController::class, 'paymentSuccess'])->name('vcard.paymentSuccess');
+    Route::get('plan/payment-cancel', [PlanController::class, 'paymentCancel'])->name('vcard.paymentCancel');
     ##------------------------- END ---------------------##
 
     ##------------------------- Dashboard User data ---------------------##
@@ -200,6 +201,8 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
 
 
    Route::get('{category}/{city}', [ListingController::class, 'index'])->name('yp.listing');
+   Route::get('{city_slug}/{listing_title}/{listing_id}', [ListingController::class, 'listing'])->name('yp.listing-details');
+
 
       ##------------------------- Not require ---------------------##
     Route::get('/signIn', [HomeController::class, 'signIn'])->name('signIn');

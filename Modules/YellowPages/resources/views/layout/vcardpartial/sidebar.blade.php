@@ -27,6 +27,12 @@
                 <div class="menu-title">वीकार्ड</div>
             </a>
         </li>
+        <li>
+            <a href="{{ url('yellow-pages/user/vcard-list') }}">
+                <div class="parent-icon"><i class="lni lni-user"></i></div>
+                <div class="menu-title">वीकार्ड सूची</div>
+            </a>
+        </li>
         <!-- Category -->
         <li>
             <a href="{{ url('yellow-pages/user/ActivePlan') }}">
@@ -82,7 +88,7 @@
             </a>
         </li>
         <li>
-            <a href="{{ url('yellow-pages/user/report-list')}}">
+            <a href="{{ url('yellow-pages/user/list')}}">
                 <div class="parent-icon"><i class="bx bx-chart"></i></div>
                 <div class="menu-title">संदेश सूचीकरण</div>
             </a>

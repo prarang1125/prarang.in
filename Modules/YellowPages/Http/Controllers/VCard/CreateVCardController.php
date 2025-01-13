@@ -5,6 +5,7 @@ namespace Modules\YellowPages\Http\Controllers\VCard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Vcard;
+use Exception;
 use App\Models\DynamicVcard;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -125,7 +126,7 @@ class CreateVCardController extends Controller
                 }
             }
 
-            return redirect()->route('vCard.view', $id)->with('success', 'Card updated successfully.');
+            return redirect()->route('vCard.list', $id)->with('success', 'Card updated successfully.');
         } catch (\Exception $e) {
             Log::error('Error updating VCard: ' . $e->getMessage());
             return redirect()->back()->withErrors(['error' => 'Unable to update VCard.']);
@@ -147,4 +148,15 @@ class CreateVCardController extends Controller
         }
     }
     ##------------------------- END ---------------------##
+    ##------------------------- VCard list ---------------------## 
+    public function VcardList(Request $request) {
+         try {
+            $Vcard_list = Vcard::where('user_id', Auth::id())->get();
+            return view('yellowpages::Vcard.vcard-list', compact('Vcard_list'));
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Error fetching Vcard listings: ' . $e->getMessage());
+        }
+    }
+    ##------------------------- END ---------------------##
+
 }

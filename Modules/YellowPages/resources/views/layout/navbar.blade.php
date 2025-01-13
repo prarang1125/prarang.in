@@ -59,17 +59,17 @@
                         <a href="#" class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                             श्रेणियाँ <i class="fa fa-caret-down"></i>
                         </a>
-                        {{-- <ul class="dropdown-menu">
-                            @foreach($categories as $category)
+                        <ul class="dropdown-menu">
+                            @foreach(get_categories() as $category)
                                 <li><a class="dropdown-item" href="{{ url('yellow-pages/category/' . $category->id) }}">{{ $category->name }}</a></li>
                             @endforeach
-                        </ul> --}}
+                        </ul>                        
                     </li>
-                    <li class="action-buttons">
+                    {{-- <li class="action-buttons">
                         <a href="{{ url('yellow-pages/listing_plan') }}" class="btn-add-listing">
                             <i class="fa fa-plus"></i> सूची जोड़ें
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="action-buttons">
                         <a href="{{ url('yellow-pages/plans') }}" class="btn-add-listing">
                             <i class="fa fa-chart-line"></i> योजना <!-- "Plan" menu item -->

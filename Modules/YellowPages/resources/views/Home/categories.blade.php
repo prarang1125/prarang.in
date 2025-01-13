@@ -63,38 +63,22 @@
 <!-- Listings Grid -->
 <div class="listings-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
     @foreach($listings as $listing)
-        <div style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
-            <a href="{{ route('yp.listing-details', $listing->id) }}" style="display: block;">
-            <img src="{{ storage::url($listing->feature_img ?? 'default.jpg') }}" alt="{{ $listing->listing_title }}" style="width: 100%; height: auto;">
+        <a href="{{ route('yp.listing-details', ['city_slug' => $listing->city->name, 'listing_title' => $listing->listing_title, 'listing_id' => $listing->id]) }}" 
+           style="display: block; background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center; text-decoration: none;">
+            <img src="{{ storage::url($listing->feature_img ?? 'default.jpg') }}" 
+                 alt="{{ $listing->listing_title }}" 
+                 style="width: 100%; height: auto;">
             <div style="padding: 20px;">
                 <div style="background-color: {{ $listing->status === 'Closed' ? '#ff4d4d' : '#28a745' }}; color: white; padding: 5px; border-radius: 5px; font-size: 12px; display: inline-block; margin-bottom: 10px;">
                     {{ $listing->is_open ? 'Open' : 'Closed' }}
                 </div>
-                <h3 style="font-size: 18px; margin-bottom: 10px;">{{ $listing->listing_title ?? 'No Title' }}</h3>
-                <p><a href="#" style="text-decoration: none; color: #333; font-weight: bold;">{{ $listing->listing_title }}</a></p>
-
-                <div style="margin-top: 15px;">
-                    <!-- Call Now Button -->
-                    <a href="tel:+{{ $listing->phone }}" 
-                       style="text-decoration: none; color: white; background-color: #007bff; padding: 10px 20px; border-radius: 5px; font-size: 14px; margin-right: 10px; display: inline-block;"
-                       onmouseover="replaceContent(this, '{{ $listing->phone }}')" 
-                       onmouseout="restoreContent(this, '📞 Call Now')">
-                        📞 Call Now
-                    </a>
-                
-                    <!-- View Location Button -->
-                    <a href="https://maps.google.com/?q={{ urlencode($listing->full_address) }}" 
-                       target="_blank" 
-                       style="text-decoration: none; color: white; background-color: #28a745; padding: 10px 20px; border-radius: 5px; font-size: 14px; display: inline-block;"
-                       onmouseover="replaceContent(this, '{{ $listing->full_address }}')" 
-                       onmouseout="restoreContent(this, '📍 View Location')">
-                        📍 View Location
-                    </a>
-                </div>
+                <h3 style="font-size: 18px; margin-bottom: 10px; color: #333;">{{ $listing->listing_title ?? 'No Title' }}</h3>
+                <p style="text-decoration: none; color: #333; font-weight: bold;">{{ $listing->listing_title }}</p>
             </div>
-        </div>
+        </a>
     @endforeach
 </div>
+
 
         </div>
 
