@@ -32,12 +32,12 @@
                 <ul class="dropdown-menu dropdown-menu-end">
                     @if (Auth::guard('web')->check())
                         {{-- @if (Auth::guard('admin')->user()->roleId === '1') --}}
-                        <li><a class="dropdown-item" href="{{ url('yellow-pages/vCard/user-edit/'. Auth::id()) }}"><i class="bx bx-user"></i><span>प्रोफ़ाइल अपडेट करें</span></a>
+                        <li><a class="dropdown-item" href="{{ route('vCard.userEdit', ['id' => Auth::id()]) }}"><i class="bx bx-user"></i><span>प्रोफ़ाइल अपडेट करें</span></a>
                         </li>
                         <li><a class="dropdown-item" href="{{ route('vCard.dashboard') }}"><i class='bx bx-home-circle'></i><span>डैशबोर्ड</span></a>
                         </li>
-                        <li><a class="dropdown-item" href="{{ route('yp.getLocationData') }}"><i class='bx bx-home-circle'></i><span>सूची जोड़ें</span></a>
-                        </li>
+                        {{-- <li><a class="dropdown-item" href="{{ route('yp.getLocationData') }}"><i class='bx bx-home-circle'></i><span>सूची जोड़ें</span></a>
+                        </li> --}}
                         <li>
                             <div class="dropdown-divider mb-0"></div>
                         </li>

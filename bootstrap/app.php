@@ -17,6 +17,8 @@ use Illuminate\Foundation\Configuration\Middleware;
             'admin.auth'  => \App\Http\Middleware\AdminAuthenticate::class,
             'auth.custom' => \App\Http\Middleware\Authenticate::class,
             'language' => \App\Http\Middleware\SetLocale::class, 
+            'check.subscription' => \App\Http\Middleware\CheckSubscriptionLimits::class,
+
         ]);
         
         $middleware->redirectTo(

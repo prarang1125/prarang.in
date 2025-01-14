@@ -70,6 +70,7 @@ class VCardController extends Controller
             return redirect()->back()->withErrors(['error' => 'Unable to load the Create Card page.']);
         }
     }
+    
     ##------------------------- END ---------------------##
 
     ##------------------------- logut ---------------------##

@@ -24,6 +24,12 @@ class Vcard extends Model
     return $this->hasMany(DynamicVcard::class, 'vcard_id');
 }
 
+// Vcard model
+public function user()
+{
+    return $this->belongsTo(User::class, 'user_id');
+}
+
 
     
 

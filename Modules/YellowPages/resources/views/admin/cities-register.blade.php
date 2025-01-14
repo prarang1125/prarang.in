@@ -41,6 +41,23 @@
                             @enderror
                         </div>
                     </div>
+                    
+                    <div class="row mt-3">
+                        <div class="col-md-6">
+                            <label for="portal_id" class="form-label">पोर्टल</label>
+                            <select class="form-control @error('portal_id') is-invalid @enderror" id="portal_id" name="portal_id">
+                                <option value="" disabled selected>पोर्टल का चयन करें</option>
+                                @foreach($portals as $portal)
+                                    <option value="{{ $portal->id }}" {{ old('portal_id') == $portal->id ? 'selected' : '' }}>
+                                        {{ $portal->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            @error('portal_id')
+                                <p class="invalid-feedback">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
                 
                     <div class="row mt-3">
                         <div class="col-md-6">
@@ -55,8 +72,7 @@
                     <div class="modal-footer mt-3">
                         <button type="submit" class="btn btn-primary">बनाएं</button>
                     </div>
-                </form>
-                
+                </form>                
             </div>
         </div>
     </div>

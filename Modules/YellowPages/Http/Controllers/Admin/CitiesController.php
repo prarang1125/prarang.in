@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\City;
+use App\Models\Portal;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -100,8 +101,10 @@ class CitiesController extends Controller
     ##------------------------- citiesRegister function ---------------------##
     public function citiesRegister()
     {
-        return view('yellowpages::Admin.cities-register');
+        $portals = Portal::all(); // Fetch active portals
+        return view('yellowpages::Admin.cities-register', compact('portals'));
     }
+    
     ##------------------------- END ---------------------##
 
     ##------------------------- citiesStore function ---------------------##
@@ -111,6 +114,7 @@ class CitiesController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'image' => 'required|image',  // Image validation with file type restrictions
+            'portal_id' => 'required',  // Image validation with file type restrictions
         ]);
 
         // Proceed if validation passes

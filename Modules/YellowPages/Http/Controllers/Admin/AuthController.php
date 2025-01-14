@@ -30,12 +30,13 @@ class AuthController extends Controller
 
     public function authenticate(Request $request)
     {
-        try {
+        
             // Validate input
             $validator = Validator::make($request->all(), [
                 'email' => 'required|email',
                 'password' => 'required',
             ]);
+            try {
         
             if ($validator->passes()) {
         
@@ -55,10 +56,10 @@ class AuthController extends Controller
                     } else {
                         // If user is not admin (role != 1), log out and show error
                         Auth::guard('admin')->logout();
-                        return redirect()->route('admin.login')->with('error', 'You do not have admin rights');
+                        return redirect()->route('admin.login')->with('error', 'आपके पास व्यवस्थापक अधिकार नहीं हैं');
                     }
                 } else {
-                    return redirect()->route('admin.login')->with('error', 'Either mail or password is incorrect');
+                    return redirect()->route('admin.login')->with('error', 'ईमेल या पासवर्ड गलत है');
                 }
         
             } else {

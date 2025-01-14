@@ -11,6 +11,11 @@
                             <i class="bx bxs-user-circle text-dark font-50"></i>
                             <h5 class="mb-5 mt-2 text-dark">व्यवस्थापक लॉगिन</h5>
                         </div>
+                        @if(session('error'))
+                        <div class="alert alert-danger">
+                            {{ session('error') }}
+                        </div>
+                        @endif
                         <hr>
                         <form class="row g-3" action="{{ route('admin.authenticate') }}" method="POST">
                             @csrf

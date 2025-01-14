@@ -1,10 +1,13 @@
 @extends('yellowpages::layout.vcard.vcard')
 @section('title', 'Active Subscription Plan')
 @section('content')
-
 <div class="container my-5">
-    <h2 class="d-flex justify-content-center align-items-center" style="height: 10vh;">सदस्यता योजनाएँ</h2>
-    
+    <h2 class="d-flex justify-content-center align-items-center" style="height: 20vh;">सदस्यता योजनाएँ</h2>
+    @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+      @endif
     <!-- Plans Table -->
     <div class="table-responsive mt-5">
         <table class="table table-bordered text-center">
