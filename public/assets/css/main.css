@@ -2955,3 +2955,44 @@ section,
     font-size: 18px;
     margin-bottom: 11px;
 }
+/* Flex */
+#navmenu .d-flex{
+  justify-content:center;
+  flex-direction:row;
+ }
+ 
+ /* Dropdown */
+ #navmenu .d-flex .dropdown{
+  transform:translatex(0px) translatey(5px);
+ }
+ 
+ /* List Item */
+#footer li{
+  text-align:left;
+  border-left-style:solid;
+  margin-bottom:4px;
+  padding-left:10px;
+ }
+ 
+ /* List Item */
+#footer li:hover{
+  color:#322e2e;
+ }
+ 
+ /* Link */
+ #footer li:hover a{
+  color:#ffffff !important;
+  text-shadow:rgb(0, 0, 0) 0px 1px 1px, rgb(0, 0, 0) 0px -1px 1px, rgb(0, 0, 0) 1px 0px 1px, rgb(0, 0, 0) -1px 0px 1px;
+ }
+
+ /* Icon box */
+.icon-boxes .icon-box:hover{
+  background-color:#f1ecca;
+  display:inline-block;
+  transform:translatex(0px) translatey(0px) !important;
+ }
+ 
+
+ 
+ 
+ 
