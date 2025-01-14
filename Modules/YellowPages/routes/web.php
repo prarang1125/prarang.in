@@ -186,7 +186,7 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
 
   // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    End yellowPages Admin Side   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
    Route::get('{category}/{city}', [ListingController::class, 'index'])->name('yp.listing');
-   Route::get('{city_slug}/{listing_title}/{listing_id}', [ListingController::class, 'listing'])->name('yp.listing-details');
+   Route::get('{city_slug}/{listing_id}/{listing_title}', [ListingController::class, 'listing'])->name('yp.listing-details');
       ##------------------------- Not require ---------------------##
     Route::get('/signIn', [HomeController::class, 'signIn'])->name('signIn');
     Route::get('/vCard/login', [vCardAuthcontroller::class, 'index'])->name('vCard.login');
