@@ -22,21 +22,11 @@ use Modules\YellowPages\Http\Controllers\VCard\BusinessListingController;
 use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
 use Illuminate\Support\Facades\App;
 
-// use App\Http\Controllers\Auth\AuthController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
                        
 Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function () {
-
+    Route::get('/', [HomeController::class, 'index'])->name('yp.home');
     ##------------------------- Auth ---------------------##
     Route::get('/login', [AuthModalController::class, 'index'])->name('yp.login');
     Route::post('/authLogin', [AuthModalController::class, 'login'])->name('yp.authLogin');
@@ -46,7 +36,7 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
     ##------------------------- END ---------------------##
 
     ##------------------------- Home ---------------------##
-    Route::get('/', [HomeController::class, 'index'])->name('yp.home');
+   
     Route::get('/listing_plan', [HomeController::class, 'listing_plan'])->name('yp.listing_plan');
     Route::get('/bazzar_plan', [HomeController::class, 'bazzar_plan'])->name('yp.bazzar_plan');
     Route::get('/add_listing', [HomeController::class, 'add_listing'])->name('yp.add_listing');
@@ -194,16 +184,9 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
 
     ##------------------------------------------ END -----------------------------------##
 
-
   // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    End yellowPages Admin Side   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-
-
-
    Route::get('{category}/{city}', [ListingController::class, 'index'])->name('yp.listing');
    Route::get('{city_slug}/{listing_title}/{listing_id}', [ListingController::class, 'listing'])->name('yp.listing-details');
-
-
       ##------------------------- Not require ---------------------##
     Route::get('/signIn', [HomeController::class, 'signIn'])->name('signIn');
     Route::get('/vCard/login', [vCardAuthcontroller::class, 'index'])->name('vCard.login');

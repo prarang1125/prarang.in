@@ -22,3 +22,7 @@ yarn-error.log
 /.zed
 # Environment configuration
 **/.env
+*.zip
+*.mp4
+*.iso
+*.tar.gz

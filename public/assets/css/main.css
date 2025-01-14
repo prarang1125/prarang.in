@@ -1,16 +1,4 @@
-/**
-* Template Name: Impact
-* Template URL: https://bootstrapmade.com/impact-bootstrap-business-website-template/
-* Updated: Aug 07 2024 with Bootstrap v5.3.3
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 
-/*--------------------------------------------------------------
-# Font & Color Variables
-# Help: https://bootstrapmade.com/color-system/
---------------------------------------------------------------*/
-/* Fonts */
 :root {
   --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --heading-font: "Montserrat",  sans-serif;
@@ -22,7 +10,7 @@
   --background-color: #ffffff; /* Background color for the entire website, including individual sections */
   --default-color: #222222; /* Default color used for the majority of the text content across the entire website */
   --heading-color: #172a28; /* Color for headings, subheadings and title throughout the website */
-  --accent-color: #008374; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
+  --accent-color: #fedd59; /* Accent color that represents your brand on the website. It's used for buttons, links, and other elements that need to stand out */
   --surface-color: #ffffff; /* The surface color is used as a background of boxed elements within sections, such as cards, icon boxes, or other elements that require a visual separation from the global background. */
   --contrast-color: #ffffff; /* Contrast color for text, ensuring readability against backgrounds of accent, heading, or default colors. */
 }
@@ -30,11 +18,11 @@
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
   --nav-color: #ffffff;  /* The default color of the main navmenu links */
-  --nav-hover-color: #008374; /* Applied to main navmenu links when they are hovered over or active */
+  --nav-hover-color: #fedd59; /* Applied to main navmenu links when they are hovered over or active */
   --nav-mobile-background-color: #ffffff; /* Used as the background color for mobile navigation menu */
   --nav-dropdown-background-color: #ffffff; /* Used as the background color for dropdown items that appear when hovering over primary navigation items */
-  --nav-dropdown-color: #01433c; /* Used for navigation links of the dropdown items in the navigation menu. */
-  --nav-dropdown-hover-color: #008374; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
+  --nav-dropdown-color: #987f19; /* Used for navigation links of the dropdown items in the navigation menu. */
+  --nav-dropdown-hover-color: #fedd59; /* Similar to --nav-hover-color, this color is applied to dropdown navigation links when they are hovered over. */
 }
 
 /* Color Presets - These classes override global colors when applied to any section or element, providing reuse of the sam color scheme. */
@@ -53,11 +41,11 @@
 }
 
 .accent-background {
-  --background-color: #008374;
+  --background-color: #fedd59;
   --default-color: #ffffff;
   --heading-color: #ffffff;
   --accent-color: #ffffff;
-  --surface-color: #00b6a1;
+  --surface-color: #f6e39a;
   --contrast-color: #ffffff;
 }
 
@@ -231,7 +219,7 @@ h6 {
 # Global Header
 --------------------------------------------------------------*/
 .header {
-  --background-color: #008374;
+  --background-color: #fedd59;
   --heading-color: #ffffff;
   color: var(--default-color);
   transition: all 0.5s;
@@ -2857,4 +2845,113 @@ section,
   padding-left: 5px;
   color: color-mix(in srgb, var(--default-color), transparent 60%);
   font-size: 14px;
+}
+
+/* Branding */
+#header .branding{
+  background-color:#fcfcfc;
+  box-shadow:0px 0px 7px 0px #222222;
+  transform:translatex(0px) translatey(0px);
+  padding-top:0px;
+  height:60px;
+ }
+ 
+ /* Link */
+ #navmenu .login-button a{
+  font-size:18px;
+  padding-top:6px;
+  padding-bottom:4px;
+  padding-right:18px;
+  padding-left:16px;
+ }
+ 
+ /* Font Icon */
+ .login-button .btn-login-icon i{
+  font-size:18px !important;
+ }
+ 
+ /* Flex */
+ #header .branding > .d-flex{
+  padding-bottom:-3px;
+  padding-top:8px;
+ }
+ 
+ @media (min-width:1200px){
+ 
+  /* Action buttons */
+  #navmenu .d-flex .action-buttons{
+   padding-bottom:2px;
+   padding-top:12px;
+  }
+  
+  /* Dropdown */
+  #navmenu .d-flex .dropdown{
+   padding-bottom:7px;
+   padding-top:10px;
+  }
+  
+ }
+
+ /* Font Icon */
+#navmenu .btn-get-vcard i{
+  padding-right:6px;
+ }
+ 
+ /* Font Icon */
+ #navmenu .btn-add-listing i{
+  padding-right:7px;
+ }
+ 
+/* Font Icon */
+#navmenu .btn-get-vcard i{
+  padding-right:6px;
+ }
+ 
+ /* Font Icon */
+ #navmenu .btn-add-listing i{
+  padding-right:7px;
+ }
+ 
+ /* Footer */
+ #footer{
+  background-color:#fedd59;
+ }
+ 
+ /* Heading */
+ #footer h5{
+  color:#020202;
+ }
+ 
+ /* Text center */
+ #footer .container .text-center{
+  color:#020202;
+ }
+ 
+  /* Link */
+#navmenu .login-button a{
+  background-color:#fedd59;
+  margin-top:7px;
+ }
+ 
+   /* Row */
+   #hero .aos-init>.justify-content-center {
+    background-color: rgba(0, 0, 0, 0.58);
+    margin-top: 0px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    border-bottom-left-radius: 12px;
+    border-bottom-right-radius: 12px;
+    border-style: solid;
+    border-color:rgb(222, 231, 99);
+}
+
+.flex-column h2 span {
+    color: #ffffff;
+}
+
+/* Paragraph */
+#hero .aos-init p {
+    color: #ffffff !important;
+    font-size: 18px;
+    margin-bottom: 11px;
 }

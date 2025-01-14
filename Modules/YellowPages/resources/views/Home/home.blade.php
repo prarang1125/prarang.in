@@ -3,8 +3,9 @@
 @section('content')
 
     <!-- Hero Section -->
-    <section id="hero" class="hero section-bg" style="background-image: url('{{ asset('assets/images/background-image.jpg') }}');">
-      
+    <!-- <section id="hero" class="hero section-bg" style="background-image: url('{{ asset('assets/images/background-image.jpg') }}');"> -->
+    <section id="hero" class="hero section-bg" style="background-image: url('https://img.freepik.com/free-vector/abstract-low-poly-colorful-triangle-shapes-background_1035-23257.jpg?t=st=1736766260~exp=1736769860~hmac=21a7d387175441dd76fc7c0247feb6fe57afa117b8db6c6db37cdec88a5537e5&w=1060');">
+
         <div class="container position-relative text-center" data-aos="fade-up" data-aos-delay="100">
           <div class="row gy-5 justify-content-center">
               <div class="col-lg-8 order-2 order-lg-1 d-flex flex-column justify-content-center mx-auto">

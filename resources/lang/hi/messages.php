@@ -4,7 +4,7 @@
 return [
 
     'yellow_pages' =>'प्रारंग - येलोपेजेस',
-    'explore_your_city' => 'अपने शहर का अन्वेषण करें',
+    'explore_your_city' => 'अपने शहर का व्यवसाय खोजें',
     'Let_uncover_the_best_Businesses' => 'आइए सर्वोत्तम व्यवसायों, उत्पादों और सेवाओं को उजागर करें',
 
     //category
