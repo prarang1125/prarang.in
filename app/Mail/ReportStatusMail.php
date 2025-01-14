@@ -23,27 +23,17 @@ class ReportStatusMail extends Mailable
     {
         $this->report = $report;
     }
-    /**
-     * Get the message envelope.
-     */
-    public function envelope(): Envelope
-    {
-        return new Envelope(
-            subject: 'Report Status Mail',
-        );
-    }
 
     /**
-     * Get the message content definition.
+     * Build the message.
      */
-    public function content(): Content
+    public function build(): self
     {
-        return new Content(
-            view: 'emails.report_status',
-            with: [
-                'report' => $this->report, // Pass the report data to the view
-            ]
-        );
+        return $this->subject('Report Status Update') // Set email subject
+                    ->view('yellowpages::admin.report_status') // Specify the email view
+                    ->with([
+                        'report' => $this->report, // Pass the report data to the view
+                    ]);
     }
 
     /**

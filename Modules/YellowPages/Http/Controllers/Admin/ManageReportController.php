@@ -6,9 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Report;
 use Illuminate\Support\Facades\Log;
-use Modules\YellowPages\Emails\ReportStatusMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\DB;
+use App\Mail\ReportStatusMail;
 
 
 class ManageReportController extends Controller
@@ -28,9 +28,10 @@ class ManageReportController extends Controller
        ##------------------------------------------ Upddate Report Status-----------------------------------##
        public function updateStatus(Request $request, $id)
        {
-          
+           DB::beginTransaction();
+       
+           try {
                $report = Report::findOrFail($id);
-              
        
                // Update the status
                $report->status = $request->status;
@@ -44,12 +45,12 @@ class ManageReportController extends Controller
                DB::commit();
        
                return redirect()->back()->with('success', 'Status updated and email sent successfully.');
-        //    } catch (\Exception $e) {
-        //        DB::rollBack(); // Roll back the status update if sending the email fails
+           } catch (\Exception $e) {
+               DB::rollBack(); // Roll back the status update if sending the email fails
        
-        //        Log::error($e->getMessage());
-        //        return redirect()->back()->with('error', 'Failed to update status or send email.');
-        //    }
+               Log::error($e->getMessage());
+               return redirect()->back()->with('error', 'Failed to update status or send email.');
+           }
        }
        ##------------------------------------------ END -----------------------------------##
 }

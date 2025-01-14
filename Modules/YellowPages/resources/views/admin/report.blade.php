@@ -69,9 +69,9 @@
                                         <form action="{{ route('admin.Reportstatus', $report->id) }}" method="POST">
                                             @csrf
                                             <select name="status" class="form-select" onchange="this.form.submit()">
-                                                <option value="pending" {{ $report->status == 'pending' ? 'selected' : '' }}>Pending</option>
-                                                <option value="in_progress" {{ $report->status == 'in_progress' ? 'selected' : '' }}>In Progress</option>
-                                                <option value="resolved" {{ $report->status == 'resolved' ? 'selected' : '' }}>Resolved</option>
+                                                <option value="0" {{ $report->status == 0 ? 'selected' : '' }}>Pending</option>
+                                                <option value="1" {{ $report->status == 1 ? 'selected' : '' }}>In Progress</option>
+                                                <option value="2" {{ $report->status == 2 ? 'selected' : '' }}>Resolved</option>
                                             </select>
                                         </form>
                                     </td>
