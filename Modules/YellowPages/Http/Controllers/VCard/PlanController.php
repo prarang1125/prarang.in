@@ -94,11 +94,13 @@ class PlanController extends Controller
 
     public function paymentSuccess(Request $request)
     {
-        try {
+        
+        // try {
             $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
 
             // Retrieve the session details from Stripe
             $session = $stripe->checkout->sessions->retrieve($request->session_id);
+            
 
             if (!$session) {
                 return redirect()->back()->with('error', 'Invalid session ID.');
@@ -117,7 +119,7 @@ class PlanController extends Controller
             $expiresAt = now()->addDays($plan->duration);
 
             // Save payment history
-            PaymentHistory::create([
+ $plann=PaymentHistory::create([
                 'user_id' => Auth::id(),
                 'plan_id' => $plan_id,
                 'transaction_id' => $session->payment_intent,
@@ -143,10 +145,10 @@ class PlanController extends Controller
             ]);
 
             return redirect()->route('vCard.planDetails')->with('success', 'Payment successful and plan activated!');
-        } catch (\Exception $e) {
-            Log::error('Error in payment success: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Unable to process payment. Please contact support.');
-        }
+        // } catch (\Exception $e) {
+        //     Log::error('Error in payment success: ' . $e->getMessage());
+        //     return redirect()->back()->with('error', 'Unable to process payment. Please contact support.');
+        // }
     }
 
     ##------------------------- END ---------------------##

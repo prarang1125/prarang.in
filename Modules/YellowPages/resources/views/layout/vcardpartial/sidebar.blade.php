@@ -22,7 +22,7 @@
             </a>
         </li>
         @endif
-        @if(Auth::user()->subscription->current_qr_scans < Auth::user()->subscription->plan->qr_limit)
+        @if((Auth::user()->subscription->current_qr_scans ?? 0) < (Auth::user()->subscription->plan->qr_limit ?? 0))
 
         <!-- Users -->
         <li>

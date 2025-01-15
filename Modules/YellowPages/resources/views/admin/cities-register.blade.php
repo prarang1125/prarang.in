@@ -49,7 +49,7 @@
                                 <option value="" disabled selected>पोर्टल का चयन करें</option>
                                 @foreach($portals as $portal)
                                     <option value="{{ $portal->id }}" {{ old('portal_id') == $portal->id ? 'selected' : '' }}>
-                                        {{ $portal->name }}
+                                        {{ $portal->city_name_local}}
                                     </option>
                                 @endforeach
                             </select>

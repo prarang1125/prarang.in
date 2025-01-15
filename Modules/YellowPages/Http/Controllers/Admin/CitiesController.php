@@ -101,7 +101,7 @@ class CitiesController extends Controller
     ##------------------------- citiesRegister function ---------------------##
     public function citiesRegister()
     {
-        $portals = Portal::all(); // Fetch active portals
+        $portals = Portal::all(); 
         return view('yellowpages::Admin.cities-register', compact('portals'));
     }
     
@@ -114,14 +114,14 @@ class CitiesController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'image' => 'required|image',  // Image validation with file type restrictions
-            'portal_id' => 'required',  // Image validation with file type restrictions
+            'portal_id' => 'nullable',
         ]);
 
         // Proceed if validation passes
         if ($validator->passes()) {
             $currentDateTime = Carbon::now();
 
-            try {
+            // try {
                 // Handle the file upload
                 if ($request->hasFile('image')) {
                     // Store the image and get the path
@@ -132,16 +132,17 @@ class CitiesController extends Controller
                 City::create([
                     'name' => $request->name,
                     'cities_url' => $imagePath, // Store the image path
+                    'portal_id' =>$request->portal_id,
                     'timezone' => 'Asia/Kolkata',
                     'created_at' => $currentDateTime,
                 ]);
 
                 return redirect()->route('admin.cities-listing')->with('success', 'City created successfully.');
 
-            } catch (\Exception $e) {
-                // Handle errors in city creation
-                return back()->with('error', 'There was an issue with city creation: ' . $e->getMessage());
-            }
+            // } catch (\Exception $e) {
+            //     // Handle errors in city creation
+            //     return back()->with('error', 'There was an issue with city creation: ' . $e->getMessage());
+            // }
         } else {
             // Validation failed, return back with errors
             return redirect()->route('admin.cities-register')
