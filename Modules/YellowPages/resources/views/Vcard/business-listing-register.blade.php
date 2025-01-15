@@ -279,13 +279,13 @@
         </div>
         <div id="faqSection" style="display: none;">
             <div class="faq-item" style="margin-bottom: 10px;">
-                <label>अक्सर पूछे जाने वाले प्रश्नों </label>
-                <input type="text" name="faq" placeholder="अक्सर पूछे जाने वाले प्रश्नों" style="width: 100%; margin-bottom: 5px;">
-                <textarea placeholder="उत्तर" name="answer" style="width: 100%; height: 60px;"></textarea>
+                <label>अक्सर पूछे जाने वाले प्रश्नों</label>
+                <input type="text" name="faq" placeholder="Frequently Asked Questions" style="width: 100%; margin-bottom: 5px;">
+                <textarea placeholder="Answer" name="answer" style="width: 100%; height: 60px;"></textarea>
             </div>
-            <div class="add-new" style="color: #007bff; cursor: pointer; font-size: 14px; display: inline-block; margin-top: 10px;" onclick="addFAQ()">+ नया जोड़ें
-            </div>
+            <div class="add-new" style="color: #007bff; cursor: pointer; font-size: 14px; display: inline-block; margin-top: 10px;" onclick="addFAQ()">+ नया जोड़ें</div>
         </div>
+        
     </div>
     <br>
     {{-- <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
@@ -467,33 +467,39 @@ document.addEventListener('DOMContentLoaded', function () {
     // Append the new row to the form
     socialMediaForm.parentNode.insertBefore(newRow, socialMediaForm.nextSibling);
 });
-    // FAQ Toggle
-    const faqToggle = document.getElementById('featuresToggle');
-    if (faqToggle) {
-        faqToggle.addEventListener('change', function () {
-            const faqSection = document.getElementById('faqSection');
-            faqSection.style.display = this.checked ? 'block' : 'none';
-        });
-    }
 });
 
-// FAQ: Add new FAQ item
-function addFAQ() {
+document.addEventListener('DOMContentLoaded', () => {
+    // Toggle visibility of faqSection when checkbox is clicked
+    const featuresToggle = document.getElementById('featuresToggle');
     const faqSection = document.getElementById('faqSection');
 
-    // Create a new FAQ item
-    const faqItem = document.createElement('div');
-    faqItem.className = 'faq-item';
-    faqItem.style.marginBottom = '10px';
+    featuresToggle.addEventListener('change', () => {
+        if (featuresToggle.checked) {
+            faqSection.style.display = 'block'; // Show the FAQ section
+        } else {
+            faqSection.style.display = 'none'; // Hide the FAQ section
+        }
+    });
 
-    faqItem.innerHTML = `
-        <input type="text" name="faq[]" placeholder="अक्सर पूछे जाने वाले प्रश्न" style="width: 100%; margin-bottom: 5px;">
-        <textarea name="answer[]" placeholder="उत्तर" style="width: 100%; height: 60px;"></textarea>
-    `;
+    // Function to dynamically add new FAQ items
+    window.addFAQ = function () {
+        // Create a new FAQ item div
+        const newFAQ = document.createElement('div');
+        newFAQ.classList.add('faq-item');
+        newFAQ.style.marginBottom = '10px';
 
-    faqSection.insertBefore(faqItem, faqSection.querySelector('.add-new'));
-}
+        // Add the input fields for the new FAQ
+        newFAQ.innerHTML = `
+            <label>अक्सर पूछे जाने वाले प्रश्नों</label>
+            <input type="text" name="faq" placeholder="Frequently Asked Questions" style="width: 100%; margin-bottom: 5px;">
+            <textarea placeholder="Answer" name="answer" style="width: 100%; height: 60px;"></textarea>
+        `;
 
+        // Insert the new FAQ item before the "Add New" button
+        faqSection.insertBefore(newFAQ, faqSection.querySelector('.add-new'));
+    };
+});
 
 </script>
 @endpush
