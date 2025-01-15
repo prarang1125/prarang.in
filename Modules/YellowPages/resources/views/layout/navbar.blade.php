@@ -78,7 +78,7 @@
                           
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="{{ url('yellow-pages/vCard/dashboard') }}">डैशबोर्ड</a></li>
+                            <li><a class="dropdown-item" href="{{ route('vCard.dashboard') }}">डैशबोर्ड</a></li>
                             <li><a class="dropdown-item" href="{{ url('yellow-pages/getLocationData') }}">सूची जोड़ें</a></li>
                             <li><a class="dropdown-item" href="{{ route('yp.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">लॉग आउट</a></li>
                         </ul>

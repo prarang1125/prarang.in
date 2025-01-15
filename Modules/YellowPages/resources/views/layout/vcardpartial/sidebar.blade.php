@@ -13,6 +13,7 @@
 <!-- Navigation -->
 <ul class="metismenu" id="menu">
     <h6>सदस्यता</h6>
+    @if(Auth::user()->subscription)
         <!-- Dashboard -->
         <li>
             <a href="{{ url('yellow-pages/user/dashboard') }}">
@@ -20,6 +21,9 @@
                 <div class="menu-title">डैशबोर्ड</div>
             </a>
         </li>
+        @endif
+        @if(Auth::user()->subscription->current_qr_scans < Auth::user()->subscription->plan->qr_limit)
+
         <!-- Users -->
         <li>
             <a href="{{ url('yellow-pages/user/createCard') }}">
@@ -40,6 +44,7 @@
                 <div class="menu-title">सदस्यता</div>
             </a>
         </li>
+        @endif
         <li>
             <a href="{{ url('yellow-pages/user/MembershipPlan') }}">
                 <div class="parent-icon"><i class="bx bx-category"></i></div>
@@ -47,13 +52,14 @@
             </a>
         </li>
         <!-- Cities -->
-        <li>
+        {{-- <li>
             <a href="{{ url('yellow-pages/user/qr/') }}">
                 <div class="parent-icon"><i class="bx bx-buildings"></i></div>
                 <div class="menu-title">क्यूआर बिल्डर</div>
             </a>
-        </li>
+        </li> --}}
         <br>
+        @if(Auth::user()->subscription)
         <h6>खाता</h6>
         <li>
             <a href="{{ url('yellow-pages/user/paymentHistory') }}">
@@ -93,4 +99,5 @@
                 <div class="menu-title">संदेश सूचीकरण</div>
             </a>
         </li>
+        @endif
 </ul>

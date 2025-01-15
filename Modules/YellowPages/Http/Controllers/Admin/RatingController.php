@@ -27,17 +27,6 @@ class RatingController extends Controller
     }
     ##------------------------------------------ END -----------------------------------##
 
-    ##------------------------------------------ Report -----------------------------------##
-    public function Report()
-    {
-        try {
-            $reports = Report::paginate(10); 
-            return view('yellowpages::Admin.report', compact('reports'));
-        } catch (\Exception $e) {
-            Log::error($e->getMessage());
-            return redirect()->back()->with('error', 'Unable to fetch Report. Please try again later.');
-        }
-    }
-    ##------------------------------------------ END -----------------------------------##
+ 
 
 }

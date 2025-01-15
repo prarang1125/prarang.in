@@ -65,6 +65,16 @@
                                         @endif
                                     </td>   
                                     <td class="align-middle">{{ $report->created_at }}</td> 
+                                    <td class="align-middle">
+                                        <form action="{{ route('admin.Reportstatus', $report->id) }}" method="POST">
+                                            @csrf
+                                            <select name="status" class="form-select" onchange="this.form.submit()">
+                                                <option value="pending" {{ $report->status == 'pending' ? 'selected' : '' }}>Pending</option>
+                                                <option value="in_progress" {{ $report->status == 'in_progress' ? 'selected' : '' }}>In Progress</option>
+                                                <option value="resolved" {{ $report->status == 'resolved' ? 'selected' : '' }}>Resolved</option>
+                                            </select>
+                                        </form>
+                                    </td>
                                 @php $index++; @endphp
                             @endforeach
                         </tbody>
@@ -78,6 +88,8 @@
 </div>
 <!--end page wrapper -->
 @endsection
+
+
 
 
 
