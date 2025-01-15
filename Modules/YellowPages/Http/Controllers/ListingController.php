@@ -9,6 +9,7 @@ use App\Models\City;
 use Carbon\Carbon;
 use App\Models\BusinessListing;
 use App\Models\Visits;
+use App\Models\UserPurchasePlan;
 use App\Models\BusinessHour;
 use App\Models\Savelisting;
 use App\Models\CompanyLegalType;
@@ -303,7 +304,7 @@ class ListingController extends Controller
     
                 if (!$visitExists) {
                     // Log the visit
-                    Visits::insert([
+            $vistCount=Visits::insert([
                         'business_id' => $listingId,
                         'ip_address' => $ipAddress,
                         'user_type' => Auth::check() ? 'user' : 'guest',
@@ -311,6 +312,10 @@ class ListingController extends Controller
                         'created_at' => now(),
                         'updated_at' => now(),
                     ]);
+                    
+                    UserPurchasePlan::where('user_id', $listing->user_id)
+                    ->increment('current_visits', 1);
+
                 }
             }
     
