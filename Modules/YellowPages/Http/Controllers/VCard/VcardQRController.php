@@ -5,6 +5,7 @@ namespace Modules\YellowPages\Http\Controllers\VCard;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Vcard;
+use App\Models\UserPurchasePlan;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
@@ -65,10 +66,9 @@ class VcardQRController extends Controller
             $vcard = Vcard::where('slug', $slug)->orWhere('id', $id)->first();
 
             if ($vcard) {
-                Vcard::where('id', $vcard->id)->increment('scan_count', $count);
-                $vcard->refresh();
 
-                Log::info("Scan count updated for vCard ID: {$vcard->id}, New Scan Count: {$vcard->scan_count}");
+                UserPurchasePlan::where('user_id', $vcard->user_id)
+                ->increment('current_qr_scan' , 1);
             } else {
                 Log::error("vCard not found for QR Code: {$slug}");
                 abort(404, 'vCard not found');

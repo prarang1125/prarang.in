@@ -284,7 +284,7 @@ class ListingController extends Controller
     ##------------------------- END---------------------##
 
     ##------------------------- Listing Details---------------------##
-    public function listing($city_slug, $listing_title, $listingId)
+    public function listing($city_slug, $listingId, $listing_title)
     {
         try {
             // Fetch the listing or fail with a 404
