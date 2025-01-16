@@ -22,3 +22,9 @@ yarn-error.log
 /.zed
 # Environment configuration
 **/.env
+/public/home-assets/
+public/home-assets/
+/public/meeting-data/
+/public/meeting-data/
+/public/imgs/
+/public/imgs/
