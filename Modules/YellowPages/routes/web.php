@@ -7,15 +7,15 @@ use Modules\YellowPages\Http\Controllers\VCardController;
 use Modules\YellowPages\Http\Controllers\ReviewController;
 use Modules\YellowPages\Http\Controllers\AuthModalController;
 use Modules\YellowPages\Http\Controllers\ReportController;
-use Modules\YellowPages\Http\Controllers\admin\ManageReportController;
-use Modules\YellowPages\Http\Controllers\admin\AuthController;
-use Modules\YellowPages\Http\Controllers\admin\CardController;
-use Modules\YellowPages\Http\Controllers\admin\AdminController;
-use Modules\YellowPages\Http\Controllers\admin\PaymentController;
-use Modules\YellowPages\Http\Controllers\admin\CitiesController;
-use Modules\YellowPages\Http\Controllers\admin\CategoriesController;
-use Modules\YellowPages\Http\Controllers\admin\BusinessController;
-use Modules\YellowPages\Http\Controllers\admin\RatingController;
+use Modules\YellowPages\Http\Controllers\Admin\ManageReportController;
+use Modules\YellowPages\Http\Controllers\Admin\AuthController;
+use Modules\YellowPages\Http\Controllers\Admin\CardController;
+use Modules\YellowPages\Http\Controllers\Admin\AdminController;
+use Modules\YellowPages\Http\Controllers\Admin\PaymentController;
+use Modules\YellowPages\Http\Controllers\Admin\CitiesController;
+use Modules\YellowPages\Http\Controllers\Admin\CategoriesController;
+use Modules\YellowPages\Http\Controllers\Admin\BusinessController;
+use Modules\YellowPages\Http\Controllers\Admin\RatingController;
 use Modules\YellowPages\Http\Controllers\VCard\vCardAuthcontroller;
 use Modules\YellowPages\Http\Controllers\VCard\PlanController;
 use Modules\YellowPages\Http\Controllers\VCard\VcardQRController;
@@ -36,7 +36,7 @@ use Illuminate\Support\Facades\App;
 | contains the "web" middleware group. Now create something great!
 |
 */
-                       
+
 Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function () {
 
 
@@ -79,7 +79,7 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
     Route::get('/vCard/logout', [VCardController::class, 'logout'])->name('vCard.logout');
           ##------------------------- END ---------------------##
 
- 
+
 
     Route::get('/vcard/{vcard_id}', [CreateVCardController::class, 'view'])->name('vCard.view');
     Route::get('/vcard/{vcard_id}/{slug}', [VcardQRController::class, 'scanAndView'])->name('vCard.scanView');
@@ -109,7 +109,7 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
      Route::get('/user/user-edit/{id}', [vCardAuthcontroller::class, 'userEdit'])->name('vCard.userEdit');
      Route::put('/user/user-update/{id}', [vCardAuthcontroller::class, 'userUpdate'])->name('vCard.userUpdate');
      ##------------------------- END ---------------------##
- 
+
      ##------------------------- Dashboard Listing data ---------------------##
      Route::get('/user/business-listing', [BusinessListingController::class, 'businessListing'])->name('vCard.business-listing');
      Route::get('/user/business-listing-register', [BusinessListingController::class, 'businessRegister'])->name('vCard.business-listing-register');
@@ -119,11 +119,11 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
      Route::get('/user/listing-edit/{id}', [BusinessListingController::class, 'listingEdit'])->name('vCard.listing-edit');
      Route::put('/user/listing-update/{id}', [BusinessListingController::class, 'listingUpdate'])->name('vCard.listing-update');
      ##------------------------- END ---------------------##
- 
+
      ##------------------------- Dashboard Review data ---------------------##
      Route::get('user/rating', [listingReviewController::class, 'Rating'])->name('vCard.Rating');
      ##------------------------- END ---------------------##
- 
+
      ##------------------------- Dashboard Report ---------------------##
      Route::get('/user/report', [ReportController::class, 'index'])->name('vCard.report');
      Route::post('/user/Report-submit', [ReportController::class, 'store'])->name('vCard.report-submit');
@@ -140,7 +140,7 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
     Route::get('plan/payment-cancel', [PlanController::class, 'paymentCancel'])->name('vcard.paymentCancel');
     ##------------------------- END ---------------------##
   });
-  
+
 
   // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    End yellowPages user Side   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
@@ -177,7 +177,7 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
      Route::post('admin/cities-delete/{id}', [CitiesController::class, 'citiesDelete'])->name('admin.cities-delete');
      Route::get('admin/cities-edit/{id}', [CitiesController::class, 'citiesEdit'])->name('admin.cities-edit');
      Route::put('admin/cities-update/{id}', [CitiesController::class, 'citiesUpdate'])->name('admin.cities-update');
-    
+
      #this route is use for admin Categories
      Route::get('admin/categories-listing', [CategoriesController::class, 'categoriesListing'])->name('admin.categories-listing');
      Route::get('admin/categories-register', [CategoriesController::class, 'categoriesRegister'])->name('admin.categories-register');
@@ -185,7 +185,7 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
      Route::post('admin/categories-delete/{id}', [CategoriesController::class, 'categoriesDelete'])->name('admin.categories-delete');
      Route::get('admin/categories-edit/{id}', [CategoriesController::class, 'categoriesEdit'])->name('admin.categories-edit');
      Route::put('admin/categories-update/{id}', [CategoriesController::class, 'categoriesUpdate'])->name('admin.categories-update');
-  
+
       #this route is use for admin Categories
      Route::get('admin/business-listing', [BusinessController::class, 'businessListing'])->name('admin.business-listing');
      Route::post('admin/listing-delete/{id}', [BusinessController::class, 'listingDelete'])->name('admin.listing-delete');

@@ -1,6 +1,7 @@
 @include('yellowpages::layout.partial.head')
 <!-- header -->
 @include('yellowpages::layout.partial.navbar')
+
 <div class="wrapper">
     <!--sidebar wrapper -->
     <div class="sidebar-wrapper" data-simplebar="true">
@@ -9,7 +10,7 @@
     <!-- end sidebar wrapper -->
 
     <div class="page-wrapper">
-        
+
         @yield('content')
         @include('yellowpages::layout.partial.footer')
 

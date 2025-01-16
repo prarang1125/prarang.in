@@ -37,7 +37,7 @@ class vCardAuthcontroller extends Controller
             $validatedData = $request->validate([
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|max:255',
-                'password' => 'nullable|string|min:8',
+                'password' => 'sometimes|string|min:8|confirmed',
                 'is_active' => 'required|boolean',
             ]);
 
@@ -48,7 +48,7 @@ class vCardAuthcontroller extends Controller
             $user->update([
                 'name' => $validatedData['name'],
                 'email' => $validatedData['email'],
-                'password' => $request->password ? Hash::make($validatedData['password']) : $user->password,
+                'password' => empty($request->password) ? $request->password:Hash::make($validatedData['password']),
                 'is_active' => $validatedData['is_active'],
                 'updated_at' => Carbon::now(),
             ]);

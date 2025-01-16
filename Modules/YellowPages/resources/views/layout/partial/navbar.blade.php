@@ -17,14 +17,14 @@
                     <img src="{{ asset('assets/images/avatars/avatar-2.png') }}" class="user-img" alt="user avatar">
                     <div class="user-info ps-3">
                         @if (Auth::guard('admin')->check())
-                            <p class="user-name mb-0" id="{{ Auth::guard('admin')->user()->userId }}">{{ Auth::guard('admin')->user()->firstName }} {{ Auth::guard('admin')->user()->lastName }}</p>
-                            <p class="designattion mb-0">वेब व्यवस्थापक प्रोफ़ाइल</p>
+                            <p class="mb-0 user-name" id="{{ Auth::guard('admin')->user()->userId }}">{{ Auth::guard('admin')->user()->firstName }} {{ Auth::guard('admin')->user()->lastName }}</p>
+                            <p class="mb-0 designattion">वेब व्यवस्थापक प्रोफ़ाइल</p>
                         @elseif (Auth::check())
-                            <p class="user-name mb-0">{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</p>
-                            <p class="designattion mb-0">वेब उपयोगकर्ता प्रोफ़ाइल</p>
+                            <p class="mb-0 user-name">{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</p>
+                            <p class="mb-0 designattion">वेब उपयोगकर्ता प्रोफ़ाइल</p>
                         @else
-                            <p class="user-name mb-0">अतिथि</p>
-                            <p class="designattion mb-0">अंदर प्रवेश की अनुमति नहीं है</p>
+                            <p class="mb-0 user-name">अतिथि</p>
+                            <p class="mb-0 designattion">अंदर प्रवेश की अनुमति नहीं है</p>
                         @endif
                     </div>
                 </a>
@@ -36,7 +36,7 @@
                         <li><a class="dropdown-item" href="{{ route('admin.dashboard') }}"><i class='bx bx-home-circle'></i><span>डैशबोर्ड</span></a>
                         </li>
                         <li>
-                            <div class="dropdown-divider mb-0"></div>
+                            <div class="mb-0 dropdown-divider"></div>
                         </li>
                         <li>
                             <a class="dropdown-item" href="{{ route('admin.logout') }}"><i class='bx bx-log-out-circle'></i><span>लॉग आउट</span></a>
@@ -56,7 +56,7 @@
                         <li><a class="dropdown-item" href="javascript:;"><i class='bx bx-download'></i><span>डाउनलोड</span></a>
                         </li>
                         <li>
-                            <div class="dropdown-divider mb-0"></div>
+                            <div class="mb-0 dropdown-divider"></div>
                         </li>
                         <a class="dropdown-item" href="{{ route('accounts.logout') }}"><i class='bx bx-log-out-circle'></i><span>लॉग आउट</span></a>
                     @endif
@@ -66,3 +66,4 @@
     </div>
 </header>
 <!--end header -->
+
