@@ -30,8 +30,9 @@ class BusinessListingController extends Controller
     public function businessListing(Request $request) {
         try {
             $business_listing = BusinessListing::where('user_id', Auth::id())->get();
-            return view('yellowpages::VCard.business-listing', compact('business_listing'));
+            return view('yellowpages::Vcard.business-listing', compact('business_listing'));
         } catch (Exception $e) {
+            // return $e->getMessage();
             return redirect()->back()->with('error', 'Error fetching business listings: ' . $e->getMessage());
         }
     }
@@ -48,7 +49,7 @@ class BusinessListingController extends Controller
             $social_media = DB::connection('yp')->select('SELECT * FROM social_media_platforms');
             $Category = Category::on('yp')->get();
 
-            return view('yellowpages::VCard.business-listing-register', compact(
+            return view('yellowpages::Vcard.business-listing-register', compact(
                 'cities',
                 'company_legal_type',
                 'number_of_employees',
@@ -68,19 +69,19 @@ class BusinessListingController extends Controller
     public function saveBusiness(Request $request) {
         try {
             $save_listing = Savelisting::where('user_id', Auth::id())->first();
-    
+
             if (!$save_listing) {
                 return redirect()->back()->with('error', 'कोई व्यवसाय सूची नहीं मिली।');
             }
-    
+
             $business_listing = BusinessListing::where('id', $save_listing->business_id)->get();
-            
-            return view('yellowpages::VCard.Save-listing', compact('business_listing', 'save_listing'));
+
+            return view('yellowpages::Vcard.Save-listing', compact('business_listing', 'save_listing'));
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Error retrieving business listing: ' . $e->getMessage());
         }
     }
-    
+
     ##------------------------- END ---------------------##
 
     ##------------------------- Business Listing Edit---------------------##
@@ -96,17 +97,17 @@ class BusinessListingController extends Controller
             $monthly_advertising_mediums = AdvertisingMedium::all();
             $monthly_advertising_prices = AdvertisingPrice::all();
             $social_media =  SocialMedia::all();
-    
-            return view('yellowpages::VCard.business-listing-edit', compact(
-                'listing', 
-                'cities', 
-                'categories', 
-                'company_legal_types', 
-                'number_of_employees', 
-                'monthly_turnovers', 
-                'monthly_advertising_mediums', 
-                'monthly_advertising_prices', 
-                'social_media', 
+
+            return view('yellowpages::Vcard.business-listing-edit', compact(
+                'listing',
+                'cities',
+                'categories',
+                'company_legal_types',
+                'number_of_employees',
+                'monthly_turnovers',
+                'monthly_advertising_mediums',
+                'monthly_advertising_prices',
+                'social_media',
                 'listinghours'
             ));
         } catch (Exception $e) {
@@ -146,7 +147,7 @@ class BusinessListingController extends Controller
                 'answer' => 'nullable|string',
                 'email' => 'nullable|email',
                 'password' => 'nullable|string|min:8',
-    
+
                 // Business hours validation
                 'day' => 'nullable|array',
                 'open_time' => 'nullable|array',
@@ -156,30 +157,30 @@ class BusinessListingController extends Controller
                 'open_time_2' => 'nullable|array',
                 'close_time_2' => 'nullable|array',
             ]);
-    
+
             // Locate the business listing
             $listing = BusinessListing::where('user_id', Auth::id())->first();
-    
+
             if (!$listing) {
                 return redirect()->back()->withErrors(['error' => 'Listing not found']);
             }
-    
+
             // File upload handling
             $imagePath = $listing->business_img; // Retain current value if no new upload
             if ($request->hasFile('image')) {
-                $imagePath = $request->file('image')->store('images/business', 'public');
+                $imagePath = $request->file('image')->store('yellowpages/business');
             }
-    
+
             $featureImagePath = $listing->feature_img; // Retain current value if no new upload
             if ($request->hasFile('coverImage')) {
-                $featureImagePath = $request->file('coverImage')->store('images/feature', 'public');
+                $featureImagePath = $request->file('coverImage')->store('yellowpages/feature');
             }
-    
+
             $businessLogoPath = $listing->logo; // Retain current value if no new upload
             if ($request->hasFile('logo')) {
-                $businessLogoPath = $request->file('logo')->store('images/logo', 'public');
+                $businessLogoPath = $request->file('logo')->store('yellowpages/logo');
             }
-    
+
             // Prepare data for update
             $data = [
                 'city_id' => $validated['location'],
@@ -212,10 +213,10 @@ class BusinessListingController extends Controller
                 'email' => $validated['email'],
                 'password' => isset($validated['password']) ? bcrypt($validated['password']) : $listing->password,
             ];
-    
+
             // Update the business listing
             $listing->update($data);
-    
+
             // Process business hours if present
             if (!empty($validated['day'])) {
                 foreach ($validated['day'] as $index => $day) {
@@ -234,7 +235,7 @@ class BusinessListingController extends Controller
                     }
                 }
             }
-    
+
             return redirect()->route('vCard.business-listing')->with('success', 'Listing updated successfully');
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Error updating business listing: ' . $e->getMessage());
@@ -273,5 +274,5 @@ class BusinessListingController extends Controller
     }
 
     ##------------------------- END ---------------------##
-    
+
 }

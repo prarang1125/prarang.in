@@ -28,7 +28,7 @@ class VcardQRController extends Controller
 
             // Generate QR code
             $qrCode = QrCode::size(200)->generate(route('vCard.scanView', ['id'=>$vcard->id,'slug' => $vcard->slug]));
-            return view('yellowpages::VCard.QRvCard', compact('qrCode', 'vcardId'));
+            return view('yellowpages::Vcard.QRvCard', compact('qrCode', 'vcardId'));
         } catch (\Exception $e) {
             Log::error('Error generating QR code: ' . $e->getMessage());
             return redirect()->back()->withErrors(['error' => 'Unable to generate QR code.']);
@@ -74,8 +74,8 @@ class VcardQRController extends Controller
                 abort(404, 'vCard not found');
             }
 
-            return view('yellowpages::VCard.CardView', compact('vcard'));
-            
+            return view('yellowpages::Vcard.CardView', compact('vcard'));
+
         } catch (\Exception $e) {
             Log::error('Error in scanAndView: ' . $e->getMessage());
             return redirect()->back()->withErrors(['error' => 'Unable to view the vCard.']);

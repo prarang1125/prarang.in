@@ -38,11 +38,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($reviews as $review)
+                        @forelse($reviews as $review)
                         <tr>
                             <td>{{ $review->id }}</td>
                             <td>{{ $review->user->name ?? 'N/A' }}</td>
-                            <td>{{ $review->listing->business_name?? 'N/A' }}</td>                            
+                            <td>{{ $review->listing->business_name?? 'N/A' }}</td>
                              <td>{{ $review->cleanliness ?? 'N/A' }}</td>
                             <td>{{ $review->service ?? 'N/A' }}</td>
                             <td>{{ $review->ambience ?? 'N/A' }}</td>
@@ -52,7 +52,7 @@
                                 @php
                                     $images = json_decode($review->image, true); // Decode JSON into an array
                                 @endphp
-                            
+
                                 @if(!empty($images) && is_array($images))
                                     @foreach($images as $image)
                                         <img src="{{ Storage::url($image) }}" alt="Review Image" width="50" height="50">
@@ -61,7 +61,7 @@
                                     N/A
                                 @endif
                             </td>
-                            
+
                             <td>{{ $review->created_at->format('d M Y, h:i A') }}</td>
                             {{-- <td>
                                 <a href="#" class="btn btn-sm btn-warning">Edit</a>
@@ -72,7 +72,12 @@
                                 </form>
                             </td> --}}
                         </tr>
-                        @endforeach
+
+                        @empty
+                        <tr>
+                            <td colspan="11">No reviews found.</td>
+                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
             @endif

@@ -71,7 +71,7 @@ class BusinessController extends Controller
 
     ##------------------------- listingUpdate function ---------------------##
     public function listingUpdate(Request $request)
-    {   
+    {
         try {
             $validated = $request->validate([
                 // Basic fields validation
@@ -102,7 +102,7 @@ class BusinessController extends Controller
                 'answer' => 'nullable|string',
                 'email' => 'nullable|email',
                 'password' => 'nullable|string|min:8',
-    
+
                 // Business hours validation
                 'day' => 'required|array',
                 'open_time' => 'required|array',
@@ -112,23 +112,23 @@ class BusinessController extends Controller
                 'open_time_2' => 'nullable|array',
                 'close_time_2' => 'nullable|array',
             ]);
-        
+
             // File upload handling
             $imagePath = null;
             if ($request->hasFile('image')) {
-                $imagePath = $request->file('image')->store('images/business', 'public');
+                $imagePath = $request->file('image')->store('yellowpages/business');
             }
-        
+
             $featureImagePath = null;
             if ($request->hasFile('coverImage')) {
-                $featureImagePath = $request->file('coverImage')->store('images/feature', 'public');
+                $featureImagePath = $request->file('coverImage')->store('yellowpages/feature');
             }
-        
+
             $businessLogoPath = null;
             if ($request->hasFile('logo')) {
-                $businessLogoPath = $request->file('logo')->store('images/logo', 'public');
+                $businessLogoPath = $request->file('logo')->store('yellowpages/logo');
             }
-        
+
             // Prepare data for insertion
             $data = [
                 'city_id' => $validated['location'],
@@ -163,13 +163,13 @@ class BusinessController extends Controller
                 'email' => $validated['email'],
                 'password' => isset($validated['password']) ? bcrypt($validated['password']) : null,
             ];
-        
+
             // Create the business listing
             $listing = BusinessListing::create($data);
             if (!$listing) {
                 return redirect()->back()->withErrors(['error' => 'Failed to create listing']);
             }
-        
+
             // Process business hours if present
             if (!empty($validated['day'])) {
                 foreach ($validated['day'] as $index => $day) {
@@ -187,7 +187,7 @@ class BusinessController extends Controller
                     }
                 }
             }
-        
+
             return redirect()->route('yp.listing.submit')->with('success', 'Listing created successfully!');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
