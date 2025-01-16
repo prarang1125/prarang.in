@@ -71,7 +71,7 @@
                                     <td class="align-middle">{{ $vcard->created_at}}</td>
                                     <td class="align-middle"> 
                                         <a href="{{ route('vCard.vcard-edit', $vcard->id) }}" class="btn btn-sm btn-primary edit-user">संपादन करना</a>
-                                        <form action="#" method="POST" style="display:inline;">
+                                        <form action="{{ route('vCard.vcard-delete', $vcard->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             <button type="submit" class="btn btn-sm btn-danger delete-user">मिटाना</button>
                                         </form>

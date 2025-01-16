@@ -12,54 +12,50 @@
 
 <!-- Navigation -->
 <ul class="metismenu" id="menu">
-    <h6>सदस्यता</h6>
-    @if(Auth::user()->subscription)
-        <!-- Dashboard -->
-        <li>
-            <a href="{{ url('yellow-pages/user/dashboard') }}">
-                <div class="parent-icon"><i class="bx bx-home-circle"></i></div>
-                <div class="menu-title">डैशबोर्ड</div>
-            </a>
-        </li>
-        @endif
-        @if((Auth::user()->subscription->current_qr_scans ?? 0) < (Auth::user()->subscription->plan->qr_limit ?? 0))
+    @if(Auth::check() && Auth::user()->subscription) 
+        <h6>सदस्यता</h6>
+            <li>
+                <a href="{{ url('yellow-pages/user/dashboard') }}">
+                    <div class="parent-icon"><i class="bx bx-home-circle"></i></div>
+                    <div class="menu-title">डैशबोर्ड</div>
+                </a>
+            </li>
 
-        <!-- Users -->
-        <li>
-            <a href="{{ url('yellow-pages/user/createCard') }}">
-                <div class="parent-icon"><i class="lni lni-user"></i></div>
-                <div class="menu-title">वीकार्ड</div>
-            </a>
-        </li>
-        <li>
-            <a href="{{ url('yellow-pages/user/vcard-list') }}">
-                <div class="parent-icon"><i class="lni lni-user"></i></div>
-                <div class="menu-title">वीकार्ड सूची</div>
-            </a>
-        </li>
-        <!-- Category -->
+        <!-- vCard Management (only for vCard or both plan users) -->
+        @if(Auth::user()->subscription->plan->type == 'वीकार्ड' || Auth::user()->subscription->plan->type == 'दोनों')
+            <li>
+                <a href="{{ url('yellow-pages/user/createCard') }}">
+                    <div class="parent-icon"><i class="lni lni-user"></i></div>
+                    <div class="menu-title">वीकार्ड</div>
+                </a>
+            </li>
+            <li>
+                <a href="{{ url('yellow-pages/user/vcard-list') }}">
+                    <div class="parent-icon"><i class="lni lni-user"></i></div>
+                    <div class="menu-title">वीकार्ड सूची</div>
+                </a>
+            </li>
+        @endif
+
+        <!-- Subscription Plans -->
         <li>
             <a href="{{ url('yellow-pages/user/ActivePlan') }}">
                 <div class="parent-icon"><i class="bx bx-category"></i></div>
                 <div class="menu-title">सदस्यता</div>
             </a>
         </li>
-        @endif
+
+        <!-- Membership Plan (Available for all) -->
         <li>
             <a href="{{ url('yellow-pages/user/MembershipPlan') }}">
                 <div class="parent-icon"><i class="bx bx-category"></i></div>
                 <div class="menu-title">सदस्यता योजना</div>
             </a>
         </li>
-        <!-- Cities -->
-        {{-- <li>
-            <a href="{{ url('yellow-pages/user/qr/') }}">
-                <div class="parent-icon"><i class="bx bx-buildings"></i></div>
-                <div class="menu-title">क्यूआर बिल्डर</div>
-            </a>
-        </li> --}}
-        <br>
-        @if(Auth::user()->subscription)
+    @endif
+
+    <!-- Account Section -->
+    @if(Auth::check() && Auth::user()->subscription)
         <h6>खाता</h6>
         <li>
             <a href="{{ url('yellow-pages/user/paymentHistory') }}">
@@ -67,8 +63,12 @@
                 <div class="menu-title">लेन-देन</div>
             </a>
         </li>
-      
+    @endif
+
+    <!-- Business Section (only for YellowPages or Both plans) -->
+    @if(Auth::check() && (Auth::user()->subscription->plan->type == 'येलोपेज' || Auth::user()->subscription->plan->type == 'दोनों'))
         <h6>व्यापार</h6>
+        <!-- Business Listing and Related Sections -->
         <li>
             <a href="{{ url('yellow-pages/user/business-listing') }}">
                 <div class="parent-icon"><i class="bx bx-store"></i></div>
@@ -87,6 +87,10 @@
                 <div class="menu-title">समीक्षा</div>
             </a>
         </li>
+    @endif
+
+    <!-- Message Section (Available for all users) -->
+    @if(Auth::check() && Auth::user()->subscription)
         <li>
             <a href="{{ url('yellow-pages/user/report') }}">
                 <div class="parent-icon"><i class="bx bx-chart"></i></div>
@@ -94,10 +98,10 @@
             </a>
         </li>
         <li>
-            <a href="{{ url('yellow-pages/user/list')}}">
+            <a href="{{ url('yellow-pages/user/list') }}">
                 <div class="parent-icon"><i class="bx bx-chart"></i></div>
                 <div class="menu-title">संदेश सूचीकरण</div>
             </a>
         </li>
-        @endif
+    @endif
 </ul>

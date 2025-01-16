@@ -1,5 +1,5 @@
 @extends('yellowpages::layout.vcard.vcard')
-@section('title', 'Review')
+@section('title', 'Report')
 @section('content')
     @if (session('success'))
     <div class="alert alert-success text-center">{{ session('success') }}</div>

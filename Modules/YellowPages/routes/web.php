@@ -7,15 +7,15 @@ use Modules\YellowPages\Http\Controllers\VCardController;
 use Modules\YellowPages\Http\Controllers\ReviewController;
 use Modules\YellowPages\Http\Controllers\AuthModalController;
 use Modules\YellowPages\Http\Controllers\ReportController;
-use Modules\YellowPages\Http\Controllers\admin\ManageReportController;
-use Modules\YellowPages\Http\Controllers\admin\AuthController;
-use Modules\YellowPages\Http\Controllers\admin\CardController;
-use Modules\YellowPages\Http\Controllers\admin\AdminController;
-use Modules\YellowPages\Http\Controllers\admin\PaymentController;
-use Modules\YellowPages\Http\Controllers\admin\CitiesController;
-use Modules\YellowPages\Http\Controllers\admin\CategoriesController;
-use Modules\YellowPages\Http\Controllers\admin\BusinessController;
-use Modules\YellowPages\Http\Controllers\admin\RatingController;
+use Modules\YellowPages\Http\Controllers\Admin\ManageReportController;
+use Modules\YellowPages\Http\Controllers\Admin\AuthController;
+use Modules\YellowPages\Http\Controllers\Admin\CardController;
+use Modules\YellowPages\Http\Controllers\Admin\AdminController;
+use Modules\YellowPages\Http\Controllers\Admin\PaymentController;
+use Modules\YellowPages\Http\Controllers\Admin\CitiesController;
+use Modules\YellowPages\Http\Controllers\Admin\CategoriesController;
+use Modules\YellowPages\Http\Controllers\Admin\BusinessController;
+use Modules\YellowPages\Http\Controllers\Admin\RatingController;
 use Modules\YellowPages\Http\Controllers\VCard\vCardAuthcontroller;
 use Modules\YellowPages\Http\Controllers\VCard\PlanController;
 use Modules\YellowPages\Http\Controllers\VCard\VcardQRController;
@@ -67,6 +67,7 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
       Route::get('/submit-listing', [ListingController::class, 'submit_listing'])->name('yp.listing.submit');
       Route::get('/Save-listing/{id}', [ListingController::class, 'save_listing'])->name('yp.listing.save');
     });
+
     ##------------------------- END ---------------------##
 
     ##------------------------- Review Listing ---------------------##
@@ -101,6 +102,7 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
 
     Route::post('/user/CardStore', [CreateVCardController::class, 'store'])->name('vCard.store');
     Route::get('/vcard-edit/{id}', [CreateVCardController::class, 'vcardEdit'])->name('vCard.vcard-edit');
+    Route::post('/vcard-delete/{id}', [CreateVCardController::class, 'vcarddelete'])->name('vCard.vcard-delete');
     Route::put('/vcard-update/{id}', [CreateVCardController::class, 'vcardUpdate'])->name('vCard.update');
     Route::get('user/vcard-list', [CreateVCardController::class, 'VcardList'])->name('vCard.list');
 
@@ -155,7 +157,6 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
     Route::post('/admin/authenticate', [AuthController::class, 'authenticate'])->name('admin.authenticate');
     });
     ##------------------------- END ---------------------##
-
 
     ##------------------------- Admin Dashboard ---------------------##
     Route::group(['middleware' => 'admin.auth'], function(){

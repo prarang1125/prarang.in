@@ -21,15 +21,21 @@ class PlanController extends Controller
     public function plan()
     {
         try {
-            $userPlanId = Auth::user()->plan_id;
+            $userId = Auth::id();
 
             // Fetch Payment History
-            $planHistory = PaymentHistory::where('plan_id', $userPlanId)->first();
+            $purchasePlan = UserPurchasePlan::where('user_id', $userId)
+            ->where('is_active', 1)
+            ->orderBy('created_at', 'desc')
+            ->first();  
 
             // Fetch Plan Details
-            $planDetails = Plan::where('id', $userPlanId)->first();
+            $planDetails = Plan::where('id', $purchasePlan->plan_id)->first();
 
-            return view('yellowpages::Vcard.plan', compact('planHistory', 'planDetails'));
+            // Fetch Payment History
+            $planHistory = PaymentHistory::where('plan_id', $purchasePlan->plan_id)->first();
+
+            return view('yellowpages::Vcard.plan', compact('purchasePlan','planHistory', 'planDetails'));
         } catch (\Exception $e) {
             Log::error('Error fetching plan details: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Unable to fetch plan details.');
@@ -42,9 +48,12 @@ class PlanController extends Controller
     {
         try {
             $plans = Plan::all();
-            $userPlanId = Auth::user()->plan_id;
-
-            return view("yellowpages::Vcard.planDetails", compact('plans', 'userPlanId'));
+            $purchasePlan = UserPurchasePlan::where('user_id', Auth::id())
+                                            ->where('is_active', 1)
+                                            ->orderBy('created_at', 'desc')
+                                            ->first();  // First active plan, most recent
+    
+            return view("yellowpages::Vcard.planDetails", compact('plans', 'purchasePlan'));
         } catch (\Exception $e) {
             Log::error('Error fetching plan details: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Unable to fetch plan details.');
@@ -56,7 +65,6 @@ class PlanController extends Controller
     ##------------------------- Payment  ---------------------##
     public function stripeCheckout(Request $request)
     {
-
         $plan = Plan::findOrFail($request->plan_id);
         $expiresAt = now()->addDays($plan->duration);
         if ($plan->price <=0) {
