@@ -21,5 +21,8 @@ class Visitor extends Model
         'screen_height',
         'timestamp',
         'user_agent', // Assuming you want to store the user-agent as well
+        'visit_count',
+        'visitor_city',
+        'visitor_address',
     ];
 }
