@@ -29,5 +29,7 @@
 	<!--app JS-->
 	<script src="{{ asset('assets/js/app.js') }}"></script>
     <script src="{{ asset('assets/js/custom/login.js') }}"></script>
+	@stack('scripts')
+
 </body>
 </html>
