@@ -78,9 +78,7 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
     ##------------------------- Vcard  ---------------------##
     Route::get('/vcard', [VCardController::class, 'index'])->name('yp.vcard');
     Route::get('/vCard/logout', [VCardController::class, 'logout'])->name('vCard.logout');
-          ##------------------------- END ---------------------##
-
- 
+    ##------------------------- END ---------------------##
 
     Route::get('/vcard/{vcard_id}', [CreateVCardController::class, 'view'])->name('vCard.view');
     Route::get('/vcard/{vcard_id}/{slug}', [VcardQRController::class, 'scanAndView'])->name('vCard.scanView');
@@ -96,10 +94,9 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
 
       Route::get('/user/dashboard', [VCardController::class, 'dashboard'])->name('vCard.dashboard');
       Route::get('/user/createCard', [VCardController::class, 'createCard'])->name('vCard.createCard');
-      ##------------------------- END ---------------------##
+    ##------------------------- END ---------------------##
 
-         ##------------------------- Carete VCard ---------------------##
-
+    ##------------------------- Carete VCard ---------------------##
     Route::post('/user/CardStore', [CreateVCardController::class, 'store'])->name('vCard.store');
     Route::get('/vcard-edit/{id}', [CreateVCardController::class, 'vcardEdit'])->name('vCard.vcard-edit');
     Route::post('/vcard-delete/{id}', [CreateVCardController::class, 'vcarddelete'])->name('vCard.vcard-delete');
