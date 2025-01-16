@@ -4,11 +4,11 @@
 <!--start page wrapper -->
 <div class="page-content">
     <!--breadcrumb-->
-    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+    <div class="mb-3 page-breadcrumb d-none d-sm-flex align-items-center">
         <div class="breadcrumb-title pe-3">व्यवस्थापक</div>
         <div class="ps-3">
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb mb-0 p-0">
+                <ol class="p-0 mb-0 breadcrumb">
                     <li class="breadcrumb-item"><a href="{{ url('admin/user-listing')}}"><i class="bx bx-user"></i></a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">उपयोगकर्ता संपादित करें</li>
@@ -19,11 +19,11 @@
     <!--end breadcrumb-->
     <div class="row">
         <div class="card" style="padding-top: 15px;">
-            <div class="col-xl-9 mx-auto w-100">
-                <div class="col-xl-9 mx-auto w-100">
+            <div class="mx-auto col-xl-9 w-100">
+                <div class="mx-auto col-xl-9 w-100">
                 <!-- Success Message -->
                     @if(session('success'))
-                        <div class="alert alert-success mt-3">
+                        <div class="mt-3 alert alert-success">
                             {{ session('success') }}
                         </div>
                     @endif
@@ -41,7 +41,7 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="row mt-3">
+                    <div class="mt-3 row">
                         <div class="col-md-6">
                             <label for="inputEmail" class="form-label">ईमेल</label>
                             <input type="text" class="form-control @error('email') is-invalid @enderror" id="inputEmail" name="email" value="{{ old('email', $user->email) }}">
@@ -50,18 +50,9 @@
                             @enderror
                         </div>
 
-                        <div class="col-md-6">
-                            <label for="inputPassword" class="form-label">पासवर्ड</label>
-                            @php
-                            $userPassword =  $user->empPassword
-                            @endphp
-                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="inputPassword" name="password" value="{{ old('password', $user->password) }}">
-                            @error('password')
-                                <p class="invalid-feedback">{{ $message }}</p>
-                            @enderror
-                        </div>
+
                     </div>
-                    <div class="row mt-3">
+                    <div class="mt-3 row">
                         <div class="col-md-6">
                             <label for="is_active" class="form-label">स्थिति</label>
                             <select id="is_active" class="form-select @error('is_active') is-invalid @enderror" name="is_active">
@@ -74,7 +65,25 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="modal-footer mt-3">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="inputPassword" class="form-label">पासवर्ड</label>
+
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="inputPassword" name="password" value="{{ old('password') }}">
+                            @error('password')
+                                <p class="invalid-feedback">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div class="col-md-6">
+                            <label for="inputPassword" class="form-label">Confirm पासवर्ड</label>
+
+                            <input type="password" class="form-control @error('password_confirm') is-invalid @enderror" id="inputPassword" name="password_confirm" value="{{ old('password_confirm') }}">
+                            @error('password_confirm')
+                                <p class="invalid-feedback">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
+                    <div class="mt-3 modal-footer">
                         <button type="submit" class="btn btn-primary">अद्यतन</button>
                     </div>
                 </form>

@@ -30,26 +30,26 @@ class AuthController extends Controller
 
     public function authenticate(Request $request)
     {
-        
+
             // Validate input
             $validator = Validator::make($request->all(), [
                 'email' => 'required|email',
                 'password' => 'required',
             ]);
             try {
-        
+
             if ($validator->passes()) {
-        
+
                 // Credentials to attempt login
                 $credentials = [
                     'email' => $request->email,
                     'password' => $request->password,
                 ];
-        
+
                 // Attempt to authenticate with the provided credentials
                 if (Auth::guard('admin')->attempt($credentials)) {
                     $user = Auth::guard('admin')->user();
-        
+
                     // Check if the user's role is '1' (Admin)
                     if ($user && $user->role == 1) {
                         return redirect()->route('admin.dashboard'); // Redirect to admin dashboard
@@ -61,7 +61,7 @@ class AuthController extends Controller
                 } else {
                     return redirect()->route('admin.login')->with('error', 'ईमेल या पासवर्ड गलत है');
                 }
-        
+
             } else {
                 return redirect()->route('admin.login')
                     ->withInput()
