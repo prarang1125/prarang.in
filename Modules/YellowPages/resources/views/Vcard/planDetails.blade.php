@@ -35,7 +35,7 @@
                             <input type="hidden" name="plan_id" value="{{ $plan->id }}">
                             <input type="hidden" name="price" value="{{ $plan->price }}">
                             {{-- <button type="submit" class="btn btn-danger">Purchase</button> --}}
-                                @if($userPlanId == $plan->id)
+                                @if($purchasePlan->plan_id == $plan->id)
                                     <button type="button" class="btn btn-success">वर्तमान योजना</button>
                                 @else
                                     <form action="{{ url('yellow-pages/vCard/purchase') }}" method="POST">

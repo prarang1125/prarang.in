@@ -9,6 +9,8 @@ use Exception;
 use App\Models\DynamicVcard;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 
 class CreateVCardController extends Controller
 {
@@ -156,6 +158,20 @@ class CreateVCardController extends Controller
             return view('yellowpages::Vcard.vcard-list', compact('Vcard_list'));
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Error fetching Vcard listings: ' . $e->getMessage());
+        }
+    }
+    ##------------------------- END ---------------------##
+    ##------------------------- VCard Delete ---------------------##
+    public function vcarddelete($id)
+    {
+        try {
+            $city = Vcard::findOrFail($id);
+            $city->delete();
+            return redirect()->route('vCard.list')->with('success', 'Vcard deleted successfully.');
+        } catch (ModelNotFoundException $e) {
+            return redirect()->route('vCard.list')->withErrors(['error' => 'vcard not found.']);
+        } catch (\Exception $e) {
+            return redirect()->route('vCard.list')->withErrors(['error' => 'An error occurred while trying to delete the Vcard: ' . $e->getMessage()]);
         }
     }
     ##------------------------- END ---------------------##

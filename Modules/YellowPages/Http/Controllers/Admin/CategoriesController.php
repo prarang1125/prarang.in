@@ -53,8 +53,8 @@ class CategoriesController extends Controller
             // Handle the file upload if a new image is provided
             if ($request->hasFile('image')) {
                 // Delete the old image if it exists
-                if ($category->categories_url && Storage::disk('public')->exists($category->categories_url)) {
-                    Storage::disk('public')->delete($category->categories_url);
+                if ($category->categories_url && Storage::exists($category->categories_url)) {
+                    Storage::delete($category->categories_url);
                 }
 
                 // Store the new image

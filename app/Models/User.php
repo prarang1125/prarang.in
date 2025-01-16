@@ -52,6 +52,8 @@ class User extends Authenticatable
     }
     public function subscription()
     {
-        return $this->hasOne(UserPurchasePlan::class, 'user_id', 'id');
-    }
+        return $this->hasOne(UserPurchasePlan::class, 'user_id', 'id')
+                    ->where('is_active', 1) 
+                    ->orderBy('created_at', 'desc');  
+    }    
 }

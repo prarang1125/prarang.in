@@ -12,17 +12,18 @@
     <meta name="keywords" content="">
     <meta property="og:locale" content="en_IN" />
     <meta name="robots" content="index, follow" />
-    <meta property="og:type" content="article" />
+    <meta property="og:type" content="Yellowpages" />
     <meta property="og:image:width" content="600" />
     <meta property="og:image:height" content="315" />
-    <meta property="og:site_name" content="{{ $post['siteName'] ?? 'Prarang' }}" />
 
-    <!-- Open Graph Tags -->
-    <meta property="og:title" content="{{ $post['title'] ?? 'Default Title' }}" />
+    
+    <meta property="og:site_name" content="{{ config('app.name', 'YellowPages') }}" />
+    <meta property="og:title" content="{{ $category['name'] ?? 'YellowPages Business Listings' }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="{{ $post['imageUrl'] ?? 'default-image-url.jpg' }}" />
+    <meta property="og:image" content="" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:description" content="{{ $post['description'] ?? 'Default description for the post.' }}" />
+    <meta property="og:description" content="{{ $category['description'] ?? 'Find local businesses and services in YellowPages' }}" />
+
 	<!--favicon-->
 	{{-- <link rel="icon" href="{{ asset('assets/images/favicon-32x32.png') }}" type="image/png" /> --}}
 	<!--plugins-->
