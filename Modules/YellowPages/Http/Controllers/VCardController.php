@@ -47,8 +47,8 @@ class VCardController extends Controller
             $listing = BusinessListing::where('user_id', $userId);
 
             // Calculate the view count
-            $viewcount = $listing->exists() 
-                ? Visits::where('business_id', $listing->first()->id)->count('business_id') 
+            $viewcount = $listing->exists()
+                ? Visits::where('business_id', $listing->first()->id)->count('business_id')
                 : 0;
 
             return view('yellowpages::Vcard.dashboard', compact('totalscan', 'plan', 'viewcount'));
@@ -70,7 +70,7 @@ class VCardController extends Controller
             return redirect()->back()->withErrors(['error' => 'Unable to load the Create Card page.']);
         }
     }
-    
+
     ##------------------------- END ---------------------##
 
     ##------------------------- logut ---------------------##

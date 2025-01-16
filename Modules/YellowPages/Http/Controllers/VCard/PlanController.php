@@ -56,8 +56,30 @@ class PlanController extends Controller
     ##------------------------- Payment  ---------------------##
     public function stripeCheckout(Request $request)
     {
+
+        $plan = Plan::findOrFail($request->plan_id);
+        $expiresAt = now()->addDays($plan->duration);
+        if ($plan->price <=0) {
+            // Save user purchase plan details
+            UserPurchasePlan::create([
+                'user_id' => Auth::id(),
+                'plan_id' => $request->plan_id,
+                'purchased_at' => now(),
+                'expires_at' => $expiresAt,
+                'amount' => 0.00,
+                'payment_status' => 'Purchased',
+                'transaction_id' => 'free_payment'
+            ]);
+
+            // Update user's active plan
+            User::where('id', Auth::id())->update([
+                'plan_id' => $request->plan_id,
+            ]);
+
+            return redirect()->route('vCard.planDetails')->with('success', 'Free Plan successful  activated!');
+        }
         try {
-            $plan = Plan::findOrFail($request->plan_id);
+
 
             $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
 
@@ -94,13 +116,13 @@ class PlanController extends Controller
 
     public function paymentSuccess(Request $request)
     {
-        
+
         // try {
             $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
 
             // Retrieve the session details from Stripe
             $session = $stripe->checkout->sessions->retrieve($request->session_id);
-            
+
 
             if (!$session) {
                 return redirect()->back()->with('error', 'Invalid session ID.');
@@ -119,7 +141,7 @@ class PlanController extends Controller
             $expiresAt = now()->addDays($plan->duration);
 
             // Save payment history
- $plann=PaymentHistory::create([
+            $plann=PaymentHistory::create([
                 'user_id' => Auth::id(),
                 'plan_id' => $plan_id,
                 'transaction_id' => $session->payment_intent,
@@ -178,7 +200,7 @@ class PlanController extends Controller
             return redirect()->back()->with('error', 'Unable to fetch payment history.');
         }
     }
-    
+
     ##------------------------- END ---------------------##
 
 }

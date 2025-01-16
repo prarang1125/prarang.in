@@ -58,7 +58,7 @@ class CategoriesController extends Controller
                 }
 
                 // Store the new image
-                $imagePath = $request->file('image')->store('categories', 'public');
+                $imagePath = $request->file('image')->store('yellowpages/categories');
             } else {
                 // Keep the existing image URL if no new image is uploaded
                 $imagePath = $category->categories_url;
@@ -122,7 +122,7 @@ class CategoriesController extends Controller
                 // Handle the file upload
                 if ($request->hasFile('image')) {
                     // Store the image and get the path
-                    $imagePath = $request->file('image')->store('categories', 'public');
+                    $imagePath = $request->file('image')->store('yellowpages/categories');
                 }
 
                 // Create a new category record

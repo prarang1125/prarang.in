@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\UserPurchasePlan;
 
 
-class plan extends Model
+class Plan extends Model
 {
     protected $connection = 'yp';
     protected $table = 'plan';

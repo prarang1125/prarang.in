@@ -27,12 +27,12 @@ class ListingController extends Controller
             try {
                 $categories = Category::where('is_active', 1)->get();
                 $cities = City::where('is_active', 1)->get();
-    
+
                 $category = Category::where('slug', $category_name)->firstOrFail();
                 $listings = BusinessListing::with(['category', 'hours'])
                     ->whereHas('category', fn($q) => $q->where('slug', $category->slug))
                     ->get();
-    
+
                 return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities', 'category_name'));
             } catch (\Exception $e) {
                 return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -47,12 +47,12 @@ class ListingController extends Controller
             try {
                 $categories = Category::where('is_active', 1)->get();
                 $cities = City::where('is_active', 1)->get();
-    
+
                 $city = City::where('name', $city_name)->firstOrFail();
                 $listings = BusinessListing::with(['category', 'hours', 'city'])
                     ->whereHas('city', fn($q) => $q->where('city_id', $city->id))
                     ->get();
-    
+
                 return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities', 'city_name'));
             } catch (\Exception $e) {
                 return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -66,32 +66,32 @@ class ListingController extends Controller
             try {
                 $categories = Category::where('is_active', 1)->get();
                 $cities = City::where('is_active', 1)->get();
-    
+
                 $query = BusinessListing::query();
-    
+
                 if ($category) {
                     $categoryId = Category::where('name', 'like', '%' . $category . '%')
                         ->where('is_active', true)
                         ->pluck('id')->first();
-    
+
                     if ($categoryId) {
                         $query->where('category_id', $categoryId);
                     }
                 }
-    
+
                 if ($city) {
                     $cityId = City::where('name', 'like', '%' . $city . '%')
                         ->where('is_active', true)
                         ->pluck('id')->first();
-    
+
                     if ($cityId) {
                         $query->where('city_id', $cityId);
                     }
                 }
-    
+
                 $listings = $query->with(['category', 'hours', 'city'])->get()->map(function ($listing) {
                     $currentTime = Carbon::now();
-    
+
                     if ($listing->hours) {
                         $openTime = Carbon::parse($listing->hours->open_time);
                         $closeTime = Carbon::parse($listing->hours->close_time);
@@ -99,10 +99,10 @@ class ListingController extends Controller
                     } else {
                         $listing->is_open = false;
                     }
-    
+
                     return $listing;
                 });
-    
+
                 return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities'));
             } catch (\Exception $e) {
                 return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -203,16 +203,16 @@ class ListingController extends Controller
         ]);
 
         // File upload handling
-        $imagePath = $request->hasFile('image') 
-                     ? $request->file('image')->store('images/business', 'public') 
+        $imagePath = $request->hasFile('image')
+                     ? $request->file('image')->store('yellowpages/business')
                      : null;
 
-        $featureImagePath = $request->hasFile('coverImage') 
-                            ? $request->file('coverImage')->store('images/feature', 'public') 
+        $featureImagePath = $request->hasFile('coverImage')
+                            ? $request->file('coverImage')->store('yellowpages/feature')
                             : null;
 
-        $businessLogoPath = $request->hasFile('logo') 
-                            ? $request->file('logo')->store('images/logo', 'public') 
+        $businessLogoPath = $request->hasFile('logo')
+                            ? $request->file('logo')->store('yellowpages/logo')
                             : null;
 
         // Prepare data for insertion
@@ -251,7 +251,7 @@ class ListingController extends Controller
             'business_img' => $imagePath,
             'agree' => isset($validated['agree']) ? 1 : 0,
         ];
-      
+
 
         // Create the business listing
         $listing = BusinessListing::create($data);
@@ -272,10 +272,10 @@ class ListingController extends Controller
                 'add_2nd_time_slot' => !empty($validated['add_2nd_time_slot'][$index]) ? 1 : 0,
             ]);
         }
-        
+
         // Redirect to the success page
         return redirect()->route('yp.listing.submit')->with('success', 'Listing created successfully!');
-        
+
     } catch (\Exception $e) {
         // Catch any exceptions and return error message
         return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
@@ -290,18 +290,18 @@ class ListingController extends Controller
             // Fetch the listing or fail with a 404
             $listing = BusinessListing::findOrFail($listingId);
             $listingHours = BusinessHour::where('business_id', $listing->id)->get();
-    
+
             // Check if the user is not the owner
             $checkCreator = BusinessListing::where('user_id', '!=', Auth::id())->first();
-    
+
             if ($checkCreator) {
                 $ipAddress = request()->ip();
-    
+
                 // Check if the visit already exists
                 $visitExists = Visits::where('business_id', $listing->id)
                     ->where('ip_address', $ipAddress)
                     ->first();
-    
+
                 if (!$visitExists) {
                     // Log the visit
             $vistCount=Visits::insert([
@@ -312,34 +312,34 @@ class ListingController extends Controller
                         'created_at' => now(),
                         'updated_at' => now(),
                     ]);
-                    
+
                     UserPurchasePlan::where('user_id', $listing->user_id)
                     ->increment('current_visits', 1);
 
                 }
             }
-    
+
             $currentDay = Carbon::now()->format('l');
             $currentTime = Carbon::now();
             $isOpen = false;
-    
+
             foreach ($listingHours as $hour) {
                 if (strtolower($hour->day) === strtolower($currentDay)) {
                     $openTime = Carbon::parse($hour->open_time);
                     $closeTime = Carbon::parse($hour->close_time);
-    
+
                     if ($currentTime->between($openTime, $closeTime)) {
                         $isOpen = true;
                         break;
                     }
                 }
             }
-    
+
             return view('yellowpages::Home.listing', compact('listing', 'listingHours', 'isOpen'));
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Listing not found.');
         }
-    }    
+    }
 
     ##-------------------------END ---------------------##
 
@@ -369,5 +369,5 @@ class ListingController extends Controller
         }
     }
     ##------------------------- Save Listing ---------------------##
-    
+
 }

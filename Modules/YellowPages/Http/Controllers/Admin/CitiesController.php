@@ -61,7 +61,7 @@ class CitiesController extends Controller
                 }
 
                 // Store the new image
-                $imagePath = $request->file('image')->store('cities', 'public');
+                $imagePath = $request->file('image')->store('yellowpages/cities');
             } else {
                 // Keep the existing image URL if no new image is uploaded
                 $imagePath = $city->cities_url;
@@ -101,10 +101,10 @@ class CitiesController extends Controller
     ##------------------------- citiesRegister function ---------------------##
     public function citiesRegister()
     {
-        $portals = Portal::all(); 
+        $portals = Portal::all();
         return view('yellowpages::Admin.cities-register', compact('portals'));
     }
-    
+
     ##------------------------- END ---------------------##
 
     ##------------------------- citiesStore function ---------------------##
@@ -125,7 +125,7 @@ class CitiesController extends Controller
                 // Handle the file upload
                 if ($request->hasFile('image')) {
                     // Store the image and get the path
-                    $imagePath = $request->file('image')->store('cities', 'public');
+                    $imagePath = $request->file('image')->store('yellowpages/cities');
                 }
 
                 // Create a new city record

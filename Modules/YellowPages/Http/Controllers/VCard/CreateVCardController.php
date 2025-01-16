@@ -15,7 +15,7 @@ class CreateVCardController extends Controller
     ##------------------------- store ---------------------##
     public function store(Request $request)
     {
-       
+
             $validatedData = $request->validate([
                 'color_code' => 'nullable|string',
                 'slug' => 'required|string',
@@ -31,10 +31,10 @@ class CreateVCardController extends Controller
 
             // Handle file uploads
             if ($request->hasFile('banner_img')) {
-                $validatedData['banner_img'] = $request->file('banner_img')->store('banners', 'public');
+                $validatedData['banner_img'] = $request->file('banner_img')->store('yellowpages/banners');
             }
             if ($request->hasFile('logo')) {
-                $validatedData['logo'] = $request->file('logo')->store('logos', 'public');
+                $validatedData['logo'] = $request->file('logo')->store('yellowpages/logos');
             }
 
             $userId = Auth::id();
@@ -74,7 +74,7 @@ class CreateVCardController extends Controller
             $vcard = Vcard::findOrFail($id);
             $vcardInfo = DynamicVcard::where('vcard_id', $vcard->id)->get();
 
-            return view('yellowpages::VCard.vcardEdit', compact('vcard', 'vcardInfo'));
+            return view('yellowpages::Vcard.vcardEdit', compact('vcard', 'vcardInfo'));
         } catch (\Exception $e) {
             Log::error('Error editing VCard: ' . $e->getMessage());
             return redirect()->back()->withErrors(['error' => 'Unable to fetch VCard details for editing.']);
@@ -100,10 +100,10 @@ class CreateVCardController extends Controller
 
             // Handle file uploads
             if ($request->hasFile('banner_img')) {
-                $validatedData['banner_img'] = $request->file('banner_img')->store('banners', 'public');
+                $validatedData['banner_img'] = $request->file('banner_img')->store('yellowpages/banners');
             }
             if ($request->hasFile('logo')) {
-                $validatedData['logo'] = $request->file('logo')->store('logos', 'public');
+                $validatedData['logo'] = $request->file('logo')->store('yellowpages/logos');
             }
 
             $userId = Auth::id();
@@ -142,14 +142,14 @@ class CreateVCardController extends Controller
             $userId = Auth::id();
             $vcard = Vcard::where('id', $vcard_id)->with('dynamicFields')->firstOrFail();
 
-            return view('yellowpages::VCard.CardView', compact('vcard'));
+            return view('yellowpages::Vcard.CardView', compact('vcard'));
         } catch (\Exception $e) {
             Log::error('Error viewing VCard: ' . $e->getMessage());
             return redirect()->back()->withErrors(['error' => 'Unable to fetch VCard details.']);
         }
     }
     ##------------------------- END ---------------------##
-    ##------------------------- VCard list ---------------------## 
+    ##------------------------- VCard list ---------------------##
     public function VcardList(Request $request) {
          try {
             $Vcard_list = Vcard::where('user_id', Auth::id())->get();
