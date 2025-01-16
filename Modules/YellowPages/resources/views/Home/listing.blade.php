@@ -1,30 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>प्रारंग - येलोपेजेस</title>
-    <meta name="description" content="Find local crafts and businesses in your area. Listings for furniture, embroidery, and more.">
-    <meta name="keywords" content="craft, furniture, embroidery, local business">
+@extends('yellowpages::layout.script')
 
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+@section('title', __('messages.yellow_pages'))
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect">
-    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
-
-    <!-- Vendor CSS Files -->
-    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-    
-    <!-- Main CSS File -->
-    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+@section('content')
     <style>
         /* Style for Rating Stars */
     .rating-star {
@@ -65,7 +43,7 @@
 <div style="max-width: 1200px; margin: 0 auto; padding-top: 100px; padding: 20px;">
     <!-- Image Section -->
     <div style="background-color: #ffffff; padding-top: 90px; display: flex; justify-content: center; align-items: center;">
-        <img src="{{ asset('storage/' . ($listing->feature_img ?? 'default.jpg')) }}" alt="Listing Image" 
+        <img src="{{ Storage::url($listing->feature_img ?? 'default.jpg')}}" alt="Listing Image" 
             style="max-width: 100%; height: auto; border-radius: 10px; display: block;">
     </div>
 </div>
@@ -85,9 +63,23 @@
                 </p>
             </div>
             <div>
-                <button style="background-color: #007bff; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px; cursor: pointer; margin-right: 10px;">शेयर करना
+                <button id="shareButton" style="background-color: #007bff; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px; cursor: pointer;">
+                    शेयर करें
                 </button>
-                <button style="background-color: #28a745; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px; cursor: pointer;">बचाना</button>
+                
+                <!-- Share Modal -->
+                <div id="shareModal" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                    <h4>शेयर करें</h4>
+                    <button onclick="shareOnFacebook()" style="margin-bottom: 10px; background-color: #3b5998; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px;">Facebook पर शेयर करें</button>
+                    <button onclick="shareOnInstagram()" style="margin-bottom: 10px; background-color: #e4405f; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px;">Instagram पर शेयर करें</button>
+                    <button onclick="shareOnWhatsApp()" style="margin-bottom: 10px; background-color: #25D366; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px;">WhatsApp पर शेयर करें</button>
+                    <button onclick="shareOnLinkedIn()" style="margin-bottom: 10px; background-color: #0077b5; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px;">LinkedIn पर शेयर करें</button>
+                    <button onclick="closeModal()" style="margin-top: 10px; background-color: #ccc; color: black; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px;">बंद करें</button>
+                </div>
+                <a href="{{ route('yp.listing.save', $listing->id) }}" style="background-color: #28a745; color: white; padding: 10px 15px; font-size: 14px; border-radius: 5px; text-decoration: none; display: inline-block; cursor: pointer;">
+                    सूची सहेजें
+                </a>                
+                
             </div>
         </div>
 
@@ -103,29 +95,21 @@
             <div style="flex: 1; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                 <h3 style="font-size: 20px; font-weight: bold; margin-bottom: 15px;">काम करने के घंटे</h3>
                 <ul style="list-style: none; padding: 0; margin: 0;">
-                    <li style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                        <span>Monday</span>
-                        <span>09:00 - 17:00</span>
-                    </li>
-                    <li style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                        <span>Tuesday</span>
-                        <span>09:00 - 17:00</span>
-                    </li>
-                    <li style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                        <span>Wednesday</span>
-                        <span>09:00 - 17:00</span>
-                    </li>
-                    <li style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                        <span>Thursday</span>
-                        <span>09:00 - 17:00</span>
-                    </li>
-                    <li style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                        <span>Friday</span>
-                        <span>09:00 - 17:00</span>
-                    </li>
+                    @if($listingHours->isNotEmpty())
+                        @foreach($listingHours as $hour)
+                            <li style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                                <span>{{ \Illuminate\Support\Str::ucfirst($hour->day) }}</span>
+                                <span>{{ Carbon\Carbon::parse($hour->open_time)->format('H:i') }} - {{ Carbon\Carbon::parse($hour->close_time)->format('H:i') }}</span>
+                            </li>
+                        @endforeach
+                    @else
+                        <li>No working hours available for this listing.</li>
+                    @endif
                 </ul>
-                <p style="font-size: 14px; color: #28a745; margin-top: 10px;">Open Now</p>
-            </div>
+                <p style="font-size: 14px; margin-top: 10px; color: {{ $isOpen ? '#28a745' : '#dc3545' }};">
+                    {{ $isOpen ? 'Open Now' : 'Closed Now' }}
+                </p>
+            </div>            
 
         </div>
 
@@ -213,20 +197,10 @@
             <button type="submit" style="background-color: #007bff; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px; width: 100%;">समीक्षा सबमिट करें</button>
         </div>
     </form>
-    
-       
 </div>
-    @include('yellowpages::layout.footer')
+@endsection
+@push('scripts')
 
-    <!-- Vendor JS Files -->
-    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
-    <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
-    <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-
-    <!-- Main JS File -->
-    <script src="{{ asset('assets/js/main.js') }}"></script>
     <script>
         document.querySelectorAll('input[type="radio"]').forEach(input => {
             input.addEventListener('change', function () {
@@ -238,10 +212,39 @@
             });
         });
     </script>
+    <script>
+        const shareButton = document.getElementById('shareButton');
+        const shareModal = document.getElementById('shareModal');
     
-</body>
+        shareButton.addEventListener('click', () => {
+            shareModal.style.display = 'block';
+        });
+    
+        function closeModal() {
+            shareModal.style.display = 'none';
+        }
+    
+        function shareOnFacebook() {
+            window.open('https://www.facebook.com/sharer/sharer.php?u=your-url', '_blank');
+            closeModal();
+        }
+    
+        function shareOnInstagram() {
+            alert('Instagram sharing is not directly supported from web.');
+        }
+    
+        function shareOnWhatsApp() {
+            window.open('https://api.whatsapp.com/send?text=your-url', '_blank');
+            closeModal();
+        }
+    
+        function shareOnLinkedIn() {
+            window.open('https://www.linkedin.com/shareArticle?mini=true&url=your-url&title=Your-Title&summary=Your-Summary&source=Your-Source', '_blank');
+            closeModal();
+        }
+        
+    </script>
+  @endpush
 
-
-</html>
 
 

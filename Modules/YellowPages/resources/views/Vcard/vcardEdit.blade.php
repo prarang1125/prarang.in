@@ -13,7 +13,7 @@
                     <h5 class="mb-4 d-flex align-items-center">
                         <span>VCard Information</span>
                         <div class="ms-3" style="border: 1px solid #ccc; border-radius: 4px;">
-                            <a href="{{ url('yellow-pages/vcard/view') }}" target="_blank">
+                            <a href="{{ route('vCard.view', ['vcard_id' => $vcard->id]) }}" target="_blank">
                                 <i class='bx bx-show' title="View Card" style="font-size: 24px;"></i>
                             </a>
                         </div>
@@ -29,18 +29,14 @@
                         <div class="mb-3">
                             <label for="banner_img" class="form-label">Upload Banner</label>
                             <input type="file" class="form-control" id="banner_img" name="banner_img">
-                            @if($vcard->banner_img)
-                                <img src="{{ asset($vcard->banner_img) }}" alt="Banner Image" class="img-fluid mt-2">
-                            @endif
+                            <img src="{{ Storage::url($vcard->banner_img) }}" alt="File" style="max-width: 100px;">
                         </div>
 
                         <!-- Upload Logo -->
                         <div class="mb-3">
                             <label for="logo" class="form-label">Upload Logo</label>
                             <input type="file" class="form-control" id="logo" name="logo">
-                            @if($vcard->logo)
-                                <img src="{{ asset($vcard->logo) }}" alt="Logo Image" class="img-fluid mt-2">
-                            @endif
+                            <img src="{{ Storage::url($vcard->logo) }}" alt="File" style="max-width: 100px;">
                         </div>
 
                         <!-- Slug -->

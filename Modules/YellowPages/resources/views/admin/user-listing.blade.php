@@ -36,7 +36,7 @@
             <hr/>
             <div class="card">
                 <div class="card-body d-flex justify-content-end align-items-end">
-                    <a href="{{ url('/yellow-pages/user-register') }}" class="btn btn-primary">नई उपयोगकर्ता को जोड़ना</a>
+                    <a href="{{ url('/yellow-pages/admin/user-register') }}" class="btn btn-primary">नई उपयोगकर्ता को जोड़ना</a>
                 </div>
                 <div class="card-body">
                     <table class="table mb-0 table-hover">
@@ -57,10 +57,10 @@
                                     <th scope="row">{{ $index }}</th>
                                     <td>{{ $user->name }}</td>
                                     <td>{{ $user->email }}</td>
-                                    <td class="{{ $user->role }}">{{ $user->role? 'Admin':'Customer' }}
-                                    </td>
-
-                                    <td class="{{ $user->isActive? 'text-success':'text-danger' }}">{{ $user->isActive? 'Deactive':'Active' }}
+                                    <td class="{{ $user->role }}">
+                                        {{ $user->role == 1 ? 'व्यवस्थापक' : ($user->role == 2 ? 'ग्राहक' : 'अज्ञात') }}
+                                    </td>                                    
+                                    <td class="{{ $user->isActive? 'text-success':'text-danger' }}">{{ $user->isActive? 'अक्रिय':'सक्रिय' }}
                                     </td>
                                     <td class="text-right">
                                         <a href="{{ route('admin.user-edit', $user->id) }}" class="btn btn-sm btn-primary edit-user">संपादन करना

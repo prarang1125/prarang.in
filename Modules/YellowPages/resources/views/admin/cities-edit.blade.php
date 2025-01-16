@@ -53,7 +53,7 @@
                         </div>
                         <div class="col-md-6 mt-2">
                             @if($cities->cities_url)
-                                <img src="{{ asset('storage/' . $cities->cities_url) }}" alt="{{ $cities->name }}" style="width: 100px; height: auto;">
+                                <img src="{{ Storage::url($cities->cities_url) }}" alt="{{ $cities->name }}" style="width: 100px; height: auto;">
                             @endif
                         </div>
                     </div>

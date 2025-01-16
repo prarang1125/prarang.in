@@ -12,15 +12,14 @@
     <meta property="og:site_name" content="{{ $post['siteName'] ?? 'Prarang' }}" />
 
     <!-- Open Graph Tags -->
-    <meta property="og:title" content="{{ $post['Title'] ?? 'Default Title' }}" />
+    <meta property="og:title" content="{{ $post['title'] ?? 'Default Title' }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="{{ $post->images[0]->imageUrl ?? 'default-image-url.jpg' }}" />
+    <meta property="og:image" content="{{ $post['imageUrl'] ?? 'default-image-url.jpg' }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:description" content="{{ $post['SubTitle'] ?? 'Default description for the post.' }}" />
-    <title>{{ $post['Title'] }}</title>
+    <meta property="og:description" content="{{ $post['description'] ?? 'Default description for the post.' }}" />
+    <title>{{ $post['title'] }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
-    <script src="{{asset('location.js')}}"></script>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -54,11 +53,11 @@
             border-radius: 20px;
         }
 
-        /* .container {
+        .container {
             max-width: 1200px;
             margin: auto;
             padding: 20px;
-        } */
+        }
 
         .post-header {
             margin-bottom: 15px;
@@ -246,7 +245,10 @@
             text-align: justify;
         }
 
-       
+        /* Col 9 */
+        .container .col-sm-9 {
+            transform: translatex(0px) translatey(0px);
+        }
 
         /* Post descreption */
         .container .post-descreption {
@@ -496,9 +498,9 @@
                 <div class="stk-side">
                     <div class="p-2 text-center shadow app-fb">
                         <p class="p-0">Follow Us on</p>
-                        <a class="text-center btn btn-primary" href="https://www.facebook.com/prarang.in" target="_blank"><i class=""></i>
+                        <a class="text-center btn btn-primary" href="" target="_blank"><i class=""></i>
                             Facebook</a>
-                        <a class="text-center btn btn-success " href="https://play.google.com/store/apps/details?id=com.riversanskiriti.prarang&pcampaignid=web_share" target="_blank"><i
+                        <a class="text-center btn btn-success " href="" target="_blank"><i
                                 class="fa fa-mobile"></i>
                             Mobile
                             App</a>
@@ -545,11 +547,6 @@
     </div>
 
     <x-post.footer :city="$city_name" />
-    <script>
-    window.onload = function() {
-        collectAndSendInformation('{{ $post["chittiId"] }}', '{{ $city_name }}');
-    };
-</script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> --}}

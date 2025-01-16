@@ -54,11 +54,27 @@ class BusinessListing extends Model
     {
         return $this->hasOne(BusinessHour::class, 'business_id');
     }
+    public function BusinessHours()
+    {
+        return $this->hasmany(BusinessHour::class, 'business_id');
+    }
+
 
     // Relationship with Category
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
+    // In BusinessListing model
+public function city()
+{
+    return $this->belongsTo(City::class);
+}
+
+// In BusinessListing.php
+public function reviews()
+{
+    return $this->hasMany(Review::class, 'listing_id');
+}
 
 }

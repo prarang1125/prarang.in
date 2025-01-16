@@ -94,12 +94,8 @@ function toggle24Hours(checkbox) {
     }
 }
 
-
-
 // Function to toggle the display of the second time slot
 function toggleSecondSlot(checkbox) {
-
-    alert('jjjjgkfgj');
     const secondSlot = checkbox.closest('div').nextElementSibling;
     secondSlot.style.display = checkbox.checked ? 'flex' : 'none';
 }
@@ -172,10 +168,8 @@ document.addEventListener('DOMContentLoaded', function() {
         const faqItem = document.createElement('div');
         faqItem.className = 'faq-item';
         faqItem.style.marginBottom = '10px';
-        faqItem.innerHTML = `
-            <input type="text" placeholder="Frequently Asked Questions" style="width: 100%; margin-bottom: 5px;">
-            <textarea placeholder="Answer" style="width: 100%; height: 60px;"></textarea>
-        `;
+        faqItem.innerHTML = `<input type="text" placeholder="Frequently Asked Questions" style="width: 100%; margin-bottom: 5px;">
+            <textarea placeholder="Answer" style="width: 100%; height: 60px;"></textarea>`;
         faqSection.insertBefore(faqItem, faqSection.querySelector('.add-new'));
     }
 

@@ -2,50 +2,66 @@
 @section('title', 'YellowPages')
 @section('content')
 <div class="page-content">
-   
+    <!-- Dynamic Card Section -->
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
-        <div class="col">
-            <a href="#">
-            <div class="card radius-10 bg-gradient-deepblue">
-                <div class="card-body">
-                    <div class="d-flex align-items-center">
-                        <h5 class="mb-0 text-white">{{ $totalscan ? $totalscan->scan_count : 0 }}</h5>
-                        <div class="ms-auto">
-                            <i class='bx bx-scan fs-3 text-white'></i>
-                        </div>
-                    </div>
-                    <div class="d-flex align-items-center text-white">
-                        <p class="mb-0">कुल स्कैन</p>
-                    </div>
-                </div>
-            </div>
-            </a>
-        </div>
-        <!-- Other Cards -->
+        <!-- Total Scans -->
         <div class="col">
             <a href="#">
                 <div class="card radius-10 bg-gradient-deepblue">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
-                            <h5 class="mb-0 text-white">{{ is_object($plan) ? $plan->name : 'No Plan Active' }}</h5>
-                            <!-- Static Total Categories -->
+                            <h5 class="mb-0 text-white">{{ $totalscan->scan_count ?? 0 }}</h5>
                             <div class="ms-auto">
-                                <i class='bx bx-user fs-3 text-white'></i> <!-- Updated icon -->
+                                <i class="bx bx-scan fs-3 text-white"></i>
                             </div>
                         </div>
-                        <div class="d-flex align-items-center text-white">
-                            <p class="mb-0">सदस्यता</p>
-                        </div>
+                        <p class="mb-0 text-white">कुल स्कैन</p>
                     </div>
                 </div>
             </a>
         </div>
-        
-        <!-- Other Static Cards -->
+
+        <!-- Total User Views -->
+        <div class="col">
+            <a href="#">
+                <div class="card radius-10 bg-gradient-deepblue">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <h5 class="mb-0 text-white">{{ $viewcount }}</h5>
+                            <div class="ms-auto">
+                                <i class="bx bx-show fs-3 text-white"></i>
+                            </div>
+                        </div>
+                        <p class="mb-0 text-white">कुल उपयोगकर्ता दृश्य</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Subscription Plan -->
+        <div class="col">
+            <a href="#">
+                <div class="card radius-10 bg-gradient-deepblue">
+                    <div class="card-body">
+                        <div class="d-flex align-items-center">
+                            <h5 class="mb-0 text-white">{{ $plan->name ?? 'कोई योजना सक्रिय नहीं' }}</h5>
+                            <div class="ms-auto">
+                                <i class="bx bx-user fs-3 text-white"></i>
+                            </div>
+                        </div>
+                        <p class="mb-0 text-white">सदस्यता</p>
+                    </div>
+                </div>
+            </a>
+        </div>
+
+        <!-- Additional Cards -->
+        <!-- Add more cards here as needed -->
     </div>
 
-    <!-- Chart Section -->
-    {{-- <div class="row mt-4">
+    <!-- Optional Chart Section -->
+    @if(isset($labels) && isset($data))
+    <div class="row mt-4">
         <div class="col">
             <div class="card">
                 <div class="card-body">
@@ -53,14 +69,16 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
+    @endif
 </div>
 
 <!-- Chart.js Integration -->
-{{-- <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+@if(isset($labels) && isset($data))
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     const ctx = document.getElementById('scanChart').getContext('2d');
-    const scanChart = new Chart(ctx, {
+    new Chart(ctx, {
         type: 'line',
         data: {
             labels: @json($labels), // Dynamic Dates
@@ -86,5 +104,6 @@
             }
         }
     });
-</script> --}}
+</script>
+@endif
 @endsection

@@ -1,42 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>प्रारंग - येलोपेजेस</title>
-    <meta name="description" content="Find local crafts and businesses in your area. Listings for furniture, embroidery, and more.">
-    <meta name="keywords" content="craft, furniture, embroidery, local business">
-    <!-- Favicons -->
-    <link href="assets/img/favicon.png" rel="icon">
-    <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+@extends('yellowpages::layout.script')
 
-    <!-- Fonts -->
-    <link href="https://fonts.googleapis.com" rel="preconnect">
-    <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+@section('title', __('messages.yellow_pages'))
 
-    <!-- Vendor CSS Files -->
-    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-
-    <!-- Main CSS File -->
-    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
-    <script src="{{ asset('js/script.js') }}"></script>
-</head>
-
-<body style="font-family: Arial, sans-serif; background-color: #f5f9fc; margin: 0; padding: 0;">
-    <!-- Navbar Include -->
-    @include('yellowpages::layout.navbar');
+@section('content')
     <br>
     <br>
     <!-- Header Section -->
-    <div style="position: relative; background-image: url('{{ asset('storage/categories/cate_bg.jpg') }}'); background-size: cover; background-position: center; padding: 60px; text-align: center; color: white;">
+    <div style="position: relative; background-image: url('{{ Storage::url('categories/cate_bg.jpg') }}'); background-size: cover; background-position: center; padding: 60px; text-align: center; color: white;">
         <!-- Optional Overlay for better text visibility -->
         <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background-color: rgba(0, 0, 0, 0.5);"></div>
-        <h1 style="position: relative; z-index: 1; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);">Submit Your Listing</h1>
+        <h1 style="position: relative; z-index: 1; text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);">अपनी सूची जमा करें</h1>
     </div>
     <div style="max-width: 800px; margin: 0 auto; padding: 20px;">
         <h5 style="text-align: center;">अपनी सूची जोड़ें</h5>
@@ -77,41 +50,41 @@
             </div>
             <div class="mb-3" id="taglineField" style="display: none;">
                 <label for="tagline" class="form-label">टैगलाइन</label>
-                <input type="text" id="tagline" name="tagline" class="form-control" placeholder="Enter tagline">
+                <input type="text" id="tagline" name="tagline" class="form-control" placeholder="टैगलाइन दर्ज करें">
             </div>
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="businessName" class="form-label">व्यवसाय/कंपनी का नाम</label>
-                    <input type="text" id="businessName" name="businessName" class="form-control" placeholder="Enter business name">
+                    <input type="text" id="businessName" name="businessName" class="form-control" placeholder="व्यवसाय का नाम दर्ज करें">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="businessAddress" class="form-label">व्यवसाय/कंपनी का पता</label>
-                    <input type="text" id="businessAddress" name="businessAddress" class="form-control" placeholder="Enter business address">
+                    <input type="text" id="businessAddress" name="businessAddress" class="form-control" placeholder="व्यावसायिक पता दर्ज करें">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="primaryPhone" class="form-label">प्राथमिक फ़ोन नंबर</label>
-                    <input type="text" id="primaryPhone" name="primaryPhone" class="form-control" placeholder="Enter primary phone">
+                    <input type="text" id="primaryPhone" name="primaryPhone" class="form-control" placeholder="प्राथमिक फ़ोन दर्ज करें">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="secondaryPhone" class="form-label">द्वितीय फ़ोन नंबर
                     </label>
-                    <input type="text" id="secondaryPhone" name="secondary_phone" class="form-control" placeholder="Enter secondary phone">
+                    <input type="text" id="secondaryPhone" name="secondary_phone" class="form-control" placeholder="द्वितीयक फ़ोन दर्ज करें">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="primaryContact" class="form-label">प्राथमिक संपर्क नाम</label>
-                    <input type="text" id="primaryContact" name="primaryContact" class="form-control" placeholder="Enter primary contact name">
+                    <input type="text" id="primaryContact" name="primaryContact" class="form-control" placeholder="प्राथमिक संपर्क नाम दर्ज करें">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="primaryEmail" class="form-label">प्राथमिक संपर्क ईमेल</label>
-                    <input type="email" id="primaryEmail" name="primaryEmail" class="form-control" placeholder="Enter primary email">
+                    <input type="text" id="primaryEmail" name="primaryEmail" class="form-control" placeholder="प्राथमिक ईमेल दर्ज करें">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="secondaryContact" class="form-label">द्वितीयक संपर्क नाम</label>
-                    <input type="text" id="secondaryContact" name="secondaryContactName" class="form-control" placeholder="Enter secondary contact name">
+                    <input type="text" id="secondaryContact" name="secondaryContactName" class="form-control" placeholder="द्वितीयक संपर्क नाम दर्ज करें">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="secondaryEmail" class="form-label">द्वितीयक संपर्क ईमेल</label>
-                    <input type="email" id="secondaryEmail" name="secondaryEmail" class="form-control" placeholder="Enter secondary email">
+                    <input type="text" id="secondaryEmail" name="secondaryEmail" class="form-control" placeholder="द्वितीयक ईमेल दर्ज करें">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="businessType" class="form-label">व्यवसाय/कंपनी कानूनी प्रकार *</label>
@@ -169,7 +142,7 @@
             <!-- Pin Code Field -->
             <div style="flex: 1;">
                 <label for="pincode" class="form-label">पिन कोड</label>
-                <input type="text" id="pincode" name="pincode" class="form-control" placeholder="Enter Pin Code">
+                <input type="text" id="pincode" name="pincode" class="form-control" placeholder="पिन कोड दर्ज करें">
             </div>
         </div>
     </div>
@@ -196,11 +169,11 @@
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
         <div style="margin-top: 15px;">
             <label for="description">विवरण</label>
-            <textarea id="description" name="description" rows="4" placeholder="Enter description here..." style="width: 100%;"></textarea>
+            <textarea id="description" name="description" rows="4" placeholder="यहां विवरण दर्ज करें..." style="width: 100%;"></textarea>
         </div>
         <div style="margin-top: 15px;">
             <label for="description">टैग या कीवर्ड (अल्पविराम से अलग)</label>
-            <textarea id="description" name="tags_keywords" rows="4" placeholder="Enter Tags or Keywords (Comma Separated)" style="width: 100%;"></textarea>
+            <textarea id="description" name="tags_keywords" rows="4" placeholder="टैग या कीवर्ड दर्ज करें (अल्पविराम से अलग करके)" style="width: 100%;"></textarea>
         </div>
     </div>
     <br>
@@ -256,22 +229,22 @@
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
         <div style="margin-bottom: 10px;">
             <label for="street_address">पूरा पता:</label>
-            <input type="text" id="street_address" name="fullAddress" placeholder="123 Main St" style="width: 100%; padding: 8px;">
+            <input type="text" id="street_address" name="fullAddress" placeholder="पूरा पता दर्ज करें" style="width: 100%; padding: 8px;">
         </div>
        
         <h5 style="margin-bottom: 15px;">संपर्क जानकारी</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
         <div style="margin-bottom: 10px;">
             <label for="website">वेबसाइट:</label>
-            <input type="url" id="website" name="website" placeholder="https://example.com" style="width: 100%; padding: 8px;">
+            <input type="url" id="website" name="website" placeholder="वेबसाइट का नाम दर्ज करें" style="width: 100%; padding: 8px;">
         </div>
         <div style="margin-bottom: 10px;">
             <label for="phone">फ़ोन:</label>
-            <input type="tel" id="phone" name="phone" placeholder="+1 234 567 8900" style="width: 100%; padding: 8px;">
+            <input type="tel" id="phone" name="phone" placeholder="फ़ोन नंबर दर्ज करें" style="width: 100%; padding: 8px;">
         </div>
         <div style="margin-bottom: 10px;">
             <label for="whatsapp">व्हाट्सएप:</label>
-            <input type="tel" id="whatsapp" name="whatsapp" placeholder="+1 234 567 8900" style="width: 100%; padding: 8px;">
+            <input type="tel" id="whatsapp" name="whatsapp" placeholder="व्हाट्सअप नंबर दर्ज करें" style="width: 100%; padding: 8px;">
         </div>
     </div>
     <br>
@@ -285,7 +258,7 @@
                     <option value="{{ $social->id }}">{{ $social->name }}</option>
                     @endforeach
             </select>
-            <input type="text" id="description" name="socialDescription" placeholder="Enter your link or details" style="flex: 2; padding: 8px;">
+            <input type="text" id="description" name="socialDescription" placeholder="अपना लिंक या विवरण दर्ज करें" style="flex: 2; padding: 8px;">
             <button type="button" id="addSocialMedia" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; cursor: pointer;">
                 +
             </button>
@@ -316,21 +289,20 @@
         </div>
         <div id="faqSection" style="display: none;">
             <div class="faq-item" style="margin-bottom: 10px;">
-                <label>अक्सर पूछे जाने वाले प्रश्नों </label>
+                <label>अक्सर पूछे जाने वाले प्रश्नों</label>
                 <input type="text" name="faq" placeholder="Frequently Asked Questions" style="width: 100%; margin-bottom: 5px;">
                 <textarea placeholder="Answer" name="answer" style="width: 100%; height: 60px;"></textarea>
             </div>
-            <div class="add-new" style="color: #007bff; cursor: pointer; font-size: 14px; display: inline-block; margin-top: 10px;" onclick="addFAQ()">+ नया जोड़ें
-            </div>
-        </div>
+            <div class="add-new" style="color: #007bff; cursor: pointer; font-size: 14px; display: inline-block; margin-top: 10px;" onclick="addFAQ()">+ नया जोड़ें</div>
+        </div>   
     </div>
     <br>
-    <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
+    {{-- <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
         <div id="signupFields" style="display: flex; gap: 20px; margin-bottom: 15px;">
             <div style="flex: 1;">
                 <label for="signupEmail">साइनअप करने के लिए ईमेल दर्ज करें और लिस्टिंग अनुमोदन पर अधिसूचना प्राप्त करें
                 </label>
-                <input type="email" id="signupEmail" name="notificationEmail" placeholder="Enter email here..." style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
+                <input type="text" id="signupEmail" name="notificationEmail" placeholder="Enter email here..." style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
             </div>
             <div style="flex: 1;">
                 <label for="userName">उपयोगकर्ता नाम दर्ज करें</label>
@@ -345,14 +317,14 @@
         <div id="accountFields" style="display: none; flex-direction: row; gap: 20px;">
             <div style="flex: 1;">
                 <label for="email">ईमेल</label>
-                <input type="email" id="email" name="email" placeholder="Enter your email" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
+                <input type="type" id="email" name="email" placeholder="Enter your email" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
             </div>
             <div style="flex: 1;">
                 <label for="password">पासवर्ड</label>
                 <input type="password" id="password" name="password" placeholder="Enter your password" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
             </div>
         </div>
-    </div>
+    </div> --}}
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
         <div style="margin-top: 15px; margin-bottom: 15px;">
             <label>
@@ -364,14 +336,11 @@
     </div>
     </form>
     </div>
-    @include('yellowpages::layout.footer')
-    <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
-    <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-    <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
-    <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-    <script src="{{ asset('assets/js/main.js') }}"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    @endsection
+    @push('scripts')
+
+    
+  
    <script>
  document.getElementById('add-day-btn').addEventListener('click', () => {
     const container = document.getElementById('schedule-container');
@@ -456,7 +425,88 @@ document.getElementById('submit-btn').addEventListener('click', () => {
     console.log(schedules);
 });
 
-</script>
+document.addEventListener('DOMContentLoaded', function () {
+    document.getElementById('addSocialMedia').addEventListener('click', function () {
+    const socialMediaForm = document.querySelector('.social-media-row');
+
+    // Create a new row for social media input
+    const newRow = document.createElement('div');
+    newRow.className = 'social-media-row';
+    newRow.style.display = 'flex';
+    newRow.style.alignItems = 'center';
+    newRow.style.gap = '10px';
+    newRow.style.marginBottom = '10px';
+
+    // Create the select element for social media
+    const select = document.createElement('select');
+    select.name = 'socialId[]';
+    select.required = true;
+    select.style.flex = '1';
+    select.style.padding = '8px';
+
+    const defaultOption = document.createElement('option');
+    defaultOption.selected = true;
+    defaultOption.textContent = 'स्थान चुनें';
+    select.appendChild(defaultOption);
+
+    // Ensure the select element is appended to the DOM before populating
+    newRow.appendChild(select);
+
+    // Populate the select options dynamically
+    fetch('/get-social-media') // Replace with your endpoint
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(social => {
+                const option = document.createElement('option');
+                option.value = social.id;
+                option.textContent = social.name;
+                select.appendChild(option);
+            });
+        });
+
+    // Create the input field for description
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.name = 'socialDescription[]';
+    input.placeholder = 'अपना लिंक या विवरण दर्ज करें';
+    input.style.flex = '2';
+    input.style.padding = '8px';
+
+    // Append input to the new row
+    newRow.appendChild(input);
+
+    // Append the new row to the form
+    socialMediaForm.parentNode.insertBefore(newRow, socialMediaForm.nextSibling);
+});
+    // FAQ Toggle
+    const faqToggle = document.getElementById('featuresToggle');
+    if (faqToggle) {
+        faqToggle.addEventListener('change', function () {
+            const faqSection = document.getElementById('faqSection');
+            faqSection.style.display = this.checked ? 'block' : 'none';
+        });
+    }
+});
+
+// FAQ: Add new FAQ item
+function addFAQ() {
+    var faqSection = document.getElementById('faqSection');
     
-</body>
-</html>
+    // Create new FAQ item
+    var newFAQ = document.createElement('div');
+    newFAQ.classList.add('faq-item');
+    newFAQ.style.marginBottom = '10px';
+    
+    // Create input fields
+    newFAQ.innerHTML = `
+        <label>अक्सर पूछे जाने वाले प्रश्नों</label>
+        <input type="text" name="faq" placeholder="Frequently Asked Questions" style="width: 100%; margin-bottom: 5px;">
+        <textarea placeholder="Answer" name="answer" style="width: 100%; height: 60px;"></textarea>
+    `;
+    
+    // Add the new FAQ item to the section
+    faqSection.insertBefore(newFAQ, document.querySelector('.add-new'));
+}
+
+</script>
+@endpush

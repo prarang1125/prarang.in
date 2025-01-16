@@ -13,6 +13,7 @@ class City extends Model
     protected $fillable = [
         'name',
         'cities_url',
+        'portal_id',
         'timezone',
         'created_at',
         'updated_at'

@@ -62,7 +62,7 @@
                         </div>
                         <div class="col-md-6 mt-2">
                             @if($category->categories_url)
-                                <img src="{{ asset('storage/' . $category->categories_url) }}" alt="{{ $category->name }}" style="width: 100px; height: auto;">
+                            <img src="{{ Storage::url($category->categories_url) }}" alt="{{ $category->name }}" style="width: 100px; height: 100px;">
                             @endif
                         </div>
                     </div>

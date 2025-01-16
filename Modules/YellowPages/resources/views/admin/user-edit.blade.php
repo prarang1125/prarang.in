@@ -44,7 +44,7 @@
                     <div class="row mt-3">
                         <div class="col-md-6">
                             <label for="inputEmail" class="form-label">ईमेल</label>
-                            <input type="email" class="form-control @error('email') is-invalid @enderror" id="inputEmail" name="email" value="{{ old('email', $user->email) }}">
+                            <input type="text" class="form-control @error('email') is-invalid @enderror" id="inputEmail" name="email" value="{{ old('email', $user->email) }}">
                             @error('email')
                                 <p class="invalid-feedback">{{ $message }}</p>
                             @enderror

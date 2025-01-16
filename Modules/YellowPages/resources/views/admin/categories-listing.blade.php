@@ -36,7 +36,7 @@
             <hr/>
             <div class="card">
                 <div class="card-body d-flex justify-content-end align-items-end">
-                    <a href="{{ url('/yellow-pages/categories-register') }}" class="btn btn-primary">नई श्रेणियाँ जोड़ें</a>
+                    <a href="{{ url('/yellow-pages/admin/categories-register') }}" class="btn btn-primary">नई श्रेणियाँ जोड़ें</a>
                 </div>
                 <div class="card-body">
                     <table class="table mb-0 table-hover">
@@ -59,7 +59,7 @@
                                     <td class="align-middle">{{ $category->slug }}</td> <!-- Vertically center the Name column -->
                                     <td class="align-middle">
                                         @if($category->categories_url)
-                                            <img src="{{ asset('storage/' . $category->categories_url) }}" alt="{{ $category->name }}" style="width: 100px; height: 100px;">
+                                        <img src="{{ Storage::url($category->categories_url) }}" alt="{{ $category->name }}" style="width: 100px; height: 100px;">
                                         @else
                                           चित्र उपलब्द नहीं है
                                         @endif

@@ -18,7 +18,7 @@
                         </tr>
                         <tr>
                             <th>स्थिति:</th>
-                            <td>{{ ucfirst($planHistory->status) }}</td>
+                            <td>{{ $planHistory->status }}</td>
                         </tr>
                         <tr>
                             <th>लेनदेन आईडी:</th>
@@ -26,16 +26,13 @@
                         </tr>
                         <tr>
                             <th>मात्रा:</th>
-                            <td>₹{{ number_format($planHistory->amount, 2) }}</td>
+                            <td>₹{{ number_format($purchasePlan->amount, 2) }}</td>
                         </tr>
                         <tr>
                             <th>अगली बिलिंग तिथि:</th>
                             <td>
-                                @if($planDetails->duration)
-                                    {{ \Carbon\Carbon::parse($planHistory->created_at)->addDays($planDetails->duration)->format('d-m-Y') }}
-                                @else
-                                    N/A
-                                @endif
+                              {{$purchasePlan->expires_at}} 
+                    
                             </td>
                         </tr>
                     </tbody>

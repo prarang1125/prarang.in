@@ -63,9 +63,9 @@
                             <label for="inputRole" class="form-label">भूमिका</label>
                             <select id="inputRole" class="form-select @error('role') is-invalid @enderror" name="role">
                                 <option selected disabled>चुनना...</option>
-                                <option value="1" {{ old('role') == '1' ? 'selected' : '' }}>व्यवस्थापक</option>
-                                <option value="2" {{ old('role') == '2' ? 'selected' : '' }}>ग्राहक</option>
-                            </select>
+                                <option value="1" {{ old('role') == 1 ? 'selected' : '' }}>व्यवस्थापक</option>
+                                <option value="2" {{ old('role') == 2 ? 'selected' : '' }}>ग्राहक</option>
+                            </select>                            
                             @error('role')
                                 <p class="invalid-feedback">{{ $message }}</p>
                             @enderror

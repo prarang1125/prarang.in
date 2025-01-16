@@ -61,7 +61,7 @@
                     </div>
                     <div class="form-group">
                         <label for="registerPassword">Password</label>
-                        <input type="password" class="form-control" id="registerPassword" name="password" >
+                        <input type="password" class="form-control" id="registerPassword" name="password">
                     </div>
                     <div class="form-group">
                         <label for="password_confirmation">Confirm Password</label>
@@ -73,9 +73,7 @@
         </div>
     </div>
 </div>
-
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
 </body>
 </html>

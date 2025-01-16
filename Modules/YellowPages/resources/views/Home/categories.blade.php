@@ -1,45 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <title>Prarang - YellowPages</title>
-        <meta name="description" content="Find local crafts and businesses in your area. Listings for furniture, embroidery, and more.">
-        <meta name="keywords" content="craft, furniture, embroidery, local business">
-      
-        <!-- Favicons -->
-        <link href="assets/img/favicon.png" rel="icon">
-        <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
-      
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com" rel="preconnect">
-        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&family=Montserrat:wght@100;300;400;500;600;700;900&family=Poppins:wght@100;300;400;500;600;700;900&display=swap" rel="stylesheet">
-      
-        <!-- Vendor CSS Files -->
-        <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-        <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
-        
-        <!-- Main CSS File -->
-        <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
-    </head>
+@extends('yellowpages::layout.script')
 
-    <body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f5f5f5;">
-        <!-- Navbar Include -->
-        @include('yellowpages::layout.navbar');
+@section('title', __('messages.yellow_pages'))
+
+@section('content')
+<br>
     
         <!-- Header with Background Color -->
-        <div style="background-image: url('{{ asset('storage/categories/cate_bg.jpg') }}'); background-size: cover; background-position: center; padding: 60px; color: white; text-align: center;">
-            <h1 style="padding-top: 20px;">Craft Listings</h1>
+        <div style="background-image: url('{{ Storage::url('categories/cate_bg.jpg') }}'); background-size: cover; background-position: center; padding: 60px; color: white; text-align: center;">
+            <h1 style="padding-top: 20px;">शिल्प सूचियाँ</h1>
         </div>
     
         <!-- Listings Section -->
         <div style="max-width: 1200px; margin: 20px auto; padding: 0 20px;">
             <div style="font-size: 24px; margin-bottom: 20px;">
-                Results For <strong></strong> Listings
+                लिस्टिंग के लिए परिणाम
             </div>
 
             <!-- Filters Section -->
@@ -76,64 +50,41 @@
 
     <!-- Sort By Buttons -->
    
-        <div>
+        {{-- <div>
             <select 
                 style="padding: 10px 15px; border-radius: 20px; border: 1px solid ; cursor: pointer; width: 100%; max-width: 300px;">
                 @foreach($categories as $cate)
                     <option value="{{ $cate->id }}">{{ $cate->name }}</option>
                 @endforeach
             </select>
-        </div>        
+        </div>         --}}
 </div>
 
 <!-- Listings Grid -->
 <div class="listings-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
     @foreach($listings as $listing)
-        <div style="background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center;">
-            <a href="{{ route('yp.listing-details', $listing->id) }}" style="display: block;">
-            <img src="{{ asset('storage/' . ($listing->feature_img ?? 'default.jpg')) }}" alt="{{ $listing->listing_title }}" style="width: 100%; height: auto;">
+        <a href="{{ route('yp.listing-details', ['city_slug' => $listing->city->name, 'listing_title' => $listing->listing_title, 'listing_id' => $listing->id]) }}" 
+           style="display: block; background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center; text-decoration: none;">
+            <img src="{{ storage::url($listing->feature_img ?? 'default.jpg') }}" 
+                 alt="{{ $listing->listing_title }}" 
+                 style="width: 100%; height: auto;">
             <div style="padding: 20px;">
                 <div style="background-color: {{ $listing->status === 'Closed' ? '#ff4d4d' : '#28a745' }}; color: white; padding: 5px; border-radius: 5px; font-size: 12px; display: inline-block; margin-bottom: 10px;">
                     {{ $listing->is_open ? 'Open' : 'Closed' }}
                 </div>
-                <h3 style="font-size: 18px; margin-bottom: 10px;">{{ $listing->listing_title ?? 'No Title' }}</h3>
-                <p><a href="#" style="text-decoration: none; color: #333; font-weight: bold;">{{ $listing->listing_title }}</a></p>
-
-                <div style="margin-top: 15px;">
-                    <!-- Call Now Button -->
-                    <a href="tel:+{{ $listing->phone }}" 
-                       style="text-decoration: none; color: white; background-color: #007bff; padding: 10px 20px; border-radius: 5px; font-size: 14px; margin-right: 10px; display: inline-block;"
-                       onmouseover="replaceContent(this, '{{ $listing->phone }}')" 
-                       onmouseout="restoreContent(this, '📞 Call Now')">
-                        📞 Call Now
-                    </a>
-                
-                    <!-- View Location Button -->
-                    <a href="https://maps.google.com/?q={{ urlencode($listing->full_address) }}" 
-                       target="_blank" 
-                       style="text-decoration: none; color: white; background-color: #28a745; padding: 10px 20px; border-radius: 5px; font-size: 14px; display: inline-block;"
-                       onmouseover="replaceContent(this, '{{ $listing->full_address }}')" 
-                       onmouseout="restoreContent(this, '📍 View Location')">
-                        📍 View Location
-                    </a>
-                </div>
+                <h3 style="font-size: 18px; margin-bottom: 10px; color: #333;">{{ $listing->listing_title ?? 'No Title' }}</h3>
+                <p style="text-decoration: none; color: #333; font-weight: bold;">{{ $listing->listing_title }}</p>
             </div>
-        </div>
+        </a>
     @endforeach
 </div>
 
+
         </div>
-        @include('yellowpages::layout.footer')
-        <!-- Vendor JS Files -->
-        
-        
-        <script src="{{ asset('assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-        <script src="{{ asset('assets/vendor/aos/aos.js') }}"></script>
-        <script src="{{ asset('assets/vendor/glightbox/js/glightbox.min.js') }}"></script>
-        <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
-        <script src="{{ asset('assets/vendor/swiper/swiper-bundle.min.js') }}"></script>
-        <!-- Main JS File -->
-        <script src="{{ asset('assets/js/main.js') }}"></script>
+
+        @endsection
+    @push('scripts')
+
         <script>
             function replaceContent(element, newText) {
                 element.textContent = newText;
@@ -153,6 +104,4 @@
                 }
             }
         </style>
-    </body>
-    
-</html>
+  @endpush
