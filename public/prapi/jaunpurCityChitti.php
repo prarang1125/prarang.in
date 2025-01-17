@@ -1,7 +1,7 @@
 <?php
 header('Content-type: application/json');
 include "include/connect.php";
-//$link = mysqli_connect('localhost', 'prarang', '#riversanskriti123#', 'prarang_riverSanskiriti'); 
+//$link = mysqli_connect('localhost', 'prarang', '#riversanskriti123#', 'prarang_riverSanskiriti');
 //$link = mysqli_connect('localhost', 'prarang_1125', '#prarang1125#', 'prarang_riverSanskiriti');
 @$subcriberId = BlockSQLInjection($_REQUEST['SubscriberId']);
 @$offset = BlockSQLInjection($_REQUEST['offset']);
@@ -18,7 +18,7 @@ if ($subcriberId == '') {
 	echo json_encode($code);
 } else {
 	$sqlGeographyList = mysqli_query($dbconnect, "select replace(msubscribergeography.geographyCode,'r','') as areaId from msubscriberlist inner join msubscribergeography on msubscriberlist.subscriberId = msubscribergeography.subscriberId where msubscribergeography.geographyCode='r4' and msubscribergeography.subscriberId ='$subcriberId' ");
-
+    die();
 	$countt = mysqli_num_rows($sqlGeographyList);
 	if ($countt > 0) {
 		$x = 0;
@@ -150,7 +150,7 @@ if ($subcriberId == '') {
 				$obj2 = mysqli_fetch_object($result1);
 				$chittiId = $obj2->chittiId;
 
-				//getting images 
+				//getting images
 
 				$sql3 = "select imageId,chittiId,imageUrl,isDefult from chittiimagemapping where chittiId = $chittiId  ORDER BY  imageId ASC";
 
@@ -159,7 +159,7 @@ if ($subcriberId == '') {
 					$chitti['image'][$j] = mysqli_fetch_object($resultImages1);
 				}
 
-				//getting tags 
+				//getting tags
 				if ($languageId == '1') {
 					$sql4 = "select chittitagmapping.chittiId,mtag.tagId,mtag.tagInEnglish as tagUnicode,mtag.tagIcon from chittitagmapping inner join mtag on chittitagmapping.tagId  = mtag.tagId  WHERE chittitagmapping.chittiId = $chittiId ORDER BY  chittitagmapping.chittiId DESC";
 				} else if ($languageId == '2') {
@@ -190,7 +190,7 @@ if ($subcriberId == '') {
 		// die if SQL statement failed
 		if (!$result1) {
 			http_response_code(404);
-			die(mysqli_error($conn)); 
+			die(mysqli_error($conn));
 		}
 		// close mysqli connection
 		mysqli_close($dbconnect);
