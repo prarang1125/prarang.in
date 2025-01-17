@@ -22,7 +22,17 @@ yarn-error.log
 /.zed
 # Environment configuration
 **/.env
+
+/public/home-assets/
+public/home-assets/
+/public/meeting-data/
+/public/meeting-data/
+/public/imgs/
+/public/imgs/
 *.zip
 *.mp4
 *.iso
 *.tar.gz
+/public/partner-api/
+partner/partner-api/
+

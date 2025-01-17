@@ -378,7 +378,7 @@
 
             </div>
             <div class="col-sm-4">
-                <div class="rounded border p-2">
+                <div class="p-2 border rounded">
                     <p class="text-center h4">Prarang Analysis :</p>
                     <ul>
 
@@ -425,7 +425,7 @@
             <div class="live-cities">
                 <div class="row">
 
-                    <div class="col-sm-3 text-center">
+                    <div class="text-center col-sm-3">
                         <h5>Geographies - Live: 4 India</h5>
                     </div>
                     <div class="col-sm-2">
@@ -458,7 +458,7 @@
             <h4>Target Markets : India - <?php echo isset($total['india']) ? $total['india'] - 4 : 'N/A'; ?> & Rest of the World -<?php echo isset($total['world']) ? $total['world'] : 'N/A'; ?></h4>
             <div class="table-main-lang">
                 <table border="1"
-                    class="table table-responsive table-striped table-bordered table-hover align-middle">
+                    class="table align-middle table-responsive table-striped table-bordered table-hover">
                     <thead>
                         <tr>
                             <th>Sr.</th>
@@ -562,7 +562,7 @@
                             </tbody>
                         </table>
                         <?php if ($count == 1) { ?>
-                        <h6 class="border p-2">No City or Country Capital with more than 100K Speakers.</h6>
+                        <h6 class="p-2 border">No City or Country Capital with more than 100K Speakers.</h6>
                         <?php } ?>
                     </div>
                     <br>
@@ -593,7 +593,7 @@
                             </tbody>
                         </table>
                         <?php if ($count == 1) { ?>
-                        <h6 class="border p-2">No other Country Capital.</h6>
+                        <h6 class="p-2 border">No other Country Capital.</h6>
                         <?php } ?>
                     </div>
                 </div>
@@ -638,7 +638,7 @@
                             </tbody>
                         </table>
                         <?php if ($count == 1) { ?>
-                        <h6 class="border p-2">No Records found.</h6>
+                        <h6 class="p-2 border">No Records found.</h6>
                         <?php } ?>
                     </div>
                     <br>
@@ -667,7 +667,7 @@
                             </tbody>
                         </table>
                         <?php if ($count == 1) { ?>
-                        <h6 class="border p-2">No Records found.</h6>
+                        <h6 class="p-2 border">No Records found.</h6>
                         <?php } ?>
                     </div>
                 </div>
@@ -775,7 +775,7 @@
                 <div class="modal-body">
 
                     <img src="home-assets/image/bl2a.jfif" class="img-fluid" alt="">
-                    <p class="mt-2 p-1 text-start">
+                    <p class="p-1 mt-2 text-start">
                         The diversity of Indian languages was defined in the last national census ( 2011) - including
                         all dialects, there are 19,569 languages. When "rationalised", these resulted in 1,369 Mother
                         Tongues (MT) spoken in India. But just 121 of these MT have more than 10,000 speakers & 96.7% of
@@ -845,7 +845,7 @@
                     <br>
                     <img src="home-assets/image/bl2e.png" class="img-fluid" alt="">
                     <br>
-                    <p class="text-start p-1">
+                    <p class="p-1 text-start">
                         Several hundred years of English colonial rule & a continuity of 75 years more of English
                         language as the aspirational language for access to both government ( including legal &
                         administrative) jobs & private sector's formal jobs, English language is barely recognized by
@@ -857,7 +857,7 @@
                         english savvy ( 4.5%).
                     </p>
 
-                    <p class="text-start p-1">
+                    <p class="p-1 text-start">
                         In summary, if you're traveling across India, Hindi is by far (7 to 10 times more than any
                         Indian or Foreign language), the best way to communicate. While the push towards moving India to
                         a single language ( Hindi) speaking country has consistently found political resistance, the
@@ -867,7 +867,7 @@
                         translation & related AI tools are being used extensively to create technology-device driven
                         textual unity in India.
                     </p>
-                    <p class="text-start p-1">
+                    <p class="p-1 text-start">
                         Today, approx 74.04% of India is literate & therefore knows how to read/write in one of the 22
                         scripts of the respective 121 MTs. Two of the 121 MTs ( Santhali & Gondhi) actually do not have
                         a script , 50 of the other 119 MTs have Latin/English or Urdu/Perso-Arabic ( approx 4% of the
@@ -966,7 +966,7 @@
         </div>
     </div>
 
-    <div class="modal fade modal" id="TheseMT5" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+    <div class="modal fade" id="TheseMT5" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
         aria-labelledby="TheseMT5Label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -1146,9 +1146,9 @@
                         Capitals nor State Capitals. </p>
 
                     <img class="m-3 responsive img-fluid "
-                        src="https://www.prarang.in/cimg/abc_cropped_page-0001.jpg">
-                    <img class=" responsive img-fluid " src="https://www.prarang.in/cimg/abc_cropped_page-0002.jpg">
-                    <img class=" responsive img-fluid " src="https://www.prarang.in/cimg/abc_cropped_page-0003.jpg">
+                        src="https://prarang.s3.amazonaws.com/posts-2017-24/abc_cropped_page-0001.jpg">
+                    <img class=" responsive img-fluid" src="https://prarang.s3.amazonaws.com/posts-2017-24/abc_cropped_page-0002.jpg">
+                    <img class=" responsive img-fluid" src="https://prarang.s3.amazonaws.com/posts-2017-24/abc_cropped_page-0003.jpg">
                 </div>
                 <div class="ps-3">
 

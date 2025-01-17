@@ -1,36 +1,39 @@
 <?php
-@session_start();
-date_default_timezone_set("Asia/Kolkata"); 
+session_start(); // Start session securely
+date_default_timezone_set("Asia/Kolkata"); // Set timezone
+
+// Include required files
 require_once "include/database.class.php";
 require_once "include/function.php";
 require_once "include/define.php";
-date_default_timezone_set('Asia/Calcutta');
-// Inactive after 60 mins in seconds
-$inactive = 3600;  
-$_SESSION['timeout'] = time();
-$session_life = time() - $_SESSION['timeout']; 
-if($session_life > $inactive && isset($_SESSION['timeout'])) 
-{  
-	$url = "LogOut.php";
-	echo redirectPage($url);
-}
-$HOSTNAME = "localhost";
-//$USERNAME = "prarang";
-//$PASSWORD = "#riversanskriti123#";
-// $USERNAME = "prarang_1125";
-// $PASSWORD = "123#prarang1125#123";
-// $DATABASENAME = "prarang_riverSanskiriti";
-$USERNAME = "prarang_DBDemo1";
-$PASSWORD = "DBDemo1@786";
-$DATABASENAME = "prarang_DBDemo1";
-// $dbconnect = new DbConnect($HOSTNAME, $USERNAME, $PASSWORD, $DATABASENAME);
-// $dbconnect = mysqli_connect('localhost', 'prarang_DBDemo1', 'DBDemo1@786', 'prarang_DBDemo1'); 
-$dbconnect = mysqli_connect('localhost', 'root', '', 'praranglive'); 
-//$dbconnect->open();
-if (mysqli_connect_errno())
-{
-echo "Failed to connect to MySQL: " . mysqli_connect_error();
-}
-//$dbconnect->open();
 
+// Inactive after 60 mins (3600 seconds)
+$inactive = 3600;
+
+// Check session timeout
+if (isset($_SESSION['timeout']) && (time() - $_SESSION['timeout'] > $inactive)) {
+    $url = "LogOut.php";
+    echo redirectPage($url);
+    exit;
+}
+$_SESSION['timeout'] = time(); // Reset session timeout
+
+// Database configuration
+$HOSTNAME = "localhost";
+$USERNAME = "prarangdb";
+$PASSWORD = "PradbDec24";
+$DATABASENAME = "prarangdb";
+
+// Establish database connection
+$dbconnect = mysqli_connect($HOSTNAME, $USERNAME, $PASSWORD, $DATABASENAME);
+
+// Check connection
+if (!$dbconnect) {
+    die("Failed to connect to MySQL: " . mysqli_connect_error());
+}
+
+// Database connection is successful
+// echo "Database connection established successfully.";
+// die();
 ?>
+

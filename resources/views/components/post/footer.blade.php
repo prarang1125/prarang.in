@@ -9,18 +9,18 @@
                     <li>
                         <a href="{{ $homeLink ?? 'https://www.prarang.in/' . $city }}"> {{ ucfirst($city) }} होम </a>
                     </li>
-                    <li>
-                        <a href="{{ $servicesLink ?? 'https://www.prarang.in/' . $city . '/smart.php' }}"> {{ ucfirst($city) }} स्मार्ट सर्विसेज </a>
-                    </li>
+                    {{-- <li>
+                        <a href="{{ $servicesLink ?? '' . $city . '/' }}"> {{ ucfirst($city) }} स्मार्ट सर्विसेज </a>
+                    </li> --}}
                 </ul>
-                
+
             </div>
 
             <!-- Contact Section -->
             <div class="col-md-4">
                 <h5>Address</h5>
                 <ul>
-                    <li> 1125, The i-Thumb , A-40, Sector 62, Noida, Uttar Pradesh 201301</li>
+                    <li> 1125, The i-Thum , A-40, Sector 62, Noida, Uttar Pradesh 201301</li>
                 </ul>
             </div>
 
@@ -39,7 +39,7 @@
 
     <!-- Footer Bottom Section -->
     <div class="footer-bottom">
-        <p>&copy; {{ date('Y') }} © - 2017 All content on this website, such as text, graphics, logos, button icons, software, images, and its selection, arrangement, presentation & overall design, is the property of Indoeuropeans India Pvt. Ltd. and protected by international copyright laws.</p>
+        <p>2017 - &copy; {{ date('Y') }}, All content on this website, such as text, graphics, logos, button icons, software, images, and its selection, arrangement, presentation & overall design, is the property of Indoeuropeans India Pvt. Ltd. and protected by international copyright laws.</p>
     </div>
 </footer>
 

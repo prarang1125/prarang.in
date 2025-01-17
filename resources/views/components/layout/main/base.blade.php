@@ -12,7 +12,7 @@
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="{{ $metaData['title'] ?? 'Prarang : Knowledge Webs' }}">
     <meta name="title" property="og:title" content="{{ $metaData['title'] ?? 'Prarang : Knowledge Webs' }}">
-    <meta name="image" property="og:image" content="{{ $metaData['image'] ?? 'https://www.prarang.in/cimg/og_home_image.png' }}">
+    <meta name="image" property="og:image" content="{{ $metaData['image'] ?? 'https://prarang.s3.amazonaws.com/posts-2017-24/og_home_image.png' }}">
     <meta name="description" property="og:description" content="{{ $metaData['description'] ?? '' }}">
     <meta property="og:url" content="https://prarang.in">
     <meta property="og:type" content="website">
@@ -22,7 +22,7 @@
     <meta name="twitter:site" content="Prarang">
     <meta name="twitter:title" content="{{ $metaData['title'] ?? 'Prarang : Knowledge Webs' }}">
     <meta name="twitter:description" content="{{ $metaData['description'] ?? '' }}">
-    <meta name="twitter:image" content="{{ $metaData['image'] ?? 'https://www.prarang.in/cimg/og_home_image.png' }}">
+    <meta name="twitter:image" content="{{ $metaData['image'] ?? 'https://prarang.s3.amazonaws.com/posts-2017-24/og_home_image.png' }}">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
