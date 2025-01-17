@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use App\Models\Category;
 use App\Models\City;
 use App\Models\BusinessListing;
-use App\Models\plan;
+use App\Models\Plan;
 use App\Models\BusinessHour;
 use Illuminate\Support\Facades\App;
 
@@ -106,11 +106,11 @@ class HomeController extends Controller
     }
     ##------------------------- END ---------------------##
     #------------------------- Plan -----------------##
-    
+
     public function plan()
     {
         try {
-            $plans= plan::all();
+            $plans= Plan::all();
 
             return view('yellowpages::Home.plan', compact('plans'));
         } catch (\Exception $e) {
@@ -123,5 +123,5 @@ class HomeController extends Controller
 
 
 
-    
+
 }
