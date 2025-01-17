@@ -38,6 +38,7 @@ class AdminController extends Controller
              'totallisting', 'totalCategory', 'totalcitys','totalUser' ,'report','Subscribers','vcard'
         ));
     }
+
     ##------------------------- END ---------------------##
 
 
@@ -53,7 +54,6 @@ class AdminController extends Controller
         }
     }
     ##------------------------- END ---------------------##
-
 
     ##------------------------- userEdit function ---------------------##
     public function userEdit($id)

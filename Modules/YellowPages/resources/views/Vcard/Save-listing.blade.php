@@ -44,9 +44,7 @@
             <hr/>
             <div class="card">
                 <div class="card-body">
-                    @if($business_listing->isEmpty())
-                        <p>कोई व्यवसाय सूची नहीं मिली।</p>
-                    @else
+                  
                         <table class="table mb-0 table-hover">
                             <thead>
                                 <tr>
@@ -60,6 +58,9 @@
                                     <th scope="col">कार्रवाई</th>
                                 </tr>
                             </thead>
+                            @if($business_listing->isEmpty())
+                            <div class="alert alert-warning">कोई व्यवसाय सूची नहीं मिली।</div>
+                            @else
                             <tbody>
                                 @php $index = 1; @endphp
                                 @foreach($business_listing as $business)

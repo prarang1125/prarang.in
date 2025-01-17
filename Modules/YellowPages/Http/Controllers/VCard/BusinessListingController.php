@@ -66,21 +66,30 @@ class BusinessListingController extends Controller
     ##------------------------- END ---------------------##
 
     ##------------------------- Save Business ---------------------##
-    public function saveBusiness(Request $request) {
+    public function saveBusiness(Request $request)
+    {
         try {
-            $save_listing = Savelisting::where('user_id', Auth::id())->first();
-
-            if (!$save_listing) {
-                return redirect()->back()->with('error', 'कोई व्यवसाय सूची नहीं मिली।');
+            // Retrieve saved listings for the authenticated user
+            $save_listing = Savelisting::where('user_id', Auth::id())->get();
+    
+            $business_listing = collect(); // Initialize as empty collection
+            
+            // Check if any listings exist for the user
+            if ($save_listing->isNotEmpty()) {
+                // Get the business IDs from the saved listings
+                $business_ids = $save_listing->pluck('business_id');
+                
+                // Retrieve the associated business listings
+                $business_listing = BusinessListing::whereIn('id', $business_ids)->get();
             }
-
-            $business_listing = BusinessListing::where('id', $save_listing->business_id)->get();
-
+    
+            // Pass the data to the view
             return view('yellowpages::Vcard.Save-listing', compact('business_listing', 'save_listing'));
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Error retrieving business listing: ' . $e->getMessage());
         }
     }
+    
 
     ##------------------------- END ---------------------##
 

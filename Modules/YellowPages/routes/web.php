@@ -67,6 +67,7 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
       Route::get('/submit-listing', [ListingController::class, 'submit_listing'])->name('yp.listing.submit');
       Route::get('/Save-listing/{id}', [ListingController::class, 'save_listing'])->name('yp.listing.save');
     });
+
     ##------------------------- END ---------------------##
 
     ##------------------------- Review Listing ---------------------##
@@ -77,9 +78,7 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
     ##------------------------- Vcard  ---------------------##
     Route::get('/vcard', [VCardController::class, 'index'])->name('yp.vcard');
     Route::get('/vCard/logout', [VCardController::class, 'logout'])->name('vCard.logout');
-          ##------------------------- END ---------------------##
-
-
+    ##------------------------- END ---------------------##
 
     Route::get('/vcard/{vcard_id}', [CreateVCardController::class, 'view'])->name('vCard.view');
     Route::get('/vcard/{vcard_id}/{slug}', [VcardQRController::class, 'scanAndView'])->name('vCard.scanView');
@@ -95,12 +94,12 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
 
       Route::get('/user/dashboard', [VCardController::class, 'dashboard'])->name('vCard.dashboard');
       Route::get('/user/createCard', [VCardController::class, 'createCard'])->name('vCard.createCard');
-      ##------------------------- END ---------------------##
+    ##------------------------- END ---------------------##
 
-         ##------------------------- Carete VCard ---------------------##
-
+    ##------------------------- Carete VCard ---------------------##
     Route::post('/user/CardStore', [CreateVCardController::class, 'store'])->name('vCard.store');
     Route::get('/vcard-edit/{id}', [CreateVCardController::class, 'vcardEdit'])->name('vCard.vcard-edit');
+    Route::post('/vcard-delete/{id}', [CreateVCardController::class, 'vcarddelete'])->name('vCard.vcard-delete');
     Route::put('/vcard-update/{id}', [CreateVCardController::class, 'vcardUpdate'])->name('vCard.update');
     Route::get('user/vcard-list', [CreateVCardController::class, 'VcardList'])->name('vCard.list');
 
@@ -155,7 +154,6 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
     Route::post('/admin/authenticate', [AuthController::class, 'authenticate'])->name('admin.authenticate');
     });
     ##------------------------- END ---------------------##
-
 
     ##------------------------- Admin Dashboard ---------------------##
     Route::group(['middleware' => 'admin.auth'], function(){

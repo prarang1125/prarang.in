@@ -56,9 +56,9 @@ class CitiesController extends Controller
             // Handle the file upload if a new image is provided
             if ($request->hasFile('image')) {
                 // Delete the old image if it exists
-                if ($city->cities_url && Storage::disk('public')->exists($city->cities_url)) {
-                    Storage::disk('public')->delete($city->cities_url);
-                }
+                if ($city->cities_url && Storage::exists($city->cities_url)) {
+                    Storage::delete($city->cities_url);
+                }                
 
                 // Store the new image
                 $imagePath = $request->file('image')->store('yellowpages/cities');
