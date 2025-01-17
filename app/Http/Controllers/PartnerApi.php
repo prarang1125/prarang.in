@@ -11,6 +11,7 @@ class PartnerApi extends Controller
 
     public function getChittiByDateRange(Request $request)
     {
+        // return 2;
         // Validate the incoming request
         $validated = $request->validate([
             'city_code' => 'required|string',
@@ -22,10 +23,6 @@ class PartnerApi extends Controller
         $start_date = $validated['start_date'];
         $end_date = $validated['end_date'];
 
-        // Convert start_date and end_date to a format that matches the database field
-        // $start_date = \Carbon\Carbon::createFromFormat('d-m-Y', $start_date)->format('Y-/m-d');
-        // $end_date = \Carbon\Carbon::createFromFormat('d-m-Y', $end_date)->format('Y-m-d');
-
         try {
             // Perform the query using Laravel's query builder
             $results = DB::table('chitti')
@@ -35,8 +32,7 @@ class PartnerApi extends Controller
                 ->join('vChittiGeography as vcg', 'vcg.chittiId', '=', 'chitti.chittiId')
                 ->join('vGeography as vg', 'vg.geographycode', '=', 'vcg.Geography')
                 ->join('facity', 'facity.chittiId', '=', 'chitti.chittiId')
-                // Use STR_TO_DATE to correctly handle the date format
-                // ->whereBetween(DB::raw('STR_TO_DATE(chitti.dateOfApprove, "%d-%m-%Y")'), [$start_date, $end_date])
+                ->whereRaw('STR_TO_DATE(chitti.dateOfApprove, "%d-%m-%Y") BETWEEN STR_TO_DATE(?, "%d-%m-%Y") AND STR_TO_DATE(?, "%d-%m-%Y")', [$start_date, $end_date])
                 ->where('vg.geographycode', $city_code)
                 ->select(
                     'chitti.chittiId as post_id',
@@ -49,7 +45,8 @@ class PartnerApi extends Controller
                     'chitti.totalViewerCount as reach',
                     'chitti.fb_link_click',
                     'chitti.dateOfApprove as post_date'
-                )->limit(500)
+                )
+                // ->limit(500)
                 ->get();
 
             // Return the data in a successful JSON response
@@ -62,8 +59,10 @@ class PartnerApi extends Controller
             // Handle exceptions and return a server error response
             return response()->json([
                 'status' => 'error',
-                'message' => 'Unable to fetch data, Server error.'
+                'message' => 'Unable to fetch data, Server error.',
+                'error' => $e->getMessage() // Include error message for debugging
             ], 500);
         }
     }
+
 }
