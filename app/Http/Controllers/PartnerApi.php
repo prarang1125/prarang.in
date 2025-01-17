@@ -32,7 +32,9 @@ class PartnerApi extends Controller
                 ->join('vChittiGeography as vcg', 'vcg.chittiId', '=', 'chitti.chittiId')
                 ->join('vGeography as vg', 'vg.geographycode', '=', 'vcg.Geography')
                 ->join('facity', 'facity.chittiId', '=', 'chitti.chittiId')
-                ->whereRaw('STR_TO_DATE(chitti.dateOfApprove, "%Y-%m-%d") BETWEEN STR_TO_DATE(?, "%Y-%m-%d") AND STR_TO_DATE(?, "%Y-%m-%d")', [$start_date, $end_date])
+
+                ->whereRaw('STR_TO_DATE(chitti.dateOfApprove, "%d-%m-%Y") BETWEEN STR_TO_DATE(?, "%d-%m-%Y") AND STR_TO_DATE(?, "%d-%m-%Y")', [$start_date, $end_date])
+
                 ->where('vg.geographycode', $city_code)
                 ->select(
                     'chitti.chittiId as post_id',
