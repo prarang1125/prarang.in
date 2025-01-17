@@ -33,4 +33,6 @@ public/home-assets/
 *.mp4
 *.iso
 *.tar.gz
+/public/partner-api/
+partner/partner-api/
 
