@@ -12,12 +12,12 @@
     <meta property="og:site_name" content="{{ $post['siteName'] ?? 'Prarang' }}" />
 
     <!-- Open Graph Tags -->
-    <meta property="og:title" content="{{ $post['title'] ?? 'Default Title' }}" />
+    <meta property="og:title" content="{{ $post['Title'] ?? 'Default Title' }}" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="{{ $post['imageUrl'] ?? 'default-image-url.jpg' }}" />
+    <meta property="og:image" content="{{ $post->images[0]->imageUrl ?? 'default-image-url.jpg' }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:description" content="{{ $post['description'] ?? 'Default description for the post.' }}" />
-    <title>{{ $post['title'] }}</title>
+    <meta property="og:description" content="{{ $post['SubTitle'] ?? 'Default description for the post.' }}" />
+    <title>{{ $post['Title'] }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <style>
