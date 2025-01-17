@@ -1,8 +1,8 @@
 <?php
 $servername = "localhost";
-$username = "prarang_1125";
-$password = "123#prarang1125#123";
-$dbname = "prarang_riverSanskiriti";
+$username = "prarangdb";
+$password = "PradbDec24";
+$dbname = "prarangdb";
 // global $conn;
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn -> connect_errno) {
