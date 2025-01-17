@@ -48,6 +48,7 @@ class PartnerApi extends Controller
                     'chitti.fb_link_click',
                     'chitti.dateOfApprove as post_date'
                 )
+                ->orderByRaw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y') DESC")
                 // ->limit(500)
                 ->get();
             $data = $results->toArray();
