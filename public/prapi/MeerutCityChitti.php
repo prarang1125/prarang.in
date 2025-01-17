@@ -23,6 +23,7 @@ if($subcriberId == '')
 }
 else
 {
+    die();
    $sqlGeographyList=mysqli_query($dbconnect, "select replace(msubscribergeography.geographyCode,'c','') as areaId from msubscriberlist inner join msubscribergeography on msubscriberlist.subscriberId = msubscribergeography.subscriberId where msubscribergeography.geographyCode='c2' and msubscribergeography.subscriberId ='$subcriberId' ");
 
 	  $countt = mysqli_num_rows($sqlGeographyList);
