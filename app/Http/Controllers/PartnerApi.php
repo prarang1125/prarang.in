@@ -15,8 +15,8 @@ class PartnerApi extends Controller
         // Validate the incoming request
         $validated = $request->validate([
             'city_code' => 'required|string',
-            'start_date' => 'required|date_format:d-m-Y',
-            'end_date' => 'required|date_format:d-m-Y',
+            'start_date' => 'required',
+            'end_date' => 'required',
         ]);
 
         $city_code = $validated['city_code'];
