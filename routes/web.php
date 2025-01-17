@@ -21,7 +21,10 @@ Route::prefix('/')->group(function () {
     Route::get('/terms-conditions', [Home::class, 'termsConditions'])->name('terms-conditions');
 });
 
-Route::get('/{city}/all-posts/{name?}/{forabour?}', [postController::class, 'getChittiData'])->name('posts.city');
+Route::get('/{city}/all-posts/{name?}/{forabour?}', [postController::class, 'getChittiData'])
+    ->where('portal', '^(?!yellow-pages).*')
+    ->where('portal', '^(?!partner-api).*')
+    ->where('portal', '^(?!prapi).*')->name('posts.city');
 Route::get('/{slug}/posts/{id}/{subTitle?}', [PostController::class, 'post_summary'])->name('post-summary');
 Route::get('/decode', [postController::class, 'decodeText']);
 
