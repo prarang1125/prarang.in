@@ -6,7 +6,7 @@ use App\Http\Controllers\Main\postController;
 use App\Http\Controllers\PartnerApi;
 use App\View\Components\Layout\Main\Base;
 use Illuminate\Support\Facades\Route;
-// Route::get('/partner-api/get-chitti-data', [PartnerApi::class, 'getChittiByDateRange']);
+Route::get('/partner-api/get-chitti-data', [PartnerApi::class, 'getChittiByDateRange']);
 
 Route::prefix('/')->group(function () {
     Route::get('/', [Home::class, 'index'])->name('home');

@@ -2,23 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use AWS\CRT\HTTP\Response;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PartnerApi extends Controller
 {
-    <?php
 
-namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Response;
-
-class ChittiController extends Controller
-{
     public function getChittiByDateRange(Request $request)
     {
-        return Response::json($request->all());
         // Validate the incoming request
         $validated = $request->validate([
             'city_code' => 'required|string',
@@ -30,6 +22,10 @@ class ChittiController extends Controller
         $start_date = $validated['start_date'];
         $end_date = $validated['end_date'];
 
+        // Convert start_date and end_date to a format that matches the database field
+        // $start_date = \Carbon\Carbon::createFromFormat('d-m-Y', $start_date)->format('Y-/m-d');
+        // $end_date = \Carbon\Carbon::createFromFormat('d-m-Y', $end_date)->format('Y-m-d');
+
         try {
             // Perform the query using Laravel's query builder
             $results = DB::table('chitti')
@@ -39,7 +35,8 @@ class ChittiController extends Controller
                 ->join('vChittiGeography as vcg', 'vcg.chittiId', '=', 'chitti.chittiId')
                 ->join('vGeography as vg', 'vg.geographycode', '=', 'vcg.Geography')
                 ->join('facity', 'facity.chittiId', '=', 'chitti.chittiId')
-                ->whereBetween(DB::raw('STR_TO_DATE(chitti.dateOfApprove, "%d-%m-%Y")'), [$start_date, $end_date])
+                // Use STR_TO_DATE to correctly handle the date format
+                // ->whereBetween(DB::raw('STR_TO_DATE(chitti.dateOfApprove, "%d-%m-%Y")'), [$start_date, $end_date])
                 ->where('vg.geographycode', $city_code)
                 ->select(
                     'chitti.chittiId as post_id',
@@ -52,7 +49,7 @@ class ChittiController extends Controller
                     'chitti.totalViewerCount as reach',
                     'chitti.fb_link_click',
                     'chitti.dateOfApprove as post_date'
-                )
+                )->limit(500)
                 ->get();
 
             // Return the data in a successful JSON response
@@ -69,6 +66,4 @@ class ChittiController extends Controller
             ], 500);
         }
     }
-}
-
 }
