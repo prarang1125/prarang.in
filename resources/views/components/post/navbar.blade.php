@@ -99,7 +99,7 @@
         <div class="container-fluid">
             <!-- Logo -->
             <a class="navbar-brand" href="#">
-                <img src="https://prarang.in/cimg/logo2.png" alt="Logo">
+                <img src="https://prarang.s3.amazonaws.com/posts-2017-24/logo2.png" alt="Logo">
             </a>
 
             <!-- Toggler for mobile view -->
