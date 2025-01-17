@@ -28,8 +28,8 @@ $USERNAME = "prarang_DBDemo1";
 $PASSWORD = "DBDemo1@786";
 $DATABASENAME = "prarang_DBDemo1";
 // $dbconnect = new DbConnect($HOSTNAME, $USERNAME, $PASSWORD, $DATABASENAME);
+// $dbconnect = mysqli_connect('localhost', 'prarangdb', 'PradbDec24', 'prarangdb');
 $dbconnect = mysqli_connect('localhost', 'prarangdb', 'PradbDec24', 'prarangdb');
-// $dbconnect = mysqli_connect('localhost', 'root', '', 'praranglive');
 //$dbconnect->open();
 if (mysqli_connect_errno())
 {
