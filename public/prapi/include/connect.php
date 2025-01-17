@@ -33,6 +33,6 @@ if (!$dbconnect) {
 }
 
 // Database connection is successful
-echo "Database connection established successfully.";
-die();
+// echo "Database connection established successfully.";
+// die();
 ?>
