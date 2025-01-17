@@ -42,7 +42,7 @@
         <!-- Contact Section -->
         <div class="text-center">
             <p style="font-size: 15px;">
-                #25, 11वीं मंजिल, द आई-थम, ए-40 सेक्टर 62, नोएडा (यू.पी), भारत 201301
+                #11वीं मंजिल, द आई-थम, ए-40 सेक्टर 62, नोएडा (यू.पी), भारत 201309
             </p>
             <p style="font-size: 15px;">
                 <strong class="sitename">टेलीफ़ोन: +91-7275124000</strong>
