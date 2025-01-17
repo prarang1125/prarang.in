@@ -15,8 +15,6 @@
     <meta property="og:type" content="Yellowpages" />
     <meta property="og:image:width" content="600" />
     <meta property="og:image:height" content="315" />
-
-    
     <meta property="og:site_name" content="{{ config('app.name', 'YellowPages') }}" />
     <meta property="og:title" content="{{ $category['name'] ?? 'YellowPages Business Listings' }}" />
     <meta property="og:type" content="website" />

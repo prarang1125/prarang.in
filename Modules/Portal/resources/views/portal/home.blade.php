@@ -397,7 +397,7 @@
                                                 {!! $portal->weather_widget_code !!}
                                             </div>
                                             <p class="text-center">
-                                                <a href=""><img class="img-fluid" style="height:450px;"
+                                                <a href="{{ route('city.show',['city_name'=>$yellowPages->name]) }}"><img class="img-fluid" style="height:450px;"
                                                         src="{{ asset('assets/images/yellowpages.jpg') }}"
                                                         alt=""></a>
                                             </p>
