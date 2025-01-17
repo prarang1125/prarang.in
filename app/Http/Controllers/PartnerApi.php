@@ -68,5 +68,94 @@ class PartnerApi extends Controller
         }
 
     }
+    public function getChittiData(Request $request)
+{
+    $city_code = $request->input('city_code');
+
+    if (is_null($city_code)) {
+        return response()->json(['status' => 'error', 'message' => 'Required: city_code.'], 404);
+    }
+
+    try {
+        $query = "
+            (
+                SELECT
+                    chitti.chittiId,
+                    chitti.Title,
+                    chitti.dateOfApprove,
+                    chitti.totalViewerCount,
+                    img.imageUrl,
+                    DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 1 MONTH), '%M %Y') AS MonthGroup,
+                    vg.geography
+                FROM chitti
+                JOIN chittiimagemapping AS img ON img.chittiId = chitti.chittiId
+                JOIN vChittiGeography AS vcg ON vcg.chittiId = chitti.chittiId
+                JOIN vGeography AS vg ON vg.geographycode = vcg.Geography
+                WHERE
+                    vg.geographycode = ?
+                    AND STR_TO_DATE(chitti.dateOfApprove, '%d-%m-%Y %h:%i %p')
+                        BETWEEN DATE_SUB(LAST_DAY(DATE_SUB(CURDATE(), INTERVAL 1 MONTH)), INTERVAL 1 MONTH)
+                        AND LAST_DAY(DATE_SUB(CURDATE(), INTERVAL 1 MONTH))
+                ORDER BY CONVERT(chitti.totalViewerCount, SIGNED) DESC
+                LIMIT 3
+            )
+            UNION ALL
+            (
+                SELECT
+                    chitti.chittiId,
+                    chitti.Title,
+                    chitti.dateOfApprove,
+                    chitti.totalViewerCount,
+                    img.imageUrl,
+                    DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 2 MONTH), '%M %Y') AS MonthGroup,
+                    vg.geography
+                FROM chitti
+                JOIN chittiimagemapping AS img ON img.chittiId = chitti.chittiId
+                JOIN vChittiGeography AS vcg ON vcg.chittiId = chitti.chittiId
+                JOIN vGeography AS vg ON vg.geographycode = vcg.Geography
+                WHERE
+                    vg.geographycode = ?
+                    AND STR_TO_DATE(chitti.dateOfApprove, '%d-%m-%Y %h:%i %p')
+                        BETWEEN DATE_SUB(LAST_DAY(DATE_SUB(CURDATE(), INTERVAL 2 MONTH)), INTERVAL 1 MONTH)
+                        AND LAST_DAY(DATE_SUB(CURDATE(), INTERVAL 2 MONTH))
+                ORDER BY CONVERT(chitti.totalViewerCount, SIGNED) DESC
+                LIMIT 3
+            )
+            UNION ALL
+            (
+                SELECT
+                    chitti.chittiId,
+                    chitti.Title,
+                    chitti.dateOfApprove,
+                    chitti.totalViewerCount,
+                    img.imageUrl,
+                    DATE_FORMAT(DATE_SUB(CURDATE(), INTERVAL 3 MONTH), '%M %Y') AS MonthGroup,
+                    vg.geography
+                FROM chitti
+                JOIN chittiimagemapping AS img ON img.chittiId = chitti.chittiId
+                JOIN vChittiGeography AS vcg ON vcg.chittiId = chitti.chittiId
+                JOIN vGeography AS vg ON vg.geographycode = vcg.Geography
+                WHERE
+                    vg.geographycode = ?
+                    AND STR_TO_DATE(chitti.dateOfApprove, '%d-%m-%Y %h:%i %p')
+                        BETWEEN DATE_SUB(LAST_DAY(DATE_SUB(CURDATE(), INTERVAL 3 MONTH)), INTERVAL 1 MONTH)
+                        AND LAST_DAY(DATE_SUB(CURDATE(), INTERVAL 3 MONTH))
+                ORDER BY CONVERT(chitti.totalViewerCount, SIGNED) DESC
+                LIMIT 3
+            )
+        ";
+
+        // Execute raw query with bindings
+        $data = DB::select($query, [$city_code, $city_code, $city_code]);
+
+        // Group data by MonthGroup
+        $groupedData = collect($data)->groupBy('MonthGroup');
+
+        return response()->json(['status' => 'success', 'data' => $groupedData], 200);
+    } catch (\Exception $e) {
+        return response()->json(['status' => 'error', 'message' => 'Unable to fetch data, Server error.'], 500);
+    }
+}
+
 
 }
