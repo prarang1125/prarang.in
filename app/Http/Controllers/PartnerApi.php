@@ -48,11 +48,11 @@ class PartnerApi extends Controller
                 )
                 // ->limit(500)
                 ->get();
-
+            $data = $results->toArray();
             // Return the data in a successful JSON response
             return response()->json([
                 'status' => 'success',
-                'data' => $results
+                'data' => $data,
             ], 200);
 
         } catch (\Exception $e) {
@@ -60,9 +60,10 @@ class PartnerApi extends Controller
             return response()->json([
                 'status' => 'error',
                 'message' => 'Unable to fetch data, Server error.',
-                'error' => $e->getMessage() // Include error message for debugging
+                'error' => $e->getMessage(), // Include error message for debugging (optional)
             ], 500);
         }
+
     }
 
 }
