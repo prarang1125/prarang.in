@@ -559,7 +559,7 @@
     </script>
 @endif
 
-    @endif
+
     <x-post.footer :city="$city_name" />
     <script src='{{asset('location.js')}}'></script>
     <script>
