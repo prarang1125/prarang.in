@@ -51,14 +51,13 @@ header.header {
 
 /* Dropdown menu styles */
 .navmenu ul .dropdown-menu {
-    display: none; /* Hidden by default */
     flex-direction: column;
     background-color: #fff;
-    padding: 10px 0;
+    padding: 40px 0;
     position: absolute;
     top: 100%; /* Position the dropdown below the parent item */
     left: 0;
-    width: 100%;
+    width: 80%;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 1000;
 }
