@@ -61,7 +61,7 @@ class CategoriesController extends Controller
                 // Ensure the directory exists
                 $directory = 'yellowpages/categories';
                 // Store the new image
-                $imagePath = $request->file('image')->store($directory,'s3');
+                $imagePath = $request->file('image')->store($directory);
             } else {
                 // Keep the existing image URL if no new image is uploaded
                 $imagePath = $category->categories_url;
