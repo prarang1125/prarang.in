@@ -545,15 +545,20 @@
     </div>
 
     </div>
-    @if('#4d4d4d'===$ColorCode)
-        <style>
-            const descriptionData=document.querySelector('.post-description');
-            if(descriptionData){
-                descriptionData.querySelectorAll('*').forEach(elements =>{
-                    elements.classList.add("text-white","text-light");
+
+    @if ($ColorCode === '#4d4d4d')
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const descriptionData = document.querySelector('.post-description');
+            if (descriptionData) {
+                descriptionData.querySelectorAll('*').forEach(element => {
+                    element.classList.add('text-white', 'text-light');
                 });
             }
-        </style>
+        });
+    </script>
+@endif
+
     @endif
     <x-post.footer :city="$city_name" />
     <script src='{{asset('location.js')}}'></script>
