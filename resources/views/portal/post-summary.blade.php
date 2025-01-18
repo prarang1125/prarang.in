@@ -545,7 +545,7 @@
     </div>
 
     </div>
-    @if('#4d4d4d'===$ColorCode){
+    @if('#4d4d4d'===$ColorCode)
         <style>
             const descriptionData=document.querySelector('.post-description');
             if(descriptionData){
@@ -554,7 +554,7 @@
                 });
             }
         </style>
-    }
+    @endif
     <x-post.footer :city="$city_name" />
     <script src='{{asset('location.js')}}'></script>
     <script>
