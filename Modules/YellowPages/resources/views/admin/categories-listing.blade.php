@@ -59,7 +59,8 @@
                                     <td class="align-middle">{{ $category->slug }}</td> <!-- Vertically center the Name column -->
                                     <td class="align-middle">
                                         @if($category->categories_url)
-                                        <img src="{{ Storage::url($category->categories_url) }}" alt="{{ $category->name }}" style="width: 100px; height: 100px;">
+<!-- Display the uploaded image from the S3 bucket -->
+<img src="{{ Storage::disk('s3')->url($category->categories_url) }}" alt="{{ $category->name }}" style="width: 100px; height: 100px;">
                                         @else
                                           चित्र उपलब्द नहीं है
                                         @endif
