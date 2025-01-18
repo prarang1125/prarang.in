@@ -25,7 +25,6 @@ class AuthController extends Controller
     }
     ##------------------------------- End ------------------------------------##
 
-
     ##------------------------- Admin Authenticate function ---------------------##
 
     public function authenticate(Request $request)

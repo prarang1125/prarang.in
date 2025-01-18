@@ -1,16 +1,3 @@
-<style>
-    @media (max-width: 768px) {
-    .sidebar-wrapper {
-        display: none;
-    }
-
-    .sidebar-wrapper.open {
-        display: block;
-    }
-}
-
-</style>
-
 <div class="sidebar-header">
     <div>
         <img src="{{ asset('assets/images/logo.png') }}" class="logo-icon" alt="logo icon">
@@ -118,19 +105,3 @@
         </li>
     @endif
 </ul>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Get the toggle button
-        const toggleButton = document.querySelector('.toggle-icon');
-        const sidebarWrapper = document.querySelector('.sidebar-wrapper');
-        
-        // Add event listener for toggle action
-        if (toggleButton && sidebarWrapper) {
-            toggleButton.addEventListener('click', function() {
-                sidebarWrapper.classList.toggle('active');
-            });
-        }
-    });
-</script>
-

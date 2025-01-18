@@ -65,8 +65,7 @@ class CategoriesController extends Controller
                 }
     
                 // Store the new image
-                $imagePath = $request->file('image')->store($directory);
-                dd($imagePath);
+                $imagePath = $request->file('image')->store($directory, 'public');
             } else {
                 // Keep the existing image URL if no new image is uploaded
                 $imagePath = $category->categories_url;
