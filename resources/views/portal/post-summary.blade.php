@@ -545,7 +545,16 @@
     </div>
 
     </div>
-
+    @if('#4d4d4d'===$ColorCode){
+        <style>
+            const descriptionData=document.querySelector('.post-description');
+            if(descriptionData){
+                descriptionData.querySelectorAll('*').forEach(elements =>{
+                    elements.classList.add("text-white","text-light");
+                });
+            }
+        </style>
+    }
     <x-post.footer :city="$city_name" />
     <script src='{{asset('location.js')}}'></script>
     <script>
