@@ -76,7 +76,7 @@ class ChittiList extends Controller
             'totalLike' => "0",  // Placeholder for actual like count
             'totalComment' => "0", // Placeholder for actual comment count
             'image' => $chitti->images->map(function ($image) {
-                return [
+            return [
                     'imageId' => $image->id,
                     'chittiId' => $image->chittiId,
                     'imageUrl' => $image->imageUrl,
@@ -93,6 +93,7 @@ class ChittiList extends Controller
         "subscriberId" => $subscriberId,
         "Payload" => $payload,
     ]);
+    
 }
 
 }

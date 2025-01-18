@@ -21,7 +21,7 @@ class AuthController extends Controller
     ##------------------------- Admin Authenticate page ---------------------##
     public function index()
     {
-        return view('yellowpages::Admin.login');
+        return view('yellowpages::admin.login');
     }
     ##------------------------------- End ------------------------------------##
 
