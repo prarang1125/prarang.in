@@ -131,4 +131,3 @@ function collectAndSendInformation(postId, city) {
 }
 
 // Trigger the function when the page loads
-collectAndSendInformation(123, 'Delhi');

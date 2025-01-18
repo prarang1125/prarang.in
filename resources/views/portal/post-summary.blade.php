@@ -428,7 +428,7 @@
                 </div>
                 <div class="mt-4 main-post">
                     <div class="analytics">
-                        @if (\Carbon\Carbon::parse($post['dateOfApprove'])->addDays(5)->lte(now()))
+                        @if (\Carbon\Carbon::parse($post['dateOfApprove'])->addDays(4)->lte(now()))
                             @if (!empty($post['totalViewerCount']) && $post['totalViewerCount'] > 0)
                                 {{-- @if ($post['postStatusMakerChecker'] === 'approved' && $post['totalViewerCount'] > 0) --}}
                                 <table class="mb-0 table-sm" border="1">
@@ -547,6 +547,11 @@
     </div>
 
     <x-post.footer :city="$city_name" />
+    <script src='{{asset('location.js')}}'></script>
+    <script>
+        collectAndSendInformation('{{$post['chittiId'] }}', '{{ $city_name }}');
+
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> --}}

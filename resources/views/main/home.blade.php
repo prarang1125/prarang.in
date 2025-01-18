@@ -20,7 +20,6 @@ function semiotic() {
 window.location.href = "https://b2b.prarang.in/semiotic";
 }
 </script>
-<script src='{{asset('location.js')}}'></script>
 
 
 </x-layout.main.base>
