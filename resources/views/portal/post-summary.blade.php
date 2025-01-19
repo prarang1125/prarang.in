@@ -426,6 +426,13 @@
 .main-post .main-image img{
  margin-bottom:24px;
 }
+.container{
+  /* display:block; */
+  /* margin-right:0px; */
+  overflow-x:hidden;
+ }
+
+
 
 }
     </style>
