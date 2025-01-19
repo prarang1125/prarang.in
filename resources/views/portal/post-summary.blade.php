@@ -434,6 +434,20 @@
 
 
 
+ @media (max-width:768px){
+
+/* Col 9 */
+.container .col-sm-9{
+ padding-left:7px;
+ display:inline-block;
+ transform:translatex(0px) translatey(0px);
+}
+
+/* Image */
+.main-post .main-image img{
+ padding-right:4px;
+}
+
 }
     </style>
 </head>

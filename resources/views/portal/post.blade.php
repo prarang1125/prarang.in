@@ -220,6 +220,21 @@
             min-height: 55px !important;
             overflow: hidden;
         }
+        @media (max-width:768px){
+
+/* Image */
+.container .mb-5 img{
+ display:inline-block;
+ transform:translatex(0px) translatey(0px) !important;
+ max-height:255px;
+}
+
+/* Image */
+.container .mb-5 .row .mt-3 .blog-card .image-wrapper img{
+ height:100% !important;
+}
+
+}
     </style>
 </head>
 
