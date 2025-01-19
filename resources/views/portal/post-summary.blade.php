@@ -408,6 +408,26 @@
 }
 
 }
+@media (max-width:768px){
+
+/* Container */
+.container{
+ padding-right:0px;
+ padding-left:3px;
+}
+
+/* Post header */
+.container .post-header{
+ padding-left:14px;
+ padding-right:20px;
+}
+
+/* Image */
+.main-post .main-image img{
+ margin-bottom:24px;
+}
+
+}
     </style>
 </head>
 
