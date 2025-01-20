@@ -18,7 +18,7 @@ class ChittiList extends Controller
     $geo=[
         'MeerutCityChitti.php'=>'c2',
         'jaunpurCityChitti.php'=>'r4',
-        'LucknowChitti.php'=>'c4',
+        'LucknowCityChitti.php'=>'c4',
         'RampurCityChitti.php'=>'c3',
     ];
     // Extract `SubscriberId` and `offset` from query string
@@ -83,9 +83,10 @@ class ChittiList extends Controller
             'totalComment' => "0", // Placeholder for actual comment count
             'image' => $chitti->images->map(function ($image) {
             return [
-                    'imageId' => $image->id,
+                    'imageId' => $image->ImageId,
                     'chittiId' => $image->chittiId,
-                    'imageUrl' => str_replace('https://','',$image->imageUrl),
+
+                    'imageUrl' => $image->ImageUrl,
                     'isDefult' => $image->isDefault ? 'true' : 'false',
                 ];
             }),
