@@ -1,4 +1,8 @@
-<?php 
+<?php
+
+   ini_set('display_errors', 1);
+error_reporting(E_ALL);
+ 
 header('Content-type: application/json');
 include "include/connect.php";
 //$link = mysqli_connect('localhost', 'prarang', '#riversanskriti123#', 'prarang_riverSanskiriti'); 
@@ -25,9 +29,7 @@ else
 { 
    			
 	$sql ="select ch.chittiId,ch.description,ch.languageId,ch.dateOfApprove,IFNULL(cl.likes,0) as totalLike,IFNULL(chc.comment,0) as totalComment,IFNULL(cl2.isLiked,'false') as isLiked from `chitti` ch left join (select chittiId,count(id) as likes from `chittilike` where `isLiked`='true' GROUP BY chittiId) cl on ch.chittiId = cl.chittiId left join (select chittiId, count(id) as comment from `chitticomment` GROUP BY chittiId) chc on ch.chittiId = chc.chittiId left join (select chittiId, isLiked from `chittilike` where `subscriberId`='$subcriberId') cl2 on ch.chittiId = cl2.chittiId where ch.chittiId  = '$ChittiId' and ch.finalStatus='approved' GROUP BY ch.chittiId,ch.description,ch.languageId,ch.dateOfApprove ";
-		 
-		
-		// excecute SQL statement
+
 		$result = mysqli_query($dbconnect, $sql);
 		$result1 = mysqli_query($dbconnect, $sql);
 	

@@ -1,4 +1,8 @@
-<?php 
+<?php
+
+   ini_set('display_errors', 1);
+error_reporting(E_ALL);
+ 
     header('Content-type: application/json');
     include "include/connect.php";
 
@@ -9,7 +13,7 @@
     if(@$SubscriberId != ''){
         if($Flag =='Start'){
 
-            $sqlInsert=mysqli_query($dbconnect, "insert into appusage set subscriberId='$SubscriberId',AppStartTime='$CurrentDate',UserCity='$UserCity'");
+            $sqlInsert=mysqli_query($dbconnect, "insert into appusage set SubscriberId='$SubscriberId',AppStartTime='$CurrentDate',UserCity='$UserCity'");
             $appusageInsertId=mysqli_insert_id($dbconnect);
             $msubscriber=mysqli_query($dbconnect, "select name,mobileNo from msubscriberlist where subscriberId='$SubscriberId' ");
             $displaySubscriber = mysqli_fetch_assoc($msubscriber);
@@ -262,75 +266,5 @@
 	    echo json_encode($code);
     }
 
-    // $_REQUEST['chittiId'] = 5671;
-    // $UserName='irfan';
-    // $MobileNumber='+919828646744';
-    // $EmailId='irfan@gmail.com';
-    // $DateOfJoining='';
-    // $AppDownloadDate='';
-    // $AppUsageTime='';
-    //$link = mysqli_connect('localhost', 'prarang', '#riversanskriti123#', 'prarang_riverSanskiriti');
-    //$link = mysqli_connect('localhost', 'prarang_1125', '#prarang1125#', 'prarang_riverSanskiriti'); 
-    // $IP = $_SERVER['REMOTE_ADDR'];
-    // @$subscriberId = BlockSQLInjection($_REQUEST['subscriberId']);
-    // @$chittiId = BlockSQLInjection($_REQUEST['chittiId']); 
-    // // @$isLiked = BlockSQLInjection($_REQUEST['isLiked']);
-    // // 'CALL get_user(1, @first, @last)' 
-    // $likeDate = date("d-m-Y");
-    // CALL test_proc(?, ?, ?, @sum, @product, @average);
-	// $Params=array($subscriberId,$chittiId);
-	// $CallProcedure="call sp_MisReport(?, ?, '$subscriberId','$chittiId')";
-    // $Query = mysqli_query($dbconnect,$CallProcedure);
-	// $Result=mysqli_fetch_array($Query);
-    // // die;
-    // print_r($Query);
-    // echo json_encode($Query);
-
-    // $stmt = $dbconnect->prepare("CALL sp_MisReport(?,?)");
-    // $stmt->bind_param("s", @$subscriberId,@$chittiId);
-
-    // $stmt->execute();
-
-    // $result = $stmt->get_result();
-    // $response = $result->fetch_all(MYSQLI_ASSOC);
-    // echo json_encode($response);
-
-
-
-    // $mysqli = mysqli_connect();
-    // $call = mysqli_prepare($dbconnect, 'CALL test_proc(?, ?, ?, @sum, @product, @average)');
-    // $call = mysqli_prepare($dbconnect, 'CALL sp_MisReport(?, ?)');
-    // mysqli_stmt_bind_param($call, $subscriberId, $chittiId);
-    // mysqli_stmt_execute($call);
-
-    // $select = mysqli_query($dbconnect, 'SELECT @UserName, @MobileNumber');
-    // $result = mysqli_fetch_assoc($select);
-    // $procOutput_sum     = $result['@sum'];
-
-    // $stmt = $dbconnect->prepare('call sp_MisReport(?, ?)');
-    // $stmt->bind_param('dd', $subscriberId,$chittiId);
-    // $stmt->bind_param('chittiId', );
-    // $param = [$subscriberId, $chittiId];
-
-    /* bind parameters for markers */
-    // $stmt->bind_param($subscriberId, $chittiId);
-
-    /* execute query */
-    // $stmt->execute();
-
-    // $stmt->bind_result($UserName,$MobileNumber);
-    // $result=array();
-    // while($stmt->fetch()){
-    //     $result['misreport'][] = array( "UserName"=>$UserName ,"MobileNumber"=>$MobileNumber);
-    // }
-
-    // printf("%s is in district %s\n", $city, $district);
-    // echo json_encode($result);
-    // die;
-    /* bind result variables */
-    // $stmt->bind_result($district);
-
-    // /* fetch value */
-    // $stmt->fetch();
 
 ?>

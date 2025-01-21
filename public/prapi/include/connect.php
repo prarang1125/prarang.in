@@ -35,5 +35,8 @@ if (!$dbconnect) {
 // Database connection is successful
 // echo "Database connection established successfully.";
 // die();
+ini_set('display_errors', 1);
+error_reporting(E_ALL);
+
 ?>
 
