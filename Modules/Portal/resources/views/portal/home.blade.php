@@ -1,4 +1,4 @@
-<x-layout.portal.base>
+<x-layout.portal.base :portal="$portal">
     <style>
         #header .header-map--gmaps {
             height: 100vh;
