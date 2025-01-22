@@ -513,7 +513,7 @@
                                         </tr>
                                         <tr>
                                             <td colspan="5" class="text-start">
-                                                <a href="#analyticsinfo" class="text-dark" style="text-decoration-line: none;">* Please see metrics defination on bottom of this page.</a>
+                                                <a href="#analyticsinfo" class="text-dark" style="text-decoration-line: none;">* Please see metrics definition on bottom of this page.</a>
                                             </td>
                                         </tr>
                                     </tbody>
