@@ -120,7 +120,7 @@ class PostArchives extends Controller
                  $imageUrl = $chitti->images->first()->imageUrl ?? asset('default_image.jpg');
 
                 $tags = $chitti->tagMappings->map(function ($tagMapping) {
-                    return $tagMapping->tag->tagInEnglish;
+                    return $tagMapping->tag->tagInUnicode;
                 })->filter()->join(', ');
                 return [
                     'id' => $chitti->chittiId,
@@ -142,6 +142,7 @@ class PostArchives extends Controller
             'chittis' => $chittis,
             'name' => ucfirst($name),
             'portal' => $portal,
+            'isTags'=>true,
         ]);
     }
 }
