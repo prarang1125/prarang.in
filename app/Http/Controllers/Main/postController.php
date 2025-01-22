@@ -61,6 +61,8 @@ class postController extends Controller
             'cityCode' => $geography->geographycode,
             'chittis' => $chittis,
             'name' => $name,
+            'portal'=>$portal,
+           'isTags'=>false,
         ]);
     }
 

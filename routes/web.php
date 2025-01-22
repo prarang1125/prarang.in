@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DisplayPostImage;
 use App\Http\Controllers\Main\Home;
 use App\Http\Controllers\Main\PostArchives;
 use App\Http\Controllers\Main\postController;
@@ -10,6 +11,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/partner-api/get-chitti-data', [PartnerApi::class, 'getChittiByDateRange']);
 Route::get('/partner-api/get-top-3-posts/', [PartnerApi::class, 'getChittiData']);
 Route::get('/prapi/{url}', [ChittiList::class, 'getChittiData'])->name('api.posts.city');
+
+Route::get('/display/images/{filename}', [DisplayPostImage::class, 'serveImage'])->where('filename', '.*');
 
 Route::prefix('/')->group(function () {
     Route::get('/', [Home::class, 'index'])->name('home');
