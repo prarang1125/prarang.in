@@ -456,6 +456,14 @@
 
             }
         }
+
+        /* Image */
+        .main-post .main-image img {
+            margin-top: 30px;
+        }
+        .main-post .main-image .frameVid{
+            margin-top:30px;
+ }
     </style>
 </head>
 
@@ -502,6 +510,11 @@
                                             <td>{{ $post['emailCount'] }}</td>
                                             <td>{{ $post['instagramCount'] }}</td>
                                             <td>{{ $post['totalViewerCount'] }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5" class="text-start">
+                                                <a href="#analyticsinfo" class="text-dark" style="text-decoration-line: none;">* Please see metrics defination on bottom of this page.</a>
+                                            </td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -574,7 +587,7 @@
     </div>
 
 
-    <div class="definitions" style="background-color: {{ $ColorCode }};">
+    <div id="analyticsinfo" class="definitions" style="background-color: {{ $ColorCode }};">
         <h3>Definitions of the Post Viewership Metrics</h3>
         <p>
             <strong>A. City Subscribers (FB + App) -</strong> This is the Total city-based unique subscribers from
@@ -615,7 +628,7 @@
     <script>
         collectAndSendInformation('{{ $post['chittiId'] }}', '{{ $city_name }}');
     </script>
-      {!! $portal->footer_scripts !!}
+    {!! $portal->footer_scripts !!}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>

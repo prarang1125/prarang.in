@@ -12,11 +12,11 @@
         }
 
         #wrapper footer>.container-fluid {
-            background-color: rgba(213, 209, 209, 0.34);
+            background-color: rgba(213, 209, 209, 0.226);
         }
 
         #wrapper footer {
-            background-color: rgba(0, 0, 0, 0.79) !important;
+            background-color: rgba(0, 0, 0, 0.288) !important;
 
             background-size: auto;
             background-blend-mode: darken;
@@ -106,6 +106,12 @@
 }
 
 }
+/* Header background  single */
+#wrapper .header-background--single{
+ background-color:rgba(0,0,0,0.24) !important;
+}
+
+
     </style>
     <div id="wrapper">
         <header class="header--has-languages header--has-map" id="header">
@@ -223,7 +229,7 @@
             </div>
         </header>
         <!-- HEADER : end -->
-        <div class="header-background header-background--single" data-slideshow-speed="10">
+        <div class="header-background header-background--singled" data-slideshow-speed="10">
             <div class="header-background__image header-background__image--default"
                 style="background-image: url('{{ Storage::url($portal->header_image) }}'); ">
             </div>
