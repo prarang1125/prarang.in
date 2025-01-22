@@ -108,6 +108,7 @@ class postController extends Controller
             'cityCode' => $geography->Geography ?? null,
             'ColorCode' => $ColorCode,
             'city_name' => $portal->slug ?? 'Unknown',
+            'portal' => $portal,
         ]);
     }
 

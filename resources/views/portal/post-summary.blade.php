@@ -20,6 +20,8 @@
     <title>{{ $post['Title'] }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    {!! $portal->header_scripts !!}
+
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -313,142 +315,147 @@
         .recent-poet .img-fluid {
             max-height: 111px;
         }
-        @media (max-width:1316px){
 
-/* Th */
-.table-sm tr th{
- font-weight:500;
- font-size:12px;
- border-width:0px;
- padding-top:0px;
- padding-bottom:0px;
- padding-right:0px;
- padding-left:0px;
-}
+        @media (max-width:1316px) {
 
-/* Table Data */
-.table-sm tr td{
- font-size:12px;
- border-style:solid;
- border-width:1px;
-}
+            /* Th */
+            .table-sm tr th {
+                font-weight: 500;
+                font-size: 12px;
+                border-width: 0px;
+                padding-top: 0px;
+                padding-bottom: 0px;
+                padding-right: 0px;
+                padding-left: 0px;
+            }
 
-}
+            /* Table Data */
+            .table-sm tr td {
+                font-size: 12px;
+                border-style: solid;
+                border-width: 1px;
+            }
 
-@media (max-width:768px){
+        }
 
-/* Th */
-.table-sm tr th{
- font-size:12px;
- font-weight:500;
-}
+        @media (max-width:768px) {
 
-/* Table Data */
-.table-sm tr td{
- font-size:10px;
- font-weight:500;
-}
+            /* Th */
+            .table-sm tr th {
+                font-size: 12px;
+                font-weight: 500;
+            }
 
-/* Frame vid */
-.main-post .main-image .frameVid{
- margin-top:6px;
-}
+            /* Table Data */
+            .table-sm tr td {
+                font-size: 10px;
+                font-weight: 500;
+            }
 
-}
-@media (max-width:1316px){
+            /* Frame vid */
+            .main-post .main-image .frameVid {
+                margin-top: 6px;
+            }
 
-/* Th */
-.table-sm tr th{
- font-weight:500;
- font-size:12px;
- border-width:0px;
- padding-top:0px;
- padding-bottom:0px;
- padding-right:0px;
- padding-left:0px;
-}
+        }
 
-/* Table Data */
-.table-sm tr td{
- font-size:12px;
- border-style:solid;
- border-width:1px;
-}
+        @media (max-width:1316px) {
 
-}
+            /* Th */
+            .table-sm tr th {
+                font-weight: 500;
+                font-size: 12px;
+                border-width: 0px;
+                padding-top: 0px;
+                padding-bottom: 0px;
+                padding-right: 0px;
+                padding-left: 0px;
+            }
 
-@media (max-width:768px){
+            /* Table Data */
+            .table-sm tr td {
+                font-size: 12px;
+                border-style: solid;
+                border-width: 1px;
+            }
 
-/* Th */
-.table-sm tr th{
- font-size:12px;
- font-weight:500;
-}
+        }
 
-/* Table Data */
-.table-sm tr td{
- font-size:10px;
- font-weight:500;
-}
+        @media (max-width:768px) {
 
-/* Frame vid */
-.main-post .main-image .frameVid{
- margin-top:6px;
-}
+            /* Th */
+            .table-sm tr th {
+                font-size: 12px;
+                font-weight: 500;
+            }
 
-/* Heading */
-.col-sm-9 .post-header h1{
- font-size:22px;
- font-weight:500 !important;
-}
+            /* Table Data */
+            .table-sm tr td {
+                font-size: 10px;
+                font-weight: 500;
+            }
 
-/* Container */
-.container{
- padding-top:4px;
-}
+            /* Frame vid */
+            .main-post .main-image .frameVid {
+                margin-top: 6px;
+            }
 
-}
-@media (max-width:768px){
+            /* Heading */
+            .col-sm-9 .post-header h1 {
+                font-size: 22px;
+                font-weight: 500 !important;
+            }
 
-/* Container */
-.container{
- padding-right:0px;
- padding-left:3px;
-}
+            /* Container */
+            .container {
+                padding-top: 4px;
+            }
 
-/* Post header */
-.container .post-header{
- padding-left:14px;
- padding-right:20px;
-}
+        }
 
-/* Image */
-.main-post .main-image img{
- margin-bottom:24px;
-}
-.container{
-  /* display:block; */
-  /* margin-right:0px; */
-  overflow-x:hidden;
- }
+        @media (max-width:768px) {
+
+            /* Container */
+            .container {
+                padding-right: 0px;
+                padding-left: 3px;
+            }
+
+            /* Post header */
+            .container .post-header {
+                padding-left: 14px;
+                padding-right: 20px;
+            }
+
+            /* Image */
+            .main-post .main-image img {
+                margin-bottom: 24px;
+            }
+
+            .container {
+                /* display:block; */
+                /* margin-right:0px; */
+                overflow-x: hidden;
+            }
 
 
 
- @media (max-width:768px){
+            @media (max-width:768px) {
 
-/* Col 9 */
-.container .col-sm-9{
- padding-left:7px;
- display:inline-block;
- transform:translatex(0px) translatey(0px);
-}
+                /* Col 9 */
+                .container .col-sm-9 {
+                    padding-left: 7px;
+                    display: inline-block;
+                    transform: translatex(0px) translatey(0px);
+                }
 
-/* Image */
-.main-post .main-image img{
- padding-right:4px;
-}
+                /* Image */
+                .main-post .main-image img {
+                    padding-right: 4px;
+                }
 
-}
+            }
+        }
     </style>
 </head>
 
@@ -489,7 +496,8 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>{{ intval($post['citySubscriber']) + intval($post['prarangApplication']) }}</td>
+                                            <td>{{ intval($post['citySubscriber']) + intval($post['prarangApplication']) }}
+                                            </td>
                                             <td>{{ $post['websiteCount'] }}</td>
                                             <td>{{ $post['emailCount'] }}</td>
                                             <td>{{ $post['instagramCount'] }}</td>
@@ -539,7 +547,8 @@
                 <div class="stk-side">
                     <div class="p-2 text-center shadow app-fb">
                         <p class="p-0">Follow Us on</p>
-                        <a class="text-center btn btn-primary" href="https://facebook.com/prarang.in" target="_blank"><i class=""></i>
+                        <a class="text-center btn btn-primary" href="https://facebook.com/prarang.in" target="_blank"><i
+                                class=""></i>
                             Facebook</a>
                         <a class="text-center btn btn-success " href="" target="_blank"><i
                                 class="fa fa-mobile"></i>
@@ -588,28 +597,27 @@
     </div>
 
     @if ($ColorCode === '#4d4d4d')
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const descriptionData = document.querySelector('.post-description');
-            if (descriptionData) {
-                descriptionData.querySelectorAll('*').forEach(element => {
-                    element.classList.add('text-white', 'text-light');
-                });
-            }
-        });
-    </script>
-@endif
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const descriptionData = document.querySelector('.post-description');
+                if (descriptionData) {
+                    descriptionData.querySelectorAll('*').forEach(element => {
+                        element.classList.add('text-white', 'text-light');
+                    });
+                }
+            });
+        </script>
+    @endif
 
 
     <x-post.footer :city="$city_name" />
-    <script src='{{asset('location.js')}}'></script>
+    <script src='{{ asset('location.js') }}'></script>
     <script>
-        collectAndSendInformation('{{$post['chittiId'] }}', '{{ $city_name }}');
-
+        collectAndSendInformation('{{ $post['chittiId'] }}', '{{ $city_name }}');
     </script>
-
+      {!! $portal->footer_scripts !!}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> --}}
+
 </body>
 
 </html>
