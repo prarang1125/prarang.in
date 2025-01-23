@@ -610,16 +610,19 @@
     </div>
 
     @if ($ColorCode === '#4d4d4d')
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const descriptionData = document.querySelector('.post-description');
-                if (descriptionData) {
-                    descriptionData.querySelectorAll('*').forEach(element => {
-                        element.classList.add('text-white', 'text-light');
-                    });
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const descriptionData = document.querySelector('.post-description');
+        if (descriptionData) {
+            descriptionData.querySelectorAll('*').forEach(element => {
+                if (element.tagName !== 'BR' && element.tagName !== 'HR') {
+                    element.classList.add('text-white', 'text-light');
                 }
             });
-        </script>
+        }
+    });
+</script>
+
     @endif
 
 
