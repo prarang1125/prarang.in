@@ -26,5 +26,5 @@ yarn-error.log
 *.mp4
 *.iso
 *.tar.gz
-**/public/images/
-*public/images/
+# **/public/images/
+# *public/images/
