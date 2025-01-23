@@ -5,7 +5,7 @@ include "include/connect.php";
 	$rawInput = file_get_contents("php://input");
 	// Decode the JSON input
 	$data = json_decode($rawInput);
-
+	die($data);
     $subscriberId = $data->subscriberId; 
     $string = $data->result;
     $uploadpath   = 'profilePicture/';
@@ -59,3 +59,4 @@ else
 	$code = array('responseCode' => '0','message' => 'Subscriber not found'); 
 	echo json_encode($code);  
 }
+

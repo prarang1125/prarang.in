@@ -11,10 +11,13 @@ class Base extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public $portal;
+
+    public function __construct($portal)
     {
-        //
+        $this->portal = $portal;
     }
+
 
     /**
      * Get the view / contents that represent the component.

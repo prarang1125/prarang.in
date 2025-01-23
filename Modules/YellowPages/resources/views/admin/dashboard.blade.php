@@ -1,5 +1,5 @@
 @extends('yellowpages::layout.admin.admin')
-@section('title', 'Prarang Admin Home')
+@section('title', 'येलोपेज एडमिन पैनल');
 @section('content')
 <div class="page-content">
     <div class="row row-cols-1 row-cols-md-2 row-cols-xl-4">
@@ -9,7 +9,8 @@
             ['title' => 'कुल शहर', 'value' => $totalcitys, 'icon' => 'bx-buildings', 'bgClass' => 'bg-gradient-orange'],
             ['title' => 'कुल व्यापार सूची', 'value' => $totallisting, 'icon' => 'bx-list-ul', 'bgClass' => 'bg-gradient-ohhappiness'],
             ['title' => 'कुल रिपोर्ट', 'value' => $report, 'icon' => 'bx-bar-chart', 'bgClass' => 'bg-gradient-orange'],
-            ['title' => 'कुल योजना ग्राहक', 'value' => $Subscribers, 'icon' => 'bx-user-check', 'bgClass' => 'bg-gradient-deepblue']
+            ['title' => 'कुल योजना ग्राहक', 'value' => $Subscribers, 'icon' => 'bx-user-check', 'bgClass' => 'bg-gradient-deepblue'],
+            ['title' => 'कुल वीकार्ड', 'value' => $vcard, 'icon' => 'bx-user-check', 'bgClass' => 'bg-gradient-deepblue']
         ] as $card)
             <div class="col">
                 <a href="#">

@@ -11,6 +11,8 @@ use App\Models\Report;
 use App\Models\PaymentHistory;
 use App\Models\BusinessListing;
 use App\Models\User;
+use App\Models\Vcard;
+use App\Models\UserPurchasePlan;
 use App\Models\CompanyLegalType;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
@@ -30,33 +32,35 @@ class AdminController extends Controller
         $totalcitys    = City::where('is_active', 1)->count();
         $totalUser    = User::count();
         $report      =  Report::count();
-        $Subscribers = PaymentHistory::distinct('user_id')->count('user_id');
-        return view('yellowpages::Admin.dashboard', compact(
-             'totallisting', 'totalCategory', 'totalcitys','totalUser' ,'report','Subscribers'
+        $Subscribers = UserPurchasePlan::where('is_active', 1)->distinct('user_id')->count('user_id');
+        $vcard = Vcard::where('is_active', 1)->count();
+        return view('yellowpages::admin.dashboard', compact(
+             'totallisting', 'totalCategory', 'totalcitys','totalUser' ,'report','Subscribers','vcard'
         ));
     }
+
     ##------------------------- END ---------------------##
 
 
 
     ##------------------------- User isting function ---------------------##
     public function userListing(Request $request) {
+
         try {
             $users = User::all();
-            return view('yellowpages::Admin.user-listing', compact('users'));
+            return view('yellowpages::admin.user-listing', compact('users'));
         } catch (Exception $e) {
             return redirect()->route('admin.dashboard')->withErrors(['error' => 'An error occurred while fetching user listings: ' . $e->getMessage()]);
         }
     }
     ##------------------------- END ---------------------##
 
-
     ##------------------------- userEdit function ---------------------##
     public function userEdit($id)
     {
         try {
             $user = User::findOrFail($id);
-            return view('yellowpages::Admin.user-edit', compact('user'));
+            return view('yellowpages::admin.user-edit', compact('user'));
         } catch (ModelNotFoundException $e) {
             return redirect()->route('admin.user-listing')->withErrors(['error' => 'User not found.']);
         } catch (Exception $e) {
@@ -69,18 +73,36 @@ class AdminController extends Controller
     public function userUpdate(Request $request, $id)
     {
         try {
-            // Find user or handle if not found
-            $user = User::findOrFail($id);
-    
-            // Update user details
-            $user->update([
-                'name' => $request->name,
-                'email' => $request->email,
-                'password' => Hash::make($request->password),
-                'is_active' => $request->is_active,
-                'updated_at' => Carbon::now(),
+            // Validate the incoming request
+            $validatedData = $request->validate([
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|max:255',
+                'password' => 'nullable|string|min:8|confirmed', // Changed from 'sometimes' to 'nullable'
+                'is_active' => 'required|boolean',
             ]);
-    
+
+            // Find the user or throw an exception if not found
+            $user = User::findOrFail($id);
+
+            // Prepare the data to update
+            $dataToUpdate = array_filter([
+                'name' => $validatedData['name'],
+                'email' => $validatedData['email'],
+                'password' => $request->password ? Hash::make($validatedData['password']) : null,
+                'is_active' => $validatedData['is_active'],
+                'updated_at' => Carbon::now(),
+            ], function ($value) {
+                return $value !== null && $value !== '';
+            });
+
+            // Remove 'password' if it's null
+            if (empty($request->password)) {
+                unset($dataToUpdate['password']);
+            }
+
+            // Update the user details
+            $user->update($dataToUpdate);
+
             return redirect()->route('admin.user-listing')->with('success', 'User updated successfully.');
         } catch (ModelNotFoundException $e) {
             return redirect()->back()->withErrors(['error' => 'User not found.']);
@@ -88,6 +110,7 @@ class AdminController extends Controller
             return redirect()->back()->withErrors(['error' => 'An error occurred while updating the user: ' . $e->getMessage()]);
         }
     }
+
     ##------------------------- END ---------------------##
 
     ##------------------------- userDelete function ---------------------##

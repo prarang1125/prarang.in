@@ -40,6 +40,12 @@
                 <div class="menu-title">शहर</div>
             </a>
         </li>
+        <li>
+            <a href="{{ url('yellow-pages/admin/vcard-list') }}">
+                <div class="parent-icon"><i class="lni lni-user"></i></div>
+                <div class="menu-title">वीकार्ड सूची</div>
+            </a>
+        </li>
         <!-- Business Listing -->
         <li>
             <a href="{{ url('yellow-pages/admin/business-listing') }}">
@@ -51,6 +57,12 @@
             <a href="{{ url('yellow-pages/admin/paymentHistory') }}">
                 <div class="parent-icon"><i class="bx bx-briefcase"></i></div>
                 <div class="menu-title">भुगतान लेन - देन</div>
+            </a>
+        </li>
+        <li>
+            <a href="{{ url('yellow-pages/admin/purchasePlan') }}">
+                <div class="parent-icon"><i class="bx bx-briefcase"></i></div>
+                <div class="menu-title">सदस्यता विवरण</div>
             </a>
         </li>
         <li>

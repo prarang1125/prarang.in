@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\City;
+use App\Models\Portal;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -55,12 +56,12 @@ class CitiesController extends Controller
             // Handle the file upload if a new image is provided
             if ($request->hasFile('image')) {
                 // Delete the old image if it exists
-                if ($city->cities_url && Storage::disk('public')->exists($city->cities_url)) {
-                    Storage::disk('public')->delete($city->cities_url);
-                }
+                if ($city->cities_url && Storage::exists($city->cities_url)) {
+                    Storage::delete($city->cities_url);
+                }                
 
                 // Store the new image
-                $imagePath = $request->file('image')->store('cities', 'public');
+                $imagePath = $request->file('image')->store('yellowpages/cities');
             } else {
                 // Keep the existing image URL if no new image is uploaded
                 $imagePath = $city->cities_url;
@@ -100,8 +101,10 @@ class CitiesController extends Controller
     ##------------------------- citiesRegister function ---------------------##
     public function citiesRegister()
     {
-        return view('yellowpages::Admin.cities-register');
+        $portals = Portal::all();
+        return view('yellowpages::Admin.cities-register', compact('portals'));
     }
+
     ##------------------------- END ---------------------##
 
     ##------------------------- citiesStore function ---------------------##
@@ -111,33 +114,35 @@ class CitiesController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'image' => 'required|image',  // Image validation with file type restrictions
+            'portal_id' => 'nullable',
         ]);
 
         // Proceed if validation passes
         if ($validator->passes()) {
             $currentDateTime = Carbon::now();
 
-            try {
+            // try {
                 // Handle the file upload
                 if ($request->hasFile('image')) {
                     // Store the image and get the path
-                    $imagePath = $request->file('image')->store('cities', 'public');
+                    $imagePath = $request->file('image')->store('yellowpages/cities');
                 }
 
                 // Create a new city record
                 City::create([
                     'name' => $request->name,
                     'cities_url' => $imagePath, // Store the image path
+                    'portal_id' =>$request->portal_id,
                     'timezone' => 'Asia/Kolkata',
                     'created_at' => $currentDateTime,
                 ]);
 
                 return redirect()->route('admin.cities-listing')->with('success', 'City created successfully.');
 
-            } catch (\Exception $e) {
-                // Handle errors in city creation
-                return back()->with('error', 'There was an issue with city creation: ' . $e->getMessage());
-            }
+            // } catch (\Exception $e) {
+            //     // Handle errors in city creation
+            //     return back()->with('error', 'There was an issue with city creation: ' . $e->getMessage());
+            // }
         } else {
             // Validation failed, return back with errors
             return redirect()->route('admin.cities-register')

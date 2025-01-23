@@ -320,10 +320,10 @@
                         <textarea placeholder="Answer" name="answer" style="width: 100%; height: 60px;"></textarea>
                     </div>
                     <div class="add-new" style="color: #007bff; cursor: pointer; font-size: 14px; display: inline-block; margin-top: 10px;" onclick="addFAQ()">+ नया जोड़ें</div>
-                </div>
+                </div>                   
             </div>
             <br>
-            <div style="max-width: 900px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
+            {{-- <div style="max-width: 900px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
                 <div id="signupFields" style="display: flex; gap: 20px; margin-bottom: 15px;">
                     <div style="flex: 1;">
                         <label for="signupEmail">साइनअप करने के लिए ईमेल दर्ज करें और लिस्टिंग अनुमोदन पर अधिसूचना प्राप्त करें</label>
@@ -344,7 +344,7 @@
                         <input type="password" id="password" name="password" value="{{ old('password', $listing->password) }}" placeholder="Enter your password" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
         <!-- Submit Button -->
         <div class="text-center mt-4">
@@ -416,6 +416,32 @@ document.addEventListener('click', (e) => {
         e.target.closest('.day-schedule').remove(); // Remove the current schedule
     }
 });
+
+// Toggle FAQ section visibility based on checkbox
+document.getElementById('featuresToggle').addEventListener('change', function() {
+    document.getElementById('faqSection').style.display = this.checked ? 'block' : 'none';
+});
+
+// Add new FAQ input fields
+function addFAQ() {
+    var faqSection = document.getElementById('faqSection');
+    
+    // Create new FAQ item
+    var newFAQ = document.createElement('div');
+    newFAQ.classList.add('faq-item');
+    newFAQ.style.marginBottom = '10px';
+    
+    // Create input fields
+    newFAQ.innerHTML = `
+        <label>अक्सर पूछे जाने वाले प्रश्नों</label>
+        <input type="text" name="faq" placeholder="Frequently Asked Questions" style="width: 100%; margin-bottom: 5px;">
+        <textarea placeholder="Answer" name="answer" style="width: 100%; height: 60px;"></textarea>
+    `;
+    
+    // Add the new FAQ item to the section
+    faqSection.insertBefore(newFAQ, document.querySelector('.add-new'));
+}
+
 
 </script>
 

@@ -15,17 +15,36 @@ class listingReviewController extends Controller
     public function Rating()
     {
         try {
-            $listing = BusinessListing::where('user_id', Auth::id())->first();
-    
-            if (!$listing) {
-                return redirect()->back()->with('error', 'No business listing found for the user.');
+            // Fetch listings for the user
+            $listings = BusinessListing::where('user_id', Auth::id())->get();  // Use get() to fetch all listings
+        
+            // If no listings exist for the user, show an error message and pass an empty reviews collection
+            if ($listings->isEmpty()) {
+                return view('yellowpages::Vcard.review', [
+                    'error' => 'No listing found for the user.',
+                    'reviews' => collect(),  // Pass an empty collection for reviews
+                    'business_listings' => collect(),  // Empty business listings as well
+                ]);
             }
-            $reviews = Review::where('listing_id', $listing->id)->paginate(10);
-    
-            return view('yellowpages::Vcard.review', compact('reviews'));
+        
+            // Fetch reviews for the listings
+            $reviews = Review::whereIn('listing_id', $listings->pluck('id'))->paginate(10);  // Use whereIn for multiple listings
+        
+            // Get the business IDs from the reviews
+            $listing_ids = $reviews->pluck('business_id');
+        
+            // Retrieve the associated business listings if any business IDs exist
+            $business_listings = $listing_ids->isNotEmpty() 
+                ? BusinessListing::whereIn('id', $listing_ids)->get() 
+                : collect(); // Empty collection if no listings found
+        
+            return view('yellowpages::Vcard.review', compact('reviews', 'business_listings', 'error'));
         } catch (\Exception $e) {
             Log::error('Error fetching reviews: ' . $e->getMessage());
-            return redirect()->back()->with('error', 'Unable to fetch reviews. Please try again later.');
+            return redirect()->route('vCard.Rating')->with('error', 'Unable to fetch reviews. Please try again later.');
         }
-    }    
+    }
+    
+    
+    
 }

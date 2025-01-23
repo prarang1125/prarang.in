@@ -40,7 +40,7 @@ class ReportController extends Controller
             // Handle file upload
             $filePath = null;
             if ($request->hasFile('file')) {
-                $filePath = $request->file('file')->store('reports', 'public');
+                $filePath = $request->file('file')->store('yellowpages/reports');
             }
 
             // Store the report in the database
@@ -60,12 +60,12 @@ class ReportController extends Controller
     }
 
     ##------------------------- END ---------------------##
-    
+
     ##------------------------- Report list ---------------------##
     public function list(Request $request) {
         try {
             $report_list = Report::where('user_id', Auth::id())->get();
-            return view('yellowpages::VCard.report-list', compact('report_list'));
+            return view('yellowpages::Vcard.report-list', compact('report_list'));
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Error fetching report listings: ' . $e->getMessage());
         }

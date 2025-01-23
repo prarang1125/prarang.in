@@ -118,9 +118,9 @@ class PostArchives extends Controller
             return $chittis->map(function ($chitti) {
 
                  $imageUrl = $chitti->images->first()->imageUrl ?? asset('default_image.jpg');
-               
+
                 $tags = $chitti->tagMappings->map(function ($tagMapping) {
-                    return $tagMapping->tag->tagInEnglish;
+                    return $tagMapping->tag->tagInUnicode;
                 })->filter()->join(', ');
                 return [
                     'id' => $chitti->chittiId,
@@ -141,6 +141,8 @@ class PostArchives extends Controller
             'cityCode' => $portal->city_code,
             'chittis' => $chittis,
             'name' => ucfirst($name),
+            'portal' => $portal,
+            'isTags'=>true,
         ]);
     }
 }

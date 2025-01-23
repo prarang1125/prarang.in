@@ -99,7 +99,7 @@
         <div class="container-fluid">
             <!-- Logo -->
             <a class="navbar-brand" href="#">
-                <img src="https://prarang.in/cimg/logo2.png" alt="Logo">
+                <img src="https://prarang.s3.amazonaws.com/posts-2017-24/logo2.png" alt="Logo">
             </a>
 
             <!-- Toggler for mobile view -->
@@ -150,8 +150,8 @@
                             @foreach ($tagSubCounts['tag_1'] as $tag)
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
-                                    <a target="_blank"
-                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => preg_replace('/[^\w\s]/', ' ', $tag->tagInEnglish), 'cityCode' => $portal->slug]) }}">
+                                    <a target="_blank" style="text-decoration-line: none; !important;"
+                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ',', $tag->tagInUnicode), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
@@ -160,9 +160,9 @@
                                             <div class="border col-10 rounded-pill tagListx">
                                                 <div class="row">
                                                     <div class="p-0 m-0 col-10">
-                                                        {{-- {{$tag->tagInUnicode}} --}}
-                                                        <h6 class="p-0 m--0">{{ $tag->tagInEnglish }}</h6>
-                                                        {{-- <small> {{$tag->tagInEnglish}}</small> --}}
+
+                                                        <h6 class="p-0 m--0">{{ $tag->tagInUnicode }}</h6>
+
                                                     </div>
                                                     <div class="col-2">
                                                         <div class="border w-100 h-100 rounded-circle">
@@ -185,8 +185,8 @@
                             @foreach ($tagSubCounts['tag_2'] as $tag)
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
-                                    <a target="_blank"
-                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => preg_replace('/[^\w\s]/', ' ', $tag->tagInEnglish), 'cityCode' => $portal->slug]) }}">
+                                    <a target="_blank" style="text-decoration-line: none; !important;"
+                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ',', $tag->tagInUnicode), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
@@ -196,7 +196,7 @@
                                                 <div class="row">
                                                     <div class="p-0 m-0 col-10">
                                                         {{-- {{$tag->tagInUnicode}} --}}
-                                                        <h6 class="p-0 m--0">{{ $tag->tagInEnglish }}</h6>
+                                                        <h6 class="p-0 m--0">{{ $tag->tagInUnicode }}</h6>
                                                         {{-- <small> {{$tag->tagInEnglish}}</small> --}}
                                                     </div>
                                                     <div class="col-2">
@@ -220,8 +220,8 @@
                             @foreach ($tagSubCounts['tag_3'] as $tag)
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
-                                    <a target="_blank"
-                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => preg_replace('/[^\w\s]/', ' ', $tag->tagInEnglish), 'cityCode' => $portal->slug]) }}">
+                                    <a target="_blank" style="text-decoration-line: none; !important;"
+                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' =>str_replace('/', ',', $tag->tagInUnicode), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
@@ -231,7 +231,7 @@
                                                 <div class="row">
                                                     <div class="p-0 m-0 col-10">
                                                         {{-- {{$tag->tagInUnicode}} --}}
-                                                        <h6 class="p-0 m--0">{{ $tag->tagInEnglish }}</h6>
+                                                        <h6 class="p-0 m--0">{{ $tag->tagInUnicode }}</h6>
                                                         {{-- <small> {{$tag->tagInEnglish}}</small> --}}
                                                     </div>
                                                     <div class="col-2">
@@ -269,8 +269,8 @@
                             @foreach ($tagSubCounts['tag_4'] as $tag)
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
-                                    <a target="_blank"
-                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => preg_replace('/[^\w\s]/', ' ', $tag->tagInEnglish), 'cityCode' => $portal->slug]) }}">
+                                    <a target="_blank" style="text-decoration-line: none; !important;"
+                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' =>str_replace('/', ',', $tag->tagInUnicode), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
@@ -280,7 +280,7 @@
                                                 <div class="row">
                                                     <div class="p-0 m-0 col-10">
                                                         {{-- {{$tag->tagInUnicode}} --}}
-                                                        <h6 class="p-0 m--0">{{ $tag->tagInEnglish }}</h6>
+                                                        <h6 class="p-0 m--0">{{ $tag->tagInUnicode }}</h6>
                                                         {{-- <small> {{$tag->tagInEnglish}}</small> --}}
                                                     </div>
                                                     <div class="col-2">
@@ -302,8 +302,8 @@
                             @foreach ($tagSubCounts['tag_5'] as $tag)
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
-                                    <a target="_blank"
-                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => preg_replace('/[^\w\s]/', ' ', $tag->tagInEnglish), 'cityCode' => $portal->slug]) }}">
+                                    <a target="_blank" style="text-decoration-line: none; !important;"
+                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ',', $tag->tagInUnicode), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
@@ -313,7 +313,7 @@
                                                 <div class="row">
                                                     <div class="p-0 m-0 col-10">
                                                         {{-- {{$tag->tagInUnicode}} --}}
-                                                        <h6 class="p-0 m--0">{{ $tag->tagInEnglish }}</h6>
+                                                        <h6 class="p-0 m--0">{{ $tag->tagInUnicode }}</h6>
                                                         {{-- <small> {{$tag->tagInEnglish}}</small> --}}
                                                     </div>
                                                     <div class="col-2">
@@ -334,8 +334,8 @@
                             </p>
                             @foreach ($tagSubCounts['tag_6'] as $tag)
                                 <div class="mb-1">
-                                    <a target="_blank"
-                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => preg_replace('/[^\w\s]/', ' ', $tag->tagInEnglish), 'cityCode' => $portal->slug]) }}">
+                                    <a target="_blank" style="text-decoration-line: none; !important;"
+                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ',', $tag->tagInUnicode),'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
@@ -345,7 +345,7 @@
                                                 <div class="row">
                                                     <div class="p-0 m-0 col-10">
                                                         {{-- {{$tag->tagInUnicode}} --}}
-                                                        <h6 class="p-0 m--0">{{ $tag->tagInEnglish }}</h6>
+                                                        <h6 class="p-0 m--0">{{ $tag->tagInUnicode }}</h6>
                                                         {{-- <small> {{$tag->tagInEnglish}}</small> --}}
                                                     </div>
                                                     <div class="col-2">

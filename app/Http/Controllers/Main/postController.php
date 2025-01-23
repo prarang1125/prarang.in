@@ -54,13 +54,15 @@ class postController extends Controller
                 ];
             });
         });
-        
+
         return view('portal.post', [
             'city_name' => $city,
             'postsByMonth' => $postsByMonth,
             'cityCode' => $geography->geographycode,
             'chittis' => $chittis,
             'name' => $name,
+            'portal'=>$portal,
+           'isTags'=>false,
         ]);
     }
 
@@ -108,6 +110,7 @@ class postController extends Controller
             'cityCode' => $geography->Geography ?? null,
             'ColorCode' => $ColorCode,
             'city_name' => $portal->slug ?? 'Unknown',
+            'portal' => $portal,
         ]);
     }
 

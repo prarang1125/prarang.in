@@ -1,10 +1,13 @@
 @extends('yellowpages::layout.vcard.vcard')
 @section('title', 'Active Subscription Plan')
 @section('content')
-
 <div class="container my-5">
-    <h2 class="d-flex justify-content-center align-items-center" style="height: 10vh;">सदस्यता योजनाएँ</h2>
-    
+    <h2 class="d-flex justify-content-center align-items-center" style="height: 20vh;">सदस्यता योजनाएँ</h2>
+    @if(session('error'))
+    <div class="alert alert-danger">
+        {{ session('error') }}
+    </div>
+      @endif
     <!-- Plans Table -->
     <div class="table-responsive mt-5">
         <table class="table table-bordered text-center">
@@ -32,7 +35,7 @@
                             <input type="hidden" name="plan_id" value="{{ $plan->id }}">
                             <input type="hidden" name="price" value="{{ $plan->price }}">
                             {{-- <button type="submit" class="btn btn-danger">Purchase</button> --}}
-                                @if($userPlanId == $plan->id)
+                                @if($purchasePlan->plan_id == $plan->id)
                                     <button type="button" class="btn btn-success">वर्तमान योजना</button>
                                 @else
                                     <form action="{{ url('yellow-pages/vCard/purchase') }}" method="POST">

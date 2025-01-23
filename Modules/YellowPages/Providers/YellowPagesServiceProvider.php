@@ -28,7 +28,7 @@ class YellowPagesServiceProvider extends ServiceProvider
 
         // $this->publishes([
         //     __DIR__.'/../Assets' => public_path('modules/yello'),
-        // ], 'public');
+        // ]);
 
     }
 

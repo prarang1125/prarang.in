@@ -71,5 +71,10 @@ public function city()
     return $this->belongsTo(City::class);
 }
 
+// In BusinessListing.php
+public function reviews()
+{
+    return $this->hasMany(Review::class, 'listing_id');
+}
 
 }

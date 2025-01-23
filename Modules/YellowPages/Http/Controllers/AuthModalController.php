@@ -26,7 +26,7 @@ class AuthModalController extends Controller
 
     ##------------------------- END ---------------------##
 
-    
+
     ##------------------------- Login Logic ---------------------##
     public function login(Request $request)
 {
@@ -61,7 +61,7 @@ class AuthModalController extends Controller
     }
 }
 
-    
+
     ##------------------------- END ---------------------##
      ##------------------------- Register View ---------------------##
      public function newAccount()
@@ -72,7 +72,7 @@ class AuthModalController extends Controller
              return back()->withErrors(['error' => 'An error occurred while loading the login page.']);
          }
      }
- 
+
      ##------------------------- END ---------------------##
 
     ##------------------------- Register Logic ---------------------##

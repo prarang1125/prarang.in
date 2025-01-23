@@ -40,7 +40,7 @@ class ReviewController extends Controller
             $imagePaths = [];
             if ($request->hasFile('image')) {
                 foreach ($request->file('image') as $image) {
-                    $imagePaths[] = $image->store('reviews', 'public');
+                    $imagePaths[] = $image->store('yellowpages/reviews');
                 }
             }
 
