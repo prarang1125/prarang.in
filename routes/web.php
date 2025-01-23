@@ -8,6 +8,7 @@ use App\Http\Controllers\PartnerApi;
 use App\Http\Controllers\MobileApi\ChittiList;
 use App\View\Components\Layout\Main\Base;
 use Illuminate\Support\Facades\Route;
+
 Route::get('/partner-api/get-chitti-data', [PartnerApi::class, 'getChittiByDateRange']);
 Route::get('/partner-api/get-top-3-posts/', [PartnerApi::class, 'getChittiData']);
 Route::get('/prapi/{url}', [ChittiList::class, 'getChittiData'])->name('api.posts.city');

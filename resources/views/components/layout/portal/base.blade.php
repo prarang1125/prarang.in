@@ -14,7 +14,7 @@
     <!-- Open Graph Tags -->
     <meta property="og:title" content="{{ $portal->city_name ?? 'Default Title' }} Portal | Prarang" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="{{ Storage::url($portal->header_image)?? 'default-image-url.jpg' }}" />
+    <meta property="og:image" content="{{asset('assets/images/portal_meta_image.webp')}}" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:description" content="{{ $portal->city_slogan ?? '' }}" />
     <title>{{ $portal->city_name }} Portal | Prarang</title>
