@@ -47,7 +47,7 @@
                                             India Analytics
                                 </a> 
                                 <div class="p-2">
-                               <a  href="https://g2c.prarang.in/india"> <img class="img-flud w-75" src="https://www.prarang.in/meerut/images/matric-.JPG" ></a></div>
+                               <a  href="https://g2c.prarang.in/india"> <img class="img-flud w-75" src="https://www.prarang.in/matric-.JPG" ></a></div>
                             </div>
                         </div>
                         <div class="col-sm-6">
@@ -56,7 +56,7 @@
                                             World Analytics
                                         </a>    
                                          <div class="p-2">
-                               <a href="https://g2c.prarang.in/world"><img class="img-flud w-75" src="https://www.prarang.in/meerut/images/matric-.JPG" ></a></div>
+                               <a href="https://g2c.prarang.in/world"><img class="img-flud w-75" src="https://www.prarang.in/matric-.JPG" ></a></div>
                             </div>
                             </div>
                         </div>
