@@ -529,8 +529,8 @@
                         @endif
                     </div>
 
-                    <div class="p-2 m-0 post-description"
-                        style="font-size: 18px; background-color: {{ $ColorCode }};">
+                    <div class="p-2 m-0 post-description {{ $ColorCode === '#4d4d4d' ? 'text-white text-light' : '' }}"
+                        style="font-size: 18px; background-color: {{ $ColorCode }};"   >
                         {!! $post['description'] !!}
                     </div>
 
