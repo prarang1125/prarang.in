@@ -56,60 +56,78 @@
             white-space: break-spaces;
             text-align: center;
         }
-        @media (max-width:991px){
 
-/* Sidebar left  inner */
-#sidebar-left .sidebar-left__inner{
- margin-top:101px;
+        @media (max-width:991px) {
+
+            /* Sidebar left  inner */
+            #sidebar-left .sidebar-left__inner {
+                margin-top: 101px;
+            }
+
+            /* Container openweathermap widget 15 */
+            #container-openweathermap-widget-15 {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+        }
+
+        @media (max-width:480px) {
+
+            /* Heading */
+            .hentry .main__header h1 {
+                font-size: 14px;
+            }
+
+            /* Header */
+            #main .hentry header {
+                text-align: center;
+            }
+
+            /* Image */
+            #wrapper #core .core__inner #columns .columns__inner .lsvr-container .lsvr-grid .columns__sidebar #sidebar-right .sidebar-right__inner .text-center a img {
+                width: 100% !important;
+            }
+
+            /* Image */
+            #sidebar-right a img {
+                height: 500px !important;
+            }
+
+            /* Table */
+            #sidebar-left .widget .table {
+                background-color: rgba(0, 0, 0, 0);
+            }
+
+            /* Table Data */
+            .table tr td {
+                background-color: #333333;
+                color: #e8e8e8;
+            }
+
+        }
+
+        /* Header background  single */
+        #wrapper .header-background--single {
+            background-color: rgba(0, 0, 0, 0.24) !important;
+        }
+
+        /* Paragraph */
+        /* Paragraph */
+#wrapper .col-sm p{
+ font-size:15px;
+ letter-spacing:normal;
+ color:#ffffff;
+ text-shadow:rgb(0, 0, 0) 1px 1px 0px, rgb(0, 0, 0) 2px 2px 0px;
+ font-weight:500;
 }
 
-/* Container openweathermap widget 15 */
-#container-openweathermap-widget-15{
- display:flex;
- justify-content:center;
- align-items:center;
+/* Footer */
+#wrapper footer{
+ background-color:rgba(0,0,0,0.52) !important;
 }
 
-}
-
-@media (max-width:480px){
-
-/* Heading */
-.hentry .main__header h1{
- font-size:14px;
-}
-
-/* Header */
-#main .hentry header{
- text-align:center;
-}
-
-/* Image */
-#wrapper #core .core__inner #columns .columns__inner .lsvr-container .lsvr-grid .columns__sidebar #sidebar-right .sidebar-right__inner .text-center a img{
- width:100% !important;
-}
-
-/* Image */
-#sidebar-right a img{
- height:500px !important;
-}
-
-/* Table */
-#sidebar-left .widget .table{
- background-color:rgba(0,0,0,0);
-}
-
-/* Table Data */
-.table tr td{
- background-color:#333333;
- color:#e8e8e8;
-}
-
-}
-/* Header background  single */
-#wrapper .header-background--single{
- background-color:rgba(0,0,0,0.24) !important;
-}
 
 
     </style>

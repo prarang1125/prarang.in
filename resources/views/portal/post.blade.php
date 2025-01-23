@@ -248,6 +248,10 @@
 }
 
 }
+.container .mt-3 img{
+    width: 100% !important;
+  height:100% !important;
+ }
     </style>
 </head>
 
