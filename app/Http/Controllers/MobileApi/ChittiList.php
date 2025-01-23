@@ -86,7 +86,7 @@ class ChittiList extends Controller
                     'imageId' => $image->ImageId,
                     'chittiId' => $image->chittiId,
 
-                    'imageUrl' => $image->ImageUrl,
+                    'imageUrl' => 'www.prarang.in/display/images/'.$image->accessUrl,
                     'isDefult' => $image->isDefault ? 'true' : 'false',
                 ];
             }),
