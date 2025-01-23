@@ -51,7 +51,6 @@
                         </thead>
                         <tbody>
                             @php $index = 1; @endphp
-
                             @foreach($categories as $category)
                                 <tr>
                                     <th scope="row" class="align-middle">{{ $index }}</th> <!-- Vertically center the row index -->
@@ -76,13 +75,12 @@
                             @endforeach
                         </tbody>
                     </table>
-                    
                 </div>
-                
             </div>
         </div>
     </div>
 </div>
+
 <!--end page wrapper -->
 @endsection
 

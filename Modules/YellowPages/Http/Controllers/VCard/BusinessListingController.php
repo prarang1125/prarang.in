@@ -140,22 +140,18 @@ class BusinessListingController extends Controller
                 'employees' => 'required',
                 'turnover' => 'required',
                 'category' => 'required',
-                'description' => 'nullable|string',
+                'description' => 'nullable',
                 'advertising' => 'required',
                 'advertising_price' => 'required',
                 'social_media' => 'nullable|string',
-                'tags_keywords' => 'nullable|string',
+                'tags_keywords' => 'nullable',
                 'fullAddress' => 'nullable|string',
                 'website' => 'nullable|url',
                 'phone' => 'nullable|string',
                 'whatsapp' => 'nullable|string',
                 'pincode' => 'nullable|string',
-                'notificationEmail' => 'nullable|email',
-                'userName' => 'nullable|string',
                 'faq' => 'nullable|string',
                 'answer' => 'nullable|string',
-                'email' => 'nullable|email',
-                'password' => 'nullable|string|min:8',
 
                 // Business hours validation
                 'day' => 'nullable|array',
@@ -209,8 +205,6 @@ class BusinessListingController extends Controller
                 'website' => $validated['website'],
                 'phone' => $validated['phone'],
                 'whatsapp' => $validated['whatsapp'],
-                'notification_email' => $validated['notificationEmail'],
-                'user_name' => $validated['userName'],
                 'faq' => $validated['faq'],
                 'answer' => $validated['answer'],
                 'description' => $validated['description'],
@@ -219,8 +213,7 @@ class BusinessListingController extends Controller
                 'logo' => $businessLogoPath,
                 'feature_img' => $featureImagePath,
                 'business_img' => $imagePath,
-                'email' => $validated['email'],
-                'password' => isset($validated['password']) ? bcrypt($validated['password']) : $listing->password,
+
             ];
 
             // Update the business listing

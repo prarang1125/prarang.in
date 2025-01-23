@@ -86,7 +86,7 @@ class BusinessController extends Controller
                 'employees' => 'required',
                 'turnover' => 'required',
                 'category' => 'required',
-                'description' => 'required|string',
+                'description' => 'nullable',
                 'advertising' => 'required',
                 'advertising_price' => 'required',
                 'social_media' => 'nullable|string',
@@ -96,12 +96,9 @@ class BusinessController extends Controller
                 'phone' => 'nullable|string',
                 'whatsapp' => 'nullable|string',
                 'pincode' => 'nullable|string',
-                'notificationEmail' => 'nullable|email',
-                'userName' => 'nullable|string',
                 'faq' => 'nullable|string',
                 'answer' => 'nullable|string',
-                'email' => 'nullable|email',
-                'password' => 'nullable|string|min:8',
+               
 
                 // Business hours validation
                 'day' => 'required|array',
@@ -148,8 +145,6 @@ class BusinessController extends Controller
                 'website' => $validated['website'],
                 'phone' => $validated['phone'],
                 'whatsapp' => $validated['whatsapp'],
-                'notification_email' => $validated['notificationEmail'],
-                'user_name' => $validated['userName'],
                 'faq' => $validated['faq'],
                 'answer' => $validated['answer'],
                 'description' => $validated['description'],
@@ -160,8 +155,6 @@ class BusinessController extends Controller
                 'logo' => $businessLogoPath,
                 'feature_img' => $featureImagePath,
                 'business_img' => $imagePath,
-                'email' => $validated['email'],
-                'password' => isset($validated['password']) ? bcrypt($validated['password']) : null,
             ];
 
             // Create the business listing
@@ -190,7 +183,7 @@ class BusinessController extends Controller
 
             return redirect()->route('yp.listing.submit')->with('success', 'Listing created successfully!');
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => 'An error occurred:' . $e->getMessage()]);
         }
     }
     ##------------------------- END ---------------------##

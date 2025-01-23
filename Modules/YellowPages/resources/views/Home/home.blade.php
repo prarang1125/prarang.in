@@ -57,7 +57,7 @@
                         <div class="icon-box" style="padding: 20px; text-align: center; border: 1px solid #ddd; border-radius: 10px;">
                             <div class="icon" style="width: 80px; height: 80px; margin: 0 auto;">
                               <a href="{{ url('yellow-pages/category' .$category->slug) }}">
-                                  <img src="{{ Storage::url($category->categories_url) }}" alt="{{ $category->name }}" style="width: 100%; height: 100%; object-fit: cover;" />
+                                  <img src="{{ Storage::url($category->categories_url) }}" alt="" style="width: 100%; height: 100%; object-fit: cover;" />
                               </a>
                   
                             </div>
