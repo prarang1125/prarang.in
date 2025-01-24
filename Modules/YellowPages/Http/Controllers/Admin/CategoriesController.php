@@ -27,7 +27,7 @@ class CategoriesController extends Controller
     public function categoriesEdit($id){
         try {
             $category = Category::findOrFail($id);
-            return view('yellowpages::Admin.categories-edit', compact('category'));
+            return view('yellowpages::admin.categories-edit', compact('category'));
         } catch (ModelNotFoundException $e) {
             return redirect()->route('admin.categories-listing')->withErrors(['error' => 'Category not found.']);
         } catch (\Exception $e) {

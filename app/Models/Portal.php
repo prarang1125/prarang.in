@@ -14,7 +14,8 @@ class Portal extends Model
     }
 
     public function city()
-    {
-        return $this->belongsTo(City::class, 'city_id');
-    }
+{
+    return $this->hasOne(City::class, 'portal_id');
+}
+
 }
