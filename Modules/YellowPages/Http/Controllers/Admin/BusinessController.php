@@ -26,9 +26,9 @@ class BusinessController extends Controller
     public function businessListing(Request $request) {
         try {
             $business_listing = BusinessListing::all();
-            return view('yellowpages::Admin.business-listing', compact('business_listing'));
+            return view('yellowpages::admin.business-listing', compact('business_listing'));
         } catch (\Exception $e) {
-            return redirect()->route('admin.dashboard')->withErrors(['error' => 'An error occurred while fetching the business listings: ' . $e->getMessage()]);
+            return redirect()->route('admin.dashboard')->withErrors(['error' => 'An error occurred while fetching the business listings: ' ]);
         }
     }
     ##------------------------- END ---------------------##
@@ -49,7 +49,7 @@ class BusinessController extends Controller
             $monthly_advertising_prices = AdvertisingPrice::all();
             $social_media = SocialMedia::all();
 
-            return view('yellowpages::Admin.business-listing-edit', compact(
+            return view('yellowpages::admin.business-listing-edit', compact(
                 'listing',
                 'cities',
                 'categories',
@@ -61,11 +61,11 @@ class BusinessController extends Controller
                 'social_media',
                 'listinghours',
             ));
-            
+
         } catch (ModelNotFoundException $e) {
             return redirect()->route('admin.business-listing')->withErrors(['error' => 'Listing not found.']);
         } catch (\Exception $e) {
-            return redirect()->route('admin.business-listing')->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+            return redirect()->route('admin.business-listing')->withErrors(['error' => 'An error occurred: ' ]);
         }
     }
     ##------------------------- END ---------------------##
@@ -186,7 +186,7 @@ class BusinessController extends Controller
 
             return redirect()->route('yp.listing.submit')->with('success', 'Listing created successfully!');
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred:' . $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => 'An error occurred:' ]);
         }
     }
     ##------------------------- END ---------------------##
@@ -201,7 +201,7 @@ class BusinessController extends Controller
         } catch (ModelNotFoundException $e) {
             return redirect()->route('admin.business-listing')->withErrors(['error' => 'Listing not found.']);
         } catch (\Exception $e) {
-            return redirect()->route('admin.business-listing')->withErrors(['error' => 'An error occurred while trying to delete the listing: ' . $e->getMessage()]);
+            return redirect()->route('admin.business-listing')->withErrors(['error' => 'An error occurred while trying to delete the listing: ' ]);
         }
     }
     ##------------------------- END ---------------------##

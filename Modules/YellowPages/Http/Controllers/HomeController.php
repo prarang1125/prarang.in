@@ -39,7 +39,7 @@ class HomeController extends Controller
             // Return the view with data
             return view('yellowpages::Home.home', compact('categories', 'cities', 'listings'));
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while fetching data: ' . $e->getMessage()]);
+            return back()->withErrors(['error' => 'An error occurred while fetching data: ' ]);
         }
     }
     ##------------------------- END ---------------------##
@@ -50,7 +50,7 @@ class HomeController extends Controller
         try {
             return view("yellowpages::Home.listing_plan");
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while loading the listing plan page: ' . $e->getMessage()]);
+            return back()->withErrors(['error' => 'An error occurred while loading the listing plan page: ' ]);
         }
     }
     ##------------------------- END ---------------------##
@@ -61,7 +61,7 @@ class HomeController extends Controller
         try {
             return view("yellowpages::Home.bazzar_plan");
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while loading the bazaar plan page: ' . $e->getMessage()]);
+            return back()->withErrors(['error' => 'An error occurred while loading the bazaar plan page: ' ]);
         }
     }
     ##------------------------- END ---------------------##
@@ -72,7 +72,7 @@ class HomeController extends Controller
         try {
             return view('yellowpages::Home.add_listing');
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while loading the add listing page: ' . $e->getMessage()]);
+            return back()->withErrors(['error' => 'An error occurred while loading the add listing page: ' ]);
         }
     }
     ##------------------------- END ---------------------##
@@ -86,7 +86,7 @@ class HomeController extends Controller
 
             return view('Home.homapage', compact('categories'));
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while fetching categories: ' . $e->getMessage()]);
+            return back()->withErrors(['error' => 'An error occurred while fetching categories: ' ]);
         }
     }
     ##------------------------- END ---------------------##
@@ -101,7 +101,7 @@ class HomeController extends Controller
 
             return view('yellowpages::Home.home', compact('categories', 'cities'));
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while fetching dropdown data: ' . $e->getMessage()]);
+            return back()->withErrors(['error' => 'An error occurred while fetching dropdown data: ' ]);
         }
     }
     ##------------------------- END ---------------------##
@@ -114,7 +114,7 @@ class HomeController extends Controller
 
             return view('yellowpages::Home.plan', compact('plans'));
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while fetching dropdown data: ' . $e->getMessage()]);
+            return back()->withErrors(['error' => 'An error occurred while fetching dropdown data: ' ]);
         }
     }
 

@@ -20,10 +20,10 @@ class vCardAuthcontroller extends Controller
             $user = User::findOrFail($id);
             return view('yellowpages::Vcard.userUpdate', compact('user'));
         } catch (ModelNotFoundException $e) {
-            Log::error('User not found: ' . $e->getMessage());
+            Log::error('User not found: ' );
             return redirect()->back()->withErrors(['error' => 'User not found.']);
         } catch (\Exception $e) {
-            Log::error('Error editing user: ' . $e->getMessage());
+            Log::error('Error editing user: ' );
             return redirect()->back()->withErrors(['error' => 'Unable to fetch user details.']);
         }
     }
@@ -55,10 +55,10 @@ class vCardAuthcontroller extends Controller
 
             return redirect()->route('vCard.userEdit', $id)->with('success', 'User updated successfully.');
         } catch (ModelNotFoundException $e) {
-            Log::error('User not found: ' . $e->getMessage());
+            Log::error('User not found: ' );
             return redirect()->back()->withErrors(['error' => 'User not found.']);
         } catch (\Exception $e) {
-            Log::error('Error updating user: ' . $e->getMessage());
+            Log::error('Error updating user: ' );
             return redirect()->back()->withErrors(['error' => 'Unable to update user details.']);
         }
     }

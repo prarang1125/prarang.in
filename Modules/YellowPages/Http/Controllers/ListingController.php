@@ -37,11 +37,11 @@ class ListingController extends Controller
                 ->whereHas('category', fn($q) => $q->where('slug', $category->slug))
                 ->get();
 
-            return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities', 'category_name'));
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+                return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities', 'category_name'));
+            } catch (\Exception $e) {
+                return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
+            }
         }
-    }
 
     ##------------------------- END---------------------##
 
@@ -63,11 +63,12 @@ class ListingController extends Controller
                 ->whereHas('city', fn($q) => $q->where('city_id', $city->id))
                 ->get();
 
-            return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities', 'city_name'));
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+    
+                return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities', 'city_name'));
+            } catch (\Exception $e) {
+                return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
+            }
         }
-    }
     ##------------------------- END---------------------##
 
     ##------------------------- Seaching Listing---------------------##
@@ -113,11 +114,11 @@ class ListingController extends Controller
                 return $listing;
             });
 
-            return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities'));
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+                return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities'));
+            } catch (\Exception $e) {
+                return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
+            }
         }
-    }
     ##------------------------- END---------------------##
 
     ##------------------------- Submit Listing---------------------##
@@ -151,7 +152,7 @@ class ListingController extends Controller
                 'social_media'
             ));
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
         }
     }
     ##------------------------- END---------------------##
@@ -284,12 +285,13 @@ class ListingController extends Controller
                 ]);
             }
 
-            // Redirect to the success page
-            return redirect()->route('yp.listing.submit')->with('success', 'Listing created successfully!');
-        } catch (\Exception $e) {
-            // Catch any exceptions and return error message
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
-        }
+        // Redirect to the success page
+        return redirect()->route('yp.listing.submit')->with('success', 'Listing created successfully!');
+
+    } catch (\Exception $e) {
+        // Catch any exceptions and return error message
+        return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
+    }
     }
     ##------------------------- END---------------------##
 
@@ -375,7 +377,7 @@ class ListingController extends Controller
 
             return redirect()->back()->with('success', 'Saved successfully!');
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
         }
     }
     ##------------------------- Save Listing ---------------------##

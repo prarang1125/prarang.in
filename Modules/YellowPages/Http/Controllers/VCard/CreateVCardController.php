@@ -63,7 +63,7 @@ class CreateVCardController extends Controller
 
             return redirect()->route('vCard.createCard')->with('success', 'Card saved successfully.');
         } catch (\Exception $e) {
-            Log::error('Error creating VCard: ' . $e->getMessage());
+            Log::error('Error creating VCard: ' );
             return redirect()->back()->withErrors(['error' => 'Unable to create VCard.']);
         }
     }
@@ -78,7 +78,7 @@ class CreateVCardController extends Controller
 
             return view('yellowpages::Vcard.vcardEdit', compact('vcard', 'vcardInfo'));
         } catch (\Exception $e) {
-            Log::error('Error editing VCard: ' . $e->getMessage());
+            Log::error('Error editing VCard: ' );
             return redirect()->back()->withErrors(['error' => 'Unable to fetch VCard details for editing.']);
         }
     }
@@ -131,7 +131,7 @@ class CreateVCardController extends Controller
 
             return redirect()->route('vCard.list', $id)->with('success', 'Card updated successfully.');
         } catch (\Exception $e) {
-            Log::error('Error updating VCard: ' . $e->getMessage());
+            Log::error('Error updating VCard: ' );
             return redirect()->back()->withErrors(['error' => 'Unable to update VCard.']);
         }
     }
@@ -146,7 +146,7 @@ class CreateVCardController extends Controller
 
             return view('yellowpages::Vcard.CardView', compact('vcard'));
         } catch (\Exception $e) {
-            Log::error('Error viewing VCard: ' . $e->getMessage());
+            Log::error('Error viewing VCard: ' );
             return redirect()->back()->withErrors(['error' => 'Unable to fetch VCard details.']);
         }
     }
@@ -157,7 +157,7 @@ class CreateVCardController extends Controller
             $Vcard_list = Vcard::where('user_id', Auth::id())->get();
             return view('yellowpages::Vcard.vcard-list', compact('Vcard_list'));
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Error fetching Vcard listings: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error fetching Vcard listings: ' );
         }
     }
     ##------------------------- END ---------------------##
@@ -171,7 +171,7 @@ class CreateVCardController extends Controller
         } catch (ModelNotFoundException $e) {
             return redirect()->route('vCard.list')->withErrors(['error' => 'vcard not found.']);
         } catch (\Exception $e) {
-            return redirect()->route('vCard.list')->withErrors(['error' => 'An error occurred while trying to delete the Vcard: ' . $e->getMessage()]);
+            return redirect()->route('vCard.list')->withErrors(['error' => 'An error occurred while trying to delete the Vcard: ' ]);
         }
     }
     ##------------------------- END ---------------------##

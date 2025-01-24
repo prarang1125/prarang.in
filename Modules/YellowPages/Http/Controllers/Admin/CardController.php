@@ -27,9 +27,9 @@ class CardController extends Controller
                 $Vcard_list = $query->get();
             }
             
-            return view('yellowpages::Admin.vcard_list', compact('Vcard_list'));
+            return view('yellowpages::admin.vcard_list', compact('Vcard_list'));
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Error fetching Vcard listings: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error fetching Vcard listings: ' );
         }
     }
 }
