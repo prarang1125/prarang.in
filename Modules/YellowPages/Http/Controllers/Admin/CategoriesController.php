@@ -38,50 +38,49 @@ class CategoriesController extends Controller
 
     ##------------------------- categoriesUpdate function ---------------------##
     public function categoriesUpdate(Request $request, $id)
-    {
-        try {
-            // Find the category or handle if not found
-            $category = Category::findOrFail($id);
-    
-            // Validate the request data
-            $validated = $request->validate([
-                'name' => 'required|string|max:255',
-                'slug' => 'required|string|max:255',
-                'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048', // Optional image upload
-            ]);
-    
-            // Handle the file upload if a new image is provided
-            if ($request->hasFile('image')) {
-                // Delete the old image if it exists
-                if ($category->categories_url && Storage::exists($category->categories_url)) {
+{
+    // try {
+        // Find the category or handle if not found
+        $category = Category::findOrFail($id);
 
-                    Storage::delete($category->categories_url);
-                }
-    
-                // Ensure the directory exists
-                $directory = 'yellowpages/categories';
-                // Store the new image
-                $imagePath = $request->file('image')->store($directory);
-            } else {
-                // Keep the existing image URL if no new image is uploaded
-                $imagePath = $category->categories_url;
+        // Validate the request data
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'slug' => 'required|string|max:255',
+            'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048', // Optional image upload
+        ]);
+
+        if ($request->hasFile('image')) {
+     
+            if ($category->categories_url && Storage::exists($category->categories_url)) {
+
+                Storage::delete($category->categories_url);
             }
-    
-            // Update category details
-            $category->update([
-                'name' => $request->name,
-                'slug' => $request->slug,
-                'categories_url' => $imagePath,
-                'updated_at' => Carbon::now(),
-            ]);
-    
-            return redirect()->route('admin.categories-listing')->with('success', 'Category updated successfully.');
-        } catch (ModelNotFoundException $e) {
-            return redirect()->back()->withErrors(['error' => 'Category not found.']);
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+
+            $directory = 'yellowpages/categories';
+            $imagePath = $request->file('image')->store($directory);
+        } else {
+            // Keep the existing image URL if no new image is uploaded
+            $imagePath = $category->categories_url;
         }
-    }
+       
+        $category->update([
+            'name' => $request->name,
+            'slug' => $request->slug,
+            'categories_url' => $imagePath, // Updated image path
+            'updated_at' => Carbon::now(),
+        ]);
+
+        // Return success message
+        return redirect()->route('admin.categories-listing')->with('success', 'Category updated successfully.');
+    // } catch (ModelNotFoundException $e) {
+    //     // Handle case where the category is not found
+    //     return redirect()->back()->withErrors(['error' => 'Category not found.']);
+    // } catch (\Exception $e) {
+    //     // Handle any other exceptions
+    //     return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+    // }
+}
     
     ##------------------------- END ---------------------##
 

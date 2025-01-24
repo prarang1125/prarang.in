@@ -59,7 +59,6 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
 
     ##------------------------- Business Listing ---------------------##
     Route::get('category/{category_name}', [ListingController::class, 'showByCategory'])->name('category.show');
-    Route::get('city/{city_name}', [ListingController::class, 'showByCity'])->name('city.show');
 
     Route::group(['middleware' => 'auth.custom'], function(){
       Route::get('/getLocationData', [ListingController::class, 'getLocationData'])->name('yp.getLocationData');
@@ -189,7 +188,6 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
      Route::post('admin/listing-delete/{id}', [BusinessController::class, 'listingDelete'])->name('admin.listing-delete');
      Route::get('admin/listing-edit/{id}', [BusinessController::class, 'listingEdit'])->name('admin.listing-edit');
      Route::put('admin/listing-update/{id}', [BusinessController::class, 'listingUpdate'])->name('admin.listing-update');
-
     });
 
      #this route is use for admin paymnet details
@@ -210,9 +208,8 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
 
     ##------------------------------------------ END -----------------------------------##
 
-
   // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    End yellowPages Admin Side   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-
+   Route::get('{city_name}', [ListingController::class, 'showByCity'])->name('city.show');
    Route::get('{category}/{city}', [ListingController::class, 'index'])->name('yp.listing');
    Route::get('{city_slug}/{listing_title}/{listing_id}', [ListingController::class, 'listing'])->name('yp.listing-details');
 

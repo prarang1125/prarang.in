@@ -284,8 +284,9 @@ class ListingController extends Controller
     ##------------------------- END---------------------##
 
     ##------------------------- Listing Details---------------------##
-    public function listing($city_slug, $listingId, $listing_title)
+    public function listing($city_slug, $listing_title, $listingId)
     {
+
         try {
             // Fetch the listing or fail with a 404
             $listing = BusinessListing::findOrFail($listingId);

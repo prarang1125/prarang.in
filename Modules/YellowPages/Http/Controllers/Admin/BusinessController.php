@@ -61,6 +61,7 @@ class BusinessController extends Controller
                 'social_media',
                 'listinghours',
             ));
+            
         } catch (ModelNotFoundException $e) {
             return redirect()->route('admin.business-listing')->withErrors(['error' => 'Listing not found.']);
         } catch (\Exception $e) {
@@ -86,7 +87,7 @@ class BusinessController extends Controller
                 'employees' => 'required',
                 'turnover' => 'required',
                 'category' => 'required',
-                'description' => 'required|string',
+                'description' => 'nullable',
                 'advertising' => 'required',
                 'advertising_price' => 'required',
                 'social_media' => 'nullable|string',
@@ -96,12 +97,9 @@ class BusinessController extends Controller
                 'phone' => 'nullable|string',
                 'whatsapp' => 'nullable|string',
                 'pincode' => 'nullable|string',
-                'notificationEmail' => 'nullable|email',
-                'userName' => 'nullable|string',
                 'faq' => 'nullable|string',
                 'answer' => 'nullable|string',
-                'email' => 'nullable|email',
-                'password' => 'nullable|string|min:8',
+               
 
                 // Business hours validation
                 'day' => 'required|array',
@@ -148,8 +146,6 @@ class BusinessController extends Controller
                 'website' => $validated['website'],
                 'phone' => $validated['phone'],
                 'whatsapp' => $validated['whatsapp'],
-                'notification_email' => $validated['notificationEmail'],
-                'user_name' => $validated['userName'],
                 'faq' => $validated['faq'],
                 'answer' => $validated['answer'],
                 'description' => $validated['description'],
@@ -160,8 +156,6 @@ class BusinessController extends Controller
                 'logo' => $businessLogoPath,
                 'feature_img' => $featureImagePath,
                 'business_img' => $imagePath,
-                'email' => $validated['email'],
-                'password' => isset($validated['password']) ? bcrypt($validated['password']) : null,
             ];
 
             // Create the business listing
@@ -174,6 +168,7 @@ class BusinessController extends Controller
             if (!empty($validated['day'])) {
                 foreach ($validated['day'] as $index => $day) {
                     if (!empty($validated['open_time'][$index]) && !empty($validated['close_time'][$index])) {
+
                         BusinessHour::create([
                             'business_id' => $listing->id,
                             'day' => $day,
@@ -184,13 +179,14 @@ class BusinessController extends Controller
                             'is_24_hours' => isset($validated['is_24_hours'][$index]) ? 1 : 0,
                             'add_2nd_time_slot' => isset($validated['add_2nd_time_slot'][$index]) ? 1 : 0,
                         ]);
+                        
                     }
                 }
             }
 
             return redirect()->route('yp.listing.submit')->with('success', 'Listing created successfully!');
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => 'An error occurred:' . $e->getMessage()]);
         }
     }
     ##------------------------- END ---------------------##
