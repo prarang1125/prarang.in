@@ -50,7 +50,7 @@ class AdminController extends Controller
             $users = User::all();
             return view('yellowpages::admin.user-listing', compact('users'));
         } catch (Exception $e) {
-            return redirect()->route('admin.dashboard')->withErrors(['error' => 'An error occurred while fetching user listings: ' . $e->getMessage()]);
+            return redirect()->route('admin.dashboard')->withErrors(['error' => 'An error occurred while fetching user listings: ' ]);
         }
     }
     ##------------------------- END ---------------------##
@@ -64,7 +64,7 @@ class AdminController extends Controller
         } catch (ModelNotFoundException $e) {
             return redirect()->route('admin.user-listing')->withErrors(['error' => 'User not found.']);
         } catch (Exception $e) {
-            return redirect()->route('admin.user-listing')->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+            return redirect()->route('admin.user-listing')->withErrors(['error' => 'An error occurred: ' ]);
         }
     }
     ##------------------------- END ---------------------##
@@ -107,7 +107,7 @@ class AdminController extends Controller
         } catch (ModelNotFoundException $e) {
             return redirect()->back()->withErrors(['error' => 'User not found.']);
         } catch (Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred while updating the user: ' . $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => 'An error occurred while updating the user: ' ]);
         }
     }
 
@@ -132,7 +132,7 @@ class AdminController extends Controller
     ##------------------------- userRegister function ---------------------##
     public function userRegister()
     {
-        return view('yellowpages::Admin.user-register');
+        return view('yellowpages::admin.user-register');
     }
     ##------------------------- END ---------------------##
 
@@ -166,7 +166,7 @@ class AdminController extends Controller
 
             } catch (\Exception $e) {
                 // Handle errors in user creation
-                return back()->with('error', 'There was an issue with user registration: ' . $e->getMessage());
+                return back()->with('error', 'There was an issue with user registration: ' );
             }
         } else {
             // Validation failed, return back with errors

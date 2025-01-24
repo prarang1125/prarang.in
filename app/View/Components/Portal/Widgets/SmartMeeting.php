@@ -53,7 +53,7 @@ class SmartMeeting extends Component
             }
         } catch (\Exception $e) {   
             return response()->json([
-                'error' => 'Error: ' . $e->getMessage(),
+                'error' => 'Error: ' ,
             ], 500);
         }
     }

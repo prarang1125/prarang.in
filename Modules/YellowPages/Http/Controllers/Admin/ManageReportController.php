@@ -18,7 +18,7 @@ class ManageReportController extends Controller
        {
            try {
                $reports = Report::paginate(10); 
-               return view('yellowpages::Admin.report', compact('reports'));
+               return view('yellowpages::admin.report', compact('reports'));
            } catch (\Exception $e) {
                Log::error($e->getMessage());
                return redirect()->back()->with('error', 'Unable to fetch Report. Please try again later.');

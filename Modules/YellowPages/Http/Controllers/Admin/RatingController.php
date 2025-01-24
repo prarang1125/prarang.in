@@ -19,7 +19,7 @@ class RatingController extends Controller
     {
         try {
             $reviews = Review::paginate(10); 
-            return view('yellowpages::Admin.review', compact('reviews'));
+            return view('yellowpages::admin.review', compact('reviews'));
         } catch (\Exception $e) {
             Log::error($e->getMessage());
             return redirect()->back()->with('error', 'Unable to fetch reviews. Please try again later.');

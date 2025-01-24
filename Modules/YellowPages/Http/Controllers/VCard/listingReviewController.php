@@ -40,7 +40,7 @@ class listingReviewController extends Controller
         
             return view('yellowpages::Vcard.review', compact('reviews', 'business_listings', 'error'));
         } catch (\Exception $e) {
-            Log::error('Error fetching reviews: ' . $e->getMessage());
+            Log::error('Error fetching reviews: ' );
             return redirect()->route('vCard.Rating')->with('error', 'Unable to fetch reviews. Please try again later.');
         }
     }

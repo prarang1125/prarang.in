@@ -27,7 +27,7 @@ class VCardController extends Controller
         try {
             return view("yellowpages::Home.vcard");
         } catch (\Exception $e) {
-            Log::error('Error in index method: ' . $e->getMessage());
+            Log::error('Error in index method: ' );
             return redirect()->back()->withErrors(['error' => 'Unable to load the VCard page.']);
         }
     }
@@ -60,7 +60,7 @@ class VCardController extends Controller
             // Pass the data to the view
             return view('yellowpages::Vcard.dashboard', compact('totalscan', 'plan', 'viewcount'));
         } catch (\Exception $e) {
-            Log::error('Error in dashboard method: ' . $e->getMessage());
+            Log::error('Error in dashboard method: ' );
             return redirect()->back()->withErrors(['error' => 'Unable to load the dashboard.']);
         }
     }
@@ -74,7 +74,7 @@ class VCardController extends Controller
             $dynamicFields = DynamicFeild::where('is_active', 1)->get();
             return view('yellowpages::Vcard.Card', compact('dynamicFields'));
         } catch (\Exception $e) {
-            Log::error('Error in createCard method: ' . $e->getMessage());
+            Log::error('Error in createCard method: ' );
             return redirect()->back()->withErrors(['error' => 'Unable to load the Create Card page.']);
         }
     }
@@ -87,7 +87,7 @@ class VCardController extends Controller
             Auth::guard('web')->logout(); // Use the default Laravel authentication guard
             return redirect()->route('yp.login'); // Redirect to login page
         } catch (\Exception $e) {
-            Log::error('Error in logout method: ' . $e->getMessage());
+            Log::error('Error in logout method: ' );
             return redirect()->back()->withErrors(['error' => 'Unable to logout.']);
         }
     }

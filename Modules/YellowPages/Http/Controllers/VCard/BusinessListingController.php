@@ -33,7 +33,7 @@ class BusinessListingController extends Controller
             return view('yellowpages::Vcard.business-listing', compact('business_listing'));
         } catch (Exception $e) {
             // return $e->getMessage();
-            return redirect()->back()->with('error', 'Error fetching business listings: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error fetching business listings: ' );
         }
     }
     ##------------------------- END ---------------------##
@@ -60,7 +60,7 @@ class BusinessListingController extends Controller
                 'social_media'
             ));
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
         }
     }
     ##------------------------- END ---------------------##
@@ -86,7 +86,7 @@ class BusinessListingController extends Controller
             // Pass the data to the view
             return view('yellowpages::Vcard.Save-listing', compact('business_listing', 'save_listing'));
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Error retrieving business listing: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error retrieving business listing: ' );
         }
     }
     
@@ -120,7 +120,7 @@ class BusinessListingController extends Controller
                 'listinghours'
             ));
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Error fetching business data: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error fetching business data: ' );
         }
     }
     ##------------------------- END ---------------------##
@@ -240,7 +240,7 @@ class BusinessListingController extends Controller
 
             return redirect()->route('vCard.business-listing')->with('success', 'Listing updated successfully');
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Error updating business listing: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error updating business listing: ' );
         }
     }
     ##------------------------- END ---------------------##

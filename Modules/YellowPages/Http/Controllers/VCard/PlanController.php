@@ -37,7 +37,7 @@ class PlanController extends Controller
 
             return view('yellowpages::Vcard.plan', compact('purchasePlan','planHistory', 'planDetails'));
         } catch (\Exception $e) {
-            Log::error('Error fetching plan details: ' . $e->getMessage());
+            Log::error('Error fetching plan details: ' );
             return redirect()->back()->with('error', 'Unable to fetch plan details.');
         }
     }
@@ -55,7 +55,7 @@ class PlanController extends Controller
     
             return view("yellowpages::Vcard.planDetails", compact('plans', 'purchasePlan'));
         } catch (\Exception $e) {
-            Log::error('Error fetching plan details: ' . $e->getMessage());
+            Log::error('Error fetching plan details: ' );
             return redirect()->back()->with('error', 'Unable to fetch plan details.');
         }
     }
@@ -113,7 +113,7 @@ class PlanController extends Controller
 
             return redirect($checkoutSession->url);
         } catch (\Exception $e) {
-            Log::error('Error during Stripe Checkout: ' . $e->getMessage());
+            Log::error('Error during Stripe Checkout: ' );
             return redirect()->back()->with('error', 'Unable to initiate payment. Please try again.');
         }
     }
@@ -176,7 +176,7 @@ class PlanController extends Controller
 
             return redirect()->route('vCard.planDetails')->with('success', 'Payment successful and plan activated!');
         // } catch (\Exception $e) {
-        //     Log::error('Error in payment success: ' . $e->getMessage());
+        //     Log::error('Error in payment success: ' );
         //     return redirect()->back()->with('error', 'Unable to process payment. Please contact support.');
         // }
     }
@@ -190,7 +190,7 @@ class PlanController extends Controller
         try {
             return redirect()->route('vCard.planDetails')->with('error', 'Payment was canceled.');
         } catch (\Exception $e) {
-            Log::error('Error handling payment cancellation: ' . $e->getMessage());
+            Log::error('Error handling payment cancellation: ' );
             return redirect()->back()->with('error', 'Unable to handle payment cancellation.');
         }
     }
@@ -205,7 +205,7 @@ class PlanController extends Controller
             $paymentHistories = PaymentHistory::with('plan')->where('user_id', $userId)->get();            // Assuming 'plan' relationship exists
             return view('yellowpages::Vcard.payment_history', compact('paymentHistories'));
         } catch (\Exception $e) {
-            Log::error('Error fetching payment history: ' . $e->getMessage());
+            Log::error('Error fetching payment history: ' );
             return redirect()->back()->with('error', 'Unable to fetch payment history.');
         }
     }
