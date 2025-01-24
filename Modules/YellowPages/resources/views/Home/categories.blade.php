@@ -7,15 +7,14 @@
     
         <!-- Header with Background Color -->
         <div style="background-image: url('{{ Storage::url('categories/cate_bg.jpg') }}'); background-size: cover; background-position: center; padding: 60px; color: white; text-align: center;">
-            <h1 style="padding-top: 20px;">शिल्प सूचियाँ</h1>
+            <h1 style="padding-top: 20px;">{{$city_name}} येलोपेजेस</h1>
         </div>
     
         <!-- Listings Section -->
         <div style="max-width: 1200px; margin: 20px auto; padding: 0 20px;">
             <div style="font-size: 24px; margin-bottom: 20px;">
-                लिस्टिंग के लिए परिणाम
+                सूची के लिए परिणाम
             </div>
-
             <!-- Filters Section -->
 <div style="display: flex; justify-content: space-evenly; align-items: center; margin-bottom: 20px; padding: 20px; background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
     <!-- Filter Options with Checkboxes -->

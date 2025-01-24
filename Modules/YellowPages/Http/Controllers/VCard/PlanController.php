@@ -201,7 +201,8 @@ class PlanController extends Controller
     public function paymentHistory()
     {
         try {
-            $paymentHistories = PaymentHistory::with('plan')->get(); // Assuming 'plan' relationship exists
+            $userId = Auth::id();
+            $paymentHistories = PaymentHistory::with('plan')->where('user_id', $userId)->get();            // Assuming 'plan' relationship exists
             return view('yellowpages::Vcard.payment_history', compact('paymentHistories'));
         } catch (\Exception $e) {
             Log::error('Error fetching payment history: ' . $e->getMessage());

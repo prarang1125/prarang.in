@@ -22,7 +22,10 @@
             </li>
 
         <!-- vCard Management (only for vCard or both plan users) -->
-        @if(Auth::user()->subscription->plan->type == 'वीकार्ड' || Auth::user()->subscription->plan->type == 'दोनों')
+
+        @if(Auth::user()->subscription && Auth::user()->subscription->plan)
+    @if(Auth::user()->subscription->plan->type == 'वीकार्ड' || Auth::user()->subscription->plan->type == 'दोनों')
+        
             <li>
                 <a href="{{ url('yellow-pages/user/createCard') }}">
                     <div class="parent-icon"><i class="lni lni-user"></i></div>
@@ -35,6 +38,7 @@
                     <div class="menu-title">वीकार्ड सूची</div>
                 </a>
             </li>
+        @endif
         @endif
 
         <!-- Subscription Plans -->
@@ -66,6 +70,7 @@
     @endif
 
     <!-- Business Section (only for YellowPages or Both plans) -->
+    @if(Auth::user()->subscription && Auth::user()->subscription->plan)
     @if(Auth::check() && (Auth::user()->subscription->plan->type == 'येलोपेज' || Auth::user()->subscription->plan->type == 'दोनों'))
         <h6>व्यापार</h6>
         <!-- Business Listing and Related Sections -->
@@ -87,6 +92,7 @@
                 <div class="menu-title">समीक्षा</div>
             </a>
         </li>
+    @endif
     @endif
 
     <!-- Message Section (Available for all users) -->

@@ -30,12 +30,13 @@
                     <td>{{ $plan->duration }}दिन</td>
                     <td>{{ $plan->type }}</td>
                     <td>
+                        
                         <form action="{{ route('vcard.stripeCheckout') }}" method="POST" nctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="plan_id" value="{{ $plan->id }}">
                             <input type="hidden" name="price" value="{{ $plan->price }}">
                             {{-- <button type="submit" class="btn btn-danger">Purchase</button> --}}
-                                @if($purchasePlan->plan_id == $plan->id)
+                            @if($purchasePlan && $purchasePlan->plan_id == $plan->id)                                
                                     <button type="button" class="btn btn-success">वर्तमान योजना</button>
                                 @else
                                     <form action="{{ url('yellow-pages/vCard/purchase') }}" method="POST">
@@ -44,7 +45,6 @@
                                         <button type="submit" class="btn btn-danger">खरीद योजना</button>
                                     </form>
                                 @endif
-                        
                         </form>
                     </td>
                 </tr>
