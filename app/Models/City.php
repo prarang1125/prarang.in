@@ -8,7 +8,7 @@ class City extends Model
 {
     protected $connection = 'yp';
 
-    protected $table = 'cities'; 
+    protected $table = 'cities';
 
     protected $fillable = [
         'name',
@@ -18,5 +18,9 @@ class City extends Model
         'created_at',
         'updated_at'
     ];
+    public function portal()
+{
+    return $this->hasOne(Portal::class, 'city_id');
+}
 
 }
