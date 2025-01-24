@@ -57,7 +57,7 @@ class AuthModalController extends Controller
         // Return with error if login fails
         return redirect()->back()->withErrors(['loginError' => 'Invalid credentials'])->withInput();
     } catch (\Exception $e) {
-        return redirect()->back()->withErrors(['error' => 'An error occurred during login: ' . $e->getMessage()])->withInput();
+        return redirect()->back()->withErrors(['error' => 'An error occurred during login: ' ])->withInput();
     }
 }
 
@@ -108,7 +108,7 @@ class AuthModalController extends Controller
             return redirect()->back()->withErrors($e->errors())->withInput();
         } catch (\Exception $e) {
             // Handle general errors and provide feedback
-            return redirect()->back()->withErrors(['error' => 'An error occurred during registration: ' . $e->getMessage()])->withInput();
+            return redirect()->back()->withErrors(['error' => 'An error occurred during registration: ' ])->withInput();
         }
     }
     ##------------------------- END ---------------------##
@@ -124,7 +124,7 @@ class AuthModalController extends Controller
 
             return redirect()->route('yp.home'); // Redirect to home page after logout
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred during logout: ' . $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => 'An error occurred during logout: ' ]);
         }
     }
     ##------------------------- END ---------------------##

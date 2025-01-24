@@ -25,9 +25,9 @@ class PaymentController extends Controller
     
             $paymentHistories = $query->get();
     
-            return view('yellowpages::Admin.payment_history', compact('paymentHistories'));
+            return view('yellowpages::admin.payment_history', compact('paymentHistories'));
         } catch (\Exception $e) {
-            return redirect()->route('admin.dashboard')->withErrors(['error' => 'An error occurred while fetching payment history: ' . $e->getMessage()]);
+            return redirect()->route('admin.dashboard')->withErrors(['error' => 'An error occurred while fetching payment history: ' ]);
         }
     }
     ##------------------------- END ---------------------##
@@ -48,9 +48,9 @@ class PaymentController extends Controller
     
             $paymentHistories = $query->get();
         
-            return view('yellowpages::Admin.purchase_plan', compact('paymentHistories'));
+            return view('yellowpages::admin.purchase_plan', compact('paymentHistories'));
         } catch (\Exception $e) {
-            return redirect()->route('admin.dashboard')->withErrors(['error' => 'An error occurred while fetching payment history: ' . $e->getMessage()]);
+            return redirect()->route('admin.dashboard')->withErrors(['error' => 'An error occurred while fetching payment history: ' ]);
         }
     }
     

@@ -30,7 +30,7 @@ class VcardQRController extends Controller
             $qrCode = QrCode::size(200)->generate(route('vCard.scanView', ['id'=>$vcard->id,'slug' => $vcard->slug]));
             return view('yellowpages::Vcard.QRvCard', compact('qrCode', 'vcardId'));
         } catch (\Exception $e) {
-            Log::error('Error generating QR code: ' . $e->getMessage());
+            Log::error('Error generating QR code: ' );
             return redirect()->back()->withErrors(['error' => 'Unable to generate QR code.']);
         }
     }
@@ -52,7 +52,7 @@ class VcardQRController extends Controller
 
             return response()->download($tempFile, 'vcard_qr_code.png')->deleteFileAfterSend(true);
         } catch (\Exception $e) {
-            Log::error('Error downloading QR code: ' . $e->getMessage());
+            Log::error('Error downloading QR code: ' );
             return redirect()->back()->withErrors(['error' => 'Unable to download QR code.']);
         }
     }
@@ -77,7 +77,7 @@ class VcardQRController extends Controller
             return view('yellowpages::Vcard.CardView', compact('vcard'));
 
         } catch (\Exception $e) {
-            Log::error('Error in scanAndView: ' . $e->getMessage());
+            Log::error('Error in scanAndView: ' );
             return redirect()->back()->withErrors(['error' => 'Unable to view the vCard.']);
         }
     }

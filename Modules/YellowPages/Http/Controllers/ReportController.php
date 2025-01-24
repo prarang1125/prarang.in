@@ -55,7 +55,7 @@ class ReportController extends Controller
 
             return redirect()->back()->with('success', 'Report submitted successfully.');
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Error submitting report: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error submitting report: ' );
         }
     }
 
@@ -67,7 +67,7 @@ class ReportController extends Controller
             $report_list = Report::where('user_id', Auth::id())->get();
             return view('yellowpages::Vcard.report-list', compact('report_list'));
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Error fetching report listings: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error fetching report listings: ' );
         }
     }
     ##------------------------- END ---------------------##

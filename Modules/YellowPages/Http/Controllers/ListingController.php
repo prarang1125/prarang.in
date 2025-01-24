@@ -35,7 +35,7 @@ class ListingController extends Controller
 
                 return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities', 'category_name'));
             } catch (\Exception $e) {
-                return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+                return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
             }
         }
 
@@ -55,7 +55,7 @@ class ListingController extends Controller
 
                 return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities', 'city_name'));
             } catch (\Exception $e) {
-                return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+                return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
             }
         }
     ##------------------------- END---------------------##
@@ -105,7 +105,7 @@ class ListingController extends Controller
 
                 return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities'));
             } catch (\Exception $e) {
-                return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+                return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
             }
         }
     ##------------------------- END---------------------##
@@ -140,7 +140,7 @@ class ListingController extends Controller
                 'social_media'
             ));
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
         }
     }
     ##------------------------- END---------------------##
@@ -278,7 +278,7 @@ class ListingController extends Controller
 
     } catch (\Exception $e) {
         // Catch any exceptions and return error message
-        return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+        return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
     }
     }
     ##------------------------- END---------------------##
@@ -366,7 +366,7 @@ class ListingController extends Controller
 
             return redirect()->back()->with('success', 'Saved successfully!');
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
         }
     }
     ##------------------------- Save Listing ---------------------##

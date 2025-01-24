@@ -16,9 +16,9 @@ class CategoriesController extends Controller
     public function categoriesListing(Request $request) {
         try {
             $categories = Category::all();
-            return view('yellowpages::Admin.categories-listing', compact('categories'));
+            return view('yellowpages::admin.categories-listing', compact('categories'));
         } catch (\Exception $e) {
-            return redirect()->route('admin.dashboard')->withErrors(['error' => 'An error occurred while fetching categories: ' . $e->getMessage()]);
+            return redirect()->route('admin.dashboard')->withErrors(['error' => 'An error occurred while fetching categories: ' ]);
         }
     }
     ##------------------------- END ---------------------##
@@ -27,11 +27,11 @@ class CategoriesController extends Controller
     public function categoriesEdit($id){
         try {
             $category = Category::findOrFail($id);
-            return view('yellowpages::Admin.categories-edit', compact('category'));
+            return view('yellowpages::admin.categories-edit', compact('category'));
         } catch (ModelNotFoundException $e) {
             return redirect()->route('admin.categories-listing')->withErrors(['error' => 'Category not found.']);
         } catch (\Exception $e) {
-            return redirect()->route('admin.categories-listing')->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+            return redirect()->route('admin.categories-listing')->withErrors(['error' => 'An error occurred: ' ]);
         }
     }
     ##------------------------- END ---------------------##
@@ -78,7 +78,7 @@ class CategoriesController extends Controller
     //     return redirect()->back()->withErrors(['error' => 'Category not found.']);
     // } catch (\Exception $e) {
     //     // Handle any other exceptions
-    //     return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+    //     return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
     // }
 }
     
@@ -94,7 +94,7 @@ class CategoriesController extends Controller
         } catch (ModelNotFoundException $e) {
             return redirect()->route('admin.categories-listing')->withErrors(['error' => 'Category not found.']);
         } catch (\Exception $e) {
-            return redirect()->route('admin.categories-listing')->withErrors(['error' => 'An error occurred while trying to delete the category: ' . $e->getMessage()]);
+            return redirect()->route('admin.categories-listing')->withErrors(['error' => 'An error occurred while trying to delete the category: ' ]);
         }
     }
     ##------------------------- END ---------------------##
@@ -102,7 +102,7 @@ class CategoriesController extends Controller
     ##------------------------- categoriesRegister function ---------------------##
     public function categoriesRegister()
     {
-        return view('yellowpages::Admin.categories-register');
+        return view('yellowpages::admin.categories-register');
     }
     ##------------------------- END ---------------------##
 
@@ -140,7 +140,7 @@ class CategoriesController extends Controller
 
             } catch (\Exception $e) {
                 // Handle errors in category creation
-                return back()->with('error', 'There was an issue with category creation: ' . $e->getMessage());
+                return back()->with('error', 'There was an issue with category creation: ' );
             }
         } else {
             // Validation failed, return back with errors

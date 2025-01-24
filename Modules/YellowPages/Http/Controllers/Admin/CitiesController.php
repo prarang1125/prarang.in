@@ -20,9 +20,9 @@ class CitiesController extends Controller
     public function citiesListing(Request $request) {
         try {
             $cities = City::where('is_active', 1)->get();
-            return view('yellowpages::Admin.cities-listing', compact('cities'));
+            return view('yellowpages::admin.cities-listing', compact('cities'));
         } catch (\Exception $e) {
-            return redirect()->route('admin.dashboard')->withErrors(['error' => 'An error occurred while fetching cities: ' . $e->getMessage()]);
+            return redirect()->route('admin.dashboard')->withErrors(['error' => 'An error occurred while fetching cities: ' ]);
         }
     }
     ##------------------------- END ---------------------##
@@ -31,11 +31,11 @@ class CitiesController extends Controller
     public function citiesEdit($id){
         try {
             $cities = City::findOrFail($id);
-            return view('yellowpages::Admin.cities-edit', compact('cities'));
+            return view('yellowpages::admin.cities-edit', compact('cities'));
         } catch (ModelNotFoundException $e) {
             return redirect()->route('admin.cities-listing')->withErrors(['error' => 'City not found.']);
         } catch (\Exception $e) {
-            return redirect()->route('admin.cities-listing')->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+            return redirect()->route('admin.cities-listing')->withErrors(['error' => 'An error occurred: ' ]);
         }
     }
     ##------------------------- END ---------------------##
@@ -78,7 +78,7 @@ class CitiesController extends Controller
         } catch (ModelNotFoundException $e) {
             return redirect()->back()->withErrors(['error' => 'City not found.']);
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+            return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
         }
     }
     ##------------------------- END ---------------------##
@@ -93,7 +93,7 @@ class CitiesController extends Controller
         } catch (ModelNotFoundException $e) {
             return redirect()->route('admin.cities-listing')->withErrors(['error' => 'City not found.']);
         } catch (\Exception $e) {
-            return redirect()->route('admin.cities-listing')->withErrors(['error' => 'An error occurred while trying to delete the city: ' . $e->getMessage()]);
+            return redirect()->route('admin.cities-listing')->withErrors(['error' => 'An error occurred while trying to delete the city: ' ]);
         }
     }
     ##------------------------- END ---------------------##
@@ -102,7 +102,7 @@ class CitiesController extends Controller
     public function citiesRegister()
     {
         $portals = Portal::all();
-        return view('yellowpages::Admin.cities-register', compact('portals'));
+        return view('yellowpages::admin.cities-register', compact('portals'));
     }
 
     ##------------------------- END ---------------------##
@@ -141,7 +141,7 @@ class CitiesController extends Controller
 
             // } catch (\Exception $e) {
             //     // Handle errors in city creation
-            //     return back()->with('error', 'There was an issue with city creation: ' . $e->getMessage());
+            //     return back()->with('error', 'There was an issue with city creation: ' );
             // }
         } else {
             // Validation failed, return back with errors

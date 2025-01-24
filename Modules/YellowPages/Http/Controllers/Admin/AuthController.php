@@ -68,7 +68,7 @@ class AuthController extends Controller
             }
 
         } catch (Exception $e) {
-            return redirect()->route('admin.login')->with('error', 'Error during authentication: ' . $e->getMessage());
+            return redirect()->route('admin.login')->with('error', 'Error during authentication: ' );
         }
     }
 
