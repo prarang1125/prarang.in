@@ -19,8 +19,7 @@ class City extends Model
         'updated_at'
     ];
     public function portal()
-{
-    return $this->hasOne(Portal::class, 'city_id');
-}
-
+    {
+        return $this->belongsTo(Portal::class, 'portal_id');
+    }
 }
