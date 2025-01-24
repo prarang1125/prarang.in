@@ -160,7 +160,8 @@ class ListingController extends Controller
     ##------------------------- Add Listing ---------------------##
     public function store(Request $request)
     {
-        try {
+
+        // try {
             // Validation rules
             $validated = $request->validate([
                 'location' => 'required',
@@ -191,12 +192,8 @@ class ListingController extends Controller
                 'whatsapp' => 'nullable|string',
                 'socialId' => 'nullable|string',
                 'socialDescription' => 'nullable|string',
-                'notificationEmail' => 'nullable|email',
-                'userName' => 'nullable|string',
                 'faq' => 'nullable|string',
                 'answer' => 'nullable|string',
-                'email' => 'nullable',
-                'password' => 'nullable',
                 'agree' => 'nullable|accepted',
                 'day' => 'required|array',
                 'day.*' => 'required|string',
@@ -263,6 +260,7 @@ class ListingController extends Controller
                 'business_img' => $imagePath,
                 'agree' => isset($validated['agree']) ? 1 : 0,
             ];
+            dd( $data);
 
 
             // Create the business listing
@@ -288,10 +286,10 @@ class ListingController extends Controller
         // Redirect to the success page
         return redirect()->route('yp.listing.submit')->with('success', 'Listing created successfully!');
 
-    } catch (\Exception $e) {
-        // Catch any exceptions and return error message
-        return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
-    }
+    // } catch (\Exception $e) {
+    //     // Catch any exceptions and return error message
+    //     return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
+    // }
     }
     ##------------------------- END---------------------##
 
