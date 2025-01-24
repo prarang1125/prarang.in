@@ -36,7 +36,7 @@
                     <p>Geographic Intelligence through Comparison</p>
         </section>
         <p class="text-end">
-        <a href="https://planner.prarang.in/login" class="btn btn-warning btn-sm">Partner Login</a></p>
+        <a href="https://g2c.prarang.in/login" class="btn btn-warning btn-sm">Partner Login</a></p>
         <section class="container">
               <p>Prarang's Geographic Intelligence is a comprehensive big data solution that provides valuable insights into various geographic regions in India and across the world. It is a powerful solution that provides businesses with the data they need to plan their global expansion, understand regional development disparities in India, select the best entry points for market expansion, and run successful advertising campaigns in local languages, tailored to specific regional preferences. With access to these crucial insights, companies & governments/NGOs can make data-driven decisions and thrive by going hyper-local in today's competitive business market.</p>
               
