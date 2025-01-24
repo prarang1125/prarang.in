@@ -464,6 +464,20 @@
         .main-post .main-image .frameVid{
             margin-top:30px;
  }
+
+ @media (max-width:768px){
+
+/* Img fluid */
+.container .row .text-center .stk-side .recent-poet .rounded a .img-fluid{
+ height:100% !important;
+}
+
+/* Img fluid */
+.recent-poet a .img-fluid{
+ max-height:100% !important;
+}
+
+}
     </style>
 </head>
 
@@ -571,7 +585,7 @@
                     <div class="pt-2 pb-2 mt-3 recent-poet text-start">
                         <h6 class="ps-2 fw-bold">Recent Posts</h6>
                         @foreach ($recentPosts as $post)
-                            <a
+                            <a style="text-decoration-line: none;"
                                 href="{{ route('post-summary', ['slug' => $slug, 'id' => $post->chittiId, 'subTitle' => Str::slug($post->SubTitle)]) }}">
                                 <div class="p-2 mt-3 rounded shadow">
                                     <img class="img-fluid rounded-top w-100" src="{{ $post->imageUrl }}"
