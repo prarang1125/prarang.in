@@ -188,7 +188,6 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
      Route::post('admin/listing-delete/{id}', [BusinessController::class, 'listingDelete'])->name('admin.listing-delete');
      Route::get('admin/listing-edit/{id}', [BusinessController::class, 'listingEdit'])->name('admin.listing-edit');
      Route::put('admin/listing-update/{id}', [BusinessController::class, 'listingUpdate'])->name('admin.listing-update');
-
     });
 
      #this route is use for admin paymnet details

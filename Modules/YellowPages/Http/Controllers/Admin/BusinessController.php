@@ -61,6 +61,7 @@ class BusinessController extends Controller
                 'social_media',
                 'listinghours',
             ));
+            
         } catch (ModelNotFoundException $e) {
             return redirect()->route('admin.business-listing')->withErrors(['error' => 'Listing not found.']);
         } catch (\Exception $e) {
@@ -167,6 +168,7 @@ class BusinessController extends Controller
             if (!empty($validated['day'])) {
                 foreach ($validated['day'] as $index => $day) {
                     if (!empty($validated['open_time'][$index]) && !empty($validated['close_time'][$index])) {
+
                         BusinessHour::create([
                             'business_id' => $listing->id,
                             'day' => $day,
@@ -177,6 +179,7 @@ class BusinessController extends Controller
                             'is_24_hours' => isset($validated['is_24_hours'][$index]) ? 1 : 0,
                             'add_2nd_time_slot' => isset($validated['add_2nd_time_slot'][$index]) ? 1 : 0,
                         ]);
+                        
                     }
                 }
             }
