@@ -12,7 +12,6 @@
             </div>
             
             <div class="col-md-4">
-                <h5>क्विक लिंक</h5>
                 <ul class="list-unstyled">
                     <li style="font-size: 18px;"><a href="{{ route('yp.home') }}" class="text-decoration-none text-dark">होम</a></li>
                     <li style="font-size: 18px;"><a href="{{ route('yp.login') }}" class="text-decoration-none text-dark">लॉगिन करें</a></li>

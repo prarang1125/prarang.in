@@ -37,7 +37,7 @@ class HomeController extends Controller
             });
 
             // Return the view with data
-            return view('yellowpages::Home.home', compact('categories', 'cities', 'listings'));
+            return view('yellowpages::home.home', compact('categories', 'cities', 'listings'));
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred while fetching data: ' ]);
         }
@@ -48,7 +48,7 @@ class HomeController extends Controller
     public function listing_plan()
     {
         try {
-            return view("yellowpages::Home.listing_plan");
+            return view("yellowpages::home.listing_plan");
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred while loading the listing plan page: ' ]);
         }
@@ -59,7 +59,7 @@ class HomeController extends Controller
     public function bazzar_plan()
     {
         try {
-            return view("yellowpages::Home.bazzar_plan");
+            return view("yellowpages::home.bazzar_plan");
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred while loading the bazaar plan page: ' ]);
         }
@@ -70,7 +70,7 @@ class HomeController extends Controller
     public function add_listing()
     {
         try {
-            return view('yellowpages::Home.add_listing');
+            return view('yellowpages::home.add_listing');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred while loading the add listing page: ' ]);
         }
@@ -99,7 +99,7 @@ class HomeController extends Controller
             $categories = Category::all();
             $cities = City::all();
 
-            return view('yellowpages::Home.home', compact('categories', 'cities'));
+            return view('yellowpages::home.home', compact('categories', 'cities'));
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred while fetching dropdown data: ' ]);
         }
@@ -112,7 +112,7 @@ class HomeController extends Controller
         try {
             $plans= Plan::all();
 
-            return view('yellowpages::Home.plan', compact('plans'));
+            return view('yellowpages::home.plan', compact('plans'));
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred while fetching dropdown data: ' ]);
         }

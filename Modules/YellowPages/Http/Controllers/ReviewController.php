@@ -70,7 +70,7 @@ class ReviewController extends Controller
     ##------------------------- Thank you for Submit Page ---------------------##
     public function submit_review()
     {
-        return view("yellowpages::Home.review-submit");
+        return view("yellowpages::home.review-submit");
     }
     ##------------------------- END ---------------------##
 
