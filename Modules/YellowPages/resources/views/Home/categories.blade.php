@@ -10,6 +10,11 @@
             <h1 style="padding-top: 20px;">{{$city_name}} येलोपेजेस</h1>
         </div>
     
+        <div class="card-body d-flex justify-content-end align-items-end" style="padding-right: 50px;">
+            <a href="{{ route('yp.home') }}" class="btn btn-primary">वापास जाए</a>
+        </div>
+        
+        
         <!-- Listings Section -->
         <div style="max-width: 1200px; margin: 20px auto; padding: 0 20px;">
             <div style="font-size: 24px; margin-bottom: 20px;">
@@ -64,9 +69,7 @@
     @foreach($listings as $listing)
         <a href="{{ route('yp.listing-details', ['city_slug' => $listing->city->name, 'listing_title' => $listing->listing_title, 'listing_id' => $listing->id]) }}" 
            style="display: block; background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center; text-decoration: none;">
-            <img src="{{ storage::url($listing->feature_img ?? 'default.jpg') }}" 
-                 alt="{{ $listing->listing_title }}" 
-                 style="width: 100%; height: auto;">
+           <img src="{{ Storage::url($listing->feature_img ?? 'default.jpg') }}" style="width: 200px; height: 200px; object-fit: cover;">
             <div style="padding: 20px;">
                 <div style="background-color: {{ $listing->status === 'Closed' ? '#ff4d4d' : '#28a745' }}; color: white; padding: 5px; border-radius: 5px; font-size: 12px; display: inline-block; margin-bottom: 10px;">
                     {{ $listing->is_open ? 'Open' : 'Closed' }}
