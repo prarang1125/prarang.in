@@ -20,7 +20,7 @@
             </div>
             
             <div class="col-md-4">
-                <h4>सोशल मीडिया</h4>
+                <h5>सोशल मीडिया</h5>
                 <div class="credits">
                     <a href="https://www.facebook.com/prarang.in" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                         <i class="bi bi-facebook" style="font-size: 24px; margin-right: 15px;"></i>
