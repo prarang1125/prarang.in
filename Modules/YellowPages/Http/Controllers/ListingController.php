@@ -260,8 +260,6 @@ class ListingController extends Controller
                 'business_img' => $imagePath,
                 'agree' => isset($validated['agree']) ? 1 : 0,
             ];
-            dd( $data);
-
 
             // Create the business listing
             $listing = BusinessListing::create($data);
