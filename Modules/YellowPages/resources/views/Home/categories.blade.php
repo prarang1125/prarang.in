@@ -7,8 +7,21 @@
     
         <!-- Header with Background Color -->
         <div style="background-image: url('{{ Storage::url('categories/cate_bg.jpg') }}'); background-size: cover; background-position: center; padding: 60px; color: white; text-align: center;">
-            <h1 style="padding-top: 20px;">{{$city_name}} येलोपेजेस</h1>
+            @if(isset($city_name) && $city_name)
+                <h1 style="padding-top: 20px;">
+                    {{$city_name}} येलोपेजेस
+                </h1>
+            @elseif(isset($city) && $city)
+                <h1 style="padding-top: 20px;">
+                    {{$city}} येलोपेजेस
+                </h1>
+            @else
+                <h1 style="padding-top: 20px;">
+                    {{$category_name}}
+                </h1>
+            @endif
         </div>
+        
     
         <div class="card-body d-flex justify-content-end align-items-end" style="padding-right: 50px;">
             <a href="{{ route('yp.home') }}" class="btn btn-primary">वापास जाए</a>

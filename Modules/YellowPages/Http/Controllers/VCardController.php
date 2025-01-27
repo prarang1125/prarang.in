@@ -25,7 +25,7 @@ class VCardController extends Controller
     public function index()
     {
         try {
-            return view("yellowpages::Home.vcard");
+            return view("yellowpages::home.vcard");
         } catch (\Exception $e) {
             Log::error('Error in index method: ' );
             return redirect()->back()->withErrors(['error' => 'Unable to load the VCard page.']);

@@ -25,23 +25,30 @@ class ListingController extends Controller
     ##------------------------- Show Category---------------------##
 
     public function showByCategory($category_name)
-    {
-        try {
-            $categories = Category::where('is_active', 1)->get();
+{
+    // try {
+        // Get all active categories
+        $categories = Category::where('is_active', 1)->get();
 
+        // Get all active cities
+        $cities = City::where('is_active', 1)->get();
 
-            $cities = City::where('is_active', 1)->get();
+        // Find the requested category by its slug, or fail with a 404 error if not found
+        $category = Category::where('slug', $category_name)->firstOrFail();
 
-            $category = Category::where('slug', $category_name)->firstOrFail();
-            $listings = BusinessListing::with(['category', 'hours'])
-                ->whereHas('category', fn($q) => $q->where('slug', $category->slug))
-                ->get();
+        // Get listings associated with the specific category
+        $listings = BusinessListing::with(['category', 'hours','city'])
+            ->whereHas('category', fn($q) => $q->where('slug', $category->slug))
+            ->get();
 
-                return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities', 'category_name'));
-            } catch (\Exception $e) {
-                return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
-            }
-        }
+        // Return the view with the required data
+        return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'category_name'));
+
+    // } catch (\Exception $e) {
+    //     // Detailed error message for debugging
+    //     return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+    // }
+}
 
     ##------------------------- END---------------------##
 
@@ -64,7 +71,7 @@ class ListingController extends Controller
                 ->get();
 
     
-                return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities', 'city_name'));
+                return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'city_name'));
             } catch (\Exception $e) {
                 return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
             }
@@ -76,7 +83,7 @@ class ListingController extends Controller
     {
         try {
             $categories = Category::where('is_active', 1)->get();
-            $cities = City::where('is_active', 1)->get();
+            $city_name= City::where('is_active', 1)->get();
 
             $query = BusinessListing::query();
 
@@ -114,7 +121,7 @@ class ListingController extends Controller
                 return $listing;
             });
 
-                return view('yellowpages::Home.categories', compact('listings', 'categories', 'cities'));
+                return view('yellowpages::home.categories', compact('listings', 'categories', 'city'));
             } catch (\Exception $e) {
                 return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
             }
@@ -124,7 +131,7 @@ class ListingController extends Controller
     ##------------------------- Submit Listing---------------------##
     public function submit_listing()
     {
-        return view("yellowpages::Home.submit_listing");
+        return view("yellowpages::home.submit_listing");
     }
     ##------------------------- END---------------------##
 
@@ -141,7 +148,7 @@ class ListingController extends Controller
             $social_media = DB::connection('yp')->select('SELECT * FROM social_media_platforms');
             $Category = Category::on('yp')->get();
 
-            return view('yellowpages::Home.add_listing', compact(
+            return view('yellowpages::home.add_listing', compact(
                 'cities',
                 'company_legal_type',
                 'number_of_employees',
@@ -261,6 +268,7 @@ class ListingController extends Controller
                 'agree' => isset($validated['agree']) ? 1 : 0,
             ];
 
+
             // Create the business listing
             $listing = BusinessListing::create($data);
             if (!$listing) {
@@ -343,7 +351,7 @@ class ListingController extends Controller
                 }
             }
 
-            return view('yellowpages::Home.listing', compact('listing', 'listingHours', 'isOpen'));
+            return view('yellowpages::home.listing', compact('listing', 'listingHours', 'isOpen'));
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Listing not found.');
         }

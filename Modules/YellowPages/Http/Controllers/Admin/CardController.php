@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Auth;
 class CardController extends Controller
 {
     public function VcardList(Request $request) {
-        try {
+         try {
             $query = Vcard::where('is_active', 1);
             
             // Check if there's a search query
