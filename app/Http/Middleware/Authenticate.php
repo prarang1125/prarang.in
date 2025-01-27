@@ -18,7 +18,7 @@ class Authenticate
     public function handle($request, Closure $next)
     {
         if (!Auth::check()) {
-            return redirect()->route('vCard.login');
+            return redirect()->route('yp.login');
         }
 
         return $next($request);

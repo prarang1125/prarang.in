@@ -192,8 +192,6 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
 
     #this route is use for admin Vcard details
      Route::get('admin/vcard-list', [CardController::class, 'VcardList'])->name('admin.Vcardlist');
-
-
     ##------------------------------------------ END -----------------------------------##
 
   // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    End yellowPages Admin Side   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

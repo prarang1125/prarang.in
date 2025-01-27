@@ -104,6 +104,7 @@ class CategoriesController extends Controller
     {
         return view('yellowpages::admin.categories-register');
     }
+    
     ##------------------------- END ---------------------##
 
     ##------------------------- categoriesStore function ---------------------##
