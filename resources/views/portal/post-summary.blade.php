@@ -461,23 +461,24 @@
         .main-post .main-image img {
             margin-top: 30px;
         }
-        .main-post .main-image .frameVid{
-            margin-top:30px;
- }
 
- @media (max-width:768px){
+        .main-post .main-image .frameVid {
+            margin-top: 30px;
+        }
 
-/* Img fluid */
-.container .row .text-center .stk-side .recent-poet .rounded a .img-fluid{
- height:100% !important;
-}
+        @media (max-width:768px) {
 
-/* Img fluid */
-.recent-poet a .img-fluid{
- max-height:100% !important;
-}
+            /* Img fluid */
+            .container .row .text-center .stk-side .recent-poet .rounded a .img-fluid {
+                height: 100% !important;
+            }
 
-}
+            /* Img fluid */
+            .recent-poet a .img-fluid {
+                max-height: 100% !important;
+            }
+
+        }
     </style>
 </head>
 
@@ -527,7 +528,9 @@
                                         </tr>
                                         <tr>
                                             <td colspan="5" class="text-start">
-                                                <a href="#analyticsinfo" class="text-dark" style="text-decoration-line: none;">* Please see metrics definition on bottom of this page.</a>
+                                                <a href="#analyticsinfo" class="text-dark"
+                                                    style="text-decoration-line: none;">* Please see metrics definition
+                                                    on bottom of this page.</a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -535,6 +538,9 @@
                             @endif
                         @endif
                     </div>
+                    @php
+                        $chitti_id=$post['chittiId'];
+                    @endphp
                     <div class="main-image">
                         @if ($post->images[0]->VideoExist == 1)
                             {!! $post->images[0]->VideoURL !!}
@@ -544,7 +550,7 @@
                     </div>
 
                     <div class="p-2 m-0 post-description {{ $ColorCode === '#4d4d4d' ? 'text-white text-light' : '' }}"
-                        style="font-size: 18px; background-color: {{ $ColorCode }};"   >
+                        style="font-size: 18px; background-color: {{ $ColorCode }};">
                         {!! $post['description'] !!}
                     </div>
 
@@ -624,26 +630,26 @@
     </div>
 
     @if ($ColorCode === '#4d4d4d')
-    <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const descriptionData = document.querySelector('.post-description');
-        if (descriptionData) {
-            descriptionData.querySelectorAll('*').forEach(element => {
-                if (element.tagName !== 'BR' && element.tagName !== 'HR') {
-                    element.classList.add('text-white', 'text-light');
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const descriptionData = document.querySelector('.post-description');
+                if (descriptionData) {
+                    descriptionData.querySelectorAll('*').forEach(element => {
+                        if (element.tagName !== 'BR' && element.tagName !== 'HR') {
+                            element.classList.add('text-white', 'text-light');
+                        }
+                    });
                 }
             });
-        }
-    });
-</script>
-
+        </script>
     @endif
 
 
     <x-post.footer :city="$city_name" />
     <script src='{{ asset('location.js') }}'></script>
     <script>
-        collectAndSendInformation('{{ $post['chittiId'] }}', '{{ $city_name }}');
+
+        collectAndSendInformation('{{$chitti_id}}', '{{ $city_name }}');
     </script>
     {!! $portal->footer_scripts !!}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
