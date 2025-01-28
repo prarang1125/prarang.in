@@ -128,6 +128,19 @@
  background-color:rgba(0,0,0,0.52) !important;
 }
 
+/* Table */
+#sidebar-left .widget .table{
+ background-color:rgba(255,255,255,0) !important;
+}
+
+/* Table Data */
+.table tr td{
+ background-color:#333333 !important;
+ color:#ededed !important;
+ font-size:13px !important;
+ padding-bottom:4px !important;
+}
+
 
 
     </style>

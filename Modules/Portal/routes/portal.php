@@ -8,5 +8,3 @@ Route::get('/{portal:slug}', [PortalController::class, 'portal'])
     ->whereIn('portal', ['^(?!yellow-pages).*', '^(?!partner-api).*', '^(?!prapi).*'])
     ->name('portal');
 
-
-

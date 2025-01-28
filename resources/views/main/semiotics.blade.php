@@ -86,16 +86,17 @@
                             contenteditable="false" id="style-WKIDT"> Lucknow , U.P</a>
                     </div>
                 </div>
-                <div class="col-sm-2">
-                    <div class="m-2">
-                        <a href=" https://b2b.prarang.in/semiotic/YzM=" class="semiotic-btn style-BUtYl"
-                            contenteditable="false" id="style-BUtYl"> Rampur , U.P</a>
-                    </div>
-                </div>
+               
                 <div class="col-sm-2">
                     <div class="m-2">
                         <a href=" https://b2b.prarang.in/semiotic/YzI=" class="semiotic-btn style-JeodN"
                             contenteditable="false" id="style-JeodN"> Meerut , U.P</a>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="m-2">
+                        <a href=" https://b2b.prarang.in/semiotic/YzM=" class="semiotic-btn style-BUtYl"
+                            contenteditable="false" id="style-BUtYl"> Rampur , U.P</a>
                     </div>
                 </div>
                 <div class="col-sm-2">

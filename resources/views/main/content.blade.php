@@ -275,16 +275,16 @@
                       <b>Business:</b>
                   </div>
                   <div class="col-sm-2 ">
-                      <a href="/yellow-pages/lucknow/" target="_blank" class="btn btn-sm btn-warning w-75 ">Lucknow</a>
+                      <a href="{{route('city.show',['city_name'=>'lucknow'])}}" target="_blank" class="btn btn-sm btn-warning w-75 ">Lucknow</a>
                   </div>
                   <div class="col-sm-2">
-                        <a href="/yellow-pages/meerut" target="_blank" class="btn btn-sm btn-warning w-75">Meerut</a>
+                        <a href="{{route('city.show',['city_name'=>'meerut'])}}" target="_blank" class="btn btn-sm btn-warning w-75">Meerut</a>
                   </div>
                   <div class="col-sm-2">
-                        <a href="/yellow-pages/rampur" target="_blank" class="btn btn-sm btn-warning w-75">Rampur</a>
+                        <a href="{{route('city.show',['city_name'=>'rampur'])}}" target="_blank" class="btn btn-sm btn-warning w-75">Rampur</a>
                   </div>
                     <div class="col-sm-2">
-                        <a href="/yellow-pages/jaunpur" target="_blank" class="btn btn-sm btn-warning w-75">Jaunpur</a>
+                        <a href="{{route('city.show',['city_name'=>'jaunpur'])}}" target="_blank" class="btn btn-sm btn-warning w-75">Jaunpur</a>
                   </div>
                   </div>
               </section>
@@ -464,22 +464,22 @@
               </div>
               <div class="col-sm-2">
                   <div class="city-btn">
-                      <a target="_blank" href="/yellow-pages/lucknow/" contenteditable="false" id="style-9wwWF" class="style-9wwWF">Lucknow, U.P</a>
+                      <a target="_blank" href="{{route('city.show',['city_name'=>'lucknow'])}}" contenteditable="false" id="style-9wwWF" class="style-9wwWF">Lucknow, U.P</a>
                   </div>
               </div>
               <div class="col-sm-2">
                   <div class="city-btn">
-                      <a target="_blank" href="/yellow-pages/meerut/" contenteditable="false" id="style-AOr3N" class="style-AOr3N">Meerut, U.P</a>
+                      <a target="_blank" href="{{route('city.show',['city_name'=>'meerut'])}}" contenteditable="false" id="style-AOr3N" class="style-AOr3N">Meerut, U.P</a>
                   </div>
               </div>
               <div class="col-sm-2">
                   <div class="city-btn">
-                      <a target="_blank" href="/yellow-pages/rampur/" contenteditable="false" id="style-FWbYm" class="style-FWbYm">Rampur, U.P</a>
+                      <a target="_blank" href="{{route('city.show',['city_name'=>'rampur'])}}" contenteditable="false" id="style-FWbYm" class="style-FWbYm">Rampur, U.P</a>
                   </div>
               </div>
               <div class="col-sm-2">
                   <div class="city-btn">
-                      <a target="_blank" href="/yellow-pages/jaunpur/" contenteditable="false" id="style-twSAO" class="style-twSAO">Jaunpur, U.P</a>
+                      <a target="_blank" href="{{route('city.show',['city_name'=>'jaunpur'])}}" contenteditable="false" id="style-twSAO" class="style-twSAO">Jaunpur, U.P</a>
                   </div>
               </div>
           </div>
