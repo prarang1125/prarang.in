@@ -58,7 +58,7 @@ class ListingController extends Controller
         try {
             $categories = Category::where('is_active', 1)->get();
             $cities = City::where('is_active', 1)->get();
-            
+
             $city = City::where('name', $city_name)->first();
             if (!$city) {
                 $portal = Portal::where('slug', $city_name)->firstOrFail();
@@ -70,7 +70,7 @@ class ListingController extends Controller
                 ->whereHas('city', fn($q) => $q->where('city_id', $city->id))
                 ->get();
 
-    
+
                 return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'city_name'));
             } catch (\Exception $e) {
                 return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
