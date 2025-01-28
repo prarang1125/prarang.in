@@ -39,6 +39,8 @@ class HomeController extends Controller
             // Return the view with data
             return view('yellowpages::home.home', compact('categories', 'cities', 'listings'));
         } catch (\Exception $e) {
+            return $e->getMessage();
+            // return back()->withErrors(['error' => 'An error occurred while fetching dropdown data: '  ]);
             return back()->withErrors(['error' => 'An error occurred while fetching data: ' ]);
         }
     }

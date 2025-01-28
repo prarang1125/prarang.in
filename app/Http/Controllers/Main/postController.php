@@ -22,7 +22,7 @@ class postController extends Controller
 
         $chittiIds = ChittiGeography::where('Geography', $geography->geographycode)
             ->pluck('chittiId');
-
+        return 1;
         $chittis = Chitti::whereIn('chittiId', $chittiIds)
             ->where('finalStatus', 'approved')
 
