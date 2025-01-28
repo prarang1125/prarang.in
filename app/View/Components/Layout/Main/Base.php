@@ -26,6 +26,7 @@ class Base extends Component
 
     public function visitorLocation(Request $request)
     {
+
         try {
              $data = $this->prepareVisitorData($request);
             if (env('LOCATION') == 'ON') {
@@ -35,13 +36,16 @@ class Base extends Component
                     $data['visitor_address'] = $location['visitor_address'];
                 }
             }
-            $visitor = $this->findExistingVisitor($data['post_id'], $data['ip_address']);
+
+             $visitor = $this->findExistingVisitor($data['post_id'], $data['ip_address']);
             if ($visitor) {
                 $this->incrementVisitCount($visitor);
             } else {
+
                 $this->createNewVisitor($data);
             }
             return response()->json([
+                'data'=>$data,
                 'message' => 'Visitor information stored successfully.',
             ], 201);
 
@@ -78,8 +82,8 @@ class Base extends Component
 
     private function incrementVisitCount($visitor)
     {
-        $visitor->visit_count += 1;
-        $visitor->save();
+        $visitor->increment('visit_count');
+
     }
 
     private function createNewVisitor($data)
