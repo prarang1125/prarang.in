@@ -25,6 +25,14 @@
 			$(".knob").knob();
 		});
 	</script>
+   <script>
+    // When the mobile toggle button is clicked, toggle the sidebar
+    document.querySelector('.mobile-toggle-menu').addEventListener('click', function() {
+        document.querySelector('.sidebar-wrapper').classList.toggle('active');
+    });
+   </script>
+
+	
 	<script src="{{ asset('assets/js/index.js') }}"></script>
 	<!--app JS-->
 	<script src="{{ asset('assets/js/app.js') }}"></script>

@@ -24,42 +24,48 @@ class CheckSubscriptionLimits
          if (!$user) {
              return redirect()->route('login')->with('error', 'कृपया लॉगिन करें।');
          }
- 
-         // Check if user has an active subscription
-         $subscription = $user->subscription;
-         if (!$subscription) {
+     
+         // Get all active subscriptions for the user
+         $subscriptions = $user->subscriptions;
+     
+         if ($subscriptions->isEmpty()) {
              return redirect()->route('vCard.planDetails')->with('error', 'कृपया एक वैध सदस्यता योजना खरीदें।');
          }
- 
-         // Get the plan associated with the user's active subscription
-         $plan = $subscription->plan;
-         if (!$plan) {
-             return redirect()->route('vCard.planDetails')->with('error', 'सदस्यता योजना उपलब्ध नहीं है।');
-         }
+     
+         $activePlanTypes = [];
          
-         // Check subscription limits based on plan type
-         if ($plan->type == 'येलोपेज') {
-             // YellowPages Limit Check (visit_limit)
-             if ($subscription->current_visits >= $plan->visit_limit) {
-                 return redirect()->route('vCard.planDetails')->with('error', 'विजिट सीमा पूरी हो गई है। कृपया अपनी योजना को अपग्रेड करें।');
+         foreach ($subscriptions as $subscription) {
+             $plan = $subscription->plan;
+
+             if (!$plan) {
+                 return redirect()->route('vCard.planDetails')->with('error', 'सदस्यता योजना उपलब्ध नहीं है।');
              }
-         } elseif ($plan->type == 'वीकार्ड') {
-             // vCard Limit Check (qr_limit)
-             if ($subscription->current_qr_scan >= $plan->qr_limit) {
-                 return redirect()->route('vCard.planDetails')->with('error', 'क्यूआर स्कैन सीमा पूरी हो गई है। कृपया अपनी योजना को अपग्रेड करें।');
+     
+             // Add plan types to an array to check if user has both
+             $activePlanTypes[] = $plan->type;
+     
+             // Check subscription limits based on each plan type
+             if ($plan->type == 'येलोपेज') {
+                 if ($subscription->current_visits >= $plan->visit_limit) {
+                     return redirect()->route('vCard.planDetails')->with('error', 'विजिट सीमा पूरी हो गई है। कृपया अपनी योजना को अपग्रेड करें।');
+                 }
+             } elseif ($plan->type == 'वीकार्ड') {
+                 if ($subscription->current_qr_scan >= $plan->qr_limit) {
+                     return redirect()->route('vCard.planDetails')->with('error', 'क्यूआर स्कैन सीमा पूरी हो गई है। कृपया अपनी योजना को अपग्रेड करें।');
+                 }
+             } elseif ($plan->type == 'दोनों') {
+                 if ($subscription->current_visits >= $plan->visit_limit || $subscription->current_qr_scans >= $plan->qr_limit) {
+                     return redirect()->route('planDetails')->with('error', 'आपकी योजना की सीमा पूरी हो गई है। कृपया अपनी योजना को अपग्रेड करें।');
+                 }
+             } else {
+                 return redirect()->route('vCard.planDetails')->with('error', 'सदस्यता योजना सही नहीं है।');
              }
-         } elseif ($plan->type == 'दोनों') {
-             // Combined YellowPages and vCard Limit Check for 'both' plans
-             if ($subscription->current_visits >= $plan->visit_limit || $subscription->current_qr_scans >= $plan->qr_limit) {
-                 return redirect()->route('planDetails')->with('error', 'आपकी योजना की सीमा पूरी हो गई है। कृपया अपनी योजना को अपग्रेड करें।');
-             }
-         } else {
-             // In case the plan type is not recognized
-             return redirect()->route('vCard.planDetails')->with('error', 'सदस्यता योजना सही नहीं है।');
          }
- 
+     
          return $next($request);
      }
+     
+     
      
      
 }

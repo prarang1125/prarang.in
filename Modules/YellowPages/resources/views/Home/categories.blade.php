@@ -3,6 +3,7 @@
 @section('title', __('messages.yellow_pages'))
 
 @section('content')
+
 <br>
     
         <!-- Header with Background Color -->
@@ -30,9 +31,9 @@
         
         <!-- Listings Section -->
         <div style="max-width: 1200px; margin: 20px auto; padding: 0 20px;">
-            <div style="font-size: 24px; margin-bottom: 20px;">
+            {{-- <div style="font-size: 24px; margin-bottom: 20px;">
                 सूची के लिए परिणाम
-            </div>
+            </div> --}}
             <!-- Filters Section -->
 <div style="display: flex; justify-content: space-evenly; align-items: center; margin-bottom: 20px; padding: 20px; background-color: #f9f9f9; border-radius: 10px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);">
     <!-- Filter Options with Checkboxes -->
@@ -93,9 +94,7 @@
         </a>
     @endforeach
 </div>
-
-
-        </div>
+</div>
 
         @endsection
     @push('scripts')
@@ -110,7 +109,6 @@
             }
         </script>
         
-    
         <!-- Responsive Grid for Mobile -->
         <style>
             @media (max-width: 768px) {

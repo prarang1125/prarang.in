@@ -20,28 +20,34 @@ class HomeController extends Controller
             // Fetch categories and cities
             $categories = Category::where('is_active', 1)->get();
             $cities = City::where('is_active', 1)->get();
-
+    
             $listings = BusinessListing::with(['category', 'hours'])->get()->map(function ($listing) {
                 $currentTime = Carbon::now();
-
+    
                 if ($listing->hours) {
                     $openTime = Carbon::parse($listing->hours->open_time);
+                
                     $closeTime = Carbon::parse($listing->hours->close_time);
-
-                    $listing->is_open = $currentTime->between($openTime, $closeTime);
+    
+                    if ($closeTime->lt($openTime)) {
+                        $listing->is_open = $currentTime->isBetween($openTime, $closeTime->addDay());
+                    } else {
+                        $listing->is_open = $currentTime->between($openTime, $closeTime);
+                    }
                 } else {
                     $listing->is_open = false;
                 }
-
+    
                 return $listing;
             });
-
+    
             // Return the view with data
             return view('yellowpages::home.home', compact('categories', 'cities', 'listings'));
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred while fetching data: ' ]);
         }
     }
+    
     ##------------------------- END ---------------------##
 
     ##------------------------- Listing Plan ---------------------##

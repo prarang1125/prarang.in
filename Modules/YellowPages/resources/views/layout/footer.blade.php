@@ -47,5 +47,4 @@
                 <strong class="sitename">टेलीफ़ोन: +91-7275124000</strong>
             </p>
         </div>
-    </div>
 </footer>

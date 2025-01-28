@@ -47,19 +47,22 @@ class PlanController extends Controller
     public function planDetails()
     {
         try {
+            // Get all available plans
             $plans = Plan::all();
-            $purchasePlan = UserPurchasePlan::where('user_id', Auth::id())
-                                            ->where('is_active', 1)
-                                            ->orderBy('created_at', 'desc')
-                                            ->first();  // First active plan, most recent
     
-            return view("yellowpages::Vcard.planDetails", compact('plans', 'purchasePlan'));
+            // Get all active purchase plans for the authenticated user
+            $purchasePlans = UserPurchasePlan::where('user_id', Auth::id())
+                                             ->where('is_active', 1)  // Ensure the plan is active
+                                             ->orderBy('created_at', 'desc')  // Order by most recent
+                                             ->get(); // Fetch all active plans
+    
+            return view("yellowpages::Vcard.planDetails", compact('plans', 'purchasePlans'));
         } catch (\Exception $e) {
-            Log::error('Error fetching plan details: ' );
+            Log::error('Error fetching plan details: ' . $e->getMessage());
             return redirect()->back()->with('error', 'Unable to fetch plan details.');
         }
     }
-
+    
     ##------------------------- END ---------------------##
 
     ##------------------------- Payment  ---------------------##

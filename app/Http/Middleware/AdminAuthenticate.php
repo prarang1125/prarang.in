@@ -14,13 +14,29 @@ class AdminAuthenticate
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
-    {
-        if(!Auth::guard('admin')->check()){
-           // return redirect()->route('admin.login');
-            return redirect()->route('admin.dashboard');
-        }
-        return $next($request);
+   // app/Http/Middleware/AdminAuthenticate.php
+
+public function handle(Request $request, Closure $next): Response
+{
+    $user = Auth::guard('admin')->user();
+
+    if (!$user) {
+        return redirect()->route('admin.login');
     }
+
+    // If the user is an admin, continue to the requested route
+    if ($user->role == 1) {
+        return $next($request); 
+    }
+
+    // If the user is a manager, redirect to manager dashboard
+    if ($user->role == 3) {
+        return $next($request); 
+    }
+
+    // Default check (for other roles or errors)
+    return $next($request); 
+}
+
     
 }

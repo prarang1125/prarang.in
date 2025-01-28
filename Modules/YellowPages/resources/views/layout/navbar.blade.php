@@ -137,10 +137,10 @@ header.header {
         <nav id="navmenu" class="navmenu">
             <ul>
                 <li class="dropdown" id="categories-menu">
-                    <a href="#">श्रेणियाँ <i class="bx bx-chevron-down dropdown-icon"></i></a>
+                    <a href="#">सिटीज <i class="bx bx-chevron-down dropdown-icon"></i></a>
                     <ul class="dropdown-menu">
-                        @foreach(get_categories() as $category)
-                            <li><a href="{{ url('yellow-pages/category/' . $category->id) }}">{{ $category->name }}</a></li>
+                        @foreach(get_cities() as $city)
+                        <li><a href="{{ route('city.show', $city->name) }}">{{ $city->name }}</a></li>
                         @endforeach
                     </ul>
                 </li>

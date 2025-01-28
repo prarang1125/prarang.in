@@ -1,9 +1,9 @@
 <!--start header -->
+
 <header>
     <div class="topbar d-flex align-items-center">
         <nav class="navbar navbar-expand">
-            <div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
-            </div>
+            <div class="mobile-toggle-menu"><i class='bx bx-menu'></i></div> 
             <div class="top-menu ms-auto">
                 <ul class="navbar-nav align-items-center">
                     <li class="nav-item mobile-search-icon">
@@ -15,7 +15,7 @@
             </div>
             <div class="user-box dropdown">
                 <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <img src="{{ asset('assets/images/avatars/avatar-2.png') }}" class="user-img" alt="user avatar">
+                    <i class="fas fa-user-circle" class="user-img" alt="user avatar" style="font-size: 30px; color: #333;"></i>
                     <div class="user-info ps-3">
                         @if (Auth::guard('web')->check())
                             <p class="user-name mb-0" id="{{ Auth::guard('web')->user()->userId }}">{{ Auth::guard('web')->user()->firstName }} {{ Auth::guard('web')->user()->lastName }}</p>
@@ -62,4 +62,17 @@
         </nav>
     </div>
 </header>
+<div class="sidebar-wrapper">
+    <!-- Sidebar Content (Navigation Links) -->
+    @include('yellowpages::layout.vcardpartial.sidebar')
+</div>
 <!--end header -->
+
+
+<!-- Add this JavaScript to handle sidebar toggle -->
+<script>
+    document.querySelector('.mobile-toggle-menu').addEventListener('click', function() {
+        document.querySelector('.sidebar-wrapper').classList.toggle('active');
+    });
+</script>
+

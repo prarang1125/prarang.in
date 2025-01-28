@@ -17,5 +17,6 @@ class Plan extends Model
     {
         return $this->hasMany(UserPurchasePlan::class, 'plan_id', 'id');
     }
+    
 
 }

@@ -12,13 +12,22 @@
 
 <!-- Navigation -->
 <ul class="metismenu" id="menu">
-        <!-- Dashboard -->
-        <li>
-            <a href="{{ url('yellow-pages/admin/dashboard') }}">
-                <div class="parent-icon"><i class="bx bx-home-circle"></i></div>
-                <div class="menu-title">डैशबोर्ड</div>
-            </a>
-        </li>
+    <!-- Dashboard -->
+    <li>
+        <a href="{{ url('yellow-pages/admin/dashboard') }}">
+            <div class="parent-icon"><i class="bx bx-home-circle"></i></div>
+            <div class="menu-title">डैशबोर्ड</div>
+        </a>
+    </li>
+    <li>
+        <a href="{{ url('yellow-pages/admin/dashboard') }}">
+            <div class="parent-icon"><i class="bx bx-home-circle"></i></div>
+            <div class="menu-title">लिस्टिंग चेकर</div>
+        </a>
+    </li>
+
+    <!-- Show the rest of the items only if the user is not role 3 (manager) -->
+    @if(Auth::guard('admin')->check() && Auth::guard('admin')->user()->role == 1)
         <!-- Users -->
         <li>
             <a href="{{ url('yellow-pages/admin/user-listing') }}">
@@ -47,12 +56,12 @@
             </a>
         </li>
         <!-- Business Listing -->
-        <li>
-            <a href="{{ url('yellow-pages/admin/business-listing') }}">
-                <div class="parent-icon"><i class="bx bx-briefcase"></i></div>
-                <div class="menu-title">व्यवसाय सूचीकरण</div>
-            </a>
-        </li>
+    <li>
+        <a href="{{ url('yellow-pages/admin/business-listing') }}">
+            <div class="parent-icon"><i class="bx bx-briefcase"></i></div>
+            <div class="menu-title">व्यवसाय सूचीकरण</div>
+        </a>
+    </li>
         <li>
             <a href="{{ url('yellow-pages/admin/paymentHistory') }}">
                 <div class="parent-icon"><i class="bx bx-briefcase"></i></div>
@@ -77,4 +86,5 @@
                 <div class="menu-title">संदेश</div>
             </a>
         </li>
+    @endif
 </ul>
