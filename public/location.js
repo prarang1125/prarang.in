@@ -3,7 +3,32 @@ function collectAndSendInformation(postId, city) {
     // Copyright: Prarang
 
     const currentUrl = window.location.href;
+    const getPostCookie = (postId) => {
+        const cookies = document.cookie.split('; ');
+        for (let cookie of cookies) {
+            const [key, value] = cookie.split('=');
+            if (key === `post_${postId}`) return value;
+        }
+        return null;
+    };
 
+    // Helper function to set a post-related cookie with a 10-minute expiration
+    const setPostCookie = (postId, value) => {
+        const date = new Date();
+        date.setTime(date.getTime() + 2 * 60 * 1000); // 10 minutes in milliseconds
+        document.cookie = `post_${postId}=${value};expires=${date.toUTCString()};path=/`;
+    };
+
+    // Check if the postId cookie exists
+    if (getPostCookie(postId)) {
+        console.log(`Cookie for postId ${postId} already exists. No action taken.`);
+        return;
+    }
+
+    // Set the cookie if it doesn't exist
+    setPostCookie(postId, city);
+    console.log(`Cookie set for postId ${postId} with city ${city}. Proceeding with the next steps.`);
+    alert(2);
     // Helper function to get a cookie value
     const getCookie = (name) => {
         const cookies = document.cookie.split('; ');
