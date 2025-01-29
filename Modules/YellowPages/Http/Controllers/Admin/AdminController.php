@@ -40,10 +40,9 @@ class AdminController extends Controller
     }
 
     ##------------------------- END ---------------------##
-
-
-
+    
     ##------------------------- User isting function ---------------------##
+
     public function userListing(Request $request) {
 
         try {
@@ -53,9 +52,11 @@ class AdminController extends Controller
             return redirect()->route('admin.dashboard')->withErrors(['error' => 'An error occurred while fetching user listings: ' ]);
         }
     }
+     
     ##------------------------- END ---------------------##
 
     ##------------------------- userEdit function ---------------------##
+
     public function userEdit($id)
     {
         try {
@@ -67,6 +68,7 @@ class AdminController extends Controller
             return redirect()->route('admin.user-listing')->withErrors(['error' => 'An error occurred: ' ]);
         }
     }
+
     ##------------------------- END ---------------------##
 
     ##------------------------- userUpdate function ---------------------##
@@ -91,7 +93,8 @@ class AdminController extends Controller
                 'password' => $request->password ? Hash::make($validatedData['password']) : null,
                 'is_active' => $validatedData['is_active'],
                 'updated_at' => Carbon::now(),
-            ], function ($value) {
+            ],
+            function ($value) {
                 return $value !== null && $value !== '';
             });
 
@@ -110,8 +113,8 @@ class AdminController extends Controller
             return redirect()->back()->withErrors(['error' => 'An error occurred while updating the user: ' ]);
         }
     }
-
     ##------------------------- END ---------------------##
+
 
     ##------------------------- userDelete function ---------------------##
     public function userDelete($id)
@@ -130,10 +133,12 @@ class AdminController extends Controller
 
 
     ##------------------------- userRegister function ---------------------##
+
     public function userRegister()
     {
         return view('yellowpages::admin.user-register');
     }
+
     ##------------------------- END ---------------------##
 
     ##------------------------- userStore function ---------------------##
@@ -175,6 +180,7 @@ class AdminController extends Controller
                 ->withErrors($validator);
         }
     }
+    
     ##------------------------- END ---------------------##
 
 

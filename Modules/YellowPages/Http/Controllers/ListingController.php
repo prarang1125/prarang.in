@@ -302,26 +302,23 @@ class ListingController extends Controller
     ##------------------------- Listing Details---------------------##
     public function listing($city_slug, $listing_title, $listingId)
     {
-
         try {
             // Fetch the listing or fail with a 404
             $listing = BusinessListing::findOrFail($listingId);
             $listingHours = BusinessHour::where('business_id', $listing->id)->get();
-
-            // Check if the user is not the owner
-            $checkCreator = BusinessListing::where('user_id', '!=', Auth::id())->first();
-
-            if ($checkCreator) {
+    
+            // Check if the user is not the owner of this specific listing
+            if ($listing->user_id != Auth::id()) {
                 $ipAddress = request()->ip();
-
+    
                 // Check if the visit already exists
                 $visitExists = Visits::where('business_id', $listing->id)
                     ->where('ip_address', $ipAddress)
-                    ->first();
-
+                    ->exists();
+    
                 if (!$visitExists) {
                     // Log the visit
-                    $vistCount = Visits::insert([
+                    Visits::insert([
                         'business_id' => $listingId,
                         'ip_address' => $ipAddress,
                         'user_type' => Auth::check() ? 'user' : 'guest',
@@ -329,34 +326,59 @@ class ListingController extends Controller
                         'created_at' => now(),
                         'updated_at' => now(),
                     ]);
-
+    
                     UserPurchasePlan::where('user_id', $listing->user_id)
                         ->increment('current_visits', 1);
                 }
             }
-
-            $currentDay = Carbon::now()->format('l');
-            $currentTime = Carbon::now();
-            $isOpen = false;
-
-            foreach ($listingHours as $hour) {
-                if (strtolower($hour->day) === strtolower($currentDay)) {
-                    $openTime = Carbon::parse($hour->open_time);
-                    $closeTime = Carbon::parse($hour->close_time);
-
-                    if ($currentTime->between($openTime, $closeTime)) {
-                        $isOpen = true;
+    
+            $timezone = 'Asia/Kolkata';
+            $currentDateTime = Carbon::now($timezone);
+            $currentTime = $currentDateTime->format('H:i:s');
+            $currentDay = $currentDateTime->format('l');
+    
+            $listing->is_open = false;
+    
+            foreach ($listingHours as $hours) {
+                // Check if the business operates 24/7
+                if ($hours->is_24_hours) {
+                    $listing->is_open = true;
+                    break;
+                }
+    
+                // Ensure day comparison is consistent
+                if (strtolower($hours->day) === strtolower($currentDay)) {
+                    // Check the first time slot
+                    $openTime1 = $hours->open_time ? Carbon::createFromFormat('H:i:s', $hours->open_time, $timezone) : null;
+                    $closeTime1 = $hours->close_time ? Carbon::createFromFormat('H:i:s', $hours->close_time, $timezone) : null;
+    
+                    $isOpen1 = $openTime1 && $closeTime1 && $currentTime >= $openTime1->format('H:i:s') && $currentTime <= $closeTime1->format('H:i:s');
+    
+                    // Check the second time slot, if present
+                    $isOpen2 = false;
+                    if ($hours->open_time2 && $hours->close_time2) {
+                        $openTime2 = Carbon::createFromFormat('H:i:s', $hours->open_time2, $timezone);
+                        $closeTime2 = Carbon::createFromFormat('H:i:s', $hours->close_time2, $timezone);
+                        $isOpen2 = $currentTime >= $openTime2->format('H:i:s') && $currentTime <= $closeTime2->format('H:i:s');
+                    }
+    
+                    // Determine if the business is open
+                    if ($isOpen1 || $isOpen2) {
+                        $listing->is_open = true;
                         break;
                     }
                 }
             }
+            return view('yellowpages::home.listing', compact('listing', 'listingHours'))->with('isOpen', $listing->is_open);
 
-            return view('yellowpages::home.listing', compact('listing', 'listingHours', 'isOpen'));
+    
+            // return view('yellowpages::home.listing', compact('listing', 'listingHours'));
+    
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Listing not found.');
         }
     }
-
+    
     ##-------------------------END ---------------------##
 
 

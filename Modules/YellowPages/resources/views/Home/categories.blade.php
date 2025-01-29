@@ -3,18 +3,22 @@
 @section('title', __('messages.yellow_pages'))
 
 @section('content')
-
-<br>
-    
+<br><br>
         <!-- Header with Background Color -->
         <div style="background-image: url('{{ Storage::url('categories/cate_bg.jpg') }}'); background-size: cover; background-position: center; padding: 60px; color: white; text-align: center;">
+            <div style="display: flex; justify-content: flex-start;">
+                <a href="{{ route('yp.home') }}" class="btn btn-primary">
+                    <i class="bi bi-arrow-left"></i>
+                </a>
+            </div>
+            
             @if(isset($city_name) && $city_name)
                 <h1 style="padding-top: 20px;">
-                    {{$city_name}} येलोपेजेस
+                    {{$city_name}} व्यवसाय
                 </h1>
             @elseif(isset($city) && $city)
                 <h1 style="padding-top: 20px;">
-                    {{$city}} येलोपेजेस
+                    {{$city}} व्यवसाय
                 </h1>
             @else
                 <h1 style="padding-top: 20px;">
@@ -22,12 +26,6 @@
                 </h1>
             @endif
         </div>
-        
-    
-        <div class="card-body d-flex justify-content-end align-items-end" style="padding-right: 50px;">
-            <a href="{{ route('yp.home') }}" class="btn btn-primary">वापास जाए</a>
-        </div>
-        
         
         <!-- Listings Section -->
         <div style="max-width: 1200px; margin: 20px auto; padding: 0 20px;">

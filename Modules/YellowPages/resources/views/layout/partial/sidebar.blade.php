@@ -20,7 +20,7 @@
         </a>
     </li>
     <li>
-        <a href="{{ url('yellow-pages/admin/dashboard') }}">
+        <a href="{{ url('yellow-pages/checker/listing') }}">
             <div class="parent-icon"><i class="bx bx-home-circle"></i></div>
             <div class="menu-title">लिस्टिंग चेकर</div>
         </a>

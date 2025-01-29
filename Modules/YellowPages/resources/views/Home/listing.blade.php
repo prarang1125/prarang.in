@@ -108,9 +108,8 @@
                 </ul>
                 <p style="font-size: 14px; margin-top: 10px; color: {{ $isOpen ? '#28a745' : '#dc3545' }};">
                     {{ $isOpen ? 'Open Now' : 'Closed Now' }}
-                </p>
+                </p>                
             </div>            
-
         </div>
 
       <!-- Review Form -->
