@@ -8,14 +8,11 @@
         <div class="breadcrumb-title pe-3">व्यवस्थापक</div>
     </div>
 
-    <!-- Header Section -->
-
     <!-- Main Form -->
     <form action="{{ route('admin.listing-status-change', $listing->id) }}" method="POST" enctype="multipart/form-data" class="form-container">
         @csrf
         @method('PUT')
 
-        <!-- Error Messages -->
         @if ($errors->any())
             <div class="alert alert-danger">
                 <ul>
@@ -283,6 +280,12 @@
                 {{-- Image Upload --}}
                 <div style="border: 1px dashed #ddd; padding: 20px; text-align: center; color: #888; margin-bottom: 10px;">
                     <input type="file" name="image" style="display: block; margin-top: 10px;">
+                    <div style="margin-top: 20px; text-align: center;">
+                        <label for="businessImage" class="form-label">व्यवसाय छवि</label>
+                        @if (!empty($listing->business_img_url))
+                            <img src="{{ $listing->business_img_url }}" alt="Business Image" style="max-width: 200px; margin-top: 10px;">
+                        @endif
+                    </div>
                 </div>
             
                 <div style="display: flex; gap: 10px; justify-content: space-between; margin-bottom: 10px;">
@@ -306,12 +309,7 @@
                 </div>
             
                 {{-- Business Image --}}
-                <div style="margin-top: 20px; text-align: center;">
-                    <label for="businessImage" class="form-label">व्यवसाय छवि</label>
-                    @if (!empty($listing->business_img_url))
-                        <img src="{{ $listing->business_img_url }}" alt="Business Image" style="max-width: 200px; margin-top: 10px;">
-                    @endif
-                </div>
+               
             
                 <h5 style="margin-top: 20px; margin-bottom: 15px;">विशेषताएँ</h5>
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
@@ -338,4 +336,93 @@
 </div>
 </div>
 
+<script>
+    // Toggle Tagline Field
+    function toggleTaglineField() {
+        const taglineField = document.getElementById('taglineField');
+        taglineField.style.display = taglineField.style.display === 'none' ? 'block' : 'none';
+    }
+
+  // Add new day schedule
+document.getElementById('add-day-btn').addEventListener('click', () => {
+    const container = document.getElementById('schedule-container');
+    const firstSchedule = container.querySelector('.day-schedule');
+
+    if (firstSchedule) {
+        // Clone the first schedule
+        const newSchedule = firstSchedule.cloneNode(true);
+
+        // Clear the input values in the new schedule
+        newSchedule.querySelectorAll('select, input').forEach((input) => {
+            if (input.type === 'checkbox') {
+                input.checked = false; // Uncheck checkboxes
+            } else {
+                input.value = ''; // Clear other inputs
+            }
+        });
+
+        // Hide second time slot by default
+        const secondTimeSlot = newSchedule.querySelector('.second-time-slot');
+        if (secondTimeSlot) {
+            secondTimeSlot.style.display = 'none';
+        }
+
+        // Append the new schedule to the container
+        container.appendChild(newSchedule);
+    } else {
+        console.error("Initial schedule not found.");
+    }
+});
+
+// Handle "24 Hours" functionality
+document.addEventListener('change', (e) => {
+    if (e.target.name === 'is_24_hours[]') {
+        const parent = e.target.closest('.day-schedule');
+        const timeInputs = parent.querySelectorAll('input[type="time"]');
+        timeInputs.forEach(input => input.disabled = e.target.checked); // Disable time inputs if "24 Hours" is checked
+    }
+});
+
+// Handle "Add 2nd Slot" functionality
+document.addEventListener('change', (e) => {
+    if (e.target.classList.contains('add-2nd-slot')) {
+        const parent = e.target.closest('.day-schedule');
+        const secondSlot = parent.querySelector('.second-time-slot');
+        secondSlot.style.display = e.target.checked ? 'block' : 'none'; // Show or hide second slot
+    }
+});
+
+// Remove day schedule
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('remove-day-btn')) {
+        e.target.closest('.day-schedule').remove(); // Remove the current schedule
+    }
+});
+
+// Toggle FAQ section visibility based on checkbox
+document.getElementById('featuresToggle').addEventListener('change', function() {
+    document.getElementById('faqSection').style.display = this.checked ? 'block' : 'none';
+});
+
+// Add new FAQ input fields
+function addFAQ() {
+    var faqSection = document.getElementById('faqSection');
+    
+    // Create new FAQ item
+    var newFAQ = document.createElement('div');
+    newFAQ.classList.add('faq-item');
+    newFAQ.style.marginBottom = '10px';
+    
+    // Create input fields
+    newFAQ.innerHTML = `
+        <label>अक्सर पूछे जाने वाले प्रश्नों</label>
+        <input type="text" name="faq" placeholder="Frequently Asked Questions" style="width: 100%; margin-bottom: 5px;">
+        <textarea placeholder="Answer" name="answer" style="width: 100%; height: 60px;"></textarea>
+    `;
+    
+    // Add the new FAQ item to the section
+    faqSection.insertBefore(newFAQ, document.querySelector('.add-new'));
+}
+
+</script>
 @endsection
