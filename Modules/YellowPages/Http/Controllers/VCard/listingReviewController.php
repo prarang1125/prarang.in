@@ -14,7 +14,7 @@ class listingReviewController extends Controller
 {
     public function Rating()
     {
-        try {
+        // try {
             // Fetch listings for the user
             $listings = BusinessListing::where('user_id', Auth::id())->get();  // Use get() to fetch all listings
         
@@ -38,11 +38,11 @@ class listingReviewController extends Controller
                 ? BusinessListing::whereIn('id', $listing_ids)->get() 
                 : collect(); // Empty collection if no listings found
         
-            return view('yellowpages::Vcard.review', compact('reviews', 'business_listings', 'error'));
-        } catch (\Exception $e) {
-            Log::error('Error fetching reviews: ' );
-            return redirect()->route('vCard.Rating')->with('error', 'Unable to fetch reviews. Please try again later.');
-        }
+            return view('yellowpages::Vcard.review', compact('reviews', 'business_listings'));
+        // } catch (\Exception $e) {
+        //     Log::error('Error fetching reviews: ' );
+        //     return redirect()->route('vCard.Rating')->with('error', 'Unable to fetch reviews. Please try again later.');
+        // }
     }
     
     

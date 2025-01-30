@@ -25,12 +25,33 @@
 			$(".knob").knob();
 		});
 	</script>
-   <script>
-    // When the mobile toggle button is clicked, toggle the sidebar
-    document.querySelector('.mobile-toggle-menu').addEventListener('click', function() {
-        document.querySelector('.sidebar-wrapper').classList.toggle('active');
+ <script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const mobileToggleMenu = document.querySelector('.mobile-toggle-menu');
+        const sidebarWrapper = document.querySelector('.sidebar-wrapper');
+        const closeSidebarBtn = document.querySelector('.close-sidebar');
+
+        // Toggle sidebar when clicking the menu button
+        mobileToggleMenu.addEventListener('click', function(event) {
+            event.stopPropagation(); // Prevent bubbling
+            sidebarWrapper.classList.toggle('active');
+        });
+
+        // Close sidebar when clicking the close button
+        closeSidebarBtn.addEventListener('click', function() {
+            sidebarWrapper.classList.remove('active');
+        });
+
+        // Close sidebar when clicking outside of it
+        document.addEventListener('click', function(event) {
+            if (!sidebarWrapper.contains(event.target) && !mobileToggleMenu.contains(event.target)) {
+                sidebarWrapper.classList.remove('active');
+            }
+        });
     });
-   </script>
+
+</script>
+
 
 	
 	<script src="{{ asset('assets/js/index.js') }}"></script>

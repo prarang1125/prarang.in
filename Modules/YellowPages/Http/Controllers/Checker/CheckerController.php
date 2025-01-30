@@ -33,7 +33,6 @@ class CheckerController extends Controller
         }
     }
 
-    
     public function approveListing($id)
     {
         try {
@@ -73,6 +72,16 @@ class CheckerController extends Controller
         }
     }
     
+    public function approveListingStatus($id)
+    {
+        $listing = BusinessListing::findOrFail($id);
+        $listing->is_active = 1;
+        $listing->save();
+    
+        return redirect()->route('checker.listing')->with('success', 'सूचीकरण सफलतापूर्वक स्वीकृत हुआ।');
+    }
+    
+
 
 }
  

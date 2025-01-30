@@ -8,6 +8,7 @@
 @endif
 
 @section('content')
+
 <!--start page wrapper -->
 <div class="page-content">
     <!--breadcrumb-->
@@ -60,11 +61,18 @@
                                     <td class="align-middle">{{ $business->primary_phone }}</td>
                                     <td class="align-middle">{{ $business->primary_contact_email }}</td>
                                     <td class="align-middle">{{ $business->pincode }}</td> 
-                                    <td class="align-middle"> 
-                                        <a href="{{ route('checker.listing-approve', $business->id) }}" class="btn btn-sm btn-primary edit-user">
-                                            देखें
-                                        </a>
+                                    <td class="align-middle">
+                                        @if($business->is_active == 1)
+                                            <a href="{{ route('checker.listing-approve', $business->id) }}" class="btn btn-sm btn-success edit-user">
+                                                स्वीकृत
+                                            </a>
+                                        @else
+                                            <a href="{{ route('checker.listing-approve', $business->id) }}" class="btn btn-sm btn-danger edit-user">
+                                                देखे
+                                            </a>
+                                        @endif
                                     </td>
+                                    
                                 </tr>
                                 @php $index++; @endphp
                             @endforeach

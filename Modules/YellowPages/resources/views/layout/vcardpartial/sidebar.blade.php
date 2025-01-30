@@ -10,8 +10,10 @@
     </div>
 </div>
 
+<button class="close-sidebar">✖</button>
 <!-- Navigation -->
 <ul class="metismenu" id="menu">
+    
     @if(Auth::check() && Auth::user()->subscriptions->isNotEmpty()) 
         <h6>सदस्यता</h6>
         <li>

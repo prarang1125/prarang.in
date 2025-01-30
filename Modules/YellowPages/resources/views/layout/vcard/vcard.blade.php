@@ -17,3 +17,4 @@
 @include('yellowpages::layout.vcardpartial.script')
 
 
+
