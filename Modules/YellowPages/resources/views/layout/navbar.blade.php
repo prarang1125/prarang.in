@@ -94,10 +94,11 @@ header.header {
 </header>
 
 <script>
+    
     function toggleMenu() {
     const menu = document.querySelector('.navmenu ul');
     menu.classList.toggle('show');
-}
+   }
 
 function toggleDropdown(category) {
     const dropdown = category.querySelector('.dropdown-menu');
