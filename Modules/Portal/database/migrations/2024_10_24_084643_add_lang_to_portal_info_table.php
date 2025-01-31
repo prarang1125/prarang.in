@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('city_name')->nullable();
             $table->string('city_name_local')->nullable();
             $table->string('local_lang')->nullable();
-            
+
         });
     }
 
@@ -25,7 +25,7 @@ return new class extends Migration
     public function down(): void
     {
         Schema::table('portals', function (Blueprint $table) {
-            
+
         });
     }
 };
