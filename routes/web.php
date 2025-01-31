@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DisplayPostImage;
+use App\Http\Controllers\LandingPages;
 use App\Http\Controllers\Main\Home;
 use App\Http\Controllers\Main\PostArchives;
 use App\Http\Controllers\Main\postController;
@@ -43,4 +44,4 @@ Route::prefix('archives')->group(function () {
 
 Route::get('visitor-location', [Base::class,'visitorLocation']);
 
-
+Route::get('yellow-pages/meerut/langing-page', [LandingPages::class,'index']);
