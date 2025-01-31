@@ -14,13 +14,25 @@ class AdminAuthenticate
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle(Request $request, Closure $next): Response
-    {
-        if(!Auth::guard('admin')->check()){
-           // return redirect()->route('admin.login');
-            return redirect()->route('admin.dashboard');
-        }
-        return $next($request);
-    }
+   // app/Http/Middleware/AdminAuthenticate.php
+
+   public function handle(Request $request, Closure $next): Response
+   {
+       $user = Auth::guard('admin')->user();
+   
+       if (!$user) {
+           return redirect()->route('admin.login');
+       }
+   
+       // Allow only admins and managers to proceed
+       if ($user->role == 1 || $user->role == 3) {
+           return $next($request);
+       }
+   
+       // Redirect unauthorized users to login with an error message
+       Auth::guard('admin')->logout();
+       return redirect()->route('admin.login')->with('error', 'आपके पास आवश्यक अनुमतियाँ नहीं हैं');
+   }
+   
     
 }

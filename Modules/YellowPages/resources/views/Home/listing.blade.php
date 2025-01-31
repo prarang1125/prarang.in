@@ -76,8 +76,8 @@ div form div div div{
         <div style="display: flex; justify-content: space-between; align-items: center; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); margin-bottom: 20px;">
             <div>
                 <h1 style="font-size: 28px; font-weight: bold; margin: 0;">{{ $listing->listing_title ?? 'No Title' }}</h1>
-                <p style="font-size: 16px; color: #777;">रेटिंग देने वाले पहले व्यक्ति बनें!
-                </p>
+                {{-- <p style="font-size: 16px; color: #777;">रेटिंग देने वाले पहले व्यक्ति बनें!
+                </p> --}}
             </div>
             <div>
                 <button id="shareButton" style="background-color: #007bff; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px; cursor: pointer;">
@@ -104,7 +104,7 @@ div form div div div{
         <div style="display: flex; gap: 20px; margin-bottom: 20px;">
             <!-- Left Section -->
             <div style="flex: 2; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                <p style="font-size: 16px; color: #555;">आपकी लिस्टिंग के बारे में विस्तृत विवरण</p>
+                <p style="font-size: 16px; color: #555;">विस्तृत विवरण</p>
                 <p style="font-size: 16px; color: #555; margin-top: 10px;">पता:<span style="color: #000;">{{ $listing->business_address ?? 'No Address' }}</span></p>
             </div>
 
@@ -127,7 +127,6 @@ div form div div div{
                     {{ $isOpen ? 'Open Now' : 'Closed Now' }}
                 </p>
             </div>
-
         </div>
 
       <!-- Review Form -->
