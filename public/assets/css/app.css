@@ -2412,3 +2412,21 @@ input.search-control-2::placeholder {
 		display: none
 	}
 }
+
+
+/* Hide sidebar by default on mobile */
+.sidebar-wrapper {
+    display: none;
+}
+
+/* Show sidebar on larger screens */
+@media (min-width: 768px) {
+    .sidebar-wrapper {
+        display: block !important;
+    }
+}
+
+/* Show sidebar when the 'active' class is added */
+.sidebar-wrapper.active {
+    display: block !important;
+}

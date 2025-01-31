@@ -2,11 +2,11 @@
 @section('title', 'Review')
 @section('content')
 
-{{-- @if(isset($error))
+@if(isset($error))
     <div class="alert alert-danger">
         {{ $error }}
     </div>
-@endif --}}
+@endif
 
 
     <div class="container mt-4">

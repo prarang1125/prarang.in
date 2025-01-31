@@ -16,27 +16,60 @@ class HomeController extends Controller
 {
     public function index()
     {
-        try {
+        // try {
+            // Set the timezone to Asia/Kolkata
+            $timezone = 'Asia/Kolkata';
+
             // Fetch categories and cities
             $categories = Category::where('is_active', 1)->get();
             $cities = City::where('is_active', 1)->get();
 
-            $listings = BusinessListing::with(['category', 'hours'])->get()->map(function ($listing) {
-                $currentTime = Carbon::now();
+            // Fetch business listings with related data
+            $listings = BusinessListing::with(['category', 'hours'])->get()->map(function ($listing) use ($timezone) {
+                // Get current time and day in Asia/Kolkata timezone
+                $currentDateTime = Carbon::now($timezone);
+                $currentTime = $currentDateTime->format('H:i:s');
+                $currentDay = $currentDateTime->format('l');
+
+                $listing->is_open = false;
 
                 if ($listing->hours) {
-                    $openTime = Carbon::parse($listing->hours->open_time);
-                    $closeTime = Carbon::parse($listing->hours->close_time);
+                    foreach ($listing->hours as $hours) {
+                        // Check if the business operates 24/7
+                        if ($hours->is_24_hours) {
+                            $listing->is_open = true;
+                            break;
+                        }
 
-                    $listing->is_open = $currentTime->between($openTime, $closeTime);
-                } else {
-                    $listing->is_open = false;
+                        // Ensure day comparison is consistent
+                        if (strtolower($hours->day) === strtolower($currentDay)) {
+                            // Check the first time slot
+                            $openTime1 = $hours->open_time ? Carbon::createFromFormat('H:i:s', $hours->open_time, $timezone) : null;
+                            $closeTime1 = $hours->close_time ? Carbon::createFromFormat('H:i:s', $hours->close_time, $timezone) : null;
+
+                            $isOpen1 = $openTime1 && $closeTime1 && $currentTime >= $openTime1->format('H:i:s') && $currentTime <= $closeTime1->format('H:i:s');
+
+                            // Check the second time slot, if present
+                            $isOpen2 = false;
+                            if ($hours->open_time2 && $hours->close_time2) {
+                                $openTime2 = Carbon::createFromFormat('H:i:s', $hours->open_time2, $timezone);
+                                $closeTime2 = Carbon::createFromFormat('H:i:s', $hours->close_time2, $timezone);
+                                $isOpen2 = $currentTime >= $openTime2->format('H:i:s') && $currentTime <= $closeTime2->format('H:i:s');
+                            }
+
+                            // Determine if the business is open
+                            if ($isOpen1 || $isOpen2) {
+                                $listing->is_open = true;
+                                break;
+                            }
+                        }
+                    }
                 }
 
                 return $listing;
             });
 
-            // Return the view with data
+            // Return the view with the data
             return view('yellowpages::home.home', compact('categories', 'cities', 'listings'));
         } catch (\Exception $e) {
             return $e->getMessage();
@@ -44,6 +77,7 @@ class HomeController extends Controller
             return back()->withErrors(['error' => 'An error occurred while fetching data: ' ]);
         }
     }
+
     ##------------------------- END ---------------------##
 
     ##------------------------- Listing Plan ---------------------##

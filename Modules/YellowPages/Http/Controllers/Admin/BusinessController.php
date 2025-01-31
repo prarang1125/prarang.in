@@ -71,7 +71,7 @@ class BusinessController extends Controller
     ##------------------------- END ---------------------##
 
     ##------------------------- listingUpdate function ---------------------##
-    public function listingUpdate(Request $request)
+    public function listingUpdate(Request $request, $listingId)
     {
         try {
             $validated = $request->validate([
@@ -99,8 +99,7 @@ class BusinessController extends Controller
                 'pincode' => 'nullable|string',
                 'faq' => 'nullable|string',
                 'answer' => 'nullable|string',
-               
-
+    
                 // Business hours validation
                 'day' => 'required|array',
                 'open_time' => 'required|array',
@@ -110,24 +109,30 @@ class BusinessController extends Controller
                 'open_time_2' => 'nullable|array',
                 'close_time_2' => 'nullable|array',
             ]);
-
+    
             // File upload handling
             $imagePath = null;
             if ($request->hasFile('image')) {
                 $imagePath = $request->file('image')->store('yellowpages/business');
             }
-
+    
             $featureImagePath = null;
             if ($request->hasFile('coverImage')) {
                 $featureImagePath = $request->file('coverImage')->store('yellowpages/feature');
             }
-
+    
             $businessLogoPath = null;
             if ($request->hasFile('logo')) {
                 $businessLogoPath = $request->file('logo')->store('yellowpages/logo');
             }
-
-            // Prepare data for insertion
+    
+            // Find the existing listing
+            $listing = BusinessListing::find($listingId);
+            if (!$listing) {
+                return redirect()->back()->withErrors(['error' => 'Listing not found']);
+            }
+    
+            // Prepare data for update
             $data = [
                 'city_id' => $validated['location'],
                 'listing_title' => $validated['listingTitle'],
@@ -153,42 +158,40 @@ class BusinessController extends Controller
                 'social_id' => $validated['socialId'] ?? null,
                 'social_media_description' => $validated['socialDescription'] ?? null,
                 'pincode' => $validated['pincode'],
-                'logo' => $businessLogoPath,
-                'feature_img' => $featureImagePath,
-                'business_img' => $imagePath,
+                'logo' => $businessLogoPath ?? $listing->logo,
+                'feature_img' => $featureImagePath ?? $listing->feature_img,
+                'business_img' => $imagePath ?? $listing->business_img,
             ];
-
-            // Create the business listing
-            $listing = BusinessListing::create($data);
-            if (!$listing) {
-                return redirect()->back()->withErrors(['error' => 'Failed to create listing']);
-            }
-
+    
+            // Update the business listing
+            $listing->update($data);
+    
             // Process business hours if present
             if (!empty($validated['day'])) {
                 foreach ($validated['day'] as $index => $day) {
                     if (!empty($validated['open_time'][$index]) && !empty($validated['close_time'][$index])) {
-
-                        BusinessHour::create([
-                            'business_id' => $listing->id,
-                            'day' => $day,
-                            'open_time' => $validated['open_time'][$index],
-                            'close_time' => $validated['close_time'][$index],
-                            'open_time_2' => $validated['open_time_2'][$index] ?? null,
-                            'close_time_2' => $validated['close_time_2'][$index] ?? null,
-                            'is_24_hours' => isset($validated['is_24_hours'][$index]) ? 1 : 0,
-                            'add_2nd_time_slot' => isset($validated['add_2nd_time_slot'][$index]) ? 1 : 0,
-                        ]);
-                        
+    
+                        BusinessHour::updateOrCreate(
+                            ['business_id' => $listing->id, 'day' => $day],
+                            [
+                                'open_time' => $validated['open_time'][$index],
+                                'close_time' => $validated['close_time'][$index],
+                                'open_time_2' => $validated['open_time_2'][$index] ?? null,
+                                'close_time_2' => $validated['close_time_2'][$index] ?? null,
+                                'is_24_hours' => isset($validated['is_24_hours'][$index]) ? 1 : 0,
+                                'add_2nd_time_slot' => isset($validated['add_2nd_time_slot'][$index]) ? 1 : 0,
+                            ]
+                        );
                     }
                 }
             }
-
-            return redirect()->route('yp.listing.submit')->with('success', 'Listing created successfully!');
+    
+            return redirect()->route('yp.listing.submit')->with('success', 'Listing updated successfully!');
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred:' ]);
+            return redirect()->back()->withErrors(['error' => 'An error occurred Listing updated' ]);
         }
     }
+    
     ##------------------------- END ---------------------##
 
     ##------------------------- ListingDelete function ---------------------##

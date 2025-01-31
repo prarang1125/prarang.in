@@ -11,119 +11,35 @@ header.header {
     height: auto;
 }
 
-.navmenu ul {
-    display: none; /* Initially hidden */
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    align-items: center;
-    flex-direction: column; /* Stack items vertically */
-    background-color: #f8f9fa;
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    z-index: 9999;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
-
-.navmenu ul.show {
-    display: flex; /* Show menu when toggled */
-}
-
-.navmenu ul li {
-    position: relative;
-    margin: 0;
-    padding: 10px;
-}
-
-.navmenu ul li a {
-    text-decoration: none;
-    color: #333;
-    font-size: 1rem;
-    display: block;
-    transition: color 0.3s ease;
-}
-
-.navmenu ul li a:hover {
-    color: #007bff;
-}
-
-/* Dropdown menu styles */
-.navmenu ul .dropdown-menu {
-    flex-direction: column;
-    background-color: #fff;
-    padding: 40px 0;
-    position: absolute;
-    top: 100%; /* Position the dropdown below the parent item */
-    left: 0;
-    width: 80%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-}
-
-/* Show dropdown on click */
-.navmenu ul li.show .dropdown-menu {
-    display: block; /* Show the dropdown when the parent <li> has the .show class */
-}
-
-/* Mobile Nav Toggle */
 .mobile-nav-toggle {
     display: block;
-    font-size: 1.2rem; /* Smaller toggle icon */
+    font-size: 1.2rem; 
     cursor: pointer;
     color: #333;
 }
 
 @media (min-width: 769px) {
     .mobile-nav-toggle {
-        display: none; /* Hide toggle button on larger screens */
+        display: none; 
     }
 
-    .navmenu ul {
-        display: flex; /* Show menu on desktop */
-        flex-direction: row; /* Arrange items horizontally */
-        position: static; /* Default positioning */
-        width: auto;
-        background-color: transparent;
-        box-shadow: none;
-    }
-
-    /* Make dropdown visible on hover in larger screens */
-    .navmenu ul li:hover .dropdown-menu {
-        display: block;
-    }
+   
 }
 
 /* Mobile View - Handle dropdown on tap */
 @media (max-width: 768px) {
     .navmenu ul li a {
-        font-size: 1.1rem; /* Slightly larger font for mobile devices */
+        font-size: 1.1rem; 
     }
 
-    .navmenu ul li .dropdown-menu {
-        display: none; /* Keep dropdown hidden */
-    }
+    /* .navmenu ul li .dropdown-menu {
+        display: none; 
+    } */
 
     .navmenu ul li.show .dropdown-menu {
-        display: block; /* Show dropdown menu on click */
+        display: block; 
     }
 
-    /* Rotate the dropdown icon when the menu is open */
-    .navmenu ul li.show .dropdown-icon {
-        transform: rotate(180deg); /* Rotate icon */
-    }
-}
-
-/* Dropdown icon styles */
-.dropdown-icon {
-    margin-left: 10px;
-    transition: transform 0.3s ease; /* Smooth rotation effect */
-}
-
-/* Optional: Add hover effect to the dropdown icon */
-.navmenu ul li a:hover .dropdown-icon {
-    color: #007bff;
 }
 
 </style>
@@ -137,10 +53,10 @@ header.header {
         <nav id="navmenu" class="navmenu">
             <ul>
                 <li class="dropdown" id="categories-menu">
-                    <a href="#">श्रेणियाँ <i class="bx bx-chevron-down dropdown-icon"></i></a>
+                    <a href="#">सिटीज <i class="bx bx-chevron-down dropdown-icon"></i></a>
                     <ul class="dropdown-menu">
-                        @foreach(get_categories() as $category)
-                            <li><a href="{{ url('yellow-pages/category/' . $category->id) }}">{{ $category->name }}</a></li>
+                        @foreach(get_cities() as $city)
+                        <li><a href="{{ route('city.show', $city->name) }}">{{ $city->name }}</a></li>
                         @endforeach
                     </ul>
                 </li>
@@ -178,10 +94,11 @@ header.header {
 </header>
 
 <script>
+    
     function toggleMenu() {
     const menu = document.querySelector('.navmenu ul');
     menu.classList.toggle('show');
-}
+   }
 
 function toggleDropdown(category) {
     const dropdown = category.querySelector('.dropdown-menu');

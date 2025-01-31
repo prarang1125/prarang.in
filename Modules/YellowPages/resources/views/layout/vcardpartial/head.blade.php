@@ -40,6 +40,7 @@
 	<!-- Bootstrap CSS -->
 	<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
 	<link href="{{ asset('assets/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
 	<link href="{{ asset('assets/css/icons.css') }}" rel="stylesheet">
 	<!-- Theme Style CSS -->
 	<link rel="stylesheet" href="{{ asset('assets/css/dark-theme.css') }}" />
@@ -51,5 +52,6 @@
     {{-- <link rel="stylesheet" href="{{ asset('assets/plugins/ckeditor/contents.css') }}"> --}}
 	{{-- <title>Prarang Admin Home</title> --}}
     <title>@yield('title', 'Login')</title>
+
 </head>
 <body>

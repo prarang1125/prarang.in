@@ -50,10 +50,13 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
-    public function subscription()
+    public function subscriptions()
     {
-        return $this->hasOne(UserPurchasePlan::class, 'user_id', 'id')
-                    ->where('is_active', 1) 
-                    ->orderBy('created_at', 'desc');  
-    }    
+        return $this->hasMany(UserPurchasePlan::class, 'user_id', 'id')
+                    ->where('is_active', 1)
+                    ->orderBy('created_at', 'desc');  // or order it as per your preference
+    }
+    
+       
+    
 }

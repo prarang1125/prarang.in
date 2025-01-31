@@ -12,13 +12,14 @@ class UserPurchasePlan extends Model
     protected $fillable = ['plan_id', 'user_id', 'purchased_at', 'expires_at','amount','payment_status','transaction_id'];
 
     public function user()
-{
-    return $this->belongsTo(User::class);
-}
-
-public function plan()
-{
-    return $this->belongsTo(Plan::class);
-}
+    {
+        return $this->belongsTo(User::class);
+    }
+    
+    public function plan()
+    {
+        return $this->belongsTo(Plan::class);
+    }
+    
 
 }

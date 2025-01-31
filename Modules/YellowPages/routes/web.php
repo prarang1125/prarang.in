@@ -17,6 +17,7 @@ use Modules\YellowPages\Http\Controllers\Admin\CitiesController;
 use Modules\YellowPages\Http\Controllers\Admin\CategoriesController;
 use Modules\YellowPages\Http\Controllers\Admin\BusinessController;
 use Modules\YellowPages\Http\Controllers\Admin\RatingController;
+use Modules\YellowPages\Http\Controllers\Checker\CheckerController;
 use Modules\YellowPages\Http\Controllers\VCard\vCardAuthcontroller;
 use Modules\YellowPages\Http\Controllers\VCard\PlanController;
 use Modules\YellowPages\Http\Controllers\VCard\VcardQRController;
@@ -191,15 +192,18 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
      Route::get('admin/vcard-list', [CardController::class, 'VcardList'])->name('admin.Vcardlist');
     ##------------------------------------------ END -----------------------------------##
 
-  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    End yellowPages Admin Side   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    End yellowPages Admin Side   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   Start yellowPages Checker Side   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+    Route::get('checker/listing', [CheckerController::class, 'CheckListing'])->name('checker.listing');
+    Route::get('checker/listing-approve/{id}', [CheckerController::class, 'approveListing'])->name('checker.listing-approve');
+    Route::put('checker/listing-approve-status/{id}', [CheckerController::class, 'approveListingStatus'])->name('checker.listing-approval-status');
+
+    // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    End yellowPages Checker Side   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
    Route::get('{city_name}', [ListingController::class, 'showByCity'])->name('city.show');
    Route::get('{category}/{city}', [ListingController::class, 'index'])->name('yp.listing');
    Route::get('{city_slug}/{listing_title}/{listing_id}', [ListingController::class, 'listing'])->name('yp.listing-details');
-
-      ##------------------------- Not require ---------------------##
-    Route::get('/signIn', [HomeController::class, 'signIn'])->name('signIn');
-    Route::get('/vCard/login', [vCardAuthcontroller::class, 'index'])->name('vCard.login');
-    Route::post('/vCard/authenticate', [vCardAuthcontroller::class, 'authenticate'])->name('vCard.authenticate');
-    ##------------------------- END ---------------------##
 
 });

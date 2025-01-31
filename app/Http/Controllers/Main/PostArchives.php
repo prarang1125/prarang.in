@@ -70,7 +70,6 @@ class PostArchives extends Controller
                 return view('main.archive.catg', compact('catg', 'cityCode'));
             case 'emotion':
                 return view('main.archive.catg', compact('catg', 'cityCode'));
-
         }
 
         return view('main.archive.catg');

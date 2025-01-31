@@ -116,8 +116,8 @@
                         <img src="{{ Storage::url($listing->feature_img?? 'default.jpg') }}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;" alt="{{ $listing->listing_title ?? 'No Title' }}">
                         <div class="listing-details">
                             <h3 style="font-size: 1.5rem; margin-bottom: 10px;">{{ $listing->listing_title ?? 'No Title' }}</h3>
-                            <p style="font-size: 1rem; color: #555;">Category: {{ $listing->category->name ?? 'N/A' }}</p>
-                            <p style="font-size: 1rem; color: #555;">Address: {{ $listing->business_address ?? 'No Address' }}</p>
+                            <p style="font-size: 1rem; color: #555;">श्रेणी: {{ $listing->category->name ?? 'N/A' }}</p>
+                            <p style="font-size: 1rem; color: #555;">पता: {{ $listing->business_address ?? 'No Address' }}</p>
                             <p style="font-size: 1rem; color: #555;">{{ $listing->is_open ? 'Open' : 'Closed' }}</p>
                         </div>
                     </div>

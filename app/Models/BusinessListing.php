@@ -52,7 +52,7 @@ class BusinessListing extends Model
 
     public function hours()
     {
-        return $this->hasOne(BusinessHour::class, 'business_id');
+        return $this->hasMany(BusinessHour::class, 'business_id');
     }
     public function BusinessHours()
     {

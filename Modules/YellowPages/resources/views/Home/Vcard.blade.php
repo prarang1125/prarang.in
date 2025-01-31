@@ -11,8 +11,8 @@
       <p style="font-size: 1.2em; color: #555; line-height: 1.5; margin-bottom: 20px;">
         क्विक वीकार्ड एक डिजिटल बिजनेस कार्ड निर्माता SAAS स्क्रिप्ट है, जो आपके संपर्कों को साझा करने और अपने पेशेवर संबंधों को बढ़ाने का एक आसान तरीका है।
       </p>
-      <a href="#demo" style="padding: 12px 24px; background-color: #fedd59; color: #fff; border-radius: 8px; font-size: 1.2em; text-decoration: none; font-weight: bold;">
-        डेमो आज़माएं
+      <a href="{{ route('yp.plan') }}" style="padding: 12px 24px; background-color: #fedd59; color: #fff; border-radius: 8px; font-size: 1.2em; text-decoration: none; font-weight: bold;">
+        योजना देखे
       </a>
     </div>
     <!-- Image Content -->

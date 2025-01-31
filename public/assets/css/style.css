@@ -1,0 +1,100 @@
+/* Adjust navbar for mobile */
+@media (max-width: 767px) {
+    .topbar {
+        flex-direction: column;
+    }
+
+    .top-menu {
+        /* width: 100%; */
+        display: flex;
+        justify-content: space-between;
+        padding: 10px;
+    }
+
+    .navbar-nav {
+        display: none; /* Hide links by default */
+    }
+
+    .mobile-toggle-menu {
+        display: block;
+    }
+
+    .mobile-search-icon {
+        display: block;
+    }
+
+    .user-box {
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* Sidebar responsiveness */
+@media (max-width: 991px) {
+    .sidebar-wrapper {
+        position: fixed;
+        top: 0;
+        left: -250px;
+        width: 250px;
+        height: 100%;
+        transition: left 0.3s ease;
+    }
+
+    .sidebar-wrapper.active {
+        left: 0;
+    }
+
+    .sidebar-header {
+        display: none;
+    }
+
+    .toggle-icon {
+        display: block;
+    }
+
+    .metismenu {
+        display: block;
+    }
+
+    .metismenu li {
+        padding: 10px;
+    }
+
+    .metismenu li a {
+        font-size: 16px;
+    }
+}
+
+/* Sidebar toggle */
+.sidebar-wrapper .toggle-icon {
+    display: none;
+}
+
+@media (max-width: 991px) {
+    .sidebar-wrapper .toggle-icon {
+        display: block;
+        position: absolute;
+        top: 20px;
+        right: 10px;
+    }
+}
+
+
+
+@media (max-width: 768px) {
+    /* ... other mobile styles ... */
+
+    .navbar-toggler { /* Style the toggler if needed */
+        z-index: 1052; /* Ensure it's always on top */
+    }
+}
+
+.close-sidebar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+}
