@@ -16,7 +16,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        // try {
+        try {
             // Set the timezone to Asia/Kolkata
             $timezone = 'Asia/Kolkata';
 
