@@ -27,6 +27,7 @@
             --tw-text-opacity: 1;
             --tw-space-x-reverse: 0;
             --tw-space-x-reverse: 0;
+
         }
 
         * {
@@ -34,6 +35,7 @@
             border-width: 0;
             border-style: solid;
             border-color: #e5e7eb;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -1055,45 +1057,255 @@
         }
 
         /* Auto */
-.snipcss-tpTBy .tether-element-attached-center > .mx-auto{
- display:flex;
- flex-direction:column;
- justify-content:center;
- align-items:center;
-}
+        .snipcss-tpTBy .tether-element-attached-center>.mx-auto {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
 
-/* Image */
-.snipcss-tpTBy .mx-auto .logo{
- width:147px;
- transform:translatex(-7px) translatey(-7px);
- margin-bottom:32px;
-}
+        /* Image */
+        .snipcss-tpTBy .mx-auto .logo {
+            width: 147px;
+            transform: translatex(-7px) translatey(-7px);
+            margin-bottom: 32px;
+        }
 
-/* Span Tag */
-.snipcss-tpTBy .text-xl span{
- font-weight:700;
- color:#053c8e;
- text-shadow:rgb(255, 255, 255) 1px 1px 0px, rgb(170, 170, 170) 2px 2px 0px;
-}
+        /* Span Tag */
+        .snipcss-tpTBy .text-xl span {
+            font-weight: 700;
+            color: #053c8e;
+            text-shadow: rgb(255, 255, 255) 1px 1px 0px, rgb(170, 170, 170) 2px 2px 0px;
+        }
 
-/* Text */
-.snipcss-tpTBy .mx-auto p.text-xl{
- white-space:normal;
- text-align:center;
- text-shadow:rgb(255, 0, 0) -1px 0px 0px, rgb(0, 255, 255) 1px 0px 0px;
- font-size:28px;
-}
-/* Paragraph */
-.snipcss-tpTBy .tether-element-attached-center .items-center p{
- font-size:15px;
- color:#020202;
- text-shadow:none;
-}
+        /* Text */
+        .snipcss-tpTBy .mx-auto p.text-xl {
+            white-space: normal;
+            text-align: center;
+            text-shadow: rgb(255, 0, 0) -1px 0px 0px, rgb(0, 255, 255) 1px 0px 0px;
+            font-size: 28px;
+        }
+
+        /* Paragraph */
+        .snipcss-tpTBy .tether-element-attached-center .items-center p {
+            font-size: 15px;
+            color: #020202;
+            text-shadow: none;
+        }
+
+        /* Name */
+        #name {
+            padding-right: 10px;
+            padding-bottom: 10px;
+            transform: translatex(0px) translatey(0px);
+        }
+
+        /* Email */
+        #email {
+            padding-left: 1px;
+            padding-right: 10px;
+            padding-top: 10px;
+        }
+
+        /* Mobile */
+        #mobile {
+            padding-right: 10px;
+            padding-top: 10px;
+        }
+
+        /* Input */
+        .snipcss-tpTBy div input {
+            border-style: solid;
+            border-width: 1px;
+            border-color: #020202;
+            padding-left: 28px !important;
+        }
 
 
+        /* Image */
+        .snipcss-tpTBy .items-center img {
+            transform: translatex(0px) translatey(0px);
+            background-color: rgba(0, 0, 0, 0) !important;
+            box-shadow: 0px 0px 0px -50px rgba(0, 0, 0, 0) !important;
+            height: 450px;
+        }
 
+        /* Image */
+        .snipcss-tpTBy .tether-element-attached-center .mx-auto .items-center .relative img {
+            width: 110% !important;
+        }
+
+        @media (max-width:576px) {
+
+            /* Font bold */
+            .snipcss-tpTBy .mx-auto h1.font-bold {
+                margin-bottom: 5px;
+            }
+
+            /* Small Tag */
+            .snipcss-tpTBy .mx-auto small {
+                margin-bottom: 20px;
+                font-weight: 600;
+                font-size: 14px;
+            }
+
+            /* Text start */
+            .snipcss-tpTBy .mx-auto .text-start {
+                color: #0b25ee;
+                font-weight: 400;
+                margin-bottom: 16px;
+                width: 437px;
+                letter-spacing: -0.4px;
+                text-shadow: rgba(0, 0, 0, 0.3) 0px 1px 1px;
+                font-style: normal;
+                text-transform: uppercase;
+                text-decoration: none;
+            }
+
+            /* Logo */
+            .snipcss-tpTBy .mx-auto .logo {
+                margin-bottom: 15px;
+            }
+
+            /* Text */
+            .snipcss-tpTBy .tether-element-attached-center .mx-auto p.text-xl {
+                line-height: 1.4em !important;
+                display: inline-block !important;
+            }
+
+            /* Text */
+            .snipcss-tpTBy .mx-auto p.text-xl {
+                transform: translatex(0px) translatey(0px);
+                text-align: justify;
+                padding-right: 10px;
+                padding-left: 10px;
+            }
+
+            /* Paragraph */
+            .snipcss-tpTBy .tether-element-attached-center .items-center p {
+                font-size: 16px;
+            }
+
+        }
+
+        /* Text */
+        .snipcss-tpTBy .mx-auto p.text-xl {
+            margin-top: 17px;
+        }
+
+        /* Text start */
+        .snipcss-tpTBy .mx-auto .text-start {
+            position: relative;
+            left: -220px;
+        }
+
+        @media (min-width:577px) {
+
+            /* Text start */
+            .snipcss-tpTBy .mx-auto .text-start {
+                margin-bottom: 26px;
+            }
+
+            /* Font bold */
+            .snipcss-tpTBy .mx-auto h1.font-bold {
+                margin-bottom: 0px;
+            }
+
+        }
+
+        /* Transform */
+        .transform {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Transition transform */
+        .snipcss-tpTBy .tether-element-attached-center .transition-transform {
+            display: block;
+        }
+
+        /* Formxttl */
+        #myFormxttl {
+            padding-top: 22px;
+            background-color: rgba(237, 236, 236, 0.64);
+            box-shadow: 0px 0px 38px -14px #605252;
+        }
+
+        /* Heading */
+        #myFormxttl h3 {
+            margin-bottom: 16px;
+        }
+
+
+        /* Link */
+        .transform p a {
+            font-weight: 700;
+            color: #020202;
+        }
+
+        /* Lucide */
+        .transform .lucide {
+            color: #020202;
+        }
+
+        /* Button */
+        .snipcss-tpTBy .tether-element-attached-center a {
+            margin-top: 12px;
+            font-weight: 700;
+            color: #020202;
+            background-color: #e8bc0c;
+            border-style: solid;
+            border-width: 2px;
+            border-color: #e7b327;
+            padding-right: 38px;
+            padding-left: 40px;
+        }
+
+        /* Button */
+        .snipcss-tpTBy .tether-element-attached-center .mx-auto div a {
+            width: 0px !important;
+        }
+
+        @media (max-width:853px) {
+
+            /* Slug */
+            .slug {
+                left: -170px !important;
+            }
+
+            /* Text start */
+            .snipcss-tpTBy .tether-element-attached-center .mx-auto .text-start {
+                right: auto !important;
+            }
+
+        }
+
+        @media (max-width:587px) {
+
+            /* Slug */
+            .slug {
+                left: -160px !important;
+                top: 10px;
+            }
+
+            /* Text start */
+            .snipcss-tpTBy .tether-element-attached-center .mx-auto .text-start {
+                right: auto !important;
+            }
+
+        }
+
+        @media (max-width:576px) {
+
+            /* Slug */
+            .slug {
+                width: 143px !important;
+            }
+
+        }
     </style>
 </head>
+
 <body>
 
     <!-- Exported with SnipCSS extension (Ver 1.9.8) -->
@@ -1104,9 +1316,13 @@
             <div class="max-w-7xl mx-auto text-center relative snipcss0-1-1-3">
 
                 <img class="logo" src="https://www.prarang.in/assets/images/logo2x.png" alt="">
-                <h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-6 animate-fade-in snipcss0-2-3-5">मेरठ</h1>
-                <p class="text-xl md:text-2xl text-gray-800 max-w-3xl mx-auto animate-slide-up snipcss0-2-3-6">मेरठ में व्यवसायों, सेवाओं की जानकारी
-                    को बढ़ाये।  <span> अपने व्यवसाय को  ऑनलाइन करे,</span> अपना खुद का वेबसाइट बनाये। </p>
+                <p class="text-start slug">देश का पहला, हिंदी में </p>
+                <h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-6 animate-fade-in snipcss0-2-3-5">मेरठ
+                    येलो पेजेज </h1>
+                <small>Meerut Yellow Pages</small>
+                <p class="text-xl md:text-2xl text-gray-800 max-w-3xl mx-auto animate-slide-up snipcss0-2-3-6">मेरठ में
+                    व्यवसायों, सेवाओं की जानकारी
+                    को बढ़ाये। <span> अपने व्यवसाय को फ्री में ऑनलाइन करे,</span> अपना खुद का मुफ्त वेबसाइट बनाये। </p>
                 <div class="mt-8 flex justify-center space-x-6 animate-fade-in snipcss0-2-3-7">
                     <div class="flex items-center space-x-2 snipcss0-3-7-8"><svg xmlns="http://www.w3.org/2000/svg"
                             width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -1116,7 +1332,7 @@
                             <circle cx="9" cy="7" r="4"></circle>
                             <path d="M22 21v-2a4 4 0 0 0-3-3.87"></path>
                             <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-                        </svg><span class="text-gray-800 snipcss0-4-8-10">10,000+ उपयोगकर्ता</span></div>
+                        </svg><span class="text-gray-800 snipcss0-4-8-10">100+ उपयोगकर्ता</span></div>
                     <div class="flex items-center space-x-2 snipcss0-3-7-11"><svg xmlns="http://www.w3.org/2000/svg"
                             width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -1128,7 +1344,7 @@
                             <path d="M10 10h4"></path>
                             <path d="M10 14h4"></path>
                             <path d="M10 18h4"></path>
-                        </svg><span class="text-gray-800 snipcss0-4-11-13">5,000+ व्यवसाय</span></div>
+                        </svg><span class="text-gray-800 snipcss0-4-11-13">100+ व्यवसाय</span></div>
                     <div class="flex items-center space-x-2 snipcss0-3-7-14"><svg xmlns="http://www.w3.org/2000/svg"
                             width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
@@ -1137,17 +1353,28 @@
                                 points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
                             </polygon>
                         </svg><span class="text-gray-800 snipcss0-4-14-16">4.8/5 रेटिंग</span></div>
+                </div> <br>
+                <div>
+                    <a href="{{ route('yp.newAccount') }}" target="_blank"
+                        class="btn btn-lg border-2 border-yellow-500 text-yellow-500 hover:bg-yellow-500 hover:text-white transition-all duration-200 px-4 py-2 rounded">
+                        वेब पेज को बनाएं
+                    </a>
                 </div>
+
             </div>
+
         </header>
         <section
             class="py-16 bg-gray-50 snipcss0-0-0-1 tether-element-attached-top tether-element-attached-center tether-target-attached-top tether-target-attached-center">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 snipcss0-1-1-2">
                 <div class="grid md:grid-cols-2 gap-12 items-center snipcss0-2-2-3">
                     <div class="space-y-6 animate-slide-right snipcss0-3-3-4">
-                        <h2 class="text-4xl font-bold text-gray-900 snipcss0-4-4-5">आज ही अपने व्यवसाय का वेब पेज बनाये </h2>
-                        <p class="text-xl text-gray-600 snipcss0-4-4-6">अपने फोन से हजारों स्थानीय व्यवसायों तक पहुंचें।
-                            रिव्यू, संपर्क जानकारी और दिशा-निर्देश तुरंत प्राप्त करें।</p>
+                        <h2 class="text-4xl font-bold text-gray-900 snipcss0-4-4-5">आज ही अपने व्यवसाय का फ्री में वेब
+                            पेज बनाये
+                        </h2>
+                        <p class="text-xl text-gray-600 snipcss0-4-4-6">अपने फोन से हजारों स्थानीय लोगो तक फ्री में
+                            पहुंचें।
+                            रिव्यू, संपर्क जानकारी और दिशा-निर्देश से, अपने व्यवसाय को आगे बढ़ाये।</p>
                         <div class="space-y-4 snipcss0-4-4-7">
                             <div class="flex items-center space-x-3 snipcss0-5-7-8"><svg
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -1166,9 +1393,9 @@
                                     <polyline points="12 6 12 12 16 14"></polyline>
                                 </svg><span class="text-gray-600 snipcss0-6-11-13">रीयल-टाइम व्यवसाय समय</span></div>
                             <div class="flex items-center space-x-3 snipcss0-5-7-14"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                                    stroke-linecap="round" stroke-linejoin="round"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
                                     class="lucide lucide-star w-6 h-6 text-yellow-500 snipcss0-6-14-15">
                                     <polygon
                                         points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
@@ -1176,9 +1403,8 @@
                                 </svg><span class="text-gray-600 snipcss0-6-14-16">सत्यापित समीक्षाएं</span></div>
                         </div>
                     </div>
-                    <div class="relative animate-float snipcss0-3-3-17"><img
-                            src="https://images.unsplash.com/photo-1555774698-0b77e0d5fac6?w=800&amp;auto=format&amp;fit=crop&amp;q=60"
-                            alt="मोबाइल ऐप डेमो"
+                    <div class="relative animate-float snipcss0-3-3-17s"><img
+                            src="{{ asset('assets/images/yp-mocup.png') }}" alt="मोबाइल ऐप डेमो"
                             class="rounded-3xl shadow-2xl transform -rotate-6 hover:rotate-0 transition-transform duration-500 snipcss0-4-17-18">
                     </div>
                 </div>
@@ -1188,9 +1414,9 @@
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="space-y-6 animate-slide-left">
-                    <h2 class="text-3xl font-bold text-gray-900">स्थानीय व्यवसायों से जुड़ें</h2>
+                    <h2 class="text-3xl font-bold text-gray-900">स्थानीय व्यवसायों से फ्री में जुड़ें</h2>
                     <p class="text-lg text-gray-600">हमारी बढ़ती व्यवसाय डायरेक्टरी से जुड़ें और स्थानीय समुदाय से
-                        जुड़े रहें। मेरठ के व्यवसायों से विशेष अपडेट और प्रमोशन प्राप्त करें।</p>
+                        जुड़े रहें।</p>
                     <div class="space-y-4">
                         <div class="flex items-center space-x-3"><svg xmlns="http://www.w3.org/2000/svg"
                                 width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -1206,99 +1432,87 @@
                                 <path
                                     d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z">
                                 </path>
-                            </svg><span class="text-gray-600">+91 1234567890</span></div>
+                            </svg><span class="text-gray-600">+91-1204561284</span></div>
                         <div class="flex items-center space-x-3"><svg xmlns="http://www.w3.org/2000/svg"
                                 width="24" height="24" viewBox="0 0 24 24" fill="none"
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round"
                                 stroke-linejoin="round" class="lucide lucide-mail w-6 h-6 text-yellow-500">
                                 <rect width="20" height="16" x="2" y="4" rx="2"></rect>
                                 <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>
-                            </svg><span class="text-gray-600">contact@meerutyp.com</span></div>
+                            </svg><span class="text-gray-600">query@prarang.in</span></div>
                     </div>
                 </div>
-                <div class="bg-white rounded-lg shadow-xl p-6 md:p-8 animate-slide-up">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-6">आज ही शुरू करें</h3>
-                    <form class="space-y-4">
-                        <div><label for="name" class="block text-sm font-medium text-gray-700">पूरा
-                                नाम</label><input type="text" id="name" name="name"
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-sm transform hover:scale-105 transition-transform duration-200"
-                                required="" value=""></div>
-                        <div><label for="email" class="block text-sm font-medium text-gray-700">ईमेल
-                                पता</label><input type="email" id="email" name="email"
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-sm transform hover:scale-105 transition-transform duration-200"
-                                required="" value=""></div>
-                        <div><label for="mobile" class="block text-sm font-medium text-gray-700">मोबाइल
-                                नंबर</label><input type="tel" id="mobile" name="mobile"
-                                class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-yellow-500 focus:ring-yellow-500 sm:text-sm transform hover:scale-105 transition-transform duration-200"
-                                required="" value=""></div><button type="submit"
-                            class="w-full bg-yellow-500 text-white py-3 px-4 rounded-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 transition-all duration-200 transform hover:scale-105 hover:shadow-lg">शुरू
-                            करें</button>
-                    </form>
+
+                <div class="bg-white rounded-lg shadow-xl p-6 md:p-8 animate-slide-up" id="myFormxttl">
+                    <small>अपने व्यवसाय को फ्री में ऑनलाइन करने के किये हमसे संपर्क करे .</small>
+                    <h3 class="text-2xl font-semibold text-gray-900 mb-6">आज ही संपर्क करें</h3>
+                    @livewire('yp-landing-form')
+
                 </div>
             </div>
         </main>
         <section
-        class="py-16 snipcss0-0-0-1 tether-element-attached-top tether-element-attached-center tether-target-attached-top tether-target-attached-center">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 snipcss0-1-1-2">
-            <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center snipcss0-2-2-3">विशेष व्यवसाय</h2>
-            <div class="grid md:grid-cols-3 gap-8 snipcss0-2-2-4">
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 animate-fade-in snipcss0-3-4-5 style-ldLO1"
-                    id="style-ldLO1"><img
-                        src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&amp;auto=format&amp;fit=crop&amp;q=60"
-                        alt="शर्मा रेस्टोरेंट" class="w-full h-48 object-cover snipcss0-4-5-6">
-                    <div class="p-6 snipcss0-4-5-7">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2 snipcss0-5-7-8">शर्मा रेस्टोरेंट</h3>
-                        <p class="text-gray-600 mb-4 snipcss0-5-7-9">खाना-पीना</p>
-                        <div class="flex items-center snipcss0-5-7-10"><svg xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="lucide lucide-star w-5 h-5 text-yellow-500 mr-1 snipcss0-6-10-11">
-                                <polygon
-                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                </polygon>
-                            </svg><span class="text-gray-700 snipcss0-6-10-12">4.8</span></div>
+            class="py-16 snipcss0-0-0-1 tether-element-attached-top tether-element-attached-center tether-target-attached-top tether-target-attached-center">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 snipcss0-1-1-2">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8 text-center snipcss0-2-2-3">विशेष व्यवसाय</h2>
+                <div class="grid md:grid-cols-3 gap-8 snipcss0-2-2-4">
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 animate-fade-in snipcss0-3-4-5 style-ldLO1"
+                        id="style-ldLO1"><img
+                            src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&amp;auto=format&amp;fit=crop&amp;q=60"
+                            alt="शर्मा रेस्टोरेंट" class="w-full h-48 object-cover snipcss0-4-5-6">
+                        <div class="p-6 snipcss0-4-5-7">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2 snipcss0-5-7-8">शर्मा रेस्टोरेंट</h3>
+                            <p class="text-gray-600 mb-4 snipcss0-5-7-9">खाना-पीना</p>
+                            <div class="flex items-center snipcss0-5-7-10"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-star w-5 h-5 text-yellow-500 mr-1 snipcss0-6-10-11">
+                                    <polygon
+                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                    </polygon>
+                                </svg><span class="text-gray-700 snipcss0-6-10-12">4.8</span></div>
+                        </div>
                     </div>
-                </div>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 animate-fade-in snipcss0-3-4-13 style-8Bcz1"
-                    id="style-8Bcz1"><img
-                        src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&amp;auto=format&amp;fit=crop&amp;q=60"
-                        alt="टेक सॉल्यूशंस हब" class="w-full h-48 object-cover snipcss0-4-13-14">
-                    <div class="p-6 snipcss0-4-13-15">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2 snipcss0-5-15-16">टेक सॉल्यूशंस हब</h3>
-                        <p class="text-gray-600 mb-4 snipcss0-5-15-17">टेक्नोलॉजी</p>
-                        <div class="flex items-center snipcss0-5-15-18"><svg xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="lucide lucide-star w-5 h-5 text-yellow-500 mr-1 snipcss0-6-18-19">
-                                <polygon
-                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                </polygon>
-                            </svg><span class="text-gray-700 snipcss0-6-18-20">4.6</span></div>
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 animate-fade-in snipcss0-3-4-13 style-8Bcz1"
+                        id="style-8Bcz1"><img
+                            src="https://images.unsplash.com/photo-1497366216548-37526070297c?w=800&amp;auto=format&amp;fit=crop&amp;q=60"
+                            alt="टेक सॉल्यूशंस हब" class="w-full h-48 object-cover snipcss0-4-13-14">
+                        <div class="p-6 snipcss0-4-13-15">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2 snipcss0-5-15-16">टेक सॉल्यूशंस हब</h3>
+                            <p class="text-gray-600 mb-4 snipcss0-5-15-17">टेक्नोलॉजी</p>
+                            <div class="flex items-center snipcss0-5-15-18"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-star w-5 h-5 text-yellow-500 mr-1 snipcss0-6-18-19">
+                                    <polygon
+                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                    </polygon>
+                                </svg><span class="text-gray-700 snipcss0-6-18-20">4.6</span></div>
+                        </div>
                     </div>
-                </div>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 animate-fade-in snipcss0-3-4-21 style-YGy3m"
-                    id="style-YGy3m"><img
-                        src="https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?w=800&amp;auto=format&amp;fit=crop&amp;q=60"
-                        alt="ग्रीन वैली मॉल" class="w-full h-48 object-cover snipcss0-4-21-22">
-                    <div class="p-6 snipcss0-4-21-23">
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2 snipcss0-5-23-24">ग्रीन वैली मॉल</h3>
-                        <p class="text-gray-600 mb-4 snipcss0-5-23-25">शॉपिंग</p>
-                        <div class="flex items-center snipcss0-5-23-26"><svg xmlns="http://www.w3.org/2000/svg"
-                                width="24" height="24" viewBox="0 0 24 24" fill="none"
-                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                stroke-linejoin="round"
-                                class="lucide lucide-star w-5 h-5 text-yellow-500 mr-1 snipcss0-6-26-27">
-                                <polygon
-                                    points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
-                                </polygon>
-                            </svg><span class="text-gray-700 snipcss0-6-26-28">4.9</span></div>
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 animate-fade-in snipcss0-3-4-21 style-YGy3m"
+                        id="style-YGy3m"><img
+                            src="https://images.unsplash.com/photo-1519567241046-7f570eee3ce6?w=800&amp;auto=format&amp;fit=crop&amp;q=60"
+                            alt="ग्रीन वैली मॉल" class="w-full h-48 object-cover snipcss0-4-21-22">
+                        <div class="p-6 snipcss0-4-21-23">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2 snipcss0-5-23-24">ग्रीन मॉल</h3>
+                            <p class="text-gray-600 mb-4 snipcss0-5-23-25">शॉपिंग</p>
+                            <div class="flex items-center snipcss0-5-23-26"><svg xmlns="http://www.w3.org/2000/svg"
+                                    width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                    class="lucide lucide-star w-5 h-5 text-yellow-500 mr-1 snipcss0-6-26-27">
+                                    <polygon
+                                        points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
+                                    </polygon>
+                                </svg><span class="text-gray-700 snipcss0-6-26-28">4.9</span></div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
         <footer class="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8 mt-12">
             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="animate-fade-in">
@@ -1307,8 +1521,9 @@
                         व्यवसायों और ग्राहकों को जोड़ रहे हैं।</p>
                 </div>
                 <div class="text-right animate-fade-in">
-                    <h4 class="text-xl font-semibold mb-4">हमें फॉलो करें</h4>
-                    <div class="flex justify-end space-x-4"><a href="#"
+                    <h4 class="text-xl font-semibold mb-4"><a href="{{ route('city.show', ['city_name' => 'मेरठ']) }}"
+                            target="_blank"> मेरठ येलो पेजेज</a> </h4>
+                    {{-- <div class="flex justify-end space-x-4"><a href="#"
                             class="hover:text-yellow-500 transition-colors transform hover:scale-110"><svg
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -1331,12 +1546,28 @@
                                 </rect>
                                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
                                 <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
-                            </svg></a></div>
+                            </svg></a></div> --}}
                 </div>
             </div>
         </footer>
     </div>
+    <button
+        class="fixed bottom-4 right-4 bg-yellow-500 text-white rounded-full p-4 hover:bg-yellow-600 transition-colors transform hover:scale-110">
+        {{-- svg bobile icon  --}}
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="lucide lucide-phone-call w-6 h-6">
+            <path d="M15 7h3a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-3l-5 5-5-5H5a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h3"></path>
+            <path d="M16 2v.5a2.5 2.5 0 0 0-5 0V2"></path>
+            <path d="M16 16v.5a2.5 2.5 0 0 0-5 0V16"></path>
+            <path d="M16 10v.5a2.5 2.5 0 0 0-5 0V10"></path>
 
+        </svg>
+        <p><a href="#myFormxttl">अभी हमसे संपर्क करे</a></p>
+
+
+
+    </button>
 </body>
 
 </html>
