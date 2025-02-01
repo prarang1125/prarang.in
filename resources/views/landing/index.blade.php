@@ -1687,7 +1687,7 @@
                 <div class="text-right animate-fade-in">
                     <h4 class="text-xl font-semibold mb-4"><a href="{{ route('city.show', ['city_name' => 'मेरठ']) }}"
                             target="_blank"> मेरठ येलो पेज</a> </h4>
-                            <a href="{{route('terms-conditions')}}">Terms of Service</a> |
+                            {{-- <a href="{{route('terms-conditions')}}">Terms of Service</a> | --}}
                             <a href="{{route('privacy-policy')}}">Privacy Policy</a>
                     {{-- <div class="flex justify-end space-x-4"><a href="#"
                             class="hover:text-yellow-500 transition-colors transform hover:scale-110"><svg
