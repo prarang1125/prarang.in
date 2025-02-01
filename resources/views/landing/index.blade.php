@@ -1303,6 +1303,36 @@
             }
 
         }
+
+        /* Image */
+        .snipcss-tpTBy .tether-element-attached-center .mx-auto>div>img {
+            width: 18% !important;
+            margin-left: 40px;
+            margin-bottom: 27px;
+        }
+
+        /* Division */
+        .snipcss-tpTBy .tether-element-attached-center .mx-auto>div {
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        /* Logo */
+        .snipcss-tpTBy .tether-element-attached-center .mx-auto div .logo {
+            width: 202px !important;
+        }
+
+        /* Image */
+        .snipcss-tpTBy .tether-element-attached-center .mx-auto>div>img {
+            margin-left: 19px;
+        }
+
+        /* Division */
+        .snipcss-tpTBy .tether-element-attached-center .mx-auto>div {
+            transform: translatex(0px) translatey(0px);
+        }
     </style>
 </head>
 
@@ -1315,7 +1345,10 @@
             <div class="absolute inset-0 bg-grid-pattern opacity-10 animate-pulse snipcss0-1-1-2"></div>
             <div class="max-w-7xl mx-auto text-center relative snipcss0-1-1-3">
 
-                <img class="logo" src="https://www.prarang.in/assets/images/logo2x.png" alt="">
+                <div><img class="logo" src="https://www.prarang.in/assets/images/logo2x.png" alt="">
+                    <img src="https://uberall.com/images/_1200x630_crop_center-center_82_none/Yellow-Pages.jpg?mtime=1725474531"
+                        alt="">
+                </div>
                 <p class="text-start slug">देश का पहला, हिंदी में </p>
                 <h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-6 animate-fade-in snipcss0-2-3-5">मेरठ
                     येलो पेजेज </h1>
@@ -1393,9 +1426,9 @@
                                     <polyline points="12 6 12 12 16 14"></polyline>
                                 </svg><span class="text-gray-600 snipcss0-6-11-13">रीयल-टाइम व्यवसाय समय</span></div>
                             <div class="flex items-center space-x-3 snipcss0-5-7-14"><svg
-                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                    stroke-linejoin="round"
+                                    xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                    stroke-linecap="round" stroke-linejoin="round"
                                     class="lucide lucide-star w-6 h-6 text-yellow-500 snipcss0-6-14-15">
                                     <polygon
                                         points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2">
