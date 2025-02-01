@@ -4,7 +4,7 @@
 
 @section('content')
 <br>
-    
+
         <!-- Header with Background Color -->
         <div style="background-image: url('{{ Storage::url('categories/cate_bg.jpg') }}'); background-size: cover; background-position: center; padding: 60px; color: white; text-align: center;">
             @if(isset($city_name) && $city_name)
@@ -21,13 +21,13 @@
                 </h1>
             @endif
         </div>
-        
-    
+
+
         <div class="card-body d-flex justify-content-end align-items-end" style="padding-right: 50px;">
             <a href="{{ route('yp.home') }}" class="btn btn-primary">वापास जाए</a>
         </div>
-        
-        
+
+
         <!-- Listings Section -->
         <div style="max-width: 1200px; margin: 20px auto; padding: 0 20px;">
             <div style="font-size: 24px; margin-bottom: 20px;">
@@ -62,13 +62,13 @@
         <button style="padding: 10px 15px; border-radius: 20px; border: 1px solid; cursor: pointer;">
             Sort By
         </button> --}}
-        
+
     </div>
 
     <!-- Sort By Buttons -->
-   
+
         {{-- <div>
-            <select 
+            <select
                 style="padding: 10px 15px; border-radius: 20px; border: 1px solid ; cursor: pointer; width: 100%; max-width: 300px;">
                 @foreach($categories as $cate)
                     <option value="{{ $cate->id }}">{{ $cate->name }}</option>
@@ -80,7 +80,7 @@
 <!-- Listings Grid -->
 <div class="listings-grid" style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
     @foreach($listings as $listing)
-        <a href="{{ route('yp.listing-details', ['city_slug' => $listing->city->name, 'listing_title' => $listing->listing_title, 'listing_id' => $listing->id]) }}" 
+        <a href="{{ route('yp.listing-details', ['city_slug' => $listing->city->name, 'listing_title' => $listing->listing_title, 'listing_id' => $listing->id]) }}"
            style="display: block; background-color: white; border-radius: 10px; overflow: hidden; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); text-align: center; text-decoration: none;">
            <img src="{{ Storage::url($listing->feature_img ?? 'default.jpg') }}" style="width: 200px; height: 200px; object-fit: cover;">
             <div style="padding: 20px;">
@@ -104,13 +104,13 @@
             function replaceContent(element, newText) {
                 element.textContent = newText;
             }
-        
+
             function restoreContent(element, originalText) {
                 element.textContent = originalText;
             }
         </script>
-        
-    
+
+
         <!-- Responsive Grid for Mobile -->
         <style>
             @media (max-width: 768px) {

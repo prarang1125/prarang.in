@@ -13,7 +13,7 @@
                       <span>{{ __('messages.explore_your_city') }}</span>
                   </h2>
                   <p>{{ __('messages.Let_uncover_the_best_Businesses') }}</p>
-  
+
                   <div class="search-form d-flex justify-content-center mt-4">
                       <!-- Categories Dropdown -->
                       <select id="category" class="form-select" style="width: 300px; padding: 10px; margin-right: 10px;">
@@ -24,7 +24,7 @@
                               </option>
                           @endforeach
                       </select>
-  
+
                       <!-- Cities Dropdown -->
                       <select id="city" class="form-select" style="width: 200px; padding: 10px; margin-right: 10px;">
                           <option value="">{{ __('messages.select_city') }}</option>
@@ -34,14 +34,14 @@
                               </option>
                           @endforeach
                       </select>
-                  
+
                       <!-- Search Button -->
                       <button id="submitCatForm" class="btn btn-primary">
                           <i class="bi bi-search" style="font-size: 1.2rem;"></i>
                       </button>
                   </div>
                    <p class="text-danger citymsg"></p>
-                  
+
                   <div class="text-center lp-search-description" style="margin-top: 20px;">
                       <p>{{ __('messages.Looking_for_a_service') }}</p>
                       <img src="{{ asset('assets/images/banner-arrow.png') }}" alt="banner-arrow" class="banner-arrow" style="margin-top: 10px;" />
@@ -59,7 +59,7 @@
                               <a href="{{ url('yellow-pages/category' .$category->slug) }}">
                                   <img src="{{ Storage::url($category->categories_url) }}" alt="" style="width: 100%; height: 100%; object-fit: cover;" />
                               </a>
-                  
+
                             </div>
                             <h4 class="title" style="font-size: 16px; margin-top: 10px;">
                                 <!-- Add the link to the listing page with the category ID -->
@@ -72,7 +72,7 @@
         </div>
     </div>
   </section>
-  
+
     <!-- get cities  -->
     <section id="services" class="services">
       <!-- Section Title -->
@@ -80,14 +80,14 @@
           <h2>{{__('messages.Live_Cities')}}</h2>
           <p>{{__('messages.Find_the_Best_Services')}}</p>
       </div><!-- End Section Title -->
-  
+
       <div class="container">
           <div class="row gy-4">
               @foreach($cities as $index => $city)
                   <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="{{ ($index + 1) * 100 }}">
                       <a href="{{ route('city.show', ['city_name' => $city->name]) }}" class="card-link">
                           <div class="card">
-                              
+
                               <img src="{{ Storage::url($city->cities_url) }}" class="card-img-top" alt="{{ $city->name }}">
                               <div class="card-body text-center">
                                   <h5 class="card-title">{{$city->name}}</h5>
@@ -99,13 +99,13 @@
           </div>
       </div>
   </section>
-  
+
   <section id="listings" class="listings section">
     <div class="container section-title" data-aos="fade-up" style="text-align: center; margin-bottom: 40px;">
         <h2>{{__('messages.Listings')}}</h2>
         <p>{{__('messages.Popular_Listings_In_Our_Directory')}}</p>
     </div>
-  
+
     <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="swiper init-swiper">
             <div class="swiper-wrapper">
@@ -125,13 +125,13 @@
                 </div>
                 @endforeach
             </div>
-  
+
             <!-- Pagination -->
             <div class="swiper-pagination"></div>
         </div>
     </div>
   </section>
-  
+
 @endsection
 @push('scripts')
 <script>
