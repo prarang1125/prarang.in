@@ -39,14 +39,14 @@ class AuthModalController extends Controller
             'phone.regex' => 'कृपया एक वैध फोन नंबर दर्ज करें।',
             'password.required' => 'पासवर्ड आवश्यक है।',
         ]);
-    
+
         try {
             // Attempt login with credentials
             $credentials = $request->only('phone', 'password');
-    
+
             // Check if the user exists by phone number
             $user = User::where('phone', $credentials['phone'])->first();
-    
+
             if ($user && Hash::check($credentials['password'], $user->password)) {
                 // Check if the user's role is '2' (Customer)
                 if ($user->role == 2) {
@@ -58,14 +58,14 @@ class AuthModalController extends Controller
                     return redirect()->back()->withErrors(['loginError' => 'पहुँच प्रतिबंधित है। आपके पास ग्राहक अधिकार नहीं हैं।'])->withInput();
                 }
             }
-    
+
             // Return with error if login fails
             return redirect()->back()->withErrors(['loginError' => 'आपके द्वारा दिए गए विवरण सही नहीं हैं। कृपया फिर से प्रयास करें।'])->withInput();
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'लॉगिन के दौरान एक त्रुटि हुई:'])->withInput();
         }
     }
-    
+
     ##------------------------- END ---------------------##
      ##------------------------- Register View ---------------------##
      public function newAccount()
@@ -121,16 +121,14 @@ class AuthModalController extends Controller
 
         // Redirect after registration
         return redirect()->route('vCard.dashboard'); // Replace with your desired redirect route
-    } catch (\Illuminate\Validation\ValidationException $e) {
-        // If validation fails, return errors and old input
-        return redirect()->back()->withErrors($e->errors())->withInput();
+
     } catch (\Exception $e) {
         // Handle general errors and provide feedback
         return redirect()->back()->withErrors(['error' => 'पंजीकरण के दौरान एक त्रुटि हुई। कृपया फिर से प्रयास करें।'])->withInput();
     }
 }
 
-    
+
     ##------------------------- END ---------------------##
 
     ##------------------------- Logout ---------------------##
@@ -141,7 +139,7 @@ class AuthModalController extends Controller
             // Invalidate the session and regenerate the token
             $request->session()->invalidate();
             $request->session()->regenerateToken();
-    
+
             return redirect()->route('yp.home'); // Redirect to home page after logout
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'लॉगआउट (logout) के दौरान एक त्रुटि हुई। कृपया फिर से प्रयास करें।']);
