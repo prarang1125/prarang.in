@@ -1383,7 +1383,56 @@
  text-align:left;
 }
 
+@media (max-width:853px){
 
+/* Tether element attached center */
+.snipcss-tpTBy .tether-element-attached-center{
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:stretch;
+}
+
+/* Items center */
+.snipcss-tpTBy .tether-element-attached-center .mx-auto > .items-center{
+ flex-direction:column;
+}
+
+}
+
+@media (max-width:576px){
+
+/* Image */
+.snipcss-tpTBy .tether-element-attached-center .mx-auto > div > img{
+ width:36% !important;
+}
+
+/* Logo */
+.snipcss-tpTBy .tether-element-attached-center .mx-auto div .logo{
+ width:154px !important;
+}
+
+/* Font bold */
+.snipcss-tpTBy .mx-auto h1.font-bold{
+ font-size:35px;
+}
+
+/* Text start */
+.snipcss-tpTBy .mx-auto .text-start{
+ font-size:14px;
+}
+
+/* Text */
+.snipcss-tpTBy .mx-auto p.text-xl{
+ font-size:22px;
+}
+
+/* Grid */
+.snipcss-tpTBy .tether-element-attached-center .grid{
+ flex-direction:column !important;
+}
+
+}
     </style>
 </head>
 
