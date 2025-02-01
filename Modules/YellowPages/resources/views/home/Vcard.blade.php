@@ -4,7 +4,7 @@
 
 @section('content')
 <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; min-height: 90vh; padding: 10px; background-color: #fff;">
-    
+
     <!-- Text Content -->
     <div style="flex: 1; max-width: 600px; padding: 20px; box-sizing: border-box;">
       <h1 style="font-size: 2.5em; color: #333; margin-bottom: 20px; font-weight: bold;">यह सब एक डिजिटल बिजनेस कार्ड से शुरू होता है।</h1>
@@ -40,7 +40,7 @@
                   </p>
               </div>
           </div>
-  
+
           <!-- Column 2 -->
           <div class="col-lg-4 col-md-6 text-center" style="margin-bottom: 30px;">
               <div class="icon-box">
@@ -57,7 +57,7 @@
                   </p>
               </div>
           </div>
-  
+
           <!-- Column 3 -->
           <div class="col-lg-4 col-md-6 text-center" style="margin-bottom: 30px;">
               <div class="icon-box">
@@ -76,10 +76,10 @@
           </div>
       </div>
   </div>
-  
+
 
       <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; min-height: 70vh; padding: 20px; background-color: #fff;">
-    
+
             <!-- Image Content -->
             <div style="flex: 1; max-width: 400px; padding: 20px; box-sizing: border-box; text-align: center;">
                 <img src="{{ asset('assets/Vcard/vcard-1.png') }}" alt="Digital Business Card" style="width: 100%; height: auto; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);">
@@ -94,23 +94,23 @@
       </div>
 
       <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; min-height: 70vh; padding: 20px; background-color: #fff;">
-    
+
         <!-- Text Content -->
         <div style="flex: 1; max-width: 600px; padding: 20px; box-sizing: border-box;">
           <h1 style="font-size: 2.5em; color: #333; margin-bottom: 20px; font-weight: bold;">अपना कार्ड किसी के साथ साझा करें</h1>
           <p style="font-size: 1.2em; color: #555; line-height: 1.5; margin-bottom: 20px;">
             क्यूआर कोड का उपयोग करके आसानी से अपने डिजिटल बिजनेस कार्ड को किसी के साथ साझा करें या इसे ईमेल, लिंक आदि के माध्यम से भेजें। आप क्यूआर कोड डाउनलोड कर सकते हैं और इसे फ्लायर्स, न्यूज़लेटर्स या बिलबोर्ड जैसी किसी भी चीज़ पर प्रिंट कर सकते हैं।
           </p>
-        
+
         </div>
-    
+
         <!-- Image Content -->
         <div style="flex: 1; max-width: 400px; padding: 20px; box-sizing: border-box; text-align: center;">
           <img src="{{ asset('assets/Vcard/vcard-2.png') }}" alt="Digital Business Card" style="width: 100%; height: auto; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);">
         </div>
-        
+
       </div>
-    
+
   <script>
 
   document.getElementById("monthly").addEventListener("click", function() {
@@ -144,7 +144,7 @@ document.getElementById('checkout-button').addEventListener('click', function ()
     })
     .then(response => response.json())
     .then(session => {
-        const stripe = Stripe('your_stripe_public_key'); 
+        const stripe = Stripe('your_stripe_public_key');
         stripe.redirectToCheckout({ sessionId: session.id });
     })
     .catch(error => console.error('Error:', error));

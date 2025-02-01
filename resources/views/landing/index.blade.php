@@ -1458,6 +1458,14 @@
 }
 
 }
+@media (min-width:577px){
+
+/* Text */
+.snipcss-tpTBy .tether-element-attached-center .mx-auto p.text-xl{
+ line-height:1.5em !important;
+}
+
+}
     </style>
 </head>
 
@@ -1478,7 +1486,7 @@
                 <h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-6 animate-fade-in snipcss0-2-3-5">मेरठ
                     येलो पेज </h1>
                 <small>Meerut Yellow Pages</small>
-                <p class="text-xl md:text-2xl text-gray-800 max-w-3xl mx-auto animate-slide-up snipcss0-2-3-6">मेरठ में व्यवसायों और सेवाओं की जानकारी को बढ़ाएं। <span> अपने व्यवसाय को मुफ्त में ऑनलाइन <small>(Online)</small> करे |</span> साथ ही, अपनी खुद की मुफ़्त वेबसाइट<small>(Website)</small> बनाएं| </p>
+                <p class="text-xl md:text-2xl text-gray-800 max-w-3xl mx-auto animate-slide-up snipcss0-2-3-6">मेरठ में व्यवसायों और सेवाओं की जानकारी को बढ़ाएं। <span> अपने व्यवसाय को मुफ़्त में ऑनलाइन <small>(Online)</small> करे |</span> साथ ही, अपनी खुद की मुफ़्त वेबसाइट <small>(Website)</small> बनाएं | </p>
                 <div class="mt-8 flex justify-center space-x-6 animate-fade-in snipcss0-2-3-7">
                     <div class="flex items-center space-x-2 snipcss0-3-7-8"><svg xmlns="http://www.w3.org/2000/svg"
                             width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
