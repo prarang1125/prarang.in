@@ -9,7 +9,7 @@
     {{-- meta data tags for facebook --}}
     <meta property="og:title" content="मेरठ येलो पेज">
     <meta property="og:description" content="मेरठ में व्यवसायों और सेवाओं की जानकारी को बढ़ाएं। अपने व्यवसाय को मुफ्त में ऑनलाइन (Online) करे">
-    <meta property="og:image" content="{{ asset('assets/images/meerut_yp_metaimg.webp') }}">
+    <meta property="og:image" content="{{ asset('assets/images/MeerutYP1.jpg') }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <script src="https://cdn.tailwindcss.com"></script>
 
