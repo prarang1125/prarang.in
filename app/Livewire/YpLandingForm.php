@@ -40,7 +40,7 @@ class YpLandingForm extends Component
         ]);
 
         $this->submite=true;
-        session()->flash('message', 'आपका जानकारी सफलतापूर्वक भेजा गया है।');
+        session()->flash('message', 'आपका जानकारी सफलतापूर्वक भेजा गया है, जल्द ही हम आपसे से संपर्क करेंगे|');
         $this->reset();
     }
 

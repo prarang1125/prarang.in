@@ -1729,7 +1729,7 @@
             <path d="M16 10v.5a2.5 2.5 0 0 0-5 0V10"></path>
 
         </svg>
-        <p><a href="#myFormxttl">अभी हमसे संपर्क करे</a></p>
+        <p><a href="#myFormxttl">हमसे संपर्क करे</a></p>
 
 
 
