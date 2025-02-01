@@ -1667,13 +1667,13 @@
         <footer class="bg-gray-900 text-white py-12 px-4 sm:px-6 lg:px-8 mt-12">
             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="animate-fade-in">
-                    <h4 class="text-xl font-semibold mb-4">मेरठ येलो पेजेज के बारे में</h4>
+                    <h4 class="text-xl font-semibold mb-4">मेरठ येलो पेज के बारे में</h4>
                     <p class="text-gray-400">मेरठ में स्थानीय व्यवसाय जानकारी का आपका विश्वसनीय स्रोत से
                         व्यवसायों और ग्राहकों को जोड़ रहे हैं।</p>
                 </div>
                 <div class="text-right animate-fade-in">
                     <h4 class="text-xl font-semibold mb-4"><a href="{{ route('city.show', ['city_name' => 'मेरठ']) }}"
-                            target="_blank"> मेरठ येलो पेजेज</a> </h4>
+                            target="_blank"> मेरठ येलो पेज</a> </h4>
                             <a href="{{route('terms-conditions')}}">Terms of Service</a> |
                             <a href="{{route('privacy-policy')}}">Privacy Policy</a>
                     {{-- <div class="flex justify-end space-x-4"><a href="#"
