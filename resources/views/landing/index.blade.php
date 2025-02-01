@@ -1433,6 +1433,26 @@
 }
 
 }
+@media (max-width:576px){
+
+/* Text */
+.snipcss-tpTBy .mx-auto p.text-xl{
+ color:#020202;
+ font-size:18px;
+}
+
+/* Text */
+.snipcss-tpTBy .tether-element-attached-center .mx-auto p.text-xl{
+ display:inline-block !important;
+ transform:translatex(0px) translatey(0px) !important;
+}
+
+/* Span Tag */
+.snipcss-tpTBy .text-xl span{
+ color:#020202;
+}
+
+}
     </style>
 </head>
 
