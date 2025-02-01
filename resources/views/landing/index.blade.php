@@ -1567,7 +1567,7 @@
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="space-y-6 animate-slide-left">
-                    <h2 class="text-3xl font-bold text-gray-900">स्थानीय व्यवसायों से फ्री में जुड़ें</h2>
+                    <h2 class="text-3xl font-bold text-gray-900">स्थानीय  लोगो से मुफ्त में जुड़ें</h2>
                     <p class="text-lg text-gray-600">हमारी बढ़ती व्यवसाय डायरेक्टरी से जुड़ें और स्थानीय समुदाय से
                         जुड़े रहें।</p>
                     <div class="space-y-4">
