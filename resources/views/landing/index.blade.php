@@ -1473,9 +1473,7 @@
                 <h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-6 animate-fade-in snipcss0-2-3-5">मेरठ
                     येलो पेज </h1>
                 <small>Meerut Yellow Pages</small>
-                <p class="text-xl md:text-2xl text-gray-800 max-w-3xl mx-auto animate-slide-up snipcss0-2-3-6">मेरठ में
-                    व्यवसायों, सेवाओं की जानकारी
-                    को बढ़ाये। <span> अपने व्यवसाय को मुफ्त में ऑनलाइन <small>(Online)</small> करे,</span> अपना खुद का मुफ्त वेबसाइट <small>(Website)</small> बनाये। </p>
+                <p class="text-xl md:text-2xl text-gray-800 max-w-3xl mx-auto animate-slide-up snipcss0-2-3-6">मेरठ में व्यवसायों और सेवाओं की जानकारी को बढ़ाएं। <span> अपने व्यवसाय को मुफ्त में ऑनलाइन <small>(Online)</small> करे,</span> करें। साथ ही, अपनी खुद की मुफ़्त वेबसाइट<small>(Website)</small> बनाएं| </p>
                 <div class="mt-8 flex justify-center space-x-6 animate-fade-in snipcss0-2-3-7">
                     <div class="flex items-center space-x-2 snipcss0-3-7-8"><svg xmlns="http://www.w3.org/2000/svg"
                             width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -1522,12 +1520,12 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 snipcss0-1-1-2">
                 <div class="grid md:grid-cols-2 gap-12 items-center snipcss0-2-2-3">
                     <div class="space-y-6 animate-slide-right snipcss0-3-3-4">
-                        <h2 class="text-4xl font-bold text-gray-900 snipcss0-4-4-5">आज ही अपने व्यवसाय का फ्री <small>(FREE)</small> में वेब
-                            पेज <small>(WebPage)</small> बनाये
+                        <h2 class="text-4xl font-bold text-gray-900 snipcss0-4-4-5">आज ही अपने व्यवसाय के लिए फ़्री <small>(FREE)</small> में वेब
+                            पेज <small>(WebPage)</small> बनाएं.
                         </h2>
-                        <p class="text-xl text-gray-600 snipcss0-4-4-6">अपने फोन से हजारों स्थानीय लोगो तक फ्री <small>(FREE)</small> में
+                        <p class="text-xl text-gray-600 snipcss0-4-4-6">अपने फ़ोन से हज़ारों स्थानीय लोगो तक फ़्री <small>(FREE)</small> में
                             पहुंचें।
-                            रिव्यू, संपर्क जानकारी और दिशा-निर्देश से, अपने व्यवसाय को आगे बढ़ाये।</p>
+                            रिव्यू, संपर्क जानकारी और दिशा-निर्देश से अपने व्यवसाय को आगे बढ़ाएं।</p>
                         <div class="space-y-4 snipcss0-4-4-7">
                             <div class="flex items-center space-x-3 snipcss0-5-7-8"><svg
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
@@ -1567,9 +1565,9 @@
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="space-y-6 animate-slide-left">
-                    <h2 class="text-3xl font-bold text-gray-900">स्थानीय  लोगो से मुफ्त में जुड़ें</h2>
-                    <p class="text-lg text-gray-600">हमारी बढ़ती व्यवसाय डायरेक्टरी से जुड़ें और स्थानीय समुदाय से
-                        जुड़े रहें।</p>
+                    <h2 class="text-3xl font-bold text-gray-900">स्थानीय लोगो से मुफ्त में जुड़ें</h2>
+                    <p class="text-lg text-gray-600">अपने व्यवसाय को फ़्री में ऑनलाइन करने के लिए हमसे संपर्क करें
+                    </p>
                     <div class="space-y-4">
                         <div class="flex items-center space-x-3"><svg xmlns="http://www.w3.org/2000/svg"
                                 width="24" height="24" viewBox="0 0 24 24" fill="none"
