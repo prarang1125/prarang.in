@@ -2,7 +2,7 @@
 @section('title', 'Business Listing')
 
 @if(session('success'))
-    <div class="alert alert-success">
+    <div class="alert alert-success text-center">
         {{ session('success') }}
     </div>
 @endif
@@ -16,78 +16,79 @@
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
-                    <li class="breadcrumb-item"><a href="#"><i class="bx bx-user"></i></a>
-                    </li>
+                    <li class="breadcrumb-item"><a href="#"><i class="bx bx-user"></i></a></li>
                     <li class="breadcrumb-item active" aria-current="page">रिपोर्ट लिस्टिंग</li>
                 </ol>
             </nav>
         </div>
     </div>
     <!--end breadcrumb-->
+
     <div class="row">
         <div class="col-xl-9 mx-auto w-100">
             <!-- Success Message -->
             @if(session('success'))
-                <div class="alert alert-success mt-3">
+                <div class="alert alert-success text-center mt-3">
                     {{ session('success') }}
                 </div>
             @endif
+
             <h6 class="mb-0 text-uppercase">रिपोर्ट लिस्टिंग</h6>
             <hr/>
+
             <div class="card">
                 <div class="card-body d-flex justify-content-end align-items-end">
-                    <a href="{{route('vCard.report')}}" class="btn btn-primary">रिपोर्ट करें</a>
+                    <a href="{{ route('vCard.report') }}" class="btn btn-primary">रिपोर्ट करें</a>
                 </div>
+
                 <div class="card-body">
-                    <table class="table mb-0 table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">नाम</th>
-                                <th scope="col">ईमेल</th>
-                                <th scope="col">फोन नंबर</th>
-                                <th scope="col">संदेश/विवरण</th>
-                                <th scope="col">फाइल</th>
-                                <th scope="col">स्थिति</th>
-                                <th scope="col">रिपोर्ट तिथि</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php $index = 1; @endphp
-                            @foreach($report_list as $report)
+                    <div class="table-responsive">  <!-- Added for responsiveness -->
+                        <table class="table table-hover">
+                            <thead>
                                 <tr>
-                                    <th scope="row" class="align-middle">{{ $index }}</th> 
-                                    <td class="align-middle">{{ $report->name }}</td> 
-                                    <td class="align-middle">{{ $report->business_email }}</td>
-                                    <td class="align-middle">{{ $report->number }}</td>
-                                    <td class="align-middle">{{ $report->message }}</td>
-                                    <td class="align-middle">
-                                            <img src="{{ Storage::url($report->file) }}" alt="File" style="max-width: 100px;">
-                                    </td>                                    
-                                    <td class="align-middle">
-                                        @if($report->status == 0)
-                                            <span>लंबित</span>  <!-- Pending -->
-                                        @elseif($report->status == 1)
-                                            <span>प्रोसेस में</span>  <!-- In Process -->
-                                        @elseif($report->status == 2)
-                                            <span>सफल</span>  <!-- Successful -->
-                                        @else
-                                            <span>अज्ञात स्थिति</span>  <!-- Unknown Status -->
-                                        @endif
-                                    </td>                                    
-                                    <td class="align-middle">{{ $report->created_at}}</td>
+                                    <th scope="col">#</th>
+                                    <th scope="col">नाम</th>
+                                    <th scope="col">ईमेल</th>
+                                    <th scope="col">फोन नंबर</th>
+                                    <th scope="col">संदेश/विवरण</th>
+                                    <th scope="col">फाइल</th>
+                                    <th scope="col">स्थिति</th>
+                                    <th scope="col">रिपोर्ट तिथि</th>
                                 </tr>
-                                @php $index++; @endphp
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                            </thead>
+                            <tbody>
+                                @php $index = 1; @endphp
+                                @foreach($report_list as $report)
+                                    <tr>
+                                        <th scope="row" class="align-middle">{{ $index }}</th> 
+                                        <td class="align-middle">{{ $report->name }}</td> 
+                                        <td class="align-middle text-break">{{ $report->business_email }}</td> 
+                                        <td class="align-middle">{{ $report->number }}</td>
+                                        <td class="align-middle text-break" style="max-width: 200px;">{{ $report->message }}</td> 
+                                        <td class="align-middle">
+                                            <img src="{{ Storage::url($report->file) }}" alt="File" class="img-fluid rounded" style="max-width: 100px;">
+                                        </td>                                    
+                                        <td class="align-middle">
+                                            @if($report->status == 0)
+                                                <span class="badge bg-warning text-dark">लंबित</span>  <!-- Pending -->
+                                            @elseif($report->status == 1)
+                                                <span class="badge bg-info text-white">प्रोसेस में</span>  <!-- In Process -->
+                                            @elseif($report->status == 2)
+                                                <span class="badge bg-success text-white">सफल</span>  <!-- Successful -->
+                                            @else
+                                                <span class="badge bg-secondary text-white">अज्ञात स्थिति</span>  <!-- Unknown Status -->
+                                            @endif
+                                        </td>                                    
+                                        <td class="align-middle">{{ $report->created_at->format('d M Y, h:i A') }}</td>
+                                    </tr>
+                                    @php $index++; @endphp
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div> <!-- End of card-body -->
+            </div> <!-- End of card -->
+        </div> <!-- End of col-xl-9 -->
+    </div> <!-- End of row -->
+</div> <!-- End of page-content -->
 @endsection
-
-
-
-

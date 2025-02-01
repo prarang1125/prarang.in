@@ -202,11 +202,11 @@
             <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
             <div style="margin-top: 15px;">
                 <label for="description">विवरण</label>
-                <textarea id="description" name="description" rows="4" value="{{ old('description', $listing->description) }}" placeholder="Enter description here..." style="width: 100%;"></textarea>
+                <textarea id="description" name="description" rows="4" placeholder="Enter description here..." style="width: 100%;">{{ old('description', $listing->description) }}</textarea>
             </div>
             <div style="margin-top: 15px;">
                 <label for="description">टैग या कीवर्ड (अल्पविराम से अलग)</label>
-                <textarea id="description" name="tags_keywords" rows="4" placeholder="Enter Tags or Keywords (Comma Separated)"  value="{{ old('tags', $listing->tags_keywords) }}" style="width: 100%;"></textarea>
+                <textarea id="tags_keywords" name="tags_keywords" rows="4" placeholder="Enter Tags or Keywords (Comma Separated)" style="width: 100%;">{{ old('tags_keywords', $listing->tags_keywords) }}</textarea>
             </div>
         </div>
             <br>
@@ -296,55 +296,44 @@
                 <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
                 <div style="border: 1px dashed #ddd; padding: 20px; text-align: center; color: #888; margin-bottom: 10px;">
                 <input type="file" name="image" style="display: block; margin-top: 10px;">
+                @if (!empty($listing->business_img))
+                <img src="{{ asset('storage/' . $listing->business_img) }}" alt="Business Image" style="max-width: 100px; max-height: 100px; margin-top: 10px;">
+            @endif  
                 </div>
         
                 <div style="display: flex; gap: 10px; justify-content: space-between; margin-bottom: 10px;">
                     <div style="flex: 1; padding: 10px; border: 1px solid #ddd; text-align: center;">
                         <label for="coverImage" class="form-label">कवर छवि</label>
                         <input type="file" id="coverImage" name="coverImage" class="form-control @error('coverImage') is-invalid @enderror">
+                        @if (!empty($listing->feature_img))
+                        <img src="{{ asset('storage/' . $listing->feature_img) }}" alt="Feature Image" style="max-width: 100px; max-height: 100px; margin-top: 10px;">
+                    @endif     
                     </div>
                     <div style="flex: 1; padding: 10px; border: 1px solid #ddd; text-align: center;">
                         <label for="logo" class="form-label">प्रतीक चिन्ह</label>
                         <input type="file" id="logo" name="logo" class="form-control @error('logo') is-invalid @enderror">
+                        @if (!empty($listing->logo))
+                            <img src="{{ asset('storage/' .$listing->logo)}}" alt="Logo" style="max-width: 100px; max-height: 100px; margin-top: 10px;">
+                        @endif
                     </div>
                 </div>
                 <h5 style="margin-top: 20px; margin-bottom: 15px;">विशेषताएँ</h5>
                 <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
                     <label for="featuresToggle" style="font-weight: bold;">विशेषताएँ</label>
-                    <input type="checkbox" id="featuresToggle" style="cursor: pointer;">
+                    <!-- Automatically check the checkbox if data exists (faq) -->
+                    <input type="checkbox" id="featuresToggle" style="cursor: pointer;" onclick="toggleFAQSection()" {{ !empty($listing->faq) ? 'checked' : '' }}>
                 </div>
+                
                 <div id="faqSection" style="display: none;">
                     <div class="faq-item" style="margin-bottom: 10px;">
                         <label>अक्सर पूछे जाने वाले प्रश्नों</label>
-                        <input type="text" name="faq" placeholder="Frequently Asked Questions" style="width: 100%; margin-bottom: 5px;">
-                        <textarea placeholder="Answer" name="answer" style="width: 100%; height: 60px;"></textarea>
+                        <input type="text" name="faq" value="{{ old('faq', $listing->faq) }}" style="width: 100%; margin-bottom: 5px;">
+                        <textarea placeholder="Answer" name="answer" style="width: 100%; height: 60px;">{{ old('answer', $listing->answer) }}</textarea>
                     </div>
-                    <div class="add-new" style="color: #007bff; cursor: pointer; font-size: 14px; display: inline-block; margin-top: 10px;" onclick="addFAQ()">+ नया जोड़ें</div>
+                    {{-- <div class="add-new" style="color: #007bff; cursor: pointer; font-size: 14px; display: inline-block; margin-top: 10px;" onclick="addFAQ()">+ नया जोड़ें</div> --}}
                 </div>
             </div>
             <br>
-            {{-- <div style="max-width: 900px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-                <div id="signupFields" style="display: flex; gap: 20px; margin-bottom: 15px;">
-                    <div style="flex: 1;">
-                        <label for="signupEmail">Enter email to signup & receive notification upon listing approval</label>
-                        <input type="email" id="signupEmail" name="notificationEmail" placeholder="Enter email here..." style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
-                    </div>
-                    <div style="flex: 1;">
-                        <label for="userName">Enter User Name</label>
-                        <input type="text" id="userName" name="userName" value="{{ old('user_name', $listing->user_name) }}" placeholder="Enter User Name" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
-                    </div>
-                </div>
-                <div id="accountFields" style="display: none; flex-direction: row; gap: 20px;">
-                    <div style="flex: 1;">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" value="{{ old('email', $listing->email) }}" placeholder="Enter your email" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
-                    </div>
-                    <div style="flex: 1;">
-                        <label for="password">Password</label>
-                        <input type="password" id="password" name="password" value="{{ old('password', $listing->password) }}" placeholder="Enter your password" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd;">
-                    </div>
-                </div>
-            </div> --}}
 
         <!-- Submit Button -->
         <div class="text-center mt-4">
@@ -417,7 +406,22 @@ document.addEventListener('click', (e) => {
     }
 });
 
+function toggleFAQSection() {
+        const faqSection = document.getElementById('faqSection');
+        const featuresToggle = document.getElementById('featuresToggle');
 
+        // Toggle display based on checkbox state
+        if (featuresToggle.checked) {
+            faqSection.style.display = 'block';
+        } else {
+            faqSection.style.display = 'none';
+        }
+    }
+
+    // Initialize visibility based on the checkbox state when the page loads
+    document.addEventListener('DOMContentLoaded', function () {
+        toggleFAQSection(); // Set initial state based on checkbox status
+    });
 </script>
 
 @endsection

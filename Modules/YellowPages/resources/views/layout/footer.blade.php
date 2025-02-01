@@ -5,22 +5,22 @@
             <div class="col-md-4">
                 <h5>व्यवसाय</h5>
                 <ul class="list-unstyled">
-                    <li style="font-size: 18px;"><a href="{{ route('yp.getLocationData') }}" class="text-decoration-none text-dark">अपना लिस्टिंग जोड़ें</a></li>
+                    <li style="font-size: 18px;"><a href="{{ route('yp.getLocationData') }}" class="text-decoration-none text-dark">अपना लिस्टिंग(listing) जोड़ें</a></li>
                     <li style="font-size: 18px;"><a href="{{ route('vCard.report') }}" class="text-decoration-none text-dark">सहायता</a></li>
-                    <li style="font-size: 18px;"><a href="/privacy-policy" class="text-decoration-none text-dark">गोपनीयता नीति</a></li>
+                    <li style="font-size: 18px;"><a href="{{ route('privacy-policy')}}" class="text-decoration-none text-dark">गोपनीयता नीति</a></li>
                 </ul>
             </div>
             
             <div class="col-md-4">
                 <ul class="list-unstyled">
-                    <li style="font-size: 18px;"><a href="{{ route('yp.home') }}" class="text-decoration-none text-dark">होम</a></li>
-                    <li style="font-size: 18px;"><a href="{{ route('yp.login') }}" class="text-decoration-none text-dark">लॉगिन करें</a></li>
+                    <li style="font-size: 18px;"><a href="{{ route('yp.home') }}" class="text-decoration-none text-dark">होम(Home)</a></li>
+                    <li style="font-size: 18px;"><a href="{{ route('yp.login') }}" class="text-decoration-none text-dark">लॉगिन(Login) करें</a></li>
                     <li style="font-size: 18px;"><a href="{{ route('yp.getLocationData') }}" class="text-decoration-none text-dark">व्यवसाय खोजें</a></li>
                 </ul>
             </div>
             
             <div class="col-md-4">
-                <h5>सोशल मीडिया</h5>
+                <h5>सोशल मीडिया(Social Media)</h5>
                 <div class="credits">
                     <a href="https://www.facebook.com/prarang.in" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                         <i class="bi bi-facebook" style="font-size: 24px; margin-right: 15px;"></i>

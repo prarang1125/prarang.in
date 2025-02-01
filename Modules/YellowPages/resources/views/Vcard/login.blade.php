@@ -1,6 +1,6 @@
 @extends('yellowpages::layout.auth')
 
-@section('title', 'साइन इन')
+@section('title', 'लॉगिन (Login)')
 
 @section('content')
 <div class="forms-container">
@@ -8,7 +8,7 @@
     <!-- Login Form -->
     <form action="{{ route('yp.authLogin') }}" method="POST" class="sign-in-form">
       @csrf
-      <h2 class="title">साइन इन</h2>
+      <h2 class="title">लॉगिन (Login)</h2>
       @if ($errors->any())
       <div class="alert alert-danger" style="color: red;">
         <ul>
@@ -21,8 +21,8 @@
       <!-- Email Field -->
       <div class="input-field">
         <i class="fas fa-user"></i>
-        <input type="text" name="email" placeholder="ईमेल दर्ज करें" value="{{ old('email') }}" />
-      </div>
+        <input type="tel" name="phone" placeholder="फोन नंबर दर्ज करें" value="{{ old('phone') }}" />
+     </div>
 
       <!-- Password Field -->
       <div class="input-field">
@@ -31,7 +31,7 @@
       </div>
 
       <!-- Submit Button -->
-      <input type="submit" value="लॉग इन" class="btn solid" />
+      <input type="submit" value="लॉगिन (Login)" class="btn solid" />
     </form>
   </div>
 
@@ -45,7 +45,7 @@
           संभावनाओं की दुनिया की खोज करें! हमारे साथ जुड़ें और एक जीवंत समुदाय में भाग लें जहाँ विचार फलते-फूलते हैं और कनेक्शन मजबूत होते हैं।
         </p>
         <!-- Button to navigate to sign up page -->
-        <a href="{{ route('yp.newAccount') }}" class="btn transparent">साइन अप करें</a>
+        <a href="{{ route('yp.newAccount') }}" class="btn transparent">पंजीकरण</a>
       </div>
       <img src="{{ asset('assets/images/Mobile-login-rafiki.png') }}" class="image" alt="Privacy Policy Illustration" />
     </div>

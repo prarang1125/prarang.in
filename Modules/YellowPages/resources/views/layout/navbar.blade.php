@@ -53,7 +53,7 @@ header.header {
         <nav id="navmenu" class="navmenu">
             <ul>
                 <li class="dropdown" id="categories-menu">
-                    <a href="#">सिटीज <i class="bx bx-chevron-down dropdown-icon"></i></a>
+                    <a href="#">सिटीज(Cities)<i class="bx bx-chevron-down dropdown-icon"></i></a>
                     <ul class="dropdown-menu">
                         @foreach(get_cities() as $city)
                         <li><a href="{{ route('city.show', $city->name) }}">{{ $city->name }}</a></li>
@@ -61,17 +61,17 @@ header.header {
                     </ul>
                 </li>
                 <li><a href="{{ url('yellow-pages/plans') }}">योजना</a></li>
-                <li><a href="{{ url('yellow-pages/vcard') }}">वी-कार्ड प्राप्त करें</a></li>
+                <li><a href="{{ url('yellow-pages/vcard') }}">वी-कार्ड (v-card)</a></li>
 
                 @if(Auth::check())
                     <li class="dropdown">
                         <a href="#"><i class="bx bx-user"></i></a>
                         <ul class="dropdown-menu">
-                            <li><a href="{{ route('vCard.dashboard') }}">डैशबोर्ड</a></li>
+                            <li><a href="{{ route('vCard.dashboard') }}">डैशबोर्ड(Dashboard)</a></li>
                             <li><a href="{{ url('yellow-pages/getLocationData') }}">सूची जोड़ें</a></li>
                             <li>
                                 <a href="{{ route('yp.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    लॉग आउट
+                                    लॉगआउट(logout)
                                 </a>
                             </li>
                         </ul>

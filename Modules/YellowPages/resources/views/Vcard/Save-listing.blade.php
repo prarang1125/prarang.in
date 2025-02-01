@@ -44,7 +44,8 @@
             <hr/>
             <div class="card">
                 <div class="card-body">
-                  
+                    <!-- Make the table scrollable on small screens -->
+                    <div class="table-responsive">
                         <table class="table mb-0 table-hover">
                             <thead>
                                 <tr>
@@ -59,7 +60,7 @@
                                 </tr>
                             </thead>
                             @if($business_listing->isEmpty())
-                            <div class="alert alert-warning">कोई व्यवसाय सूची नहीं मिली।</div>
+                                <div class="alert alert-warning">कोई व्यवसाय सूची नहीं मिली।</div>
                             @else
                             <tbody>
                                 @php $index = 1; @endphp
@@ -72,19 +73,22 @@
                                         <td class="align-middle">{{ $business->primary_phone }}</td>
                                         <td class="align-middle">{{ $business->primary_contact_email }}</td>
                                         <td class="align-middle">{{ $business->pincode }}</td> 
-                                        <td class="align-middle"> 
-                                            <a href="{{ route('vCard.listing-edit', $business->id) }}" class="btn btn-sm btn-primary edit-user">संपादन करना</a>
-                                            <form action="{{ route('vCard.Savelisting-delete', $save_listing->id) }}" method="POST" style="display:inline;">
-                                                @csrf
-                                                <button type="submit" class="btn btn-sm btn-danger delete-user">मिटाना</button>
-                                            </form>
+                                        <td class="align-middle">
+                                            <div class="d-flex flex-column flex-sm-row gap-2">
+                                                <a href="{{ route('vCard.listing-edit', $business->id) }}" class="btn btn-sm btn-primary edit-user">संपादन करना</a>
+                                                <form action="{{ route('vCard.Savelisting-delete', $business->id) }}" method="POST" style="display:inline;">
+                                                    @csrf
+                                                    <button type="submit" class="btn btn-sm btn-danger delete-user">मिटाना</button>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                     @php $index++; @endphp
                                 @endforeach
                             </tbody>
+                            @endif
                         </table>
-                    @endif
+                    </div> <!-- End table-responsive -->
                 </div>
             </div>
         </div>
