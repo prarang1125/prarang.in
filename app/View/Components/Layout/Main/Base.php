@@ -26,6 +26,7 @@ class Base extends Component
 
     public function visitorLocation(Request $request)
     {
+
         try {
              $data = $this->prepareVisitorData($request);
             if (env('LOCATION') == 'ON') {
@@ -35,13 +36,16 @@ class Base extends Component
                     $data['visitor_address'] = $location['visitor_address'];
                 }
             }
-            $visitor = $this->findExistingVisitor($data['post_id'], $data['ip_address']);
+
+             $visitor = $this->findExistingVisitor($data['post_id'], $data['ip_address']);
             if ($visitor) {
                 $this->incrementVisitCount($visitor);
             } else {
+
                 $this->createNewVisitor($data);
             }
             return response()->json([
+                'data'=>$data,
                 'message' => 'Visitor information stored successfully.',
             ], 201);
 
@@ -78,8 +82,8 @@ class Base extends Component
 
     private function incrementVisitCount($visitor)
     {
-        $visitor->visit_count += 1;
-        $visitor->save();
+        $visitor->increment('visit_count');
+
     }
 
     private function createNewVisitor($data)
@@ -89,33 +93,37 @@ class Base extends Component
     }
     private function getVisitorLocation($request)
     {
-
         $latitude = $request->input('latitude', null);
         $longitude = $request->input('longitude', null);
-
-
-        $openCageUrl = "https://api.opencagedata.com/geocode/v1/json?key=cfaa6c00aec1419eb8f68e69689019fc&q={$latitude}+{$longitude}";
-        $nominatimUrl = "https://nominatim.openstreetmap.org/search?format=json&q={$latitude},{$longitude}";
-
 
         $visitor_city = null;
         $visitor_address = null;
 
         try {
-             $openCageResponse = Http::get($openCageUrl);
-            if ($openCageResponse->successful() && isset($openCageResponse->json()['results'][0])) {
-                $result = $openCageResponse->json()['results'][0];
-                 $visitor_city = $result['components']['city'] ?? $result['components']['_normalized_city'] ?? null;
-                $visitor_address = $result['formatted'] ?? null;
+            // If latitude and longitude are not provided, use IP address to fetch location
+            if ($latitude=='null' || $longitude=='null') {
+                $ipLocation = Http::get("https://ipapi.co/{$request->input('ip_address')}/json");
+
+                if ($ipLocation->successful()) {
+                    $data = $ipLocation->json();
+                    return [
+                        'visitor_city' => $data['city'] ?? null,
+                        'visitor_address' => $data['region'] . ', ' . $data['country'] ?? null,
+                    ];
+                }
             } else {
-                if ($visitor_city === null && $visitor_address === null) {
-                    $ipLocation = Http::get("https://ipapi.co/{$request->input('ip_address')}/json");
+                // OpenCage API to fetch location using latitude and longitude
+                $openCageUrl = "https://api.opencagedata.com/geocode/v1/json?key=cfaa6c00aec1419eb8f68e69689019fc&q={$latitude}+{$longitude}";
+                $nominatimUrl = "https://nominatim.openstreetmap.org/search?format=json&q={$latitude},{$longitude}";
 
-                    if ($ipLocation->successful()) {
-                        return $ipLocation->json();
-                    }
+                $openCageResponse = Http::get($openCageUrl);
+                if ($openCageResponse->successful() && isset($openCageResponse->json()['results'][0])) {
+                    $result = $openCageResponse->json()['results'][0];
+                    $visitor_city = $result['components']['city'] ?? $result['components']['_normalized_city'] ?? null;
+                    $visitor_address = $result['formatted'] ?? null;
+                } else {
+                    // If OpenCage fails, fallback to Nominatim
                     $nominatimResponse = Http::get($nominatimUrl);
-
                     if ($nominatimResponse->successful() && isset($nominatimResponse->json()[0])) {
                         $nominatimData = $nominatimResponse->json()[0];
                         $visitor_address = $nominatimData['display_name'] ?? 'Unknown Address';
@@ -123,17 +131,15 @@ class Base extends Component
                 }
             }
         } catch (\Exception $e) {
-
-
             \Log::error("Error fetching location data: " . $e->getMessage());
         }
-
 
         return [
             'visitor_city' => $visitor_city,
             'visitor_address' => $visitor_address,
         ];
     }
+
 
 
 }

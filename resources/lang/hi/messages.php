@@ -25,9 +25,9 @@ return [
     'Meerut'=>'मेरठ',
 
     'Looking_for_a_service'=>'क्या आप किसी सेवा की तलाश में हैं? अपने शहर में सबसे लोकप्रिय और विश्वसनीय सेवा प्रदाताओं और उत्पादों की खोज करें',
-    'Live_Cities'=>'लाइव सिटीज',
+    'Live_Cities'=>'लाइव_शहर(Live_Cities)',
     'Find_the_Best_Services'=>'इन शहरों में सर्वोत्तम सेवाएँ और उत्पाद पाएँ',
-    'Listings'=>'लिस्टिंग',
+    'Listings'=>'सूचियाँ',
     'Popular_Listings_In_Our_Directory'=>'हमारी निर्देशिका में लोकप्रिय सूचियाँ',
 
     'attributes' => [
