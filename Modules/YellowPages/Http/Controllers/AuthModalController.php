@@ -67,66 +67,63 @@ class AuthModalController extends Controller
     }
 
     ##------------------------- END ---------------------##
-     ##------------------------- Register View ---------------------##
-     public function newAccount()
-     {
-         try {
-             return view('yellowpages::Vcard.register');
-         } catch (\Exception $e) {
-             return back()->withErrors(['error' => 'An error occurred while loading the login page.']);
-         }
-     }
+    ##------------------------- Register View ---------------------##
+    public function newAccount()
+    {
+        try {
+            return view('yellowpages::Vcard.register');
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'An error occurred while loading the login page.']);
+        }
+    }
 
-     ##------------------------- END ---------------------##
+    ##------------------------- END ---------------------##
 
     ##------------------------- Register Logic ---------------------##
     public function register(Request $request)
-{
-    try {
-        // Validate the input fields
-        $request->validate([
-            'name' => ['required', 'string', 'max:255', 'regex:/^[^@]+$/'],
-            'email' => [
-                'nullable',
-                'regex:/^[^\s@]+@[^\s@]+\.[^\s@]+$/u',
-            ],
-            'phone' => [
-                'required',
-                'regex:/^\+?[0-9]{10,15}$/',
-            ],
-            'password' => 'required', // password confirmation should be part of the form
-        ], [
-            'name.required' => 'नाम आवश्यक है।',
-            'name.regex' => 'कृपया एक वैध नाम दर्ज करें।',
-            'email.regex' => 'कृपया एक वैध ईमेल पता दर्ज करें।',
-            'email.unique' => 'यह ईमेल पहले से पंजीकृत है।',
-            'phone.required' => 'फोन नंबर आवश्यक है।',
-            'phone.regex' => 'कृपया एक वैध फोन नंबर दर्ज करें।',
-            'phone.unique' => 'आपका फोन नंबर पहले से पंजीकृत है।', // Custom error message for phone number
-            'password.required' => 'पासवर्ड आवश्यक है।',
-            'password.confirmed' => 'पासवर्ड और पुष्टि मेल नहीं खाते।',
-        ]);
+    {
+        try {
+            // Validate the input fields
+            $request->validate([
+                'name' => ['required', 'string', 'max:255', 'regex:/^[^@]+$/'],
+                'email' => [
+                    'nullable',
+                    'regex:/^[^\s@]+@[^\s@]+\.[^\s@]+$/u',
+                ],
+                'phone' => [
+                    'required',
+                    'regex:/^\+?[0-9]{10,15}$/',
+                ],
+                'password' => 'required',
+            ], [
+                'name.required' => 'नाम आवश्यक है।',
+                'name.regex' => 'कृपया एक वैध नाम दर्ज करें।',
+                'email.regex' => 'कृपया एक वैध ईमेल पता दर्ज करें।',
+                'email.unique' => 'यह ईमेल पहले से पंजीकृत है।',
+                'phone.required' => 'फोन नंबर आवश्यक है।',
+                'phone.regex' => 'कृपया एक वैध फोन नंबर दर्ज करें।',
+                'phone.unique' => 'आपका फोन नंबर पहले से पंजीकृत है।',
+                'password.required' => 'पासवर्ड आवश्यक है।',
+                'password.confirmed' => 'पासवर्ड और पुष्टि मेल नहीं खाते।',
+            ]);
 
-        // Create a new user
-        $user = User::create([
-            'name' => $request->input('name'),
-            'email' => $request->input('email'),
-            'phone' => $request->input('phone'), // Store the phone number
-            'password' => Hash::make($request->input('password')),
-            'role' => 2, // Assign default role
-        ]);
+            // Create a new user
+            $user = User::create([
+                'name' => $request->input('name'),
+                'email' => $request->input('email'),
+                'phone' => $request->input('phone'),
+                'password' => Hash::make($request->input('password')),
+                'role' => 2,
+            ]);
 
-        // Log in the new user
-        Auth::login($user);
+            Auth::login($user);
 
-        // Redirect after registration
-        return redirect()->route('vCard.dashboard'); // Replace with your desired redirect route
-
-    } catch (\Exception $e) {
-        // Handle general errors and provide feedback
-        return redirect()->back()->withErrors(['error' => 'पंजीकरण के दौरान एक त्रुटि हुई। कृपया फिर से प्रयास करें।'])->withInput();
+            return redirect()->route('vCard.dashboard');
+        } catch (\Exception $e) {
+            return $e->getMessage();
+            return redirect()->back()->withErrors(['error' => 'पंजीकरण के दौरान एक त्रुटि हुई। कृपया फिर से प्रयास करें।'])->withInput();
+        }
     }
-}
 
 
     ##------------------------- END ---------------------##
