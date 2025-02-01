@@ -12,7 +12,7 @@ class YpLandingForm extends Component
 
     protected $rules = [
         'name' => 'required|string|max:255',
-        'email' => 'required|email|unique:yp_landing,email',
+        // 'email' => 'required|email|unique:yp_landing,email',
         'mobile' => 'required|string|min:10|max:15',
     ];
 

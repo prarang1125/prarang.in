@@ -26,12 +26,12 @@ input{
             <input type="text" wire:model="name" id="name" class="mt-1 block w-full border-gray-300 shadow-sm" >
             @error('name') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
         </div>
-
+{{--
         <div>
             <label for="email" class="block text-sm font-medium text-gray-700">ईमेल पता</label>
             <input type="email" wire:model="email" id="email" class="mt-1 block w-full border-gray-300 shadow-sm" >
             @error('email') <span class="text-red-500 text-sm">{{ $message }}</span> @enderror
-        </div>
+        </div> --}}
 
         <div>
             <label for="mobile" class="block text-sm font-medium text-gray-700">मोबाइल नंबर</label>

@@ -1333,6 +1333,57 @@
         .snipcss-tpTBy .tether-element-attached-center .mx-auto>div {
             transform: translatex(0px) translatey(0px);
         }
+
+        /* Image */
+.snipcss-tpTBy .tether-element-attached-center .mx-auto > div > img{
+ margin-left:19px;
+}
+
+/* Division */
+.snipcss-tpTBy .tether-element-attached-center .mx-auto > div{
+ transform:translatex(0px) translatey(0px);
+}
+
+/* Button */
+.snipcss-tpTBy .tether-element-attached-center .mx-auto div a{
+ width:333px !important;
+}
+
+/* Text start */
+.snipcss-tpTBy .mx-auto .text-start{
+ text-shadow:rgb(232, 224, 224) 0px 0px 2px, rgb(234, 227, 227) 0px 0px 4px, rgb(226, 87, 87) 0px 0px 6px, rgb(173, 60, 25) 0px 0px 8px, rgb(211, 35, 35) 0px 0px 12px, rgb(226, 17, 17) 0px 0px 16px, rgb(246, 11, 11) 0px 0px 20px, rgb(231, 12, 12) 0px 0px 24px;
+}
+
+@media (max-width:576px){
+
+ /* Text start */
+ .snipcss-tpTBy .mx-auto .text-start{
+  left:-106px !important;
+ }
+
+ /* Text start */
+ .snipcss-tpTBy .tether-element-attached-center .mx-auto .text-start{
+  right:auto !important;
+ }
+
+}
+/* Text start */
+.snipcss-tpTBy .mx-auto .text-start{
+ color:#1d1af4;
+ font-weight:700;
+}
+/* Image */
+.snipcss-tpTBy .tether-element-attached-center .mx-auto > div > img{
+ width:210px !important;
+}
+
+
+/* Text right */
+.snipcss-tpTBy .mx-auto .text-right{
+ text-align:left;
+}
+
+
     </style>
 </head>
 
@@ -1345,17 +1396,17 @@
             <div class="absolute inset-0 bg-grid-pattern opacity-10 animate-pulse snipcss0-1-1-2"></div>
             <div class="max-w-7xl mx-auto text-center relative snipcss0-1-1-3">
 
-                <div><img class="logo" src="https://www.prarang.in/assets/images/logo2x.png" alt="">
+                <div><img class="logo" src="https://i.ibb.co/cKnrpPH2/logo-removebg-preview.png" alt="">
                     <img src="https://uberall.com/images/_1200x630_crop_center-center_82_none/Yellow-Pages.jpg?mtime=1725474531"
                         alt="">
                 </div>
                 <p class="text-start slug">देश का पहला, हिंदी में </p>
                 <h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-6 animate-fade-in snipcss0-2-3-5">मेरठ
-                    येलो पेजेज </h1>
+                    येलो पेज </h1>
                 <small>Meerut Yellow Pages</small>
                 <p class="text-xl md:text-2xl text-gray-800 max-w-3xl mx-auto animate-slide-up snipcss0-2-3-6">मेरठ में
                     व्यवसायों, सेवाओं की जानकारी
-                    को बढ़ाये। <span> अपने व्यवसाय को फ्री में ऑनलाइन करे,</span> अपना खुद का मुफ्त वेबसाइट बनाये। </p>
+                    को बढ़ाये। <span> अपने व्यवसाय को मुफ्त में ऑनलाइन <small>(Online)</small> करे,</span> अपना खुद का मुफ्त वेबसाइट <small>(Website)</small> बनाये। </p>
                 <div class="mt-8 flex justify-center space-x-6 animate-fade-in snipcss0-2-3-7">
                     <div class="flex items-center space-x-2 snipcss0-3-7-8"><svg xmlns="http://www.w3.org/2000/svg"
                             width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -1402,10 +1453,10 @@
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 snipcss0-1-1-2">
                 <div class="grid md:grid-cols-2 gap-12 items-center snipcss0-2-2-3">
                     <div class="space-y-6 animate-slide-right snipcss0-3-3-4">
-                        <h2 class="text-4xl font-bold text-gray-900 snipcss0-4-4-5">आज ही अपने व्यवसाय का फ्री में वेब
-                            पेज बनाये
+                        <h2 class="text-4xl font-bold text-gray-900 snipcss0-4-4-5">आज ही अपने व्यवसाय का फ्री <small>(FREE)</small> में वेब
+                            पेज <small>(WebPage)</small> बनाये
                         </h2>
-                        <p class="text-xl text-gray-600 snipcss0-4-4-6">अपने फोन से हजारों स्थानीय लोगो तक फ्री में
+                        <p class="text-xl text-gray-600 snipcss0-4-4-6">अपने फोन से हजारों स्थानीय लोगो तक फ्री <small>(FREE)</small> में
                             पहुंचें।
                             रिव्यू, संपर्क जानकारी और दिशा-निर्देश से, अपने व्यवसाय को आगे बढ़ाये।</p>
                         <div class="space-y-4 snipcss0-4-4-7">
@@ -1550,12 +1601,14 @@
             <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
                 <div class="animate-fade-in">
                     <h4 class="text-xl font-semibold mb-4">मेरठ येलो पेजेज के बारे में</h4>
-                    <p class="text-gray-400">मेरठ में स्थानीय व्यवसाय जानकारी का आपका विश्वसनीय स्रोत। 1970 से
+                    <p class="text-gray-400">मेरठ में स्थानीय व्यवसाय जानकारी का आपका विश्वसनीय स्रोत से
                         व्यवसायों और ग्राहकों को जोड़ रहे हैं।</p>
                 </div>
                 <div class="text-right animate-fade-in">
                     <h4 class="text-xl font-semibold mb-4"><a href="{{ route('city.show', ['city_name' => 'मेरठ']) }}"
                             target="_blank"> मेरठ येलो पेजेज</a> </h4>
+                            <a href="{{route('terms-conditions')}}">Terms of Service</a> |
+                            <a href="{{route('privacy-policy')}}">Privacy Policy</a>
                     {{-- <div class="flex justify-end space-x-4"><a href="#"
                             class="hover:text-yellow-500 transition-colors transform hover:scale-110"><svg
                                 xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
