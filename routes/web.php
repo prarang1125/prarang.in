@@ -44,4 +44,4 @@ Route::prefix('archives')->group(function () {
 
 Route::get('visitor-location', [Base::class,'visitorLocation']);
 
-Route::get('yellow-pages/meerut/langing-page', [LandingPages::class,'index']);
+Route::get('yellow-pages/meerut/landing-page', [LandingPages::class,'index']);
