@@ -54,7 +54,7 @@
                                 <form action="{{ url('yellow-pages/vCard/purchase') }}" method="POST">
                                     @csrf
                                     <input type="hidden" name="plan_id" value="{{ $plan->id }}">
-                                    <button type="submit" class="btn btn-danger">खरीद योजना</button>
+                                    <button type="submit" class="btn btn-danger">योजना खरीदें</button>
                                 </form>
                             @endif
                         </form>

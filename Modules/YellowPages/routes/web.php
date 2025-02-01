@@ -203,6 +203,8 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
     Route::get('checker/listing-approve/{id}', [CheckerController::class, 'approveListing'])->name('checker.listing-approve');
     Route::put('checker/listing-approve-status/{id}', [CheckerController::class, 'approveListingStatus'])->name('checker.listing-approval-status');
 
+    Route::get('privacy-policy', [HomeController::class, 'privacyPolicy'])->name('privacy-policy');
+
     // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    End yellowPages Checker Side   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
    Route::get('{city_name}', [ListingController::class, 'showByCity'])->name('city.show');

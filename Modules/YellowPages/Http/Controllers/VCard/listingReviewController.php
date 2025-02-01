@@ -21,7 +21,6 @@ class listingReviewController extends Controller
             // If no listings exist for the user, show an error message and pass an empty reviews collection
             if ($listings->isEmpty()) {
                 return view('yellowpages::Vcard.review', [
-                    'error' => 'No listing found for the user.',
                     'reviews' => collect(),  // Pass an empty collection for reviews
                     'business_listings' => collect(),  // Empty business listings as well
                 ]);

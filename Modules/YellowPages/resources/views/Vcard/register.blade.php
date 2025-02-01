@@ -8,7 +8,6 @@
     <form action="{{ route('yp.register') }}" method="POST" class="sign-in-form">
       @csrf
       <h2 class="title">साइन अप</h2>
-
       <!-- Display Validation Errors for All Fields -->
       @if ($errors->any())
         <div class="alert alert-danger" style="color: red;">
@@ -25,7 +24,10 @@
         <i class="fas fa-user"></i>
         <input type="text" name="name" placeholder="उपयोगकर्ता नाम" value="{{ old('name') }}" />
       </div>
-
+      <div class="input-field">
+        <i class="fas fa-user"></i>
+        <input type="text" name="phone" placeholder="फोन नंबर दर्ज करें" value="{{ old('phone') }}" />
+     </div>
       <!-- Email Field -->
       <div class="input-field">
         <i class="fas fa-user"></i>
@@ -39,12 +41,6 @@
        
       </div>
 
-      <!-- Confirm Password Field (if required) -->
-      <div class="input-field">
-        <i class="fas fa-lock"></i>
-        <input type="password" name="password_confirmation" placeholder="पासवर्ड की पुष्टि करें" />
-    
-      </div>
 
       <!-- Submit Button -->
       <input type="submit" class="btn" value="साइन अप करें" />

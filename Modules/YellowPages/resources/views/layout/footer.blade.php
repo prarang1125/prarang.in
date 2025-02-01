@@ -7,7 +7,7 @@
                 <ul class="list-unstyled">
                     <li style="font-size: 18px;"><a href="{{ route('yp.getLocationData') }}" class="text-decoration-none text-dark">अपना लिस्टिंग जोड़ें</a></li>
                     <li style="font-size: 18px;"><a href="{{ route('vCard.report') }}" class="text-decoration-none text-dark">सहायता</a></li>
-                    <li style="font-size: 18px;"><a href="/privacy-policy" class="text-decoration-none text-dark">गोपनीयता नीति</a></li>
+                    <li style="font-size: 18px;"><a href="{{ route('privacy-policy')}}" class="text-decoration-none text-dark">गोपनीयता नीति</a></li>
                 </ul>
             </div>
             

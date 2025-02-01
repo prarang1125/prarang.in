@@ -156,6 +156,14 @@ class HomeController extends Controller
     ##------------------------- END ---------------------##
 
 
+    public function privacyPolicy()
+    {
+        // try {
+            return view('yellowpages::home.privacyPolicy');
+        // } catch (\Exception $e) {
+        //     return back()->withErrors(['error' => 'An error occurred while fetching dropdown data' ]);
+        // }
+    }
 
 
 

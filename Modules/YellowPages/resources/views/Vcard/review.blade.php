@@ -1,21 +1,16 @@
 @extends('yellowpages::layout.vcard.vcard')
 @section('title', 'Review')
 @section('content')
+<br>
 
-@if(isset($error))
-    <div class="alert alert-danger">
-        {{ $error }}
-    </div>
-@endif
+<div class="container mt-4">
+    <h1 class="mb-4">प्रबंधन की समीक्षा करें</h1>
 
-
-    <div class="container mt-4">
-        <h1 class="mb-4">प्रबंधन की समीक्षा करें</h1>
-
-        <!-- Reviews Table -->
-        <div class="card">
-            <div class="card-header">सभी समीक्षाएँ</div>
-            <div class="card-body">
+    <!-- Reviews Table -->
+    <div class="card">
+        <div class="card-header">सभी समीक्षाएँ</div>
+        <div class="card-body">
+            <div class="table-responsive"> <!-- Added for responsiveness -->
                 <table class="table table-striped">
                     <thead>
                         <tr>
@@ -32,8 +27,8 @@
                         </tr>
                     </thead>
                     @if($reviews->isEmpty())
-                     <div class="alert alert-warning">कोई समीक्षा नहीं मिली।</div>
-                   @else
+                        <div class="alert alert-warning text-center mt-2">कोई समीक्षा नहीं मिली।</div>
+                    @else
                     <tbody>
                         @foreach($reviews as $review)
                             <tr>
@@ -51,7 +46,7 @@
                                     @endphp
                                     @if(!empty($images) && is_array($images))
                                         @foreach($images as $image)
-                                            <img src="{{ Storage::url($image) }}" alt="Review Image" width="50" height="50">
+                                            <img src="{{ Storage::url($image) }}" alt="Review Image" class="img-thumbnail" width="50" height="50">
                                         @endforeach
                                     @else
                                         N/A
@@ -64,11 +59,12 @@
                 </table>
             </div>
         </div>
-
-        <!-- Pagination -->
-        <div class="mt-4">
-            {{ $reviews->links() }}
-        </div>
     </div>
+
+    <!-- Pagination -->
+    <div class="mt-4 d-flex justify-content-center">
+        {{ $reviews->links() }}
+    </div>
+</div>
 @endif
 @endsection

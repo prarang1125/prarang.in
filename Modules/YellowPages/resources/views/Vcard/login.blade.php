@@ -21,8 +21,8 @@
       <!-- Email Field -->
       <div class="input-field">
         <i class="fas fa-user"></i>
-        <input type="text" name="email" placeholder="ईमेल दर्ज करें" value="{{ old('email') }}" />
-      </div>
+        <input type="tel" name="phone" placeholder="फोन नंबर दर्ज करें" value="{{ old('phone') }}" />
+     </div>
 
       <!-- Password Field -->
       <div class="input-field">

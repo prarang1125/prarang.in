@@ -95,7 +95,7 @@ class BusinessListingController extends Controller
 
     ##------------------------- Business Listing Edit---------------------##
     public function listingEdit($id) {
-        try {
+         try {
             $listing = BusinessListing::findOrFail($id);
             $listinghours = BusinessHour::where('business_id', $listing->id)->get();
             $categories = Category::where('is_active', 1)->get();
@@ -106,7 +106,7 @@ class BusinessListingController extends Controller
             $monthly_advertising_mediums = AdvertisingMedium::all();
             $monthly_advertising_prices = AdvertisingPrice::all();
             $social_media =  SocialMedia::all();
-
+          
             return view('yellowpages::Vcard.business-listing-edit', compact(
                 'listing',
                 'cities',

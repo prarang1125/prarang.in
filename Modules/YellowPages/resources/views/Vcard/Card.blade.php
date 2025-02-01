@@ -77,7 +77,7 @@
 
                         <!-- Save Button -->
                         <div class="text-end">
-                            <button type="submit" class="btn btn-primary"value="Save_VCard" name="action">वीकार्ड सहेजें</button>
+                            <button type="submit" class="btn btn-primary"value="Save_VCard" name="action">वीकार्ड बनाएं</button>
                         </div>
                     </form>
                 </div>              

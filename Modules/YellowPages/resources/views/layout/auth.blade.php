@@ -287,7 +287,7 @@
       }
       .signin-signup {
         width: 100%;
-        top: 80%;
+        top: 87%;
         transform: translate(-50%, -100%);
         transition: 1s 0.8s ease-in-out;
       }
