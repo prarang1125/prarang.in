@@ -1473,7 +1473,7 @@
                 <h1 class="text-5xl md:text-7xl font-bold text-gray-900 mb-6 animate-fade-in snipcss0-2-3-5">मेरठ
                     येलो पेज </h1>
                 <small>Meerut Yellow Pages</small>
-                <p class="text-xl md:text-2xl text-gray-800 max-w-3xl mx-auto animate-slide-up snipcss0-2-3-6">मेरठ में व्यवसायों और सेवाओं की जानकारी को बढ़ाएं। <span> अपने व्यवसाय को मुफ्त में ऑनलाइन <small>(Online)</small> करे,</span> करें। साथ ही, अपनी खुद की मुफ़्त वेबसाइट<small>(Website)</small> बनाएं| </p>
+                <p class="text-xl md:text-2xl text-gray-800 max-w-3xl mx-auto animate-slide-up snipcss0-2-3-6">मेरठ में व्यवसायों और सेवाओं की जानकारी को बढ़ाएं। <span> अपने व्यवसाय को मुफ्त में ऑनलाइन <small>(Online)</small> करे |</span> साथ ही, अपनी खुद की मुफ़्त वेबसाइट<small>(Website)</small> बनाएं| </p>
                 <div class="mt-8 flex justify-center space-x-6 animate-fade-in snipcss0-2-3-7">
                     <div class="flex items-center space-x-2 snipcss0-3-7-8"><svg xmlns="http://www.w3.org/2000/svg"
                             width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -1521,7 +1521,7 @@
                 <div class="grid md:grid-cols-2 gap-12 items-center snipcss0-2-2-3">
                     <div class="space-y-6 animate-slide-right snipcss0-3-3-4">
                         <h2 class="text-4xl font-bold text-gray-900 snipcss0-4-4-5">आज ही अपने व्यवसाय के लिए फ़्री <small>(FREE)</small> में वेब
-                            पेज <small>(WebPage)</small> बनाएं.
+                            पेज <small>(WebPage)</small> बनाएं
                         </h2>
                         <p class="text-xl text-gray-600 snipcss0-4-4-6">अपने फ़ोन से हज़ारों स्थानीय लोगो तक फ़्री <small>(FREE)</small> में
                             पहुंचें।
@@ -1565,7 +1565,7 @@
         <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <div class="space-y-6 animate-slide-left">
-                    <h2 class="text-3xl font-bold text-gray-900">स्थानीय लोगो से मुफ्त में जुड़ें</h2>
+                    <h2 class="text-3xl font-bold text-gray-900">स्थानीय लोगो से मुफ़्त  में जुड़ें</h2>
                     <p class="text-lg text-gray-600">अपने व्यवसाय को फ़्री में ऑनलाइन करने के लिए हमसे संपर्क करें
                     </p>
                     <div class="space-y-4">
@@ -1595,7 +1595,7 @@
                 </div>
 
                 <div class="bg-white rounded-lg shadow-xl p-6 md:p-8 animate-slide-up" id="myFormxttl">
-                    <small>अपने व्यवसाय को फ्री में ऑनलाइन करने के किये हमसे संपर्क करे .</small>
+                    <small>अपने व्यवसाय को मुफ़्त में ऑनलाइन करने के किये हमसे संपर्क करे .</small>
                     <h3 class="text-2xl font-semibold text-gray-900 mb-6">आज ही संपर्क करें</h3>
                     @livewire('yp-landing-form')
 
