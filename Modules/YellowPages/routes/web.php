@@ -24,10 +24,7 @@ use Modules\YellowPages\Http\Controllers\VCard\VcardQRController;
 use Modules\YellowPages\Http\Controllers\VCard\CreateVCardController;
 use Modules\YellowPages\Http\Controllers\VCard\BusinessListingController;
 use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
-
-
 Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function () {
-
 
     ##------------------------- Auth ---------------------##
     Route::get('/login', [AuthModalController::class, 'index'])->name('yp.login');
