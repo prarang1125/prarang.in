@@ -85,7 +85,7 @@ class AuthModalController extends Controller
     try {
         // Validate the input fields
         $request->validate([
-            'name' => ['required', 'string', 'max:255', 'regex:/^[^@]+$/'],
+            'name' => ['nullable', 'string', 'max:255', 'regex:/^[^@]+$/'],
             'email' => [
                 'nullable',
                 'regex:/^[^\s@]+@[^\s@]+\.[^\s@]+$/u',
@@ -94,15 +94,14 @@ class AuthModalController extends Controller
                 'required',
                 'regex:/^\+?[0-9]{10,15}$/',
             ],
-            'password' => 'required', // password confirmation should be part of the form
+            'password' => 'required', 
         ], [
-            'name.required' => 'नाम आवश्यक है।',
             'name.regex' => 'कृपया एक वैध नाम दर्ज करें।',
             'email.regex' => 'कृपया एक वैध ईमेल पता दर्ज करें।',
             'email.unique' => 'यह ईमेल पहले से पंजीकृत है।',
             'phone.required' => 'फोन नंबर आवश्यक है।',
             'phone.regex' => 'कृपया एक वैध फोन नंबर दर्ज करें।',
-            'phone.unique' => 'आपका फोन नंबर पहले से पंजीकृत है।', // Custom error message for phone number
+            'phone.unique' => 'आपका फोन नंबर पहले से पंजीकृत है।', 
             'password.required' => 'पासवर्ड आवश्यक है।',
             'password.confirmed' => 'पासवर्ड और पुष्टि मेल नहीं खाते।',
         ]);
@@ -129,8 +128,6 @@ class AuthModalController extends Controller
         return redirect()->back()->withErrors(['error' => 'पंजीकरण के दौरान एक त्रुटि हुई। कृपया फिर से प्रयास करें।'])->withInput();
     }
 }
-
-    
     ##------------------------- END ---------------------##
 
     ##------------------------- Logout ---------------------##
@@ -142,7 +139,7 @@ class AuthModalController extends Controller
             $request->session()->invalidate();
             $request->session()->regenerateToken();
     
-            return redirect()->route('yp.home'); // Redirect to home page after logout
+            return redirect()->route('yp.home'); 
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'लॉगआउट (logout) के दौरान एक त्रुटि हुई। कृपया फिर से प्रयास करें।']);
         }

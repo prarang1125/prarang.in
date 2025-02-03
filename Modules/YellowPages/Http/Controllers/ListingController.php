@@ -9,6 +9,8 @@ use App\Models\Category;
 use App\Models\City;
 use Carbon\Carbon;
 use App\Models\BusinessListing;
+use App\Models\BusinessSocialMedia;
+use App\Models\BusinessFaq;
 use App\Models\Visits;
 use App\Models\UserPurchasePlan;
 use App\Models\BusinessHour;
@@ -197,8 +199,10 @@ class ListingController extends Controller
                 'website' => 'nullable|url',
                 'phone' => 'nullable|string',
                 'whatsapp' => 'nullable|string',
-                'socialId' => 'nullable|string',
-                'socialDescription' => 'nullable|string',
+                'socialId' => 'nullable|array',
+                'socialId.*' => 'exists:social_media,id',
+                'socialDescription' => 'nullable|array',
+                'socialDescription.*' => 'string|max:255', 
                 'faq' => 'nullable|string',
                 'answer' => 'nullable|string',
                 'agree' => 'nullable|accepted',
@@ -259,8 +263,6 @@ class ListingController extends Controller
                 'answer' => $validated['answer'],
                 'description' => is_array($validated['description']) ? implode(',', $validated['description']) : $validated['description'],
                 'tags_keywords' => $validated['tags_keywords'],
-                'social_id' => $validated['socialId'],
-                'social_media_description' => $validated['socialDescription'],
                 'pincode' => $validated['pincode'],
                 'logo' => $businessLogoPath,
                 'feature_img' => $featureImagePath,
@@ -274,8 +276,18 @@ class ListingController extends Controller
             if (!$listing) {
                 return redirect()->back()->withErrors(['error' => 'Failed to create listing']);
             }
-
-            // Process business hours
+            if (!empty($validated['socialId'])) {
+                $listing->socialMedia()->delete(); // Delete old entries before inserting new ones
+            
+                foreach ($validated['socialId'] as $index => $socialId) {
+                    BusinessSocialMedia::create([
+                        'listing_id' => $listing->id,
+                        'social_id' => $socialId,
+                        'description' => $validated['socialDescription'][$index] ?? null,
+                    ]);
+                }
+            }
+            
             foreach ($validated['day'] as $index => $day) {
                 BusinessHour::create([
                     'business_id' => $listing->id,
