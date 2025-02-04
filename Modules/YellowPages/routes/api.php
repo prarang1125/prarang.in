@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Modules\YellowPages\Http\Controllers\YellowPagesController;
+// use Modules\YellowPages\Http\Controllers\YellowPagesController;
 
 /*
  *--------------------------------------------------------------------------
@@ -14,6 +14,6 @@ use Modules\YellowPages\Http\Controllers\YellowPagesController;
  *
 */
 
-Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () {
-    Route::apiResource('yellowpages', YellowPagesController::class)->names('yellowpages');
-});
+// Route::middleware(['auth:sanctum'])->prefix('v1')->group(function () {
+//     Route::apiResource('yellowpages', YellowPagesController::class)->names('yellowpages');
+// });

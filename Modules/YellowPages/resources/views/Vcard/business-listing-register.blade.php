@@ -420,8 +420,7 @@ document.addEventListener('DOMContentLoaded', function () {
         defaultOption.textContent = 'स्थान चुनें';
         select.appendChild(defaultOption);
 
-        // Fetch social media options dynamically
-        fetch('yellow-pages/user/business-listing-register') 
+        fetch('business-listing-register') // Fetch social media options dynamically
             .then(response => response.json())
             .then(data => {
                 data.forEach(social => {
@@ -470,6 +469,7 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
+
 
 document.addEventListener('DOMContentLoaded', () => {
     // Toggle visibility of faqSection when checkbox is clicked
