@@ -10,6 +10,9 @@ use App\Models\Vcard;
 use App\Models\DynamicFeild;
 use App\Models\UserPurchasePlan;
 use App\Models\Plan;
+use App\Models\Address;
+use App\Models\City;
+use App\Models\Category;
 use App\Models\Visits;
 use App\Models\User;
 use App\Models\BusinessListing;
@@ -72,10 +75,15 @@ class VCardController extends Controller
     {
         try {
             $dynamicFields = DynamicFeild::where('is_active', 1)->get();
-            return view('yellowpages::Vcard.Card', compact('dynamicFields'));
+            $cities = City::all(); 
+            $categories = Category::all(); 
+            $address = Address::where('user_id', Auth::id())->first();
+            $user =  Auth::user();
+
+            return view('yellowpages::Vcard.Card', compact('dynamicFields', 'user', 'cities','categories','address'));
         } catch (\Exception $e) {
-            Log::error('Error in createCard method: ' );
-            return redirect()->back()->withErrors(['error' => 'Unable to load the Create Card page.']);
+            Log::error('Error in createCard method: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'Unable to load the Create Card page. Please try again later.']);
         }
     }
     ##------------------------- END ---------------------##

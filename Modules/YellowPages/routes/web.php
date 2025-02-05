@@ -25,7 +25,8 @@ use Modules\YellowPages\Http\Controllers\VCard\CreateVCardController;
 use Modules\YellowPages\Http\Controllers\VCard\BusinessListingController;
 use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
 
-Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function () {
+// Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function () {
+ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function () {
 
     ##------------------------- Auth ---------------------##
     Route::get('/login', [AuthModalController::class, 'index'])->name('yp.login');
@@ -66,7 +67,7 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
     Route::get('/vCard/logout', [VCardController::class, 'logout'])->name('vCard.logout');
     ##------------------------- END ---------------------##
 
-    Route::get('/vcard/{vcard_id}', [CreateVCardController::class, 'view'])->name('vCard.view');
+    Route::get('/myweb/{id}/{name}', [CreateVCardController::class, 'view'])->name('vCard.view');
     Route::get('/vcard/{vcard_id}/{slug}', [VcardQRController::class, 'scanAndView'])->name('vCard.scanView');
      ##------------------------- VCard QR ---------------------##
      Route::get('/user/qr/', [VcardQRController::class, 'generateQrCode'])->name('vCard.generateQr');
@@ -75,7 +76,7 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
 
     Route::group(['middleware' => 'auth.custom'], function(){
 
-    Route::group(['middleware' => 'check.subscription'], function(){
+    // Route::group(['middleware' => 'check.subscription'], function(){
     ##------------------------- Vcard  ---------------------##
 
       Route::get('/user/dashboard', [VCardController::class, 'dashboard'])->name('vCard.dashboard');
@@ -118,7 +119,7 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
      Route::get('/user/paymentHistory', [PlanController::class, 'paymentHistory'])->name('vCard.paymentHistory');
      Route::get('/user/ActivePlan', [PlanController::class, 'plan'])->name('vCard.plan');
 
-});
+// });
     Route::get('/user/MembershipPlan', [PlanController::class, 'planDetails'])->name('vCard.planDetails');
     Route::post('plan/stripe-checkout', [PlanController::class, 'stripeCheckout'])->name('vcard.stripeCheckout');
     Route::get('plan/payment-success', [PlanController::class, 'paymentSuccess'])->name('vcard.paymentSuccess');

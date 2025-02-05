@@ -14,7 +14,7 @@
 <!-- Navigation -->
 <ul class="metismenu" id="menu">
     
-    @if(Auth::check() && Auth::user()->subscriptions->isNotEmpty()) 
+    {{-- @if(Auth::check() && Auth::user()->subscriptions->isNotEmpty())  --}}
         <h6>सदस्यता</h6>
         <li>
             <a href="{{ url('yellow-pages/user/dashboard') }}">
@@ -24,8 +24,8 @@
         </li>
 
         <!-- vCard Management (only for vCard or both plan users) -->
-        @foreach(Auth::user()->subscriptions as $subscription)
-            @if($subscription->plan && ($subscription->plan->type == 'वीकार्ड' || $subscription->plan->type == 'दोनों'))
+        {{-- @foreach(Auth::user()->subscriptions as $subscription) --}}
+            {{-- @if($subscription->plan && ($subscription->plan->type == 'वीकार्ड' || $subscription->plan->type == 'दोनों')) --}}
                 <li>
                     <a href="{{ url('yellow-pages/user/createCard') }}">
                         <div class="parent-icon"><i class="lni lni-user"></i></div>
@@ -38,8 +38,8 @@
                         <div class="menu-title">वीकार्ड सूची</div>
                     </a>
                 </li>
-            @endif
-        @endforeach
+            {{-- @endif --}}
+        {{-- @endforeach --}}
 
         <!-- Subscription Plans -->
         <li>
@@ -56,10 +56,10 @@
                 <div class="menu-title">सदस्यता योजना</div>
             </a>
         </li>
-    @endif
+    {{-- @endif --}}
 
     <!-- Account Section -->
-    @if(Auth::check() && Auth::user()->subscriptions->isNotEmpty())
+    {{-- @if(Auth::check() && Auth::user()->subscriptions->isNotEmpty()) --}}
         <h6>खाता</h6>
         <li>
             <a href="{{ url('yellow-pages/user/paymentHistory') }}">
@@ -67,11 +67,11 @@
                 <div class="menu-title">लेन-देन</div>
             </a>
         </li>
-    @endif
+    {{-- @endif --}}
 
     <!-- Business Section (only for YellowPages or Both plans) -->
-    @foreach(Auth::user()->subscriptions as $subscription)
-        @if($subscription->plan && ($subscription->plan->type == 'येलोपेज' || $subscription->plan->type == 'दोनों'))
+    {{-- @foreach(Auth::user()->subscriptions as $subscription)
+        @if($subscription->plan && ($subscription->plan->type == 'येलोपेज' || $subscription->plan->type == 'दोनों')) --}}
             <h6>व्यापार</h6>
             <!-- Business Listing and Related Sections -->
             <li>
@@ -92,11 +92,11 @@
                     <div class="menu-title">समीक्षा</div>
                 </a>
             </li>
-        @endif
-    @endforeach
+        {{-- @endif
+    @endforeach --}}
 
     <!-- Message Section (Available for all users) -->
-    @if(Auth::check() && Auth::user()->subscriptions->isNotEmpty())
+    {{-- @if(Auth::check() && Auth::user()->subscriptions->isNotEmpty()) --}}
         <li>
             <a href="{{ url('yellow-pages/user/report') }}">
                 <div class="parent-icon"><i class="bx bx-chart"></i></div>
@@ -109,5 +109,5 @@
                 <div class="menu-title">संदेश सूचीकरण</div>
             </a>
         </li>
-    @endif
+    {{-- @endif --}}
 </ul>

@@ -4,95 +4,80 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>विकार्ड</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.2/html2pdf.bundle.min.js"></script>
+    <title>{{ $user->name ?? 'Prarang Page' }}</title>
+
+    <script src="https://unpkg.com/html5-qrcode/minified/html5-qrcode.min.js"></script>
 </head>
-<body>
-    <div class="container my-5 d-flex justify-content-center">
-        <div class="card" id="vcard-container" style="max-width: 600px;">
-            <div class="card-body">
-                <!-- Banner -->
-                @if ($vcard->banner_img)
-                    <div class="text-center mb-3">
-                        <img src="{{ Storage::url($vcard->banner_img) }}" alt="Cover Photo" class="img-fluid rounded" style="object-fit: cover; width: 100%; height: auto;">
-                    </div>
-                @endif
+<body style="font-family: Arial, sans-serif; background-color: #f5f5f5; margin: 0; padding: 0; display: flex; justify-content: center; align-items: center; height: 100vh; flex-direction: column;">
 
-                <!-- Logo -->
-                @if ($vcard->logo)
-                    <div class="text-center mb-3">
-                        <img src="{{ asset('storage/' . $vcard->logo) }}" alt="Logo" class="img-fluid" style="max-height: 100px;">
-                    </div>
-                @endif
+    <!-- Business Card -->
+    <div id="card-container" style="display: none; background: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); display: flex; max-width: 600px; width: 100%; border: 1px solid #ddd; margin-top: 20px; align-items: center;">
 
-                <!-- Main Information -->
-                <p><strong>शीर्षक:</strong> {{ $vcard->title }}</p>
-                <p><strong>विवरण:</strong> {{ $vcard->description }}</p>
+        <!-- Left Side (Details) -->
+        <div style="width: 70%; padding: 10px;">
+            <p style="margin: 5px 0;"><strong>Name:</strong> {{ $user->name ?? 'Not Available' }}</p>
+            <p style="margin: 5px 0;"><strong>Phone:</strong> {{ $user->phone ?? 'Not Available' }}</p>
+            <p style="margin: 5px 0;"><strong>Email:</strong> {{ $user->email ?? 'Not Available' }}</p>
+            <p style="margin: 5px 0;"><strong>Address:</strong> {{ $address->address ?? 'Not Available' }}</p>
+            <p style="margin: 5px 0;"><strong>Category:</strong> {{ $category ?? 'Not Available' }}</p>
+            <p style="margin: 5px 0;"><strong>social_media:</strong> {{ $category ?? 'Not Available' }}</p>
+        </div>
 
-                <!-- Dynamic Fields -->
-                @if ($vcard->dynamicFields)
-                    <h5>अतिरिक्त जानकारी</h5>
-                    <ul class="list-group">
-                        @foreach ($vcard->dynamicFields as $field)
-                            <li class="list-group-item">
-                                <strong>{{ $field->title }}:</strong> {{ $field->data }}
-                            </li>
-                        @endforeach
-                    </ul>
-                @endif
+        <!-- Right Side (Profile Image) -->
+        <div style="width: 30%; text-align: center;">
+            @if ($user->profile)
+                <img src="{{ Storage::url($user->profile) }}" alt="Photo" style="max-width: 80px; height: 80px; border-radius: 50%; border: 2px solid #ddd;">
+            @endif
+        </div>
+    </div>
 
-                <!-- Buttons -->
-                <div class="mt-4 text-center">
-                    <button class="btn btn-primary" onclick="saveCard()">Save Card (PDF)</button>
-                    @if ($vcard->qr_code)
-                        <a href="{{ asset('storage/' . $vcard->qr_code) }}" download class="btn btn-secondary">Download QR</a>
-                    @endif
-                    <button class="btn btn-success" onclick="shareOnWhatsApp()">Share on WhatsApp</button>
-                    <button class="btn btn-info" onclick="shareOnFacebook()">Share on Facebook</button>
-                    <button class="btn btn-warning" onclick="shareOnInstagram()">Share on Instagram</button>
-                </div>
-            </div>
+    <!-- Share Button -->
+    <div id="share-container" style="display: none; margin-top: 20px; text-align: center;">
+        <button onclick="toggleShareOptions()" style="background-color: #007bff; color: white; padding: 10px 20px; margin: 5px; border: none; border-radius: 5px; cursor: pointer;">Share</button>
+
+        <div id="share-icons" style="display: none; margin-top: 10px;">
+            <a href="#" onclick="shareOnWhatsApp()" style="margin: 5px;"><img src="https://cdn-icons-png.flaticon.com/128/733/733585.png" alt="WhatsApp" style="width: 30px;"></a>
+            <a href="#" onclick="shareOnInstagram()" style="margin: 5px;"><img src="https://cdn-icons-png.flaticon.com/128/174/174855.png" alt="Instagram" style="width: 30px;"></a>
+            <a href="#" onclick="shareOnFacebook()" style="margin: 5px;"><img src="https://cdn-icons-png.flaticon.com/128/733/733547.png" alt="Facebook" style="width: 30px;"></a>
         </div>
     </div>
 
     <script>
-        /**
-         * Save the card as a smaller PDF.
-         */
-        function saveCard() {
-            const vcard = document.getElementById('vcard-container');
-            html2pdf(vcard, {
-                margin: 5,
-                filename: 'vcard-small.pdf',
-                html2canvas: { scale: 1.5 },
-                jsPDF: { unit: 'mm', format: 'a5', orientation: 'portrait' }
-            });
+        function onScanSuccess(decodedText, decodedResult) {
+            console.log("Scanned QR Code:", decodedText);
+            document.getElementById("scanner-container").style.display = "none";
+            document.getElementById("card-container").style.display = "flex";
+            document.getElementById("share-container").style.display = "block";
         }
 
-        /**
-         * Share the card on WhatsApp.
-         */
+        function stopScanner() {
+            html5QrcodeScanner.clear();
+            document.getElementById("scanner-container").style.display = "none";
+        }
+
+        let html5QrcodeScanner = new Html5QrcodeScanner("reader", { fps: 10, qrbox: 250 });
+        html5QrcodeScanner.render(onScanSuccess);
+
+        function toggleShareOptions() {
+            let shareIcons = document.getElementById("share-icons");
+            shareIcons.style.display = shareIcons.style.display === "none" ? "block" : "none";
+        }
+
         function shareOnWhatsApp() {
             const url = encodeURIComponent(window.location.href);
             const text = encodeURIComponent('Check out my VCard: ' + url);
             window.open(`https://wa.me/?text=${text}`, '_blank');
         }
 
-        /**
-         * Share the card on Facebook.
-         */
+        function shareOnInstagram() {
+            alert("Instagram sharing requires uploading a QR image manually.");
+        }
+
         function shareOnFacebook() {
             const url = encodeURIComponent(window.location.href);
             window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
         }
-
-        /**
-         * Share on Instagram (only a note since browser-based Instagram sharing is not possible).
-         */
-        function shareOnInstagram() {
-            alert('Instagram sharing is not supported directly from web browsers. Use your phone’s sharing options instead.');
-        }
     </script>
+
 </body>
 </html>
