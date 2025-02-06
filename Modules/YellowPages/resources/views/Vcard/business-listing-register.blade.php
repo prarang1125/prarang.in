@@ -24,12 +24,13 @@
                 <select id="location" class="form-select" name="location">
                     <option selected disabled>स्थान चुनें</option>
                     @foreach($cities as $city)
-                    <option value="{{ $city->id }}" {{ old('location') == $city->id ? 'selected' : '' }}>
-                        {{ $city->name }}
-                    </option>
+                        <option value="{{ $city->id }}" 
+                            {{ old('location', $user->city_id) == $city->id ? 'selected' : '' }}>
+                            {{ $city->name }}
+                        </option>
                     @endforeach
                 </select>
-            </div>
+            </div>            
             <div class="mb-3">
                 <label for="listingTitle" class="form-label">लिस्टिंग शीर्षक</label>
                 <input type="text" id="listingTitle" name="listingTitle" class="form-control" value="{{ old('listingTitle') }}">
@@ -47,36 +48,19 @@
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <label for="businessName" class="form-label">व्यवसाय/कंपनी का नाम</label>
-                    <input type="text" id="businessName" name="businessName" class="form-control" placeholder="व्यवसाय का नाम दर्ज करें" value="{{ old('businessName')}}" >
+                    <input type="text" id="businessName" name="businessName" class="form-control" placeholder="व्यवसाय का नाम दर्ज करें" value="{{ old('businessName') }}">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="businessAddress" class="form-label">व्यवसाय/कंपनी का पता</label>
-                    <input type="text" id="businessAddress" name="businessAddress" class="form-control" placeholder="व्यावसायिक पता दर्ज करें" value="{{ old('businessAddress')}}">
+                    <label for="primaryPhone" class="form-label">फ़ोन नंबर</label>
+                    <input type="text" id="primaryPhone" name="primaryPhone" class="form-control" placeholder="प्राथमिक फ़ोन दर्ज करें" value="{{ old('primaryPhone', $user->phone) }}">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="primaryPhone" class="form-label">प्राथमिक फ़ोन नंबर</label>
-                    <input type="text" id="primaryPhone" name="primaryPhone" class="form-control" placeholder="प्राथमिक फ़ोन दर्ज करें" value="{{ old('primaryPhone')}}">
+                    <label for="primaryContact" class="form-label">संपर्क नाम</label>
+                    <input type="text" id="primaryContact" name="primaryContact" class="form-control" placeholder="प्राथमिक संपर्क नाम दर्ज करें" value="{{ old('primaryContact', $user->name) }}">
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="secondaryPhone" class="form-label">द्वितीय फ़ोन नंबर
-                    </label>
-                    <input type="text" id="secondaryPhone" name="secondary_phone" class="form-control" placeholder="द्वितीयक फ़ोन दर्ज करें" value="{{ old('primaryContact')}}">
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="primaryContact" class="form-label">प्राथमिक संपर्क नाम</label>
-                    <input type="text" id="primaryContact" name="primaryContact" class="form-control" placeholder="प्राथमिक संपर्क नाम दर्ज करें" value ="{{ old('primaryContact')}}">
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="primaryEmail" class="form-label">प्राथमिक संपर्क ईमेल</label>
-                    <input type="text" id="primaryEmail" name="primaryEmail" class="form-control" placeholder="प्राथमिक ईमेल दर्ज करें" value ="{{ old('primaryEmail')}}">
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="secondaryContact" class="form-label">द्वितीयक संपर्क नाम</label>
-                    <input type="text" id="secondaryContact" name="secondaryContactName" class="form-control" placeholder="द्वितीयक संपर्क नाम दर्ज करें" value ="{{ old('secondaryContactName')}}">
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="secondaryEmail" class="form-label">द्वितीयक संपर्क ईमेल</label>
-                    <input type="text" id="secondaryEmail" name="secondaryEmail" class="form-control" placeholder="द्वितीयक ईमेल दर्ज करें" value ="{{ old('secondaryEmail')}}">
+                    <label for="primaryEmail" class="form-label">ईमेल</label>
+                    <input type="text" id="primaryEmail" name="primaryEmail" class="form-control" placeholder="प्राथमिक ईमेल दर्ज करें" value="{{ old('primaryEmail', $user->email) }}">
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="businessType" class="form-label">व्यवसाय/कंपनी कानूनी प्रकार *</label>
@@ -91,21 +75,23 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="employee_range" class="form-label">व्यवसाय/कंपनी कर्मचारियों की संख्या (लगभग) *</label>
-                    <select id="employee_range" name="employees" class="form-select">
+                    <select id="employee_range" name="employee_range" class="form-select">
                         <option value="" disabled selected>कर्मचारियों की संख्या चुनें</option>
                         @foreach($number_of_employees as $number_employee)
-                        <option value="{{ $number_employee->id }}" {{ old('employee_range') == $number_employee->id ? 'selected' : ''}}>
-                            {{ $number_employee->range}}
-                        </option>
+                            <option value="{{ $number_employee->id }}" {{ old('employee_range') == $number_employee->id ? 'selected' : '' }}>
+                                {{ $number_employee->range }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="trunover" class="form-label">व्यवसाय/कंपनी का मासिक कारोबार (लगभग) *</label>
-                    <select id="trunover" name="turnover" class="form-select">
-                        <option value="" disabled selected>Select Turnover</option>
+                    <label for="turnover" class="form-label">व्यवसाय/कंपनी का मासिक कारोबार (लगभग) *</label>
+                    <select id="turnover" name="turnover" class="form-select">
+                        <option value="" disabled selected>टर्नओवर(Turnover) चुनें</option>
                         @foreach($monthly_turnovers as $turnovers)
-                        <option value="{{ $turnovers->id }}" {{ old('trunover') == $turnovers->id ? 'selected' : ''}}>{{ $turnovers->range}}</option>
+                            <option value="{{ $turnovers->id }}" {{ old('turnover') == $turnovers->id ? 'selected' : '' }}>
+                                {{ $turnovers->range }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
@@ -114,7 +100,9 @@
                     <select id="advertising" name="advertising" class="form-select">
                         <option value="" disabled selected>विज्ञापन का चयन करें</option>
                         @foreach($monthly_advertising_mediums as $advertising)
-                        <option value="{{ $advertising->id }}" {{ old('advertising') == $advertising->id ? 'selected' : ''}}>{{ $advertising->medium}}</option>
+                            <option value="{{ $advertising->id }}" {{ old('advertising') == $advertising->id ? 'selected' : '' }}>
+                                {{ $advertising->medium }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
@@ -123,40 +111,31 @@
                     <select id="advertising_price" name="advertising_price" class="form-select">
                         <option value="" disabled selected>विज्ञापन मूल्य चुनें</option>
                         @foreach($monthly_advertising_prices as $advertising)
-                        <option value="{{ $advertising->id }}" {{ old('advertising') == $advertising->id ? 'selected' : ''}}>{{ $advertising->range}}</option>
+                            <option value="{{ $advertising->id }}" {{ old('advertising_price') == $advertising->id ? 'selected' : '' }}>
+                                {{ $advertising->range }}
+                            </option>
                         @endforeach
                     </select>
                 </div>
             </div>
+            
     </div>
-    <br>
-    <br>
-    <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-        <h5 style="margin-bottom: 15px;">पता विवरण</h5>
-    <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
-        <div style="display: flex; gap: 20px;">
-            <!-- Pin Code Field -->
-            <div style="flex: 1;">
-                <label for="pincode" class="form-label">पिन कोड</label>
-                <input type="text" id="pincode" name="pincode" class="form-control" placeholder="पिन कोड दर्ज करें" value="{{old('pincode')}}">
-            </div>
-        </div>
-    </div>
-    <br>
     <br>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
         <h5 style="margin-bottom: 15px;">श्रेणी और सेवाएँ</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
         <div style="display: flex; gap: 20px;">
             <div style="flex: 1;">
-                <label for="state" class="form-label">वर्ग *</label>
-                <select id="state" class="form-select" name="category">
-                    <option value="" disabled selected>श्रेणी चुनना</option>
-                    @foreach($Category as $Cate)
-                    <option value="{{ $Cate->id }}" {{ old('advertising') == $advertising->id ? 'selected' : ''}}>{{ $Cate->name}}</option>
+                <label for="category" class="form-label">वर्ग *</label>
+                <select id="category" class="form-select" name="category">
+                    <option value="" disabled selected>श्रेणी चुनें</option>
+                    @foreach($categories as $category)
+                        <option value="{{ $category->id }}" {{ old('category', $vcard->category_id) == $category->id ? 'selected' : '' }}>
+                            {{ $category->name }}
+                        </option>
                     @endforeach
                 </select>
-            </div>
+            </div>            
         </div>
     </div>
     <br><br>
@@ -166,10 +145,6 @@
         <div style="margin-top: 15px;">
             <label for="description">विवरण</label>
             <textarea id="description" name="description" rows="4" style="width: 100%;">{{ old('description') }}</textarea>
-        </div>
-        <div style="margin-top: 15px;">
-            <label for="description">टैग या कीवर्ड (अल्पविराम से अलग)</label>
-            <textarea id="description" name="tags_keywords" rows="4" style="width: 100%;">{{ old('description') }}</textarea>
         </div>
     </div>
     <br>
@@ -219,28 +194,49 @@
     <br>
     <br>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-        <h5 style="margin-bottom: 15px;">पते की जानकारी</h5>
+        <h5 style="margin-bottom: 15px;">व्यवसाय/कंपनी का पता</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
+    
         <div style="margin-bottom: 10px;">
-            <label for="street_address">पूरा पता:</label>
-            <input type="text" id="street_address" name="fullAddress" placeholder="पूरा पता दर्ज करें" style="width: 100%; padding: 8px;" value="{{old('fullAddress')}}">
+            <label for="street">व्यवसाय/कंपनी का पता (सड़क/गली):</label>
+            <input type="text" id="street" name="street" placeholder="सड़क/गली का नाम दर्ज करें" style="width: 100%; padding: 8px;" value="{{ old('street', $address->street ?? '') }}">
         </div>
-       
+    
+        <div style="margin-bottom: 10px;">
+            <label for="area_name">क्षेत्र/इलाका:</label>
+            <input type="text" id="area_name" name="area_name" placeholder="क्षेत्र का नाम दर्ज करें" style="width: 100%; padding: 8px;" value="{{ old('area_name', $address->area_name ?? '') }}">
+        </div>
+    
+        <div style="margin-bottom: 10px;">
+            <label for="house_number">भवन संख्या:</label>
+            <input type="text" id="house_number" name="house_number" placeholder="भवन संख्या दर्ज करें" style="width: 100%; padding: 8px;" value="{{ old('house_number', $address->house_number ?? '') }}">
+        </div>
+    
+        <div style="margin-bottom: 10px;">
+            <label for="city_id">शहर:</label>
+            <select id="city_id" name="city_id" style="width: 100%; padding: 8px;">
+                <option selected disabled>शहर चुनें</option>
+                @foreach($cities as $city)
+                    <option value="{{ $city->id }}" {{ old('city_id', $address->city_id ?? '') == $city->id ? 'selected' : '' }}>
+                        {{ $city->name }}
+                    </option>
+                @endforeach
+            </select>
+        </div>
+    
+        <div style="margin-bottom: 10px;">
+            <label for="postal_code">पिन कोड:</label>
+            <input type="text" id="postal_code" name="postal_code" placeholder="पिन कोड दर्ज करें" style="width: 100%; padding: 8px;" value="{{ old('postal_code', $address->postal_code ?? '') }}">
+        </div>
+    
         <h5 style="margin-bottom: 15px;">संपर्क जानकारी</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
+    
         <div style="margin-bottom: 10px;">
             <label for="website">वेबसाइट:</label>
-            <input type="url" id="website" name="website" placeholder="वेबसाइट का नाम दर्ज करें" style="width: 100%; padding: 8px;" value="{{old('website')}}">
+            <input type="url" id="website" name="website" placeholder="वेबसाइट का नाम दर्ज करें" style="width: 100%; padding: 8px;" value="{{ old('website', $user->website ?? '') }}">
         </div>
-        <div style="margin-bottom: 10px;">
-            <label for="phone">फ़ोन:</label>
-            <input type="tel" id="phone" name="phone" placeholder="फ़ोन नंबर दर्ज करें" style="width: 100%; padding: 8px;" value="{{old('phone')}}">
-        </div>
-        <div style="margin-bottom: 10px;">
-            <label for="whatsapp">व्हाट्सएप:</label>
-            <input type="tel" id="whatsapp" name="whatsapp" placeholder="व्हाट्सअप नंबर दर्ज करें" style="width: 100%; padding: 8px;"  value="{{old('whatsapp')}}">
-        </div>
-    </div>
+    </div>      
     <br>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
         <h5 style="margin-bottom: 15px;">सोशल मीडिया लिंक</h5>
@@ -268,34 +264,6 @@
         <div style="border: 1px dashed #ddd; padding: 20px; text-align: center; color: #888; margin-bottom: 10px;">
             <input type="file" id="imageUpload" name="image" style="display: block; margin-top: 10px;" onchange="previewImage(event, 'previewImage')">
             <img id="previewImage" src="" alt="Uploaded Image" style="display: none; margin-top: 10px; max-width: 100px; border: 1px solid #ddd;">
-        </div>
-        
-        <!-- Cover Image & Logo Upload -->
-        <div style="display: flex; gap: 10px; justify-content: space-between; margin-bottom: 10px;">
-            <div style="flex: 1; padding: 10px; border: 1px solid #ddd; text-align: center;">
-                <label for="coverImage" class="form-label">कवर छवि</label>
-                <input type="file" id="coverImage" name="coverImage" class="form-control @error('coverImage') is-invalid @enderror" onchange="previewImage(event, 'coverPreview')">
-                <img id="coverPreview" src="" alt="Cover Image Preview" style="display: none; margin-top: 10px; max-width: 100px; border: 1px solid #ddd;">
-            </div>
-            <div style="flex: 1; padding: 10px; border: 1px solid #ddd; text-align: center;">
-                <label for="logo" class="form-label">प्रतीक चिन्ह (logo)</label>
-                <input type="file" id="logo" name="logo" class="form-control @error('logo') is-invalid @enderror" onchange="previewImage(event, 'logoPreview')">
-                <img id="logoPreview" src="" alt="Logo Preview" style="display: none; margin-top: 10px; max-width: 100px; border: 1px solid #ddd;">
-            </div>
-        </div>
-    
-        <h5 style="margin-top: 20px; margin-bottom: 15px;">विशेषताएँ</h5>
-        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-            <label for="featuresToggle" style="font-weight: bold;">विशेषताएँ</label>
-            <input type="checkbox" id="featuresToggle" style="cursor: pointer;">
-        </div>
-        <div id="faqSection" style="display: none;">
-            <div class="faq-item" style="margin-bottom: 10px;">
-                <label>अक्सर पूछे जाने वाले प्रश्नों</label>
-                <input type="text" name="faq" placeholder="Frequently Asked Questions" style="width: 100%; margin-bottom: 5px;">
-                <textarea placeholder="Answer" name="answer" style="width: 100%; height: 60px;"></textarea>
-            </div>
-            <div class="add-new" style="color: #007bff; cursor: pointer; font-size: 14px; display: inline-block; margin-top: 10px;" onclick="addFAQ()">+ नया जोड़ें</div>
         </div>
         
     </div>

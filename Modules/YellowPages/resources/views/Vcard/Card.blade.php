@@ -1,6 +1,7 @@
 @extends('yellowpages::layout.vcard.vcard')
 @section('title', 'Manage VCard')
-@section('content')
+@section(section: 'content')
+<br>
 <div class="container my-5">
     <h2 class="text-center mt-6 mb-4">वीकार्ड प्रबंधित करें</h2>
 
@@ -10,8 +11,17 @@
             <div class="card border-0">
                 <div class="card-body">
                     <h5 class="mb-4">वीकार्ड सूचना</h5>
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                       </div>
+                      @endif
                     <form action="{{ route('vCard.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
+                        @csrf                    
 
                         <!-- Color Picker -->
                         <div class="mb-3">
@@ -97,9 +107,11 @@
                             <label for="aadhar_back" class="form-label">आधार कार्ड (Back)</label>
                             <input type="file" class="form-control" id="aadhar_back" name="aadhar_back">
                         </div>
+
+                        <div id="dynamic-fields"></div>
                         <!-- Save Button -->
                         <div class="text-end">
-                            <button type="submit" class="btn btn-primary">वीकार्ड बनाएं</button>
+                            <button type="submit" class="btn btn-primary">स्वीकृति के लिए भेजें</button>
                         </div>
                     </form>
                 </div>
@@ -132,26 +144,27 @@
 @endsection
 
 <script>
-    function addField(label, fieldName) {
-        // Generate a unique ID for the field container
-        const uniqueId = 'field-' + Date.now();
+function addField(label, fieldName) {
+    // Generate a unique ID for the field container
+    const uniqueId = 'field-' + Date.now();
 
-        const fieldHTML = `
-            <div class="mb-3 d-flex align-items-center" id="${uniqueId}">
-                <div class="flex-grow-1">
-                    <label for="${fieldName}" class="form-label">${label}</label>
-                    <input type="text" class="form-control" name="data[]" placeholder="${label} दर्ज करें">
-                    <input type="hidden" name="name[]" value="${label}">
-                </div>
-                <button type="button" class="btn btn-light ms-2" onclick="removeField('${uniqueId}')">X</button>
+    const fieldHTML = `
+        <div class="mb-3 d-flex align-items-center" id="${uniqueId}">
+            <div class="flex-grow-1">
+                <label for="${fieldName}" class="form-label">${label}</label>
+                <input type="text" class="form-control" name="dynamic_data[]" placeholder="${label} दर्ज करें">
+                <input type="hidden" name="dynamic_name[]" value="${label}">
             </div>
-        `;
+            <button type="button" class="btn btn-light ms-2" onclick="removeField('${uniqueId}')">X</button>
+        </div>
+    `;
 
-        const dynamicFields = document.getElementById('dynamic-fields');
-        if (dynamicFields) {
-            dynamicFields.insertAdjacentHTML('beforeend', fieldHTML);
-        }
+    const dynamicFields = document.getElementById('dynamic-fields');
+    if (dynamicFields) {
+        dynamicFields.insertAdjacentHTML('beforeend', fieldHTML);
     }
+}
+
 
     function removeField(uniqueId) {
         const fieldElement = document.getElementById(uniqueId);

@@ -9,6 +9,8 @@ use App\Models\Category;
 use App\Models\City;
 use Carbon\Carbon;
 use App\Models\BusinessHour;
+use App\Models\DynamicFeild;
+use App\Models\DynamicVcard;
 use App\Models\CompanyLegalType;
 use App\Models\EmployeeRange;
 use App\Models\Savelisting;
@@ -16,6 +18,9 @@ use App\Models\MonthlyTurnover;
 use App\Models\AdvertisingMedium;
 use App\Models\AdvertisingPrice;
 use App\Models\SocialMedia;
+use App\Models\User;
+use App\Models\Address;
+use App\Models\Vcard;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
@@ -38,17 +43,26 @@ class BusinessListingController extends Controller
     }
     ##------------------------- END ---------------------##
     ##------------------------- Business Listing Register ---------------------##
-    public function businessRegister(Request $request) {
+    public function businessRegister(Request $request)
+    {
         try {
+            // Fetching data for the authenticated user
+            $user = User::find(Auth::id()); // Use find() to get the user
+            $address = Address::where('user_id', Auth::id())->first(); // Assuming there's only one address per user
+            $vcard = Vcard::where('user_id', Auth::id())->first(); // Assuming there's only one vcard per user
+    
+            // Fetching related data from the yp database
             $cities = City::on('yp')->get();
-            $company_legal_type = DB::connection('yp')->select('SELECT * FROM company_legal_types');
-            $number_of_employees = DB::connection('yp')->select('SELECT * FROM number_of_employees');
-            $monthly_turnovers = DB::connection('yp')->select('SELECT * FROM monthly_turnovers');
-            $monthly_advertising_mediums = DB::connection('yp')->select('SELECT * FROM monthly_advertising_mediums');
-            $monthly_advertising_prices = DB::connection('yp')->select('SELECT * FROM monthly_advertising_prices');
-            $social_media = DB::connection('yp')->select('SELECT * FROM social_media_platforms');
-            $Category = Category::on('yp')->get();
-
+            $company_legal_type = DB::connection('yp')->table('company_legal_types')->get();
+            $number_of_employees = DB::connection('yp')->table('number_of_employees')->get();
+            $monthly_turnovers = DB::connection('yp')->table('monthly_turnovers')->get();
+            $monthly_advertising_mediums = DB::connection('yp')->table('monthly_advertising_mediums')->get();
+            $monthly_advertising_prices = DB::connection('yp')->table('monthly_advertising_prices')->get();
+            $social_media = DynamicFeild::get();  // Fixed the syntax here
+            $social_media_data = DynamicVcard::where('vcard_id', $vcard->id)->get();
+            $categories = Category::on('yp')->get();
+    
+            // Return the view with the fetched data
             return view('yellowpages::Vcard.business-listing-register', compact(
                 'cities',
                 'company_legal_type',
@@ -56,15 +70,23 @@ class BusinessListingController extends Controller
                 'monthly_turnovers',
                 'monthly_advertising_mediums',
                 'monthly_advertising_prices',
-                'Category',
-                'social_media'
+                'categories',
+                'social_media',
+                'social_media_data', // added social_media_data
+                'user',  // If you want to show user data on the form
+                'address', // If you want to show address data
+                'vcard' // If you want to show vcard data
             ));
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
+        } catch (Exception $e) {
+            // Log the error for debugging (optional)
+            // Log::error('Error in businessRegister method: ' . $e->getMessage());
+    
+            // Return a user-friendly error message
+            return redirect()->back()->withErrors(['error' => 'An error occurred, please try again later.']);
         }
-    }
+    }    
+    
     ##------------------------- END ---------------------##
-
     ##------------------------- Save Business ---------------------##
     public function saveBusiness(Request $request)
     {
@@ -72,9 +94,8 @@ class BusinessListingController extends Controller
             // Retrieve saved listings for the authenticated user
             $save_listing = Savelisting::where('user_id', Auth::id())->get();
     
-            $business_listing = collect(); // Initialize as empty collection
+            $business_listing = collect(); 
             
-            // Check if any listings exist for the user
             if ($save_listing->isNotEmpty()) {
                 // Get the business IDs from the saved listings
                 $business_ids = $save_listing->pluck('business_id');
@@ -89,8 +110,6 @@ class BusinessListingController extends Controller
             return redirect()->back()->with('error', 'Error retrieving business listing: ' );
         }
     }
-    
-
     ##------------------------- END ---------------------##
 
     ##------------------------- Business Listing Edit---------------------##
@@ -274,7 +293,6 @@ class BusinessListingController extends Controller
             return redirect()->route('vCard.business-save')->withErrors(['error' => 'उपयोगकर्ता को हटाने का प्रयास करते समय एक त्रुटि हुई.']);
         }
     }
-
     ##------------------------- END ---------------------##
 
 }

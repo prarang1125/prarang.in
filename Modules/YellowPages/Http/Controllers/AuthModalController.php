@@ -52,7 +52,7 @@ class AuthModalController extends Controller
                 // Check if the user's role is '2' (Customer)
                 if ($user->role == 2) {
                     Auth::login($user); // Log the user in
-                    return redirect()->route('vCard.dashboard'); // Redirect if role is '2'
+                    return redirect()->route('vCard.createCard'); // Redirect if role is '2'
                 } else {
                     // Log out if the role is not '2'
                     Auth::logout();
@@ -119,7 +119,7 @@ class AuthModalController extends Controller
             Auth::login($user);
     
             // Redirect after registration
-            return redirect()->route('vCard.dashboard'); // Replace with your desired redirect route
+            return redirect()->route('vCard.createCard'); // Replace with your desired redirect route
         } catch (\Illuminate\Validation\ValidationException $e) {
             // If validation fails, return errors and old input
             return redirect()->back()->withErrors($e->errors())->withInput();

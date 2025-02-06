@@ -26,7 +26,7 @@ use Modules\YellowPages\Http\Controllers\VCard\BusinessListingController;
 use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
 
 // Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function () {
- Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function () {
+ Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
 
     ##------------------------- Auth ---------------------##
     Route::get('/login', [AuthModalController::class, 'index'])->name('yp.login');
@@ -67,7 +67,7 @@ use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
     Route::get('/vCard/logout', [VCardController::class, 'logout'])->name('vCard.logout');
     ##------------------------- END ---------------------##
 
-    Route::get('/myweb/{id}/{name}', [CreateVCardController::class, 'view'])->name('vCard.view');
+    Route::get('/myweb/{slug}', [CreateVCardController::class, 'view'])->name('vCard.view');
     Route::get('/vcard/{vcard_id}/{slug}', [VcardQRController::class, 'scanAndView'])->name('vCard.scanView');
      ##------------------------- VCard QR ---------------------##
      Route::get('/user/qr/', [VcardQRController::class, 'generateQrCode'])->name('vCard.generateQr');
@@ -77,6 +77,7 @@ use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
     Route::group(['middleware' => 'auth.custom'], function(){
 
     // Route::group(['middleware' => 'check.subscription'], function(){
+     Route::group(['middleware' => 'check.vcard.business'], function(){
     ##------------------------- Vcard  ---------------------##
 
       Route::get('/user/dashboard', [VCardController::class, 'dashboard'])->name('vCard.dashboard');
@@ -119,7 +120,7 @@ use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
      Route::get('/user/paymentHistory', [PlanController::class, 'paymentHistory'])->name('vCard.paymentHistory');
      Route::get('/user/ActivePlan', [PlanController::class, 'plan'])->name('vCard.plan');
 
-// });
+ });
     Route::get('/user/MembershipPlan', [PlanController::class, 'planDetails'])->name('vCard.planDetails');
     Route::post('plan/stripe-checkout', [PlanController::class, 'stripeCheckout'])->name('vcard.stripeCheckout');
     Route::get('plan/payment-success', [PlanController::class, 'paymentSuccess'])->name('vcard.paymentSuccess');

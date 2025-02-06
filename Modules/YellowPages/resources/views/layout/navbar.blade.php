@@ -60,8 +60,8 @@ header.header {
                         @endforeach
                     </ul>
                 </li>
-                <li><a href="{{ url('yellow-pages/plans') }}">योजना</a></li>
-                <li><a href="{{ url('yellow-pages/vcard') }}">वी-कार्ड (v-card)</a></li>
+                <li><a href="{{ route('yp.plan') }}">योजना</a></li>
+                <li><a href="{{ route('yp.vcard') }}">वी-कार्ड (v-card)</a></li>
 
                 @if(Auth::check())
                     <li class="dropdown">

@@ -78,7 +78,7 @@
                                                 @csrf
                                                 <button type="submit" class="btn btn-sm btn-danger">मिटाना</button>
                                             </form>
-                                            <a href="{{ route('vCard.view', ['vcard_id' => $vcard->id]) }}" class="btn btn-sm btn-primary">देखे</a>
+                                            {{-- <a href="{{ route('vCard.view', ['vcard_id' => $vcard->id]) }}" class="btn btn-sm btn-primary">देखे</a> --}}
                                         </td>
                                     </tr>
                                     @php $index++; @endphp
