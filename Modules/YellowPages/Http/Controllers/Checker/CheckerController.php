@@ -97,15 +97,8 @@ class CheckerController extends Controller
     }
     public function approveCard($slug)
     {
-        $userId = Auth::id();
-    
-        // Check if user is authenticated
-        if (!$userId) {
-            return redirect()->route('login')->with('error', 'Please log in first.');
-        }
-    
-        $user = User::find($userId);
-        $address = Address::where('user_id', $userId)->first() ?? new Address();
+        $user = User::where('name', $slug)->first();
+        $address = Address::where('user_id', $user->id)->first() ?? new Address();
     
         // Fetch vCard data
         $vcard = Vcard::where('slug', $slug)
