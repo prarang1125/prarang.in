@@ -12,7 +12,9 @@ use App\Models\BusinessHour;
 use App\Models\Category;
 use Exception;
 use App\Models\City;
+use App\Models\User;
 use App\Models\Vcard;
+use App\Models\Address;
 use App\Models\CompanyLegalType;
 use App\Models\EmployeeRange;
 use App\Models\MonthlyTurnover;
@@ -21,6 +23,7 @@ use App\Models\AdvertisingPrice;
 use App\Models\SocialMedia;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 
@@ -86,11 +89,44 @@ class CheckerController extends Controller
     public function CheckCard(Request $request) {
         try {
             $Vcard_list = Vcard::all();
-            return view('yellowpages::admin.vCard-list', compact('Vcard_list'));
+            $users = User::whereIn('name', $Vcard_list->pluck('slug'))->get(); // Get all matching users
+            return view('yellowpages::admin.checker-card-list', compact('Vcard_list', 'users'));
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Error fetching Vcard listings: ' );
+            return redirect()->back()->with('error', 'Error fetching Vcard listings: ' . $e->getMessage());
         }
     }
+    public function approveCard($slug)
+    {
+        $userId = Auth::id();
+    
+        // Check if user is authenticated
+        if (!$userId) {
+            return redirect()->route('login')->with('error', 'Please log in first.');
+        }
+    
+        $user = User::find($userId);
+        $address = Address::where('user_id', $userId)->first() ?? new Address();
+    
+        // Fetch vCard data
+        $vcard = Vcard::where('slug', $slug)
+            ->where('is_active', 1)
+            ->orderBy('id', 'desc')
+            ->with('dynamicFields')
+            ->first();
+    
+        // If vCard is missing, set a message
+        if (!$vcard) {
+            $message = 'आपका कार्ड स्वीकृति की प्रक्रिया में है।';
+            return view('yellowpages::admin.checker-card-approval', compact('user', 'address', 'message'));
+        }
+    
+        // Fetch category name safely
+        $category = optional(Category::find($vcard->category_id))->name ?? 'Not Available';
+    
+        return view('yellowpages::admin.checker-card-approval', compact('vcard', 'user', 'address', 'category'));
+    }
+    
+    
     
 
 

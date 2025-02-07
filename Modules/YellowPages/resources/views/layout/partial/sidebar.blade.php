@@ -24,6 +24,12 @@
             <div class="menu-title">लिस्टिंग चेकर</div>
         </a>
     </li>
+    <li>
+        <a href="{{ route('checker.card') }}">
+            <div class="parent-icon"><i class="bx bx-home-circle"></i></div>
+            <div class="menu-title">कार्ड चेकर</div>
+        </a>
+    </li>
 
     <!-- Show the rest of the items only if the user is not role 3 (manager) -->
     @if(Auth::guard('admin')->check() && Auth::guard('admin')->user()->role == 1)

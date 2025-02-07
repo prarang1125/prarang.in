@@ -203,6 +203,11 @@ use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
     Route::get('checker/listing-approve/{id}', [CheckerController::class, 'approveListing'])->name('checker.listing-approve');
     Route::put('checker/listing-approve-status/{id}', [CheckerController::class, 'approveListingStatus'])->name('checker.listing-approval-status');
 
+
+    Route::get('checker/card', [CheckerController::class, 'CheckCard'])->name('checker.card');
+    Route::get('checker/card-approve/{slug}', [CheckerController::class, 'approveCard'])->name('checker.Card-approve');
+    Route::put('checker/card-approve-status/{id}', [CheckerController::class, 'approveCardStatus'])->name('checker.Card-approval-status');
+
     Route::get('privacy-policy', [HomeController::class, 'privacyPolicy'])->name('privacy-policy');
 
     // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    End yellowPages Checker Side   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

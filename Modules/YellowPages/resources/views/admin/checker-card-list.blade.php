@@ -39,7 +39,7 @@
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-end"> <!-- Align to right -->
-                        <form method="GET" action="{{ route('admin.Vcardlist') }}" class="mb-3">
+                        <form method="GET" action="{{ route('checker.card') }}" class="mb-3">
                             <div class="input-group">
                                 <input type="text" name="search" class="form-control form-control-sm" placeholder="Search by Name" value="{{ request('search') }}" style="width: 150px;">
                                 <button class="btn btn-primary btn-sm" type="submit">Search</button>
@@ -51,12 +51,9 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
-                                <th scope="col">नाम</th>
-                                <th scope="col">काउंटर</th>
-                                <th scope="col">बैनर_छवि</th>
-                                <th scope="col">लोगो</th>
-                                <th scope="col">शीर्षक</th>
-                                <th scope="col">विवरण</th>
+                                <th scope="col">काउंटर(slug)</th>
+                                <th scope="col">रंग कोड(code)</th>
+                                <th scope="col">फ़ोटो</th>
                                 <th scope="col">कुल स्कैन</th>
                                 <th scope="col">रिपोर्ट तिथि</th>
                                 <th scope="col">कार्रवाई</th>
@@ -68,16 +65,14 @@
                                 <tr>
                                     <th scope="row" class="align-middle">{{ $index }}</th> 
                                     <td class="align-middle">{{ $vcard->user->name }}</td>
-                                    <td class="align-middle">{{ $vcard->slug }}</td> 
+                                    <td class="align-middle">{{ $vcard->color_code }}</td> 
                                     <td class="align-middle">
-                                        <img src="{{ Storage::url($vcard->banner_img) }}" alt="File" style="max-width: 100px;">
+                                        <img src="{{ Storage::url($vcard->user->profile) }}" alt="File" style="max-width: 100px;">
                                     </td>
-                                    <td class="align-middle">{{ $vcard->title }}</td>
-                                    <td class="align-middle">{{ $vcard->description }}</td>
                                     <td class="align-middle">{{ $vcard->scan_count }}</td>                         
                                     <td class="align-middle">{{ $vcard->created_at}}</td>
                                     <td class="align-middle"> 
-                                        {{-- <a href="{{ route('vCard.view', ['slug' => $vcard->user->name]) }}" class="btn btn-sm btn-primary edit-user">देखे</a> --}}
+                                        <a href="{{ route('checker.Card-approve', ['slug' => $vcard->slug]) }}" class="btn btn-sm btn-primary edit-user">देखे</a>
                                     </div>
                                     </td>
                                 </tr>
@@ -88,7 +83,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>user
 </div>
 @endsection
 
