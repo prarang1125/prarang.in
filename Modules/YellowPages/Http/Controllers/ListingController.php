@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\City;
 use Carbon\Carbon;
 use App\Models\BusinessListing;
+use App\Models\Address;
 use App\Models\BusinessSocialMedia;
 use App\Models\BusinessFaq;
 use App\Models\Visits;
@@ -170,41 +171,33 @@ class ListingController extends Controller
     public function store(Request $request)
     {
 
-        // try {
+       
             // Validation rules
             $validated = $request->validate([
                 'location' => 'required',
-                'tagline' => 'nullable|string',
                 'listingTitle' => 'required|string|max:255',
+                'tagline' => 'nullable|string',
                 'businessName' => 'required|string|max:255',
-                'businessAddress' => 'required|string',
                 'primaryPhone' => 'required|string',
-                'secondary_phone' => 'nullable|string',
                 'primaryContact' => 'required|string',
                 'primaryEmail' => 'required|email',
-                'primary_contact_email' => 'nullable|string|email',
-                'secondaryContactName' => 'nullable|string',
-                'secondaryEmail' => 'nullable|string|email',
-                'pincode' => 'nullable|string',
                 'businessType' => 'required',
                 'employees' => 'required',
                 'turnover' => 'required',
-                'category' => 'required',
-                'description' => 'required',
                 'advertising' => 'required',
                 'advertising_price' => 'required',
-                'social_media' => 'nullable|string',
-                'tags_keywords' => 'nullable|string',
-                'fullAddress' => 'nullable|string',
+                'category' => 'required',
+                'description' => 'nullable|string',
                 'website' => 'nullable|url',
-                'phone' => 'nullable|string',
-                'whatsapp' => 'nullable|string',
+                'street' => 'required|string',
+                'area_name' => 'required|string',
+                'house_number' => 'required|string',
+                'city_id' => 'required|exists:yp.cities,id',
+                'postal_code' => 'nullable|string',
                 'socialId' => 'nullable|array',
-                'socialId.*' => 'exists:social_media,id',
+                'socialId.*' => 'exists:yp.dynamic_fields,id',
                 'socialDescription' => 'nullable|array',
-                'socialDescription.*' => 'string|max:255', 
-                'faq' => 'nullable|string',
-                'answer' => 'nullable|string',
+                'socialDescription.*' => 'string|max:255',
                 'agree' => 'nullable|accepted',
                 'day' => 'required|array',
                 'day.*' => 'required|string',
@@ -221,94 +214,102 @@ class ListingController extends Controller
                 'close_time_2' => 'nullable|array',
                 'close_time_2.*' => 'nullable|string',
             ]);
+    try{
+    
+        // File upload handling
+        $imagePath = $request->hasFile('image') ? $request->file('image')->store('yellowpages/business', 'public') : null;
 
-            // File upload handling
-            $imagePath = $request->hasFile('image')
-                ? $request->file('image')->store('yellowpages/business')
-                : null;
+        // Check if the business listing already exists for the user
+        $listing = BusinessListing::where('user_id', Auth::id())->first();
 
-            $featureImagePath = $request->hasFile('coverImage')
-                ? $request->file('coverImage')->store('yellowpages/feature')
-                : null;
+        // Prepare data for insertion or update
+        $data = [
+            'user_id' => Auth::id(),
+            'city_id' => $validated['location'],
+            'listing_title' => $validated['listingTitle'],
+            'tagline' => $validated['tagline'],
+            'business_name' => $validated['businessName'],
+            'primary_phone' => $validated['primaryPhone'],
+            'primary_contact_name' => $validated['primaryContact'],
+            'primary_contact_email' => $validated['primaryEmail'],
+            'legal_type_id' => $validated['businessType'],
+            'employee_range_id' => $validated['employees'],
+            'turnover_id' => $validated['turnover'],
+            'advertising_medium_id' => $validated['advertising'],
+            'advertising_price_id' => $validated['advertising_price'],
+            'category_id' => $validated['category'],
+            'website' => $validated['website'],
+            'description' => $validated['description'] ?? null, // Handle optional description
+            'business_img' => $imagePath,
+            'agree' => isset($validated['agree']) ? 1 : 0,
+        ];
 
-            $businessLogoPath = $request->hasFile('logo')
-                ? $request->file('logo')->store('yellowpages/logo')
-                : null;
-
-            // Prepare data for insertion
-            $data = [
-                'user_id' => Auth::id(),
-                'city_id' => $validated['location'],
-                'listing_title' => $validated['listingTitle'],
-                'tagline' => $validated['tagline'],
-                'business_name' => $validated['businessName'],
-                'business_address' => $validated['businessAddress'],
-                'primary_phone' => $validated['primaryPhone'],
-                'secondary_phone' => $validated['secondary_phone'],
-                'primary_contact_name' => $validated['primaryContact'],
-                'primary_contact_email' => $validated['primaryEmail'],
-                'secondary_contact_name' => $validated['secondaryContactName'],
-                'secondary_contact_email' => $validated['secondaryEmail'],
-                'legal_type_id' => $validated['businessType'],
-                'employee_range_id' => $validated['employees'],
-                'turnover_id' => $validated['turnover'],
-                'advertising_medium_id' => $validated['advertising'],
-                'advertising_price_id' => $validated['advertising_price'],
-                'category_id' => $validated['category'],
-                'full_address' => $validated['fullAddress'],
-                'website' => $validated['website'],
-                'phone' => $validated['phone'],
-                'whatsapp' => $validated['whatsapp'],
-                'faq' => $validated['faq'],
-                'answer' => $validated['answer'],
-                'description' => is_array($validated['description']) ? implode(',', $validated['description']) : $validated['description'],
-                'tags_keywords' => $validated['tags_keywords'],
-                'pincode' => $validated['pincode'],
-                'logo' => $businessLogoPath,
-                'feature_img' => $featureImagePath,
-                'business_img' => $imagePath,
-                'agree' => isset($validated['agree']) ? 1 : 0,
-            ];
-
-
-            // Create the business listing
+        // If listing exists, update it, otherwise create a new listing
+        if ($listing) {
+            $listing->update($data);
+        } else {
             $listing = BusinessListing::create($data);
-            if (!$listing) {
-                return redirect()->back()->withErrors(['error' => 'Failed to create listing']);
+        }
+
+        // Save Address information and associate with the listing
+        $address = Address::updateOrCreate(
+            ['user_id' => Auth::id()],
+            [
+                'street' => $validated['street'],
+                'area_name' => $validated['area_name'],
+                'house_number' => $validated['house_number'],
+                'city_id' => $validated['city_id'],
+                'postal_code' => $validated['postal_code'],
+            ]
+        );
+
+        // Associate the address with the business listing
+        $listing->address_id = $address->id;
+        $listing->save();
+
+        // Save social media data if provided
+        if (!empty($validated['socialId'])) {
+            $listing->socialMedia()->delete(); // Delete previous social media links
+
+            foreach ($validated['socialId'] as $index => $socialId) {
+                // Ensure socialDescription exists for the index
+                $description = $validated['socialDescription'][$index] ?? null;
+
+                BusinessSocialMedia::create([
+                    'listing_id' => $listing->id,
+                    'social_id' => $socialId,
+                    'description' => $description,
+                ]);
             }
-            if (!empty($validated['socialId'])) {
-                $listing->socialMedia()->delete(); // Delete old entries before inserting new ones
-            
-                foreach ($validated['socialId'] as $index => $socialId) {
-                    BusinessSocialMedia::create([
-                        'listing_id' => $listing->id,
-                        'social_id' => $socialId,
-                        'description' => $validated['socialDescription'][$index] ?? null,
-                    ]);
-                }
-            }
-            
-            foreach ($validated['day'] as $index => $day) {
-                BusinessHour::create([
+        }
+
+        // Save business hours
+        foreach ($validated['day'] as $index => $day) {
+            BusinessHour::updateOrCreate(
+                [
                     'business_id' => $listing->id,
                     'day' => $day,
+                ],
+                [
                     'open_time' => $validated['open_time'][$index],
                     'close_time' => $validated['close_time'][$index],
                     'open_time_2' => $validated['open_time_2'][$index] ?? null,
                     'close_time_2' => $validated['close_time_2'][$index] ?? null,
                     'is_24_hours' => !empty($validated['is_24_hours'][$index]) ? 1 : 0,
                     'add_2nd_time_slot' => !empty($validated['add_2nd_time_slot'][$index]) ? 1 : 0,
-                ]);
-            }
+                ]
+            );
+        }
 
-        // Redirect to the success page
-        return redirect()->route('yp.listing.submit')->with('success', 'Listing created successfully!');
-
-    // } catch (\Exception $e) {
-    //     // Catch any exceptions and return error message
-    //     return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
-    // }
+        // Redirect to success page
+        return redirect()->route('yp.listing.submit')->with('success', 'Listing created/updated successfully!');
+        
+    } catch (\Exception $e) {
+        // Catch any exceptions and return an error message
+        return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
     }
+}
+    
     ##------------------------- END---------------------##
 
     ##------------------------- Listing Details---------------------##

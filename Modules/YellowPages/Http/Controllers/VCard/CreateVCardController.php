@@ -254,7 +254,7 @@ class CreateVCardController extends Controller
             return redirect()->route('vCard.list')->with('success', 'Vcard deleted successfully.');
         } catch (ModelNotFoundException $e) {
             return redirect()->route('vCard.list')->withErrors(['error' => 'vcard not found.']);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('vCard.list')->withErrors(['error' => 'An error occurred while trying to delete the Vcard: ' ]);
         }
     }

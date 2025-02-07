@@ -6,7 +6,7 @@
         <p style="text-align: center;  margin-bottom: 20px;">अपनी लिस्टिंग के बारे में विवरण जोड़ें</p>
     </div>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-  <form action="{{ url('/yellow-pages/store-listing') }}" method="POST" id="listingForm" enctype="multipart/form-data">    
+  <form action="{{ route('yp.listing.store') }}" method="POST" id="listingForm" enctype="multipart/form-data">    
             @csrf
              @if ($errors->any())
     <div class="alert alert-danger">
@@ -75,7 +75,7 @@
                 </div>
                 <div class="col-md-6 mb-3">
                     <label for="employee_range" class="form-label">व्यवसाय/कंपनी कर्मचारियों की संख्या (लगभग) *</label>
-                    <select id="employee_range" name="employee_range" class="form-select">
+                    <select id="employee_range" name="employees" class="form-select">
                         <option value="" disabled selected>कर्मचारियों की संख्या चुनें</option>
                         @foreach($number_of_employees as $number_employee)
                             <option value="{{ $number_employee->id }}" {{ old('employee_range') == $number_employee->id ? 'selected' : '' }}>
@@ -156,9 +156,8 @@
     
         <!-- Schedule Container -->
         <div id="schedule-container">
-            <!-- Initial Day Schedule -->
             <div class="day-schedule">
-                <select name="day[]" style="padding: 5px; border: 1px solid #ccc; border-radius: 3px; width: 120px;">
+                <select name="day[]" class="day-select">
                     <option value="">-- दिन चुनें --</option>
                     <option value="monday">सोमवार</option>
                     <option value="tuesday">मंगलवार</option>
@@ -168,29 +167,32 @@
                     <option value="saturday">शनिवार</option>
                     <option value="sunday">रविवार</option>
                 </select>
-                <input type="time" name="open_time[]" style="padding: 5px; border: 1px solid #ccc; border-radius: 3px;">
-                <label style="font-weight: bold;">to</label>
-                <input type="time" name="close_time[]" style="padding: 5px; border: 1px solid #ccc; border-radius: 3px;">
+    
+                <input type="time" name="open_time[]" class="time-input">
+                <label>to</label>
+                <input type="time" name="close_time[]" class="time-input">
+    
                 <label>
-                    <input type="checkbox" name="is_24_hours[]" style="cursor: pointer;"> 24 घंटे
+                    <input type="checkbox" class="is-24-hours"> 24 घंटे
                 </label>
                 <label>
-                    <input type="checkbox" class="add-2nd-slot" style="cursor: pointer;">दूसरा स्लॉट जोड़ें
+                    <input type="checkbox" class="add-2nd-slot"> दूसरा स्लॉट जोड़ें
                 </label>
-                <button type="button" class="remove-day-btn" style="background: none; border: none; color: red; font-size: 16px; cursor: pointer;">&#x2716;</button>
-        
+                <button type="button" class="remove-day-btn">&#x2716;</button>
+    
                 <!-- Second Time Slot -->
                 <div class="second-time-slot" style="display: none; margin-top: 10px;">
-                    <input type="time" name="open_time_2[]" style="padding: 5px; border: 1px solid #ccc; border-radius: 3px;">
-                    <label style="font-weight: bold;">to</label>
-                    <input type="time" name="close_time_2[]" style="padding: 5px; border: 1px solid #ccc; border-radius: 3px;">
+                    <input type="time" name="open_time_2[]" class="time-input">
+                    <label>to</label>
+                    <input type="time" name="close_time_2[]" class="time-input">
                 </div>
             </div>
         </div>
-        
+    
         <!-- Add New Day Button -->
-        <button type="button" id="add-day-btn" style="margin-top: 10px; padding: 8px 12px; background: #007bff; color: #fff; border: none; border-radius: 3px; cursor: pointer; font-size: 14px;">+ Add Day</button>
+        <button type="button" id="add-day-btn">+ Add Day</button>
     </div>
+    
     <br>
     <br>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
@@ -241,20 +243,42 @@
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
         <h5 style="margin-bottom: 15px;">सोशल मीडिया लिंक</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
+    
         <div id="social-media-container">
-            <div class="social-media-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                <select name="socialId[]" required style="flex: 1; padding: 8px;">
-                    <option selected>स्थान चुनें</option>
-                    @foreach($social_media as $social)
-                        <option value="{{ $social->id }}">{{ $social->name }}</option>
-                    @endforeach
-                </select>
-                <input type="text" name="socialDescription[]" placeholder="अपना लिंक या विवरण दर्ज करें" style="flex: 2; padding: 8px;">
-                <button type="button" class="removeSocialMedia" style="padding: 10px; background-color: red; color: white; border: none; cursor: pointer;">-</button>
-            </div>
+            @if(!empty($social_media_data) && count($social_media_data) > 0)
+                @foreach($social_media_data as $data)
+                    <div class="social-media-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                        <select name="socialId[]" style="flex: 1; padding: 8px;">
+                            <option value="">स्थान चुनें</option>
+                            @foreach($social_media as $social)
+                                <option value="{{ $social->id }}" 
+                                    @if(isset($data->social_id) && $data->social_id == $social->id) selected @endif>
+                                    {{ $social->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <input type="text" name="socialDescription[]" value="{{ $data->description ?? '' }}" placeholder="अपना लिंक या विवरण दर्ज करें" style="flex: 2; padding: 8px;">
+                        <button type="button" class="removeSocialMedia" style="padding: 10px; background-color: red; color: white; border: none; cursor: pointer;">-</button>
+                    </div>
+                @endforeach
+            @else
+                <div class="social-media-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                    <select name="socialId[]"  style="flex: 1; padding: 8px;">
+                        <option value="">स्थान चुनें</option>
+                        @foreach($social_media as $social)
+                            <option value="{{ $social->id }}">{{ $social->name }}</option>
+                        @endforeach
+                    </select>
+                    <input type="text" name="socialDescription[]" placeholder="अपना लिंक या विवरण दर्ज करें" style="flex: 2; padding: 8px;">
+                    <button type="button" class="removeSocialMedia" style="padding: 10px; background-color: red; color: white; border: none; cursor: pointer;">-</button>
+                </div>
+            @endif
         </div>
-        <button type="button" id="addSocialMedia" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; cursor: pointer;">+</button>
-    </div>    
+
+        <!-- Add Button -->
+        <button type="button" id="addSocialMedia" style="padding: 10px; background-color: green; color: white; border: none; cursor: pointer; margin-top: 10px;">+</button>
+    </div>
+
     <br>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 0 5px rgba(0,0,0,0.1);">
         <h5 style="margin-bottom: 15px;">मिडिया</h5>
@@ -290,7 +314,7 @@
     if (firstSchedule) {
         const newSchedule = firstSchedule.cloneNode(true);
 
-        // Clear select and input values
+        // Reset values for cloned inputs
         newSchedule.querySelectorAll('select, input').forEach(input => {
             if (input.type === 'checkbox') {
                 input.checked = false;
@@ -300,23 +324,21 @@
             }
         });
 
-        // Hide the second time slot
-        const secondSlot = newSchedule.querySelector('.second-time-slot');
-        secondSlot.style.display = 'none';
+        // Hide second slot in the new schedule
+        newSchedule.querySelector('.second-time-slot').style.display = 'none';
 
-        // Append the new schedule
+        // Append new schedule
         container.appendChild(newSchedule);
-    } else {
-        console.error('Initial schedule not found.');
     }
 });
 
-// Toggle time inputs when 24 Hours checkbox is checked
+// Handle 24-hour checkbox toggle
 document.addEventListener('change', (e) => {
-    if (e.target.name === 'is_24_hours[]') {
+    if (e.target.classList.contains('is-24-hours')) {
         const parent = e.target.closest('.day-schedule');
-        const timeInputs = parent.querySelectorAll('input[type="time"]');
-        timeInputs.forEach(input => input.disabled = e.target.checked);
+        parent.querySelectorAll('.time-input').forEach(input => {
+            input.disabled = e.target.checked;
+        });
     }
 });
 
@@ -339,18 +361,15 @@ document.addEventListener('click', (e) => {
 // Collect and log schedules
 document.getElementById('submit-btn').addEventListener('click', () => {
     const schedules = [];
-    const container = document.getElementById('schedule-container');
-
-    container.querySelectorAll('.day-schedule').forEach(schedule => {
-        const day = schedule.querySelector('select[name="day[]"]').value;
+    document.querySelectorAll('.day-schedule').forEach(schedule => {
+        const day = schedule.querySelector('.day-select').value;
         const openTime = schedule.querySelector('input[name="open_time[]"]').value;
         const closeTime = schedule.querySelector('input[name="close_time[]"]').value;
-        const is24Hours = schedule.querySelector('input[name="is_24_hours[]"]').checked;
+        const is24Hours = schedule.querySelector('.is-24-hours').checked;
 
-        let openTime2 = '';
-        let closeTime2 = '';
+        let openTime2 = '', closeTime2 = '';
         const secondSlot = schedule.querySelector('.second-time-slot');
-        if (secondSlot && secondSlot.style.display !== 'none') {
+        if (secondSlot.style.display !== 'none') {
             openTime2 = secondSlot.querySelector('input[name="open_time_2[]"]').value;
             closeTime2 = secondSlot.querySelector('input[name="close_time_2[]"]').value;
         }
@@ -366,110 +385,72 @@ document.getElementById('submit-btn').addEventListener('click', () => {
     console.log(schedules);
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('addSocialMedia').addEventListener('click', function () {
-        const container = document.getElementById('social-media-container');
-        const newRow = document.createElement('div');
-        newRow.className = 'social-media-row';
-        newRow.style.display = 'flex';
-        newRow.style.alignItems = 'center';
-        newRow.style.gap = '10px';
-        newRow.style.marginBottom = '10px';
 
-        // Create select element
-        const select = document.createElement('select');
-        select.name = 'socialId[]';
-        select.required = true;
-        select.style.flex = '1';
-        select.style.padding = '8px';
+document.addEventListener("DOMContentLoaded", function() {
+    // Add new social media row
+    document.getElementById("addSocialMedia").addEventListener("click", function() {
+        let container = document.getElementById("social-media-container");
+        let newRow = document.createElement("div");
+        newRow.classList.add("social-media-row");
+        newRow.style.display = "flex";
+        newRow.style.alignItems = "center";
+        newRow.style.gap = "10px";
+        newRow.style.marginBottom = "10px";
 
-        const defaultOption = document.createElement('option');
-        defaultOption.selected = true;
-        defaultOption.textContent = 'स्थान चुनें';
+        let select = document.createElement("select");
+        select.name = "socialId[]";
+        // select.required = true;
+        select.style.flex = "1";
+        select.style.padding = "8px";
+
+        let defaultOption = document.createElement("option");
+        defaultOption.text = "स्थान चुनें";
+        defaultOption.value = "";
         select.appendChild(defaultOption);
 
-        fetch('business-listing-register') // Fetch social media options dynamically
-            .then(response => response.json())
-            .then(data => {
-                data.forEach(social => {
-                    const option = document.createElement('option');
-                    option.value = social.id;
-                    option.textContent = social.name;
-                    select.appendChild(option);
-                });
-            });
+        let socialMediaData = @json($social_media); // Convert Blade variable to JS array
 
-        // Create input field
-        const input = document.createElement('input');
-        input.type = 'text';
-        input.name = 'socialDescription[]';
-        input.placeholder = 'अपना लिंक या विवरण दर्ज करें';
-        input.style.flex = '2';
-        input.style.padding = '8px';
+        socialMediaData.forEach(function(social) {
+            let option = document.createElement("option");
+            option.value = social.id;
+            option.text = social.name;
+            select.appendChild(option);
+        });
 
-        // Create remove button
-        const removeButton = document.createElement('button');
-        removeButton.type = 'button';
-        removeButton.textContent = '-';
-        removeButton.style.padding = '10px';
-        removeButton.style.backgroundColor = 'red';
-        removeButton.style.color = 'white';
-        removeButton.style.border = 'none';
-        removeButton.style.cursor = 'pointer';
+        let input = document.createElement("input");
+        input.type = "text";
+        input.name = "socialDescription[]";
+        input.placeholder = "अपना लिंक या विवरण दर्ज करें";
+        input.style.flex = "2";
+        input.style.padding = "8px";
 
-        removeButton.addEventListener('click', function () {
+        let removeButton = document.createElement("button");
+        removeButton.type = "button";
+        removeButton.textContent = "-";
+        removeButton.style.padding = "10px";
+        removeButton.style.backgroundColor = "red";
+        removeButton.style.color = "white";
+        removeButton.style.border = "none";
+        removeButton.style.cursor = "pointer";
+
+        removeButton.addEventListener("click", function() {
             newRow.remove();
         });
 
-        // Append elements to new row
         newRow.appendChild(select);
         newRow.appendChild(input);
         newRow.appendChild(removeButton);
-
-        // Append row to container
         container.appendChild(newRow);
     });
 
-    // Remove existing social media fields
-    document.querySelectorAll('.removeSocialMedia').forEach(button => {
-        button.addEventListener('click', function () {
-            button.parentElement.remove();
+    // Attach event listener to remove existing social media rows
+    document.querySelectorAll(".removeSocialMedia").forEach(button => {
+        button.addEventListener("click", function() {
+            this.parentElement.remove();
         });
     });
 });
 
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Toggle visibility of faqSection when checkbox is clicked
-    const featuresToggle = document.getElementById('featuresToggle');
-    const faqSection = document.getElementById('faqSection');
-
-    featuresToggle.addEventListener('change', () => {
-        if (featuresToggle.checked) {
-            faqSection.style.display = 'block'; // Show the FAQ section
-        } else {
-            faqSection.style.display = 'none'; // Hide the FAQ section
-        }
-    });
-
-    // Function to dynamically add new FAQ items
-    window.addFAQ = function () {
-        // Create a new FAQ item div
-        const newFAQ = document.createElement('div');
-        newFAQ.classList.add('faq-item');
-        newFAQ.style.marginBottom = '10px';
-
-        // Add the input fields for the new FAQ
-        newFAQ.innerHTML = `
-            <label>अक्सर पूछे जाने वाले प्रश्नों</label>
-            <input type="text" name="faq" placeholder="Frequently Asked Questions" style="width: 100%; margin-bottom: 5px;">
-            <textarea placeholder="Answer" name="answer" style="width: 100%; height: 60px;"></textarea>
-        `;
-
-        // Insert the new FAQ item before the "Add New" button
-        faqSection.insertBefore(newFAQ, faqSection.querySelector('.add-new'));
-    };
-});
 
 document.addEventListener("DOMContentLoaded", function() {
     function previewImage(event, previewId) {

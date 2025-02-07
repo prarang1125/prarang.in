@@ -10,7 +10,9 @@ use App\Models\Visits;
 use App\Models\UserPurchasePlan;
 use App\Models\BusinessHour;
 use App\Models\Category;
+use Exception;
 use App\Models\City;
+use App\Models\Vcard;
 use App\Models\CompanyLegalType;
 use App\Models\EmployeeRange;
 use App\Models\MonthlyTurnover;
@@ -67,7 +69,7 @@ class CheckerController extends Controller
     
         } catch (ModelNotFoundException $e) {
             return redirect()->route('checker.listing')->withErrors(['error' => 'Listing not found.']);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('checker.listing')->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
         }
     }
@@ -79,6 +81,15 @@ class CheckerController extends Controller
         $listing->save();
     
         return redirect()->route('checker.listing')->with('success', 'सूचीकरण सफलतापूर्वक स्वीकृत हुआ।');
+    }
+
+    public function CheckCard(Request $request) {
+        try {
+            $Vcard_list = Vcard::all();
+            return view('yellowpages::admin.vCard-list', compact('Vcard_list'));
+        } catch (Exception $e) {
+            return redirect()->back()->with('error', 'Error fetching Vcard listings: ' );
+        }
     }
     
 

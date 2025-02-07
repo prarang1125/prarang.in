@@ -19,6 +19,7 @@ use App\Models\AdvertisingMedium;
 use App\Models\AdvertisingPrice;
 use App\Models\SocialMedia;
 use App\Models\User;
+use App\Models\BusinessSocialMedia;
 use App\Models\Address;
 use App\Models\Vcard;
 use Illuminate\Support\Facades\DB;
@@ -45,24 +46,21 @@ class BusinessListingController extends Controller
     ##------------------------- Business Listing Register ---------------------##
     public function businessRegister(Request $request)
     {
-        try {
-            // Fetching data for the authenticated user
-            $user = User::find(Auth::id()); // Use find() to get the user
-            $address = Address::where('user_id', Auth::id())->first(); // Assuming there's only one address per user
-            $vcard = Vcard::where('user_id', Auth::id())->first(); // Assuming there's only one vcard per user
-    
-            // Fetching related data from the yp database
+        // try {
+            
+            $user = User::find(Auth::id()); 
+            $address = Address::where('user_id', Auth::id())->first();
+            $vcard = Vcard::where('user_id', Auth::id())->orderBy('id', 'desc')->first();
             $cities = City::on('yp')->get();
             $company_legal_type = DB::connection('yp')->table('company_legal_types')->get();
             $number_of_employees = DB::connection('yp')->table('number_of_employees')->get();
             $monthly_turnovers = DB::connection('yp')->table('monthly_turnovers')->get();
             $monthly_advertising_mediums = DB::connection('yp')->table('monthly_advertising_mediums')->get();
             $monthly_advertising_prices = DB::connection('yp')->table('monthly_advertising_prices')->get();
-            $social_media = DynamicFeild::get();  // Fixed the syntax here
-            $social_media_data = DynamicVcard::where('vcard_id', $vcard->id)->get();
+            $social_media = DynamicFeild::on('yp')->get();  // Retrieve the social media fields
+            $social_media_data = BusinessSocialMedia::whereIn('social_id', $social_media->pluck('id'))->get();  // Use pluck() to get all the IDs and filter based on those            
             $categories = Category::on('yp')->get();
-    
-            // Return the view with the fetched data
+
             return view('yellowpages::Vcard.business-listing-register', compact(
                 'cities',
                 'company_legal_type',
@@ -72,19 +70,18 @@ class BusinessListingController extends Controller
                 'monthly_advertising_prices',
                 'categories',
                 'social_media',
-                'social_media_data', // added social_media_data
-                'user',  // If you want to show user data on the form
-                'address', // If you want to show address data
-                'vcard' // If you want to show vcard data
+                'social_media_data', 
+                'user',
+                'address',
+                'vcard'
             ));
-        } catch (Exception $e) {
-            // Log the error for debugging (optional)
-            // Log::error('Error in businessRegister method: ' . $e->getMessage());
     
-            // Return a user-friendly error message
-            return redirect()->back()->withErrors(['error' => 'An error occurred, please try again later.']);
-        }
-    }    
+        // } catch (Exception $e) {
+        //     return redirect()->back()->withErrors(['error' => 'An error occurred, please try again later.']);
+        // }
+        
+    }
+    
     
     ##------------------------- END ---------------------##
     ##------------------------- Save Business ---------------------##
