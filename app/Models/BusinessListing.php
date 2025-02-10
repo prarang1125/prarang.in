@@ -77,4 +77,9 @@ public function reviews()
     return $this->hasMany(Review::class, 'listing_id');
 }
 
+public function socialMedia()
+{
+    return $this->hasMany(BusinessSocialMedia::class, 'listing_id');
+}
+
 }

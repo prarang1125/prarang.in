@@ -18,6 +18,7 @@ use Illuminate\Foundation\Configuration\Middleware;
             'auth.custom' => \App\Http\Middleware\Authenticate::class,
             'language' => \App\Http\Middleware\SetLocale::class, 
             'check.subscription' => \App\Http\Middleware\CheckSubscriptionLimits::class,
+            'check.vcard.business' => \App\Http\Middleware\CheckUserVCardAndBusiness::class,
 
         ]);
         

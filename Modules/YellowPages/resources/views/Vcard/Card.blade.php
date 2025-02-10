@@ -1,9 +1,8 @@
 @extends('yellowpages::layout.vcard.vcard')
 @section('title', 'Manage VCard')
-@section('content')
-
+@section(section: 'content')
+<br>
 <div class="container my-5">
-    <br><br>
     <h2 class="text-center mt-6 mb-4">वीकार्ड प्रबंधित करें</h2>
 
     <div class="row">
@@ -11,76 +10,111 @@
         <div class="col-md-6">
             <div class="card border-0">
                 <div class="card-body">
-                    <h5 class="mb-4 d-flex align-items-center">
-                        <span>वीकार्ड सूचना</span>
-                    </h5>                  
+                    <h5 class="mb-4">वीकार्ड सूचना</h5>
+                    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                       </div>
+                      @endif
                     <form action="{{ route('vCard.store') }}" method="POST" enctype="multipart/form-data">
-                        @csrf
+                        @csrf                    
+
+                        <!-- Color Picker -->
                         <div class="mb-3">
                             <label for="color_code" class="form-label">रंग पसंद करो</label>
                             <input type="color" class="form-control form-control-color" id="color_code" name="color_code" value="#007bff">
                         </div>
+
+                        <!-- Photo Upload (Profile Image) -->
                         <div class="mb-3">
-                            <label for="banner_img" class="form-label">बैनर अपलोड करें</label>
-                            <input type="file" class="form-control" id="banner_img" name="banner_img">
-                            @error('banner_img')
-                            <div class="alert-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <!-- Upload Logo -->
-                        <div class="mb-3">
-                            <label for="logo" class="form-label">लोगो अपलोड करें</label>
-                            <input type="file" class="form-control" id="logo" name="logo">
-                            @error('logo')
-                            <div class="alert-danger">{{ $message }}</div>
-                            @enderror
+                            <label for="profile" class="form-label">फ़ोटो अपलोड करें</label>
+                            <input type="file" class="form-control" id="profile" name="profile">
                         </div>
 
-                        <!-- Slug -->
+                        <!-- Category Dropdown -->
                         <div class="mb-3">
-                            <label for="slug" class="form-label">काउंटर</label>
-                            <input type="text" class="form-control" id="slug" name="slug" placeholder="अद्वितीय स्लग मान दर्ज करें">
-                            @error('slug')
-                            <div class="alert-danger">{{ $message }}</div>
-                            @enderror
+                            <label for="category" class="form-label">श्रेणी चुनें</label>
+                            <select class="form-control" id="category" name="category_id">
+                                <option value="">चुनें</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}" {{ old('category_id', $user->category_id ?? '') == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
 
-                        <!-- Title -->
+                        <!-- City Dropdown -->
                         <div class="mb-3">
-                            <label for="title" class="form-label">शीर्षक</label>
-                            <input type="text" class="form-control" id="title" name="title" placeholder="शीर्षक दर्ज करें">
-                            @error('title')
-                            <div class="alert-danger">{{ $message }}</div>
-                            @enderror
+                            <label for="city" class="form-label">शहर चुनें</label>
+                            <select class="form-control" id="city" name="city_id">
+                                <option value="">चुनें</option>
+                                @foreach($cities as $city)
+                                    <option value="{{ $city->id }}" {{ old('city_id', $user->city_id ?? '') == $city->id ? 'selected' : '' }}>
+                                        {{ $city->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
 
-                        <!-- Subtitle -->
+                        <!-- Name and Surname -->
                         <div class="mb-3">
-                            <label for="subtitle" class="form-label">उपशीर्षक</label>
-                            <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="उपशीर्षक दर्ज करें">
-                            @error('subtitle')
-                            <div class="alert-danger">{{ $message }}</div>
-                            @enderror
+                            <label for="name" class="form-label">नाम</label>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $user->name ?? '') }}">
                         </div>
 
-                        <!-- Description -->
                         <div class="mb-3">
-                            <label for="description" class="form-label">विवरण</label>
-                            <textarea class="form-control" id="description" name="description" rows="3" placeholder="विवरण दर्ज करें"></textarea>
-                            @error('description')
-                            <div class="alert-danger">{{ $message }}</div>
-                            @enderror
+                            <label for="surname" class="form-label">उपनाम</label>
+                            <input type="text" class="form-control" id="surname" name="surname" value="{{ old('surname', $user->surname ?? '') }}">
                         </div>
 
-                        <!-- Dynamic Fields will be appended here -->
+                        <!-- Address Fields -->
+                        <div class="mb-3">
+                            <label class="form-label">पता</label>
+                            <input type="text" class="form-control" id="house_number" name="house_number" placeholder="मकान नंबर" value="{{ old('house_number', $address->house_number ?? '') }}">
+                            <input type="text" class="form-control mt-2" id="road_street" name="road_street" placeholder="सड़क/गली" value="{{ old('road_street', $address->street ?? '') }}">
+                            <input type="text" class="form-control mt-2" id="area_name" name="area_name" placeholder="क्षेत्र नाम (सार्वजनिक)" value="{{ old('area_name', $address->area_name ?? '') }}">
+                        </div>
+
+                        <!-- Optional Fields -->
+                        <div class="mb-3">
+                            <label for="pincode" class="form-label">पिनकोड (वैकल्पिक)</label>
+                            <input type="text" class="form-control" id="pincode" name="pincode" value="{{ old('postal_code', $address->postal_code ?? '') }}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="dob" class="form-label">जन्म तिथि (वैकल्पिक)</label>
+                            <input type="date" class="form-control" id="dob" name="dob" value="{{ old('dob', $user->dob ?? '') }}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="email" class="form-label">ईमेल (वैकल्पिक)</label>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $user->email ?? '') }}">
+                        </div>
+
+                          <!-- Aadhar Upload (Front) -->
+                          <div class="mb-3">
+                            <label for="aadhar_front" class="form-label">आधार कार्ड (Front)</label>
+                            <input type="file" class="form-control" id="aadhar_front" name="aadhar_front">
+                        </div>
+
+                        <!-- Aadhar Upload (Back) -->
+                        <div class="mb-3">
+                            <label for="aadhar_back" class="form-label">आधार कार्ड (Back)</label>
+                            <input type="file" class="form-control" id="aadhar_back" name="aadhar_back">
+                        </div>
+
                         <div id="dynamic-fields"></div>
-
                         <!-- Save Button -->
                         <div class="text-end">
-                            <button type="submit" class="btn btn-primary"value="Save_VCard" name="action">वीकार्ड बनाएं</button>
+                            <button type="submit" class="btn btn-primary">स्वीकृति के लिए भेजें</button>
                         </div>
                     </form>
-                </div>              
+                </div>
             </div>
         </div>
 
@@ -88,42 +122,101 @@
         <div class="col-md-6">
             <div class="card border-0 shadow-sm">
                 <div class="card-body text-center">
-                    <h5 class="mb-4">नई जानकारी जोड़ें</h5>
-                    <div class="icon-box row gx-3 gy-3 justify-content-center">
-                        @foreach ($dynamicFields as $field)
-                            <div class="col-3 text-center" onclick="addField('{{ $field->name }}', '{{ $field->name }}')">
-                                <i class="{{ $field->icon }}" title="{{ $field->name }}" style="font-size: 24px;"></i>
-                                <p class="mt-1">{{ $field->name }}</p>
+                    <h5 class="mb-3">नई जानकारी जोड़ें</h5>
+                    <div class="container">
+                        @foreach ($dynamicFields->chunk(3) as $chunk)  
+                            <div class="row d-flex justify-content-center align-items-center mb-2">
+                                @foreach ($chunk as $field)
+                                    <div class="col-4 text-center" onclick="addField('{{ $field->name }}', '{{ $field->icon }}')">
+                                        <i class="{{ $field->icon }}" title="{{ $field->name }}" style="font-size: 24px;"></i>
+                                        <p class="mt-1">{{ $field->name }}</p>
+                                    </div>
+                                @endforeach
                             </div>
                         @endforeach
                     </div>
                 </div>
             </div>
-        </div>
-        
+        </div>        
     </div>
 </div>
 
 @endsection
+
 <script>
-    // Define the addField function globally
-    function addField(label, fieldName) {
+function addField(label, fieldName) {
+    // Generate a unique ID for the field container
+    const uniqueId = 'field-' + Date.now();
+
     const fieldHTML = `
-        <div class="mb-3">
-            <label for="${fieldName}" class="form-label">${label}</label>
-            <input type="text" class="form-control" id="${fieldName}" name="data[]" placeholder=" ${label.toLowerCase()} दर्ज करें">
-            <input type="hidden" name="name[]" value="${label}">
+        <div class="mb-3 d-flex align-items-center" id="${uniqueId}">
+            <div class="flex-grow-1">
+                <label for="${fieldName}" class="form-label">${label}</label>
+                <input type="text" class="form-control" name="dynamic_data[]" placeholder="${label} दर्ज करें">
+                <input type="hidden" name="dynamic_name[]" value="${label}">
+            </div>
+            <button type="button" class="btn btn-light ms-2" onclick="removeField('${uniqueId}')">X</button>
         </div>
     `;
+
     const dynamicFields = document.getElementById('dynamic-fields');
     if (dynamicFields) {
         dynamicFields.insertAdjacentHTML('beforeend', fieldHTML);
     }
 }
 
-    // Ensure the script runs after DOM is loaded
-    document.addEventListener("DOMContentLoaded", function () {
-        console.log('Page fully loaded and DOM is ready.');
+
+    function removeField(uniqueId) {
+        const fieldElement = document.getElementById(uniqueId);
+        if (fieldElement) {
+            fieldElement.remove();
+        }
+    }
+
+    // Image preview for Aadhar and profile images
+    document.getElementById('aadhar').addEventListener('change', function(event) {
+        let previewDiv = document.getElementById('aadhar-preview');
+        previewDiv.innerHTML = ""; // Clear previous previews
+
+        let files = event.target.files;
+        if (files.length > 0) {
+            for (let i = 0; i < files.length; i++) {
+                let file = files[i];
+                let reader = new FileReader();
+
+                reader.onload = function(e) {
+                    let img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.classList.add('img-thumbnail', 'm-2');
+                    img.style.width = "100px"; // Adjust image size if needed
+                    previewDiv.appendChild(img);
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
+    });
+
+    document.getElementById('profile').addEventListener('change', function(event) {
+        let previewDiv = document.getElementById('image-preview');
+        previewDiv.innerHTML = ""; // Clear previous previews
+
+        let files = event.target.files;
+        if (files.length > 0) {
+            for (let i = 0; i < files.length; i++) {
+                let file = files[i];
+                let reader = new FileReader();
+
+                reader.onload = function(e) {
+                    let img = document.createElement('img');
+                    img.src = e.target.result;
+                    img.classList.add('img-thumbnail', 'm-2');
+                    img.style.width = "100px"; // Adjust image size if needed
+                    previewDiv.appendChild(img);
+                };
+
+                reader.readAsDataURL(file);
+            }
+        }
     });
 </script>
-

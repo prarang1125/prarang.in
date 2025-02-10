@@ -1,5 +1,5 @@
 @extends('yellowpages::layout.vcard.vcard')
-@section('title', 'YellowPages')
+@section('title', 'Dashboard')
 @section('content')
 <div class="page-content">
     <!-- Dynamic Card Section -->

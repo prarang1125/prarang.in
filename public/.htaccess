@@ -6,7 +6,7 @@
     RewriteEngine On
 
     # Add this rule to remove '/yellow-pages' from the URLs
-    RewriteRule ^yellow-pages/(.*)$ /$1 [L]
+    RewriteRule ^yp/(.*)$ /$1 [L]
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .

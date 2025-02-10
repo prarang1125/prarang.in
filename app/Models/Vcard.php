@@ -16,7 +16,13 @@ class Vcard extends Model
         'title',
         'subtitle',
         'description',
-        'user_id'
+        'user_id',
+        'category_id',
+        'city_id',
+        'address_id',
+        'aadhar_front',
+        'aadhar_back',
+
     ];
 
     public function dynamicFields()

@@ -325,7 +325,7 @@
       }
 
       .panel .content {
-        padding-right: 15%;
+        padding-right:20%;
         transition: transform 0.9s ease-in-out;
         transition-delay: 0.8s;
       }
@@ -392,9 +392,9 @@
         display: none;
       }
 
-      .panel .content {
+      /* .panel .content {
         padding: 0.5rem 1rem;
-      }
+      } */
 
       .container {
         padding: 1.5rem;

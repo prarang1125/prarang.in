@@ -24,7 +24,9 @@ use Modules\YellowPages\Http\Controllers\VCard\VcardQRController;
 use Modules\YellowPages\Http\Controllers\VCard\CreateVCardController;
 use Modules\YellowPages\Http\Controllers\VCard\BusinessListingController;
 use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
-Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function () {
+
+// Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function () {
+ Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
 
     ##------------------------- Auth ---------------------##
     Route::get('/login', [AuthModalController::class, 'index'])->name('yp.login');
@@ -65,7 +67,7 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
     Route::get('/vCard/logout', [VCardController::class, 'logout'])->name('vCard.logout');
     ##------------------------- END ---------------------##
 
-    Route::get('/vcard/{vcard_id}', [CreateVCardController::class, 'view'])->name('vCard.view');
+    Route::get('/myweb/{slug}', [CreateVCardController::class, 'view'])->name('vCard.view');
     Route::get('/vcard/{vcard_id}/{slug}', [VcardQRController::class, 'scanAndView'])->name('vCard.scanView');
      ##------------------------- VCard QR ---------------------##
      Route::get('/user/qr/', [VcardQRController::class, 'generateQrCode'])->name('vCard.generateQr');
@@ -74,7 +76,8 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
 
     Route::group(['middleware' => 'auth.custom'], function(){
 
-    Route::group(['middleware' => 'check.subscription'], function(){
+    // Route::group(['middleware' => 'check.subscription'], function(){
+     Route::group(['middleware' => 'check.vcard.business'], function(){
     ##------------------------- Vcard  ---------------------##
 
       Route::get('/user/dashboard', [VCardController::class, 'dashboard'])->name('vCard.dashboard');
@@ -117,7 +120,7 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
      Route::get('/user/paymentHistory', [PlanController::class, 'paymentHistory'])->name('vCard.paymentHistory');
      Route::get('/user/ActivePlan', [PlanController::class, 'plan'])->name('vCard.plan');
 
-});
+ });
     Route::get('/user/MembershipPlan', [PlanController::class, 'planDetails'])->name('vCard.planDetails');
     Route::post('plan/stripe-checkout', [PlanController::class, 'stripeCheckout'])->name('vcard.stripeCheckout');
     Route::get('plan/payment-success', [PlanController::class, 'paymentSuccess'])->name('vcard.paymentSuccess');
@@ -199,6 +202,11 @@ Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function 
     Route::get('checker/listing', [CheckerController::class, 'CheckListing'])->name('checker.listing');
     Route::get('checker/listing-approve/{id}', [CheckerController::class, 'approveListing'])->name('checker.listing-approve');
     Route::put('checker/listing-approve-status/{id}', [CheckerController::class, 'approveListingStatus'])->name('checker.listing-approval-status');
+
+
+    Route::get('checker/card', [CheckerController::class, 'CheckCard'])->name('checker.card');
+    Route::get('checker/card-approve/{slug}', [CheckerController::class, 'approveCard'])->name('checker.Card-approve');
+    Route::put('checker/card-approve-status/{id}', [CheckerController::class, 'approveCardStatus'])->name('checker.Card-approval-status');
 
     Route::get('privacy-policy', [HomeController::class, 'privacyPolicy'])->name('privacy-policy');
 
