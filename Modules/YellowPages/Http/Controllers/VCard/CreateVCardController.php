@@ -24,7 +24,7 @@ class CreateVCardController extends Controller
     ##------------------------- store ---------------------##
     public function store(Request $request)
     {
-    //   dd($request);
+       dd($request);
         // Validate incoming data
         $validatedData = $request->validate([
             'color_code'       => 'nullable|string',
