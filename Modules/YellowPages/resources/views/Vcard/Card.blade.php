@@ -3,14 +3,14 @@
 @section(section: 'content')
 <br>
 <div class="container my-5">
-    <h2 class="text-center mt-6 mb-4">वीकार्ड प्रबंधित करें</h2>
+    <h2 class="text-center mt-6 mb-4">वेबपेज बनाएं</h2>
 
     <div class="row">
         <!-- Left Card: Form -->
         <div class="col-md-6">
             <div class="card border-0">
                 <div class="card-body">
-                    <h5 class="mb-4">वीकार्ड सूचना</h5>
+                    <h5 class="mb-4">वेबपेज(Webpage) सूचना</h5>
                     @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -94,6 +94,11 @@
                         <div class="mb-3">
                             <label for="email" class="form-label">ईमेल (वैकल्पिक)</label>
                             <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $user->email ?? '') }}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="aadhar" class="form-label">आधार संख्या (वैकल्पिक)</label>
+                            <input type="text" class="form-control" id="aadhar" name="aadhar" value="{{ old('aadhar', $user->aadhaar ?? '') }}">
                         </div>
 
                           <!-- Aadhar Upload (Front) -->
