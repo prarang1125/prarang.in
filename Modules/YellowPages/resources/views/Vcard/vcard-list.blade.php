@@ -47,11 +47,10 @@
                                 <tr>
                                     <th scope="col">#</th>
                                     <th scope="col">काउंटर</th>
-                                    <th scope="col">बैनर_छवि</th>
-                                    <th scope="col">लोगो</th>
-                                    <th scope="col">शीर्षक</th>
-                                    <th scope="col">विवरण</th>
-                                    <th scope="col">कुल स्कैन</th>
+                                    <th scope="col">फोटो(Photo)</th>
+                                    <th scope="col">रंग</th>
+                                    <th scope="col">शहर</th>
+                                    <th scope="col">श्रेणी</th>
                                     <th scope="col">रिपोर्ट तिथि</th>
                                     <th scope="col">कार्रवाई</th>
                                 </tr>
@@ -63,14 +62,11 @@
                                         <th scope="row" class="align-middle">{{ $index }}</th>
                                         <td class="align-middle">{{ $vcard->slug }}</td>
                                         <td class="align-middle">
-                                            <img src="{{ Storage::url($vcard->banner_img) }}" alt="Banner Image" style="max-width: 100px;">
+                                            <img src="{{ Storage::url($user->profile ?? 'default.jpg') }}" alt="Banner Image" style="max-width: 100px;">
                                         </td>
-                                        <td class="align-middle">
-                                            <img src="{{ Storage::url($vcard->logo) }}" alt="Logo" style="max-width: 100px;">
-                                        </td>
-                                        <td class="align-middle">{{ $vcard->title }}</td>
-                                        <td class="align-middle">{{ $vcard->description }}</td>
-                                        <td class="align-middle">{{ $vcard->scan_count }}</td>
+                                        <td class="align-middle">{{ $vcard->color_code }}</td>
+                                        <td class="align-middle">{{ $vcard->city->name ?? '' }}</td>
+                                        <td class="align-middle">{{ $vcard->category->name ?? '' }}</td>
                                         <td class="align-middle">{{ $vcard->created_at }}</td>
                                         <td class="align-middle">
                                             <a href="{{ route('vCard.vcard-edit', $vcard->id) }}" class="btn btn-sm btn-primary">संपादन करना</a>
@@ -78,7 +74,7 @@
                                                 @csrf
                                                 <button type="submit" class="btn btn-sm btn-danger">मिटाना</button>
                                             </form>
-                                            <a href="{{ route('vCard.view', ['vcard_id' => $vcard->id]) }}" class="btn btn-sm btn-primary">देखे</a>
+                                            <a href="{{ route('vCard.view', ['slug' => $vcard->slug]) }}" class="btn btn-sm btn-primary">देखे</a>
                                         </td>
                                     </tr>
                                     @php $index++; @endphp

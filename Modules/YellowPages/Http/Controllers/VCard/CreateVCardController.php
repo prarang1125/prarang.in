@@ -10,6 +10,7 @@ use App\Models\DynamicVcard;
 use App\Models\City;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\DynamicFeild;
 use App\Models\Address;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -23,7 +24,7 @@ class CreateVCardController extends Controller
     ##------------------------- store ---------------------##
     public function store(Request $request)
     {
-      
+    //   dd($request);
         // Validate incoming data
         $validatedData = $request->validate([
             'color_code'       => 'nullable|string',
@@ -44,7 +45,7 @@ class CreateVCardController extends Controller
             'dynamic_data.*'   => 'nullable|string',  
         ]);
         
-        try {
+        // try {
             // Handle file uploads
             if ($request->hasFile('profile')) {
                 $validatedData['profile'] = $request->file('profile')->store('yellowpages/profile');
@@ -134,9 +135,9 @@ class CreateVCardController extends Controller
     
             return redirect()->route('vCard.view', ['slug' => $validatedData['name']])
                              ->with('success', 'Card saved successfully.');
-        } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Error: ');
-        }
+        // } catch (Exception $e) {
+        //     return redirect()->back()->with('error', 'Error: ');
+        // }
     }
     
     ##------------------------- END ---------------------##
@@ -211,39 +212,59 @@ class CreateVCardController extends Controller
 
     ##------------------------- VCard view ---------------------##
     public function view($slug)
-{
-    $userId = Auth::id();
-    $user = User::find($userId);
-    $address = Address::where('user_id', $userId)->first();
+    {
+        $userId = Auth::id();
+        $user = User::find($userId);
+        $address = Address::where('user_id', $userId)->first();
+        $dynamicFields = DynamicFeild::where('is_active', 1)->get();
     
-    // Fetch vCard data
-    $vcard = Vcard::where('slug', $slug)
-        ->where('is_active', 1)
-        ->orderBy('id', 'desc')
-        ->with('dynamicFields')
-        ->first();
-
-    // If vCard is missing, set a message
-    if (!$vcard) {
-        $message = 'आपका कार्ड स्वीकृति की प्रक्रिया में है।';
-        return view('yellowpages::Vcard.CardView', compact('user', 'address', 'message'));
+        // Fetch VCard data
+        $vcard = Vcard::where('slug', $slug)
+            ->orderBy('id', 'desc')
+            ->with('dynamicFields')
+            ->first();
+        $category = Category::where('id', $vcard->category_id)->first();
+        // Check if VCard exists and is approved
+        if (!$vcard) {
+            $message = 'VCard not found.';
+            return view('yellowpages::Vcard.CardView', compact('user', 'address', 'message','category'));
+        }
+    
+        // If VCard is not approved
+        if ($vcard->is_active != 1) {
+            $message = 'आपका कार्ड स्वीकृति की प्रक्रिया में है।';
+            return view('yellowpages::Vcard.CardView', compact('user', 'address', 'message', 'vcard'));
+        }
+    
+        // If VCard is approved
+    
+        
+        return view('yellowpages::Vcard.CardView', compact('vcard', 'user', 'address', 'category', 'dynamicFields'));
     }
-
-    $category = Category::where('id', $vcard->category_id)->value('name');
-
-    return view('yellowpages::Vcard.CardView', compact('vcard', 'user', 'address', 'category'));
-}
-
+    
+    
     ##------------------------- END ---------------------##
     ##------------------------- VCard list ---------------------##
     public function VcardList(Request $request) {
-         try {
-            $Vcard_list = Vcard::where('user_id', Auth::id())->get();
-            return view('yellowpages::Vcard.vcard-list', compact('Vcard_list'));
+        try {
+            $userId = Auth::id();
+            $user = User::find($userId);
+    
+            // Fetch user's Vcards
+            $Vcard_list = Vcard::where('user_id', $userId)->get();
+    
+            // Fetch cities for each Vcard
+            $cities = City::whereIn('id', $Vcard_list->pluck('city_id'))->get()->keyBy('id');
+    
+            // Fetch categories if necessary
+            $categories = Category::whereIn('id', $Vcard_list->pluck('category'))->get()->keyBy('id');
+    
+            return view('yellowpages::Vcard.vcard-list', compact('Vcard_list', 'cities', 'categories'));
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Error fetching Vcard listings: ' );
+            return redirect()->back()->with('error', 'Error fetching Vcard listings: ' . $e->getMessage());
         }
     }
+    
     ##------------------------- END ---------------------##
     ##------------------------- VCard Delete ---------------------##
     public function vcarddelete($id)
