@@ -23,7 +23,19 @@
     {!! $portal->header_scripts !!}
 
     <style>
-        body {
+/* Remove all formatting from all tags inside post-description */
+.col-sm-9 .main-post .post-description,
+.col-sm-9 .main-post .post-description * {
+   /* all: unset !important;  /* Removes all styles */
+    white-space: pre-line !important; /* Ensures sentence wrapping */
+    word-break: normal !important; /* Prevents word breaking */
+    overflow-wrap: anywhere !important; /* Ensures natural text flow */
+    max-width: 100% !important; /* Prevents overflow */
+    display: block !important; /* Ensures block-level behavior */
+}
+
+
+       body {
             font-family: Arial, sans-serif;
             line-height: 1.8;
             margin: 0;
@@ -446,7 +458,7 @@
                 .container .col-sm-9 {
                     padding-left: 7px;
                     display: inline-block;
-                    transform: translatex(0px) translatey(0px);
+                    /*transform: translatex(0px) translatey(0px);*/
                 }
 
                 /* Image */
@@ -479,7 +491,27 @@
             }
 
         }
-    </style>
+
+	/* Figcaption */
+.post-description figure figcaption{
+ font-size:13px;
+ text-align:center;
+}
+
+/* Image */
+.post-description figure img{
+ margin-bottom:0px;
+}
+
+/* Post description */
+.col-sm-9 .main-post .post-description{
+ font-size:14px !important;
+ line-height:2.56em;
+}
+
+/* Remove all formatting from all tags inside post-description */
+
+</style>
 </head>
 
 <body>
@@ -650,6 +682,27 @@
     <script>
 
         collectAndSendInformation('{{$chitti_id}}', '{{ $city_name }}');
+
+     document.addEventListener('DOMContentLoaded', () => {
+    const descriptionData = document.querySelector('.post-description');
+    
+    if (descriptionData) {
+        descriptionData.querySelectorAll('table').forEach(tableElement => {
+            // Add 'table' and 'table-sm' classes to the table element
+            tableElement.classList.add('table');
+            
+            // Create a new div with the 'table-responsive' class
+            const wrapperDiv = document.createElement('div');
+            wrapperDiv.classList.add('table-responsive');
+            
+            // Wrap the table inside the new div
+            tableElement.parentNode.insertBefore(wrapperDiv, tableElement);
+            wrapperDiv.appendChild(tableElement);
+        });
+    }
+});
+
+
     </script>
     {!! $portal->footer_scripts !!}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
