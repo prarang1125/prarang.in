@@ -98,11 +98,11 @@ class AuthModalController extends Controller
             ]);
 
             // use Do While loop to generate a random user name 
-            do {               
-                $name = Str::random(6);
-            } while (User::where('name', $name)->exists());
-
-            // Create a new user
+            // do {               
+            //     $name = Str::random(6);
+            // } while (User::where('name', $name)->exists());
+            $name="";
+            // Create    a new user
             $user = User::create([
                 'name' => $name,
                 'phone' => $request->input('phone'), 
@@ -119,7 +119,7 @@ class AuthModalController extends Controller
             // If validation fails, return errors and old input
             return redirect()->back()->withErrors($e->errors())->withInput();
         } catch (\Exception $e) {
-            dd($e->getMessage());
+            // dd($e->getMessage());
             // Handle general errors and provide feedback
             return redirect()->back()->withErrors(['error' => 'पंजीकरण के दौरान एक त्रुटि हुई। कृपया फिर से प्रयास करें।'])->withInput();
         }

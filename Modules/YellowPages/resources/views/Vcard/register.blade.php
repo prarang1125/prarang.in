@@ -29,12 +29,12 @@
           @endforeach
         </select>
       </div>
-      <!-- Name Field
-      <div class="input-field" style="display: flex; align-items: center; border: 1px solid #ddd; padding: 10px; border-radius: 5px; margin-top: 10px;">
+      <!-- Name Field -->
+      {{-- <div class="input-field" style="display: flex; align-items: center; border: 1px solid #ddd; padding: 10px; border-radius: 5px; margin-top: 10px;">
           <i class="fas fa-user" style="margin-right: 10px; color: #555;"></i>
           <input type="text" name="" placeholder="उपयोगकर्ता नाम" value="{{ old('name') }}" style="border: none; outline: none; flex: 1; background: transparent;" />
-      </div>
-   -->
+      </div> --}}
+   
       <!-- Phone Field -->
       <div class="input-field" style="display: flex; align-items: center; border: 1px solid #ddd; padding: 10px; border-radius: 5px; margin-top: 10px;">
           <i class="fas fa-phone" style="margin-right: 10px; color: #555;"></i>
