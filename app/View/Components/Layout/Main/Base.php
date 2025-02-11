@@ -7,8 +7,8 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Log;
 use Illuminate\View\Component;
-
 
 class Base extends Component
 {
@@ -16,8 +16,6 @@ class Base extends Component
      * @author Vivek Yadav <dev.vivek16@gmail.com>
      * @copyright 2025 Prarang <www.prarang.in>
       */
-
-
 
     public function render(): View|Closure|string
     {
@@ -27,35 +25,46 @@ class Base extends Component
     public function visitorLocation(Request $request)
     {
 
-        try {
-             $data = $this->prepareVisitorData($request);
-            if (env('LOCATION') == 'ON') {
-                $location = $this->getVisitorLocation($request);
-                if ($location) {
-                    $data['visitor_city'] = $location['visitor_city'];
-                    $data['visitor_address'] = $location['visitor_address'];
-                }
-            }
+       
+        // Prepare the visitor data
+        $existingVisitor = $this->findExistingVisitor($request->input('post_id'), $request->input('ip_address'));
 
-             $visitor = $this->findExistingVisitor($data['post_id'], $data['ip_address']);
-            if ($visitor) {
-                $this->incrementVisitCount($visitor);
-            } else {
-
-                $this->createNewVisitor($data);
-            }
-            return response()->json([
-                'data'=>$data,
-                'message' => 'Visitor information stored successfully.',
-            ], 201);
-
-        } catch (\Exception $e) {
-            return response()->json([
-                'error' => 'Failed to store visitor information.',
-                'details' => $e->getMessage(),
-            ], 500);
+        if ($existingVisitor) {
+            // Increment visit count if the visitor already exists
+            $this->incrementVisitCount($existingVisitor);
+            return response()->json(['message' => 'Visitor visit count updated successfully!'], 200);
         }
+
+        $visitorData = $this->prepareVisitorData($request);
+        $visitorLocation = $this->getVisitorLocation($request);
+       
+        // Create a new visitor record in the database
+        return response()->json([$visitorData,$visitorLocation],200);
+        $visitor = new Visitor();       
+        $visitor->post_id = $visitorData['post_id'];
+        $visitor->post_city = $visitorData['city'];
+        $visitor->ip_address = $visitorData['ip_address'];
+        $visitor->latitude = $visitorData['latitude'];
+        $visitor->longitude = $visitorData['longitude'];
+        $visitor->language = $visitorData['language'];
+        $visitor->screen_width = $visitorData['screen_width'];
+        $visitor->screen_height = $visitorData['screen_height'];
+        $visitor->user_agent = $visitorData['user_agent'];
+        $visitor->current_url = $visitorData['current_url'];
+        $visitor->referrer = $visitorData['referrer'];
+        $visitor->duration = $visitorData['duration'];
+        $visitor->scroll = $visitorData['scroll'];
+        $visitor->user_type = $visitorData['user_type'];
+        $visitor->visitor_city = $visitorLocation['visitor_city'];
+        $visitor->visitor_address = $visitorLocation['visitor_address'];
+
+        // Save the visitor record
+        $visitor->save();
+
+        // Return a success response
+        return response()->json(['message' => 'Visitor data saved successfully!'], 201);
     }
+
     private function prepareVisitorData(Request $request)
     {
         return [
@@ -71,8 +80,13 @@ class Base extends Component
             'timestamp' => now(),
             'user_agent' => $request->header('User-Agent'),
             'visit_count' => 1,
+            'referrer' => $request->input('referrer', null),
+            'duration' => $request->input('duration', null),
+            'scroll' => $request->input('scroll', null),
+            'user_type' => $request->input('user_type', null),
         ];
     }
+
     private function findExistingVisitor($postId, $ipAddress)
     {
         return Visitor::where('post_id', $postId)
@@ -91,19 +105,16 @@ class Base extends Component
 
         Visitor::create($data);
     }
+
     private function getVisitorLocation($request)
     {
-        $latitude = $request->input('latitude', null);
-        $longitude = $request->input('longitude', null);
-
-        $visitor_city = null;
-        $visitor_address = null;
-
         try {
-            // If latitude and longitude are not provided, use IP address to fetch location
-            if ($latitude=='null' || $longitude=='null') {
-                $ipLocation = Http::get("https://ipapi.co/{$request->input('ip_address')}/json");
+            $latitude = $request->input('latitude', null);
+            $longitude = $request->input('longitude', null);
 
+            if ($latitude == 'null' || $longitude == 'null') {
+                $ipLocation = Http::get("https://ipapi.co/{$request->input('ip_address')}/json");
+                
                 if ($ipLocation->successful()) {
                     $data = $ipLocation->json();
                     return [
@@ -112,34 +123,42 @@ class Base extends Component
                     ];
                 }
             } else {
-                // OpenCage API to fetch location using latitude and longitude
+                // First try OpenCage
                 $openCageUrl = "https://api.opencagedata.com/geocode/v1/json?key=cfaa6c00aec1419eb8f68e69689019fc&q={$latitude}+{$longitude}";
-                $nominatimUrl = "https://nominatim.openstreetmap.org/search?format=json&q={$latitude},{$longitude}";
 
                 $openCageResponse = Http::get($openCageUrl);
+
                 if ($openCageResponse->successful() && isset($openCageResponse->json()['results'][0])) {
                     $result = $openCageResponse->json()['results'][0];
                     $visitor_city = $result['components']['city'] ?? $result['components']['_normalized_city'] ?? null;
                     $visitor_address = $result['formatted'] ?? null;
                 } else {
                     // If OpenCage fails, fallback to Nominatim
+                    $nominatimUrl = "https://nominatim.openstreetmap.org/search?format=json&q={$latitude},{$longitude}";
                     $nominatimResponse = Http::get($nominatimUrl);
+
                     if ($nominatimResponse->successful() && isset($nominatimResponse->json()[0])) {
                         $nominatimData = $nominatimResponse->json()[0];
                         $visitor_address = $nominatimData['display_name'] ?? 'Unknown Address';
+                    } else {
+                        // If Nominatim fails, fallback to IP API
+                        $ipLocation = Http::get("https://ipapi.co/{$request->input('ip_address')}/json");
+                        
+                        if ($ipLocation->successful()) {
+                            $data = $ipLocation->json();
+                            $visitor_city = $data['city'] ?? null;
+                            $visitor_address = $data['region'] . ', ' . $data['country'] ?? null;
+                        }
                     }
                 }
             }
         } catch (\Exception $e) {
-            \Log::error("Error fetching location data: " . $e->getMessage());
+            Log::error("Error fetching location data: " . $e->getMessage());
         }
 
         return [
-            'visitor_city' => $visitor_city,
-            'visitor_address' => $visitor_address,
+            'visitor_city' => $visitor_city ?? null,
+            'visitor_address' => $visitor_address ?? 'Unknown Address',
         ];
     }
-
-
-
 }

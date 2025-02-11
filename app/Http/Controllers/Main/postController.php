@@ -88,16 +88,18 @@ class postController extends Controller
             $query->where('slug', $slug);
         })
             ->where('chittiId', '!=', $postId)
-            ->orderBy('chittiId', 'desc')
+            ->whereRaw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y %h:%i %p') BETWEEN DATE_SUB(CURDATE(), INTERVAL 4 DAY) AND DATE_ADD(CURDATE(), INTERVAL 1 DAY)")
             ->where('finalStatus', 'approved')
+            ->whereRaw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y %h:%i %p') != STR_TO_DATE('" . $post->dateOfApprove . "', '%d-%m-%Y %h:%i %p')")
+            ->orderBy('chittiId', 'desc')
             ->take(3)
             ->get()
             ->map(function ($recent) {
                 $recent->imageUrl = optional($recent->images->first())->imageUrl ?? 'images/default_image.jpg';
-                $recent->formattedDate = $recent->createDate ? Carbon::parse($recent->createDate)->format('d-m-Y H:i A') : 'N/A';
-
+               
                 return $recent;
             });
+            dd($recentPosts);
 
         $post->tagInUnicode = $post->tagMappings->first()->tag->tagInUnicode;
 

@@ -7,12 +7,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\City;
-use Validator;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\log;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Validation\Rule;
+
 
 class AuthModalController extends Controller
 {
@@ -76,7 +72,6 @@ class AuthModalController extends Controller
     public function register(Request $request)
     {
         try {
-            // Validate the input fields
             $request->validate([
                 // 'name' => ['nullable', 'string', 'max:255', 'regex:/^[^@]+$/'],
                 'phone' => [
@@ -120,7 +115,6 @@ class AuthModalController extends Controller
             return redirect()->back()->withErrors($e->errors())->withInput();
         } catch (\Exception $e) {
             // dd($e->getMessage());
-            // Handle general errors and provide feedback
             return redirect()->back()->withErrors(['error' => 'पंजीकरण के दौरान एक त्रुटि हुई। कृपया फिर से प्रयास करें।'])->withInput();
         }
     }
