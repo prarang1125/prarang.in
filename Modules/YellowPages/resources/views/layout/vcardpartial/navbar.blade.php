@@ -37,7 +37,7 @@
                         </li>
                     @elseif (Auth::check())
                         <li><a class="dropdown-item" href="javascript:;"><i class="bx bx-user"></i><span>प्रोफ़ाइल</span></a></li>
-                        {{-- <li><a class="dropdown-item" href="javascript:;"><i class='bx bx-home-circle'></i><span>डैशबोर्ड</span></a></li> --}}
+                        {{-- <li><a class="dropdown-item" href="javascript:;"><i class="bx bx-user"></i><span>प्रोफ़ाइल</span></a></li> --}}
                         <li>
                             <div class="dropdown-divider mb-0"></div>
                         </li>

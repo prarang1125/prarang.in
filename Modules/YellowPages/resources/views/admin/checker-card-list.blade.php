@@ -71,9 +71,16 @@
                                     </td>
                                     <td class="align-middle">{{ $vcard->scan_count }}</td>                         
                                     <td class="align-middle">{{ $vcard->created_at}}</td>
-                                    <td class="align-middle"> 
-                                        <a href="{{ route('checker.Card-approve', ['slug' => $vcard->slug]) }}" class="btn btn-sm btn-primary edit-user">देखे</a>
-                                    </div>
+                                    <td class="align-middle">
+                                        @if($vcard->is_active == 1)
+                                            <a href="{{ route('checker.Card-approve', $vcard->id) }}" class="btn btn-sm btn-success edit-user">
+                                                स्वीकृत
+                                            </a>
+                                        @else
+                                            <a href="{{ route('checker.Card-approve', $vcard->id) }}" class="btn btn-sm btn-danger edit-user">
+                                                देखे
+                                            </a>
+                                        @endif
                                     </td>
                                 </tr>
                                 @php $index++; @endphp

@@ -205,7 +205,7 @@ use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
 
 
     Route::get('checker/card', [CheckerController::class, 'CheckCard'])->name('checker.card');
-    Route::get('checker/card-approve/{slug}', [CheckerController::class, 'approveCard'])->name('checker.Card-approve');
+    Route::get('checker/card-approve/{id}', [CheckerController::class, 'approveCard'])->name('checker.Card-approve');
     Route::put('checker/card-approve-status/{id}', [CheckerController::class, 'approveCardStatus'])->name('checker.Card-approval-status');
 
     Route::get('privacy-policy', [HomeController::class, 'privacyPolicy'])->name('privacy-policy');

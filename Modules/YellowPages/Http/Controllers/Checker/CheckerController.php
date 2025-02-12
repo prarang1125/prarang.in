@@ -10,6 +10,7 @@ use App\Models\Visits;
 use App\Models\UserPurchasePlan;
 use App\Models\BusinessHour;
 use App\Models\Category;
+use App\Models\DynamicFeild;
 use Exception;
 use App\Models\City;
 use App\Models\User;
@@ -95,30 +96,41 @@ class CheckerController extends Controller
             return redirect()->back()->with('error', 'Error fetching Vcard listings: ' . $e->getMessage());
         }
     }
-    public function approveCard($slug)
-    {
-        $user = User::where('name', $slug)->first();
-        $address = Address::where('user_id', $user->id)->first() ?? new Address();
-    
-        // Fetch vCard data
-        $vcard = Vcard::where('slug', $slug)
-            ->where('is_active', 1)
-            ->orderBy('id', 'desc')
-            ->with('dynamicFields')
-            ->first();
-    
-        // If vCard is missing, set a message
-        if (!$vcard) {
-            $message = 'आपका कार्ड स्वीकृति की प्रक्रिया में है।';
-            return view('yellowpages::admin.checker-card-approval', compact('user', 'address', 'message'));
-        }
-    
-        // Fetch category name safely
-        $category = optional(Category::find($vcard->category_id))->name ?? 'Not Available';
-    
-        return view('yellowpages::admin.checker-card-approval', compact('vcard', 'user', 'address', 'category'));
-    }
-    
+   // Controller
+   public function approveCard($id)
+   {
+       // Fetch the VCard data by its ID, including dynamic fields relation
+       $vcard = Vcard::where('id', $id)
+           ->with('user', 'dynamicFields') // Assuming 'user' is the relation for the user of the VCard
+           ->orderBy('id', 'desc')
+           ->first();
+   
+       if (!$vcard) {
+           return redirect()->back()->with('error', 'VCard not found.');
+       }
+   
+       // Get the user associated with the VCard
+       $user = $vcard->user; // Access the associated user directly from the VCard model
+   
+       // Fetch the category for the VCard using the category ID
+       $category = Category::find($vcard->category_id);
+   
+       // Fetch all dynamic fields that are active
+       $dynamicFields = DynamicFeild::where('is_active', 1)->get();
+   
+       // Pass all the data to the view
+       return view('yellowpages::admin.checker-card-approval', compact('vcard', 'user', 'category', 'dynamicFields')); 
+   }
+   
+   public function approveCardStatus($id)
+   {
+       $listing = Vcard::findOrFail($id);
+       $listing->is_active = 1;
+       $listing->save();
+   
+       return redirect()->route('checker.card')->with('success', 'सूचीकरण सफलतापूर्वक स्वीकृत हुआ।');
+   }
+
     
     
 
