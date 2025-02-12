@@ -1,6 +1,7 @@
 @extends('yellowpages::layout.admin.admin')
 @section('title', 'Vcard')
 
+
 @if(session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
@@ -16,18 +17,17 @@
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
-                    <li class="breadcrumb-item"><a href="#"><i class="bx bx-user"></i></a>
+                    <li class="breadcrumb-item">
+                        <a href="#"><i class="bx bx-user"></i></a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">वीकार्ड लिस्टिंग</li>
                 </ol>
             </nav>
         </div>
     </div>
-    
     <!--end breadcrumb-->
     <div class="row">
         <div class="col-xl-9 mx-auto w-100">
-            
             <!-- Success Message -->
             @if(session('success'))
                 <div class="alert alert-success mt-3">
@@ -38,63 +38,51 @@
             <hr/>
             <div class="card">
                 <div class="card-body">
-                    <div class="d-flex justify-content-end"> <!-- Align to right -->
-                        <form method="GET" action="{{ route('admin.Vcardlist') }}" class="mb-3">
-                            <div class="input-group">
-                                <input type="text" name="search" class="form-control form-control-sm" placeholder="Search by Name" value="{{ request('search') }}" style="width: 150px;">
-                                <button class="btn btn-primary btn-sm" type="submit">Search</button>
-                            </div>
-                        </form>
-                    </div>
-                    
-                    <table class="table mb-0 table-hover">
-                        <thead>
-                            <tr>
-                                <th scope="col">#</th>
-                                <th scope="col">नाम</th>
-                                <th scope="col">काउंटर</th>
-                                <th scope="col">बैनर_छवि</th>
-                                <th scope="col">लोगो</th>
-                                <th scope="col">शीर्षक</th>
-                                <th scope="col">विवरण</th>
-                                <th scope="col">कुल स्कैन</th>
-                                <th scope="col">रिपोर्ट तिथि</th>
-                                <th scope="col">कार्रवाई</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @php $index = 1; @endphp
-                            @foreach($Vcard_list as $vcard)
+                    <!-- Wrap the table in a responsive container -->
+                    <div class="table-responsive">
+                        <table class="table mb-0 table-hover">
+                            <thead>
                                 <tr>
-                                    <th scope="row" class="align-middle">{{ $index }}</th> 
-                                    <td class="align-middle">{{ $vcard->user->name }}</td>
-                                    <td class="align-middle">{{ $vcard->slug }}</td> 
-                                    <td class="align-middle">
-                                        <img src="{{ Storage::url($vcard->banner_img) }}" alt="File" style="max-width: 100px;">
-                                    </td>
-                                    <td class="align-middle">
-                                    <img src="{{ Storage::url($vcard->logo) }}" alt="File" style="max-width: 100px;">
-                                    </td>
-                                    <td class="align-middle">{{ $vcard->title }}</td>
-                                    <td class="align-middle">{{ $vcard->description }}</td>
-                                    <td class="align-middle">{{ $vcard->scan_count }}</td>                         
-                                    <td class="align-middle">{{ $vcard->created_at}}</td>
-                                    <td class="align-middle"> 
-                                        <a href="{{ route('vCard.view', ['vcard_id' => $vcard->id]) }}" class="btn btn-sm btn-primary edit-user">देखे</a>
-                                    </div>
-                                    </td>
+                                    <th scope="col">#</th>
+                                    <th scope="col">काउंटर</th>
+                                    <th scope="col">फोटो(Photo)</th>
+                                    <th scope="col">रंग</th>
+                                    <th scope="col">शहर</th>
+                                    <th scope="col">श्रेणी</th>
+                                    <th scope="col">रिपोर्ट तिथि</th>
+                                    <th scope="col">कार्रवाई</th>
                                 </tr>
-                                @php $index++; @endphp
-                            @endforeach
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                                @php $index = 1; @endphp
+                                @foreach($vcardList as $vcard)
+                                    <tr>
+                                        <th scope="row" class="align-middle">{{ $index }}</th>
+                                        <td class="align-middle">{{ $vcard->slug }}</td>
+                                        <td class="align-middle">
+                                            <img src="{{ Storage::url($user->profile ?? 'default.jpg') }}" style="max-width: 100px;">
+                                        </td>
+                                        <td class="align-middle">{{ $vcard->color_code }}</td>
+                                        <td class="align-middle">{{ $cities->get($vcard->city_id)->name ?? '' }}</td>
+                                        <td class="align-middle">{{ $categories->get($vcard->category_id)->name ?? '' }}</td>                                        
+                                        <td class="align-middle">{{ $vcard->created_at }}</td>
+                                        <td class="align-middle">
+                                            <a href="{{ route('vCard.vcard-edit', $vcard->id) }}" class="btn btn-sm btn-primary">संपादन करना</a>
+                                            <form action="{{ route('vCard.vcard-delete', $vcard->id) }}" method="POST" style="display:inline;">
+                                                @csrf
+                                                <button type="submit" class="btn btn-sm btn-danger">मिटाना</button>
+                                            </form>
+                                            <a href="{{ route('checker.Card-approve', ['id' => $vcard->id]) }}" class="btn btn-sm btn-primary">देखे</a>
+                                        </td>
+                                    </tr>
+                                    @php $index++; @endphp
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div><!-- /.table-responsive -->
                 </div>
             </div>
         </div>
     </div>
 </div>
 @endsection
-
-
-
-

@@ -36,7 +36,7 @@
             <hr/>
             <div class="card">
                 <div class="card-body d-flex justify-content-end align-items-end">
-                    <a href="{{ url('/yellow-pages/admin/cities-register') }}" class="btn btn-primary">नया शहर जोड़ें</a>
+                    <a href="{{ route('admin.cities-register') }}" class="btn btn-primary">नया शहर जोड़ें</a>
                 </div>
                 <div class="card-body">
                     <table class="table mb-0 table-hover">
