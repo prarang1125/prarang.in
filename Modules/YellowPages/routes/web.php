@@ -193,6 +193,9 @@ use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
 
     #this route is use for admin Vcard details
      Route::get('admin/vcard-list', [CardController::class, 'VcardList'])->name('admin.Vcardlist');
+     Route::get('admin/vcard-edit/{id}', [CardController::class, 'vcardEdit'])->name('admin.vcard-edit');
+     Route::post('admin/vcard-delete/{id}', [CardController::class, 'vcarddelete'])->name('admin.vcard-delete');
+     Route::put('admin/vcard-update/{id}', [CardController::class, 'vcardUpdate'])->name('admin.update');
     ##------------------------------------------ END -----------------------------------##
 
     // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    End yellowPages Admin Side   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
