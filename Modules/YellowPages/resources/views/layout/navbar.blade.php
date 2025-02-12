@@ -68,7 +68,7 @@ header.header {
                         <a href="#"><i class="bx bx-user"></i></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ route('vCard.dashboard') }}">डैशबोर्ड(Dashboard)</a></li>
-                            <li><a href="{{ url('yellow-pages/getLocationData') }}">सूची जोड़ें</a></li>
+                            <li><a href="{{ route('yp.getLocationData') }}">सूची जोड़ें</a></li>
                             <li>
                                 <a href="{{ route('yp.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     लॉगआउट(logout)
@@ -81,7 +81,7 @@ header.header {
                     </form>
                 @else
                     <li class="login-button">
-                        <a href="{{ url('yellow-pages/login') }}" class="btn-login-icon">
+                        <a href="{{ route('yp.login') }}" class="btn-login-icon">
                             <i class="bx bx-log-in"></i>
                             <span class="highlight-text">साइन इन</span>
                         </a>

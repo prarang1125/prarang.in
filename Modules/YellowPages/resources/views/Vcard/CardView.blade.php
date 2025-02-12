@@ -32,7 +32,12 @@
                             <i class="bx bxs-user text-gray-600 w-5 h-5"></i>
                             <span class="text-gray-700"><strong>नाम (Name):</strong> {{ trim(($user->name ?? '') . ' ' . ($user->surname ?? '')) ?: 'Not Available' }}</span>
                         </div>
-
+                        @if (!empty($user->email))
+                        <div class="flex items-center space-x-3 p-2 hover:bg-gray-50 rounded-lg transition-colors">
+                            <i class="bx bxs-user text-gray-600 w-5 h-5"></i>
+                            <span class="text-gray-700"><strong>ईमेल (Email):</strong> {{ trim($user->email ?? 'Not Available') }}</span>
+                        </div>
+                         @endif
                         <div class="flex items-center space-x-3 p-2 hover:bg-gray-50 rounded-lg transition-colors">
                             <i class="bx bxs-phone text-gray-600 w-5 h-5"></i>
                             <span class="text-gray-700"><strong>फ़ोन (Phone):</strong> {{ $user->phone ?? 'Not Available' }}</span>
@@ -43,7 +48,17 @@
                             <span class="text-gray-700"><strong>श्रेणी (Category):</strong> {{ $category->name ?? 'Not Available' }}</span>
                         </div>
                     </div>
-
+                    @if (!empty($user->address))
+                    <div class="flex items-center space-x-3 p-2 hover:bg-gray-50 rounded-lg transition-colors">
+                        <i class="bx bxs-location-plus text-gray-600 w-5 h-5"></i>
+                        <span class="text-gray-700"><strong>पता (Address):</strong></span>
+                        <span class="text-gray-600">
+                            {{ $user->address->area_name ?? 'Area not available' }},
+                            {{ $user->address->city->name ?? 'City not available' }},
+                            {{ $user->address->postal_code ?? 'Postal code not available' }}
+                        </span>
+                    </div>
+                @endif
                     @if (!empty($vcard->dynamicFields))
                         <div class="text-lg font-semibold text-gray-800 mt-4 mb-2">
                             सोशल मीडिया (Social Media)
@@ -94,17 +109,35 @@
                             <i class="bx bxs-user text-gray-600 w-5 h-5"></i>
                             <span class="text-gray-700"><strong>नाम (Name):</strong> {{ trim(($user->name ?? '') . ' ' . ($user->surname ?? '')) ?: 'Not Available' }}</span>
                         </div>
+                        @if (!empty($user->email))
+                        <div class="flex items-center space-x-3 p-2 hover:bg-gray-50 rounded-lg transition-colors">
+                            <i class="bx bxs-envelope  text-gray-600 w-5 h-5"></i>
+                            <span class="text-gray-700"><strong>ईमेल (Email):</strong> {{ trim($user->email ?? 'Not Available') }}</span>
+                        </div>
+                         @endif
 
                         <div class="flex items-center space-x-3 p-2 hover:bg-gray-50 rounded-lg transition-colors">
                             <i class="bx bxs-phone text-gray-600 w-5 h-5"></i>
                             <span class="text-gray-700"><strong>फ़ोन (Phone):</strong> {{ $user->phone ?? 'Not Available' }}</span>
                         </div>
-
+                       
+                    
                         <div class="flex items-center space-x-3 p-2 hover:bg-gray-50 rounded-lg transition-colors">
                             <i class="bx bxs-category text-gray-600 w-5 h-5"></i>
                             <span class="text-gray-700"><strong>श्रेणी (Category):</strong> {{ $category->name ?? 'Not Available' }}</span>
                         </div>
                     </div>
+                    @if (!empty($user->address))
+                        <div class="flex items-center space-x-3 p-2 hover:bg-gray-50 rounded-lg transition-colors">
+                            <i class="bx bxs-location-plus text-gray-600 w-5 h-5"></i>
+                            <span class="text-gray-700"><strong>पता (Address):</strong></span>
+                            <span class="text-gray-600">
+                                {{ $user->address->area_name ?? 'Area not available' }},
+                                {{ $user->address->city->name ?? 'City not available' }},
+                                {{ $user->address->postal_code ?? 'Postal code not available' }}
+                            </span>
+                        </div>
+                    @endif
                     @if (!empty($vcard->dynamicFields))
                     <div class="text-lg font-semibold text-gray-800 mt-4 mb-2">
                         सोशल मीडिया (Social Media)

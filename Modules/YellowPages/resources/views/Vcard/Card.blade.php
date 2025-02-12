@@ -22,7 +22,6 @@
                       @endif
                     <form action="{{ route('vCard.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf                    
-
                         <!-- Color Picker -->
                         <div class="mb-3">
                             <label for="color_code" class="form-label">रंग पसंद करो</label>
@@ -43,7 +42,7 @@
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}" {{ old('category_id', $user->category_id ?? '') == $category->id ? 'selected' : '' }}>
                                         {{ $category->name }}
-                                    </option>
+                                </option>
                                 @endforeach
                             </select>
                         </div>
@@ -101,20 +100,17 @@
                             <input type="text" class="form-control" id="aadhar" name="aadhar" value="{{ old('aadhar', $user->aadhaar ?? '') }}">
                         </div>
 
-                          <!-- Aadhar Upload (Front) -->
-                          <div class="mb-3">
+                        <div class="mb-3">
                             <label for="aadhar_front" class="form-label">आधार कार्ड (Front)</label>
                             <input type="file" class="form-control" id="aadhar_front" name="aadhar_front">
                         </div>
 
-                        <!-- Aadhar Upload (Back) -->
                         <div class="mb-3">
                             <label for="aadhar_back" class="form-label">आधार कार्ड (Back)</label>
                             <input type="file" class="form-control" id="aadhar_back" name="aadhar_back">
                         </div>
 
                         <div id="dynamic-fields"></div>
-                        <!-- Save Button -->
                         <div class="text-end">
                             <button type="submit" class="btn btn-primary">स्वीकृति के लिए भेजें</button>
                         </div>

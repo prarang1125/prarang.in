@@ -11,6 +11,7 @@ class BusinessListing extends Model
     protected $fillable = [
         'user_id',
         'city_id',
+        'address_id',
         'listing_title',
         'tagline' ,
         'business_name' ,
@@ -81,5 +82,14 @@ public function socialMedia()
 {
     return $this->hasMany(BusinessSocialMedia::class, 'listing_id');
 }
+public function address()
+{
+    return $this->belongsTo(Address::class, 'address_id');
+}
+
+public function user()
+    {
+        return $this->belongsTo(User::class,foreignKey: 'user_id');
+    }
 
 }

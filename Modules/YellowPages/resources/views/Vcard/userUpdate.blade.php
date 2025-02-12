@@ -1,5 +1,5 @@
 @extends('yellowpages::layout.vcard.vcard')
-@section('title', 'User upadte')
+@section('title', 'User Update')
 @section('content')
 
 <!--start page wrapper -->
@@ -52,16 +52,19 @@
                         </div>
 
                         <div class="col-md-6">
-                            <label for="inputPassword" class="form-label">पासवर्ड</label>
-                            @php
-                            $userPassword =  $user->empPassword
-                            @endphp
-                            <input type="password" class="form-control @error('password') is-invalid @enderror" id="inputPassword" name="password" value="{{ old('password', $user->password) }}">
-                            @error('password')
-                                <p class="invalid-feedback">{{ $message }}</p>
-                            @enderror
+                            <label for="mobileNumber" class="form-label">मोबाइल नंबर</label>
+                            <input type="text" class="form-control" id="mobileNumber" name="mobile_number" value="{{ old('mobile_number', $user->mobile_number) }}" readonly>
                         </div>
                     </div>
+
+                    <div class="mt-3 row">
+                        <div class="col-md-6">
+                            <label for="inputPassword" class="form-label">पासवर्ड</label>
+                            <input type="password" class="form-control" id="inputPassword" name="password" value="******" readonly>
+                            <a href="#" class="btn btn-link">Update Password</a>
+                        </div>
+                    </div>
+
                     <div class="mt-3 row">
                         <div class="col-md-6">
                             <label for="is_active" class="form-label">स्थिति</label>
@@ -75,6 +78,7 @@
                             @enderror
                         </div>
                     </div>
+
                     <div class="mt-3 modal-footer">
                         <button type="submit" class="btn btn-primary">अद्यतन</button>
                     </div>

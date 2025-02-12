@@ -73,19 +73,15 @@ class VCardController extends Controller
     ##------------------------- Create Card ---------------------##
     public function createCard(Request $request)
     {
-        try {
-            $dynamicFields = DynamicFeild::where('is_active', 1)->get();
-            $cities = City::all(); 
-            $categories = Category::all(); 
-            $address = Address::where('user_id', Auth::id())->first();
-            $user =  Auth::user();
-
-            return view('yellowpages::Vcard.Card', compact('dynamicFields', 'user', 'cities','categories','address'));
-        } catch (\Exception $e) {
-            Log::error('Error in createCard method: ' . $e->getMessage());
-            return redirect()->back()->withErrors(['error' => 'Unable to load the Create Card page. Please try again later.']);
-        }
+        $dynamicFields = DynamicFeild::where('is_active', 1)->get();
+        $cities = City::all();
+        $categories = Category::all();
+        $user = Auth::user(); // Fetch the currently authenticated user
+        $address = Address::where('user_id', Auth::id())->first();
+    
+        return view('yellowpages::Vcard.Card', compact('dynamicFields', 'user', 'cities', 'categories', 'address'));
     }
+    
     ##------------------------- END ---------------------##
 
     ##------------------------- logut ---------------------##

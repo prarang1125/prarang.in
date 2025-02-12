@@ -61,6 +61,10 @@ class User extends Authenticatable
                     ->orderBy('created_at', 'desc');  // or order it as per your preference
     }
     
+    public function address()
+{
+    return $this->belongsTo(Address::class, 'address_id');
+}
        
     
 }
