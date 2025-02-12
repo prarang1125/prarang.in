@@ -62,11 +62,11 @@
                                         <th scope="row" class="align-middle">{{ $index }}</th>
                                         <td class="align-middle">{{ $vcard->slug }}</td>
                                         <td class="align-middle">
-                                            <img src="{{ Storage::url($user->profile ?? 'default.jpg') }}" alt="Banner Image" style="max-width: 100px;">
+                                            <img src="{{ Storage::url($user->profile ?? 'default.jpg') }}" style="max-width: 100px;">
                                         </td>
                                         <td class="align-middle">{{ $vcard->color_code }}</td>
-                                        <td class="align-middle">{{ $vcard->city->name ?? '' }}</td>
-                                        <td class="align-middle">{{ $vcard->category->name ?? '' }}</td>
+                                        <td class="align-middle">{{ $cities->get($vcard->city_id)->name ?? '' }}</td>
+                                        <td class="align-middle">{{ $categories->get($vcard->category_id)->name ?? '' }}</td>                                        
                                         <td class="align-middle">{{ $vcard->created_at }}</td>
                                         <td class="align-middle">
                                             <a href="{{ route('vCard.vcard-edit', $vcard->id) }}" class="btn btn-sm btn-primary">संपादन करना</a>

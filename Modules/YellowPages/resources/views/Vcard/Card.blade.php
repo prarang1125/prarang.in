@@ -3,14 +3,14 @@
 @section(section: 'content')
 <br>
 <div class="container my-5">
-    <h2 class="text-center mt-6 mb-4">वीकार्ड प्रबंधित करें</h2>
+    <h2 class="text-center mt-6 mb-4">वेबपेज बनाएं</h2>
 
     <div class="row">
         <!-- Left Card: Form -->
         <div class="col-md-6">
             <div class="card border-0">
                 <div class="card-body">
-                    <h5 class="mb-4">वीकार्ड सूचना</h5>
+                    <h5 class="mb-4">वेबपेज(Webpage) सूचना</h5>
                     @if ($errors->any())
                     <div class="alert alert-danger">
                         <ul>
@@ -22,7 +22,6 @@
                       @endif
                     <form action="{{ route('vCard.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf                    
-
                         <!-- Color Picker -->
                         <div class="mb-3">
                             <label for="color_code" class="form-label">रंग पसंद करो</label>
@@ -43,7 +42,7 @@
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}" {{ old('category_id', $user->category_id ?? '') == $category->id ? 'selected' : '' }}>
                                         {{ $category->name }}
-                                    </option>
+                                </option>
                                 @endforeach
                             </select>
                         </div>
@@ -96,20 +95,22 @@
                             <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $user->email ?? '') }}">
                         </div>
 
-                          <!-- Aadhar Upload (Front) -->
-                          <div class="mb-3">
+                        <div class="mb-3">
+                            <label for="aadhar" class="form-label">आधार संख्या (वैकल्पिक)</label>
+                            <input type="text" class="form-control" id="aadhar" name="aadhar" value="{{ old('aadhar', $user->aadhaar ?? '') }}">
+                        </div>
+
+                        <div class="mb-3">
                             <label for="aadhar_front" class="form-label">आधार कार्ड (Front)</label>
                             <input type="file" class="form-control" id="aadhar_front" name="aadhar_front">
                         </div>
 
-                        <!-- Aadhar Upload (Back) -->
                         <div class="mb-3">
                             <label for="aadhar_back" class="form-label">आधार कार्ड (Back)</label>
                             <input type="file" class="form-control" id="aadhar_back" name="aadhar_back">
                         </div>
 
                         <div id="dynamic-fields"></div>
-                        <!-- Save Button -->
                         <div class="text-end">
                             <button type="submit" class="btn btn-primary">स्वीकृति के लिए भेजें</button>
                         </div>

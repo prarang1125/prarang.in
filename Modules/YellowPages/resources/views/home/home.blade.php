@@ -56,7 +56,7 @@
                     <div class="col-xl-2 col-md-4">
                         <div class="icon-box" style="padding: 20px; text-align: center; border: 1px solid #ddd; border-radius: 10px;">
                             <div class="icon" style="width: 80px; height: 80px; margin: 0 auto;">
-                              <a href="{{ url('yellow-pages/category' .$category->slug) }}">
+                              <a href="{{ route('category.show', ['category_name' => $category->slug]) }}">
                                   <img src="{{ Storage::url($category->categories_url) }}" alt="" style="width: 100%; height: 100%; object-fit: cover;" />
                               </a>
 
@@ -140,7 +140,7 @@
         const city = document.getElementById('city').value;
 
         if (category !== "" && city !== "") {
-            const url = `{{ url('yellow-pages') }}/${category}/${city}`;
+            const url = `{{ url('yp') }}/${category}/${city}`;
             window.location.href = url;
         } else {
             document.querySelector('.citymsg').textContent = "Please Select Category and City";

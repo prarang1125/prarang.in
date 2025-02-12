@@ -1,83 +1,167 @@
 @extends('yellowpages::layout.vcard.vcard')
-@section('title', 'Manage VCard')
-@section('content')
 
+@section('title', 'Manage VCard')
+
+@section('content')
+<br>
 <div class="container my-5">
-    <br><br>
-    <h2 class="text-center mt-6 mb-4">Manage VCard</h2>
+    <h2 class="text-center mt-6 mb-4">वेबपेज बनाएं</h2>
     <div class="row">
         <!-- Left Card: Form -->
         <div class="col-md-6">
             <div class="card border-0">
                 <div class="card-body">
-                    <h5 class="mb-4 d-flex align-items-center">
-                        <span>VCard Information</span>
-                        <div class="ms-3" style="border: 1px solid #ccc; border-radius: 4px;">
-                            <a href="{{ route('vCard.view', ['vcard_id' => $vcard->id]) }}" target="_blank">
-                                <i class='bx bx-show' title="View Card" style="font-size: 24px;"></i>
-                            </a>
+                    <h5 class="mb-4">वेबपेज(Webpage) सूचना</h5>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
-                    </h5>                  
+                    @endif
                     <form action="{{ route('vCard.update', $vcard->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')  
-
+                        @method('PUT')
+                        
+                        <!-- Color Picker -->
                         <div class="mb-3">
-                            <label for="color_code" class="form-label">Choose Color</label>
-                            <input type="color" class="form-control form-control-color" id="color_code" name="color_code" value="{{ old('color_code', $vcard->color_code ?? '#007bff') }}">
+                            <label for="color_code" class="form-label">रंग पसंद करो</label>
+                            <input type="color" class="form-control form-control-color" id="color_code" name="color_code" value="#007bff">
                         </div>
+                    
+                        <!-- Photo Upload (Profile Image) -->
                         <div class="mb-3">
-                            <label for="banner_img" class="form-label">Upload Banner</label>
-                            <input type="file" class="form-control" id="banner_img" name="banner_img">
-                            <img src="{{ Storage::url($vcard->banner_img) }}" alt="File" style="max-width: 100px;">
-                        </div>
-
-                        <!-- Upload Logo -->
+                            <label for="profile" class="form-label">फ़ोटो अपलोड करें</label>
+                            
+                            <!-- Existing Profile Picture -->
+                            @if(old('profile', $user->profile ?? false))
+                                <div class="mb-2">
+                                    <img src="{{ Storage::url(old('profile', $user->profile)) }}" 
+                                         class="img-thumbnail" 
+                                         style="width: 120px; height: 120px; object-fit: cover;" 
+                                         alt="Profile Picture">
+                                </div>
+                            @endif
+                            
+                            <!-- File Input Field -->
+                            <input type="file" class="form-control" id="profile" name="profile" accept="image/*">
+                            
+                            <!-- Hidden Input to Retain Old Image -->
+                            <input type="hidden" name="old_profile" value="{{ $user->profile }}">
+                        </div>                        
+                    
+                        <!-- Category Dropdown -->
                         <div class="mb-3">
-                            <label for="logo" class="form-label">Upload Logo</label>
-                            <input type="file" class="form-control" id="logo" name="logo">
-                            <img src="{{ Storage::url($vcard->logo) }}" alt="File" style="max-width: 100px;">
+                            <label for="category" class="form-label">श्रेणी चुनें</label>
+                            <select class="form-control" id="category" name="category_id">
+                                <option value="">चुनें</option>
+                                @foreach($categories as $category)
+                                    <option value="{{ $category->id }}" {{ old('category_id', $vcard->category_id ?? '') == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
-
-                        <!-- Slug -->
+                    
+                        <!-- City Dropdown -->
                         <div class="mb-3">
-                            <label for="slug" class="form-label">Slug</label>
-                            <input type="text" class="form-control" id="slug" name="slug" value="{{ old('slug', $vcard->slug) }}" placeholder="Enter unique slug value">
+                            <label for="city" class="form-label">शहर चुनें</label>
+                            <select class="form-control" id="city" name="city_id">
+                                <option value="">चुनें</option>
+                                @foreach($cities as $city)
+                                    <option value="{{ $city->id }}" {{ old('city_id', $vcard->city_id ?? '') == $city->id ? 'selected' : '' }}>
+                                        {{ $city->name }}
+                                    </option>
+                                @endforeach
+                            </select>
                         </div>
-
-                        <!-- Title -->
+                    
+                        <!-- Name and Surname -->
                         <div class="mb-3">
-                            <label for="title" class="form-label">Title</label>
-                            <input type="text" class="form-control" id="title" name="title" value="{{ old('title', $vcard->title) }}" placeholder="Enter title">
+                            <label for="name" class="form-label">नाम</label>
+                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $user->name ?? '') }}">
                         </div>
-
-                        <!-- Subtitle -->
+                    
                         <div class="mb-3">
-                            <label for="subtitle" class="form-label">Subtitle</label>
-                            <input type="text" class="form-control" id="subtitle" name="subtitle" value="{{ old('subtitle', $vcard->subtitle) }}" placeholder="Enter subtitle">
+                            <label for="surname" class="form-label">उपनाम</label>
+                            <input type="text" class="form-control" id="surname" name="surname" value="{{ old('surname', $user->surname ?? '') }}">
                         </div>
-
-                        <!-- Description -->
+                    
+                        <!-- Address Fields -->
                         <div class="mb-3">
-                            <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" id="description" name="description" rows="3" placeholder="Enter description">{{ old('description', $vcard->description) }}</textarea>
+                            <label class="form-label">पता</label>
+                            <input type="text" class="form-control" id="house_number" name="house_number" placeholder="मकान नंबर" value="{{ old('house_number', $address->house_number ?? '') }}">
+                            <input type="text" class="form-control mt-2" id="road_street" name="road_street" placeholder="सड़क/गली" value="{{ old('road_street', $address->street ?? '') }}">
+                            <input type="text" class="form-control mt-2" id="area_name" name="area_name" placeholder="क्षेत्र नाम (सार्वजनिक)" value="{{ old('area_name', $address->area_name ?? '') }}">
                         </div>
-
-                        <!-- Dynamic Fields from DynamicVcard Table -->
+                    
+                        <!-- Optional Fields -->
+                        <div class="mb-3">
+                            <label for="pincode" class="form-label">पिनकोड (वैकल्पिक)</label>
+                            <input type="text" class="form-control" id="pincode" name="pincode" value="{{ old('postal_code', $address->postal_code ?? '') }}">
+                        </div>
+                    
+                        <div class="mb-3">
+                            <label for="dob" class="form-label">जन्म तिथि (वैकल्पिक)</label>
+                            <input type="date" class="form-control" id="dob" name="dob" value="{{ old('dob', $user->dob ?? '') }}">
+                        </div>
+                    
+                        <div class="mb-3">
+                            <label for="email" class="form-label">ईमेल (वैकल्पिक)</label>
+                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $user->email ?? '') }}">
+                        </div>
+                    
+                        <div class="mb-3">
+                            <label for="aadhar" class="form-label">आधार संख्या (वैकल्पिक)</label>
+                            <input type="text" class="form-control" id="aadhar" name="aadhar" value="{{ old('aadhar', $user->aadhaar ?? '') }}">
+                        </div>
+                    
+                        <!-- Aadhar Upload (Front) -->
+                        <div class="mb-3">
+                            <label for="aadhar_front" class="form-label">आधार कार्ड (Front)</label>
+                            @if(!empty($vcard->aadhar_front))
+                                <div class="mb-2">
+                                    <img src="{{ Storage::url($vcard->aadhar_front) }}" 
+                                         class="img-thumbnail" 
+                                         style="width: 120px; height: 120px; object-fit: cover;">
+                                </div>
+                            @endif
+                            <input type="file" class="form-control" id="aadhar_front" name="aadhar_front" accept="image/*">
+                            <input type="hidden" name="old_aadhar_front" value="{{ $vcard->aadhar_front }}">
+                        </div>
+                    
+                        <!-- Aadhar Upload (Back) -->
+                        <div class="mb-3">
+                            <label for="aadhar_back" class="form-label">आधार कार्ड (Back)</label>
+                            @if(!empty($vcard->aadhar_back))
+                                <div class="mb-2">
+                                    <img src="{{ Storage::url($vcard->aadhar_back) }}" 
+                                         class="img-thumbnail" 
+                                         style="width: 120px; height: 120px; object-fit: cover;">
+                                </div>
+                            @endif
+                            <input type="file" class="form-control" id="aadhar_back" name="aadhar_back" accept="image/*">
+                            <input type="hidden" name="old_aadhar_back" value="{{ $vcard->aadhar_back }}">
+                        </div>
                         @foreach($vcardInfo as $dynamicField)
-                            <div class="mb-3">
-                                <label for="{{ $dynamicField->title }}" class="form-label">{{ $dynamicField->title }}</label>
-                                <input type="text" class="form-control" id="{{ $dynamicField->title }}" name="data[]" value="{{ old('data.'.$loop->index, $dynamicField->data) }}">
-                                <input type="hidden" name="name[]" value="{{ $dynamicField->title }}">
-                            </div>
+                        <div class="mb-3">
+                            <label for="{{$dynamicField->title}}" class="form-label">{{ $dynamicField->title }}</label>
+                            <input type="text" class="form-control" id="{{ $dynamicField->title }}" 
+                                   name="data[{{ $dynamicField->title }}]" 
+                                   value="{{ old('data.'.$dynamicField->title, $dynamicField->data) }}">
+                        </div>
                         @endforeach
-
+                        
+                        <div id="dynamic-fields"></div>
+                        
                         <!-- Save Button -->
                         <div class="text-end">
-                            <button type="submit" class="btn btn-primary" value="Save_VCard" name="action">Update VCard</button>
+                            <button type="submit" class="btn btn-primary">सबमिट(Submit) करें</button>
                         </div>
-                    </form>
-                </div>              
+                    </form>                    
+                </div>
             </div>
         </div>
 
@@ -85,144 +169,94 @@
         <div class="col-md-6">
             <div class="card border-0 shadow-sm">
                 <div class="card-body text-center">
-                    <h5 class="mb-4">Add New Information</h5>
-                    <div class="icon-box row gx-3 gy-3 justify-content-center">
-                        <!-- Iterate icons and their corresponding labels -->
-                        <div class="col-3 text-center" onclick="addField('Phone', 'phone')">
-                            <i class='bx bx-phone' title="Phone" style="font-size: 24px;"></i>
-                            <p class="mt-1">Phone</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('Email', 'email')">
-                            <i class='bx bx-envelope' title="Email" style="font-size: 24px;"></i>
-                            <p class="mt-1">Email</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('Address', 'address')">
-                            <i class='bx bx-map' title="Address" style="font-size: 24px;"></i>
-                            <p class="mt-1">Address</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('Email', 'email')">
-                            <i class='bx bx-globe' title="Website" style="font-size: 24px;"></i>
-                            <p class="mt-1">Website</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('text', 'Text')">
-                            <i class='bx bx-message-square-dots' title="Text" style="font-size: 24px;"></i>
-                            <p class="mt-1">Text</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('Facebook', 'facebook')">
-                            <i class='bx bxl-facebook' title="Facebook" style="font-size: 24px;"></i>
-                            <p class="mt-1">Facebook</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('Twitter', 'twitter')">
-                            <i class='bx bxl-twitter' title="Twitter" style="font-size: 24px;"></i>
-                            <p class="mt-1">Twitter</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('Instagram', 'instagram')">
-                            <i class='bx bxl-instagram' title="Instagram" style="font-size: 24px;"></i>
-                            <p class="mt-1">Instagram</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('WhatsApp', 'whatsapp')">
-                            <i class='bx bxl-whatsapp' title="WhatsApp" style="font-size: 24px;"></i>
-                            <p class="mt-1">WhatsApp</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('Telegram', 'telegram')">
-                            <i class='bx bxl-telegram' title="Telegram" style="font-size: 24px;"></i>
-                            <p class="mt-1">Telegram</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('Skype', 'skype')">
-                            <i class='bx bxl-skype' title="Skype" style="font-size: 24px;"></i>
-                            <p class="mt-1">Skype</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('WeChat', 'wechat')">
-                            <i class='bx bxl-wechat' title="WeChat" style="font-size: 24px;"></i>
-                            <p class="mt-1">WeChat</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('Signal', 'signal')">
-                            <i class='bx bxl-signal' title="Signal" style="font-size: 24px;"></i>
-                            <p class="mt-1">Signal</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('Snapchat', 'snapchat')">
-                            <i class='bx bxl-snapchat' title="Snapchat" style="font-size: 24px;"></i>
-                            <p class="mt-1">Snapchat</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('LinkedIn', 'linkedin')">
-                            <i class='bx bxl-linkedin' title="LinkedIn" style="font-size: 24px;"></i>
-                            <p class="mt-1">LinkedIn</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('Pinterest', 'pinterest')">
-                            <i class='bx bxl-pinterest' title="Pinterest" style="font-size: 24px;"></i>
-                            <p class="mt-1">Pinterest</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('Soundcloud', 'soundcloud')">
-                            <i class='bx bxl-soundcloud' title="Soundcloud" style="font-size: 24px;"></i>
-                            <p class="mt-1">Soundcloud</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('Vimeo', 'vimeo')">
-                            <i class='bx bxl-vimeo' title="Vimeo" style="font-size: 24px;"></i>
-                            <p class="mt-1">Vimeo</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('Dribbble', 'dribbble')">
-                            <i class='bx bxl-dribbble' title="Dribbble" style="font-size: 24px;"></i>
-                            <p class="mt-1">Dribbble</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('Behance', 'behance')">
-                            <i class='bx bxl-behance' title="Behance" style="font-size: 24px;"></i>
-                            <p class="mt-1">Behance</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('Flickr', 'flickr')">
-                            <i class='bx bxl-flickr' title="Flickr" style="font-size: 24px;"></i>
-                            <p class="mt-1">Flickr</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('YouTube', 'youtube')">
-                            <i class='bx bxl-youtube' title="YouTube" style="font-size: 24px;"></i>
-                            <p class="mt-1">YouTube</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('Tiktok', 'tiktok')">
-                            <i class='bx bxl-tiktok' title="TikTok" style="font-size: 24px;"></i>
-                            <p class="mt-1">tiktok</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('Discord', 'discord')">
-                            <i class='bx bxl-discord' title="Discord" style="font-size: 24px;"></i>
-                            <p class="mt-1">Discord</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('Twitch', 'Twitch')">
-                            <i class='bx bxl-twitch' title="Twitch" style="font-size: 24px;"></i>
-                            <p class="mt-1">Twitch</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('GitHub', 'github')">
-                            <i class='bx bxl-github' title="GitHub" style="font-size: 24px;"></i>
-                            <p class="mt-1">GitHub</p>
-                        </div>
-                        <div class="col-3 text-center" onclick="addField('PayPal', 'paypal')">
-                            <i class='bx bxl-paypal' title="PayPal" style="font-size: 24px;"></i>
-                            <p class="mt-1">PayPal</p>
-                        </div>
+                    <h5 class="mb-3">नई जानकारी जोड़ें</h5>
+                    <div class="container">
+                        @foreach ($dynamicFields->chunk(3) as $chunk)  
+                            <div class="row d-flex justify-content-center align-items-center mb-2">
+                                @foreach ($chunk as $field)
+                                    <div class="col-4 text-center" onclick="addField('{{ $field->name }}', '{{ $field->icon }}')">
+                                        <i class="{{ $field->icon }}" title="{{ $field->name }}" style="font-size: 24px;"></i>
+                                        <p class="mt-1">{{ $field->name }}</p>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
-        </div>
+        </div>        
     </div>
 </div>
 
 @endsection
 
 <script>
-    // Define the addField function globally
-    function addField(label, fieldName) {
-        const fieldHTML = `
-            <div class="mb-3">
-                <label for="${fieldName}" class="form-label">${label}</label>
-                <input type="text" class="form-control" id="${fieldName}" name="data[]" placeholder="Enter ${label.toLowerCase()}">
-                <input type="hidden" name="name[]" value="${label}">
-            </div>
-        `;
-        const dynamicFields = document.getElementById('dynamic-fields');
-        if (dynamicFields) {
-            dynamicFields.insertAdjacentHTML('beforeend', fieldHTML);
+// Add Dynamic Fields
+function addField(label, fieldName) {
+    const uniqueId = 'field-' + Date.now();
+    const fieldKey = fieldName.toLowerCase().replace(/\s+/g, '_'); // Ensure unique valid field names
+
+    const fieldHTML = `
+    <div class="mb-3 d-flex align-items-center" id="${uniqueId}">
+        <div class="flex-grow-1">
+            <label for="${fieldName}" class="form-label">${label}</label>
+            <input type="text" class="form-control" name="data[${fieldName}]" placeholder="${label} दर्ज करें">
+        </div>
+        <button type="button" class="btn btn-light ms-2" onclick="removeField('${uniqueId}')">X</button>
+    </div>
+`;
+
+
+    document.getElementById('dynamic-fields').insertAdjacentHTML('beforeend', fieldHTML);
+}
+
+
+// Remove Dynamic Field
+function removeField(uniqueId) {
+    const fieldElement = document.getElementById(uniqueId);
+    if (fieldElement) {
+        fieldElement.remove();
+    }
+}
+
+// Image Preview for Aadhar and Profile Images
+document.getElementById('aadhar').addEventListener('change', function(event) {
+    let previewDiv = document.getElementById('aadhar-preview');
+    previewDiv.innerHTML = "";
+    let files = event.target.files;
+    if (files.length > 0) {
+        for (let i = 0; i < files.length; i++) {
+            let file = files[i];
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                let img = document.createElement('img');
+                img.src = e.target.result;
+                img.classList.add('img-thumbnail', 'm-2');
+                img.style.width = "100px";
+                previewDiv.appendChild(img);
+            };
+            reader.readAsDataURL(file);
         }
     }
+});
 
-    // Ensure the script runs after DOM is loaded
-    document.addEventListener("DOMContentLoaded", function () {
-        console.log('Page fully loaded and DOM is ready.');
-    });
+document.getElementById('profile').addEventListener('change', function(event) {
+    let previewDiv = document.getElementById('image-preview');
+    previewDiv.innerHTML = "";
+    let files = event.target.files;
+    if (files.length > 0) {
+        for (let i = 0; i < files.length; i++) {
+            let file = files[i];
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                let img = document.createElement('img');
+                img.src = e.target.result;
+                img.classList.add('img-thumbnail', 'm-2');
+                img.style.width = "100px";
+                previewDiv.appendChild(img);
+            };
+            reader.readAsDataURL(file);
+        }
+    }
+});
 </script>

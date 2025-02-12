@@ -68,11 +68,10 @@ class ListingController extends Controller
                 $city = $portal->city; // Portal se related City fetch karen
             }
 
-
-            $listings = BusinessListing::with(['category', 'hours', 'city'])
+            $listings = BusinessListing::with(['category', 'hours', 'city','address','user'])
                 ->whereHas('city', fn($q) => $q->where('city_id', $city->id))
                 ->get();
-
+               
 
                 return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'city_name'));
             } catch (\Exception $e) {
@@ -317,7 +316,7 @@ class ListingController extends Controller
     {
         try {
             // Fetch the listing or fail with a 404
-            $listing = BusinessListing::findOrFail($listingId);
+            $listing = BusinessListing::with('address')->findOrFail($listingId);
             $listingHours = BusinessHour::where('business_id', $listing->id)->get();
     
             // Check if the user is not the owner of this specific listing
