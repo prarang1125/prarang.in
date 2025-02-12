@@ -53,17 +53,10 @@
 
                         <div class="col-md-6">
                             <label for="mobileNumber" class="form-label">मोबाइल नंबर</label>
-                            <input type="text" class="form-control" id="mobileNumber" name="mobile_number" value="{{ old('mobile_number', $user->mobile_number) }}" readonly>
+                            <input type="text" class="form-control" id="mobileNumber" name="mobile_number" value="{{ old('phone', $user->phone) }}" readonly>
                         </div>
                     </div>
 
-                    <div class="mt-3 row">
-                        <div class="col-md-6">
-                            <label for="inputPassword" class="form-label">पासवर्ड</label>
-                            <input type="password" class="form-control" id="inputPassword" name="password" value="******" readonly>
-                            <a href="#" class="btn btn-link">Update Password</a>
-                        </div>
-                    </div>
 
                     <div class="mt-3 row">
                         <div class="col-md-6">
