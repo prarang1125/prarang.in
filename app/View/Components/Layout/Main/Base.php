@@ -22,13 +22,29 @@ class Base extends Component
         return view('components.layout.main.base');
     }
 
-    public function visitorLocation(Request $request)
-    {
 
-       
+
+    public function durationUpdate(Request $request)
+    { 
+            $existingVisitor = Visitor::where('ip_address', $request->input('ip_address'))
+            ->where('post_id', $request->input('post_id'))
+            ->first();            
+            if ($existingVisitor) {
+                $existingDuration = $existingVisitor->duration ?? 0;
+                $newDuration = $existingDuration + $request->input('duration');
+                $existingVisitor->update(['duration' => $newDuration]);
+
+                if ($request->max_scroll > ($existingVisitor->scroll ?? 0)) {
+                    $existingVisitor->update(['scroll' => $request->max_scroll]);
+                }
+            }
+        return response()->json(['message' => 'Duration updated successfully!', 'duration' => $newDuration, 'scroll' => $request->max_scroll], 200);
+    }
+
+    public function visitorLocation(Request $request)
+    {      
         // Prepare the visitor data
         $existingVisitor = $this->findExistingVisitor($request->input('post_id'), $request->input('ip_address'));
-
         if ($existingVisitor) {
             // Increment visit count if the visitor already exists
             $this->incrementVisitCount($existingVisitor);
@@ -39,7 +55,7 @@ class Base extends Component
         $visitorLocation = $this->getVisitorLocation($request);
        
         // Create a new visitor record in the database
-        return response()->json([$visitorData,$visitorLocation],200);
+      
         $visitor = new Visitor();       
         $visitor->post_id = $visitorData['post_id'];
         $visitor->post_city = $visitorData['city'];
@@ -53,16 +69,15 @@ class Base extends Component
         $visitor->current_url = $visitorData['current_url'];
         $visitor->referrer = $visitorData['referrer'];
         $visitor->duration = $visitorData['duration'];
+        $visitor->visit_count = $visitorData['visit_count'];
         $visitor->scroll = $visitorData['scroll'];
         $visitor->user_type = $visitorData['user_type'];
-        $visitor->visitor_city = $visitorLocation['visitor_city'];
-        $visitor->visitor_address = $visitorLocation['visitor_address'];
+        $visitor->visitor_city = $visitorLocation['visitor_city']??null;
+        $visitor->visitor_address = $visitorLocation['visitor_address']??null;
 
         // Save the visitor record
-        $visitor->save();
-
-        // Return a success response
-        return response()->json(['message' => 'Visitor data saved successfully!'], 201);
+        $saved = $visitor->save();
+        return response()->json(['message' => $saved ? 'Visitor data saved successfully!' : 'Error saving visitor data!'], $saved ? 201 : 500);
     }
 
     private function prepareVisitorData(Request $request)

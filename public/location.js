@@ -9,7 +9,6 @@ function collectAndSendInformation(postId, city) {
      * @copyright Prarang <indoeuropeans india pvt. ltd.>
      */
 
-    postId = Math.floor(Math.random() * (11500 - 11400 + 1) + 11400);
     const currentUrl = window.location.href;
     const getPostCookie = (postId) => {
         const cookies = document.cookie.split('; ');
@@ -22,18 +21,12 @@ function collectAndSendInformation(postId, city) {
 
     const setPostCookie = (postId, value) => {
         const date = new Date();
-        date.setTime(date.getTime() + 2 * 60 * 1000);
+        date.setTime(date.getTime() + 10 * 60 * 1000);
         document.cookie = `post_${postId}=${value};expires=${date.toUTCString()};path=/`;
     };
-
-    if (getPostCookie(postId)) {
-        // console.log(`Cookie for postId ${postId} already exists. No action taken.`);
-        return;
-    }
-
     // Set the cookie if it doesn't exist
-    setPostCookie(postId, city);
-    console.log(`Cookie set for postId ${postId} with city ${city}. Proceeding with the next steps.`);
+
+    // console.log(`Cookie set for postId ${postId} with city ${city}. Proceeding with the next steps.`);
 
     // Helper function to get a cookie value
     const getCookie = (name) => {
@@ -161,28 +154,30 @@ function collectAndSendInformation(postId, city) {
 
         // console.log("Query Parameters:", queryParams);
 
-        // Send the data using GET request
-        try {
-            const response = await fetch(`/visitor-location?${queryParams}`, {
-                method: 'GET',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-            });
+        if (!getPostCookie(postId)) {
+            try {
+                const response = await fetch(`/visitor-location?${queryParams}`, {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                });
 
-            if (!response.ok) throw new Error(`Failed to send data: ${response.status}`);
-            const responseData = await response.json();
-            // console.log('Data sent successfully:', responseData);
-        } catch (error) {
-            // console.error("Error sending data:", error.message);
+                if (!response.ok) throw new Error(`Failed to send data: ${response.status}`);
+                const responseData = await response.json();
+                setPostCookie(postId, city);
+                // console.log('Data sent successfully:', responseData);
+            } catch (error) {
+                // console.error("Error sending data:", error.message);
+            }
         }
+
     };
 
     // Execute the function
     sendVisitorData().catch((error) => {
         console.error("An unexpected error occurred:", error.message);
     });
-
 
     let startTime = Date.now();
     let maxScroll = 0;
@@ -200,24 +195,63 @@ function collectAndSendInformation(postId, city) {
         const queryParams = new URLSearchParams({
             post_id: postId,
             city: city,
+            ip_address: await fetchIpAddress(),
             duration: duration,
             max_scroll: Math.round(maxScroll),
             timestamp: new Date().toISOString(),
         }).toString();
-        console.log("Query Parameters:", queryParams);
-        // debugger;
-        // try {
-        //     await fetch(`/duration-update?${queryParams}`, { method: 'GET' });
-        //     console.log("Duration and scroll data sent.");
-        // } catch (error) {
-        //     console.error("Error sending duration data:", error.message);
-        // }
+        // console.log("Query Parameters:", queryParams);
+        try {
+            await fetch(`/duration-update?${queryParams}`, { method: 'GET' });
+            // console.log("Duration and scroll data sent.");
+        } catch (error) {
+            console.error("Error sending duration data:", error.message);
+        }
+
     };
 
-    window.addEventListener("beforeunload", sendDurationData);
+    let userIp = null; // Global variable to store IP
+
+    // Fetch IP when the page loads and store it
+    const fetchIP = () => {
+        fetch('https://api.ipify.org?format=json')
+            .then(response => {
+                if (!response.ok) throw new Error(`Failed to fetch IP: ${response.status}`);
+                return response.json();
+            })
+            .then(data => {
+                userIp = data.ip; // Store IP globally
+            })
+            .catch(error => {
+                console.error("Error fetching IP address:", error.message);
+            });
+    };
+    
+    // Call fetchIP when the page loads
+    fetchIP();
+    
+    window.addEventListener("beforeunload", () => {
+        const duration = Math.round((Date.now() - startTime) / 1000);
+        const data = new URLSearchParams({
+            post_id: postId,
+            city: city,
+            _token: document.querySelector('meta[name="csrf-token"]').content,
+            ip_address: userIp, // Use stored IP
+            duration: duration,
+            max_scroll: Math.round(maxScroll),
+            timestamp: new Date().toISOString(),
+        }).toString();
+    
+        // Using sendBeacon for reliable data sending
+        navigator.sendBeacon(`/duration-update?${data}`);
+    });
+    
     window.addEventListener("visibilitychange", () => {
         if (document.visibilityState === "hidden") {
             sendDurationData();
+        } else if (document.visibilityState === "visible") {
+            startTime = Date.now(); // Reset start time when user returns
+            maxScroll = 0; // Optionally reset scroll tracking
         }
     });
 }

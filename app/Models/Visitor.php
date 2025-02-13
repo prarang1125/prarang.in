@@ -10,7 +10,7 @@ class Visitor extends Model
 
     protected $table = 'visitors';
     protected $fillable = [
-        'city',
+        'post_city',
         'post_id',
         'current_url',
         'ip_address',
@@ -20,9 +20,13 @@ class Visitor extends Model
         'screen_width',
         'screen_height',
         'timestamp',
-        'user_agent', // Assuming you want to store the user-agent as well
+        'user_agent',
         'visit_count',
         'visitor_city',
         'visitor_address',
+        'referrer',
+        'duration',
+        'scroll',
+        'user_type',
     ];
 }

@@ -17,6 +17,7 @@
     <meta property="og:image" content="{{ $post->images[0]->imageUrl ?? 'default-image-url.jpg' }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:description" content="{{ $post['SubTitle'] ?? 'Default description for the post.' }}" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $post['Title'] }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
