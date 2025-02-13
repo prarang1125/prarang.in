@@ -53,9 +53,9 @@ class ReportController extends Controller
                 'file' => $filePath,
             ]);
 
-            return redirect()->back()->with('success', 'Report submitted successfully.');
+            return redirect()->back()->with('success', 'पूछताछ फॉर्म सफलतापूर्वक सबमिट किया गया।');
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Error submitting report: ' );
+            return redirect()->back()->with('error', 'सबमिट करते समय त्रुटि हुई।');
         }
     }
 

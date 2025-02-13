@@ -95,6 +95,8 @@ use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
      ##------------------------- Dashboard User data ---------------------##
      Route::get('/user/user-edit/{id}', [vCardAuthcontroller::class, 'userEdit'])->name('vCard.userEdit');
      Route::put('/user/user-update/{id}', [vCardAuthcontroller::class, 'userUpdate'])->name('vCard.userUpdate');
+     Route::get('/user/password-reset', [vCardAuthcontroller::class, 'passwordReset'])->name('vCard.passwordReset');
+     Route::put('/user/password-update/{id}', [vCardAuthcontroller::class, 'passwordUpdate'])->name('vCard.passwordUpdate');
      ##------------------------- END ---------------------##
 
      ##------------------------- Dashboard Listing data ---------------------##

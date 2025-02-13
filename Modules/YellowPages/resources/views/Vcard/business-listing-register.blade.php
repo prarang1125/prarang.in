@@ -85,7 +85,7 @@
                     </select>
                 </div>
                 <div class="col-md-6 mb-3">
-                    <label for="turnover" class="form-label">व्यवसाय/कंपनी का मासिक कारोबार (लगभग) *</label>
+                    <label for="turnover" class="form-label">व्यवसाय/कंपनी का मासिक कारोबार (लगभग)*</label>
                     <select id="turnover" name="turnover" class="form-select">
                         <option value="" disabled selected>टर्नओवर(Turnover) चुनें</option>
                         @foreach($monthly_turnovers as $turnovers)
@@ -118,7 +118,6 @@
                     </select>
                 </div>
             </div>
-            
     </div>
     <br>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">

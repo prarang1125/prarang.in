@@ -1,15 +1,15 @@
 @extends('yellowpages::layout.vcard.vcard')
-@section('title', 'Report')
+@section('title', 'Support')
 @section('content')
     @if (session('success'))
     <div class="alert alert-success text-center">{{ session('success') }}</div>
     @endif
-
+<br>
     <div class="container d-flex align-items-center justify-content-center vh-100">
         <div class="row w-100">
             <div class="col-lg-5 col-md-6 col-sm-10 mx-auto">
                 <div class="border rounded p-3 shadow-sm bg-light"> <!-- Smaller Form Box -->
-                    <h3 class="text-center mb-3 text-primary">रिपोर्ट सबमिट करें</h3>
+                    <h3 class="text-center mb-3 text-primary">कृपया पूछताछ के लिए संपर्क करें।</h3>
                     <form method="POST" action="{{ route('vCard.report-submit') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="mb-3">
@@ -32,7 +32,7 @@
                             <label for="file" class="form-label">फाइल संलग्न करें</label>
                             <input type="file" name="file" id="file" class="form-control form-control-sm">
                         </div>
-                        <button type="submit" class="btn btn-primary btn-sm w-100">रिपोर्ट जमा करें</button>
+                        <button type="submit" class="btn btn-primary btn-sm w-100">जमा करें</button>
                     </form>
                 </div>
             </div>

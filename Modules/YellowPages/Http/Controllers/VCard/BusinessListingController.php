@@ -112,11 +112,14 @@ class BusinessListingController extends Controller
     ##------------------------- Business Listing Edit---------------------##
     public function listingEdit($id) {
          try {
+
             $listing = BusinessListing::findOrFail($id);
+            $user = User::where('id', $listing->user_id)->first();
             $listinghours = BusinessHour::where('business_id', $listing->id)->get();
+            $address = Address::where('id', $listing->address_id)->first();
             $categories = Category::where('is_active', 1)->get();
             $cities = City::where('is_active', 1)->get();
-            $company_legal_types = CompanyLegalType::all();
+            $company_legal_type = CompanyLegalType::all();
             $number_of_employees = EmployeeRange::all();
             $monthly_turnovers = MonthlyTurnover::all();
             $monthly_advertising_mediums = AdvertisingMedium::all();
@@ -127,13 +130,15 @@ class BusinessListingController extends Controller
                 'listing',
                 'cities',
                 'categories',
-                'company_legal_types',
+                'company_legal_type',
                 'number_of_employees',
                 'monthly_turnovers',
                 'monthly_advertising_mediums',
                 'monthly_advertising_prices',
                 'social_media',
-                'listinghours'
+                'listinghours',
+                'user',
+                'address'
             ));
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Error fetching business data: ' );

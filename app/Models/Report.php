@@ -16,6 +16,7 @@ class Report extends Model
         'number',
         'message',
         'file',
+        'user_id'
     ];
 
 }

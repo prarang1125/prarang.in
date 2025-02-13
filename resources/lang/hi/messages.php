@@ -36,7 +36,5 @@ return [
     'name' => 'नाम',
 ],
 'required' => ':attribute फ़ील्ड अनिवार्य है।',
-
-
-
+'vcard_exists' => 'आपका वेबपेज पहले से ही है।', // Updated message
 ];

@@ -1,10 +1,91 @@
 @extends('yellowpages::layout.vcard.vcard')
 @section('title', 'Manage VCard')
-@section(section: 'content')
+@section('content')
 <br>
-<div class="container my-5">
-    <h2 class="text-center mt-6 mb-4">वेबपेज बनाएं</h2>
 
+    <!-- Viewport meta tag for responsive design -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+<style>
+    /* Default styling for larger screens */
+    .fixed-container {
+        position: fixed;
+        top: 120px;
+        right: 0;
+        width: 40% !important;;
+        max-width: 600px;
+        padding: 0 15px;
+    }
+
+    /* Custom media query for screens between 812px and 1300px */
+    @media (min-width: 312px) and (max-width: 750px) {
+        .fixed-container {
+            position: relative !important;
+            width: 100% !important;
+            max-width: 100% !important;
+            top: 0 !important;
+            margin-top: 20px;
+        }
+        
+        /* Adjust card sizes */
+        .card-body {
+            padding: 20px;
+        }
+
+        .col-md-6 {
+            max-width: 50%;
+        }
+
+        .container {
+            padding-left: 30px;
+            padding-right: 30px;
+        }
+
+        .mb-3 {
+            margin-bottom: 1.25rem;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+    }
+
+    /* For smaller devices (less than 812px) */
+    @media (max-width: 811px) {
+        .container {
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+
+        .fixed-container {
+            margin-top: 20px;
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card {
+            margin-bottom: 20px;
+        }
+
+        .mb-3 {
+            margin-bottom: 1.5rem;
+        }
+
+        .col-md-6 {
+            max-width: 100%;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+    }
+</style>
+
+
+
+<div class="container my-5">
     <div class="row">
         <!-- Left Card: Form -->
         <div class="col-md-6">
@@ -18,8 +99,8 @@
                                 <li>{{ $error }}</li>
                             @endforeach
                         </ul>
-                       </div>
-                      @endif
+                    </div>
+                    @endif
                     <form action="{{ route('vCard.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf                    
                         <!-- Color Picker -->
@@ -42,7 +123,7 @@
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}" {{ old('category_id', $user->category_id ?? '') == $category->id ? 'selected' : '' }}>
                                         {{ $category->name }}
-                                </option>
+                                    </option>
                                 @endforeach
                             </select>
                         </div>
@@ -97,7 +178,7 @@
 
                         <div class="mb-3">
                             <label for="aadhar" class="form-label">आधार संख्या (वैकल्पिक)</label>
-                            <input type="text" class="form-control" id="aadhar" name="aadhar" value="{{ old('aadhar', $user->aadhaar ?? '') }}">
+                            <input type="text" class="form-control" id="aadhar" name="aadhar" pattern="[0-9]{12}" maxlength="12" inputmode="numeric" oninput="this.value = this.value.replace(/[^0-9]/g, '')" value="{{ old('aadhar', $user->aadhaar ?? '') }}" placeholder="12 अंकों की आधार संख्या दर्ज करें">
                         </div>
 
                         <div class="mb-3">
@@ -120,12 +201,12 @@
         </div>
 
         <!-- Right Card: Add New Information -->
-        <div class="col-md-6">
+        <div class="col-md-6 fixed-container">
             <div class="card border-0 shadow-sm">
                 <div class="card-body text-center">
-                    <h5 class="mb-3">नई जानकारी जोड़ें</h5>
+                    <h5 class="mb-3">अन्य जानकारी(Other Information)</h5>
                     <div class="container">
-                        @foreach ($dynamicFields->chunk(3) as $chunk)  
+                        @foreach ($dynamicFields->chunk(3) as $chunk)
                             <div class="row d-flex justify-content-center align-items-center mb-2">
                                 @foreach ($chunk as $field)
                                     <div class="col-4 text-center" onclick="addField('{{ $field->name }}', '{{ $field->icon }}')">
@@ -138,17 +219,16 @@
                     </div>
                 </div>
             </div>
-        </div>        
+        </div>               
     </div>
 </div>
 
 @endsection
 
 <script>
+// Add dynamic fields and image preview logic here
 function addField(label, fieldName) {
-    // Generate a unique ID for the field container
     const uniqueId = 'field-' + Date.now();
-
     const fieldHTML = `
         <div class="mb-3 d-flex align-items-center" id="${uniqueId}">
             <div class="flex-grow-1">
@@ -159,65 +239,57 @@ function addField(label, fieldName) {
             <button type="button" class="btn btn-light ms-2" onclick="removeField('${uniqueId}')">X</button>
         </div>
     `;
-
     const dynamicFields = document.getElementById('dynamic-fields');
     if (dynamicFields) {
         dynamicFields.insertAdjacentHTML('beforeend', fieldHTML);
     }
 }
 
+function removeField(uniqueId) {
+    const fieldElement = document.getElementById(uniqueId);
+    if (fieldElement) {
+        fieldElement.remove();
+    }
+}
 
-    function removeField(uniqueId) {
-        const fieldElement = document.getElementById(uniqueId);
-        if (fieldElement) {
-            fieldElement.remove();
+// Image preview for Aadhar and profile images
+document.getElementById('aadhar').addEventListener('change', function(event) {
+    let previewDiv = document.getElementById('aadhar-preview');
+    previewDiv.innerHTML = ""; // Clear previous previews
+    let files = event.target.files;
+    if (files.length > 0) {
+        for (let i = 0; i < files.length; i++) {
+            let file = files[i];
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                let img = document.createElement('img');
+                img.src = e.target.result;
+                img.classList.add('img-thumbnail', 'm-2');
+                img.style.width = "100px";
+                previewDiv.appendChild(img);
+            };
+            reader.readAsDataURL(file);
         }
     }
+});
 
-    // Image preview for Aadhar and profile images
-    document.getElementById('aadhar').addEventListener('change', function(event) {
-        let previewDiv = document.getElementById('aadhar-preview');
-        previewDiv.innerHTML = ""; // Clear previous previews
-
-        let files = event.target.files;
-        if (files.length > 0) {
-            for (let i = 0; i < files.length; i++) {
-                let file = files[i];
-                let reader = new FileReader();
-
-                reader.onload = function(e) {
-                    let img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.classList.add('img-thumbnail', 'm-2');
-                    img.style.width = "100px"; // Adjust image size if needed
-                    previewDiv.appendChild(img);
-                };
-
-                reader.readAsDataURL(file);
-            }
+document.getElementById('profile').addEventListener('change', function(event) {
+    let previewDiv = document.getElementById('image-preview');
+    previewDiv.innerHTML = "";
+    let files = event.target.files;
+    if (files.length > 0) {
+        for (let i = 0; i < files.length; i++) {
+            let file = files[i];
+            let reader = new FileReader();
+            reader.onload = function(e) {
+                let img = document.createElement('img');
+                img.src = e.target.result;
+                img.classList.add('img-thumbnail', 'm-2');
+                img.style.width = "100px";
+                previewDiv.appendChild(img);
+            };
+            reader.readAsDataURL(file);
         }
-    });
-
-    document.getElementById('profile').addEventListener('change', function(event) {
-        let previewDiv = document.getElementById('image-preview');
-        previewDiv.innerHTML = ""; // Clear previous previews
-
-        let files = event.target.files;
-        if (files.length > 0) {
-            for (let i = 0; i < files.length; i++) {
-                let file = files[i];
-                let reader = new FileReader();
-
-                reader.onload = function(e) {
-                    let img = document.createElement('img');
-                    img.src = e.target.result;
-                    img.classList.add('img-thumbnail', 'm-2');
-                    img.style.width = "100px"; // Adjust image size if needed
-                    previewDiv.appendChild(img);
-                };
-
-                reader.readAsDataURL(file);
-            }
-        }
-    });
+    }
+});
 </script>

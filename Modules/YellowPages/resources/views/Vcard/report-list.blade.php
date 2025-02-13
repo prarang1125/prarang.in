@@ -12,12 +12,12 @@
 <div class="page-content">
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">रिपोर्ट</div>
+        <div class="breadcrumb-title pe-3">पूछताछ(Support)</div>
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item"><a href="#"><i class="bx bx-user"></i></a></li>
-                    <li class="breadcrumb-item active" aria-current="page">रिपोर्ट लिस्टिंग</li>
+                    <li class="breadcrumb-item active" aria-current="page">पूछताछ लिस्टिंग</li>
                 </ol>
             </nav>
         </div>
@@ -33,12 +33,12 @@
                 </div>
             @endif
 
-            <h6 class="mb-0 text-uppercase">रिपोर्ट लिस्टिंग</h6>
+            <h6 class="mb-0 text-uppercase">अपनी पूछताछ की स्थिति जानें।</h6>
             <hr/>
 
             <div class="card">
                 <div class="card-body d-flex justify-content-end align-items-end">
-                    <a href="{{ route('vCard.report') }}" class="btn btn-primary">रिपोर्ट करें</a>
+                    <a href="{{ route('vCard.report') }}" class="btn btn-primary">पूछताछ के लिए संपर्क करें।</a>
                 </div>
 
                 <div class="card-body">
@@ -70,13 +70,13 @@
                                         </td>                                    
                                         <td class="align-middle">
                                             @if($report->status == 0)
-                                                <span class="badge bg-warning text-dark">लंबित</span>  <!-- Pending -->
+                                                <span class="badge bg-warning text-dark">लंबित(Pending)</span>  <!-- Pending -->
                                             @elseif($report->status == 1)
-                                                <span class="badge bg-info text-white">प्रोसेस में</span>  <!-- In Process -->
+                                                <span class="badge bg-info text-white">प्रोसेस(Process)</span>  <!-- In Process -->
                                             @elseif($report->status == 2)
-                                                <span class="badge bg-success text-white">सफल</span>  <!-- Successful -->
+                                                <span class="badge bg-success text-white">सफल(Successful)</span>  <!-- Successful -->
                                             @else
-                                                <span class="badge bg-secondary text-white">अज्ञात स्थिति</span>  <!-- Unknown Status -->
+                                                <span class="badge bg-secondary text-white">अज्ञात स्थिति(Unknown Status)</span>  <!-- Unknown Status -->
                                             @endif
                                         </td>                                    
                                         <td class="align-middle">{{ $report->created_at->format('d M Y, h:i A') }}</td>

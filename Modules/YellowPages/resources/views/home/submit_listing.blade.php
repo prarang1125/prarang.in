@@ -55,7 +55,7 @@
     <div class="thank-you-container">
         <h1>आपकी सूची सफलतापूर्वक जोड़ी गई है!</h1>
         <p>हम आपके योगदान की सराहना करते हैं और शीघ्र ही आपकी प्रस्तुति की समीक्षा देखे।</p>
-        <a href="{{route('yp.home')}}" class="back-home-btn">वापस जाएं</a>
+        <a href="{{route('vCard.business-listing')}}" class="back-home-btn">वापस जाएं</a>
     </div>
     
 
