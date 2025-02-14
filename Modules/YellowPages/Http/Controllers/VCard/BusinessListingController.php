@@ -25,6 +25,7 @@ use App\Models\Vcard;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\log;
 use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -57,8 +58,8 @@ class BusinessListingController extends Controller
             $monthly_turnovers = DB::connection('yp')->table('monthly_turnovers')->get();
             $monthly_advertising_mediums = DB::connection('yp')->table('monthly_advertising_mediums')->get();
             $monthly_advertising_prices = DB::connection('yp')->table('monthly_advertising_prices')->get();
-            $social_media = DynamicFeild::on('yp')->get();  // Retrieve the social media fields
-            $social_media_data = BusinessSocialMedia::whereIn('social_id', $social_media->pluck('id'))->get();  // Use pluck() to get all the IDs and filter based on those            
+            $social_media = DynamicFeild::on('yp')->get();  
+            $social_media_data = BusinessSocialMedia::whereIn('social_id', $social_media->pluck('id'))->get();  
             $categories = Category::on('yp')->get();
 
             return view('yellowpages::Vcard.business-listing-register', compact(
@@ -81,7 +82,6 @@ class BusinessListingController extends Controller
         // }
         
     }
-    
     
     ##------------------------- END ---------------------##
     ##------------------------- Save Business ---------------------##
@@ -124,7 +124,8 @@ class BusinessListingController extends Controller
             $monthly_turnovers = MonthlyTurnover::all();
             $monthly_advertising_mediums = AdvertisingMedium::all();
             $monthly_advertising_prices = AdvertisingPrice::all();
-            $social_media =  SocialMedia::all();
+            $social_media = DynamicFeild::on('yp')->get();  
+            $social_media_data = BusinessSocialMedia::whereIn('social_id', $social_media->pluck('id'))->get();  
           
             return view('yellowpages::Vcard.business-listing-edit', compact(
                 'listing',
@@ -136,6 +137,7 @@ class BusinessListingController extends Controller
                 'monthly_advertising_mediums',
                 'monthly_advertising_prices',
                 'social_media',
+                'social_media_data',
                 'listinghours',
                 'user',
                 'address'
@@ -147,72 +149,66 @@ class BusinessListingController extends Controller
     ##------------------------- END ---------------------##
 
     ##------------------------- Business Listing Upadte ---------------------##
-    public function listingUpdate(Request $request) {
+    public function listingUpdate(Request $request)
+    {
+        $validated = $request->validate([
+            'location' => 'required|exists:yp.cities,id',
+            'listingTitle' => 'required|string|max:255',
+            'tagline' => 'nullable|string',
+            'businessName' => 'required|string|max:255',
+            'primaryPhone' => 'required|string',
+            'primaryContact' => 'required|string',
+            'primaryEmail' => 'required|email',
+            'businessType' => 'required',
+            'employees' => 'required',
+            'turnover' => 'required',
+            'advertising' => 'required',
+            'advertising_price' => 'required',
+            'category' => 'required',
+            'description' => 'nullable|string',
+            'website' => 'nullable|url',
+            'street' => 'required|string',
+            'area_name' => 'required|string',
+            'house_number' => 'required|string',
+            'postal_code' => 'nullable|string',
+            'socialId' => 'nullable|array',
+            'socialId.*' => 'exists:yp.dynamic_fields,id',
+            'socialDescription' => 'nullable|array',
+            'socialDescription.*' => 'string|max:255',
+            'day' => 'required|array',
+            'day.*' => 'required|string',
+            'open_time' => 'required|array',
+            'open_time.*' => 'required|string',
+            'close_time' => 'required|array',
+            'close_time.*' => 'required|string',
+            'is_24_hours' => 'nullable|array',
+            'is_24_hours.*' => 'nullable|boolean',
+            'add_2nd_time_slot' => 'nullable|array',
+            'add_2nd_time_slot.*' => 'nullable|boolean',
+            'open_time_2' => 'nullable|array',
+            'open_time_2.*' => 'nullable|string',
+            'close_time_2' => 'nullable|array',
+            'close_time_2.*' => 'nullable|string',
+            'image' => 'nullable|image|max:2048', // Ensuring file is an image and not too large
+        ]);
+    
         try {
-            $validated = $request->validate([
-                'location' => 'required',
-                'listingTitle' => 'required|string|max:255',
-                'businessName' => 'required|string|max:255',
-                'businessAddress' => 'required|string',
-                'primaryPhone' => 'required|string',
-                'primaryContact' => 'required|string',
-                'primaryEmail' => 'required|email',
-                'businessType' => 'required',
-                'employees' => 'required',
-                'turnover' => 'required',
-                'category' => 'required',
-                'description' => 'nullable',
-                'advertising' => 'required',
-                'advertising_price' => 'required',
-                'social_media' => 'nullable|string',
-                'tags_keywords' => 'nullable',
-                'fullAddress' => 'nullable|string',
-                'website' => 'nullable|url',
-                'phone' => 'nullable|string',
-                'whatsapp' => 'nullable|string',
-                'pincode' => 'nullable|string',
-                'faq' => 'nullable|string',
-                'answer' => 'nullable|string',
-
-                // Business hours validation
-                'day' => 'nullable|array',
-                'open_time' => 'nullable|array',
-                'close_time' => 'nullable|array',
-                'is_24_hours' => 'nullable|array',
-                'add_2nd_time_slot' => 'nullable|array',
-                'open_time_2' => 'nullable|array',
-                'close_time_2' => 'nullable|array',
-            ]);
-
-            // Locate the business listing
+            // Check if listing exists
             $listing = BusinessListing::where('user_id', Auth::id())->first();
-
-            if (!$listing) {
-                return redirect()->back()->withErrors(['error' => 'Listing not found']);
-            }
-
-            // File upload handling
-            $imagePath = $listing->business_img; // Retain current value if no new upload
+    
+            // Handle image upload/update
             if ($request->hasFile('image')) {
                 $imagePath = $request->file('image')->store('yellowpages/business');
+            } else {
+                $imagePath = $listing ? $listing->business_img : null;
             }
-
-            $featureImagePath = $listing->feature_img; // Retain current value if no new upload
-            if ($request->hasFile('coverImage')) {
-                $featureImagePath = $request->file('coverImage')->store('yellowpages/feature');
-            }
-
-            $businessLogoPath = $listing->logo; // Retain current value if no new upload
-            if ($request->hasFile('logo')) {
-                $businessLogoPath = $request->file('logo')->store('yellowpages/logo');
-            }
-
-            // Prepare data for update
+    
             $data = [
+                'user_id' => Auth::id(),
                 'city_id' => $validated['location'],
                 'listing_title' => $validated['listingTitle'],
+                'tagline' => $validated['tagline'],
                 'business_name' => $validated['businessName'],
-                'business_address' => $validated['businessAddress'],
                 'primary_phone' => $validated['primaryPhone'],
                 'primary_contact_name' => $validated['primaryContact'],
                 'primary_contact_email' => $validated['primaryEmail'],
@@ -222,48 +218,70 @@ class BusinessListingController extends Controller
                 'advertising_medium_id' => $validated['advertising'],
                 'advertising_price_id' => $validated['advertising_price'],
                 'category_id' => $validated['category'],
-                'full_address' => $validated['fullAddress'],
                 'website' => $validated['website'],
-                'phone' => $validated['phone'],
-                'whatsapp' => $validated['whatsapp'],
-                'faq' => $validated['faq'],
-                'answer' => $validated['answer'],
-                'description' => $validated['description'],
-                'tags_keywords' => $validated['tags_keywords'],
-                'pincode' => $validated['pincode'],
-                'logo' => $businessLogoPath,
-                'feature_img' => $featureImagePath,
+                'description' => $validated['description'] ?? null,
                 'business_img' => $imagePath,
-
             ];
-
-            // Update the business listing
-            $listing->update($data);
-
-            // Process business hours if present
-            if (!empty($validated['day'])) {
-                foreach ($validated['day'] as $index => $day) {
-                    if (!empty($validated['open_time'][$index]) && !empty($validated['close_time'][$index])) {
-                        BusinessHour::updateOrCreate(
-                            ['business_id' => $listing->id, 'day' => $day],
-                            [
-                                'open_time' => $validated['open_time'][$index],
-                                'close_time' => $validated['close_time'][$index],
-                                'open_time_2' => $validated['open_time_2'][$index] ?? null,
-                                'close_time_2' => $validated['close_time_2'][$index] ?? null,
-                                'is_24_hours' => isset($validated['is_24_hours'][$index]) ? 1 : 0,
-                                'add_2nd_time_slot' => isset($validated['add_2nd_time_slot'][$index]) ? 1 : 0,
-                            ]
-                        );
-                    }
+    
+            // Update or Create Listing
+            if ($listing) {
+                $listing->update($data);
+            } else {
+                $listing = BusinessListing::create($data);
+            }
+    
+            // Update or Create Address
+            $address = Address::updateOrCreate(
+                ['user_id' => Auth::id()],
+                [
+                    'street' => $validated['street'],
+                    'area_name' => $validated['area_name'],
+                    'house_number' => $validated['house_number'],
+                    'city_id' => $validated['location'], // Using 'location' field
+                    'postal_code' => $validated['postal_code'],
+                ]
+            );
+    
+            $listing->address_id = $address->id;
+            $listing->save();
+    
+            // Handle Social Media Links
+            if (!empty($validated['socialId'])) {
+                $listing->socialMedia()->delete(); // Remove old records
+                foreach ($validated['socialId'] as $index => $socialId) {
+                    BusinessSocialMedia::create([
+                        'listing_id' => $listing->id,
+                        'social_id' => $socialId,
+                        'description' => $validated['socialDescription'][$index] ?? null,
+                    ]);
                 }
             }
-
-            return redirect()->route('vCard.business-listing')->with('success', 'Listing updated successfully');
+    
+            // Handle Business Hours
+            foreach ($validated['day'] as $index => $day) {
+                BusinessHour::updateOrCreate(
+                    [
+                        'business_id' => $listing->id,
+                        'day' => $day,
+                    ],
+                    [
+                        'open_time' => $validated['open_time'][$index],
+                        'close_time' => $validated['close_time'][$index],
+                        'open_time_2' => $validated['open_time_2'][$index] ?? null,
+                        'close_time_2' => $validated['close_time_2'][$index] ?? null,
+                        'is_24_hours' => !empty($validated['is_24_hours'][$index]) ? 1 : 0,
+                        'add_2nd_time_slot' => !empty($validated['add_2nd_time_slot'][$index]) ? 1 : 0,
+                    ]
+                );
+            }
+    
+            return redirect()->route('vCard.business-listing')->with('success', 'सूची सफलतापूर्वक अद्यतन की गई!');
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Error updating business listing: ' );
+            Log::error('Listing Update Error: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'An error occurred while updating the listing. Please try again.']);
         }
     }
+    
     ##------------------------- END ---------------------##
 
     ##------------------------- Business Listing Delete ---------------------##

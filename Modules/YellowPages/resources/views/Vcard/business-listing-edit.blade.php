@@ -180,42 +180,48 @@
             
                 <!-- Schedule Container -->
                 <div id="schedule-container">
-                    <div class="day-schedule">
-                        <select name="day[]" class="day-select">
-                            <option value="">-- दिन चुनें --</option>
-                            <option value="monday">सोमवार</option>
-                            <option value="tuesday">मंगलवार</option>
-                            <option value="wednesday">बुधवार</option>
-                            <option value="thursday">गुरुवार</option>
-                            <option value="friday">शुक्रवार</option>
-                            <option value="saturday">शनिवार</option>
-                            <option value="sunday">रविवार</option>
-                        </select>
+                    @if($listinghours->isNotEmpty())
+                        @foreach($listinghours as $hour)
+                            <div class="day-schedule">
+                                <select name="day[]" class="day-select">
+                                    <option value="">-- दिन चुनें --</option>
+                                    <option value="monday" {{ $hour->day == 'monday' ? 'selected' : '' }}>सोमवार</option>
+                                    <option value="tuesday" {{ $hour->day == 'tuesday' ? 'selected' : '' }}>मंगलवार</option>
+                                    <option value="wednesday" {{ $hour->day == 'wednesday' ? 'selected' : '' }}>बुधवार</option>
+                                    <option value="thursday" {{ $hour->day == 'thursday' ? 'selected' : '' }}>गुरुवार</option>
+                                    <option value="friday" {{ $hour->day == 'friday' ? 'selected' : '' }}>शुक्रवार</option>
+                                    <option value="saturday" {{ $hour->day == 'saturday' ? 'selected' : '' }}>शनिवार</option>
+                                    <option value="sunday" {{ $hour->day == 'sunday' ? 'selected' : '' }}>रविवार</option>
+                                </select>
             
-                        <input type="time" name="open_time[]" class="time-input">
-                        <label>to</label>
-                        <input type="time" name="close_time[]" class="time-input">
+                                <input type="time" name="open_time[]" class="time-input" value="{{ $hour->open_time }}">
+                                <label>to</label>
+                                <input type="time" name="close_time[]" class="time-input" value="{{ $hour->close_time }}">
             
-                        <label>
-                            <input type="checkbox" class="is-24-hours"> 24 घंटे
-                        </label>
-                        <label>
-                            <input type="checkbox" class="add-2nd-slot"> दूसरा स्लॉट जोड़ें
-                        </label>
-                        <button type="button" class="remove-day-btn">&#x2716;</button>
+                                <label>
+                                    <input type="checkbox" class="is-24-hours" {{ $hour->is_24_hours ? 'checked' : '' }}> 24 घंटे
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="add-2nd-slot" {{ $hour->open_time_2 ? 'checked' : '' }}> दूसरा स्लॉट जोड़ें
+                                </label>
+                                <button type="button" class="remove-day-btn">&#x2716;</button>
             
-                        <!-- Second Time Slot -->
-                        <div class="second-time-slot" style="display: none; margin-top: 10px;">
-                            <input type="time" name="open_time_2[]" class="time-input">
-                            <label>to</label>
-                            <input type="time" name="close_time_2[]" class="time-input">
-                        </div>
-                    </div>
+                                <!-- Second Time Slot -->
+                                <div class="second-time-slot" style="display: {{ $hour->open_time_2 ? 'block' : 'none' }}; margin-top: 10px;">
+                                    <input type="time" name="open_time_2[]" class="time-input" value="{{ $hour->open_time_2 }}">
+                                    <label>to</label>
+                                    <input type="time" name="close_time_2[]" class="time-input" value="{{ $hour->close_time_2 }}">
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <p>कोई व्यावसायिक घंटे सेट नहीं हैं।</p>
+                    @endif
                 </div>
             
                 <!-- Add New Day Button -->
                 <button type="button" id="add-day-btn">+ Add Day</button>
-            </div>        
+            </div>                
             
             <br>
             <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
@@ -283,7 +289,7 @@
                                 <input type="text" name="socialDescription[]" value="{{ $data->description ?? '' }}" placeholder="अपना लिंक या विवरण दर्ज करें" style="flex: 2; padding: 8px;">
                                 <button type="button" class="removeSocialMedia" style="padding: 10px; background-color: red; color: white; border: none; cursor: pointer;">-</button>
                             </div>
-                        @endforeach
+                    @endforeach
                     @else
                         <div class="social-media-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
                             <select name="socialId[]"  style="flex: 1; padding: 8px;">
@@ -309,10 +315,16 @@
                 <!-- Single Image Upload -->
                 <div style="border: 1px dashed #ddd; padding: 20px; text-align: center; color: #888; margin-bottom: 10px;">
                     <input type="file" id="imageUpload" name="image" style="display: block; margin-top: 10px;" onchange="previewImage(event, 'previewImage')">
-                    <img id="previewImage" src="" alt="Uploaded Image" style="display: none; margin-top: 10px; max-width: 100px; border: 1px solid #ddd;">
+            
+                    <!-- Show Old Image if Exists -->
+                    <img id="previewImage" 
+                        src="{{ $listing->business_img ? asset('storage/'.$listing->business_img) : '' }}" 
+                        alt="Uploaded Image" 
+                        style="margin-top: 10px; max-width: 100px; border: 1px solid #ddd; {{ $listing->business_img ? '' : 'display: none;' }}">
+            
                 </div>
-                
             </div>
+            
             <br>
 
         <!-- Submit Button -->
@@ -386,22 +398,83 @@ document.addEventListener('click', (e) => {
     }
 });
 
-function toggleFAQSection() {
-        const faqSection = document.getElementById('faqSection');
-        const featuresToggle = document.getElementById('featuresToggle');
 
-        // Toggle display based on checkbox state
-        if (featuresToggle.checked) {
-            faqSection.style.display = 'block';
-        } else {
-            faqSection.style.display = 'none';
-        }
+    function previewImage(event, imgId) {
+        let reader = new FileReader();
+        reader.onload = function(){
+        let output = document.getElementById(imgId);
+        output.src = reader.result;
+        output.style.display = "block";
+      };
+    reader.readAsDataURL(event.target.files[0]);
     }
 
-    // Initialize visibility based on the checkbox state when the page loads
-    document.addEventListener('DOMContentLoaded', function () {
-        toggleFAQSection(); // Set initial state based on checkbox status
+
+    document.addEventListener("DOMContentLoaded", function() {
+    // Add new social media row
+    document.getElementById("addSocialMedia").addEventListener("click", function() {
+        let container = document.getElementById("social-media-container");
+        let newRow = document.createElement("div");
+        newRow.classList.add("social-media-row");
+        newRow.style.display = "flex";
+        newRow.style.alignItems = "center";
+        newRow.style.gap = "10px";
+        newRow.style.marginBottom = "10px";
+
+        let select = document.createElement("select");
+        select.name = "socialId[]";
+        // select.required = true;
+        select.style.flex = "1";
+        select.style.padding = "8px";
+
+        let defaultOption = document.createElement("option");
+        defaultOption.text = "स्थान चुनें";
+        defaultOption.value = "";
+        select.appendChild(defaultOption);
+
+        let socialMediaData = @json($social_media); // Convert Blade variable to JS array
+
+        socialMediaData.forEach(function(social) {
+            let option = document.createElement("option");
+            option.value = social.id;
+            option.text = social.name;
+            select.appendChild(option);
+        });
+
+        let input = document.createElement("input");
+        input.type = "text";
+        input.name = "socialDescription[]";
+        input.placeholder = "अपना लिंक या विवरण दर्ज करें";
+        input.style.flex = "2";
+        input.style.padding = "8px";
+
+        let removeButton = document.createElement("button");
+        removeButton.type = "button";
+        removeButton.textContent = "-";
+        removeButton.style.padding = "10px";
+        removeButton.style.backgroundColor = "red";
+        removeButton.style.color = "white";
+        removeButton.style.border = "none";
+        removeButton.style.cursor = "pointer";
+
+        removeButton.addEventListener("click", function() {
+            newRow.remove();
+        });
+
+        newRow.appendChild(select);
+        newRow.appendChild(input);
+        newRow.appendChild(removeButton);
+        container.appendChild(newRow);
     });
+
+    // Attach event listener to remove existing social media rows
+    document.querySelectorAll(".removeSocialMedia").forEach(button => {
+        button.addEventListener("click", function() {
+            this.parentElement.remove();
+        });
+    });
+});
+
 </script>
 
 @endsection

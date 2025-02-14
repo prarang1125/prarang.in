@@ -171,5 +171,5 @@
         }
     });
 </script>
-@livewireScripts
+{{-- @livewireScripts --}}
 @endpush

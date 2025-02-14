@@ -54,7 +54,7 @@ use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
       Route::get('/submit-listing', [ListingController::class, 'submit_listing'])->name('yp.listing.submit');
       Route::get('/Save-listing/{id}', [ListingController::class, 'save_listing'])->name('yp.listing.save');
     });
-
+    
     ##------------------------- END ---------------------##
 
     ##------------------------- Review Listing ---------------------##
