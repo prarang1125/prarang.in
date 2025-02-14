@@ -11,6 +11,7 @@ class Visitor extends Model
     protected $table = 'visitors';
     protected $fillable = [
         'post_city',
+        
         'post_id',
         'current_url',
         'ip_address',

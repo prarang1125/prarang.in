@@ -15,34 +15,32 @@ class Base extends Component
     /**
      * @author Vivek Yadav <dev.vivek16@gmail.com>
      * @copyright 2025 Prarang <www.prarang.in>
-      */
+     */
 
     public function render(): View|Closure|string
     {
         return view('components.layout.main.base');
     }
 
-
-
     public function durationUpdate(Request $request)
-    { 
-            $existingVisitor = Visitor::where('ip_address', $request->input('ip_address'))
+    {
+        $existingVisitor = Visitor::where('ip_address', $request->input('ip_address'))
             ->where('post_id', $request->input('post_id'))
-            ->first();            
-            if ($existingVisitor) {
-                $existingDuration = $existingVisitor->duration ?? 0;
-                $newDuration = $existingDuration + $request->input('duration');
-                $existingVisitor->update(['duration' => $newDuration]);
+            ->first();
+        if ($existingVisitor) {
+            $existingDuration = $existingVisitor->duration ?? 0;
+            $newDuration = $existingDuration + $request->input('duration');
+            $existingVisitor->update(['duration' => $newDuration]);
 
-                if ($request->max_scroll > ($existingVisitor->scroll ?? 0)) {
-                    $existingVisitor->update(['scroll' => $request->max_scroll]);
-                }
+            if ($request->max_scroll > ($existingVisitor->scroll ?? 0)) {
+                $existingVisitor->update(['scroll' => $request->max_scroll]);
             }
+        }
         return response()->json(['message' => 'Duration updated successfully!', 'duration' => $newDuration, 'scroll' => $request->max_scroll], 200);
     }
 
     public function visitorLocation(Request $request)
-    {      
+    {
         // Prepare the visitor data
         $existingVisitor = $this->findExistingVisitor($request->input('post_id'), $request->input('ip_address'));
         if ($existingVisitor) {
@@ -50,13 +48,9 @@ class Base extends Component
             $this->incrementVisitCount($existingVisitor);
             return response()->json(['message' => 'Visitor visit count updated successfully!'], 200);
         }
-
         $visitorData = $this->prepareVisitorData($request);
         $visitorLocation = $this->getVisitorLocation($request);
-       
-        // Create a new visitor record in the database
-      
-        $visitor = new Visitor();       
+        $visitor = new Visitor();
         $visitor->post_id = $visitorData['post_id'];
         $visitor->post_city = $visitorData['city'];
         $visitor->ip_address = $visitorData['ip_address'];
@@ -72,10 +66,8 @@ class Base extends Component
         $visitor->visit_count = $visitorData['visit_count'];
         $visitor->scroll = $visitorData['scroll'];
         $visitor->user_type = $visitorData['user_type'];
-        $visitor->visitor_city = $visitorLocation['visitor_city']??null;
-        $visitor->visitor_address = $visitorLocation['visitor_address']??null;
-
-        // Save the visitor record
+        $visitor->visitor_city = $visitorLocation['visitor_city'] ?? null;
+        $visitor->visitor_address = $visitorLocation['visitor_address'] ?? null;
         $saved = $visitor->save();
         return response()->json(['message' => $saved ? 'Visitor data saved successfully!' : 'Error saving visitor data!'], $saved ? 201 : 500);
     }
@@ -105,14 +97,13 @@ class Base extends Component
     private function findExistingVisitor($postId, $ipAddress)
     {
         return Visitor::where('post_id', $postId)
-                      ->where('ip_address', $ipAddress)
-                      ->first();
+            ->where('ip_address', $ipAddress)
+            ->first();
     }
 
     private function incrementVisitCount($visitor)
     {
         $visitor->increment('visit_count');
-
     }
 
     private function createNewVisitor($data)
@@ -129,7 +120,7 @@ class Base extends Component
 
             if ($latitude == 'null' || $longitude == 'null') {
                 $ipLocation = Http::get("https://ipapi.co/{$request->input('ip_address')}/json");
-                
+
                 if ($ipLocation->successful()) {
                     $data = $ipLocation->json();
                     return [
@@ -158,7 +149,7 @@ class Base extends Component
                     } else {
                         // If Nominatim fails, fallback to IP API
                         $ipLocation = Http::get("https://ipapi.co/{$request->input('ip_address')}/json");
-                        
+
                         if ($ipLocation->successful()) {
                             $data = $ipLocation->json();
                             $visitor_city = $data['city'] ?? null;
