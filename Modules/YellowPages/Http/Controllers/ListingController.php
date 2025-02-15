@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\City;
 use Carbon\Carbon;
 use App\Models\BusinessListing;
+use App\Models\User;
 use App\Models\Address;
 use App\Models\BusinessSocialMedia;
 use App\Models\BusinessFaq;
@@ -227,9 +228,6 @@ class ListingController extends Controller
             'listing_title' => $validated['listingTitle'],
             'tagline' => $validated['tagline'],
             'business_name' => $validated['businessName'],
-            'primary_phone' => $validated['primaryPhone'],
-            'primary_contact_name' => $validated['primaryContact'],
-            'primary_contact_email' => $validated['primaryEmail'],
             'legal_type_id' => $validated['businessType'],
             'employee_range_id' => $validated['employees'],
             'turnover_id' => $validated['turnover'],
@@ -249,6 +247,12 @@ class ListingController extends Controller
         // } else {
         //     $listing = BusinessListing::create($data);
         // }
+
+        User::where('id', Auth::id())->update([
+            'email' => $validated['primaryEmail'],
+            'phone' => $validated['primaryPhone'],
+            'name' => $validated['primaryContact'],
+        ]);
 
         // Save Address information and associate with the listing
         $address = Address::updateOrCreate(

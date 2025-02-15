@@ -68,6 +68,8 @@ use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
     ##------------------------- END ---------------------##
 
     Route::get('/myweb/{slug}', [CreateVCardController::class, 'view'])->name('vCard.view');
+    Route::get('/scan/myweb/{slug}', [CreateVCardController::class, 'vcardScan'])->name('vCard.scan');
+    Route::get('/share/myweb/{slug}', [CreateVCardController::class, 'vcardShare'])->name('vCard.share');
     Route::get('/vcard/{vcard_id}/{slug}', [VcardQRController::class, 'scanAndView'])->name('vCard.scanView');
      ##------------------------- VCard QR ---------------------##
      Route::get('/user/qr/', [VcardQRController::class, 'generateQrCode'])->name('vCard.generateQr');

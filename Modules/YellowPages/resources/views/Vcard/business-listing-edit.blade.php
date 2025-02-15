@@ -414,6 +414,7 @@ document.addEventListener('click', (e) => {
     // Add new social media row
     document.getElementById("addSocialMedia").addEventListener("click", function() {
         let container = document.getElementById("social-media-container");
+        console.log(container);
         let newRow = document.createElement("div");
         newRow.classList.add("social-media-row");
         newRow.style.display = "flex";

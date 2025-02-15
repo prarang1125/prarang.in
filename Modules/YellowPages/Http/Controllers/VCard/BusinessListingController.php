@@ -59,8 +59,8 @@ class BusinessListingController extends Controller
             $monthly_advertising_mediums = DB::connection('yp')->table('monthly_advertising_mediums')->get();
             $monthly_advertising_prices = DB::connection('yp')->table('monthly_advertising_prices')->get();
             $social_media = DynamicFeild::on('yp')->get();  
-            $social_media_data = BusinessSocialMedia::whereIn('social_id', $social_media->pluck('id'))->get();  
             $categories = Category::on('yp')->get();
+
 
             return view('yellowpages::Vcard.business-listing-register', compact(
                 'cities',
@@ -71,7 +71,6 @@ class BusinessListingController extends Controller
                 'monthly_advertising_prices',
                 'categories',
                 'social_media',
-                'social_media_data', 
                 'user',
                 'address',
                 'vcard'
@@ -111,6 +110,7 @@ class BusinessListingController extends Controller
 
     ##------------------------- Business Listing Edit---------------------##
     public function listingEdit($id) {
+
          try {
 
             $listing = BusinessListing::findOrFail($id);
@@ -125,8 +125,10 @@ class BusinessListingController extends Controller
             $monthly_advertising_mediums = AdvertisingMedium::all();
             $monthly_advertising_prices = AdvertisingPrice::all();
             $social_media = DynamicFeild::on('yp')->get();  
-            $social_media_data = BusinessSocialMedia::whereIn('social_id', $social_media->pluck('id'))->get();  
-          
+            $social_media_data = BusinessSocialMedia::where('listing_id', $listing->id)
+            ->whereIn('social_id', $social_media->pluck('id'))
+            ->get();
+                  
             return view('yellowpages::Vcard.business-listing-edit', compact(
                 'listing',
                 'cities',
@@ -146,9 +148,10 @@ class BusinessListingController extends Controller
             return redirect()->back()->with('error', 'Error fetching business data: ' );
         }
     }
-    ##------------------------- END ---------------------##
 
+    ##------------------------- END ---------------------##
     ##------------------------- Business Listing Upadte ---------------------##
+
     public function listingUpdate(Request $request)
     {
         $validated = $request->validate([
@@ -177,10 +180,10 @@ class BusinessListingController extends Controller
             'socialDescription.*' => 'string|max:255',
             'day' => 'required|array',
             'day.*' => 'required|string',
-            'open_time' => 'required|array',
-            'open_time.*' => 'required|string',
-            'close_time' => 'required|array',
-            'close_time.*' => 'required|string',
+            'open_time' => 'nullable|array',
+            'open_time.*' => 'nullable|string',
+            'close_time' => 'nullable|array',
+            'close_time.*' => 'nullable|string',
             'is_24_hours' => 'nullable|array',
             'is_24_hours.*' => 'nullable|boolean',
             'add_2nd_time_slot' => 'nullable|array',
@@ -189,10 +192,10 @@ class BusinessListingController extends Controller
             'open_time_2.*' => 'nullable|string',
             'close_time_2' => 'nullable|array',
             'close_time_2.*' => 'nullable|string',
-            'image' => 'nullable|image|max:2048', // Ensuring file is an image and not too large
+            'image' => 'nullable|image|max:2048', 
         ]);
     
-        try {
+        // try {
             // Check if listing exists
             $listing = BusinessListing::where('user_id', Auth::id())->first();
     
@@ -209,9 +212,6 @@ class BusinessListingController extends Controller
                 'listing_title' => $validated['listingTitle'],
                 'tagline' => $validated['tagline'],
                 'business_name' => $validated['businessName'],
-                'primary_phone' => $validated['primaryPhone'],
-                'primary_contact_name' => $validated['primaryContact'],
-                'primary_contact_email' => $validated['primaryEmail'],
                 'legal_type_id' => $validated['businessType'],
                 'employee_range_id' => $validated['employees'],
                 'turnover_id' => $validated['turnover'],
@@ -229,6 +229,12 @@ class BusinessListingController extends Controller
             } else {
                 $listing = BusinessListing::create($data);
             }
+
+            User::where('id', Auth::id())->update([
+                'email' => $validated['primaryEmail'],
+                'phone' => $validated['primaryPhone'],
+                'name' => $validated['primaryContact'],
+            ]);
     
             // Update or Create Address
             $address = Address::updateOrCreate(
@@ -245,11 +251,13 @@ class BusinessListingController extends Controller
             $listing->address_id = $address->id;
             $listing->save();
     
-            // Handle Social Media Links
+          
             if (!empty($validated['socialId'])) {
-                $listing->socialMedia()->delete(); // Remove old records
+              //  $listing->socialMedia()->delete(); // Remove old records
+
                 foreach ($validated['socialId'] as $index => $socialId) {
-                    BusinessSocialMedia::create([
+    
+                    BusinessSocialMedia::updateOrCreate([
                         'listing_id' => $listing->id,
                         'social_id' => $socialId,
                         'description' => $validated['socialDescription'][$index] ?? null,
@@ -276,10 +284,10 @@ class BusinessListingController extends Controller
             }
     
             return redirect()->route('vCard.business-listing')->with('success', 'सूची सफलतापूर्वक अद्यतन की गई!');
-        } catch (Exception $e) {
-            Log::error('Listing Update Error: ' . $e->getMessage());
-            return redirect()->back()->withErrors(['error' => 'An error occurred while updating the listing. Please try again.']);
-        }
+        // } catch (Exception $e) {
+        //     Log::error('Listing Update Error: ' . $e->getMessage());
+        //     return redirect()->back()->withErrors(['error' => 'An error occurred while updating the listing. Please try again.']);
+        // }
     }
     
     ##------------------------- END ---------------------##
@@ -309,7 +317,7 @@ class BusinessListingController extends Controller
             return redirect()->route('vCard.business-save')->with('success', 'सूची सफलतापूर्वक अनसेव की गई.');
         } catch (ModelNotFoundException $e) {
             return redirect()->route('vCard.business-save')->withErrors(['error' => 'सूची नहीं मिली.']);
-        } catch (\Exception $e) {
+        } catch (Exception $e) {
             return redirect()->route('vCard.business-save')->withErrors(['error' => 'उपयोगकर्ता को हटाने का प्रयास करते समय एक त्रुटि हुई.']);
         }
     }
