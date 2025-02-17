@@ -48,7 +48,7 @@ class CardController extends Controller
     
             return view('yellowpages::admin.vcard_list', compact('vcardList', 'cities', 'categories'));
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Error fetching Vcard listings: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error fetching Vcard listings: ' );
         }
     }
 
@@ -67,7 +67,7 @@ class CardController extends Controller
                 'vcard', 'vcardInfo', 'categories', 'cities', 'dynamicFields', 'address', 'user'
             ));
         } catch (Exception $e) {
-            Log::error('Error editing VCard: ' . $e->getMessage());
+            Log::error('Error editing VCard: ' );
             return redirect()->back()->withErrors(['error' => 'Unable to fetch VCard details for editing.']);
         }
     }
@@ -150,7 +150,7 @@ class CardController extends Controller
             return redirect()->route('admin.Vcardlist')->with('success', 'VCard updated successfully.');
     
         // } catch (Exception $e) {
-        //     Log::error('Error updating VCard: ' . $e->getMessage());
+        //     Log::error('Error updating VCard: ' );
         //     return redirect()->back()->withErrors(['error' => 'An error occurred while updating the VCard.']);
         // }
     }

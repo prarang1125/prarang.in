@@ -50,7 +50,7 @@ class ListingController extends Controller
 
     // } catch (\Exception $e) {
     //     // Detailed error message for debugging
-    //     return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+    //     return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
     // }
 }
 
@@ -309,7 +309,7 @@ class ListingController extends Controller
         
     } catch (\Exception $e) {
         // Catch any exceptions and return an error message
-        return redirect()->back()->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+        return redirect()->back()->withErrors(['error' => 'An error occurred: ']);
     }
 }
     

@@ -285,7 +285,7 @@ class BusinessListingController extends Controller
     
             return redirect()->route('vCard.business-listing')->with('success', 'सूची सफलतापूर्वक अद्यतन की गई!');
         // } catch (Exception $e) {
-        //     Log::error('Listing Update Error: ' . $e->getMessage());
+        //     Log::error('Listing Update Error: ' );
         //     return redirect()->back()->withErrors(['error' => 'An error occurred while updating the listing. Please try again.']);
         // }
     }

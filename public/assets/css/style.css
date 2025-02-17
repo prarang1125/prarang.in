@@ -72,20 +72,28 @@
 
 @media (max-width: 991px) {
     .sidebar-wrapper .toggle-icon {
-        display: block;
+        /* display: block; */
         position: absolute;
         top: 20px;
         right: 10px;
     }
+    
+    .sidebar-header .logo-icon {
+        display: block !important;
+        /* max-width: 100px; */
+    }
+
+    .sidebar-header {
+        display: contents !important;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+    }
 }
 
-
-
 @media (max-width: 768px) {
-    /* ... other mobile styles ... */
-
-    .navbar-toggler { /* Style the toggler if needed */
-        z-index: 1052; /* Ensure it's always on top */
+    .navbar-toggler { 
+        z-index: 1052; 
     }
 }
 

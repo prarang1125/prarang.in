@@ -204,12 +204,12 @@
         <div class="col-md-6 fixed-container">
             <div class="card border-0 shadow-sm">
                 <div class="card-body text-center">
-                    <h5 class="mb-3">अन्य जानकारी(Other Information)</h5>
+                    <h5 class="mb-3">अन्य जानकारी</h5>
                     <div class="container">
                         @foreach ($dynamicFields->chunk(3) as $chunk)
                             <div class="row d-flex justify-content-center align-items-center mb-2">
                                 @foreach ($chunk as $field)
-                                    <div class="col-4 text-center" onclick="addField('{{ $field->name }}', '{{ $field->icon }}')">
+                                    <div class="col-4 text-center" onclick="addField('{{ $field->name }}', '{{ $field->icon }}', '{{ $field->type }}')">
                                         <i class="{{ $field->icon }}" title="{{ $field->name }}" style="font-size: 24px;"></i>
                                         <p class="mt-1">{{ $field->name }}</p>
                                     </div>
@@ -219,7 +219,7 @@
                     </div>
                 </div>
             </div>
-        </div>               
+        </div>              
     </div>
 </div>
 
@@ -227,30 +227,39 @@
 
 <script>
 // Add dynamic fields and image preview logic here
-function addField(label, fieldName) {
-    const uniqueId = 'field-' + Date.now();
-    const fieldHTML = `
-        <div class="mb-3 d-flex align-items-center" id="${uniqueId}">
-            <div class="flex-grow-1">
-                <label for="${fieldName}" class="form-label">${label}</label>
-                <input type="text" class="form-control" name="dynamic_data[]" placeholder="${label} दर्ज करें">
-                <input type="hidden" name="dynamic_name[]" value="${label}">
-            </div>
-            <button type="button" class="btn btn-light ms-2" onclick="removeField('${uniqueId}')">X</button>
-        </div>
-    `;
-    const dynamicFields = document.getElementById('dynamic-fields');
-    if (dynamicFields) {
-        dynamicFields.insertAdjacentHTML('beforeend', fieldHTML);
-    }
-}
+function addField(label, fieldName, fieldType) {
+        // Create a unique ID using timestamp
+        const uniqueId = 'field-' + Date.now();
 
-function removeField(uniqueId) {
-    const fieldElement = document.getElementById(uniqueId);
-    if (fieldElement) {
-        fieldElement.remove();
+        // Directly use the fieldType (from database) as the input type
+        const inputType = fieldType.toLowerCase();  // Directly using the database value (e.g., 'text', 'url', etc.)
+
+        // Prepare the HTML for the new dynamic field
+        const fieldHTML = `
+            <div class="mb-3 d-flex align-items-center" id="${uniqueId}">
+                <div class="flex-grow-1">
+                    <label for="${fieldName}" class="form-label">${label}</label>
+                    <input type="${inputType}" class="form-control" name="dynamic_data[]" placeholder="${label} दर्ज करें">
+                    <input type="hidden" name="dynamic_name[]" value="${label}">
+                </div>
+                <button type="button" class="btn btn-light ms-2" onclick="removeField('${uniqueId}')">X</button>
+            </div>
+        `;
+
+        // Get the container where the new field should be added
+        const dynamicFields = document.getElementById('dynamic-fields');
+        if (dynamicFields) {
+            dynamicFields.insertAdjacentHTML('beforeend', fieldHTML);
+        }
     }
-}
+
+    function removeField(uniqueId) {
+        // Find and remove the field based on its unique ID
+        const fieldToRemove = document.getElementById(uniqueId);
+        if (fieldToRemove) {
+            fieldToRemove.remove();
+        }
+    }
 
 // Image preview for Aadhar and profile images
 document.getElementById('aadhar').addEventListener('change', function(event) {

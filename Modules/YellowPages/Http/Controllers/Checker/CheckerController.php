@@ -74,7 +74,7 @@ class CheckerController extends Controller
         } catch (ModelNotFoundException $e) {
             return redirect()->route('checker.listing')->withErrors(['error' => 'Listing not found.']);
         } catch (Exception $e) {
-            return redirect()->route('checker.listing')->withErrors(['error' => 'An error occurred: ' . $e->getMessage()]);
+            return redirect()->route('checker.listing')->withErrors(['error' => 'An error occurred: ' ]);
         }
     }
     
@@ -93,7 +93,7 @@ class CheckerController extends Controller
             $users = User::whereIn('name', $Vcard_list->pluck('slug'))->get(); // Get all matching users
             return view('yellowpages::admin.checker-card-list', compact('Vcard_list', 'users'));
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Error fetching Vcard listings: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error fetching Vcard listings: ' );
         }
     }
    // Controller

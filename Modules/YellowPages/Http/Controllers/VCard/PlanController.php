@@ -58,7 +58,7 @@ class PlanController extends Controller
     
             return view("yellowpages::Vcard.planDetails", compact('plans', 'purchasePlans'));
         } catch (\Exception $e) {
-            Log::error('Error fetching plan details: ' . $e->getMessage());
+            Log::error('Error fetching plan details: ' );
             return redirect()->back()->with('error', 'Unable to fetch plan details.');
         }
     }

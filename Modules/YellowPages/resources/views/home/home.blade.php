@@ -113,33 +113,25 @@
             <p>{{ __('messages.Popular_Listings_In_Our_Directory') }}</p>
         </div>
 
-        <div class="container" data-aos="fade-up" data-aos-delay="100">
-            <div class="swiper init-swiper">
-                <div class="swiper-wrapper">
-                    @foreach ($listings as $listing)
-                        <div class="swiper-slide">
-                            <a href="{{ route('yp.listing-details', ['city_slug' => $listing->city->name, 'listing_title' => $listing->listing_title, 'listing_id' => $listing->id]) }}"
-                                style="display: block;">
-                                <div class="listing-item"
-                                    style="background: #fff; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); padding: 15px; text-align: center; transition: 0.3s;">
-                                    <img src="{{ Storage::url($listing->feature_img ?? 'default.jpg') }}"
-                                        style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;"
-                                        alt="{{ $listing->listing_title ?? 'No Title' }}">
-                                    <div class="listing-details">
-                                        <h3 style="font-size: 1.5rem; margin-bottom: 10px;">
-                                            {{ $listing->listing_title ?? 'No Title' }}</h3>
-                                        <p style="font-size: 1rem; color: #555;">Category:
-                                            {{ $listing->category->name ?? 'N/A' }}</p>
-                                        <p style="font-size: 1rem; color: #555;">Address:
-                                            {{ $listing->business_address ?? 'No Address' }}</p>
-                                        <p style="font-size: 1rem; color: #555;">
-                                            {{ $listing->is_open ? 'Open' : 'Closed' }}</p>
-                                    </div>
-                                </div>
-                            </a>
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+        <div class="swiper init-swiper">
+            <div class="swiper-wrapper">
+                @foreach($topRatedListings as $listing)
+                <div class="swiper-slide">
+                  <a href="{{ route('yp.listing-details', ['city_slug' => $listing->city->name, 'listing_title' => $listing->listing_title, 'listing_id' => $listing->id]) }}" style="display: block;">
+                    <div class="listing-item" style="background: #fff; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); padding: 15px; text-align: center; transition: 0.3s;">
+                        <img src="{{ Storage::url($listing->feature_img?? 'default.jpg') }}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;" alt="{{ $listing->listing_title ?? 'No Title' }}">
+                        <div class="listing-details">
+                            <h3 style="font-size: 1.5rem; margin-bottom: 10px;">{{ $listing->listing_title ?? 'No Title' }}</h3>
+                            <p style="font-size: 1rem; color: #555;">Category: {{ $listing->category->name ?? 'N/A' }}</p>
+                            <p style="font-size: 1rem; color: #555;">Address: {{ $listing->business_address ?? 'No Address' }}</p>
+                            <p style="font-size: 1rem; color: #555;">{{ $listing->is_open ? 'Open' : 'Closed' }}</p>
                         </div>
-                    @endforeach
+                    </div>
+                    </a>
                 </div>
+                @endforeach
+            </div>
 
                 <!-- Pagination -->
                 <div class="swiper-pagination"></div>

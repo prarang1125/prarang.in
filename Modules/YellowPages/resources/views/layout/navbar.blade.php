@@ -1,5 +1,5 @@
 <style>
-    /* General Styles */
+ /* General Styles */
 header.header {
     background-color: #f8f9fa;
     padding: 10px 20px;
@@ -22,25 +22,35 @@ header.header {
     .mobile-nav-toggle {
         display: none;
     }
-
-
 }
 
-/* Mobile View - Handle dropdown on tap */
 @media (max-width: 768px) {
-    .navmenu ul li a {
-        font-size: 1.1rem;
+    .navmenu ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        background: white;
+        width: 100%;
+        left: 0;
+        top: 50px; /* Adjust based on your header */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    
+    .navmenu ul.show {
+        display: flex;
     }
 
-    /* .navmenu ul li .dropdown-menu {
+    .dropdown-menu {
         display: none;
-    } */
+        position: relative; /* Fix for mobile */
+    }
 
-    .navmenu ul li.show .dropdown-menu {
+    .dropdown.show .dropdown-menu {
         display: block;
     }
-
 }
+
+
 .dropdown-menu {
     display: none;
     position: absolute;
@@ -53,8 +63,9 @@ header.header {
     display: block;
 }
 
-/* Import Google Fonts */
-
+.dropdown-icon {
+    transition: transform 0.3s ease;
+}
 
 
 </style>
@@ -98,7 +109,7 @@ header.header {
                             <li><a href="{{ route('vCard.dashboard') }}">डैशबोर्ड(Dashboard)</a></li>
                             <li><a href="{{ route('yp.getLocationData') }}">सूची जोड़ें</a></li>
                             <li>
-                                <a href="{{ route('yp.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <a href="{{ route('vCard.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     लॉगआउट(logout)
                                 </a>
                             </li>
@@ -122,27 +133,42 @@ header.header {
 </header>
 
 <script>
+let isMenuOpen = false; // Track menu state
 
-    function toggleMenu() {
+function toggleMenu() {
     const menu = document.querySelector('.navmenu ul');
     menu.classList.toggle('show');
-   }
-
-function toggleDropdown(category) {
-    const dropdown = category.querySelector('.dropdown-menu');
-    category.classList.toggle('show');  // Show or hide the dropdown
-
-    // Toggle the dropdown icon
-    const icon = category.querySelector('.dropdown-icon');
-    icon.classList.toggle('show');  // Optional: Rotate the icon on open/close
+    isMenuOpen = menu.classList.contains('show'); // Update menu state
 }
 
-// Attach the toggleDropdown function to the category items
-document.querySelectorAll('.navmenu ul .dropdown > a').forEach(function(categoryLink) {
-    categoryLink.addEventListener('click', function(event) {
-        event.preventDefault();  // Prevent default link behavior
-        toggleDropdown(categoryLink.parentElement);  // Pass the parent <li> element
+function toggleDropdown(category) {
+    category.classList.toggle('show');
+}
+
+// Handle menu toggle button (☰ / X)
+document.querySelector('.mobile-nav-toggle').addEventListener('click', function (event) {
+    event.stopPropagation(); // Prevent it from triggering document click
+    toggleMenu();
+});
+
+// Handle dropdown click (Cities)
+document.querySelectorAll('.navmenu ul .dropdown > a').forEach(function (categoryLink) {
+    categoryLink.addEventListener('click', function (event) {
+        event.preventDefault(); // Stop link navigation
+        event.stopPropagation(); // Stop it from triggering document click
+        toggleDropdown(categoryLink.parentElement);
     });
+});
+
+// Close menu when clicking outside (but NOT when clicking inside)
+document.addEventListener('click', function (event) {
+    const menu = document.querySelector('.navmenu ul');
+    const toggleButton = document.querySelector('.mobile-nav-toggle');
+
+    // Close menu if clicking outside (not on menu or toggle button)
+    if (isMenuOpen && !menu.contains(event.target) && !toggleButton.contains(event.target)) {
+        toggleMenu();
+    }
 });
 
 </script>
