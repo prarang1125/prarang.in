@@ -13,31 +13,31 @@ header.header {
 
 .mobile-nav-toggle {
     display: block;
-    font-size: 1.2rem; 
+    font-size: 1.2rem;
     cursor: pointer;
     color: #333;
 }
 
 @media (min-width: 769px) {
     .mobile-nav-toggle {
-        display: none; 
+        display: none;
     }
 
-   
+
 }
 
 /* Mobile View - Handle dropdown on tap */
 @media (max-width: 768px) {
     .navmenu ul li a {
-        font-size: 1.1rem; 
+        font-size: 1.1rem;
     }
 
     /* .navmenu ul li .dropdown-menu {
-        display: none; 
+        display: none;
     } */
 
     .navmenu ul li.show .dropdown-menu {
-        display: block; 
+        display: block;
     }
 
 }
@@ -53,6 +53,9 @@ header.header {
     display: block;
 }
 
+/* Import Google Fonts */
+
+
 
 </style>
 
@@ -60,8 +63,21 @@ header.header {
     <div class="container position-relative d-flex align-items-center justify-content-between">
         <a href="{{ route('yp.home') }}" class="logo">
             <img src="{{ asset('assets/images/logo/yellow_logo.png') }}" alt="Logo">
-        </a>
 
+
+            {{-- <div class="logo-box">
+                <div class="logo-text">
+                    <p>PRARANG</p>
+                    <span>Knowledge Webs</span>
+                </div>
+                <div class="logoimg">
+                    <img src="https://www.prarang.in/home-assets/image/logo.png" alt="">
+                </div>
+
+            </div> --}}
+
+
+        </a>
         <nav id="navmenu" class="navmenu">
             <ul>
                 <li class="dropdown" id="categories-menu">
@@ -106,7 +122,7 @@ header.header {
 </header>
 
 <script>
-    
+
     function toggleMenu() {
     const menu = document.querySelector('.navmenu ul');
     menu.classList.toggle('show');

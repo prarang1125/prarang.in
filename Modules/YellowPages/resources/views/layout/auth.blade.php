@@ -84,8 +84,8 @@
       margin: 10px 0;
       height: 55px;
       border-radius: 5px;
-      display: grid;
-      grid-template-columns: 15% 85%;
+      /* display: grid;
+      grid-template-columns: 15% 85%; */
       padding: 0 0.4rem;
       position: relative;
     }

@@ -12,6 +12,8 @@
     <meta property="og:site_name" content="{{ $post['siteName'] ?? 'Prarang' }}" />
 
     <!-- Open Graph Tags -->
+
+
     <meta property="og:title" content="{{ $post['Title'] ?? 'Default Title' }}" />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="{{ $post->images[0]->imageUrl ?? 'default-image-url.jpg' }}" />
@@ -22,21 +24,25 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     {!! $portal->header_scripts !!}
-
     <style>
-/* Remove all formatting from all tags inside post-description */
-.col-sm-9 .main-post .post-description,
-.col-sm-9 .main-post .post-description * {
-   /* all: unset !important;  /* Removes all styles */
-    white-space: pre-line !important; /* Ensures sentence wrapping */
-    word-break: normal !important; /* Prevents word breaking */
-    overflow-wrap: anywhere !important; /* Ensures natural text flow */
-    max-width: 100% !important; /* Prevents overflow */
-    display: block !important; /* Ensures block-level behavior */
-}
+        /* Remove all formatting from all tags inside post-description */
+        .col-sm-9 .main-post .post-description,
+        .col-sm-9 .main-post .post-description * {
+            /* all: unset !important;  /* Removes all styles */
+            white-space: pre-line !important;
+            /* Ensures sentence wrapping */
+            word-break: normal !important;
+            /* Prevents word breaking */
+            overflow-wrap: anywhere !important;
+            /* Ensures natural text flow */
+            max-width: 100% !important;
+            /* Prevents overflow */
+            display: block !important;
+            /* Ensures block-level behavior */
+        }
 
 
-       body {
+        body {
             font-family: Arial, sans-serif;
             line-height: 1.8;
             margin: 0;
@@ -493,26 +499,25 @@
 
         }
 
-	/* Figcaption */
-.post-description figure figcaption{
- font-size:13px;
- text-align:center;
-}
+        /* Figcaption */
+        .post-description figure figcaption {
+            font-size: 13px;
+            text-align: center;
+        }
 
-/* Image */
-.post-description figure img{
- margin-bottom:0px;
-}
+        /* Image */
+        .post-description figure img {
+            margin-bottom: 0px;
+        }
 
-/* Post description */
-.col-sm-9 .main-post .post-description{
- font-size:14px !important;
- line-height:2.56em;
-}
+        /* Post description */
+        .col-sm-9 .main-post .post-description {
+            font-size: 14px !important;
+            line-height: 2.56em;
+        }
 
-/* Remove all formatting from all tags inside post-description */
-
-</style>
+        /* Remove all formatting from all tags inside post-description */
+    </style>
 </head>
 
 <body>
@@ -572,7 +577,7 @@
                         @endif
                     </div>
                     @php
-                        $chitti_id=$post['chittiId'];
+                        $chitti_id = $post['chittiId'];
                     @endphp
                     <div class="main-image">
                         @if ($post->images[0]->VideoExist == 1)
@@ -676,38 +681,31 @@
             });
         </script>
     @endif
-
-
     <x-post.footer :city="$city_name" />
     <script src='{{ asset('location.js') }}'></script>
     <script>
+        collectAndSendInformation('{{ $chitti_id }}', '{{ $city_name }}');
 
-        collectAndSendInformation('{{$chitti_id}}', '{{ $city_name }}');
+        document.addEventListener('DOMContentLoaded', () => {
+            const descriptionData = document.querySelector('.post-description');
 
-     document.addEventListener('DOMContentLoaded', () => {
-    const descriptionData = document.querySelector('.post-description');
-    
-    if (descriptionData) {
-        descriptionData.querySelectorAll('table').forEach(tableElement => {
-            // Add 'table' and 'table-sm' classes to the table element
-            tableElement.classList.add('table');
-            
-            // Create a new div with the 'table-responsive' class
-            const wrapperDiv = document.createElement('div');
-            wrapperDiv.classList.add('table-responsive');
-            
-            // Wrap the table inside the new div
-            tableElement.parentNode.insertBefore(wrapperDiv, tableElement);
-            wrapperDiv.appendChild(tableElement);
+            if (descriptionData) {
+                descriptionData.querySelectorAll('table').forEach(tableElement => {
+                    // Add 'table' and 'table-sm' classes to the table element
+                    tableElement.classList.add('table');
+
+                    // Create a new div with the 'table-responsive' class
+                    const wrapperDiv = document.createElement('div');
+                    wrapperDiv.classList.add('table-responsive');
+
+                    // Wrap the table inside the new div
+                    tableElement.parentNode.insertBefore(wrapperDiv, tableElement);
+                    wrapperDiv.appendChild(tableElement);
+                });
+            }
         });
-    }
-});
-
-
     </script>
     {!! $portal->footer_scripts !!}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-
 </body>
-
 </html>

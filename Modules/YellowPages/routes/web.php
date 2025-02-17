@@ -25,8 +25,13 @@ use Modules\YellowPages\Http\Controllers\VCard\CreateVCardController;
 use Modules\YellowPages\Http\Controllers\VCard\BusinessListingController;
 use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
 
-// Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function () {
- Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
+
+Route::get('yellow-pages/{any}', function ($any) {
+    return redirect("/yp/".$any);
+})->where('any', '.*');
+
+
+Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
 
     ##------------------------- Auth ---------------------##
     Route::get('/login', [AuthModalController::class, 'index'])->name('yp.login');
@@ -54,7 +59,7 @@ use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
       Route::get('/submit-listing', [ListingController::class, 'submit_listing'])->name('yp.listing.submit');
       Route::get('/Save-listing/{id}', [ListingController::class, 'save_listing'])->name('yp.listing.save');
     });
-    
+
     ##------------------------- END ---------------------##
 
     ##------------------------- Review Listing ---------------------##
