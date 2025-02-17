@@ -50,8 +50,7 @@
             <i class="bx bxs-user text-gray-600 w-5 h-5"></i>
             <span class="text-gray-500 text-sm">नाम (Name):</span>
             <span class="text-gray-700 font-semibold">
-              {{ $user->name ?? 'Not Available' }}
-              {{ $user->surname ?? 'Not Available' }}
+              {{ $user->name ?? 'Not Available' }} {{ $user->surname ?? 'Not Available' }}
             </span>
           </div>
 
@@ -83,26 +82,48 @@
           <span class="text-gray-600">
             {{ $user->address->area_name ?? 'Area not available' }},
             {{ $user->address->city->name ?? 'City not available' }},
-            {{ $user->address->postal_code  }}
+            {{ $user->address->postal_code }}
           </span>
         </div>
         @endif
 
+        <!-- Social Media Section -->
         @if (!empty($vcard->dynamicFields))
         <div class="text-lg font-semibold text-gray-800 mt-2 mb-1">
-          सोशल मीडिया (Social Media)
+            सोशल मीडिया (Social Media)
         </div>
         @foreach ($vcard->dynamicFields as $social)
-          <div class="p-2 hover:bg-gray-50 rounded-lg transition-colors">
-            <span class="text-gray-500 text-sm">
-             {{ $social->title ?? 'सोशल मीडिया (Social Media)' }}:   <span class="text-gray-700 font-semibold">{{ $social->data ?? 'Not Available' }}</span>
-            </span>
-          </div>
+            <div class="p-2 hover:bg-gray-50 rounded-lg transition-colors">
+                <span class="text-gray-500 text-sm">
+                    {{ $social->title ?? 'सोशल मीडिया (Social Media)' }}:
+                    <span class="text-gray-700 font-semibold">
+                        @if (!empty($social->data))
+                            @php
+                                $socialData = $social->data;
+                            @endphp
+                            
+                            @if (filter_var($socialData, FILTER_VALIDATE_URL))
+                                <!-- If it's a valid URL, make it a clickable link -->
+                                <a href="{{ $socialData }}" target="_blank" class="text-blue-500 hover:underline">{{ $socialData }}</a>
+                            @elseif (preg_match('/^\+?[0-9]{10,15}$/', $socialData))
+                                <!-- If it's a valid phone number, make it a clickable link for WhatsApp -->
+                                <a href="https://wa.me/{{ $socialData }}" target="_blank" class="text-green-500 hover:underline">{{ $socialData }}</a>
+                            @else
+                                <!-- If it's neither a URL nor a phone number, display it as plain text -->
+                                {{ $socialData }}
+                            @endif
+                        @else
+                            <!-- If data is empty, show "Not Available" -->
+                            Not Available
+                        @endif
+                    </span>
+                </span>
+            </div>
         @endforeach
-      @endif
+        @endif
       </div>
 
-      <!-- Profile & QR Code -->
+      <!-- Profile & QR Code Section -->
       <div class="bg-gradient-to-b from-indigo-50 to-white p-3 flex flex-col items-center justify-between md:w-64">
         <div class="relative mb-2">
           <div class="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden ring-4 ring-white shadow-lg">

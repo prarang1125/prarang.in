@@ -52,6 +52,5 @@
     {{-- <link rel="stylesheet" href="{{ asset('assets/plugins/ckeditor/contents.css') }}"> --}}
 	{{-- <title>Prarang Admin Home</title> --}}
     <title>@yield('title', 'Login')</title>
-
 </head>
 <body>
