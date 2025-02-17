@@ -16,5 +16,9 @@ class Address extends Model
 {
     return $this->belongsTo(City::class); // assuming `city_id` is the foreign key
 }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
 }

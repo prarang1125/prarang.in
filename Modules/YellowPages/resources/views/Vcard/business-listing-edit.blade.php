@@ -70,112 +70,80 @@
                 <label for="tagline" class="form-label">टैगलाइन</label>
                 <input type="text" id="tagline" name="tagline" class="form-control" value="{{ old('tagline', $listing->tagline) }}" placeholder="Enter tagline">
             </div>
-            <div class="row">
-                <div class="col-md-6 mb-3">
-                    <label for="businessName" class="form-label">व्यवसाय/कंपनी का नाम</label>
-                    <input type="text" id="businessName" name="businessName" class="form-control" value="{{ old('business_name', $listing->business_name) }}" placeholder="Enter business name">
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="businessName" class="form-label">व्यवसाय/कंपनी का नाम</label>
+                        <input type="text" id="businessName" name="businessName" class="form-control" placeholder="व्यवसाय का नाम दर्ज करें" value="{{ old('businessName',$listing->business_name) }}">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="primaryPhone" class="form-label">फ़ोन नंबर</label>
+                        <input type="text" id="primaryPhone" name="primaryPhone" class="form-control" placeholder="प्राथमिक फ़ोन दर्ज करें" value="{{ old('primaryPhone', $user->phone) }}">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="primaryContact" class="form-label">संपर्क नाम</label>
+                        <input type="text" id="primaryContact" name="primaryContact" class="form-control" placeholder="प्राथमिक संपर्क नाम दर्ज करें" value="{{ old('primaryContact', $user->name) }}">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="primaryEmail" class="form-label">ईमेल</label>
+                        <input type="text" id="primaryEmail" name="primaryEmail" class="form-control" placeholder="प्राथमिक ईमेल दर्ज करें" value="{{ old('primaryEmail', $user->email) }}">
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="businessType" class="form-label">व्यवसाय/कंपनी कानूनी प्रकार *</label>
+                        <select id="businessType" name="businessType" class="form-select">
+                            <option value="" disabled selected>प्रकार चुनें</option>
+                            @foreach($company_legal_type as $Cl_type)
+                                <option value="{{ $Cl_type->id }}" {{ old('businessType',$listing->legal_type_id) == $Cl_type->id ? 'selected' : '' }}>
+                                    {{ $Cl_type->name }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="employee_range" class="form-label">व्यवसाय/कंपनी कर्मचारियों की संख्या (लगभग) *</label>
+                        <select id="employee_range" name="employees" class="form-select">
+                            <option value="" disabled selected>कर्मचारियों की संख्या चुनें</option>
+                            @foreach($number_of_employees as $number_employee)
+                                <option value="{{ $number_employee->id }}" 
+                                    {{ old('employees', $listing->employee_range_id) == $number_employee->id ? 'selected' : '' }}>
+                                    {{ $number_employee->range }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>                    
+                    <div class="col-md-6 mb-3">
+                        <label for="turnover" class="form-label">व्यवसाय/कंपनी का मासिक कारोबार (लगभग) *</label>
+                        <select id="turnover" name="turnover" class="form-select">
+                            <option value="" disabled selected>टर्नओवर(Turnover) चुनें</option>
+                            @foreach($monthly_turnovers as $turnovers)
+                                <option value="{{ $turnovers->id }}" {{ old('turnover',$listing->turnover_id) == $turnovers->id ? 'selected' : '' }}>
+                                    {{ $turnovers->range }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="advertising" class="form-label">व्यवसाय/कंपनी मासिक विज्ञापन (मध्यम)</label>
+                        <select id="advertising" name="advertising" class="form-select">
+                            <option value="" disabled selected>विज्ञापन का चयन करें</option>
+                            @foreach($monthly_advertising_mediums as $advertising)
+                                <option value="{{ $advertising->id }}" {{ old('advertising',$listing->advertising_medium_id) == $advertising->id ? 'selected' : '' }}>
+                                    {{ $advertising->medium }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="advertising_price" class="form-label">व्यवसाय/कंपनी विज्ञापन (मध्यम) मूल्य*</label>
+                        <select id="advertising_price" name="advertising_price" class="form-select">
+                            <option value="" disabled selected>विज्ञापन मूल्य चुनें</option>
+                            @foreach($monthly_advertising_prices as $advertising)
+                                <option value="{{ $advertising->id }}" {{ old('advertising_price',$listing->advertising_price_id) == $advertising->id ? 'selected' : '' }}>
+                                    {{ $advertising->range }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
                 </div>
-                <div class="col-md-6 mb-3">
-                    <label for="businessAddress" class="form-label">व्यवसाय/कंपनी का पता</label>
-                    <input type="text" id="businessAddress" name="businessAddress" class="form-control" value="{{ old('business_address', $listing->business_address) }}" placeholder="Enter business address">
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="primaryPhone" class="form-label">प्राथमिक फ़ोन नंबर</label>
-                    <input type="text" id="primaryPhone" name="primaryPhone" class="form-control" value="{{ old('primary_phone', $listing->primary_phone) }}" placeholder="Enter primary phone">
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="secondaryPhone" class="form-label">द्वितीय फ़ोन नंबर</label>
-                    <input type="text" id="secondaryPhone" name="secondary_phone" class="form-control" value="{{ old('secondary_phone', $listing->secondary_phone) }}" placeholder="Enter secondary phone">
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="primaryContact" class="form-label">प्राथमिक संपर्क नाम</label>
-                    <input type="text" id="primaryContact" name="primaryContact" class="form-control" value="{{ old('primary_contact_name', $listing->primary_contact_name) }}"placeholder="Enter primary contact name">
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="primaryEmail" class="form-label">प्राथमिक संपर्क ईमेल</label>
-                    <input type="email" id="primaryEmail" name="primaryEmail" class="form-control" value="{{ old('primary_contact_email', $listing->primary_contact_email) }}" placeholder="Enter primary email">
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="secondaryContact" class="form-label">द्वितीयक संपर्क नाम
-                    </label>
-                    <input type="text" id="secondaryContact" name="secondaryContactName" class="form-control" value="{{ old('secondary_contact_name', $listing->secondary_contact_name) }}" placeholder="Enter secondary contact name">
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="secondaryEmail" class="form-label">द्वितीयक संपर्क ईमेल</label>
-                    <input type="email" id="secondaryEmail" name="secondaryEmail" class="form-control"  value="{{ old('secondary_contact_email', $listing->secondary_contact_email) }}" placeholder="Enter secondary email">
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="businessType" class="form-label">व्यवसाय/कंपनी कानूनी प्रकार *</label>
-                    <select id="businessType" name="businessType" class="form-select">
-                        <option value="">Select Type</option>
-                        @foreach($company_legal_types as $Cl_type)
-                            <option value="{{ $Cl_type->id }}" 
-                                {{ (old('legal_type_id', $listing->legal_type_id) == $Cl_type->id) ? 'selected' : '' }}>
-                                {{ $Cl_type->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>                
-                <div class="col-md-6 mb-3">
-                    <label for="employee_range" class="form-label">व्यवसाय/कंपनी कर्मचारियों की संख्या (लगभग) *</label>
-                    <select id="employee_range" name="employees" class="form-select">
-                        <option selected>कर्मचारियों की संख्या चुनें</option>
-                        @foreach($number_of_employees as $number_employee)
-                        <option value="{{ $number_employee->id }}" 
-                            {{ (old('employee_range_id', $listing->employee_range_id) == $number_employee->id) ? 'selected' : '' }}>
-                            {{ $number_employee->range }}
-                        </option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="trunover" class="form-label">व्यवसाय/कंपनी का मासिक कारोबार (लगभग) *</label>
-                    <select id="trunover" name="turnover" class="form-select">
-                        <option selected>टर्नओवर चुनें</option>
-                        @foreach($monthly_turnovers as $turnovers)
-                        <option value="{{ $turnovers->id }}" 
-                            {{ (old('turnover_id', $listing->turnover_id) == $turnovers->id) ? 'selected' : '' }}>
-                            {{ $turnovers->range }}
-                        </option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="advertising" class="form-label">व्यवसाय/कंपनी मासिक विज्ञापन (मध्यम)</label>
-                    <select id="advertising" name="advertising" class="form-select">
-                        <option selected>विज्ञापन का चयन करें</option>
-                        @foreach($monthly_advertising_mediums as $advertising)
-                        <option value="{{ $advertising->id }}" 
-                            {{ (old('advertising_medium_id', $listing->advertising_medium_id) == $advertising->id) ? 'selected' : '' }}>
-                            {{ $advertising->medium}}
-                        </option>
-                        @endforeach
-                    </select>
-                </div>
-                <div class="col-md-6 mb-3">
-                    <label for="advertising_price" class="form-label">व्यवसाय/कंपनी विज्ञापन (मध्यम) मूल्य*</label>
-                    <select id="advertising_price" name="advertising_price" class="form-select">
-                        <option selected>विज्ञापन मूल्य चुनें</option>
-                        @foreach($monthly_advertising_prices as $advertising)
-                        <option value="{{ $advertising->id }}" 
-                            {{ (old('advertising_medium_id ', $listing->advertising_price_id) == $advertising->id) ? 'selected' : '' }}>
-                            {{ $advertising->range }}
-                        </option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-        <div style="max-width: 900px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-            <h5 style="margin-bottom: 15px;">पता विवरण</h5>
-        <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
-            <div style="display: flex; gap: 20px;">
-                <!-- Pin Code Field -->
-                <div style="flex: 1;">
-                    <label for="pincode" class="form-label">Pin Code</label>
-                    <input type="text" id="pincode" name="pincode" class="form-control" value="{{ old('primary_contact_email', $listing->pincode) }}" placeholder="Enter Pin Code">
-                </div>
-            </div>
-        </div>
         <br>
         <br>
         <div style="max-width: 900px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
@@ -197,16 +165,12 @@
             </div>
         </div>
         <br><br>
-        <div style="max-width: 900px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
+        <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
             <h5 style="margin-bottom: 15px;">और जानकारी</h5>
             <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
             <div style="margin-top: 15px;">
                 <label for="description">विवरण</label>
-                <textarea id="description" name="description" rows="4" placeholder="Enter description here..." style="width: 100%;">{{ old('description', $listing->description) }}</textarea>
-            </div>
-            <div style="margin-top: 15px;">
-                <label for="description">टैग या कीवर्ड (अल्पविराम से अलग)</label>
-                <textarea id="tags_keywords" name="tags_keywords" rows="4" placeholder="Enter Tags or Keywords (Comma Separated)" style="width: 100%;">{{ old('tags_keywords', $listing->tags_keywords) }}</textarea>
+                <textarea id="description" name="description" rows="4" style="width: 100%;">{{ old('description',$listing->description) }}</textarea>
             </div>
         </div>
             <br>
@@ -216,123 +180,151 @@
             
                 <!-- Schedule Container -->
                 <div id="schedule-container">
-                    @foreach($listinghours as $hour)
-                        <div class="day-schedule">
-                            <select name="day[]" style="padding: 5px; border: 1px solid #ccc; border-radius: 3px; width: 120px;">
-                                <option value="">-- दिन चुनें --</option>
-                                <option value="monday" {{ $hour->day == 'monday' ? 'selected' : '' }}>सोमवार</option>
-                                <option value="tuesday" {{ $hour->day == 'tuesday' ? 'selected' : '' }}>मंगलवार</option>
-                                <option value="wednesday" {{ $hour->day == 'wednesday' ? 'selected' : '' }}>बुधवार</option>
-                                <option value="thursday" {{ $hour->day == 'thursday' ? 'selected' : '' }}>गुरुवार</option>
-                                <option value="friday" {{ $hour->day == 'friday' ? 'selected' : '' }}>शुक्रवार</option>
-                                <option value="saturday" {{ $hour->day == 'saturday' ? 'selected' : '' }}>शनिवार</option>
-                                <option value="sunday" {{ $hour->day == 'sunday' ? 'selected' : '' }}>रविवार</option>
-                            </select>
+                    @if($listinghours->isNotEmpty())
+                        @foreach($listinghours as $hour)
+                            <div class="day-schedule">
+                                <select name="day[]" class="day-select">
+                                    <option value="">-- दिन चुनें --</option>
+                                    <option value="monday" {{ $hour->day == 'monday' ? 'selected' : '' }}>सोमवार</option>
+                                    <option value="tuesday" {{ $hour->day == 'tuesday' ? 'selected' : '' }}>मंगलवार</option>
+                                    <option value="wednesday" {{ $hour->day == 'wednesday' ? 'selected' : '' }}>बुधवार</option>
+                                    <option value="thursday" {{ $hour->day == 'thursday' ? 'selected' : '' }}>गुरुवार</option>
+                                    <option value="friday" {{ $hour->day == 'friday' ? 'selected' : '' }}>शुक्रवार</option>
+                                    <option value="saturday" {{ $hour->day == 'saturday' ? 'selected' : '' }}>शनिवार</option>
+                                    <option value="sunday" {{ $hour->day == 'sunday' ? 'selected' : '' }}>रविवार</option>
+                                </select>
             
-                            <input type="time" name="open_time[]" value="{{ $hour->open_time }}" style="padding: 5px; border: 1px solid #ccc; border-radius: 3px;">
-                            <label style="font-weight: bold;">to</label>
-                            <input type="time" name="close_time[]" value="{{ $hour->close_time }}" style="padding: 5px; border: 1px solid #ccc; border-radius: 3px;">
+                                <input type="time" name="open_time[]" class="time-input" value="{{ $hour->open_time }}">
+                                <label>to</label>
+                                <input type="time" name="close_time[]" class="time-input" value="{{ $hour->close_time }}">
             
-                            <label>
-                                <input type="checkbox" name="is_24_hours[]" {{ $hour->is_24_hours ? 'checked' : '' }} style="cursor: pointer;">24 घंटे
-                            </label>
+                                <label>
+                                    <input type="checkbox" class="is-24-hours" {{ $hour->is_24_hours ? 'checked' : '' }}> 24 घंटे
+                                </label>
+                                <label>
+                                    <input type="checkbox" class="add-2nd-slot" {{ $hour->open_time_2 ? 'checked' : '' }}> दूसरा स्लॉट जोड़ें
+                                </label>
+                                <button type="button" class="remove-day-btn">&#x2716;</button>
             
-                            <button type="button" class="remove-day-btn" style="background: none; border: none; color: red; font-size: 16px; cursor: pointer;">&#x2716;</button>
-                        </div>
-                    @endforeach
+                                <!-- Second Time Slot -->
+                                <div class="second-time-slot" style="display: {{ $hour->open_time_2 ? 'block' : 'none' }}; margin-top: 10px;">
+                                    <input type="time" name="open_time_2[]" class="time-input" value="{{ $hour->open_time_2 }}">
+                                    <label>to</label>
+                                    <input type="time" name="close_time_2[]" class="time-input" value="{{ $hour->close_time_2 }}">
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <p>कोई व्यावसायिक घंटे सेट नहीं हैं।</p>
+                    @endif
                 </div>
             
                 <!-- Add New Day Button -->
-                <button type="button" id="add-day-btn" style="margin-top: 10px; padding: 8px 12px; background: #007bff; color: #fff; border: none; border-radius: 3px; cursor: pointer; font-size: 14px;">+ दिन जोड़ें</button>
-            </div>
+                <button type="button" id="add-day-btn">+ Add Day</button>
+            </div>                
             
             <br>
-            <div style="max-width: 900px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-                <h5 style="margin-bottom: 15px;">पते की जानकारी</h5>
+            <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
+                <h5 style="margin-bottom: 15px;">व्यवसाय/कंपनी का पता</h5>
                 <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
+            
                 <div style="margin-bottom: 10px;">
-                    <label for="street_address">पूरा पता:</label>
-                    <input type="text" id="street_address" name="fullAddress"  value="{{ old('primary_contact_email', $listing->full_address) }}" placeholder="123 Main St" style="width: 100%; padding: 8px;">
+                    <label for="street">व्यवसाय/कंपनी का पता (सड़क/गली):</label>
+                    <input type="text" id="street" name="street" placeholder="सड़क/गली का नाम दर्ज करें" style="width: 100%; padding: 8px;" value="{{ old('street', $address->street ?? '') }}">
                 </div>
-               
+            
+                <div style="margin-bottom: 10px;">
+                    <label for="area_name">क्षेत्र/इलाका:</label>
+                    <input type="text" id="area_name" name="area_name" placeholder="क्षेत्र का नाम दर्ज करें" style="width: 100%; padding: 8px;" value="{{ old('area_name', $address->area_name ?? '') }}">
+                </div>
+            
+                <div style="margin-bottom: 10px;">
+                    <label for="house_number">भवन संख्या:</label>
+                    <input type="text" id="house_number" name="house_number" placeholder="भवन संख्या दर्ज करें" style="width: 100%; padding: 8px;" value="{{ old('house_number', $address->house_number ?? '') }}">
+                </div>
+            
+                <div style="margin-bottom: 10px;">
+                    <label for="city_id">शहर:</label>
+                    <select id="city_id" name="city_id" style="width: 100%; padding: 8px;">
+                        <option selected disabled>शहर चुनें</option>
+                        @foreach($cities as $city)
+                            <option value="{{ $city->id }}" {{ old('city_id', $address->city_id ?? '') == $city->id ? 'selected' : '' }}>
+                                {{ $city->name }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+            
+                <div style="margin-bottom: 10px;">
+                    <label for="postal_code">पिन कोड:</label>
+                    <input type="text" id="postal_code" name="postal_code" placeholder="पिन कोड दर्ज करें" style="width: 100%; padding: 8px;" value="{{ old('postal_code', $address->postal_code ?? '') }}">
+                </div>
+            
                 <h5 style="margin-bottom: 15px;">संपर्क जानकारी</h5>
                 <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
+            
                 <div style="margin-bottom: 10px;">
                     <label for="website">वेबसाइट:</label>
-                    <input type="url" id="website" name="website" value="{{ old('primary_contact_email', $listing->website) }}" placeholder="https://example.com" style="width: 100%; padding: 8px;">
+                    <input type="url" id="website" name="website" placeholder="वेबसाइट का नाम दर्ज करें" style="width: 100%; padding: 8px;" value="{{ old('website', $listing->website ?? '') }}">
                 </div>
-                <div style="margin-bottom: 10px;">
-                    <label for="phone">फ़ोन:</label>
-                    <input type="tel" id="phone" name="phone" value="{{ old('primary_contact_email', $listing->phone) }}" placeholder="+1 234 567 8900" style="width: 100%; padding: 8px;">
-                </div>
-                <div style="margin-bottom: 10px;">
-                    <label for="whatsapp">व्हाट्सएप्प:</label>
-                    <input type="tel" id="whatsapp" name="whatsapp" value="{{ old('primary_contact_email', $listing->whatsapp) }}"  placeholder="+1 234 567 8900" style="width: 100%; padding: 8px;">
-                </div>
-            </div>
+            </div>      
             <br>
-            <div style="max-width: 900px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
+            <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
                 <h5 style="margin-bottom: 15px;">सोशल मीडिया लिंक</h5>
                 <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
-                <div class="social-media-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                    <select id="social_media" name="socialId" required style="flex: 1; padding: 8px;">
-                    <option selected>स्थान चुनें</option>
-                            @foreach($social_media as $social)
-                            <option value="{{ $social->id }}" 
-                                {{ (old('advertising_medium_id', $listing->social_id) == $social->id) ? 'selected' : '' }}>
-                                {{ $social->name }}
-                    </option>
-                            @endforeach
-                    </select>
-                    <input type="text" id="description" name="socialDescription" placeholder="Enter your link or details" style="flex: 2; padding: 8px;">
-                    {{-- <button type="button" id="addSocialMedia" style="padding: 10px 20px; background-color: #28a745; color: white; border: none; cursor: pointer;">
-                        +
-                    </button> --}}
-                </div>
-            </div>
-            <br>
-            <div style="max-width: 900px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 0 5px rgba(0,0,0,0.1);">
-                <h5 style="margin-bottom: 15px;">मिडिया</h5>
-                <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
-                <div style="border: 1px dashed #ddd; padding: 20px; text-align: center; color: #888; margin-bottom: 10px;">
-                <input type="file" name="image" style="display: block; margin-top: 10px;">
-                @if (!empty($listing->business_img))
-                <img src="{{ asset('storage/' . $listing->business_img) }}" alt="Business Image" style="max-width: 100px; max-height: 100px; margin-top: 10px;">
-            @endif  
+            
+                <div id="social-media-container">
+                    @if(!empty($social_media_data) && count($social_media_data) > 0)
+                        @foreach($social_media_data as $data)
+                            <div class="social-media-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                                <select name="socialId[]" style="flex: 1; padding: 8px;">
+                                    <option value="">स्थान चुनें</option>
+                                    @foreach($social_media as $social)
+                                        <option value="{{ $social->id }}" 
+                                            @if(isset($data->social_id) && $data->social_id == $social->id) selected @endif>
+                                            {{ $social->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <input type="text" name="socialDescription[]" value="{{ $data->description ?? '' }}" placeholder="अपना लिंक या विवरण दर्ज करें" style="flex: 2; padding: 8px;">
+                                <button type="button" class="removeSocialMedia" style="padding: 10px; background-color: red; color: white; border: none; cursor: pointer;">-</button>
+                            </div>
+                    @endforeach
+                    @else
+                        <div class="social-media-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
+                            <select name="socialId[]"  style="flex: 1; padding: 8px;">
+                                <option value="">स्थान चुनें</option>
+                                @foreach($social_media as $social)
+                                    <option value="{{ $social->id }}">{{ $social->name }}</option>
+                                @endforeach
+                            </select>
+                            <input type="text" name="socialDescription[]" placeholder="अपना लिंक या विवरण दर्ज करें" style="flex: 2; padding: 8px;">
+                            <button type="button" class="removeSocialMedia" style="padding: 10px; background-color: red; color: white; border: none; cursor: pointer;">-</button>
+                        </div>
+                    @endif
                 </div>
         
-                <div style="display: flex; gap: 10px; justify-content: space-between; margin-bottom: 10px;">
-                    <div style="flex: 1; padding: 10px; border: 1px solid #ddd; text-align: center;">
-                        <label for="coverImage" class="form-label">कवर छवि</label>
-                        <input type="file" id="coverImage" name="coverImage" class="form-control @error('coverImage') is-invalid @enderror">
-                        @if (!empty($listing->feature_img))
-                        <img src="{{ asset('storage/' . $listing->feature_img) }}" alt="Feature Image" style="max-width: 100px; max-height: 100px; margin-top: 10px;">
-                    @endif     
-                    </div>
-                    <div style="flex: 1; padding: 10px; border: 1px solid #ddd; text-align: center;">
-                        <label for="logo" class="form-label">प्रतीक चिन्ह</label>
-                        <input type="file" id="logo" name="logo" class="form-control @error('logo') is-invalid @enderror">
-                        @if (!empty($listing->logo))
-                            <img src="{{ asset('storage/' .$listing->logo)}}" alt="Logo" style="max-width: 100px; max-height: 100px; margin-top: 10px;">
-                        @endif
-                    </div>
-                </div>
-                <h5 style="margin-top: 20px; margin-bottom: 15px;">विशेषताएँ</h5>
-                <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                    <label for="featuresToggle" style="font-weight: bold;">विशेषताएँ</label>
-                    <!-- Automatically check the checkbox if data exists (faq) -->
-                    <input type="checkbox" id="featuresToggle" style="cursor: pointer;" onclick="toggleFAQSection()" {{ !empty($listing->faq) ? 'checked' : '' }}>
-                </div>
+                <!-- Add Button -->
+                <button type="button" id="addSocialMedia" style="padding: 10px; background-color: green; color: white; border: none; cursor: pointer; margin-top: 10px;">+</button>
+            </div>
+            <br>
+            <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 0 5px rgba(0,0,0,0.1);">
+                <h5 style="margin-bottom: 15px;">मिडिया</h5>
+                <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
                 
-                <div id="faqSection" style="display: none;">
-                    <div class="faq-item" style="margin-bottom: 10px;">
-                        <label>अक्सर पूछे जाने वाले प्रश्नों</label>
-                        <input type="text" name="faq" value="{{ old('faq', $listing->faq) }}" style="width: 100%; margin-bottom: 5px;">
-                        <textarea placeholder="Answer" name="answer" style="width: 100%; height: 60px;">{{ old('answer', $listing->answer) }}</textarea>
-                    </div>
-                    {{-- <div class="add-new" style="color: #007bff; cursor: pointer; font-size: 14px; display: inline-block; margin-top: 10px;" onclick="addFAQ()">+ नया जोड़ें</div> --}}
+                <!-- Single Image Upload -->
+                <div style="border: 1px dashed #ddd; padding: 20px; text-align: center; color: #888; margin-bottom: 10px;">
+                    <input type="file" id="imageUpload" name="image" style="display: block; margin-top: 10px;" onchange="previewImage(event, 'previewImage')">
+            
+                    <!-- Show Old Image if Exists -->
+                    <img id="previewImage" 
+                        src="{{ $listing->business_img ? asset('storage/'.$listing->business_img) : '' }}" 
+                        alt="Uploaded Image" 
+                        style="margin-top: 10px; max-width: 100px; border: 1px solid #ddd; {{ $listing->business_img ? '' : 'display: none;' }}">
+            
                 </div>
             </div>
+            
             <br>
 
         <!-- Submit Button -->
@@ -406,22 +398,84 @@ document.addEventListener('click', (e) => {
     }
 });
 
-function toggleFAQSection() {
-        const faqSection = document.getElementById('faqSection');
-        const featuresToggle = document.getElementById('featuresToggle');
 
-        // Toggle display based on checkbox state
-        if (featuresToggle.checked) {
-            faqSection.style.display = 'block';
-        } else {
-            faqSection.style.display = 'none';
-        }
+    function previewImage(event, imgId) {
+        let reader = new FileReader();
+        reader.onload = function(){
+        let output = document.getElementById(imgId);
+        output.src = reader.result;
+        output.style.display = "block";
+      };
+    reader.readAsDataURL(event.target.files[0]);
     }
 
-    // Initialize visibility based on the checkbox state when the page loads
-    document.addEventListener('DOMContentLoaded', function () {
-        toggleFAQSection(); // Set initial state based on checkbox status
+
+    document.addEventListener("DOMContentLoaded", function() {
+    // Add new social media row
+    document.getElementById("addSocialMedia").addEventListener("click", function() {
+        let container = document.getElementById("social-media-container");
+        console.log(container);
+        let newRow = document.createElement("div");
+        newRow.classList.add("social-media-row");
+        newRow.style.display = "flex";
+        newRow.style.alignItems = "center";
+        newRow.style.gap = "10px";
+        newRow.style.marginBottom = "10px";
+
+        let select = document.createElement("select");
+        select.name = "socialId[]";
+        // select.required = true;
+        select.style.flex = "1";
+        select.style.padding = "8px";
+
+        let defaultOption = document.createElement("option");
+        defaultOption.text = "स्थान चुनें";
+        defaultOption.value = "";
+        select.appendChild(defaultOption);
+
+        let socialMediaData = @json($social_media); // Convert Blade variable to JS array
+
+        socialMediaData.forEach(function(social) {
+            let option = document.createElement("option");
+            option.value = social.id;
+            option.text = social.name;
+            select.appendChild(option);
+        });
+
+        let input = document.createElement("input");
+        input.type = "text";
+        input.name = "socialDescription[]";
+        input.placeholder = "अपना लिंक या विवरण दर्ज करें";
+        input.style.flex = "2";
+        input.style.padding = "8px";
+
+        let removeButton = document.createElement("button");
+        removeButton.type = "button";
+        removeButton.textContent = "-";
+        removeButton.style.padding = "10px";
+        removeButton.style.backgroundColor = "red";
+        removeButton.style.color = "white";
+        removeButton.style.border = "none";
+        removeButton.style.cursor = "pointer";
+
+        removeButton.addEventListener("click", function() {
+            newRow.remove();
+        });
+
+        newRow.appendChild(select);
+        newRow.appendChild(input);
+        newRow.appendChild(removeButton);
+        container.appendChild(newRow);
     });
+
+    // Attach event listener to remove existing social media rows
+    document.querySelectorAll(".removeSocialMedia").forEach(button => {
+        button.addEventListener("click", function() {
+            this.parentElement.remove();
+        });
+    });
+});
+
 </script>
 
 @endsection

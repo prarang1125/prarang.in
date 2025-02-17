@@ -1,11 +1,14 @@
 @extends('yellowpages::layout.vcard.vcard')
 @section('title', 'Business Listing')
 
-@if(session('success'))
+{{-- @if(session('success'))
     <div class="alert alert-success">
         {{ session('success') }}
     </div>
-@endif
+@endif --}}
+
+
+
 
 @section('content')
 <!--start page wrapper -->
@@ -33,12 +36,19 @@
                     {{ session('success') }}
                 </div>
             @endif
+            @if(session('errors_message'))
+            <div class="alert alert-danger">
+            {{ session('errors_message') }}
+            </div>
+            @endif
+
+            
             <h6 class="mb-0 text-uppercase">वीकार्ड लिस्टिंग</h6>
             <hr/>
             <div class="card">
-                <div class="card-body d-flex justify-content-end align-items-center">
+                {{-- <div class="card-body d-flex justify-content-end align-items-center">
                     <a href="{{ route('vCard.createCard') }}" class="btn btn-primary">वीकार्ड संपादित करें</a>
-                </div>
+                </div> --}}
                 <div class="card-body">
                     <!-- Wrap the table in a responsive container -->
                     <div class="table-responsive">

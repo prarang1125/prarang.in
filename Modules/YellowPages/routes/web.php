@@ -54,7 +54,7 @@ use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
       Route::get('/submit-listing', [ListingController::class, 'submit_listing'])->name('yp.listing.submit');
       Route::get('/Save-listing/{id}', [ListingController::class, 'save_listing'])->name('yp.listing.save');
     });
-
+    
     ##------------------------- END ---------------------##
 
     ##------------------------- Review Listing ---------------------##
@@ -68,6 +68,8 @@ use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
     ##------------------------- END ---------------------##
 
     Route::get('/myweb/{slug}', [CreateVCardController::class, 'view'])->name('vCard.view');
+    Route::get('/scan/myweb/{slug}', [CreateVCardController::class, 'vcardScan'])->name('vCard.scan');
+    Route::get('/share/myweb/{slug}', [CreateVCardController::class, 'vcardShare'])->name('vCard.share');
     Route::get('/vcard/{vcard_id}/{slug}', [VcardQRController::class, 'scanAndView'])->name('vCard.scanView');
      ##------------------------- VCard QR ---------------------##
      Route::get('/user/qr/', [VcardQRController::class, 'generateQrCode'])->name('vCard.generateQr');
@@ -95,6 +97,8 @@ use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
      ##------------------------- Dashboard User data ---------------------##
      Route::get('/user/user-edit/{id}', [vCardAuthcontroller::class, 'userEdit'])->name('vCard.userEdit');
      Route::put('/user/user-update/{id}', [vCardAuthcontroller::class, 'userUpdate'])->name('vCard.userUpdate');
+     Route::get('/user/password-reset', [vCardAuthcontroller::class, 'passwordReset'])->name('vCard.passwordReset');
+     Route::put('/user/password-update/{id}', [vCardAuthcontroller::class, 'passwordUpdate'])->name('vCard.passwordUpdate');
      ##------------------------- END ---------------------##
 
      ##------------------------- Dashboard Listing data ---------------------##
@@ -193,6 +197,9 @@ use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
 
     #this route is use for admin Vcard details
      Route::get('admin/vcard-list', [CardController::class, 'VcardList'])->name('admin.Vcardlist');
+     Route::get('admin/vcard-edit/{id}', [CardController::class, 'vcardEdit'])->name('admin.vcard-edit');
+     Route::post('admin/vcard-delete/{id}', [CardController::class, 'vcarddelete'])->name('admin.vcard-delete');
+     Route::put('admin/vcard-update/{id}', [CardController::class, 'vcardUpdate'])->name('admin.update');
     ##------------------------------------------ END -----------------------------------##
 
     // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    End yellowPages Admin Side   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

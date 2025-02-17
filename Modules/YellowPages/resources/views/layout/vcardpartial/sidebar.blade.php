@@ -43,33 +43,33 @@
         {{-- @endforeach --}}
 
         <!-- Subscription Plans -->
-        <li>
+        {{-- <li>
             <a href="{{ route('vCard.plan') }}">
                 <div class="parent-icon"><i class="bx bx-category"></i></div>
                 <div class="menu-title">सदस्यता</div>
             </a>
-        </li>
+        </li> --}}
 
         <!-- Membership Plan (Available for all) -->
-        <li>
+        {{-- <li>
             <a href="{{ route('vCard.planDetails') }}">
                 <div class="parent-icon"><i class="bx bx-category"></i></div>
                 <div class="menu-title">सदस्यता योजना</div>
             </a>
-        </li>
+        </li> --}}
     {{-- @endif --}}
 
     <!-- Account Section -->
     {{-- @if(Auth::check() && Auth::user()->subscriptions->isNotEmpty()) --}}
-        <h6>खाता</h6>
+        {{-- <h6>खाता</h6>
         <li>
             <a href="{{ route('vCard.paymentHistory') }}">
                 <div class="parent-icon"><i class="bx bx-wallet"></i></div>
                 <div class="menu-title">लेन-देन</div>
             </a>
-        </li>
+        </li> --}}
     {{-- @endif --}}
-    @if(session('has_business_listing'))
+    {{-- @if(session('has_business_listing')) --}}
 
 
     <!-- Business Section (only for YellowPages or Both plans) -->
@@ -95,7 +95,7 @@
                     <div class="menu-title">समीक्षा</div>
                 </a>
             </li>
-            @endif
+            {{-- @endif --}}
         {{-- @endif
     @endforeach --}}
 

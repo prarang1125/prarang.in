@@ -67,8 +67,8 @@
                                         <td class="align-middle">{{ $categories->get($vcard->category_id)->name ?? '' }}</td>                                        
                                         <td class="align-middle">{{ $vcard->created_at }}</td>
                                         <td class="align-middle">
-                                            <a href="{{ route('vCard.vcard-edit', $vcard->id) }}" class="btn btn-sm btn-primary">संपादन करना</a>
-                                            <form action="{{ route('vCard.vcard-delete', $vcard->id) }}" method="POST" style="display:inline;">
+                                            <a href="{{ route('admin.vcard-edit', $vcard->id) }}" class="btn btn-sm btn-primary">संपादन करना</a>
+                                            <form action="{{ route('admin.vcard-delete', $vcard->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 <button type="submit" class="btn btn-sm btn-danger">मिटाना</button>
                                             </form>

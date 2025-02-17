@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\City;
 use Carbon\Carbon;
 use App\Models\BusinessListing;
+use App\Models\User;
 use App\Models\Address;
 use App\Models\BusinessSocialMedia;
 use App\Models\BusinessFaq;
@@ -128,9 +129,9 @@ class ListingController extends Controller
                 return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
             }
         }
-    ##------------------------- END---------------------##
+    ##------------------------- END ---------------------##
 
-    ##------------------------- Submit Listing---------------------##
+    ##------------------------- Submit Listing  ---------------------##
     public function submit_listing()
     {
         return view("yellowpages::home.submit_listing");
@@ -140,6 +141,7 @@ class ListingController extends Controller
     ##------------------------- Show Listing Form ---------------------##
     public function getLocationData()
     {
+        
         try {
             $cities = City::on('yp')->get();
             $company_legal_type = DB::connection('yp')->select('SELECT * FROM company_legal_types');
@@ -169,8 +171,6 @@ class ListingController extends Controller
     ##------------------------- Add Listing ---------------------##
     public function store(Request $request)
     {
-
-       
             // Validation rules
             $validated = $request->validate([
                 'location' => 'required',
@@ -216,7 +216,7 @@ class ListingController extends Controller
     try{
     
         // File upload handling
-        $imagePath = $request->hasFile('image') ? $request->file('image')->store('yellowpages/business', 'public') : null;
+        $imagePath = $request->hasFile('image') ? $request->file('image')->store('yellowpages/business') : null;
 
         // Check if the business listing already exists for the user
         $listing = BusinessListing::where('user_id', Auth::id())->first();
@@ -228,9 +228,6 @@ class ListingController extends Controller
             'listing_title' => $validated['listingTitle'],
             'tagline' => $validated['tagline'],
             'business_name' => $validated['businessName'],
-            'primary_phone' => $validated['primaryPhone'],
-            'primary_contact_name' => $validated['primaryContact'],
-            'primary_contact_email' => $validated['primaryEmail'],
             'legal_type_id' => $validated['businessType'],
             'employee_range_id' => $validated['employees'],
             'turnover_id' => $validated['turnover'],
@@ -242,13 +239,20 @@ class ListingController extends Controller
             'business_img' => $imagePath,
             'agree' => isset($validated['agree']) ? 1 : 0,
         ];
+        $listing = BusinessListing::create($data);
 
         // If listing exists, update it, otherwise create a new listing
-        if ($listing) {
-            $listing->update($data);
-        } else {
-            $listing = BusinessListing::create($data);
-        }
+        // if ($listing) {
+        //     $listing->update($data);
+        // } else {
+        //     $listing = BusinessListing::create($data);
+        // }
+
+        User::where('id', Auth::id())->update([
+            'email' => $validated['primaryEmail'],
+            'phone' => $validated['primaryPhone'],
+            'name' => $validated['primaryContact'],
+        ]);
 
         // Save Address information and associate with the listing
         $address = Address::updateOrCreate(

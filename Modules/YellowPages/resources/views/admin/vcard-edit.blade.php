@@ -1,5 +1,4 @@
-@extends('yellowpages::layout.vcard.vcard')
-
+@extends('yellowpages::layout.admin.admin')
 @section('title', 'Manage VCard')
 
 @section('content')
@@ -21,7 +20,7 @@
                             </ul>
                         </div>
                     @endif
-                    <form action="{{ route('vCard.update', $vcard->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('admin.update', $vcard->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         
@@ -115,7 +114,7 @@
                     
                         <div class="mb-3">
                             <label for="aadhar" class="form-label">आधार संख्या (वैकल्पिक)</label>
-                            <input type="text" class="form-control" id="aadhar" name="aadhar" value="{{ old('aadhar', $user->aadhar ?? '') }}">
+                            <input type="text" class="form-control" id="aadhar" name="aadhar" value="{{ old('aadhar', $user->aadhaar ?? '') }}">
                         </div>
                     
                         <!-- Aadhar Upload (Front) -->
@@ -146,22 +145,13 @@
                             <input type="hidden" name="old_aadhar_back" value="{{ $vcard->aadhar_back }}">
                         </div>
                         @foreach($vcardInfo as $dynamicField)
-                        <div class="mb-3 dynamic-field" id="field-{{ $dynamicField->id }}">
+                        <div class="mb-3">
                             <label for="{{$dynamicField->title}}" class="form-label">{{ $dynamicField->title }}</label>
-                            <div class="input-group">
-                                <input type="text" class="form-control" id="{{ $dynamicField->title }}" 
-                                       name="data[{{ $dynamicField->id }}]" 
-                                       value="{{ old('data.'.$dynamicField->id, $dynamicField->data) }}">
-                                <button type="button" class="btn btn-danger remove-field" data-id="{{ $dynamicField->id }}">
-                                    X
-                                </button>
-                            </div>
+                            <input type="text" class="form-control" id="{{ $dynamicField->title }}" 
+                                   name="data[{{ $dynamicField->title }}]" 
+                                   value="{{ old('data.'.$dynamicField->title, $dynamicField->data) }}">
                         </div>
-                    @endforeach
-                    
-                    <!-- Hidden field to store deleted field IDs -->
-                    <input type="hidden" name="deleted_fields" id="deletedFields" value="">
-                    
+                        @endforeach
                         
                         <div id="dynamic-fields"></div>
                         
@@ -200,58 +190,30 @@
 @endsection
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
-    let deletedFields = [];
-
-    // Event Delegation for Remove Button
-    document.addEventListener("click", function (event) {
-        if (event.target.classList.contains("remove-field")) {
-            let fieldId = event.target.getAttribute("data-id"); // Get field ID
-
-            if (fieldId) {
-                // Ensure only unique IDs are stored
-                if (!deletedFields.includes(fieldId)) {
-                    deletedFields.push(fieldId);
-                }
-                document.getElementById("deletedFields").value = deletedFields.join(",");
-            }
-
-            // Fix: Correctly target the field element using "field-" prefix
-            let fieldElement = document.getElementById("field-" + fieldId);
-            if (fieldElement) {
-                fieldElement.remove(); // Remove field
-            }
-        }
-    });
-});
-
 // Add Dynamic Fields
 function addField(label, fieldName) {
     const uniqueId = 'field-' + Date.now();
     const fieldKey = fieldName.toLowerCase().replace(/\s+/g, '_'); // Ensure unique valid field names
 
     const fieldHTML = `
-    <div class="mb-3 d-flex align-items-center dynamic-field" id="${uniqueId}">
+    <div class="mb-3 d-flex align-items-center" id="${uniqueId}">
         <div class="flex-grow-1">
             <label for="${fieldName}" class="form-label">${label}</label>
             <input type="text" class="form-control" name="data[${fieldName}]" placeholder="${label} दर्ज करें">
         </div>
-        <button type="button" class="btn btn-light ms-2 remove-field" data-id="${uniqueId}" onclick="removeField('${uniqueId}')">X</button>
+        <button type="button" class="btn btn-light ms-2" onclick="removeField('${uniqueId}')">X</button>
     </div>
-    `;
+`;
+
 
     document.getElementById('dynamic-fields').insertAdjacentHTML('beforeend', fieldHTML);
 }
 
+
 // Remove Dynamic Field
 function removeField(uniqueId) {
-    let fieldElement = document.getElementById(uniqueId);
+    const fieldElement = document.getElementById(uniqueId);
     if (fieldElement) {
-        let fieldId = fieldElement.id;
-        if (fieldId) {
-            deletedFields.push(fieldId);
-            document.getElementById("deletedFields").value = deletedFields.join(",");
-        }
         fieldElement.remove();
     }
 }
@@ -296,5 +258,4 @@ document.getElementById('profile').addEventListener('change', function(event) {
         }
     }
 });
-
 </script>
