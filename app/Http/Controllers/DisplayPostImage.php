@@ -27,7 +27,7 @@ class DisplayPostImage extends Controller
             return $response;
             
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Unable to process the image: ' . $e->getMessage()], 500);
+            return response()->json(['error' => 'Unable to process the image: ' ], 500);
         }
     }
 }

@@ -17,18 +17,14 @@ class HomeController extends Controller
     public function index()
     {
         try {
-            // Set the timezone to Asia/Kolkata
             $timezone = 'Asia/Kolkata';
     
-            // Fetch categories and cities
             $categories = Category::where('is_active', 1)->get();
             $cities = City::where('is_active', 1)->get();
     
-            // Fetch business listings with related data and order by rating (highest first)
-            $listings = BusinessListing::with(['category', 'hours', 'reviews']) // Assuming 'ratings' is the relationship name
+            $listings = BusinessListing::with(['category', 'hours', 'reviews']) 
                 ->get()
                 ->map(function ($listing) use ($timezone) {
-                    // Get current time and day in Asia/Kolkata timezone
                     $currentDateTime = Carbon::now($timezone);
                     $currentTime = $currentDateTime->format('H:i:s');
                     $currentDay = $currentDateTime->format('l');
@@ -71,31 +67,25 @@ class HomeController extends Controller
                     return $listing;
                 });
     
-            // Get the top 5 listings based on rating (assuming 'ratings' contains rating data)
             $topRatedListings = $listings->sortByDesc(function ($listing) {
-                // Check if the ratings collection exists and is not empty
                 if ($listing->ratings && $listing->ratings->count() > 0) {
-                    // Calculate average rating from multiple fields (cleaners, services, price, ambience)
                     $averageRating = $listing->ratings->avg(function ($rating) {
-                        // Sum the ratings from multiple fields and return the average
                         return ($rating->cleaners + $rating->services + $rating->price + $rating->ambience) / 4;
                     });
     
                     return $averageRating;
                 }
-                return 0; // If no ratings exist, return 0
+                return 0; 
             })->take(5);
     
-            // Return the view with the data
             return view('yellowpages::home.home', compact('categories', 'cities', 'topRatedListings'));
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while fetching data: ' . $e->getMessage()]);
+            return back()->withErrors(['error' => 'An error occurred while fetching data: ' ]);
         }
     }
     
-
     ##------------------------- END ---------------------##
-
+    
     ##------------------------- Listing Plan ---------------------##
     public function listing_plan()
     {

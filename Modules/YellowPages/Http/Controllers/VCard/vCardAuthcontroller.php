@@ -101,7 +101,7 @@ class vCardAuthcontroller extends Controller
             return redirect()->back()->with('success', 'पासवर्ड सफलतापूर्वक अद्यतन(Update)।');
         } catch (\Exception $e) {
             // Log the error if something goes wrong
-            Log::error('Error updating user password: ' . $e->getMessage());
+            Log::error('Error updating user password: ' );
             return redirect()->back()->withErrors(['error' => 'पासवर्ड अद्यतन(Update)करने में असमर्थ.']);
         }
     }

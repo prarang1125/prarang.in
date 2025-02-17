@@ -174,7 +174,7 @@ class CreateVCardController extends Controller
                              ->with('success', 'Card saved successfully.');
         // } catch (Exception $e) {
         //     DB::rollback();
-        //     return redirect()->back()->with('error', 'Error: ' . $e->getMessage());
+        //     return redirect()->back()->with('error', 'Error: ' );
         // }
     }
     
@@ -196,7 +196,7 @@ class CreateVCardController extends Controller
                 'vcard', 'vcardInfo', 'categories', 'cities', 'dynamicFields', 'address', 'user'
             ));
         } catch (Exception $e) {
-            Log::error('Error editing VCard: ' . $e->getMessage());
+            Log::error('Error editing VCard: ' );
             return redirect()->back()->withErrors(['error' => 'Unable to fetch VCard details for editing.']);
         }
     }
@@ -286,11 +286,8 @@ class CreateVCardController extends Controller
                         ->first();
     
                     if ($existingField) {
-
-                        $existingField->data = $dataValue;
-                        $existingField->save();                        
+                        $existingField->update(['data' => $dataValue]);
                     } else {
-
                         DynamicVcard::create([
                             'vcard_id' => $id,
                             'title' => $dynamicName,
@@ -313,7 +310,7 @@ class CreateVCardController extends Controller
             return redirect()->route('vCard.list')->with('success', 'वेबपेज सफलतापूर्वक अपडेट(Update) किया गया.');
         } catch (Exception $e) {
             DB::rollBack();
-            Log::error('Error updating VCard: ' . $e->getMessage());
+            Log::error('Error updating VCard: ' );
             return redirect()->back()->withErrors(['error' => 'An error occurred while updating the VCard.']);
         }
     }
@@ -431,7 +428,7 @@ class CreateVCardController extends Controller
     
             return view('yellowpages::Vcard.vcard-list', compact('user','Vcard_list', 'cities', 'categories'));
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Error fetching Vcard listings: ' . $e->getMessage());
+            return redirect()->back()->with('error', 'Error fetching Vcard listings: ' );
         }
     }
     

@@ -131,7 +131,7 @@ class Base extends Component
                 }
             }
         } catch (\Exception $e) {
-            \Log::error("Error fetching location data: " . $e->getMessage());
+            \Log::error("Error fetching location data: " );
         }
 
         return [
