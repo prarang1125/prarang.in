@@ -110,16 +110,16 @@ header.header {
     function toggleMenu() {
     const menu = document.querySelector('.navmenu ul');
     menu.classList.toggle('show');
-   }
+    }
 
-function toggleDropdown(category) {
+    function toggleDropdown(category) {
     const dropdown = category.querySelector('.dropdown-menu');
-    category.classList.toggle('show');  // Show or hide the dropdown
+    category.classList.toggle('show');  
 
     // Toggle the dropdown icon
     const icon = category.querySelector('.dropdown-icon');
     icon.classList.toggle('show');  // Optional: Rotate the icon on open/close
-}
+    }
 
 // Attach the toggleDropdown function to the category items
 document.querySelectorAll('.navmenu ul .dropdown > a').forEach(function(categoryLink) {

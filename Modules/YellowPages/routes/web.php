@@ -85,7 +85,7 @@ use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
       Route::get('/user/dashboard', [VCardController::class, 'dashboard'])->name('vCard.dashboard');
       Route::get('/user/createCard', [VCardController::class, 'createCard'])->name('vCard.createCard');
     ##------------------------- END ---------------------##
-
+    
     ##------------------------- Carete VCard ---------------------##
     Route::post('/user/CardStore', [CreateVCardController::class, 'store'])->name('vCard.store');
     Route::get('/vcard-edit/{id}', [CreateVCardController::class, 'vcardEdit'])->name('vCard.vcard-edit');
@@ -93,7 +93,7 @@ use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
     Route::put('/vcard-update/{id}', [CreateVCardController::class, 'vcardUpdate'])->name('vCard.update');
     Route::get('user/vcard-list', [CreateVCardController::class, 'VcardList'])->name('vCard.list');
 
-    ##------------------------- END ---------------------##
+     ##------------------------- END ---------------------##
      ##------------------------- Dashboard User data ---------------------##
      Route::get('/user/user-edit/{id}', [vCardAuthcontroller::class, 'userEdit'])->name('vCard.userEdit');
      Route::put('/user/user-update/{id}', [vCardAuthcontroller::class, 'userUpdate'])->name('vCard.userUpdate');

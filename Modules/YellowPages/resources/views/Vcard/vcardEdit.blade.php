@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Event Delegation for Remove Button
     document.addEventListener("click", function (event) {
         if (event.target.classList.contains("remove-field")) {
-            let fieldId = event.target.getAttribute("data-id"); // Get field ID
+            let fieldId = event.target.getAttribute("data-id"); 
 
             if (fieldId) {
                 // Ensure only unique IDs are stored
@@ -224,6 +224,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 });
+function removeField(uniqueId) {
+    const fieldElement = document.getElementById(uniqueId);
+    if (fieldElement) {
+        fieldElement.remove();
+    }
+}
 
 // Add Dynamic Fields
 function addField(label, fieldName) {

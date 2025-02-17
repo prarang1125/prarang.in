@@ -109,7 +109,7 @@
     <div class="container" data-aos="fade-up" data-aos-delay="100">
         <div class="swiper init-swiper">
             <div class="swiper-wrapper">
-                @foreach($listings as $listing)
+                @foreach($topRatedListings as $listing)
                 <div class="swiper-slide">
                   <a href="{{ route('yp.listing-details', ['city_slug' => $listing->city->name, 'listing_title' => $listing->listing_title, 'listing_id' => $listing->id]) }}" style="display: block;">
                     <div class="listing-item" style="background: #fff; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); padding: 15px; text-align: center; transition: 0.3s;">

@@ -206,105 +206,117 @@ class CreateVCardController extends Controller
 
     ##------------------------- vCardUpdate ---------------------##
     public function vCardUpdate(Request $request, $id)
-{
-
-    try {
-        // Validate incoming data
-        $validatedData = $request->validate([
-            'color_code' => 'nullable|string',
-            'category_id' => 'nullable|exists:yp.categories,id',
-            'city_id' => 'nullable|exists:yp.cities,id',
-            'name' => 'nullable|string',
-            'surname' => 'nullable|string',
-            'house_number' => 'nullable|string',
-            'street' => 'nullable|string',
-            'area_name' => 'nullable|string',
-            'postal_code' => 'nullable|string',
-            'dob' => 'nullable|date',
-            'email' => 'nullable|email',
-            'aadhar' => 'nullable|string',
-            'profile' => 'nullable|image|max:2048',
-            'aadhar_front' => 'nullable|image|max:2048',
-            'aadhar_back' => 'nullable|image|max:2048',
-            'data' => 'nullable|array', // Dynamic fields data
-        ]);
-
-
-        // Retrieve the vCard
-        $vcard = Vcard::findOrFail($id);
-
-        // Ensure user and address relationships exist
-        $user = $vcard->user;
-        if (!$user) {
-            return redirect()->back()->withErrors(['error' => 'User not found for this VCard.']);
-        }
-
-        $address = $user->address;
-        if (!$address) {
-            return redirect()->back()->withErrors(['error' => 'Address not found for this user.']);
-        }
-
-        // Handle file uploads (store in S3)
-        if ($request->hasFile('profile')) {
-            $validatedData['profile'] = $request->file('profile')->store('yellowpages/profiles');
-        }
-
-        if ($request->hasFile('aadhar_front')) {
-            $validatedData['aadhar_front'] = $request->file('aadhar_front')->store('yellowpages/aadhar');
-        }
-
-        if ($request->hasFile('aadhar_back')) {
-            $validatedData['aadhar_back'] = $request->file('aadhar_back')->store('yellowpages/aadhar');
-        }
-
-        // Log the validated data
-        Log::info('Validated Data:', $validatedData);
-
-        // Begin Transaction
-        DB::beginTransaction();
-
-        if ($user) {
-            $user->name = $validatedData['name'] ?? $user->name;
-            $user->surname = $validatedData['surname'] ?? $user->surname;
-            $user->dob = $validatedData['dob'] ?? $user->dob;
-            $user->email = $validatedData['email'] ?? $user->email;
-            $user->aadhar = $validatedData['aadhar'] ?? $user->aadhar;
-            $user->profile = $validatedData['profile'] ?? $user->profile;
-        
-            $user->save();
-        }
-        
-        // Update Address Table
-        $address->update([
-            'house_number' => $validatedData['house_number'] ?? $address->house_number,
-            'street' => $validatedData['street'] ?? $address->street,
-            'area_name' => $validatedData['area_name'] ?? $address->area_name,
-            'postal_code' => $validatedData['postal_code'] ?? $address->postal_code,
-            'city_id' => $validatedData['city_id'] ?? $address->city_id,
-        ]);
-
-        // Handle Dynamic Fields (if provided)
-        if (!empty($validatedData['data']) && is_array($validatedData['data'])) {
-            foreach ($validatedData['data'] as $dynamicName => $dataValue) {
-                // Save or update dynamic fields
-                DynamicVcard::updateOrCreate(
-                    ['vcard_id' => $id, 'title' => $dynamicName],
-                    ['data' => $dataValue]
-                );
-            }
-        }
-
-        // Commit Transaction
-        DB::commit();
-
-        return redirect()->route('vCard.list')->with('success', 'वेबपेज सफलतापूर्वक अपडेट(Update) किया गया.');
+    {
+        try {
+            // Validate incoming data
+            $validatedData = $request->validate([
+                'color_code' => 'nullable|string',
+                'category_id' => 'nullable|exists:yp.categories,id',
+                'city_id' => 'nullable|exists:yp.cities,id',
+                'name' => 'nullable|string',
+                'surname' => 'nullable|string',
+                'house_number' => 'nullable|string',
+                'street' => 'nullable|string',
+                'area_name' => 'nullable|string',
+                'postal_code' => 'nullable|string',
+                'dob' => 'nullable|date',
+                'email' => 'nullable|email',
+                'aadhar' => 'nullable|string',
+                'profile' => 'nullable|image|max:2048',
+                'aadhar_front' => 'nullable|image|max:2048',
+                'aadhar_back' => 'nullable|image|max:2048',
+                'data' => 'nullable|array', // Dynamic fields data
+            ]);
     
-    } catch (Exception $e) {
-        DB::rollBack();
-        Log::error('Error updating VCard: ' . $e->getMessage());
-        return redirect()->back()->withErrors(['error' => 'An error occurred while updating the VCard.']);
+            // Retrieve the vCard
+            $vcard = Vcard::findOrFail($id);
+    
+            // Ensure user and address relationships exist
+            $user = $vcard->user;
+            if (!$user) {
+                return redirect()->back()->withErrors(['error' => 'User not found for this VCard.']);
+            }
+    
+            $address = $user->address;
+            if (!$address) {
+                return redirect()->back()->withErrors(['error' => 'Address not found for this user.']);
+            }
+    
+            // Handle file uploads
+            if ($request->hasFile('profile')) {
+                $validatedData['profile'] = $request->file('profile')->store('yellowpages/profiles');
+            }
+    
+            if ($request->hasFile('aadhar_front')) {
+                $validatedData['aadhar_front'] = $request->file('aadhar_front')->store('yellowpages/aadhar');
+            }
+    
+            if ($request->hasFile('aadhar_back')) {
+                $validatedData['aadhar_back'] = $request->file('aadhar_back')->store('yellowpages/aadhar');
+            }
+    
+            // Begin Transaction
+            DB::beginTransaction();
+    
+            // Update User Table
+            if ($user) {
+                $user->name = $validatedData['name'] ?? $user->name;
+                $user->surname = $validatedData['surname'] ?? $user->surname;
+                $user->dob = $validatedData['dob'] ?? $user->dob;
+                $user->email = $validatedData['email'] ?? $user->email;
+                $user->aadhar = $validatedData['aadhar'] ?? $user->aadhar;
+                $user->profile = $validatedData['profile'] ?? $user->profile;
+                $user->save();
+            }
+    
+            // Update Address Table
+            $address->update([
+                'house_number' => $validatedData['house_number'] ?? $address->house_number,
+                'street' => $validatedData['street'] ?? $address->street,
+                'area_name' => $validatedData['area_name'] ?? $address->area_name,
+                'postal_code' => $validatedData['postal_code'] ?? $address->postal_code,
+                'city_id' => $validatedData['city_id'] ?? $address->city_id,
+            ]);
+    
+            // Handle Dynamic Fields
+            if (!empty($validatedData['data']) && is_array($validatedData['data'])) {
+                foreach ($validatedData['data'] as $dynamicName => $dataValue) {
+                    $existingField = DynamicVcard::where('vcard_id', $id)
+                        ->where('title', $dynamicName)
+                        ->first();
+    
+                    if ($existingField) {
+
+                        $existingField->data = $dataValue;
+                        $existingField->save();                        
+                    } else {
+
+                        DynamicVcard::create([
+                            'vcard_id' => $id,
+                            'title' => $dynamicName,
+                            'data' => $dataValue,
+                        ]);
+                    }
+                }
+            }
+    
+            // Handle Deleted Fields
+            if ($request->has('deleted_fields')) {
+                $deletedFieldIds = explode(',', $request->input('deleted_fields'));
+                DynamicVcard::where('vcard_id', $id)
+                    ->whereIn('id', $deletedFieldIds)
+                    ->delete();
+            }
+    
+            DB::commit();
+    
+            return redirect()->route('vCard.list')->with('success', 'वेबपेज सफलतापूर्वक अपडेट(Update) किया गया.');
+        } catch (Exception $e) {
+            DB::rollBack();
+            Log::error('Error updating VCard: ' . $e->getMessage());
+            return redirect()->back()->withErrors(['error' => 'An error occurred while updating the VCard.']);
+        }
     }
-}
     
     ##------------------------- END ---------------------##
 
