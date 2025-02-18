@@ -353,11 +353,7 @@ h6 {
 
   .navmenu a i,
   .navmenu a:focus i {
-<<<<<<< HEAD
-    font-size: 35px;
-=======
-    font-size: 12px;
->>>>>>> 6c12e62f19621255c39c824489c6c88135c24d20
+    font-size: 40px;
     line-height: 0;
     margin-left: 5px;
     transition: 0.3s;
@@ -493,11 +489,7 @@ h6 {
 
   .navmenu a i,
   .navmenu a:focus i {
-<<<<<<< HEAD
-    font-size: 35px;
-=======
-    font-size: 12px;
->>>>>>> 6c12e62f19621255c39c824489c6c88135c24d20
+    font-size: 40px;
     line-height: 0;
     margin-left: 5px;
     width: 30px;
