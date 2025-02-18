@@ -84,6 +84,7 @@ class postController extends Controller
         $previousPost = $this->postButton($post, $portal, 'pre');
         $nextPost = $this->postButton($post, $portal, 'next');
 
+<<<<<<< HEAD
         $recentPosts = Chitti::whereHas('geography.portal', function ($query) use ($slug) {
             $query->where('slug', $slug);
         })
@@ -99,6 +100,24 @@ class postController extends Controller
                 return $recent;
             });
 
+=======
+	  $recentPosts = Chitti::whereHas('geography.portal', function ($query) use ($slug) {
+            $query->where('slug', $slug);
+        })
+            ->where('chittiId', '!=', $postId)
+	     ->whereRaw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y %h:%i %p') BETWEEN DATE_SUB(CURDATE(), INTERVAL 4 DAY) AND DATE_ADD(CURDATE(), INTERVAL 1 DAY)")
+            ->where('finalStatus', 'approved')
+            ->whereRaw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y %h:%i %p') != STR_TO_DATE('" . $post->dateOfApprove . "', '%d-%m-%Y %h:%i %p')")
+            //->orderBy('chittiId', 'desc')
+		->orderByRaw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y %h:%i %p') DESC")
+            ->take(5)
+            ->get()
+            ->map(function ($recent) {
+                $recent->imageUrl = optional($recent->images->first())->imageUrl ?? 'images/default_image.jpg';
+               
+                return $recent;
+            });
+>>>>>>> 6c12e62f19621255c39c824489c6c88135c24d20
         $post->tagInUnicode = $post->tagMappings->first()->tag->tagInUnicode;
 
         return view('portal.post-summary', [

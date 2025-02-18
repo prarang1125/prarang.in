@@ -7,15 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\City;
-use Validator;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\log;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Validation\Rule;
+
 
 class AuthModalController extends Controller
 {
-    ##------------------------- Login View ---------------------##
     public function index()
     {
         try {
@@ -25,29 +21,25 @@ class AuthModalController extends Controller
         }
     }
 
-    ##------------------------- END ---------------------##
-
-
-    ##------------------------- Login Logic ---------------------##
     public function login(Request $request)
     {
         // Validate the input fields
         $request->validate([
-            'phone' => ['required', 'regex:/^\+?[0-9]{10,15}$/'], // Validate phone number
+            'phone' => ['required', 'regex:/^\+?[0-9]{10,15}$/'], 
             'password' => 'required',
         ], [
             'phone.required' => 'फोन नंबर आवश्यक है।',
             'phone.regex' => 'कृपया एक वैध फोन नंबर दर्ज करें।',
             'password.required' => 'पासवर्ड आवश्यक है।',
         ]);
-    
+
         try {
             // Attempt login with credentials
             $credentials = $request->only('phone', 'password');
-    
+
             // Check if the user exists by phone number
             $user = User::where('phone', $credentials['phone'])->first();
-    
+
             if ($user && Hash::check($credentials['password'], $user->password)) {
                 // Check if the user's role is '2' (Customer)
                 if ($user->role == 2) {
@@ -59,44 +51,37 @@ class AuthModalController extends Controller
                     return redirect()->back()->withErrors(['loginError' => 'पहुँच प्रतिबंधित है। आपके पास ग्राहक अधिकार नहीं हैं।'])->withInput();
                 }
             }
-    
             // Return with error if login fails
             return redirect()->back()->withErrors(['loginError' => 'आपके द्वारा दिए गए विवरण सही नहीं हैं। कृपया फिर से प्रयास करें।'])->withInput();
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'लॉगिन के दौरान एक त्रुटि हुई:'])->withInput();
         }
     }
-    
-    ##------------------------- END ---------------------##
-     ##------------------------- Register View ---------------------##
-     public function newAccount()
-     {
-         try {
+
+    public function newAccount()
+    {
+        try {
             $cities = City::all();
-             return view('yellowpages::Vcard.register', compact('cities'));
-         } catch (\Exception $e) {
-             return back()->withErrors(['error' => 'An error occurred while loading the login page.']);
-         }
-     }
+            return view('yellowpages::Vcard.register', compact('cities'));
+        } catch (\Exception $e) {
+            return back()->withErrors(['error' => 'An error occurred while loading the login page.']);
+        }
+    }
 
-     ##------------------------- END ---------------------##
-
-    ##------------------------- Register Logic ---------------------##
     public function register(Request $request)
     {
         try {
-            // Validate the input fields
             $request->validate([
-                'name' => ['nullable', 'string', 'max:255', 'regex:/^[^@]+$/'],
+                // 'name' => ['nullable', 'string', 'max:255', 'regex:/^[^@]+$/'],
                 'phone' => [
                     'required',
                     'regex:/^\+?[0-9]{10,15}$/',
-                    'unique:yp.users,phone', // Ensure the phone number is unique in the yp.users table
+                    'unique:yp.users,phone', 
                 ],
-                'city' => 'required', // City validation
+                'city' => 'required', 
                 'password' => 'required', 
             ], [
-                'name.regex' => 'कृपया एक वैध नाम दर्ज करें।',
+                // 'name.regex' => 'कृपया एक वैध नाम दर्ज करें।.',
                 'phone.required' => 'फोन नंबर आवश्यक है।',
                 'phone.regex' => 'कृपया एक वैध फोन नंबर दर्ज करें।',
                 'phone.unique' => 'आपका फोन नंबर पहले से पंजीकृत है।', 
@@ -105,47 +90,44 @@ class AuthModalController extends Controller
                 'password.required' => 'पासवर्ड आवश्यक है।',
                 'password.confirmed' => 'पासवर्ड और पुष्टि मेल नहीं खाते।',
             ]);
-    
-            // Create a new user
+
+            // use Do While loop to generate a random user name 
+            // do {               
+            //     $name = Str::random(6);
+            // } while (User::where('name', $name)->exists());
+            $name="";
+            // Create    a new user
             $user = User::create([
-                'name' => $request->input('name'),
-                'phone' => $request->input('phone'), // Store the phone number
-                'city_id' => $request->input('city'), // Store the selected city
+                'name' => $name,
+                'phone' => $request->input('phone'), 
+                'city_id' => $request->input('city'), 
                 'password' => Hash::make($request->input('password')),
-                'role' => 2, // Assign default role
+                'role' => 2, 
             ]);
     
             // Log in the new user
-            Auth::login($user);
-    
-            // Redirect after registration
-            return redirect()->route('vCard.createCard'); // Replace with your desired redirect route
+            Auth::login($user);   
+           
+            return redirect()->route('vCard.createCard'); 
         } catch (\Illuminate\Validation\ValidationException $e) {
             // If validation fails, return errors and old input
             return redirect()->back()->withErrors($e->errors())->withInput();
         } catch (\Exception $e) {
-            // Handle general errors and provide feedback
+            // dd($e->getMessage());
             return redirect()->back()->withErrors(['error' => 'पंजीकरण के दौरान एक त्रुटि हुई। कृपया फिर से प्रयास करें।'])->withInput();
         }
     }
     
-    ##------------------------- END ---------------------##
-
-    ##------------------------- Logout ---------------------##
     public function logout(Request $request)
     {
         try {
-            Auth::logout();
-            // Invalidate the session and regenerate the token
+            Auth::logout();           
             $request->session()->invalidate();
-            $request->session()->regenerateToken();
-    
-            return redirect()->route('yp.home'); 
+            $request->session()->regenerateToken();    
+            return redirect()->route('yp.home')->with('success', 'लॉगआउट (logout) सफलतापूर्वक हो गया।');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'लॉगआउट (logout) के दौरान एक त्रुटि हुई। कृपया फिर से प्रयास करें।']);
         }
     }
-
-    ##------------------------- END ---------------------##
 
 }

@@ -13,14 +13,22 @@ header.header {
 
 .mobile-nav-toggle {
     display: block;
+<<<<<<< HEAD
     font-size: 1.2rem; 
+=======
+    font-size: 1.2rem;
+>>>>>>> 6c12e62f19621255c39c824489c6c88135c24d20
     cursor: pointer;
     color: #333;
 }
 
 @media (min-width: 769px) {
     .mobile-nav-toggle {
+<<<<<<< HEAD
         display: none; 
+=======
+        display: none;
+>>>>>>> 6c12e62f19621255c39c824489c6c88135c24d20
     }
 }
 

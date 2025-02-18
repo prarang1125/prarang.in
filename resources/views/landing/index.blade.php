@@ -9,7 +9,7 @@
     {{-- meta data tags for facebook --}}
     <meta property="og:title" content="मेरठ येलो पेज">
     <meta property="og:description" content="मेरठ में व्यवसायों और सेवाओं की जानकारी को बढ़ाएं। अपने व्यवसाय को मुफ्त में ऑनलाइन (Online) करे">
-    <meta property="og:image" content="{{ asset('assets/images/meerut_yp_metaimg.webp') }}">
+    <meta property="og:image" content="{{ asset('assets/images/MeerutYP1.jpg') }}">
     <meta property="og:url" content="{{ url()->current() }}">
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -1687,7 +1687,7 @@
                 <div class="text-right animate-fade-in">
                     <h4 class="text-xl font-semibold mb-4"><a href="{{ route('city.show', ['city_name' => 'मेरठ']) }}"
                             target="_blank"> मेरठ येलो पेज</a> </h4>
-                            <a href="{{route('terms-conditions')}}">Terms of Service</a> |
+                            {{-- <a href="{{route('terms-conditions')}}">Terms of Service</a> | --}}
                             <a href="{{route('privacy-policy')}}">Privacy Policy</a>
                     {{-- <div class="flex justify-end space-x-4"><a href="#"
                             class="hover:text-yellow-500 transition-colors transform hover:scale-110"><svg

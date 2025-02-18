@@ -71,6 +71,7 @@
           @endif
 
           <!-- Dynamic (Social Media) Fields -->
+<<<<<<< HEAD
           <!-- Social Media Section -->
           @if (!empty($vcard->dynamicFields))
           <div class="text-lg font-semibold text-gray-800 mt-2 mb-1">
@@ -104,6 +105,20 @@
                   </span>
               </div>
           @endforeach
+=======
+          @if (!empty($vcard->dynamicFields))
+            <div class="text-sm font-semibold text-gray-800 mt-2 mb-1">
+              सोशल मीडिया (Social Media)
+            </div>
+            @foreach ($vcard->dynamicFields as $social)
+              <div class="p-1 hover:bg-gray-50 rounded transition-colors">
+                <span class="text-gray-700 text-xs">
+                  <strong>{{ $social->title ?? 'सोशल मीडिया (Social Media)' }}:</strong>
+                  {{ $social->data ?? 'Not Available' }}
+                </span>
+              </div>
+            @endforeach
+>>>>>>> 6c12e62f19621255c39c824489c6c88135c24d20
           @endif
         </div>
         

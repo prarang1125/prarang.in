@@ -46,7 +46,7 @@ class ListingController extends Controller
             ->get();
 
         // Return the view with the required data
-        return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'category'));
+        return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'category_name'));
 
     // } catch (\Exception $e) {
     //     // Detailed error message for debugging
@@ -84,7 +84,7 @@ class ListingController extends Controller
     ##------------------------- Seaching Listing---------------------##
     public function index(Request $request, $category, $city)
     {
-        // try {
+        try {
             $categories = Category::where('is_active', 1)->get();
             $city_name= City::where('is_active', 1)->get();
 
@@ -129,9 +129,9 @@ class ListingController extends Controller
             
 
                 return view('yellowpages::home.categories', compact('listings', 'categories', 'city'));
-            // } catch (\Exception $e) {
-            //     return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
-            // }
+            } catch (\Exception $e) {
+                return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
+            }
         }
     ##------------------------- END ---------------------##
 
