@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -20,7 +19,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:image" content="{{ $post['imageUrl'] ?? 'default-image-url.jpg' }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:description" content="{{ $post['description'] ?? 'Default description for the post.' }}" />
+    <meta property="og:description" content="{{ $post['description'] ?? '' }}" />
 
     <!-- Favicons -->
     <link href="{{ asset('assets/img/favicon.png') }}" rel="icon">
