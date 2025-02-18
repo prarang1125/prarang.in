@@ -50,7 +50,7 @@
             <i class="bx bxs-user text-gray-600 w-5 h-5"></i>
             <span class="text-gray-500 text-sm">नाम (Name):</span>
             <span class="text-gray-700 font-semibold">
-              {{ $user->name ?? 'Not Available' }} {{ $user->surname ?? 'Not Available' }}
+              {{ $user->name ?? 'Not Available' }} {{ $user->surname ?? '' }}
             </span>
           </div>
 
