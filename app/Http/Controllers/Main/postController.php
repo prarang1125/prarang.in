@@ -84,23 +84,6 @@ class postController extends Controller
         $previousPost = $this->postButton($post, $portal, 'pre');
         $nextPost = $this->postButton($post, $portal, 'next');
 
-<<<<<<< HEAD
-        $recentPosts = Chitti::whereHas('geography.portal', function ($query) use ($slug) {
-            $query->where('slug', $slug);
-        })
-            ->where('chittiId', '!=', $postId)
-            ->orderBy('chittiId', 'desc')
-            ->where('finalStatus', 'approved')
-            ->take(3)
-            ->get()
-            ->map(function ($recent) {
-                $recent->imageUrl = optional($recent->images->first())->imageUrl ?? 'images/default_image.jpg';
-                $recent->formattedDate = $recent->createDate ? Carbon::parse($recent->createDate)->format('d-m-Y H:i A') : 'N/A';
-
-                return $recent;
-            });
-
-=======
 	  $recentPosts = Chitti::whereHas('geography.portal', function ($query) use ($slug) {
             $query->where('slug', $slug);
         })
@@ -117,7 +100,6 @@ class postController extends Controller
                
                 return $recent;
             });
->>>>>>> 6c12e62f19621255c39c824489c6c88135c24d20
         $post->tagInUnicode = $post->tagMappings->first()->tag->tagInUnicode;
 
         return view('portal.post-summary', [
