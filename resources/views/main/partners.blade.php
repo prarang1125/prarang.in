@@ -114,7 +114,7 @@
     <section class=" container">
          <div class="row">
                 <div class="col-sm-8">
-                        <p class="mb-3">Prarang is now open to exclusive <span class="text-primary">– One City, One Language, One Partnership –</span>  a select 923+ Indian Markets & 2428+ World  Markets. Each Prarang Market ( put weblink to Markets page) is a unique City-Language Knowledge Web. Empowered with Prarang city <span class="text-primary">Content, Semiotics & Analytics</span>, our City Partners can now create a hyper-local impact with their brands & products towards the growth of the City through daily messaging & regular meetings with City citizens <span class="text-primary">(B2B2C)</span>, and also undertake meaningful & informed projects with local governments <span class="text-primary">(B2G2C)</span>.</p>   
+                        <p class="mb-3">Prarang is now open to exclusive <span class="text-primary">– One City, One Language, One Partnership –</span>  a select 923+ Indian Markets & 2428+ World  Markets. Each<a target="_blank"  href="https://www.prarang.in/market"> Prarang Market</a>  is a unique City-Language Knowledge Web. Empowered with Prarang city <span class="text-primary">Content, Semiotics & Analytics</span>, our City Partners can now create a hyper-local impact with their brands & products towards the growth of the City through daily messaging & regular meetings with City citizens <span class="text-primary">(B2B2C)</span>, and also undertake meaningful & informed projects with local governments <span class="text-primary">(B2G2C)</span>.</p>   
           
                     </div>
                     <div class="col-sm-4">

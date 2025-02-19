@@ -27,12 +27,25 @@
 .col-sm-9 .main-post .post-description,
 .col-sm-9 .main-post .post-description * {
    /* all: unset !important;  /* Removes all styles */
-    white-space: pre-line !important; /* Ensures sentence wrapping */
-    word-break: normal !important; /* Prevents word breaking */
-    overflow-wrap: anywhere !important; /* Ensures natural text flow */
-    max-width: 100% !important; /* Prevents overflow */
-    display: block !important; /* Ensures block-level behavior */
+   /* white-space: pre-line !important; /* Ensures sentence wrapping */
+   /* word-break: normal !important; /* Prevents word breaking */
+   /* overflow-wrap: anywhere !important; /* Ensures natural text flow */
+   /* max-width: 100% !important; /* Prevents overflow */
+   /* display: block !important; /* Ensures block-level behavior */
 }
+
+
+/* Text white */
+.post-description .table .table-responsive .table > .text-white{
+ background-color:rgba(255,255,255,0);
+ transform:translatex(0px) translatey(0px);
+}
+
+/* Text white */
+.table > .text-white > .text-white > .text-white{
+ background-color:rgba(255,255,255,0);
+}
+
 
 
        body {
