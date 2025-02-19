@@ -117,7 +117,7 @@ class ListingController extends Controller
                     $query->where('city_id', $cityId);
                 }
             }
-
+            $portal = Portal::where('id', $city_name->portal_id)->first();
             $listings = $query->with(['category', 'hours', 'city'])->get()->map(function ($listing) {
                 $currentTime = Carbon::now();
             
@@ -136,7 +136,7 @@ class ListingController extends Controller
             });
             
 
-                return view('yellowpages::home.categories', compact('listings', 'categories', 'city'));
+                return view('yellowpages::home.categories', compact('listings', 'categories', 'city','portal'));
             } catch (\Exception $e) {
                 return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
             }
