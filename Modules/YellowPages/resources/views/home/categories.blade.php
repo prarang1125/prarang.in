@@ -29,9 +29,10 @@
     <!-- Header with Background Image -->
     <div class="text-white text-center py-5" style="background: url('{{ Storage::url('categories/cate_bg.jpg') }}') center/cover;">
         <div class="container d-flex justify-content-start">
-            <a href="{{ route('yp.home') }}" class="btn btn-primary">
-                <i class="bi bi-arrow-left"></i>
-            </a>
+           
+            <a href="{{ route('portal',['portal'=>'jaunpur']) }}" class="btn btn-primary text-white">
+                <i class="bi bi-phone"></i>   Portal
+            </a>   
         </div>
         
         <h1 class="pt-3">
