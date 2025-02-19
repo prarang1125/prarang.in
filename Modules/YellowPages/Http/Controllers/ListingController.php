@@ -44,9 +44,9 @@ class ListingController extends Controller
         $listings = BusinessListing::with(['category', 'hours','city'])
             ->whereHas('category', fn($q) => $q->where('slug', $category->slug))
             ->get();
-
+       $portal =Portal::first();
         // Return the view with the required data
-        return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'category_name'));
+        return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'category_name','portal'));
 
     // } catch (\Exception $e) {
     //     // Detailed error message for debugging
