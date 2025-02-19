@@ -42,7 +42,7 @@ class VCardController extends Controller
         try {
             $userId = Auth::id();
             // Retrieve the Vcard record for the authenticated user or default to null
-            $totalscan = Vcard::where('user_id', $userId)->first();
+            $totalscan = VCard::where('user_id', $userId)->first();
     
             // Retrieve the most recent active purchase plan (is_active = 1) for the user
             $purchasePlan = UserPurchasePlan::where('user_id', $userId)

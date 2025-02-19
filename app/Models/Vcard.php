@@ -27,7 +27,7 @@ class Vcard extends Model
 
     public function dynamicFields()
 {
-    return $this->hasMany(DynamicVcard::class, 'vcard_id');
+    return $this->hasMany(DynamicVCard::class, 'vcard_id');
 }
 
 // Vcard model

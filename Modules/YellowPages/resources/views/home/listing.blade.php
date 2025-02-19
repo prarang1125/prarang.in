@@ -86,14 +86,7 @@
                
                 <p style="font-size: 16px; color: #555; margin-top: 10px;">
                     <strong>📍 पता:</strong>
-                    @if($listing->address)
-                        <span>{{ $listing->address->street ?? 'N/A' }}</span>,
-                        <span>{{ $listing->address->area_name ?? 'N/A' }}</span>,
-                        <span>{{ $listing->address->city ? $listing->address->city->name : 'N/A' }}</span>,
-                        <span>{{ $listing->address->postal_code ?? 'N/A' }}</span>
-                    @else
-                        <span>N/A</span>
-                    @endif
+                    {{ $listing->business_address ?? 'No Address' }}
                 </p>
                 <p style="font-size: 16px; color: #555;">
                     <strong>आपकी लिस्टिंग के बारे में विस्तृत विवरण:</strong> 

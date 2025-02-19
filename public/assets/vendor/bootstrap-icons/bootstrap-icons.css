@@ -1975,7 +1975,7 @@ url("./fonts/bootstrap-icons.woff?dd67030699838ea613ee6dbda90effa6") format("wof
 .bi-houses::before { content: "\f8c6"; }
 .bi-nvidia::before { content: "\f8c7"; }
 .bi-person-vcard-fill::before { content: "\f8c8"; }
-.bi-person-vcard::before { content: "\f8c9"; }
+.bi-person-VCard::before { content: "\f8c9"; }
 .bi-sina-weibo::before { content: "\f8ca"; }
 .bi-tencent-qq::before { content: "\f8cb"; }
 .bi-wikipedia::before { content: "\f8cc"; }
