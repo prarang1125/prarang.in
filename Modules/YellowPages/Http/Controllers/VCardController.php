@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
 use Stripe\StripeClient;
-use App\Models\Vcard;
+use App\Models\VCard;
 use App\Models\DynamicFeild;
 use App\Models\UserPurchasePlan;
 use App\Models\Plan;
