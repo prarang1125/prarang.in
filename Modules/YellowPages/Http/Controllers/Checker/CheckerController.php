@@ -14,7 +14,7 @@ use App\Models\DynamicFeild;
 use Exception;
 use App\Models\City;
 use App\Models\User;
-use App\Models\Vcard;
+use App\Models\VCard;
 use App\Models\Address;
 use App\Models\CompanyLegalType;
 use App\Models\EmployeeRange;

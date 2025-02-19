@@ -21,7 +21,7 @@ use App\Models\SocialMedia;
 use App\Models\User;
 use App\Models\BusinessSocialMedia;
 use App\Models\Address;
-use App\Models\Vcard;
+use App\Models\VCard;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
