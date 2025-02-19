@@ -36,7 +36,7 @@ class ListingController extends Controller
 
         // Get all active cities
         $cities = City::where('is_active', 1)->get();
-        $portal = Portal::where('id', $cities->portal_id)->first();
+       
         // Find the requested category by its slug, or fail with a 404 error if not found
         $category = Category::where('slug', $category_name)->firstOrFail();
 
@@ -46,7 +46,7 @@ class ListingController extends Controller
             ->get();
 
         // Return the view with the required data
-        return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'category_name','portal'));
+        return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'category_name'));
 
     // } catch (\Exception $e) {
     //     // Detailed error message for debugging
@@ -95,7 +95,7 @@ class ListingController extends Controller
         try {
             $categories = Category::where('is_active', 1)->get();
             $city_name= City::where('is_active', 1)->get();
-
+            $sz=City::where('name', $city)->first();
             $query = BusinessListing::query();
 
             if ($category) {
@@ -117,7 +117,7 @@ class ListingController extends Controller
                     $query->where('city_id', $cityId);
                 }
             }
-            $portal = Portal::where('id', $city_name->portal_id)->first();
+            $portal = Portal::where('id', $sz->portal_id)->first();
             $listings = $query->with(['category', 'hours', 'city'])->get()->map(function ($listing) {
                 $currentTime = Carbon::now();
             
