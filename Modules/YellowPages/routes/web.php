@@ -29,14 +29,17 @@ use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
  Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
 
     ##------------------------- Auth ---------------------##
+
     Route::get('/login', [AuthModalController::class, 'index'])->name('yp.login');
     Route::post('/authLogin', [AuthModalController::class, 'login'])->name('yp.authLogin');
     Route::get('/new-account', [AuthModalController::class, 'newAccount'])->name('yp.newAccount');
     Route::post('/register', [AuthModalController::class, 'register'])->name('yp.register');
     Route::post('/logout', [AuthModalController::class, 'logout'])->name('yp.logout');
+
     ##------------------------- END ---------------------##
 
     ##------------------------- Home ---------------------##
+    
     Route::get('/', [HomeController::class, 'index'])->name('yp.home');
     Route::get('/listing_plan', [HomeController::class, 'listing_plan'])->name('yp.listing_plan');
     Route::get('/bazzar_plan', [HomeController::class, 'bazzar_plan'])->name('yp.bazzar_plan');

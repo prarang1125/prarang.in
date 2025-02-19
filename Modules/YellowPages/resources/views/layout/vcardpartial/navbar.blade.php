@@ -15,7 +15,7 @@
                     <div class="user-info ps-3">
                         @if (Auth::guard('web')->check())
                             <p class="user-name mb-0" id="{{ Auth::guard('web')->user()->userId }}">{{ Auth::guard('web')->user()->firstName }} {{ Auth::guard('web')->user()->lastName }}</p>
-                            <p class="designattion mb-0">वेब व्यवस्थापक प्रोफ़ाइल</p>
+                            <p class="designattion mb-0"><strong>{{ $user->name ?? '' }}</strong> </p>
                         @elseif (Auth::check())
                             <p class="user-name mb-0">{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</p>
                             <p class="designattion mb-0">वेब उपयोगकर्ता प्रोफ़ाइल</p>
