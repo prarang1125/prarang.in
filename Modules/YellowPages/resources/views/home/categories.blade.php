@@ -53,7 +53,7 @@
  background-attachment:scroll;
  background-repeat:repeat-x !important;
  background-blend-mode:overlay;
- background-color:rgba(2,2,2,0.36) !important;
+ background-color:rgba(2,2,2,0.2) !important;
 }
 
 @media (max-width:767px){
@@ -67,6 +67,21 @@
 }
 
 }
+/* Import Google Fonts */
+@import url("//fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+/* Heading */
+.overflow-hidden .card-body h5{
+ font-weight:500 !important;
+ font-family:'DM Sans', sans-serif;
+ color:#0b1531 !important;
+}
+
+/* Column 11/12 */
+.main .card-body .col-11{
+ min-height:45px;
+}
+
 
 
 
@@ -77,10 +92,10 @@
 @section('content')
     <br><br>
     <!-- Header with Background Image -->
-    <div class="text-white text-center py-5 ypcitytop" style="background: url('https://prarang.s3.amazonaws.com/portal/portal_January_2025_678900b27a118.jpg') center/cover;">
+    <div class="text-white text-center py-5 ypcitytop" style="background: url('{{ Storage::url($portal->header_image) }}') center/cover;">
         <div class="container d-flex justify-content-start">
            
-            <a href="{{ route('portal',['portal'=>'jaunpur']) }}" class="btn btn-primary text-white">
+            <a target="_blank" href="{{ route('portal',['portal'=>$portal->slug]) }}" class="btn btn-primary text-white">
                 <i class="bi bi-phone"></i>   Portal
             </a>   
         </div>
