@@ -81,6 +81,19 @@
             text-align: center;
         }
     }
+    /* Column 4/12 (hover) */
+    .page-wrapper .d-flex .text-center{
+        cursor: pointer;
+        border-radius: 12px;
+
+    }
+.page-wrapper .d-flex .text-center:hover{
+ box-shadow:0px 0px 3px 1px #b6bbbe;
+ transition: all 0.3s ease;
+ 
+}
+
+
 </style>
 
 

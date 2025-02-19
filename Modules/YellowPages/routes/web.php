@@ -1,5 +1,7 @@
 
 <?php
+
+
 use Illuminate\Support\Facades\Route;
 
 use Modules\YellowPages\Http\Controllers\ListingController;
@@ -25,7 +27,11 @@ use Modules\YellowPages\Http\Controllers\VCard\CreateVCardController;
 use Modules\YellowPages\Http\Controllers\VCard\BusinessListingController;
 use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
 
-// Route::group(['prefix' => 'yellow-pages', 'middleware' => 'language'], function () {
+
+Route::get('yellow-pages/{any}', function ($any) {
+  return redirect("/yp/".$any);
+})->where('any', '.*');
+
  Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
 
     ##------------------------- Auth ---------------------##
