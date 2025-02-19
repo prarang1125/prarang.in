@@ -16,7 +16,7 @@ use App\Models\Category;
 use App\Models\Visits;
 use App\Models\User;
 use App\Models\BusinessListing;
-use App\Models\DynamicVcard;
+use App\Models\DynamicVCard;
 use Stripe\Checkout\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;

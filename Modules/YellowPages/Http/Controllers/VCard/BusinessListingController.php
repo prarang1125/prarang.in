@@ -10,7 +10,7 @@ use App\Models\City;
 use Carbon\Carbon;
 use App\Models\BusinessHour;
 use App\Models\DynamicFeild;
-use App\Models\DynamicVcard;
+use App\Models\DynamicVCard;
 use App\Models\CompanyLegalType;
 use App\Models\EmployeeRange;
 use App\Models\Savelisting;
