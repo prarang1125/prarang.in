@@ -89,7 +89,7 @@ class CheckerController extends Controller
 
     public function CheckCard(Request $request) {
         try {
-            $Vcard_list = Vcard::all();
+            $Vcard_list = VCard::all();
             $users = User::whereIn('name', $Vcard_list->pluck('slug'))->get(); // Get all matching users
             return view('yellowpages::admin.checker-card-list', compact('Vcard_list', 'users'));
         } catch (Exception $e) {
@@ -100,7 +100,7 @@ class CheckerController extends Controller
    public function approveCard($id)
    {
        // Fetch the VCard data by its ID, including dynamic fields relation
-       $vcard = Vcard::where('id', $id)
+       $vcard = VCard::where('id', $id)
            ->with('user', 'dynamicFields') // Assuming 'user' is the relation for the user of the VCard
            ->orderBy('id', 'desc')
            ->first();
@@ -124,7 +124,7 @@ class CheckerController extends Controller
    
    public function approveCardStatus($id)
 {
-    $listing = Vcard::findOrFail($id);
+    $listing = VCard::findOrFail($id);
 
     // Toggle the 'is_active' value between 1 and 0
     $listing->is_active = $listing->is_active == 1 ? 0 : 1;

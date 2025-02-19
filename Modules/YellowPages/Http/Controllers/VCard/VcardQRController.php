@@ -18,7 +18,7 @@ class VcardQRController extends Controller
     {
         try {
             $userId = Auth::id();
-            $vcard = Vcard::where('user_id', $userId)->latest()->first();
+            $vcard = VCard::where('user_id', $userId)->latest()->first();
 
             if (!$vcard) {
                 return redirect()->route('vCard.createCard')->with('message', 'No VCard found for this user. Please create a new one.');
@@ -41,7 +41,7 @@ class VcardQRController extends Controller
     {
         try {
             $userId = Auth::id();
-            $vcard = Vcard::where('user_id', $userId)->latest()->firstOrFail();
+            $vcard = VCard::where('user_id', $userId)->latest()->firstOrFail();
 
             // Generate QR code
             $qrCode = QrCode::size(200)->generate(route('vCard.scanView', ['id'=>$vcard->id,'slug' => $vcard->slug]));
@@ -63,7 +63,7 @@ class VcardQRController extends Controller
     public function scanAndView($id, $slug ,$count = 1)
     {
         try {
-            $vcard = Vcard::where('slug', $slug)->orWhere('id', $id)->first();
+            $vcard = VCard::where('slug', $slug)->orWhere('id', $id)->first();
 
             if ($vcard) {
 

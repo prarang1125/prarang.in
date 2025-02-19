@@ -51,7 +51,7 @@ class BusinessListingController extends Controller
             
             $user = User::find(Auth::id()); 
             $address = Address::where('user_id', Auth::id())->first();
-            $vcard = Vcard::where('user_id', Auth::id())->orderBy('id', 'desc')->first();
+            $vcard = VCard::where('user_id', Auth::id())->orderBy('id', 'desc')->first();
             $cities = City::on('yp')->get();
             $company_legal_type = DB::connection('yp')->table('company_legal_types')->get();
             $number_of_employees = DB::connection('yp')->table('number_of_employees')->get();
