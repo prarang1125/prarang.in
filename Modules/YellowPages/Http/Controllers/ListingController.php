@@ -58,8 +58,7 @@ class ListingController extends Controller
 
     ##------------------------- Show City---------------------##
     public function showByCity($city_name)
-    {
-      
+    {      
         try {
             $categories = Category::where('is_active', 1)->get();
             $cities = City::where('is_active', 1)->get();
@@ -75,12 +74,15 @@ class ListingController extends Controller
                 $city = City::where('name', 'LIKE', "%{$city_name}%")->first();
             }            
             $city_name=$city->name;
+            $portal = Portal::where('id', $city->portal_id)->first();
+           
+
             $listings = BusinessListing::with(['category', 'hours', 'city','address','user'])
                 ->whereHas('city', fn($q) => $q->where('city_id', $city->id))
                 ->get();
                
 
-                return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'city','city_name'));
+                return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'city','city_name','portal'));
             } catch (\Exception $e) {
                 return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
             }

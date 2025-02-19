@@ -2,6 +2,15 @@
 @section('title', __('messages.yellow_pages'))
 @section('content')
 @livewireStyles
+<style>
+    /* Heading */
+#swiper-wrapper-6b7b107b002152ae2 .card-body h5{
+ font-weight:500 !important;
+}
+
+
+</style>
+
     <!-- Hero Section -->
     <!-- <section id="hero" class="hero section-bg" style="background-image: url('{{ asset('assets/images/background-image.jpg') }}');"> -->
     <section id="hero" class="hero section-bg" style="background-image: url('https://img.freepik.com/free-vector/abstract-low-poly-colorful-triangle-shapes-background_1035-23257.jpg?t=st=1736766260~exp=1736769860~hmac=21a7d387175441dd76fc7c0247feb6fe57afa117b8db6c6db37cdec88a5537e5&w=1060');">
@@ -112,17 +121,66 @@
             <div class="swiper-wrapper">
                 @foreach($topRatedListings as $listing)
                 <div class="swiper-slide">
-                  <a href="{{ route('yp.listing-details', ['city_slug' => $listing->city->name, 'listing_title' => str::slug($listing->listing_title), 'listing_id' => $listing->id]) }}" style="display: block;">
-                    <div class="listing-item" style="background: #fff; border-radius: 10px; box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1); padding: 15px; text-align: center; transition: 0.3s;">
-                        <img src="{{ Storage::url($listing->business_img?? 'default.jpg') }}" style="width: 100%; height: 250px; object-fit: cover; border-radius: 10px; margin-bottom: 15px;" alt="{{ $listing->listing_title ?? 'No Title' }}">
-                        <div class="listing-details">
-                            <h3 style="font-size: 1.5rem; margin-bottom: 10px;">{{ $listing->listing_title ?? 'No Title' }}</h3>
-                            <p style="font-size: 1rem; color: #555;">Category: {{ $listing->category->name ?? 'N/A' }}</p>
-                            <p style="font-size: 1rem; color: #555;">Address: {{ $listing->business_address ?? 'No Address' }}</p>
-                            <p style="font-size: 1rem; color: #555;">{{ $listing->is_open ? 'Open' : 'Closed' }}</p>
+                    <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+                        <!-- Image -->
+                        <img src="{{ Storage::url($listing->business_img ?? 'default.jpg') }}" class="card-img-top" alt="{{ $listing->listing_title ?? 'No Title' }}" style="height: 220px; object-fit: cover;">
+
+                        <div class="card-body">
+                            <!-- Title -->
+                            <h5 class="card-title text-primary text-center mb-3">{{ $listing->listing_title ?? 'No Title' }}</h5>
+                            <div class="mb-1">
+                                <div class="row">
+                                    <div class="col-6">
+                                        @if($listing->is_open)
+                                            <span class=""><span class="bi bi-check-circle-fill text-success"></span> खुला (Open)</span>
+                                        @else
+                                            <span class=""><span class="bi bi-x-circle-fill text-danger"></span> बंद (Closed)</span>
+                                        @endif
+                                    </div>
+                                    <div class="col-6">
+                                        @if($listing->next_open)
+                                            <strong class="text-dark"><i class="bi bi-calendar-week"></i> अगला खुला:</strong> 
+                                            <span class="text-muted">{{ $listing->next_open->format('l, h:i A') }}</span>
+                                        @else
+                                            <span class="text-muted">समय उपलब्ध नहीं है</span>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Address Section -->
+                            <p class="card-text text-dark mb-0">
+                                <div class="row">
+                                    <div class="col-1"><span class="text-muted"><i class="bi bi-geo-alt fw-bold"></i></span></div>
+                                    <div class="col-11">
+                                        <span class="text-dark">{{ $listing->business_address ?? 'No Address' }}</span>
+                                    </div>
+                                </div>
+                            </p>
+
+                            <!-- Category -->
+                            <p class="card-text text-dark mt-0">
+                                <span class="text-muted"><i class="bi bi-tag fw-bold"></i> Category:</span> 
+                                <span class="text-dark">{{ $listing->category->name ?? 'N/A' }}</span>
+                            </p>
+
+                            <!-- View Details Button -->
+                            <div class="row">
+                                <div class="col-6">
+                                    <a href="tel:{{ $listing->user->phone ?? 'N/A' }}" class="btn btn-success text-white fw-bold w-100 rounded-pill">
+                                        <span class="text-muted"><i class="bi bi-phone text-white"></i></span> 
+                                        <span class="">फ़ोन करे</span>
+                                    </a>
+                                </div>
+                                <div class="col-6 text-end">
+                                    <a href="{{ route('yp.listing-details', ['city_slug' => $listing->city->name, 'listing_title' => str::slug($listing->listing_title), 'listing_id' => $listing->id]) }}" 
+                                       class="btn btn-primary text-white fw-bold w-100 rounded-pill">
+                                       जानकारी देखे<i class="bi bi-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    </a>
                 </div>
                 @endforeach
             </div>
