@@ -46,6 +46,9 @@
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 
     @stack('styles')
+    <style>
+    
+    </style>
 </head>
 
 <body class="index-page">
