@@ -19,7 +19,6 @@ use Illuminate\Foundation\Configuration\Middleware;
             'language' => \App\Http\Middleware\SetLocale::class, 
             'check.subscription' => \App\Http\Middleware\CheckSubscriptionLimits::class,
             'check.vcard.business' => \App\Http\Middleware\CheckUserVCardAndBusiness::class,
-
         ]);
         
         $middleware->redirectTo(

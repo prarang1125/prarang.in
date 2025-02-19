@@ -71,18 +71,39 @@
           @endif
 
           <!-- Dynamic (Social Media) Fields -->
+          <!-- Social Media Section -->
           @if (!empty($vcard->dynamicFields))
-            <div class="text-sm font-semibold text-gray-800 mt-2 mb-1">
+          <div class="text-lg font-semibold text-gray-800 mt-2 mb-1">
               सोशल मीडिया (Social Media)
-            </div>
-            @foreach ($vcard->dynamicFields as $social)
-              <div class="p-1 hover:bg-gray-50 rounded transition-colors">
-                <span class="text-gray-700 text-xs">
-                  <strong>{{ $social->title ?? 'सोशल मीडिया (Social Media)' }}:</strong>
-                  {{ $social->data ?? 'Not Available' }}
-                </span>
+          </div>
+          @foreach ($vcard->dynamicFields as $social)
+              <div class="p-2 hover:bg-gray-50 rounded-lg transition-colors">
+                  <span class="text-gray-500 text-sm">
+                      {{ $social->title ?? 'सोशल मीडिया (Social Media)' }}:
+                      <span class="text-gray-700 font-semibold">
+                          @if (!empty($social->data))
+                              @php
+                                  $socialData = $social->data;
+                              @endphp
+                              
+                              @if (filter_var($socialData, FILTER_VALIDATE_URL))
+                                  <!-- If it's a valid URL, make it a clickable link -->
+                                  <a href="{{ $socialData }}" target="_blank" class="text-blue-500 hover:underline">{{ $socialData }}</a>
+                              @elseif (preg_match('/^\+?[0-9]{10,15}$/', $socialData))
+                                  <!-- If it's a valid phone number, make it a clickable link for WhatsApp -->
+                                  <a href="https://wa.me/{{ $socialData }}" target="_blank" class="text-green-500 hover:underline">{{ $socialData }}</a>
+                              @else
+                                  <!-- If it's neither a URL nor a phone number, display it as plain text -->
+                                  {{ $socialData }}
+                              @endif
+                          @else
+                              <!-- If data is empty, show "Not Available" -->
+                              Not Available
+                          @endif
+                      </span>
+                  </span>
               </div>
-            @endforeach
+          @endforeach
           @endif
         </div>
         

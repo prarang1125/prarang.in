@@ -81,7 +81,7 @@ class CheckerController extends Controller
     public function approveListingStatus($id)
     {
         $listing = BusinessListing::findOrFail($id);
-        $listing->is_active = 1;
+        $listing->is_active = $listing->is_active == 1 ? 0 : 1;
         $listing->save();
     
         return redirect()->route('checker.listing')->with('success', 'सूचीकरण सफलतापूर्वक स्वीकृत हुआ।');
@@ -123,13 +123,16 @@ class CheckerController extends Controller
    }
    
    public function approveCardStatus($id)
-   {
-       $listing = Vcard::findOrFail($id);
-       $listing->is_active = 1;
-       $listing->save();
-   
-       return redirect()->route('checker.card')->with('success', 'सूचीकरण सफलतापूर्वक स्वीकृत हुआ।');
-   }
+{
+    $listing = Vcard::findOrFail($id);
+
+    // Toggle the 'is_active' value between 1 and 0
+    $listing->is_active = $listing->is_active == 1 ? 0 : 1;
+    $listing->save();
+
+    return redirect()->route('checker.card')->with('success', 'सूचीकरण का स्थिति सफलतापूर्वक अद्यतन हुआ।');
+}
+
 
     
     

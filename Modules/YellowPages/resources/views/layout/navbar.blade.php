@@ -13,14 +13,14 @@ header.header {
 
 .mobile-nav-toggle {
     display: block;
-    font-size: 1.2rem;
+    font-size: 1.2rem; 
     cursor: pointer;
     color: #333;
 }
 
 @media (min-width: 769px) {
     .mobile-nav-toggle {
-        display: none;
+        display: none; 
     }
 }
 
@@ -74,21 +74,8 @@ header.header {
     <div class="container position-relative d-flex align-items-center justify-content-between">
         <a href="{{ route('yp.home') }}" class="logo">
             <img src="{{ asset('assets/images/logo/yellow_logo.png') }}" alt="Logo">
-
-
-            {{-- <div class="logo-box">
-                <div class="logo-text">
-                    <p>PRARANG</p>
-                    <span>Knowledge Webs</span>
-                </div>
-                <div class="logoimg">
-                    <img src="https://www.prarang.in/home-assets/image/logo.png" alt="">
-                </div>
-
-            </div> --}}
-
-
         </a>
+
         <nav id="navmenu" class="navmenu">
             <ul>
                 <li class="dropdown" id="categories-menu">
@@ -104,7 +91,7 @@ header.header {
 
                 @if(Auth::check())
                     <li class="dropdown">
-                        <a href="#"><i class="bx bx-user"></i></a>
+                        <a href="#"><i class="fas fa-user-circle"></i></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ route('vCard.dashboard') }}">डैशबोर्ड(Dashboard)</a></li>
                             <li><a href="{{ route('yp.getLocationData') }}">सूची जोड़ें</a></li>

@@ -74,7 +74,7 @@ class ListingController extends Controller
                 ->get();
                
 
-                return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'city_name'));
+                return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'city','city_name'));
             } catch (\Exception $e) {
                 return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
             }
@@ -112,17 +112,21 @@ class ListingController extends Controller
 
             $listings = $query->with(['category', 'hours', 'city'])->get()->map(function ($listing) {
                 $currentTime = Carbon::now();
-
-                if ($listing->hours) {
-                    $openTime = Carbon::parse($listing->hours->open_time);
-                    $closeTime = Carbon::parse($listing->hours->close_time);
+            
+                // Ensure that 'hours' is a single instance (not a collection)
+                $hour = $listing->hours->first();  // Get the first related 'hours' entry
+            
+                if ($hour) {
+                    $openTime = Carbon::parse($hour->open_time);
+                    $closeTime = Carbon::parse($hour->close_time);
                     $listing->is_open = $currentTime->between($openTime, $closeTime);
                 } else {
                     $listing->is_open = false;
                 }
-
+            
                 return $listing;
             });
+            
 
                 return view('yellowpages::home.categories', compact('listings', 'categories', 'city'));
             } catch (\Exception $e) {

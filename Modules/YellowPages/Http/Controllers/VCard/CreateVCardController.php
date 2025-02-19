@@ -13,9 +13,11 @@ use App\Models\Category;
 use App\Models\BusinessListing;
 use App\Models\DynamicFeild;
 use App\Models\Address;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB;
+
 
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 
@@ -170,7 +172,7 @@ class CreateVCardController extends Controller
     
             // DB::commit();
     
-            return redirect()->route('vCard.view', ['slug' => $validatedData['name']])
+            return redirect()->route('vCard.view', ['slug' => str::slug($validatedData['name'])])
                              ->with('success', 'Card saved successfully.');
         // } catch (Exception $e) {
         //     DB::rollback();
@@ -327,7 +329,10 @@ class CreateVCardController extends Controller
     ##------------------------- VCard view ---------------------##
     public function view($slug)
     {
-        $vcard = Vcard::where('slug', $slug)
+        $unslugged = ucwords(str_replace('-', ' ', $slug));
+
+
+        $vcard = Vcard::where('slug', $unslugged)
             ->orderBy('id', 'desc')
             ->with(relations: 'dynamicFields')
             ->first();

@@ -51,7 +51,6 @@ class AuthModalController extends Controller
                     return redirect()->back()->withErrors(['loginError' => 'पहुँच प्रतिबंधित है। आपके पास ग्राहक अधिकार नहीं हैं।'])->withInput();
                 }
             }
-
             // Return with error if login fails
             return redirect()->back()->withErrors(['loginError' => 'आपके द्वारा दिए गए विवरण सही नहीं हैं। कृपया फिर से प्रयास करें।'])->withInput();
         } catch (\Exception $e) {
@@ -73,7 +72,7 @@ class AuthModalController extends Controller
     {
         try {
             $request->validate([
-                // 'name' => ['nullable', 'string', 'max:255', 'regex:/^[^@]+$/'],
+                 'name' => ['nullable', 'string', 'max:255', 'regex:/^[^@]+$/'],
                 'phone' => [
                     'required',
                     'regex:/^\+?[0-9]{10,15}$/',
@@ -82,7 +81,7 @@ class AuthModalController extends Controller
                 'city' => 'required', 
                 'password' => 'required', 
             ], [
-                // 'name.regex' => 'कृपया एक वैध नाम दर्ज करें।.',
+                'name.regex' => 'कृपया एक वैध नाम दर्ज करें।.',
                 'phone.required' => 'फोन नंबर आवश्यक है।',
                 'phone.regex' => 'कृपया एक वैध फोन नंबर दर्ज करें।',
                 'phone.unique' => 'आपका फोन नंबर पहले से पंजीकृत है।', 
@@ -96,10 +95,10 @@ class AuthModalController extends Controller
             // do {               
             //     $name = Str::random(6);
             // } while (User::where('name', $name)->exists());
-            $name="";
+            // $name="";
             // Create    a new user
             $user = User::create([
-                'name' => $name,
+                'name' => $request->input('name'), 
                 'phone' => $request->input('phone'), 
                 'city_id' => $request->input('city'), 
                 'password' => Hash::make($request->input('password')),

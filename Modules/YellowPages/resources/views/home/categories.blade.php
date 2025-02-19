@@ -1,5 +1,15 @@
 @extends('yellowpages::layout.script')
 
+@section('meta_title', isset($category->name) ? $category->name : ($city->name ?? ''))
+@section('meta_description', isset($category->description) ? $category->description : ($city->name ?? ''))
+{{-- @section('meta_keywords', isset($category->name) ? ($category->name . ', businesses, services') : ($city->name . ', businesses, services')) --}}
+@section('meta_og_title', isset($category->name) ? $category->name : ($city->name ?? ''))
+@section('meta_og_image', 
+    (isset($category->categories_url) && $category->categories_url) ? Storage::url($category->categories_url) :
+    (isset($city->cities_url) && $city->cities_url ? Storage::url($city->cities_url) : asset('assets/images/default.jpg'))
+)
+
+
 @section('title', __('messages.yellow_pages'))
 
 @section('content')
@@ -14,12 +24,13 @@
         
         <h1 class="pt-3">
             @if(isset($city_name) && $city_name)
-                {{$city_name}} व्यवसाय
+            {{$city_name}} व्यवसाय
             @elseif(isset($city) && $city)
-                {{$city}} व्यवसाय
-            @else
-                {{$category_name}}
+            {{$city}} व्यवसाय
+            @elseif(isset($category) && $category)
+            {{$category->name}}
             @endif
+        
         </h1>
     </div>
     
@@ -59,7 +70,7 @@
                                     @endif
                                 @endif
                                 <br><br>
-                                <a href="{{ route('yp.listing-details', ['city_slug' => $listing->city->name, 'listing_title' => $listing->listing_title, 'listing_id' => $listing->id]) }}" class="btn btn-primary">View Details</a>
+                                <a href="{{ route('yp.listing-details', ['city_slug' => $listing->city->name, 'listing_title' => Str::slug($listing->listing_title), 'listing_id' => $listing->id]) }}" class="btn btn-primary">View Details</a>
                             </div>
                         </div>
                     </div>
