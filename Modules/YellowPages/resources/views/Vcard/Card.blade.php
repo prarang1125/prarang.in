@@ -222,10 +222,12 @@
                         @foreach ($dynamicFields->chunk(3) as $chunk)
                             <div class="row d-flex justify-content-center align-items-center mb-2">
                                 @foreach ($chunk as $field)
-                                    <div class="col-4 text-center" onclick="addField('{{ $field->name }}', '{{ $field->icon }}', '{{ $field->type }}')">
-                                        <i class="{{ $field->icon }}" title="{{ $field->name }}" style="font-size: 24px;"></i>
-                                        <p class="mt-1">{{ $field->name }}</p>
-                                    </div>
+                                <div class="col-4 text-center" 
+                                onclick="addField('{{ addslashes($field->name) }}', '{{ addslashes($field->icon) }}', '{{ addslashes($field->type) }}')">
+                                <i class="{{ $field->icon }}" title="{{ $field->name }}" style="font-size: 24px;"></i>
+                                <p class="mt-1">{{ $field->name }}</p>
+                            </div>
+                            
                                 @endforeach
                             </div>
                         @endforeach
@@ -254,6 +256,7 @@ function addField(label, fieldName, fieldType) {
                     <label for="${fieldName}" class="form-label">${label}</label>
                     <input type="${inputType}" class="form-control" name="dynamic_data[]" placeholder="${label} दर्ज करें">
                     <input type="hidden" name="dynamic_name[]" value="${label}">
+
                 </div>
                 <button type="button" class="btn btn-light ms-2" onclick="removeField('${uniqueId}')">X</button>
             </div>
