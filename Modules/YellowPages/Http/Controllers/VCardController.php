@@ -80,7 +80,8 @@ class VCardController extends Controller
     
         if ($existingVCard) {
             return redirect()->route('vCard.list')
-            ->with('errors_message', __('आपका VCard पहले से ही बना है'));
+            ->with('errors_message', __('आपका वेबपेज(Webpage) पहले से ही बना है
+'));
         }
     
         // Proceed with the rest of the logic if no existing VCard
