@@ -20,7 +20,7 @@
             <div class="col-md-4">
                 <h5>Address</h5>
                 <ul>
-                    <li> 1125, The i-Thum , A-40, Sector 62, Noida, Uttar Pradesh 201301</li>
+                    <li> 1125, The i-Thum , A-40, Sector 62, Noida, Uttar Pradesh 201309</li>
                 </ul>
             </div>
 

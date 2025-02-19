@@ -212,7 +212,7 @@
 
 
 <ul>
-    <li><b>Address :- </b> office #25, 11th floor, The i-Thum, A-40 Sector 62, Noida(U.P), India 201301</li>
+    <li><b>Address :- </b> office #25, 11th floor, The i-Thum, A-40 Sector 62, Noida(U.P), India 201309</li>
     <li><b>E-Mail Contact :-</b> query@prarang.in </li>
     <li><b>Phone Contact :-</b> +91-1204561284</li>
 </ul>
