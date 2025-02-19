@@ -36,7 +36,7 @@ class ListingController extends Controller
 
         // Get all active cities
         $cities = City::where('is_active', 1)->get();
-
+        $portal = Portal::where('id', $cities->portal_id)->first();
         // Find the requested category by its slug, or fail with a 404 error if not found
         $category = Category::where('slug', $category_name)->firstOrFail();
 
@@ -46,7 +46,7 @@ class ListingController extends Controller
             ->get();
 
         // Return the view with the required data
-        return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'category_name'));
+        return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'category_name','portal'));
 
     // } catch (\Exception $e) {
     //     // Detailed error message for debugging
