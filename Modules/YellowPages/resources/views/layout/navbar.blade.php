@@ -82,7 +82,7 @@ header.header {
                     <a href="#">सिटीज(Cities)<i class="bx bx-chevron-down dropdown-icon"></i></a>
                     <ul class="dropdown-menu">
                         @foreach(get_cities() as $city)
-                        <li><a href="{{ route('city.show', $city->name) }}">{{ $city->name }}</a></li>
+                        <li><a href="{{ route('city.show', explode("(", $city->name)[0]) }}">{{ $city->name }}</a></li>
                         @endforeach
                     </ul>
                 </li>

@@ -59,16 +59,22 @@ class ListingController extends Controller
     ##------------------------- Show City---------------------##
     public function showByCity($city_name)
     {
+      
         try {
             $categories = Category::where('is_active', 1)->get();
             $cities = City::where('is_active', 1)->get();
-
             $city = City::where('name', $city_name)->first();
-            if (!$city) {
-                $portal = Portal::where('slug', $city_name)->firstOrFail();
-                $city = $portal->city; // Portal se related City fetch karen
-            }
 
+            if (!$city) {
+                $portal = Portal::where('slug', $city_name)->first();
+                if ($portal) {
+                    $city = $portal->city; 
+                }
+            }
+            if (!$city) {
+                $city = City::where('name', 'LIKE', "%{$city_name}%")->first();
+            }            
+            $city_name=$city->name;
             $listings = BusinessListing::with(['category', 'hours', 'city','address','user'])
                 ->whereHas('city', fn($q) => $q->where('city_id', $city->id))
                 ->get();
