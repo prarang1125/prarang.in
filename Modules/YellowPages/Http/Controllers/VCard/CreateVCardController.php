@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\VCard;
 use Exception;
-use App\Models\DynamicVcard;
+use App\Models\DynamicVCard;
 use App\Models\City;
 use App\Models\User;
 use App\Models\Category;
