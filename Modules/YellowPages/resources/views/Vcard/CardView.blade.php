@@ -42,7 +42,7 @@
 
       <!-- Information Section -->
       <div class="p-2 flex-1 space-y-2">
-        <h3 class="text-2xl font-bold text-gray-800 mb-2">{{ $user->name ?? 'User' }} prarang page</h3>
+        <h3 class="text-2xl font-bold text-gray-800 mb-2">{{ $user->name ?? 'User' }} Prarang Page</h3>
 
         <!-- Business Info -->
         <div class="space-y-1 mb-2">

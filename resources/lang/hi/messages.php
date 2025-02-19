@@ -37,4 +37,14 @@ return [
 ],
 'required' => ':attribute फ़ील्ड अनिवार्य है।',
 'vcard_exists' => 'आपका वेबपेज पहले से ही है।', // Updated message
+
+
+    'exists' => 'चयनित :attribute अमान्य है।',
+    'string' => ':attribute एक स्ट्रिंग होनी चाहिए।',
+    'email' => ':attribute मान्य ईमेल पता होना चाहिए।',
+    'image' => ':attribute एक मान्य छवि फ़ाइल होनी चाहिए।',
+    'max' => [
+        'image' => ':attribute का आकार :max किलोबाइट से अधिक नहीं होना चाहिए।',
+    ],
+    'date' => ':attribute मान्य दिनांक होनी चाहिए।',
 ];
