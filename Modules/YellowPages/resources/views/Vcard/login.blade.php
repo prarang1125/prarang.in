@@ -160,8 +160,10 @@
 
 <div class="forms-container">
   <div class="signin-signup">
+   
     <!-- Login Form -->
     <form action="{{ route('yp.authLogin') }}" method="POST" class="sign-in-form" autocomplete="off">
+  
       @csrf
       <h2 class="title">लॉगिन (Login)</h2>
       
@@ -188,6 +190,7 @@
   
       <!-- Register Link -->
       <a href="{{ route('yp.newAccount') }}" class="btn">नया खाता बनाएं? रजिस्टर (Register) करें</a>
+    
     </form>
   </div>
 
@@ -210,4 +213,19 @@
     </div>
   </div>
 </div>
+<style>
+  /* Homeicon */
+.homeicon{
+ z-index:819;
+ position:relative;
+ top:6px;
+ left:26px;
+ color:#020202;
+ text-decoration:none!important;
+
+}
+
+
+</style>
+<div class="text-start fixed-top homeicon p-2 rounded border"><a href="{{ route('yp.home') }}" style="text-decoration: none!important;"><i class="bx bx-home"></i>⬐ होम  </a> </div>
 @endsection
