@@ -5,3 +5,8 @@ ALTER TABLE `vcard` ADD COLUMN `is_active` TINYINT(1) NOT NULL DEFAULT 0;
 ALTER TABLE `users` ADD COLUMN `aadhar` VARCHAR(12) NULL;
 
 ALTER TABLE `users` ADD COLUMN `address_id` INT(11) NULL;
+
+
+ALTER TABLE dynamic_vcard_data 
+ADD COLUMN icon VARCHAR(255) NULL AFTER title;
+

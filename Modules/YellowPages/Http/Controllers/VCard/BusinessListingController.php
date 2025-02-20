@@ -112,7 +112,6 @@ class BusinessListingController extends Controller
     public function listingEdit($id) {
 
          try {
-
             $listing = BusinessListing::findOrFail($id);
             $user = User::where('id', $listing->user_id)->first();
             $listinghours = BusinessHour::where('business_id', $listing->id)->get();

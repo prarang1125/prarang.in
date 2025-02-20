@@ -96,7 +96,7 @@
             </div>            
 
             <!-- Business Hours Section -->
-            <div style="flex: 1; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <div style="flex:2; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                 <h3 style="font-size: 20px; font-weight: bold; margin-bottom: 15px;">काम करने के घंटे</h3>
                 <ul style="list-style: none; padding: 0; margin: 0;">
                     @if($listingHours->isNotEmpty())

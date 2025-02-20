@@ -47,4 +47,39 @@ return [
         'image' => ':attribute का आकार :max किलोबाइट से अधिक नहीं होना चाहिए।',
     ],
     'date' => ':attribute मान्य दिनांक होनी चाहिए।',
+
+
+
+    'required' => ':attribute आवश्यक है।',
+    'email' => 'कृपया एक मान्य ईमेल दर्ज करें।',
+    'max' => [
+        'string' => ':attribute अधिकतम :max अक्षरों का हो सकता है।',
+    ],
+    'exists' => 'चयनित :attribute मान्य नहीं है।',
+    'accepted' => 'आपको :attribute स्वीकार करना होगा।',
+    
+    'attributes' => [
+        'location' => 'स्थान',
+        'listingTitle' => 'सूची का शीर्षक',
+        'businessName' => 'व्यवसाय का नाम',
+        'primaryPhone' => 'प्राथमिक फ़ोन नंबर',
+        'primaryContact' => 'प्राथमिक संपर्क',
+        'primaryEmail' => 'ईमेल',
+        'businessType' => 'व्यवसाय का प्रकार',
+        'employees' => 'कर्मचारियों की संख्या',
+        'turnover' => 'टर्नओवर',
+        'advertising' => 'विज्ञापन माध्यम',
+        'advertising_price' => 'विज्ञापन मूल्य',
+        'category' => 'श्रेणी',
+        'street' => 'गली का नाम',
+        'area_name' => 'क्षेत्र का नाम',
+        'house_number' => 'मकान नंबर',
+        'city_id' => 'शहर',
+        'postal_code' => 'पिन कोड',
+        'agree' => 'सहमति',
+        'day' => 'कार्य दिवस',
+        'open_time' => 'खुलने का समय',
+        'close_time' => 'बंद होने का समय',
+    ],
 ];
+
