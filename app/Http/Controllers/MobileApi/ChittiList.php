@@ -75,7 +75,7 @@ class ChittiList extends Controller
             'postType' =>$geo[$url],
             'chittiname' => $chitti->name ?? '',
             'dateOfApprove' => $chitti->dateOfApprove,
-            'description' => $chitti->description,
+            'description' => "<style>img { width: 100%; height: auto; margin: 0; padding: 0; display: block; }</style>".$chitti->description,
             'geography' => $geography->geographyname,
             'url' => url("{$geography->geographycode}/posts/{$chitti->chittiId}/" . urlencode($chitti->Title)),
             'isLiked' => "false", // Placeholder for actual "is liked" logic

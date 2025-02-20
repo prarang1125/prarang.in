@@ -11,7 +11,7 @@ use App\Models\Report;
 use App\Models\PaymentHistory;
 use App\Models\BusinessListing;
 use App\Models\User;
-use App\Models\Vcard;
+use App\Models\VCard;
 use App\Models\UserPurchasePlan;
 use App\Models\CompanyLegalType;
 use Illuminate\Support\Facades\Storage;

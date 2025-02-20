@@ -28,6 +28,18 @@
     label:hover .rating-star {
         background-color: rgba(255, 215, 0, 0.7); /* Gold on hover */
     }
+    /* Image */
+.main div div div img{
+ width:100% !important;
+ height:59% !important;
+}
+
+/* Image */
+.main div img{
+ max-height:511px;
+}
+
+
     </style>
 </head>
 

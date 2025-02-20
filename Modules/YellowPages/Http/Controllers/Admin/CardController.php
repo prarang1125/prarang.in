@@ -4,10 +4,10 @@ namespace Modules\YellowPages\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Vcard;
+use App\Models\VCard;
 use App\Models\City;
 use App\Models\Category;
-use App\Models\DynamicVcard;
+use App\Models\DynamicVCard;
 use App\Models\User;
 use App\Models\DynamicFeild;
 use App\Models\Address;

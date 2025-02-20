@@ -37,7 +37,7 @@ class ListingController extends Controller
 
         // Get all active cities
         $cities = City::where('is_active', 1)->get();
-
+       
         // Find the requested category by its slug, or fail with a 404 error if not found
         $category = Category::where('slug', $category_name)->firstOrFail();
 
@@ -45,9 +45,9 @@ class ListingController extends Controller
         $listings = BusinessListing::with(['category', 'hours','city'])
             ->whereHas('category', fn($q) => $q->where('slug', $category->slug))
             ->get();
-
+       $portal =Portal::first();
         // Return the view with the required data
-        return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'category_name'));
+        return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'category_name','portal'));
 
     // } catch (\Exception $e) {
     //     // Detailed error message for debugging
@@ -96,7 +96,7 @@ class ListingController extends Controller
         try {
             $categories = Category::where('is_active', 1)->get();
             $city_name= City::where('is_active', 1)->get();
-
+            $sz=City::where('name', $city)->first();
             $query = BusinessListing::query();
 
             if ($category) {
@@ -118,7 +118,7 @@ class ListingController extends Controller
                     $query->where('city_id', $cityId);
                 }
             }
-
+            $portal = Portal::where('id', $sz->portal_id)->first();
             $listings = $query->with(['category', 'hours', 'city'])->get()->map(function ($listing) {
                 $currentTime = Carbon::now();
             
@@ -137,7 +137,7 @@ class ListingController extends Controller
             });
             
 
-                return view('yellowpages::home.categories', compact('listings', 'categories', 'city'));
+                return view('yellowpages::home.categories', compact('listings', 'categories', 'city','portal'));
             } catch (\Exception $e) {
                 return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
             }

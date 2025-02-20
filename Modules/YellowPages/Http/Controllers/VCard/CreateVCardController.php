@@ -4,7 +4,7 @@ namespace Modules\YellowPages\Http\Controllers\VCard;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Vcard;
+use App\Models\VCard;
 use Exception;
 use App\Models\DynamicVcard;
 use Modules\YellowPages\Http\Requests\StoreVCardRequest;
