@@ -3,6 +3,29 @@
 @section('title', __('messages.yellow_pages'))
 
 @section('content')
+<style>
+  @media (max-width:640px){
+
+/* Division */
+.main > div{
+ display:flex;
+ transform:translatex(0px) translatey(0px);
+ flex-direction:column;
+ padding-top:99px !important;
+}
+
+/* Division */
+.main div div{
+ padding-top:49px !important;
+}
+
+/* Link */
+.main div a{
+ width:100%;
+}
+
+}
+</style>
 <div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: center; min-height: 90vh; padding: 10px; background-color: #fff;">
 
     <!-- Text Content -->
