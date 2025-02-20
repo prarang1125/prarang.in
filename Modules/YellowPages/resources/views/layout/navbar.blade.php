@@ -66,6 +66,27 @@ header.header {
 .dropdown-icon {
     transition: transform 0.3s ease;
 }
+/* Flexx */
+#header .d-flex{
+ display:flex;
+ /* transform:translatex(0px) translatey(0px); */
+ padding-top:0px;
+ margin-top:-14px;
+ margin-bottom:-10px;
+}
+
+/* Image */
+#header .d-flex .logo img{
+ width:250px !important;
+}
+
+/* Image */
+.d-flex .logo img{
+ min-width:219px;
+ min-height:62px;
+ padding-top:5px;
+}
+
 
 
 </style>
@@ -73,7 +94,9 @@ header.header {
 <header id="header" class="header fixed-top">
     <div class="container position-relative d-flex align-items-center justify-content-between">
         <a href="{{ route('yp.home') }}" class="logo">
-            <img src="{{ asset('assets/images/logo/yellow_logo.png') }}" alt="Logo">
+            {{-- <img src="{{ asset('assets/images/logo/yellow_logo.png') }}" alt="Logo">
+           --}}
+            <img src="{{ asset('assets/images/logo-bg.png') }}" alt="Logo">
         </a>
 
         <nav id="navmenu" class="navmenu">
@@ -86,15 +109,15 @@ header.header {
                         @endforeach
                     </ul>
                 </li>
-                <li><a href="{{ route('yp.plan') }}">योजना</a></li>
-                <li><a href="{{ route('yp.vcard') }}">वी-कार्ड (v-card)</a></li>
+                {{-- <li><a href="{{ route('yp.plan') }}">योजना</a></li> --}}
+                <li><a href="{{ route('yp.vcard') }}">वेबपेज बनाये  (Web Page)</a></li>
 
                 @if(Auth::check())
                     <li class="dropdown">
                         <a href="#"><i class="fas fa-user-circle"></i></a>
                         <ul class="dropdown-menu">
                             <li><a href="{{ route('vCard.dashboard') }}">डैशबोर्ड(Dashboard)</a></li>
-                            <li><a href="{{ route('yp.getLocationData') }}">सूची जोड़ें</a></li>
+                            {{-- <li><a href="{{ route('yp.getLocationData') }}">सूची जोड़ें</a></li> --}}
                             <li>
                                 <a href="{{ route('vCard.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                     लॉगआउट(logout)
@@ -109,7 +132,7 @@ header.header {
                     <li class="login-button">
                         <a href="{{ route('yp.login') }}" class="btn-login-icon">
                             <i class="bx bx-log-in"></i>
-                            <span class="highlight-text">साइन इन</span>
+                            <span class="highlight-text">लॉगिन (Login)</span>
                         </a>
                     </li>
                 @endif

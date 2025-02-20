@@ -56,7 +56,7 @@ Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
     ##------------------------- END ---------------------##
 
     
-    Route::get('/vcard', [VCardController::class, 'index'])->name('yp.vcard');
+    Route::get('/create-web-page', [VCardController::class, 'index'])->name('yp.vcard');
     Route::get('/vCard/logout', [VCardController::class, 'logout'])->name('vCard.logout');
     ##------------------------- END ---------------------##
 

@@ -125,6 +125,9 @@
         </h1>
         <!-- Listings Grid -->
         <div class="row g-4 "> <!-- Centered Listings -->
+            @php 
+            $isMobile = request()->userAgent() && str_contains(request()->userAgent(), 'Mobile');                    
+        @endphp
             @foreach($listings as $listing)
             <div class="col-lg-4 col-md-6">
                 <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
@@ -186,10 +189,17 @@
                         <!-- View Details Button -->
                         <div class="row">
                             <div class="col-6">
-                                <a href="tel:{{ $listing->user->phone ?? 'N/A' }}" class="btn btn-success text-white fw-bold w-100 rounded-pill ">
-                                    <span class="text-muted"><i class="bi bi-phone text-white"> </i></span> 
-                                    <span class="">फ़ोन करे</span>
+                                @if($isMobile)
+                                <a href="tel:{{ $listing->user->phone ?? 'N/A' }}" class="btn btn-success text-white fw-bold w-100 rounded-pill">
+                                    <span class="text-muted"><i class="bi bi-phone text-white"></i></span>  
+                                    <span class="">फ़ोन करे</span>
                                 </a>
+                                @else
+                                    <a href="javascript:void(0)" class="btn btn-success text-white fw-bold w-100 rounded-pill">
+                                        <span class="text-muted"><i class="bi bi-phone text-white"></i></span> 
+                                        <span class="">{{ $listing->user->phone ?? 'N/A' }}</span>
+                                    </a>
+                                @endif
                             </div>
                             <div class="col-6 text-end">
                                 <a href="{{ route('yp.listing-details', ['city_slug' => $listing->city->name, 'listing_title' => Str::slug($listing->listing_title), 'listing_id' => $listing->id]) }}" 
