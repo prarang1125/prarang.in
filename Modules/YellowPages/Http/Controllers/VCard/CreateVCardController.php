@@ -160,7 +160,6 @@ class CreateVCardController extends Controller
         }
     }
     
-
     ##------------------------- END ---------------------##
 
     ##------------------------- vCardUpdate ---------------------##

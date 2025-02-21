@@ -8,7 +8,7 @@ return [
     'Let_uncover_the_best_Businesses' => 'आइए सर्वोत्तम व्यवसायों, उत्पादों और सेवाओं को उजागर करें',
 
     //category
-    'select_category' => 'श्रेणी चुनना',
+    'select_category' => 'श्रेणी चुनें',
     'Craft'=>'शिल्प',
     'Government'=>'सरकार',
     'Industry'=>'उद्योग',
@@ -35,9 +35,9 @@ return [
     'password' => 'पासवर्ड',
     'name' => 'नाम',
 ],
-'required' => ':attribute फ़ील्ड अनिवार्य है।',
-'vcard_exists' => 'आपका वेबपेज पहले से ही है।', // Updated message
 
+'required' => ':attribute फ़ील्ड अनिवार्य है।',
+'vcard_exists' => 'आपका वेबपेज पहले से ही है।',
 
     'exists' => 'चयनित :attribute अमान्य है।',
     'string' => ':attribute एक स्ट्रिंग होनी चाहिए।',
@@ -47,7 +47,6 @@ return [
         'image' => ':attribute का आकार :max किलोबाइट से अधिक नहीं होना चाहिए।',
     ],
     'date' => ':attribute मान्य दिनांक होनी चाहिए।',
-
 
 
     'required' => ':attribute आवश्यक है।',

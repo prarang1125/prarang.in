@@ -177,14 +177,14 @@
     <br>
     <br>
     
-    <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd; font-family: Arial, sans-serif;">
+    <div style="max-width: 100%; margin: 0 auto; background: #fff; padding: 15px; border: 1px solid #ddd; font-family: Arial, sans-serif;">
         <h5 style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">काम करने के घंटे</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
     
         <!-- Schedule Container -->
         <div id="schedule-container">
-            <div class="day-schedule">
-                <select name="day[]" class="day-select">
+            <div class="day-schedule" style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+                <select name="day[]" class="day-select" style="flex: 1; min-width: 100px; padding: 5px;">
                     <option value="">-- दिन चुनें --</option>
                     <option value="monday">सोमवार</option>
                     <option value="tuesday">मंगलवार</option>
@@ -195,31 +195,31 @@
                     <option value="sunday">रविवार</option>
                 </select>
     
-                <input type="time" name="open_time[]" class="time-input">
+                <input type="time" name="open_time[]" class="time-input" style="flex: 1; padding: 5px;">
                 <label>to</label>
-                <input type="time" name="close_time[]" class="time-input">
+                <input type="time" name="close_time[]" class="time-input" style="flex: 1; padding: 5px;">
     
-                <label>
+                <label style="white-space: nowrap;">
                     <input type="checkbox" class="is-24-hours"> 24 घंटे
                 </label>
-                <label>
+                <label style="white-space: nowrap;">
                     <input type="checkbox" class="add-2nd-slot"> दूसरा स्लॉट जोड़ें
                 </label>
-                <button type="button" class="remove-day-btn">&#x2716;</button>
+                <button type="button" class="remove-day-btn" style="background: red; color: white; border: none; padding: 5px 10px; cursor: pointer;">&#x2716;</button>
     
                 <!-- Second Time Slot -->
-                <div class="second-time-slot" style="display: none; margin-top: 10px;">
-                    <input type="time" name="open_time_2[]" class="time-input">
+                <div class="second-time-slot" style="display: none; margin-top: 10px; width: 100%;">
+                    <input type="time" name="open_time_2[]" class="time-input" style="flex: 1; padding: 5px;">
                     <label>to</label>
-                    <input type="time" name="close_time_2[]" class="time-input">
+                    <input type="time" name="close_time_2[]" class="time-input" style="flex: 1; padding: 5px;">
                 </div>
             </div>
         </div>
     
         <!-- Add New Day Button -->
-        <button type="button" id="add-day-btn">+ Add Day</button>
+        <button type="button" id="add-day-btn" style="margin-top: 10px; background: green; color: white; padding: 10px; border: none; cursor: pointer;">+ Add Day</button>
     </div>
-    
+        
     <br>
     <br>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
@@ -283,15 +283,15 @@
         </div>
     </div>      
     <br>
-    <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
+    <div style="width: 100%; max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd; box-sizing: border-box;">
         <h5 style="margin-bottom: 15px;">सोशल मीडिया लिंक</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
     
         <div id="social-media-container">
             @if(!empty($social_media_data) && count($social_media_data) > 0)
                 @foreach($social_media_data as $data)
-                    <div class="social-media-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                        <select name="socialId[]" style="flex: 1; padding: 8px;">
+                    <div class="social-media-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: nowrap; width: 100%; box-sizing: border-box;">
+                        <select name="socialId[]" style="flex: 1; min-width: 100px; padding: 8px; box-sizing: border-box; width: 100%;">
                             <option value="">स्थान चुनें</option>
                             @foreach($social_media as $social)
                                 <option value="{{ $social->id }}" 
@@ -300,27 +300,32 @@
                                 </option>
                             @endforeach
                         </select>
-                        <input type="text" name="socialDescription[]" value="{{ $data->description ?? '' }}" placeholder="अपना लिंक या विवरण दर्ज करें" style="flex: 2; padding: 8px;">
-                        <button type="button" class="removeSocialMedia" style="padding: 10px; background-color: red; color: white; border: none; cursor: pointer;">-</button>
+                        <input type="text" name="socialDescription[]" value="{{ $data->description ?? '' }}" placeholder="अपना लिंक या विवरण दर्ज करें" 
+                               style="flex: 2; min-width: 180px; padding: 8px; box-sizing: border-box; width: 100%;">
+                        <button type="button" class="removeSocialMedia" 
+                                style="padding: 10px; background-color: red; color: white; border: none; cursor: pointer; flex-shrink: 0;">-</button>
                     </div>
                 @endforeach
             @else
-                <div class="social-media-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                    <select name="socialId[]"  style="flex: 1; padding: 8px;">
+                <div class="social-media-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: nowrap; width: 100%; box-sizing: border-box;">
+                    <select name="socialId[]" style="flex: 1; min-width: 100px; padding: 8px; box-sizing: border-box; width: 100%;">
                         <option value="">स्थान चुनें</option>
                         @foreach($social_media as $social)
                             <option value="{{ $social->id }}">{{ $social->name }}</option>
                         @endforeach
                     </select>
-                    <input type="text" name="socialDescription[]" placeholder="अपना लिंक या विवरण दर्ज करें" style="flex: 2; padding: 8px;">
-                    <button type="button" class="removeSocialMedia" style="padding: 10px; background-color: red; color: white; border: none; cursor: pointer;">-</button>
+                    <input type="text" name="socialDescription[]" placeholder="अपना लिंक या विवरण दर्ज करें" 
+                           style="flex: 2; min-width: 180px; padding: 8px; box-sizing: border-box; width: 100%;">
+                    <button type="button" class="removeSocialMedia" 
+                            style="padding: 10px; background-color: red; color: white; border: none; cursor: pointer; flex-shrink: 0;">-</button>
                 </div>
             @endif
         </div>
-
+    
         <!-- Add Button -->
-        <button type="button" id="addSocialMedia" style="padding: 10px; background-color: green; color: white; border: none; cursor: pointer; margin-top: 10px;">+</button>
-    </div>
+        <button type="button" id="addSocialMedia" 
+                style="padding: 10px; background-color: green; color: white; border: none; cursor: pointer; margin-top: 10px;">+</button>
+    </div>    
 
     <br>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 0 5px rgba(0,0,0,0.1);">
@@ -332,6 +337,7 @@
             <input type="file" id="imageUpload" name="image" style="display: block; margin-top: 10px; " onchange="previewImage(event, 'previewImage')">
             <img id="previewImage" src="" alt="Uploaded Image" style="display: none; margin-top: 10px; max-width: 100px; border: 1px solid #ddd;">
         </div>
+
         @error('image')
         <div style="color: red; font-size: 14px; margin-top: 5px;">
             {{ $message }}
@@ -471,7 +477,8 @@ document.getElementById('submit-btn')?.addEventListener('click', () => {
 
 
 document.addEventListener("DOMContentLoaded", function() {
-    // Add new social media row
+    let socialMediaData = {!! json_encode($social_media) !!}; 
+
     document.getElementById("addSocialMedia").addEventListener("click", function() {
         let container = document.getElementById("social-media-container");
         let newRow = document.createElement("div");
@@ -480,19 +487,22 @@ document.addEventListener("DOMContentLoaded", function() {
         newRow.style.alignItems = "center";
         newRow.style.gap = "10px";
         newRow.style.marginBottom = "10px";
+        newRow.style.flexWrap = "nowrap";
+        newRow.style.width = "100%";
+        newRow.style.boxSizing = "border-box";
 
         let select = document.createElement("select");
         select.name = "socialId[]";
-        // select.required = true;
         select.style.flex = "1";
+        select.style.minWidth = "100px";
         select.style.padding = "8px";
+        select.style.boxSizing = "border-box";
+        select.style.width = "100%";
 
         let defaultOption = document.createElement("option");
         defaultOption.text = "स्थान चुनें";
         defaultOption.value = "";
         select.appendChild(defaultOption);
-
-        let socialMediaData = @json($social_media); // Convert Blade variable to JS array
 
         socialMediaData.forEach(function(social) {
             let option = document.createElement("option");
@@ -506,7 +516,10 @@ document.addEventListener("DOMContentLoaded", function() {
         input.name = "socialDescription[]";
         input.placeholder = "अपना लिंक या विवरण दर्ज करें";
         input.style.flex = "2";
+        input.style.minWidth = "180px";
         input.style.padding = "8px";
+        input.style.boxSizing = "border-box";
+        input.style.width = "100%";
 
         let removeButton = document.createElement("button");
         removeButton.type = "button";
@@ -516,6 +529,7 @@ document.addEventListener("DOMContentLoaded", function() {
         removeButton.style.color = "white";
         removeButton.style.border = "none";
         removeButton.style.cursor = "pointer";
+        removeButton.style.flexShrink = "0";
 
         removeButton.addEventListener("click", function() {
             newRow.remove();
@@ -527,14 +541,12 @@ document.addEventListener("DOMContentLoaded", function() {
         container.appendChild(newRow);
     });
 
-    // Attach event listener to remove existing social media rows
     document.querySelectorAll(".removeSocialMedia").forEach(button => {
         button.addEventListener("click", function() {
             this.parentElement.remove();
         });
     });
 });
-
 
 document.addEventListener("DOMContentLoaded", function() {
     function previewImage(event, previewId) {

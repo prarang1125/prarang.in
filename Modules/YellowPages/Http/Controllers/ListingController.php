@@ -185,7 +185,6 @@ class ListingController extends Controller
     public function store(BusinessListingRequest $request)
     {
         $validated = $request->validated();         
-        dd( $validated);  
     try{
     
         // File upload handling
