@@ -38,7 +38,20 @@
 .main div img{
  max-height:511px;
 }
+@media (max-width:575px){
 
+/* Division */
+.main > div > div{
+ flex-direction:column !important;
+ transform:translatex(0px) translatey(0px);
+}
+
+/* Heading */
+.main div h1{
+ margin-bottom:15px !important;
+}
+
+}
 
     </style>
 </head>
@@ -81,7 +94,7 @@
                     <button onclick="shareOnFacebook()" style="margin-bottom: 10px; background-color: #3b5998; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px;">Facebook पर शेयर करें</button>
                     <button onclick="shareOnInstagram()" style="margin-bottom: 10px; background-color: #e4405f; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px;">Instagram पर शेयर करें</button>
                     <button onclick="shareOnWhatsApp()" style="margin-bottom: 10px; background-color: #25D366; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px;">WhatsApp पर शेयर करें</button>
-                    <button onclick="shareOnLinkedIn()" style="margin-bottom: 10px; background-color: #0077b5; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px;">LinkedIn पर शेयर करें</button>
+                    {{-- <button onclick="shareOnLinkedIn()" style="margin-bottom: 10px; background-color: #0077b5; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px;">LinkedIn पर शेयर करें</button> --}}
                     <button onclick="closeModal()" style="margin-top: 10px; background-color: #ccc; color: black; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px;">बंद करें</button>
                 </div>
                 <a href="{{ route('yp.listing.save', $listing->id) }}" style="background-color: #28a745; color: white; padding: 10px 15px; font-size: 14px; border-radius: 5px; text-decoration: none; display: inline-block; cursor: pointer;">
