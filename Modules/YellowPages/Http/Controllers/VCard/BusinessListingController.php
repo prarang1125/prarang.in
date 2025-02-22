@@ -10,6 +10,7 @@ use App\Models\City;
 use Carbon\Carbon;
 use App\Models\BusinessHour;
 use App\Models\DynamicFeild;
+use Modules\YellowPages\Http\Requests\BusinessListingRequest;
 use App\Models\DynamicVCard;
 use App\Models\CompanyLegalType;
 use App\Models\EmployeeRange;
@@ -37,7 +38,8 @@ class BusinessListingController extends Controller
     public function businessListing(Request $request) {
         try {
             $business_listing = BusinessListing::where('user_id', Auth::id())->get();
-            return view('yellowpages::Vcard.business-listing', compact('business_listing'));
+            $user = User::find(Auth::id());
+            return view('yellowpages::Vcard.business-listing', compact('business_listing','user'));
         } catch (Exception $e) {
             // return $e->getMessage();
             return redirect()->back()->with('error', 'Error fetching business listings: ' );
@@ -151,48 +153,9 @@ class BusinessListingController extends Controller
     ##------------------------- END ---------------------##
     ##------------------------- Business Listing Upadte ---------------------##
 
-    public function listingUpdate(Request $request)
+    public function listingUpdate(BusinessListingRequest $request)
     {
-        $validated = $request->validate([
-            'location' => 'required|exists:yp.cities,id',
-            'listingTitle' => 'required|string|max:255',
-            'tagline' => 'nullable|string',
-            'businessName' => 'required|string|max:255',
-            'primaryPhone' => 'required|string',
-            'primaryContact' => 'required|string',
-            'primaryEmail' => 'required|email',
-            'businessType' => 'required',
-            'employees' => 'required',
-            'turnover' => 'required',
-            'advertising' => 'required',
-            'advertising_price' => 'required',
-            'category' => 'required',
-            'description' => 'nullable|string',
-            'website' => 'nullable|url',
-            'street' => 'required|string',
-            'area_name' => 'required|string',
-            'house_number' => 'required|string',
-            'postal_code' => 'nullable|string',
-            'socialId' => 'nullable|array',
-            'socialId.*' => 'exists:yp.dynamic_fields,id',
-            'socialDescription' => 'nullable|array',
-            'socialDescription.*' => 'string|max:255',
-            'day' => 'required|array',
-            'day.*' => 'required|string',
-            'open_time' => 'nullable|array',
-            'open_time.*' => 'nullable|string',
-            'close_time' => 'nullable|array',
-            'close_time.*' => 'nullable|string',
-            'is_24_hours' => 'nullable|array',
-            'is_24_hours.*' => 'nullable|boolean',
-            'add_2nd_time_slot' => 'nullable|array',
-            'add_2nd_time_slot.*' => 'nullable|boolean',
-            'open_time_2' => 'nullable|array',
-            'open_time_2.*' => 'nullable|string',
-            'close_time_2' => 'nullable|array',
-            'close_time_2.*' => 'nullable|string',
-            'image' => 'nullable|image|max:2048', 
-        ]);
+        $validated = $request->validated(); 
     
         // try {
             // Check if listing exists
@@ -220,6 +183,7 @@ class BusinessListingController extends Controller
                 'website' => $validated['website'],
                 'description' => $validated['description'] ?? null,
                 'business_img' => $imagePath,
+                'business_address' => $validated['business_address'],
             ];
     
             // Update or Create Listing
@@ -235,20 +199,20 @@ class BusinessListingController extends Controller
                 'name' => $validated['primaryContact'],
             ]);
     
-            // Update or Create Address
-            $address = Address::updateOrCreate(
-                ['user_id' => Auth::id()],
-                [
-                    'street' => $validated['street'],
-                    'area_name' => $validated['area_name'],
-                    'house_number' => $validated['house_number'],
-                    'city_id' => $validated['location'], // Using 'location' field
-                    'postal_code' => $validated['postal_code'],
-                ]
-            );
+            // // Update or Create Address
+            // $address = Address::updateOrCreate(
+            //     ['user_id' => Auth::id()],
+            //     [
+            //         'street' => $validated['street'],
+            //         'area_name' => $validated['area_name'],
+            //         'house_number' => $validated['house_number'],
+            //         'city_id' => $validated['location'], // Using 'location' field
+            //         'postal_code' => $validated['postal_code'],
+            //     ]
+            // );
     
-            $listing->address_id = $address->id;
-            $listing->save();
+            // $listing->address_id = $address->id;
+            // $listing->save();
     
           
             if (!empty($validated['socialId'])) {

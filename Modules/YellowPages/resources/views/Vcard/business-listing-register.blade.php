@@ -177,7 +177,7 @@
     <br>
     <br>
     
-    <div style="max-width: 100%; margin: 0 auto; background: #fff; padding: 15px; border: 1px solid #ddd; font-family: Arial, sans-serif;">
+    <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd; font-family: Arial, sans-serif;">
         <h5 style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">काम करने के घंटे</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
     
@@ -217,8 +217,9 @@
         </div>
     
         <!-- Add New Day Button -->
-        <button type="button" id="add-day-btn" style="margin-top: 10px; background: green; color: white; padding: 10px; border: none; cursor: pointer;">+ Add Day</button>
-    </div>
+        <button type="button" id="add-day-btn">+ Add Day</button>
+    </div>                
+    
         
     <br>
     <br>
@@ -349,7 +350,6 @@
         <div style="margin-top: 15px; margin-bottom: 15px;">
             <label>
                 <input type="checkbox" name="agree" id="existingAccountCheckbox" style="margin-right: 5px;">मैं नियमों और शर्तों से सहमत हूं।
-
             </label>
         </div>
         <button type="submit"  id="submit-btn" class="btn btn-primary">जमा करना</button>
@@ -563,7 +563,6 @@ document.addEventListener("DOMContentLoaded", function() {
         }
     }
 
-    // Attach event listeners dynamically (Fixes the error)
     document.getElementById("imageUpload").addEventListener("change", function(event) {
         previewImage(event, "previewImage");
     });
@@ -576,5 +575,6 @@ document.addEventListener("DOMContentLoaded", function() {
         previewImage(event, "logoPreview");
     });
 });
+
 </script>
 @endpush

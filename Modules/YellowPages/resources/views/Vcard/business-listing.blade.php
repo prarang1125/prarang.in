@@ -50,7 +50,6 @@
                                     <th scope="col">व्यवसाय_पता</th>
                                     <th scope="col">प्राथमिक_फ़ोन</th>
                                     <th scope="col">प्राथमिक_संपर्क_ईमेल</th>
-                                    <th scope="col">पिनकोड</th>
                                     <th scope="col">कार्रवाई</th>
                                 </tr>
                             </thead>
@@ -62,9 +61,8 @@
                                         <td class="align-middle">{{ $business->listing_title }}</td> 
                                         <td class="align-middle">{{ $business->business_name }}</td>
                                         <td class="align-middle">{{ $business->business_address }}</td>
-                                        <td class="align-middle">{{ $business->primary_phone }}</td>
-                                        <td class="align-middle">{{ $business->primary_contact_email }}</td>
-                                        <td class="align-middle">{{ $business->pincode }}</td> 
+                                        <td class="align-middle">{{ $user->phone }}</td>
+                                        <td class="align-middle">{{ $user->email }}</td>
                                         <td class="align-middle">
                                             <div class="d-flex flex-column flex-sm-row gap-2">
                                                 <a href="{{ route('vCard.listing-edit', $business->id) }}" class="btn btn-sm btn-primary edit-user">संपादन करना</a>
