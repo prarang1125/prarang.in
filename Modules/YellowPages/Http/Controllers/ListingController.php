@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\City;
 use Carbon\Carbon;
+use Modules\YellowPages\Http\Requests\BusinessListingRequest;
 use App\Models\BusinessListing;
 use App\Models\User;
 use App\Models\Address;
@@ -181,50 +182,9 @@ class ListingController extends Controller
     ##------------------------- END---------------------##
 
     ##------------------------- Add Listing ---------------------##
-    public function store(Request $request)
+    public function store(BusinessListingRequest $request)
     {
-            // Validation rules
-            $validated = $request->validate([
-                'location' => 'required',
-                'listingTitle' => 'required|string|max:255',
-                'tagline' => 'nullable|string',
-                'businessName' => 'required|string|max:255',
-                'primaryPhone' => 'required|string',
-                'primaryContact' => 'required|string',
-                'primaryEmail' => 'required|email',
-                'businessType' => 'required',
-                'employees' => 'required',
-                'turnover' => 'required',
-                'advertising' => 'required',
-                'advertising_price' => 'required',
-                'category' => 'required',
-                'description' => 'nullable|string',
-                'website' => 'nullable|url',
-                'street' => 'required|string',
-                'area_name' => 'required|string',
-                'house_number' => 'required|string',
-                'city_id' => 'required|exists:yp.cities,id',
-                'postal_code' => 'nullable|string',
-                'socialId' => 'nullable|array',
-                'socialId.*' => 'exists:yp.dynamic_fields,id',
-                'socialDescription' => 'nullable|array',
-                'socialDescription.*' => 'string|max:255',
-                'agree' => 'nullable|accepted',
-                'day' => 'required|array',
-                'day.*' => 'required|string',
-                'open_time' => 'required|array',
-                'open_time.*' => 'required|string',
-                'close_time' => 'required|array',
-                'close_time.*' => 'required|string',
-                'is_24_hours' => 'nullable|array',
-                'is_24_hours.*' => 'nullable|boolean',
-                'add_2nd_time_slot' => 'nullable|array',
-                'add_2nd_time_slot.*' => 'nullable|boolean',
-                'open_time_2' => 'nullable|array',
-                'open_time_2.*' => 'nullable|string',
-                'close_time_2' => 'nullable|array',
-                'close_time_2.*' => 'nullable|string',
-            ]);
+        $validated = $request->validated();         
     try{
     
         // File upload handling

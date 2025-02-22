@@ -164,7 +164,7 @@ class CardController extends Controller
         } catch (ModelNotFoundException $e) {
             return redirect()->route('admin.Vcardlist')->withErrors(['error' => 'vcard not found.']);
         } catch (Exception $e) {
-            return redirect()->route('admin.Vcardlist')->withErrors(['error' => 'An error occurred while trying to delete the Vcard: ' ]);
+            return redirect()->route('admin.Vcardlist')->withErrors(['error' => 'An error occurred while trying to delete the VCard: ' ]);
         }
     }
     

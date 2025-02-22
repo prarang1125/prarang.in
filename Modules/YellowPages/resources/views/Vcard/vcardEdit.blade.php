@@ -161,10 +161,7 @@
                     
                     <!-- Hidden field to store deleted field IDs -->
                     <input type="hidden" name="deleted_fields" id="deletedFields" value="">
-                    
-                        
                         <div id="dynamic-fields"></div>
-                        
                         <!-- Save Button -->
                         <div class="text-end">
                             <button type="submit" class="btn btn-primary">सबमिट(Submit) करें</button>
@@ -178,7 +175,7 @@
         <div class="col-md-6 fixed-container">
             <div class="card border-0 shadow-sm">
                 <div class="card-body text-center">
-                    <h5 class="mb-3">अन्य जानकारी</h5>
+                    <h5 class="mb-3">आपनी सोशल जानकारी जोड़ें</h5>
                     <div class="container">
                         @foreach ($dynamicFields->chunk(3) as $chunk)
                             <div class="row d-flex justify-content-center align-items-center mb-2">
