@@ -15,7 +15,7 @@ class Portal extends Model
 
     public function city()
 {
-    return $this->hasOne(City::class, 'portal_id');
+    return $this->hasOne(City::class, 'portal_id', 'id');
 }
 
 }

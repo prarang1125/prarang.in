@@ -20,9 +20,9 @@ use Modules\YellowPages\Http\Controllers\Admin\CategoriesController;
 use Modules\YellowPages\Http\Controllers\Admin\BusinessController;
 use Modules\YellowPages\Http\Controllers\Admin\RatingController;
 use Modules\YellowPages\Http\Controllers\Checker\CheckerController;
-use Modules\YellowPages\Http\Controllers\VCard\vCardAuthcontroller;
+use Modules\YellowPages\Http\Controllers\VCard\VCardAuthcontroller;
 use Modules\YellowPages\Http\Controllers\VCard\PlanController;
-use Modules\YellowPages\Http\Controllers\VCard\VcardQRController;
+use Modules\YellowPages\Http\Controllers\VCard\VCardQRController;
 use Modules\YellowPages\Http\Controllers\VCard\CreateVCardController;
 use Modules\YellowPages\Http\Controllers\VCard\BusinessListingController;
 use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
@@ -32,47 +32,30 @@ Route::get('yellow-pages/{any}', function ($any) {
   return redirect("/yp/".$any);
 })->where('any', '.*');
 
- Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
-
-    ##------------------------- Auth ---------------------##
-
+Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
     Route::get('/login', [AuthModalController::class, 'index'])->name('yp.login');
     Route::post('/authLogin', [AuthModalController::class, 'login'])->name('yp.authLogin');
     Route::get('/new-account', [AuthModalController::class, 'newAccount'])->name('yp.newAccount');
     Route::post('/register', [AuthModalController::class, 'register'])->name('yp.register');
     Route::post('/logout', [AuthModalController::class, 'logout'])->name('yp.logout');
-
-    ##------------------------- END ---------------------##
-
-    ##------------------------- Home ---------------------##
-    
     Route::get('/', [HomeController::class, 'index'])->name('yp.home');
     Route::get('/listing_plan', [HomeController::class, 'listing_plan'])->name('yp.listing_plan');
     Route::get('/bazzar_plan', [HomeController::class, 'bazzar_plan'])->name('yp.bazzar_plan');
     Route::get('/add_listing', [HomeController::class, 'add_listing'])->name('yp.add_listing');
     Route::get('/showSearchcategory', [HomeController::class, 'showSearchcategory']);
     Route::get('/plans', [HomeController::class, 'plan'])->name('yp.plan');
-    ##------------------------- END ---------------------##
-
-    ##------------------------- Business Listing ---------------------##
     Route::get('category/{category_name}', [ListingController::class, 'showByCategory'])->name('category.show');
-
     Route::group(['middleware' => 'auth.custom'], function(){
       Route::get('/getLocationData', [ListingController::class, 'getLocationData'])->name('yp.getLocationData');
       Route::post('/store-listing', [ListingController::class, 'store'])->name('yp.listing.store');
       Route::get('/submit-listing', [ListingController::class, 'submit_listing'])->name('yp.listing.submit');
       Route::get('/Save-listing/{id}', [ListingController::class, 'save_listing'])->name('yp.listing.save');
     });
-    
-    ##------------------------- END ---------------------##
-    
-    ##------------------------- Review Listing ---------------------##
-
     Route::post('/reviews/store/{listing}', [ReviewController::class, 'store'])->name('reviews.store');
     Route::get('/reviews/submit', [ReviewController::class, 'submit_review'])->name('review.submit');
     ##------------------------- END ---------------------##
 
-    ##------------------------- Vcard  ---------------------##
+    
     Route::get('/vcard', [VCardController::class, 'index'])->name('yp.vcard');
     Route::get('/vCard/logout', [VCardController::class, 'logout'])->name('vCard.logout');
     ##------------------------- END ---------------------##

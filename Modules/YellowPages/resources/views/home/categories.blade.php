@@ -19,6 +19,71 @@
  margin-right:13px;
 }
 
+/* Button */
+.main .d-flex a{
+ background-color:rgba(13,110,253,0.44);
+ border-style:solid;
+ border-color:#79c8f5;
+ color:#020202 !important;
+ text-shadow:rgb(255, 255, 255) 0px 0px 2px, rgb(255, 255, 255) 0px 0px 4px, rgb(255, 255, 255) 0px 0px 6px, rgb(255, 119, 255) 0px 0px 8px, rgb(255, 255, 255) 0px 0px 12px, rgb(255, 255, 255) 0px 0px 16px, rgb(255, 255, 255) 0px 0px 20px, rgb(255, 255, 255) 0px 0px 24px;
+}
+/* Heading */
+.main h1{
+ padding-top:0px !important;
+ margin-bottom:22px;
+ font-weight:700;
+ text-shadow:rgba(0, 0, 0, 0.3) 0px 1px 1px;
+}
+
+
+ /* Heading */
+ .main h1{
+  font-size:24px;
+  padding-left:10px !important;
+  margin-bottom:22px;
+  font-weight:700;
+ }
+ /* Ypcitytop */
+.main .ypcitytop{
+ width:100%;
+ height:282px;
+ background-size:contain !important;
+ backdrop-filter: contrast(0);
+ transform:translatex(0px) translatey(0px);
+ background-attachment:scroll;
+ background-repeat:repeat-x !important;
+ background-blend-mode:overlay;
+ background-color:rgba(2,2,2,0.2) !important;
+}
+
+@media (max-width:767px){
+
+/* Ypcitytop */
+.main .ypcitytop{
+ transform:translatex(0px) translatey(0px);
+ background-size:contain;
+ background-repeat:repeat !important;
+ height:150px;
+}
+
+}
+/* Import Google Fonts */
+@import url("//fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+/* Heading */
+.overflow-hidden .card-body h5{
+ font-weight:500 !important;
+ font-family:'DM Sans', sans-serif;
+ color:#0b1531 !important;
+}
+
+/* Column 11/12 */
+.main .card-body .col-11{
+ min-height:45px;
+}
+
+
+
 
 </style>
 
@@ -27,13 +92,27 @@
 @section('content')
     <br><br>
     <!-- Header with Background Image -->
-    <div class="text-white text-center py-5" style="background: url('{{ Storage::url('categories/cate_bg.jpg') }}') center/cover;">
+    <div class="text-white text-center py-5 ypcitytop" style="background: url('{{ Storage::url($portal->header_image) }}') center/cover;">
         <div class="container d-flex justify-content-start">
-            <a href="{{ route('yp.home') }}" class="btn btn-primary">
-                <i class="bi bi-arrow-left"></i>
-            </a>
+           
+            <a target="_blank" href="{{ route('portal',['portal'=>$portal->slug]) }}" class="btn btn-primary text-white">
+                <i class="bi bi-phone"></i>   Portal
+            </a>   
         </div>
         
+        {{-- <h1 class="pt-3">
+            @if(isset($city_name) && $city_name)
+            {{$city_name}} व्यवसाय
+            @elseif(isset($city) && $city)
+            {{$city}} व्यवसाय
+            @elseif(isset($category) && $category)
+            {{$category->name}}
+            @endif
+        
+        </h1> --}}
+    </div>
+    
+    <div class="container my-4">
         <h1 class="pt-3">
             @if(isset($city_name) && $city_name)
             {{$city_name}} व्यवसाय
@@ -44,9 +123,6 @@
             @endif
         
         </h1>
-    </div>
-    
-    <div class="container my-4">
         <!-- Listings Grid -->
         <div class="row g-4 "> <!-- Centered Listings -->
             @foreach($listings as $listing)

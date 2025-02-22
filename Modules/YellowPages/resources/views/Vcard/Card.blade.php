@@ -105,15 +105,6 @@
             <div class="card border-0">
                 <div class="card-body">
                     <h5 class="mb-4">वेबपेज(Webpage) सूचना</h5>
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
                     <form action="{{ route('vCard.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf                    
                         <!-- Color Picker -->
@@ -125,13 +116,16 @@
                         <!-- Photo Upload (Profile Image) -->
                         <div class="mb-3">
                             <label for="profile" class="form-label">फ़ोटो अपलोड करें</label>
-                            <input type="file" class="form-control" id="profile" name="profile">
+                            <input type="file" class="form-control  @error('profile') is-invalid @enderror" id="profile" name="profile">
+                            @error('profile')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                           @enderror
                         </div>
 
                         <!-- Category Dropdown -->
                         <div class="mb-3">
                             <label for="category" class="form-label">श्रेणी चुनें</label>
-                            <select class="form-control" id="category" name="category_id">
+                            <select class="form-control @error('category_id') is-invalid @enderror" id="category" name="category_id">
                                 <option value="">चुनें</option>
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}" {{ old('category_id', $user->category_id ?? '') == $category->id ? 'selected' : '' }}>
@@ -139,12 +133,15 @@
                                     </option>
                                 @endforeach
                             </select>
-                        </div>
+                            @error('category_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>                        
 
                         <!-- City Dropdown -->
                         <div class="mb-3">
                             <label for="city" class="form-label">शहर चुनें</label>
-                            <select class="form-control" id="city" name="city_id">
+                            <select class="form-control @error('city_id') is-invalid @enderror" id="city" name="city_id">
                                 <option value="">चुनें</option>
                                 @foreach($cities as $city)
                                     <option value="{{ $city->id }}" {{ old('city_id', $user->city_id ?? '') == $city->id ? 'selected' : '' }}>
@@ -152,13 +149,21 @@
                                     </option>
                                 @endforeach
                             </select>
-                        </div>
+                            @error('city_id')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>                        
 
                         <!-- Name and Surname -->
                         <div class="mb-3">
                             <label for="name" class="form-label">नाम</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $user->name ?? '') }}">
-                        </div>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" 
+                                   id="name" name="name" value="{{ old('name', $user->name ?? '') }}">
+                            
+                            @error('name')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>                        
 
                         <div class="mb-3">
                             <label for="surname" class="form-label">उपनाम</label>
@@ -168,9 +173,9 @@
                         <!-- Address Fields -->
                         <div class="mb-3">
                             <label class="form-label">पता</label>
-                            <input type="text" class="form-control" id="house_number" name="house_number" placeholder="मकान नंबर" value="{{ old('house_number', $address->house_number ?? '') }}">
-                            <input type="text" class="form-control mt-2" id="road_street" name="road_street" placeholder="सड़क/गली" value="{{ old('road_street', $address->street ?? '') }}">
-                            <input type="text" class="form-control mt-2" id="area_name" name="area_name" placeholder="क्षेत्र नाम (सार्वजनिक)" value="{{ old('area_name', $address->area_name ?? '') }}">
+                            <input type="text" class="form-control  @error('house_number') is-invalid @enderror" id="house_number" name="house_number" placeholder="मकान नंबर" value="{{ old('house_number', $address->house_number ?? '') }}">
+                            <input type="text" class="form-control mt-2  @error('road_street') is-invalid @enderror" id="road_street" name="road_street" placeholder="सड़क/गली" value="{{ old('road_street', $address->street ?? '') }}">
+                            <input type="text" class="form-control mt-2  @error('area_name') is-invalid @enderror" id="area_name" name="area_name" placeholder="क्षेत्र नाम (सार्वजनिक)" value="{{ old('area_name', $address->area_name ?? '') }}">
                         </div>
 
                         <!-- Optional Fields -->
@@ -186,8 +191,12 @@
 
                         <div class="mb-3">
                             <label for="email" class="form-label">ईमेल (वैकल्पिक)</label>
-                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $user->email ?? '') }}">
-                        </div>
+                            <input type="email" class="form-control @error('email') is-invalid @enderror" 
+                                   id="email" name="email" value="{{ old('email', $user->email ?? '') }}">
+                            @error('email')
+                                <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>                        
 
                         <div class="mb-3">
                             <label for="aadhar" class="form-label">आधार संख्या (वैकल्पिक)</label>
@@ -217,15 +226,17 @@
         <div class="col-md-6 fixed-container">
             <div class="card border-0 shadow-sm">
                 <div class="card-body text-center">
-                    <h5 class="mb-3">अन्य जानकारी</h5>
+                    <h5 class="mb-3">आपनी सोशल जानकारी जोड़ें</h5>
                     <div class="container">
                         @foreach ($dynamicFields->chunk(3) as $chunk)
                             <div class="row d-flex justify-content-center align-items-center mb-2">
                                 @foreach ($chunk as $field)
-                                    <div class="col-4 text-center" onclick="addField('{{ $field->name }}', '{{ $field->icon }}', '{{ $field->type }}')">
-                                        <i class="{{ $field->icon }}" title="{{ $field->name }}" style="font-size: 24px;"></i>
-                                        <p class="mt-1">{{ $field->name }}</p>
-                                    </div>
+                                <div class="col-4 text-center" 
+                                onclick="addField('{{ addslashes($field->name) }}', '{{ addslashes($field->icon) }}', '{{ addslashes($field->type) }}')">
+                                <i class="{{ $field->icon }}" title="{{ $field->name }}" style="font-size: 24px;"></i>
+                                <p class="mt-1">{{ $field->name }}</p>
+                            </div>
+                            
                                 @endforeach
                             </div>
                         @endforeach
@@ -239,32 +250,33 @@
 @endsection
 
 <script>
-// Add dynamic fields and image preview logic here
-function addField(label, fieldName, fieldType) {
-        // Create a unique ID using timestamp
-        const uniqueId = 'field-' + Date.now();
+function addField(label, icon, fieldType) {
+    // Create a unique ID using timestamp
+    const uniqueId = 'field-' + Date.now();
 
-        // Directly use the fieldType (from database) as the input type
-        const inputType = fieldType.toLowerCase();  // Directly using the database value (e.g., 'text', 'url', etc.)
+    // Directly use the fieldType (from database) as the input type
+    const inputType = fieldType.toLowerCase();  
 
-        // Prepare the HTML for the new dynamic field
-        const fieldHTML = `
-            <div class="mb-3 d-flex align-items-center" id="${uniqueId}">
-                <div class="flex-grow-1">
-                    <label for="${fieldName}" class="form-label">${label}</label>
-                    <input type="${inputType}" class="form-control" name="dynamic_data[]" placeholder="${label} दर्ज करें">
-                    <input type="hidden" name="dynamic_name[]" value="${label}">
-                </div>
-                <button type="button" class="btn btn-light ms-2" onclick="removeField('${uniqueId}')">X</button>
+    // Prepare the HTML for the new dynamic field
+    const fieldHTML = `
+        <div class="mb-3 d-flex align-items-center" id="${uniqueId}">
+            <div class="flex-grow-1">
+                <label for="${uniqueId}" class="form-label">${label}</label>
+                <input type="${inputType}" class="form-control" name="dynamic_data[]" placeholder="${label} दर्ज करें">
+                <input type="hidden" name="dynamic_name[]" value="${label}">
+                <input type="hidden" name="dynamic_icon[]" value="${icon}"> <!-- Store icon for submission -->
             </div>
-        `;
+            <button type="button" class="btn btn-light ms-2" onclick="removeField('${uniqueId}')">X</button>
+        </div>
+    `;
 
-        // Get the container where the new field should be added
-        const dynamicFields = document.getElementById('dynamic-fields');
-        if (dynamicFields) {
-            dynamicFields.insertAdjacentHTML('beforeend', fieldHTML);
-        }
+    // Get the container where the new field should be added
+    const dynamicFields = document.getElementById('dynamic-fields');
+    if (dynamicFields) {
+        dynamicFields.insertAdjacentHTML('beforeend', fieldHTML);
     }
+}
+
 
     function removeField(uniqueId) {
         // Find and remove the field based on its unique ID

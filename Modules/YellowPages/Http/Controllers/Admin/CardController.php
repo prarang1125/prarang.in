@@ -4,10 +4,10 @@ namespace Modules\YellowPages\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Vcard;
+use App\Models\VCard;
 use App\Models\City;
 use App\Models\Category;
-use App\Models\DynamicVcard;
+use App\Models\DynamicVCard;
 use App\Models\User;
 use App\Models\DynamicFeild;
 use App\Models\Address;
@@ -23,7 +23,7 @@ class CardController extends Controller
     public function VcardList(Request $request)
     {
         try {
-            $query = Vcard::query();
+            $query = VCard::query();
     
             // Check if there's a search query
             if ($request->filled('search')) {
@@ -55,8 +55,8 @@ class CardController extends Controller
     public function vCardEdit($id)
     {
         try {
-            $vcard = Vcard::findOrFail($id);
-            $vcardInfo = DynamicVcard::where('vcard_id', $vcard->id)->get();
+            $vcard = VCard::findOrFail($id);
+            $vcardInfo = DynamicVCard::where('vcard_id', $vcard->id)->get();
             $dynamicFields = DynamicFeild::where('is_active', 1)->get();
             $cities = City::all();
             $categories = Category::all();
@@ -113,7 +113,7 @@ class CardController extends Controller
             }
     
             // Retrieve the vCard
-            $vcard = Vcard::findOrFail($id);
+            $vcard = VCard::findOrFail($id);
     
             // Update the user table (assuming vCard has a relationship with User)
             $user = $vcard->user;
@@ -140,7 +140,7 @@ class CardController extends Controller
             if (!empty($validatedData['data']) && is_array($validatedData['data'])) {
                 foreach ($validatedData['data'] as $dynamicName => $dataValue) {
                     // Save or update dynamic fields
-                    DynamicVcard::updateOrCreate(
+                    DynamicVCard::updateOrCreate(
                         ['vcard_id' => $id, 'title' => $dynamicName],
                         ['data' => $dataValue]
                     );
@@ -158,13 +158,13 @@ class CardController extends Controller
     public function vcarddelete($id)
     {
         try {
-            $vcard = Vcard::findOrFail($id);
+            $vcard = VCard::findOrFail($id);
             $vcard->delete();
             return redirect()->route('admin.Vcardlist')->with('success', 'Vcard deleted successfully.');
         } catch (ModelNotFoundException $e) {
             return redirect()->route('admin.Vcardlist')->withErrors(['error' => 'vcard not found.']);
         } catch (Exception $e) {
-            return redirect()->route('admin.Vcardlist')->withErrors(['error' => 'An error occurred while trying to delete the Vcard: ' ]);
+            return redirect()->route('admin.Vcardlist')->withErrors(['error' => 'An error occurred while trying to delete the VCard: ' ]);
         }
     }
     

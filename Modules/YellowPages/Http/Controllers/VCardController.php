@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Stripe\Stripe;
 use Stripe\PaymentIntent;
 use Stripe\StripeClient;
-use App\Models\Vcard;
+use App\Models\VCard;
 use App\Models\DynamicFeild;
 use App\Models\UserPurchasePlan;
 use App\Models\Plan;
@@ -16,7 +16,7 @@ use App\Models\Category;
 use App\Models\Visits;
 use App\Models\User;
 use App\Models\BusinessListing;
-use App\Models\DynamicVcard;
+use App\Models\DynamicVCard;
 use Stripe\Checkout\Session;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -42,7 +42,7 @@ class VCardController extends Controller
         try {
             $userId = Auth::id();
             // Retrieve the Vcard record for the authenticated user or default to null
-            $totalscan = Vcard::where('user_id', $userId)->first();
+            $totalscan = VCard::where('user_id', $userId)->first();
     
             // Retrieve the most recent active purchase plan (is_active = 1) for the user
             $purchasePlan = UserPurchasePlan::where('user_id', $userId)
@@ -80,8 +80,7 @@ class VCardController extends Controller
     
         if ($existingVCard) {
             return redirect()->route('vCard.list')
-            ->with('errors_message', __('आपका वेबपेज(Webpage) पहले से ही बना है
-'));
+            ->with('errors_message', __('आपका वेबपेज(Webpage) पहले से ही बना है'));
         }
     
         // Proceed with the rest of the logic if no existing VCard

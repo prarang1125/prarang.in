@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\City;
 use Carbon\Carbon;
+use Modules\YellowPages\Http\Requests\BusinessListingRequest;
 use App\Models\BusinessListing;
 use App\Models\User;
 use App\Models\Address;
@@ -36,7 +37,7 @@ class ListingController extends Controller
 
         // Get all active cities
         $cities = City::where('is_active', 1)->get();
-
+       
         // Find the requested category by its slug, or fail with a 404 error if not found
         $category = Category::where('slug', $category_name)->firstOrFail();
 
@@ -44,9 +45,9 @@ class ListingController extends Controller
         $listings = BusinessListing::with(['category', 'hours','city'])
             ->whereHas('category', fn($q) => $q->where('slug', $category->slug))
             ->get();
-
+       $portal =Portal::first();
         // Return the view with the required data
-        return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'category_name'));
+        return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'category_name','portal'));
 
     // } catch (\Exception $e) {
     //     // Detailed error message for debugging
@@ -58,23 +59,31 @@ class ListingController extends Controller
 
     ##------------------------- Show City---------------------##
     public function showByCity($city_name)
-    {
+    {      
         try {
             $categories = Category::where('is_active', 1)->get();
             $cities = City::where('is_active', 1)->get();
-
             $city = City::where('name', $city_name)->first();
+
             if (!$city) {
-                $portal = Portal::where('slug', $city_name)->firstOrFail();
-                $city = $portal->city; // Portal se related City fetch karen
+                $portal = Portal::where('slug', $city_name)->first();
+                if ($portal) {
+                    $city = $portal->city; 
+                }
             }
+            if (!$city) {
+                $city = City::where('name', 'LIKE', "%{$city_name}%")->first();
+            }            
+            $city_name=$city->name;
+            $portal = Portal::where('id', $city->portal_id)->first();
+           
 
             $listings = BusinessListing::with(['category', 'hours', 'city','address','user'])
                 ->whereHas('city', fn($q) => $q->where('city_id', $city->id))
                 ->get();
                
 
-                return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'city','city_name'));
+                return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'city','city_name','portal'));
             } catch (\Exception $e) {
                 return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
             }
@@ -87,7 +96,7 @@ class ListingController extends Controller
         try {
             $categories = Category::where('is_active', 1)->get();
             $city_name= City::where('is_active', 1)->get();
-
+            $sz=City::where('name', $city)->first();
             $query = BusinessListing::query();
 
             if ($category) {
@@ -109,7 +118,7 @@ class ListingController extends Controller
                     $query->where('city_id', $cityId);
                 }
             }
-
+            $portal = Portal::where('id', $sz->portal_id)->first();
             $listings = $query->with(['category', 'hours', 'city'])->get()->map(function ($listing) {
                 $currentTime = Carbon::now();
             
@@ -128,7 +137,7 @@ class ListingController extends Controller
             });
             
 
-                return view('yellowpages::home.categories', compact('listings', 'categories', 'city'));
+                return view('yellowpages::home.categories', compact('listings', 'categories', 'city','portal'));
             } catch (\Exception $e) {
                 return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
             }
@@ -173,50 +182,9 @@ class ListingController extends Controller
     ##------------------------- END---------------------##
 
     ##------------------------- Add Listing ---------------------##
-    public function store(Request $request)
+    public function store(BusinessListingRequest $request)
     {
-            // Validation rules
-            $validated = $request->validate([
-                'location' => 'required',
-                'listingTitle' => 'required|string|max:255',
-                'tagline' => 'nullable|string',
-                'businessName' => 'required|string|max:255',
-                'primaryPhone' => 'required|string',
-                'primaryContact' => 'required|string',
-                'primaryEmail' => 'required|email',
-                'businessType' => 'required',
-                'employees' => 'required',
-                'turnover' => 'required',
-                'advertising' => 'required',
-                'advertising_price' => 'required',
-                'category' => 'required',
-                'description' => 'nullable|string',
-                'website' => 'nullable|url',
-                'street' => 'required|string',
-                'area_name' => 'required|string',
-                'house_number' => 'required|string',
-                'city_id' => 'required|exists:yp.cities,id',
-                'postal_code' => 'nullable|string',
-                'socialId' => 'nullable|array',
-                'socialId.*' => 'exists:yp.dynamic_fields,id',
-                'socialDescription' => 'nullable|array',
-                'socialDescription.*' => 'string|max:255',
-                'agree' => 'nullable|accepted',
-                'day' => 'required|array',
-                'day.*' => 'required|string',
-                'open_time' => 'required|array',
-                'open_time.*' => 'required|string',
-                'close_time' => 'required|array',
-                'close_time.*' => 'required|string',
-                'is_24_hours' => 'nullable|array',
-                'is_24_hours.*' => 'nullable|boolean',
-                'add_2nd_time_slot' => 'nullable|array',
-                'add_2nd_time_slot.*' => 'nullable|boolean',
-                'open_time_2' => 'nullable|array',
-                'open_time_2.*' => 'nullable|string',
-                'close_time_2' => 'nullable|array',
-                'close_time_2.*' => 'nullable|string',
-            ]);
+        $validated = $request->validated();         
     try{
     
         // File upload handling

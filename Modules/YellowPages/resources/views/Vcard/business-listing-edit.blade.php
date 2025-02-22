@@ -229,36 +229,10 @@
                 <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
             
                 <div style="margin-bottom: 10px;">
-                    <label for="street">व्यवसाय/कंपनी का पता (सड़क/गली):</label>
-                    <input type="text" id="street" name="street" placeholder="सड़क/गली का नाम दर्ज करें" style="width: 100%; padding: 8px;" value="{{ old('street', $address->street ?? '') }}">
+                    <label for="business_address">व्यवसाय/कंपनी का पता :</label>
+                    <input type="text" id="business_address" name="business_address" placeholder="सड़क/गली का नाम दर्ज करें" style="width: 100%; padding: 8px;" value="{{ old('business_address', $listing->business_address ?? '') }}">
                 </div>
             
-                <div style="margin-bottom: 10px;">
-                    <label for="area_name">क्षेत्र/इलाका:</label>
-                    <input type="text" id="area_name" name="area_name" placeholder="क्षेत्र का नाम दर्ज करें" style="width: 100%; padding: 8px;" value="{{ old('area_name', $address->area_name ?? '') }}">
-                </div>
-            
-                <div style="margin-bottom: 10px;">
-                    <label for="house_number">भवन संख्या:</label>
-                    <input type="text" id="house_number" name="house_number" placeholder="भवन संख्या दर्ज करें" style="width: 100%; padding: 8px;" value="{{ old('house_number', $address->house_number ?? '') }}">
-                </div>
-            
-                <div style="margin-bottom: 10px;">
-                    <label for="city_id">शहर:</label>
-                    <select id="city_id" name="city_id" style="width: 100%; padding: 8px;">
-                        <option selected disabled>शहर चुनें</option>
-                        @foreach($cities as $city)
-                            <option value="{{ $city->id }}" {{ old('city_id', $address->city_id ?? '') == $city->id ? 'selected' : '' }}>
-                                {{ $city->name }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-            
-                <div style="margin-bottom: 10px;">
-                    <label for="postal_code">पिन कोड:</label>
-                    <input type="text" id="postal_code" name="postal_code" placeholder="पिन कोड दर्ज करें" style="width: 100%; padding: 8px;" value="{{ old('postal_code', $address->postal_code ?? '') }}">
-                </div>
             
                 <h5 style="margin-bottom: 15px;">संपर्क जानकारी</h5>
                 <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
@@ -342,62 +316,120 @@
         taglineField.style.display = taglineField.style.display === 'none' ? 'block' : 'none';
     }
 
-  // Add new day schedule
-document.getElementById('add-day-btn').addEventListener('click', () => {
+    document.getElementById('add-day-btn').addEventListener('click', () => {
     const container = document.getElementById('schedule-container');
     const firstSchedule = container.querySelector('.day-schedule');
 
     if (firstSchedule) {
-        // Clone the first schedule
+        // Clone an existing schedule
         const newSchedule = firstSchedule.cloneNode(true);
 
-        // Clear the input values in the new schedule
-        newSchedule.querySelectorAll('select, input').forEach((input) => {
+        // Reset values for cloned inputs
+        newSchedule.querySelectorAll('select, input').forEach(input => {
             if (input.type === 'checkbox') {
-                input.checked = false; // Uncheck checkboxes
+                input.checked = false;
             } else {
-                input.value = ''; // Clear other inputs
+                input.value = '';
+                input.disabled = false;
             }
         });
 
-        // Hide second time slot by default
-        const secondTimeSlot = newSchedule.querySelector('.second-time-slot');
-        if (secondTimeSlot) {
-            secondTimeSlot.style.display = 'none';
-        }
+        // Hide second slot in the new schedule
+        newSchedule.querySelector('.second-time-slot').style.display = 'none';
 
-        // Append the new schedule to the container
+        // Append new schedule
         container.appendChild(newSchedule);
     } else {
-        console.error("Initial schedule not found.");
+        // Create a new schedule if none exist
+        const newSchedule = document.createElement('div');
+        newSchedule.classList.add('day-schedule');
+
+        newSchedule.innerHTML = `
+            <select name="day[]" class="day-select">
+                <option value="">-- दिन चुनें --</option>
+                <option value="monday">सोमवार</option>
+                <option value="tuesday">मंगलवार</option>
+                <option value="wednesday">बुधवार</option>
+                <option value="thursday">गुरुवार</option>
+                <option value="friday">शुक्रवार</option>
+                <option value="saturday">शनिवार</option>
+                <option value="sunday">रविवार</option>
+            </select>
+            <input type="time" name="open_time[]" class="time-input">
+            <label>to</label>
+            <input type="time" name="close_time[]" class="time-input">
+            <label>
+                <input type="checkbox" class="is-24-hours"> 24 घंटे
+            </label>
+            <label>
+                <input type="checkbox" class="add-2nd-slot"> दूसरा स्लॉट जोड़ें
+            </label>
+            <button type="button" class="remove-day-btn">&#x2716;</button>
+            
+            <!-- Second Time Slot -->
+            <div class="second-time-slot" style="display: none; margin-top: 10px;">
+                <input type="time" name="open_time_2[]" class="time-input">
+                <label>to</label>
+                <input type="time" name="close_time_2[]" class="time-input">
+            </div>
+        `;
+
+        container.appendChild(newSchedule);
     }
 });
 
-// Handle "24 Hours" functionality
+// Handle 24-hour checkbox toggle
 document.addEventListener('change', (e) => {
-    if (e.target.name === 'is_24_hours[]') {
+    if (e.target.classList.contains('is-24-hours')) {
         const parent = e.target.closest('.day-schedule');
-        const timeInputs = parent.querySelectorAll('input[type="time"]');
-        timeInputs.forEach(input => input.disabled = e.target.checked); // Disable time inputs if "24 Hours" is checked
+        parent.querySelectorAll('.time-input').forEach(input => {
+            input.disabled = e.target.checked;
+        });
     }
 });
 
-// Handle "Add 2nd Slot" functionality
+// Show or hide the second time slot
 document.addEventListener('change', (e) => {
     if (e.target.classList.contains('add-2nd-slot')) {
         const parent = e.target.closest('.day-schedule');
         const secondSlot = parent.querySelector('.second-time-slot');
-        secondSlot.style.display = e.target.checked ? 'block' : 'none'; // Show or hide second slot
+        secondSlot.style.display = e.target.checked ? 'block' : 'none';
     }
 });
 
-// Remove day schedule
+// Remove a day schedule
 document.addEventListener('click', (e) => {
     if (e.target.classList.contains('remove-day-btn')) {
-        e.target.closest('.day-schedule').remove(); // Remove the current schedule
+        e.target.closest('.day-schedule').remove();
     }
 });
 
+// Collect and log schedules
+document.getElementById('submit-btn')?.addEventListener('click', () => {
+    const schedules = [];
+    document.querySelectorAll('.day-schedule').forEach(schedule => {
+        const day = schedule.querySelector('.day-select').value;
+        const openTime = schedule.querySelector('input[name="open_time[]"]').value;
+        const closeTime = schedule.querySelector('input[name="close_time[]"]').value;
+        const is24Hours = schedule.querySelector('.is-24-hours').checked;
+
+        let openTime2 = '', closeTime2 = '';
+        const secondSlot = schedule.querySelector('.second-time-slot');
+        if (secondSlot.style.display !== 'none') {
+            openTime2 = secondSlot.querySelector('input[name="open_time_2[]"]').value;
+            closeTime2 = secondSlot.querySelector('input[name="close_time_2[]"]').value;
+        }
+
+        schedules.push({
+            day,
+            openTime: is24Hours ? '24 Hours' : openTime,
+            closeTime: is24Hours ? '24 Hours' : closeTime,
+            secondSlot: openTime2 && closeTime2 ? { openTime2, closeTime2 } : null,
+        });
+    });
+
+    console.log(schedules);
+});
 
     function previewImage(event, imgId) {
         let reader = new FileReader();

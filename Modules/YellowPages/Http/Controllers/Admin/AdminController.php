@@ -11,7 +11,7 @@ use App\Models\Report;
 use App\Models\PaymentHistory;
 use App\Models\BusinessListing;
 use App\Models\User;
-use App\Models\Vcard;
+use App\Models\VCard;
 use App\Models\UserPurchasePlan;
 use App\Models\CompanyLegalType;
 use Illuminate\Support\Facades\Storage;
@@ -33,7 +33,7 @@ class AdminController extends Controller
         $totalUser    = User::count();
         $report      =  Report::count();
         $Subscribers = UserPurchasePlan::where('is_active', 1)->distinct('user_id')->count('user_id');
-        $vcard = Vcard::where('is_active', 1)->count();
+        $vcard = VCard::where('is_active', 1)->count();
         return view('yellowpages::admin.dashboard', compact(
              'totallisting', 'totalCategory', 'totalcitys','totalUser' ,'report','Subscribers','vcard'
         ));

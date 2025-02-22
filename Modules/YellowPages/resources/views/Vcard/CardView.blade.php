@@ -12,13 +12,15 @@
 
 <body class="bg-gradient-to-br from-indigo-50 via-white to-purple-50 min-h-screen flex items-center justify-center p-4">
 
-  <!-- Back Button -->
-  <div class="absolute top-4 left-4 md:top-8 md:left-20 z-10">
+  <!-- Back Button (Fixed Position) -->
+  <div class="fixed top-4 left-4 md:top-8 md:left-8 z-50">
     <a href="{{ route('vCard.list') }}"
-      class="bg-blue-500 text-white px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-blue-600 transition">
-      <i class="bx bx-left-arrow-alt text-lg"></i>
+      class="bg-transparent text-blue-500 px-4 py-2 rounded-lg flex items-center space-x-2 hover:bg-blue-100 transition">
+      <i class="bx bx-left-arrow-alt text-2xl"></i>
     </a>
   </div>
+  <div class="mt-9">
+
 
   <!-- Card Container -->
   <div class="bg-white rounded-2xl shadow-xl overflow-hidden max-w-xl w-full border border-gray-300 p-4 sm:p-6">
@@ -89,36 +91,27 @@
 
         <!-- Social Media Section -->
         @if (!empty($vcard->dynamicFields))
-        <div class="text-lg font-semibold text-gray-800 mt-2 mb-1">
-            सोशल मीडिया (Social Media)
-        </div>
+        <div class="text-lg font-semibold text-gray-800 mt-2">सोशल मीडिया (Social Media)</div>
         @foreach ($vcard->dynamicFields as $social)
-            <div class="p-2 hover:bg-gray-50 rounded-lg transition-colors">
-                <span class="text-gray-500 text-sm">
-                    {{ $social->title ?? 'सोशल मीडिया (Social Media)' }}:
-                    <span class="text-gray-700 font-semibold">
-                        @if (!empty($social->data))
-                            @php
-                                $socialData = $social->data;
-                            @endphp
-                            
-                            @if (filter_var($socialData, FILTER_VALIDATE_URL))
-                                <!-- If it's a valid URL, make it a clickable link -->
-                                <a href="{{ $socialData }}" target="_blank" class="text-blue-500 hover:underline">{{ $socialData }}</a>
-                            @elseif (preg_match('/^\+?[0-9]{10,15}$/', $socialData))
-                                <!-- If it's a valid phone number, make it a clickable link for WhatsApp -->
-                                <a href="https://wa.me/{{ $socialData }}" target="_blank" class="text-green-500 hover:underline">{{ $socialData }}</a>
-                            @else
-                                <!-- If it's neither a URL nor a phone number, display it as plain text -->
-                                {{ $socialData }}
-                            @endif
-                        @else
-                            <!-- If data is empty, show "Not Available" -->
-                            Not Available
-                        @endif
-                    </span>
-                </span>
-            </div>
+        <div class="p-2 hover:bg-gray-50 rounded-lg transition-colors">
+          <span class="text-gray-500 text-sm">
+            <i class="{{ $social->icon ?? 'fa-solid fa-globe' }}" style="font-size: 20px;"></i>
+            <span class="text-gray-700 font-semibold">
+              @if (!empty($social->data))
+              @php $socialData = $social->data; @endphp
+              @if (filter_var($socialData, FILTER_VALIDATE_URL))
+              <a href="{{ $socialData }}" target="_blank" class="text-blue-500 hover:underline">{{ $socialData }}</a>
+              @elseif (preg_match('/^\+?[0-9]{10,15}$/', $socialData))
+              <a href="https://wa.me/{{ $socialData }}" target="_blank" class="text-green-500 hover:underline">{{ $socialData }}</a>
+              @else
+              {{ $socialData }}
+              @endif
+              @else
+              Not Available
+              @endif
+            </span>
+          </span>
+        </div>
         @endforeach
         @endif
       </div>
@@ -144,10 +137,12 @@
 
     <!-- Buttons -->
     <div class="border-t border-gray-100 p-2 space-y-2">
-      <button onclick="shareVCard()"
-        class="flex items-center justify-center space-x-2 p-2 bg-green-500 text-white hover:bg-green-600 w-full rounded-lg transition-colors">
-        <i class="bx bx-share-alt"></i><span>शेयर करें</span>
-      </button>
+      
+      @if ($vcard->is_active == 1)
+      <button onclick="shareVCard()" class="p-2 bg-green-500 text-white hover:bg-green-600 w-full rounded-lg transition">
+        <i class="bx bx-share-alt"></i> <span>शेयर करें</span>
+       </button>
+      @endif      
 
       <a href="{{ route('vCard.business-listing-register')}}"
         class="flex items-center justify-center space-x-2 p-2 bg-gradient-to-r from-indigo-500 to-indigo-600 text-white hover:from-indigo-600 hover:to-indigo-700 w-full rounded-lg transition-colors">
@@ -158,21 +153,27 @@
     <!-- Share Function -->
     <script>
       function shareVCard() {
-        if (navigator.share) {
-          navigator.share({
-              title: '{{ $user->name ?? "VCard" }}',
-              text: 'देखें {{ $user->name ?? "VCard" }} का व्यवसाय कार्ड',
-              url: '{{ route("vCard.share", ["slug" => $vcard->slug]) }}'
-            })
-            .then(() => console.log('Successful share'))
-            .catch((error) => console.log('Error sharing:', error));
-        } else {
-          alert('Sharing not supported on this device');
-        }
+          const shareData = {
+              title: "{{ $user->name ?? 'VCard' }}",
+              text: "देखें {{ $user->name ?? 'VCard' }} का व्यवसाय कार्ड",
+              url: "{{ route('vCard.share', ['slug' => $vcard->slug]) }}"
+          };
+  
+          if (navigator.share) {
+              navigator.share(shareData)
+                  .then(() => console.log("Shared successfully!"))
+                  .catch(error => console.error("Sharing failed:", error));
+          } else {
+              alert("Sharing is not supported on this device.");
+          }
       }
-    </script>
+  </script>
+      
 
   </div>
+  </div>
+  </div>
+
 
 </body>
 
