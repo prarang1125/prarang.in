@@ -29,16 +29,13 @@ class CreateVCardController extends Controller
 
     public function store(StoreVCardRequest $request)
     {
-        return request()->all();
+       
         $validatedData = $request->validated();
-        // DB::beginTransaction();
-    
-        // try {
-            // Handle file uploads to S3
+      
             if ($request->hasFile('profile')) {
                 $validatedData['profile'] = $request->file('profile')->store('yellowpages/profile');
             }
-    
+ 
             if ($request->hasFile('aadhar_front')) {
                 $validatedData['aadhar_front'] = $request->file('aadhar_front')->store('yellowpages/aadhar');
             }
@@ -56,16 +53,17 @@ class CreateVCardController extends Controller
                 $originalName = $validatedData['name'];
                 $newName = $originalName;
                 $count = 1;
-        
+                    
                 // Check if the name already exists and keep incrementing
-                while (User::where('name', $newName)->where('id', '!=', $userId)->exists()) {
-                    $newName = $originalName . ' ' . $count;
-                    $count++;
-                }
+                // while (User::where('name', $newName)->where('id', '!=', $userId)->exists()) {
+                //     $newName = $originalName . ' ' . $count;
+                //     $count++;
+                // }
         
                 // Set the validated name to the unique name
-                $validatedData['name'] = $newName;
+                // $validatedData['name'] = $newName;
                 // Update user
+
                 $user->update([
                     'name'    => $validatedData['name'],
                     'surname' => $validatedData['surname'],
