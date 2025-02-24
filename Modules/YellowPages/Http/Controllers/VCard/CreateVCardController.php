@@ -141,6 +141,7 @@ class CreateVCardController extends Controller
                 'vcard', 'vcardInfo', 'categories', 'cities', 'dynamicFields', 'address', 'user'
             ));
         } catch (Exception $e) {
+            dd($e->getMessage());
             Log::error('Error editing VCard: ' );
             return redirect()->back()->withErrors(['error' => 'Unable to fetch VCard details for editing.']);
         }
