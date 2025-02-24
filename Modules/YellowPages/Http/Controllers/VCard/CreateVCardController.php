@@ -29,6 +29,7 @@ class CreateVCardController extends Controller
 
     public function store(StoreVCardRequest $request)
     {
+        return request()->all();
         $validatedData = $request->validated();
         // DB::beginTransaction();
     
