@@ -62,6 +62,16 @@
 .main p i{
  color:#0e4fd1;
 }
+/* Body */
+body{
+ background-color:#f3f0f0 !important;
+}
+
+/* Division */
+.main > div > div > div{
+ background-color:rgba(255,255,255,0) !important;
+}
+
 
 
 
@@ -127,7 +137,7 @@
                 </p>
                 <p style="font-size: 16px; color: #555;">
                     <strong>विवरण:</strong><br>
-                    {{ $listing->description ?? 'N/A' }}
+                    {!! $listing->description ?? 'N/A' !!}
                 </p>
                                 
             </div>            
