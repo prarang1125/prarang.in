@@ -67,7 +67,7 @@
                                     <td class="align-middle">{{ $vcard->user->name }}</td>
                                     <td class="align-middle">{{ $vcard->color_code }}</td> 
                                     <td class="align-middle">
-                                        <img src="{{ Storage::url($vcard->user->profile) }}" alt="File" style="max-width: 100px;">
+                                        <img src="{{ $vcard->user->profile ? Storage::url($vcard->user->profile) : asset('assets/images/default.jpg') }}" alt="Profile Picture" class="img-fluid rounded-circle" style="max-width: 100px; height: 100px; object-fit: cover;">
                                     </td>
                                     <td class="align-middle">{{ $vcard->scan_count }}</td>                         
                                     <td class="align-middle">{{ $vcard->created_at}}</td>
