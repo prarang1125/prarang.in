@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\VCard;
 use Exception;
-use App\Models\DynamicVcard;
+use App\Models\DynamicVCard;
 use Modules\YellowPages\Http\Requests\StoreVCardRequest;
 use App\Models\City;
 use App\Models\User;
@@ -141,7 +141,7 @@ class CreateVCardController extends Controller
                 'vcard', 'vcardInfo', 'categories', 'cities', 'dynamicFields', 'address', 'user'
             ));
         } catch (Exception $e) {
-            dd($e->getMessage());
+            // dd($e->getMessage());
             Log::error('Error editing VCard: ' );
             return redirect()->back()->withErrors(['error' => 'Unable to fetch VCard details for editing.']);
         }
