@@ -62,13 +62,16 @@
                         <tbody>
                             @php $index = 1; @endphp
                             @foreach($Vcard_list as $vcard)
+                            {{-- {{dd($vcard);}} --}}
                                 <tr>
                                     <th scope="row" class="align-middle">{{ $index }}</th> 
                                     <td class="align-middle">{{ $vcard->user->name }}</td>
                                     <td class="align-middle">{{ $vcard->color_code }}</td> 
                                     <td class="align-middle">
-                                        <img src="{{ Storage::url($vcard->user->profile) }}" alt="File" style="max-width: 100px;">
-                                    </td>
+                                        <img src="{{ $vcard->user->profile ? Storage::url($vcard->user->profile) : asset('images/default-profile.png') }}" 
+                                             alt="Profile Image" 
+                                             style="max-width: 100px;">
+                                    </td>                                    
                                     <td class="align-middle">{{ $vcard->scan_count }}</td>                         
                                     <td class="align-middle">{{ $vcard->created_at}}</td>
                                     <td class="align-middle">
@@ -90,7 +93,7 @@
                 </div>
             </div>
         </div>
-    </div>user
+    </div>
 </div>
 @endsection
 

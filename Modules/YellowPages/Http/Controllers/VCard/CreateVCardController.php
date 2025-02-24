@@ -378,15 +378,14 @@ class CreateVCardController extends Controller
     ##------------------------- VCard list ------------------ ---##
     public function VcardList(Request $request) {
         try {
-            $userId = Auth::id();
-            $user = User::find($userId);
-            $Vcard_list = VCard::where('user_id', $userId)->get();    
+            $Vcard_list = VCard::all();
+            $users = User::whereIn('name', $Vcard_list->pluck('slug'))->get();
             // Fetch cities for each Vcard
             $cities = City::whereIn('id', $Vcard_list->pluck('city_id'))->get()->keyBy('id');    
             // Fetch categories if necessary
             $categories = Category::whereIn('id', $Vcard_list->pluck('category_id'))->get()->keyBy('id');
     
-            return view('yellowpages::Vcard.vcard-list', compact('user','Vcard_list', 'cities', 'categories'));
+            return view('yellowpages::Vcard.vcard-list', compact('users','Vcard_list', 'cities', 'categories'));
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Error fetching Vcard listings: ' );
         }

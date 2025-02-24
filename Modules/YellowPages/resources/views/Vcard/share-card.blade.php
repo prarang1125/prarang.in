@@ -3,7 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Business vCard for {{ $user->name ?? 'User' }}" />
+  
+  <title>@yield('meta_title', 'Business vCard - ' . ($user->name ?? 'User'))</title>
+  <meta name="description" content="@yield('meta_description', 'Business vCard for ' . ($user->name ?? 'User'))">
+  <meta name="keywords" content="@yield('meta_keywords', 'business vCard, digital visiting card, contact information')">
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph Meta Tags -->
+  <meta property="og:type" content="profile" />
+  <meta property="og:title" content="@yield('meta_og_title', 'Business vCard - ' . ($user->name ?? 'User'))">
+  <meta property="og:description" content="@yield('meta_og_description', 'Connect with ' . ($user->name ?? 'this business') . ' via digital vCard.')">
+  <meta property="og:image" content="{{ !empty($user->profile) && Storage::exists($user->profile) ? Storage::url($user->profile) : asset('assets/images/yplogo.jpg') }}">
+  <meta property="og:url" content="{{ url()->current() }}" />
+  <meta property="og:site_name" content="Yellow Pages" />
+  <meta property="og:locale" content="en_IN" />
+
+  <!-- Twitter Card Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="@yield('meta_twitter_title', 'Business vCard - ' . ($user->name ?? 'User'))">
+  <meta name="twitter:description" content="@yield('meta_twitter_description', 'View the digital vCard for ' . ($user->name ?? 'User'))">
+  <meta name="twitter:image" content="{{ !empty($user->profile) && Storage::exists($user->profile) ? Storage::url($user->profile) : asset('assets/images/yplogo.jpg') }}">
   <title>V Card</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" />

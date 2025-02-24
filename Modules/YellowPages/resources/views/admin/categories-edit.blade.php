@@ -1,6 +1,6 @@
 @extends('yellowpages::layout.admin.admin')
 @section('title', 'User Edit')
-@section('content')
+VCard:('content')
 <!--start page wrapper -->
 <div class="page-content">
     <!--breadcrumb-->
