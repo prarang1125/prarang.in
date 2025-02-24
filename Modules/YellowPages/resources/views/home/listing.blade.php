@@ -2,6 +2,8 @@
 
 @section('meta_title', $listing->listing_title)
 @section('meta_description','Prarang - Yellow Pages')
+@section('meta_og_title', $listing->listing_title)
+@section('meta_og_description','Prarang - Yellow Pages')
 @section('meta_keywords', $listing->listing_keywords)
 @section('meta_og_image', Storage::url($listing->feature_img ?? 'default.jpg'))
 @section('content')
