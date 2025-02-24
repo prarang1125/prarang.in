@@ -279,7 +279,6 @@ class CreateVCardController extends Controller
     ##------------------------- VCard view ---------------------##
     public function view($slug)
     {
-    
         $vcard = VCard::where('slug', $slug)
             ->orderBy('id', 'desc')
             ->with( 'dynamicFields')
@@ -288,7 +287,6 @@ class CreateVCardController extends Controller
         $dynamicFields = DynamicFeild::where('is_active', 1)->get();
     
         // Fetch VCard data
-        
         $category = Category::where('id', $vcard->category_id)->first();
         // Check if VCard exists and is approved
         if (!$vcard) {

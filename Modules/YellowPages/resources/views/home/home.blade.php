@@ -294,7 +294,7 @@
                             <div class="mb-1">
                                 <div class="row">
                                     <div class="col-6">
-                                        @if($listing->is_open)
+                                        @if($listing->is_open === true)
                                             <span class=""><span class="bi bi-check-circle-fill text-success"></span> खुला (Open)</span>
                                         @else
                                             <span class=""><span class="bi bi-x-circle-fill text-danger"></span> बंद (Closed)</span>
