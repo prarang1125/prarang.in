@@ -199,7 +199,7 @@
     
             <!-- Title Section -->
             <div style="margin-bottom: 20px;">
-                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">शीर्षक</label>
+                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">नाम</label>
                 <input type="text" name="title" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
             </div>
     
