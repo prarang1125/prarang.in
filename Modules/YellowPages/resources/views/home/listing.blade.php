@@ -52,6 +52,18 @@
 }
 
 }
+/* Strong Tag */
+.main p strong{
+ font-size:14px;
+ font-weight:700;
+}
+
+/* Italic Tag */
+.main p i{
+ color:#0e4fd1;
+}
+
+
 
     </style>
 </head>
@@ -110,11 +122,11 @@
             <div style="flex: 2; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                
                 <p style="font-size: 16px; color: #555; margin-top: 10px;">
-                    <strong>📍 पता:</strong>
+                    <strong><i class="bi bi-geo-alt"></i> पता:</strong> <br>
                     {{ $listing->business_address ?? 'No Address' }}
                 </p>
                 <p style="font-size: 16px; color: #555;">
-                    <strong>आपकी लिस्टिंग के बारे में विस्तृत विवरण:</strong> 
+                    <strong>विवरण:</strong><br>
                     {{ $listing->description ?? 'N/A' }}
                 </p>
                                 
@@ -143,89 +155,112 @@
         </div>
 
       <!-- Review Form -->
-      <form method="POST" action="{{ route('reviews.store', $listing->id) }}" enctype="multipart/form-data">
-        @csrf
-        <div style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-            <h3 style="font-size: 20px; font-weight: bold; margin-bottom: 15px;">हमें रेटिंग दें और समीक्षा लिखें</h3>
-    
-            <!-- Cleanliness Rating -->
-            <div style="margin-bottom: 20px;">
-                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">साफ़-सफ़ाई</label>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                    @for ($i = 1; $i <= 5; $i++)
-                        <label for="cleanliness-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
-                            <input type="radio" name="cleanliness" id="cleanliness-{{ $i }}" value="{{ $i }}" style="position: absolute; opacity: 0;" 
-                            {{ old('cleanliness') == $i ? 'checked' : '' }}>
-                            <span class="rating-star" style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
-                        </label>
-                    @endfor
-                </div>
-            </div>
-    
-            <!-- Service Rating -->
-            <div style="margin-bottom: 20px;">
-                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">सेवा</label>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                    @for ($i = 1; $i <= 5; $i++)
-                        <label for="service-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
-                            <input type="radio" name="service" id="service-{{ $i }}" value="{{ $i }}" style="position: absolute; opacity: 0;" 
-                            {{ old('service') == $i ? 'checked' : '' }}>
-                            <span class="rating-star" style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
-                        </label>
-                    @endfor
-                </div>
-            </div>
-    
-            <!-- Ambience Rating -->
-            <div style="margin-bottom: 20px;">
-                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">माहौल</label>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                    @for ($i = 1; $i <= 5; $i++)
-                        <label for="ambience-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
-                            <input type="radio" name="ambience" id="ambience-{{ $i }}" value="{{ $i }}" style="position: absolute; opacity: 0;" 
-                            {{ old('ambience') == $i ? 'checked' : '' }}>
-                            <span class="rating-star" style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
-                        </label>
-                    @endfor
-                </div>
-            </div>
-    
-            <!-- Price Rating -->
-            <div style="margin-bottom: 20px;">
-                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">कीमत</label>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                    @for ($i = 1; $i <= 5; $i++)
-                        <label for="price-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
-                            <input type="radio" name="price" id="price-{{ $i }}" value="{{ $i }}" style="position: absolute; opacity: 0;" 
-                            {{ old('price') == $i ? 'checked' : '' }}>
-                            <span class="rating-star" style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
-                        </label>
-                    @endfor
-                </div>
-            </div>
-    
-            <!-- Image Upload Section -->
-            <div style="margin-bottom: 20px;">
-                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">छवियाँ चुनें</label>
-                <input type="file" name="image[]" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" multiple>
-            </div>
-    
-            <!-- Title Section -->
-            <div style="margin-bottom: 20px;">
-                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">शीर्षक</label>
-                <input type="text" name="title" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
-            </div>
-    
-            <!-- Review Section -->
-            <div style="margin-bottom: 20px;">
-                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">समीक्षा</label>
-                <textarea name="review" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" rows="4"></textarea>
-            </div>
-    
-            <!-- Submit Button -->
-            <button type="submit" style="background-color: #007bff; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px; width: 100%;">समीक्षा सबमिट करें</button>
+        <div class="text-end">
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModal">
+          <i class="bi bi-star"></i>  रेटिंग दें
+        </button>
+
         </div>
-    </form>
+</div>
+
+
+
+<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reviewModalLabel">हमें रेटिंग दें और समीक्षा लिखें</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ route('reviews.store', $listing->id) }}" enctype="multipart/form-data">
+                    @csrf
+                    <div style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                     
+                
+                        <!-- Cleanliness Rating -->
+                        <div style="margin-bottom: 20px;">
+                            <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">साफ़-सफ़ाई</label>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <label for="cleanliness-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
+                                        <input type="radio" name="cleanliness" id="cleanliness-{{ $i }}" value="{{ $i }}" style="position: absolute; opacity: 0;" 
+                                        {{ old('cleanliness') == $i ? 'checked' : '' }}>
+                                        <span class="rating-star" style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
+                                    </label>
+                                @endfor
+                            </div>
+                        </div>
+                
+                        <!-- Service Rating -->
+                        <div style="margin-bottom: 20px;">
+                            <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">सेवा</label>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <label for="service-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
+                                        <input type="radio" name="service" id="service-{{ $i }}" value="{{ $i }}" style="position: absolute; opacity: 0;" 
+                                        {{ old('service') == $i ? 'checked' : '' }}>
+                                        <span class="rating-star" style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
+                                    </label>
+                                @endfor
+                            </div>
+                        </div>
+                
+                        <!-- Ambience Rating -->
+                        <div style="margin-bottom: 20px;">
+                            <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">माहौल</label>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <label for="ambience-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
+                                        <input type="radio" name="ambience" id="ambience-{{ $i }}" value="{{ $i }}" style="position: absolute; opacity: 0;" 
+                                        {{ old('ambience') == $i ? 'checked' : '' }}>
+                                        <span class="rating-star" style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
+                                    </label>
+                                @endfor
+                            </div>
+                        </div>
+                
+                        <!-- Price Rating -->
+                        <div style="margin-bottom: 20px;">
+                            <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">कीमत</label>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <label for="price-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
+                                        <input type="radio" name="price" id="price-{{ $i }}" value="{{ $i }}" style="position: absolute; opacity: 0;" 
+                                        {{ old('price') == $i ? 'checked' : '' }}>
+                                        <span class="rating-star" style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
+                                    </label>
+                                @endfor
+                            </div>
+                        </div>
+                
+                        <!-- Image Upload Section -->
+                        <div style="margin-bottom: 20px;">
+                            <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">छवियाँ चुनें</label>
+                            <input type="file" name="image[]" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" multiple>
+                        </div>
+                
+                        <!-- Title Section -->
+                        <div style="margin-bottom: 20px;">
+                            <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">शीर्षक</label>
+                            <input type="text" name="title" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                        </div>
+                
+                        <!-- Review Section -->
+                        <div style="margin-bottom: 20px;">
+                            <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">समीक्षा</label>
+                            <textarea name="review" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" rows="4"></textarea>
+                        </div>
+                
+                        <!-- Submit Button -->
+                        <button type="submit" style="background-color: #007bff; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px; width: 100%;">समीक्षा सबमिट करें</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 @push('scripts')

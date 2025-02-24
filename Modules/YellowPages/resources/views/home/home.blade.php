@@ -147,6 +147,29 @@
 }
 
 }
+@media (max-width:575px){
+
+/* Icon box */
+.icon-boxes .icon-box{
+ transform:translatex(0px) translatey(0px);
+}
+
+/* Link */
+.icon-boxes .title a{
+ font-size:16px !important;
+}
+
+/* Icon box */
+.main #hero .icon-boxes .container .row .col-xl-2 .icon-box{
+ padding-left:9px !important;
+}
+
+/* Image */
+.icon-boxes a img{
+ margin-right:-1px !important;
+}
+
+}
 
 </style>
 
