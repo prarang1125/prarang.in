@@ -43,6 +43,7 @@ class ListingController extends Controller
 
         // Get listings associated with the specific category
         $listings = BusinessListing::with(['category', 'hours','city'])
+            ->where('is_active', 1) // Add this condition
             ->whereHas('category', fn($q) => $q->where('slug', $category->slug))
             ->get();
        $portal =Portal::first();
@@ -79,9 +80,9 @@ class ListingController extends Controller
            
 
             $listings = BusinessListing::with(['category', 'hours', 'city','address','user'])
+                ->where('is_active', 1) 
                 ->whereHas('city', fn($q) => $q->where('city_id', $city->id))
                 ->get();
-               
 
                 return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'city','city_name','portal'));
             } catch (\Exception $e) {
@@ -97,7 +98,7 @@ class ListingController extends Controller
             $categories = Category::where('is_active', 1)->get();
             $city_name= City::where('is_active', 1)->get();
             $sz=City::where('name', $city)->first();
-            $query = BusinessListing::query();
+            $query = BusinessListing::where('is_active', 1);
 
             if ($category) {
                 $categoryId = Category::where('name', 'like', '%' . $category . '%')
@@ -134,8 +135,7 @@ class ListingController extends Controller
                 }
             
                 return $listing;
-            });
-            
+            });            
 
                 return view('yellowpages::home.categories', compact('listings', 'categories', 'city','portal'));
             } catch (\Exception $e) {
@@ -184,11 +184,15 @@ class ListingController extends Controller
     ##------------------------- Add Listing ---------------------##
     public function store(BusinessListingRequest $request)
     {
-        $validated = $request->validated();         
+        $validated = $request->validated(); 
     try{
-    
-        // File upload handling
-        $imagePath = $request->hasFile('image') ? $request->file('image')->store('yellowpages/business') : null;
+
+
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('yellowpages/business');    
+
+        }
+
 
         // Check if the business listing already exists for the user
         $listing = BusinessListing::where('user_id', Auth::id())->first();
@@ -208,7 +212,7 @@ class ListingController extends Controller
             'category_id' => $validated['category'],
             'website' => $validated['website'],
             'description' => $validated['description'] ?? null, // Handle optional description
-            'business_img' => $imagePath,
+            'business_img' => $validated['image'],
             'agree' => isset($validated['agree']) ? 1 : 0,
         ];
         $listing = BusinessListing::create($data);

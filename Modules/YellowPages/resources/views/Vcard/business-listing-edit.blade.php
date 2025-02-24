@@ -292,7 +292,8 @@
             
                     <!-- Show Old Image if Exists -->
                     <img id="previewImage" 
-                        src="{{ $listing->business_img ? asset('storage/'.$listing->business_img) : '' }}" 
+                        {{-- src="{{ $listing->business_img ? asset('storage/'.$listing->business_img) : '' }}"  --}}
+                        src="{{ Storage::url($listing->business_img ?? 'default.jpg') }}" 
                         alt="Uploaded Image" 
                         style="margin-top: 10px; max-width: 100px; border: 1px solid #ddd; {{ $listing->business_img ? '' : 'display: none;' }}">
             
