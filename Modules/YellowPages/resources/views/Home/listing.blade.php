@@ -1,7 +1,9 @@
 @extends('yellowpages::layout.script')
 
-@section('title', __('messages.yellow_pages'))
-
+@section('meta_title', $listing->listing_title)
+@section('meta_description','Prarang - Yellow Pages')
+@section('meta_keywords', $listing->listing_keywords)
+@section('meta_og_image', $listing->feature_img ?? asset('assets/images/default.jpg'))
 @section('content')
     <style>
         /* Style for Rating Stars */
