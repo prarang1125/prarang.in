@@ -3,7 +3,7 @@
 @section('meta_title', $listing->listing_title)
 @section('meta_description','Prarang - Yellow Pages')
 @section('meta_keywords', $listing->listing_keywords)
-@section('meta_og_image', $listing->feature_img ?? asset('assets/images/default.jpg'))
+@section('meta_og_image', Storage::url($listing->feature_img ?? 'default.jpg'))
 @section('content')
     <style>
         /* Style for Rating Stars */
