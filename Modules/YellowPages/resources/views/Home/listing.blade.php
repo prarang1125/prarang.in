@@ -109,16 +109,6 @@ body{
                 <button id="shareButton" style="background-color: #007bff; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px; cursor: pointer;">
                     शेयर करें
                 </button>
-                
-                <!-- Share Modal -->
-                <div id="shareModal" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                    <h4>शेयर करें</h4>
-                    <button onclick="shareOnFacebook()" style="margin-bottom: 10px; background-color: #3b5998; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px;">Facebook पर शेयर करें</button>
-                    <button onclick="shareOnInstagram()" style="margin-bottom: 10px; background-color: #e4405f; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px;">Instagram पर शेयर करें</button>
-                    <button onclick="shareOnWhatsApp()" style="margin-bottom: 10px; background-color: #25D366; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px;">WhatsApp पर शेयर करें</button>
-                    {{-- <button onclick="shareOnLinkedIn()" style="margin-bottom: 10px; background-color: #0077b5; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px;">LinkedIn पर शेयर करें</button> --}}
-                    <button onclick="closeModal()" style="margin-top: 10px; background-color: #ccc; color: black; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px;">बंद करें</button>
-                </div>
                 <a href="{{ route('yp.listing.save', $listing->id) }}" style="background-color: #28a745; color: white; padding: 10px 15px; font-size: 14px; border-radius: 5px; text-decoration: none; display: inline-block; cursor: pointer;">
                     सूची सहेजें
                 </a>                
@@ -274,6 +264,29 @@ body{
 </div>
 @endsection
 @push('scripts')
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const shareButton = document.getElementById("shareButton");
+        
+        if (shareButton) {
+            shareButton.addEventListener("click", function () {
+                if (navigator.share) {
+                    navigator.share({
+                        title: document.title || "Check this out!",
+                        text: "Check this interesting page!",
+                        url: window.location.href,
+                    })
+                    .then(() => console.log("Shared successfully!"))
+                    .catch((error) => console.error("Sharing failed:", error));
+                } else {
+                    alert("Sharing is not supported on this device.");
+                }
+            });
+        } else {
+            console.error("Error: shareButton not found.");
+        }
+    });
+</script>
 
     <script>
         document.querySelectorAll('input[type="radio"]').forEach(input => {
@@ -286,38 +299,7 @@ body{
             });
         });
     </script>
-    <script>
-        const shareButton = document.getElementById('shareButton');
-        const shareModal = document.getElementById('shareModal');
-    
-        shareButton.addEventListener('click', () => {
-            shareModal.style.display = 'block';
-        });
-    
-        function closeModal() {
-            shareModal.style.display = 'none';
-        }
-    
-        function shareOnFacebook() {
-            window.open('https://www.facebook.com/sharer/sharer.php?u=your-url', '_blank');
-            closeModal();
-        }
-    
-        function shareOnInstagram() {
-            alert('Instagram sharing is not directly supported from web.');
-        }
-    
-        function shareOnWhatsApp() {
-            window.open('https://api.whatsapp.com/send?text=your-url', '_blank');
-            closeModal();
-        }
-    
-        function shareOnLinkedIn() {
-            window.open('https://www.linkedin.com/shareArticle?mini=true&url=your-url&title=Your-Title&summary=Your-Summary&source=Your-Source', '_blank');
-            closeModal();
-        }
-        
-    </script>
+   
   @endpush
 
 
