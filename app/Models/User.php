@@ -31,6 +31,7 @@ class User extends Authenticatable
         'dob',
         'aadhar',
         'city_id',
+        'profile'
     ];
 
     /**

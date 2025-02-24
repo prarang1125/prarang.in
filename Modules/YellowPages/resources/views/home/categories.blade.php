@@ -275,9 +275,9 @@
                                     <span class="">फ़ोन करे</span>
                                 </a>
                                 @else
-                                    <a href="javascript:void(0)" class="btn btn-success text-white fw-bold w-100 rounded-pill">
+                                    <a href="javascript:void(0)" onclick="copyToClipboard(this,'{{ $listing->user->phone ?? 'N/A' }}')"  class="btn btn-success text-white fw-bold w-100 rounded-pill">
                                         <span class="text-muted"><i class="bi bi-phone text-white"></i></span> 
-                                        <span class="">{{ $listing->user->phone ?? 'N/A' }}</span>
+                                        <span class="phinex">{{ $listing->user->phone ?? 'N/A' }}</span>
                                     </a>
                                 @endif
                             </div>
@@ -300,7 +300,26 @@
 
 
 @push('scripts')
+    
     <script>
+        function copyToClipboard(element,text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('Copy');
+            textArea.remove();
+            const childI = element.querySelector('i');
+            const phinex=element.querySelector('.phinex');
+            childI.className = 'bi bi-check2-circle text-white h6';
+            phinex.innerHTML = 'कॉपी किया';
+
+            setTimeout(() => {
+                childI.className = 'bi bi-phone text-white';
+                phinex.innerHTML = text;
+            }, 1500);
+        }
+ 
         function replaceContent(element, newText) {
             element.textContent = newText;
         }

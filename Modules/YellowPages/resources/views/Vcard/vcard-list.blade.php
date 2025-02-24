@@ -70,7 +70,7 @@
                                 @foreach($Vcard_list as $vcard)
                                     <tr>
                                         <th scope="row" class="align-middle">{{ $index }}</th>
-                                        <td class="align-middle">{{ $vcard->slug }}</td>
+                                        <td class="align-middle">{{ $user->name }}</td>
                                         <td class="align-middle">
                                             <img src="{{ Storage::url($user->profile ?? 'default.jpg') }}" style="max-width: 100px;">
                                         </td>
