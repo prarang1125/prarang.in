@@ -66,16 +66,6 @@
  color:#0e4fd1;
 }
 /* Body */
-body{
- background-color:#f3f0f0 !important;
-}
-
-/* Division */
-.main > div > div > div{
- background-color:rgba(255,255,255,0) !important;
-}
-
-
 
 
     </style>
