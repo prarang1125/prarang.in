@@ -161,7 +161,19 @@
 }
 
 }
+@media (max-width:575px){
 
+/* Heading */
+.main .container .row .col-lg-4 .overflow-hidden .card-body h5{
+ font-size:16px !important;
+}
+
+/* Heading */
+.main .card-body h5{
+ font-weight:700 !important;
+}
+
+}
 
 </style>
 
