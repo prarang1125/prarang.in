@@ -141,6 +141,9 @@
  padding-bottom:4px !important;
 }
 
+#wrapper .col-sm p{
+ text-shadow:rgba(0, 0, 0, 0.3) 0px 1px 1px !important;
+}
 
 
     </style>
