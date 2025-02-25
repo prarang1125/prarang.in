@@ -8,8 +8,7 @@
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
   <form action="{{ route('yp.listing.store') }}" method="POST" id="listingForm" enctype="multipart/form-data">    
             @csrf
-
-            <h5 style="margin-bottom: 15px;">प्राथमिक सूची विवरण</h5>
+    <h5 style="margin-bottom: 15px;">प्राथमिक सूची विवरण</h5>
             <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
             <div class="mb-3">
                 <label for="location" class="form-label">जगह</label>
@@ -25,14 +24,14 @@
                 @error('location')
                <span class="text-danger">{{ $message }}</span>
                @enderror
-            </div>            
+            </div>        
             <div class="mb-3">
                 <label for="listingTitle" class="form-label">लिस्टिंग शीर्षक</label>
                 <input type="text" id="listingTitle" name="listingTitle" class="form-control {{ $errors->has('listingTitle') ? 'is-invalid' : '' }}" value="{{ old('listingTitle') }}">
                 @error('listingTitle')
                <span class="text-danger">{{ $message }}</span>
                @enderror
-            </div>            
+            </div>     
             <div class="form-check mb-3">
                 <input class="form-check-input" type="checkbox" id="hasTagline" onclick="document.getElementById('taglineField').style.display = this.checked ? 'block' : 'none'">
                 <label class="form-check-label" for="hasTagline">
@@ -142,9 +141,7 @@
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-            </div>
-    </div>
-    <br>
+            </div>       
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
         <h5 style="margin-bottom: 15px;">श्रेणी और सेवाएँ</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
@@ -313,13 +310,11 @@
     </div>
     @endsection
     @push('scripts')
-
-   <script>
-document.addEventListener("DOMContentLoaded", function() {
-    let socialMediaData = {!! json_encode($social_media) !!}; 
-
-    document.getElementById("addSocialMedia").addEventListener("click", function() {
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+    function createSocialMediaRow() {
         let container = document.getElementById("social-media-container");
+
         let newRow = document.createElement("div");
         newRow.classList.add("social-media-row");
         newRow.style.display = "flex";
@@ -330,6 +325,7 @@ document.addEventListener("DOMContentLoaded", function() {
         newRow.style.width = "100%";
         newRow.style.boxSizing = "border-box";
 
+        // Select Box
         let select = document.createElement("select");
         select.name = "socialId[]";
         select.style.flex = "1";
@@ -343,16 +339,29 @@ document.addEventListener("DOMContentLoaded", function() {
         defaultOption.value = "";
         select.appendChild(defaultOption);
 
-        socialMediaData.forEach(function(social) {
+        let options = [
+            { value: "4", text: "वेबसाइट(WebSite)" },
+            { value: "5", text: "टेक्स्ट(Text)" },
+            { value: "6", text: "फेसबुक(Facebook)" },
+            { value: "7", text: "ट्विटर(X)" },
+            { value: "8", text: "इंस्टाग्राम(Instragram)" },
+            { value: "9", text: "व्हाट्सएप्प(Whatsup)" },
+            { value: "11", text: "स्काइप(Skype)" },
+            { value: "15", text: "लिंक्डइन(LinkedIn)" },
+            { value: "22", text: "यूट्यूब(YouTube)" }
+        ];
+
+        options.forEach(function (optionData) {
             let option = document.createElement("option");
-            option.value = social.id;
-            option.text = social.name;
+            option.value = optionData.value;
+            option.text = optionData.text;
             select.appendChild(option);
         });
 
+        // Input Box
         let input = document.createElement("input");
-        input.type = "text";
         input.name = "socialDescription[]";
+        input.type = "text";
         input.placeholder = "अपना लिंक या विवरण दर्ज करें";
         input.style.flex = "2";
         input.style.minWidth = "180px";
@@ -360,8 +369,10 @@ document.addEventListener("DOMContentLoaded", function() {
         input.style.boxSizing = "border-box";
         input.style.width = "100%";
 
+        // Remove Button
         let removeButton = document.createElement("button");
         removeButton.type = "button";
+        removeButton.classList.add("removeSocialMedia");
         removeButton.textContent = "-";
         removeButton.style.padding = "10px";
         removeButton.style.backgroundColor = "red";
@@ -370,7 +381,7 @@ document.addEventListener("DOMContentLoaded", function() {
         removeButton.style.cursor = "pointer";
         removeButton.style.flexShrink = "0";
 
-        removeButton.addEventListener("click", function() {
+        removeButton.addEventListener("click", function () {
             newRow.remove();
         });
 
@@ -378,29 +389,36 @@ document.addEventListener("DOMContentLoaded", function() {
         newRow.appendChild(input);
         newRow.appendChild(removeButton);
         container.appendChild(newRow);
+    }
+
+    // Add New Social Media Row
+    document.getElementById("addSocialMedia").addEventListener("click", function () {
+        createSocialMediaRow();
     });
 
-    document.querySelectorAll(".removeSocialMedia").forEach(button => {
-        button.addEventListener("click", function() {
-            this.parentElement.remove();
-        });
+  
+});
+       
+ </script>
+        
+  
+   <script>
+
+    document.getElementById("imageUpload").addEventListener("change", function(event) {
+        previewImage(event, "previewImage");
+    });
+
+    document.getElementById("coverImage").addEventListener("change", function(event) {
+        previewImage(event, "coverPreview");
+    });
+
+    document.getElementById("logo").addEventListener("change", function(event) {
+        previewImage(event, "logoPreview");
     });
 });
 
-document.addEventListener("DOMContentLoaded", function() {
-    function previewImage(event, previewId) {
-        var input = event.target;
-        var preview = document.getElementById(previewId);
-        
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                preview.src = e.target.result;
-                preview.style.display = "block";
-            }
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
+</script>
+   <script>
 
     document.getElementById("imageUpload").addEventListener("change", function(event) {
         previewImage(event, "previewImage");
