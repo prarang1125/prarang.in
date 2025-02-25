@@ -3,7 +3,7 @@
 namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 
-class Vcard extends Model
+class VCard extends Model
 {
     protected $connection = 'yp';
     protected $table = 'vcard';
@@ -41,6 +41,6 @@ public function address()
     return $this->belongsTo(Address::class, 'address_id');
 }
 
-
+//  c
 
 }
