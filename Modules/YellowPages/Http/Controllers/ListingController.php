@@ -100,9 +100,7 @@ class ListingController extends Controller
         }
     }
     
-    ##------------------------- END---------------------##
 
-    ##------------------------- Show City---------------------##
     public function showByCity($city_name)
     {      
         try {
@@ -267,18 +265,15 @@ class ListingController extends Controller
     ##------------------------- Add Listing ---------------------##
     public function store(BusinessListingRequest $request)
 {
- 
-        dd($request->all());
-       $validated = $request->validated();  
-
-    try {
+    //  dd($request->all());
+    $validated = $request->validated();
+    // try {
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('yellowpages/business', 's3');
         } else {
             $validated['image'] = null;
         }
-
-        $cityName = City::find($validated['city_id'])?->name ?? '';
+        $cityName = City::find($validated['city_id'])->name ?? '';
         $businessAddress = implode(' ', array_filter([
             $validated['house_number'] ?? '',
             $validated['street'] ?? '',
@@ -326,6 +321,9 @@ class ListingController extends Controller
         }
 
         if (!empty($validated['day'])) {
+            try{
+
+          
             foreach ($validated['day'] as $index => $day) {
                 BusinessHour::create([
                     'business_id' => $listing->id,
@@ -338,13 +336,16 @@ class ListingController extends Controller
                     'add_2nd_time_slot' => !empty($validated['add_2nd_time_slot'][$index]) ? 1 : 0,
                 ]);
             }
+        }catch (\Exception $e) {
+            dd($e->getMessage());
+        }
         }
 
         return redirect()->route('yp.listing.submit')->with('success', 'Listing created/updated successfully!');
-    } catch (\Exception $e) {
-        Log::error('Business Listing Store Error: ' . $e->getMessage());
-        return redirect()->back()->withErrors(['error' => 'An error occurred while processing your request. Please try again.']);
-    }
+    // } catch (\Exception $e) {
+    //     Log::error('Business Listing Store Error: ' . $e->getMessage());
+    //     return redirect()->back()->withErrors(['error' => 'An error occurred while processing your request. Please try again.']);
+    // }
 }
     
     ##------------------------- END---------------------##

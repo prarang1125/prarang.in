@@ -8,7 +8,8 @@
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
   <form action="{{ route('yp.listing.store') }}" method="POST" id="listingForm" enctype="multipart/form-data">    
             @csrf
-    <h5 style="margin-bottom: 15px;">प्राथमिक सूची विवरण</h5>
+
+            <h5 style="margin-bottom: 15px;">प्राथमिक सूची विवरण</h5>
             <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
             <div class="mb-3">
                 <label for="location" class="form-label">जगह</label>
@@ -24,14 +25,14 @@
                 @error('location')
                <span class="text-danger">{{ $message }}</span>
                @enderror
-            </div>        
+            </div>            
             <div class="mb-3">
                 <label for="listingTitle" class="form-label">लिस्टिंग शीर्षक</label>
                 <input type="text" id="listingTitle" name="listingTitle" class="form-control {{ $errors->has('listingTitle') ? 'is-invalid' : '' }}" value="{{ old('listingTitle') }}">
                 @error('listingTitle')
                <span class="text-danger">{{ $message }}</span>
                @enderror
-            </div>     
+            </div>            
             <div class="form-check mb-3">
                 <input class="form-check-input" type="checkbox" id="hasTagline" onclick="document.getElementById('taglineField').style.display = this.checked ? 'block' : 'none'">
                 <label class="form-check-label" for="hasTagline">
@@ -141,7 +142,9 @@
                     <span class="text-danger">{{ $message }}</span>
                     @enderror
                 </div>
-            </div>       
+            </div>
+
+    <br>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
         <h5 style="margin-bottom: 15px;">श्रेणी और सेवाएँ</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
@@ -174,7 +177,52 @@
     <br>
     <br>
     
-  
+    <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd; font-family: Arial, sans-serif;">
+        <h5 style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">काम करने के घंटे</h5>
+        <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
+    
+        <!-- Schedule Container -->
+        <div id="schedule-container">
+            <div class="day-schedule" style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
+                <select name="day[]" class="day-select" style="flex: 1; min-width: 100px; padding: 5px;">
+                    <option value="">-- दिन चुनें --</option>
+                    <option value="monday">सोमवार</option>
+                    <option value="tuesday">मंगलवार</option>
+                    <option value="wednesday">बुधवार</option>
+                    <option value="thursday">गुरुवार</option>
+                    <option value="friday">शुक्रवार</option>
+                    <option value="saturday">शनिवार</option>
+                    <option value="sunday">रविवार</option>
+                </select>
+    
+                <input type="time" name="open_time[]" class="time-input" style="flex: 1; padding: 5px;">
+                <label>to</label>
+                <input type="time" name="close_time[]" class="time-input" style="flex: 1; padding: 5px;">
+    
+                {{-- <label style="white-space: nowrap;">
+                    <input type="checkbox" name ="is_24_hours[]" class="is-24-hours"> 24 घंटे
+                </label> --}}
+                <label style="white-space: nowrap;">
+                    <input type="checkbox" class="add-2nd-slot"> दूसरा स्लॉट जोड़ें
+                </label>
+                <button type="button" class="remove-day-btn" style="background: red; color: white; border: none; padding: 5px 10px; cursor: pointer;">&#x2716;</button>
+    
+                <!-- Second Time Slot -->
+                <div class="second-time-slot" style="display: none; margin-top: 10px; width: 100%;">
+                    <input type="time" name="open_time_2[]" class="time-input" style="flex: 1; padding: 5px;">
+                    <label>to</label>
+                    <input type="time" name="close_time_2[]" class="time-input" style="flex: 1; padding: 5px;">
+                </div>
+            </div>
+        </div>
+    
+        <!-- Add New Day Button -->
+        <button type="button" id="add-day-btn">+ Add Day</button>
+    </div>                
+    
+        
+    <br>
+    <br>
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
         <h5 style="margin-bottom: 15px;">व्यवसाय/कंपनी का पता</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
@@ -310,11 +358,160 @@
     </div>
     @endsection
     @push('scripts')
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-    function createSocialMediaRow() {
-        let container = document.getElementById("social-media-container");
 
+   <script>
+
+
+    function toggleTaglineField() {
+        const taglineField = document.getElementById('taglineField');
+        taglineField.style.display = taglineField.style.display === 'none' ? 'block' : 'none';
+    }
+
+    document.getElementById('add-day-btn').addEventListener('click', () => {
+    const container = document.getElementById('schedule-container');
+    const firstSchedule = container.querySelector('.day-schedule');
+
+    if (firstSchedule) {
+        // Clone an existing schedule
+        const newSchedule = firstSchedule.cloneNode(true);
+
+        // Reset values for cloned inputs
+        newSchedule.querySelectorAll('select, input').forEach(input => {
+            if (input.type === 'checkbox') {
+                input.checked = false;
+            } else {
+                input.value = '';
+                input.disabled = false;
+            }
+        });
+
+        // Hide second slot in the new schedule
+        newSchedule.querySelector('.second-time-slot').style.display = 'none';
+
+        // Append new schedule
+        container.appendChild(newSchedule);
+    } else {
+        // Create a new schedule if none exist
+        const newSchedule = document.createElement('div');
+        newSchedule.classList.add('day-schedule');
+
+        newSchedule.innerHTML = `
+            <select name="day[]" class="day-select">
+                <option value="">-- दिन चुनें --</option>
+                <option value="monday">सोमवार</option>
+                <option value="tuesday">मंगलवार</option>
+                <option value="wednesday">बुधवार</option>
+                <option value="thursday">गुरुवार</option>
+                <option value="friday">शुक्रवार</option>
+                <option value="saturday">शनिवार</option>
+                <option value="sunday">रविवार</option>
+            </select>
+            <input type="time" name="open_time[]" class="time-input">
+            <label>to</label>
+            <input type="time" name="close_time[]" class="time-input">
+          
+            <label>
+                <input type="checkbox" class="add-2nd-slot"> दूसरा स्लॉट जोड़ें
+            </label>
+            <button type="button" class="remove-day-btn">&#x2716;</button>
+            
+            <!-- Second Time Slot -->
+            <div class="second-time-slot" style="display: none; margin-top: 10px;">
+                <input type="time" name="open_time_2[]" class="time-input">
+                <label>to</label>
+                <input type="time" name="close_time_2[]" class="time-input">
+            </div>
+        `;
+
+        container.appendChild(newSchedule);
+    }
+});
+
+// document.addEventListener("DOMContentLoaded", function () {
+//     document.getElementById("listingForm").addEventListener("submit", function (event) {
+//         document.querySelectorAll('input[name="is_24_hours[]"]').forEach(checkbox => {
+//             let hiddenInput = document.createElement("input");
+//             hiddenInput.type = "hidden";
+//             hiddenInput.name = checkbox.name; 
+//             hiddenInput.value = checkbox.checked ? "yes" : "no";
+//             this.appendChild(hiddenInput);
+//             checkbox.remove(); 
+//         });
+//     });
+// });
+
+
+// Handle 24-hour checkbox toggle
+document.addEventListener('change', (e) => {
+    if (e.target.classList.contains('is-24-hours')) {
+        const parent = e.target.closest('.day-schedule');
+        parent.querySelectorAll('.time-input').forEach(input => {
+            input.disabled = e.target.checked;
+        });
+    }
+});
+
+// Show or hide the second time slot
+document.addEventListener('change', (e) => {
+    if (e.target.classList.contains('is-24-hours')) {
+        const parent = e.target.closest('.day-schedule');
+
+        // Disable or enable time inputs based on checkbox state
+        parent.querySelectorAll('.time-input').forEach(input => {
+            input.disabled = e.target.checked;
+            if (e.target.checked) input.value = ''; // Clear input when disabled
+        });
+    }
+
+});
+
+// Remove a day schedule
+document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('remove-day-btn')) {
+        e.target.closest('.day-schedule').remove();
+    }
+});
+
+// Collect and log schedules
+document.getElementById('submit-btn')?.addEventListener('click', () => {
+    const schedules = [];
+    document.querySelectorAll('.day-schedule').forEach(schedule => {
+        const day = schedule.querySelector('.day-select').value;
+        const is24Hours = schedule.querySelector('.is-24-hours').checked; // true or false
+
+        // Get time values (only if 24-hour mode is NOT selected)
+        let openTime = schedule.querySelector('input[name="open_time[]"]').value;
+        let closeTime = schedule.querySelector('input[name="close_time[]"]').value;
+        let openTime2 = '', closeTime2 = '';
+
+        if (is24Hours) {
+            openTime = "24 Hours"; 
+            closeTime = "24 Hours";
+        } else {
+            const secondSlot = schedule.querySelector('.second-time-slot');
+            if (secondSlot.style.display !== 'none') {
+                openTime2 = secondSlot.querySelector('input[name="open_time_2[]"]').value;
+                closeTime2 = secondSlot.querySelector('input[name="close_time_2[]"]').value;
+            }
+        }
+
+        schedules.push({
+            day,
+            openTime,
+            closeTime,
+            is24Hours: is24Hours ? "1" : "0", // Convert to string for clarity
+            secondSlot: openTime2 && closeTime2 ? { openTime2, closeTime2 } : null,
+        });
+    });
+
+    console.log(schedules); // Check output
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    let socialMediaData = {!! json_encode($social_media) !!}; 
+
+    document.getElementById("addSocialMedia").addEventListener("click", function() {
+        let container = document.getElementById("social-media-container");
         let newRow = document.createElement("div");
         newRow.classList.add("social-media-row");
         newRow.style.display = "flex";
@@ -325,7 +522,6 @@
         newRow.style.width = "100%";
         newRow.style.boxSizing = "border-box";
 
-        // Select Box
         let select = document.createElement("select");
         select.name = "socialId[]";
         select.style.flex = "1";
@@ -339,29 +535,16 @@
         defaultOption.value = "";
         select.appendChild(defaultOption);
 
-        let options = [
-            { value: "4", text: "वेबसाइट(WebSite)" },
-            { value: "5", text: "टेक्स्ट(Text)" },
-            { value: "6", text: "फेसबुक(Facebook)" },
-            { value: "7", text: "ट्विटर(X)" },
-            { value: "8", text: "इंस्टाग्राम(Instragram)" },
-            { value: "9", text: "व्हाट्सएप्प(Whatsup)" },
-            { value: "11", text: "स्काइप(Skype)" },
-            { value: "15", text: "लिंक्डइन(LinkedIn)" },
-            { value: "22", text: "यूट्यूब(YouTube)" }
-        ];
-
-        options.forEach(function (optionData) {
+        socialMediaData.forEach(function(social) {
             let option = document.createElement("option");
-            option.value = optionData.value;
-            option.text = optionData.text;
+            option.value = social.id;
+            option.text = social.name;
             select.appendChild(option);
         });
 
-        // Input Box
         let input = document.createElement("input");
-        input.name = "socialDescription[]";
         input.type = "text";
+        input.name = "socialDescription[]";
         input.placeholder = "अपना लिंक या विवरण दर्ज करें";
         input.style.flex = "2";
         input.style.minWidth = "180px";
@@ -369,10 +552,8 @@
         input.style.boxSizing = "border-box";
         input.style.width = "100%";
 
-        // Remove Button
         let removeButton = document.createElement("button");
         removeButton.type = "button";
-        removeButton.classList.add("removeSocialMedia");
         removeButton.textContent = "-";
         removeButton.style.padding = "10px";
         removeButton.style.backgroundColor = "red";
@@ -381,7 +562,7 @@
         removeButton.style.cursor = "pointer";
         removeButton.style.flexShrink = "0";
 
-        removeButton.addEventListener("click", function () {
+        removeButton.addEventListener("click", function() {
             newRow.remove();
         });
 
@@ -389,36 +570,29 @@
         newRow.appendChild(input);
         newRow.appendChild(removeButton);
         container.appendChild(newRow);
-    }
-
-    // Add New Social Media Row
-    document.getElementById("addSocialMedia").addEventListener("click", function () {
-        createSocialMediaRow();
     });
 
-  
+    document.querySelectorAll(".removeSocialMedia").forEach(button => {
+        button.addEventListener("click", function() {
+            this.parentElement.remove();
+        });
+    });
 });
-       
- </script>
+
+document.addEventListener("DOMContentLoaded", function() {
+    function previewImage(event, previewId) {
+        var input = event.target;
+        var preview = document.getElementById(previewId);
         
-  
-   <script>
-
-    document.getElementById("imageUpload").addEventListener("change", function(event) {
-        previewImage(event, "previewImage");
-    });
-
-    document.getElementById("coverImage").addEventListener("change", function(event) {
-        previewImage(event, "coverPreview");
-    });
-
-    document.getElementById("logo").addEventListener("change", function(event) {
-        previewImage(event, "logoPreview");
-    });
-});
-
-</script>
-   <script>
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = "block";
+            }
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
 
     document.getElementById("imageUpload").addEventListener("change", function(event) {
         previewImage(event, "previewImage");

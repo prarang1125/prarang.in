@@ -155,8 +155,7 @@ class BusinessListingController extends Controller
 
     public function listingUpdate(BusinessListingRequest $request, $id)
     {
-        $validated = $request->validated(); 
-    
+        $validated = $request->validated();     
         // Get listing
         $listing = BusinessListing::where('id', $id)->first();
     
@@ -239,7 +238,6 @@ class BusinessListingController extends Controller
     
         return redirect()->route('vCard.business-listing')->with('success', 'सूची सफलतापूर्वक अद्यतन की गई!');
     }
-    
     
     ##------------------------- END ---------------------##
 

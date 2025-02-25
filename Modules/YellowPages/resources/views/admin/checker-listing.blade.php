@@ -44,9 +44,8 @@
                                 <th scope="col">सूची_शीर्षक</th>
                                 <th scope="col">व्यवसाय का नाम</th>
                                 <th scope="col">बिज़नेस_पता</th>
-                                <th scope="col">प्राथमिक_फ़ोन</th>
-                                <th scope="col">प्राथमिक_संपर्क_ईमेल</th>
-                                <th scope="col">पिनकोड</th>
+                                <th scope="col">फ़ोन</th>
+                                <th scope="col">ईमेल</th>
                                 <th scope="col">कार्रवाई</th>
                             </tr>
                         </thead>
@@ -58,9 +57,14 @@
                                     <td class="align-middle">{{ $business->listing_title }}</td> 
                                     <td class="align-middle">{{ $business->business_name }}</td>
                                     <td class="align-middle">{{ $business->business_address }}</td>
-                                    <td class="align-middle">{{ $business->primary_phone }}</td>
-                                    <td class="align-middle">{{ $business->primary_contact_email }}</td>
-                                    <td class="align-middle">{{ $business->pincode }}</td> 
+                        
+                                    @php
+                                        $user = $users[$business->user_id] ?? null; // Fetch user by ID, or set null if not found
+                                    @endphp
+                                    
+                                    <td class="align-middle">{{ $user ? $user->phone : 'N/A' }}</td>
+                                    <td class="align-middle">{{ $user ? $user->email : 'N/A' }}</td>
+                        
                                     <td class="align-middle">
                                         @if($business->is_active == 1)
                                             <a href="{{ route('checker.listing-approve', $business->id) }}" class="btn btn-sm btn-success edit-user">
@@ -72,11 +76,11 @@
                                             </a>
                                         @endif
                                     </td>
-                                    
                                 </tr>
                                 @php $index++; @endphp
                             @endforeach
                         </tbody>
+                        
                     </table>
                     
                 </div>
