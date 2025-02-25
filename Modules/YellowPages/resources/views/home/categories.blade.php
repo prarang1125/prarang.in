@@ -129,7 +129,7 @@
             <div class="col-lg-4 col-md-6">
                 <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
                     <!-- Image -->
-                    <img src="{{ Storage::url($listing->feature_img ?? 'default.jpg') }}" class="card-img-top" alt="Listing Image" style="height: 220px; object-fit: cover;">
+                    <img src="{{ Storage::url($listing->business_img ?? 'default.jpg') }}" class="card-img-top" alt="Listing Image" style="height: 220px; object-fit: cover;">
             
                     <div class="card-body">
                         <!-- Title -->
@@ -159,14 +159,7 @@
                                 <div class="col-1">  <span class="text-muted"><i class="bi bi-geo-alt fw-bold"></i> </span> </div>
                                 <div class="col-11">
                                     <span class="text-dark">
-                                        @if($listing->address)
-                                            {{ ucfirst($listing->address->street) ?? 'N/A' }},
-                                            {{ $listing->address->area_name ?? 'N/A' }},
-                                            {{ $listing->address->city_id ? $listing->city->name : 'N/A' }},
-                                            {{ $listing->address->postal_code ?? 'N/A' }}
-                                        @else
-                                            N/A
-                                        @endif
+                                        {{ $listing->business_address }}
                                     </span>
                                 </div>
                             </div>                          

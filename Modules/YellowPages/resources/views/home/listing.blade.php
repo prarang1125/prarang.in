@@ -52,7 +52,7 @@
 <div style="max-width: 1200px; margin: 0 auto; padding-top: 100px; padding: 20px;">
     <!-- Image Section -->
     <div style="background-color: #ffffff; padding-top: 90px; display: flex; justify-content: center; align-items: center;">
-        <img src="{{ Storage::url($listing->feature_img ?? 'default.jpg')}}" alt="Listing Image" 
+        <img src="{{ Storage::url($listing->business_img ?? 'default.jpg')}}" alt="Listing Image" 
             style="max-width: 100%; height: auto; border-radius: 10px; display: block;">
     </div>
 </div>

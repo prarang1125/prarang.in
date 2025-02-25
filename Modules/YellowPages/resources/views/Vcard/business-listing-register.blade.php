@@ -200,7 +200,7 @@
                 <input type="time" name="close_time[]" class="time-input" style="flex: 1; padding: 5px;">
     
                 <label style="white-space: nowrap;">
-                    <input type="checkbox" class="is-24-hours"> 24 घंटे
+                    <input type="checkbox" name ="is_24_hours[]" class="is-24-hours"> 24 घंटे
                 </label>
                 <label style="white-space: nowrap;">
                     <input type="checkbox" class="add-2nd-slot"> दूसरा स्लॉट जोड़ें
@@ -360,7 +360,12 @@
     @push('scripts')
 
    <script>
-document.getElementById('add-day-btn').addEventListener('click', () => {
+    function toggleTaglineField() {
+        const taglineField = document.getElementById('taglineField');
+        taglineField.style.display = taglineField.style.display === 'none' ? 'block' : 'none';
+    }
+
+    document.getElementById('add-day-btn').addEventListener('click', () => {
     const container = document.getElementById('schedule-container');
     const firstSchedule = container.querySelector('.day-schedule');
 
@@ -403,7 +408,7 @@ document.getElementById('add-day-btn').addEventListener('click', () => {
             <label>to</label>
             <input type="time" name="close_time[]" class="time-input">
             <label>
-                <input type="checkbox" class="is-24-hours"> 24 घंटे
+                <input type="checkbox" name="is_24_hours[]" class="is-24-hours"> 24 घंटे
             </label>
             <label>
                 <input type="checkbox" class="add-2nd-slot"> दूसरा स्लॉट जोड़ें
@@ -434,11 +439,16 @@ document.addEventListener('change', (e) => {
 
 // Show or hide the second time slot
 document.addEventListener('change', (e) => {
-    if (e.target.classList.contains('add-2nd-slot')) {
+    if (e.target.classList.contains('is-24-hours')) {
         const parent = e.target.closest('.day-schedule');
-        const secondSlot = parent.querySelector('.second-time-slot');
-        secondSlot.style.display = e.target.checked ? 'block' : 'none';
+
+        // Disable or enable time inputs based on checkbox state
+        parent.querySelectorAll('.time-input').forEach(input => {
+            input.disabled = e.target.checked;
+            if (e.target.checked) input.value = ''; // Clear input when disabled
+        });
     }
+
 });
 
 // Remove a day schedule
@@ -453,28 +463,35 @@ document.getElementById('submit-btn')?.addEventListener('click', () => {
     const schedules = [];
     document.querySelectorAll('.day-schedule').forEach(schedule => {
         const day = schedule.querySelector('.day-select').value;
-        const openTime = schedule.querySelector('input[name="open_time[]"]').value;
-        const closeTime = schedule.querySelector('input[name="close_time[]"]').value;
-        const is24Hours = schedule.querySelector('.is-24-hours').checked;
+        const is24Hours = schedule.querySelector('.is-24-hours').checked; // true or false
 
+        // Get time values (only if 24-hour mode is NOT selected)
+        let openTime = schedule.querySelector('input[name="open_time[]"]').value;
+        let closeTime = schedule.querySelector('input[name="close_time[]"]').value;
         let openTime2 = '', closeTime2 = '';
-        const secondSlot = schedule.querySelector('.second-time-slot');
-        if (secondSlot.style.display !== 'none') {
-            openTime2 = secondSlot.querySelector('input[name="open_time_2[]"]').value;
-            closeTime2 = secondSlot.querySelector('input[name="close_time_2[]"]').value;
+
+        if (is24Hours) {
+            openTime = "24 Hours"; 
+            closeTime = "24 Hours";
+        } else {
+            const secondSlot = schedule.querySelector('.second-time-slot');
+            if (secondSlot.style.display !== 'none') {
+                openTime2 = secondSlot.querySelector('input[name="open_time_2[]"]').value;
+                closeTime2 = secondSlot.querySelector('input[name="close_time_2[]"]').value;
+            }
         }
 
         schedules.push({
             day,
-            openTime: is24Hours ? '24 Hours' : openTime,
-            closeTime: is24Hours ? '24 Hours' : closeTime,
+            openTime,
+            closeTime,
+            is24Hours: is24Hours ? "1" : "0", // Convert to string for clarity
             secondSlot: openTime2 && closeTime2 ? { openTime2, closeTime2 } : null,
         });
     });
 
-    console.log(schedules);
+    console.log(schedules); // Check output
 });
-
 
 document.addEventListener("DOMContentLoaded", function() {
     let socialMediaData = {!! json_encode($social_media) !!}; 
