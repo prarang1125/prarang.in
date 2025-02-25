@@ -267,7 +267,9 @@ class ListingController extends Controller
     ##------------------------- Add Listing ---------------------##
     public function store(BusinessListingRequest $request)
 {
-    $validated = $request->validated();
+ 
+        dd($request->all());
+       $validated = $request->validated();  
 
     try {
         if ($request->hasFile('image')) {
