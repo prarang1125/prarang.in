@@ -31,32 +31,75 @@ class ListingController extends Controller
     ##------------------------- Show Category---------------------##
 
     public function showByCategory($category_name)
-{
-    // try {
-        // Get all active categories
-        $categories = Category::where('is_active', 1)->get();
-
-        // Get all active cities
-        $cities = City::where('is_active', 1)->get();
-       
-        // Find the requested category by its slug, or fail with a 404 error if not found
-        $category = Category::where('slug', $category_name)->firstOrFail();
-
-        // Get listings associated with the specific category
-        $listings = BusinessListing::with(['category', 'hours','city'])
-            ->where('is_active', 1) // Add this condition
-            ->whereHas('category', fn($q) => $q->where('slug', $category->slug))
-            ->get();
-       $portal =Portal::first();
-        // Return the view with the required data
-        return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'category_name','portal'));
-
-    // } catch (\Exception $e) {
-    //     // Detailed error message for debugging
-    //     return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
-    // }
-}
-
+    {
+        try {
+            // Get all active categories and cities
+            $categories = Category::where('is_active', 1)->get();
+            $cities = City::where('is_active', 1)->get();
+    
+            // Find the requested category by its slug, or fail with a 404 error if not found
+            $category = Category::where('slug', $category_name)->firstOrFail();
+    
+            // Get active listings associated with the specific category
+            $listings = BusinessListing::with(['category', 'hours', 'reviews'])
+                ->where('is_active', 1)
+                ->whereHas('category', fn($q) => $q->where('slug', $category->slug))
+                ->get();
+    
+            // Define the timezone
+            $timezone = 'Asia/Kolkata';
+            $currentDateTime = Carbon::now($timezone);
+            $currentTime = $currentDateTime->format('H:i:s');
+            $currentDay = strtolower($currentDateTime->format('l'));
+    
+            // Process listings to determine open status
+            $listings->each(function ($listing) use ($timezone, $currentTime, $currentDay) {
+                $listing->is_open = false;
+    
+                if ($listing->hours) {
+                    foreach ($listing->hours as $hours) {
+                        if ($hours->is_24_hours) {
+                            $listing->is_open = true;
+                            break;
+                        }
+    
+                        if (strtolower($hours->day) === $currentDay) {
+                            $openTime1 = $hours->open_time ? Carbon::parse($hours->open_time, $timezone) : null;
+                            $closeTime1 = $hours->close_time ? Carbon::parse($hours->close_time, $timezone) : null;
+    
+                            $isOpen1 = $openTime1 && $closeTime1 && $currentTime >= $openTime1->format('H:i:s') && $currentTime <= $closeTime1->format('H:i:s');
+    
+                            $isOpen2 = false;
+                            if ($hours->open_time2 && $hours->close_time2) {
+                                $openTime2 = Carbon::parse($hours->open_time2, $timezone);
+                                $closeTime2 = Carbon::parse($hours->close_time2, $timezone);
+                                $isOpen2 = $currentTime >= $openTime2->format('H:i:s') && $currentTime <= $closeTime2->format('H:i:s');
+                            }
+    
+                            if ($isOpen1 || $isOpen2) {
+                                $listing->is_open = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            });
+    
+            // Get portal details
+            $portal = Portal::first();
+    
+            // Return the view with required data
+            return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'category_name', 'portal'));
+    
+        } catch (\Exception $e) {
+            // Log error for debugging
+            Log::error('Error in showByCategory: ' . $e->getMessage());
+            
+            // Redirect back with error message
+            return redirect()->back()->withErrors(['error' => 'An error occurred while loading the category listings.']);
+        }
+    }
+    
     ##------------------------- END---------------------##
 
     ##------------------------- Show City---------------------##
@@ -84,6 +127,45 @@ class ListingController extends Controller
                 ->where('is_active', 1) 
                 ->whereHas('city', fn($q) => $q->where('city_id', $city->id))
                 ->get();
+
+                   // Define the timezone
+            $timezone = 'Asia/Kolkata';
+            $currentDateTime = Carbon::now($timezone);
+            $currentTime = $currentDateTime->format('H:i:s');
+            $currentDay = strtolower($currentDateTime->format('l'));
+    
+            // Process listings to determine open status
+            $listings->each(function ($listing) use ($timezone, $currentTime, $currentDay) {
+                $listing->is_open = false;
+    
+                if ($listing->hours) {
+                    foreach ($listing->hours as $hours) {
+                        if ($hours->is_24_hours) {
+                            $listing->is_open = true;
+                            break;
+                        }
+    
+                        if (strtolower($hours->day) === $currentDay) {
+                            $openTime1 = $hours->open_time ? Carbon::parse($hours->open_time, $timezone) : null;
+                            $closeTime1 = $hours->close_time ? Carbon::parse($hours->close_time, $timezone) : null;
+    
+                            $isOpen1 = $openTime1 && $closeTime1 && $currentTime >= $openTime1->format('H:i:s') && $currentTime <= $closeTime1->format('H:i:s');
+    
+                            $isOpen2 = false;
+                            if ($hours->open_time2 && $hours->close_time2) {
+                                $openTime2 = Carbon::parse($hours->open_time2, $timezone);
+                                $closeTime2 = Carbon::parse($hours->close_time2, $timezone);
+                                $isOpen2 = $currentTime >= $openTime2->format('H:i:s') && $currentTime <= $closeTime2->format('H:i:s');
+                            }
+    
+                            if ($isOpen1 || $isOpen2) {
+                                $listing->is_open = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            });
 
                 return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'city','city_name','portal'));
             } catch (\Exception $e) {

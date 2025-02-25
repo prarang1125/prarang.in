@@ -2,10 +2,24 @@
 <html lang="hi">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-  <title>@yield('title')</title>
+  <meta charset="UTF-8">    
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>@yield('meta_title', 'Yellow Pages - Find Businesses & Services')</title>
+
+<meta name="description" content="@yield('meta_description', 'Discover local businesses, services, and more.')">
+<meta name="keywords" content="@yield('meta_keywords', 'yellow pages, local directory, businesses')">
+
+<meta property="og:locale" content="en_IN" />
+<meta name="robots" content="index, follow" />
+<meta property="og:type" content="article" />
+<meta property="og:image:width" content="600" />
+<meta property="og:image:height" content="315" />
+<meta property="og:site_name" content="Yellow Pages"/>
+
+<meta property="og:title" content="@yield('meta_og_title', 'Yellow Pages - Business Directory')">
+<meta property="og:description" content="@yield('meta_og_description', 'Find the best businesses and services near you.')">
+<meta property="og:image" content="@yield('meta_og_image', asset('assets/images/yp_logo_img.jpg'))">
+<meta property="og:url" content="{{ url()->current() }}">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <script src="https://kit.fontawesome.com/64d58efce2.js" crossorigin="anonymous"></script>
   <style>

@@ -2,27 +2,28 @@
 {{-- <html lang="en"> --}}
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+
     <!-- Required meta tags -->
     <meta name="csrf-token" content="{{ csrf_token()}}">
 	<meta charset="UTF-8">    
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
-    <title>@yield('title', 'Yellow Pages')</title>
-    <meta name="description" content="">
-    <meta name="keywords" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@yield('meta_title', 'Yellow Pages - Find Businesses & Services')</title>
+    
+    <meta name="description" content="@yield('meta_description', 'Discover local businesses, services, and more.')">
+    <meta name="keywords" content="@yield('meta_keywords', 'yellow pages, local directory, businesses')">
+    
     <meta property="og:locale" content="en_IN" />
     <meta name="robots" content="index, follow" />
     <meta property="og:type" content="article" />
     <meta property="og:image:width" content="600" />
     <meta property="og:image:height" content="315" />
-    <meta property="og:site_name" content="{{ $post['siteName'] ?? 'Prarang' }}" />
+    <meta property="og:site_name" content="Yellow Pages"/>
 
-    <!-- Open Graph Tags -->
-    <meta property="og:title" content="{{ $post['title'] ?? 'Default Title' }}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:image" content="{{ $post['imageUrl'] ?? 'default-image-url.jpg' }}" />
-    <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:description" content="{{ $post['description'] ?? 'Default description for the post.' }}" />
+    <meta property="og:title" content="@yield('meta_og_title', 'Yellow Pages - Business Directory')">
+    <meta property="og:description" content="@yield('meta_og_description', 'Find the best businesses and services near you.')">
+    <meta property="og:image" content="@yield('meta_og_image', asset('assets/images/yp_logo_img.jpg'))">
+    <meta property="og:url" content="{{ url()->current() }}">
 	<!--favicon-->
 	{{-- <link rel="icon" href="{{ asset('assets/images/favicon-32x32.png') }}" type="image/png" /> --}}
 	<!--plugins-->

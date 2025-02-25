@@ -3,6 +3,25 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>@yield('meta_title', 'Business WebPage - ' . ($user->name ?? 'User'))</title>
+    <meta name="description" content="@yield('meta_description', 'Business WebPage for ' . ($user->name ?? 'User'))">
+    <meta name="keywords" content="@yield('meta_keywords', 'business vCard, digital visiting card, contact information')">
+    <meta name="robots" content="index, follow" />
+  
+    <!-- Open Graph Meta Tags (Used by Facebook, Instagram, WhatsApp, and Twitter) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="@yield('meta_og_title', 'Business WebPage - ' . ($user->name ?? 'User'))">
+    <meta property="og:description" content="@yield('meta_og_description', 'Connect with ' . ($user->name ?? 'this business') . ' via digital WebPage.')">
+    <meta property="og:image" content="{{ !empty($user->profile) && Storage::exists($user->profile) ? Storage::url($user->profile) : asset('assets/images/yplogo.jpg') }}">
+    <meta property="og:url" content="{{ url()->current() }}" />
+    <meta property="og:site_name" content="Yellow Pages" />
+    <meta property="og:locale" content="en_IN" />
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:type" content="image/jpeg">
+    
+    <!-- Twitter will use Open Graph tags automatically -->
+    <meta name="twitter:card" content="summary_large_image">
   <meta name="description" content="Business vCard for {{ $user->name ?? 'User' }}" />
   <title>V Card</title>
   <script src="https://cdn.tailwindcss.com"></script>
@@ -98,7 +117,7 @@
                               @endif
                           @else
                               <!-- If data is empty, show "Not Available" -->
-                              Not Available
+                              उपलब्ध नहीं है
                           @endif
                       </span>
                   </span>
