@@ -358,10 +358,8 @@ class CreateVCardController extends Controller
             abort(404, 'User not found.');
         }
     
-        // Get active dynamic fields.
         $dynamicFields = DynamicFeild::where('is_active', 1)->get();
     
-        // Retrieve the category associated with the vCard.
         $category = Category::find($vcard->category_id);
     
         // Retrieve all business listings for the user.
@@ -372,7 +370,6 @@ class CreateVCardController extends Controller
         // Pass the data to the view.
         return view('yellowpages::Vcard.scan-card', compact('vcard', 'user', 'category', 'dynamicFields', 'businessListings'));
     }
-    
     
     ##------------------------- END ---------------------##
     ##------------------------- VCard list ------------------ ---##
