@@ -63,36 +63,13 @@ class AuthModalController extends Controller
     public function newAccount($slug)
     {
         try {
-            $cities = City::all();
-            return view('yellowpages::Vcard.register', compact('cities'));
+            return view('yellowpages::Vcard.register');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred while loading the login page.']);
         }
     }
 
-    public function register(RegisterRequest $request)
-    {
-        $validate = $request->validated();
-        dd($validate);
-    
-        try {
-            $user = User::create([
-                'name' => $validate['name'] ?? null, // Handle nullable name
-                'phone' => $validate['phone'],
-                'city_id' => $validate['city'],
-                'password' => Hash::make($validate['password']),
-                'status' =>0,
-                'role' => 2,
-            ]);
-    
-            // Log in the new user
-            Auth::login($user);
-    
-            return redirect()->route('vCard.createCard');
-        } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'पंजीकरण के दौरान एक त्रुटि हुई। कृपया फिर से प्रयास करें।'])->withInput();
-        }
-    }
+   
     
     public function logout(Request $request)
     {

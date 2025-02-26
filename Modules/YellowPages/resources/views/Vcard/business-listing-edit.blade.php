@@ -26,7 +26,7 @@
     
 
     <!-- Main Form -->
-    <form action="{{ route('vCard.listing-update', $listing->id) }}" method="POST" enctype="multipart/form-data" class="form-container">
+    <form action="{{ route('vCard.listing-update', $listing->id) }}" id="listingForm" method="POST" enctype="multipart/form-data" class="form-container">
         @csrf
         @method('PUT')
 
@@ -198,9 +198,9 @@
                                 <label>to</label>
                                 <input type="time" name="close_time[]" class="time-input" value="{{ $hour->close_time }}">
             
-                                <label>
+                                {{-- <label>
                                     <input type="checkbox" name="is_24_hours[]" class="is-24-hours" value="0" {{ $hour->is_24_hours ? 'checked' : '' }}> 24 घंटे
-                                </label>
+                                </label> --}}
             
                                 <label>
                                     <input type="checkbox" class="add-2nd-slot" {{ $hour->open_time_2 ? 'checked' : '' }}> दूसरा स्लॉट जोड़ें
@@ -361,9 +361,7 @@
             <input type="time" name="open_time[]" class="time-input">
             <label>to</label>
             <input type="time" name="close_time[]" class="time-input">
-            <label>
-                <input type="checkbox" name="is_24_hours[]" value="0" class="is-24-hours"> 24 घंटे
-            </label>
+         
             <label>
                 <input type="checkbox" class="add-2nd-slot"> दूसरा स्लॉट जोड़ें
             </label>
@@ -406,6 +404,19 @@ document.addEventListener('click', (e) => {
         e.target.closest('.day-schedule').remove();
     }
 });
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("listingForm").addEventListener("submit", function (event) {
+        document.querySelectorAll('input[name="is_24_hours[]"]').forEach(checkbox => {
+            let hiddenInput = document.createElement("input");
+            hiddenInput.type = "hidden";
+            hiddenInput.name = checkbox.name; 
+            hiddenInput.value = checkbox.checked ? "yes" : "no";
+            this.appendChild(hiddenInput);
+            checkbox.remove(); 
+        });
+    });
+});
+
 
 // Collect and log schedules
 document.getElementById('submit-btn')?.addEventListener('click', () => {

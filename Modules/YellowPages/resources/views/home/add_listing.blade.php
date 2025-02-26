@@ -217,6 +217,9 @@
             </div>
         </div>
         
+
+       
+
         <!-- Add New Day Button -->
         <button type="button" id="add-day-btn" style="margin-top: 10px; padding: 8px 12px; background: #007bff; color: #fff; border: none; border-radius: 3px; cursor: pointer; font-size: 14px;">+ Add Day</button>
     </div>
@@ -224,6 +227,8 @@
 
     <br>
     <br>
+   
+
     <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
         <h5 style="margin-bottom: 15px;">पते की जानकारी</h5>
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
@@ -270,6 +275,7 @@
         <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
         <div style="border: 1px dashed #ddd; padding: 20px; text-align: center; color: #888; margin-bottom: 10px;">
         <input type="file" name="image" style="display: block; margin-top: 10px;">
+      
         </div>
 
         <div style="display: flex; gap: 10px; justify-content: space-between; margin-bottom: 10px;">

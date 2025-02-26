@@ -100,9 +100,7 @@ class ListingController extends Controller
         }
     }
     
-    ##------------------------- END---------------------##
 
-    ##------------------------- Show City---------------------##
     public function showByCity($city_name)
     {      
         try {
@@ -267,7 +265,7 @@ class ListingController extends Controller
     ##------------------------- Add Listing ---------------------##
     public function store(BusinessListingRequest $request)
 {
-  
+    //  dd($request->all());
     $validated = $request->validated();
     // try {
         if ($request->hasFile('image')) {

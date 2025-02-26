@@ -29,6 +29,7 @@ class CreateVCardController extends Controller
 
     public function store(StoreVCardRequest $request)
     {
+       
         $validatedData = $request->validated();
     
         // Handle file uploads
@@ -140,6 +141,7 @@ class CreateVCardController extends Controller
                 'vcard', 'vcardInfo', 'categories', 'cities', 'dynamicFields', 'address', 'user'
             ));
         } catch (Exception $e) {
+            // dd($e->getMessage());
             Log::error('Error editing VCard: ' );
             return redirect()->back()->withErrors(['error' => 'Unable to fetch VCard details for editing.']);
         }
@@ -348,9 +350,10 @@ class CreateVCardController extends Controller
         if (!$vcard) {
             abort(404, 'vCard not found.');
         }
-    
+        
         // Increment the scan_count column
         $count =$vcard->increment('scan_count');
+        return redirect()->route('vCard.share', ['slug' => $vcard->slug]);
     
         // Load the user with their address using the hasOne relationship.
         $user = User::with('address')->find($vcard->user_id);

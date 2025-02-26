@@ -8,6 +8,169 @@
  font-weight:500 !important;
 
 }
+/* Hero */
+#hero{
+ background-size:cover;
+}
+
+/* Link */
+.icon-boxes .title a{
+ display:inline-block;
+ transform:translatex(0px) translatey(0px) !important;
+}
+
+/* Icon box */
+.icon-boxes .icon-box{
+ display:flex;
+ justify-content:flex-start;
+ align-items:center;
+ padding-top:4px !important;
+ padding-bottom:4px !important;
+ padding-right:5px !important;
+ padding-left:5px !important;
+ position:relative;
+ top:-24px;
+}
+
+/* Image */
+.icon-boxes a img{
+ width:40px !important;
+}
+
+/* Image */
+.icon-boxes .container .row .col-xl-2 .icon-box .icon a img{
+ height:40px !important;
+}
+
+/* Icon */
+.main #hero .icon-boxes .container .row .col-xl-2 .icon-box .icon{
+ width:40px !important;
+ height:40px !important;
+}
+
+/* Icon */
+.icon-boxes .icon-box .icon{
+ overflow:visible;
+}
+
+/* Column 4/12 */
+.icon-boxes .col-xl-2{
+ position:relative;
+ top:1px;
+ max-width:100%;
+}
+
+@media (min-width:1200px){
+
+ /* Column 4/12 */
+ .icon-boxes .col-xl-2{
+  width:325px;
+ }
+ 
+}
+/* Icon box */
+.icon-boxes .icon-box{
+ justify-content:flex-start;
+ flex-wrap:nowrap;
+ float:none;
+ flex-direction:row;
+}
+
+/* Icon box */
+.main #hero .icon-boxes .container .row .col-xl-2 .icon-box{
+ padding-top:0px !important;
+ padding-bottom:0px !important;
+ padding-left:28px !important;
+}
+
+/* Icon */
+.icon-boxes .icon-box .icon{
+ padding-top:0px;
+}
+
+/* Image */
+.icon-boxes a img{
+ margin-right:17px;
+}
+
+/* Link */
+.icon-boxes .title a{
+ padding-left:13px;
+}
+
+/* Icon box (hover) */
+.icon-boxes .icon-box:hover{
+ box-shadow:0px 0px 32px 14px rgba(175,158,8,0.78);
+ transform:scale(1.01);
+}
+@media (max-width:640px){
+
+/* Icon box */
+.icon-boxes .icon-box{
+ display:flex;
+}
+
+/* Row */
+.icon-boxes .row{
+ display:grid;
+ grid-template-columns:50% 50%;
+}
+
+/* Icon box */
+.main #hero .icon-boxes .container .row .col-xl-2 .icon-box{
+ width:100% !important;
+}
+
+/* Row */
+.main #hero .icon-boxes .container .row{
+ grid-template-columns:50% 64.33fr !important;
+}
+
+}
+@media (max-width:575px){
+
+/* Icon box */
+.icon-boxes .icon-box{
+ transform:translatex(0px) translatey(0px);
+}
+
+/* Link */
+.icon-boxes .title a{
+ padding-left:0px !important;
+ font-weight:300;
+ font-size:20px;
+}
+
+/* Icon box */
+.main #hero .icon-boxes .container .row .col-xl-2 .icon-box{
+ width:93% !important;
+}
+
+}
+@media (max-width:575px){
+
+/* Icon box */
+.icon-boxes .icon-box{
+ transform:translatex(0px) translatey(0px);
+}
+
+/* Link */
+.icon-boxes .title a{
+ font-size:16px !important;
+}
+
+/* Icon box */
+.main #hero .icon-boxes .container .row .col-xl-2 .icon-box{
+ padding-left:9px !important;
+}
+
+/* Image */
+.icon-boxes a img{
+ margin-right:-1px !important;
+}
+
+}
+
 </style>
 
     <!-- <section id="hero" class="hero section-bg" style="background-image: url('{{ asset('assets/images/background-image.jpg') }}');"> -->
@@ -62,16 +225,15 @@
             <div class="row gy-4 mt-5">
                 @foreach($categories as $index => $category)
                     <div class="col-xl-2 col-md-4">
-                        <div class="icon-box" style="padding: 20px; text-align: center; border: 1px solid #ddd; border-radius: 10px;">
-                            <div class="icon" style="width: 80px; height: 80px; margin: 0 auto;">
-                              <a href="{{ route('category.show', ['category_name' =>Str::slug($category->name)]) }}">
-                                  <img src="{{ Storage::url($category->categories_url) }}" alt="" style="width: 100%; height: 100%; object-fit: cover;" />
-                              </a>
-
+                        <div class="icon-box d-flex align-items-center" style="padding: 20px; text-align: center; border: 1px solid #ddd; border-radius: 10px;">
+                            <div class="icon me-3">
+                                <a href="{{ route('category.show', ['category_name' =>Str::slug($category->name)]) }}">
+                                    <img src="{{ Storage::url($category->categories_url) }}" alt="" style="width: 40px; height: 40px; object-fit: cover;" />
+                                </a>
                             </div>
-                            <h4 class="title" style="font-size: 16px; margin-top: 10px;">
+                            <h4 class="title m-0">
                                 <!-- Add the link to the listing page with the category ID -->
-                                <a href="{{ route('category.show', ['category_name' => $category->slug]) }}" class="stretched-link">{{$category->name}}</a>
+                                <a href="{{ route('category.show', ['category_name' => $category->slug]) }}" class="stretched-link text-decoration-none">{{$category->name}}</a>
                             </h4>
                         </div>
                     </div>
@@ -92,7 +254,7 @@
       <div class="container">
           <div class="row gy-4">
               @foreach($cities as $index => $city)
-                  <div class="col-lg-3 col-md-6" data-aos="fade-up" data-aos-delay="{{ ($index + 1) * 100 }}">
+                  <div class="col-lg-3 col-md-6 col-sm-6 col-6" data-aos="fade-up" data-aos-delay="{{ ($index + 1) * 100 }}">
                       <a href="{{ route('city.show', ['city_name' => $city->name]) }}" class="card-link">
                           <div class="card">
 
