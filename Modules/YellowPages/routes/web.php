@@ -216,10 +216,10 @@ Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
     Route::get('privacy-policy', [HomeController::class, 'privacyPolicy'])->name('privacy-policy');
 
     // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    End yellowPages Checker Side   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    Route::get('/{city_air}/{slug}', [CreateVCardController::class, 'cardView'])->name('cardView.view');
+    Route::get('/{city_arr}/{slug}', [CreateVCardController::class, 'cardView'])->name('cardView.view');
 
    Route::get('{city_name}', [ListingController::class, 'showByCity'])->name('city.show');
-    // Route::get('{category}/{city}', [ListingController::class, 'index'])->name('yp.listing');
+    Route::get('{category}/{city}', [ListingController::class, 'index'])->name('yp.listing');
    
    Route::get('{city_slug}/{listing_title}/{listing_id}', [ListingController::class, 'listing'])->name('yp.listing-details');
 

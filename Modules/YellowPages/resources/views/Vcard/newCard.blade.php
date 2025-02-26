@@ -1,15 +1,15 @@
-@extends('yellowpages::layout.vcard.vcard')
+@extends('yellowpages::layout.auth')
 @section('title', 'Prarang WebPage')
 @section('content')
 
-<div class="fixed inset-0 flex items-center justify-center bg-gray-100">
+<div class="fixed inset-0 flex items-center justify-center min-h-screen bg-gray-100">
     <!-- Content Wrapper -->
     <div class="flex flex-col md:flex-row relative max-w-md mx-auto rounded-lg shadow-md p-4 bg-white 
                 border border-gray-300 hover:border-indigo-500 transition duration-300 ease-in-out">
         
         <!-- Information Section -->
         <div class="flex-1 space-y-2">
-            <h3 class="text-2xl font-bold text-gray-800 mb-2">{{ $user->name ?? 'User' }} Prarang Page</h3>
+            <h5 class="text-2xl font-bold text-gray-800 mb-2">{{ $user->name ?? 'User' }} Prarang Page</h5>
 
             <!-- Business Info -->
             <div class="space-y-1 mb-2">
