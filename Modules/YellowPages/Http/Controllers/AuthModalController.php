@@ -61,8 +61,7 @@ class AuthModalController extends Controller
     public function newAccount()
     {
         try {
-            $cities = City::all();
-            return view('yellowpages::Vcard.register', compact('cities'));
+            return view('yellowpages::Vcard.register');
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred while loading the login page.']);
         }

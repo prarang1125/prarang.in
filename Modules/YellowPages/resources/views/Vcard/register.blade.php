@@ -2,141 +2,433 @@
 
 @section('title', 'Register')
 @section('content')
+    <style>
+        /* Import Google Fonts */
+        @import url("//fonts.googleapis.com/css2?family=TimesNewRoman:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 
-<style>
-  .left-panel .logo-sec {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-  }
+        /* Heading */
+        .card .sign-in-form h2 {
+            font-weight: 700;
+            font-family: 'TimesNewRoman', 'Times New Roman', Times, Baskerville, Georgia, serif;
+            font-size: 28px;
+        }
 
-  .pie {
-    border-left: 4px solid;
-    height: 50px;
-  }
+        /* Division */
+        .card .sign-in-form .mb-3 {
+            margin-bottom: 15px !important;
+        }
 
-  .left-panel .logo-sec p {
-    margin: 0 9px;
-  }
+        #name {
+            margin-top: -5px;
+        }
 
-  .signin-signup .sign-in-form .input-field {
-    transform: translate(0);
-  }
+        /* Link */
+        .d-flex .card a {
+            color: #020202;
+            font-weight: 700;
+            text-decoration: none;
+            text-align: center;
+            padding-top: 6px;
+        }
 
-  .signin-signup .sign-in-form a.btn {
-    background-color: white !important;
-    color: #020202 !important;
-  }
+        /* Link (hover) */
+        .d-flex .card a:hover {
+            color: #f39c12;
+        }
 
-  .signin-signup .sign-in-form a.btn:hover {
-    color: #f39c12 !important;
-  }
+        /* Phone */
+        #phone {
+            margin-top: -5px;
+        }
 
-  .forms-container .signin-signup form {
-    box-shadow: 0 4px 13px 15px rgba(72, 65, 65, 0.1) !important;
-  }
+        /* City */
+        #city {
+            margin-top: -3px;
+        }
 
-  .container .forms-container .signin-signup .sign-in-form .btn {
-    width: 90% !important;
-  }
+        /* Form Division */
+        .d-flex .card form {
+            transform: translatex(0px) translatey(0px);
+        }
 
-  @media (min-width: 571px) {
-    .forms-container .signin-signup form {
-      padding: 33px 5px 25px !important;
-    }
-  }
-  @media (max-width:570px){
+        /* Name */
+        #name {
+            padding-bottom: 0px;
+            margin-top: -6px !important;
+        }
 
-/* Container */
-.container{
- padding-top:10px;
- padding-bottom:42px;
+        /* Division */
+        .row .col-sm-6 div .d-flex .card .sign-in-form .mb-3 {
+            margin-bottom: 7px !important;
+        }
+        /* Name */
+#name{
+ padding-bottom:6px !important;
+}
+/* Heading */
+.card .sign-in-form h2{
+ color:#020202 !important;
+}
+.logo-sec { 
+  display: flex; 
+  flex-direction: row; 
+  justify-content: center; 
+  align-items: center;
+} 
+
+*,:after,:before { 
+  box-sizing: border-box;
+} 
+
+img { 
+  vertical-align: middle;
+} 
+
+p { 
+  margin-top: 0; 
+  margin-bottom: 1rem;
+} 
+
+.pie { 
+  border-left: 4px solid; 
+  height: 50px;
+} 
+
+.panel p { 
+  font-size: 0.95rem; 
+  padding: 0.7rem 0;
+} 
+
+
+/* These were inline style tags. Uses id+class to override almost everything */
+#style-Kl3pw.style-Kl3pw {  
+ width: 100px;  
+  height: auto;  
+}  
+#style-kRBjZ.style-kRBjZ {  
+ width: 30%;  
+  height: auto;  
+}  
+
+/* Ldiv */
+.row .ldiv{
+ width:750px;
+ min-height:16px !important;
+ height:56vh;
 }
 
-/* Form Division */
-.forms-container .signin-signup form{
- padding-top:11px !important;
+/* Col 6 */
+.row .col-sm-6{
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ transform:translatex(0px) translatey(0px);
 }
 
-}
-@media (max-width:570px){
-
-/* Form Division */
-.container .forms-container .signin-signup form{
- box-shadow:0px 4px 0px -50px rgba(72,65,65,0.1) !important;
-}
-
-/* Form Division */
-.forms-container .signin-signup form{
- padding-left:17px !important;
- padding-right:14px !important;
+/* Image */
+.row .col-sm-6 > div > img{
+ width:60% !important;
+ display:inline-block;
+ transform:translatex(0px) translatey(0px) !important;
 }
 
+/* Ldiv */
+.row .ldiv{
+ height:51px !important;
 }
-</style>
 
-<div class="forms-container">
-  <div class="signin-signup">
-    <form action="{{ route('yp.register') }}" method="POST" class="sign-in-form" style="background: white; padding: 0; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); width: 100%; max-width: 400px; margin: auto;" autocomplete="off">             
-      @csrf
-      <h2 class="title" style="text-align: center; font-size: 22px; color: #333;">रजिस्ट्रेशन (Registration)</h2>
-      @if ($errors->any())      
-        <ul>  
-        @foreach ($errors->all() as $error)
-         <li><small style="color: red; font-align: left;">{{ $error }}</small></li>
-        @endforeach
-        </ul>  
-        @endif
-      @php
-        $fields = [
-          ['name' => 'city', 'icon' => 'fas fa-city', 'type' => 'select', 'placeholder' => 'कृपया शहर चुनें', 'options' => $cities],
-          ['name' => 'name', 'icon' => 'fas fa-user', 'type' => 'text', 'placeholder' => 'उपयोगकर्ता नाम'],
-          ['name' => 'phone', 'icon' => 'fas fa-phone', 'type' => 'text', 'placeholder' => 'फोन नंबर दर्ज करें'],
-          ['name' => 'password', 'icon' => 'fas fa-lock', 'type' => 'password', 'placeholder' => 'पासवर्ड दर्ज करें']
-        ];
-      @endphp
+/* Division */
+.row .col-sm-6 > div{
+ display:flex;
+ justify-content:center;
+}
 
-      @foreach ($fields as $field)
-        <div class="input-field" style="display: flex; align-items: center; border: 1px solid #ddd; padding: 10px; border-radius: 5px; margin-top: 10px;">
-          <i class="{{ $field['icon'] }}" style="margin-right: 10px; color: #555;"></i>
-          @if ($field['type'] === 'select')
-            <select name="{{ $field['name'] }}" style="border: none; outline: none; flex: 1; background: transparent;">
-              <option value="">{{ $field['placeholder'] }}</option>
-              @foreach ($field['options'] as $option)
-                <option value="{{ $option->id }}">{{ $option->name }}</option>
-              @endforeach
-            </select>
-          @else
-            <input type="{{ $field['type'] }}" name="{{ $field['name'] }}" placeholder="{{ $field['placeholder'] }}" value="{{ old($field['name']) }}" style="border: none; outline: none; flex: 1; background: transparent;" />
-          @endif
+
+@media (max-width:576px){
+
+  /* Logo sec */
+  .row .ldiv .logo-sec{
+   justify-content:center;
+   padding-top:65px;
+  }
+  
+  /* Logo sec */
+  .row .col-sm-6 .ldiv .logo-sec{
+   width:100% !important;
+  }
+  
+  /* Ldiv */
+  .row .col-sm-6 .ldiv{
+   width:100% !important;
+  }
+  
+  /* Image */
+  .row .col-sm-6 > div > img{
+   display:none !important;
+  }
+  
+  /* Flex */
+  .row .col-sm-6 div .d-flex{
+   min-height:625px !important;
+   height:625px;
+  }
+  
+ }
+
+ /* Body */
+body{
+ {{-- background-image:url("file:///C:/Users/vivek/Downloads/Fluid@1x-100.0s-1592px-830px%20(1).svg"); --}}
+ background-size:cover;
+ background-attachment:fixed;
+ background-repeat:repeat-x;
+ background-position-y:0%;
+ background-position-x:100%;
+}
+/* Svg */
+svg{
+ position:fixed;
+ transform: rotateY(180deg) rotateZ(9deg);
+}
+
+/* Svg */
+svg{
+ top:-171px;
+ transform: rotateZ(-180deg) !important;
+ height:975px !important;
+ width:1373px !important;
+}
+
+@media (max-width:576px){
+
+ /* Svg */
+ svg{
+  width:898px !important;
+  height:497px !important;
+  transform: rotateX(35deg) rotateY(-5deg) rotateZ(180deg) !important;
+ }
+ 
+}
+/* Button */
+.card .sign-in-form .btn-primary{
+ margin-top:7px;
+}
+
+/* Division */
+.card .sign-in-form .mb-3{
+ {{-- transform:translatex(0px) translatey(0px); --}}
+}
+
+/* Password */
+#password{
+ margin-top:-6px;
+}
+
+
+/* Hero */
+.row .hero-txt{
+ display:flex;
+ margin-top:24px;
+ align-self:center;
+ flex-direction:column;
+ align-items:center;
+}
+
+/* Paragraph */
+.row .hero-txt p{
+ font-weight:700;
+}
+
+
+/* Subtxth */
+.row .hero-txt .subtxth{
+ margin-bottom:5px;
+ margin-top:-13px;
+ font-weight:500;
+}
+
+/* Paragraph */
+.row .hero-txt p{
+ font-size:17px;
+ line-height:1.5em;
+}
+
+/* Hero */
+.row .hero-txt{
+ margin-top:32px !important;
+}
+
+/* Image */
+.ldiv .logo-sec img{
+ padding-bottom:9px;
+}
+
+/* Style */
+#style-kRBjZ{
+ padding-top:4px;
+}
+
+/* Paragraph */
+.ldiv .logo-sec p{
+ min-height:75px;
+}
+
+@media (max-width:576px){
+
+ /* Hero */
+ .row .hero-txt{
+  margin-top:57px !important;
+  padding-top:9px;
+  {{-- transform:translatex(0px) translatey(0px); --}}
+  padding-left:30px;
+  padding-right:45px;
+ }
+ 
+ /* Subtxth */
+ .row .hero-txt .subtxth{
+  display:block;
+  white-space:pre-wrap;
+  text-align:center;
+ }
+ 
+ /* Flex */
+ .row .col-sm-6 div .d-flex{
+  {{-- transform:translatex(0px) translatey(-59px); --}}
+ }
+ 
+ /* Logo sec */
+ .row .ldiv .logo-sec{
+  padding-top:78px !important;
+ }
+ 
+}
+@keyframes confetti-fall {
+  0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
+  100% { transform: translate(calc(200px * var(--dirX)), calc(-250px * var(--dirY))) rotate(720deg); opacity: 0; }
+}
+
+
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 5vh;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(77, 77, 77, 0.7);
+  border-radius: 10px;
+  width: 500px;
+  text-align: center;
+  z-index: 1000;
+}
+
+.modal.show {
+  display: block;
+}
+
+.modal__content {
+  background: #fff;
+  padding: 30px;
+  text-align: center;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.modal__content h1 {
+  color: #4CAF50;
+  font-size: 24px;
+}
+
+.modal__close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 24px;
+  color: #333;
+  cursor: pointer;
+}
+
+.confetti {
+  position: absolute;
+  animation: confetti-fall 2.5s linear forwards;
+}
+
+.confetti.circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+}
+
+.confetti.square {
+  width: 10px;
+  height: 10px;
+}
+
+.confetti.ribbon {
+  width: 16px;
+  height: 5px;
+  border-radius: 2px;
+}
+
+/* Card */
+.row div .card{
+ box-shadow:0px 16px 48px 26px rgba(0,0,0,0.176) !important;
+ transform:translatex(0px) translatey(0px);
+}
+
+/* Heading */
+.card section h1{
+ text-align:center;
+ font-weight:700;
+ font-size:38px;
+ color:#0d951f;
+ margin-bottom:22px;
+}
+
+/* Paragraph */
+.card section p{
+ font-weight:600;
+}
+
+/* Paragraph */
+.card section p{
+ text-align:center;
+ margin-bottom:22px;
+}
+
+/* Heading */
+.card section h1{
+ margin-bottom:0px !important;
+}
+
+
+    </style>
+
+    <div class="row">
+        <div class="col-sm-6">
+          <div class="ldiv container d-flex justify-content-center align-items-center min-vh-100">
+            <div class="logo-sec snipcss-LUbH5">
+              <img src="{{ asset('assets/images/yplogo.png') }}" alt="logo icon" id="style-Kl3pw" class="style-Kl3pw">
+              <p class="pie"></p>
+              <img src="{{ asset('assets/images/logo-bg.png') }}" alt="logo icon" id="style-kRBjZ" class="style-kRBjZ">
+          </div>
+         
+          </div>
+          <div class="hero-txt">
+          <p>देश का पहला, हिंदी में येलो पेज(YellowPage)</p>
+          <p class="subtxth">अपने व्यवसाय को मुफ़्त में ऑनलाइन करें | साथ ही, अपनी खुद की मुफ़्त वेबसाइट बनाएं |</p>
+          </div>
+          <div>
+            <img src="{{ asset('assets/images/Mobile-login-rafiki.png') }}" alt="">
+          </div>
+
         </div>
-      @endforeach
+        <div class="col-sm-6">
+            @livewire('yellow-pages.elements.new-accounts')</div>
 
-    
-      <input type="submit" class="btn" value="रजिस्टर (Register)" style="width: 100%; background: #f39c12; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; margin-top: 15px; font-size: 16px; font-weight: bold; transition: 0.3s ease;" onmouseover="this.style.background='#e67e22'" onmouseout="this.style.background='#f39c12'" />
-
-      <a href="{{ route('yp.login') }}" class="btn" style="width: 100%; background: #f39c12; color: white; padding: 10px; border: none; border-radius: 5px; cursor: pointer; margin-top: 15px; font-size: 16px; font-weight: bold; transition: 0.3s ease;" onmouseover="this.style.background='#e67e22'" onmouseout="this.style.background='#f39c12'">
-        पहले से खाता है? साइन इन (Sign In) करें
-      </a>
-    </form>
-  </div>
-
-  <div class="panels-container" style="margin-left: 40px; text-align: center;">
-    <div class="panel left-panel">
-      <div class="content">
-        <div class="logo-sec">
-          <img src="{{ asset('assets/images/yplogo.png') }}" alt="logo icon" style="width: 100px; height: auto; margin-bottom: 10px;">
-          <p class="pie"></p>
-          <img src="{{ asset('assets/images/logo-bg.png') }}" alt="logo icon" style="width: 30%; height: auto; margin-bottom: 10px;">
-        </div>
-        <p class="slug" style="font-weight: bold; font-size: 16px; color: #333;">देश का पहला, हिंदी में येलो पेज(YellowPage)</p>
-        <p style="font-size: 14px; color: #555;">
-          अपने व्यवसाय को मुफ़्त में ऑनलाइन करें | साथ ही, अपनी खुद की मुफ़्त वेबसाइट बनाएं |
-        </p>
-        <img src="{{ asset('assets/images/Mobile-login-rafiki.png') }}" class="image" alt="Privacy Policy Illustration" style="width: 80%; margin-top: 15px; border-radius: 5px;">
-      </div>
     </div>
-  </div>
-</div>
+
+
+
 @endsection

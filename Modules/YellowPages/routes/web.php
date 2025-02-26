@@ -32,6 +32,13 @@ Route::get('yellow-pages/{any}', function ($any) {
   return redirect("/yp/".$any);
 })->where('any', '.*');
 
+
+// Register
+  // Route::get('/new-account', [AuthModalController::class, 'newAccount'])->name('yp.newAccount');
+
+  // Route::post('/register', [AuthModalController::class, 'register'])->name('yp.register');
+
+
 Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
     Route::get('/login', [AuthModalController::class, 'index'])->name('yp.login');
     Route::post('/authLogin', [AuthModalController::class, 'login'])->name('yp.authLogin');
