@@ -68,5 +68,9 @@ class User extends Authenticatable
         return $this->hasOne(Address::class, 'user_id');
     }
        
+    public function city()
+    {
+        return $this->belongsTo(City::class, 'city_id');
+    }
     
 }

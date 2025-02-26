@@ -4,7 +4,9 @@ namespace Modules\YellowPages\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Auth;
+use Modules\YellowPages\Http\Requests\RegisterRequest;
 use App\Models\User;
 use App\Models\City;
 use Illuminate\Support\Facades\Hash;
@@ -58,7 +60,7 @@ class AuthModalController extends Controller
         }
     }
 
-    public function newAccount()
+    public function newAccount($slug)
     {
         try {
             return view('yellowpages::Vcard.register');
