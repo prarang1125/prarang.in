@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\VCard;
 use Exception;
-use App\Models\DynamicVCard;
+use App\Models\DynamicVcard;
 use Modules\YellowPages\Http\Requests\StoreVCardRequest;
 use App\Models\City;
 use App\Models\User;
@@ -407,5 +407,25 @@ class CreateVCardController extends Controller
         }
     }
     ##------------------------- END ---------------------##
+
+
+    //cardview
+    public function cardView($city_arr, $slug)
+    {
+        
+        $vcard = User::select('users.*')
+        ->join('cities', 'cities.id', '=', 'users.city_id')
+        ->leftJoin('address', 'address.user_id', '=', 'users.id') // Optional if address exists
+        ->where('cities.city_arr', $city_arr)
+        ->where('users.user_code', $slug)
+        ->with('address') 
+        ->firstOrFail();
+    
+
+       
+        
+        return view('yellowpages::Vcard.newCard', compact('user', 'vcard'));
+    }
+    
 
 }
