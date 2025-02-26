@@ -2,7 +2,7 @@
 @section('title', 'Prarang WebPage')
 @section('content')
 
-<div class="fixed inset-0 flex items-center justify-center bg-gray-100">
+<div class="fixed inset-0 flex items-center justify-center min-h-screen bg-gray-100">
     <!-- Content Wrapper -->
     <div class="flex flex-col md:flex-row relative max-w-md mx-auto rounded-lg shadow-md p-4 bg-white 
                 border border-gray-300 hover:border-indigo-500 transition duration-300 ease-in-out">

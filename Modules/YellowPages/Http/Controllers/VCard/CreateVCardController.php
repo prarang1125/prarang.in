@@ -372,6 +372,7 @@ class CreateVCardController extends Controller
     }
     
     ##------------------------- END ---------------------##
+    
     ##------------------------- VCard list ------------------ ---##
     public function VcardList(Request $request) {
         try {
