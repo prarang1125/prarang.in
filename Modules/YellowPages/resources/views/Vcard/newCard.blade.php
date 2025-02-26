@@ -9,7 +9,7 @@
         
         <!-- Information Section -->
         <div class="flex-1 space-y-2">
-            <h3 class="text-2xl font-bold text-gray-800 mb-2">{{ $user->name ?? 'User' }} Prarang Page</h3>
+            <h5 class="text-2xl font-bold text-gray-800 mb-2">{{ $user->name ?? 'User' }} Prarang Page</h5>
 
             <!-- Business Info -->
             <div class="space-y-1 mb-2">
