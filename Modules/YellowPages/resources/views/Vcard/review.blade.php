@@ -15,7 +15,7 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>उपयोगकर्ता</th>
+                            <th>समीक्षक(Reviewer)</th>
                             <th>व्यवसाय शीर्षक</th>
                             <th>स्वच्छता रेटिंग</th>
                             <th>सेवा रेटिंग</th>
@@ -33,7 +33,7 @@
                         @foreach($reviews as $review)
                             <tr>
                                 <td>{{ $review->id }}</td>
-                                <td>{{ $review->user->name ?? 'N/A' }}</td>
+                                <td>{{ $review->title ?? 'N/A' }}</td>
                                 <td>{{ $review->listing->business_name ?? 'N/A' }}</td>
                                 <td>{{ $review->cleanliness ?? 'N/A' }}</td>
                                 <td>{{ $review->service ?? 'N/A' }}</td>

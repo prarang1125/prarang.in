@@ -81,9 +81,99 @@
 .main .card-body .col-11{
  min-height:45px;
 }
+@media (max-width:640px){
 
+/* Overflow hidden */
+.main .overflow-hidden{
+ flex-direction:column;
+ justify-content:center;
+ display:grid;
+ border-top-left-radius:4px !important;
+ border-top-right-radius:4px !important;
+ border-bottom-left-radius:4px !important;
+ border-bottom-right-radius:4px !important;
+}
 
+/* Overflow hidden */
+.main .container .row .col-lg-4 .overflow-hidden{
+ grid-template-columns:30% 70fr !important;
+}
 
+/* Main */
+.main{
+ grid-template-columns:30% 70fr;
+}
+
+/* Image */
+.main .overflow-hidden img{
+ border-top-left-radius:0px;
+ border-top-right-radius:0px;
+ overflow:scroll;
+ height:100% !important;
+}
+
+/* Heading */
+.main .card-body h5{
+ margin-bottom:6px !important;
+ font-size:18px;
+}
+
+/* Column 11/12 */
+.main .card-body .col-11{
+ padding-bottom:-2px;
+ margin-bottom:-2px;
+}
+
+/* Heading */
+.main h1{
+ text-align:center;
+}
+
+}
+
+@media (max-width:575px){
+
+/* Overflow hidden */
+.main .container .row .col-lg-4 .overflow-hidden{
+ flex-direction:row !important;
+}
+
+/* Heading */
+.main .container .row .col-lg-4 .overflow-hidden .card-body h5{
+ font-size:1px !important;
+}
+
+}
+@media (max-width:640px){
+
+/* Span Tag */
+.main .text-end span{
+ display:none;
+}
+
+}
+
+@media (max-width:575px){
+
+/* Span Tag */
+.main .text-end span{
+ display:none;
+}
+
+}
+@media (max-width:575px){
+
+/* Heading */
+.main .container .row .col-lg-4 .overflow-hidden .card-body h5{
+ font-size:16px !important;
+}
+
+/* Heading */
+.main .card-body h5{
+ font-weight:700 !important;
+}
+
+}
 
 </style>
 
@@ -96,7 +186,7 @@
         <div class="container d-flex justify-content-start">
            
             <a target="_blank" href="{{ route('portal',['portal'=>$portal->slug]) }}" class="btn btn-primary text-white">
-                <i class="bi bi-phone"></i>   Portal
+                <i class="bi bi-tablet"></i> {{ $portal->city_name_local }} पोर्टल
             </a>   
         </div>
         
@@ -132,12 +222,12 @@
             <div class="col-lg-4 col-md-6">
                 <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
                     <!-- Image -->
-                    <img src="{{ Storage::url($listing->feature_img ?? 'default.jpg') }}" class="card-img-top" alt="Listing Image" style="height: 220px; object-fit: cover;">
+                    <img src="{{ Storage::url($listing->business_img ?? 'default.jpg') }}" class="card-img-top" alt="Listing Image" style="height: 220px; object-fit: cover;">
             
                     <div class="card-body">
                         <!-- Title -->
                         <h5 class="card-title fw-bold text-primary text-center mb-3">{{ $listing->listing_title ?? 'No Title' }}</h5>
-                        <div class="mb-1">
+                        <div class="mb-2">
                             <div class="row">
                                 <div class="col-6">
                             @if($listing->is_open)
@@ -156,25 +246,20 @@
                             </div>
                         </div>
                         </div>
+                        @if($listing->address)
                         <!-- Address Section -->
                         <p class="card-text text-dark mb-0">
                             <div class="row">
                                 <div class="col-1">  <span class="text-muted"><i class="bi bi-geo-alt fw-bold"></i> </span> </div>
                                 <div class="col-11">
                                     <span class="text-dark">
-                                        @if($listing->address)
-                                            {{ ucfirst($listing->address->street) ?? 'N/A' }},
-                                            {{ $listing->address->area_name ?? 'N/A' }},
-                                            {{ $listing->address->city_id ? $listing->city->name : 'N/A' }},
-                                            {{ $listing->address->postal_code ?? 'N/A' }}
-                                        @else
-                                            N/A
-                                        @endif
+                                        {{ $listing->business_address }}
                                     </span>
                                 </div>
                             </div>                          
                             
                         </p>
+                        @endif
             
                         <!-- Contact & Owner Section -->
                       
@@ -195,16 +280,16 @@
                                     <span class="">फ़ोन करे</span>
                                 </a>
                                 @else
-                                    <a href="javascript:void(0)" class="btn btn-success text-white fw-bold w-100 rounded-pill">
+                                    <a href="javascript:void(0)" onclick="copyToClipboard(this,'{{ $listing->user->phone ?? 'N/A' }}')"  class="btn btn-success text-white fw-bold w-100 rounded-pill">
                                         <span class="text-muted"><i class="bi bi-phone text-white"></i></span> 
-                                        <span class="">{{ $listing->user->phone ?? 'N/A' }}</span>
+                                        <span class="phinex">{{ $listing->user->phone ?? 'N/A' }}</span>
                                     </a>
                                 @endif
                             </div>
                             <div class="col-6 text-end">
                                 <a href="{{ route('yp.listing-details', ['city_slug' => $listing->city->name, 'listing_title' => Str::slug($listing->listing_title), 'listing_id' => $listing->id]) }}" 
                                    class="btn btn-primary text-white  fw-bold w-100 rounded-pill ">
-                                   जानकारी देखे<i class="bi bi-arrow-right"></i>
+                                  <span>जानकारी</span> देखे<i class="bi bi-arrow-right"></i>
                                 </a>
                             </div>
                         </div>
@@ -220,7 +305,26 @@
 
 
 @push('scripts')
+    
     <script>
+        function copyToClipboard(element,text) {
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('Copy');
+            textArea.remove();
+            const childI = element.querySelector('i');
+            const phinex=element.querySelector('.phinex');
+            childI.className = 'bi bi-check2-circle text-white h6';
+            phinex.innerHTML = 'कॉपी किया';
+
+            setTimeout(() => {
+                childI.className = 'bi bi-phone text-white';
+                phinex.innerHTML = text;
+            }, 1500);
+        }
+ 
         function replaceContent(element, newText) {
             element.textContent = newText;
         }

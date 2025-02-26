@@ -153,21 +153,23 @@
     <!-- Share Function -->
     <script>
       function shareVCard() {
-          const shareData = {
-              title: "{{ $user->name ?? 'VCard' }}",
-              text: "देखें {{ $user->name ?? 'VCard' }} का व्यवसाय कार्ड",
-              url: "{{ route('vCard.share', ['slug' => $vcard->slug]) }}"
-          };
-  
-          if (navigator.share) {
-              navigator.share(shareData)
-                  .then(() => console.log("Shared successfully!"))
-                  .catch(error => console.error("Sharing failed:", error));
-          } else {
-              alert("Sharing is not supported on this device.");
-          }
+        const shareData = {
+          title: "{{ $user->name ?? 'VCard' }}",
+          text: " ",
+          url: "{{ route('vCard.share', ['slug' => $vcard->slug]) }}"
+        };
+
+        // Check if the browser supports the Web Share API
+        if (navigator.share) {
+          navigator.share(shareData)
+            .then(() => console.log("Shared successfully!"))
+            .catch(error => console.error("Sharing failed:", error));
+        } else {
+          // Fallback to a simple alert if the browser doesn't support the Web Share API
+          alert("Sharing is not supported in this device.");
+        }
       }
-  </script>
+    </script>
       
 
   </div>

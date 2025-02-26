@@ -21,6 +21,7 @@ use App\Models\Savelisting;
 use App\Models\CompanyLegalType;
 use App\Models\Portal;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -30,34 +31,76 @@ class ListingController extends Controller
     ##------------------------- Show Category---------------------##
 
     public function showByCategory($category_name)
-{
-    // try {
-        // Get all active categories
-        $categories = Category::where('is_active', 1)->get();
+    {
+        try {
+            // Get all active categories and cities
+            $categories = Category::where('is_active', 1)->get();
+            $cities = City::where('is_active', 1)->get();
+    
+            // Find the requested category by its slug, or fail with a 404 error if not found
+            $category = Category::where('slug', $category_name)->firstOrFail();
+    
+            // Get active listings associated with the specific category
+            $listings = BusinessListing::with(['category', 'hours', 'reviews'])
+                ->where('is_active', 1)
+                ->whereHas('category', fn($q) => $q->where('slug', $category->slug))
+                ->get();
+    
+            // Define the timezone
+            $timezone = 'Asia/Kolkata';
+            $currentDateTime = Carbon::now($timezone);
+            $currentTime = $currentDateTime->format('H:i:s');
+            $currentDay = strtolower($currentDateTime->format('l'));
+    
+            // Process listings to determine open status
+            $listings->each(function ($listing) use ($timezone, $currentTime, $currentDay) {
+                $listing->is_open = false;
+    
+                if ($listing->hours) {
+                    foreach ($listing->hours as $hours) {
+                        if ($hours->is_24_hours) {
+                            $listing->is_open = true;
+                            break;
+                        }
+    
+                        if (strtolower($hours->day) === $currentDay) {
+                            $openTime1 = $hours->open_time ? Carbon::parse($hours->open_time, $timezone) : null;
+                            $closeTime1 = $hours->close_time ? Carbon::parse($hours->close_time, $timezone) : null;
+    
+                            $isOpen1 = $openTime1 && $closeTime1 && $currentTime >= $openTime1->format('H:i:s') && $currentTime <= $closeTime1->format('H:i:s');
+    
+                            $isOpen2 = false;
+                            if ($hours->open_time2 && $hours->close_time2) {
+                                $openTime2 = Carbon::parse($hours->open_time2, $timezone);
+                                $closeTime2 = Carbon::parse($hours->close_time2, $timezone);
+                                $isOpen2 = $currentTime >= $openTime2->format('H:i:s') && $currentTime <= $closeTime2->format('H:i:s');
+                            }
+    
+                            if ($isOpen1 || $isOpen2) {
+                                $listing->is_open = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            });
+    
+            // Get portal details
+            $portal = Portal::first();
+    
+            // Return the view with required data
+            return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'category_name', 'portal'));
+    
+        } catch (\Exception $e) {
+            // Log error for debugging
+            Log::error('Error in showByCategory: ' . $e->getMessage());
+            
+            // Redirect back with error message
+            return redirect()->back()->withErrors(['error' => 'An error occurred while loading the category listings.']);
+        }
+    }
+    
 
-        // Get all active cities
-        $cities = City::where('is_active', 1)->get();
-       
-        // Find the requested category by its slug, or fail with a 404 error if not found
-        $category = Category::where('slug', $category_name)->firstOrFail();
-
-        // Get listings associated with the specific category
-        $listings = BusinessListing::with(['category', 'hours','city'])
-            ->whereHas('category', fn($q) => $q->where('slug', $category->slug))
-            ->get();
-       $portal =Portal::first();
-        // Return the view with the required data
-        return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'category_name','portal'));
-
-    // } catch (\Exception $e) {
-    //     // Detailed error message for debugging
-    //     return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
-    // }
-}
-
-    ##------------------------- END---------------------##
-
-    ##------------------------- Show City---------------------##
     public function showByCity($city_name)
     {      
         try {
@@ -79,9 +122,48 @@ class ListingController extends Controller
            
 
             $listings = BusinessListing::with(['category', 'hours', 'city','address','user'])
+                ->where('is_active', 1) 
                 ->whereHas('city', fn($q) => $q->where('city_id', $city->id))
                 ->get();
-               
+
+                   // Define the timezone
+            $timezone = 'Asia/Kolkata';
+            $currentDateTime = Carbon::now($timezone);
+            $currentTime = $currentDateTime->format('H:i:s');
+            $currentDay = strtolower($currentDateTime->format('l'));
+    
+            // Process listings to determine open status
+            $listings->each(function ($listing) use ($timezone, $currentTime, $currentDay) {
+                $listing->is_open = false;
+    
+                if ($listing->hours) {
+                    foreach ($listing->hours as $hours) {
+                        if ($hours->is_24_hours) {
+                            $listing->is_open = true;
+                            break;
+                        }
+    
+                        if (strtolower($hours->day) === $currentDay) {
+                            $openTime1 = $hours->open_time ? Carbon::parse($hours->open_time, $timezone) : null;
+                            $closeTime1 = $hours->close_time ? Carbon::parse($hours->close_time, $timezone) : null;
+    
+                            $isOpen1 = $openTime1 && $closeTime1 && $currentTime >= $openTime1->format('H:i:s') && $currentTime <= $closeTime1->format('H:i:s');
+    
+                            $isOpen2 = false;
+                            if ($hours->open_time2 && $hours->close_time2) {
+                                $openTime2 = Carbon::parse($hours->open_time2, $timezone);
+                                $closeTime2 = Carbon::parse($hours->close_time2, $timezone);
+                                $isOpen2 = $currentTime >= $openTime2->format('H:i:s') && $currentTime <= $closeTime2->format('H:i:s');
+                            }
+    
+                            if ($isOpen1 || $isOpen2) {
+                                $listing->is_open = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            });
 
                 return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'city','city_name','portal'));
             } catch (\Exception $e) {
@@ -97,7 +179,7 @@ class ListingController extends Controller
             $categories = Category::where('is_active', 1)->get();
             $city_name= City::where('is_active', 1)->get();
             $sz=City::where('name', $city)->first();
-            $query = BusinessListing::query();
+            $query = BusinessListing::where('is_active', 1);
 
             if ($category) {
                 $categoryId = Category::where('name', 'like', '%' . $category . '%')
@@ -134,8 +216,7 @@ class ListingController extends Controller
                 }
             
                 return $listing;
-            });
-            
+            });            
 
                 return view('yellowpages::home.categories', compact('listings', 'categories', 'city','portal'));
             } catch (\Exception $e) {
@@ -183,106 +264,88 @@ class ListingController extends Controller
 
     ##------------------------- Add Listing ---------------------##
     public function store(BusinessListingRequest $request)
-    {
-        $validated = $request->validated();         
-    try{
-    
-        // File upload handling
-        $imagePath = $request->hasFile('image') ? $request->file('image')->store('yellowpages/business') : null;
+{
+    //  dd($request->all());
+    $validated = $request->validated();
+    // try {
+        if ($request->hasFile('image')) {
+            $validated['image'] = $request->file('image')->store('yellowpages/business', 's3');
+        } else {
+            $validated['image'] = null;
+        }
+        $cityName = City::find($validated['city_id'])->name ?? '';
+        $businessAddress = implode(' ', array_filter([
+            $validated['house_number'] ?? '',
+            $validated['street'] ?? '',
+            $validated['area_name'] ?? '',
+            $cityName,
+            $validated['postal_code'] ?? '',
+        ]));
 
-        // Check if the business listing already exists for the user
-        $listing = BusinessListing::where('user_id', Auth::id())->first();
-
-        // Prepare data for insertion or update
         $data = [
             'user_id' => Auth::id(),
-            'city_id' => $validated['location'],
-            'listing_title' => $validated['listingTitle'],
-            'tagline' => $validated['tagline'],
-            'business_name' => $validated['businessName'],
-            'legal_type_id' => $validated['businessType'],
-            'employee_range_id' => $validated['employees'],
-            'turnover_id' => $validated['turnover'],
-            'advertising_medium_id' => $validated['advertising'],
-            'advertising_price_id' => $validated['advertising_price'],
-            'category_id' => $validated['category'],
-            'website' => $validated['website'],
-            'description' => $validated['description'] ?? null, // Handle optional description
-            'business_img' => $imagePath,
+            'city_id' => $validated['city_id'] ?? null,
+            'listing_title' => $validated['listingTitle'] ?? '',
+            'tagline' => $validated['tagline'] ?? '',
+            'business_name' => $validated['businessName'] ?? '',
+            'legal_type_id' => $validated['businessType'] ?? null,
+            'employee_range_id' => $validated['employees'] ?? null,
+            'turnover_id' => $validated['turnover'] ?? null,
+            'advertising_medium_id' => $validated['advertising'] ?? null,
+            'advertising_price_id' => $validated['advertising_price'] ?? null,
+            'category_id' => $validated['category'] ?? null,
+            'website' => $validated['website'] ?? null,
+            'description' => $validated['description'] ?? null,
+            'business_address' => $businessAddress,
+            'business_img' => $validated['image'],
             'agree' => isset($validated['agree']) ? 1 : 0,
         ];
+
         $listing = BusinessListing::create($data);
 
-        // If listing exists, update it, otherwise create a new listing
-        // if ($listing) {
-        //     $listing->update($data);
-        // } else {
-        //     $listing = BusinessListing::create($data);
-        // }
-
         User::where('id', Auth::id())->update([
-            'email' => $validated['primaryEmail'],
-            'phone' => $validated['primaryPhone'],
-            'name' => $validated['primaryContact'],
+            'email' => $validated['primaryEmail'] ?? null,
+            'phone' => $validated['primaryPhone'] ?? null,
+            'name' => $validated['primaryContact'] ?? null,
         ]);
 
-        // Save Address information and associate with the listing
-        $address = Address::updateOrCreate(
-            ['user_id' => Auth::id()],
-            [
-                'street' => $validated['street'],
-                'area_name' => $validated['area_name'],
-                'house_number' => $validated['house_number'],
-                'city_id' => $validated['city_id'],
-                'postal_code' => $validated['postal_code'],
-            ]
-        );
-
-        // Associate the address with the business listing
-        $listing->address_id = $address->id;
-        $listing->save();
-
-        // Save social media data if provided
         if (!empty($validated['socialId'])) {
-            $listing->socialMedia()->delete(); // Delete previous social media links
-
+            $listing->socialMedia()->delete();
             foreach ($validated['socialId'] as $index => $socialId) {
-                // Ensure socialDescription exists for the index
-                $description = $validated['socialDescription'][$index] ?? null;
-
                 BusinessSocialMedia::create([
                     'listing_id' => $listing->id,
                     'social_id' => $socialId,
-                    'description' => $description,
+                    'description' => $validated['socialDescription'][$index] ?? null,
                 ]);
             }
         }
 
-        // Save business hours
-        foreach ($validated['day'] as $index => $day) {
-            BusinessHour::updateOrCreate(
-                [
+        if (!empty($validated['day'])) {
+            try{
+
+          
+            foreach ($validated['day'] as $index => $day) {
+                BusinessHour::create([
                     'business_id' => $listing->id,
                     'day' => $day,
-                ],
-                [
-                    'open_time' => $validated['open_time'][$index],
-                    'close_time' => $validated['close_time'][$index],
+                    'open_time' => $validated['open_time'][$index] ?? null,
+                    'close_time' => $validated['close_time'][$index] ?? null,
                     'open_time_2' => $validated['open_time_2'][$index] ?? null,
                     'close_time_2' => $validated['close_time_2'][$index] ?? null,
                     'is_24_hours' => !empty($validated['is_24_hours'][$index]) ? 1 : 0,
                     'add_2nd_time_slot' => !empty($validated['add_2nd_time_slot'][$index]) ? 1 : 0,
-                ]
-            );
+                ]);
+            }
+        }catch (\Exception $e) {
+            dd($e->getMessage());
+        }
         }
 
-        // Redirect to success page
         return redirect()->route('yp.listing.submit')->with('success', 'Listing created/updated successfully!');
-        
-    } catch (\Exception $e) {
-        // Catch any exceptions and return an error message
-        return redirect()->back()->withErrors(['error' => 'An error occurred: ']);
-    }
+    // } catch (\Exception $e) {
+    //     Log::error('Business Listing Store Error: ' . $e->getMessage());
+    //     return redirect()->back()->withErrors(['error' => 'An error occurred while processing your request. Please try again.']);
+    // }
 }
     
     ##------------------------- END---------------------##

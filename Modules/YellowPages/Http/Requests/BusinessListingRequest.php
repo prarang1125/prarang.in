@@ -52,9 +52,9 @@ class BusinessListingRequest extends FormRequest
         'close_time' => 'nullable|array|min:1',
         'close_time.*' => 'nullable|string', // Ensures it's required when 'day' is present
         'is_24_hours' => 'nullable|array',
-        'is_24_hours.*' => 'nullable|boolean',
+        'is_24_hours.*' => 'nullable|string',
         'add_2nd_time_slot' => 'nullable|array',
-        'add_2nd_time_slot.*' => 'nullable|boolean',
+        'add_2nd_time_slot.*' => 'nullable|string',
         'open_time_2' => 'nullable|array',
         'open_time_2.*' => 'nullable|string',
         'close_time_2' => 'nullable|array',

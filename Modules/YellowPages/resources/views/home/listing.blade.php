@@ -1,7 +1,10 @@
 @extends('yellowpages::layout.script')
 
-@section('title', __('messages.yellow_pages'))
-
+@section('meta_title', $listing->listing_title)
+@section('meta_description', $listing->business_address)
+@section('meta_og_title', $listing->listing_title)
+@section('meta_og_description', $listing->business_address)
+@section('meta_og_image', Storage::url($listing->feature_img ?? 'default.jpg'))
 @section('content')
     <style>
         /* Style for Rating Stars */
@@ -38,6 +41,31 @@
 .main div img{
  max-height:511px;
 }
+@media (max-width:575px){
+
+/* Division */
+.main > div > div{
+ flex-direction:column !important;
+ transform:translatex(0px) translatey(0px);
+}
+
+/* Heading */
+.main div h1{
+ margin-bottom:15px !important;
+}
+
+}
+/* Strong Tag */
+.main p strong{
+ font-size:14px;
+ font-weight:700;
+}
+
+/* Italic Tag */
+.main p i{
+ color:#0e4fd1;
+}
+/* Body */
 
 
     </style>
@@ -52,7 +80,7 @@
 <div style="max-width: 1200px; margin: 0 auto; padding-top: 100px; padding: 20px;">
     <!-- Image Section -->
     <div style="background-color: #ffffff; padding-top: 90px; display: flex; justify-content: center; align-items: center;">
-        <img src="{{ Storage::url($listing->feature_img ?? 'default.jpg')}}" alt="Listing Image" 
+        <img src="{{ Storage::url($listing->business_img ?? 'default.jpg')}}" alt="Listing Image" 
             style="max-width: 100%; height: auto; border-radius: 10px; display: block;">
     </div>
 </div>
@@ -74,16 +102,6 @@
                 <button id="shareButton" style="background-color: #007bff; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px; cursor: pointer;">
                     शेयर करें
                 </button>
-                
-                <!-- Share Modal -->
-                <div id="shareModal" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-                    <h4>शेयर करें</h4>
-                    <button onclick="shareOnFacebook()" style="margin-bottom: 10px; background-color: #3b5998; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px;">Facebook पर शेयर करें</button>
-                    <button onclick="shareOnInstagram()" style="margin-bottom: 10px; background-color: #e4405f; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px;">Instagram पर शेयर करें</button>
-                    <button onclick="shareOnWhatsApp()" style="margin-bottom: 10px; background-color: #25D366; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px;">WhatsApp पर शेयर करें</button>
-                    <button onclick="shareOnLinkedIn()" style="margin-bottom: 10px; background-color: #0077b5; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px;">LinkedIn पर शेयर करें</button>
-                    <button onclick="closeModal()" style="margin-top: 10px; background-color: #ccc; color: black; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px;">बंद करें</button>
-                </div>
                 <a href="{{ route('yp.listing.save', $listing->id) }}" style="background-color: #28a745; color: white; padding: 10px 15px; font-size: 14px; border-radius: 5px; text-decoration: none; display: inline-block; cursor: pointer;">
                     सूची सहेजें
                 </a>                
@@ -97,12 +115,12 @@
             <div style="flex: 2; background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
                
                 <p style="font-size: 16px; color: #555; margin-top: 10px;">
-                    <strong>📍 पता:</strong>
+                    <strong><i class="bi bi-geo-alt"></i> पता:</strong> <br>
                     {{ $listing->business_address ?? 'No Address' }}
                 </p>
                 <p style="font-size: 16px; color: #555;">
-                    <strong>आपकी लिस्टिंग के बारे में विस्तृत विवरण:</strong> 
-                    {{ $listing->description ?? 'N/A' }}
+                    <strong>विवरण:</strong><br>
+                    {!! $listing->description ?? 'N/A' !!}
                 </p>
                                 
             </div>            
@@ -130,92 +148,138 @@
         </div>
 
       <!-- Review Form -->
-      <form method="POST" action="{{ route('reviews.store', $listing->id) }}" enctype="multipart/form-data">
-        @csrf
-        <div style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
-            <h3 style="font-size: 20px; font-weight: bold; margin-bottom: 15px;">हमें रेटिंग दें और समीक्षा लिखें</h3>
-    
-            <!-- Cleanliness Rating -->
-            <div style="margin-bottom: 20px;">
-                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">साफ़-सफ़ाई</label>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                    @for ($i = 1; $i <= 5; $i++)
-                        <label for="cleanliness-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
-                            <input type="radio" name="cleanliness" id="cleanliness-{{ $i }}" value="{{ $i }}" style="position: absolute; opacity: 0;" 
-                            {{ old('cleanliness') == $i ? 'checked' : '' }}>
-                            <span class="rating-star" style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
-                        </label>
-                    @endfor
-                </div>
-            </div>
-    
-            <!-- Service Rating -->
-            <div style="margin-bottom: 20px;">
-                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">सेवा</label>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                    @for ($i = 1; $i <= 5; $i++)
-                        <label for="service-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
-                            <input type="radio" name="service" id="service-{{ $i }}" value="{{ $i }}" style="position: absolute; opacity: 0;" 
-                            {{ old('service') == $i ? 'checked' : '' }}>
-                            <span class="rating-star" style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
-                        </label>
-                    @endfor
-                </div>
-            </div>
-    
-            <!-- Ambience Rating -->
-            <div style="margin-bottom: 20px;">
-                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">माहौल</label>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                    @for ($i = 1; $i <= 5; $i++)
-                        <label for="ambience-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
-                            <input type="radio" name="ambience" id="ambience-{{ $i }}" value="{{ $i }}" style="position: absolute; opacity: 0;" 
-                            {{ old('ambience') == $i ? 'checked' : '' }}>
-                            <span class="rating-star" style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
-                        </label>
-                    @endfor
-                </div>
-            </div>
-    
-            <!-- Price Rating -->
-            <div style="margin-bottom: 20px;">
-                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">कीमत</label>
-                <div style="display: flex; gap: 10px; align-items: center;">
-                    @for ($i = 1; $i <= 5; $i++)
-                        <label for="price-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
-                            <input type="radio" name="price" id="price-{{ $i }}" value="{{ $i }}" style="position: absolute; opacity: 0;" 
-                            {{ old('price') == $i ? 'checked' : '' }}>
-                            <span class="rating-star" style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
-                        </label>
-                    @endfor
-                </div>
-            </div>
-    
-            <!-- Image Upload Section -->
-            <div style="margin-bottom: 20px;">
-                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">छवियाँ चुनें</label>
-                <input type="file" name="image[]" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" multiple>
-            </div>
-    
-            <!-- Title Section -->
-            <div style="margin-bottom: 20px;">
-                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">शीर्षक</label>
-                <input type="text" name="title" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
-            </div>
-    
-            <!-- Review Section -->
-            <div style="margin-bottom: 20px;">
-                <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">समीक्षा</label>
-                <textarea name="review" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" rows="4"></textarea>
-            </div>
-    
-            <!-- Submit Button -->
-            <button type="submit" style="background-color: #007bff; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px; width: 100%;">समीक्षा सबमिट करें</button>
+        <div class="text-end">
+
+        <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#reviewModal">
+          <i class="bi bi-star"></i>  रेटिंग दें
+        </button>
+
         </div>
-    </form>
+</div>
+
+
+
+<div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="reviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reviewModalLabel">हमें रेटिंग दें और समीक्षा लिखें</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="POST" action="{{ route('reviews.store', $listing->id) }}" enctype="multipart/form-data">
+                    @csrf
+                    <div style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+                     
+                
+                        <!-- Cleanliness Rating -->
+                        <div style="margin-bottom: 20px;">
+                            <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">साफ़-सफ़ाई</label>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <label for="cleanliness-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
+                                        <input type="radio" name="cleanliness" id="cleanliness-{{ $i }}" value="{{ $i }}" style="position: absolute; opacity: 0;" 
+                                        {{ old('cleanliness') == $i ? 'checked' : '' }}>
+                                        <span class="rating-star" style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
+                                    </label>
+                                @endfor
+                            </div>
+                        </div>
+                
+                        <!-- Service Rating -->
+                        <div style="margin-bottom: 20px;">
+                            <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">सेवा</label>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <label for="service-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
+                                        <input type="radio" name="service" id="service-{{ $i }}" value="{{ $i }}" style="position: absolute; opacity: 0;" 
+                                        {{ old('service') == $i ? 'checked' : '' }}>
+                                        <span class="rating-star" style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
+                                    </label>
+                                @endfor
+                            </div>
+                        </div>
+                
+                        <!-- Ambience Rating -->
+                        <div style="margin-bottom: 20px;">
+                            <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">माहौल</label>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <label for="ambience-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
+                                        <input type="radio" name="ambience" id="ambience-{{ $i }}" value="{{ $i }}" style="position: absolute; opacity: 0;" 
+                                        {{ old('ambience') == $i ? 'checked' : '' }}>
+                                        <span class="rating-star" style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
+                                    </label>
+                                @endfor
+                            </div>
+                        </div>
+                
+                        <!-- Price Rating -->
+                        <div style="margin-bottom: 20px;">
+                            <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">कीमत</label>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                @for ($i = 1; $i <= 5; $i++)
+                                    <label for="price-{{ $i }}" style="cursor: pointer; position: relative; width: 40px; height: 40px;">
+                                        <input type="radio" name="price" id="price-{{ $i }}" value="{{ $i }}" style="position: absolute; opacity: 0;" 
+                                        {{ old('price') == $i ? 'checked' : '' }}>
+                                        <span class="rating-star" style="position: absolute; inset: 0; clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); background-color: rgba(128, 128, 128, 0.7); transition: background-color 0.3s;"></span>
+                                    </label>
+                                @endfor
+                            </div>
+                        </div>
+                
+                        <!-- Image Upload Section -->
+                        <div style="margin-bottom: 20px;">
+                            <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">छवियाँ चुनें</label>
+                            <input type="file" name="image[]" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" multiple>
+                        </div>
+                
+                        <!-- Title Section -->
+                        <div style="margin-bottom: 20px;">
+                            <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">शीर्षक</label>
+                            <input type="text" name="title" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;">
+                        </div>
+                
+                        <!-- Review Section -->
+                        <div style="margin-bottom: 20px;">
+                            <label style="font-size: 14px; color: #555; display: block; margin-bottom: 5px;">समीक्षा</label>
+                            <textarea name="review" style="width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px;" rows="4"></textarea>
+                        </div>
+                
+                        <!-- Submit Button -->
+                        <button type="submit" style="background-color: #007bff; color: white; border: none; padding: 10px 15px; font-size: 14px; border-radius: 5px; width: 100%;">समीक्षा सबमिट करें</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 @push('scripts')
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const shareButton = document.getElementById("shareButton");
+        
+        if (shareButton) {
+            shareButton.addEventListener("click", function () {
+                if (navigator.share) {
+                    navigator.share({
+                        title: document.title || "Check this out!",
+                        text: "Check this interesting page!",
+                        url: window.location.href,
+                    })
+                    .then(() => console.log("Shared successfully!"))
+                    .catch((error) => console.error("Sharing failed:", error));
+                } else {
+                    alert("Sharing is not supported on this device.");
+                }
+            });
+        } else {
+            console.error("Error: shareButton not found.");
+        }
+    });
+</script>
 
     <script>
         document.querySelectorAll('input[type="radio"]').forEach(input => {
@@ -228,38 +292,7 @@
             });
         });
     </script>
-    <script>
-        const shareButton = document.getElementById('shareButton');
-        const shareModal = document.getElementById('shareModal');
-    
-        shareButton.addEventListener('click', () => {
-            shareModal.style.display = 'block';
-        });
-    
-        function closeModal() {
-            shareModal.style.display = 'none';
-        }
-    
-        function shareOnFacebook() {
-            window.open('https://www.facebook.com/sharer/sharer.php?u=your-url', '_blank');
-            closeModal();
-        }
-    
-        function shareOnInstagram() {
-            alert('Instagram sharing is not directly supported from web.');
-        }
-    
-        function shareOnWhatsApp() {
-            window.open('https://api.whatsapp.com/send?text=your-url', '_blank');
-            closeModal();
-        }
-    
-        function shareOnLinkedIn() {
-            window.open('https://www.linkedin.com/shareArticle?mini=true&url=your-url&title=Your-Title&summary=Your-Summary&source=Your-Source', '_blank');
-            closeModal();
-        }
-        
-    </script>
+   
   @endpush
 
 

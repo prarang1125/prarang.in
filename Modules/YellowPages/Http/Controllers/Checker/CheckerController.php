@@ -32,9 +32,11 @@ class CheckerController extends Controller
 {
     public function CheckListing(Request $request) {
         try {
-            $business_listing = BusinessListing::all();
-            return view('yellowpages::admin.checker-listing', compact('business_listing'));
-        } catch (\Exception $e) {
+            $business_listing = BusinessListing::all(); // Renamed for clarity
+             $users = User::whereIn('id', $business_listing->pluck('user_id'))->get()
+                     ->keyBy('id');
+            return view('yellowpages::admin.checker-listing', compact('business_listing', 'users'));
+        } catch (Exception $e) {
             return redirect()->route('admin.dashboard')->withErrors(['error' => 'An error occurred while fetching the business listings: ' ]);
         }
     }
@@ -90,7 +92,8 @@ class CheckerController extends Controller
     public function CheckCard(Request $request) {
         try {
             $Vcard_list = VCard::all();
-            $users = User::whereIn('name', $Vcard_list->pluck('slug'))->get(); // Get all matching users
+            $users = User::whereIn('name', $Vcard_list->pluck('slug'))->get(); 
+
             return view('yellowpages::admin.checker-card-list', compact('Vcard_list', 'users'));
         } catch (Exception $e) {
             return redirect()->back()->with('error', 'Error fetching Vcard listings: ' );

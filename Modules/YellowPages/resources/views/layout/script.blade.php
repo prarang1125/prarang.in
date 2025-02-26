@@ -18,7 +18,7 @@
 
 <meta property="og:title" content="@yield('meta_og_title', 'Yellow Pages - Business Directory')">
 <meta property="og:description" content="@yield('meta_og_description', 'Find the best businesses and services near you.')">
-<meta property="og:image" content="@yield('meta_og_image', asset('assets/images/yplogo.jpg'))">
+<meta property="og:image" content="@yield('meta_og_image', asset('assets/images/yp_logo_img.jpg'))">
 <meta property="og:url" content="{{ url()->current() }}">
 
     <!-- Favicons -->

@@ -26,7 +26,7 @@
     
 
     <!-- Main Form -->
-    <form action="{{ route('vCard.listing-update', $listing->id) }}" method="POST" enctype="multipart/form-data" class="form-container">
+    <form action="{{ route('vCard.listing-update', $listing->id) }}" id="listingForm" method="POST" enctype="multipart/form-data" class="form-container">
         @csrf
         @method('PUT')
 
@@ -198,12 +198,14 @@
                                 <label>to</label>
                                 <input type="time" name="close_time[]" class="time-input" value="{{ $hour->close_time }}">
             
-                                <label>
-                                    <input type="checkbox" class="is-24-hours" {{ $hour->is_24_hours ? 'checked' : '' }}> 24 घंटे
-                                </label>
+                                {{-- <label>
+                                    <input type="checkbox" name="is_24_hours[]" class="is-24-hours" value="0" {{ $hour->is_24_hours ? 'checked' : '' }}> 24 घंटे
+                                </label> --}}
+            
                                 <label>
                                     <input type="checkbox" class="add-2nd-slot" {{ $hour->open_time_2 ? 'checked' : '' }}> दूसरा स्लॉट जोड़ें
                                 </label>
+            
                                 <button type="button" class="remove-day-btn">&#x2716;</button>
             
                                 <!-- Second Time Slot -->
@@ -221,7 +223,7 @@
             
                 <!-- Add New Day Button -->
                 <button type="button" id="add-day-btn">+ Add Day</button>
-            </div>                
+            </div>            
             
             <br>
             <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
@@ -292,7 +294,8 @@
             
                     <!-- Show Old Image if Exists -->
                     <img id="previewImage" 
-                        src="{{ $listing->business_img ? asset('storage/'.$listing->business_img) : '' }}" 
+                        {{-- src="{{ $listing->business_img ? asset('storage/'.$listing->business_img) : '' }}"  --}}
+                        src="{{ Storage::url($listing->business_img ?? 'default.jpg') }}" 
                         alt="Uploaded Image" 
                         style="margin-top: 10px; max-width: 100px; border: 1px solid #ddd; {{ $listing->business_img ? '' : 'display: none;' }}">
             
@@ -358,9 +361,7 @@
             <input type="time" name="open_time[]" class="time-input">
             <label>to</label>
             <input type="time" name="close_time[]" class="time-input">
-            <label>
-                <input type="checkbox" class="is-24-hours"> 24 घंटे
-            </label>
+         
             <label>
                 <input type="checkbox" class="add-2nd-slot"> दूसरा स्लॉट जोड़ें
             </label>
@@ -403,6 +404,19 @@ document.addEventListener('click', (e) => {
         e.target.closest('.day-schedule').remove();
     }
 });
+document.addEventListener("DOMContentLoaded", function () {
+    document.getElementById("listingForm").addEventListener("submit", function (event) {
+        document.querySelectorAll('input[name="is_24_hours[]"]').forEach(checkbox => {
+            let hiddenInput = document.createElement("input");
+            hiddenInput.type = "hidden";
+            hiddenInput.name = checkbox.name; 
+            hiddenInput.value = checkbox.checked ? "yes" : "no";
+            this.appendChild(hiddenInput);
+            checkbox.remove(); 
+        });
+    });
+});
+
 
 // Collect and log schedules
 document.getElementById('submit-btn')?.addEventListener('click', () => {
@@ -412,7 +426,6 @@ document.getElementById('submit-btn')?.addEventListener('click', () => {
         const openTime = schedule.querySelector('input[name="open_time[]"]').value;
         const closeTime = schedule.querySelector('input[name="close_time[]"]').value;
         const is24Hours = schedule.querySelector('.is-24-hours').checked;
-
         let openTime2 = '', closeTime2 = '';
         const secondSlot = schedule.querySelector('.second-time-slot');
         if (secondSlot.style.display !== 'none') {
@@ -424,6 +437,7 @@ document.getElementById('submit-btn')?.addEventListener('click', () => {
             day,
             openTime: is24Hours ? '24 Hours' : openTime,
             closeTime: is24Hours ? '24 Hours' : closeTime,
+            is24Hours: is24Hours ? 1 : 0, // Set is_24_hours correctly // added the is24Hours to the object.
             secondSlot: openTime2 && closeTime2 ? { openTime2, closeTime2 } : null,
         });
     });

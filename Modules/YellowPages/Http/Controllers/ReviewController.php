@@ -27,7 +27,7 @@ class ReviewController extends Controller
                 'service' => 'required|numeric|min:1|max:5',
                 'ambience' => 'required|numeric|min:1|max:5',
                 'price' => 'required|numeric|min:1|max:5',
-                'title' => 'nullable|string|max:255',
+                'title' => 'required|string|max:255',
                 'review' => 'nullable|string|max:1000',
                 'image' => 'nullable|array|max:5',
                 'image.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
@@ -46,7 +46,7 @@ class ReviewController extends Controller
 
             // Create the review
             Review::create([
-                'user_id' => Auth::id(),
+                // 'user_id' => Auth::id(),
                 'listing_id' => $listingId,
                 'cleanliness' => $request->cleanliness,
                 'service' => $request->service,

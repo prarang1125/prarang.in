@@ -32,11 +32,12 @@ Route::get('yellow-pages/{any}', function ($any) {
   return redirect("/yp/".$any);
 })->where('any', '.*');
 
+
+
 Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
     Route::get('/login', [AuthModalController::class, 'index'])->name('yp.login');
     Route::post('/authLogin', [AuthModalController::class, 'login'])->name('yp.authLogin');
     Route::get('/new-account', [AuthModalController::class, 'newAccount'])->name('yp.newAccount');
-    Route::post('/register', [AuthModalController::class, 'register'])->name('yp.register');
     Route::post('/logout', [AuthModalController::class, 'logout'])->name('yp.logout');
     Route::get('/', [HomeController::class, 'index'])->name('yp.home');
     Route::get('/listing_plan', [HomeController::class, 'listing_plan'])->name('yp.listing_plan');
@@ -45,14 +46,16 @@ Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
     Route::get('/showSearchcategory', [HomeController::class, 'showSearchcategory']);
     Route::get('/plans', [HomeController::class, 'plan'])->name('yp.plan');
     Route::get('category/{category_name}', [ListingController::class, 'showByCategory'])->name('category.show');
+
+    Route::post('/reviews/store/{listing}', [ReviewController::class, 'store'])->name('reviews.store');
+    Route::get('/reviews/submit', [ReviewController::class, 'submit_review'])->name('review.submit');
     Route::group(['middleware' => 'auth.custom'], function(){
       Route::get('/getLocationData', [ListingController::class, 'getLocationData'])->name('yp.getLocationData');
       Route::post('/store-listing', [ListingController::class, 'store'])->name('yp.listing.store');
       Route::get('/submit-listing', [ListingController::class, 'submit_listing'])->name('yp.listing.submit');
       Route::get('/Save-listing/{id}', [ListingController::class, 'save_listing'])->name('yp.listing.save');
     });
-    Route::post('/reviews/store/{listing}', [ReviewController::class, 'store'])->name('reviews.store');
-    Route::get('/reviews/submit', [ReviewController::class, 'submit_review'])->name('review.submit');
+
     ##------------------------- END ---------------------##
 
     
