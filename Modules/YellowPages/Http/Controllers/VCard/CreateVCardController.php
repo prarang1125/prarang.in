@@ -424,7 +424,7 @@ class CreateVCardController extends Controller
 
        
         
-        return view('yellowpages::Vcard.newCard', compact('user', 'vcard'));
+        return view('yellowpages::Vcard.newCard', compact( 'vcard'));
     }
     
 
