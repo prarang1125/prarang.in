@@ -4,6 +4,7 @@ namespace Modules\YellowPages\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\Auth;
 use Modules\YellowPages\Http\Requests\RegisterRequest;
 use App\Models\User;
@@ -59,7 +60,7 @@ class AuthModalController extends Controller
         }
     }
 
-    public function newAccount()
+    public function newAccount($slug)
     {
         try {
             $cities = City::all();
@@ -71,7 +72,8 @@ class AuthModalController extends Controller
 
     public function register(RegisterRequest $request)
     {
-        $validate = $request->validated(); // Only get validated data
+        $validate = $request->validated();
+        dd($validate);
     
         try {
             $user = User::create([
@@ -79,6 +81,7 @@ class AuthModalController extends Controller
                 'phone' => $validate['phone'],
                 'city_id' => $validate['city'],
                 'password' => Hash::make($validate['password']),
+                'status' =>0,
                 'role' => 2,
             ]);
     

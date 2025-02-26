@@ -35,7 +35,7 @@ Route::get('yellow-pages/{any}', function ($any) {
 Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
     Route::get('/login', [AuthModalController::class, 'index'])->name('yp.login');
     Route::post('/authLogin', [AuthModalController::class, 'login'])->name('yp.authLogin');
-    Route::get('/new-account', [AuthModalController::class, 'newAccount'])->name('yp.newAccount');
+    Route::get('new-account/{slug}', [AuthModalController::class, 'newAccount'])->name('yp.newAccount');
     Route::post('/register', [AuthModalController::class, 'register'])->name('yp.register');
     Route::post('/logout', [AuthModalController::class, 'logout'])->name('yp.logout');
     Route::get('/', [HomeController::class, 'index'])->name('yp.home');
@@ -53,6 +53,7 @@ Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
       Route::post('/store-listing', [ListingController::class, 'store'])->name('yp.listing.store');
       Route::get('/submit-listing', [ListingController::class, 'submit_listing'])->name('yp.listing.submit');
       Route::get('/Save-listing/{id}', [ListingController::class, 'save_listing'])->name('yp.listing.save');
+
     });
 
     ##------------------------- END ---------------------##

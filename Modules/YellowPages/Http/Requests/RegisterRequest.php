@@ -16,13 +16,13 @@ class RegisterRequest extends FormRequest
             'name' => ['nullable', 'string', 'max:255', 'regex:/^[^@]+$/'],
             'phone' => [
                 'required',
-                'regex:/^(?:\+91|0)?[6-9]\d{9}$/',
+                'regex:/^\+?[1-9]\d{0,2}[-.\s]?[6-9]\d{9}$/', // Accepts country codes and valid 10-digit numbers
                 Rule::unique('yp.users', 'phone')->where(function ($query) {
-                    return $query->where('city_id', request('city')); 
+                    return $query->where('city_id', request('city'));
                 }),
             ],
             'city' => 'required|exists:yp.cities,id',
-            'password' => 'required|confirmed',
+            'password' => 'required',
         ];
     }
 
@@ -36,7 +36,6 @@ class RegisterRequest extends FormRequest
             'city.required' => 'शहर का चयन आवश्यक है।',
             'city.exists' => 'चुना हुआ शहर अस्तित्व में नहीं है।',
             'password.required' => 'पासवर्ड आवश्यक है।',
-            'password.confirmed' => 'पासवर्ड और पुष्टि मेल नहीं खाते।',
         ];
     }
 }
