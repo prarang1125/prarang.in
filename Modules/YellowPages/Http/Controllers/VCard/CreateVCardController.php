@@ -408,18 +408,20 @@ class CreateVCardController extends Controller
 
 
     //cardview
-    public function cardView($city_air, $slug)
+    public function cardView($city_arr, $slug)
     {
-        // $city_id = City::where('city_air', $city_air)->value('id');
+        
+        $vcard = User::select('users.*')
+        ->join('cities', 'cities.id', '=', 'users.city_id')
+        ->leftJoin('address', 'address.user_id', '=', 'users.id') // Optional if address exists
+        ->where('cities.city_arr', $city_arr)
+        ->where('users.user_code', $slug)
+        ->with('address') 
+        ->firstOrFail();
     
-        $vcard = VCard::where('slug', $slug)
-            // ->where('city_id', $city_id)
-            ->with('dynamicFields')
-            ->latest()
-            ->firstOrFail();
-    
-        $user = User::with('address')->find($vcard->user_id);
-    
+
+       
+        
         return view('yellowpages::Vcard.newCard', compact('user', 'vcard'));
     }
     

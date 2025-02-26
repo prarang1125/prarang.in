@@ -11,7 +11,7 @@ use Illuminate\Support\Str;
 class NewAccounts extends Component
 {
     public $cities;
-    public $city, $name, $phone, $password, $cityMark;
+    public $city, $name, $phone, $password,$slug;
     public $loading = false;
     public $shareUrl=null;
 
@@ -32,10 +32,15 @@ class NewAccounts extends Component
         'password.required'  => 'पासवर्ड आवश्यक है।',
         'password.min'       => 'पासवर्ड कम से कम 6 अक्षर का होना चाहिए।',
     ];
-    public function mount($cityMark = null)
+    public function mount($slug=null)
     {
         $this->cities = City::all();
-        $this->cityMark = $cityMark;
+        if($slug!=null){
+            $this->city=City::where('slug', $slug)->first()->id;
+        }elseif(isset($_COOKIE['register_city'])) {
+            $this->city = $_COOKIE['register_city'];
+        }
+        
         if (isset($_COOKIE['yp_share_url'])) {
             $this->shareUrl = $_COOKIE['yp_share_url'];
         }
@@ -45,21 +50,30 @@ class NewAccounts extends Component
         $this->loading = true;
         $this->validate();
         $this->phone = str_replace('+91', '', $this->phone);
-
-        User::create([
+       
+        $count = 1;
+        $baseUserCode = Str::slug($this->name) ?: 'user';         
+        do {
+            $userCode = $baseUserCode . ($count > 1 ? "-$count" : '');
+            $count++;
+        } while (User::where('user_code', $userCode)->exists());
+        $user=User::create([
             'name' => $this->name ?? '', 
             'phone' => $this->phone ?? '', 
             'city_id' => $this->city, 
             'password' => Hash::make($this->password),
             'role' => 2, 
+            'user_code' => $userCode
         ]);
-      
+    
+        $city = City::find($this->city);
         $this->reset();
         $this->cities = City::all();
         session()->flash('success', 'Registration successful!');
-        $this->loading = false;
-        $this->shareUrl = url('yp/'.$this->city.'/'.Str::slug($this->name));
-        setcookie('yp_share_url', $this->shareUrl, time() + 3600, '/');
+        $this->loading = false;        
+        $this->shareUrl = route('cardView.view',['city_air'=> Str::slug($city->city_arr),'slug'=>$user->user_code]);
+        return redirect($this->shareUrl);
+      
     }
     public function validatePhone($prop)
     {

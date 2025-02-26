@@ -460,7 +460,7 @@ path {
 
         </div>
         <div class="col-sm-6">
-            @livewire('yellow-pages.elements.new-accounts')</div>
+            @livewire('yellow-pages.elements.new-accounts', ['slug' => $slug])</div>
 
     </div>
 

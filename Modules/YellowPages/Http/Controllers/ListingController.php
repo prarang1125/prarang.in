@@ -99,8 +99,7 @@ class ListingController extends Controller
             // Redirect back with error message
             return redirect()->back()->withErrors(['error' => 'An error occurred while loading the category listings.']);
         }
-    }
-    
+    }   
 
     public function showByCity($city_name)
     {      
@@ -109,8 +108,7 @@ class ListingController extends Controller
             $categories = Category::where('is_active', 1)->get();
             $cities = City::where('is_active', 1)->get();
             $city = City::where('name', $city_name)->first();
-            Cookie::queue('register_city',$city->id); 
-
+             setcookie('register_city', $city->id, time() + 3600, '/');
             if (!$city) {
                 $portal = Portal::where('slug', $city_name)->first();
                 if ($portal) {
@@ -121,8 +119,7 @@ class ListingController extends Controller
                 $city = City::where('name', 'LIKE', "%{$city_name}%")->first();
             }            
             $city_name=$city->name;
-            $portal = Portal::where('id', $city->portal_id)->first();
-           
+            $portal = Portal::where('id', $city->portal_id)->first();           
 
             $listings = BusinessListing::with(['category', 'hours', 'city','address','user'])
                 ->where('is_active', 1) 
