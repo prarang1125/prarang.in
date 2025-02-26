@@ -23,6 +23,7 @@ use App\Models\Portal;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cookie;
 
 
 class ListingController extends Controller
@@ -103,10 +104,12 @@ class ListingController extends Controller
 
     public function showByCity($city_name)
     {      
+        
         try {
             $categories = Category::where('is_active', 1)->get();
             $cities = City::where('is_active', 1)->get();
             $city = City::where('name', $city_name)->first();
+            Cookie::queue('register_city',$city->id); 
 
             if (!$city) {
                 $portal = Portal::where('slug', $city_name)->first();
