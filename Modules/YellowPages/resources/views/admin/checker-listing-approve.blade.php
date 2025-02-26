@@ -288,38 +288,6 @@
                         @endif
                     </div>
                 </div>
-            
-                <div style="display: flex; gap: 10px; justify-content: space-between; margin-bottom: 10px;">
-                    {{-- Cover Image --}}
-                    <div style="flex: 1; padding: 10px; border: 1px solid #ddd; text-align: center;">
-                        <label for="coverImage" class="form-label">कवर छवि</label>
-                        <input type="file" id="coverImage" name="coverImage" class="form-control @error('coverImage') is-invalid @enderror">
-                        @if (!empty($listing->feature_img_url))
-                            <img src="{{ $listing->feature_img_url }}" alt="Feature Image" style="max-width: 100px; margin-top: 10px;">
-                        @endif
-                    </div>
-            
-                    {{-- Logo --}}
-                    <div style="flex: 1; padding: 10px; border: 1px solid #ddd; text-align: center;">
-                        <label for="logo" class="form-label">प्रतीक चिन्ह</label>
-                        <input type="file" id="logo" name="logo" class="form-control @error('logo') is-invalid @enderror">
-                        @if (!empty($listing->logo_url))
-                            <img src="{{ $listing->logo_url }}" alt="Logo" style="max-width: 100px; margin-top: 10px;">
-                        @endif
-                    </div>
-                </div>
-            
-                {{-- Business Image --}}
-            <div>
-                    <h5 style="margin-top: 20px; margin-bottom: 15px;">विशेषताएँ</h5>
-                
-                    <div class="faq-item" style="margin-bottom: 10px;">
-                        <label>अक्सर पूछे जाने वाले प्रश्नों</label>
-                        <input type="text" value="{{ old('faq', $listing->faq) }}" style="width: 100%; margin-bottom: 5px;" readonly>
-                        <textarea  style="width: 100%; height: 60px;" readonly>{{ old('answer', $listing->answer) }}</textarea>
-                    </div>
-                    
-                </div>
             <br>
         <!-- Submit Button -->
         <div class="text-center mt-4">

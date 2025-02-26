@@ -35,7 +35,7 @@ Route::get('yellow-pages/{any}', function ($any) {
 Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
     Route::get('/login', [AuthModalController::class, 'index'])->name('yp.login');
     Route::post('/authLogin', [AuthModalController::class, 'login'])->name('yp.authLogin');
-    Route::get('new-account/{slug}', [AuthModalController::class, 'newAccount'])->name('yp.newAccount');
+    Route::get('new-account', [AuthModalController::class, 'newAccount'])->name('yp.newAccount');
     Route::post('/register', [AuthModalController::class, 'register'])->name('yp.register');
     Route::post('/logout', [AuthModalController::class, 'logout'])->name('yp.logout');
     Route::get('/', [HomeController::class, 'index'])->name('yp.home');
@@ -53,10 +53,10 @@ Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
       Route::post('/store-listing', [ListingController::class, 'store'])->name('yp.listing.store');
       Route::get('/submit-listing', [ListingController::class, 'submit_listing'])->name('yp.listing.submit');
       Route::get('/Save-listing/{id}', [ListingController::class, 'save_listing'])->name('yp.listing.save');
-
     });
 
     ##------------------------- END ---------------------##
+
 
     
     Route::get('/create-web-page', [VCardController::class, 'index'])->name('yp.vcard');
@@ -64,6 +64,7 @@ Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
     ##------------------------- END ---------------------##
 
     Route::get('/myweb/{slug}', [CreateVCardController::class, 'view'])->name('vCard.view');
+   
     Route::get('/scan/myweb/{slug}', [CreateVCardController::class, 'vcardScan'])->name('vCard.scan');
     Route::get('/share/myweb/{slug}', [CreateVCardController::class, 'vcardShare'])->name('vCard.share');
     Route::get('/vcard/{vcard_id}/{slug}', [VcardQRController::class, 'scanAndView'])->name('vCard.scanView');
@@ -214,9 +215,16 @@ Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
     Route::get('privacy-policy', [HomeController::class, 'privacyPolicy'])->name('privacy-policy');
 
     // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    End yellowPages Checker Side   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+    Route::get('/{city_air}/{slug}', [CreateVCardController::class, 'cardView'])->name('cardView.view');
 
    Route::get('{city_name}', [ListingController::class, 'showByCity'])->name('city.show');
-   Route::get('{category}/{city}', [ListingController::class, 'index'])->name('yp.listing');
+    // Route::get('{category}/{city}', [ListingController::class, 'index'])->name('yp.listing');
+   
    Route::get('{city_slug}/{listing_title}/{listing_id}', [ListingController::class, 'listing'])->name('yp.listing-details');
 
+  ##------------------------- NewCard ---------------------##
+
+
+  ##------------------------- END ---------------------##
+   
 });
