@@ -18,7 +18,7 @@ class NewAccounts extends Component
     protected $rules = [
         'city'     => 'required',
         'name'     => 'string|min:3|nullable|regex:/^[^@]+$/|max:30',
-        'phone'    => 'required|regex:/^(\+\d{2})?\d{10}$/',
+        'phone'    => 'required|regex:/^(\+91)?\d{10}$/',
         'password' => 'required',
     ];
     protected $messages = [
@@ -44,7 +44,8 @@ class NewAccounts extends Component
     {
         $this->loading = true;
         $this->validate();
-        $this->dispatch('open-confirm-modal');
+        $this->phone = str_replace('+91', '', $this->phone);
+
         User::create([
             'name' => $this->name ?? '', 
             'phone' => $this->phone ?? '', 
@@ -52,7 +53,7 @@ class NewAccounts extends Component
             'password' => Hash::make($this->password),
             'role' => 2, 
         ]);
-       
+      
         $this->reset();
         $this->cities = City::all();
         session()->flash('success', 'Registration successful!');

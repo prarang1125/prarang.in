@@ -33,17 +33,11 @@ Route::get('yellow-pages/{any}', function ($any) {
 })->where('any', '.*');
 
 
-// Register
-  // Route::get('/new-account', [AuthModalController::class, 'newAccount'])->name('yp.newAccount');
-
-  // Route::post('/register', [AuthModalController::class, 'register'])->name('yp.register');
-
 
 Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
     Route::get('/login', [AuthModalController::class, 'index'])->name('yp.login');
     Route::post('/authLogin', [AuthModalController::class, 'login'])->name('yp.authLogin');
     Route::get('/new-account', [AuthModalController::class, 'newAccount'])->name('yp.newAccount');
-    Route::post('/register', [AuthModalController::class, 'register'])->name('yp.register');
     Route::post('/logout', [AuthModalController::class, 'logout'])->name('yp.logout');
     Route::get('/', [HomeController::class, 'index'])->name('yp.home');
     Route::get('/listing_plan', [HomeController::class, 'listing_plan'])->name('yp.listing_plan');

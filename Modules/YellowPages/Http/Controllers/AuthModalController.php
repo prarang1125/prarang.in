@@ -67,55 +67,7 @@ class AuthModalController extends Controller
         }
     }
 
-    public function register(Request $request)
-    {
-        try {
-            $request->validate([
-                 'name' => ['nullable', 'string', 'max:255', 'regex:/^[^@]+$/'],
-                'phone' => [
-                    'required',
-                    'regex:/^\+?[0-9]{10,15}$/',
-                    'unique:yp.users,phone', 
-                ],
-                'city' => 'required', 
-                'password' => 'required', 
-            ], [
-                'name.regex' => 'कृपया एक वैध नाम दर्ज करें।.',
-                'phone.required' => 'फोन नंबर आवश्यक है।',
-                'phone.regex' => 'कृपया एक वैध फोन नंबर दर्ज करें।',
-                'phone.unique' => 'आपका फोन नंबर पहले से पंजीकृत है।', 
-                'city.required' => 'शहर का चयन आवश्यक है।',
-                'city.exists' => 'चुना हुआ शहर अस्तित्व में नहीं है।',
-                'password.required' => 'पासवर्ड आवश्यक है।',
-                'password.confirmed' => 'पासवर्ड और पुष्टि मेल नहीं खाते।',
-            ]);
-
-            // use Do While loop to generate a random user name 
-            // do {               
-            //     $name = Str::random(6);
-            // } while (User::where('name', $name)->exists());
-            // $name="";
-            // Create    a new user
-            $user = User::create([
-                'name' => $request->input('name'), 
-                'phone' => $request->input('phone'), 
-                'city_id' => $request->input('city'), 
-                'password' => Hash::make($request->input('password')),
-                'role' => 2, 
-            ]);
-    
-            // Log in the new user
-            Auth::login($user);   
-           
-            return redirect()->route('vCard.createCard'); 
-        } catch (\Illuminate\Validation\ValidationException $e) {
-            // If validation fails, return errors and old input
-            return redirect()->back()->withErrors($e->errors())->withInput();
-        } catch (\Exception $e) {
-            // dd($e->getMessage());
-            return redirect()->back()->withErrors(['error' => 'पंजीकरण के दौरान एक त्रुटि हुई। कृपया फिर से प्रयास करें।'])->withInput();
-        }
-    }
+   
     
     public function logout(Request $request)
     {
