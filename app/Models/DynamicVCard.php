@@ -10,5 +10,5 @@ class DynamicVCard extends Model
     protected $table = 'dynamic_vcard_data'; 
 
     protected $fillable = ['vcard_id', 'title', 'data','icon'];
-
+//   x
 }

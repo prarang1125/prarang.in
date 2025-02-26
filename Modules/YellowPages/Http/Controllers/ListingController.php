@@ -118,8 +118,7 @@ class ListingController extends Controller
                 $city = City::where('name', 'LIKE', "%{$city_name}%")->first();
             }            
             $city_name=$city->name;
-            $portal = Portal::where('id', $city->portal_id)->first();
-           
+            $portal = Portal::where('id', $city->portal_id)->first();           
 
             $listings = BusinessListing::with(['category', 'hours', 'city','address','user'])
                 ->where('is_active', 1) 
