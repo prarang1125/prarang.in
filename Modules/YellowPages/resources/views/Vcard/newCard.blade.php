@@ -1,4 +1,4 @@
-@extends('yellowpages::layout.vcard.vcard')
+@extends('yellowpages::layout.auth')
 @section('title', 'Prarang WebPage')
 @section('content')
 

@@ -372,7 +372,7 @@ class CreateVCardController extends Controller
     }
     
     ##------------------------- END ---------------------##
-    
+
     ##------------------------- VCard list ------------------ ---##
     public function VcardList(Request $request) {
         try {
@@ -422,7 +422,7 @@ class CreateVCardController extends Controller
 
        
         
-        return view('yellowpages::Vcard.newCard', compact('user', 'vcard'));
+        return view('yellowpages::Vcard.newCard', compact( 'vcard'));
     }
     
 
