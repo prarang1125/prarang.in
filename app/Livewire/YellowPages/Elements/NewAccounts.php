@@ -71,7 +71,7 @@ class NewAccounts extends Component
         $this->cities = City::all();
         session()->flash('success', 'Registration successful!');
         $this->loading = false;        
-        $this->shareUrl = route('cardView.view',['city_arr'=> Str::slug($city->city_arr),'slug'=>$user->user_code]);
+        $this->shareUrl = route('vCard.view',['city_arr'=> Str::slug($city->city_arr),'slug'=>$user->user_code]);
         return redirect($this->shareUrl);
       
     }

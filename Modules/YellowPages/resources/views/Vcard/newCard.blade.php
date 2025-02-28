@@ -543,6 +543,7 @@ body{
                     </span>
                 </div>
                 
+                
                 <!-- Social Media Section -->
                 <div class="text-lg font-semibold text-gray-800 mt-2 snipcss0-3-7-30">सोशल मीडिया (Social Media)</div>
                 <div class="flex items-center space-x-2 p-2 hover:bg-gray-50 rounded-lg transition-colors">
@@ -550,8 +551,15 @@ body{
                     <span class="text-gray-500 text-sm snipcss0-5-22-24">Facebook:</span>
                     <span class="text-gray-700 font-semibold snipcss0-5-22-25">{{ $vcard->category ?? '??' }}</span>
                   </div>
-                              </div>
+                  
+            </div>
 
+                <button onclick="window.location.href='{{ route('yp.login') }}'" 
+                    style="padding: 10px; background-color: blue; color: white; border: none; cursor: pointer;">
+                    Login
+                </button>
+            
+                             
             <!-- Address Section -->
            
         </div>
@@ -617,7 +625,7 @@ body{
     </div>
   </div>
 </div>
-<script>
+{{-- <script>
     document.addEventListener("DOMContentLoaded", function () {
       var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
       myModal.show();
@@ -637,6 +645,57 @@ body{
         });
     });
 
-  </script>
+  </script> --}}
+
+
+  {{-- set cookie for modal show --}}
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
+    
+        // Function to get a cookie value
+        function getCookie(name) {
+            let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+            return match ? match[2] : null;
+        }
+    
+        // Function to set a cookie
+        function setCookie(name, value, days) {
+            let expires = "";
+            if (days) {
+                let date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + value + "; path=/" + expires;
+        }
+    
+        // Check if the modal has been shown before
+        if (!getCookie("modalShown")) {
+            myModal.show();  // Show modal
+    
+            // Set cookie so it doesn't show again
+            setCookie("modalShown", "true", 1);  // Expires in 1 day
+        }
+    
+        // Copy to clipboard functionality
+        var copyBtns = document.querySelectorAll('[id^="copyBtn"]');
+    
+        copyBtns.forEach(function(copyBtn) {
+            copyBtn.addEventListener('click', function () {
+                var textToCopy = this.getAttribute('data-clipboard-text');
+                navigator.clipboard.writeText(textToCopy)
+                .then(function () {
+                    alert('Copied to clipboard: ' + textToCopy);
+                })
+                .catch(function (err) {
+                    console.error('Failed to copy: ', err);
+                });
+            });
+        });
+    
+    });
+    </script>
+    
   
 @endsection

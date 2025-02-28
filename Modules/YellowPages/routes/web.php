@@ -26,6 +26,8 @@ use Modules\YellowPages\Http\Controllers\VCard\VCardQRController;
 use Modules\YellowPages\Http\Controllers\VCard\CreateVCardController;
 use Modules\YellowPages\Http\Controllers\VCard\BusinessListingController;
 use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
+use Illuminate\Support\Facades\Auth;
+use App\Models\VCard;
 
 
 Route::get('yellow-pages/{any}', function ($any) {
@@ -216,12 +218,24 @@ Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
 
     // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    End yellowPages Checker Side   >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
-    Route::get('/{city_arr}/{slug}', [CreateVCardController::class, 'view'])->name('vCard.view');
 
-    Route::get('/{city_arr}/{slug}', [CreateVCardController::class, 'cardView'])->name('cardView.view');
 
-   Route::get('{city_name}', [ListingController::class, 'showByCity'])->name('city.show');
+
+
+  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    cardView  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  
+  Route::get('/{city_arr}/{slug}', function ($city_arr, $slug) {
+    $hasVCard = VCard::where('user_id', Auth::id())->exists();
+    $controller = app(CreateVCardController::class);
+
+    return $hasVCard ? $controller->view($city_arr, $slug) : $controller->cardView($city_arr, $slug);
+})->name('vCard.view');
+
+  
+    // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    END      >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
     Route::get('{category}/{city}', [ListingController::class, 'index'])->name('yp.listing');
+   Route::get('{city_name}', [ListingController::class, 'showByCity'])->name('city.show');
    
    Route::get('{city_slug}/{listing_title}/{listing_id}', [ListingController::class, 'listing'])->name('yp.listing-details');
 
