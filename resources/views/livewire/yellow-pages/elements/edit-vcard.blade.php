@@ -1,9 +1,8 @@
 <div class="row g-4">
     <div class="col-sm-3"></div>
     <div class="col-sm-6">
-        <div class="card border-0 shadow-sm">
+        <div class="card border-0 ">
             <div class="card-body">
-                <h5 class="mb-4">वेबपेज (Webpage) सूचना</h5>
                 <div class="container mt-3">
                     <div class="card-body">
                         @if (session()->has('message'))

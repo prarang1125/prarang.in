@@ -70,7 +70,7 @@ class EditVcard extends Component
     }
     public function updatedPhoto()
     {
-        
+
         $this->uploadProfile();
     }
     public function uploadProfile()
@@ -98,18 +98,50 @@ class EditVcard extends Component
     protected $rules = [
         'color_code' => 'required',
         'profile' => 'nullable|max:1024',
-        'category_id' => 'required',
-        'city_id' => 'required',
+        'category_id' => 'required|integer',
+        'city_id' => 'required|integer',
         'name' => 'required|string|max:255',
         'surname' => 'nullable|string|max:255',
-        'dob' => 'nullable|date',
+        'dob' => 'nullable|date|before_or_equal:today',
         'email' => 'nullable|email|max:255',
         'phone' => 'required|string|max:15',
         'house_number' => 'required|string|max:255',
         'road_street' => 'required|string|max:255',
         'area_name' => 'required|string|max:255',
-        'pincode' => 'required|string|max:10',
+        'pincode' => 'required|digits:6',
     ];
+    protected $messages = [
+        'color_code.required' => 'रंग कोड आवश्यक है।',
+        'profile.max' => 'प्रोफ़ाइल का आकार 1024 KB से अधिक नहीं हो सकता।',
+        'category_id.required' => 'श्रेणी चयन आवश्यक है।',
+        'category_id.integer' => 'श्रेणी आईडी एक मान्य संख्या होनी चाहिए।',
+        'city_id.required' => 'शहर चयन आवश्यक है।',
+        'city_id.integer' => 'शहर आईडी एक मान्य संख्या होनी चाहिए।',
+        'name.required' => 'नाम आवश्यक है।',
+        'name.string' => 'नाम केवल अक्षरों में होना चाहिए।',
+        'name.max' => 'नाम 255 अक्षरों से अधिक नहीं हो सकता।',
+        'surname.string' => 'उपनाम केवल अक्षरों में होना चाहिए।',
+        'surname.max' => 'उपनाम 255 अक्षरों से अधिक नहीं हो सकता।',
+        'dob.date' => 'जन्मतिथि मान्य तिथि प्रारूप में होनी चाहिए।',
+        'email.email' => 'कृपया एक मान्य ईमेल पता दर्ज करें।',
+        'email.max' => 'ईमेल 255 अक्षरों से अधिक नहीं हो सकता।',
+        'phone.required' => 'फोन नंबर आवश्यक है।',
+        'phone.string' => 'फोन नंबर केवल अक्षरों और अंकों में होना चाहिए।',
+        'phone.max' => 'फोन नंबर 15 अंकों से अधिक नहीं हो सकता।',
+        'house_number.required' => 'मकान संख्या आवश्यक है।',
+        'house_number.string' => 'मकान संख्या केवल अक्षरों और अंकों में होनी चाहिए।',
+        'house_number.max' => 'मकान संख्या 255 अक्षरों से अधिक नहीं हो सकती।',
+        'road_street.required' => 'सड़क/गली का नाम आवश्यक है।',
+        'road_street.string' => 'सड़क/गली का नाम केवल अक्षरों में होना चाहिए।',
+        'road_street.max' => 'सड़क/गली का नाम 255 अक्षरों से अधिक नहीं हो सकता।',
+        'area_name.required' => 'क्षेत्र का नाम आवश्यक है।',
+        'area_name.string' => 'क्षेत्र का नाम केवल अक्षरों में होना चाहिए।',
+        'area_name.max' => 'क्षेत्र का नाम 255 अक्षरों से अधिक नहीं हो सकता।',
+        'pincode.required' => 'पिन कोड आवश्यक है।',
+        'pincode.string' => 'पिन कोड केवल अंकों में होना चाहिए।',
+        'pincode.digits' => 'पिन कोड ठीक 6 अंकों का होना चाहिए।',
+    ];
+    
 
     public function updatefield($propertyName)
     {
@@ -162,21 +194,19 @@ class EditVcard extends Component
         DynamicVCard::where('vcard_id', $this->vcard->id)->delete();
 
 
-        foreach ($this->dynamicFields as $field) {          
-              
-                DynamicVCard::create([
-                    'vcard_id' => $this->vcard->id,
-                    'dy_fields_id' => $field['id'],
-                    'title'    => $this->options[$field['id']]['name'],
-                    'data'     => $field['value'],
-                    'icon'     => $this->options[$field['id']]['icon'] ?? null,
-                ]);
-           
+        foreach ($this->dynamicFields as $field) {
+
+            DynamicVCard::create([
+                'vcard_id' => $this->vcard->id,
+                'dy_fields_id' => $field['id'],
+                'title'    => $this->options[$field['id']]['name'],
+                'data'     => $field['value'],
+                'icon'     => $this->options[$field['id']]['icon'] ?? null,
+            ]);
         }
-      
-            return redirect()->route('vCard.list')
+
+        return redirect()->route('vCard.list')
             ->with('errors_message', 'VCard successfully updated!');
-        
     }
 
     public function render()

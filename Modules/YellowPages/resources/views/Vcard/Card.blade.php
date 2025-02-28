@@ -73,7 +73,20 @@
  border-bottom-left-radius:8px;
  border-bottom-right-radius:8px;
 }
+/* Card body */
+.page-wrapper .card > .card-body{
+ box-shadow:0px 0px 46px -14px #262b2b;
+ border-top-left-radius:10px;
+ border-top-right-radius:10px;
+ border-bottom-left-radius:10px;
+ border-bottom-right-radius:10px;
+}
 
+/* Card */
+.page-wrapper .card{
+ box-shadow:0px 4.8px 0px -50px rgba(0,0,0,0.12);
+ background-color:rgba(255,255,255,0);
+}
 
     </style>
     <div class="container my-5">
