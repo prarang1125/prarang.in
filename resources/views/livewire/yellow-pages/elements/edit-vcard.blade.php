@@ -25,7 +25,7 @@
                                 <!-- Profile Image - Center Position -->
                                 <label for="profile-upload" class="position-relative d-inline-block">
                                     <img id="ddimg" 
-                                    src="{{ $profile ? Storage::url($profile) : 'https://via.placeholder.com/150' }}" 
+                                    src="{{ $profile ? Storage::url($profile) : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg' }}" 
                                     class="rounded-circle border shadow-sm" 
                                     style="width: 120px; height: 120px; object-fit: cover;" 
                                     alt="Profile">
