@@ -1,5 +1,6 @@
 <div class="row g-4">
-    <div class="col-md-6">
+    <div class="col-sm-3"></div>
+    <div class="col-sm-6">
         <div class="card border-0 shadow-sm">
             <div class="card-body">
                 <h5 class="mb-4">वेबपेज (Webpage) सूचना</h5>
@@ -11,8 +12,7 @@
                             </div>
                         @endif
                         <form wire:submit.prevent="submit" enctype="multipart/form-data">
-                            <div class="position-relative text-center p-3 rounded" style="background: {{ $color_code }};">
-    
+                            <div class="position-relative text-center p-3 rounded" style="background: {{ $color_code }};">    
                                 <!-- Color Picker - Top Left Position -->
                                 <div class="position-absolute top-0 start-0 m-2">
                                     <input type="color" id="color_value" class="form-control form-control-color" 
@@ -21,14 +21,14 @@
                                     @error('color_value') 
                                         <small class="text-danger">{{ $message }}</small>
                                     @enderror
-                                </div>
-                            
+                                </div>                            
                                 <!-- Profile Image - Center Position -->
                                 <label for="profile-upload" class="position-relative d-inline-block">
-                                    <img src="{{ $photo ? $photo->temporaryUrl() : ($profile ? Storage::url($profile) : 'https://cdn-icons-png.flaticon.com/512/149/149071.png') }}" 
-                                         class="rounded-circle border shadow-sm" 
-                                         style="width: 120px; height: 120px; object-fit: cover;" 
-                                         alt="Profile">
+                                    <img id="ddimg" 
+                                    src="{{ $profile ? Storage::url($profile) : 'https://via.placeholder.com/150' }}" 
+                                    class="rounded-circle border shadow-sm" 
+                                    style="width: 120px; height: 120px; object-fit: cover;" 
+                                    alt="Profile">
                             
                                     <!-- Camera Icon with Loader -->
                                     <span class="position-absolute bottom-0 end-0 bg-primary text-white p-1 rounded-circle">
@@ -45,7 +45,7 @@
                             
                             
                             @error('photo')
-                                <small class="text-danger">{{ $message }}</small>       
+                                <small class="text-danger">{{ $message }}</small>
                             @enderror
                            
                            
@@ -69,7 +69,7 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">श्रेणी</label>
-                                    <select class="form-select" wire:model="category_id">
+                                    <select class="form-select" wire:change="updatefield('category_id')" wire:model="category_id">
                                         <option value="">श्रेणी चुनें</option>
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->name }}</option>
@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">शहर</label>
-                                    <select class="form-select" wire:model="city_id">
+                                    <select class="form-select" wire:change="updatefield('city_id')"  wire:model="city_id">
                                         <option value="">शहर चुनें</option>
                                         @foreach ($cities as $city)
                                             <option value="{{ $city->id }}">{{ $city->name }}</option>
@@ -92,12 +92,12 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">घर नंबर</label>
-                                    <input type="text" class="form-control" wire:model="house_number">
+                                    <input type="text" class="form-control" wire:change="updatefield('house_number')"  wire:model="house_number">
                                     @error('house_number')<small class="text-danger">{{ $message }}</small>@enderror
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">सड़क/गली</label>
-                                    <input type="text" class="form-control" wire:model="road_street">
+                                    <input type="text" class="form-control" wire:change="updatefield('road_street')" wire:model="road_street">
                                     @error('road_street')<small class="text-danger">{{ $message }}</small>@enderror
                                 </div>
                             </div>
@@ -105,12 +105,12 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">क्षेत्र का नाम</label>
-                                    <input type="text" class="form-control" wire:model="area_name">
+                                    <input type="text" class="form-control" wire:change="updatefield('area_name')" wire:model="area_name">
                                     @error('area_name')<small class="text-danger">{{ $message }}</small>@enderror
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">पिनकोड</label>
-                                    <input type="text" class="form-control" wire:model="pincode">
+                                    <input type="text" class="form-control" wire:change="updatefield('pincode')" wire:model="pincode">
                                     @error('pincode')<small class="text-danger">{{ $message }}</small>@enderror
                                 </div>
                             </div>
@@ -118,12 +118,12 @@
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">जन्म तिथि</label>
-                                    <input type="date" class="form-control" wire:model="dob">
+                                    <input type="date" class="form-control" wire:change="updatefield('dob')" wire:model="dob">
                                     @error('dob')<small class="text-danger">{{ $message }}</small>@enderror
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">ईमेल</label>
-                                    <input type="email" class="form-control" wire:model="email">
+                                    <input type="email" class="form-control" wire:change="updatefield('email')" wire:model="email"> 
                                     @error('email')<small class="text-danger">{{ $message }}</small>@enderror
                                 </div>
                             </div>
@@ -161,7 +161,7 @@
                                     </p>
                             </div>
                             
-                            <button type="submit" class="btn btn-warning w-100
+                            <button style="background: {{ $color_code }};" type="submit" class="btn  w-100
                             wire:loading.attr="disabled" 
                             wire:target="submit" 
                             wire:click="submit">
@@ -177,15 +177,8 @@
             </div>
         </div>
     </div>
+    <div class="col-sm-3"></div>
+
+  
     
-    <div class="col-md-6">
-        <section class="card-preview">
-            <div class="p-3 rounded shadow-sm border">
-                <div class="text-center">
-                    <img src="{{ $profile ? Storage::url($profile) : 'default.jpg' }}" class="rounded shadow" alt="">
-                    <h5 class="mt-2">{{ $name }}</h5>
-                </div>
-            </div>
-        </section>
-    </div>
 </div>

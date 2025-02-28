@@ -67,6 +67,21 @@ class EditVcard extends Component
         }
         $this->dynamicFields = array_values($this->dynamicFields);
     }
+    public function updatedPhoto()
+    {
+        
+        $this->uploadProfile();
+    }
+    public function uploadProfile()
+    {
+        if ($this->photo) {
+            $photoPath = $this->photo->store('yellowpages/profiles', 's3');
+            auth()->user()->update(['profile' => $photoPath]);
+            $this->profile = $photoPath;
+            // session()->flash('message', 'Profile updated successfully!');
+        }
+    }
+
 
     public function addField()
     {
