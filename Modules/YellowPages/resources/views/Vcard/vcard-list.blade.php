@@ -87,7 +87,11 @@
                                                 <button type="submit" class="btn btn-sm btn-danger">मिटाना</button>
                                             </form>
                                             @if($cities->has($vcard->city_id)) 
-                                           <a href="{{ route('vCard.view', ['city_arr' => auth()->user()->city->city_arr, 'slug' => Str::slug($vcard->slug)]) }}" class="btn btn-sm btn-primary">देखे</a>
+                                            @php
+                                            $user = auth()->user()->load('city');
+                                            $cityArr = $user->city->city_arr;
+                                            @endphp
+                                           <a href="{{ route('vCard.view', ['city_arr' => $cityArr, 'slug' => Str::slug($vcard->slug)]) }}" class="btn btn-sm btn-primary">देखे</a>
                                            @endif
                                         </td>
                                     </tr>
