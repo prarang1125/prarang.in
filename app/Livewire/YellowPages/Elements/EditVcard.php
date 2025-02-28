@@ -11,6 +11,7 @@ use App\Models\DynamicFeild;
 use App\Models\DynamicVCard;
 use App\Models\User;
 use App\Models\VCard;
+use Illuminate\Support\Str;
 
 class EditVcard extends Component
 {
@@ -146,6 +147,8 @@ class EditVcard extends Component
             ]
         );
 
+
+
         $this->vcard = VCard::updateOrCreate(
             ['user_id' => $userId],
             [
@@ -153,6 +156,7 @@ class EditVcard extends Component
                 'category_id' => $this->category_id,
                 'city_id' => $this->city_id,
                 'address_id' => $this->address->id,
+                'slug' => Str::slug($user->user_code),
             ]
         );
         DynamicVCard::where('vcard_id', $this->vcard->id)->delete();

@@ -78,9 +78,7 @@ class VCardController extends Controller
         if ($existingVCard) {
             return redirect()->route('vCard.dashboard');
             // ->with('errors_message', __('आपका वेबपेज(Webpage) पहले से ही बना है'));
-        }  
-
-       
+        }        
     
         return view('yellowpages::Vcard.Card');
     }
