@@ -12,6 +12,8 @@ class City extends Model
 
     protected $fillable = [
         'name',
+        'city_arr',
+        'city_slug',
         'cities_url',
         'portal_id',
         'timezone',
