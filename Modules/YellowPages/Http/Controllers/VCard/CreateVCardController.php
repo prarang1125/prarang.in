@@ -127,18 +127,8 @@ class CreateVCardController extends Controller
     ##------------------------- vCardEdit ---------------------##public function vCardEdit($id)
     public function vCardEdit($id)
     {
-        try {
-            $vcard = VCard::findOrFail($id);
-            $vcardInfo = DynamicVCard::where('vcard_id', $vcard->id)->get();
-            $dynamicFields = DynamicFeild::where('is_active', 1)->get();
-            $cities = City::all();
-            $categories = Category::all();
-            $address = Address::where('user_id', Auth::id())->first();
-            $user = User::find($vcard->user_id); // Correct way to get user
-    
-            return view('yellowpages::Vcard.vcardEdit', compact(
-                'vcard', 'vcardInfo', 'categories', 'cities', 'dynamicFields', 'address', 'user'
-            ));
+        try {   
+            return view('yellowpages::Vcard.Card');
         } catch (Exception $e) {
             Log::error('Error editing VCard: ' );
             return redirect()->back()->withErrors(['error' => 'Unable to fetch VCard details for editing.']);
