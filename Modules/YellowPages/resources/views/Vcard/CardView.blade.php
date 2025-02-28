@@ -82,8 +82,8 @@
           <i class="bx bxs-location-plus text-gray-600 w-5 h-5"></i>
           <span class="text-gray-700">पता (Address):</span>
           <span class="text-gray-600">
-            {{ $user->address->area_name ?? 'Area not available' }},
-            {{ $user->address->city->name ?? 'City not available' }},
+            {{ $user->address->area_name ?? '' }},
+            {{ $user->address->city->name ?? '' }},
             {{ $user->address->postal_code }}
           </span>
         </div>
