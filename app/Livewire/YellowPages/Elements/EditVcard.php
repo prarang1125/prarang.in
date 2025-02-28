@@ -16,7 +16,7 @@ class EditVcard extends Component
 {
     use WithFileUploads;
 
-    public $color_code = '#007bff';
+    public $color_code = '#E6C72D';
     public $profile, $category_id, $city_id, $name, $surname, $dob, $email, $phone;
     public $house_number, $road_street, $area_name, $pincode;
     public $vcard, $address;
