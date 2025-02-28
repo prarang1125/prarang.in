@@ -73,32 +73,18 @@ class VCardController extends Controller
     ##------------------------- Create Card ---------------------##
     public function createCard(Request $request)
     {
-        $user = Auth::user(); // Get authenticated user
-    
-        // Check if the user already has a VCard
-        $existingVCard = VCard::where('user_id', $user->id)->first();
-    
+        $user = Auth::user();    
+        $existingVCard = VCard::where('user_id', $user->id)->first();    
         if ($existingVCard) {
-            return redirect()->route('vCard.list')
-            ->with('errors_message', __('आपका वेबपेज(Webpage) पहले से ही बना है'));
-        }
-    
-        // Proceed with the rest of the logic if no existing VCard
-        $dynamicFields = DynamicFeild::where('is_active', 1)->get();
-        $cities = City::all();
-        $categories = Category::all();
-        $address = Address::where('user_id', $user->id)->first();
-    
-        // Handle case where address is not found
-        if (!$address) {
-            $address = new Address(); // Provide a default empty address object
-        }
-    
-        return view('yellowpages::Vcard.Card', compact('dynamicFields', 'user', 'cities', 'categories', 'address'));
-    }
-    ##------------------------- END ---------------------##
+            return redirect()->route('vCard.dashboard');
+            // ->with('errors_message', __('आपका वेबपेज(Webpage) पहले से ही बना है'));
+        }  
 
-    ##------------------------- logut ---------------------##
+       
+    
+        return view('yellowpages::Vcard.Card');
+    }
+
     public function logout()
     {
         try {
