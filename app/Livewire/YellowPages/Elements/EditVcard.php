@@ -169,8 +169,10 @@ class EditVcard extends Component
                 ]);
            
         }
-
-        session()->flash('message', 'VCard सफलतापूर्वक अपडेट हो गया!');
+      
+            return redirect()->route('vCard.list')
+            ->with('errors_message', 'VCard successfully updated!');
+        
     }
 
     public function render()

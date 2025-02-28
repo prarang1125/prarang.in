@@ -75,10 +75,10 @@ class VCardController extends Controller
     {
         $user = Auth::user();    
         $existingVCard = VCard::where('user_id', $user->id)->first();    
-        // if ($existingVCard) {
-        //     return redirect()->route('vCard.dashboard');
-        //     // ->with('errors_message', __('आपका वेबपेज(Webpage) पहले से ही बना है'));
-        // }  
+        if ($existingVCard) {
+            return redirect()->route('vCard.dashboard');
+            // ->with('errors_message', __('आपका वेबपेज(Webpage) पहले से ही बना है'));
+        }  
 
        
     
