@@ -554,10 +554,14 @@ body{
                   
             </div>
 
-                <button onclick="window.location.href='{{ route('yp.login') }}'" 
-                    style="padding: 10px; background-color: blue; color: white; border: none; cursor: pointer;">
-                    Login
+            <div class="d-flex ">
+                <button type="button" class="btn btn-primary w-50" 
+                        onclick="window.location.href='{{ route('yp.login') }}'">
+                    लॉगिन (Login)
                 </button>
+            </div>
+            
+        
             
                              
             <!-- Address Section -->
