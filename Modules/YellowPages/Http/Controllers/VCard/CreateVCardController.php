@@ -407,10 +407,7 @@ class CreateVCardController extends Controller
         ->where('cities.city_arr', $city_arr)
         ->where('users.user_code', $slug)
         ->with('address') 
-        ->firstOrFail();
-    
-
-       
+        ->firstOrFail();      
         
         return view('yellowpages::Vcard.newCard', compact( 'vcard'));
     }

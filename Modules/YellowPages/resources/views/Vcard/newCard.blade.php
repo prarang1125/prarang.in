@@ -557,15 +557,10 @@ body{
             <div class="d-flex">
                 <button type="button" class="btn btn-primary w-50" 
                         onclick="window.location.href='{{ route('yp.login') }}'">
-                    लॉगिन (Login)
+                   <small class="text-muted">लॉगिन (Login)</small>
                 </button>
             </div>
-            
-        
-            
-                             
-            <!-- Address Section -->
-           
+          
         </div>
 
         <!-- Profile & QR Code Section -->
@@ -607,14 +602,14 @@ body{
             </p>
            <div class="btnx">
             <p>
-                <a href="https://wa.me/?text={{ urlencode('मेरा वेब पेज देखें\n' . url()->current()) }}" 
+                <a href="https://wa.me/?text={{ urlencode('मेरा वेब पेज देखें ' . url()->current()) }}" 
                    class="btn btn-success btn-block mb-2"
                    target="_blank" rel="noopener noreferrer">
                     <i class="fab fa-whatsapp"></i> WhatsApp पर साझा करें
                 </a>
             </p>
             <p>
-                <a href="sms:?body={{ urlencode('मेरा वेब पेज देखें\n' . url()->current()) }}" 
+                <a href="sms:?body={{ urlencode('मेरा वेब पेज देखें' . url()->current()) }}" 
                    class="btn btn-primary btn-block mb-2" 
                    target="_blank" rel="noopener noreferrer">
                     <i class="fas fa-sms"></i> SMS पर साझा करें
@@ -629,27 +624,6 @@ body{
     </div>
   </div>
 </div>
-{{-- <script>
-    document.addEventListener("DOMContentLoaded", function () {
-      var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
-      myModal.show();
-    });
-
-
-
-    copyBtn=document.getElementById('copyBtn(this)');
-    copyBtn.addEventListener('click', function() {
-        var textToCopy = this.getAttribute('data-clipboard-text');
-        navigator.clipboard.writeText(textToCopy)
-        .then(function() {
-            alert('Copied to clipboard: ' + textToCopy);
-        })
-        .catch(function(err) {
-            console.error('Failed to copy: ', err);
-        });
-    });
-
-  </script> --}}
 
 
   {{-- set cookie for modal show --}}
@@ -690,7 +664,8 @@ body{
                 var textToCopy = this.getAttribute('data-clipboard-text');
                 navigator.clipboard.writeText(textToCopy)
                 .then(function () {
-                    alert('Copied to clipboard: ' + textToCopy);
+                    console.log('Copied to clipboard: ' + textToCopy);
+                    {{-- alert('Copied to clipboard: ' + textToCopy); --}}
                 })
                 .catch(function (err) {
                     console.error('Failed to copy: ', err);
