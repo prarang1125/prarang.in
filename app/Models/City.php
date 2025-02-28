@@ -22,4 +22,8 @@ class City extends Model
     {
         return $this->belongsTo(Portal::class, 'portal_id');
     }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id', 'city_id');
+    }
 }
