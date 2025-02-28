@@ -108,7 +108,7 @@ class ListingController extends Controller
             $categories = Category::where('is_active', 1)->get();
             $cities = City::where('is_active', 1)->get();
             $city = City::where('name', $city_name)->first();
-             setcookie('register_city', $city->id, time() + 3600, '/');
+           
             if (!$city) {
                 $portal = Portal::where('slug', $city_name)->first();
                 if ($portal) {
@@ -117,7 +117,8 @@ class ListingController extends Controller
             }
             if (!$city) {
                 $city = City::where('name', 'LIKE', "%{$city_name}%")->first();
-            }            
+            }  
+            setcookie('register_city', $city->id, time() + 3600, '/');          
             $city_name=$city->name;
             $portal = Portal::where('id', $city->portal_id)->first();           
 
@@ -164,12 +165,12 @@ class ListingController extends Controller
                     }
                 }
             });
-
-                return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'city','city_name','portal'));
-            } catch (\Exception $e) {
-                return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
-            }
+            return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'city','city_name','portal'));
+        } catch (\Exception $e) {
+            return $e;
+            return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
         }
+    }
     ##------------------------- END---------------------##
 
     ##------------------------- Seaching Listing---------------------##
