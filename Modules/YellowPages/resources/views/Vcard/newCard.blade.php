@@ -9,7 +9,7 @@
         
         <!-- Logo at the top center -->
         <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-2 rounded-full shadow-md">
-            <img src="{{ asset('assets/images/yplogo.png') }}" alt="Logo" class="w-12 h-12">
+            <img src="{{ asset('path-to-your-logo.png') }}" alt="Logo" class="w-12 h-12">
         </div>
 
         <!-- Information Section -->
