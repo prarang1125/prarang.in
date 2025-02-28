@@ -86,7 +86,9 @@
                                                 @csrf
                                                 <button type="submit" class="btn btn-sm btn-danger">मिटाना</button>
                                             </form>
-                                            <a href="{{ route('vCard.view', ['city_arr' => 'LUK', 'slug' => Str::slug($vcard->slug)]) }}" class="btn btn-sm btn-primary">देखे</a>
+                                            @if($cities->has($vcard->city_id)) 
+                                           <a href="{{ route('vCard.view', ['city_arr' => $cities->get($vcard->city_id)->city_arr, 'slug' => Str::slug($vcard->slug)]) }}" class="btn btn-sm btn-primary">देखे</a>
+                                           @endif
                                         </td>
                                     </tr>
                                     @php $index++; @endphp
