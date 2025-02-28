@@ -555,10 +555,10 @@ body{
             </div>
 
             <div class="d-flex">
-                <button type="button" class="btn btn-primary w-50" 
+                <a type="button" class="btn btn-primary w-50" 
                         onclick="window.location.href='{{ route('yp.login') }}'">
-                   <small class="text-muted">लॉगिन (Login)</small>
-                </button>
+                   <small class="text-muted">लॉगिन (Login)करे</small>
+                </a>
             </div>
           
         </div>

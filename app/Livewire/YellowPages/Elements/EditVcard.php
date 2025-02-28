@@ -176,6 +176,7 @@ class EditVcard extends Component
                 'street' => $this->road_street,
                 'area_name' => $this->area_name,
                 'postal_code' => $this->pincode,
+                'city_id' => $this->city_id,
             ]
         );
 
