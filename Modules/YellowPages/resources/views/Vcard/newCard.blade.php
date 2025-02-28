@@ -554,7 +554,7 @@ body{
                   
             </div>
 
-            <div class="d-flex ">
+            <div class="d-flex">
                 <button type="button" class="btn btn-primary w-50" 
                         onclick="window.location.href='{{ route('yp.login') }}'">
                     लॉगिन (Login)
