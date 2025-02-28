@@ -150,7 +150,6 @@
          <i class="bx bx-link-external"></i><span>व्यवसाय पंजीकृत करें</span>
       </a>
       @endauth
-  
     </div>
 
     <!-- Share Function -->
@@ -168,7 +167,7 @@
             .then(() => console.log("Shared successfully!"))
             .catch(error => console.error("Sharing failed:", error));
         } else {
-          // Fallback to a simple alert if the browser doesn't support the Web Share API
+         
           alert("Sharing is not supported in this device.");
         }
       }
