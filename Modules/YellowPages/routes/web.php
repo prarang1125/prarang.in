@@ -225,7 +225,7 @@ Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
   // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<    cardView  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
   
   Route::get('/{city_arr}/{slug}', function ($city_arr, $slug) {
-    $hasVCard = VCard::where('user_id', Auth::id())->exists();
+    $hasVCard = VCard::where('slug', $slug)->exists();
     $controller = app(CreateVCardController::class);
 
     return $hasVCard ? $controller->view($city_arr, $slug) : $controller->cardView($city_arr, $slug);
