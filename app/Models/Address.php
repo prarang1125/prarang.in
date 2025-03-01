@@ -10,7 +10,7 @@ class Address extends Model
     protected $table = 'address';
 
     protected $fillable = [
-        'user_id', 'house_number','street','area_name','city_id','state','postal_code',
+        'user_id', 'house_number','street','area_name','city_id','state','postal_code','city_name','country',
     ];
     public function city()
 {

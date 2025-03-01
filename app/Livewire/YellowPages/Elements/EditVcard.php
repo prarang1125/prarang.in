@@ -19,7 +19,7 @@ class EditVcard extends Component
 
     public $color_code = '#E6C72D';
     public $profile, $category_id, $city_id, $name, $surname, $dob, $email, $phone;
-    public $house_number, $road_street, $area_name, $pincode;
+    public $house_number,$cityname, $road_street, $area_name, $pincode, $state;
     public $vcard, $address;
     public $photo;
     public $dynamicFields = [];
@@ -53,6 +53,7 @@ class EditVcard extends Component
             $this->road_street = $this->address->street;
             $this->area_name = $this->address->area_name;
             $this->pincode = $this->address->postal_code;
+            $this->cityname = $this->address->city_name ?? '';
         }
         $this->options = DynamicFeild::all()->keyBy('id')->toArray();
 
@@ -79,7 +80,7 @@ class EditVcard extends Component
             $photoPath = $this->photo->store('yellowpages/profiles', 's3');
             auth()->user()->update(['profile' => $photoPath]);
             $this->profile = $photoPath;
-            // session()->flash('message', 'Profile updated successfully!');
+
         }
     }
 
@@ -97,7 +98,7 @@ class EditVcard extends Component
 
     protected $rules = [
         'color_code' => 'required',
-        'profile' => 'nullable|max:1024',
+        'profile' => 'required|max:1024',
         'category_id' => 'required|integer',
         'city_id' => 'required|integer',
         'name' => 'required|string|max:255',
@@ -109,6 +110,7 @@ class EditVcard extends Component
         'road_street' => 'required|string|max:255',
         'area_name' => 'required|string|max:255',
         'pincode' => 'required|digits:6',
+        'cityname' => 'required|string|max:255',
     ];
     protected $messages = [
         'color_code.required' => 'रंग कोड आवश्यक है।',
@@ -140,74 +142,81 @@ class EditVcard extends Component
         'pincode.required' => 'पिन कोड आवश्यक है।',
         'pincode.string' => 'पिन कोड केवल अंकों में होना चाहिए।',
         'pincode.digits' => 'पिन कोड ठीक 6 अंकों का होना चाहिए।',
+        'pincode.max' => 'पिन कोड 6 अंकों से अधिक नहीं हो सकता।',
+        'cityname.required' => 'शहर का नाम आवश्यक है।',
+        'cityname.string' => 'शहर का नाम केवल अक्षरों में होना चाहिए।',
+        'cityname.max' => 'शहर का नाम 255 अक्षरों से अधिक नहीं हो सकता।',
     ];
-    
+
 
     public function updatefield($propertyName)
     {
         $this->validateOnly($propertyName);
     }
-
     public function submit()
     {
-        $this->validate();
-        $userId = auth()->id();
-        $photo = $this->photo ? $this->photo->store('yellowpages/profiles', 's3') : null;
+        try {
+            $this->validate();
+            $userId = auth()->id();
+            $photo = $this->photo ? $this->photo->store('yellowpages/profiles', 's3') : null;
 
-        $user = User::updateOrCreate(
-            ['id' => $userId],
-            [
-                'name' => $this->name,
-                'surname' => $this->surname,
-                'dob' => $this->dob,
-                'email' => $this->email,
-                'phone' => $this->phone,
-                'city_id' => $this->city_id,
-                'profile' => $photo ?? $this->profile,
-            ]
-        );
+            $user = User::updateOrCreate(
+                ['id' => $userId],
+                [
+                    'name' => $this->name,
+                    'surname' => $this->surname,
+                    'dob' => $this->dob,
+                    'email' => $this->email,
+                    'phone' => $this->phone,
+                    'city_id' => $this->city_id,
+                    'profile' => $photo ?? $this->profile,
+                ]
+            );
 
-        $this->profile = $user->profile;
+            $this->profile = $user->profile;
 
-        $this->address = Address::updateOrCreate(
-            ['user_id' => $userId],
-            [
-                'house_number' => $this->house_number,
-                'street' => $this->road_street,
-                'area_name' => $this->area_name,
-                'postal_code' => $this->pincode,
-                'city_id' => $this->city_id,
-            ]
-        );
+            $this->address = Address::updateOrCreate(
+                ['user_id' => $userId],
+                [
+                    'house_number' => $this->house_number,
+                    'street' => $this->road_street,
+                    'area_name' => $this->area_name,
+                    'postal_code' => $this->pincode,
+                    'city_id' => $this->city_id,
+                    'city_name' => $this->cityname,
+                    'country' => 'India',
+                    'state' => $this->state,
+                ]
+            );
 
+            $this->vcard = VCard::updateOrCreate(
+                ['user_id' => $userId],
+                [
+                    'color_code' => $this->color_code,
+                    'category_id' => $this->category_id,
+                    'city_id' => $this->city_id,
+                    'address_id' => $this->address->id,
+                    'slug' => Str::slug($user->user_code),
+                ]
+            );
 
+            DynamicVCard::where('vcard_id', $this->vcard->id)->delete();
 
-        $this->vcard = VCard::updateOrCreate(
-            ['user_id' => $userId],
-            [
-                'color_code' => $this->color_code,
-                'category_id' => $this->category_id,
-                'city_id' => $this->city_id,
-                'address_id' => $this->address->id,
-                'slug' => Str::slug($user->user_code),
-            ]
-        );
-        DynamicVCard::where('vcard_id', $this->vcard->id)->delete();
+            foreach ($this->dynamicFields as $field) {
+                DynamicVCard::create([
+                    'vcard_id' => $this->vcard->id,
+                    'dy_fields_id' => $field['id'],
+                    'title'    => $this->options[$field['id']]['name'],
+                    'data'     => $field['value'],
+                    'icon'     => $this->options[$field['id']]['icon'] ?? null,
+                ]);
+            }
 
-
-        foreach ($this->dynamicFields as $field) {
-
-            DynamicVCard::create([
-                'vcard_id' => $this->vcard->id,
-                'dy_fields_id' => $field['id'],
-                'title'    => $this->options[$field['id']]['name'],
-                'data'     => $field['value'],
-                'icon'     => $this->options[$field['id']]['icon'] ?? null,
-            ]);
+            return redirect()->route('vCard.list')
+                ->with('success_message', 'VCard successfully updated!');
+        } catch (\Exception $e) {
+           session()->flash('error', 'Error updating VCard: ' . $e->getMessage());
         }
-
-        return redirect()->route('vCard.list')
-            ->with('errors_message', 'VCard successfully updated!');
     }
 
     public function render()
