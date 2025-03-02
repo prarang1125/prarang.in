@@ -36,55 +36,96 @@
 .max-w-xl .flex-col p{
  text-shadow:rgb(0, 0, 0) 0px 1px 1px, rgb(0, 0, 0) 0px -1px 1px, rgb(0, 0, 0) 1px 0px 1px, rgb(0, 0, 0) -1px 0px 1px;
 }
-</style>
-<body class="bg-gray-100 flex items-center justify-center min-h-screen p-4">
+/* Social icones */
+.justify-between div .social-icones{
+ display:flex;
+ flex-direction:row;
+ justify-content:flex-start;
+ align-items:center;
+ margin-top:6px;
+}
 
-  <!-- Business Card Container -->
-  <div class="bg-white shadow-lg border border-gray-200 rounded-lg overflow-hidden w-full max-w-xl flex flex-row">
+/* Italic Tag */
+.justify-between a i{
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ padding-left:5px;
+ padding-right:5px;
+ padding-top:5px;
+ padding-bottom:5px;
+ border-style:solid;
+ border-width:1px;
+ border-color:#412929;
+ margin-right:12px;
+ border-top-left-radius:50%;
+ border-top-right-radius:50%;
+ border-bottom-left-radius:50%;
+ border-bottom-right-radius:50%;
+}
+
+/* Paragraph */
+.justify-between div p{
+ margin-top:7px !important;
+}
+@media print {
+    body * {
+      visibility: hidden;
+    }
+    #my-vcard, #my-vcard * {
+      visibility: visible;
+    }
+
+  }
+</style>
+<body >
+
+<section class="flex items-center justify-center p-4" style="height: 70vh;">
+  <div id="my-vcard" class="flex flex-row w-full max-w-xl overflow-hidden bg-white border border-gray-200 rounded-lg shadow-lg">
 
     <!-- Left Section (Profile & QR) -->
-    <div class="w-1/3 bg-gradient-to-r from-indigo-500 to-purple-500 p-6 text-center flex flex-col justify-center items-center" style="background:{{ $vcard->color_code ?? 'black' }}">
-      <div class="w-32 h-32 rounded-full overflow-hidden border-4 border-white shadow-lg">
+    <div class="flex flex-col items-center justify-center w-1/3 p-6 text-center bg-gradient-to-r from-indigo-500 to-purple-500" style="background:{{ $vcard->color_code ?? 'black' }}">
+      <div class="w-32 h-32 overflow-hidden border-4 border-white rounded-full shadow-lg">
         <img src="{{ $user->profile ? Storage::url($user->profile) : 'https://via.placeholder.com/150' }}"
-             alt="{{ $user->name ?? 'User' }}'s Profile" class="w-full h-full object-cover">
+             alt="{{ $user->name ?? 'User' }}'s Profile" class="object-cover w-full h-full">
       </div>
-      <h2 class="text-white text-xl font-semibold mt-3">{{ ucfirst($user->name ?? 'User') }} {{ ucfirst($user->surname ?? '') }}</h2>
-      <p class="text-white text-sm opacity-80">+91-{{ $user->phone ?? 'Category' }}</p>
+      <h2 class="mt-3 text-xl font-semibold text-white">{{ ucfirst($user->name ?? 'User') }} {{ ucfirst($user->surname ?? '') }}</h2>
+      <p class="text-sm text-white opacity-80">+91-{{ $user->phone ?? 'Category' }}</p>
 
       <!-- QR Code -->
-      <div class="mt-4 w-24 h-24 bg-gray-100 p-2 rounded-lg shadow-md">
+      <div class="w-24 h-24 p-2 mt-4 bg-gray-100 rounded-lg shadow-md">
         <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ route('vCard.scan', ['slug' => $vcard->slug]) }}"
              alt="QR Code" class="w-full h-full">
       </div>
     </div>
 
     <!-- Right Section (Contact & Social) -->
-    <div class="w-2/3 p-6  flex flex-col justify-between">
+    <div class="flex flex-col justify-between w-2/3 p-6">
 
       <!-- Contact Details -->
       <div class="">
         @if (!empty($user->name))
         <div class="flex items-center space-x-3">
-          <i class="bx bxs-user text-blue-500 text-xl"></i>
-          <span class="text-gray-700  text-lg"> {{ ucfirst($user->name ?? '') }} {{ ucfirst($user->surname ?? '') }}</span>
+          <i class="text-xl text-blue-500 bx bxs-user"></i>
+          <span class="text-lg text-gray-700"> {{ ucfirst($user->name ?? '') }} {{ ucfirst($user->surname ?? '') }}</span>
         </div>
         @endif
         <br>
         @if (!empty($user->email))
         <div class="flex items-center space-x-3">
-          <i class="bx bxs-envelope text-indigo-500 text-xl"></i>
+          <i class="text-xl text-indigo-500 bx bxs-envelope"></i>
           <span class="text-gray-700">{{ $user->email }}</span>
         </div>
         @endif
 
         <div class="flex items-center space-x-3">
-          <i class="bx bxs-phone text-green-500 text-xl"></i>
+          <i class="text-xl text-green-500 bx bxs-phone"></i>
           <span class="text-gray-700">{{ $user->phone }}</span>
         </div>
 
         @if (!empty($user->address))
         <div class="flex items-center space-x-3">
-          <i class="bx bxs-map text-red-500 text-xl"></i>
+          <i class="text-xl text-red-500 bx bxs-map"></i>
           <span class="text-gray-700">{{ $user->address->area_name ?? '' }}, {{ $user->address->city->name ?? '' }}, {{ $user->address->postal_code }}</span>
         </div>
         @endif
@@ -94,7 +135,24 @@
       @if (!empty($vcard->dynamicFields))
       <div>
         <hr>
-        <h3 class="text-md font-semibold  text-gray-800">सोशल मीडिया</h3>
+        <h3 class="font-semibold text-gray-800 text-md">सोशल मीडिया</h3>
+            <div class="social-icones">
+                <div class="social-icon">
+                    <a href="https://www.facebook.com/" target="_blank"><i class="bx bxl-facebook"></i></a>
+                </div>
+                <div class="social-icon">
+                    <a href="https://www.facebook.com/" target="_blank"><i class="bx bxl-instagram"></i></a>
+                </div>
+                <div class="social-icon">
+                    <a href="https://www.facebook.com/" target="_blank"><i class="bx bxl-twitter"></i></a>
+                </div>
+                <div class="social-icon">
+                    <a href="https://www.facebook.com/" target="_blank"><i class="bx bxl-linkedin"></i></a>
+                </div>
+            </div>
+
+
+
         <div class="mt-2">
           @foreach ($vcard->dynamicFields as $social)
           <div class="flex items-center space-x-3">
@@ -112,19 +170,32 @@
           </div>
           @endforeach
           <hr>
-          <p class="text-sm mt-2 text-center linkx">{{url()->current()}}</p>
+          <p class="mt-2 text-sm text-center linkx">{{url()->current()}}</p>
         </div>
       </div>
       @endif
 
       <!-- Share Button -->
       @if ($vcard->is_active == 1)
-      <button onclick="shareVCard()" class="mt-4 px-4 py-2 bg-green-500 text-white rounded-lg hover:bg-green-600 w-full">
+      <button onclick="shareVCard()" class="w-full px-4 py-2 mt-4 text-white bg-green-500 rounded-lg hover:bg-green-600">
         <i class="bx bx-share-alt"></i> शेयर करें
       </button>
       @endif
     </div>
   </div>
+</section>
+<section class="flex flex-wrap">
+    <div class="w-full sm:w-1/4"></div>
+    <div class="w-full text-right sm:w-1/2">
+        <button class="px-4 py-2 mt-4 text-white bg-red-500 rounded-lg hover:bg-red-600"><i class="bx bx-window"></i> अपने व्यवसाय जोड़े </button>
+
+        <button class="px-4 py-2 mt-4 text-white bg-green-500 rounded-lg hover:bg-green-600"><i class="bx bx-share-alt"></i> साझा करे </button>
+        <button class="px-4 py-2 mt-4 text-white bg-blue-500 rounded-lg hover:bg-blue-600" onclick="window.print()"><i class="bx bx-printer"></i> छापे</button>
+
+    </div>
+    <div class="w-full sm:w-1/4"></div>
+</section>
+
 
   <!-- Share Function -->
   <script>
@@ -147,3 +218,4 @@
 
 </body>
 </html>
+

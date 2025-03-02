@@ -263,11 +263,9 @@ class CreateVCardController extends Controller
         // }
     }
 
-    ##------------------------- END ---------------------##
-
-    ##------------------------- VCard view ---------------------##
     public function view($city_arr,$slug)
     {
+
         $vcard = VCard::where('slug', $slug)
             ->orderBy('id', 'desc')
             ->with( 'dynamicFields')

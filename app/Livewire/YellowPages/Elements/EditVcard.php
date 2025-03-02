@@ -98,7 +98,7 @@ class EditVcard extends Component
 
     protected $rules = [
         'color_code' => 'required',
-        'profile' => 'required|max:1024',
+        'profile' => 'required|max:200',
         'category_id' => 'required|integer',
         'city_id' => 'required|integer',
         'name' => 'required|string|max:255',
@@ -114,7 +114,7 @@ class EditVcard extends Component
     ];
     protected $messages = [
         'color_code.required' => 'रंग कोड आवश्यक है।',
-        'profile.max' => 'प्रोफ़ाइल का आकार 1024 KB से अधिक नहीं हो सकता।',
+        'profile.max' => 'प्रोफ़ाइल का आकार 200 KB से अधिक नहीं हो सकता।',
         'category_id.required' => 'श्रेणी चयन आवश्यक है।',
         'category_id.integer' => 'श्रेणी आईडी एक मान्य संख्या होनी चाहिए।',
         'city_id.required' => 'शहर चयन आवश्यक है।',

@@ -17,7 +17,8 @@ class AuthModalController extends Controller
     public function index()
     {
         try {
-            return view('yellowpages::Vcard.login');
+            $cities = City::where('is_active', 1)->get();
+            return view('yellowpages::Vcard.login', compact('cities'));
         } catch (\Exception $e) {
             return back()->withErrors(['error' => 'An error occurred while loading the login page.']);
         }
@@ -27,37 +28,48 @@ class AuthModalController extends Controller
     {
         // Validate the input fields
         $request->validate([
-            'phone' => ['required', 'regex:/^\+?[0-9]{10,15}$/'], 
+            'phone' => ['required', 'regex:/^\+?[0-9]{10,15}$/'],
             'password' => 'required',
+            'city_id'=>'required',
         ], [
             'phone.required' => 'फोन नंबर आवश्यक है।',
             'phone.regex' => 'कृपया एक वैध फोन नंबर दर्ज करें।',
             'password.required' => 'पासवर्ड आवश्यक है।',
+            'city_id.required' => 'शहर आवश्यक है।',
         ]);
 
         try {
-            // Attempt login with credentials
-            $credentials = $request->only('phone', 'password');
+            // Validate request input
+            $credentials = $request->only('city_id', 'phone', 'password');
 
-            // Check if the user exists by phone number
-            $user = User::where('phone', $credentials['phone'])->first();
+            // Check if user exists with given city and phone
+            $user = User::where('city_id', $credentials['city_id'])
+                        ->where('phone', $credentials['phone'])
+                        ->first();
 
-            if ($user && Hash::check($credentials['password'], $user->password)) {
-                // Check if the user's role is '2' (Customer)
-                if ($user->role == 2) {
-                    Auth::login($user); // Log the user in
-                    return redirect()->route('vCard.createCard'); // Redirect if role is '2'
-                } else {
-                    // Log out if the role is not '2'
-                    Auth::logout();
-                    return redirect()->back()->withErrors(['loginError' => 'पहुँच प्रतिबंधित है। आपके पास ग्राहक अधिकार नहीं हैं।'])->withInput();
-                }
+            if (!$user || !Hash::check($credentials['password'], $user->password)) {
+                return redirect()->back()
+                    ->withErrors(['loginError' => 'आपके द्वारा दिए गए विवरण सही नहीं हैं। कृपया फिर से प्रयास करें।'])
+                    ->withInput();
             }
-            // Return with error if login fails
-            return redirect()->back()->withErrors(['loginError' => 'आपके द्वारा दिए गए विवरण सही नहीं हैं। कृपया फिर से प्रयास करें।'])->withInput();
+
+            // Check if the user has the required role
+            if ($user->role != 2) {
+                return redirect()->back()
+                    ->withErrors(['loginError' => 'पहुँच प्रतिबंधित है। आपके पास ग्राहक अधिकार नहीं हैं।'])
+                    ->withInput();
+            }
+
+            // Authenticate and redirect the user
+            Auth::login($user);
+            return redirect()->route('vCard.createCard');
+
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'लॉगिन के दौरान एक त्रुटि हुई:'])->withInput();
+            return redirect()->back()
+                ->withErrors(['error' => 'लॉगिन के दौरान एक त्रुटि हुई: ' . $e->getMessage()])
+                ->withInput();
         }
+
     }
 
     public function newAccount()
@@ -71,14 +83,14 @@ class AuthModalController extends Controller
         }
     }
 
-   
-    
+
+
     public function logout(Request $request)
     {
         try {
-            Auth::logout();           
+            Auth::logout();
             $request->session()->invalidate();
-            $request->session()->regenerateToken();    
+            $request->session()->regenerateToken();
             return redirect()->route('yp.home')->with('success', 'लॉगआउट (logout) सफलतापूर्वक हो गया।');
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => 'लॉगआउट (logout) के दौरान एक त्रुटि हुई। कृपया फिर से प्रयास करें।']);

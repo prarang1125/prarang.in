@@ -69,46 +69,46 @@
 .card .sign-in-form h2{
  color:#020202 !important;
 }
-.logo-sec { 
-  display: flex; 
-  flex-direction: row; 
-  justify-content: center; 
+.logo-sec {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
-} 
+}
 
-*,:after,:before { 
+*,:after,:before {
   box-sizing: border-box;
-} 
+}
 
-img { 
+img {
   vertical-align: middle;
-} 
+}
 
-p { 
-  margin-top: 0; 
+p {
+  margin-top: 0;
   margin-bottom: 1rem;
-} 
+}
 
-.pie { 
-  border-left: 4px solid; 
+.pie {
+  border-left: 4px solid;
   height: 50px;
-} 
+}
 
-.panel p { 
-  font-size: 0.95rem; 
+.panel p {
+  font-size: 0.95rem;
   padding: 0.7rem 0;
-} 
+}
 
 
 /* These were inline style tags. Uses id+class to override almost everything */
-#style-Kl3pw.style-Kl3pw {  
- width: 100px;  
-  height: auto;  
-}  
-#style-kRBjZ.style-kRBjZ {  
- width: 30%;  
-  height: auto;  
-}  
+#style-Kl3pw.style-Kl3pw {
+ width: 100px;
+  height: auto;
+}
+#style-kRBjZ.style-kRBjZ {
+ width: 30%;
+  height: auto;
+}
 
 /* Ldiv */
 .row .ldiv{
@@ -152,28 +152,28 @@ p {
    justify-content:center;
    padding-top:65px;
   }
-  
+
   /* Logo sec */
   .row .col-sm-6 .ldiv .logo-sec{
    width:100% !important;
   }
-  
+
   /* Ldiv */
   .row .col-sm-6 .ldiv{
    width:100% !important;
   }
-  
+
   /* Image */
   .row .col-sm-6 > div > img{
    display:none !important;
   }
-  
+
   /* Flex */
   .row .col-sm-6 div .d-flex{
    min-height:625px !important;
    height:625px;
   }
-  
+
  }
 
  /* Body */
@@ -207,7 +207,7 @@ svg{
   height:497px !important;
   transform: rotateX(35deg) rotateY(-5deg) rotateZ(180deg) !important;
  }
- 
+
 }
 /* Button */
 .card .sign-in-form .btn-primary{
@@ -283,24 +283,24 @@ svg{
   padding-left:30px;
   padding-right:45px;
  }
- 
+
  /* Subtxth */
  .row .hero-txt .subtxth{
   display:block;
   white-space:pre-wrap;
   text-align:center;
  }
- 
+
  /* Flex */
  .row .col-sm-6 div .d-flex{
   {{-- transform:translatex(0px) translatey(-59px); --}}
  }
- 
+
  /* Logo sec */
  .row .ldiv .logo-sec{
   padding-top:78px !important;
  }
- 
+
 }
 @keyframes confetti-fall {
   0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
@@ -450,13 +450,13 @@ path {
 
     <div class="row">
         <div class="col-sm-6">
-          <div class="ldiv container d-flex justify-content-center align-items-center min-vh-100">
+          <div class="container ldiv d-flex justify-content-center align-items-center min-vh-100">
             <div class="logo-sec snipcss-LUbH5">
               <img src="{{ asset('assets/images/yplogo.png') }}" alt="logo icon" id="style-Kl3pw" class="style-Kl3pw">
               <p class="pie"></p>
               <img src="{{ asset('assets/images/logo-bg.png') }}" alt="logo icon" id="style-kRBjZ" class="style-kRBjZ">
           </div>
-         
+
           </div>
           <div class="hero-txt">
           <p>देश का पहला, हिंदी में येलो पेज(YellowPage)</p>
@@ -469,14 +469,28 @@ path {
         </div>
         <div class="col-sm-6">
           <div class="container d-flex justify-content-center align-items-center min-vh-100">
-            <div class="card shadow-lg p-4" style="max-width: 400px; width: 100%;">
-              
+            <div class="p-4 shadow-lg card" style="max-width: 400px; width: 100%;">
+
               <!-- Login Form -->
               <form action="{{ route('yp.authLogin') }}" method="POST" class="sign-in-form" autocomplete="off">
                 @csrf
-                <h2 class="text-center mb-4">लॉगिन (Login)</h2>
-                
-                <!-- Phone Field -->
+                <h2 class="mb-4 text-center">लॉगिन (Login)</h2>
+                <div class="mb-3">
+                    <label for="cities"> शहर</label>
+                    <div class="input-group">
+                        <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                    <select name="city_id" id="cities" class="form-control @error('cities') is-invalid @enderror" required>
+                        <option value="">शहर चुनें</option>
+                        @foreach ($cities as $city)
+                            <option value="{{ $city->id }}">{{ $city->name }}</option>
+                        @endforeach
+                    </select>
+                    </div>
+                    @error('cities')
+                        <div class="text-danger small">{{ $message }}</div>
+                    @enderror
+                </div>
+                <!-- PhoneField -->
                 <div class="mb-3">
                   <label class="form-label">फोन नंबर</label>
                   <div class="input-group">
@@ -487,7 +501,7 @@ path {
                     <div class="text-danger small">{{ $message }}</div>
                   @enderror
                 </div>
-          
+
                 <!-- Password Field -->
                 <div class="mb-3">
                   <label class="form-label">पासवर्ड</label>
@@ -499,19 +513,19 @@ path {
                     <div class="text-danger small">{{ $message }}</div>
                   @enderror
                 </div>
-               
+
                 <!-- Submit Button -->
                 <button type="submit" class="btn btn-primary w-100">लॉगिन (Login)</button>
-                
+
                 <!-- Register Link -->
-                <div class="text-center mt-3">
+                <div class="mt-3 text-center">
                   <a href="{{ route('yp.newAccount') }}" class="text-center">नया खाता बनाएं? रजिस्टर (Register) करें</a>
                 </div>
-              
+
               </form>
             </div>
           </div>
-          
+
           </div>
 
     </div>

@@ -8,7 +8,7 @@
     </style>
     <div class="col-sm-3"></div>
     <div class="col-sm-6">
-        <div class="card border-0">
+        <div class="border-0 card">
             <div class="card-body">
                 <div class="container mt-3">
                     @if (session()->has('message'))
@@ -18,15 +18,15 @@
                     <div class="alert alert-danger">{{ session('error') }}</div>
                 @endif
                     <form wire:submit.prevent="submit" enctype="multipart/form-data">
-                        <div class="position-relative text-center p-3 rounded" style="background-color: {{ $color_code }}">
-                            <div class="position-absolute top-0 start-0 m-2">
+                        <div class="p-3 text-center rounded position-relative" style="background-color: {{ $color_code }}">
+                            <div class="top-0 m-2 position-absolute start-0">
                                 <label for="color_value" class="form-label">रंग चुनें *</label>
                                 <input type="color" id="color_value" class="form-control form-control-color" wire:change="updatefield('color_value')" wire:model.bounce.500ms="color_code">
                                 @error('color_code')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                             <label for="profile-upload" class="position-relative d-inline-block">
-                                <img id="ddimg" src="{{ $profile ? Storage::url($profile) : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg' }}" class="rounded-circle border shadow-sm" style="width: 120px; height: 120px; object-fit: cover;" alt="Profile">
-                                <span class="position-absolute bottom-0 end-0 bg-primary text-white p-1 rounded-circle">
+                                <img id="ddimg" src="{{ $profile ? Storage::url($profile) : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg' }}" class="border shadow-sm rounded-circle" style="width: 120px; height: 120px; object-fit: cover;" alt="Profile">
+                                <span class="bottom-0 p-1 text-white position-absolute end-0 bg-primary rounded-circle">
                                     <i class="fas fa-camera" wire:loading.remove wire:target="photo"></i>
                                     <i class="fas fa-spinner fa-spin" wire:loading wire:target="photo"></i>
                                 </span>
@@ -34,7 +34,7 @@
                             <input type="file" id="profile-upload" class="d-none" wire:model="photo">
                         </div>
 
-                        <div class="row mt-3">
+                        <div class="mt-3 row">
                             <div class="col-md-6">
                                 <label class="form-label">आपका तस्वीर *</label>
                                 <input class="form-control" type="file" id="" class="" wire:model="photo">
@@ -43,7 +43,7 @@
                         </div>
 
 
-                        <div class="row mt-3">
+                        <div class="mt-3 row">
                             <div class="col-md-6">
                                 <label class="form-label">नाम *</label>
                                 <input type="text" class="form-control" placeholder="अपना नाम दर्ज करें" wire:change="updatefield('name')" wire:model.debounce.500ms="name">
@@ -55,7 +55,7 @@
                                 @error('surname')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                         </div>
-                        <div class="row mt-3">
+                        <div class="mt-3 row">
                             <div class="col-md-6">
                                 <label class="form-label">श्रेणी *</label>
                                 <select class="form-select" wire:change="updatefield('category_id')" wire:model="category_id">
@@ -77,7 +77,7 @@
                                 @error('city_id')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                         </div>
-                        <div class="row mt-3">
+                        <div class="mt-3 row">
                             <div class="col-md-6">
                                 <label class="form-label">घर नंबर *</label>
                                 <input type="text" class="form-control"  placeholder="अपना घर नंबर दर्ज करें" wire:change="updatefield('house_number')" wire:model="house_number">
@@ -89,14 +89,14 @@
                                 @error('road_street')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                         </div>
-                        <div class="row mt-3">
+                        <div class="mt-3 row">
                             <div class="col-md-12">
                                 <label class="form-label">पता</label>
                                 <textarea type="text" class="form-control" placeholder="क्षेत्र का नाम दर्ज करें" wire:change="updatefield('area_name')" wire:model="area_name"></textarea>
                                 @error('area_name')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                         </div>
-                        <div class="row mt-3">
+                        <div class="mt-3 row">
                             <div class="col-md-6">
                                 <label class="form-label">आपका शहर *</label>
                                 <input type="text" class="form-control" placeholder="अपना शहर दर्ज करें" wire:change="updatefield('cityname')" wire:model="cityname">
@@ -108,7 +108,7 @@
                                 @error('pincode')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                         </div>
-                        <div class="row mt-3">
+                        <div class="mt-3 row">
                             <div class="col-md-6">
                                 <label class="form-label">जन्म तिथि</label>
                                 <input type="date" class="form-control" wire:change="updatefield('dob')" wire:model="dob">
@@ -120,7 +120,7 @@
                                 @error('email')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary w-100 mt-3">
+                        <button type="submit" class="mt-3 btn btn-primary w-100">
                             <span wire:loading.remove wire:target="submit">सबमिट करें</span>
                             <span wire:loading wire:target="submit">
                                 <i class="fas fa-spinner fa-spin"></i>
