@@ -52,8 +52,8 @@ class NewAccounts extends Component
         $this->validate();
         $this->phone = str_replace('+91', '', $this->phone);
         if (User::where('phone', $this->phone)->where('city_id', $this->city)->exists()) {
-            $this->addError('phone', 'यह फ़ोन नंबर और शहर का संयोजन पहले से मौजूद है। कृपया दूसरा फ़ोन नंबर या शहर चुनें। ');
-            $this->loading = false;
+            $this->addError('phone', 'यह फ़ोन नंबर और शहर का संयोजन पहले से मौजूद है।');
+            $this->loading = false;s
             return;
         }
         $count = 1;
