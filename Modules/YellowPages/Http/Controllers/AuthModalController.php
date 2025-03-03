@@ -49,14 +49,14 @@ class AuthModalController extends Controller
 
             if (!$user || !Hash::check($credentials['password'], $user->password)) {
                 return redirect()->back()
-                    ->withErrors(['loginError' => 'आपके द्वारा दिए गए विवरण सही नहीं हैं। कृपया फिर से प्रयास करें।'])
+                    ->withErrors(['error' => 'आपके द्वारा दिए गए विवरण सही नहीं हैं। कृपया फिर से प्रयास करें।'])
                     ->withInput();
             }
 
             // Check if the user has the required role
             if ($user->role != 2) {
                 return redirect()->back()
-                    ->withErrors(['loginError' => 'पहुँच प्रतिबंधित है। आपके पास ग्राहक अधिकार नहीं हैं।'])
+                    ->withErrors(['error' => 'पहुँच प्रतिबंधित है। आपके पास ग्राहक अधिकार नहीं हैं।'])
                     ->withInput();
             }
 

@@ -263,7 +263,7 @@ class CreateVCardController extends Controller
         // }
     }
 
-    public function view($city_arr,$slug)
+    public function userPreview($city_arr,$slug)
     {
 
         $vcard = VCard::where('slug', $slug)
@@ -290,35 +290,39 @@ class CreateVCardController extends Controller
         return view('yellowpages::Vcard.CardView', compact('vcard', 'user', 'category', 'dynamicFields','city_arr'));
     }
 
+    public function vcardPrint($city_arr,$slug){
+        $vcard = VCard::where('slug', $slug)
+        ->where('is_active', 1)
+        ->orderBy('id', 'desc')
+        ->with( 'dynamicFields')
+        ->first();
+    $user = User::with('address')->find($vcard->user_id);
+    $dynamicFields = DynamicFeild::where('is_active', 1)->get();
+
+    // Fetch VCard data
+    $category = Category::where('id', $vcard->category_id)->first();
+
+        return view('yellowpages::Vcard.vcard-print',compact('vcard', 'user', 'category', 'dynamicFields','city_arr'));
+    }
+
     ##------------------------- END ---------------------##
 
      ##------------------------- VCard share ---------------------##
-     public function vcardShare($slug)
+     public function view($city_arr,$slug)
      {
+
         $vcard = VCard::where('slug', $slug)
-            ->where('is_active', 1)
-            ->orderBy('id', 'desc')
-            ->with('dynamicFields')
-            ->first();
+        ->orderBy('id', 'desc')
+        ->with( 'dynamicFields')
+        ->first();
 
-        if (!$vcard) {
-            abort(404, 'vCard not found.');
-        }
+    $user = User::with('address')->find($vcard->user_id);
+    $dynamicFields = DynamicFeild::where('is_active', 1)->get();
 
-        $user = User::with('address')->find($vcard->user_id);
-        if (!$user) {
-            abort(404, 'User not found.');
-        }
+    $category = Category::where('id', $vcard->category_id)->first();
 
-        $dynamicFields = DynamicFeild::where('is_active', 1)->get();
 
-        $category = Category::find($vcard->category_id);
-
-        $businessListings = BusinessListing::where('user_id', $vcard->user_id)
-        ->where('is_active', 1)
-        ->get();
-
-        return view('yellowpages::Vcard.share-card', compact('vcard', 'user', 'category', 'dynamicFields', 'businessListings'));
+        return view('yellowpages::Vcard.share-card',compact('vcard', 'user', 'category', 'dynamicFields','city_arr'));
      }
 
     ##------------------------- END ---------------------##

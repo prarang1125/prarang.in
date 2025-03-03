@@ -3,6 +3,65 @@
 .card-body .position-absolute label{
  text-shadow:rgb(255, 255, 255) 0px 1px 1px, rgb(255, 255, 255) 0px -1px 1px, rgb(255, 255, 255) 1px 0px 1px, rgb(255, 255, 255) -1px 0px 1px;
 }
+/* Dropdown item */
+.card-body li .dropdown-item{
+ cursor:pointer;
+}
+
+/* Dropdown item (hover) */
+.card-body li .dropdown-item:hover{
+ font-weight:500;
+ background-color:#f3e7e7;
+}
+/* Link */
+.card-body .d-flex a{
+ transform:translatex(0px) translatey(12px);
+}
+
+/* Italic Tag */
+.card-body .text-danger .bx{
+ font-size:17px;
+}
+
+/* Italic Tag */
+.card-body .text-danger .bx{
+ cursor:progress;
+}
+
+/* Italic Tag */
+.card-body .text-danger .bx{
+ position:relative;
+ top:-2px;
+ left:-1px;
+}
+/* Button */
+.card-body form .btn-secondary{
+ font-size:13px;
+ margin-top:4px;
+}
+
+
+/* Column 6/12 */
+.card-body form .col-md-6{
+ margin-bottom:4px;
+}
+
+/* Form label */
+.container form .row .col-md-6 .form-label{
+ margin-bottom:0px;
+ font-weight:600;
+}
+
+/* Label */
+.container form .row .col-md-12 label{
+ margin-bottom:0px;
+}
+
+/* Label */
+.container form .row .col-md-12 label{
+ font-weight:600;
+}
+
 
 
     </style>
@@ -77,21 +136,23 @@
                                 @error('city_id')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                         </div>
-                        <div class="mt-3 row">
+
+                        <small class="text-muted fw-bold mb-1 mt-2">अपना पता दर्ज करें ------ </small>
+                        <div class="row">
                             <div class="col-md-6">
-                                <label class="form-label">घर नंबर *</label>
+                                <label class="form-label">घर नंबर</label>
                                 <input type="text" class="form-control"  placeholder="अपना घर नंबर दर्ज करें" wire:change="updatefield('house_number')" wire:model="house_number">
                                 @error('house_number')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                             <div class="col-md-6">
-                                <label class="form-label">सड़क/गली *</label>
+                                <label class="form-label">सड़क/गली</label>
                                 <input type="text" class="form-control" placeholder="सड़क/गली का नाम" wire:change="updatefield('road_street')" wire:model="road_street">
                                 @error('road_street')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                         </div>
                         <div class="mt-3 row">
                             <div class="col-md-12">
-                                <label class="form-label">पता</label>
+                                <label class="form-label">पता *</label>
                                 <textarea type="text" class="form-control" placeholder="क्षेत्र का नाम दर्ज करें" wire:change="updatefield('area_name')" wire:model="area_name"></textarea>
                                 @error('area_name')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
@@ -103,6 +164,16 @@
                                 @error('cityname')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                             <div class="col-md-6">
+                                <label class="form-label">राज्य/प्रदेश *</label>
+                                <input type="text" class="form-control" value=" उत्तर प्रदेश (Uttar Pradesh)"  placeholder="अपना राज्य दर्ज करें" wire:change="updatefield('state')" wire:model="state">
+                                @error('state')<small class="text-danger">{{ $message }}</small>@enderror
+                            </div>
+                            <div class="col-md-6 mt-2">
+                                <label class="form-label">आपका देश</label>
+                                <input type="text" value="भारत (India)" class="form-control" placeholder="अपना देश दर्ज करें">
+                                @error('cityname')<small class="text-danger">{{ $message }}</small>@enderror
+                            </div>
+                            <div class="col-md-6 mt-2">
                                 <label class="form-label">पिनकोड</label>
                                 <input type="text" class="form-control" wire:change="updatefield('pincode')" placeholder="पिनकोड दर्ज करें" wire:model="pincode">
                                 @error('pincode')<small class="text-danger">{{ $message }}</small>@enderror
@@ -120,6 +191,43 @@
                                 @error('email')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                         </div>
+
+                        <small class="text-muted fw-bold m-1">सोशल मीडिया लिंक्स ------</small>
+                        <div>
+                            @foreach($dynamicFields as $index => $field)
+                                <div class="mb-3 d-flex align-items-center">
+                                    <div class="flex-grow-1">
+                                        <label for="field_{{ $field['id'] }}" class="form-label">
+                                            <i class="{{ $field['icon'] }}"></i> {{ $field['name'] }}
+                                        </label>
+                                        <input type="{{ $field['type'] }}" id="field_{{ $field['id'] }}" placeholder="{{ $field['name'] }} दर्ज करें" class="form-control"
+                                               wire:model="dynamicFields.{{ $index }}.value">
+                                    </div>
+                                    <a class="p-2 text-danger " wire:click="removeField({{ $index }})"><i class="bx bx-trash"></i></a>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <p class="text-end">
+                            <div class="dropdown text-end">
+                                <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-plus"></i> अन्य सोशल मीडिया चुनें
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    @foreach ($options as $option)
+                                        @unless(collect($dynamicFields)->pluck('id')->contains($option['id']))
+                                            <li>
+                                                <a class="dropdown-item" wire:click="addField({{ $option['id'] }})">
+                                                    {{ $option['name'] }}
+                                                </a>
+                                            </li>
+                                        @endunless
+                                    @endforeach
+                                </ul>
+
+                            </div>
+
+                        </p>
                         <button type="submit" class="mt-3 btn btn-primary w-100">
                             <span wire:loading.remove wire:target="submit">सबमिट करें</span>
                             <span wire:loading wire:target="submit">

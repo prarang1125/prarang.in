@@ -19,7 +19,7 @@ class EditVcard extends Component
 
     public $color_code = '#E6C72D';
     public $profile, $category_id, $city_id, $name, $surname, $dob, $email, $phone;
-    public $house_number,$cityname, $road_street, $area_name, $pincode, $state;
+    public $house_number,$cityname, $road_street, $area_name, $pincode, $state='उत्तर प्रदेश (Uttar Pradesh)';
     public $vcard, $address;
     public $photo;
     public $dynamicFields = [];
@@ -57,17 +57,45 @@ class EditVcard extends Component
         }
         $this->options = DynamicFeild::all()->keyBy('id')->toArray();
 
+        $this->dynamicFields = [];
+
         if ($this->vcard) {
             $this->existingFields = DynamicVCard::where('vcard_id', $this->vcard->id)->get()->map(function ($item) {
-                return ['id' => $item->dy_fields_id, 'name' => $item->title, 'value' => $item->data];
+                return ['id' => $item->dy_fields_id, 'name' => $item->title, 'value' => $item->data,'icon'=>$item->icon,'type'=>$item->type];
             })->toArray();
+
+            // Existing fields ko dynamicFields me add karna
             foreach ($this->existingFields as $field) {
-                $this->dynamicFields[] = ['id' => $field['id'], 'name' => $field['name'], 'value' => $field['value']];
+                $this->dynamicFields[$field['id']] = [
+                    'id' => $field['id'],
+                    'name' => $field['name'],
+                    'value' => $field['value'],
+                    'icon' => $field['icon'],
+                    'type' => $field['type']
+                ];
             }
         } else {
             $this->existingFields = [];
         }
+
+        // Ensure IDs 1 and 2 exist in dynamicFields
+        $requiredIds = [6, 9];
+
+        foreach ($requiredIds as $id) {
+            if (!isset($this->dynamicFields[$id])) {
+                $this->dynamicFields[$id] = [
+                    'id' => $id,
+                    'name' => $this->options[$id]['name'] ?? 'Field ' . $id,
+                    'value' => '',
+                    'icon' => $this->options[$id]['icon'] ?? null,
+                    'type' => $this->options[$id]['type'] ?? null
+                ];
+            }
+        }
+
+        // Reset array keys
         $this->dynamicFields = array_values($this->dynamicFields);
+
     }
     public function updatedPhoto()
     {
@@ -85,9 +113,16 @@ class EditVcard extends Component
     }
 
 
-    public function addField()
+    public function addField($id)
     {
-        $this->dynamicFields[] = ['id' => '', 'name' => '', 'value' => ''];
+        $name = $this->options[$id]['name'] ?? 'Field ' . $id;
+        $this->dynamicFields[] = [
+            'id' => $id,
+            'name' => $name,
+            'value' => '',
+            'icon' => $this->options[$id]['icon'] ?? null,
+            'type' => $this->options[$id]['type'] ?? null
+        ];
     }
 
     public function removeField($index)
@@ -98,7 +133,7 @@ class EditVcard extends Component
 
     protected $rules = [
         'color_code' => 'required',
-        'profile' => 'required|max:200',
+        'photo' => 'max:200',
         'category_id' => 'required|integer',
         'city_id' => 'required|integer',
         'name' => 'required|string|max:255',
@@ -106,15 +141,16 @@ class EditVcard extends Component
         'dob' => 'nullable|date|before_or_equal:today',
         'email' => 'nullable|email|max:255',
         'phone' => 'required|string|max:15',
-        'house_number' => 'required|string|max:255',
-        'road_street' => 'required|string|max:255',
-        'area_name' => 'required|string|max:255',
+        'house_number' => 'nullable|string|max:255',
+        'road_street' => 'nullable|string|max:255',
+        'area_name' => 'required|max:255',
         'pincode' => 'required|digits:6',
         'cityname' => 'required|string|max:255',
+        'state' => 'required|string|max:255',
     ];
     protected $messages = [
         'color_code.required' => 'रंग कोड आवश्यक है।',
-        'profile.max' => 'प्रोफ़ाइल का आकार 200 KB से अधिक नहीं हो सकता।',
+        'photo.max' => 'प्रोफ़ाइल का आकार 200 KB से अधिक नहीं हो सकता।',
         'category_id.required' => 'श्रेणी चयन आवश्यक है।',
         'category_id.integer' => 'श्रेणी आईडी एक मान्य संख्या होनी चाहिए।',
         'city_id.required' => 'शहर चयन आवश्यक है।',
@@ -136,9 +172,9 @@ class EditVcard extends Component
         'road_street.required' => 'सड़क/गली का नाम आवश्यक है।',
         'road_street.string' => 'सड़क/गली का नाम केवल अक्षरों में होना चाहिए।',
         'road_street.max' => 'सड़क/गली का नाम 255 अक्षरों से अधिक नहीं हो सकता।',
-        'area_name.required' => 'क्षेत्र का नाम आवश्यक है।',
-        'area_name.string' => 'क्षेत्र का नाम केवल अक्षरों में होना चाहिए।',
-        'area_name.max' => 'क्षेत्र का नाम 255 अक्षरों से अधिक नहीं हो सकता।',
+        'area_name.required' => 'पता आवश्यक है।',
+
+        'area_name.max' => 'पता 255 अक्षरों से अधिक नहीं हो सकता।',
         'pincode.required' => 'पिन कोड आवश्यक है।',
         'pincode.string' => 'पिन कोड केवल अंकों में होना चाहिए।',
         'pincode.digits' => 'पिन कोड ठीक 6 अंकों का होना चाहिए।',
@@ -146,6 +182,9 @@ class EditVcard extends Component
         'cityname.required' => 'शहर का नाम आवश्यक है।',
         'cityname.string' => 'शहर का नाम केवल अक्षरों में होना चाहिए।',
         'cityname.max' => 'शहर का नाम 255 अक्षरों से अधिक नहीं हो सकता।',
+        'state.required' => 'राज्य आवश्यक है।',
+        'state.string' => 'राज्य केवल अक्षरों में होना चाहिए।',
+        'state.max' => 'राज्य 255 अक्षरों से अधिक नहीं हो सकता।',
     ];
 
 
@@ -155,8 +194,9 @@ class EditVcard extends Component
     }
     public function submit()
     {
+        $this->validate();
         try {
-            $this->validate();
+
             $userId = auth()->id();
             $photo = $this->photo ? $this->photo->store('yellowpages/profiles', 's3') : null;
 
@@ -203,6 +243,9 @@ class EditVcard extends Component
             DynamicVCard::where('vcard_id', $this->vcard->id)->delete();
 
             foreach ($this->dynamicFields as $field) {
+                if($field['value'] == null){
+                    continue;
+                }
                 DynamicVCard::create([
                     'vcard_id' => $this->vcard->id,
                     'dy_fields_id' => $field['id'],

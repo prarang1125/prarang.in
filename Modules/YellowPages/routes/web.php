@@ -93,6 +93,8 @@ Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
 
             Route::get('/user/paymentHistory', [PlanController::class, 'paymentHistory'])->name('vCard.paymentHistory');
             Route::get('/user/ActivePlan', [PlanController::class, 'plan'])->name('vCard.plan');
+            Route::get('/{city_arr}/{slug}/view', [CreateVCardController::class, 'userPreview'])->name('vCard.userPreview');
+            Route::get('/{city_arr}/{slug}/print', [CreateVCardController::class, 'vcardPrint'])->name('vCard.vcardPrint');
         });
         Route::get('/user/MembershipPlan', [PlanController::class, 'planDetails'])->name('vCard.planDetails');
         Route::post('plan/stripe-checkout', [PlanController::class, 'stripeCheckout'])->name('vcard.stripeCheckout');
@@ -170,13 +172,14 @@ Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
 
     Route::get('privacy-policy', [HomeController::class, 'privacyPolicy'])->name('privacy-policy');
 
-
+    #Public View
     Route::get('/{city_arr}/{slug}', function ($city_arr, $slug) {
         $hasVCard = VCard::where('slug', $slug)->exists();
         $controller = app(CreateVCardController::class);
 
         return $hasVCard ? $controller->view($city_arr, $slug) : $controller->cardView($city_arr, $slug);
     })->name('vCard.view');
+
     Route::get('{category}/{city}', [ListingController::class, 'index'])->name('yp.listing');
     Route::get('{city_name}', [ListingController::class, 'showByCity'])->name('city.show');
 

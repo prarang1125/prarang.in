@@ -1,164 +1,404 @@
 <!DOCTYPE html>
 <html lang="hi">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@yield('meta_title', 'Business WebPage - ' . ($user->name ?? 'User'))</title>
-    <meta name="description" content="@yield('meta_description', 'Business WebPage for ' . ($user->name ?? 'User'))">
-    <meta name="keywords" content="@yield('meta_keywords', 'business vCard, digital visiting card, contact information')">
-    <meta name="robots" content="index, follow" />
-  
-    <!-- Open Graph Meta Tags (Used by Facebook, Instagram, WhatsApp, and Twitter) -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="@yield('meta_og_title', 'Business WebPage - ' . ($user->name ?? 'User'))">
-    <meta property="og:description" content="@yield('meta_og_description', 'Connect with ' . ($user->name ?? 'this business') . ' via digital WebPage.')">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Business vCard for {{ $user->name ?? 'User' }}">
+    <title>{{ $user->name ?? 'User' }} {{$user->surname ?? ''}} | प्रारंग {{ $user->city->name ?? '' }} पेज </title>
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{{ $user->name ?? 'User' }} | प्रारंग {{ $user->city->name ?? '' }} पेज ">
+    <meta property="og:description" content="Business vCard for {{ $user->name ?? 'User' }}.">
     <meta property="og:image" content="{{ !empty($user->profile) && Storage::exists($user->profile) ? Storage::url($user->profile) : asset('assets/images/yplogo.jpg') }}">
-    <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:site_name" content="Yellow Pages" />
-    <meta property="og:locale" content="en_IN" />
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:site_name" content="Prarang">
+    <meta property="og:locale" content="en_IN">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:type" content="image/jpeg">
-    
-    <!-- Twitter will use Open Graph tags automatically -->
     <meta name="twitter:card" content="summary_large_image">
-    
-    <title>V Card</title>
+    <meta name="twitter:site" content="Prarang">
+    <meta name="twitter:title" content="{{ $user->name ?? 'User' }} | प्रारंग {{ $user->city->name ?? '' }} पेज ">
+    <meta name="twitter:description" content="Business vCard for {{ $user->name ?? 'User' }}.">
+    <meta name="twitter:image" content="{{ !empty($user->profile) && Storage::exists($user->profile) ? Storage::url($user->profile) : asset('assets/images/yplogo.jpg') }}">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" />
-  </head>  
-<body>
-  <div class="min-h-screen bg-gradient-to-br from-indigo-50 via-white to-purple-50 flex items-center justify-center p-4">
-    <!-- Card Container: Slightly larger with max-w-md, outer highlight border added -->
-    <div class="bg-white rounded-2xl shadow-lg overflow-hidden max-w-md w-full transform hover:scale-105 transition-transform duration-300 ring-2 ring-indigo-400 hover:ring-4 hover:ring-indigo-500">
-      
-      <!-- Logo Section -->
-      <div class="flex justify-center items-center py-3">
-        <a href="https://www.prarang.in" target="_blank">
-          <img src="{{ asset('assets/images/logo/yellow_logo.png') }}" alt="Prarang Logo" class="h-6" />
-        </a>
-      </div>
-      
-      <!-- Main Content -->
-      <div class="flex flex-col md:flex-row relative">
-        
-        <!-- Left Section: Business & Contact Information -->
-        <div class="p-3 flex-1 space-y-2">
-          <h3 class="text-xl font-bold text-gray-800 mb-2">
-            {{ $user->name ?? 'User' }} prarang page
-          </h3>
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+</head>
+<style>
+    /* Text */
+    .max-w-xl .items-center .text-lg {
+        font-weight: 700;
+        font-size: 22px;
+    }
 
-          <!-- Business Information Fields -->
-          <div class="space-y-1 mb-3">
-            <div class="flex items-center space-x-2 p-1 hover:bg-gray-50 rounded transition-colors">
-              <i class="bx bxs-user text-gray-600 w-4 h-4"></i>
-              <span class="text-gray-500 text-xs">नाम (Name):</span>
-              <span class="text-gray-700 font-semibold text-xs">
-                {{ trim(($user->name ?? '') . ' ' . ($user->surname ?? '')) ?: 'Not Available' }}
-              </span>
-            </div>
-            @if (!empty($user->email))
-              <div class="flex items-center space-x-2 p-1 hover:bg-gray-50 rounded transition-colors">
-                <i class="bx bxs-envelope text-gray-600 w-4 h-4"></i>
-                <span class="text-gray-500 text-xs">ईमेल (Email):</span>
-                <span class="text-gray-700 font-semibold text-xs">{{ $user->email }}</span>
-              </div>
-            @endif
-            <div class="flex items-center space-x-2 p-1 hover:bg-gray-50 rounded transition-colors">
-              <i class="bx bxs-phone text-gray-600 w-4 h-4"></i>
-              <span class="text-gray-500 text-xs">फ़ोन (Phone):</span>
-              <span class="text-gray-700 font-semibold text-xs">{{ $user->phone }}</span>
-            </div>
-            <div class="flex items-center space-x-2 p-1 hover:bg-gray-50 rounded transition-colors">
-              <i class="bx bxs-category text-gray-600 w-4 h-4"></i>
-              <span class="text-gray-500 text-xs">श्रेणी (Category):</span>
-              <span class="text-gray-700 font-semibold text-xs">{{ $category->name }}</span>
-            </div>
-          </div>
+    /* Linkx */
+    .linkx {
+        font-weight: 700;
+        margin-top: 0px !important;
+    }
 
-          <!-- Address -->
-          @if (!empty($user->address))
-            <div class="flex items-center space-x-2 p-1 hover:bg-gray-50 rounded transition-colors">
-              <i class="bx bxs-location-plus text-gray-600 w-4 h-4"></i>
-              <span class="text-gray-700 text-xs">पता (Address):</span>
-              <span class="text-gray-600 text-xs">
-                {{ $user->address->area_name ?? 'Area not available' }},
-                {{ $user->address->city->name ?? 'City not available' }},
-                {{ $user->address->postal_code ?? 'Postal code not available' }}
-              </span>
-            </div>
-          @endif
+    /* Paragraph */
+    .justify-between div p {
+        font-size: 13px;
+        text-shadow: none !important;
+    }
 
-          <!-- Dynamic (Social Media) Fields -->
-          @if (!empty($vcard->dynamicFields))
-            <div class="text-sm font-semibold text-gray-800 mt-2 mb-1">
-              सोशल मीडिया (Social Media)
+
+
+    .max-w-xl .flex-col h2.font-semibold {
+        text-shadow: rgb(0, 0, 0) 0px 1px 1px, rgb(0, 0, 0) 0px -1px 1px, rgb(0, 0, 0) 1px 0px 1px, rgb(0, 0, 0) -1px 0px 1px;
+    }
+
+    /* Paragraph */
+    .max-w-xl .flex-col p {
+        text-shadow: rgb(0, 0, 0) 0px 1px 1px, rgb(0, 0, 0) 0px -1px 1px, rgb(0, 0, 0) 1px 0px 1px, rgb(0, 0, 0) -1px 0px 1px;
+    }
+
+    /* Social icones */
+    .justify-between div .social-icones {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-start;
+        align-items: center;
+        margin-top: 6px;
+    }
+
+    /* Italic Tag */
+    .justify-between a i {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        border-style: solid;
+        border-width: 1px;
+        border-color: #412929;
+        margin-right: 12px;
+        border-top-left-radius: 50%;
+        border-top-right-radius: 50%;
+        border-bottom-left-radius: 50%;
+        border-bottom-right-radius: 50%;
+    }
+
+    /* Paragraph */
+    .justify-between div p {
+        margin-top: 7px !important;
+    }
+
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+
+        #my-vcard,
+        #my-vcard * {
+            visibility: visible;
+        }
+
+    }
+
+    .flex-wrap .w-full {
+        padding-right: 2px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: translatex(0px) translatey(0px);
+    }
+
+    /* Italic Tag */
+    .social-icon .transition i {
+        height: 35px;
+    }
+    /* Items center */
+.justify-between .space-y-3 .items-center{
+ flex-direction:row;
+ margin-top:-1px;
+}
+
+/* Division */
+.space-y-3 .items-center div{
+ display:flex;
+ flex-direction:column;
+}
+
+/* Font semibold */
+.space-y-3 div .font-semibold{
+ padding-top:-13px;
+ position:relative;
+ top:-1px;
+}
+
+/* Mtdclass */
+.space-y-3 div .mtdclass{
+ font-size:12px;
+}
+
+/* Font semibold */
+.space-y-3 div .font-semibold{
+ top:-3px;
+}
+/* Heading */
+.justify-between div h3{
+ margin-top:6px;
+}
+/* Italic Tag */
+.justify-between div .bx{
+ font-size:18px !important;
+ font-weight:600 !important;
+ width:25px;
+ height:25px;
+ margin-right:0px;
+}
+
+/* Youtube */
+.justify-center #my-vcard .justify-between div .flex .social-icon .transition .bxl-youtube{
+ width:25px !important;
+ height:25px !important;
+}
+
+/* Heading */
+.justify-between div h3{
+ font-size:12px;
+ font-weight:700;
+ color:#5c6065;
+ font-style:normal;
+}
+
+/* Justify center */
+.justify-center .justify-center{
+ padding-left:0px;
+ padding-right:0px;
+ padding-top:0px;
+ padding-bottom:0px;
+}
+
+/* Image */
+.justify-center a img{
+ font-size:24px;
+}
+
+/* Image */
+.justify-center .justify-center .w-full a img{
+ width:340px !important;
+}
+
+/* Justify center */
+.justify-center{
+ margin-top:1px;
+ padding-top:0px;
+}
+/* Import Google Fonts */
+@import url("//fonts.googleapis.com/css2?family=TimesNewRoman:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+/* Justify center */
+.justify-center{
+ padding-top:2px !important;
+}
+
+/* Heading */
+.justify-center h4{
+ font-weight:700;
+ font-family:'TimesNewRoman','Times New Roman',Times,Baskerville,Georgia,serif;
+ font-size:16px;
+}
+
+
+@media (max-width:576px){
+
+/* Image */
+.justify-center .justify-center .w-full a img{
+ width:164px !important;
+}
+
+/* Justify center */
+#my-vcard .justify-center{
+ padding-bottom:9px;
+ transform:translatex(0px) translatey(0px);
+ padding-top:13px !important;
+}
+
+/* Justify center */
+.justify-center #my-vcard .justify-center{
+ width:100% !important;
+}
+
+/* Image */
+.justify-center #my-vcard .justify-center .overflow-hidden img{
+ width:115% !important;
+}
+
+/* Overflow hidden */
+#my-vcard .justify-center .overflow-hidden{
+ width:130px;
+ height:130px;
+}
+
+}
+
+</style>
+
+<body class="bg-gray-100">
+    <br>
+    <section class="flex items-center justify-center">
+        <section class="flex items-center justify-center p-4">
+            <div class="w-full md:w-1/2 p-2">
+                <a href="https://www.prarang.in" target="_blank">
+                    <img src="{{ asset('assets/images/logo/yellow_logo.png') }}" alt="Prarang Logo" class="w-48">
+                </a>
+
             </div>
-            @foreach ($vcard->dynamicFields as $social)
-            <div class="p-2 hover:bg-gray-50 rounded-lg transition-colors">
-                <span class="text-gray-500 text-sm">
-                    {{ $social->title ?? 'सोशल मीडिया (Social Media)' }}:
-                    <span class="text-gray-700 font-semibold">
-                        @if (!empty($social->data))
-                            @php
-                                $socialData = $social->data;
-                            @endphp
-                            
-                            @if (filter_var($socialData, FILTER_VALIDATE_URL))
-                                <!-- If it's a valid URL, make it a clickable link -->
-                                <a href="{{ $socialData }}" target="_blank" class="text-blue-500 hover:underline">{{ $socialData }}</a>
-                            @elseif (preg_match('/^\+?[0-9]{10,15}$/', $socialData))
-                                <!-- If it's a valid phone number, make it a clickable link for WhatsApp -->
-                                <a href="https://wa.me/{{ $socialData }}" target="_blank" class="text-green-500 hover:underline">{{ $socialData }}</a>
-                            @else
-                                <!-- If it's neither a URL nor a phone number, display it as plain text -->
-                                {{ $socialData }}
-                            @endif
-                        @else
-                            <!-- If data is empty, show "Not Available" -->
-                            उपलब्ध नहीं है
-                        @endif
-                    </span>
-                </span>
-            </div>
-           @endforeach
-          @endif
+
+        </section>    </section>
+        <div class="flex items-center justify-center">
+            <h4>प्रारंग {{$user->city->name}} पेज </h4>
         </div>
-        
-        <!-- Right Section: Profile Picture & QR Code -->
-        <div class="bg-gradient-to-b from-indigo-50 to-white p-4 flex flex-col items-center justify-between md:w-28">
-          <!-- Profile Picture -->
-          <div class="relative mb-3">
-            <div class="w-24 h-24 rounded-full overflow-hidden ring-4 ring-white shadow-md">
-              @if (!empty($user->profile) && Storage::exists($user->profile))
-                <img src="{{ Storage::url($user->profile) }}" alt="{{ $user->name ?? 'User' }}'s Profile"
-                  class="w-full h-full object-cover" />
-              @else
-                <img src="https://via.placeholder.com/150" alt="Default Profile"
-                  class="w-full h-full object-cover" />
-              @endif
-            </div>
-          </div>
-          <!-- QR Code -->
-          <div class="w-24 h-24 bg-white p-2 rounded-xl shadow-md transform hover:rotate-3 transition-transform duration-300">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ route('vCard.scan', ['slug' => $vcard->slug]) }}"
-              alt="QR Code" class="w-full h-full" />
-          </div>
-        </div>
-      </div>
+        @if ($vcard->is_active == 1)
+    <section class="flex items-center justify-center p-4">
+        <div id="my-vcard"
+            class="flex flex-col md:flex-row w-full max-w-xl overflow-hidden bg-white border border-gray-200 rounded-lg shadow-lg">
 
-      <!-- Business Listing Button: Displayed Only When Listings Exist -->
-      @if($businessListings->isNotEmpty())
-        <div class="border-t border-gray-100 p-3">
-          <a href="{{ route('vCard.business-listing-register') }}"
-             class="flex items-center justify-center space-x-2 bg-gradient-to-r from-indigo-500 to-indigo-600 text-white hover:from-indigo-600 hover:to-indigo-700 p-3 rounded-lg transition-colors">
-            <i class="bx bx-link-external"></i>
-            <span>व्यवसाय देखे</span>
-          </a>
+            <!-- Profile & QR (Upar in Mobile, Left in Desktop) -->
+            <div class="flex flex-col items-center justify-center w-full md:w-1/3 p-6 text-center bg-gradient-to-r from-indigo-500 to-purple-500"
+                style="background:{{ $vcard->color_code ?? 'black' }}">
+                <div class="w-24 h-24 md:w-32 md:h-32 overflow-hidden border-4 border-white rounded-full shadow-lg">
+                    <img src="{{ $user->profile ? Storage::url($user->profile) : 'https://via.placeholder.com/150' }}"
+                        alt="{{ $user->name ?? 'User' }}'s Profile" class="object-cover w-full h-full">
+                </div>
+                <h2 class="mt-3 text-lg md:text-xl font-semibold text-white">{{ ucfirst($user->name ?? 'User') }}
+                    {{ ucfirst($user->surname ?? '') }}</h2>
+                <p class="text-sm text-white opacity-80">+91-{{ $user->phone ?? 'Category' }}</p>
+
+                <!-- QR Code -->
+                <div class="w-20 h-20 md:w-24 md:h-24 p-2 mt-4 bg-gray-100 rounded-lg shadow-md">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ route('vCard.scan', ['slug' => $vcard->slug]) }}"
+                        alt="QR Code" class="w-full h-full">
+                </div>
+            </div>
+
+            <!-- Contact & Social (Neeche in Mobile, Right in Desktop) -->
+            <div class="flex flex-col justify-between w-full md:w-2/3 p-6">
+
+                <!-- Contact Details -->
+                <div class="space-y-3">
+                    @if (!empty($user->name))
+                        <div class="flex items-center space-x-3">
+                            <div><i class="text-lg md:text-xl text-blue-500 bx bxs-user"></i></div>
+                            <div>
+                                <span class="text-gray-500 mtdclass">नाम(Name)</span>
+
+                                <span class="text-gray-800 font-semibold"> {{ ucfirst($user->name ?? '') }} {{ ucfirst($user->surname ?? '') }}</span>
+                            </div>
+                        </div>
+                    @endif
+
+                    @if (!empty($user->email))
+                        <div class="flex items-center space-x-3">
+                            <div><i class="text-lg md:text-xl text-indigo-500 bx bxs-envelope"></i></div>
+                            <div>
+                                <span class="text-gray-500 mtdclass"> ईमेल (Email):</span>
+                                <span class="text-gray-800 font-semibold">{{ $user->email }}</span>
+                            </div>
+                        </div>
+                    @endif
+
+                    @if (!empty($user->phone))
+                        <div class="flex items-center space-x-3">
+                            <div><i class="text-lg md:text-xl text-green-500 bx bxs-phone"></i></div>
+                            <div>
+                                <span class="text-gray-500 mtdclass">फ़ोन (Phone):</span>
+                                <span class="text-gray-800 font-semibold">{{ $user->phone }}</span>
+                            </div>
+                        </div>
+                    @endif
+
+                    @if (!empty($user->address))
+                        <div class="flex items-center space-x-3">
+                            <div><i class="text-lg md:text-xl text-red-500 bx bxs-map"></i></div>
+                            <div>
+                                <span class="text-gray-500 mtdclass">पता (Address):</span>
+                                @if (!empty($user->address) && array_filter([
+                                    $user->address->house_number ?? '',
+                                    $user->address->street ?? '',
+                                    $user->address->area_name ?? '',
+                                    $user->address->city_name ?? '',
+                                    $user->address->postal_code ?? '',
+                                    $user->address->country ?? '',
+                                    $user->address->state ?? ''
+                                ]))                                            <span class="text-gray-800 font-semibold">
+                                                {{ implode(', ', array_filter([
+                                                    $user->address->house_number ?? '',
+                                                    $user->address->street ?? '',
+                                                    $user->address->area_name ?? '',
+                                                    $user->address->city_name ?? '',
+                                                    $user->address->state ?? '',
+                                                    $user->address->country ?? '',
+                                                    $user->address->postal_code ?? ''
+                                                ])) }}
+                                            </span>
+
+                                @endif
+
+                            </div>
+                        </div>
+                    @endif
+                </div>
+
+
+
+                <!-- Social Media -->
+                @if (!empty($vcard->dynamicFields))
+                    <div>
+                        <hr>
+                        <h3 class="font-semibold text-gray-800 text-md">सोशल मीडिया</h3>
+                        <div class="social-icones flex space-x-3">
+                            @foreach ($vcard->dynamicFields as $social)
+                                @php $socialData = $social->data; @endphp
+                                @if (!empty($socialData))
+                                    <div class="social-icon">
+                                        <a href="{{ filter_var($socialData, FILTER_VALIDATE_URL) ? $socialData : '#' }}"
+                                            target="_blank" class="text-gray-700 hover:text-blue-500 transition">
+                                            <i class="{{ $social->icon ?? 'bx bx-link' }} text-2xl"></i>
+                                        </a>
+                                    </div>
+                                @endif
+                            @endforeach
+                        </div>
+
+                        <hr class="mt-2">
+                        <p class="mt-2 text-sm text-center linkx">{{ url()->current() }}</p>
+                    </div>
+                @endif
+            </div>
         </div>
-      @endif
-      
+    </section>
+    @endif
+    <div class="text-center">
+    @if ($vcard->is_active != 1)
+    <span class="text-center text-red-500"> {{$user->name}} {{$user->surname??''}}   का कार्ड स्वीकृति की प्रक्रिया में है।</span>
+    @endif
     </div>
-  </div>
+
+    <!-- Share Function -->
+    <script>
+        function shareVCard() {
+            const shareData = {
+                title: "{{ $user->name ?? 'VCard' }}",
+                text: " ",
+                url: "{{ route('vCard.view', ['city_arr' => $city_arr, 'slug' => $vcard->slug]) }}"
+            };
+
+            if (navigator.share) {
+                navigator.share(shareData)
+                    .then(() => console.log("Shared successfully!"))
+                    .catch(error => console.error("Sharing failed:", error));
+            } else {
+                alert("Sharing is not supported on this device.");
+            }
+        }
+    </script>
+
 </body>
+
 </html>
