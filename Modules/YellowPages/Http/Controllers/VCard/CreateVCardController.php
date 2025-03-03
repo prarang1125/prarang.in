@@ -342,10 +342,8 @@ class CreateVCardController extends Controller
             abort(404, 'vCard not found.');
         }
 
-        // Increment the scan_count column
         $count =$vcard->increment('scan_count');
         return redirect()->route('vCard.view', ['slug' => $vcard->slug,'city_arr'=>$vcard->city->city_arr]);
-        // Load the user with their address using the hasOne relationship.
         $user = User::with('address')->find($vcard->user_id);
         if (!$user) {
             abort(404, 'User not found.');
