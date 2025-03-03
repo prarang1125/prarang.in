@@ -4,6 +4,7 @@ namespace App\Livewire\YellowPages\Elements;
 
 use App\Models\City;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Livewire\Component;
 use Illuminate\Support\Str;
@@ -76,6 +77,8 @@ class NewAccounts extends Component
         $this->cities = City::all();
         session()->flash('success', 'आपका अकाउंट बनाया गया है।');
         $this->loading = false;
+        Auth::login($user);
+
         $this->shareUrl = route('vCard.view',['city_arr'=> Str::slug($city->city_arr),'slug'=>$user->user_code]);
         return redirect($this->shareUrl);
 
