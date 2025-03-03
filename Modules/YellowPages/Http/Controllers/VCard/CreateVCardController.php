@@ -335,6 +335,7 @@ class CreateVCardController extends Controller
             ->where('is_active', 1)
             ->orderBy('id', 'desc')
             ->with('dynamicFields')
+            ->with('city')
             ->first();
 
         if (!$vcard) {
