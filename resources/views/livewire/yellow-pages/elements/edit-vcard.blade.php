@@ -1,67 +1,37 @@
 <div class="row g-4">
     <style>
-.card-body .position-absolute label{
- text-shadow:rgb(255, 255, 255) 0px 1px 1px, rgb(255, 255, 255) 0px -1px 1px, rgb(255, 255, 255) 1px 0px 1px, rgb(255, 255, 255) -1px 0px 1px;
-}
-/* Dropdown item */
-.card-body li .dropdown-item{
- cursor:pointer;
+        /* Flex */
+.card-body div .d-flex{
+ flex-direction:row;
+ align-items:center;
 }
 
-/* Dropdown item (hover) */
-.card-body li .dropdown-item:hover{
- font-weight:500;
- background-color:#f3e7e7;
-}
-/* Link */
-.card-body .d-flex a{
- transform:translatex(0px) translatey(12px);
-}
-
-/* Italic Tag */
-.card-body .text-danger .bx{
- font-size:17px;
-}
-
-/* Italic Tag */
-.card-body .text-danger .bx{
- cursor:progress;
-}
-
-/* Italic Tag */
-.card-body .text-danger .bx{
+/* Paragraph */
+.card-body .d-flex p{
  position:relative;
- top:-2px;
- left:-1px;
+ top:7px;
+ padding-top:17px !important;
 }
-/* Button */
-.card-body form .btn-secondary{
- font-size:13px;
+
+/* Label */
+.card-body .d-flex label{
+ min-height:20px;
+}
+
+/* Input */
+.card-body div input[type=URL]{
  margin-top:4px;
 }
 
-
-/* Column 6/12 */
-.card-body form .col-md-6{
- margin-bottom:4px;
+/* Italic Tag */
+.card-body .text-danger i{
+ top:2px !important;
 }
 
-/* Form label */
-.container form .row .col-md-6 .form-label{
- margin-bottom:0px;
- font-weight:600;
+/* Italic Tag */
+.wrapper .page-wrapper .container .row .col-sm-6 .card .card-body .container form div .d-flex .text-danger i{
+ bottom:auto !important;
 }
-
-/* Label */
-.container form .row .col-md-12 label{
- margin-bottom:0px;
-}
-
-/* Label */
-.container form .row .col-md-12 label{
- font-weight:600;
-}
-
 
 
     </style>
@@ -203,7 +173,7 @@
                                         <input type="{{ $field['type'] }}" id="field_{{ $field['id'] }}" placeholder="{{ $field['name'] }} दर्ज करें" class="form-control"
                                                wire:model="dynamicFields.{{ $index }}.value">
                                     </div>
-                                    <a class="p-2 text-danger " wire:click="removeField({{ $index }})"><i class="bx bx-trash"></i></a>
+                                    <p class="p-2 text-danger " wire:click="removeField({{ $index }})"><i class="bx bx-trash"></i></p>
                                 </div>
                             @endforeach
                         </div>
@@ -217,9 +187,9 @@
                                     @foreach ($options as $option)
                                         @unless(collect($dynamicFields)->pluck('id')->contains($option['id']))
                                             <li>
-                                                <a class="dropdown-item" wire:click="addField({{ $option['id'] }})">
+                                                <p class="dropdown-item" wire:click="addField({{ $option['id'] }})">
                                                     {{ $option['name'] }}
-                                                </a>
+                                                </p>
                                             </li>
                                         @endunless
                                     @endforeach
@@ -241,3 +211,4 @@
     </div>
     <div class="col-sm-3"></div>
 </div>
+

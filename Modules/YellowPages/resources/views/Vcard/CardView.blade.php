@@ -269,8 +269,7 @@
                 <a href="https://www.prarang.in" target="_blank">
                     <img src="{{ asset('assets/images/logo/yellow_logo.png') }}" alt="Prarang Logo" class="w-48">
                 </a>
-
-            </div>
+        </div>
 
         </section>    </section>
         <div class="flex items-center justify-center">
@@ -388,7 +387,7 @@
                         </div>
 
                         <hr class="mt-2">
-                        <p class="mt-2 text-sm text-center linkx">{{ url()->current() }}</p>
+                        <p class="mt-2 text-sm text-center linkx">{{ route('vCard.view',['city_arr'=>$user->city->city_arr,'slug'=>$vcard->slug]) }}</p>
                     </div>
                 @endif
 
@@ -404,7 +403,8 @@
     <section class="flex flex-wrap">
         <div class="w-full sm:w-1/4"></div>
         <div class="w-full text-right sm:w-1/2">
-            {{-- <button class="px-4 py-2 mt-4 text-white bg-red-500 rounded-lg hover:bg-red-600"><i class="bx bx-window"></i> अपने व्यवसाय जोड़े </button> --}}
+            <button>वापस</button>
+            <button class="px-4 py-2 mt-4 text-white bg-red-500 rounded-lg hover:bg-red-600"><i class="bx bx-window"></i> अपने व्यवसाय जोड़े </button>
 
             <button onclick="shareVCard()" class="px-4 py-2 mt-4 text-white bg-green-500 rounded-lg hover:bg-green-600"><i class="bx bx-share-alt"></i> साझा करे </button>
             <a target="_blank" class="px-4 py-2 mt-4 text-white bg-blue-500 rounded-lg hover:bg-blue-600" href="{{ route('vCard.vcardPrint', ['city_arr' => $city_arr, 'slug' => $vcard->slug]) }}"><i class="bx bx-printer"></i>कार्ड छापे</a>

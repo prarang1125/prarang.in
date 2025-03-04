@@ -77,9 +77,7 @@ class EditVcard extends Component
         } else {
             $this->existingFields = [];
         }
-
-        // Ensure IDs 1 and 2 exist in dynamicFields
-        $requiredIds = [6, 9];
+        $requiredIds = [6];
 
         foreach ($requiredIds as $id) {
             if (!isset($this->dynamicFields[$id])) {
@@ -93,7 +91,6 @@ class EditVcard extends Component
             }
         }
 
-        // Reset array keys
         $this->dynamicFields = array_values($this->dynamicFields);
 
     }

@@ -566,8 +566,8 @@ body{
 
             <div class="d-flex">
                 <a type="button" class=" btn btn-primary text-light"
-                        onclick="window.location.href='{{ route('yp.login') }}'">
-                   <small class="text-muted">अपनी तस्वीर और पता जोड़े। </small>
+                        onclick="window.location.href='{{ route('vCard.createCard') }}'">
+                   <small class="text-muted">अपनी तस्वीर और पता जोड़े।</small>
                 </a>
             </div>
 

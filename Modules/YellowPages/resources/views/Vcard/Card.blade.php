@@ -88,6 +88,71 @@
  background-color:rgba(255,255,255,0);
 }
 
+
+.card-body .position-absolute label{
+ text-shadow:rgb(255, 255, 255) 0px 1px 1px, rgb(255, 255, 255) 0px -1px 1px, rgb(255, 255, 255) 1px 0px 1px, rgb(255, 255, 255) -1px 0px 1px;
+}
+/* Dropdown item */
+.card-body li .dropdown-item{
+ cursor:pointer;
+}
+
+/* Dropdown item (hover) */
+.card-body li .dropdown-item:hover{
+ font-weight:500;
+ background-color:#f3e7e7;
+}
+/* Link */
+.card-body .d-flex a{
+ transform:translatex(0px) translatey(12px);
+}
+
+/* Italic Tag */
+.card-body .text-danger .bx{
+ font-size:17px;
+}
+
+/* Italic Tag */
+.card-body .text-danger .bx{
+ cursor:progress;
+}
+
+/* Italic Tag */
+.card-body .text-danger .bx{
+ position:relative;
+ top:-2px;
+ left:-1px;
+}
+/* Button */
+.card-body form .btn-secondary{
+ font-size:13px;
+ margin-top:4px;
+}
+
+
+/* Column 6/12 */
+.card-body form .col-md-6{
+ margin-bottom:4px;
+}
+
+/* Form label */
+.container form .row .col-md-6 .form-label{
+ margin-bottom:0px;
+ font-weight:600;
+}
+
+/* Label */
+.container form .row .col-md-12 label{
+ margin-bottom:0px;
+}
+
+/* Label */
+.container form .row .col-md-12 label{
+ font-weight:600;
+}
+
+
+
     </style>
     <div class="container my-5">
         @livewire('yellow-pages.elements.edit-vcard')
