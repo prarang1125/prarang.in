@@ -402,14 +402,14 @@ class CreateVCardController extends Controller
     public function cardView($city_arr, $slug)
     {
 
-        $vcard = User::select('users.*')
+        $vcard = User::select('users.*','cities.*','users.name as name')
         ->join('cities', 'cities.id', '=', 'users.city_id')
-        ->leftJoin('address', 'address.user_id', '=', 'users.id') // Optional if address exists
+        ->leftJoin('address', 'address.user_id', '=', 'users.id')
         ->where('cities.city_arr', $city_arr)
         ->where('users.user_code', $slug)
         ->with('address')
         ->firstOrFail();
-
+        // dd($vcard);
         return view('yellowpages::Vcard.newCard', compact( 'vcard'));
     }
 

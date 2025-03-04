@@ -96,7 +96,7 @@ class EditVcard extends Component
     }
     public function updatedPhoto()
     {
-
+        $this->validate(['photo' => 'max:200']);
         $this->uploadProfile();
     }
     public function uploadProfile()

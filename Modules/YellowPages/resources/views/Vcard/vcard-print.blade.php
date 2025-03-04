@@ -4,630 +4,439 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-
-    <!-- Bootstrap CSS -->
-    <link href="https://unpkg.com/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>{{ $user->name }}_my_vcard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
-
     <style>
         .a4-page {
-            width: 138mm;
-            /* A4 width */
-            /* min-height: 297mm; */
-            /* A4 height */
-            background-color: #ffffff;
-            margin: 20px auto;
-            padding: 10px;
+            width: 210mm;
+            height: 297mm;
+            background: #f8f9fa;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .card-x {
+            width: 100%;
+            height: 54mm;
+            /* border: 1px solid #c6bdbd; */
+            /* background: white; */
+            /* padding: 10px; */
+            /* display: flex; */
+            /* align-items: center; */
+            /* justify-content: space-between; */
             /* border-radius: 8px; */
-            /* Soft corners */
-            /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); */
-            /* Smooth shadow */
-            /* border: 1px solid #ddd; */
-            /* Light border */
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
         }
 
-        /* Text */
-        .max-w-xl .items-center .text-lg {
-            font-weight: 700;
-            font-size: 22px;
+        .profile-img {
+            width: 24mm;
+            height: 24mm;
+            border-radius: 50%;
+            border: 2px solid #000;
         }
 
-        /* Linkx */
-        .linkx {
-            font-weight: 700;
-            margin-top: 0px !important;
+        .qr-code {
+            width: 50px;
+            height: 50px;
         }
 
-        /* Paragraph */
-        .justify-between div p {
-            font-size: 13px;
-            text-shadow: none !important;
+        .name-sec {
+            max-height: 10mm !important;
         }
 
 
 
-        .max-w-xl .flex-col h2.font-semibold {
-            text-shadow: rgb(0, 0, 0) 0px 1px 1px, rgb(0, 0, 0) 0px -1px 1px, rgb(0, 0, 0) 1px 0px 1px, rgb(0, 0, 0) -1px 0px 1px;
+
+        .a4-page .card-x {
+            display: grid;
+            grid-template-columns: 35% 65% !important;
         }
 
-        /* Paragraph */
-        .max-w-xl .flex-col p {
-            text-shadow: rgb(0, 0, 0) 0px 1px 1px, rgb(0, 0, 0) 0px -1px 1px, rgb(0, 0, 0) 1px 0px 1px, rgb(0, 0, 0) -1px 0px 1px;
+        /* Column 4/12 */
+        .a4-page .card-x .card-col-4 {
+            /* min-height:54mm; */
+            max-height: 54mm;
+            background-color: #3f2020;
         }
 
-        /* Social icones */
-        .justify-between div .social-icones {
+        /* Column 8/12 */
+        .a4-page .card-x .card-col-8 {
+            padding-left: 2mm;
+            padding-top: 2mm;
+
+        }
+
+        /* Column 4/12 */
+        .a4-page .card-x .card-col-4 {
+            /* height:204px; */
+            min-height: 60mm;
+            max-height: 60mm;
             display: flex;
-            flex-direction: row;
-            justify-content: flex-start;
-            align-items: center;
-            margin-top: 6px;
-        }
-
-        /* Italic Tag */
-        .justify-between a i {
-            display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            padding-left: 5px;
-            padding-right: 5px;
-            padding-top: 5px;
-            padding-bottom: 5px;
-            border-style: solid;
-            border-width: 1px;
-            border-color: #412929;
-            margin-right: 12px;
-            border-top-left-radius: 50%;
-            border-top-right-radius: 50%;
-            border-bottom-left-radius: 50%;
-            border-bottom-right-radius: 50%;
+        }
+
+        /* Name sec */
+        .a4-page .card-x .name-sec {
+            line-height: 1em;
+            font-weight: 500;
+            text-transform: capitalize;
+            text-shadow: rgb(0, 0, 0) 0px 1px 1px, rgb(0, 0, 0) 0px -1px 1px, rgb(0, 0, 0) 1px 0px 1px, rgb(0, 0, 0) -1px 0px 1px;
+            color: #ffffff;
+            letter-spacing: -0.1px;
+            word-spacing: -1.9px;
+            text-align: center;
+        }
+
+        /* Heading */
+        .a4-page .name-sec h6 {
+            margin-bottom: 0px;
         }
 
         /* Paragraph */
-        .justify-between div p {
-            margin-top: 7px !important;
-        }
-
-        @media print {
-            body * {
-                visibility: hidden;
-            }
-
-            #my-vcard,
-            #my-vcard * {
-                visibility: visible;
-            }
-
-        }
-
-        .flex-wrap .w-full {
-            padding-right: 2px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            transform: translatex(0px) translatey(0px);
-        }
-
-        /* Italic Tag */
-        .social-icon .transition i {
-            height: 35px;
-        }
-
-        /* Items center */
-        .justify-between .space-y-3 .items-center {
-            flex-direction: row;
-            margin-top: -1px;
+        .a4-page .name-sec p {
+            font-size: 12px;
+            font-weight: 400;
         }
 
         /* Division */
-        .space-y-3 .items-center div {
-            display: flex;
-            flex-direction: column;
+        .a4-page .card-x .card-col-4 div {
+            margin-bottom: 5px;
         }
 
-        /* Font semibold */
-        .space-y-3 div .font-semibold {
-            padding-top: -13px;
+
+        /* Maing */
+        .a4-page .topx .maing {
+            display: flex;
+            align-items: center;
+        }
+
+        /* Valuex */
+        .topx .maing .valuex {
+            display: flex;
+            flex-direction: column;
+            padding-left: 8px;
+            line-height: 0.9em;
+        }
+
+        /* Text muted */
+        .maing .valuex .text-muted {
+            font-size: 3mm;
+        }
+
+        /* Valued */
+        .maing .valuex .valued {
+            font-size: 4mm;
+            font-weight: 600;
+        }
+
+
+        /* Maing */
+        .a4-page .topx .maing {
+            margin-bottom: 6px;
+        }
+
+        /* Maing */
+        .a4-page .midx .maing {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            padding-top: 4px;
+        }
+
+        /* Valuex */
+        .midx .maing .valuex {
+            display: flex;
+            flex-direction: column;
+            padding-left: 8px;
+        }
+
+        /* Valued */
+        .midx .maing .valued {
+            font-size: 12px;
+        }
+
+
+        /* Bottomx */
+        .a4-page .card-x .bottomx {
+            font-size: 12px;
+            padding-top: 6px;
+        }
+
+        /* Maing */
+        .a4-page .midx .maing {
+            min-height: 46px;
+        }
+
+        /* Valued */
+        .topx .maing .valued {
+            font-size: 14px;
+        }
+
+        /* Maing */
+        .a4-page .topx .maing {
+            margin-bottom: 4px;
+        }
+
+        /* Maing */
+        .a4-page .midx .maing {
+            padding-top: 0px;
+        }
+
+        /* Page */
+        .a4-page {
+            padding-right: 0px;
+            padding-left: 0px;
+        }
+
+        /* Column 8/12 */
+        .a4-page .card-x .card-col-8 {
+            padding-right: 7px;
+        }
+
+        /* Bottomx */
+        .a4-page .card-x .bottomx {
+            padding-bottom: 3px;
+        }
+
+        /* Link */
+        .a4-page .card-x a {
             position: relative;
             top: -1px;
         }
 
-        /* Mtdclass */
-        .space-y-3 div .mtdclass {
-            font-size: 12px;
+
+        /* Link */
+        .a4-page .card-x a {
+            text-decoration: none;
         }
 
-        /* Font semibold */
-        .space-y-3 div .font-semibold {
-            top: -3px;
+
+
+        /* Bottomx */
+        .a4-page .card-x .bottomx {
+            border-top-style: solid;
+            padding-top: 0px;
+            margin-top: 3px;
+            position: relative;
+            top: 2px;
         }
 
-        /* Heading */
-        .justify-between div h3 {
-            margin-top: 6px;
+        /* Bottomx */
+        .a4-page .card-x .card-col-8 .bottomx {
+            border-top-width: 0.2px !important;
         }
 
-        /* Italic Tag */
-        .justify-between div .bx {
-            font-size: 18px !important;
-            font-weight: 600 !important;
-            width: 25px;
-            height: 25px;
+        /* Column 8/12 */
+        .a4-page .card-x .card-col-8 {
+            padding-top: 10px;
+            height: 200px;
+        }
+
+        /* Card */
+        .a4-page .card-x {
+            height: 201px;
+        }
+
+        /* Topx */
+        .a4-page .card-x .topx {
+            padding-left: 4px;
+        }
+
+        /* Profile img */
+        .a4-page div .profile-img {
+            border-color: #ffffff;
+        }
+
+        /* Link */
+        .a4-page .card-x a {
+            color: #000000;
+        }
+
+        /* Bottomx */
+        .a4-page .card-x .bottomx {
+            text-align: center;
+        }
+
+        /* Division */
+        .a4-page .card-x .card-col-4 div {
+            width: 133px;
+            height: 103px;
+            display: inline-block;
+            transform: translatex(0px) translatey(0px) !important;
+        }
+
+        /* Profile img */
+        .a4-page div .profile-img {
             margin-right: 0px;
+            width: 120px;
+            height: 120px;
+            margin-left: 6px;
         }
 
-        /* Youtube */
-        .justify-center #my-vcard .justify-between div .flex .social-icon .transition .bxl-youtube {
-            width: 25px !important;
-            height: 25px !important;
-        }
-
-        /* Heading */
-        .justify-between div h3 {
-            font-size: 12px;
-            font-weight: 700;
-            color: #5c6065;
-            font-style: normal;
-        }
-
-        /* Justify center */
-        .justify-center .justify-center {
-            padding-left: 0px;
-            padding-right: 0px;
-            padding-top: 0px;
-            padding-bottom: 0px;
+        /* Light */
+        .a4-page .card-x .bg-light {
+            width: 75px !important;
+            height: 73px !important;
+            margin-top: 26px !important;
+            display: flex !important;
+            transform: translatex(0px) translatey(0px) !important;
+            justify-content: center;
+            align-items: center;
         }
 
         /* Image */
-        .justify-center a img {
-            font-size: 24px;
+        .a4-page .card-x .card-col-4 .bg-light img {
+            width: 60px !important;
+            height: 60px;
         }
 
-        /* Image */
-        .justify-center .justify-center .w-full a img {
-            width: 340px !important;
-        }
-
-        /* Justify center */
-        .justify-center {
-            margin-top: 1px;
-            padding-top: 0px;
-        }
-
-        /* Import Google Fonts */
-        @import url("//fonts.googleapis.com/css2?family=TimesNewRoman:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
-
-        /* Justify center */
-        .justify-center {
-            padding-top: 2px !important;
-        }
-
-        /* Heading */
-        .justify-center h4 {
-            font-weight: 700;
-            font-family: 'TimesNewRoman', 'Times New Roman', Times, Baskerville, Georgia, serif;
-            font-size: 16px;
-        }
-
-        /* Text white */
-        .flex-wrap .w-full .text-white {
-            margin-right: 16px;
-        }
-
-
-        @media (max-width:576px) {
-
-            /* Image */
-            .justify-center .justify-center .w-full a img {
-                width: 164px !important;
-            }
-
-            /* Justify center */
-            #my-vcard .justify-center {
-                padding-bottom: 9px;
-                transform: translatex(0px) translatey(0px);
-                padding-top: 13px !important;
-            }
-
-            /* Justify center */
-            .justify-center #my-vcard .justify-center {
-                width: 100% !important;
-            }
-
-            /* Image */
-            .justify-center #my-vcard .justify-center .overflow-hidden img {
-                width: 115% !important;
-            }
-
-            /* Overflow hidden */
-            #my-vcard .justify-center .overflow-hidden {
-                width: 130px;
-                height: 130px;
-            }
-
-        }
-
-        /* Justify between */
-        #my-vcard .justify-between {
+        /* Column 4/12 */
+        .a4-page .card-x .card-col-4 {
             transform: translatex(0px) translatey(0px);
-            padding-top: 27px;
-        }
-
-        /* Paragraph */
-        #my-vcard .justify-between p {
-            text-shadow: none;
-            font-weight: 500;
-        }
-
-        /* Font semibold */
-        #my-vcard .justify-center .font-semibold {
-            padding-top: 6px;
         }
 
 
         @media print {
-            body {
+            body * {
+                visibility: hidden;
                 -webkit-print-color-adjust: exact !important;
                 print-color-adjust: exact !important;
+            }
+
+
+            .a4-page,
+            .a4-page * {
+                visibility: visible;
             }
 
             .a4-page {
-                background: inherit !important;
-                -webkit-print-color-adjust: exact !important;
-                print-color-adjust: exact !important;
+                position: absolute;
+                left: 0;
+                top: 0;
             }
 
-            /* बाकी सब कुछ ब्लैक एंड व्हाइट */
-            /* body *:not(#my-vcard) {
-            filter: grayscale(100%);
-        } */
+            .a4-page .card-x .card-col-4 {
+                /* min-height:54mm; */
+                max-height: 54mm;
+                background-color: #3f2020;
+            }
         }
 
-        /* Container */
-        .container {
+        /* Column 8/12 */
+        .a4-page .card-x .card-col-8 {
+            padding-top: 6px;
             transform: translatex(0px) translatey(0px);
+            display: inline-block;
         }
 
-        /* Font semibold */
-        #my-vcard .justify-center .font-semibold {
-            font-size: 16px;
+        /* Column 8/12 */
+        .a4-page .card-x .card-col-8 {
+            min-height: 227px;
+            transform: translatex(0px) translatey(0px);
+            background-color: #ffffff;
+            padding-top: 18px;
+            display: inline-block;
         }
 
-        /* Text */
-        #my-vcard .justify-center .text-sm {
-            font-size: 12px;
+        /* Text muted */
+        .a4-page .midx .text-muted {
+            margin-top: 6px;
         }
-
-        /* Justify between */
-        #my-vcard .justify-between {
-            height: 249px;
-            padding-top: 2px;
-        }
-
-        /* Items center */
-        #my-vcard .space-y-3 .items-center {
-            margin-top: 0px;
-        }
-
-        /* Font semibold */
-        #my-vcard .space-y-3 .font-semibold {
-            font-size: 14px;
-        }
-
-        /* Flex */
-        #my-vcard div .flex {
-            margin-top: 0px;
-        }
-
-        /* Section */
-        .a4-page section {
-            margin-top: 3px;
-        }
-
-        /* Vcard */
-        #my-vcard {
-            width: 576px;
-        }
-
-        /* Link */
-        #my-vcard div a {
-            min-width: -2px;
-            width: 20px;
-            height: 20px;
-        }
-
-        @media (min-width:577px) {
-
-            /* Overflow hidden */
-            #my-vcard .justify-center .overflow-hidden {
-                width: 80px;
-                height: 80px;
-            }
-
-        }
-
-        /* Overflow hidden */
-        #my-vcard .justify-center .overflow-hidden {
-            transform: translatex(0px) translatey(11px);
-        }
-
-        /* Shadow */
-        #my-vcard .justify-center .shadow-md {
-            width: 84px;
-            height: 81px;
-        }
-
-        /* Vcard */
-        #my-vcard {
-            height: 270px;
-        }
-
-        /* Paragraph */
-        #my-vcard .justify-between p {
-            font-weight: 400;
-            font-size: 12px;
-            margin-top: 0px !important;
-        }
-
-        @media (min-width:577px) {
-
-            /* Justify center */
-            #my-vcard .justify-center {
-                transform: translatex(0px) translatey(0px);
-            }
-
-        }
-
-        #my-vcard .justify-between {
-            padding-top: 26px;
-        }
-        /* Social icon */
-#my-vcard div .social-icon{
- font-size:14px;
- font-weight:600;
-}
-
-/* Heading */
-#my-vcard div h3{
- font-size:15px;
-}
-/* Font semibold */
-#my-vcard .items-center div .font-semibold{
- display:flex;
- justify-content:center;
- align-items:center;
- font-size:14px;
-}
-
-/* Mtdclass */
-#my-vcard div .mtdclass{
- font-size:12px;
-}
-
-/* Heading */
-#my-vcard .justify-center h2{
- padding-top:11px !important;
-}
-
-/* Shadow */
-#my-vcard .justify-center .shadow-md{
- width:100px;
- min-height:1px;
- height:100px;
-}
-
-@media (min-width:577px){
-
- /* Overflow hidden */
- #my-vcard .justify-center .overflow-hidden{
-  width:120px;
-  height:120px;
- }
-
-}
-/* Vcard */
-#my-vcard{
- height:234px;
- width:498px;
-}
-
-/* Justify between */
-#my-vcard .justify-between{
- padding-top:17px;
-}
-
-/* Social icon */
-#my-vcard div .social-icon{
- font-size:12px;
-}
-
-
-
     </style>
 </head>
 
 <body>
+    <a href="{{ url()->previous() }}" class="m-3 btn btn-primary"><i class="bx bx-arrow-back"></i></a>
+    <button onclick="window.print()" class="m-3 btn btn-primary">Print</button>
 
-    <section class="container-xl">
-        <button class="px-4 py-2 mt-4 text-white bg-blue-500 rounded-lg hover:bg-blue-600"
-            onclick="window.print()">Print</button>
-        <div class="a4-page">
-            <div class="row">
-                <div class="col-6">
-                    <section class="">
-                        <div id="my-vcard"
-                            class="flex flex-col md:flex-row w-full max-w-xl overflow-hidden bg-white border border-gray-200 rounded-lg shadow-lg">
+    <div class="a4-page">
+        @for ($i = 0; $i < 8; $i++)
+            <div class="card-x">
+                <div class="card-col-4">
+                    <div><img class="profile-img"
+                            src="{{ $user->profile ? Storage::url($user->profile) : 'https://via.placeholder.com/150' }}"
+                            alt=""></div>
 
-                            <!-- Profile & QR (Upar in Mobile, Left in Desktop) -->
-                            <div class="flex flex-col items-center justify-center w-full md:w-1/3 p-6 text-center bg-gradient-to-r from-indigo-500 to-purple-500"
-                                style="background:{{ $vcard->color_code ?? 'black' }}">
-                                <div
-                                    class="w-24 h-24 md:w-32 md:h-32 overflow-hidden border-4 border-white rounded-full shadow-lg">
-                                    <img src="{{ $user->profile ? Storage::url($user->profile) : 'https://via.placeholder.com/150' }}"
-                                        alt="{{ $user->name ?? 'User' }}'s Profile" class="object-cover w-full h-full">
-                                </div>
-                                <h2 class="mt-3 text-lg md:text-xl font-semibold text-white">
-                                    {{ ucfirst($user->name ?? 'User') }}
-                                    {{ ucfirst($user->surname ?? '') }}</h2>
-                                <p class="text-sm text-white opacity-80">+91-{{ $user->phone ?? 'Category' }}</p>
-
-                                <!-- QR Code -->
-                                {{-- <div class="w-20 h-20 md:w-24 md:h-24 p-2 mt-4 bg-gray-100 rounded-lg shadow-md">
-                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ route('vCard.scan', ['slug' => $vcard->slug]) }}"
-                                        alt="QR Code" class="w-full h-full">
-                                </div> --}}
-                            </div>
-
-                            <!-- Contact & Social (Neeche in Mobile, Right in Desktop) -->
-                            <div class="flex flex-col justify-between w-full md:w-2/3 p-6">
-
-                                <!-- Contact Details -->
-                                <div class="space-y-3">
-                                    @if (!empty($user->name))
-                                        <div class="flex items-center space-x-3">
-                                            <div><i class="text-lg md:text-xl text-blue-500 bx bxs-user"></i></div>
-                                            <div>
-                                                <span class="text-gray-500 mtdclass">नाम(Name)</span>
-
-                                                <span class="text-gray-800 font-semibold">
-                                                    {{ ucfirst($user->name ?? '') }}
-                                                    {{ ucfirst($user->surname ?? '') }}</span>
-                                            </div>
-                                        </div>
-                                    @endif
-
-                                    @if (!empty($user->email))
-                                        <div class="flex items-center space-x-3">
-                                            <div><i class="text-lg md:text-xl text-indigo-500 bx bxs-envelope"></i>
-                                            </div>
-                                            <div>
-                                                <span class="text-gray-500 mtdclass"> ईमेल (Email):</span>
-                                                <span class="text-gray-800 font-semibold">{{ $user->email }}</span>
-                                            </div>
-                                        </div>
-                                    @endif
-
-                                    @if (!empty($user->phone))
-                                        <div class="flex items-center space-x-3">
-                                            <div><i class="text-lg md:text-xl text-green-500 bx bxs-phone"></i></div>
-                                            <div>
-                                                <span class="text-gray-500 mtdclass">फ़ोन (Phone):</span>
-                                                <span class="text-gray-800 font-semibold">{{ $user->phone }}</span>
-                                            </div>
-                                        </div>
-                                    @endif
-
-
-                                </div>
-
-
-
-                                <!-- Social Media -->
-
-                                <hr class="mt-2">
-                                @if (!empty($user->address))
-                                <div class="flex items-center space-x-3">
-                                    <div><i class="text-lg md:text-xl text-red-500 bx bxs-map"></i></div>
-                                    <div>
-                                        <span class="text-gray-500 mtdclass">पता (Address):</span>
-                                        @if (
-                                            !empty($user->address) &&
-                                                array_filter([
-                                                    $user->address->house_number ?? '',
-                                                    $user->address->street ?? '',
-                                                    $user->address->area_name ?? '',
-                                                    $user->address->city_name ?? '',
-                                                    $user->address->postal_code ?? '',
-                                                    $user->address->country ?? '',
-                                                    $user->address->state ?? '',
-                                                ]))
-                                            <span class="text-gray-800 font-semibold">
-                                                {{ implode(
-                                                    ', ',
-                                                    array_filter([
-                                                        $user->address->house_number ?? '',
-                                                        $user->address->street ?? '',
-                                                        $user->address->area_name ?? '',
-                                                        $user->address->city_name ?? '',
-                                                        $user->address->state ?? '',
-                                                        $user->address->country ?? '',
-                                                        $user->address->postal_code ?? '',
-                                                    ]),
-                                                ) }}
-                                            </span>
-                                        @endif
-
-                                    </div>
-                                </div>
-                            @endif
-                            </div>
-                        </div>
-                    </section>
+                    <div class="p-2 mt-2 rounded bg-light">
+                        <img class="qr-code"
+                            src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ route('vCard.scan', ['slug' => $vcard->slug]) }}"
+                            alt="">
+                    </div>
                 </div>
-                <br>
-                <div class="col-6">
-                    <section class="">
-                        <div id="my-vcard"
-                            class="flex flex-col md:flex-row w-full max-w-xl overflow-hidden bg-white border border-gray-200 rounded-lg shadow-lg">
-
-                            <!-- Profile & QR (Upar in Mobile, Left in Desktop) -->
-                            <div class="flex flex-col items-center justify-center w-full md:w-1/3 p-6 text-center bg-gradient-to-r from-indigo-500 to-purple-500"
-                                style="background:{{ $vcard->color_code ?? 'black' }}">
-
-
-                                <!-- QR Code -->
-                                <div class="w-20 h-20 md:w-24 md:h-24 p-2 mt-4 bg-gray-100 rounded-lg shadow-md">
-                                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ route('vCard.scan', ['slug' => $vcard->slug]) }}"
-                                        alt="QR Code" class="w-full h-full">
+                <div class="card-col-8">
+                    <div class="topx">
+                        <div class="maing">
+                            <div class="iconex"> <i class="bx bxs-user"></i></div>
+                            <div class="valuex">
+                                <span class="slugs text-muted">Name:</span>
+                                <span class="valued">{{ ucfirst($user->name ?? '') }}
+                                    {{ ucfirst($user->surname ?? '') }}</span>
+                            </div>
+                        </div>
+                        <div class="maing">
+                            <div class="iconex"> <i class="bx bxs-phone"></i></div>
+                            <div class="valuex">
+                                <span class="slugs text-muted">Mobile:</span>
+                                <span class="valued">+91 {{ $user->phone }}</span>
+                            </div>
+                        </div>
+                        @if (!empty($user->email))
+                            <div class="maing">
+                                <div class="iconex"> <i class="bx bxs-envelope"></i></div>
+                                <div class="valuex">
+                                    <span class="slugs text-muted">Email:</span>
+                                    <span class="valued">{{ $user->email }}</span>
                                 </div>
                             </div>
+                        @endif
+                    </div>
 
-
-                            <div class="flex flex-col justify-between w-full md:w-2/3 p-6">
-                                @if (!empty($vcard->dynamicFields))
-                                    <div>
-
-                                        <h3 class="font-semibold text-gray-800 text-md">सोशल मीडिया</h3>
-                                        <div class="social-icons space-y-3"> <!-- space-x-3 हटाया और space-y-3 लगाया -->
-                                            @foreach ($vcard->dynamicFields as $social)
-                                                @php $socialData = $social->data; @endphp
-                                                @if (!empty($socialData))
-                                                    <div class="social-icon flex items-center space-x-2">
-                                                        <i class="{{ $social->icon ?? 'bx bx-link' }} text-2xl text-gray-700"></i>
-                                                        <a href="{{ filter_var($socialData, FILTER_VALIDATE_URL) ? $socialData : '#' }}"
-                                                            target="_blank"
-                                                            class="text-gray-700 hover:text-blue-500 transition">
-                                                            {{ $socialData }}
-                                                        </a>
-                                                    </div>
-                                                @endif
-                                            @endforeach
-                                        </div>
-
-
-                                    </div>
-                                @endif
-
-                                <hr class="mt-2">
-                                <p class="mt-2 text-sm text-center linkx">{{ url()->current() }}</p>
+                    @if (!empty($user->address))
+                        <div class="midx">
+                            <div class="maing">
+                                <div class="iconex"><i class="bx bxs-map"></i></div>
+                                <div class="valuex">
+                                    <span class="slugs text-muted">Address:</span>
+                                    @php
+                                        $addressParts = array_filter([
+                                            $user->address->house_number ?? '',
+                                            $user->address->street ?? '',
+                                            $user->address->area_name ?? '',
+                                            $user->address->city_name ?? '',
+                                            $user->address->state ?? '',
+                                            $user->address->country ?? '',
+                                            $user->address->postal_code ?? '',
+                                        ]);
+                                    @endphp
+                                    @if (!empty($addressParts))
+                                        <span class="valued">{{ implode(', ', $addressParts) }}</span>
+                                    @endif
+                                </div>
                             </div>
-
                         </div>
-                    </section>
+                    @endif
+
+
+                    <div class="bottomx">
+                        <a
+                            href="">{{ route('vCard.view', ['city_arr' => $user->city->city_arr, 'slug' => $vcard->slug]) }}</a>
+                    </div>
                 </div>
             </div>
+        @endfor
 
-        </div>
-    </section>
+    </div>
 
-
-    <!-- Bootstrap Bundle JS -->
-    <script src="https://unpkg.com/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            window.print();
+        });
     </script>
 
 </body>

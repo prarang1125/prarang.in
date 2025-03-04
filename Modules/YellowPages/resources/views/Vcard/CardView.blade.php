@@ -259,13 +259,24 @@
             filter: grayscale(100%);
         } */
     }
+    /* Italic Tag */
+.flex-wrap .w-full .bx{
+ padding-right:8px;
+}
+
+/* Font semibold */
+.space-y-3 div .font-semibold{
+ font-size:15px;
+}
+
+
 </style>
 
 <body class="bg-gray-100">
     <br>
     <section class="flex items-center justify-center">
         <section class="flex items-center justify-center p-4">
-            <div class="w-full md:w-1/2 p-2">
+            <div class="w-full p-2 md:w-1/2">
                 <a href="https://www.prarang.in" target="_blank">
                     <img src="{{ asset('assets/images/logo/yellow_logo.png') }}" alt="Prarang Logo" class="w-48">
                 </a>
@@ -277,92 +288,87 @@
         </div>
     <section class="flex items-center justify-center p-4">
         <div id="my-vcard"
-            class="flex flex-col md:flex-row w-full max-w-xl overflow-hidden bg-white border border-gray-200 rounded-lg shadow-lg">
+            class="flex flex-col w-full max-w-xl overflow-hidden bg-white border border-gray-200 rounded-lg shadow-lg md:flex-row">
 
             <!-- Profile & QR (Upar in Mobile, Left in Desktop) -->
-            <div class="flex flex-col items-center justify-center w-full md:w-1/3 p-6 text-center bg-gradient-to-r from-indigo-500 to-purple-500"
+            <div class="flex flex-col items-center justify-center w-full p-6 text-center md:w-1/3 bg-gradient-to-r from-indigo-500 to-purple-500"
                 style="background:{{ $vcard->color_code ?? 'black' }}">
-                <div class="w-24 h-24 md:w-32 md:h-32 overflow-hidden border-4 border-white rounded-full shadow-lg">
+                <div class="w-24 h-24 overflow-hidden border-4 border-white rounded-full shadow-lg md:w-32 md:h-32">
                     <img src="{{ $user->profile ? Storage::url($user->profile) : 'https://via.placeholder.com/150' }}"
                         alt="{{ $user->name ?? 'User' }}'s Profile" class="object-cover w-full h-full">
                 </div>
-                <h2 class="mt-3 text-lg md:text-xl font-semibold text-white">{{ ucfirst($user->name ?? 'User') }}
+                <h2 class="mt-3 text-lg font-semibold text-white md:text-xl">{{ ucfirst($user->name ?? 'User') }}
                     {{ ucfirst($user->surname ?? '') }}</h2>
                 <p class="text-sm text-white opacity-80">+91-{{ $user->phone ?? 'Category' }}</p>
 
                 <!-- QR Code -->
-                <div class="w-20 h-20 md:w-24 md:h-24 p-2 mt-4 bg-gray-100 rounded-lg shadow-md">
+                <div class="w-20 h-20 p-2 mt-4 bg-gray-100 rounded-lg shadow-md md:w-24 md:h-24">
                     <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ route('vCard.scan', ['slug' => $vcard->slug]) }}"
                         alt="QR Code" class="w-full h-full">
                 </div>
             </div>
 
             <!-- Contact & Social (Neeche in Mobile, Right in Desktop) -->
-            <div class="flex flex-col justify-between w-full md:w-2/3 p-6">
+            <div class="flex flex-col justify-between w-full p-6 md:w-2/3">
 
                 <!-- Contact Details -->
                 <div class="space-y-3">
                     @if (!empty($user->name))
                         <div class="flex items-center space-x-3">
-                            <div><i class="text-lg md:text-xl text-blue-500 bx bxs-user"></i></div>
+                            <div><i class="text-lg text-blue-500 md:text-xl bx bxs-user"></i></div>
                             <div>
                                 <span class="text-gray-500 mtdclass">नाम(Name)</span>
 
-                                <span class="text-gray-800 font-semibold"> {{ ucfirst($user->name ?? '') }} {{ ucfirst($user->surname ?? '') }}</span>
+                                <span class="font-semibold text-gray-800"> {{ ucfirst($user->name ?? '') }} {{ ucfirst($user->surname ?? '') }}</span>
                             </div>
                         </div>
                     @endif
 
                     @if (!empty($user->email))
                         <div class="flex items-center space-x-3">
-                            <div><i class="text-lg md:text-xl text-indigo-500 bx bxs-envelope"></i></div>
+                            <div><i class="text-lg text-indigo-500 md:text-xl bx bxs-envelope"></i></div>
                             <div>
                                 <span class="text-gray-500 mtdclass"> ईमेल (Email):</span>
-                                <span class="text-gray-800 font-semibold">{{ $user->email }}</span>
+                                <span class="font-semibold text-gray-800">{{ $user->email }}</span>
                             </div>
                         </div>
                     @endif
 
                     @if (!empty($user->phone))
                         <div class="flex items-center space-x-3">
-                            <div><i class="text-lg md:text-xl text-green-500 bx bxs-phone"></i></div>
+                            <div><i class="text-lg text-green-500 md:text-xl bx bxs-phone"></i></div>
                             <div>
                                 <span class="text-gray-500 mtdclass">फ़ोन (Phone):</span>
-                                <span class="text-gray-800 font-semibold">{{ $user->phone }}</span>
+                                <span class="font-semibold text-gray-800">{{ $user->phone }}</span>
                             </div>
                         </div>
                     @endif
-
                     @if (!empty($user->address))
+                    @php
+                        $addressParts = array_filter([
+                            $user->address->house_number ?? '',
+                            $user->address->street ?? '',
+                            $user->address->area_name ?? '',
+                            $user->address->city_name ?? '',
+                            $user->address->state ?? '',
+                            $user->address->country ?? '',
+                            $user->address->postal_code ?? ''
+                        ]);
+                    @endphp
+
+                    @if (!empty($addressParts))
                         <div class="flex items-center space-x-3">
-                            <div><i class="text-lg md:text-xl text-red-500 bx bxs-map"></i></div>
+                            <div><i class="text-lg text-red-500 md:text-xl bx bxs-map"></i></div>
                             <div>
                                 <span class="text-gray-500 mtdclass">पता (Address):</span>
-                                @if (!empty($user->address) && array_filter([
-                                    $user->address->house_number ?? '',
-                                    $user->address->street ?? '',
-                                    $user->address->area_name ?? '',
-                                    $user->address->city_name ?? '',
-                                    $user->address->postal_code ?? '',
-                                    $user->address->country ?? '',
-                                    $user->address->state ?? ''
-                                ]))                                            <span class="text-gray-800 font-semibold">
-                                                {{ implode(', ', array_filter([
-                                                    $user->address->house_number ?? '',
-                                                    $user->address->street ?? '',
-                                                    $user->address->area_name ?? '',
-                                                    $user->address->city_name ?? '',
-                                                    $user->address->state ?? '',
-                                                    $user->address->country ?? '',
-                                                    $user->address->postal_code ?? ''
-                                                ])) }}
-                                            </span>
-
-                                @endif
-
+                                <span class="font-semibold text-gray-800">
+                                    {{ implode(', ', $addressParts) }}
+                                </span>
                             </div>
                         </div>
                     @endif
+                @endif
+
                 </div>
 
 
@@ -372,13 +378,13 @@
                     <div>
                         <hr>
                         <h3 class="font-semibold text-gray-800 text-md">सोशल मीडिया</h3>
-                        <div class="social-icones flex space-x-3">
+                        <div class="flex space-x-3 social-icones">
                             @foreach ($vcard->dynamicFields as $social)
                                 @php $socialData = $social->data; @endphp
                                 @if (!empty($socialData))
                                     <div class="social-icon">
                                         <a href="{{ filter_var($socialData, FILTER_VALIDATE_URL) ? $socialData : '#' }}"
-                                            target="_blank" class="text-gray-700 hover:text-blue-500 transition">
+                                            target="_blank" class="text-gray-700 transition hover:text-blue-500">
                                             <i class="{{ $social->icon ?? 'bx bx-link' }} text-2xl"></i>
                                         </a>
                                     </div>
@@ -403,8 +409,8 @@
     <section class="flex flex-wrap">
         <div class="w-full sm:w-1/4"></div>
         <div class="w-full text-right sm:w-1/2">
-            <button>वापस</button>
-            <button class="px-4 py-2 mt-4 text-white bg-red-500 rounded-lg hover:bg-red-600"><i class="bx bx-window"></i> अपने व्यवसाय जोड़े </button>
+            <a href="{{route('vCard.list')}}" class="px-4 py-2 mt-4 text-white bg-gray-500 rounded-lg hover:bg-gray-600"> <i class="bx bx-arrow-back"></i>वापस</a>
+            <a href="{{route('vCard.business-listing-register')}}" class="px-4 py-2 mt-4 text-white bg-red-500 rounded-lg hover:bg-red-600"><i class="bx bx-window"></i> अपने व्यवसाय जोड़े </a>
 
             <button onclick="shareVCard()" class="px-4 py-2 mt-4 text-white bg-green-500 rounded-lg hover:bg-green-600"><i class="bx bx-share-alt"></i> साझा करे </button>
             <a target="_blank" class="px-4 py-2 mt-4 text-white bg-blue-500 rounded-lg hover:bg-blue-600" href="{{ route('vCard.vcardPrint', ['city_arr' => $city_arr, 'slug' => $vcard->slug]) }}"><i class="bx bx-printer"></i>कार्ड छापे</a>
