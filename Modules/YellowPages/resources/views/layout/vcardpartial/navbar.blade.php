@@ -1,7 +1,7 @@
 <header>
     <div class="topbar d-flex align-items-center">
         <nav class="navbar navbar-expand-lg">
-            <div class="mobile-toggle-menu"><i class='bx bx-menu'></i></div> 
+            <div class="mobile-toggle-menu"><i class='bx bx-menu'></i></div>
             <div class="top-menu ms-auto">
                 <ul class="navbar-nav align-items-center">
                     <li class="nav-item mobile-search-icon">
@@ -27,7 +27,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     @if (Auth::guard('web')->check())
-                        <li><a class="dropdown-item" href="{{ route('vCard.userEdit', ['id' => Auth::id()]) }}"><i class="bx bx-user"></i><span>प्रोफ़ाइल अपडेट करें</span></a></li>
+                        {{-- <li><a class="dropdown-item" href="{{ route('vCard.userEdit', ['id' => Auth::id()]) }}"><i class="bx bx-user"></i><span>प्रोफ़ाइल अपडेट करें</span></a></li> --}}
                         <li><a class="dropdown-item" href="{{ route('vCard.passwordReset') }}"><i class='bx bx-home-circle'></i><span>पासवर्ड बदलें</span></a></li>
                         <li>
                             <div class="dropdown-divider mb-0"></div>
@@ -36,7 +36,7 @@
                             <a class="dropdown-item" href="{{ route('vCard.logout') }}"><i class='bx bx-log-out-circle'></i><span>लॉग आउट</span><a>
                         </li>
                     @elseif (Auth::check())
-                        <li><a class="dropdown-item" href="javascript:;"><i class="bx bx-user"></i><span>प्रोफ़ाइल</span></a></li>
+                        {{-- <li><a class="dropdown-item" href="javascript:;"><i class="bx bx-user"></i><span>प्रोफ़ाइल</span></a></li> --}}
                         {{-- <li><a class="dropdown-item" href="javascript:;"><i class='bx bx-home-circle'></i><span>डैशबोर्ड</span></a></li> --}}
                         <li>
                             <div class="dropdown-divider mb-0"></div>

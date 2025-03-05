@@ -334,7 +334,7 @@
                         </p>
                        <div class="btnx">
                         <p>
-                            <a href="https://wa.me/?text={{ urlencode('मेरा वेब पेज देखें\n' . url()->current()) }}"
+                            <a href="https://wa.me/?text={{ urlencode('*मेरा वेब पेज देखें*- %0a' . url()->current()) }}"
                                class="mb-2 btn btn-success btn-block"
                                target="_blank" rel="noopener noreferrer">
                                 <i class="fab fa-whatsapp"></i> WhatsApp पर साझा करें

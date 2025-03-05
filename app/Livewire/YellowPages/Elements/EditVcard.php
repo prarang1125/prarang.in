@@ -29,6 +29,7 @@ class EditVcard extends Component
     public $existingFields = [];
     public $options = [];
     public $user;
+
     public function mount()
     {
         $userId = auth()->id();
