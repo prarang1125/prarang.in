@@ -166,26 +166,26 @@ class EditVcard extends Component
         'city_id' => 'required|integer',
 
         // Name और Surname में हिंदी, अंग्रेज़ी, नंबर, - और / अलLOWED
-        'name' => 'required|string|regex:/^[A-Za-z0-9\x{0900}-\x{097F}]+$/u|max:15',
-        'surname' => 'nullable|string|regex:/^[A-Za-z0-9\x{0900}-\x{097F}]+$/u|max:15',
+        'name' => 'required|string|regex:/^[A-Za-z0-9\x{0900}-\x{097F}]+$/u|max:10',
+        'surname' => 'nullable|string|regex:/^[A-Za-z0-9\x{0900}-\x{097F}]+$/u|max:10',
 
         'dob' => 'nullable|date|before_or_equal:today',
         'email' => 'nullable|email|max:255',
         'phone' => 'required|string|max:15',
 
         // House_number में कम से कम एक नंबर अनिवार्य और केवल , - / अलLOWED
-        'house_number' => 'nullable|regex:/^(?=.*\d)[A-Za-z0-9\x{0900}-\x{097F},\-\/ ]+$/u|max:10',
+        'house_number' => 'nullable|regex:/^(?=.*\d)[A-Za-z0-9\x{0900}-\x{097F},\-\/ ]+$/u|max:8',
 
         // Road_street में हिंदी, अंग्रेज़ी, नंबर और स्पेस अलLOWED
-        'road_street' => 'nullable|regex:/^[A-Za-z0-9\x{0900}-\x{097F} ]+$/u|max:20',
+        'road_street' => 'nullable|regex:/^[A-Za-z0-9\x{0900}-\x{097F} ]+$/u|max:15',
 
         // Area_name में हिंदी और अंग्रेज़ी अक्षर अलLOWED
-        'area_name' => 'required|regex:/^[A-Za-z0-9\x{0900}-\x{097F} ]+$/u|max:50',
+        'area_name' => 'required|regex:/^[A-Za-z0-9\x{0900}-\x{097F} ]+$/u|max:40',
 
         'pincode' => 'required|digits:6',
 
         // Cityname में हिंदी और अंग्रेज़ी अक्षर अलLOWED
-        'cityname' => 'required|regex:/^[A-Za-z0-9\x{0900}-\x{097F} ]+$/u|max:20',
+        'cityname' => 'required|regex:/^[A-Za-z0-9\x{0900}-\x{097F} ]+$/u|max:15',
 
         // State में हिंदी, अंग्रेज़ी, () और स्पेस अलLOWED
         'state' => 'required|regex:/^[A-Za-z0-9\x{0900}-\x{097F}() ]+$/u|max:40',
