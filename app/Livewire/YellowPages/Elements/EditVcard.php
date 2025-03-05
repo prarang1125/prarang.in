@@ -146,7 +146,7 @@ class EditVcard extends Component
             imagedestroy($croppedImage);
             imagedestroy($finalImage);
             unlink($tempFile); // Delete temp file
-            dd( $this->profile);
+            // dd( $this->profile);
         }
     }
 
