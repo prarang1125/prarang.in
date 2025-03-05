@@ -297,9 +297,9 @@
                     <img src="{{ $user->profile ? Storage::url($user->profile) : 'https://via.placeholder.com/150' }}"
                         alt="{{ $user->name ?? 'User' }}'s Profile" class="object-cover w-full h-full">
                 </div>
-                <h2 class="mt-3 text-lg font-semibold text-white md:text-xl">{{ ucfirst($user->name ?? 'User') }}
+                {{-- <h2 class="mt-3 text-lg font-semibold text-white md:text-xl">{{ ucfirst($user->name ?? 'User') }}
                     {{ ucfirst($user->surname ?? '') }}</h2>
-                <p class="text-sm text-white opacity-80">+91-{{ $user->phone ?? 'Category' }}</p>
+                <p class="text-sm text-white opacity-80">+91-{{ $user->phone ?? 'Category' }}</p> --}}
 
                 <!-- QR Code -->
                 <div class="w-20 h-20 p-2 mt-4 bg-gray-100 rounded-lg shadow-md md:w-24 md:h-24">
@@ -350,9 +350,7 @@
                             $user->address->street ?? '',
                             $user->address->area_name ?? '',
                             $user->address->city_name ?? '',
-                            $user->address->state ?? '',
-                            $user->address->country ?? '',
-                            $user->address->postal_code ?? ''
+
                         ]);
                     @endphp
 
@@ -362,8 +360,23 @@
                             <div>
                                 <span class="text-gray-500 mtdclass">पता (Address):</span>
                                 <span class="font-semibold text-gray-800">
-                                    {{ implode(', ', $addressParts) }}
+                                    {{ isset($addressParts) && is_array($addressParts) ? implode(',', $addressParts) : '' }}
+                                    @php
+                                        $cityName = $user->address->city_name ?? '';
+                                        $state = $user->address->state ?? '';
+                                        $postalCode = $user->address->postal_code ?? '';
+                                        $isHindi = preg_match('/[\p{Devanagari}]/u', $cityName);
+
+                                        // Handle state formatting safely
+                                        $stateParts = explode('(', $state);
+                                        $formattedState = count($stateParts) > 1 ? str_replace(')', '', $stateParts[1]) : ($stateParts[0] ?? '');
+
+                                    @endphp
+                                    ,{{ $isHindi ? ($stateParts[0] ?? '') : $formattedState }},
+                                    {{ $isHindi ? "भारत" : "India" }},
+                                    {{ $isHindi ? "पिन" : "Pin" }} - {{ $postalCode }}
                                 </span>
+
                             </div>
                         </div>
                     @endif
@@ -374,28 +387,32 @@
 
 
                 <!-- Social Media -->
-                @if (!empty($vcard->dynamicFields))
-                    <div>
-                        <hr>
-                        <h3 class="font-semibold text-gray-800 text-md">सोशल मीडिया</h3>
-                        <div class="flex space-x-3 social-icones">
-                            @foreach ($vcard->dynamicFields as $social)
-                                @php $socialData = $social->data; @endphp
-                                @if (!empty($socialData))
-                                    <div class="social-icon">
-                                        <a href="{{ filter_var($socialData, FILTER_VALIDATE_URL) ? $socialData : '#' }}"
-                                            target="_blank" class="text-gray-700 transition hover:text-blue-500">
-                                            <i class="{{ $social->icon ?? 'bx bx-link' }} text-2xl"></i>
-                                        </a>
-                                    </div>
-                                @endif
-                            @endforeach
-                        </div>
 
-                        <hr class="mt-2">
-                        <p class="mt-2 text-sm text-center linkx">{{ route('vCard.view',['city_arr'=>$user->city->city_arr,'slug'=>$vcard->slug]) }}</p>
+                <div>
+                    @if (!empty($vcard->dynamicFields) && collect($vcard->dynamicFields)->filter(fn($social) => !empty($social->data))->isNotEmpty())
+                    <hr>
+                    <h3 class="font-semibold text-gray-800 text-md">सोशल मीडिया</h3>
+                    <div class="flex space-x-3 social-icones">
+                        @foreach ($vcard->dynamicFields as $social)
+                            @php $socialData = $social->data; @endphp
+                            @if (!empty($socialData))
+                                <div class="social-icon">
+                                    <a href="{{ filter_var($socialData, FILTER_VALIDATE_URL) ? $socialData : '#' }}"
+                                       target="_blank" class="text-gray-700 transition hover:text-blue-500">
+                                        <i class="{{ $social->icon ?? 'bx bx-link' }} text-2xl"></i>
+                                    </a>
+                                </div>
+                            @endif
+                        @endforeach
                     </div>
-                @endif
+                    @endif
+                    <hr class="mt-2">
+                    <p class="mt-2 text-sm text-center linkx">
+                        {{ route('vCard.view', ['city_arr' => $user->city->city_arr, 'slug' => $vcard->slug]) }}
+                    </p>
+                </div>
+
+
 
             </div>
         </div>

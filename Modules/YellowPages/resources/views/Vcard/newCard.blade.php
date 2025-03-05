@@ -290,7 +290,7 @@
                             <div><i class="bx bxs-envelope"></i></div>
                             <div>
                                 <span class="text-muted mtdclass">ईमेल (Email):</span>
-                                <span class="font-semibold text-gray-800"> +91 0000000000</span>
+                                <span class="font-semibold text-gray-800">example@gmail.com</span>
                             </div>
                         </div>
                         <div class="textsata">
@@ -314,7 +314,6 @@
                 href="{{ route('vCard.createCard', ['slug' => $vcard->slug, 'city_arr' => $vcard->city_arr]) }}">अपनी तस्वीर
                 और पता जोड़े | </a>
         </div>
-
     </section>
 
     <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
