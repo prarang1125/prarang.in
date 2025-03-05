@@ -204,14 +204,60 @@
  background-color:#e6c72d !important;
 }
 
+/* Modal dialog bottom */
+#staticBackdrop .modal-dialog-bottom{
+ margin-bottom:65px !important;
+}
 
+@media (max-width:576px){
+
+ /* Modal dialog bottom */
+ #staticBackdrop .modal-dialog-bottom{
+  margin-bottom:56px !important;
+  transform:translatex(-3px) translatey(26px);
+ }
+
+}
+@media (max-width:576px){
+
+/* Profile img */
+.side-bar div .profile-img{
+ width:79px !important;
+ height:79px !important;
+}
+
+/* Column 4/12 */
+.justify-center div .col-sm-4{
+ width:109px;
+}
+
+/* Row */
+.justify-center div .rounded{
+ padding-left:56px;
+ padding-right:24px;
+ min-height:2px !important;
+ height:auto !important;
+}
+
+/* Image */
+.side-bar div img{
+ width:62px !important;
+ height:45px !important;
+}
+
+/* Font semibold */
+.justify-center div .rounded .col-sm-8 .mt-3 .textsata div .font-semibold{
+ font-size:14px !important;
+}
+
+}
 
     </style>
 
     <section class="flex items-center justify-center" style="height: 70vh;">
         <div class="">
             <div class="rounded shadow row" style="max-height: 90mm; min-height: 90mm; width: 170mm;">
-                <div class="col-4">
+                <div class="col-4 col-sm-4">
                     <div class="side-bar">
                         <div>
                             <div class="profile-img"><i class="bx bxs-camera"></i></div>
@@ -223,7 +269,7 @@
 
                     </div>
                 </div>
-                <div class="col-8">
+                <div class="col-8 col-sm-8">
                     <div class="p-2 mt-3">
                         <div class="textsata">
                             <div><i class="bx bxs-user"></i></div>

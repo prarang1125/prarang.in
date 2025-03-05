@@ -324,7 +324,7 @@
             .a4-page .card-x .card-col-4 {
                 /* min-height:54mm; */
                 max-height: 54mm;
-                background-color: #3f2020;
+
             }
         }
 
@@ -358,7 +358,7 @@
     <div class="a4-page">
         @for ($i = 0; $i < 8; $i++)
             <div class="card-x">
-                <div class="card-col-4">
+                <div class="card-col-4" style="background: {{$vcard->color_code}}">
                     <div><img class="profile-img"
                             src="{{ $user->profile ? Storage::url($user->profile) : 'https://via.placeholder.com/150' }}"
                             alt=""></div>

@@ -12,6 +12,9 @@ use App\Models\DynamicVCard;
 use App\Models\User;
 use App\Models\VCard;
 use Illuminate\Support\Str;
+use Intervention\Image\ImageManagerStatic as Image;
+
+use Illuminate\Support\Facades\Storage;
 
 class EditVcard extends Component
 {
@@ -96,16 +99,54 @@ class EditVcard extends Component
     }
     public function updatedPhoto()
     {
-        $this->validate(['photo' => 'max:200']);
+        // $this->validate(['photo' => 'max:500bk']);
         $this->uploadProfile();
     }
     public function uploadProfile()
     {
         if ($this->photo) {
-            $photoPath = $this->photo->store('yellowpages/profiles', 's3');
-            auth()->user()->update(['profile' => $photoPath]);
-            $this->profile = $photoPath;
+            // Get the original image
+            $imagePath = $this->photo->getRealPath();
+            list($width, $height) = getimagesize($imagePath);
 
+            // Create image resource from uploaded file
+            $sourceImage = imagecreatefromjpeg($imagePath);
+
+            // Define crop size (300x300)
+            $cropSize = min($width, $height);
+            $cropX = ($width - $cropSize) / 2;
+            $cropY = ($height - $cropSize) / 2;
+
+            // Create a blank 300x300 image
+            $croppedImage = imagecreatetruecolor(300, 300);
+            imagecopyresampled($croppedImage, $sourceImage, 0, 0, $cropX, $cropY, 300, 300, $cropSize, $cropSize);
+
+            // Create a blank 150x150 image
+            $finalImage = imagecreatetruecolor(150, 150);
+            imagecopyresampled($finalImage, $croppedImage, 0, 0, 0, 0, 150, 150, 300, 300);
+
+            // Define file path
+            $filePath = 'yellowpages/profiles/' . uniqid() . '.jpg';
+
+            // Save the final image to a temporary file
+            $tempFile = tempnam(sys_get_temp_dir(), 'profile_') . '.jpg';
+            imagejpeg($finalImage, $tempFile, 90);
+
+            // Upload to S3
+            Storage::disk('s3')->put($filePath, file_get_contents($tempFile));
+
+            // Update user's profile
+            auth()->user()->update(['profile' => $filePath]);
+
+            // Store profile path
+            $this->profile = $filePath;
+
+            // Free memory
+            imagedestroy($sourceImage);
+            imagedestroy($croppedImage);
+            imagedestroy($finalImage);
+            unlink($tempFile); // Delete temp file
+            dd( $this->profile);
         }
     }
 
