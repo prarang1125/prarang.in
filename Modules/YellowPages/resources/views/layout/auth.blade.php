@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <title>@yield('meta_title', 'Yellow Pages - Find Businesses & Services')</title>
+
+    <title>@yield('title', 'Yellow Pages - Find Businesses & Services')</title>
 
     <meta name="description" content="@yield('meta_description', 'Discover local businesses, services, and more.')">
     <meta name="keywords" content="@yield('meta_keywords', 'yellow pages, local directory, businesses')">
@@ -29,7 +29,7 @@
 
 </head>
 <body>
- 
+
 
 
     @yield('content')
