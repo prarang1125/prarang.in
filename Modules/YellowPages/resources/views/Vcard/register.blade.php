@@ -3,7 +3,11 @@
 @section('title', 'मुफ़्त में वेबपेज बनाएं और बिज़नेस कार्ड प्रिंट करें!')
 @section('meta_og_title','मुफ़्त में वेबपेज बनाएं और बिज़नेस कार्ड प्रिंट करें!')
 @section('meta_og_description', request()->query('s') == 'rampur' ? 'रामपुर का पहला हिंदी येलोपेज़! यहां अपना वेबपेज बनाएं और अपना बिज़नेस कार्ड प्रिंट करें!' : (request()->query('s') == 'lucknow' ? 'लखनऊ का पहला हिंदी येलोपेज़! यहां अपना वेबपेज बनाएं और अपना बिज़नेस कार्ड प्रिंट करें!' : 'देश का पहला हिंदी येलोपेज़! यहां अपना वेबपेज बनाएं और अपना बिज़नेस कार्ड प्रिंट करें!'))
-@section('meta_og_image','https://i.ibb.co/tpxh7Vcf/Lucknow-yp-1200-630-still.png')
+@if(request()->query('s') == 'rampur')
+    @section('meta_og_image','https://i.ibb.co/GvFF9H1k/Add-a-heading.png')
+@else
+    @section('meta_og_image','https://i.ibb.co/tpxh7Vcf/Lucknow-yp-1200-630-still.png')
+@endif
 
 
 @section('content')
