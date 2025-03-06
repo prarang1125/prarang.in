@@ -7,7 +7,7 @@
 
     <title>@yield('title', 'Yellow Pages - Find Businesses & Services')</title>
 
-    <meta name="description" content="@yield('meta_description', 'Discover local businesses, services, and more.')">
+    <meta name="description" content="@yield('meta_og_description', 'Discover local businesses, services, and more.')">
     <meta name="keywords" content="@yield('meta_keywords', 'yellow pages, local directory, businesses')">
 
     <!-- Open Graph Meta Tags for SEO & Social Sharing -->
@@ -20,7 +20,7 @@
 
     <meta property="og:title" content="@yield('meta_og_title', 'Yellow Pages - Business Directory')">
     <meta property="og:description" content="@yield('meta_og_description', 'Find the best businesses and services near you.')">
-    <meta property="og:image" content="@yield('meta_og_image', asset('assets/images/yp_logo_img.jpg'))">
+    <meta property="og:image" content="@yield('meta_og_image', 'https://i.ibb.co/tpxh7Vcf/Lucknow-yp-1200-630-still.png')">
     <meta property="og:url" content="{{ url()->current() }}">
 
       <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
