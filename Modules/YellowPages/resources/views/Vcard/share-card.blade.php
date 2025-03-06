@@ -25,6 +25,8 @@
         content="{{ !empty($user->profile) && Storage::exists($user->profile) ? Storage::url($user->profile) : asset('assets/images/yplogo.jpg') }}">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+
 </head>
 <style>
     /* Text */
@@ -242,6 +244,21 @@
         }
 
     }
+
+    /* Italic Tag */
+    .bg-success small i {
+        padding-left: 10px;
+        padding-right: 10px;
+        padding-top: 3px;
+        padding-bottom: 3px;
+        font-size: 14px;
+        border-top-left-radius: 23px;
+        border-top-right-radius: 23px;
+        border-bottom-left-radius: 23px;
+        border-bottom-right-radius: 23px;
+        background-color: #049933;
+        color: #ffffff;
+    }
 </style>
 
 <body class="bg-gray-100">
@@ -260,8 +277,10 @@
     <div class="flex items-center justify-center">
         <h4>प्रारंग {{ $user->city->name }} पेज </h4>
     </div>
+
     @if ($vcard->is_active == 1)
         <section class="flex items-center justify-center p-4">
+
             <div id="my-vcard"
                 class="flex flex-col md:flex-row w-full max-w-xl overflow-hidden bg-white border border-gray-200 rounded-lg shadow-lg">
 
@@ -321,65 +340,69 @@
                         @endif
 
                         @if (!empty($user->address))
-                        @php
-                            $addressParts = array_filter([
-                                $user->address->house_number ?? '',
-                                $user->address->street ?? '',
-                                $user->address->area_name ?? '',
-                                $user->address->city_name ?? '',
+                            @php
+                                $addressParts = array_filter([
+                                    $user->address->house_number ?? '',
+                                    $user->address->street ?? '',
+                                    $user->address->area_name ?? '',
+                                    $user->address->city_name ?? '',
+                                ]);
+                            @endphp
 
-                            ]);
-                        @endphp
+                            @if (!empty($addressParts))
+                                <div class="flex items-center space-x-3">
+                                    <div><i class="text-lg text-red-500 md:text-xl bx bxs-map"></i></div>
+                                    <div>
+                                        <span class="text-gray-500 mtdclass">पता (Address):</span>
+                                        <span class="font-semibold text-gray-800">
+                                            {{ isset($addressParts) && is_array($addressParts) ? implode(',', $addressParts) : '' }}
+                                            @php
+                                                $cityName = $user->address->city_name ?? '';
+                                                $state = $user->address->state ?? '';
+                                                $postalCode = $user->address->postal_code ?? '';
+                                                $isHindi = preg_match('/[\p{Devanagari}]/u', $cityName);
 
-                        @if (!empty($addressParts))
-                            <div class="flex items-center space-x-3">
-                                <div><i class="text-lg text-red-500 md:text-xl bx bxs-map"></i></div>
-                                <div>
-                                    <span class="text-gray-500 mtdclass">पता (Address):</span>
-                                    <span class="font-semibold text-gray-800">
-                                        {{ isset($addressParts) && is_array($addressParts) ? implode(',', $addressParts) : '' }}
-                                        @php
-                                            $cityName = $user->address->city_name ?? '';
-                                            $state = $user->address->state ?? '';
-                                            $postalCode = $user->address->postal_code ?? '';
-                                            $isHindi = preg_match('/[\p{Devanagari}]/u', $cityName);
+                                                // Handle state formatting safely
+                                                $stateParts = explode('(', $state);
+                                                $formattedState =
+                                                    count($stateParts) > 1
+                                                        ? str_replace(')', '', $stateParts[1])
+                                                        : $stateParts[0] ?? '';
 
-                                            // Handle state formatting safely
-                                            $stateParts = explode('(', $state);
-                                            $formattedState = count($stateParts) > 1 ? str_replace(')', '', $stateParts[1]) : ($stateParts[0] ?? '');
+                                            @endphp
+                                            ,{{ $isHindi ? $stateParts[0] ?? '' : $formattedState }},
+                                            {{ $isHindi ? 'भारत' : 'India' }},
+                                            {{ $isHindi ? 'पिन' : 'Pin' }} - {{ $postalCode }}
+                                        </span>
 
-                                        @endphp
-                                        ,{{ $isHindi ? ($stateParts[0] ?? '') : $formattedState }},
-                                        {{ $isHindi ? "भारत" : "India" }},
-                                        {{ $isHindi ? "पिन" : "Pin" }} - {{ $postalCode }}
-                                    </span>
-
+                                    </div>
                                 </div>
-                            </div>
+                            @endif
                         @endif
-                    @endif
                     </div>
 
 
 
                     <!-- Social Media -->
                     <div>
-                        @if (!empty($vcard->dynamicFields) && collect($vcard->dynamicFields)->filter(fn($social) => !empty($social->data))->isNotEmpty())
-                        <hr>
-                        <h3 class="font-semibold text-gray-800 text-md">सोशल मीडिया</h3>
-                        <div class="flex space-x-3 social-icones">
-                            @foreach ($vcard->dynamicFields as $social)
-                                @php $socialData = $social->data; @endphp
-                                @if (!empty($socialData))
-                                    <div class="social-icon">
-                                        <a href="{{ filter_var($socialData, FILTER_VALIDATE_URL) ? $socialData : '#' }}"
-                                           target="_blank" class="text-gray-700 transition hover:text-blue-500">
-                                            <i class="{{ $social->icon ?? 'bx bx-link' }} text-2xl"></i>
-                                        </a>
-                                    </div>
-                                @endif
-                            @endforeach
-                        </div>
+                        @if (
+                            !empty($vcard->dynamicFields) &&
+                                collect($vcard->dynamicFields)->filter(fn($social) => !empty($social->data))->isNotEmpty())
+                            <hr>
+                            <h3 class="font-semibold text-gray-800 text-md">सोशल मीडिया</h3>
+                            <div class="flex space-x-3 social-icones">
+                                @foreach ($vcard->dynamicFields as $social)
+                                    @php $socialData = $social->data; @endphp
+                                    @if (!empty($socialData))
+                                        <div class="social-icon">
+                                            <a href="{{ filter_var($socialData, FILTER_VALIDATE_URL) ? $socialData : '#' }}"
+                                                target="_blank" class="text-gray-700 transition hover:text-blue-500">
+                                                <i class="{{ $social->icon ?? 'bx bx-link' }} text-2xl"></i>
+                                            </a>
+                                        </div>
+                                    @endif
+                                @endforeach
+                            </div>
                         @endif
                         <hr class="mt-2">
                         <p class="mt-2 text-sm text-center linkx">
@@ -388,17 +411,51 @@
                     </div>
                 </div>
             </div>
+
         </section>
     @endif
     <div class="text-center">
+        <p class="text-center p-1 bg-success"><small id="shareIt"><i class="bx bxs-share"></i></small></p>
         @if ($vcard->is_active != 1)
-            <span class="text-center text-red-500"> {{ $user->name }} {{ $user->surname ?? '' }} का कार्ड स्वीकृति की
+            <span class="text-center text-red-500"> {{ $user->name }} {{ $user->surname ?? '' }} का कार्ड स्वीकृति
+                की
                 प्रक्रिया में है।</span>
         @endif
     </div>
 
-    <!-- Share Function -->
+
     <script>
+        // document.addEventListener("DOMContentLoaded", function() {
+        //     let printArea = document.getElementById("my-vcard");
+
+        //     html2canvas(printArea, {
+        //         useCORS: true
+        //     }).then(canvas => {
+        //         canvas.toBlob(blob => {
+        //             let formData = new FormData();
+        //             formData.append("image", blob, "screenshot.png");
+        //             printArea.appendChild(imgElement);
+        //         }, "image/png");
+        //     });
+        // });
+
+
+        if (navigator.share) {
+            const shareIt=document.getElementById('shareIt').addEventListener('click',()=>{
+                navigator.share({
+                    title:document.title,
+                    text:document.text,
+                    url:window.location.href
+            })
+            .then(()=> console.log('Successfuly Share Prompt Opened!'))
+            .catch((error)=>console.error(error))
+            });
+        }
+
+
+
+
+
         function shareVCard() {
             const shareData = {
                 title: "{{ $user->name ?? 'VCard' }}",
