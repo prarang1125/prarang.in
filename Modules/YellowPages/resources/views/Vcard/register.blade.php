@@ -16,7 +16,7 @@
     $images = [
         'rampur' => 'https://i.ibb.co/GvFF9H1k/Add-a-heading.png',
         'meerut' => 'https://i.postimg.cc/QdkVw174/image.png',
-        'lucknow' => 'https://i.ibb.co/tpxh7Vcf/Lucknow-yp-1200-630-still.png',
+        'lucknow' => asset('assets/images/lucknowgif.gif'),
     ];
 
     $defaultImage = 'https://i.ibb.co/tpxh7Vcf/Lucknow-yp-1200-630-still.png';
