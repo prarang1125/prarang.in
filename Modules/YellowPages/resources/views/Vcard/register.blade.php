@@ -1,7 +1,7 @@
 @extends('yellowpages::layout.auth')
 
-@section('title', 'मुफ़्त में वेबपेज बनाएं और बिज़नेस कार्ड प्रिंट करें!')
-@section('meta_og_title', 'मुफ़्त में वेबपेज बनाएं और बिज़नेस कार्ड प्रिंट करें!')
+@section('title', 'अपनी Website अपने शहर में अभी बनाये ')
+@section('meta_og_title', 'अपनी Website अपने शहर में अभी बनाये ')
 
 @php
     $descriptions = [
@@ -10,7 +10,7 @@
         'meerut' => 'मेरठ का पहला हिंदी येलोपेज़! यहां अपना वेबपेज बनाएं और अपना बिज़नेस कार्ड प्रिंट करें!',
     ];
 
-    $defaultDescription = 'देश का पहला हिंदी येलोपेज़! यहां अपना वेबपेज बनाएं और अपना बिज़नेस कार्ड प्रिंट करें!';
+    $defaultDescription = 'देश का पहला हिंदी Automatic Website Maker, Business Card प्रिंट तथा Free Yellow-Pages';
     $metaDescription = $descriptions[$slug] ?? $defaultDescription;
 
     $images = [
@@ -19,11 +19,11 @@
         'lucknow' => 'https://i.ibb.co/PzYgXpZQ/lucknowog.png',
     ];
 
-    $defaultImage = 'https://i.ibb.co/tpxh7Vcf/Lucknow-yp-1200-630-still.png';
+    $defaultImage = asset('assets/images/ad-web-p.png');
     $metaImage = $images[$slug] ?? $defaultImage;
 @endphp
 
-@section('meta_og_description', $metaDescription)
+@section('meta_og_description', 'देश का पहला हिंदी Automatic Website Maker, Business Card प्रिंट तथा Free Yellow-Pages ')
 @section('meta_og_image', $metaImage)
 
 
@@ -478,6 +478,7 @@ path {
 
           </div>
           <div class="hero-txt">
+
           <p>देश का पहला, हिंदी में येलो पेज(YellowPage)</p>
           <p class="subtxth">अपने व्यवसाय को मुफ़्त में ऑनलाइन करें | साथ ही, अपनी खुद की मुफ़्त वेबसाइट बनाएं |</p>
           </div>
