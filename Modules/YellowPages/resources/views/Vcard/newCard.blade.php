@@ -283,7 +283,7 @@
                             <div><i class="bx bxs-phone"></i></div>
                             <div>
                                 <span class="text-muted mtdclass">फ़ोन (Phone):</span>
-                                <span class="font-semibold text-gray-800"> +91 0000000000</span>
+                                <span class="font-semibold text-gray-800"> +91 {{$vcard->phone}}</span>
                             </div>
                         </div>
                         <div class="textsata">

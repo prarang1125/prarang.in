@@ -47,8 +47,6 @@
         text-shadow: none !important;
     }
 
-
-
     .max-w-xl .flex-col h2.font-semibold {
         text-shadow: rgb(0, 0, 0) 0px 1px 1px, rgb(0, 0, 0) 0px -1px 1px, rgb(0, 0, 0) 1px 0px 1px, rgb(0, 0, 0) -1px 0px 1px;
     }
@@ -452,25 +450,6 @@
             });
         }
 
-
-
-
-
-        function shareVCard() {
-            const shareData = {
-                title: "{{ $user->name ?? 'VCard' }}",
-                text: " ",
-                url: "{{ route('vCard.view', ['city_arr' => $city_arr, 'slug' => $vcard->slug]) }}"
-            };
-
-            if (navigator.share) {
-                navigator.share(shareData)
-                    .then(() => console.log("Shared successfully!"))
-                    .catch(error => console.error("Sharing failed:", error));
-            } else {
-                alert("Sharing is not supported on this device.");
-            }
-        }
     </script>
 
 </body>
