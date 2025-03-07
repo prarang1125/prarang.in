@@ -1,15 +1,31 @@
 @extends('yellowpages::layout.auth')
 
 @section('title', 'मुफ़्त में वेबपेज बनाएं और बिज़नेस कार्ड प्रिंट करें!')
-@section('meta_og_title','मुफ़्त में वेबपेज बनाएं और बिज़नेस कार्ड प्रिंट करें!')
-@section('meta_og_description', request()->query('s') == 'rampur' ? 'रामपुर का पहला हिंदी येलोपेज़! यहां अपना वेबपेज बनाएं और अपना बिज़नेस कार्ड प्रिंट करें!' : (request()->query('s') == 'lucknow' ? 'लखनऊ का पहला हिंदी येलोपेज़! यहां अपना वेबपेज बनाएं और अपना बिज़नेस कार्ड प्रिंट करें!' : 'देश का पहला हिंदी येलोपेज़! यहां अपना वेबपेज बनाएं और अपना बिज़नेस कार्ड प्रिंट करें!'))
-@if(request()->query('s') == 'rampur')
-    @section('meta_og_image','https://i.ibb.co/GvFF9H1k/Add-a-heading.png')
-@elseif (request()->query('s') == 'meerut')
-@section('meta_og_image','https://i.postimg.cc/QdkVw174/image.png')
-@else
-    @section('meta_og_image','https://i.ibb.co/tpxh7Vcf/Lucknow-yp-1200-630-still.png')
-@endif
+@section('meta_og_title', 'मुफ़्त में वेबपेज बनाएं और बिज़नेस कार्ड प्रिंट करें!')
+
+@php
+    $descriptions = [
+        'rampur' => 'रामपुर का पहला हिंदी येलोपेज़! यहां अपना वेबपेज बनाएं और अपना बिज़नेस कार्ड प्रिंट करें!',
+        'lucknow' => 'लखनऊ का पहला हिंदी येलोपेज़! यहां अपना वेबपेज बनाएं और अपना बिज़नेस कार्ड प्रिंट करें!',
+        'meerut' => 'मेरठ का पहला हिंदी येलोपेज़! यहां अपना वेबपेज बनाएं और अपना बिज़नेस कार्ड प्रिंट करें!',
+    ];
+
+    $defaultDescription = 'देश का पहला हिंदी येलोपेज़! यहां अपना वेबपेज बनाएं और अपना बिज़नेस कार्ड प्रिंट करें!';
+    $metaDescription = $descriptions[$slug] ?? $defaultDescription;
+
+    $images = [
+        'rampur' => 'https://i.ibb.co/GvFF9H1k/Add-a-heading.png',
+        'meerut' => 'https://i.postimg.cc/QdkVw174/image.png',
+        'lucknow' => 'https://i.ibb.co/tpxh7Vcf/Lucknow-yp-1200-630-still.png',
+    ];
+
+    $defaultImage = 'https://i.ibb.co/tpxh7Vcf/Lucknow-yp-1200-630-still.png';
+    $metaImage = $images[$slug] ?? $defaultImage;
+@endphp
+
+@section('meta_og_description', $metaDescription)
+@section('meta_og_image', $metaImage)
+
 
 
 @section('content')

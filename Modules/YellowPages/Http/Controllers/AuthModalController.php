@@ -76,16 +76,17 @@ class AuthModalController extends Controller
 
     }
 
-    public function newAccount()
+    public function newAccount($city = null)
     {
+        $slug = $city ?? request()->query('s');
 
-        $slug = request()->query('s');
         try {
             return view('yellowpages::Vcard.register', compact('slug'));
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while loading the login page.']);
+            return back()->withErrors(['error' => 'An error occurred while loading the registration page.']);
         }
     }
+
 
 
 
