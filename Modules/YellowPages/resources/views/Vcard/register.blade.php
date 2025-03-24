@@ -23,7 +23,7 @@
     $metaImage = $images[$slug] ?? $defaultImage;
 @endphp
 
-@section('meta_og_description', 'देश का पहला हिंदी Automatic Website Maker, Business Card प्रिंट तथा Free Yellow-Pages ')
+@section('meta_og_description', 'देश का पहला हिंदी Automatic Website Maker, Business Card प्रिंट तथा Free Yellow-Pages')
 @section('meta_og_image', $metaImage)
 
 

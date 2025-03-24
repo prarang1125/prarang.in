@@ -145,6 +145,83 @@
  text-shadow:rgba(0, 0, 0, 0.3) 0px 1px 1px !important;
 }
 
+/* Heading */
+#openModalx h3{
+ position:absolute;
+ padding-left:154px;
+ padding-top:4px;
+ padding-right:9px;
+}
+
+@media (max-width:1316px){
+
+ /* Heading */
+ #openModalx h3{
+  font-size:20px !important;
+  padding-left:84px;
+  transform:translatex(0px) translatey(0px);
+ }
+
+}
+
+@media (max-width:991px){
+
+ /* Heading */
+ #openModalx h3{
+  font-size:19px !important;
+  padding-left:277px;
+  padding-right:153px;
+  transform:translatex(0px) translatey(0px);
+ }
+
+}
+
+@media (max-width:767px){
+
+ /* Heading */
+ #openModalx h3{
+  font-size:15px !important;
+  padding-left:219px;
+  padding-right:142px;
+ }
+
+}
+
+@media (min-width:1317px){
+
+ /* Heading */
+ #openModalx h3{
+  font-size:23px;
+ }
+
+}
+@media (max-width:767px){
+
+/* Heading */
+#openModalx h3{
+ padding-left:98px !important;
+ padding-right:34px !important;
+ font-size:17px;
+}
+
+/* Heading */
+#core #columns .columns__inner .lsvr-container .lsvr-grid .columns__main #main div .text-center .popupsub #openModalx h3{
+ font-size:17px !important;
+}
+
+}
+
+@media (max-width:480px){
+
+/* Heading */
+#openModalx h3{
+ padding-left:77px !important;
+ padding-right:20px !important;
+ top:3px;
+ bottom:auto !important;
+}
+
+}
 
     </style>
     <div id="wrapper">
@@ -261,13 +338,19 @@
                 </div>
                 <!-- HEADER CONTENT : end -->
             </div>
+
         </header>
+
         <!-- HEADER : end -->
         <div class="header-background header-background--singled" data-slideshow-speed="10">
             <div class="header-background__image header-background__image--default"
                 style="background-image: url('{{ Storage::url($portal->header_image) }}'); ">
+
             </div>
+
+
         </div>
+
         <!-- CORE : begin -->
         <div id="core">
             <div class="core__inner">
@@ -277,8 +360,10 @@
                         <div class="lsvr-container">
                             <div class="lsvr-grid">
                                 <div class="columns__main lsvr-grid__col lsvr-grid__col--span-6 lsvr-grid__col--push-3">
+
                                     <!-- MAIN : begin -->
                                     <main id="main">
+                                        @livewire('portal.elements.sub-pop-up',['banner'=>'sub-1','slug'=>$portal->slug,'portal'=>$portal])
                                         <div class="main__inner">
                                             <div class="post-207 page type-page status-publish hentry">
                                                 <!-- MAIN HEADER : begin -->

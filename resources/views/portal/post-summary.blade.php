@@ -48,6 +48,44 @@
  background-color:rgba(255,255,255,0);
 }
 
+/* Popupsub */
+.stk-side div .popupsub{
+ font-weight:600;
+ color:#020202;
+ text-decoration:none;
+ padding-left:0px;
+ padding-top:10px;
+ padding-bottom:10px;
+}
+/* Popupsub */
+.stk-side div .popupsub{
+ border-color:#070707;
+ border-style:solid;
+ border-width:1px;
+}
+
+/* Popupsub (hover) */
+.stk-side div .popupsub:hover{
+ background-color:#f7f7f7;
+ color:#0000fe;
+}
+/* Form check */
+.sign-in-form .mb-3 .form-check{
+ text-align:left;
+}
+
+/* Heading */
+#subscribeModal section h3{
+ font-size:16px;
+ font-weight:700;
+}
+
+.stk-side div > .text-center{
+ padding-left:9px;
+}
+
+
+
 
 
         body {
@@ -523,6 +561,44 @@
             font-size: 14px !important;
             line-height: 2.56em;
         }
+        /* Image */
+.container .row .text-center .stk-side div .text-center .popupsub #openModalx img{
+ width:100% !important;
+ height:100% !important;
+}
+
+/* Popupsub */
+.stk-side div .popupsub{
+ border-style:none;
+}
+
+/* Popupsub */
+.stk-side div .popupsub{
+ display:flex;
+ box-shadow:0px 8px 16px -50px rgba(0,0,0,0.15) !important;
+}
+
+/* Heading */
+#openModalx h3{
+ position:absolute;
+ font-weight:600;
+ font-size:25px;
+ padding-top:8px;
+ text-align:center;
+ padding-right:7px;
+ padding-left:8px;
+}
+
+/* Image */
+#openModalx img{
+ box-shadow:0px 0px 5px 0px #212529;
+ border-top-left-radius:8px;
+ border-top-right-radius:8px;
+ border-bottom-left-radius:8px;
+ border-bottom-right-radius:8px;
+}
+
+
 
         /* Remove all formatting from all tags inside post-description */
     </style>
@@ -623,8 +699,9 @@
 
             </div>
             <div class="text-center col-sm-3 ps-1">
-                <div class="stk-side">
-                    <div class="p-2 text-center shadow app-fb">
+                <div class="stk-side"><br><br>
+                    @livewire('portal.elements.sub-pop-up',['banner'=>'sub-2','slug'=>$portal->slug,'portal'=>$portal])
+                    {{-- <div class="p-2 text-center shadow app-fb">
                         <p class="p-0">Follow Us on</p>
                         <a class="text-center btn btn-primary" href="https://facebook.com/prarang.in" target="_blank"><i
                                 class=""></i>
@@ -633,7 +710,7 @@
                                 class="fa fa-mobile"></i>
                             Mobile
                             App</a>
-                    </div>
+                    </div> --}}
                     <div class="pt-2 pb-2 mt-3 recent-poet text-start">
                         <h6 class="ps-2 fw-bold">Recent Posts</h6>
                         @foreach ($recentPosts as $post)
