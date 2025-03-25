@@ -233,7 +233,7 @@
                         @endif
                     @endif
 
-                    <img src="@switch($banner)
+                    <img wire:ignore.self src="@switch($banner)
                     @case('sub-2')
                         {{ asset('images/sub-6-bg.png') }}
                         @break
