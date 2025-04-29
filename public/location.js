@@ -155,7 +155,7 @@ function collectAndSendInformation(postId, city) {
             latitude: latitude || 'null',
             longitude: longitude || 'null',
             language: language,
-            duration: 20,
+            duration: 0,
             scroll: 10,
             screen_width: screenWidth,
             screen_height: screenHeight,
