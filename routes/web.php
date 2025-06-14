@@ -5,6 +5,8 @@ use App\Http\Controllers\LandingPages;
 use App\Http\Controllers\Main\Home;
 use App\Http\Controllers\Main\PostArchives;
 use App\Http\Controllers\Main\postController;
+use App\Http\Controllers\AI\AIController;
+use App\Http\Controllers\AI\SharedResponseController;
 use App\Http\Controllers\PartnerApi;
 use App\Http\Controllers\MobileApi\ChittiList;
 use App\View\Components\Layout\Main\Base;
@@ -45,3 +47,12 @@ Route::prefix('archives')->group(function () {
 Route::get('visitor-location', [Base::class,'visitorLocation']);
 Route::any('duration-update', [Base::class,'durationUpdate']);
 Route::get('yellow-pages/meerut/landing-page', [LandingPages::class,'index']);
+
+
+
+// Route::get('/generate', [AIController::class, 'showForm'])->name('ai.form');
+Route::post('/generate', [AIController::class, 'generate'])->name('ai.generate');
+Route::post('/generateAIResponse', [AIController::class, 'generateAIResponse'])->name('ai.response');
+
+Route::post('/share-response', [SharedResponseController::class, 'store'])->name('share.store');
+Route::get('/share/{uuid}', [SharedResponseController::class, 'show'])->name('share.show');
