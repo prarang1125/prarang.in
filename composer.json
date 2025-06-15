@@ -9,6 +9,7 @@
         "bacon/bacon-qr-code": "^2.0",
         "chillerlan/php-qrcode": "^5.0",
         "endroid/qr-code": "^5.0",
+        "erusev/parsedown": "^1.7",
         "intervention/image": "^3.11",
         "laravel/framework": "^11.9",
         "laravel/tinker": "^2.9",
