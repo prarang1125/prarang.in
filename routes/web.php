@@ -9,6 +9,7 @@ use App\Http\Controllers\AI\AIController;
 use App\Http\Controllers\AI\SharedResponseController;
 use App\Http\Controllers\PartnerApi;
 use App\Http\Controllers\MobileApi\ChittiList;
+use App\Livewire\Pages\UpmanaAi;
 use App\View\Components\Layout\Main\Base;
 use Illuminate\Support\Facades\Route;
 
@@ -56,3 +57,7 @@ Route::post('/generateAIResponse', [AIController::class, 'generateAIResponse'])-
 
 Route::post('/share-response', [SharedResponseController::class, 'store'])->name('share.store');
 Route::get('/share/{uuid}', [SharedResponseController::class, 'show'])->name('share.show');
+// UpmanaAi
+
+
+Route::get('/ai/upmana',UpmanaAi::class)->name('upmana-ai');
