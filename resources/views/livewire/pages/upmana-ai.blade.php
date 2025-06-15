@@ -298,7 +298,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title" id="categoryModalLabel"><small>
-                                    <p class="mb-2 text-info">You can select up to 5 matrics.</p>
+                                    <p class="mb-2 text-info">You can select up to 5 metrics.</p>
                                 </small></h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal"
                                 aria-label="Close"></button>
@@ -338,15 +338,15 @@
                                                             <div class="mb-2 col-6 col-sm-4 col-lg-3">
                                                                 <div class="form-check">
                                                                     <input wire:loading.attr="disabled"
-                                                                        wire:model="subChecks.{{ $main }}.{{ $sub->id }}"
+                                                                        wire:model="subChecks.{{ $main }}.{{ $sub['id'] }}"
                                                                         type="checkbox" class="form-check-input"
-                                                                        id="sub-{{ $sub->id }}"
-                                                                        value="{{ $sub->id }}">
+                                                                        id="sub-{{ $sub['id'] }}"
+                                                                        value="{{ $sub['id'] }}">
                                                                     <label class="form-check-label small"
-                                                                        for="sub-{{ $sub->id }}">
-                                                                        {{ str_replace('# of', 'No. of', $sub->name) }}
+                                                                        for="sub-{{ $sub['id'] }}">
+                                                                        {{ str_replace('# of', 'No. of', $sub['name']) }}
                                                                         <span
-                                                                            class="text-primary">{{ $sub->type }}</span>
+                                                                            class="text-primary">{{ $sub['type'] }}</span>
                                                                     </label>
                                                                 </div>
                                                             </div>
@@ -393,6 +393,7 @@
                                     {{-- Indian Cities --}}
                                     <div class="col-sm-6">
                                         <h5 class="mb-3">India</h5>
+
                                         @foreach ($citiesTOChose['city'] as $group => $cities)
                                             @php $groupId = Str::slug($group, '_'); @endphp
                                             <div class="accordion-item">
@@ -422,11 +423,11 @@
                                                                 <div class="col-6">
                                                                     <input class="form-check-input me-1"
                                                                         type="checkbox"
-                                                                        wire:model="cities.{{ $city->city }}"
-                                                                        id="city-{{ $city->id }}">
+                                                                        wire:model="cities.{{ $city['city'] }}"
+                                                                        id="city-{{ $city['id'] }}">
                                                                     <label class="form-check-label"
-                                                                        for="city-{{ $city->id }}">
-                                                                        {{ $city->city }}
+                                                                        for="city-{{ $city['id'] }}">
+                                                                        {{ $city['city'] }}
                                                                     </label>
                                                                 </div>
                                                             @endforeach
@@ -471,12 +472,12 @@
 
                                                                     <input class="form-check-input me-1"
                                                                         type="checkbox"
-                                                                        wire:model="cities.{{ $country->Country }}"
-                                                                        value="{{ $country->id }}"
-                                                                        id="country-{{ $country->id }}">
+                                                                        wire:model="cities.{{ $country['Country'] }}"
+                                                                        value="{{ $country['id'] }}"
+                                                                        id="country-{{ $country['id'] }}">
                                                                     <label class="form-check-label"
-                                                                        for="country-{{ $country->id }}">
-                                                                        {{ $country->Country }}
+                                                                        for="country-{{ $country['id'] }}">
+                                                                        {{ $country['Country'] }}
                                                                     </label>
                                                                 </div>
                                                             @endforeach

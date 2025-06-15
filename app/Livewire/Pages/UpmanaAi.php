@@ -32,10 +32,10 @@ class UpmanaAi extends Component
     public $citiesTOChose;
     public function mount(SentenceService $sentenceService)
     {   session(['chat_id' => uniqid('chat_', true)]);
-        $this->verticalService = [];
+        $this->verticalService = httpGet('/upamana/get-verticals',[])['data'];
         $this->sentenceService = $sentenceService;
 
-        $this->mainChecks =[]; #$this->verticalService->getGroupedVerticals()->toArray();
+        $this->mainChecks = $this->verticalService ;
         $this->messages['success'][] = 'Session started!';
         $this->activeSection = [
             'firstPrompt' => true,
@@ -45,7 +45,7 @@ class UpmanaAi extends Component
             'output' => false
         ];
         $this->citiesTOChose = $this->sentenceService->geography();
-        dd($this->citiesTOChose);
+
     }
 
     public function toggleMainCheck($main)
@@ -182,7 +182,7 @@ class UpmanaAi extends Component
 
     public function render()
     {
-        return view('livewire.pages.upmana-ai');
+        return view('livewire.pages.upmana-ai')->layout('components.layout.main.base');
     }
 
     public function flattenValuesOnly(array $array): array
