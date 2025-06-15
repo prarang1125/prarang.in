@@ -332,18 +332,16 @@ class CreateVCardController extends Controller
     {
         // Retrieve the vCard record by slug, including its dynamic fields.
         $vcard = VCard::where('slug', $slug)
-            ->where('is_active', 1)
-            ->orderBy('id', 'desc')
-            ->with('dynamicFields')
-            ->with('city')
-            ->first();
+        ->with('address')
+        ->firstOrFail();
+
 
         if (!$vcard) {
             abort(404, 'vCard not found.');
         }
 
         $count =$vcard->increment('scan_count');
-        return redirect()->route('vCard.view', ['slug' => $vcard->slug,'city_arr'=>$vcard->city->city_arr]);
+        return redirect()->route('vCard.view', ['slug' => $vcard->slug,'city_arr'=>$vcard->address->city->city_arr]);
         $user = User::with('address')->find($vcard->user_id);
         if (!$user) {
             abort(404, 'User not found.');

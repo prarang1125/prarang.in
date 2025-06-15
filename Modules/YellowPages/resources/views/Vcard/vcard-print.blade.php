@@ -324,7 +324,7 @@
             .a4-page .card-x .card-col-4 {
                 /* min-height:54mm; */
                 max-height: 54mm;
-                background-color: #3f2020;
+
             }
         }
 
@@ -358,7 +358,7 @@
     <div class="a4-page">
         @for ($i = 0; $i < 8; $i++)
             <div class="card-x">
-                <div class="card-col-4">
+                <div class="card-col-4" style="background: {{$vcard->color_code}}">
                     <div><img class="profile-img"
                             src="{{ $user->profile ? Storage::url($user->profile) : 'https://via.placeholder.com/150' }}"
                             alt=""></div>
@@ -371,6 +371,11 @@
                 </div>
                 <div class="card-col-8">
                     <div class="topx">
+                        @if (!empty($user->email))
+
+                        @else
+                        <br>
+                    @endif
                         <div class="maing">
                             <div class="iconex"> <i class="bx bxs-user"></i></div>
                             <div class="valuex">
@@ -394,33 +399,54 @@
                                     <span class="valued">{{ $user->email }}</span>
                                 </div>
                             </div>
+                            @else
+                            <div class="maing">
+                                <div class="iconex"></div>
+                                <div class="valuex">
+                                    <span class="slugs text-muted"></span>
+                                    <span class="valued"><br></span>
+                                </div>
+                            </div>
                         @endif
                     </div>
 
                     @if (!empty($user->address))
-                        <div class="midx">
-                            <div class="maing">
-                                <div class="iconex"><i class="bx bxs-map"></i></div>
-                                <div class="valuex">
-                                    <span class="slugs text-muted">Address:</span>
-                                    @php
-                                        $addressParts = array_filter([
-                                            $user->address->house_number ?? '',
-                                            $user->address->street ?? '',
-                                            $user->address->area_name ?? '',
-                                            $user->address->city_name ?? '',
-                                            $user->address->state ?? '',
-                                            $user->address->country ?? '',
-                                            $user->address->postal_code ?? '',
-                                        ]);
-                                    @endphp
-                                    @if (!empty($addressParts))
-                                        <span class="valued">{{ implode(', ', $addressParts) }}</span>
-                                    @endif
-                                </div>
+                    <div class="midx">
+                        <div class="maing">
+                            <div class="iconex"><i class="bx bxs-map"></i></div>
+                            <div class="valuex">
+                                <span class="slugs text-muted">Address:</span>
+                                @php
+                                    $cityName = $user->address->city_name ?? '';
+                                    $state = $user->address->state ?? '';
+                                    $postalCode = $user->address->postal_code ?? '';
+                                    $isHindi = preg_match('/[\p{Devanagari}]/u', $cityName);
+
+                                    // Handle state formatting safely
+                                    $stateParts = explode('(', $state);
+                                    $formattedState = count($stateParts) > 1 ? str_replace(')', '', $stateParts[1]) : ($stateParts[0] ?? '');
+
+                                    // Address parts excluding country & pin (handled separately)
+                                    $addressParts = array_filter([
+                                        $user->address->house_number ?? '',
+                                        $user->address->street ?? '',
+                                        $user->address->area_name ?? '',
+                                        $user->address->city_name ?? '',
+                                    ]);
+                                @endphp
+
+                                @if (!empty($addressParts))
+                                    <span class="valued">{{ implode(', ', $addressParts) }},
+                                        {{ $isHindi ? ($stateParts[0] ?? '') : $formattedState }},
+                                        {{ $isHindi ? "भारत" : "India" }},
+                                        {{ $isHindi ? "पिन" : "Pin" }} - {{ $postalCode }}
+                                    </span>
+                                @endif
                             </div>
                         </div>
-                    @endif
+                    </div>
+                @endif
+
 
 
                     <div class="bottomx">

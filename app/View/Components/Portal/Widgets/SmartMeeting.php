@@ -30,31 +30,25 @@ class SmartMeeting extends Component
 
     public function fetchPresentations()
     {
-        // Define the API URL
-        $apiUrl = "https://b2b.prarang.in/api/presentations/last-month/". $this->portal->city_code;
+        $apiUrl = "https://b2b.prarang.in/api/presentations/last-month/" . $this->portal->city_code;
         $headers = [
             "Accept" => "application/json",
             "Content-Type" => "application/json"
         ];
 
         try {
-            // Make the API request using Laravel's HTTP client
             $response = Http::withHeaders($headers)->get($apiUrl);
 
-            if ($response->successful()) {
-                // Return the JSON response if successful
+            if ($response->successful() && $response->json()) {
                 return $response->json();
-            } else {
-                // Handle the error response
-                return response()->json([
-                    'error' => 'Failed to fetch data',
-                    'status' => $response->status(),
-                ], $response->status());
             }
-        } catch (\Exception $e) {   
-            return response()->json([
-                'error' => 'Error: ' ,
-            ], 500);
+
+            // If response is not successful or empty
+            return null;
+        } catch (\Exception $e) {
+            // On exception, return null
+            return null;
         }
     }
+
 }

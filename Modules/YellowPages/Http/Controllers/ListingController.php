@@ -37,46 +37,46 @@ class ListingController extends Controller
             // Get all active categories and cities
             $categories = Category::where('is_active', 1)->get();
             $cities = City::where('is_active', 1)->get();
-    
+
             // Find the requested category by its slug, or fail with a 404 error if not found
             $category = Category::where('slug', $category_name)->firstOrFail();
-    
+
             // Get active listings associated with the specific category
             $listings = BusinessListing::with(['category', 'hours', 'reviews'])
                 ->where('is_active', 1)
                 ->whereHas('category', fn($q) => $q->where('slug', $category->slug))
                 ->get();
-    
+
             // Define the timezone
             $timezone = 'Asia/Kolkata';
             $currentDateTime = Carbon::now($timezone);
             $currentTime = $currentDateTime->format('H:i:s');
             $currentDay = strtolower($currentDateTime->format('l'));
-    
+
             // Process listings to determine open status
             $listings->each(function ($listing) use ($timezone, $currentTime, $currentDay) {
                 $listing->is_open = false;
-    
+
                 if ($listing->hours) {
                     foreach ($listing->hours as $hours) {
                         if ($hours->is_24_hours) {
                             $listing->is_open = true;
                             break;
                         }
-    
+
                         if (strtolower($hours->day) === $currentDay) {
                             $openTime1 = $hours->open_time ? Carbon::parse($hours->open_time, $timezone) : null;
                             $closeTime1 = $hours->close_time ? Carbon::parse($hours->close_time, $timezone) : null;
-    
+
                             $isOpen1 = $openTime1 && $closeTime1 && $currentTime >= $openTime1->format('H:i:s') && $currentTime <= $closeTime1->format('H:i:s');
-    
+
                             $isOpen2 = false;
                             if ($hours->open_time2 && $hours->close_time2) {
                                 $openTime2 = Carbon::parse($hours->open_time2, $timezone);
                                 $closeTime2 = Carbon::parse($hours->close_time2, $timezone);
                                 $isOpen2 = $currentTime >= $openTime2->format('H:i:s') && $currentTime <= $closeTime2->format('H:i:s');
                             }
-    
+
                             if ($isOpen1 || $isOpen2) {
                                 $listing->is_open = true;
                                 break;
@@ -85,45 +85,45 @@ class ListingController extends Controller
                     }
                 }
             });
-    
+
             // Get portal details
             $portal = Portal::first();
-    
+
             // Return the view with required data
             return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'category_name', 'portal'));
-    
+
         } catch (\Exception $e) {
             // Log error for debugging
             Log::error('Error in showByCategory: ' . $e->getMessage());
-            
+
             // Redirect back with error message
             return redirect()->back()->withErrors(['error' => 'An error occurred while loading the category listings.']);
         }
-    }   
+    }
 
     public function showByCity($city_name)
-    {      
-        
+    {
+
         try {
             $categories = Category::where('is_active', 1)->get();
             $cities = City::where('is_active', 1)->get();
             $city = City::where('name', $city_name)->first();
-           
+
             if (!$city) {
                 $portal = Portal::where('slug', $city_name)->first();
                 if ($portal) {
-                    $city = $portal->city; 
+                    $city = $portal->city;
                 }
             }
             if (!$city) {
                 $city = City::where('name', 'LIKE', "%{$city_name}%")->first();
-            }  
-            setcookie('register_city', $city->id, time() + 3600, '/');          
+            }
+            setcookie('register_city', $city->id, time() + 3600, '/');
             $city_name=$city->name;
-            $portal = Portal::where('id', $city->portal_id)->first();           
+            $portal = Portal::where('id', $city->portal_id)->first();
 
             $listings = BusinessListing::with(['category', 'hours', 'city','address','user'])
-                ->where('is_active', 1) 
+                ->where('is_active', 1)
                 ->whereHas('city', fn($q) => $q->where('city_id', $city->id))
                 ->get();
 
@@ -132,31 +132,31 @@ class ListingController extends Controller
             $currentDateTime = Carbon::now($timezone);
             $currentTime = $currentDateTime->format('H:i:s');
             $currentDay = strtolower($currentDateTime->format('l'));
-    
+
             // Process listings to determine open status
             $listings->each(function ($listing) use ($timezone, $currentTime, $currentDay) {
                 $listing->is_open = false;
-    
+
                 if ($listing->hours) {
                     foreach ($listing->hours as $hours) {
                         if ($hours->is_24_hours) {
                             $listing->is_open = true;
                             break;
                         }
-    
+
                         if (strtolower($hours->day) === $currentDay) {
                             $openTime1 = $hours->open_time ? Carbon::parse($hours->open_time, $timezone) : null;
                             $closeTime1 = $hours->close_time ? Carbon::parse($hours->close_time, $timezone) : null;
-    
+
                             $isOpen1 = $openTime1 && $closeTime1 && $currentTime >= $openTime1->format('H:i:s') && $currentTime <= $closeTime1->format('H:i:s');
-    
+
                             $isOpen2 = false;
                             if ($hours->open_time2 && $hours->close_time2) {
                                 $openTime2 = Carbon::parse($hours->open_time2, $timezone);
                                 $closeTime2 = Carbon::parse($hours->close_time2, $timezone);
                                 $isOpen2 = $currentTime >= $openTime2->format('H:i:s') && $currentTime <= $closeTime2->format('H:i:s');
                             }
-    
+
                             if ($isOpen1 || $isOpen2) {
                                 $listing->is_open = true;
                                 break;
@@ -204,10 +204,10 @@ class ListingController extends Controller
             $portal = Portal::where('id', $sz->portal_id)->first();
             $listings = $query->with(['category', 'hours', 'city'])->get()->map(function ($listing) {
                 $currentTime = Carbon::now();
-            
+
                 // Ensure that 'hours' is a single instance (not a collection)
                 $hour = $listing->hours->first();  // Get the first related 'hours' entry
-            
+
                 if ($hour) {
                     $openTime = Carbon::parse($hour->open_time);
                     $closeTime = Carbon::parse($hour->close_time);
@@ -215,9 +215,9 @@ class ListingController extends Controller
                 } else {
                     $listing->is_open = false;
                 }
-            
+
                 return $listing;
-            });            
+            });
 
                 return view('yellowpages::home.categories', compact('listings', 'categories', 'city','portal'));
             } catch (\Exception $e) {
@@ -236,7 +236,7 @@ class ListingController extends Controller
     ##------------------------- Show Listing Form ---------------------##
     public function getLocationData()
     {
-        
+
         try {
             $cities = City::on('yp')->get();
             $company_legal_type = DB::connection('yp')->select('SELECT * FROM company_legal_types');
@@ -324,7 +324,7 @@ class ListingController extends Controller
         if (!empty($validated['day'])) {
             try{
 
-          
+
             foreach ($validated['day'] as $index => $day) {
                 BusinessHour::create([
                     'business_id' => $listing->id,
@@ -348,7 +348,7 @@ class ListingController extends Controller
     //     return redirect()->back()->withErrors(['error' => 'An error occurred while processing your request. Please try again.']);
     // }
 }
-    
+
     ##------------------------- END---------------------##
 
     ##------------------------- Listing Details---------------------##
@@ -358,16 +358,16 @@ class ListingController extends Controller
             // Fetch the listing or fail with a 404
             $listing = BusinessListing::with('address')->findOrFail($listingId);
             $listingHours = BusinessHour::where('business_id', $listing->id)->get();
-    
+
             // Check if the user is not the owner of this specific listing
             if ($listing->user_id != Auth::id()) {
                 $ipAddress = request()->ip();
-    
+
                 // Check if the visit already exists
                 $visitExists = Visits::where('business_id', $listing->id)
                     ->where('ip_address', $ipAddress)
                     ->exists();
-    
+
                 if (!$visitExists) {
                     // Log the visit
                     Visits::insert([
@@ -378,34 +378,34 @@ class ListingController extends Controller
                         'created_at' => now(),
                         'updated_at' => now(),
                     ]);
-    
+
                     UserPurchasePlan::where('user_id', $listing->user_id)
                         ->increment('current_visits', 1);
                 }
             }
-    
+
             $timezone = 'Asia/Kolkata';
             $currentDateTime = Carbon::now($timezone);
             $currentTime = $currentDateTime->format('H:i:s');
             $currentDay = $currentDateTime->format('l');
-    
+
             $listing->is_open = false;
-    
+
             foreach ($listingHours as $hours) {
                 // Check if the business operates 24/7
                 if ($hours->is_24_hours) {
                     $listing->is_open = true;
                     break;
                 }
-    
+
                 // Ensure day comparison is consistent
                 if (strtolower($hours->day) === strtolower($currentDay)) {
                     // Check the first time slot
                     $openTime1 = $hours->open_time ? Carbon::createFromFormat('H:i:s', $hours->open_time, $timezone) : null;
                     $closeTime1 = $hours->close_time ? Carbon::createFromFormat('H:i:s', $hours->close_time, $timezone) : null;
-    
+
                     $isOpen1 = $openTime1 && $closeTime1 && $currentTime >= $openTime1->format('H:i:s') && $currentTime <= $closeTime1->format('H:i:s');
-    
+
                     // Check the second time slot, if present
                     $isOpen2 = false;
                     if ($hours->open_time2 && $hours->close_time2) {
@@ -413,7 +413,7 @@ class ListingController extends Controller
                         $closeTime2 = Carbon::createFromFormat('H:i:s', $hours->close_time2, $timezone);
                         $isOpen2 = $currentTime >= $openTime2->format('H:i:s') && $currentTime <= $closeTime2->format('H:i:s');
                     }
-    
+
                     // Determine if the business is open
                     if ($isOpen1 || $isOpen2) {
                         $listing->is_open = true;
@@ -423,14 +423,14 @@ class ListingController extends Controller
             }
             return view('yellowpages::home.listing', compact('listing', 'listingHours'))->with('isOpen', $listing->is_open);
 
-    
+
             // return view('yellowpages::home.listing', compact('listing', 'listingHours'));
-    
+
         } catch (\Exception $e) {
             return redirect()->back()->with('error', 'Listing not found.');
         }
     }
-    
+
     ##-------------------------END ---------------------##
 
 

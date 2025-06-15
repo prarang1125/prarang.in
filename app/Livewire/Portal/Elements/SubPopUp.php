@@ -1,27 +1,32 @@
 <?php
 
-namespace App\Livewire\YellowPages\Elements;
-
+namespace App\Livewire\Portal\Elements;
 use App\Models\City;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Livewire\Component;
 use Illuminate\Support\Str;
+use Livewire\Component;
 
-class NewAccounts extends Component
+class SubPopUp extends Component
 {
     public $cities;
-    public $city, $name, $phone, $password,$slug;
+    public $city, $name, $phone, $password,$slug,$banner,$portal;
     public $loading = false;
     public $shareUrl=null;
+    public $isVcard=false,$showPassword = false;
+    public $showWelcome = false;
+    public $isSubscribed = false;
 
-    protected $rules = [
-        'city'     => 'required',
-        'name'     => 'required|string|min:3|regex:/^[^@]+$/|max:30',
-        'phone'    => 'required|regex:/^(\+91)?\d{10}$/',
-        'password' => 'required',
-    ];
+    protected function rules()
+    {
+        return [
+            'city'  => 'required',
+            'name'  => 'required|string|min:3|regex:/^[^@]+$/|max:30',
+            'phone' => 'required|regex:/^(\+91)?\d{10}$/',
+            'password' => $this->isVcard ? 'required|min:6' : 'nullable',
+        ];
+    }
     protected $messages = [
         'city.required'     => 'कृपया शहर का चयन करें।',
         'name.required'     => 'नाम आवश्यक है।',
@@ -34,8 +39,10 @@ class NewAccounts extends Component
         'password.required' => 'पासवर्ड आवश्यक है।',
         'password.min'      => 'पासवर्ड कम से कम 6 अक्षर का होना चाहिए।',
     ];
-    public function mount($slug=null)
+    public function mount($banner,$portal,$slug=null)
     {
+        $this->banner = $banner;
+        $this->portal = $portal;
         $this->cities = City::all();
         if($slug!=null){
             $this->city=City::where('slug', $slug)->first()->id;
@@ -46,15 +53,23 @@ class NewAccounts extends Component
         if (isset($_COOKIE['yp_share_url'])) {
             $this->shareUrl = $_COOKIE['yp_share_url'];
         }
+        if (isset($_COOKIE['pop-sub-mobile'])) {
+            $this->isSubscribed = true;
+        }
 
     }
     public function register()
     {
-        $this->loading = true;
         $this->validate();
+        $this->loading = true;
         $this->phone = str_replace('+91', '', $this->phone);
         if (User::where('phone', $this->phone)->where('city_id', $this->city)->exists()) {
+            if($this->isVcard)
             $this->addError('phone', 'यह फ़ोन नंबर और शहर का संयोजन पहले से मौजूद है।');
+            else{
+                $this->showWelcome = true;
+            }
+            $this->showWelcome = true;
             $this->loading = false;
             return;
         }
@@ -68,29 +83,37 @@ class NewAccounts extends Component
             'name' => $this->name ?? '',
             'phone' => $this->phone ?? '',
             'city_id' => $this->city,
-            'password' => Hash::make($this->password),
-            'role' => 2,
+            'password'  => $this->isVcard ? Hash::make($this->password) : Str::random(8),
+            'role' => $this->isVcard ? 2 : 4,
             'user_code' => $userCode
         ]);
 
         $city = City::find($this->city);
         $this->reset();
         $this->cities = City::all();
-        session()->flash('success', 'आपका अकाउंट बनाया गया है।');
-        $this->loading = false;
-        Auth::login($user);
-
-        $this->shareUrl = route('vCard.view',['city_arr'=> Str::slug($city->city_arr),'slug'=>$user->user_code]);
-        return redirect($this->shareUrl);
-
+        setcookie('pop-sub-mobile', 'true', time() + (200 * 24 * 60 * 60), "/");
+        setcookie('sub-user-id', $user->id, time() + (200 * 24 * 60 * 60), "/");
+        if( $this->isVcard){
+            session()->flash('success', 'आपका अकाउंट बनाया गया है।');
+            $this->loading = false;
+            Auth::login($user);
+            $this->shareUrl = route('vCard.view',['city_arr'=> Str::slug($city->city_arr),'slug'=>$user->user_code]);
+            return redirect($this->shareUrl);
+        }else{
+            $this->showWelcome = true;
+            $this->loading = false;
+        }
     }
     public function validatePhone($prop)
     {
         $this->validateOnly($prop);
     }
+    public function checkedVcard(){
+        $this->showPassword = !$this->showPassword;
+    }
 
     public function render()
     {
-        return view('livewire.yellow-pages.elements.new-accounts');
+        return view('livewire.portal.elements.sub-pop-up');
     }
 }

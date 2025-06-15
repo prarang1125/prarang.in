@@ -28,7 +28,7 @@ class AuthModalController extends Controller
     {
         // Validate the input fields
         $request->validate([
-            'phone' => ['required', 'regex:/^\+?[0-9]{10,15}$/'],
+            'phone' => 'required|regex:/^(\+91)?\d{10}$/',
             'password' => 'required',
             'city_id'=>'required',
         ], [
@@ -37,6 +37,10 @@ class AuthModalController extends Controller
             'password.required' => 'पासवर्ड आवश्यक है।',
             'city_id.required' => 'शहर आवश्यक है।',
         ]);
+        // Remove '+91' from the beginning of the phone number if it exists
+        if (strpos($request->phone, '+91') === 0) {
+            $request->merge(['phone' => substr($request->phone, 3)]);
+        }
 
         try {
             // Validate request input
@@ -72,16 +76,17 @@ class AuthModalController extends Controller
 
     }
 
-    public function newAccount()
+    public function newAccount($city = null)
     {
+        $slug = $city ?? request()->query('s');
 
-        $slug = request()->query('s');
         try {
             return view('yellowpages::Vcard.register', compact('slug'));
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while loading the login page.']);
+            return back()->withErrors(['error' => 'An error occurred while loading the registration page.']);
         }
     }
+
 
 
 

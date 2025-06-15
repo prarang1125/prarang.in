@@ -55,18 +55,18 @@
                             </div>
                             <label for="profile-upload" class="position-relative d-inline-block">
                                 <img id="ddimg" src="{{ $profile ? Storage::url($profile) : 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-image-182145777.jpg' }}" class="border shadow-sm rounded-circle" style="width: 120px; height: 120px; object-fit: cover;" alt="Profile">
-                                <span class="bottom-0 p-1 text-white position-absolute end-0 bg-primary rounded-circle">
-                                    <i class="fas fa-camera" wire:loading.remove wire:target="photo"></i>
-                                    <i class="fas fa-spinner fa-spin" wire:loading wire:target="photo"></i>
+                                <span wire:loading wire:target="photo" class="bottom-0 p-1 text-white position-absolute end-0 bg-primary rounded-circle">
+                                    {{-- <i class="fas fa-camera" wire:loading.remove wire:target="photo"></i> --}}
+                                    <i class="fas fa-spinner fa-spin"></i>
                                 </span>
                             </label>
-                            <input type="file" id="profile-upload" class="d-none" wire:model="photo">
+                            {{-- <input type="file" id="profile-upload" class="d-none" wire:model="photo"> --}}
                         </div>
 
                         <div class="mt-3 row">
                             <div class="col-md-6">
                                 <label class="form-label">आपका तस्वीर *</label>
-                                <input class="form-control" type="file" id="" class="" wire:model="photo">
+                                <input class="form-control" type="file" wire:model="photo" accept="image/*">
                                 @error('photo')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                         </div>
@@ -135,16 +135,46 @@
                             </div>
                             <div class="col-md-6">
                                 <label class="form-label">राज्य/प्रदेश *</label>
-                                <input type="text" class="form-control" value=" उत्तर प्रदेश (Uttar Pradesh)"  placeholder="अपना राज्य दर्ज करें" wire:change="updatefield('state')" wire:model="state">
+                                <select class="form-select" wire:change="updatefield('state')" wire:model="state">
+                                    <option value="उत्तर प्रदेश (Uttar Pradesh)">उत्तर प्रदेश (Uttar Pradesh)</option>
+                                    <option value="आंध्र प्रदेश (Andhra Pradesh)">आंध्र प्रदेश (Andhra Pradesh)</option>
+                                    <option value="अरुणाचल प्रदेश (Arunachal Pradesh)">अरुणाचल प्रदेश (Arunachal Pradesh)</option>
+                                    <option value="असम (Assam)">असम (Assam)</option>
+                                    <option value="बिहार (Bihar)">बिहार (Bihar)</option>
+                                    <option value="छत्तीसगढ़ (Chhattisgarh)">छत्तीसगढ़ (Chhattisgarh)</option>
+                                    <option value="गोवा (Goa)">गोवा (Goa)</option>
+                                    <option value="गुजरात (Gujarat)">गुजरात (Gujarat)</option>
+                                    <option value="हरियाणा (Haryana)">हरियाणा (Haryana)</option>
+                                    <option value="हिमाचल प्रदेश (Himachal Pradesh)">हिमाचल प्रदेश (Himachal Pradesh)</option>
+                                    <option value="झारखंड (Jharkhand)">झारखंड (Jharkhand)</option>
+                                    <option value="कर्नाटक (Karnataka)">कर्नाटक (Karnataka)</option>
+                                    <option value="केरल (Kerala)">केरल (Kerala)</option>
+                                    <option value="मध्य प्रदेश (Madhya Pradesh)">मध्य प्रदेश (Madhya Pradesh)</option>
+                                    <option value="महाराष्ट्र (Maharashtra)">महाराष्ट्र (Maharashtra)</option>
+                                    <option value="मणिपुर (Manipur)">मणिपुर (Manipur)</option>
+                                    <option value="मेघालय (Meghalaya)">मेघालय (Meghalaya)</option>
+                                    <option value="मिजोरम (Mizoram)">मिजोरम (Mizoram)</option>
+                                    <option value="नागालैंड (Nagaland)">नागालैंड (Nagaland)</option>
+                                    <option value="ओडिशा (Odisha)">ओडिशा (Odisha)</option>
+                                    <option value="पंजाब (Punjab)">पंजाब (Punjab)</option>
+                                    <option value="राजस्थान (Rajasthan)">राजस्थान (Rajasthan)</option>
+                                    <option value="सिक्किम (Sikkim)">सिक्किम (Sikkim)</option>
+                                    <option value="तमिलनाडु (Tamil Nadu)">तमिलनाडु (Tamil Nadu)</option>
+                                    <option value="तेलंगाना (Telangana)">तेलंगाना (Telangana)</option>
+                                    <option value="त्रिपुरा (Tripura)">त्रिपुरा (Tripura)</option>
+                                    <option value="उत्तराखंड (Uttarakhand)">उत्तराखंड (Uttarakhand)</option>
+                                    <option value="पश्चिम बंगाल (West Bengal)">पश्चिम बंगाल (West Bengal)</option>
+                                </select>
+
                                 @error('state')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>
                             <div class="col-md-6 mt-2">
                                 <label class="form-label">आपका देश</label>
                                 <input type="text" value="भारत (India)" class="form-control" placeholder="अपना देश दर्ज करें">
-                                @error('cityname')<small class="text-danger">{{ $message }}</small>@enderror
+                                {{-- @error('cityname')<small class="text-danger">{{ $message }}</small>@enderror --}}
                             </div>
                             <div class="col-md-6 mt-2">
-                                <label class="form-label">पिनकोड</label>
+                                <label class="form-label">पिनकोड*</label>
                                 <input type="text" class="form-control" wire:change="updatefield('pincode')" placeholder="पिनकोड दर्ज करें" wire:model="pincode">
                                 @error('pincode')<small class="text-danger">{{ $message }}</small>@enderror
                             </div>

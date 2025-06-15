@@ -12,6 +12,9 @@ use App\Models\DynamicVCard;
 use App\Models\User;
 use App\Models\VCard;
 use Illuminate\Support\Str;
+use Intervention\Image\Laravel\Facades\Image;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Encoding\JpegEncoder;
 
 class EditVcard extends Component
 {
@@ -19,19 +22,20 @@ class EditVcard extends Component
 
     public $color_code = '#E6C72D';
     public $profile, $category_id, $city_id, $name, $surname, $dob, $email, $phone;
-    public $house_number,$cityname, $road_street, $area_name, $pincode, $state='उत्तर प्रदेश (Uttar Pradesh)';
+    public $house_number, $cityname, $road_street, $area_name, $pincode, $state='उत्तर प्रदेश (Uttar Pradesh)';
     public $vcard, $address;
     public $photo;
     public $dynamicFields = [];
     public $existingFields = [];
     public $options = [];
+    public $user;
 
     public function mount()
     {
         $userId = auth()->id();
         $this->vcard = VCard::where('user_id', $userId)->first();
         $this->address = Address::where('user_id', $userId)->first();
-        $user = User::find($userId);
+        $this->user=$user = User::find($userId);
 
         if ($user) {
             $this->name = $user->name;
@@ -61,7 +65,7 @@ class EditVcard extends Component
 
         if ($this->vcard) {
             $this->existingFields = DynamicVCard::where('vcard_id', $this->vcard->id)->get()->map(function ($item) {
-                return ['id' => $item->dy_fields_id, 'name' => $item->title, 'value' => $item->data,'icon'=>$item->icon,'type'=>$item->type];
+                return ['id' => $item->dy_fields_id, 'name' => $item->title, 'value' => $item->data, 'icon' => $item->icon, 'type' => $item->type];
             })->toArray();
 
             // Existing fields ko dynamicFields me add karna
@@ -92,19 +96,47 @@ class EditVcard extends Component
         }
 
         $this->dynamicFields = array_values($this->dynamicFields);
-
     }
     public function updatedPhoto()
     {
-        $this->validate(['photo' => 'max:200']);
+        // $this->validate(['photo' => 'max:500bk']);
         $this->uploadProfile();
     }
     public function uploadProfile()
     {
         if ($this->photo) {
-            $photoPath = $this->photo->store('yellowpages/profiles', 's3');
-            auth()->user()->update(['profile' => $photoPath]);
-            $this->profile = $photoPath;
+            // delete old image
+            $oldImage = $this->user->profile;
+
+            $fileName = time() . '.jpg';
+
+
+            $img = Image::read($this->photo->getRealPath());
+
+
+            $img->resize(300, 300, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+
+
+            $tempFile = tempnam(sys_get_temp_dir(), 'profile_') . '.jpg';
+
+
+            $img->save($tempFile, 90, 'jpg');
+
+
+            $storagePath = 'yellowpages/profiles/' . $fileName;
+            Storage::disk('s3')->put($storagePath, file_get_contents($tempFile));
+
+
+            $status=auth()->user()->update(['profile' => $storagePath]);
+            if($status && $oldImage){
+                    Storage::delete($oldImage);
+            }
+
+            $this->profile = $storagePath;
+            unlink($tempFile);
+
 
         }
     }
@@ -130,59 +162,89 @@ class EditVcard extends Component
 
     protected $rules = [
         'color_code' => 'required',
-        'photo' => 'max:200',
+        'photo' => 'nullable|image|max:600',
         'category_id' => 'required|integer',
         'city_id' => 'required|integer',
-        'name' => 'required|string|max:255',
-        'surname' => 'nullable|string|max:255',
+
+        // Name और Surname में हिंदी, अंग्रेज़ी, नंबर, - और / अलLOWED
+        'name' => 'required|string|regex:/^[A-Za-z0-9\x{0900}-\x{097F}]+$/u|max:10',
+        'surname' => 'nullable|string|regex:/^[A-Za-z0-9\x{0900}-\x{097F}]+$/u|max:10',
+
         'dob' => 'nullable|date|before_or_equal:today',
         'email' => 'nullable|email|max:255',
         'phone' => 'required|string|max:15',
-        'house_number' => 'nullable|string|max:255',
-        'road_street' => 'nullable|string|max:255',
-        'area_name' => 'required|max:255',
+
+        // House_number में कम से कम एक नंबर अनिवार्य और केवल , - / अलLOWED
+        'house_number' => 'nullable|regex:/^(?=.*\d)[A-Za-z0-9\x{0900}-\x{097F},\-\/ ]+$/u|max:8',
+
+        // Road_street में हिंदी, अंग्रेज़ी, नंबर और स्पेस अलLOWED
+        'road_street' => 'nullable|regex:/^[A-Za-z0-9\x{0900}-\x{097F} ]+$/u|max:15',
+
+        // Area_name में हिंदी और अंग्रेज़ी अक्षर अलLOWED
+        'area_name' => 'required|regex:/^[A-Za-z0-9\x{0900}-\x{097F} ]+$/u|max:40',
+
         'pincode' => 'required|digits:6',
-        'cityname' => 'required|string|max:255',
-        'state' => 'required|string|max:255',
+
+        // Cityname में हिंदी और अंग्रेज़ी अक्षर अलLOWED
+        'cityname' => 'required|regex:/^[A-Za-z0-9\x{0900}-\x{097F} ]+$/u|max:15',
+
+        // State में हिंदी, अंग्रेज़ी, () और स्पेस अलLOWED
+        'state' => 'required|regex:/^[A-Za-z0-9\x{0900}-\x{097F}() ]+$/u|max:40',
     ];
+
+
     protected $messages = [
         'color_code.required' => 'रंग कोड आवश्यक है।',
-        'photo.max' => 'प्रोफ़ाइल का आकार 200 KB से अधिक नहीं हो सकता।',
-        'category_id.required' => 'श्रेणी चयन आवश्यक है।',
+        'photo.max' => 'फोटो का आकार 600 KB से अधिक नहीं हो सकता।',
+        'photo.image'=>'Must be Image',
+        'category_id.required' => 'श्रेणी का चयन आवश्यक है।',
         'category_id.integer' => 'श्रेणी आईडी एक मान्य संख्या होनी चाहिए।',
-        'city_id.required' => 'शहर चयन आवश्यक है।',
+
+        'city_id.required' => 'शहर का चयन आवश्यक है।',
         'city_id.integer' => 'शहर आईडी एक मान्य संख्या होनी चाहिए।',
+
         'name.required' => 'नाम आवश्यक है।',
         'name.string' => 'नाम केवल अक्षरों में होना चाहिए।',
-        'name.max' => 'नाम 255 अक्षरों से अधिक नहीं हो सकता।',
+        'name.max' => 'नाम 10 अक्षरों से अधिक नहीं हो सकता।',
+        'name.regex' => 'नाम में केवल अक्षर होने चाहिए, बिना स्पेस या विशेष अक्षरों के।',
+        'surname.regex' => 'उपनाम में केवल अक्षर होने चाहिए, बिना स्पेस या विशेष अक्षरों के।',
+
+
         'surname.string' => 'उपनाम केवल अक्षरों में होना चाहिए।',
-        'surname.max' => 'उपनाम 255 अक्षरों से अधिक नहीं हो सकता।',
-        'dob.date' => 'जन्मतिथि मान्य तिथि प्रारूप में होनी चाहिए।',
+        'surname.max' => 'उपनाम 10 अक्षरों से अधिक नहीं हो सकता।',
+
+        'dob.date' => 'जन्मतिथि एक मान्य तिथि होनी चाहिए।',
+        'dob.before_or_equal' => 'जन्मतिथि आज की तिथि या इससे पहले की होनी चाहिए।',
+
         'email.email' => 'कृपया एक मान्य ईमेल पता दर्ज करें।',
         'email.max' => 'ईमेल 255 अक्षरों से अधिक नहीं हो सकता।',
-        'phone.required' => 'फोन नंबर आवश्यक है।',
-        'phone.string' => 'फोन नंबर केवल अक्षरों और अंकों में होना चाहिए।',
-        'phone.max' => 'फोन नंबर 15 अंकों से अधिक नहीं हो सकता।',
-        'house_number.required' => 'मकान संख्या आवश्यक है।',
-        'house_number.string' => 'मकान संख्या केवल अक्षरों और अंकों में होनी चाहिए।',
-        'house_number.max' => 'मकान संख्या 255 अक्षरों से अधिक नहीं हो सकती।',
-        'road_street.required' => 'सड़क/गली का नाम आवश्यक है।',
-        'road_street.string' => 'सड़क/गली का नाम केवल अक्षरों में होना चाहिए।',
-        'road_street.max' => 'सड़क/गली का नाम 255 अक्षरों से अधिक नहीं हो सकता।',
-        'area_name.required' => 'पता आवश्यक है।',
 
-        'area_name.max' => 'पता 255 अक्षरों से अधिक नहीं हो सकता।',
+        'phone.required' => 'फ़ोन नंबर आवश्यक है।',
+        'phone.string' => 'फ़ोन नंबर केवल संख्याओं और अक्षरों में होना चाहिए।',
+        'phone.max' => 'फ़ोन नंबर 15 अंकों से अधिक नहीं हो सकता।',
+
+        'house_number.regex' => 'मकान संख्या में कम से कम एक संख्या होनी चाहिए और केवल (, - /) विशेष वर्णों की अनुमति है।',
+        'house_number.max' => 'मकान संख्या 8 अक्षरों से अधिक नहीं हो सकती।',
+
+        'road_street.regex' => 'सड़क/गली का नाम केवल अक्षरों और संख्याओं में होना चाहिए।',
+        'road_street.max' => 'सड़क/गली का नाम 15 अक्षरों से अधिक नहीं हो सकता।',
+
+        'area_name.required' => 'पता आवश्यक है।',
+        'area_name.regex' => 'पता केवल अक्षर और स्पेस होने चाहिए।',
+        'area_name.max' => 'पता 40 अक्षरों से अधिक नहीं हो सकता।',
+
         'pincode.required' => 'पिन कोड आवश्यक है।',
-        'pincode.string' => 'पिन कोड केवल अंकों में होना चाहिए।',
         'pincode.digits' => 'पिन कोड ठीक 6 अंकों का होना चाहिए।',
-        'pincode.max' => 'पिन कोड 6 अंकों से अधिक नहीं हो सकता।',
+
         'cityname.required' => 'शहर का नाम आवश्यक है।',
-        'cityname.string' => 'शहर का नाम केवल अक्षरों में होना चाहिए।',
-        'cityname.max' => 'शहर का नाम 255 अक्षरों से अधिक नहीं हो सकता।',
-        'state.required' => 'राज्य आवश्यक है।',
-        'state.string' => 'राज्य केवल अक्षरों में होना चाहिए।',
-        'state.max' => 'राज्य 255 अक्षरों से अधिक नहीं हो सकता।',
+        'cityname.regex' => 'शहर के नाम में केवल अक्षर और स्पेस होने चाहिए।',
+        'cityname.max' => 'शहर का नाम 15 अक्षरों से अधिक नहीं हो सकता।',
+
+        'state.required' => 'राज्य का नाम आवश्यक है।',
+        'state.regex' => 'राज्य के नाम में केवल अक्षर और स्पेस होने चाहिए।',
+        'state.max' => 'राज्य का नाम 30 अक्षरों से अधिक नहीं हो सकता।',
     ];
+
 
 
     public function updatefield($propertyName)
@@ -240,7 +302,7 @@ class EditVcard extends Component
             DynamicVCard::where('vcard_id', $this->vcard->id)->delete();
 
             foreach ($this->dynamicFields as $field) {
-                if($field['value'] == null){
+                if ($field['value'] == null) {
                     continue;
                 }
                 DynamicVCard::create([
@@ -255,7 +317,7 @@ class EditVcard extends Component
             return redirect()->route('vCard.list')
                 ->with('success_message', 'VCard successfully updated!');
         } catch (\Exception $e) {
-           session()->flash('error', 'Error updating VCard: ' . $e->getMessage());
+            session()->flash('error', 'Error updating VCard: ' . $e->getMessage());
         }
     }
 

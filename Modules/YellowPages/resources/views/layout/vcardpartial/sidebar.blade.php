@@ -13,7 +13,7 @@
 <button class="close-sidebar">✖</button>
 <!-- Navigation -->
 <ul class="metismenu" id="menu">
-    
+
     {{-- @if(Auth::check() && Auth::user()->subscriptions->isNotEmpty())  --}}
     @if(session('has_vcard'))
         <h6>सदस्यता</h6>
@@ -27,16 +27,16 @@
         <!-- vCard Management (only for vCard or both plan users) -->
         {{-- @foreach(Auth::user()->subscriptions as $subscription) --}}
             {{-- @if($subscription->plan && ($subscription->plan->type == 'वीकार्ड' || $subscription->plan->type == 'दोनों')) --}}
-                <li>
+                {{-- <li>
                     <a href="{{ route('vCard.createCard') }}">
                         <div class="parent-icon"><i class="lni lni-user"></i></div>
                         <div class="menu-title">वीकार्ड</div>
                     </a>
-                </li>
+                </li> --}}
                 <li>
                     <a href="{{ route('vCard.list') }}">
                         <div class="parent-icon"><i class="lni lni-user"></i></div>
-                        <div class="menu-title">वीकार्ड सूची</div>
+                        <div class="menu-title">मेरा वेब पेज</div>
                     </a>
                 </li>
             {{-- @endif --}}
