@@ -56,6 +56,7 @@ Route::post('/generateAIResponse', [AIController::class, 'generateAIResponse'])-
 
 Route::post('/share-response', [SharedResponseController::class, 'store'])->name('share.store');
 Route::get('/share/{uuid}', [SharedResponseController::class, 'show'])->name('share.show');
+
 // UpmanaAi
 
 
