@@ -82,8 +82,8 @@
                 <div class="col-sm-8">
                     <div class="p-3 m-1 border rounded">
                         <b>Prompt:</b> {{ $prompt }}
-                        <p class="text-muted text-end"> <a style="text-decoration: none;" href="/">
-                                <small>Modify Prompt</small>
+                        <p class="text-muted text-end"> <a style="text-decoration: none;" href="/ai/upmana">
+                                <small>Edit Prompt</small>
                             </a></p>
                     </div>
                     <section id="outChat">
@@ -105,7 +105,11 @@
                             @if (is_numeric($key) && !empty($data['api_sentence']))
                             <div class="mb-2">
                                 @foreach ($data['api_sentence'] as $sentence)
-                                <p class="mb-2">{!! $sentence !!}</p>
+                                @php
+                                $pgx=highlightFirstOccurrence($sentence, $firstCity);
+                                @endphp
+                                <p class="mb-2">{!! $pgx !!}</p>
+
                                 @endforeach
                             </div>
                             @endif
@@ -276,7 +280,7 @@
                 </div>
                 <div>
                     @if (!empty($prompt))
-                    <div wire:loading wire:target="generate" class="class="text-center ">
+                    <div wire:loading wire:target="generate" class="class=" text-center ">
                         <span class=" spinner-border text-primary" role="status" aria-hidden="true"></span>
 
                     </div>

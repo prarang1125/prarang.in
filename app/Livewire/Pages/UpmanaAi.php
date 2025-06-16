@@ -30,7 +30,7 @@ class UpmanaAi extends Component
     public $selectedStates = [];
     public $selectedCountries = [];
     public $source;
-    public $citiesTOChose;
+    public $citiesTOChose, $firstCity;
     public function mount(SentenceService $sentenceService)
     {
         session(['chat_id' => uniqid('chat_', true)]);
@@ -112,7 +112,7 @@ class UpmanaAi extends Component
             $this->comparisonSentence = $newOutput['comparison_sentence'];
         }
         $this->source = collect($this->makeSource($fields))->toArray();
-
+        $this->firstCity = $this->geography();
         $this->output = $newOutput;
         // dd($this->output);
         // $flattened = $this->flattenValuesOnly($newOutput);

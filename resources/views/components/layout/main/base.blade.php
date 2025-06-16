@@ -27,7 +27,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="{{asset('assets/main/css/style.css')}}">
-    
+
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -36,6 +36,34 @@
 
     @yield('css')
 </head>
+<style>
+    /* Link */
+    .navbar-nav .col-md a {
+        flex-direction: column;
+        height: 50px;
+    }
+
+    /* Span Tag */
+    .navbar-nav a span {
+        margin-top: -4px;
+        font-size: 14px;
+    }
+
+    /* Image */
+    .container img {
+        bottom: auto !important;
+    }
+
+    @media (min-width:768px) {
+
+        /* Image */
+        .container img {
+            top: 147px;
+        }
+
+    }
+</style>
+
 <body>
     <header class="container">
         <div class="row">
@@ -79,22 +107,25 @@
                             <a href="{{ route('home') }}">Home</a>
                         </li>
                         <li class="col-md col-sm no-padding">
-                            <a href="{{ route('market') }}">Market</a>
+                            <a href="{{ route('market') }}">Market <span>Digital Divide</span></a>
                         </li>
                         <li class="col-md col-sm no-padding">
-                            <a href="{{ route('content') }}">Content</a>
+                            <a href="{{ route('content') }}">Content<span>City Hyperlocal</span></a>
                         </li>
                         <li class="col-md col-sm no-padding">
-                            <a href="{{ route('semiotics') }}">Semiotics</a>
+                            <a href="{{ route('semiotics') }}">Semiotics<span>City Semiotics</span></a>
                         </li>
                         <li class="col-md col-sm no-padding">
-                            <a href="{{ route('analytics') }}">Analytics</a>
+                            <a href="{{ route('analytics') }}">Analytics<span>India-World</span></a>
+                        </li>
+                        <li class="col-md col-sm no-padding">
+                            <a href="/ai/upmana">Artificial<span>Intelligence</span></a>
+                        </li>
+                        <li class="col-md col-sm no-padding">
+                            <a href="{{ route('partners') }}">Partners<span>Corp. & Govt.</span></a>
                         </li>
                         <li class="col-md col-sm no-padding">
                             <a href="{{ route('about-us') }}">About Us</a>
-                        </li>
-                        <li class="col-md col-sm no-padding">
-                            <a href="{{ route('partners') }}">Partners</a>
                         </li>
 
                         <li class="col-md col-sm no-padding">
@@ -174,7 +205,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
     </script>
-    
+
     <script src="{{ asset('js/ai-response.js') }}"></script>
 </body>
 

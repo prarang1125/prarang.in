@@ -736,3 +736,8 @@ textarea{
  padding-bottom:17px !important;
 }
 
+/* Main title heading */
+.container div .main-title-heading{
+ margin-top:13px;
+}
+
