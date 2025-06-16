@@ -34,6 +34,8 @@ class AIController extends Controller
             $prompt = $request->prompt;
             $models = $request->model; // array of models
             $content = $request->content;
+                      
+
 
 
             // Step 3: Initialize response data
@@ -103,53 +105,53 @@ class AIController extends Controller
         }
     }
 
-    public function showForm()
-    {
-        return view('ai.init_generation');
-    }
+    // public function showForm()
+    // {
+    //     return view('ai.init_generation');
+    // }
 
-    public function generate(Request $request)
-    {
-        try {
+    // public function generate(Request $request)
+    // {
+    //     try {
 
-            $request->validate([
-                'model' => 'required|string',
-                'prompt' => 'required|string',
-                'max_output_tokens' => 'nullable|integer|min:1',
-                'temperature' => 'nullable|numeric|min:0|max:1',
-                'top_p' => 'nullable|numeric|min:0|max:1',
-                'store' => 'nullable|boolean',
-            ]);
+    //         $request->validate([
+    //             'model' => 'required|string',
+    //             'prompt' => 'required|string',
+    //             'max_output_tokens' => 'nullable|integer|min:1',
+    //             'temperature' => 'nullable|numeric|min:0|max:1',
+    //             'top_p' => 'nullable|numeric|min:0|max:1',
+    //             'store' => 'nullable|boolean',
+    //         ]);
 
-            $params = [
-                'input' => [
-                    [
-                        'role' => 'user',
-                        'content' => $request->prompt,
-                    ],
-                ],
-                'temperature' => $request->input('temperature', 1.0),
-                'max_output_tokens' => $request->input('max_output_tokens', 2048),
-                'top_p' => $request->input('top_p', 1.0),
-            ];
+    //         $params = [
+    //             'input' => [
+    //                 [
+    //                     'role' => 'user',
+    //                     'content' => $request->prompt,
+    //                 ],
+    //             ],
+    //             'temperature' => $request->input('temperature', 1.0),
+    //             'max_output_tokens' => $request->input('max_output_tokens', 2048),
+    //             'top_p' => $request->input('top_p', 1.0),
+    //         ];
 
-            $result = $this->aiService->generateText($request->model, $request->prompt, $params);
+    //         $result = $this->aiService->generateText($request->model, $request->prompt, $params);
 
-            if ($result['success'] && $request->has('store')) {
-                // Save to DB if needed
-                // Add your database storage logic here
-            }
+    //         if ($result['success'] && $request->has('store')) {
+    //             // Save to DB if needed
+    //             // Add your database storage logic here
+    //         }
 
-            return response()->json([
-                'status' => $result['success'] ? 'success' : 'error',
-                'message' => $result['response'] ?? $result['error'] ?? 'No response.',
-                'temperature_used' => $params['temperature'],
-            ]);
-        } catch (\Exception $e) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Failed to generate response: ' . $e->getMessage()
-            ], 500);
-        }
-    }
+    //         return response()->json([
+    //             'status' => $result['success'] ? 'success' : 'error',
+    //             'message' => $result['response'] ?? $result['error'] ?? 'No response.',
+    //             'temperature_used' => $params['temperature'],
+    //         ]);
+    //     } catch (\Exception $e) {
+    //         return response()->json([
+    //             'status' => 'error',
+    //             'message' => 'Failed to generate response: ' . $e->getMessage()
+    //         ], 500);
+    //     }
+    // }
 }
