@@ -206,7 +206,7 @@
                 <div class="col-sm-4">
                     <section class="id-selector">
                         <p>Compare UPMANA Response with other A.I.</p>
-                        <form action="{{ route('ai.response') }}" method="POST">
+                        <form action="{{ route('ai.response') }}" method="POST" target="_blank">
                             @csrf
                             <input type="hidden" name="prompt" value="{{ $prompt }}">
                             <input type="hidden" name="content" id="content-input" />
