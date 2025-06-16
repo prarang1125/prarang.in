@@ -25,6 +25,7 @@ if (!function_exists('httpGet')) {
                 Log::error("API Failed: " . $response->status(), ['response' => $response->body()]);
                 return ['status' => 'error', 'message' => 'API request failed.', 'code' => $response->status()];
             }
+        
             return $response->json();
         } catch (Exception $e) {
             Log::error("API Exception: " . $e->getMessage());

@@ -1,6 +1,5 @@
 <x-layout.main.base>
 
-    @section('content')
     <div class="action-buttons-corner">
         <button class="action-button print" onclick="printResponses()" title="Print">
             <i class="fas fa-print"></i>
@@ -175,7 +174,6 @@
             </div>
         </div>
     </div>
-    @endsection
 
     @push('scripts')
     <script>
