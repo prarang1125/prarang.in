@@ -2,7 +2,7 @@
 
     <div class="action-buttons-corner">
         <button class="action-button print" onclick="printResponses()" title="Print">
-            <i class="fas fa-print"></i>
+            {{-- <i class="fas fa-print"></i> --}}
             Print
         </button>
         <form id="shareForm" action="{{ route('share.store') }}" method="POST" style="display: inline;">
@@ -24,7 +24,7 @@
             <input type="hidden" name="grok_response" value="{{ $grokResponse }}">
             @endif
             <button type="button" onclick="handleShare()" class="action-button share" title="Share">
-                <i class="fas fa-share-alt"></i>
+                {{-- <i class="fas fa-share-alt"></i> --}}
                 Share
             </button>
         </form>
@@ -169,7 +169,7 @@
             <div class="share-link">
                 <input type="text" id="shareLink" value="" readonly>
                 <button onclick="copyShareLink()" class="copy-button">
-                    <i class="fas fa-copy"></i>
+                    {{-- <i class="fas fa-copy"></i> --}}
                 </button>
             </div>
         </div>
