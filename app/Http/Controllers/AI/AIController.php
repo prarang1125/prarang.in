@@ -35,7 +35,6 @@ class AIController extends Controller
             $models = $request->input('model'); // array of models
             $content = $request->input('content');
 
-            dd($prompt);
             // Step 3: Initialize response data
             $responses = [
                 'prompt' => $prompt,
