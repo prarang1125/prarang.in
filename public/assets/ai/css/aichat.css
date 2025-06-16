@@ -741,3 +741,38 @@ textarea{
  margin-top:13px;
 }
 
+/* Container */
+.container div .container{
+ padding-top:6px !important;
+ margin-top:2px !important;
+ height:523px;
+}
+
+/* Heading */
+.first-prompt .firstPrompt h5{
+ margin-bottom:0px;
+}
+
+/* First prompt */
+.pr-ai-section .first-prompt > .firstPrompt{
+ margin-bottom:1px !important;
+}
+
+/* Section */
+.container div .pr-ai-section{
+ height:275px;
+ min-height:165px;
+}
+
+/* Main button area */
+.first-prompt .firstPrompt .main-button-area{
+ position:relative;
+ top:-30px;
+}
+
+/* Prompt section */
+.container div .prompt-section{
+ position:relative;
+ top:-40px;
+}
+
