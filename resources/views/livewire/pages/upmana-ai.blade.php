@@ -1,5 +1,5 @@
 <div>
-    <link rel="stylesheet" href="{{asset('assets/ai/css/aichat.css'}}">
+    <link rel="stylesheet" href="{{asset('assets/ai/css/aichat.css')}}">
     <p class="text-center main-title-heading">UPMANA - Knowledge By Comparision</p>
     <section class="container p-3 mt-4 border rounded">
 

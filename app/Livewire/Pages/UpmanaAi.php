@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Livewire\Pages;
+
 use Livewire\Component;
 use App\Services\SentenceService;
 use App\Services\TransformerService;
@@ -31,11 +32,12 @@ class UpmanaAi extends Component
     public $source;
     public $citiesTOChose;
     public function mount(SentenceService $sentenceService)
-    {   session(['chat_id' => uniqid('chat_', true)]);
-        $this->verticalService = httpGet('/upamana/get-verticals',[])['data'];
+    {
+        session(['chat_id' => uniqid('chat_', true)]);
+        $this->verticalService = httpGet('/upamana/get-verticals', [])['data'];
         $this->sentenceService = $sentenceService;
 
-        $this->mainChecks = $this->verticalService ;
+        $this->mainChecks = $this->verticalService;
         $this->messages['success'][] = 'Session started!';
         $this->activeSection = [
             'firstPrompt' => true,
@@ -45,7 +47,6 @@ class UpmanaAi extends Component
             'output' => false
         ];
         $this->citiesTOChose = $this->sentenceService->geography();
-
     }
 
     public function toggleMainCheck($main)
@@ -100,8 +101,8 @@ class UpmanaAi extends Component
         $topic = array_diff($this->activeMainChecks, $topic);
 
         // $newOutput = $transformerService->transform($this->geography(), $fields, $this->prompt, $topic);
-        $newOutput= httpGet('/upamana/transformer', ['id'=>$this->geography(), 'fields'=>$fields, 'prompt'=>$this->prompt, 'topic'=>$topic])['data'];
-        // dd( $newOutput);
+        $newOutput = httpGet('/upamana/transformer', ['ids' => $this->geography(), 'fields' => $fields, 'prompt' => $this->prompt, 'topic' => $topic])['data'];
+
         if ($newOutput == 400) {
             $this->messages['warning'][] = 'Please choose/Compare a different location or field.';
             return;
@@ -170,14 +171,7 @@ class UpmanaAi extends Component
 
     public function makeSource($fields)
     {
-        return DB::table('w_verticals')
-            ->select('source_name as source', 'col_name as fields', 'source_year as year')
-            ->whereIn('col_name', $fields)
-            ->union(
-                DB::table('verticalsname')
-                    ->select('source as source', 'id as fields', 'source_year as year')
-                    ->whereIn('id', $fields)
-            )->get();
+        return httpGet('/upamana/make-source', ['fields' => $fields])['data'];
     }
 
     public function render()
@@ -204,5 +198,4 @@ class UpmanaAi extends Component
     {
         return array_keys($this->cities);
     }
-
 }

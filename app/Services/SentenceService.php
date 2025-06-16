@@ -110,8 +110,7 @@ class SentenceService
     function makePrompt($cities, $fields)
     {
 
-        $vertivals = new VerticalService();
-        $verticals = $vertivals->getWithMatched($fields, true);
+        $verticals = httpGet('/upamana/get-metched-verticals', ['fields' => $fields])['data'];
         $compare = '';
 
         if (count($cities) === 1) {
@@ -139,8 +138,6 @@ class SentenceService
 
 
         $templates = config('sentences.prompt');
-
-
         $cityOnlyTemplates = config('sentences.cityOnlyPrompt');
 
         $filterOnlyTemplates = config('sentences.filterOnlyPrompt');
@@ -165,7 +162,8 @@ class SentenceService
         return trim($prompt);
     }
 
-    public function geography(){
-        return httpGet('/upamana/geograpgy-for-selection',[])['data'];
+    public function geography()
+    {
+        return httpGet('/upamana/geograpgy-for-selection', [])['data'];
     }
 }

@@ -12,13 +12,13 @@ use Illuminate\Support\Carbon;
 
 class AIController extends Controller
 {
-     protected $aiService;
+    protected $aiService;
 
     public function __construct(ChatAiServices $aiService)
     {
         $this->aiService = $aiService;
     }
-        public function generateAIResponse(Request $request)
+    public function generateAIResponse(Request $request)
     {
 
         try {
@@ -31,11 +31,11 @@ class AIController extends Controller
             ]);
 
             // Step 2: Extract input data
-            $prompt = $request->input('Total population in India in 2024'); // Example prompt, replace with actual input
-            $models = $request->input('model'); // array of models
-            $content = $request->input('content');
+            $prompt = $request->prompt;
+            $models = $request->model; // array of models
+            $content = $request->content;
 
-            dd($prompt);
+
             // Step 3: Initialize response data
             $responses = [
                 'prompt' => $prompt,
@@ -78,7 +78,7 @@ class AIController extends Controller
 
             $generatedAt = Carbon::now()->format('H:i:s d-m-Y');
 
-            //dd($responses);
+
             // Step 5: Return view with AI responses
             return view('ai.init_generation', [
                 'prompt' => $prompt,

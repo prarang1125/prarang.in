@@ -30,7 +30,6 @@ Route::prefix('/')->group(function () {
     Route::get('/privacy-policy', [Home::class, 'privacyPolicy'])->name('privacy-policy');
     Route::get('/refund-cancellation', [Home::class, 'refundCancellation'])->name('refund-cancellation');
     Route::get('/terms-conditions', [Home::class, 'termsConditions'])->name('terms-conditions');
-
 });
 
 Route::get('/{city}/all-posts/{name?}/{forabour?}', [postController::class, 'getChittiData'])->name('posts.city');
@@ -45,9 +44,9 @@ Route::prefix('archives')->group(function () {
     Route::get('/{cityCode}/{catg}/{ids}/{name}', [PostArchives::class, 'archivePosts'])->name('post-archive');
 });
 
-Route::get('visitor-location', [Base::class,'visitorLocation']);
-Route::any('duration-update', [Base::class,'durationUpdate']);
-Route::get('yellow-pages/meerut/landing-page', [LandingPages::class,'index']);
+Route::get('visitor-location', [Base::class, 'visitorLocation']);
+Route::any('duration-update', [Base::class, 'durationUpdate']);
+Route::get('yellow-pages/meerut/landing-page', [LandingPages::class, 'index']);
 
 
 
@@ -60,4 +59,4 @@ Route::get('/share/{uuid}', [SharedResponseController::class, 'show'])->name('sh
 // UpmanaAi
 
 
-Route::get('/ai/upmana',UpmanaAi::class)->name('upmana-ai');
+Route::get('/ai/upmana', UpmanaAi::class)->name('upmana-ai');
