@@ -21,22 +21,21 @@ class Home extends Controller
         $this->apiType = env('API_TYPE');
     }
 
-    public function index(){
+    public function index()
+    {
 
         return view('main.home');
     }
 
-  
+
     // Function for Content page
     public function content()
     {
         return view('main.content');
-
     }
     public function semiotics()
     {
         return view('main.semiotics');
-
     }
     public function analytics()
     {
@@ -46,15 +45,15 @@ class Home extends Controller
 
     public function aboutUs()
     {
-        $url = env('ADMIN_URL').'/get-our-teams';
+        $url = env('ADMIN_URL') . '/get-our-teams';
         $response = Http::get($url);
-        $teamData = $response->json();    
+        $teamData = $response->json();
         if ($teamData['status'] === 'success') {
             $team = $teamData['data'];
-        }else{
-            $team=[];
+        } else {
+            $team = [];
         }
-        return view('main.about_us',compact('team'));
+        return view('main.about_us', compact('team'));
     }
 
 
@@ -85,8 +84,8 @@ class Home extends Controller
 
     public function market()
     {
-        $url1 = "{$this->apiDomain}/geo-scripts/total";
-        $url2 = "{$this->apiDomain}/w-in-target-language";
+        $url1 = "{$this->apiDomain}/api/geo-scripts/total";
+        $url2 = "{$this->apiDomain}/api/w-in-target-language";
 
         // Headers for the requests
         $headers = [
@@ -126,12 +125,9 @@ class Home extends Controller
 
             // Return the data to a view
             return view('main.market', compact('metaData', 'scripts', 'total', 'languageCountry', 'worldLanguageData', 'indiaLanguageData', 'languageId'));
-
         } catch (Exception $e) {
             // Handle errors and display message
             return response()->json(['error' => $e->getMessage()], 500);
         }
-
-
     }
 }
