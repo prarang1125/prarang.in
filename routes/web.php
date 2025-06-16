@@ -52,7 +52,7 @@ Route::get('yellow-pages/meerut/landing-page', [LandingPages::class, 'index']);
 
 // Route::get('/generate', [AIController::class, 'showForm'])->name('ai.form');
 // Route::get('/generate', [AIController::class, 'generate'])->name('ai.generate');
-Route::post('/generateAIResponse', [AIController::class, 'generateAIResponse'])->name('ai.response');
+Route::any('/generateAIResponse', [AIController::class, 'generateAIResponse'])->name('ai.response');
 
 Route::post('/share-response', [SharedResponseController::class, 'store'])->name('share.store');
 Route::get('/share/{uuid}', [SharedResponseController::class, 'show'])->name('share.show');
