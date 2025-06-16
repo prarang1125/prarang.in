@@ -73,6 +73,84 @@
  border-bottom-left-radius:8px;
  border-bottom-right-radius:8px;
 }
+/* Card body */
+.page-wrapper .card > .card-body{
+ box-shadow:0px 0px 46px -14px #262b2b;
+ border-top-left-radius:10px;
+ border-top-right-radius:10px;
+ border-bottom-left-radius:10px;
+ border-bottom-right-radius:10px;
+}
+
+/* Card */
+.page-wrapper .card{
+ box-shadow:0px 4.8px 0px -50px rgba(0,0,0,0.12);
+ background-color:rgba(255,255,255,0);
+}
+
+
+.card-body .position-absolute label{
+ text-shadow:rgb(255, 255, 255) 0px 1px 1px, rgb(255, 255, 255) 0px -1px 1px, rgb(255, 255, 255) 1px 0px 1px, rgb(255, 255, 255) -1px 0px 1px;
+}
+/* Dropdown item */
+.card-body li .dropdown-item{
+ cursor:pointer;
+}
+
+/* Dropdown item (hover) */
+.card-body li .dropdown-item:hover{
+ font-weight:500;
+ background-color:#f3e7e7;
+}
+/* Link */
+.card-body .d-flex a{
+ transform:translatex(0px) translatey(12px);
+}
+
+/* Italic Tag */
+.card-body .text-danger .bx{
+ font-size:17px;
+}
+
+/* Italic Tag */
+.card-body .text-danger .bx{
+ cursor:progress;
+}
+
+/* Italic Tag */
+.card-body .text-danger .bx{
+ position:relative;
+ top:-2px;
+ left:-1px;
+}
+/* Button */
+.card-body form .btn-secondary{
+ font-size:13px;
+ margin-top:4px;
+}
+
+
+/* Column 6/12 */
+.card-body form .col-md-6{
+ margin-bottom:4px;
+}
+
+/* Form label */
+.container form .row .col-md-6 .form-label{
+ margin-bottom:0px;
+ font-weight:600;
+}
+
+/* Label */
+.container form .row .col-md-12 label{
+ margin-bottom:0px;
+}
+
+/* Label */
+.container form .row .col-md-12 label{
+ font-weight:600;
+}
+
 
 
     </style>

@@ -42,7 +42,7 @@
             </div>
             @endif
 
-            
+
             <h6 class="mb-0 text-uppercase">वीकार्ड लिस्टिंग</h6>
             <hr/>
             <div class="card">
@@ -72,25 +72,33 @@
                                         <th scope="row" class="align-middle">{{ $index }}</th>
                                         <td class="align-middle">{{ $vcard->user->name }}</td>
                                         <td class="align-middle">
-                                            <img src="{{ $vcard->user->profile ? Storage::url($vcard->user->profile) : asset('images/default-profile.png') }}" 
-                                                 alt="Profile Image" 
+                                            <img src="{{ $vcard->user->profile ? Storage::url($vcard->user->profile) : asset('images/default-profile.png') }}"
+                                                 alt="Profile Image"
                                                  style="max-width: 100px;">
-                                        </td>      
+                                        </td>
+
                                         <td class="align-middle">{{ $vcard->color_code }}</td>
                                         <td class="align-middle">{{ $cities->get($vcard->city_id)->name ?? '' }}</td>
-                                        <td class="align-middle">{{ $categories->get($vcard->category_id)->name ?? '' }}</td>                                        
+                                        <td class="align-middle">{{ $categories->get($vcard->category_id)->name ?? '' }}</td>
                                         <td class="align-middle">{{ $vcard->created_at }}</td>
                                         <td class="align-middle">
-                                            <a href="{{ route('vCard.vcard-edit', $vcard->id) }}" class="btn btn-sm btn-primary">संपादन करना</a>
-                                            <form action="{{ route('vCard.vcard-delete', $vcard->id) }}" method="POST" style="display:inline;">
-                                                @csrf
-                                                <button type="submit" class="btn btn-sm btn-danger">मिटाना</button>
-                                            </form>
-                                            @if($cities->has($vcard->city_id)) 
-                                           <a href="{{ route('vCard.view', ['city_arr' => $cities->get($vcard->city_id)->city_arr, 'slug' => Str::slug($vcard->slug)]) }}" class="btn btn-sm btn-primary">देखे</a>
+                                            <a href="{{ route('vCard.vcard-edit', $vcard->id) }}" class="btn btn-sm btn-primary"><i class="bx bx-edit"></i>सुधर करे</a>
+
+                                            @if($cities->has($vcard->city_id))
+                                            @php
+                                            $user = auth()->user()->load('city');
+                                            $cityArr = $user->city->city_arr;
+                                            @endphp
+                                           <a target="_blank" href="{{ route('vCard.userPreview', ['city_arr' => Str::slug($cityArr), 'slug' => Str::slug($vcard->slug)]) }}" class="btn btn-sm btn-primary"><i class="bx bx-show"></i>देखे</a>
+
                                            @endif
+                                           <form action="{{ route('vCard.vcard-delete', $vcard->id) }}" method="POST" style="display:inline;">
+                                            @csrf
+                                            <button type="submit" class="btn btn-sm btn-danger ms-3" onclick="return confirm('क्या आप इस वीकार्ड को हटाना चाहते हैं?')"><i class="bx bx-trash"></i></button>
+                                        </form>
                                         </td>
                                     </tr>
+
                                     @php $index++; @endphp
                                 @endforeach
                             </tbody>

@@ -34,37 +34,38 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-    
+
         if ($validator->fails()) {
             return redirect()->route('admin.login')
                 ->withInput()
                 ->withErrors($validator);
         }
-    
+
         try {
             $credentials = $request->only('email', 'password');
-    
+
             if (Auth::guard('admin')->attempt($credentials)) {
                 $user = Auth::guard('admin')->user();
-    
+
                 // Redirect based on role
                 if ($user->role == 1) {
                     return redirect()->route('admin.dashboard');
                 } elseif ($user->role == 3) {
                     return redirect()->route('manager.dashboard'); // Change this route if needed
                 }
-    
+
                 // Logout if the user doesn't have a valid role
                 Auth::guard('admin')->logout();
                 return redirect()->route('admin.login')->with('error', 'आपके पास व्यवस्थापक अधिकार नहीं हैं');
             }
-    
+
             return redirect()->route('admin.login')->with('error', 'ईमेल या पासवर्ड गलत है');
-    
+
         } catch (Exception $e) {
+            dd($e);
             return redirect()->route('admin.login')->with('error', 'प्रमाणीकरण के दौरान त्रुटि: ' );
         }
     }
-    
+
     ##------------------------- END ---------------------##
 }

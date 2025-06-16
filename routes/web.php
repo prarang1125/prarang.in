@@ -9,6 +9,7 @@ use App\Http\Controllers\AI\AIController;
 use App\Http\Controllers\AI\SharedResponseController;
 use App\Http\Controllers\PartnerApi;
 use App\Http\Controllers\MobileApi\ChittiList;
+use App\Livewire\Pages\UpmanaAi;
 use App\View\Components\Layout\Main\Base;
 use Illuminate\Support\Facades\Route;
 
@@ -29,7 +30,6 @@ Route::prefix('/')->group(function () {
     Route::get('/privacy-policy', [Home::class, 'privacyPolicy'])->name('privacy-policy');
     Route::get('/refund-cancellation', [Home::class, 'refundCancellation'])->name('refund-cancellation');
     Route::get('/terms-conditions', [Home::class, 'termsConditions'])->name('terms-conditions');
-
 });
 
 Route::get('/{city}/all-posts/{name?}/{forabour?}', [postController::class, 'getChittiData'])->name('posts.city');
@@ -44,9 +44,9 @@ Route::prefix('archives')->group(function () {
     Route::get('/{cityCode}/{catg}/{ids}/{name}', [PostArchives::class, 'archivePosts'])->name('post-archive');
 });
 
-Route::get('visitor-location', [Base::class,'visitorLocation']);
-Route::any('duration-update', [Base::class,'durationUpdate']);
-Route::get('yellow-pages/meerut/landing-page', [LandingPages::class,'index']);
+Route::get('visitor-location', [Base::class, 'visitorLocation']);
+Route::any('duration-update', [Base::class, 'durationUpdate']);
+Route::get('yellow-pages/meerut/landing-page', [LandingPages::class, 'index']);
 
 
 
@@ -56,3 +56,7 @@ Route::post('/generateAIResponse', [AIController::class, 'generateAIResponse'])-
 
 Route::post('/share-response', [SharedResponseController::class, 'store'])->name('share.store');
 Route::get('/share/{uuid}', [SharedResponseController::class, 'show'])->name('share.show');
+// UpmanaAi
+
+
+Route::get('/ai/upmana', UpmanaAi::class)->name('upmana-ai');

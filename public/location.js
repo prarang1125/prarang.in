@@ -132,8 +132,20 @@ function collectAndSendInformation(postId, city) {
         const language = navigator.language;
         const screenWidth = screen.width;
         const screenHeight = screen.height;
-        const url = document.referrer ? new URL(document.referrer) : null;
-        const referrerDomain = url ? url.hostname.replace('www.', '') : null;
+
+        function getMainDomain(referrer) {
+            if (!referrer) return null;
+            try {
+                const url = new URL(referrer);
+                const hostnameParts = url.hostname.split('.');
+                return hostnameParts.length > 2 ? hostnameParts[hostnameParts.length - 2] : hostnameParts[0];
+            } catch {
+                return null;
+            }
+        }
+
+        const referrerDomain = getMainDomain(document.referrer);
+
         // Prepare the data as query parameters
         const queryParams = new URLSearchParams({
             city: city,
@@ -143,7 +155,7 @@ function collectAndSendInformation(postId, city) {
             latitude: latitude || 'null',
             longitude: longitude || 'null',
             language: language,
-            duration: 20,
+            duration: 0,
             scroll: 10,
             screen_width: screenWidth,
             screen_height: screenHeight,
@@ -226,10 +238,10 @@ function collectAndSendInformation(postId, city) {
                 console.error("Error fetching IP address:", error.message);
             });
     };
-    
+
     // Call fetchIP when the page loads
     fetchIP();
-    
+
     window.addEventListener("beforeunload", () => {
         const duration = Math.round((Date.now() - startTime) / 1000);
         const data = new URLSearchParams({
@@ -241,11 +253,11 @@ function collectAndSendInformation(postId, city) {
             max_scroll: Math.round(maxScroll),
             timestamp: new Date().toISOString(),
         }).toString();
-    
+
         // Using sendBeacon for reliable data sending
         navigator.sendBeacon(`/duration-update?${data}`);
     });
-    
+
     window.addEventListener("visibilitychange", () => {
         if (document.visibilityState === "hidden") {
             sendDurationData();

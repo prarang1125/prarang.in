@@ -20,6 +20,9 @@
 
     </style>
 
+@empty($presentation)
+@else
+
 <div class="widget lsvr_notice-list-widget fbpage2 mt-0" id="lsvr_notices_notice_list-2">
     <div class="widget__inner">
         <h3 class="widget__title widget__title--has-icon ps-2">
@@ -79,3 +82,4 @@
     </div>
 </div>
 </section>
+@endif

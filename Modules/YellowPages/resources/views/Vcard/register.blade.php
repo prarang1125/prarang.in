@@ -1,6 +1,33 @@
 @extends('yellowpages::layout.auth')
 
-@section('title', 'Register')
+@section('title', 'अपनी Website अपने शहर में अभी बनाये ')
+@section('meta_og_title', 'अपनी Website अपने शहर में अभी बनाये ')
+
+@php
+    $descriptions = [
+        'rampur' => 'रामपुर का पहला हिंदी येलोपेज़! यहां अपना वेबपेज बनाएं और अपना बिज़नेस कार्ड प्रिंट करें!',
+        'lucknow' => 'लखनऊ का पहला हिंदी येलोपेज़! यहां अपना वेबपेज बनाएं और अपना बिज़नेस कार्ड प्रिंट करें!',
+        'meerut' => 'मेरठ का पहला हिंदी येलोपेज़! यहां अपना वेबपेज बनाएं और अपना बिज़नेस कार्ड प्रिंट करें!',
+    ];
+
+    $defaultDescription = 'देश का पहला हिंदी Automatic Website Maker, Business Card प्रिंट तथा Free Yellow-Pages';
+    $metaDescription = $descriptions[$slug] ?? $defaultDescription;
+
+    $images = [
+        'rampur' => 'https://i.ibb.co/GvFF9H1k/Add-a-heading.png',
+        'meerut' => 'https://i.postimg.cc/QdkVw174/image.png',
+        'lucknow' => 'https://i.ibb.co/PzYgXpZQ/lucknowog.png',
+    ];
+
+    $defaultImage = asset('assets/images/ad-web-p.png');
+    $metaImage = $images[$slug] ?? $defaultImage;
+@endphp
+
+@section('meta_og_description', 'देश का पहला हिंदी Automatic Website Maker, Business Card प्रिंट तथा Free Yellow-Pages')
+@section('meta_og_image', $metaImage)
+
+
+
 @section('content')
     <style>
         /* Import Google Fonts */
@@ -69,46 +96,46 @@
 .card .sign-in-form h2{
  color:#020202 !important;
 }
-.logo-sec { 
-  display: flex; 
-  flex-direction: row; 
-  justify-content: center; 
+.logo-sec {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
   align-items: center;
-} 
+}
 
-*,:after,:before { 
+*,:after,:before {
   box-sizing: border-box;
-} 
+}
 
-img { 
+img {
   vertical-align: middle;
-} 
+}
 
-p { 
-  margin-top: 0; 
+p {
+  margin-top: 0;
   margin-bottom: 1rem;
-} 
+}
 
-.pie { 
-  border-left: 4px solid; 
+.pie {
+  border-left: 4px solid;
   height: 50px;
-} 
+}
 
-.panel p { 
-  font-size: 0.95rem; 
+.panel p {
+  font-size: 0.95rem;
   padding: 0.7rem 0;
-} 
+}
 
 
 /* These were inline style tags. Uses id+class to override almost everything */
-#style-Kl3pw.style-Kl3pw {  
- width: 100px;  
-  height: auto;  
-}  
-#style-kRBjZ.style-kRBjZ {  
- width: 30%;  
-  height: auto;  
-}  
+#style-Kl3pw.style-Kl3pw {
+ width: 100px;
+  height: auto;
+}
+#style-kRBjZ.style-kRBjZ {
+ width: 30%;
+  height: auto;
+}
 
 /* Ldiv */
 .row .ldiv{
@@ -152,28 +179,28 @@ p {
    justify-content:center;
    padding-top:65px;
   }
-  
+
   /* Logo sec */
   .row .col-sm-6 .ldiv .logo-sec{
    width:100% !important;
   }
-  
+
   /* Ldiv */
   .row .col-sm-6 .ldiv{
    width:100% !important;
   }
-  
+
   /* Image */
   .row .col-sm-6 > div > img{
    display:none !important;
   }
-  
+
   /* Flex */
   .row .col-sm-6 div .d-flex{
    min-height:625px !important;
    height:625px;
   }
-  
+
  }
 
  /* Body */
@@ -207,7 +234,7 @@ svg{
   height:497px !important;
   transform: rotateX(35deg) rotateY(-5deg) rotateZ(180deg) !important;
  }
- 
+
 }
 /* Button */
 .card .sign-in-form .btn-primary{
@@ -283,24 +310,24 @@ svg{
   padding-left:30px;
   padding-right:45px;
  }
- 
+
  /* Subtxth */
  .row .hero-txt .subtxth{
   display:block;
   white-space:pre-wrap;
   text-align:center;
  }
- 
+
  /* Flex */
  .row .col-sm-6 div .d-flex{
   {{-- transform:translatex(0px) translatey(-59px); --}}
  }
- 
+
  /* Logo sec */
  .row .ldiv .logo-sec{
   padding-top:78px !important;
  }
- 
+
 }
 @keyframes confetti-fall {
   0% { transform: translate(0, 0) rotate(0deg); opacity: 1; }
@@ -448,9 +475,10 @@ path {
               <p class="pie"></p>
               <img src="{{ asset('assets/images/logo-bg.png') }}" alt="logo icon" id="style-kRBjZ" class="style-kRBjZ">
           </div>
-         
+
           </div>
           <div class="hero-txt">
+
           <p>देश का पहला, हिंदी में येलो पेज(YellowPage)</p>
           <p class="subtxth">अपने व्यवसाय को मुफ़्त में ऑनलाइन करें | साथ ही, अपनी खुद की मुफ़्त वेबसाइट बनाएं |</p>
           </div>

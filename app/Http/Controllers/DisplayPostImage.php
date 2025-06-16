@@ -11,7 +11,7 @@ class DisplayPostImage extends Controller
     {
         try {
             // Define the S3 path based on the filename
-             $s3Path = "{$filename}";
+            $s3Path = "{$filename}";
 
             // Check if the file exists on S3
             if (!Storage::disk('s3')->exists($s3Path)) {
@@ -23,11 +23,10 @@ class DisplayPostImage extends Controller
 
             $response = Response::make($fileContent);
             $response->header('Content-Type', 'image/png');
-            $response->header('Cache-Control','max-age=2592000');
+            $response->header('Cache-Control', 'max-age=2592000');
             return $response;
-            
         } catch (\Exception $e) {
-            return response()->json(['error' => 'Unable to process the image: ' ], 500);
+            return response()->json(['error' => 'Unable to process the image: '], 500);
         }
     }
 }

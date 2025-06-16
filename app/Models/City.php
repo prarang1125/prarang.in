@@ -12,6 +12,8 @@ class City extends Model
 
     protected $fillable = [
         'name',
+        'city_arr',
+        'city_slug',
         'cities_url',
         'portal_id',
         'timezone',
@@ -21,5 +23,9 @@ class City extends Model
     public function portal()
     {
         return $this->belongsTo(Portal::class, 'portal_id');
+    }
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'id', 'city_id');
     }
 }

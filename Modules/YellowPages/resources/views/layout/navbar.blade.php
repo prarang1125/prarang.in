@@ -13,14 +13,14 @@ header.header {
 
 .mobile-nav-toggle {
     display: block;
-    font-size: 1.2rem; 
+    font-size: 1.2rem;
     cursor: pointer;
     color: #333;
 }
 
 @media (min-width: 769px) {
     .mobile-nav-toggle {
-        display: none; 
+        display: none;
     }
 }
 
@@ -35,7 +35,7 @@ header.header {
         top: 50px; /* Adjust based on your header */
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     }
-    
+
     .navmenu ul.show {
         display: flex;
     }
