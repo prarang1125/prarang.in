@@ -788,3 +788,190 @@ textarea{
  }
 
 }
+@media (max-width:767px){
+
+ /* Main title heading */
+ .container div .main-title-heading{
+  font-size:19px;
+ }
+
+ /* Division */
+ .main-button-area .select-location div{
+  margin-left:0px !important;
+ }
+
+ /* Division */
+ .main-button-area .select-category div{
+  display:flex;
+  align-items:center;
+  margin-left:1px !important;
+ }
+
+ /* Cities count */
+ #citiesCount{
+  padding-right:8px !important;
+  padding-left:7px !important;
+ }
+
+ /* Prompt section */
+ .container div .prompt-section{
+  margin-right:8px !important;
+  margin-left:8px !important;
+  margin-top:20px !important;
+ }
+
+ /* Small Tag */
+ .prompt-section div small{
+  font-size:10px !important;
+  font-weight:500 !important;
+ }
+
+ /* Prompt section */
+ .container div .container .pr-ai-section .prompt-section{
+  grid-template-columns:86.05fr 10fr !important;
+ }
+
+ /* Image */
+ .prompt-section div img{
+  width:70px !important;
+  height:47px;
+ }
+
+ /* Heading */
+ .first-prompt .firstPrompt h5{
+  font-size:18px;
+ }
+
+ /* Button */
+ .select-category div .btn-lg{
+  left:-1px;
+ }
+
+ /* Button */
+ .select-prompt div a{
+  position:relative;
+  left:-5px;
+ }
+
+ /* List Item */
+ #categoryTabs li{
+  font-size:14px;
+  line-height:1.8em;
+ }
+
+ /* Label */
+ #content-e_govs .mb-2 label{
+  font-size:11px;
+ }
+
+ /* Modal header */
+ #categoryModal .modal-dialog .modal-header{
+  padding-bottom:6px;
+ }
+
+ /* Menu */
+ #categoryTabs{
+  width:60px;
+ }
+
+}
+@media (max-width:767px){
+
+ /* Division */
+ .main-button-area .select-category div{
+  width:150px;
+  transform:translatex(0px) translatey(0px);
+ }
+
+ /* Division */
+ .main-button-area .select-location div{
+  width:150px;
+ }
+
+ /* Division */
+ .main-button-area .arrow div{
+  width:113px;
+ }
+
+ /* Button */
+ .select-location div .btn-lg{
+  min-width:1px !important;
+  width:150px !important;
+  font-size:14px !important;
+ }
+
+ /* Small Tag */
+ .select-location div small{
+  top:-6px !important;
+  margin-top:3px;
+ }
+
+ /* Small Tag */
+ .container div .container .pr-ai-section .first-prompt .firstPrompt .firstPrompt .main-button-area .select-location div .btn-lg small{
+  bottom:auto !important;
+ }
+
+ /* Button */
+ .select-category div .btn-lg{
+  font-size:14px !important;
+ }
+
+ /* Small Tag */
+ .select-category div small{
+  margin-top:7px;
+  top:-6px !important;
+  left:1px;
+ }
+
+ /* Small Tag */
+ .container div .container .pr-ai-section .first-prompt .firstPrompt .firstPrompt .main-button-area .select-category div .btn-lg small{
+  bottom:auto !important;
+ }
+
+ /* Button */
+ .first-prompt .firstPrompt .firstPrompt .main-button-area .select-prompt div .text-center a{
+  min-width:1px !important;
+ }
+
+ /* Button */
+ .select-prompt div a{
+  width:150px !important;
+ }
+
+ /* Select prompt */
+ .first-prompt .firstPrompt .select-prompt{
+  margin-left:-30px;
+ }
+
+ /* Division */
+ .main-button-area .select-category div:nth-child(2){
+  padding-left:16px;
+ }
+
+ /* Division */
+ .main-button-area .select-prompt > div{
+  padding-left:0px !important;
+  width:103px !important;
+ }
+
+ /* Division */
+ .main-button-area .select-prompt > div:nth-child(1){
+  width:174px;
+ }
+
+ /* Image */
+ .pr-ai-section .first-prompt .firstPrompt .firstPrompt .main-button-area .select-prompt div img{
+  margin-left:46px !important;
+ }
+
+}
+@media (max-width:767px){
+
+ /* Italic Tag */
+ .main-button-area p i{
+  position:relative;
+  left:-20px;
+  top:2px;
+ }
+
+}
