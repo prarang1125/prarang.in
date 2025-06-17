@@ -172,7 +172,7 @@ body {
 .ai-response ul,
 .ai-response ol {
     padding-left: 2rem;
-    margin: 1rem 0;
+    margin: 1rem -1.5rem;
 }
 
 .ai-response li {
