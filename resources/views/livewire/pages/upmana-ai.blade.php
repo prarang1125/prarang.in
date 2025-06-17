@@ -175,16 +175,13 @@
                             @endif
 
 
-                            <section class="sourcedat">
-                                <h6 class="p-2">Sources:</h6>
+                            <section class="sourcedat p-3 mt-4 border rounded bg-light">
+                                <h6 class="mb-3">Sources:</h6>
                                 <ul class="list-group">
                                     @foreach ($output['source'] as $key => $ss)
-                                    <li
-                                        class="list-group-item d-flex justify-content-between align-items-center">
-
-                                        <span class="text-small"> [{{ $key }}]
-                                            {{ $ss['source'] }}</span>
-                                        <span class="badge rounded-pill text-small">{{ $ss['year'] }}</span>
+                                    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                                        <span class="text-small me-2">[{{ $key }}] {{ $ss['source'] }}</span>
+                                        <span class="badge rounded-pill text-small ms-2">{{ $ss['year'] }}</span>
                                     </li>
                                     @endforeach
                                 </ul>
