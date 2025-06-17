@@ -1,5 +1,6 @@
 <div>
     <link rel="stylesheet" href="{{asset('assets/ai/css/aichat.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
     <p class="text-center main-title-heading">UPMANA - Knowledge By Comparision</p>
     <section class="container p-3 mt-4 border rounded">
 
