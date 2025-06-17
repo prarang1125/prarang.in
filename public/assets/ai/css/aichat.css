@@ -965,3 +965,13 @@ textarea{
  }
 
 }
+@media (max-width:767px){
+
+ /* Italic Tag */
+ .main-button-area p i{
+  position:relative;
+  left:-20px;
+  top:2px;
+ }
+
+}
