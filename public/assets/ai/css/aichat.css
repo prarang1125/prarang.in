@@ -741,12 +741,7 @@ textarea{
  margin-top:13px;
 }
 
-/* Container */
-.container div .container{
- padding-top:6px !important;
- margin-top:2px !important;
- height:523px;
-}
+
 
 /* Heading */
 .first-prompt .firstPrompt h5{
@@ -758,11 +753,8 @@ textarea{
  margin-bottom:1px !important;
 }
 
-/* Section */
-.container div .pr-ai-section{
- height:275px;
- min-height:165px;
-}
+
+
 
 /* Main button area */
 .first-prompt .firstPrompt .main-button-area{
@@ -776,3 +768,23 @@ textarea{
  top:-40px;
 }
 
+@media (max-width:767px){
+
+ /* Table striped */
+ #dfggsgzrf .table-striped{
+  overflow:scroll;
+ }
+
+ /* Border info */
+ #dfggsgzrf .border-info{
+  overflow:scroll;
+
+ }
+
+ /* Table Data */
+ .table-striped tr td:nth-child(1){
+  position:sticky;
+  left:-15px;
+ }
+
+}

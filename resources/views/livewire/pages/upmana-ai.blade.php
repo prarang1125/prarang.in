@@ -310,7 +310,7 @@
 
                         <div class="modal-body">
                             <div class="row">
-                                <div class="mb-3 col-12 col-md-2" id="categoryTabsContainer">
+                                <div class="mb-3 col-3 col-md-2" id="categoryTabsContainer">
                                     <ul class="nav nav-pills flex-column" id="categoryTabs" role="tablist">
                                         @foreach ($mainChecks as $main => $subs)
                                         <li class="mb-1 nav-item" role="presentation">
@@ -327,7 +327,7 @@
                                     </ul>
                                 </div>
 
-                                <div class="col-12 col-md-10">
+                                <div class="col-9 col-md-10">
                                     <div class="tab-content" id="categoryTabsContent">
                                         @foreach ($mainChecks as $main => $subs)
                                         <div class="tab-pane fade @if ($loop->first) show active @endif"
