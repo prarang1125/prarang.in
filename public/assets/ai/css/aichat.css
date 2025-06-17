@@ -875,3 +875,93 @@ textarea{
  }
 
 }
+@media (max-width:767px){
+
+ /* Division */
+ .main-button-area .select-category div{
+  width:150px;
+  transform:translatex(0px) translatey(0px);
+ }
+
+ /* Division */
+ .main-button-area .select-location div{
+  width:150px;
+ }
+
+ /* Division */
+ .main-button-area .arrow div{
+  width:113px;
+ }
+
+ /* Button */
+ .select-location div .btn-lg{
+  min-width:1px !important;
+  width:150px !important;
+  font-size:14px !important;
+ }
+
+ /* Small Tag */
+ .select-location div small{
+  top:-6px !important;
+  margin-top:3px;
+ }
+
+ /* Small Tag */
+ .container div .container .pr-ai-section .first-prompt .firstPrompt .firstPrompt .main-button-area .select-location div .btn-lg small{
+  bottom:auto !important;
+ }
+
+ /* Button */
+ .select-category div .btn-lg{
+  font-size:14px !important;
+ }
+
+ /* Small Tag */
+ .select-category div small{
+  margin-top:7px;
+  top:-6px !important;
+  left:1px;
+ }
+
+ /* Small Tag */
+ .container div .container .pr-ai-section .first-prompt .firstPrompt .firstPrompt .main-button-area .select-category div .btn-lg small{
+  bottom:auto !important;
+ }
+
+ /* Button */
+ .first-prompt .firstPrompt .firstPrompt .main-button-area .select-prompt div .text-center a{
+  min-width:1px !important;
+ }
+
+ /* Button */
+ .select-prompt div a{
+  width:150px !important;
+ }
+
+ /* Select prompt */
+ .first-prompt .firstPrompt .select-prompt{
+  margin-left:-30px;
+ }
+
+ /* Division */
+ .main-button-area .select-category div:nth-child(2){
+  padding-left:16px;
+ }
+
+ /* Division */
+ .main-button-area .select-prompt > div{
+  padding-left:0px !important;
+  width:103px !important;
+ }
+
+ /* Division */
+ .main-button-area .select-prompt > div:nth-child(1){
+  width:174px;
+ }
+
+ /* Image */
+ .pr-ai-section .first-prompt .firstPrompt .firstPrompt .main-button-area .select-prompt div img{
+  margin-left:46px !important;
+ }
+
+}
