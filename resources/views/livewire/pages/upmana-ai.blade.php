@@ -346,13 +346,12 @@
                                                     @endphp
 
                                                     @foreach ($types as $type)
-                                                    @foreach ($subs as $sub)
-                                                    @if ($sub['type'] === $type)
+                                                    @if (collect($subs)->contains('type', $type))
                                                     <div class="pb-3 col-12">
                                                         <span class="text-muted fw-bold">{{ $type }} Metrics</span>
                                                     </div>
                                                     @endif
-                                                    @endforeach
+
                                                     @foreach ($subs as $sub)
                                                     @if ($sub['type'] === $type)
                                                     <div class="mb-2 col-12 col-sm-4 col-lg-3">
