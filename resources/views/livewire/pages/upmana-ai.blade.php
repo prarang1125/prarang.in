@@ -274,8 +274,9 @@
             <section class="p-3 border border-2 prompt-section rounded-4 border-secondary">
                 <div>
                     <textarea oninput="autoResize(this)" disabled name="prompt" rows="3" class="w-100">{!! $prompt !!}</textarea>
-                    <small>Also compare with ChatGPT/Gemini/Claude</small>
+
                 </div>
+
                 <div>
                     @if (!empty($prompt))
                     <div wire:loading wire:target="generate" class="class=" text-center ">
@@ -291,6 +292,7 @@
                 </div>
 
             </section>
+            <p class="text-center"><small>Also compare with ChatGPT/Gemini/Claude</small></p>
             @endif
 
             <!-- Category Modal -->
@@ -332,28 +334,43 @@
                                             id="content-{{ $main }}" role="tabpanel"
                                             aria-labelledby="tab-{{ $main }}">
                                             <div class="p-3 border rounded shadow-sm">
-                                                <strong
+                                                <!-- <strong
                                                     class="mb-3 d-block fs-6">{{ config('verticals.' . $main) }}
-                                                    Options</strong>
+                                                    Options</strong> -->
                                                 <div class="row">
+                                                    @php
+                                                    $types = ['World (& India)', 'World', 'India'];
+                                                    @endphp
+
+                                                    @foreach ($types as $type)
+                                                    <div class="col-12 pb-3">
+                                                        <span class="text-muted fw-bold">{{ $type }} Metrics</span>
+                                                    </div>
+
                                                     @foreach ($subs as $sub)
+                                                    @if ($sub['type'] === $type)
                                                     <div class="mb-2 col-12 col-sm-4 col-lg-3">
                                                         <div class="form-check">
-                                                            <input wire:loading.attr="disabled"
+                                                            <input
+                                                                wire:loading.attr="disabled"
                                                                 wire:model="subChecks.{{ $main }}.{{ $sub['id'] }}"
-                                                                type="checkbox" class="form-check-input"
+                                                                type="checkbox"
+                                                                class="form-check-input"
                                                                 id="sub-{{ $sub['id'] }}"
                                                                 value="{{ $sub['id'] }}">
-                                                            <label class="form-check-label small"
-                                                                for="sub-{{ $sub['id'] }}">
+                                                            <label class="form-check-label small" for="sub-{{ $sub['id'] }}">
                                                                 {{ str_replace('# of', 'No. of', $sub['name']) }}
-                                                                <span
-                                                                    class="text-primary">{{ $sub['type'] }}</span>
+                                                                <!-- <span class="text-primary">{{ $sub['type'] }}</span> -->
                                                             </label>
                                                         </div>
                                                     </div>
+                                                    @endif
                                                     @endforeach
+                                                    <hr>
+                                                    @endforeach
+
                                                 </div>
+
                                             </div>
                                         </div>
                                         @endforeach
@@ -392,6 +409,57 @@
 
                             <div class="accordion" id="accordionCitiesCountries">
                                 <div class="row">
+
+                                    {{-- World Countries --}}
+                                    <div class="col-sm-6">
+                                        <h5 class="mb-3">World</h5>
+                                        @foreach ($citiesTOChose['country'] as $continent => $countries)
+                                        @php $continentId = Str::slug($continent, '_'); @endphp
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="heading-{{ $continentId }}">
+                                                <button class="accordion-button collapsed" type="button"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapse-{{ $continentId }}"
+                                                    aria-expanded="false"
+                                                    aria-controls="collapse-{{ $continentId }}">
+                                                    {{ $continent }}
+                                                </button>
+                                            </h2>
+                                            <div id="collapse-{{ $continentId }}"
+                                                class="accordion-collapse collapse"
+                                                aria-labelledby="heading-{{ $continentId }}"
+                                                data-bs-parent="#accordionCitiesCountries">
+                                                <div class="accordion-body">
+                                                    <div>
+                                                        <input type="checkbox"
+                                                            wire:model="cities.{{ $continent }}"
+                                                            id="group-{{ $continentId }}">
+                                                        <label for="group-{{ $continentId }}">
+                                                            {{ $continent }}
+                                                        </label>
+                                                    </div>
+                                                    <div class="row">
+                                                        @foreach ($countries as $country)
+                                                        <div class="col-6">
+
+                                                            <input class="form-check-input me-1"
+                                                                type="checkbox"
+                                                                wire:model="cities.{{ $country['Country'] }}"
+                                                                value="{{ $country['id'] }}"
+                                                                id="country-{{ $country['id'] }}">
+                                                            <label class="form-check-label"
+                                                                for="country-{{ $country['id'] }}">
+                                                                {{ $country['Country'] }}
+                                                            </label>
+                                                        </div>
+                                                        @endforeach
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @endforeach
+                                    </div>
                                     {{-- Indian Cities --}}
                                     <div class="col-sm-6">
                                         <h5 class="mb-3">India</h5>
@@ -440,56 +508,6 @@
                                     @endforeach
                                 </div>
 
-                                {{-- World Countries --}}
-                                <div class="col-sm-6">
-                                    <h5 class="mb-3">World</h5>
-                                    @foreach ($citiesTOChose['country'] as $continent => $countries)
-                                    @php $continentId = Str::slug($continent, '_'); @endphp
-                                    <div class="accordion-item">
-                                        <h2 class="accordion-header" id="heading-{{ $continentId }}">
-                                            <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse"
-                                                data-bs-target="#collapse-{{ $continentId }}"
-                                                aria-expanded="false"
-                                                aria-controls="collapse-{{ $continentId }}">
-                                                {{ $continent }}
-                                            </button>
-                                        </h2>
-                                        <div id="collapse-{{ $continentId }}"
-                                            class="accordion-collapse collapse"
-                                            aria-labelledby="heading-{{ $continentId }}"
-                                            data-bs-parent="#accordionCitiesCountries">
-                                            <div class="accordion-body">
-                                                <div>
-                                                    <input type="checkbox"
-                                                        wire:model="cities.{{ $continent }}"
-                                                        id="group-{{ $continentId }}">
-                                                    <label for="group-{{ $continentId }}">
-                                                        {{ $continent }}
-                                                    </label>
-                                                </div>
-                                                <div class="row">
-                                                    @foreach ($countries as $country)
-                                                    <div class="col-6">
-
-                                                        <input class="form-check-input me-1"
-                                                            type="checkbox"
-                                                            wire:model="cities.{{ $country['Country'] }}"
-                                                            value="{{ $country['id'] }}"
-                                                            id="country-{{ $country['id'] }}">
-                                                        <label class="form-check-label"
-                                                            for="country-{{ $country['id'] }}">
-                                                            {{ $country['Country'] }}
-                                                        </label>
-                                                    </div>
-                                                    @endforeach
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
-                                    @endforeach
-                                </div>
                             </div>
                         </div>
                     </div>

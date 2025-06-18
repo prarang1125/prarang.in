@@ -18,6 +18,8 @@ class AIController extends Controller
     {
         $this->aiService = $aiService;
     }
+
+
     public function generateAIResponse(Request $request)
     {
 
@@ -34,7 +36,7 @@ class AIController extends Controller
             $prompt = $request->prompt;
             $models = $request->model; // array of models
             $content = $request->content;
-                      
+
 
 
 

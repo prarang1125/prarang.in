@@ -173,7 +173,6 @@ class ChatAiServices
                 'success' => false,
                 'error' => $e->getMessage(),
             ];
-
         }
     }
 
