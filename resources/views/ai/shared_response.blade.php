@@ -133,7 +133,7 @@
         <div class="share-link">
             <input type="text" id="shareLink" value="" readonly>
             <button onclick="copyShareLink()" class="copy-button">
-                <!-- <i class="fas fa-copy"></i> -->
+                <!-- <i class=" fa-copy"></i> -->
             </button>
         </div>
     </div>
