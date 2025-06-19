@@ -399,4 +399,40 @@ class ChatAiServices
             ];
         }
     }
+    public function generateDeepseekResponse(string $prompt)
+    {
+        try {
+            $model = 'deepseek/deepseek-chat-v3-0324:free';
+
+            $response = Http::withHeaders([
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer ' . env('OPENROUTER_API_KEY'),
+            ])->post('https://openrouter.ai/api/v1/chat/completions', [
+                'model' => $model,
+                'messages' => [
+                    [
+                        'role' => 'user',
+                        'content' => $prompt,
+                    ]
+                ],
+            ]);
+
+            $responseBody = $response->json();
+            $content = $responseBody['choices'][0]['message']['content'] ?? 'No response text available';
+
+            // Parse the response
+            $parsedContent = $this->parseResponse($content);
+
+            return [
+                'success' => true,
+                'response' => $parsedContent,
+                'raw' => $content,
+            ];
+        } catch (\Exception $e) {
+            return [
+                'success' => false,
+                'error' => $e->getMessage(),
+            ];
+        }
+    }
 }

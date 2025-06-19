@@ -28,7 +28,7 @@ class AIController extends Controller
             $request->validate([
                 'prompt' => 'required|string',
                 'model' => 'required|array',
-                'model.*' => 'in:chatgpt,gemini,claude,grok', // each selected model must be valid
+                'model.*' => 'in:chatgpt,gemini,claude,grok,deepseek', // each selected model must be valid
                 'content' => 'nullable|string',
             ]);
 
@@ -77,6 +77,13 @@ class AIController extends Controller
                             'max_output_tokens' => 2048,
                         ])['response'] ?? 'Grok failed';
                         break;
+                    case 'deepseek':
+                        $deepseekResponse = $this->aiService->generateDeepseekResponse($prompt, [
+                            'model' => 'deepseek/deepseek-chat-v3-0324:free',
+                        ])['response'] ?? 'Deepseek failed';
+                        $responses['deepseekResponse'] = $deepseekResponse;
+
+                        break;
                 }
             }
 
@@ -92,6 +99,7 @@ class AIController extends Controller
                 'geminiResponse' => $responses['geminiResponse'] ?? null,
                 'claudeResponse' => $responses['claudeResponse'] ?? null,
                 'grokResponse' => $responses['grokResponse'] ?? null,
+                'deepseekResponse' => $responses['deepseekResponse'] ?? null,
                 'generatedAt' => $generatedAt,
             ]);
         } catch (ValidationException $e) {

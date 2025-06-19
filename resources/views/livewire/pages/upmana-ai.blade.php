@@ -154,12 +154,12 @@
                                 {!! $output['city_comparison'] !!}
                             </div>
                             @endif
-                            <!-- @if (!empty($output['state_comparison']))
+                            {{-- @if (!empty($output['state_comparison']))
                             <div class="p-3 mt-4 border rounded border-info bg-light">
                                 <h6 class="text-info">State Comparison</h6>
                                 {!! $output['state_comparison'] !!}
                             </div>
-                            @endif -->
+                            @endif --}}
 
                             {{-- Country Comparison Table --}}
                             @if (!empty($output['country_comparison']))
@@ -244,10 +244,21 @@
                                             <input type="checkbox" name="model[]" wire:model="selectedModels"
                                                 value="claude">
                                             <img src="https://claude.ai/images/claude_app_icon.png"
-                                                alt="Grok Logo" class="w-6 h-6">
+                                                alt="" class="w-6 h-6">
                                             <span>
                                                 <span>Claude</span>
                                                 <span>Anthropic</span>
+                                            </span>
+                                        </label>
+                                        <!-- Grok Option -->
+                                        <label class="flex items-center space-x-2">
+                                            <input type="checkbox" name="model[]" wire:model="selectedModels"
+                                                value="deepseek">
+                                            <img src="https://chat.deepseek.com/favicon.svg"
+                                                alt="" class="w-6 h-6">
+                                            <span>
+                                                <span>Deepseek</span>
+                                                <span>High-Flyer</span>
                                             </span>
                                         </label>
                                     </div>
@@ -315,7 +326,8 @@
                             <div class="row">
                                 <div class="mb-3 col-4 col-md-2" id="categoryTabsContainer">
                                     <ul class="nav nav-pills flex-column" id="categoryTabs" role="tablist">
-                                        @foreach ($mainChecks as $main => $subs)
+                                        @foreach (config('verticals') as $main => $subs)
+
                                         <li class="mb-1 nav-item" role="presentation">
                                             <button
                                                 class="nav-link w-100 text-start @if ($loop->first) active @endif"
@@ -323,7 +335,7 @@
                                                 data-bs-target="#content-{{ $main }}" type="button"
                                                 role="tab" aria-controls="content-{{ $main }}"
                                                 aria-selected="{{ $loop->first ? 'true' : 'false' }}">
-                                                {{ config('verticals.' . $main) }}
+                                                {{ $subs }}
                                             </button>
                                         </li>
                                         @endforeach
@@ -525,9 +537,6 @@
             </div>
         </div>
     </section>
-
-
-
     <script>
         function setContent() {
             const content = document.getElementById('outChat').innerHTML.trim();

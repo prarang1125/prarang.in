@@ -1,7 +1,12 @@
 <x-layout.main.base>
-
+    <style>
+        /* Span Tag */
+        .list-group .list-group-item span {
+            color: #020202 !important;
+        }
+    </style>
     <div class="action-buttons-corner" style="top: 92vh;height: 100px !important;">
-        <button class=" action-button print" onclick="printResponses()" title="Print">
+        <button class=" action-button print" style="height: 42px !important;" onclick="printResponses()" title="Print">
             {{-- <i class="fas fa-print"></i> --}}
             Print
         </button>
@@ -22,6 +27,9 @@
             @endif
             @if(isset($grokResponse))
             <input type="hidden" name="grok_response" value="{{ $grokResponse }}">
+            @endif
+            @if(isset($deepseekResponse))
+            <input type="hidden" name="deepseek_response" value="{{ $deepseekResponse }}">
             @endif
             <button type="button" onclick="handleShare()" class="action-button share" title="Share">
                 {{-- <i class="fas fa-share-alt"></i> --}}
@@ -65,6 +73,10 @@
                         @if(isset($claudeResponse))
                         @php $modelCount++; @endphp
                         <a class="model-link" onclick="scrollToResponse('claude-container')">({{ chr(96 + $modelCount) }})Claude-Anthropic</a>
+                        @endif
+                        @if(isset($deepseekResponse))
+                        @php $modelCount++; @endphp
+                        <a class="model-link" onclick="scrollToResponse('claude-container')">({{ chr(96 + $modelCount) }})Deepseek-High Flyer</a>
                         @endif
                     </div>
                 </div>
@@ -145,6 +157,21 @@
                 </div>
                 <div class="p-3 ai-response h-100">
                     {!! $grokResponse !!}
+                </div>
+            </div>
+        </div>
+        @endif
+
+        @if(isset($deepseekResponse))
+        <div class="response-container" id="gemini-container">
+            <img src="https://chat.deepseek.com/favicon.svg" alt="Grok Logo" class="ai-logo">
+            <div class="response-content">
+                <div class="ai-name">({{ chr(96 + $count++) }}) Deepseek</div>
+                <div class="prompt-box grok">
+                    <strong>Prompt:</strong> {{ $prompt }}
+                </div>
+                <div class="p-3 ai-response h-100">
+                    {!! $deepseekResponse !!}
                 </div>
             </div>
         </div>
