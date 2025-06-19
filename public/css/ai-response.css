@@ -718,9 +718,34 @@ img {
 
 /* Print styles */
 @media print {
+    /* Ensure text remains selectable */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+        color-adjust: exact !important;
+    }
+
+    /* Prevent text from being converted to images */
+    body {
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Ensure proper text rendering */
+    p, div, span, h1, h2, h3, h4, h5, h6 {
+        text-rendering: optimizeLegibility;
+    }
+
+    /* Hide print button and other UI elements */
     .action-buttons-corner,
-    .share-modal {
+    .share-modal,
+    button.print {
         display: none !important;
+    }
+
+    /* Ensure proper page breaks */
+    .response-container {
+        page-break-inside: avoid;
     }
 
     body {
