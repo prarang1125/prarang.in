@@ -78,9 +78,7 @@ class AIController extends Controller
                         ])['response'] ?? 'Grok failed';
                         break;
                     case 'deepseek':
-                        $deepseekResponse = $this->aiService->generateDeepseekResponse($prompt, [
-                            'model' => 'deepseek/deepseek-chat-v3-0324:free',
-                        ])['response'] ?? 'Deepseek failed';
+                        $deepseekResponse = $this->aiService->generateDeepseekResponse($prompt)['response'] ?? 'Deepseek failed';
                         $responses['deepseekResponse'] = $deepseekResponse;
 
                         break;
