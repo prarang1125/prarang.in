@@ -413,25 +413,14 @@ class ChatAiServices
                     [
                         'role' => 'user',
                         'content' => $prompt,
-                    ]
+                    ],
                 ],
             ]);
-
-            $responseBody = $response->json();
-            $content = $responseBody['choices'][0]['message']['content'] ?? 'No response text available';
-
-            // Parse the response
-            $parsedContent = $this->parseResponse($content);
-
-            return [
-                'success' => true,
-                'response' => $parsedContent,
-                'raw' => $content,
-            ];
+            return $this->parseResponse($response->json()['choices'][0]['message']['content']);
         } catch (\Exception $e) {
             return [
                 'success' => false,
-                'error' => $e->getMessage(),
+                'error' => 'Exception: ' . $e->getMessage(),
             ];
         }
     }
