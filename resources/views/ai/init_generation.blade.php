@@ -1,7 +1,7 @@
 <x-layout.main.base>
 
-    <div class="action-buttons-corner">
-        <button class="action-button print" onclick="printResponses()" title="Print">
+    <div class="action-buttons-corner" style="top: 92vh;height: 100px !important;">
+        <button class=" action-button print" onclick="printResponses()" title="Print">
             {{-- <i class="fas fa-print"></i> --}}
             Print
         </button>

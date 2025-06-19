@@ -154,12 +154,12 @@
                                 {!! $output['city_comparison'] !!}
                             </div>
                             @endif
-                            {{-- @if (!empty($output['state_comparison']))
+                            @if (!empty($output['state_comparison']))
                             <div class="p-3 mt-4 border rounded border-info bg-light">
                                 <h6 class="text-info">State Comparison</h6>
                                 {!! $output['state_comparison'] !!}
                             </div>
-                        @endif --}}
+                            @endif
 
                             {{-- Country Comparison Table --}}
                             @if (!empty($output['country_comparison']))
@@ -254,11 +254,11 @@
 
 
                                 </div>
-                                <button class="btn btn-success" type="submit" onclick="setContent()">
+                                <button class="btn btn-success" type="submit" onclick="return setContent()">
                                     Compare
-                                </button>
+                                </button
 
-                            </div>
+                                    </div>
                         </form>
                     </section>
                 </div>
@@ -351,7 +351,6 @@
                                                         <span class="text-muted fw-bold">{{ $type }} Metrics</span>
                                                     </div>
                                                     @endif
-
                                                     @foreach ($subs as $sub)
                                                     @if ($sub['type'] === $type)
                                                     <div class="mb-2 col-12 col-sm-4 col-lg-3">
@@ -486,171 +485,166 @@
                                                 aria-labelledby="heading-city-{{ $groupId }}"
                                                 data-bs-parent="#accordionCitiesCountries">
                                                 <div class="accordion-body">
-                                                    {{-- <div>
-                                                    <input type="checkbox" wire:model="cities.{{ $group }}"
-                                                    id="group-{{ $groupId }}">
-                                                    <label for="group-{{ $groupId }}">
-                                                        {{ $group }}
-                                                    </label>
-                                                </div> --}}
-                                                <div class="row">
-                                                    @foreach ($cities as $city)
-                                                    <div class="col-6">
-                                                        <input class="form-check-input me-1"
-                                                            type="checkbox"
-                                                            wire:model="cities.{{ $city['city'] }}"
-                                                            id="city-{{ $city['id'] }}">
-                                                        <label class="form-check-label"
-                                                            for="city-{{ $city['id'] }}">
-                                                            {{ $city['city'] }}
+                                                    <div>
+                                                        <input type="checkbox" wire:model="cities.{{ $group }}"
+                                                            id="group-{{ $groupId }}">
+                                                        <label for="group-{{ $groupId }}">
+                                                            {{ $group }}
                                                         </label>
                                                     </div>
-                                                    @endforeach
+                                                    <div class="row">
+                                                        @foreach ($cities as $city)
+                                                        <div class="col-6">
+                                                            <input class="form-check-input me-1"
+                                                                type="checkbox"
+                                                                wire:model="cities.{{ $city['city'] }}"
+                                                                id="city-{{ $city['id'] }}">
+                                                            <label class="form-check-label"
+                                                                for="city-{{ $city['id'] }}">
+                                                                {{ $city['city'] }}
+                                                            </label>
+                                                        </div>
+                                                        @endforeach
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
+                                        @endforeach
                                     </div>
-                                    @endforeach
-                                </div>
 
+                                </div>
                             </div>
                         </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary" onclick="geoSelect()">Done</button>
+                        </div>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" onclick="geoSelect()">Done</button>
-                    </div>
-                </div>
 
+                </div>
             </div>
         </div>
-</div>
-</section>
-</div>
-
-<script>
-    function setContent() {
-        const content = document.getElementById('outChat').innerHTML;
-        document.cookie = "upmana-output=" + encodeURIComponent(content) + "; path=/";
-
-        document.getElementById('content-input').value = content;
-    }
+    </section>
 
 
-    window.addEventListener('closemodal', () => {
-        const modal = bootstrap.Modal.getInstance(document.getElementById('categoryModal'));
-        if (modal) {
-            modal.hide();
-        }
-    });
-    window.addEventListener('showCategorymodal', () => {
-        const modal = bootstrap.Modal.getInstance(document.getElementById('categoryModal'));
-        if (modal) {
-            modal.hide();
-        }
-    });
 
+    <script>
+        function setContent() {
+            const content = document.getElementById('outChat').innerHTML.trim();
 
-    function autoResize(textarea) {
-        const lines = textarea.value.split('\n').length;
-        const newRows = Math.min(Math.max(lines, 2), 5);
-        textarea.rows = newRows;
-    }
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const accordion = document.getElementById('accordionCitiesCountries');
-        const checkboxes = accordion.querySelectorAll('input[type="checkbox"]');
-        const countDisplay = document.getElementById('citiesCount');
-        const maxLimit = 5;
-
-        function updateCountAndToggle() {
-            const checkedBoxes = Array.from(checkboxes).filter(cb => cb.checked);
-            const checkedCount = checkedBoxes.length;
-
-            // Update the count in the display
-            if (countDisplay) {
-                countDisplay.textContent = checkedCount;
+            if (!content) {
+                alert("Content is empty!");
+                return false;
             }
-
-            // Enable/disable checkboxes based on count
-            checkboxes.forEach(cb => {
-                // Disable unchecked boxes if 5 are selected
-                if (!cb.checked) {
-                    cb.disabled = checkedCount >= maxLimit;
-                } else {
-                    cb.disabled = false; // Always allow unchecking
-                }
-            });
+            document.getElementById('content-input').value = content;
+            console.debug('Cookie and content successfully set.');
+            return true;
         }
 
-        // Attach change listener to each checkbox
-        checkboxes.forEach(cb => {
-            cb.addEventListener('change', updateCountAndToggle);
+        window.addEventListener('closemodal', () => {
+            const modal = bootstrap.Modal.getInstance(document.getElementById('categoryModal'));
+            if (modal) {
+                modal.hide();
+            }
+        });
+        window.addEventListener('showCategorymodal', () => {
+            const modal = bootstrap.Modal.getInstance(document.getElementById('categoryModal'));
+            if (modal) {
+                modal.hide();
+            }
         });
 
-        // Initial check (in case of pre-checked boxes)
-        updateCountAndToggle();
-    });
-</script>
+        function autoResize(textarea) {
+            const lines = textarea.value.split('\n').length;
+            const newRows = Math.min(Math.max(lines, 2), 5);
+            textarea.rows = newRows;
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const accordion = document.getElementById('accordionCitiesCountries');
+            const checkboxes = accordion.querySelectorAll('input[type="checkbox"]');
+            const countDisplay = document.getElementById('citiesCount');
+            const maxLimit = 5;
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const checkboxes = document.querySelectorAll('#categoryTabsContent input[type="checkbox"]');
-        const resetButton = document.getElementById('resetAllBtn');
-        const categoryBadges = document.getElementById('category-count');
+            function updateCountAndToggle() {
+                const checkedBoxes = Array.from(checkboxes).filter(cb => cb.checked);
+                const checkedCount = checkedBoxes.length;
+                if (countDisplay) {
+                    countDisplay.textContent = checkedCount;
+                }
 
-
-        function updateCheckboxStates() {
-            const selectedCheckboxes = document.querySelectorAll(
-                '#categoryTabsContent input[type="checkbox"]:checked');
-            const selectedCount = selectedCheckboxes.length;
-
-            if (selectedCount >= 5) {
                 checkboxes.forEach(cb => {
                     if (!cb.checked) {
-                        cb.disabled = true;
+                        cb.disabled = checkedCount >= maxLimit;
+                    } else {
+                        cb.disabled = false; // Always allow unchecking
                     }
                 });
-            } else {
-                checkboxes.forEach(cb => cb.disabled = false);
+            }
+            checkboxes.forEach(cb => {
+                cb.addEventListener('change', updateCountAndToggle);
+            });
+            updateCountAndToggle();
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('#categoryTabsContent input[type="checkbox"]');
+            const resetButton = document.getElementById('resetAllBtn');
+            const categoryBadges = document.getElementById('category-count');
+
+            function updateCheckboxStates() {
+                const selectedCheckboxes = document.querySelectorAll(
+                    '#categoryTabsContent input[type="checkbox"]:checked');
+                const selectedCount = selectedCheckboxes.length;
+
+                if (selectedCount >= 5) {
+                    checkboxes.forEach(cb => {
+                        if (!cb.checked) {
+                            cb.disabled = true;
+                        }
+                    });
+                } else {
+                    checkboxes.forEach(cb => cb.disabled = false);
+                }
+
+                if (selectedCount > 0) {
+                    // categoryBadges.classList.remove('d-none');/
+                    categoryBadges.innerHTML = `${selectedCount}`
+                }
+
+
+
+
+
             }
 
-            if (selectedCount > 0) {
-                // categoryBadges.classList.remove('d-none');/
-                categoryBadges.innerHTML = `${selectedCount}`
-            }
+            checkboxes.forEach(cb => {
+                cb.addEventListener('change', function() {
+                    updateCheckboxStates();
+                });
+            });
 
-
-
-
-
-        }
-
-        checkboxes.forEach(cb => {
-            cb.addEventListener('change', function() {
+            resetButton.addEventListener('click', () => {
+                checkboxes.forEach(cb => {
+                    cb.checked = false;
+                    cb.disabled = false;
+                });
                 updateCheckboxStates();
             });
-        });
 
-        resetButton.addEventListener('click', () => {
-            checkboxes.forEach(cb => {
-                cb.checked = false;
-                cb.disabled = false;
-            });
             updateCheckboxStates();
         });
+    </script>
 
-        updateCheckboxStates();
-    });
-</script>
+    <script>
+        function geoSelect() {
 
-<script>
-    function geoSelect() {
-
-        // Close Bootstrap modal
-        const modalEl = document.getElementById('geographyModal');
-        const modalInstance = bootstrap.Modal.getInstance(modalEl);
-        if (modalInstance) modalInstance.hide();
-    }
-</script>
+            // Close Bootstrap modal
+            const modalEl = document.getElementById('geographyModal');
+            const modalInstance = bootstrap.Modal.getInstance(modalEl);
+            if (modalInstance) modalInstance.hide();
+        }
+    </script>
