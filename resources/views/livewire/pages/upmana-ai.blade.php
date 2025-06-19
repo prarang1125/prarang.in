@@ -154,12 +154,12 @@
                                 {!! $output['city_comparison'] !!}
                             </div>
                             @endif
-                            @if (!empty($output['state_comparison']))
+                            <!-- @if (!empty($output['state_comparison']))
                             <div class="p-3 mt-4 border rounded border-info bg-light">
                                 <h6 class="text-info">State Comparison</h6>
                                 {!! $output['state_comparison'] !!}
                             </div>
-                            @endif
+                            @endif -->
 
                             {{-- Country Comparison Table --}}
                             @if (!empty($output['country_comparison']))
@@ -485,13 +485,13 @@
                                                 aria-labelledby="heading-city-{{ $groupId }}"
                                                 data-bs-parent="#accordionCitiesCountries">
                                                 <div class="accordion-body">
-                                                    <div>
+                                                    <!-- <div>
                                                         <input type="checkbox" wire:model="cities.{{ $group }}"
                                                             id="group-{{ $groupId }}">
                                                         <label for="group-{{ $groupId }}">
                                                             {{ $group }}
                                                         </label>
-                                                    </div>
+                                                    </div> -->
                                                     <div class="row">
                                                         @foreach ($cities as $city)
                                                         <div class="col-6">
