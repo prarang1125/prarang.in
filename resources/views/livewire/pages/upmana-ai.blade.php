@@ -1,7 +1,7 @@
 <div>
     <link rel="stylesheet" href="{{asset('assets/ai/css/aichat.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
-    <p class="text-center main-title-heading">UPMANA - Knowledge By Comparision</p>
+    <p class="text-center main-title-heading">UPMANA - Knowledge By Comparison</p>
     <section class="container p-3 mt-4 border rounded">
 
         <div class="pr-ai-section">
@@ -279,7 +279,7 @@
 
                 <div>
                     @if (!empty($prompt))
-                    <div wire:loading wire:target="generate" class="class=" text-center ">
+                    <div wire:loading wire:target="generate" class="class="text-center ">
                         <span class=" spinner-border text-primary" role="status" aria-hidden="true"></span>
 
                     </div>
@@ -343,9 +343,11 @@
                                                     @endphp
 
                                                     @foreach ($types as $type)
-                                                    <div class="col-12 pb-3">
+                                                    @if (collect($subs)->contains('type', $type))
+                                                    <div class="pb-3 col-12">
                                                         <span class="text-muted fw-bold">{{ $type }} Metrics</span>
                                                     </div>
+                                                    @endif
 
                                                     @foreach ($subs as $sub)
                                                     @if ($sub['type'] === $type)
@@ -526,6 +528,8 @@
 <script>
     function setContent() {
         const content = document.getElementById('outChat').innerHTML;
+        document.cookie = "upmana-output=" + encodeURIComponent(content) + "; path=/";
+
         document.getElementById('content-input').value = content;
     }
 
