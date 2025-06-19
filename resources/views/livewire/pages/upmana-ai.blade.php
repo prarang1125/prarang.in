@@ -251,7 +251,7 @@
                                             </span>
                                         </label>
                                         <!-- Grok Option -->
-                                        <label class="flex items-center space-x-2">
+                                        {{-- <label class="flex items-center space-x-2">
                                             <input type="checkbox" name="model[]" wire:model="selectedModels"
                                                 value="deepseek">
                                             <img src="https://chat.deepseek.com/favicon.svg"
@@ -260,7 +260,7 @@
                                                 <span>Deepseek</span>
                                                 <span>High-Flyer</span>
                                             </span>
-                                        </label>
+                                        </label>--}}
                                     </div>
 
 
@@ -428,7 +428,7 @@
 
                                     {{-- World Countries --}}
                                     <div class="col-sm-6">
-                                        <h5 class="mb-3">World</h5>
+                                        <h5 class="mb-3">World - Countries</h5>
                                         @foreach ($citiesTOChose['country'] as $continent => $countries)
                                         @php $continentId = Str::slug($continent, '_'); @endphp
                                         <div class="accordion-item">
@@ -478,7 +478,7 @@
                                     </div>
                                     {{-- Indian Cities --}}
                                     <div class="col-sm-6">
-                                        <h5 class="mb-3">India</h5>
+                                        <h5 class="mb-3">India - Districts</h5>
 
                                         @foreach ($citiesTOChose['city'] as $group => $cities)
                                         @php $groupId = Str::slug($group, '_'); @endphp
