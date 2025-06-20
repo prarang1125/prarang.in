@@ -260,6 +260,16 @@
                                                     <span>High-Flyer</span>
                                                 </span>
                                             </label>
+                                            <label class="flex items-center space-x-2">
+                                                <input type="checkbox" name="model[]" wire:model="selectedModels"
+                                                    value="meta">
+                                                <img src="https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ai.meta.com/&size=256"
+                                                    alt="" class="w-6 h-6">
+                                                <span>
+                                                    <span>Meta Llama</span>
+                                                    <span>Meta</span>
+                                                </span>
+                                            </label>
                                         </div>
 
 

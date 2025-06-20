@@ -83,7 +83,13 @@ class AIController extends Controller
                         $deepseekResponse = implode('', $deepseekResponse);
                     }
                     $responses['deepseekResponse'] = $deepseekResponse ?? 'Deepseek failed';
-
+                case 'meta':
+                    $metaResponse = $this->aiService->generateMetaResponse($prompt);
+                    if (isset($metaResponse) && is_array($metaResponse)) {
+                        $metaResponse = implode('', $metaResponse);
+                    }
+                    $responses['metaResponse'] = $metaResponse ?? 'Meta failed';
+                    dd($responses['metaResponse']);
                     break;
             }
         }
@@ -101,6 +107,7 @@ class AIController extends Controller
             'claudeResponse' => $responses['claudeResponse'] ?? null,
             'grokResponse' => $responses['grokResponse'] ?? null,
             'deepseekResponse' => $responses['deepseekResponse'] ?? null,
+            'metaResponse' => $responses['metaResponse'] ?? null,
             'generatedAt' => $generatedAt,
         ]);
         // } catch (ValidationException $e) {

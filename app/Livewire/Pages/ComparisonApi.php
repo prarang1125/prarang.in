@@ -5,49 +5,39 @@ namespace App\Livewire\Pages;
 use App\Services\ChatAiServices;
 use Livewire\Component;
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
-use Illuminate\Validation\ValidationException;
-use Illuminate\Support\Facades\Log;
 
 class ComparisonApi extends Component
 {
-
-    protected $aiService;
     public $prompt;
     public $model = [];
-    public $content;
-    public $gptResponse;
-    public $geminiResponse;
-    public $claudeResponse;
-    public $grokResponse;
-    public $generatedAt;
+    public $loading = true;
 
-    public $isLoading = false;
-    public function mount(ChatAiServices $aiService)
+    public $aiService;
+
+    public function mount(Request $request)
     {
+        $this->model = $request->model ?? [];
+    }
 
-        $request = request();
-        $this->prompt = $request->prompt;
-        $this->model = $request->model;
-        $this->content = $request->content;
-        $this->aiService = $aiService;
-        $this->dispatch('load-apis');
+    public function loadServices()
+    {
+        $this->aiService =  new ChatAiServices;
+        $response = $this->aiService->generateDeepseekResponse('Tell me about Modi');
+
+        if (is_array($response)) {
+            $response = implode('', $response);
+        }
+        $response = $response ?? 'Deepseek failed';
+
+        // Debug or use it as needed
+        dd($response); // You can replace this with emitting to frontend or storing in a public variable
+
+        $this->loading = false;
     }
 
     public function render()
     {
-        return view('livewire.pages.comparison-api')->layout('components.layout.main.base');
-    }
-
-
-    public function loadApis()
-    {
-
-        $this->validate([
-            'prompt' => 'required|string',
-            'model' => 'required|array',
-            'model.*' => 'in:chatgpt,gemini,claude,grok',
-            'content' => 'nullable|string',
-        ]);
+        return view('livewire.pages.comparison-api')
+            ->layout('components.layout.main.base');
     }
 }

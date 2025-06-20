@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use Exception;
 use Parsedown;
 
+
 class ChatAiServices
 {
     protected $client;
@@ -98,6 +99,7 @@ class ChatAiServices
 
         return $html;
     }
+
 
 
     public function generateText(string $model, string $prompt, array $params = []): array
@@ -418,6 +420,37 @@ class ChatAiServices
                 ],
             ]);
             return  $this->parseResponse($response->json()['choices'][0]['message']['content']);
+        } catch (\Exception $e) {
+            return [
+                'success' => false,
+                'error' => 'Exception: ' . $e->getMessage(),
+            ];
+        }
+    }
+
+
+    public function generateMetaResponse(string $prompt)
+    {
+        try {
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . env('OPENROUTER_API_KEY'),
+                'Content-Type' => 'application/json',
+            ])->post('https://openrouter.ai/api/v1/chat/completions', [
+                'model' => 'meta-llama/llama-4-maverick:free',
+                'messages' => [
+                    [
+                        'role' => 'user',
+                        'content' => [
+                            [
+                                'type' => 'text',
+                                'text' => $prompt,
+                            ],
+                        ],
+                    ],
+                ],
+            ]);
+
+            return $this->parseResponse($response->json()['choices'][0]['message']['content']);
         } catch (\Exception $e) {
             return [
                 'success' => false,
