@@ -1,4 +1,6 @@
 <x-layout.main.base>
+    <link rel="stylesheet" href="{{ asset('assets/ai/css/aichat.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
     <style>
         /* Span Tag */
         .list-group .list-group-item span {
