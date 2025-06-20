@@ -401,6 +401,7 @@ class ChatAiServices
     }
     public function generateDeepseekResponse(string $prompt)
     {
+
         try {
             $model = 'deepseek/deepseek-chat-v3-0324:free';
 
@@ -416,7 +417,7 @@ class ChatAiServices
                     ],
                 ],
             ]);
-            return ""; #$this->parseResponse($response->json()['choices'][0]['message']['content']);
+            return  $this->parseResponse($response->json()['choices'][0]['message']['content']);
         } catch (\Exception $e) {
             return [
                 'success' => false,

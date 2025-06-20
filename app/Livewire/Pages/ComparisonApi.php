@@ -25,7 +25,7 @@ class ComparisonApi extends Component
     public $isLoading = false;
     public function mount(ChatAiServices $aiService)
     {
-        dd(($_COOKIE['upmana-output']));
+
         $request = request();
         $this->prompt = $request->prompt;
         $this->model = $request->model;
