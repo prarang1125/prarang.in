@@ -89,7 +89,7 @@ class AIController extends Controller
                         $metaResponse = implode('', $metaResponse);
                     }
                     $responses['metaResponse'] = $metaResponse ?? 'Meta failed';
-                    dd($responses['metaResponse']);
+
                     break;
             }
         }
