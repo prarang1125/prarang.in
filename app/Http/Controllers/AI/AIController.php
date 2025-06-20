@@ -79,6 +79,9 @@ class AIController extends Controller
                     break;
                 case 'deepseek':
                     $deepseekResponse = $this->aiService->generateDeepseekResponse($prompt);
+                    if (isset($deepseekResponse) && is_array($deepseekResponse)) {
+                        $deepseekResponse = implode('', $deepseekResponse);
+                    }
                     $responses['deepseekResponse'] = $deepseekResponse ?? 'Deepseek failed';
 
                     break;
