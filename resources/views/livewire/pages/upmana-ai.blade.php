@@ -545,63 +545,19 @@
             </div>
         </div>
     </section>
-    <button onclick="setContent()" class="btn btn-primary">CLICK ME</button>
-    <script>
-        async function httpPost(url, parameters = {}) {
-            const apiDomain = "{{ env('API_DOMAIN') }}";
-            const apiToken = "{{ env('API_TOKEN') }}";
-            const apiType = "{{ env('API_TYPE') }}";
-
-            const fullUrl = `${apiDomain}/api/${url}`;
-
-            try {
-                const response = await fetch(fullUrl, {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'api-auth-token': apiToken,
-                        'api-auth-type': apiType,
-                    },
-                    body: JSON.stringify(parameters),
-                });
-
-                if (!response.ok) {
-                    const errorText = await response.text();
-                    throw new Error(`${response.status} : Unable to reach. ${errorText}`);
-                }
-
-                const data = await response.json();
-                console.log('API Response:', data);
-                return data;
-
-            } catch (error) {
-                console.error('API Error:', error.message);
-                return {
-                    status: 'error',
-                    message: error.message,
-                };
-            }
-        }
-    </script>
     <script>
         function setContent() {
 
             const content = document.getElementById('outChat').innerHTML.trim();
-            const prompt = '{{ $prompt }}';
 
             if (!content) {
                 alert("Content is empty!");
                 return false;
             }
             document.getElementById('content-input').value = content;
-            const response = httpPost('share-response', {
-                prompt: prompt,
-                upmana_response: content
-            });
-            window.location = "/upmana/comparision-with-others/=" + response.uuid;
+            console.debug('Cookie and content successfully set.');
+            return true;
         }
-
-
 
         window.addEventListener('closemodal', () => {
             const modal = bootstrap.Modal.getInstance(document.getElementById('categoryModal'));
