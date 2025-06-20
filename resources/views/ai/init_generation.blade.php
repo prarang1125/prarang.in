@@ -79,10 +79,7 @@
                         @php $modelCount++; @endphp
                         <a class="model-link" onclick="scrollToResponse('claude-container')">({{ chr(96 + $modelCount) }})Claude-Anthropic</a>
                         @endif
-                        @if(isset($deepseekResponse))
-                        @php $modelCount++; @endphp
-                        <a class="model-link" onclick="scrollToResponse('claude-container')">({{ chr(96 + $modelCount) }})Deepseek-High Flyer</a>
-                        @endif
+
                     </div>
                     <div class="model-links-row">
 
@@ -197,7 +194,7 @@
 
         @if(isset($metaResponse))
         <div class="response-container" id="meta-container">
-            <img src="https://chat.deepseek.com/favicon.svg" alt="Grok Logo" class="ai-logo">
+            <img src="https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ai.meta.com/&size=256" alt="Grok Logo" class="ai-logo">
             <div class="response-content">
                 <div class="ai-name">({{ chr(96 + $count++) }}) Meta Llama</div>
                 <div class="prompt-box grok">
