@@ -12,7 +12,7 @@ class ComparisonApi extends Component
     public $model = [];
     public $loading = true;
 
-    public $aiService;
+    protected $aiService;
 
     public function mount(Request $request)
     {
@@ -27,10 +27,9 @@ class ComparisonApi extends Component
         if (is_array($response)) {
             $response = implode('', $response);
         }
-        $response = $response ?? 'Deepseek failed';
+        // $response = $response ?? 'Deepseek failed';
 
         // Debug or use it as needed
-        dd($response); // You can replace this with emitting to frontend or storing in a public variable
 
         $this->loading = false;
     }

@@ -20,179 +20,187 @@ class AIController extends Controller
     }
 
     // New method for parallel processing - single model response
-    public function generateAIResponse(Request $request)
-    {
-        try {
-            // Step 1: Validate input
-            $request->validate([
-                'prompt' => 'required|string',
-                'model' => 'required|array',
-                'model.*' => 'in:chatgpt,gemini,claude,grok',
-                'content' => 'nullable|string',
-            ]);
-
-            // Step 2: Extract input data
-            $prompt = $request->prompt;
-            $models = $request->model; // array of models (should be single for this endpoint)
-            $content = $request->content;
-
-            // Step 3: Generate response for the first model only
-            $model = $models[0] ?? null;
-            if (!$model) {
-                throw new \InvalidArgumentException('No valid model specified');
-            }
-
-            $response = null;
-            switch ($model) {
-                case 'chatgpt':
-                    $result = $this->aiService->generateText('chatgpt', $prompt, [
-                        'input' => $prompt,
-                    ]);
-                    $response = $result['success'] ? $result['response'] : 'GPT failed';
-                    break;
-
-                case 'gemini':
-                    $result = $this->aiService->generateGiminiResponse($prompt, [
-                        'model' => 'gemini-2.0-flash',
-                        'temperature' => 0.7,
-                        'max_output_tokens' => 2048,
-                    ]);
-                    $response = $result['success'] ? $result['response'] : 'Gemini failed';
-                    break;
-
-                case 'claude':
-                    $result = $this->aiService->generateAnthropicResponse($prompt, [
-                        'model' => 'claude-3.5-haiku-20240601',
-                    ]);
-                    $response = $result['success'] ? $result['response'] : 'Claude failed';
-                    break;
-
-                case 'grok':
-                    $result = $this->aiService->generateGrokResponse($prompt, [
-                        'model' => 'grok-3',
-                        'temperature' => 0.7,
-                        'max_output_tokens' => 2048,
-                    ]);
-                    $response = $result['success'] ? $result['response'] : 'Grok failed';
-                    break;
-            }
-
-            // Step 4: Return JSON response for parallel processing
-            return response()->json([
-                'success' => true,
-                'model' => $model,
-                'response' => $response,
-                'prompt' => $prompt,
-                'content' => $content,
-            ]);
-
-        } catch (ValidationException $e) {
-            return response()->json([
-                'success' => false,
-                'error' => 'Validation failed',
-                'details' => $e->errors()
-            ], 422);
-        } catch (\InvalidArgumentException $e) {
-            return response()->json([
-                'success' => false,
-                'error' => $e->getMessage()
-            ], 400);
-        } catch (\Exception $e) {
-            Log::error('Single AI Response Generation Error: ' . $e->getMessage());
-            return response()->json([
-                'success' => false,
-                'error' => 'An unexpected error occurred while generating the AI response.'
-            ], 500);
-        }
-    }
-
     // public function generateAIResponse(Request $request)
     // {
-
     //     try {
     //         // Step 1: Validate input
     //         $request->validate([
     //             'prompt' => 'required|string',
     //             'model' => 'required|array',
-    //             'model.*' => 'in:chatgpt,gemini,claude,grok', // each selected model must be valid
+    //             'model.*' => 'in:chatgpt,gemini,claude,grok',
     //             'content' => 'nullable|string',
     //         ]);
 
     //         // Step 2: Extract input data
     //         $prompt = $request->prompt;
-    //         $models = $request->model; // array of models
+    //         $models = $request->model; // array of models (should be single for this endpoint)
     //         $content = $request->content;
 
-
-
-
-    //         // Step 3: Initialize response data
-    //         $responses = [
-    //             'prompt' => $prompt,
-    //             'model' => $models,
-    //             'content' => $content,
-    //         ];
-
-    //         // Step 4: Loop through each selected model and generate response
-    //         foreach ($models as $model) {
-    //             switch ($model) {
-    //                 case 'chatgpt':
-    //                     $result = $this->aiService->generateText('chatgpt', $prompt, [
-    //                         'input' => $prompt,
-    //                     ]);
-    //                     $responses['gptResponse'] = $result['success'] ? $result['response'] : 'GPT failed';
-    //                     break;
-
-    //                 case 'gemini':
-    //                     $responses['geminiResponse'] = $this->aiService->generateGiminiResponse($prompt, [
-    //                         'model' => 'gemini-2.0-flash',
-    //                         'temperature' => 0.7,
-    //                         'max_output_tokens' => 2048,
-    //                     ])['response'] ?? 'Gemini failed';
-    //                     break;
-
-    //                 case 'claude':
-    //                     $responses['claudeResponse'] = $this->aiService->generateAnthropicResponse($prompt, [
-    //                         'model' => 'claude-3.5-haiku-20240601',
-    //                     ])['response'] ?? 'Claude failed';
-    //                     break;
-
-    //                 case 'grok':
-    //                     $responses['grokResponse'] = $this->aiService->generateGrokResponse($prompt, [
-    //                         'model' => 'grok-3',
-    //                         'temperature' => 0.7,
-    //                         'max_output_tokens' => 2048,
-    //                     ])['response'] ?? 'Grok failed';
-    //                     break;
-    //             }
+    //         // Step 3: Generate response for the first model only
+    //         $model = $models[0] ?? null;
+    //         if (!$model) {
+    //             throw new \InvalidArgumentException('No valid model specified');
     //         }
 
-    //         $generatedAt = Carbon::now()->format('H:i:s d-m-Y');
+    //         $response = null;
+    //         switch ($model) {
+    //             case 'chatgpt':
+    //                 $result = $this->aiService->generateGptResponse('chatgpt', $prompt, [
+    //                     'input' => $prompt,
+    //                 ]);
+    //                 $response = $result['success'] ? $result['response'] : 'GPT failed';
+    //                 break;
 
+    //             case 'gemini':
+    //                 $result = $this->aiService->generateGiminiResponse($prompt, [
+    //                     'model' => 'gemini-2.0-flash',
+    //                     'temperature' => 0.7,
+    //                     'max_output_tokens' => 2048,
+    //                 ]);
+    //                 $response = $result['success'] ? $result['response'] : 'Gemini failed';
+    //                 break;
 
-    //         // Step 5: Return view with AI responses
-    //         return view('ai.init_generation', [
+    //             case 'claude':
+    //                 $result = $this->aiService->generateAnthropicResponse($prompt, [
+    //                     'model' => 'claude-3.5-haiku-20240601',
+    //                 ]);
+    //                 $response = $result['success'] ? $result['response'] : 'Claude failed';
+    //                 break;
+
+    //             case 'grok':
+    //                 $result = $this->aiService->generateGrokResponse($prompt, [
+    //                     'model' => 'grok-3',
+    //                     'temperature' => 0.7,
+    //                     'max_output_tokens' => 2048,
+    //                 ]);
+    //                 $response = $result['success'] ? $result['response'] : 'Grok failed';
+    //                 break;
+    //         }
+
+    //         // Step 4: Return JSON response for parallel processing
+    //         return response()->json([
+    //             'success' => true,
+    //             'model' => $model,
+    //             'response' => $response,
     //             'prompt' => $prompt,
-    //             'model' => $models,
     //             'content' => $content,
-    //             'gptResponse' => $responses['gptResponse'] ?? null,
-    //             'geminiResponse' => $responses['geminiResponse'] ?? null,
-    //             'claudeResponse' => $responses['claudeResponse'] ?? null,
-    //             'grokResponse' => $responses['grokResponse'] ?? null,
-    //             'generatedAt' => $generatedAt,
     //         ]);
+
     //     } catch (ValidationException $e) {
-    //         // Return back with validation errors
-    //         return back()->withErrors($e->errors())->withInput();
+    //         return response()->json([
+    //             'success' => false,
+    //             'error' => 'Validation failed',
+    //             'details' => $e->errors()
+    //         ], 422);
     //     } catch (\InvalidArgumentException $e) {
-    //         // Return back with specific error
-    //         return back()->with('error', $e->getMessage())->withInput();
+    //         return response()->json([
+    //             'success' => false,
+    //             'error' => $e->getMessage()
+    //         ], 400);
     //     } catch (\Exception $e) {
-    //         // Log and handle generic error
-    //         Log::error('AI Response Generation Error: ' . $e->getMessage());
-    //         return back()->with('error', 'An unexpected error occurred while generating the AI response. Please try again.')->withInput();
+    //         Log::error('Single AI Response Generation Error: ' . $e->getMessage());
+    //         return response()->json([
+    //             'success' => false,
+    //             'error' => 'An unexpected error occurred while generating the AI response.'
+    //         ], 500);
     //     }
     // }
+
+    public function generateAIResponse(Request $request)
+    {
+        // try {
+            // Step 1: Validate input
+            $request->validate([
+                'prompt' => 'required|string',
+                'model' => 'required|array',
+                'model.*' => 'in:chatgpt,gemini,claude,grok,deepseek,meta', // each selected model must be valid
+                'content' => 'nullable|string',
+            ]);
+
+            // Step 2: Extract input data
+            $prompt = $request->prompt;
+            $models = $request->model; // array of models
+            $content = $request->content;
+
+            // Step 3: Initialize response data
+            $responses = [
+                'prompt' => $prompt,
+                'model' => $models,
+                'content' => $content,
+            ];
+
+            // Step 4: Loop through each selected model and generate response
+            foreach ($models as $model) {
+                switch ($model) {
+                    case 'chatgpt':
+                        $result = $this->aiService->generateText('chatgpt', $prompt, [
+                            'input' => $prompt,
+                        ]);
+                        $responses['gptResponse'] = $result['success'] ? $result['response'] : 'GPT failed';
+                        break;
+
+                    case 'gemini':
+                        $responses['geminiResponse'] = $this->aiService->generateGiminiResponse($prompt, [
+                            'model' => 'gemini-2.0-flash',
+                            'temperature' => 0.7,
+                            'max_output_tokens' => 2048,
+                        ])['response'] ?? 'Gemini failed';
+                        break;
+
+                    case 'claude':
+                        $responses['claudeResponse'] = $this->aiService->generateAnthropicResponse($prompt, [
+                            'model' => 'claude-3.5-haiku-20240601',
+                        ])['response'] ?? 'Claude failed';
+                        break;
+                    case 'deepseek':
+                        $responses['deepseek'] = $this->aiService->generateDeepseekResponse($prompt, [
+                            'model' => 'deepseek/deepseek-chat-v3-0324:free',
+                        ])['response'] ?? 'deepseek failed';
+                        break;
+
+                    case 'meta':
+                        $responses['meta'] = $this->aiService->generateMetaResponse($prompt, [
+                            'model' => 'meta-llama/llama-4-maverick:free',
+                        ])['response'] ?? 'Claude failed';
+                        break;
+
+                    case 'grok':
+                        $responses['grokResponse'] = $this->aiService->generateGrokResponse($prompt, [
+                            'model' => 'grok-3',
+                            'temperature' => 0.7,
+                            'max_output_tokens' => 2048,
+                        ])['response'] ?? 'Grok failed';
+                        break;
+                }
+            }
+            $generatedAt = Carbon::now()->format('H:i:s d-m-Y');
+
+            // Step 5: Return view with AI responses
+            return view('ai.init_generation', [
+                'prompt' => $prompt,
+                'model' => $models,
+                'content' => $content,
+                'gptResponse' => $responses['gptResponse'] ?? null,
+                'geminiResponse' => $responses['geminiResponse'] ?? null,
+                'claudeResponse' => $responses['claudeResponse'] ?? null,
+                'grokResponse' => $responses['grokResponse'] ?? null,
+                'deepseek' => $responses['deepseek'] ?? null,
+                'meta' => $responses['meta'] ?? null,
+                'generatedAt' => $generatedAt,
+            ]);
+        // } catch (ValidationException $e) {
+        //     // Return back with validation errors
+        //     return back()->withErrors($e->errors())->withInput();
+        // } catch (\InvalidArgumentException $e) {
+        //     // Return back with specific error
+        //     return back()->with('error', $e->getMessage())->withInput();
+        // } catch (\Exception $e) {
+        //     // Log and handle generic error
+        //     Log::error('AI Response Generation Error: ' . $e->getMessage());
+        //     return back()->with('error', 'An unexpected error occurred while generating the AI response. Please try again.')->withInput();
+        // }
+    }
+
 
     // public function showForm()
     // {
