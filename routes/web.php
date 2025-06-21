@@ -50,10 +50,13 @@ Route::any('duration-update', [Base::class, 'durationUpdate']);
 Route::get('yellow-pages/meerut/landing-page', [LandingPages::class, 'index']);
 
 
-Route::any('/upmana/comparision-with-others', ComparisonApi::class);
-Route::any('/generate/ai/Response/all', [AIController::class, 'generateAIResponse'])->name('ai.response');
+Route::any('/upmana/comparision-with-others', ComparisonApi::class)->name('ai.response');
+Route::any('/generate/ai/Response/all', [AIController::class, 'generateAIResponse'])->name('ai.single.response');;
+// Route::any('/generate/ai/Response/single', [AIController::class, 'generateSingleAIResponse'])->name('ai.single.response');
 Route::post('/share-response', [SharedResponseController::class, 'store'])->name('share.store');
 Route::get('/share/{uuid}', [SharedResponseController::class, 'show'])->name('share.show');
+
+// UpmanaAi
 
 
 Route::get('/ai/upmana', UpmanaAi::class)->name('upmana-ai');
