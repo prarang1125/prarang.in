@@ -1,0 +1,355 @@
+/* AI Loading Container */
+.ai-loading-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ai-loading-overlay {
+    background: white;
+    border-radius: 10px;
+    padding: 30px;
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+}
+
+.ai-loading-content h4 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.ai-loading-models {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.ai-loading-model {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    background: #f9f9f9;
+}
+
+.ai-loading-spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #007bff;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* AI Results Container */
+.ai-results-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9998;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+}
+
+.ai-results-overlay {
+    background: white;
+    border-radius: 10px;
+    max-width: 90%;
+    max-height: 90%;
+    width: 1200px;
+    display: flex;
+    flex-direction: column;
+}
+
+.ai-results-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.ai-results-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 1px solid #e0e0e0;
+    background: #f8f9fa;
+    border-radius: 10px 10px 0 0;
+}
+
+.ai-results-header h3 {
+    margin: 0;
+    color: #333;
+}
+
+.ai-close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+
+.ai-close-btn:hover {
+    background: #e0e0e0;
+    color: #333;
+}
+
+.ai-results-body {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    max-height: 70vh;
+}
+
+.ai-results-footer {
+    padding: 20px;
+    border-top: 1px solid #e0e0e0;
+    background: #f8f9fa;
+    border-radius: 0 0 10px 10px;
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+/* AI Response Items */
+.ai-response-item {
+    margin-bottom: 30px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.ai-response-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.ai-response-logo {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+}
+
+.ai-response-number {
+    font-weight: bold;
+    color: #007bff;
+    min-width: 30px;
+}
+
+.ai-response-name {
+    font-weight: 600;
+    color: #333;
+}
+
+.ai-response-prompt {
+    padding: 15px 20px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e0e0e0;
+    font-size: 14px;
+}
+
+.ai-response-content {
+    padding: 20px;
+    line-height: 1.6;
+    color: #333;
+}
+
+.ai-response-meta {
+    padding: 10px 20px;
+    background: #f8f9fa;
+    border-top: 1px solid #e0e0e0;
+    font-size: 12px;
+    color: #666;
+    text-align: right;
+}
+
+.ai-response-error {
+    border-color: #dc3545;
+}
+
+.ai-response-error .ai-response-header {
+    background: #f8d7da;
+    border-bottom-color: #dc3545;
+}
+
+.ai-response-error-message {
+    padding: 20px;
+    color: #dc3545;
+    background: #f8d7da;
+}
+
+/* Error Message */
+.ai-error-message {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 10000;
+    background: #dc3545;
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    max-width: 300px;
+}
+
+.ai-error-content h4 {
+    margin: 0 0 10px 0;
+    font-size: 16px;
+}
+
+.ai-error-content p {
+    margin: 0 0 15px 0;
+    font-size: 14px;
+}
+
+.ai-error-content button {
+    background: rgba(255,255,255,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+    color: white;
+    padding: 5px 15px;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.ai-error-content button:hover {
+    background: rgba(255,255,255,0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .ai-results-overlay {
+        width: 95%;
+        max-height: 95%;
+    }
+    
+    .ai-results-header {
+        padding: 15px;
+    }
+    
+    .ai-results-body {
+        padding: 15px;
+    }
+    
+    .ai-results-footer {
+        padding: 15px;
+        flex-direction: column;
+    }
+    
+    .ai-loading-overlay {
+        padding: 20px;
+        width: 95%;
+    }
+    
+    .ai-loading-model {
+        flex-direction: column;
+        text-align: center;
+        gap: 10px;
+    }
+}
+
+/* Button Styles */
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    text-decoration: none;
+    display: inline-block;
+    transition: background-color 0.3s;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #545b62;
+}
+
+/* Table Styles for AI Responses */
+.ai-response-content table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+
+.ai-response-content table th,
+.ai-response-content table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.ai-response-content table th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+}
+
+.ai-response-content table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Code Block Styles */
+.ai-response-content pre {
+    background-color: #f4f4f4;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 10px;
+    overflow-x: auto;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+}
+
+.ai-response-content code {
+    background-color: #f4f4f4;
+    padding: 2px 4px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+} 

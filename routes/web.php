@@ -52,6 +52,7 @@ Route::get('yellow-pages/meerut/landing-page', [LandingPages::class, 'index']);
 
 Route::any('/upmana/comparision-with-others', ComparisonApi::class)->name('ai.response');
 Route::any('/generate/ai/Response/all', [AIController::class, 'generateAIResponse']);
+Route::post('/api/ai/generate', [AIController::class, 'generateAIResponseApi'])->name('ai.api.generate');
 Route::post('/share-response', [SharedResponseController::class, 'store'])->name('share.store');
 Route::get('/share/{uuid}', [SharedResponseController::class, 'show'])->name('share.show');
 

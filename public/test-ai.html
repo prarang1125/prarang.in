@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="test-csrf-token">
+    <title>AI Parallel Processing Test</title>
+    <link rel="stylesheet" href="/css/ai-parallel.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .form-group {
+            margin: 10px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"], textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .checkbox-group {
+            display: flex;
+            gap: 20px;
+            margin: 10px 0;
+        }
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .status {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .status.success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <h1>AI Parallel Processing Test</h1>
+    
+    <div class="test-section">
+        <h2>Test Configuration</h2>
+        <div class="form-group">
+            <label for="prompt">Test Prompt:</label>
+            <textarea id="prompt" rows="3">Compare the population and area of Delhi and Mumbai. Provide a detailed analysis of their differences.</textarea>
+        </div>
+        
+        <div class="form-group">
+            <label>Select AI Models:</label>
+            <div class="checkbox-group">
+                <div class="checkbox-item">
+                    <input type="checkbox" id="chatgpt" name="model[]" value="chatgpt" checked>
+                    <label for="chatgpt">ChatGPT</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="gemini" name="model[]" value="gemini" checked>
+                    <label for="gemini">Gemini</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="claude" name="model[]" value="claude">
+                    <label for="claude">Claude</label>
+                </div>
+                <div class="checkbox-item">
+                    <input type="checkbox" id="grok" name="model[]" value="grok">
+                    <label for="grok">Grok</label>
+                </div>
+            </div>
+        </div>
+        
+        <button onclick="testAIProcessing()">Test AI Processing</button>
+        
+        <div id="status" class="status" style="display: none;"></div>
+    </div>
+    
+    <div class="test-section">
+        <h2>Test Results</h2>
+        <div id="results"></div>
+    </div>
+
+    <script src="/js/ai-parallel.js"></script>
+    <script>
+        function testAIProcessing() {
+            const prompt = document.getElementById('prompt').value;
+            const selectedModels = Array.from(document.querySelectorAll('input[name="model[]"]:checked'))
+                .map(checkbox => checkbox.value);
+            
+            if (!prompt) {
+                showStatus('Please enter a prompt', 'error');
+                return;
+            }
+            
+            if (selectedModels.length === 0) {
+                showStatus('Please select at least one AI model', 'error');
+                return;
+            }
+            
+            showStatus('Starting AI processing...', 'success');
+            
+            // Test the AI processor
+            try {
+                aiProcessor.generateParallelResponses(prompt, selectedModels);
+                showStatus('AI processing initiated successfully!', 'success');
+            } catch (error) {
+                showStatus('Error: ' + error.message, 'error');
+                console.error('Test error:', error);
+            }
+        }
+        
+        function showStatus(message, type) {
+            const statusDiv = document.getElementById('status');
+            statusDiv.textContent = message;
+            statusDiv.className = `status ${type}`;
+            statusDiv.style.display = 'block';
+            
+            // Auto-hide after 5 seconds
+            setTimeout(() => {
+                statusDiv.style.display = 'none';
+            }, 5000);
+        }
+        
+        // Override the displayResults method for testing
+        const originalDisplayResults = aiProcessor.displayResults;
+        aiProcessor.displayResults = function(prompt) {
+            // Call original method
+            originalDisplayResults.call(this, prompt);
+            
+            // Also show results in test area
+            const resultsDiv = document.getElementById('results');
+            resultsDiv.innerHTML = `
+                <h3>Test Results:</h3>
+                <pre>${JSON.stringify(this.responses, null, 2)}</pre>
+            `;
+        };
+        
+        // Add some debugging
+        console.log('AI Processor initialized:', aiProcessor);
+        console.log('CSRF Token:', aiProcessor.csrfToken);
+    </script>
+</body>
+</html> 
