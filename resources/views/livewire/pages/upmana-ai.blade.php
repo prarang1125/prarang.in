@@ -361,9 +361,9 @@
                                                 id="content-{{ $main }}" role="tabpanel"
                                                 aria-labelledby="tab-{{ $main }}">
                                                 <div class="p-3 border rounded shadow-sm">
-                                                    <!-- <strong
-                                                    class="mb-3 d-block fs-6">{{ config('verticals.' . $main) }}
-                                                    Options</strong> -->
+                                                    <strong
+                                                        class="mb-3 d-block fs-6">{{ config('verticals.' . $main) }}
+                                                        Metrics</strong>
                                                     <div class="row">
                                                         @php
                                                             $types = ['World (& India)', 'World', 'India'];
@@ -377,6 +377,7 @@
                                                                         Metrics</span>
                                                                 </div>
                                                             @endif --}}
+
                                                             @foreach ($subs as $sub)
                                                                 @if ($sub['type'] === $type)
                                                                     <div class="mb-2 col-12 col-sm-4 col-lg-3">
@@ -390,8 +391,8 @@
                                                                             <label class="form-check-label small"
                                                                                 for="sub-{{ $sub['type'] }}-{{ $sub['id'] }}">
                                                                                 {{ str_replace('# of', 'No. of', $sub['name']) }}
-                                                                                <span
-                                                                                    class="text-primary">{{ $sub['geo_type'] == 'in_dist' ? 'District' : '' }}</span>
+                                                                                {{-- <span
+                                                                                    class="text-primary">{{ $sub['geo_type'] == 'in_dist' ? 'District' : '' }}</span> --}}
                                                                             </label>
                                                                         </div>
                                                                     </div>
