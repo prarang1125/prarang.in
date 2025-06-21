@@ -382,13 +382,13 @@
                                                                     <div class="mb-2 col-12 col-sm-4 col-lg-3">
                                                                         <div class="form-check">
                                                                             <input wire:loading.attr="disabled"
-                                                                                wire:model="subChecks.{{ $main }}.{{ $sub['id'] }}"
+                                                                                wire:model="subChecks.{{ $sub['type'] }}.{{ $sub['id'] }}"
                                                                                 type="checkbox"
                                                                                 class="form-check-input"
-                                                                                id="sub-{{ $sub['id'] }}"
+                                                                                id="sub-{{ $sub['type'] }}-{{ $sub['id'] }}"
                                                                                 value="{{ $sub['id'] }}">
                                                                             <label class="form-check-label small"
-                                                                                for="sub-{{ $sub['id'] }}">
+                                                                                for="sub-{{ $sub['type'] }}-{{ $sub['id'] }}">
                                                                                 {{ str_replace('# of', 'No. of', $sub['name']) }}
                                                                                 <span
                                                                                     class="text-primary">{{ $sub['geo_type'] == 'in_dist' ? 'District' : '' }}</span>
