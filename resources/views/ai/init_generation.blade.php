@@ -1,7 +1,14 @@
 <x-layout.main.base>
-
-    <div class="action-buttons-corner">
-        <button class="action-button print" onclick="printResponses()" title="Print">
+    <link rel="stylesheet" href="{{ asset('assets/ai/css/aichat.css') }}">
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        /* Span Tag */
+        .list-group .list-group-item span {
+            color: #020202 !important;
+        }
+    </style>
+    <div class="action-buttons-corner" style="top: 92vh;height: 100px !important;">
+        <button class=" action-button print" style="height: 42px !important;" onclick="printResponses()" title="Print">
             {{-- <i class="fas fa-print"></i> --}}
             Print
         </button>
@@ -22,6 +29,12 @@
             @endif
             @if(isset($grokResponse))
             <input type="hidden" name="grok_response" value="{{ $grokResponse }}">
+            @endif
+            @if(isset($deepseekResponse))
+            <input type="hidden" name="deepseek_response" value="{{ $deepseekResponse }}">
+            @endif
+            @if(isset($metaResponse))
+            <input type="hidden" name="meta_response" value="{{ $metaResponse }}">
             @endif
             <button type="button" onclick="handleShare()" class="action-button share" title="Share">
                 {{-- <i class="fas fa-share-alt"></i> --}}
@@ -65,6 +78,19 @@
                         @if(isset($claudeResponse))
                         @php $modelCount++; @endphp
                         <a class="model-link" onclick="scrollToResponse('claude-container')">({{ chr(96 + $modelCount) }})Claude-Anthropic</a>
+                        @endif
+
+                    </div>
+                    <div class="model-links-row">
+
+                        @if(isset($deepseekResponse))
+                        @php $modelCount++; @endphp
+                        <a class="model-link" onclick="scrollToResponse('deepseek-container')">({{ chr(96 + $modelCount) }})Deepseek-High Flyer</a>
+                        @endif
+
+                        @if(isset($metaResponse))
+                        @php $modelCount++; @endphp
+                        <a class="model-link" onclick="scrollToResponse('meta-container')">({{ chr(96 + $modelCount) }})Meta Llama</a>
                         @endif
                     </div>
                 </div>
@@ -145,6 +171,37 @@
                 </div>
                 <div class="p-3 ai-response h-100">
                     {!! $grokResponse !!}
+                </div>
+            </div>
+        </div>
+        @endif
+
+        @if(isset($deepseekResponse))
+        <div class="response-container" id="deepseek-container">
+            <img src="https://chat.deepseek.com/favicon.svg" alt="Grok Logo" class="ai-logo">
+            <div class="response-content">
+                <div class="ai-name">({{ chr(96 + $count++) }}) Deepseek</div>
+                <div class="prompt-box grok">
+                    <strong>Prompt:</strong> {{ $prompt }}
+                </div>
+                <div class="p-3 ai-response h-100">
+                    {!! $deepseekResponse !!}
+                </div>
+            </div>
+        </div>
+        @endif
+
+
+        @if(isset($metaResponse))
+        <div class="response-container" id="meta-container">
+            <img src="https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ai.meta.com/&size=256" alt="Grok Logo" class="ai-logo">
+            <div class="response-content">
+                <div class="ai-name">({{ chr(96 + $count++) }}) Meta Llama</div>
+                <div class="prompt-box grok">
+                    <strong>Prompt:</strong> {{ $prompt }}
+                </div>
+                <div class="p-3 ai-response h-100">
+                    {!! $metaResponse !!}
                 </div>
             </div>
         </div>

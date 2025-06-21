@@ -25,7 +25,7 @@ if (!function_exists('httpGet')) {
                 Log::error("API Failed: " . $response->status(), ['response' => $response->body()]);
                 return ['status' => 'error', 'message' => 'API request failed.', 'code' => $response->status()];
             }
-        
+
             return $response->json();
         } catch (Exception $e) {
             Log::error("API Exception: " . $e->getMessage());
@@ -54,7 +54,7 @@ if (! function_exists('httpPost')) {
 }
 
 
-function highlightFirstOccurrence($paragraph, $cityNames)
+function highlightFirstOccurrence($paragraph, $cityNames, $type = null)
 {
     foreach ($cityNames as $city) {
         // Escape regex special characters (if any)
@@ -67,7 +67,7 @@ function highlightFirstOccurrence($paragraph, $cityNames)
             $length = strlen($firstMatch[0]);
 
             // Apply highlighting
-            $highlightedCity = '<span style="color:blue; font-weight:bold;">' . $firstMatch[0] . '</span>';
+            $highlightedCity = '<span style="color:blue; font-weight:bold;">' . $firstMatch[0] . '</span> ' . $type;
 
             // Replace first occurrence only
             $paragraph = substr_replace($paragraph, $highlightedCity, $start, $length);

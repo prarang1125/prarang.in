@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use Exception;
 use Parsedown;
 
+
 class ChatAiServices
 {
     protected $client;
@@ -98,6 +99,7 @@ class ChatAiServices
 
         return $html;
     }
+
 
 
     public function generateText(string $model, string $prompt, array $params = []): array
@@ -399,6 +401,63 @@ class ChatAiServices
             return [
                 'success' => false,
                 'error' => $e->getMessage(),
+            ];
+        }
+    }
+    public function generateDeepseekResponse(string $prompt)
+    {
+
+        try {
+            $model = 'deepseek/deepseek-chat-v3-0324:free';
+
+            $response = Http::withHeaders([
+                'Content-Type' => 'application/json',
+                'Authorization' => 'Bearer ' . env('OPENROUTER_API_KEY'),
+            ])->post('https://openrouter.ai/api/v1/chat/completions', [
+                'model' => $model,
+                'messages' => [
+                    [
+                        'role' => 'user',
+                        'content' => $prompt,
+                    ],
+                ],
+            ]);
+            return  $this->parseResponse($response->json()['choices'][0]['message']['content']);
+        } catch (\Exception $e) {
+            return [
+                'success' => false,
+                'error' => 'Exception: ' . $e->getMessage(),
+            ];
+        }
+    }
+
+
+    public function generateMetaResponse(string $prompt)
+    {
+        try {
+            $response = Http::withHeaders([
+                'Authorization' => 'Bearer ' . env('OPENROUTER_API_KEY'),
+                'Content-Type' => 'application/json',
+            ])->post('https://openrouter.ai/api/v1/chat/completions', [
+                'model' => 'meta-llama/llama-4-maverick:free',
+                'messages' => [
+                    [
+                        'role' => 'user',
+                        'content' => [
+                            [
+                                'type' => 'text',
+                                'text' => $prompt,
+                            ],
+                        ],
+                    ],
+                ],
+            ]);
+
+            return $this->parseResponse($response->json()['choices'][0]['message']['content']);
+        } catch (\Exception $e) {
+            return [
+                'success' => false,
+                'error' => 'Exception: ' . $e->getMessage(),
             ];
         }
     }
