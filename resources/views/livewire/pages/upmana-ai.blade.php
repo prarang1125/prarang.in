@@ -209,7 +209,7 @@
                     <div class="col-sm-4">
                         <section class="id-selector">
                             <p>Compare UPMANA Response with other A.I.</p>
-                            <form id="ai-compare-form" action="{{ route('ai.single.response') }}" method="POST" target="_blank" data-parallel="true">
+                            <form id="ai-compare-form"  method="POST" target="_blank" data-parallel="true">
                                 @csrf
                                 <input type="hidden" name="prompt" value="{{ $prompt }}">
                                 <input type="hidden" name="content" id="content-input" />

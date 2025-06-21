@@ -367,7 +367,8 @@ class ChatAiServices
     {
         try {
             $maxTokens = max((int)($params['max_output_tokens'] ?? 2048), 16);
-            $model = 'claude-3-5-haiku-20241022';
+            $model = $params['model'] ?? 'claude-3.5-haiku-20240601';
+
 
             $response = Http::withHeaders([
                 'anthropic-version' => '2023-06-01',
@@ -422,7 +423,12 @@ class ChatAiServices
                     ],
                 ],
             ]);
-            return  $this->parseResponse($response->json()['choices'][0]['message']['content']);
+$content = $response->json()['choices'][0]['message']['content'] ?? 'No response';
+return [
+    'success' => true,
+    'response' => $this->parseResponse($content),
+    'raw' => $content,
+];
         } catch (\Exception $e) {
             return [
                 'success' => false,

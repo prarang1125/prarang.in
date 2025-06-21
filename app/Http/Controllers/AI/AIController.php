@@ -153,15 +153,14 @@ class AIController extends Controller
                         ])['response'] ?? 'Claude failed';
                         break;
                     case 'deepseek':
-                        $responses['deepseek'] = $this->aiService->generateDeepseekResponse($prompt, [
-                            'model' => 'deepseek/deepseek-chat-v3-0324:free',
-                        ])['response'] ?? 'deepseek failed';
+                        $deepseekResult = $this->aiService->generateDeepseekResponse($prompt);
+                        $responses['deepseek'] = $deepseekResult['success'] ? $deepseekResult['response'] : 'DeepSeek failed';
+
                         break;
 
                     case 'meta':
-                        $responses['meta'] = $this->aiService->generateMetaResponse($prompt, [
-                            'model' => 'meta-llama/llama-4-maverick:free',
-                        ])['response'] ?? 'Claude failed';
+                       $metaResult = $this->aiService->generateMetaResponse($prompt);
+                       $responses['meta'] = $metaResult['success'] ? $metaResult['response'] : 'Meta failed';
                         break;
 
                     case 'grok':
