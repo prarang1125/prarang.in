@@ -8,7 +8,7 @@
             <section class="first-prompt">
                 @if ($activeSection['firstPrompt'])
                     <div class="mb-3 text-center firstPrompt">
-                        <h5>Comparative A.I on any Geography</h5>
+                        <h5>Comparative A.I. on any Geography</h5>
                         <br><br>
                         <div class="mb-3 firstPrompt">
                             <div class="main-button-area">
@@ -102,18 +102,24 @@
                                     <p class="com-chat">{!! $output['comparison_sentence']['compare'] !!}</p>
                                 @endisset
 
-                                @foreach ($output as $key => $data)
-                                    @if (is_numeric($key) && !empty($data['api_sentence']))
-                                        <div class="mb-2">
-                                            @foreach ($data['api_sentence'] as $sentence)
+                                @isset($output['api_sentence'])
+                                    <div class="mb-2">
+                                        @foreach ($output['api_sentence'] as $type => $sentence)
+                                            @foreach ($sentence as $paragraph)
                                                 @php
-                                                    $pgx = highlightFirstOccurrence($sentence, $firstCity);
+                                                    $pgx = highlightFirstOccurrence(
+                                                        $paragraph,
+                                                        $firstCity,
+                                                        $type == 'city' ? 'city' : null,
+                                                    );
                                                 @endphp
                                                 <p class="mb-2">{!! $pgx !!}</p>
                                             @endforeach
-                                        </div>
-                                    @endif
-                                @endforeach
+                                        @endforeach
+                                    </div>
+                                @endisset
+
+
 
 
                                 @isset($output['sentences']['city'])
@@ -384,7 +390,8 @@
                                                                             <label class="form-check-label small"
                                                                                 for="sub-{{ $sub['id'] }}">
                                                                                 {{ str_replace('# of', 'No. of', $sub['name']) }}
-                                                                                <!-- <span class="text-primary">{{ $sub['type'] }}</span> -->
+                                                                                <span
+                                                                                    class="text-primary">{{ $sub['geo_type'] == 'in_dist' ? 'District' : '' }}</span>
                                                                             </label>
                                                                         </div>
                                                                     </div>
@@ -486,7 +493,7 @@
                                     </div>
                                     {{-- Indian Cities --}}
                                     <div class="col-sm-6">
-                                        <h5 class="mb-3">India - Districts</h5>
+                                        <h5 class="mb-3">India - Districts/District Capitals</h5>
 
                                         @foreach ($citiesTOChose['city'] as $group => $cities)
                                             @php $groupId = Str::slug($group, '_'); @endphp
