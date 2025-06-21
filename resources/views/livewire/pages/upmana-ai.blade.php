@@ -370,13 +370,13 @@
                                                         @endphp
 
                                                         @foreach ($types as $type)
-                                                            @if (collect($subs)->contains('type', $type))
+                                                            {{-- @if (collect($subs)->contains('type', $type))
                                                                 <div class="pb-3 col-12">
                                                                     <span
                                                                         class="text-muted fw-bold">{{ $type }}
                                                                         Metrics</span>
                                                                 </div>
-                                                            @endif
+                                                            @endif --}}
                                                             @foreach ($subs as $sub)
                                                                 @if ($sub['type'] === $type)
                                                                     <div class="mb-2 col-12 col-sm-4 col-lg-3">
@@ -397,7 +397,6 @@
                                                                     </div>
                                                                 @endif
                                                             @endforeach
-                                                            <hr>
                                                         @endforeach
 
                                                     </div>
@@ -409,7 +408,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="modal-footer">
                             <button id="resetAllBtn" class="btn btn-outline-warning" type="button">Reset</button>
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
@@ -552,6 +550,7 @@
             </div>
         </div>
     </section>
+
     <script>
         function setContent() {
 
@@ -562,7 +561,7 @@
                 return false;
             }
             document.getElementById('content-input').value = content;
-            console.debug('Cookie and content successfully set.');
+
             return true;
         }
 
