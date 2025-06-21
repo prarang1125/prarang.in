@@ -1,6 +1,5 @@
 <div>
     <link rel="stylesheet" href="{{asset('assets/ai/css/aichat.css')}}">
-    <link rel="stylesheet" href="{{asset('css/ai-parallel.css')}}">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
     <p class="text-center main-title-heading">UPMANA - Knowledge By Comparison</p>
     <section class="container p-3 mt-4 border rounded">
@@ -203,7 +202,10 @@
                 <div class="col-sm-4">
                     <section class="id-selector">
                         <p>Compare UPMANA Response with other A.I.</p>
+                        <form action="{{ route('ai.response') }}" method="POST" target="_blank">
+                            @csrf
                             <input type="hidden" name="prompt" value="{{ $prompt }}">
+                            <input type="hidden" name="content" id="content-input" />
                             <div>
                                 <div class="space-y-4">
                                     <div class="flex items-center space-x-2">
@@ -247,11 +249,12 @@
 
 
                                 </div>
-                            <button class="btn btn-success" type="button" onclick="generateAIResponses()">
-                                Compare with AI
+                                <button class="btn btn-success" type="submit" onclick="setContent()">
+                                    Compare
                                 </button>
 
                             </div>
+                        </form>
                     </section>
                 </div>
             </div>
@@ -520,7 +523,6 @@
 </section>
 </div>
 
-<script src="{{asset('js/ai-parallel.js')}}"></script>
 <script>
     function setContent() {
         const content = document.getElementById('outChat').innerHTML;

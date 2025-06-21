@@ -126,57 +126,55 @@ class ChatAiServices
         }
     }
 
-    public function generateGptResponse(string $model, array $params): array
-    {
-        try {
-            $maxTokens = max((int)($params['max_output_tokens'] ?? 2048), 16);
-            $prompt = $params['input'] ?? '';
+    // public function generateGptResponse(string $model, array $params): array
+    // {
+    //     try {
+    //         $maxTokens = max((int)($params['max_output_tokens'] ?? 2048), 16);
 
-            $response = Http::withToken(env('OPENAI_API_KEY'))
-                ->post('https://api.openai.com/v1/chat/completions', [
-                    'model' => $model,
-                    'messages' => [
-                        [
-                            'role' => 'user',
-                            'content' => $prompt,
-                        ]
-                    ],
-                    'temperature' => (float)($params['temperature'] ?? 1.0),
-                    'top_p' => (float)($params['top_p'] ?? 1.0),
-                    'max_tokens' => $maxTokens,
-                ]);
+    //         $response = Http::withToken(env('OPENAI_API_KEY'))
+    //             ->post('https://api.openai.com/v1/responses', [
+    //                 'model' => $model,
+    //                 'input' => $params['input'] ?? [],
+    //                 'text' => ['format' => ['type' => 'text']],
+    //                 'reasoning' => new \stdClass(),
+    //                 'tools' => [],
+    //                 'temperature' => (float)($params['temperature'] ?? 1.0),
+    //                 'top_p' => (float)($params['top_p'] ?? 1.0),
+    //                 'max_output_tokens' => $maxTokens,
+    //                 'store' => true,
+    //             ]);
 
-            $responseBody = $response->json();
-            $content = $responseBody['choices'][0]['message']['content'] ?? 'No response text available';
+    //         $responseBody = $response->json();
+    //         $content = $responseBody['output'][0]['content'][0]['text'] ?? 'No response text available';
 
-            // Parse the response
-            $parsedContent = $this->parseResponse($content);
+    //         // Parse the response
+    //         $parsedContent = $this->parseResponse($content);
 
-            return [
-                'success' => true,
-                'response' => $parsedContent,
-                'raw' => $content,
-            ];
-        } catch (\GuzzleHttp\Exception\ClientException $e) {
-            $responseBody = json_decode($e->getResponse()->getBody()->getContents(), true);
-            Log::error('AIService Client Error: ' . $e->getMessage(), [
-                'status' => $e->getResponse()->getStatusCode(),
-                'response' => $responseBody,
-            ]);
+    //         return [
+    //             'success' => true,
+    //             'response' => $parsedContent,
+    //             'raw' => $content,
+    //         ];
+    //     } catch (\GuzzleHttp\Exception\ClientException $e) {
+    //         $responseBody = json_decode($e->getResponse()->getBody()->getContents(), true);
+    //         Log::error('AIService Client Error: ' . $e->getMessage(), [
+    //             'status' => $e->getResponse()->getStatusCode(),
+    //             'response' => $responseBody,
+    //         ]);
 
-            return [
-                'success' => false,
-                'error' => $responseBody['error']['message'] ?? $e->getMessage(),
-            ];
-        } catch (Exception $e) {
-            Log::error('AIService General Error: ' . $e->getMessage());
+    //         return [
+    //             'success' => false,
+    //             'error' => $responseBody['error']['message'] ?? $e->getMessage(),
+    //         ];
+    //     } catch (Exception $e) {
+    //         Log::error('AIService General Error: ' . $e->getMessage());
 
-            return [
-                'success' => false,
-                'error' => $e->getMessage(),
-            ];
-        }
-    }
+    //         return [
+    //             'success' => false,
+    //             'error' => $e->getMessage(),
+    //         ];
+    //     }
+    // }
 
     
     
