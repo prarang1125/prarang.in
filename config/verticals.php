@@ -2,7 +2,7 @@
 return [
 
     'e_ints' => "Internet",
-    'n_data' => "Nature",
+
     'c_data' => "Culture",
     'e_demos' => "Demography",
     'e_langs' => "Language",
@@ -13,4 +13,5 @@ return [
     'e_edus' => "Education",
     'e_medias' => "Media",
     'e_urbs' => "Urbanization",
+    'n_data' => "Nature",
 ];

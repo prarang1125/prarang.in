@@ -372,22 +372,23 @@
                                                 id="content-{{ $main }}" role="tabpanel"
                                                 aria-labelledby="tab-{{ $main }}">
                                                 <div class="p-3 border rounded shadow-sm">
-                                                    <!-- <strong
-                                                    class="mb-3 d-block fs-6">{{ config('verticals.' . $main) }}
-                                                    Options</strong> -->
+                                                    <strong
+                                                        class="mb-3 d-block fs-6">{{ config('verticals.' . $main) }}
+                                                        Metrics</strong>
                                                     <div class="row">
                                                         @php
                                                             $types = ['World (& India)', 'World', 'India'];
                                                         @endphp
 
                                                         @foreach ($types as $type)
-                                                            @if (collect($subs)->contains('type', $type))
+                                                            {{-- @if (collect($subs)->contains('type', $type))
                                                                 <div class="pb-3 col-12">
                                                                     <span
                                                                         class="text-muted fw-bold">{{ $type }}
                                                                         Metrics</span>
                                                                 </div>
-                                                            @endif
+                                                            @endif --}}
+
                                                             @foreach ($subs as $sub)
                                                                 @if ($sub['type'] === $type)
                                                                     <div class="mb-2 col-12 col-sm-4 col-lg-3">
@@ -401,14 +402,13 @@
                                                                             <label class="form-check-label small"
                                                                                 for="sub-{{ $sub['type'] }}-{{ $sub['id'] }}">
                                                                                 {{ str_replace('# of', 'No. of', $sub['name']) }}
-                                                                                <span
-                                                                                    class="text-primary">{{ $sub['geo_type'] == 'in_dist' ? 'District' : '' }}</span>
+                                                                                {{-- <span
+                                                                                    class="text-primary">{{ $sub['geo_type'] == 'in_dist' ? 'District' : '' }}</span> --}}
                                                                             </label>
                                                                         </div>
                                                                     </div>
                                                                 @endif
                                                             @endforeach
-                                                            <hr>
                                                         @endforeach
 
                                                     </div>
@@ -420,7 +420,6 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="modal-footer">
                             <button id="resetAllBtn" class="btn btn-outline-warning" type="button">Reset</button>
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
@@ -563,6 +562,7 @@
             </div>
         </div>
     </section>
+
     <script>
         function setContent() {
 
@@ -573,7 +573,7 @@
                 return false;
             }
             document.getElementById('content-input').value = content;
-            console.debug('Cookie and content successfully set.');
+
             return true;
         }
 

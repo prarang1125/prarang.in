@@ -30,7 +30,9 @@ class UpmanaAi extends Component
     public $selectedStates = [];
     public $selectedCountries = [];
     public $source;
-    public $citiesTOChose, $firstCity;
+    public $citiesTOChose, $firstCity, $takeme;
+
+
     public function mount(SentenceService $sentenceService)
     {
         session(['chat_id' => uniqid('chat_', true)]);
@@ -197,5 +199,13 @@ class UpmanaAi extends Component
     private function  geography()
     {
         return array_keys($this->cities);
+    }
+
+
+
+
+    public function processHtml()
+    {
+        dd($this->takeme);
     }
 }
