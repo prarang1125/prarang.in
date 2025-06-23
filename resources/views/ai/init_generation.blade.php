@@ -43,7 +43,14 @@
         </form>
     </div>
 
-    <div class="section-title">Comparison Report :{{ (isset($content) ? 1 : 0) + (isset($gptResponse) ? 1 : 0)+ (isset($metaResponse) ? 1 : 0)+ (isset($deepseekResponse) ? 1 : 0) + (isset($geminiResponse) ? 1 : 0) + (isset($claudeResponse) ? 1 : 0) }} A.I. Models</div>
+    <div class="section-title">Comparison Report :{{ 
+        (isset($content) && !empty(trim($content)) ? 1 : 0) + 
+        (isset($gptResponse) && !empty(trim($gptResponse)) ? 1 : 0) + 
+        (isset($metaResponse) && !empty(trim($metaResponse)) ? 1 : 0) + 
+        (isset($deepseekResponse) && !empty(trim($deepseekResponse)) ? 1 : 0) + 
+        (isset($geminiResponse) && !empty(trim($geminiResponse)) ? 1 : 0) + 
+        (isset($claudeResponse) && !empty(trim($claudeResponse)) ? 1 : 0) 
+    }} A.I. Models</div>
 
     <div class="info-box">
         <div class="timestamp">
@@ -55,46 +62,32 @@
                     <span class="model-label">AI-Models:</span>
                 </div> -->
                 <div class="model-links-wrapper">
-                    <div class="model-links-row first-row">
-                        @php
+                    <div class="model-links-row">
+                        <?php
                         $modelCount = 0;
-                        @endphp
-
-
-                        @if(isset($metaResponse))
-                        @php $modelCount++; @endphp
-                        <a class="model-link" onclick="scrollToResponse('meta-container')">({{ chr(96 + $modelCount) }})Meta Llama</a>
-                        @endif
-
-                        @if(isset($geminiResponse))
-                        @php $modelCount++; @endphp
-                        <a class="model-link" onclick="scrollToResponse('gemini-container')">({{ chr(96 + $modelCount) }})Google-Gemini</a>
-                        @endif
-                    </div>
-
-                    <div class="model-links-row">
-                        @if(isset($deepseekResponse))
-                        @php $modelCount++; @endphp
-                        <a class="model-link" onclick="scrollToResponse('deepseek-container')">({{ chr(96 + $modelCount) }})Deepseek-High Flyer</a>
-                        @endif
-
-                        @if(isset($gptResponse))
-                        @php $modelCount++; @endphp
-                        <a class="model-link" onclick="scrollToResponse('gpt-container')">({{ chr(96 + $modelCount) }})Microsoft-ChatGPT</a>
-                        @endif
-
-                    </div>
-                    <div class="model-links-row">
-                    
-                    @if(isset($content))
-                        @php $modelCount++; @endphp
-                        <a class="model-link" onclick="scrollToResponse('content-container')">({{ chr(96 + $modelCount) }})Prarang-Upmana</a>
-                        @endif
-                      
-                        @if(isset($claudeResponse))
-                        @php $modelCount++; @endphp
-                        <a class="model-link" onclick="scrollToResponse('claude-container')">({{ chr(96 + $modelCount) }})Claude-Anthropic</a>
-                        @endif
+                        $allModels = array(
+                            array('var' => 'metaResponse', 'name' => 'Meta Llama', 'container' => 'meta'),
+                            array('var' => 'geminiResponse', 'name' => 'Google-Gemini', 'container' => 'gemini'),
+                            array('var' => 'deepseekResponse', 'name' => 'Deepseek-High Flyer', 'container' => 'deepseek'),
+                            array('var' => 'gptResponse', 'name' => 'Microsoft-ChatGPT', 'container' => 'gpt'),
+                            array('var' => 'content', 'name' => 'Prarang-Upmana', 'container' => 'content'),
+                            array('var' => 'claudeResponse', 'name' => 'Claude-Anthropic', 'container' => 'claude'),
+                            array('var' => 'grokResponse', 'name' => 'Grok', 'container' => 'grok')
+                        );
+                        
+                        $displayedLinks = array();
+                        foreach ($allModels as $model) {
+                            $varName = $model['var'];
+                            $responseContent = $varName === 'content' ? $content ?? '' : $$varName ?? '';
+                            
+                            if (!empty(trim($responseContent))) {
+                                $modelCount++;
+                                $displayedLinks[] = '<a class="model-link" href="javascript:void(0);" data-container="' . $model['container'] . '-container" onclick="window.scrollToResponse(\'' . $model['container'] . '-container\')">(' . chr(96 + $modelCount) . ')' . $model['name'] . '</a>';
+                            }
+                        }
+                        
+                        echo implode(' | ', $displayedLinks);
+                        ?>
                     </div>
                 </div>
             </div>
@@ -103,8 +96,15 @@
     <div class="container-row">
         @php
         $count=1;
+        $upmanaPosition = 'last';
+
+        // Determine Upmana's position
+        if (in_array('upmana', $model)) {
+            $upmanaPosition = 'selected';
+        }
         @endphp
-        @if(isset($content))
+
+        @if($upmanaPosition == 'selected')
         <div class="response-container" id="content-container">
             <div class="response-content">
                 <div class="ai-name">({{ chr(96 + $count++) }}) UPMANA - Knowledge By Comparision</div>
@@ -209,6 +209,20 @@
         </div>
         @endif
 
+        @if($upmanaPosition == 'last' && isset($content))
+        <div class="response-container" id="content-container">
+            <div class="response-content">
+                <div class="ai-name">({{ chr(96 + $count++) }}) UPMANA - Knowledge By Comparision</div>
+                <div class="prompt-box upman">
+                    <strong>Prompt:</strong> {{ $prompt }}
+                </div>
+                <div class="p-3 ai-response h-100">
+                    {!! $content !!}
+                </div>
+            </div>
+        </div>
+        @endif
+
         @if(!isset($gptResponse) && !isset($geminiResponse) && !isset($claudeResponse) && !isset($grokResponse))
         <div class="error-container">
             No response available for the selected model.
@@ -232,19 +246,52 @@
         </div>
     </div>
 
-    @push('scripts')
+
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Wrap all tables in a container for proper scrolling
-            document.querySelectorAll('.ai-response table').forEach(table => {
-                const container = document.createElement('div');
-                container.className = 'table-container';
-                table.parentNode.insertBefore(container, table);
-                container.appendChild(table);
-            });
-           enableParallelProcessing('ai-compare-form');
+    // Define scrollToResponse globally
+    window.scrollToResponse = function(containerId) {
+        console.log('Attempting to scroll to container:', containerId);
+
+        const container = document.getElementById(containerId);
+
+        if (!container) {
+            console.warn('Container not found:', containerId);
+            alert("That response is not available.");
+            return;
+        }
+
+        container.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
         });
+    };
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Attach click event listener to model links
+        document.querySelectorAll('.model-link').forEach(link => {
+            link.addEventListener('click', function(event) {
+                const containerId = this.getAttribute('data-container');
+                if (containerId) {
+                    window.scrollToResponse(containerId);
+                    event.preventDefault();
+                }
+            });
+        });
+
+        // Wrap all tables in a container for proper scrolling
+        document.querySelectorAll('.ai-response table').forEach(table => {
+            const container = document.createElement('div');
+            container.className = 'table-container';
+            table.parentNode.insertBefore(container, table);
+            container.appendChild(table);
+        });
+
+        // Ensure parallel processing is initialized
+        if (typeof enableParallelProcessing === 'function') {
+            enableParallelProcessing('ai-compare-form');
+        }
+    });
     </script>
-    @endpush
+ 
 
 </x-layout.main.base>

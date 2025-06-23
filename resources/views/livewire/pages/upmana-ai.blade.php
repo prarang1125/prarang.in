@@ -209,23 +209,31 @@
                     <div class="col-sm-4">
                         <section class="id-selector">
                             <p>Compare UPMANA Response with other A.I.</p>
-                            <!-- <form id="ai-compare-form"  data-parallel="true"> -->
-                            <form action="{{ route('ai.single.response') }}" method="POST" target="_blank">
+                            <form action="{{route('ai.single.response')}}"  method="POST" target="_blank" data-parallel="true">
                                 @csrf
                                 <input type="hidden" name="prompt" value="{{ $prompt }}">
                                 <input type="hidden" name="content" id="content-input" />
+                                <input type="hidden" name="selected_models_sequence" id="selected-models-sequence" 
+                                    value="{{ is_array($selectedSequence) ? implode(',', $selectedSequence) : ($selectedSequence ?? '') }}" />
+
                                 <div>
                                     <div class="space-y-4">
                                         <div class="flex items-center space-x-2">
-                                                <!-- Meta Option -->
-                                             <label class="flex items-center space-x-2">
+                                        
+                                        <!-- Meta Option -->
+                                         <label class="flex items-center space-x-2">
                                                 <input type="checkbox" name="model[]" wire:model="selectedModels"
                                                     value="meta">
                                                 <img src="https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ai.meta.com/&size=256"
                                                     alt="" class="w-6 h-6">
-                                                <span>
+                                                <span class="flex-grow">
                                                     <span>Meta Llama</span>
-                                                    <span>Meta</span>
+                                                    <span class="text-gray-500 ml-1">Meta</span>
+                                                </span>
+                                                <span class="text-sm text-gray-600 order-number ml-2">
+                                                    @if (($index = array_search('meta', $selectedSequence)) !== false)
+                                                        {{ $index + 1 }}
+                                                    @endif
                                                 </span>
                                             </label>
                                             <!-- Gemini Option -->
@@ -234,42 +242,63 @@
                                                     value="gemini">
                                                 <img src="https://i.ibb.co/cX86rhZB/gimini-removebg-preview.png"
                                                     alt="Gemini Logo" class="w-6 h-6">
-                                                <span>
+                                                <span class="flex-grow">
                                                     <span>Gemini</span>
-                                                    <span>Google</span>
+                                                    <span class="text-gray-500 ml-1">Google</span>
+                                                </span>
+                                                <span class="text-sm text-gray-600 order-number ml-2">
+                                                    @if (($index = array_search('gemini', $selectedSequence)) !== false)
+                                                        {{ $index + 1 }}
+                                                    @endif
                                                 </span>
                                             </label>
+
                                             <!-- Deepseek Option -->
                                             <label class="flex items-center space-x-2">
                                                 <input type="checkbox" name="model[]" wire:model="selectedModels"
                                                     value="deepseek">
-                                                <img src="https://chat.deepseek.com/favicon.svg" alt="Deepseek Logo"
+                                                <img src="https://chat.deepseek.com/favicon.svg" alt=""
                                                     class="w-6 h-6">
-                                                <span>
+                                                <span class="flex-grow">
                                                     <span>Deepseek</span>
-                                                    <span>High-Flyer</span>
+                                                    <span class="text-gray-500 ml-1">High-Flyer</span>
+                                                </span>
+                                                <span class="text-sm text-gray-600 order-number ml-2">
+                                                    @if (($index = array_search('deepseek', $selectedSequence)) !== false)
+                                                        {{ $index + 1 }}
+                                                    @endif
                                                 </span>
                                             </label>
+
+                                            <!-- upmana Option -->
+                                            <label class="flex items-center space-x-2">
+                                              <input type="checkbox" name="model[]" wire:model="selectedModels"
+                                                  value="upmana">
+                                                  <img src="{{ asset('assets/ai/images/byr-btn.png') }}" alt="Upmana Logo" class="w-6 h-6">
+                                              <span class="flex-grow">
+                                                  <span>Upmana</span>
+                                                  <span class="text-gray-500 ml-1">Prarang</span>
+                                              </span>
+                                              <span class="text-sm text-gray-600 order-number ml-2">
+                                                    @if (($index = array_search('upmana', $selectedSequence)) !== false)
+                                                        {{ $index + 1 }}
+                                                    @endif
+                                                </span>
+                                          </label>
                                             <!-- ChatGPT Option -->
                                             <label class="flex items-center space-x-2">
                                                 <input type="checkbox" name="model[]" wire:model="selectedModels"
                                                     value="chatgpt">
                                                 <img src="https://cdn.oaistatic.com/assets/favicon-miwirzcw.ico"
                                                     alt="ChatGPT Logo" class="w-6 h-6">
-                                                <span>
+                                                <span class="flex-grow">
                                                     <span>ChatGPT</span>
-                                                    <span>Microsoft</span>
+                                                    <span class="text-gray-500 ml-1">Microsoft</span>
                                                 </span>
-                                            </label>
-
-                                            <!-- upmana Option -->
-                                            <label class="flex items-center space-x-2">
-                                                <input type="checkbox" name="model[]" wire:model="selectedModels"
-                                                    value="upmana">
-                                                    <img src="{{ asset('assets/ai/images/byr-btn.png') }}" alt="Upmana Logo" class="w-6 h-6">
-                                                <span>
-                                                    <span>Upmana</span>
-                                                    <span>Prarang</span>
+                                                <span class="text-sm text-gray-600 order-number ml-2">
+                                                    @if (($index = array_search('chatgpt', $selectedSequence)) !== false)
+                                                        {{ $index + 1 }}
+                                                    @endif
                                                 </span>
                                             </label>
 
@@ -279,21 +308,23 @@
                                                     value="claude">
                                                 <img src="https://claude.ai/images/claude_app_icon.png" alt=""
                                                     class="w-6 h-6">
-                                                <span>
+                                                <span class="flex-grow">
                                                     <span>Claude</span>
-                                                    <span>Anthropic</span>
+                                                    <span class="text-gray-500 ml-1">Anthropic</span>
+                                                </span>
+                                                <span class="text-sm text-gray-600 order-number ml-2" >
+                                                    @if (($index = array_search('claude', $selectedSequence)) !== false)
+                                                        {{ $index + 1 }}
+                                                    @endif
                                                 </span>
                                             </label>
-                                           
                                         </div>
-
-
                                     </div>
                                     <button class="btn btn-success" type="submit" onclick="return setContent()">
                                         Compare
-                                    </button </div>
-
-                                    <!-- <button class="btn btn-success mt-3" type="submit" onclick="return handleCompare(event)">Compare</button>                            </form> -->
+                                    </button>
+                                </div>
+                            </form>
                         </section>
                     </div>
                 </div>
@@ -371,23 +402,22 @@
                                                 id="content-{{ $main }}" role="tabpanel"
                                                 aria-labelledby="tab-{{ $main }}">
                                                 <div class="p-3 border rounded shadow-sm">
-                                                    <strong
-                                                        class="mb-3 d-block fs-6">{{ config('verticals.' . $main) }}
-                                                        Metrics</strong>
+                                                    <!-- <strong
+                                                    class="mb-3 d-block fs-6">{{ config('verticals.' . $main) }}
+                                                    Options</strong> -->
                                                     <div class="row">
                                                         @php
                                                             $types = ['World (& India)', 'World', 'India'];
                                                         @endphp
 
                                                         @foreach ($types as $type)
-                                                            {{-- @if (collect($subs)->contains('type', $type))
+                                                            @if (collect($subs)->contains('type', $type))
                                                                 <div class="pb-3 col-12">
                                                                     <span
                                                                         class="text-muted fw-bold">{{ $type }}
                                                                         Metrics</span>
                                                                 </div>
-                                                            @endif --}}
-
+                                                            @endif
                                                             @foreach ($subs as $sub)
                                                                 @if ($sub['type'] === $type)
                                                                     <div class="mb-2 col-12 col-sm-4 col-lg-3">
@@ -401,13 +431,14 @@
                                                                             <label class="form-check-label small"
                                                                                 for="sub-{{ $sub['type'] }}-{{ $sub['id'] }}">
                                                                                 {{ str_replace('# of', 'No. of', $sub['name']) }}
-                                                                                {{-- <span
-                                                                                    class="text-primary">{{ $sub['geo_type'] == 'in_dist' ? 'District' : '' }}</span> --}}
+                                                                                <span
+                                                                                    class="text-primary">{{ $sub['geo_type'] == 'in_dist' ? 'District' : '' }}</span>
                                                                             </label>
                                                                         </div>
                                                                     </div>
                                                                 @endif
                                                             @endforeach
+                                                            <hr>
                                                         @endforeach
 
                                                     </div>
@@ -419,6 +450,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="modal-footer">
                             <button id="resetAllBtn" class="btn btn-outline-warning" type="button">Reset</button>
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
@@ -561,39 +593,58 @@
             </div>
         </div>
     </section>
-
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Debugging logs
+            console.log('Upmana AI page loaded');
+            
+            // Log the output content
+            const outputElement = document.getElementById('outChat');
+            if (outputElement) {
+                console.log('Output Content:', outputElement.innerHTML.trim());
+            } else {
+                console.error('Output element #outChat not found!');
+            }
+        });
+
         function setContent() {
-
-            const content = document.getElementById('outChat').innerHTML.trim();
-
-            if (!content) {
-                alert("Content is empty!");
+            const outChatElement = document.getElementById('outChat');
+            if (!outChatElement) {
+                console.error('Output container not found!');
+                alert('Please generate Upmana content first!');
                 return false;
             }
-            document.getElementById('content-input').value = content;
 
+            const content = outChatElement.innerHTML.trim();
+            if (!content) {
+                console.warn('No content generated!');
+                alert('Please generate Upmana content first!');
+                return false;
+            }
+
+            const contentInput = document.getElementById('content-input');
+            if (!contentInput) {
+                console.error('Content input field not found!');
+                alert('Error setting content!');
+                return false;
+            }
+
+            contentInput.value = content;
+            console.log('Upmana content set successfully:', content.substring(0, 100) + '...');
             return true;
         }
 
-        window.addEventListener('closemodal', () => {
-            const modal = bootstrap.Modal.getInstance(document.getElementById('categoryModal'));
-            if (modal) {
-                modal.hide();
+        // Ensure content is set before form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form[data-parallel="true"]');
+            if (form) {
+                form.addEventListener('submit', function(event) {
+                    if (!setContent()) {
+                        event.preventDefault();
+                    }
+                });
             }
         });
-        window.addEventListener('showCategorymodal', () => {
-            const modal = bootstrap.Modal.getInstance(document.getElementById('categoryModal'));
-            if (modal) {
-                modal.hide();
-            }
-        });
-
-        function autoResize(textarea) {
-            const lines = textarea.value.split('\n').length;
-            const newRows = Math.min(Math.max(lines, 2), 5);
-            textarea.rows = newRows;
-        }
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -683,5 +734,45 @@
             if (modalInstance) modalInstance.hide();
         }
     </script>
-<script src="https://cdn.jsdelivr.net/npm/marked@4.0.0/lib/marked.umd.js"></script>
-<script src="{{ asset('js/response.js') }}" defer></script>
+
+
+<script>
+function setupModelSequenceScript() {
+    const sequenceInput = document.getElementById("selected-models-sequence");
+    let selectedSequence = [];
+
+    function updateNumbers() {
+        const checkboxes = document.querySelectorAll('input[name="model[]"]');
+        checkboxes.forEach(cb => {
+            const label = cb.closest('label');
+            const numberSpan = label.querySelector('.order-number');
+            const index = selectedSequence.indexOf(cb.value);
+            numberSpan.textContent = index !== -1 ? (index + 1) : '';
+        });
+        sequenceInput.value = selectedSequence.join(',');
+    }
+
+    // Use event delegation to handle checkbox changes
+    document.addEventListener('change', function (e) {
+        if (e.target.matches('input[name="model[]"]')) {
+            const value = e.target.value;
+            if (e.target.checked) {
+                // Only add if not already in the sequence
+                if (!selectedSequence.includes(value)) {
+                    selectedSequence.push(value);
+                }
+            } else {
+                // Remove from sequence when unchecked
+                selectedSequence = selectedSequence.filter(v => v !== value);
+            }
+            updateNumbers();
+        }
+    });
+
+    updateNumbers();
+}
+
+document.addEventListener("DOMContentLoaded", setupModelSequenceScript);
+document.addEventListener("livewire:update", setupModelSequenceScript);
+
+</script>

@@ -23,6 +23,7 @@ class UpmanaAi extends Component
     public $comparisonSentence = '';
     public $activeSection = [];
     public $selectedModels = [];
+    public $selectedSequence = [];
 
     protected $verticalService;
     protected $sentenceService;
@@ -49,6 +50,18 @@ class UpmanaAi extends Component
             'output' => false
         ];
         $this->citiesTOChose = $this->sentenceService->geography();
+    }
+
+    public function updatedSelectedModels()
+    {
+        // Update sequence: keep existing order, add new selections, remove deselected
+        $newSelections = array_diff($this->selectedModels, $this->selectedSequence);
+        $this->selectedSequence = array_values(
+            array_merge(
+                array_intersect($this->selectedSequence, $this->selectedModels),
+                $newSelections
+            )
+        );
     }
 
     public function toggleMainCheck($main)
