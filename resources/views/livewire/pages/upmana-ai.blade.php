@@ -209,13 +209,47 @@
                     <div class="col-sm-4">
                         <section class="id-selector">
                             <p>Compare UPMANA Response with other A.I.</p>
-                            <form id="ai-compare-form"  method="POST" target="_blank" data-parallel="true">
+                            <!-- <form id="ai-compare-form"  data-parallel="true"> -->
+                                <form action="{{route('ai.single.response')}}" method="post"></form>
                                 @csrf
                                 <input type="hidden" name="prompt" value="{{ $prompt }}">
                                 <input type="hidden" name="content" id="content-input" />
                                 <div>
                                     <div class="space-y-4">
                                         <div class="flex items-center space-x-2">
+                                                <!-- Meta Option -->
+                                             <label class="flex items-center space-x-2">
+                                                <input type="checkbox" name="model[]" wire:model="selectedModels"
+                                                    value="meta">
+                                                <img src="https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ai.meta.com/&size=256"
+                                                    alt="" class="w-6 h-6">
+                                                <span>
+                                                    <span>Meta Llama</span>
+                                                    <span>Meta</span>
+                                                </span>
+                                            </label>
+                                            <!-- Gemini Option -->
+                                            <label class="flex items-center space-x-2">
+                                                <input type="checkbox" name="model[]" wire:model="selectedModels"
+                                                    value="gemini">
+                                                <img src="https://i.ibb.co/cX86rhZB/gimini-removebg-preview.png"
+                                                    alt="Gemini Logo" class="w-6 h-6">
+                                                <span>
+                                                    <span>Gemini</span>
+                                                    <span>Google</span>
+                                                </span>
+                                            </label>
+                                            <!-- Deepseek Option -->
+                                            <label class="flex items-center space-x-2">
+                                                <input type="checkbox" name="model[]" wire:model="selectedModels"
+                                                    value="deepseek">
+                                                <img src="https://chat.deepseek.com/favicon.svg" alt=""
+                                                    class="w-6 h-6">
+                                                <span>
+                                                    <span>Deepseek</span>
+                                                    <span>High-Flyer</span>
+                                                </span>
+                                            </label>
                                             <!-- ChatGPT Option -->
                                             <label class="flex items-center space-x-2">
                                                 <input type="checkbox" name="model[]" wire:model="selectedModels"
@@ -228,18 +262,17 @@
                                                 </span>
                                             </label>
 
-                                            <!-- Gemini Option -->
+                                            <!-- ChatGPT Option -->
                                             <label class="flex items-center space-x-2">
                                                 <input type="checkbox" name="model[]" wire:model="selectedModels"
-                                                    value="gemini">
-                                                <img src="https://i.ibb.co/cX86rhZB/gimini-removebg-preview.png"
-                                                    alt="Gemini Logo" class="w-6 h-6">
+                                                    value="upmana">
+                                                <img src="https://cdn.oaistatic.com/assets/favicon-miwirzcw.ico"
+                                                    alt="Upmana Logo" class="w-6 h-6">
                                                 <span>
-                                                    <span>Gemini</span>
-                                                    <span>Google</span>
+                                                    <span>Upmana</span>
+                                                    <span>Prarang</span>
                                                 </span>
                                             </label>
-
 
                                             <!-- Grok Option -->
                                             <label class="flex items-center space-x-2">
@@ -252,27 +285,7 @@
                                                     <span>Anthropic</span>
                                                 </span>
                                             </label>
-                                            <!-- Grok Option -->
-                                            <label class="flex items-center space-x-2">
-                                                <input type="checkbox" name="model[]" wire:model="selectedModels"
-                                                    value="deepseek">
-                                                <img src="https://chat.deepseek.com/favicon.svg" alt=""
-                                                    class="w-6 h-6">
-                                                <span>
-                                                    <span>Deepseek</span>
-                                                    <span>High-Flyer</span>
-                                                </span>
-                                            </label>
-                                            <label class="flex items-center space-x-2">
-                                                <input type="checkbox" name="model[]" wire:model="selectedModels"
-                                                    value="meta">
-                                                <img src="https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ai.meta.com/&size=256"
-                                                    alt="" class="w-6 h-6">
-                                                <span>
-                                                    <span>Meta Llama</span>
-                                                    <span>Meta</span>
-                                                </span>
-                                            </label>
+                                           
                                         </div>
 
 
@@ -280,7 +293,8 @@
                                     <button class="btn btn-success" type="submit" onclick="return setContent()">
                                         Compare
                                     </button </div>
-                            </form>
+
+                                    <!-- <button class="btn btn-success mt-3" type="submit" onclick="return handleCompare(event)">Compare</button>                            </form> -->
                         </section>
                     </div>
                 </div>
@@ -670,3 +684,5 @@
             if (modalInstance) modalInstance.hide();
         }
     </script>
+<script src="https://cdn.jsdelivr.net/npm/marked@4.0.0/lib/marked.umd.js"></script>
+<script src="{{ asset('js/response.js') }}" defer></script>

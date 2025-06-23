@@ -100,6 +100,73 @@ class ChatAiServices
         return $html;
     }
 
+    protected function preprocessTableContent(string $content): string
+    {
+        // If the content already contains a markdown table, return it as is
+        if (strpos($content, '| ---') !== false || strpos($content, '|:---') !== false) {
+            return $content;
+        }
+
+        // Convert ASCII table to markdown table
+        $lines = explode("\n", $content);
+        $tableLines = [];
+        $inTable = false;
+        $headers = [];
+        $rows = [];
+
+        foreach ($lines as $line) {
+            $line = trim($line);
+
+            // Check if line is part of a table
+            if (strpos($line, '|') !== false || strpos($line, '+') !== false) {
+                if (!$inTable) {
+                    $inTable = true;
+                }
+
+                // Skip separator lines
+                if (strpos($line, '+') !== false) {
+                    continue;
+                }
+
+                // Process table line
+                $cells = array_map('trim', explode('|', $line));
+                $cells = array_filter($cells); // Remove empty cells
+
+                if (empty($headers)) {
+                    $headers = $cells;
+                } else {
+                    $rows[] = $cells;
+                }
+            } else {
+                if ($inTable) {
+                    // Convert collected table data to markdown
+                    if (!empty($headers) && !empty($rows)) {
+                        $tableLines[] = '| ' . implode(' | ', $headers) . ' |';
+                        $tableLines[] = '| ' . implode(' | ', array_fill(0, count($headers), '---')) . ' |';
+                        foreach ($rows as $row) {
+                            $tableLines[] = '| ' . implode(' | ', $row) . ' |';
+                        }
+                    }
+                    $inTable = false;
+                    $headers = [];
+                    $rows = [];
+                }
+                $tableLines[] = $line;
+            }
+        }
+
+        // Handle any remaining table data
+        if ($inTable && !empty($headers) && !empty($rows)) {
+            $tableLines[] = '| ' . implode(' | ', $headers) . ' |';
+            $tableLines[] = '| ' . implode(' | ', array_fill(0, count($headers), '---')) . ' |';
+            foreach ($rows as $row) {
+                $tableLines[] = '| ' . implode(' | ', $row) . ' |';
+            }
+        }
+
+        return implode("\n", $tableLines);
+    }
+
 
 
     public function generateText(string $model, string $prompt, array $params = []): array
@@ -177,9 +244,6 @@ class ChatAiServices
             ];
         }
     }
-
-    
-    
     
     public function generateGiminiResponse(string $prompt, array $params): array
     {
@@ -242,72 +306,7 @@ class ChatAiServices
         }
     }
 
-    protected function preprocessTableContent(string $content): string
-    {
-        // If the content already contains a markdown table, return it as is
-        if (strpos($content, '| ---') !== false || strpos($content, '|:---') !== false) {
-            return $content;
-        }
 
-        // Convert ASCII table to markdown table
-        $lines = explode("\n", $content);
-        $tableLines = [];
-        $inTable = false;
-        $headers = [];
-        $rows = [];
-
-        foreach ($lines as $line) {
-            $line = trim($line);
-
-            // Check if line is part of a table
-            if (strpos($line, '|') !== false || strpos($line, '+') !== false) {
-                if (!$inTable) {
-                    $inTable = true;
-                }
-
-                // Skip separator lines
-                if (strpos($line, '+') !== false) {
-                    continue;
-                }
-
-                // Process table line
-                $cells = array_map('trim', explode('|', $line));
-                $cells = array_filter($cells); // Remove empty cells
-
-                if (empty($headers)) {
-                    $headers = $cells;
-                } else {
-                    $rows[] = $cells;
-                }
-            } else {
-                if ($inTable) {
-                    // Convert collected table data to markdown
-                    if (!empty($headers) && !empty($rows)) {
-                        $tableLines[] = '| ' . implode(' | ', $headers) . ' |';
-                        $tableLines[] = '| ' . implode(' | ', array_fill(0, count($headers), '---')) . ' |';
-                        foreach ($rows as $row) {
-                            $tableLines[] = '| ' . implode(' | ', $row) . ' |';
-                        }
-                    }
-                    $inTable = false;
-                    $headers = [];
-                    $rows = [];
-                }
-                $tableLines[] = $line;
-            }
-        }
-
-        // Handle any remaining table data
-        if ($inTable && !empty($headers) && !empty($rows)) {
-            $tableLines[] = '| ' . implode(' | ', $headers) . ' |';
-            $tableLines[] = '| ' . implode(' | ', array_fill(0, count($headers), '---')) . ' |';
-            foreach ($rows as $row) {
-                $tableLines[] = '| ' . implode(' | ', $row) . ' |';
-            }
-        }
-
-        return implode("\n", $tableLines);
-    }
 
     public function generateGrokResponse(string $prompt, array $params): array
     {
