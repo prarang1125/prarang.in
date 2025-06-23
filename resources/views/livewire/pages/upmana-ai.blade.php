@@ -97,7 +97,8 @@
                                     @isset($output['comparison_statement'])
                                         {{ $output['comparison_statement'] }}
                                     @endisset
-
+                                </p>
+                                <p class="com-chat">
                                     @isset($output['comparison_sentence']['sentence'])
                                         {!! $output['comparison_sentence']['sentence'] !!}
                                         {!! $output['comparison_sentence']['compare'] !!}
