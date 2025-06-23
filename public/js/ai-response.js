@@ -64,6 +64,40 @@ function showError(message) {
     setTimeout(() => errorDiv.remove(), 5000);
 }
 
+function enableParallelProcessing(formId) {
+    const form = document.getElementById(formId);
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleParallelAIForm(this);
+        });
+    }
+}
+
+// Enhanced form submission handler for parallel processing
+async function handleParallelAIForm(form) {
+    const formData = new FormData(form);
+    const prompt = formData.get('prompt');
+    const models = formData.getAll('model[]');
+    const content = formData.get('content');
+
+    if (!prompt || models.length === 0) {
+        showError('Please provide a prompt and select at least one AI model');
+        return;
+    }
+
+    // Update prompt text in all containers
+    document.querySelectorAll('.prompt-text').forEach(element => {
+        element.textContent = prompt;
+    });
+
+    try {
+        await generateParallelAIResponses(prompt, models, content);
+    } catch (error) {
+        console.error('Form submission error:', error);
+    }
+}
+
 // New async function for parallel AI API calls
 async function generateParallelAIResponses(prompt, models, content = null) {
     showLoading();
@@ -130,52 +164,6 @@ async function generateParallelAIResponses(prompt, models, content = null) {
         showError('Failed to generate AI responses');
         hideLoading();
         throw error;
-    }
-}
-
-// Helper function to update response containers
-function updateResponseContainer(model, response) {
-    const containerId = `${model}-container`;
-    const container = document.getElementById(containerId);
-
-    if (container) {
-        const responseDiv = container.querySelector('.ai-response');
-        if (responseDiv) {
-            responseDiv.innerHTML = response;
-            container.classList.remove('loading');
-            // Wrap tables in a container for scrolling
-            responseDiv.querySelectorAll('table').forEach(table => {
-                const tableContainer = document.createElement('div');
-                tableContainer.className = 'table-container';
-                table.parentNode.insertBefore(tableContainer, table);
-                tableContainer.appendChild(table);
-            });
-        }
-    }
-}
-
-// Helper function to show model-specific errors
-function showModelError(model, errorMessage) {
-    const containerId = `${model}-container`;
-    const container = document.getElementById(containerId);
-
-    if (container) {
-        const responseDiv = container.querySelector('.ai-response');
-        if (responseDiv) {
-            responseDiv.innerHTML = `<div class="text-danger">Error: ${errorMessage}</div>`;
-            container.classList.remove('loading');
-        }
-    }
-}
-
-// Simple function to enable parallel processing on any form
-function enableParallelProcessing(formId) {
-    const form = document.getElementById(formId);
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            handleParallelAIForm(this);
-        });
     }
 }
 
@@ -258,39 +246,49 @@ function createResponseContainers(models) {
     if (thirdRow.children.length > 0) modelLinksWrapper.appendChild(thirdRow);
 }
 
-function enableParallelProcessing(formId) {
-    const form = document.getElementById(formId);
-    if (form) {
-        form.addEventListener('submit', function(e) {
-            e.preventDefault();
-            handleParallelAIForm(this);
-        });
+// Helper function to update response containers
+function updateResponseContainer(model, response) {
+    const containerId = `${model}-container`;
+    const container = document.getElementById(containerId);
+
+    if (container) {
+        const responseDiv = container.querySelector('.ai-response');
+        if (responseDiv) {
+            responseDiv.innerHTML = response;
+            container.classList.remove('loading');
+            // Wrap tables in a container for scrolling
+            responseDiv.querySelectorAll('table').forEach(table => {
+                const tableContainer = document.createElement('div');
+                tableContainer.className = 'table-container';
+                table.parentNode.insertBefore(tableContainer, table);
+                tableContainer.appendChild(table);
+            });
+        }
     }
 }
 
-// Enhanced form submission handler for parallel processing
-async function handleParallelAIForm(form) {
-    const formData = new FormData(form);
-    const prompt = formData.get('prompt');
-    const models = formData.getAll('model[]');
-    const content = formData.get('content');
+// Helper function to show model-specific errors
+function showModelError(model, errorMessage) {
+    const containerId = `${model}-container`;
+    const container = document.getElementById(containerId);
 
-    if (!prompt || models.length === 0) {
-        showError('Please provide a prompt and select at least one AI model');
-        return;
-    }
-
-    // Update prompt text in all containers
-    document.querySelectorAll('.prompt-text').forEach(element => {
-        element.textContent = prompt;
-    });
-
-    try {
-        await generateParallelAIResponses(prompt, models, content);
-    } catch (error) {
-        console.error('Form submission error:', error);
+    if (container) {
+        const responseDiv = container.querySelector('.ai-response');
+        if (responseDiv) {
+            responseDiv.innerHTML = `<div class="text-danger">Error: ${errorMessage}</div>`;
+            container.classList.remove('loading');
+        }
     }
 }
+
+
+// Simple function to enable parallel processing on any form
+
+
+
+
+
+
 
 function handleShare() {
     const form = document.getElementById('shareForm');

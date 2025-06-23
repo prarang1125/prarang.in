@@ -1,6 +1,7 @@
 <div>
     <link rel="stylesheet" href="{{ asset('assets/ai/css/aichat.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
+    <script src="{{ asset('js/ai-response.js') }}"></script>
     <p class="text-center main-title-heading">UPMANA - Knowledge By Comparison</p>
     <section class="container p-3 mt-4 border rounded">
 
@@ -637,10 +638,6 @@
                     categoryBadges.innerHTML = `${selectedCount}`
                 }
 
-
-
-
-
             }
 
             checkboxes.forEach(cb => {
@@ -669,4 +666,6 @@
             const modalInstance = bootstrap.Modal.getInstance(modalEl);
             if (modalInstance) modalInstance.hide();
         }
+        enableParallelProcessing('ai-compare-form');
+
     </script>
