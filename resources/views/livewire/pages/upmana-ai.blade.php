@@ -210,7 +210,7 @@
                         <section class="id-selector">
                             <p>Compare UPMANA Response with other A.I.</p>
                             <!-- <form id="ai-compare-form"  data-parallel="true"> -->
-                                <form action="{{route('ai.single.response')}}" method="post"></form>
+                            <form action="{{ route('ai.single.response') }}" method="POST" target="_blank">
                                 @csrf
                                 <input type="hidden" name="prompt" value="{{ $prompt }}">
                                 <input type="hidden" name="content" id="content-input" />
@@ -243,7 +243,7 @@
                                             <label class="flex items-center space-x-2">
                                                 <input type="checkbox" name="model[]" wire:model="selectedModels"
                                                     value="deepseek">
-                                                <img src="https://chat.deepseek.com/favicon.svg" alt=""
+                                                <img src="https://chat.deepseek.com/favicon.svg" alt="Deepseek Logo"
                                                     class="w-6 h-6">
                                                 <span>
                                                     <span>Deepseek</span>
@@ -262,12 +262,11 @@
                                                 </span>
                                             </label>
 
-                                            <!-- ChatGPT Option -->
+                                            <!-- upmana Option -->
                                             <label class="flex items-center space-x-2">
                                                 <input type="checkbox" name="model[]" wire:model="selectedModels"
                                                     value="upmana">
-                                                <img src="https://cdn.oaistatic.com/assets/favicon-miwirzcw.ico"
-                                                    alt="Upmana Logo" class="w-6 h-6">
+                                                    <img src="{{ asset('assets/ai/images/byr-btn.png') }}" alt="Upmana Logo" class="w-6 h-6">
                                                 <span>
                                                     <span>Upmana</span>
                                                     <span>Prarang</span>

@@ -306,8 +306,6 @@ class ChatAiServices
         }
     }
 
-
-
     public function generateGrokResponse(string $prompt, array $params): array
     {
         try {

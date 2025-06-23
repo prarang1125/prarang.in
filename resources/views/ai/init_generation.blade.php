@@ -43,7 +43,7 @@
         </form>
     </div>
 
-    <div class="section-title">Comparison Report :{{ (isset($content) ? 1 : 0) + (isset($gptResponse) ? 1 : 0) + (isset($geminiResponse) ? 1 : 0) + (isset($claudeResponse) ? 1 : 0) }} A.I. Models</div>
+    <div class="section-title">Comparison Report :{{ (isset($content) ? 1 : 0) + (isset($gptResponse) ? 1 : 0)+ (isset($metaResponse) ? 1 : 0)+ (isset($deepseekResponse) ? 1 : 0) + (isset($geminiResponse) ? 1 : 0) + (isset($claudeResponse) ? 1 : 0) }} A.I. Models</div>
 
     <div class="info-box">
         <div class="timestamp">
@@ -51,17 +51,31 @@
         </div>
         <div class="model-section">
             <div class="model-links-container">
-                <div class="model-header">
+                <!-- <div class="model-header">
                     <span class="model-label">AI-Models:</span>
-                </div>
+                </div> -->
                 <div class="model-links-wrapper">
                     <div class="model-links-row first-row">
                         @php
                         $modelCount = 0;
                         @endphp
-                        @if(isset($content))
+
+
+                        @if(isset($metaResponse))
                         @php $modelCount++; @endphp
-                        <a class="model-link" onclick="scrollToResponse('content-container')">({{ chr(96 + $modelCount) }})Prarang-Upmana</a>
+                        <a class="model-link" onclick="scrollToResponse('meta-container')">({{ chr(96 + $modelCount) }})Meta Llama</a>
+                        @endif
+
+                        @if(isset($geminiResponse))
+                        @php $modelCount++; @endphp
+                        <a class="model-link" onclick="scrollToResponse('gemini-container')">({{ chr(96 + $modelCount) }})Google-Gemini</a>
+                        @endif
+                    </div>
+
+                    <div class="model-links-row">
+                        @if(isset($deepseekResponse))
+                        @php $modelCount++; @endphp
+                        <a class="model-link" onclick="scrollToResponse('deepseek-container')">({{ chr(96 + $modelCount) }})Deepseek-High Flyer</a>
                         @endif
 
                         @if(isset($gptResponse))
@@ -71,26 +85,15 @@
 
                     </div>
                     <div class="model-links-row">
-                        @if(isset($geminiResponse))
+                    
+                    @if(isset($content))
                         @php $modelCount++; @endphp
-                        <a class="model-link" onclick="scrollToResponse('gemini-container')">({{ chr(96 + $modelCount) }})Google-Gemini</a>
+                        <a class="model-link" onclick="scrollToResponse('content-container')">({{ chr(96 + $modelCount) }})Prarang-Upmana</a>
                         @endif
+                      
                         @if(isset($claudeResponse))
                         @php $modelCount++; @endphp
                         <a class="model-link" onclick="scrollToResponse('claude-container')">({{ chr(96 + $modelCount) }})Claude-Anthropic</a>
-                        @endif
-
-                    </div>
-                    <div class="model-links-row">
-
-                        @if(isset($deepseekResponse))
-                        @php $modelCount++; @endphp
-                        <a class="model-link" onclick="scrollToResponse('deepseek-container')">({{ chr(96 + $modelCount) }})Deepseek-High Flyer</a>
-                        @endif
-
-                        @if(isset($metaResponse))
-                        @php $modelCount++; @endphp
-                        <a class="model-link" onclick="scrollToResponse('meta-container')">({{ chr(96 + $modelCount) }})Meta Llama</a>
                         @endif
                     </div>
                 </div>

@@ -126,7 +126,7 @@ class AIController extends Controller
             $responses = [
                 'prompt' => $prompt,
                 'model' => $models,
-                'content' => $content,
+                'upmanaResponse' => $content,
             ];
 
             // Step 4: Loop through each selected model and generate response
@@ -152,16 +152,22 @@ class AIController extends Controller
                             'model' => 'claude-3.5-haiku-20240601',
                         ])['response'] ?? 'Claude failed';
                         break;
-                    case 'deepseek':
-                        $deepseekResult = $this->aiService->generateDeepseekResponse($prompt);
-                        $responses['deepseek'] = $deepseekResult['success'] ? $deepseekResult['response'] : 'DeepSeek failed';
-
+                        case 'deepseek':
+                            $deepseekResponse = $this->aiService->generateDeepseekResponse($prompt);
+                            if (isset($deepseekResponse) && is_array($deepseekResponse)) {
+                                $deepseekResponse = implode('', $deepseekResponse);
+                            }
+                            $responses['deepseekResponse'] = $deepseekResponse ?? 'Deepseek failed';        
                         break;
 
-                    case 'meta':
-                       $metaResult = $this->aiService->generateMetaResponse($prompt);
-                       $responses['meta'] = $metaResult['success'] ? $metaResult['response'] : 'Meta failed';
-                        break;
+                        case 'meta':
+                            $metaResponse = $this->aiService->generateMetaResponse($prompt);
+                            if (isset($metaResponse) && is_array($metaResponse)) {
+                                $metaResponse = implode('', $metaResponse);
+                            }
+                            $responses['metaResponse'] = $metaResponse ?? 'Meta failed';
+        
+                            break;
 
                     case 'grok':
                         $responses['grokResponse'] = $this->aiService->generateGrokResponse($prompt, [
@@ -183,8 +189,8 @@ class AIController extends Controller
                 'geminiResponse' => $responses['geminiResponse'] ?? null,
                 'claudeResponse' => $responses['claudeResponse'] ?? null,
                 'grokResponse' => $responses['grokResponse'] ?? null,
-                'deepseek' => $responses['deepseek'] ?? null,
-                'meta' => $responses['meta'] ?? null,
+                'deepseekResponse' => $responses['deepseekResponse'] ?? null,
+                'metaResponse' => $responses['metaResponse'] ?? null,
                 'generatedAt' => $generatedAt,
             ]);
         // } catch (ValidationException $e) {
