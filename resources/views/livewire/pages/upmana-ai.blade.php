@@ -210,10 +210,11 @@
                     <div class="col-sm-4">
                         <section class="id-selector">
                             <p>Compare UPMANA Response with other A.I.</p>
-                            <form id="ai-compare-form"  method="POST" target="_blank" data-parallel="true">
+                            <form action="{{ route('ai.response') }}" method="POST" target="_blank">
                                 @csrf
                                 <input type="hidden" name="prompt" value="{{ $prompt }}">
                                 <input type="hidden" name="content" id="content-input" />
+                                <input type="hidden" name="model_sequence" id="selected-models-sequence" />
                                 <div>
                                     <div class="space-y-4">
                                         <div class="flex items-center space-x-2">
@@ -551,37 +552,57 @@
         </div>
     </section>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Debugging logs
+            console.log('Upmana AI page loaded');
+            
+            // Log the output content
+            const outputElement = document.getElementById('outChat');
+            if (outputElement) {
+                console.log('Output Content:', outputElement.innerHTML.trim());
+            } else {
+                console.error('Output element #outChat not found!');
+            }
+        });
+
         function setContent() {
-
-            const content = document.getElementById('outChat').innerHTML.trim();
-
-            if (!content) {
-                alert("Content is empty!");
+            const outChatElement = document.getElementById('outChat');
+            if (!outChatElement) {
+                console.error('Output container not found!');
+                alert('Please generate Upmana content first!');
                 return false;
             }
-            document.getElementById('content-input').value = content;
-            console.debug('Cookie and content successfully set.');
+
+            const content = outChatElement.innerHTML.trim();
+            if (!content) {
+                console.warn('No content generated!');
+                alert('Please generate Upmana content first!');
+                return false;
+            }
+
+            const contentInput = document.getElementById('content-input');
+            if (!contentInput) {
+                console.error('Content input field not found!');
+                alert('Error setting content!');
+                return false;
+            }
+
+            contentInput.value = content;
+            console.log('Upmana content set successfully:', content.substring(0, 100) + '...');
             return true;
         }
 
-        window.addEventListener('closemodal', () => {
-            const modal = bootstrap.Modal.getInstance(document.getElementById('categoryModal'));
-            if (modal) {
-                modal.hide();
+        // Ensure content is set before form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form[data-parallel="true"]');
+            if (form) {
+                form.addEventListener('submit', function(event) {
+                    if (!setContent()) {
+                        event.preventDefault();
+                    }
+                });
             }
         });
-        window.addEventListener('showCategorymodal', () => {
-            const modal = bootstrap.Modal.getInstance(document.getElementById('categoryModal'));
-            if (modal) {
-                modal.hide();
-            }
-        });
-
-        function autoResize(textarea) {
-            const lines = textarea.value.split('\n').length;
-            const newRows = Math.min(Math.max(lines, 2), 5);
-            textarea.rows = newRows;
-        }
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -666,6 +687,92 @@
             const modalInstance = bootstrap.Modal.getInstance(modalEl);
             if (modalInstance) modalInstance.hide();
         }
-        enableParallelProcessing('ai-compare-form');
-
     </script>
+
+
+<script>
+
+    var modelId={}
+function setupModelSequenceScript() {
+    const sequenceInput = document.getElementById("selected-models-sequence");
+    console.log("Sequence Input Element:", sequenceInput);
+    
+    if (!sequenceInput) {
+        console.warn("Missing hidden input with id='selected-models-sequence'");
+        return; // Stop execution if not found
+    }
+
+    let selectedSequence = [];
+
+    function updateNumbers() {
+        const checkboxes = document.querySelectorAll('input[name="model[]"]');
+        console.group("Model Sequence Tracking");
+        console.log("All Model Checkboxes:", checkboxes);
+        
+        checkboxes.forEach(cb => {
+            const label = cb.closest('label');
+            const numberSpan = label.querySelector('.order-number');
+            const index = selectedSequence.indexOf(cb.value);
+            
+            console.log("Checkbox:", cb);
+            console.log("Checkbox Value:", cb.value);
+            console.log("Current Sequence:", selectedSequence);
+            console.log("Index in Sequence:", index);
+            
+            if (numberSpan) {
+                numberSpan.textContent = index !== -1 ? (index + 1) : '';
+            }
+        });
+
+        // Prepare JSON for storage
+        const sequenceJson = JSON.stringify(selectedSequence);
+        console.log("Sequence to Store:", sequenceJson);
+        
+        // Dispatch a custom event to trigger Livewire update
+        const event = new CustomEvent('model-sequence-changed', { 
+            detail: sequenceJson 
+        });
+        document.dispatchEvent(event);
+
+        // Set value in hidden input
+        sequenceInput.value = sequenceJson;
+        console.log("Hidden Input Value:", sequenceInput.value);
+        console.groupEnd();
+    }
+
+    document.addEventListener('change', function (e) {
+        if (e.target.matches('input[name="model[]"]')) {
+            const value = e.target.value;
+            console.group("Checkbox Change");
+            console.log("Changed Checkbox:", e.target);
+            console.log("Checkbox Value:", value);
+            console.log("Checked State:", e.target.checked);
+
+            if (e.target.checked) {
+                // Add to end if not already in sequence
+                if (!selectedSequence.includes(value)) {
+                    selectedSequence.push(value);
+                }
+            } else {
+                // Remove from sequence
+                selectedSequence = selectedSequence.filter(v => v !== value);
+            }
+
+            console.log("Updated Sequence:", selectedSequence);
+            console.groupEnd();
+
+            updateNumbers();
+        }
+    });
+
+    // Listen for Livewire updates to reset sequence if needed
+    document.addEventListener('livewire:update', setupModelSequenceScript);
+
+    updateNumbers();
+}
+
+document.addEventListener("DOMContentLoaded", setupModelSequenceScript);
+document.addEventListener("livewire:update", setupModelSequenceScript);
+console.log(document.getElementById("selected-models-sequence"));
+
+</script>
