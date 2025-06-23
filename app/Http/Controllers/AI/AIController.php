@@ -124,6 +124,7 @@ class AIController extends Controller
 
             // Step 4: Loop through each selected model based on sequence
             $sequencedModels = $request->input('selected_models_sequence', '');
+            dd($sequencedModels);
             
             // Ensure sequencedModels is a non-null array
             if (is_null($sequencedModels)) {
@@ -254,6 +255,8 @@ class AIController extends Controller
                 'metaResponse' => $orderedResponses['metaResponse'] ?? null,
                 'generatedAt' => $generatedAt,
             ];
+
+            dd( $safeResponses);
 
             // Return view with safe responses
             return view('ai.init_generation', $safeResponses);

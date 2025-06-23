@@ -209,98 +209,38 @@
                     <div class="col-sm-4">
                         <section class="id-selector">
                             <p>Compare UPMANA Response with other A.I.</p>
-                            <form action="{{route('ai.single.response')}}"  method="POST" target="_blank" data-parallel="true">
+                            <form action="{{ route('ai.response') }}" method="POST" target="_blank">
                                 @csrf
                                 <input type="hidden" name="prompt" value="{{ $prompt }}">
                                 <input type="hidden" name="content" id="content-input" />
-                                <input type="hidden" name="selected_models_sequence" id="selected-models-sequence" 
-                                    value="{{ is_array($selectedSequence) ? implode(',', $selectedSequence) : ($selectedSequence ?? '') }}" />
-
+                                <input type="hidden" name="model_sequence" id="selected-models-sequence" />
                                 <div>
                                     <div class="space-y-4">
                                         <div class="flex items-center space-x-2">
-                                        
-                                        <!-- Meta Option -->
-                                         <label class="flex items-center space-x-2">
-                                                <input type="checkbox" name="model[]" wire:model="selectedModels"
-                                                    value="meta">
-                                                <img src="https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ai.meta.com/&size=256"
-                                                    alt="" class="w-6 h-6">
-                                                <span class="flex-grow">
-                                                    <span>Meta Llama</span>
-                                                    <span class="text-gray-500 ml-1">Meta</span>
-                                                </span>
-                                                <span class="text-sm text-gray-600 order-number ml-2">
-                                                    @if (($index = array_search('meta', $selectedSequence)) !== false)
-                                                        {{ $index + 1 }}
-                                                    @endif
-                                                </span>
-                                            </label>
-                                            <!-- Gemini Option -->
-                                            <label class="flex items-center space-x-2">
-                                                <input type="checkbox" name="model[]" wire:model="selectedModels"
-                                                    value="gemini">
-                                                <img src="https://i.ibb.co/cX86rhZB/gimini-removebg-preview.png"
-                                                    alt="Gemini Logo" class="w-6 h-6">
-                                                <span class="flex-grow">
-                                                    <span>Gemini</span>
-                                                    <span class="text-gray-500 ml-1">Google</span>
-                                                </span>
-                                                <span class="text-sm text-gray-600 order-number ml-2">
-                                                    @if (($index = array_search('gemini', $selectedSequence)) !== false)
-                                                        {{ $index + 1 }}
-                                                    @endif
-                                                </span>
-                                            </label>
-
-                                            <!-- Deepseek Option -->
-                                            <label class="flex items-center space-x-2">
-                                                <input type="checkbox" name="model[]" wire:model="selectedModels"
-                                                    value="deepseek">
-                                                <img src="https://chat.deepseek.com/favicon.svg" alt=""
-                                                    class="w-6 h-6">
-                                                <span class="flex-grow">
-                                                    <span>Deepseek</span>
-                                                    <span class="text-gray-500 ml-1">High-Flyer</span>
-                                                </span>
-                                                <span class="text-sm text-gray-600 order-number ml-2">
-                                                    @if (($index = array_search('deepseek', $selectedSequence)) !== false)
-                                                        {{ $index + 1 }}
-                                                    @endif
-                                                </span>
-                                            </label>
-
-                                            <!-- upmana Option -->
-                                            <label class="flex items-center space-x-2">
-                                              <input type="checkbox" name="model[]" wire:model="selectedModels"
-                                                  value="upmana">
-                                                  <img src="{{ asset('assets/ai/images/byr-btn.png') }}" alt="Upmana Logo" class="w-6 h-6">
-                                              <span class="flex-grow">
-                                                  <span>Upmana</span>
-                                                  <span class="text-gray-500 ml-1">Prarang</span>
-                                              </span>
-                                              <span class="text-sm text-gray-600 order-number ml-2">
-                                                    @if (($index = array_search('upmana', $selectedSequence)) !== false)
-                                                        {{ $index + 1 }}
-                                                    @endif
-                                                </span>
-                                          </label>
                                             <!-- ChatGPT Option -->
                                             <label class="flex items-center space-x-2">
                                                 <input type="checkbox" name="model[]" wire:model="selectedModels"
                                                     value="chatgpt">
                                                 <img src="https://cdn.oaistatic.com/assets/favicon-miwirzcw.ico"
                                                     alt="ChatGPT Logo" class="w-6 h-6">
-                                                <span class="flex-grow">
+                                                <span>
                                                     <span>ChatGPT</span>
-                                                    <span class="text-gray-500 ml-1">Microsoft</span>
-                                                </span>
-                                                <span class="text-sm text-gray-600 order-number ml-2">
-                                                    @if (($index = array_search('chatgpt', $selectedSequence)) !== false)
-                                                        {{ $index + 1 }}
-                                                    @endif
+                                                    <span>Microsoft</span>
                                                 </span>
                                             </label>
+
+                                            <!-- Gemini Option -->
+                                            <label class="flex items-center space-x-2">
+                                                <input type="checkbox" name="model[]" wire:model="selectedModels"
+                                                    value="gemini">
+                                                <img src="https://i.ibb.co/cX86rhZB/gimini-removebg-preview.png"
+                                                    alt="Gemini Logo" class="w-6 h-6">
+                                                <span>
+                                                    <span>Gemini</span>
+                                                    <span>Google</span>
+                                                </span>
+                                            </label>
+
 
                                             <!-- Grok Option -->
                                             <label class="flex items-center space-x-2">
@@ -308,22 +248,39 @@
                                                     value="claude">
                                                 <img src="https://claude.ai/images/claude_app_icon.png" alt=""
                                                     class="w-6 h-6">
-                                                <span class="flex-grow">
+                                                <span>
                                                     <span>Claude</span>
-                                                    <span class="text-gray-500 ml-1">Anthropic</span>
+                                                    <span>Anthropic</span>
                                                 </span>
-                                                <span class="text-sm text-gray-600 order-number ml-2" >
-                                                    @if (($index = array_search('claude', $selectedSequence)) !== false)
-                                                        {{ $index + 1 }}
-                                                    @endif
+                                            </label>
+                                            <!-- Grok Option -->
+                                            <label class="flex items-center space-x-2">
+                                                <input type="checkbox" name="model[]" wire:model="selectedModels"
+                                                    value="deepseek">
+                                                <img src="https://chat.deepseek.com/favicon.svg" alt=""
+                                                    class="w-6 h-6">
+                                                <span>
+                                                    <span>Deepseek</span>
+                                                    <span>High-Flyer</span>
+                                                </span>
+                                            </label>
+                                            <label class="flex items-center space-x-2">
+                                                <input type="checkbox" name="model[]" wire:model="selectedModels"
+                                                    value="meta">
+                                                <img src="https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ai.meta.com/&size=256"
+                                                    alt="" class="w-6 h-6">
+                                                <span>
+                                                    <span>Meta Llama</span>
+                                                    <span>Meta</span>
                                                 </span>
                                             </label>
                                         </div>
+
+
                                     </div>
                                     <button class="btn btn-success" type="submit" onclick="return setContent()">
                                         Compare
-                                    </button>
-                                </div>
+                                    </button </div>
                             </form>
                         </section>
                     </div>
@@ -701,10 +658,6 @@
                     categoryBadges.innerHTML = `${selectedCount}`
                 }
 
-
-
-
-
             }
 
             checkboxes.forEach(cb => {
@@ -737,42 +690,88 @@
 
 
 <script>
+
+    var modelId={}
 function setupModelSequenceScript() {
     const sequenceInput = document.getElementById("selected-models-sequence");
+    console.log("Sequence Input Element:", sequenceInput);
+    
+    if (!sequenceInput) {
+        console.warn("Missing hidden input with id='selected-models-sequence'");
+        return; // Stop execution if not found
+    }
+
     let selectedSequence = [];
 
     function updateNumbers() {
         const checkboxes = document.querySelectorAll('input[name="model[]"]');
+        console.group("Model Sequence Tracking");
+        console.log("All Model Checkboxes:", checkboxes);
+        
         checkboxes.forEach(cb => {
             const label = cb.closest('label');
             const numberSpan = label.querySelector('.order-number');
             const index = selectedSequence.indexOf(cb.value);
-            numberSpan.textContent = index !== -1 ? (index + 1) : '';
+            
+            console.log("Checkbox:", cb);
+            console.log("Checkbox Value:", cb.value);
+            console.log("Current Sequence:", selectedSequence);
+            console.log("Index in Sequence:", index);
+            
+            if (numberSpan) {
+                numberSpan.textContent = index !== -1 ? (index + 1) : '';
+            }
         });
-        sequenceInput.value = selectedSequence.join(',');
+
+        // Prepare JSON for storage
+        const sequenceJson = JSON.stringify(selectedSequence);
+        console.log("Sequence to Store:", sequenceJson);
+        
+        // Dispatch a custom event to trigger Livewire update
+        const event = new CustomEvent('model-sequence-changed', { 
+            detail: sequenceJson 
+        });
+        document.dispatchEvent(event);
+
+        // Set value in hidden input
+        sequenceInput.value = sequenceJson;
+        console.log("Hidden Input Value:", sequenceInput.value);
+        console.groupEnd();
     }
 
-    // Use event delegation to handle checkbox changes
     document.addEventListener('change', function (e) {
         if (e.target.matches('input[name="model[]"]')) {
             const value = e.target.value;
+            console.group("Checkbox Change");
+            console.log("Changed Checkbox:", e.target);
+            console.log("Checkbox Value:", value);
+            console.log("Checked State:", e.target.checked);
+
             if (e.target.checked) {
-                // Only add if not already in the sequence
+                // Add to end if not already in sequence
                 if (!selectedSequence.includes(value)) {
                     selectedSequence.push(value);
                 }
             } else {
-                // Remove from sequence when unchecked
+                // Remove from sequence
                 selectedSequence = selectedSequence.filter(v => v !== value);
             }
+
+            console.log("Updated Sequence:", selectedSequence);
+            console.groupEnd();
+
             updateNumbers();
         }
     });
+
+    // Listen for Livewire updates to reset sequence if needed
+    document.addEventListener('livewire:update', setupModelSequenceScript);
 
     updateNumbers();
 }
 
 document.addEventListener("DOMContentLoaded", setupModelSequenceScript);
 document.addEventListener("livewire:update", setupModelSequenceScript);
+console.log(document.getElementById("selected-models-sequence"));
 
 </script>
