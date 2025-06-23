@@ -93,15 +93,16 @@
                                 @foreach ($output['warnings'] ?? [] as $warning)
                                     <p class="warning-chat">{{ $warning }}</p>
                                 @endforeach
-                                @isset($output['comparison_statement'])
-                                    <p class="com-chat">{{ $output['comparison_statement'] }}</p>
-                                @endisset
+                                <p class="com-chat">
+                                    @isset($output['comparison_statement'])
+                                        {{ $output['comparison_statement'] }}
+                                    @endisset
 
-                                @isset($output['comparison_sentence']['sentence'])
-                                    <p class="com-chat">{!! $output['comparison_sentence']['sentence'] !!}</p>
-                                    <p class="com-chat">{!! $output['comparison_sentence']['compare'] !!}</p>
-                                @endisset
-
+                                    @isset($output['comparison_sentence']['sentence'])
+                                        {!! $output['comparison_sentence']['sentence'] !!}
+                                        {!! $output['comparison_sentence']['compare'] !!}
+                                    @endisset
+                                </p>
                                 @isset($output['api_sentence'])
                                     <div class="mb-2">
                                         @foreach ($output['api_sentence'] as $type => $sentence)

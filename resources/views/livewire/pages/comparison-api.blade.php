@@ -7,7 +7,7 @@
     </div>
     @else
     <div class="content">
-        hi
+        {{ $deepseekResponse }}
     </div>
     @endif
 </div>

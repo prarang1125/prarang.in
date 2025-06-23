@@ -11,6 +11,7 @@ class ComparisonApi extends Component
     public $prompt;
     public $model = [];
     public $loading = true;
+    public $deepseekResponse;
 
     public $aiService;
 
@@ -21,16 +22,13 @@ class ComparisonApi extends Component
 
     public function loadServices()
     {
-        $this->aiService =  new ChatAiServices;
-        $response = $this->aiService->generateDeepseekResponse('Tell me about Modi');
+        $this->aiService =  new ChatAiServices();
+        $response = $this->aiService->generateDeepseekResponse('Compare Rampur Lucknow Delhi Mumbai');
 
         if (is_array($response)) {
             $response = implode('', $response);
         }
-        $response = $response ?? 'Deepseek failed';
-
-        // Debug or use it as needed
-        dd($response); // You can replace this with emitting to frontend or storing in a public variable
+        $this->deepseekResponse = $response ?? 'Deepseek failed';
 
         $this->loading = false;
     }
