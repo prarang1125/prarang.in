@@ -116,7 +116,7 @@ class AIController extends Controller
                 'model' => 'required|array',
                 'model.*' => 'in:chatgpt,gemini,claude,grok,deepseek,meta,upmana', // Added upmana
                 'content' => 'nullable|string',
-                'selected_models_sequence' => 'required|json',
+                'selected_models_sequence' => 'nullable|json',
             ]);
 
             // Step 2: Extract input data
@@ -127,7 +127,7 @@ class AIController extends Controller
             // Step 4: Loop through each selected model based on sequence
             // $sequencedModels = $request->input('selected_models_sequence', '');
            // Step 3: Decode sequence with error handling
-$sequencedModels = json_decode($request->input('selected_models_sequence'), true);
+$sequencedModels = json_decode($request->input('selected_models_sequence', '[]'), true);
 
 if (json_last_error() !== JSON_ERROR_NONE) {
     throw new \Exception('Invalid JSON sequence: ' . json_last_error_msg());

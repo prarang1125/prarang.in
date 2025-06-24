@@ -569,44 +569,36 @@
             }
         });
 
-        function setContent() {
-            const outChatElement = document.getElementById('outChat');
-            if (!outChatElement) {
-                console.error('Output container not found!');
-                alert('Please generate Upmana content first!');
-                return false;
-            }
-
-            const content = outChatElement.innerHTML.trim();
-            if (!content) {
-                console.warn('No content generated!');
-                alert('Please generate Upmana content first!');
-                return false;
-            }
-
-            const contentInput = document.getElementById('content-input');
-            if (!contentInput) {
-                console.error('Content input field not found!');
-                alert('Error setting content!');
-                return false;
-            }
-
-            contentInput.value = content;
-            console.log('Upmana content set successfully:', content.substring(0, 100) + '...');
-
-
-            
-   // store model sequence before submit
-    const sequenceInput = document.getElementById("selected-models-sequence");
-    if (sequenceInput && typeof selectedSequence !== "undefined") {
-        sequenceInput.value = JSON.stringify(selectedSequence);
-        console.log("Model sequence set successfully:", selectedSequence);
-    } else {
-        console.warn("Model sequence input not found or 'selectedSequence' is undefined.");
-    }
-
-            return true;
+         function setContent() {
+        const outChatElement = document.getElementById('outChat');
+        if (!outChatElement) {
+            alert('Please generate Upmana content first!');
+            return false;
         }
+
+        const content = outChatElement.innerHTML.trim();
+        if (!content) {
+            alert('Please generate Upmana content first!');
+            return false;
+        }
+
+        const contentInput = document.getElementById('content-input');
+        if (!contentInput) {
+            alert('Error setting content!');
+            return false;
+        }
+
+        contentInput.value = content;
+
+        // Update model sequence again before submit
+        const sequenceInput = document.getElementById("selected-models-sequence");
+        if (sequenceInput && typeof selectedSequence !== "undefined") {
+            sequenceInput.value = JSON.stringify(selectedSequence);
+            console.log("Final model sequence set:", selectedSequence);
+        }
+
+        return true; // Allow form to submit
+    }
 
         // Ensure content is set before form submission
         document.addEventListener('DOMContentLoaded', function() {
@@ -786,61 +778,60 @@
 
 
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    const sequenceInput = document.getElementById("selected-models-sequence");
-    let selectedSequence = [];
-    
-    function updateOrderNumbers() {
-        // Reset all numbers first
-        document.querySelectorAll('.order-number').forEach(span => {
-            span.textContent = '';
-            span.classList.remove('d-inline-block');
-        });
-        
-        // Update numbers for selected models
-        selectedSequence.forEach((model, index) => {
-            const checkbox = document.querySelector(`input[name="model[]"][value="${model}"]`);
-            if (checkbox && checkbox.checked) {
-                const orderSpan = checkbox.closest('label').querySelector('.order-number');
-                if (orderSpan) {
-                    orderSpan.textContent = index + 1;
-                    orderSpan.classList.add('d-inline-block');
+   let selectedSequence = [];
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const sequenceInput = document.getElementById("selected-models-sequence");
+
+        function updateOrderNumbers() {
+            // Clear all order numbers
+            document.querySelectorAll('.order-number').forEach(span => {
+                span.textContent = '';
+                span.classList.remove('d-inline-block');
+            });
+
+            // Assign new order numbers
+            selectedSequence.forEach((model, index) => {
+                const checkbox = document.querySelector(`input[name="model[]"][value="${model}"]`);
+                if (checkbox && checkbox.checked) {
+                    const orderSpan = checkbox.closest('label').querySelector('.order-number'); // SAFER
+                    if (orderSpan) {
+                        orderSpan.textContent = index + 1;
+                        orderSpan.classList.add('d-inline-block');
+                    }
                 }
+            });
+
+            // Update hidden input
+            if (sequenceInput) {
+                sequenceInput.value = JSON.stringify(selectedSequence);
+                console.log("Sequence updated:", selectedSequence);
+            }
+        }
+
+        // Initialize selectedSequence from already checked boxes
+        document.querySelectorAll('input[name="model[]"]:checked').forEach(checkbox => {
+            if (!selectedSequence.includes(checkbox.value)) {
+                selectedSequence.push(checkbox.value);
             }
         });
-        
-        // Update hidden input
-        if (sequenceInput) {
-            sequenceInput.value = JSON.stringify(selectedSequence);
-            console.log("Sequence updated:", selectedSequence); // For debugging
-        }
-    }
-    
-    // Initialize with pre-selected models
-    document.querySelectorAll('input[name="model[]"]:checked').forEach(checkbox => {
-        if (!selectedSequence.includes(checkbox.value)) {
-            selectedSequence.push(checkbox.value);
-        }
-    });
-    updateOrderNumbers();
-    
-    // Handle checkbox changes
-    document.addEventListener('change', function(e) {
-        if (e.target.matches('input[name="model[]"]')) {
-            const value = e.target.value;
-            
-            if (e.target.checked) {
-                // Add to sequence if not already present
-                if (!selectedSequence.includes(value)) {
-                    selectedSequence.push(value);
+        updateOrderNumbers();
+
+        // On checkbox change
+        document.addEventListener('change', function (e) {
+            if (e.target.matches('input[name="model[]"]')) {
+                const value = e.target.value;
+
+                if (e.target.checked) {
+                    if (!selectedSequence.includes(value)) {
+                        selectedSequence.push(value);
+                    }
+                } else {
+                    selectedSequence = selectedSequence.filter(v => v !== value);
                 }
-            } else {
-                // Remove from sequence
-                selectedSequence = selectedSequence.filter(v => v !== value);
+
+                updateOrderNumbers();
             }
-            
-            updateOrderNumbers();
-        }
+        });
     });
-});
 </script>
