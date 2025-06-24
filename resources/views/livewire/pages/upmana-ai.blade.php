@@ -1,6 +1,7 @@
 <div>
     <link rel="stylesheet" href="{{ asset('assets/ai/css/aichat.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
+    <script src="{{ asset('js/ai-response.js') }}"></script>
     <p class="text-center main-title-heading">UPMANA - Knowledge By Comparison</p>
     <section class="container p-3 mt-4 border rounded">
 
@@ -118,9 +119,6 @@
                                     </div>
                                 @endisset
 
-
-
-
                                 @isset($output['sentences']['city'])
                                     <div class="mb-2">
                                         <p class="mb-2">{!! $output['sentences']['city'] !!}</p>
@@ -229,8 +227,8 @@
                                                     <span>ChatGPT</span>
                                                     <span>Microsoft</span>
                                                 </span>
+                                                    <span class="order-number text-white bg-blue-600 text-xs rounded-full px-2 py-1 ml-2"></span>
                                             </label>
-
                                             <!-- Gemini Option -->
                                             <label class="flex items-center space-x-2">
                                                 <input type="checkbox" name="model[]" wire:model="selectedModels"
@@ -691,89 +689,131 @@
     </script>
 
 
-<script>
+<!-- <script>
+    var modelId = {};
 
-    var modelId={}
-function setupModelSequenceScript() {
-    const sequenceInput = document.getElementById("selected-models-sequence");
-    console.log("Sequence Input Element:", sequenceInput);
-    
-    if (!sequenceInput) {
-        console.warn("Missing hidden input with id='selected-models-sequence'");
-        return; // Stop execution if not found
-    }
+    function setupModelSequenceScript() {
+        const sequenceInput = document.getElementById("selected-models-sequence");
+        console.log("Sequence Input Element:", sequenceInput);
 
-    let selectedSequence = [];
-
-    function updateNumbers() {
-        const checkboxes = document.querySelectorAll('input[name="model[]"]');
-        console.group("Model Sequence Tracking");
-        console.log("All Model Checkboxes:", checkboxes);
-        
-        checkboxes.forEach(cb => {
-            const label = cb.closest('label');
-            const numberSpan = label.querySelector('.order-number');
-            const index = selectedSequence.indexOf(cb.value);
-            
-            console.log("Checkbox:", cb);
-            console.log("Checkbox Value:", cb.value);
-            console.log("Current Sequence:", selectedSequence);
-            console.log("Index in Sequence:", index);
-            
-            if (numberSpan) {
-                numberSpan.textContent = index !== -1 ? (index + 1) : '';
-            }
-        });
-
-        // Prepare JSON for storage
-        const sequenceJson = JSON.stringify(selectedSequence);
-        console.log("Sequence to Store:", sequenceJson);
-        
-        // Dispatch a custom event to trigger Livewire update
-        const event = new CustomEvent('model-sequence-changed', { 
-            detail: sequenceJson 
-        });
-        document.dispatchEvent(event);
-
-        // Set value in hidden input
-        sequenceInput.value = sequenceJson;
-        console.log("Hidden Input Value:", sequenceInput.value);
-        console.groupEnd();
-    }
-
-    document.addEventListener('change', function (e) {
-        if (e.target.matches('input[name="model[]"]')) {
-            const value = e.target.value;
-            console.group("Checkbox Change");
-            console.log("Changed Checkbox:", e.target);
-            console.log("Checkbox Value:", value);
-            console.log("Checked State:", e.target.checked);
-
-            if (e.target.checked) {
-                // Add to end if not already in sequence
-                if (!selectedSequence.includes(value)) {
-                    selectedSequence.push(value);
-                }
-            } else {
-                // Remove from sequence
-                selectedSequence = selectedSequence.filter(v => v !== value);
-            }
-
-            console.log("Updated Sequence:", selectedSequence);
-            console.groupEnd();
-
-            updateNumbers();
+        if (!sequenceInput) {
+            console.warn("Missing hidden input with id='selected-models-sequence'");
+            return;
         }
-    });
 
-    // Listen for Livewire updates to reset sequence if needed
-    document.addEventListener('livewire:update', setupModelSequenceScript);
+        let selectedSequence = [];
 
-    updateNumbers();
-}
+        function updateNumbers() {
+            const checkboxes = document.querySelectorAll('input[name="model[]"]');
+            console.group("Model Sequence Tracking");
 
-document.addEventListener("DOMContentLoaded", setupModelSequenceScript);
-document.addEventListener("livewire:update", setupModelSequenceScript);
-console.log(document.getElementById("selected-models-sequence"));
+            checkboxes.forEach(cb => {
+                const label = cb.closest('label');
+                const numberSpan = label.querySelector('.order-number');
+                const index = selectedSequence.indexOf(cb.value);
 
+                if (numberSpan) {
+                    numberSpan.textContent = index !== -1 ? (index + 1) : '';
+                }
+            });
+
+            // Update hidden input with JSON sequence
+            const sequenceJson = JSON.stringify(selectedSequence);
+            sequenceInput.value = sequenceJson;
+
+            // 🔥 Update modelId object here
+            modelId = {};
+            selectedSequence.forEach(model => {
+                modelId[model] = model; // You can replace value here with any label if needed
+            });
+
+            console.log("modelId object:", modelId);
+            console.groupEnd();
+        }
+
+        document.addEventListener('change', function (e) {
+            if (e.target.matches('input[name="model[]"]')) {
+                const value = e.target.value;
+
+                if (e.target.checked) {
+                    if (!selectedSequence.includes(value)) {
+                        selectedSequence.push(value);
+                    }
+                } else {
+                    selectedSequence = selectedSequence.filter(v => v !== value);
+                }
+                updateNumbers();
+            }
+        });
+
+        // Reset on Livewire updates
+        document.addEventListener('livewire:update', setupModelSequenceScript);
+
+        updateNumbers();
+    }
+
+    document.addEventListener("DOMContentLoaded", setupModelSequenceScript);
+    document.addEventListener("livewire:update", setupModelSequenceScript);
+</script> -->
+
+<script>
+    var modelId = {};
+
+    function setupModelSequenceScript() {
+        const sequenceInput = document.getElementById("selected-models-sequence");
+
+        if (!sequenceInput) {
+            console.warn("Missing hidden input with id='selected-models-sequence'");
+            return;
+        }
+
+        let selectedSequence = [];
+
+        function updateNumbers() {
+            const checkboxes = document.querySelectorAll('input[name="model[]"]');
+
+            // Reset modelId
+            modelId = {};
+
+            checkboxes.forEach(cb => {
+                const label = cb.closest('label');
+                const numberSpan = label.querySelector('.order-number');
+                const index = selectedSequence.indexOf(cb.value);
+
+                if (cb.checked && index !== -1) {
+                    numberSpan.textContent = index + 1;
+                    modelId[cb.value] = cb.value;
+                } else {
+                    numberSpan.textContent = '';
+                }
+            });
+
+            // Store sequence JSON in hidden input
+            sequenceInput.value = JSON.stringify(selectedSequence);
+            console.log("Updated Sequence:", selectedSequence);
+            console.log("modelId Object:", modelId);
+        }
+
+        document.addEventListener('change', function (e) {
+            if (e.target.matches('input[name="model[]"]')) {
+                const value = e.target.value;
+
+                if (e.target.checked) {
+                    if (!selectedSequence.includes(value)) {
+                        selectedSequence.push(value);
+                    }
+                } else {
+                    selectedSequence = selectedSequence.filter(v => v !== value);
+                }
+
+                updateNumbers();
+            }
+        });
+
+        document.addEventListener('livewire:update', setupModelSequenceScript);
+
+        updateNumbers();
+    }
+
+    document.addEventListener("DOMContentLoaded", setupModelSequenceScript);
 </script>

@@ -64,6 +64,40 @@ function showError(message) {
     setTimeout(() => errorDiv.remove(), 5000);
 }
 
+function enableParallelProcessing(formId) {
+    const form = document.getElementById(formId);
+    if (form) {
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleParallelAIForm(this);
+        });
+    }
+}
+
+// Enhanced form submission handler for parallel processing
+async function handleParallelAIForm(form) {
+    const formData = new FormData(form);
+    const prompt = formData.get('prompt');
+    const models = formData.getAll('model[]');
+    const content = formData.get('content');
+
+    if (!prompt || models.length === 0) {
+        showError('Please provide a prompt and select at least one AI model');
+        return;
+    }
+
+    // Update prompt text in all containers
+    document.querySelectorAll('.prompt-text').forEach(element => {
+        element.textContent = prompt;
+    });
+
+    try {
+        await generateParallelAIResponses(prompt, models, content);
+    } catch (error) {
+        console.error('Form submission error:', error);
+    }
+}
+
 
 //parallel call API 
 function setContent() {
