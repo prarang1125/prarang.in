@@ -94,8 +94,6 @@ class SentenceService
     }
 
 
-
-
     public function makeOutput($location, $items)
     {
 

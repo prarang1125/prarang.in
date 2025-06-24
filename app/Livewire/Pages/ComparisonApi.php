@@ -13,7 +13,7 @@ class ComparisonApi extends Component
     public $loading = true;
     public $deepseekResponse;
 
-    public $aiService;
+    protected $aiService;
 
     public function mount(Request $request)
     {
