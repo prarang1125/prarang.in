@@ -247,6 +247,46 @@
                                 <div>
                                     <div class="space-y-4">
                                         <div class="flex items-center space-x-2">
+
+                                            <!-- Meta Option -->
+                                          <label class="flex items-center space-x-2">
+                                                <input type="checkbox" name="model[]" value="meta" data-ai="meta">
+                                                <img src="https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ai.meta.com/&size=256"
+                                                    alt="" class="w-6 h-6">
+                                                <span>
+                                                    <span>Meta Llama</span>
+                                                    <span>Meta</span>
+                                                </span>
+                                                <span
+                                                    class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
+                                            </label>
+
+                                                <!-- Gemini Option -->
+                                            <label class="flex items-center space-x-2">
+                                                <input type="checkbox" name="model[]" value="gemini"
+                                                    data-ai="gemini">
+                                                <img src="https://i.ibb.co/cX86rhZB/gimini-removebg-preview.png"
+                                                    alt="Gemini Logo" class="w-6 h-6">
+                                                <span>
+                                                    <span>Gemini</span>
+                                                    <span>Google</span>
+                                                </span>
+                                                <span
+                                                    class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
+                                            </label>
+                                            <!-- deepseek Option -->
+                                            <label class="flex items-center space-x-2">
+                                                <input type="checkbox" name="model[]" value="deepseek"
+                                                    data-ai="deepseek">
+                                                <img src="https://chat.deepseek.com/favicon.svg" alt=""
+                                                    class="w-6 h-6">
+                                                <span>
+                                                    <span>Deepseek</span>
+                                                    <span>High-Flyer</span>
+                                                </span>
+                                                <span
+                                                    class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
+                                            </label>
                                             <!-- ChatGPT Option -->
                                             <label class="flex items-center space-x-2">
                                                 <input type="checkbox" name="model[]" value="chatgpt"
@@ -260,22 +300,18 @@
                                                 <span
                                                     class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
                                             </label>
-                                            <!-- Gemini Option -->
+                                              <!-- Upmana Option -->
                                             <label class="flex items-center space-x-2">
-                                                <input type="checkbox" name="model[]" value="gemini"
-                                                    data-ai="gemini">
-                                                <img src="https://i.ibb.co/cX86rhZB/gimini-removebg-preview.png"
-                                                    alt="Gemini Logo" class="w-6 h-6">
-                                                <span>
-                                                    <span>Gemini</span>
-                                                    <span>Google</span>
-                                                </span>
-                                                <span
-                                                    class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
+                                               <input type="checkbox" name="model[]" value="upmana" data-ai="upmana">
+                                             <img src="{{ asset('assets/ai/images/byr-btn.png') }}" alt="Upmana Logo" class="w-6 h-6">
+                                             <span>
+                                               <span>Upmana</span>
+                                                <span>Prarang</span>
+                                            </span>
+                                             <span class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
                                             </label>
-
-
-                                            <!-- Grok Option -->
+                                        
+                                         <!-- Claude Option -->
                                             <label class="flex items-center space-x-2">
                                                 <input type="checkbox" name="model[]" value="claude"
                                                     data-ai="claude">
@@ -287,34 +323,7 @@
                                                 </span>
                                                 <span
                                                     class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
-                                            </label>
-                                            <!-- Grok Option -->
-                                            <label class="flex items-center space-x-2">
-                                                <input type="checkbox" name="model[]" value="deepseek"
-                                                    data-ai="deepseek">
-                                                <img src="https://chat.deepseek.com/favicon.svg" alt=""
-                                                    class="w-6 h-6">
-                                                <span>
-                                                    <span>Deepseek</span>
-                                                    <span>High-Flyer</span>
-                                                </span>
-                                                <span
-                                                    class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
-                                            </label>
-                                            <label class="flex items-center space-x-2">
-                                                <input type="checkbox" name="model[]" value="meta" data-ai="meta">
-                                                <img src="https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ai.meta.com/&size=256"
-                                                    alt="" class="w-6 h-6">
-                                                <span>
-                                                    <span>Meta Llama</span>
-                                                    <span>Meta</span>
-                                                </span>
-                                                <span
-                                                    class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
-                                            </label>
-                                        </div>
-
-
+                                            </label>                                        
                                     </div>
                                     <button class="btn btn-success" type="submit" onclick="return setContent()">
                                         Compare

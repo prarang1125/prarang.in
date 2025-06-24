@@ -503,7 +503,7 @@ body {
     font-size: 0.9rem;
     white-space: nowrap;
     text-align: center;
-    min-width: 200px;
+    /* min-width: 200px; */
 }
 
 .model-link:hover {
