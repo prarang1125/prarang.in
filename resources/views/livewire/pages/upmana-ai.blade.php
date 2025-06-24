@@ -209,11 +209,11 @@
                     <div class="col-sm-4">
                         <section class="id-selector">
                             <p>Compare UPMANA Response with other A.I.</p>
-                            <form action="{{ route('ai.response') }}" method="POST" target="_blank">
+                            <form action="{{ route('ai.generate.response') }}" method="POST" target="_blank">
                                 @csrf
                                 <input type="hidden" name="prompt" value="{{ $prompt }}">
                                 <input type="hidden" name="content" id="content-input" />
-                                <input type="hidden" name="model_sequence" id="selected-models-sequence" />
+                                <input type="hidden" name="selected_models_sequence" id="selected-models-sequence" />
                                 <div>
                                     <div class="space-y-4">
                                         <div class="flex items-center space-x-2">
@@ -227,7 +227,7 @@
                                                     <span>ChatGPT</span>
                                                     <span>Microsoft</span>
                                                 </span>
-                                                    <span class="order-number text-white bg-blue-600 text-xs rounded-full px-2 py-1 ml-2"></span>
+                                                 <span class="order-number d-inline-block bg-blue-600 text-xs rounded-full px-2 py-1 ml-6"></span>
                                             </label>
                                             <!-- Gemini Option -->
                                             <label class="flex items-center space-x-2">
@@ -239,6 +239,7 @@
                                                     <span>Gemini</span>
                                                     <span>Google</span>
                                                 </span>
+                                                 <span class="order-number d-inline-block bg-blue-600 text-xs rounded-full px-2 py-1 ml-6"></span>
                                             </label>
 
 
@@ -252,6 +253,7 @@
                                                     <span>Claude</span>
                                                     <span>Anthropic</span>
                                                 </span>
+                                                 <span class="order-number d-inline-block bg-blue-600 text-xs rounded-full px-2 py-1 ml-6"></span>
                                             </label>
                                             <!-- Grok Option -->
                                             <label class="flex items-center space-x-2">
@@ -263,6 +265,7 @@
                                                     <span>Deepseek</span>
                                                     <span>High-Flyer</span>
                                                 </span>
+                                                <span class="order-number d-inline-block bg-blue-600 text-xs rounded-full px-2 py-1 ml-6"></span>
                                             </label>
                                             <label class="flex items-center space-x-2">
                                                 <input type="checkbox" name="model[]" wire:model="selectedModels"
@@ -273,6 +276,7 @@
                                                     <span>Meta Llama</span>
                                                     <span>Meta</span>
                                                 </span>
+                                                <span class="order-number d-inline-block bg-blue-600 text-xs rounded-full px-2 py-1 ml-6"></span>
                                             </label>
                                         </div>
 
@@ -280,7 +284,8 @@
                                     </div>
                                     <button class="btn btn-success" type="submit" onclick="return setContent()">
                                         Compare
-                                    </button </div>
+                                    </button>
+                                </div>
                             </form>
                         </section>
                     </div>
@@ -588,6 +593,18 @@
 
             contentInput.value = content;
             console.log('Upmana content set successfully:', content.substring(0, 100) + '...');
+
+
+            
+   // store model sequence before submit
+    const sequenceInput = document.getElementById("selected-models-sequence");
+    if (sequenceInput && typeof selectedSequence !== "undefined") {
+        sequenceInput.value = JSON.stringify(selectedSequence);
+        console.log("Model sequence set successfully:", selectedSequence);
+    } else {
+        console.warn("Model sequence input not found or 'selectedSequence' is undefined.");
+    }
+
             return true;
         }
 
@@ -689,7 +706,8 @@
     </script>
 
 
-<!-- <script>
+
+{{-- <script>
     var modelId = {};
 
     function setupModelSequenceScript() {
@@ -707,91 +725,35 @@
             const checkboxes = document.querySelectorAll('input[name="model[]"]');
             console.group("Model Sequence Tracking");
 
-            checkboxes.forEach(cb => {
-                const label = cb.closest('label');
-                const numberSpan = label.querySelector('.order-number');
-                const index = selectedSequence.indexOf(cb.value);
 
-                if (numberSpan) {
-                    numberSpan.textContent = index !== -1 ? (index + 1) : '';
-                }
-            });
-
-            // Update hidden input with JSON sequence
-            const sequenceJson = JSON.stringify(selectedSequence);
-            sequenceInput.value = sequenceJson;
-
-            // 🔥 Update modelId object here
-            modelId = {};
-            selectedSequence.forEach(model => {
-                modelId[model] = model; // You can replace value here with any label if needed
-            });
-
-            console.log("modelId object:", modelId);
-            console.groupEnd();
-        }
-
-        document.addEventListener('change', function (e) {
-            if (e.target.matches('input[name="model[]"]')) {
-                const value = e.target.value;
-
-                if (e.target.checked) {
-                    if (!selectedSequence.includes(value)) {
-                        selectedSequence.push(value);
-                    }
-                } else {
-                    selectedSequence = selectedSequence.filter(v => v !== value);
-                }
-                updateNumbers();
-            }
-        });
-
-        // Reset on Livewire updates
-        document.addEventListener('livewire:update', setupModelSequenceScript);
-
-        updateNumbers();
-    }
-
-    document.addEventListener("DOMContentLoaded", setupModelSequenceScript);
-    document.addEventListener("livewire:update", setupModelSequenceScript);
-</script> -->
-
-<script>
-    var modelId = {};
-
-    function setupModelSequenceScript() {
-        const sequenceInput = document.getElementById("selected-models-sequence");
-
-        if (!sequenceInput) {
-            console.warn("Missing hidden input with id='selected-models-sequence'");
-            return;
-        }
-
-        let selectedSequence = [];
-
-        function updateNumbers() {
-            const checkboxes = document.querySelectorAll('input[name="model[]"]');
-
-            // Reset modelId
-            modelId = {};
+            modelId = {}; // reset
 
             checkboxes.forEach(cb => {
                 const label = cb.closest('label');
-                const numberSpan = label.querySelector('.order-number');
+                if (!label) {
+                    console.warn(`No label found for checkbox: ${cb.value}`);
+                    return;
+                }
+                const numberSpan = label ? label.querySelector('.order-number') : null;
+                if (!numberSpan) {
+                    console.warn(`No number span found for checkbox: ${cb.value}`);
+                }
                 const index = selectedSequence.indexOf(cb.value);
+                console.log(`Checkbox: ${cb.value}, Checked: ${cb.checked}, Index: ${index}`);
 
                 if (cb.checked && index !== -1) {
-                    numberSpan.textContent = index + 1;
+
+                    if (numberSpan) numberSpan.textContent = index + 1;
                     modelId[cb.value] = cb.value;
                 } else {
-                    numberSpan.textContent = '';
+                    if (numberSpan) numberSpan.textContent = '';
                 }
             });
 
-            // Store sequence JSON in hidden input
             sequenceInput.value = JSON.stringify(selectedSequence);
             console.log("Updated Sequence:", selectedSequence);
-            console.log("modelId Object:", modelId);
+            console.log("modelId Object Snapshot:", JSON.parse(JSON.stringify(modelId)));
+
         }
 
         document.addEventListener('change', function (e) {
@@ -806,14 +768,79 @@
                     selectedSequence = selectedSequence.filter(v => v !== value);
                 }
 
+                // Prevent duplicates
+                selectedSequence = [...new Set(selectedSequence)];
                 updateNumbers();
             }
         });
 
+        // Prevent multiple bindings
+        document.removeEventListener('livewire:update', setupModelSequenceScript);
         document.addEventListener('livewire:update', setupModelSequenceScript);
 
         updateNumbers();
     }
 
     document.addEventListener("DOMContentLoaded", setupModelSequenceScript);
+</script> --}}
+
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const sequenceInput = document.getElementById("selected-models-sequence");
+    let selectedSequence = [];
+    
+    function updateOrderNumbers() {
+        // Reset all numbers first
+        document.querySelectorAll('.order-number').forEach(span => {
+            span.textContent = '';
+            span.classList.remove('d-inline-block');
+        });
+        
+        // Update numbers for selected models
+        selectedSequence.forEach((model, index) => {
+            const checkbox = document.querySelector(`input[name="model[]"][value="${model}"]`);
+            if (checkbox && checkbox.checked) {
+                const orderSpan = checkbox.closest('label').querySelector('.order-number');
+                if (orderSpan) {
+                    orderSpan.textContent = index + 1;
+                    orderSpan.classList.add('d-inline-block');
+                }
+            }
+        });
+        
+        // Update hidden input
+        if (sequenceInput) {
+            sequenceInput.value = JSON.stringify(selectedSequence);
+            console.log("Sequence updated:", selectedSequence); // For debugging
+        }
+    }
+    
+    // Initialize with pre-selected models
+    document.querySelectorAll('input[name="model[]"]:checked').forEach(checkbox => {
+        if (!selectedSequence.includes(checkbox.value)) {
+            selectedSequence.push(checkbox.value);
+        }
+    });
+    updateOrderNumbers();
+    
+    // Handle checkbox changes
+    document.addEventListener('change', function(e) {
+        if (e.target.matches('input[name="model[]"]')) {
+            const value = e.target.value;
+            
+            if (e.target.checked) {
+                // Add to sequence if not already present
+                if (!selectedSequence.includes(value)) {
+                    selectedSequence.push(value);
+                }
+            } else {
+                // Remove from sequence
+                selectedSequence = selectedSequence.filter(v => v !== value);
+            }
+            
+            updateOrderNumbers();
+        }
+    });
+});
 </script>

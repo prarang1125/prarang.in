@@ -1075,14 +1075,15 @@ textarea{
  border-color:#595959;
 }
 
-.order-number {
+/* .order-number {
     font-weight: bold;
     font-size: 12px;
     padding: 2px 6px;
-    background-color: #2563eb; /* Tailwind blue-600 */
-    color: white;
     border-radius: 9999px;
     margin-left: 0.5rem;
-}
+} */
 
+ /* .order-number {
+        display: none !important;
+    } */
 

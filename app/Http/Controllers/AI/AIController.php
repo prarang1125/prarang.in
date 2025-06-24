@@ -108,6 +108,7 @@ class AIController extends Controller
 
     public function generateAIResponse(Request $request)
     {
+        dd($request->all());
         // try {
             // Step 1: Validate input
             $request->validate([
@@ -115,6 +116,7 @@ class AIController extends Controller
                 'model' => 'required|array',
                 'model.*' => 'in:chatgpt,gemini,claude,grok,deepseek,meta,upmana', // Added upmana
                 'content' => 'nullable|string',
+                'selected_models_sequence' => 'required|json',
             ]);
 
             // Step 2: Extract input data
@@ -123,8 +125,20 @@ class AIController extends Controller
             $content = $request->content;
 
             // Step 4: Loop through each selected model based on sequence
-            $sequencedModels = $request->input('selected_models_sequence', '');
-            dd($sequencedModels);
+            // $sequencedModels = $request->input('selected_models_sequence', '');
+           // Step 3: Decode sequence with error handling
+$sequencedModels = json_decode($request->input('selected_models_sequence'), true);
+
+if (json_last_error() !== JSON_ERROR_NONE) {
+    throw new \Exception('Invalid JSON sequence: ' . json_last_error_msg());
+}
+
+// Step 4: Verify sequence matches selected models
+$diff = array_diff($sequencedModels, $models);
+if (!empty($diff)) {
+    throw new \Exception('Sequence contains unselected models: ' . implode(', ', $diff));
+}
+
             
             // Ensure sequencedModels is a non-null array
             if (is_null($sequencedModels)) {
