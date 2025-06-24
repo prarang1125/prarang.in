@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="{{ asset('assets/ai/css/aichat.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
     <p class="text-center main-title-heading">UPMANA - Knowledge By Comparison</p>
-    <section class="container p-3 mt-4 border rounded">
+    <section class="container p-3 mt-4">
 
         <div class="pr-ai-section">
             <section class="first-prompt">
@@ -10,67 +10,93 @@
                     <div class="mb-3 text-center firstPrompt">
                         <h5>Comparative A.I. on any Geography</h5>
                         <br><br>
-                        <div class="mb-3 firstPrompt">
-                            <div class="main-button-area">
-                                <div class="select-location">
-                                    <div> <button type="button" class="btn btn-secondary btn-lg position-relative"
-                                            data-bs-toggle="modal" data-bs-target="#geographyModal">
-                                            Select Location<br><small>(2 to 5)</small>
-                                        </button></div>
-                                    <div>
-                                        <span class="p-2 m-2 border count-box bg-light text-dark" id="citiesCount"
-                                            wire:ignore>
-                                            0
-                                        </span>Selected
-                                    </div>
-                                </div>
-                                <div class="arrow">
-                                    <div>
-                                        <p><i class='bx bx-down-arrow-alt'></i></p>
-                                    </div>
-                                    <div></div>
-                                </div>
-                                <div class="select-category">
-                                    <div> <button type="button" class="btn btn-primary btn-lg position-relative"
-                                            data-bs-toggle="modal" data-bs-target="#categoryModal">
-                                            Select Metrics<br><small>(2 to 5)</small>
-                                        </button></div>
-                                    <div><span class="p-2 m-2 border count-box bg-light text-dark" id="category-count"
-                                            wire:ignore>
-                                            0
-                                        </span>Selected
-                                    </div>
-                                </div>
-                                <div class="arrow">
+                        <p class="text-end">
+                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#aiFaqModal"
+                                class="rounded-pill btn btn-warning btn-sm">FAQ</a>
+                        </p>
+                        <div class="row">
+                            <div class="col-sm-2"></div>
+                            <div class="col-sm-8">
+                                <div class="mb-3 firstPrompt">
+                                    <div class="main-button-area">
+                                        <div class="select-location">
+                                            <div> <button type="button"
+                                                    class="btn btn-secondary btn-lg position-relative"
+                                                    data-bs-toggle="modal" data-bs-target="#geographyModal">
+                                                    Select Location<br><small>(2 to 5)</small>
+                                                </button>
 
-                                    <div>
-                                        <p><i class='bx bx-down-arrow-alt'></i></p>
-                                    </div>
-                                    <div></div>
+                                                @if (session()->has('cityerror'))
+                                                    <br>
+                                                    <small class="text-danger"> {{ session('cityerror') }}</small>
+                                                @endif
+                                            </div>
+                                            <div>
+                                                <span class="p-2 m-2 border count-box bg-light text-dark"
+                                                    id="citiesCount" wire:ignore>
+                                                    0
+                                                </span>Selected
+                                            </div>
 
-                                </div>
-                                <div class="select-prompt">
-                                    <div>
-                                        <div class="text-center">
-                                            <a wire:click="updatePromptFromState"
-                                                class="rounded-pills btn text-ligt btn-primary">
-                                                Generate AI Prompt</a>
                                         </div>
+                                        <div class="arrow">
+                                            <div>
+                                                <p><i class='bx bx-down-arrow-alt'></i></p>
+                                            </div>
+                                            <div></div>
+                                        </div>
+                                        <div class="select-category">
+                                            <div> <button type="button"
+                                                    class="btn btn-primary btn-lg position-relative"
+                                                    data-bs-toggle="modal" data-bs-target="#categoryModal">
+                                                    Select Metrics<br><small>(2 to 5)</small>
+                                                </button></div>
+                                            <div><span class="p-2 m-2 border count-box bg-light text-dark"
+                                                    id="category-count" wire:ignore>
+                                                    0
+                                                </span>Selected
+                                            </div>
+                                        </div>
+                                        <div class="arrow">
+                                            <div>
+                                                <p><i class='bx bx-down-arrow-alt'></i></p>
+                                            </div>
+                                            <div></div>
+
+                                        </div>
+                                        <div class="select-prompt">
+                                            <div>
+                                                <div class="text-center">
+                                                    <a wire:click="updatePromptFromState"
+                                                        class="rounded-pills btn text-ligt btn-primary">
+                                                        Generate AI Prompt</a>
+                                                </div>
+                                            </div>
+                                            <div>
+                                                <span wire:target="updatePromptFromState" wire:loading
+                                                    class="mr-2 spinner-border spinner-border-sm" role="status"
+                                                    aria-hidden="true"></span>
+                                                <img class="rounded-pills" wire:click="updatePromptFromState"
+                                                    src="{{ asset('assets/ai/images/byr-arrow-btn.png') }}"
+                                                    class="w-6 h-6" wire:loading.class="d-none">
+                                            </div>
+                                        </div>
+
                                     </div>
-                                    <div>
-                                        <span wire:target="updatePromptFromState" wire:loading
-                                            class="mr-2 spinner-border spinner-border-sm" role="status"
-                                            aria-hidden="true"></span>
-                                        <img class="rounded-pills" wire:click="updatePromptFromState"
-                                            src="{{ asset('assets/ai/images/byr-arrow-btn.png') }}" class="w-6 h-6"
-                                            wire:loading.class="d-none">
-                                    </div>
+
+
+
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div>
+                                    <a class="btn btn-primary" target="_blank"
+                                        href="https://g2c.prarang.in/india">India</a>
+                                    <a class="btn btn-primary" target="_blank"
+                                        href="https://g2c.prarang.in/world">World</a>
                                 </div>
 
                             </div>
-
-
-
                         </div>
 
                     </div>
@@ -200,7 +226,7 @@
                                 <section class="mt-2 ExploreMoreInsites">
                                     <p class="fw-bold">Explore More Insights:</p>
                                     <ul class="row">
-                                        @foreach ($cities as $geography => $tr)
+                                        @foreach ($cities as $geography)
                                             <li class="col-4"><a target="_blank" style="text-decoration: none;"
                                                     href="https://g2c.prarang.in/ai/{{ $geography }}">{{ $geography }}
                                                     Insights</a></li>
@@ -463,21 +489,21 @@
                                                     data-bs-parent="#accordionCitiesCountries">
                                                     <div class="accordion-body">
                                                         <div>
-                                                            <input type="checkbox"
-                                                                wire:model="cities.{{ $continent }}"
+                                                            <input type="checkbox" wire:model="cities"
                                                                 id="group-{{ $continentId }}">
                                                             <label for="group-{{ $continentId }}">
                                                                 {{ $continent }}
                                                             </label>
+
+
                                                         </div>
                                                         <div class="row">
                                                             @foreach ($countries as $country)
                                                                 <div class="col-6">
 
                                                                     <input class="form-check-input me-1"
-                                                                        type="checkbox"
-                                                                        wire:model="cities.{{ $country['Country'] }}"
-                                                                        value="{{ $country['id'] }}"
+                                                                        type="checkbox" wire:model="cities"
+                                                                        value="{{ $country['Country'] }}"
                                                                         id="country-{{ $country['id'] }}">
                                                                     <label class="form-check-label"
                                                                         for="country-{{ $country['id'] }}">
@@ -513,19 +539,13 @@
                                                     aria-labelledby="heading-city-{{ $groupId }}"
                                                     data-bs-parent="#accordionCitiesCountries">
                                                     <div class="accordion-body">
-                                                        <!-- <div>
-                                                        <input type="checkbox" wire:model="cities.{{ $group }}"
-                                                            id="group-{{ $groupId }}">
-                                                        <label for="group-{{ $groupId }}">
-                                                            {{ $group }}
-                                                        </label>
-                                                    </div> -->
+
                                                         <div class="row">
                                                             @foreach ($cities as $city)
                                                                 <div class="col-6">
                                                                     <input class="form-check-input me-1"
-                                                                        type="checkbox"
-                                                                        wire:model="cities.{{ $city['city'] }}"
+                                                                        type="checkbox" wire:model="cities"
+                                                                        value="{{ $city['city'] }}"
                                                                         id="city-{{ $city['id'] }}">
                                                                     <label class="form-check-label"
                                                                         for="city-{{ $city['id'] }}">
@@ -552,6 +572,27 @@
                 </div>
             </div>
         </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="aiFaqModal" tabindex="-1" aria-labelledby="aiFaqModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="aiFaqModalLabel">FAQ</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        ...
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </section>
 
     <script>
@@ -560,7 +601,7 @@
             const content = document.getElementById('outChat').innerHTML.trim();
 
             if (!content) {
-                alert("Content is empty!");
+
                 return false;
             }
             document.getElementById('content-input').value = content;
@@ -605,7 +646,7 @@
                     if (!cb.checked) {
                         cb.disabled = checkedCount >= maxLimit;
                     } else {
-                        cb.disabled = false; // Always allow unchecking
+                        cb.disabled = false;
                     }
                 });
             }

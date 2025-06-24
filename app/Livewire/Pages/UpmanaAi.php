@@ -147,9 +147,10 @@ class UpmanaAi extends Component
             $this->sentenceService = new SentenceService;
         }
 
-        if (count($this->geography()) === 2 && !empty($this->geography()[0]) && !empty($this->geography()[1])) {
+        if (count($this->geography()) == 2) {
             $this->comparisonSentence = "In comparison, {$this->geography()[0]} is :area km² in size, and :population in population, while {$this->geography()[1]} is :area2 km² in size, and :population2 in population.";
         } else {
+
             $this->comparisonSentence = '';
         }
 
@@ -198,7 +199,10 @@ class UpmanaAi extends Component
 
     private function  geography()
     {
-        return array_keys($this->cities);
+        if (count($this->cities) < 2) {
+            session()->flash('cityerror', 'Please select at least two geography to compare.');
+        }
+        return $this->cities;
     }
 
 

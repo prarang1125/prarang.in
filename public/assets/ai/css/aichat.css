@@ -1074,3 +1074,121 @@ textarea{
  border-color:#595959;
 }
 
+/* Button */
+.first-prompt .text-end a{
+ min-width:76px;
+ width:76px;
+}
+
+/* Text end */
+.first-prompt .firstPrompt .text-end{
+ margin-top:4px;
+ margin-bottom:0px;
+ position:relative;
+ top:-50px;
+}
+
+/* Col 8 */
+.first-prompt .firstPrompt .col-sm-8{
+ position:relative;
+ top:-20px;
+}
+
+/* Prompt section */
+.container div .prompt-section{
+ top:-50px !important;
+}
+
+/* Prompt section */
+.container div .container .pr-ai-section .prompt-section{
+ bottom:auto !important;
+}
+
+@media (min-width:768px){
+
+ /* Prompt section */
+ .container div .prompt-section{
+  margin-top:31px !important;
+ }
+
+}
+
+/* Text end */
+.first-prompt .firstPrompt .text-end{
+ padding-right:22px;
+}
+
+/* Division */
+.first-prompt .firstPrompt .row .col-sm-2 div{
+ display:flex;
+ flex-direction:column;
+ flex-wrap:nowrap;
+ align-items:center;
+ justify-content:center;
+}
+
+/* Button */
+.firstPrompt .row .col-sm-2 div a{
+ margin-bottom:3px;
+}
+
+@media (max-width:767px){
+
+ /* Division */
+ .first-prompt .firstPrompt .row .col-sm-2 div{
+  display:none !important;
+ }
+
+ /* Button */
+ .first-prompt .text-end a{
+  font-size:12px;
+  min-width:4px !important;
+  width:40px !important;
+ }
+
+}
+
+@media (min-width:768px){
+
+ /* Small Tag */
+ .select-location div small{
+  top:-7px !important;
+ }
+
+ /* Small Tag */
+ .container div .container .pr-ai-section .first-prompt .firstPrompt .row .col-sm-8 .firstPrompt .main-button-area .select-location div .btn-lg small{
+  bottom:auto !important;
+ }
+
+ /* Small Tag */
+ .select-category div small{
+  top:-8px !important;
+ }
+
+ /* Small Tag */
+ .container div .container .pr-ai-section .first-prompt .firstPrompt .row .col-sm-8 .firstPrompt .main-button-area .select-category div .btn-lg small{
+  bottom:auto !important;
+ }
+
+}
+
+/* Text danger */
+.container div .container .pr-ai-section .first-prompt .firstPrompt .row .col-sm-8 .firstPrompt .main-button-area .select-location div .text-danger{
+ bottom:auto !important;
+}
+
+/* Text danger */
+.select-location div .text-danger{
+ font-size:13px;
+ font-weight:500;
+}
+
+@media (min-width:768px){
+
+ /* Text danger */
+ .select-location div .text-danger{
+  margin-top:5px;
+  top:-3px !important;
+ }
+
+}
