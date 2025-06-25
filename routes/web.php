@@ -106,4 +106,4 @@ Route::get('/ai/upmana', UpmanaAi::class)->name('upmana-ai');
 //     } catch (\Exception $e) {
 //         return response()->json(['error' => $e->getMessage()], 500);
 //     }
-// })->middleware('auth'); 
+// })->middleware('auth');

@@ -10,11 +10,15 @@
                 @if ($activeSection['firstPrompt'])
                     <div class="mb-3 text-center firstPrompt">
                         <h5>Comparative A.I. on any Geography</h5>
+                        @if (session()->has('message'))
+                            <p class="text-success" style="font-size: 14px!important; margin: 0px; padding: 0px;">
+                                {{ session('message') }}</p>
+                        @endif
                         <br><br>
-                        <p class="text-end">
+                        {{-- <p class="text-end">
                             <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#aiFaqModal"
                                 class="rounded-pill btn btn-warning btn-sm">FAQ</a>
-                        </p>
+                        </p> --}}
                         <div class="row">
                             <div class="col-sm-2"></div>
                             <div class="col-sm-8">
@@ -90,12 +94,12 @@
                                 </div>
                             </div>
                             <div class="col-sm-2">
-                                <div>
+                                {{-- <div>
                                     <a class="btn btn-primary" target="_blank"
                                         href="https://g2c.prarang.in/india">India</a>
                                     <a class="btn btn-primary" target="_blank"
                                         href="https://g2c.prarang.in/world">World</a>
-                                </div>
+                                </div> --}}
 
                             </div>
                         </div>

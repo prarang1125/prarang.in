@@ -38,8 +38,12 @@ if (! function_exists('httpPost')) {
     function httpPost($url, $parameters)
     {
         try {
-            $header = ['api-auth-token' => config('apidata.TOKEN'), 'api-auth-type' => config('apidata.TYPE'), 'Content-Type' => 'application/json'];
-            $response = Http::withHeaders($header)
+            $headers = [
+                'api-auth-token' => env('API_TOKEN'),
+                'api-auth-type' => env('API_TYPE'),
+                'Content-Type' => 'application/json',
+            ];
+            $response = Http::withHeaders($headers)
                 ->post(env('API_DOMAIN') . '/api/' . $url, $parameters);
             //Base Url + Parameters
             if ($response->failed()) {

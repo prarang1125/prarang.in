@@ -123,7 +123,6 @@
                         <span wire:loading.class.remove="d-none" class="spinner-border spinner-border-sm d-none"></span>
                         Login
                     </button>
-
                 </div>
             </form>
         </div>

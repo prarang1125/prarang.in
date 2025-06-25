@@ -14,7 +14,7 @@ class Popupreg extends Component
     public $email, $password;
 
     // Step 2
-    public $first_name, $last_name, $country, $occupation, $purpose;
+    public $first_name, $last_name, $country, $occupation = 'Other', $purpose;
 
     public function nextStep()
     {
@@ -23,10 +23,11 @@ class Popupreg extends Component
             'password' => 'required|min:6',
         ]);
         $user = DB::table('upmana_users')->where('email', $this->email)->first();
-        if ($user && Hash::check($this->password, $user->password)) {
+        if ($user) {
             session()->put('upmana-auth', $user->id);
-            session()->flash('message', 'Authenticated! You are now logged in.');
+            session()->flash('message', 'Authenticated!');
             $this->dispatch('close-register-modal');
+            return redirect()->route('upmana-ai');
         } else {
             $this->step = 2;
         }
@@ -39,7 +40,7 @@ class Popupreg extends Component
             'last_name' => 'required',
             'occupation' => 'required',
             'country' => 'required',
-            'purpose' => 'required|in:Personal,Research',
+            'purpose' => 'required',
         ]);
 
         DB::table('upmana_users')->insert([
@@ -49,11 +50,13 @@ class Popupreg extends Component
             'occupation' => $this->occupation,
             'country' => $this->country,
             'area_of_interest' => $this->purpose,
+            'content_intrest' => 0,
         ]);
-        session()->put('upmana-auth', DB::getPdo()->lastInsertId());
-        session()->flash('message', 'Thank you for registering! You are now logged in.');
+        session()->put('upmana-auth', 1);
+        session()->flash('message', 'Thanks for providing information!');
         // Close the modal via JS
         $this->dispatch('close-register-modal');
+        return redirect()->route('upmana-ai');
     }
 
     public function render()

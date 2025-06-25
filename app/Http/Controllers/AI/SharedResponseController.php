@@ -41,6 +41,7 @@ class SharedResponseController extends Controller
     public function store(Request $request)
     {
 
+        dd($request->all());
         $data = $request->validate([
             'prompt' => 'required|string',
             'upmana_response' => 'nullable|string',
@@ -87,5 +88,4 @@ class SharedResponseController extends Controller
             'grokResponse' => $sharedResponse->grok_response,
         ]);
     }
-    
 }

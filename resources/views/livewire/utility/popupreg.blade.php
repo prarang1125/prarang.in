@@ -139,17 +139,27 @@
                         @error('country') <small class="text-danger">{{ $message }}</small> @enderror
                     </div>
                     <div class="mb-3">
-                        <label>Occupation</label>
-                        <input type="text" wire:model="occupation" class="form-control">
+                        <!-- <label>Occupation</label> -->
+                        <input type="hidden" wire:model="occupation" class="form-control" value="Other">
                         @error('occupation') <small class="text-danger">{{ $message }}</small> @enderror
                     </div>
 
                     <div class="mb-3">
-                        <label>Purpose of Use</label>
+                        <label>Intrest</label>
                         <select wire:model="purpose" class="form-select">
                             <option value="">-- Select --</option>
-                            <option value="Personal">Personal</option>
-                            <option value="Research">Research</option>
+                            <option value="internet">Internet</option>
+                            <option value="nature">Nature</option>
+                            <option value="culture">Culture</option>
+                            <option value="demography">Demography</option>
+                            <option value="language">Language</option>
+                            <option value="wealth">Wealth</option>
+                            <option value="governance">Governance</option>
+                            <option value="work">Work</option>
+                            <option value="health">Health</option>
+                            <option value="education">Education</option>
+                            <option value="media">Media</option>
+                            <option value="urbanization">Urbanization</option>
                         </select>
                         @error('purpose') <small class="text-danger">{{ $message }}</small> @enderror
                     </div>
