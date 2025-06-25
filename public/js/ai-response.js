@@ -400,3 +400,43 @@ function renderResponses(responses) {
         }
     });
 }
+
+async function handleShare() {
+    const shareForm = document.getElementById('shareForm');
+    const shareModal = document.getElementById('shareModal');
+    const shareLink = document.getElementById('shareLink');
+
+    if (!shareForm || !shareModal || !shareLink) {
+        console.error('Share elements not found');
+        return;
+    }
+
+    try {
+        const formData = new FormData(shareForm);
+        const response = await fetch(shareForm.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+                'Accept': 'application/json'
+            }
+        });
+
+        if (!response.ok) {
+            throw new Error('Share request failed');
+        }
+
+        const result = await response.json();
+        
+        // Generate the share URL using the returned UUID
+        const shareUrl = `${window.location.origin}/share/${result.uuid}`;
+        
+        // Update the share link input
+        shareLink.value = shareUrl;
+        
+        // Show the share modal
+        shareModal.classList.add('active');
+    } catch (error) {
+        console.error('Error sharing response:', error);
+        alert('Failed to share response. Please try again.');
+    }
+}

@@ -19,7 +19,6 @@ class AIController extends Controller
         $this->aiService = $aiService;
     }
 
-
 public function generateAIResponse(Request $request)
 {
 
@@ -31,7 +30,6 @@ public function generateAIResponse(Request $request)
             'model.*' => ['required', 'regex:/^(chatgpt|gemini|claude|grok|deepseek|meta|upmana)-\d+$/'],
             'content' => 'nullable|string',
         ]);
-
 
 
         // Step 2: Extract input
@@ -47,13 +45,11 @@ public function generateAIResponse(Request $request)
         $orderedModelNames = array_map(function($model) {
             return strtolower(explode('-', $model)[0]); // "meta-5" => "meta"
         }, $modelsWithVersions);
-       
 
         // Add Upmana to the end if not already in the list
         if (!in_array('upmana', $orderedModelNames)) {
             $orderedModelNames[] = 'upmana';
         }
-
 
         // Step 4: Initialize responses
         $responses = [
