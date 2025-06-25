@@ -39,38 +39,39 @@ class SharedResponseController extends Controller
     // }
 
     public function store(Request $request)
-{
-    $data = $request->validate([
-        'prompt' => 'required|string',
-        'human_response' => 'nullable|string',
-        'gpt_response' => 'nullable|string',
-        'gemini_response' => 'nullable|string',
-        'claude_response' => 'nullable|string',
-        'grok_response' => 'nullable|string',
-    ]);
+    {
 
-    // Generate UUID and UTC timestamp
-    $data['uuid'] = Str::uuid()->toString();
-    $data['created_at_utc'] = now('UTC')->toISOString();
+        $data = $request->validate([
+            'prompt' => 'required|string',
+            'upmana_response' => 'nullable|string',
+            'gpt_response' => 'nullable|string',
+            'gemini_response' => 'nullable|string',
+            'claude_response' => 'nullable|string',
+            'grok_response' => 'nullable|string',
+        ]);
 
-    // Send data to external API
-    $response = Http::post('https://external-api.com/share-response', $data);
+        // Generate UUID and UTC timestamp
+        $data['uuid'] = Str::uuid()->toString();
+        $data['created_at_utc'] = now('UTC')->toISOString();
 
-    // Optional: Check for success or failure
-    if ($response->successful()) {
-        return response()->json(['uuid' => $data['uuid']]);
-    } else {
-        return response()->json([
-            'error' => 'Failed to store data in external API.',
-            'details' => $response->body()
-        ], 500);
+        // Send data to external API
+        $response = httpPost('/share-response', $data);
+
+        // Optional: Check for success or failure
+        if ($response->successful()) {
+            return response()->json(['uuid' => $data['uuid']]);
+        } else {
+            return response()->json([
+                'error' => 'Failed to store data in external API.',
+                'details' => $response->body()
+            ], 500);
+        }
     }
-}
 
     public function show($uuid)
     {
         // Fetch the shared response by UUID
-        $sharedResponse = DB::table('shared_responses')->where('uuid', $uuid)->first();
+        $sharedResponse = httpGet('/share-response', ['uuid' => $uuid])['data'];
 
         if (!$sharedResponse) {
             abort(404);
@@ -86,4 +87,5 @@ class SharedResponseController extends Controller
             'grokResponse' => $sharedResponse->grok_response,
         ]);
     }
+    
 }

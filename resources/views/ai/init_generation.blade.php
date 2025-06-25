@@ -16,7 +16,7 @@
             @csrf
             <input type="hidden" name="prompt" value="{{ $prompt }}">
             @if(isset($content))
-            <input type="hidden" name="uman_response" value="{{ $content }}">
+            <input type="hidden" name="upmana_response" value="{{ $content }}">
             @endif
             @if(isset($gptResponse))
             <input type="hidden" name="gpt_response" value="{{ $gptResponse }}">
@@ -112,7 +112,7 @@
             'grok' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/X_Logo.svg/2048px-X_Logo.svg.png',
             'deepseek' => 'https://chat.deepseek.com/favicon.svg',
             'meta' => 'https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ai.meta.com/&size=256',
-            'upmana' => null
+            'upmana' => asset('assets/ai/images/byr-btn.png')
         ];
 
         $modelFullNames = [
@@ -258,5 +258,4 @@
     });
     </script>
  
-
 </x-layout.main.base>
