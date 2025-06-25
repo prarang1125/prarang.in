@@ -413,14 +413,25 @@ function handleShare() {
         }
     })
     .then(async (response) => {
-        if (!response.ok) {
-            const errorText = await response.text();
-            throw new Error(errorText || 'Server error');
+        const responseText = await response.text(); // read body ONCE
+
+        let data;
+        try {
+            data = JSON.parse(responseText); // attempt to parse JSON
+        } catch (e) {
+            console.error('Response not valid JSON:', responseText);
+            throw new Error('Invalid server response');
         }
-        return response.json();
+
+        if (!response.ok) {
+            console.error('Server returned error:', data);
+            throw new Error(data?.error || 'Server error');
+        }
+
+        return data; // already parsed
     })
     .then(data => {
-        const shareUrl = `${window.location.origin}/share/${data.uuid}`
+        const shareUrl =  `${window.location.origin}/share/${data.uuid}`
         document.getElementById('shareLink').value = shareUrl;
         showShareModal();
     })
@@ -428,5 +439,4 @@ function handleShare() {
         console.error('Share Error:', error);
         showError('Failed to generate share link');
     });
-    
 }

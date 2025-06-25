@@ -7,7 +7,7 @@
     </button>
 </div>
 
-<div class="section-title">Comparison Report :{{ (isset($content) ? 1 : 0) + (isset($gptResponse) ? 1 : 0) + (isset($geminiResponse) ? 1 : 0) + (isset($claudeResponse) ? 1 : 0) }} A.I. Models</div>
+<div class="section-title">Comparison Report :{{ (isset($content) ? 1 : 0) + (isset($gptResponse) ? 1 : 0) + (isset($geminiResponse) ? 1 : 0) +  (isset($deepSeekResponse) ? 1 : 0) +  (isset($metaResponse) ? 1 : 0) +(isset($claudeResponse) ? 1 : 0) }} A.I. Models</div>
 
 <div class="info-box">
     <div class="timestamp">
@@ -19,29 +19,38 @@
                 <span class="model-label">AI-Models:</span>
             </div>
             <div class="model-links-wrapper">
-                <div class="model-links-row first-row">
+                <div class="model-links-row">
                     @php
                     $modelCount = 0;
                     @endphp
                     @if(isset($umanResponse))
                     @php $modelCount++; @endphp
-                    <a class="model-link" onclick="scrollToResponse('content-container')">({{ chr(96 + $modelCount) }})Prarang-Upmana</a>
+                    <a class="model-link" onclick="scrollToResponse('content-container')">({{ chr(96 + $modelCount) }})Upmana</a>
                     @endif
 
                     @if(isset($gptResponse))
                     @php $modelCount++; @endphp
-                    <a class="model-link" onclick="scrollToResponse('gpt-container')">({{ chr(96 + $modelCount) }})Microsoft-ChatGPT</a>
+                    <a class="model-link" onclick="scrollToResponse('gpt-container')">({{ chr(96 + $modelCount) }})ChatGPT</a>
                     @endif
 
-                </div>
-                <div class="model-links-row">
                     @if(isset($geminiResponse))
                     @php $modelCount++; @endphp
-                    <a class="model-link" onclick="scrollToResponse('gemini-container')">({{ chr(96 + $modelCount) }})Google-Gemini</a>
+                    <a class="model-link" onclick="scrollToResponse('gemini-container')">({{ chr(96 + $modelCount) }})Gemini</a>
                     @endif
+
                     @if(isset($claudeResponse))
                     @php $modelCount++; @endphp
-                    <a class="model-link" onclick="scrollToResponse('claude-container')">({{ chr(96 + $modelCount) }})Claude-Anthropic</a>
+                    <a class="model-link" onclick="scrollToResponse('claude-container')">({{ chr(96 + $modelCount) }})Claude</a>
+                    @endif
+
+                    @if(isset($deepSeekResponse))
+                    @php $modelCount++; @endphp
+                    <a class="model-link" onclick="scrollToResponse('deepseek-container')">({{ chr(96 + $modelCount) }})DeepSeek</a>
+                    @endif
+
+                    @if(isset($metaResponse))
+                    @php $modelCount++; @endphp
+                    <a class="model-link" onclick="scrollToResponse('meta-container')">({{ chr(96 + $modelCount) }})Meta</a>
                     @endif
                 </div>
             </div>
@@ -121,6 +130,28 @@
             <div class="ai-name">({{ chr(96 + $count++) }}) Grok</div>
             <div class="ai-response p-3 h-100">
                 {!! $grokResponse !!}
+            </div>
+        </div>
+    </div>
+    @endif
+    @if(isset($deepSeekResponse))
+    <div class="response-container" id="deepseek-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/X_Logo.svg/2048px-X_Logo.svg.png" alt="deepseek Logo" class="ai-logo">
+        <div class="response-content">
+            <div class="ai-name">({{ chr(96 + $count++) }}) Deepseek</div>
+            <div class="ai-response p-3 h-100">
+                {!! $deepSeekResponse !!}
+            </div>
+        </div>
+    </div>
+    @endif
+    @if(isset($metaResponse))
+    <div class="response-container" id="meta-container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/X_Logo.svg/2048px-X_Logo.svg.png" alt="meta Logo" class="ai-logo">
+        <div class="response-content">
+            <div class="ai-name">({{ chr(96 + $count++) }}) Meta</div>
+            <div class="ai-response p-3 h-100">
+                {!! $metaResponse !!}
             </div>
         </div>
     </div>

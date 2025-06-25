@@ -628,13 +628,16 @@
         });
 
         function setContent() {
+ 
             const outChatElement = document.getElementById('outChat');
+           
+            alert('Please generate Upmana content first!');
             if (!outChatElement) {
                 alert('Please generate Upmana content first!');
                 return false;
             }
 
-            const content = outChatElement.innerHTML.trim();
+            const content = outChatElement.innerHTML;
             if (!content) {
                 alert('Please generate Upmana content first!');
                 return false;

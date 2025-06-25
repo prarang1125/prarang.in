@@ -40,52 +40,62 @@ class SharedResponseController extends Controller
 
     public function store(Request $request)
     {
-
         $data = $request->validate([
             'prompt' => 'required|string',
-            'upmana_response' => 'nullable|string',
             'gpt_response' => 'nullable|string',
+            'upmana_response' => 'nullable|string',
             'gemini_response' => 'nullable|string',
-            'claude_response' => 'nullable|string',
             'grok_response' => 'nullable|string',
+            'claude_response' => 'nullable|string',
+            'deepseek_response' => 'nullable|string',
+            'meta_response' => 'nullable|string',
         ]);
-
-        // Generate UUID and UTC timestamp
+    
+        // Add UUID and UTC timestamp
         $data['uuid'] = Str::uuid()->toString();
-        $data['created_at_utc'] = now('UTC')->toISOString();
-
-        // Send data to external API
+        $data['created_at_utc'] = now('UTC')->toDateTimeString();
+    
+        // Make API request
         $response = httpPost('/share-response', $data);
-
-        // Optional: Check for success or failure
-        if ($response->successful()) {
-            return response()->json(['uuid' => $data['uuid']]);
-        } else {
-            return response()->json([
-                'error' => 'Failed to store data in external API.',
-                'details' => $response->body()
-            ], 500);
-        }
+    
+        // Handle the response
+        if (method_exists($response, 'successful') && $response->successful()) {
+            // return response()->json($response->json(), $response->status());
+            $responseData = $response->json();
+            if (is_array($responseData) && isset($responseData[0]['uuid'])) {
+                return response()->json(['uuid' => $responseData[0]['uuid']], 200);
+            }  
+        }            
+        
+        // Handle failure case
+        return response()->json([
+            'error' => 'API request failed',
+            'details' => method_exists($response, 'body') ? $response->body() : $response
+        ], method_exists($response, 'status') ? $response->status() : 500);
     }
 
     public function show($uuid)
     {
         // Fetch the shared response by UUID
-        $sharedResponse = httpGet('/share-response', ['uuid' => $uuid])['data'];
-
-        if (!$sharedResponse) {
+        $response = httpGet("/share-response/$uuid");
+    
+        // Check if the response is valid and has data
+        if (!$response || !$response['status'] || !isset($response['data'])) {
             abort(404);
         }
-
+    
+        $sharedResponse = $response['data'];
+    
         return view('ai.shared_response', [
-            'created_at' => $sharedResponse->created_at_utc,
-            'prompt' => $sharedResponse->prompt,
-            'umanResponse' => $sharedResponse->uman_response,
-            'gptResponse' => $sharedResponse->gpt_response,
-            'geminiResponse' => $sharedResponse->gemini_response,
-            'claudeResponse' => $sharedResponse->claude_response,
-            'grokResponse' => $sharedResponse->grok_response,
+            'created_at' => $sharedResponse['created_at_utc'],
+            'prompt' => $sharedResponse['prompt'],
+            'umanResponse' => $sharedResponse['upmana_response'],
+            'gptResponse' => $sharedResponse['gpt_response'],
+            'geminiResponse' => $sharedResponse['gimini_response'],
+            'grokResponse' => $sharedResponse['grok_response'],
+            'claudeResponse' => $sharedResponse['claude_response'],
+            'deepSeekResponse' => $sharedResponse['deepseek_response'],
+            'metaResponse' => $sharedResponse['meta_response'],
         ]);
     }
-    
 }
