@@ -2,7 +2,7 @@
 
 <div class="action-buttons-corner">
     <button class="action-button print" onclick="printResponses()" title="Print">
-        <i class="fas fa-print"></i>
+        <!-- <i class="fas fa-print"></i> -->
         Print
     </button>
 </div>
@@ -133,7 +133,7 @@
         <div class="share-link">
             <input type="text" id="shareLink" value="" readonly>
             <button onclick="copyShareLink()" class="copy-button">
-                <i class="fas fa-copy"></i>
+                <!-- <i class=" fa-copy"></i> -->
             </button>
         </div>
     </div>

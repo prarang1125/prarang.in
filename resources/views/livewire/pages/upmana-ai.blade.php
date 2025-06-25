@@ -1,6 +1,7 @@
 <div>
     <link rel="stylesheet" href="{{ asset('assets/ai/css/aichat.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
+    <script src="{{ asset('js/ai-response.js') }}"></script>
     <p class="text-center main-title-heading">UPMANA - Knowledge By Comparison</p>
     <section class="container p-3 mt-4">
 
@@ -147,9 +148,6 @@
                                     </div>
                                 @endisset
 
-
-
-
                                 @isset($output['sentences']['city'])
                                     <div class="mb-2">
                                         <p class="mb-2">{!! $output['sentences']['city'] !!}</p>
@@ -240,77 +238,100 @@
                     <div class="col-sm-4">
                         <section class="id-selector">
                             <p>Compare UPMANA Response with other A.I.</p>
-                            <form action="{{ route('ai.response') }}" method="POST" target="_blank">
+                            <form action="{{ route('ai.generate.response') }}" method="POST" target="_blank">
                                 @csrf
                                 <input type="hidden" name="prompt" value="{{ $prompt }}">
                                 <input type="hidden" name="content" id="content-input" />
+                                <input type="hidden" name="selected_models_sequence"
+                                    id="selected-models-sequence" />
                                 <div>
                                     <div class="space-y-4">
                                         <div class="flex items-center space-x-2">
-                                            <!-- ChatGPT Option -->
-                                            <label class="flex items-center space-x-2">
-                                                <input type="checkbox" name="model[]" wire:model="selectedModels"
-                                                    value="chatgpt">
-                                                <img src="https://cdn.oaistatic.com/assets/favicon-miwirzcw.ico"
-                                                    alt="ChatGPT Logo" class="w-6 h-6">
-                                                <span>
-                                                    <span>ChatGPT</span>
-                                                    <span>Microsoft</span>
-                                                </span>
-                                            </label>
 
-                                            <!-- Gemini Option -->
+                                            <!-- Meta Option -->
                                             <label class="flex items-center space-x-2">
-                                                <input type="checkbox" name="model[]" wire:model="selectedModels"
-                                                    value="gemini">
-                                                <img src="https://i.ibb.co/cX86rhZB/gimini-removebg-preview.png"
-                                                    alt="Gemini Logo" class="w-6 h-6">
-                                                <span>
-                                                    <span>Gemini</span>
-                                                    <span>Google</span>
-                                                </span>
-                                            </label>
-
-
-                                            <!-- Grok Option -->
-                                            <label class="flex items-center space-x-2">
-                                                <input type="checkbox" name="model[]" wire:model="selectedModels"
-                                                    value="claude">
-                                                <img src="https://claude.ai/images/claude_app_icon.png" alt=""
-                                                    class="w-6 h-6">
-                                                <span>
-                                                    <span>Claude</span>
-                                                    <span>Anthropic</span>
-                                                </span>
-                                            </label>
-                                            <!-- Grok Option -->
-                                            <label class="flex items-center space-x-2">
-                                                <input type="checkbox" name="model[]" wire:model="selectedModels"
-                                                    value="deepseek">
-                                                <img src="https://chat.deepseek.com/favicon.svg" alt=""
-                                                    class="w-6 h-6">
-                                                <span>
-                                                    <span>Deepseek</span>
-                                                    <span>High-Flyer</span>
-                                                </span>
-                                            </label>
-                                            <label class="flex items-center space-x-2">
-                                                <input type="checkbox" name="model[]" wire:model="selectedModels"
-                                                    value="meta">
+                                                <input type="checkbox" name="model[]" value="meta" data-ai="meta">
                                                 <img src="https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ai.meta.com/&size=256"
                                                     alt="" class="w-6 h-6">
                                                 <span>
                                                     <span>Meta Llama</span>
                                                     <span>Meta</span>
                                                 </span>
+                                                <span
+                                                    class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
+                                            </label>
+
+                                            <!-- Gemini Option -->
+                                            <label class="flex items-center space-x-2">
+                                                <input type="checkbox" name="model[]" value="gemini"
+                                                    data-ai="gemini">
+                                                <img src="https://i.ibb.co/cX86rhZB/gimini-removebg-preview.png"
+                                                    alt="Gemini Logo" class="w-6 h-6">
+                                                <span>
+                                                    <span>Gemini</span>
+                                                    <span>Google</span>
+                                                </span>
+                                                <span
+                                                    class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
+                                            </label>
+                                            <!-- deepseek Option -->
+                                            <label class="flex items-center space-x-2">
+                                                <input type="checkbox" name="model[]" value="deepseek"
+                                                    data-ai="deepseek">
+                                                <img src="https://chat.deepseek.com/favicon.svg" alt=""
+                                                    class="w-6 h-6">
+                                                <span>
+                                                    <span>Deepseek</span>
+                                                    <span>High-Flyer</span>
+                                                </span>
+                                                <span
+                                                    class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
+                                            </label>
+                                            <!-- ChatGPT Option -->
+                                            <label class="flex items-center space-x-2">
+                                                <input type="checkbox" name="model[]" value="chatgpt"
+                                                    data-ai="chatgpt">
+                                                <img src="https://cdn.oaistatic.com/assets/favicon-miwirzcw.ico"
+                                                    alt="ChatGPT Logo" class="w-6 h-6">
+                                                <span>
+                                                    <span>ChatGPT</span>
+                                                    <span>Microsoft</span>
+                                                </span>
+                                                <span
+                                                    class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
+                                            </label>
+                                            <!-- Upmana Option -->
+                                            <label class="flex items-center space-x-2">
+                                                <input type="checkbox" name="model[]" value="upmana"
+                                                    data-ai="upmana">
+                                                <img src="{{ asset('assets/ai/images/byr-btn.png') }}"
+                                                    alt="Upmana Logo" class="w-6 h-6">
+                                                <span>
+                                                    <span>Upmana</span>
+                                                    <span>Prarang</span>
+                                                </span>
+                                                <span
+                                                    class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
+                                            </label>
+
+                                            <!-- Claude Option -->
+                                            <label class="flex items-center space-x-2">
+                                                <input type="checkbox" name="model[]" value="claude"
+                                                    data-ai="claude">
+                                                <img src="https://claude.ai/images/claude_app_icon.png" alt=""
+                                                    class="w-6 h-6">
+                                                <span>
+                                                    <span>Claude</span>
+                                                    <span>Anthropic</span>
+                                                </span>
+                                                <span
+                                                    class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
                                             </label>
                                         </div>
-
-
+                                        <button class="btn btn-success" type="submit" onclick="return setContent()">
+                                            Compare
+                                        </button>
                                     </div>
-                                    <button class="btn btn-success" type="submit" onclick="return setContent()">
-                                        Compare
-                                    </button </div>
                             </form>
                         </section>
                     </div>
@@ -389,23 +410,22 @@
                                                 id="content-{{ $main }}" role="tabpanel"
                                                 aria-labelledby="tab-{{ $main }}">
                                                 <div class="p-3 border rounded shadow-sm">
-                                                    <strong
-                                                        class="mb-3 d-block fs-6">{{ config('verticals.' . $main) }}
-                                                        Metrics</strong>
+                                                    <!-- <strong
+                                                    class="mb-3 d-block fs-6">{{ config('verticals.' . $main) }}
+                                                    Options</strong> -->
                                                     <div class="row">
                                                         @php
                                                             $types = ['World (& India)', 'World', 'India'];
                                                         @endphp
 
                                                         @foreach ($types as $type)
-                                                            {{-- @if (collect($subs)->contains('type', $type))
+                                                            @if (collect($subs)->contains('type', $type))
                                                                 <div class="pb-3 col-12">
                                                                     <span
                                                                         class="text-muted fw-bold">{{ $type }}
                                                                         Metrics</span>
                                                                 </div>
-                                                            @endif --}}
-
+                                                            @endif
                                                             @foreach ($subs as $sub)
                                                                 @if ($sub['type'] === $type)
                                                                     <div class="mb-2 col-12 col-sm-4 col-lg-3">
@@ -419,13 +439,14 @@
                                                                             <label class="form-check-label small"
                                                                                 for="sub-{{ $sub['type'] }}-{{ $sub['id'] }}">
                                                                                 {{ str_replace('# of', 'No. of', $sub['name']) }}
-                                                                                {{-- <span
-                                                                                    class="text-primary">{{ $sub['geo_type'] == 'in_dist' ? 'District' : '' }}</span> --}}
+                                                                                <span
+                                                                                    class="text-primary">{{ $sub['geo_type'] == 'in_dist' ? 'District' : '' }}</span>
                                                                             </label>
                                                                         </div>
                                                                     </div>
                                                                 @endif
                                                             @endforeach
+                                                            <hr>
                                                         @endforeach
 
                                                     </div>
@@ -437,6 +458,7 @@
                                 </div>
                             </div>
                         </div>
+
                         <div class="modal-footer">
                             <button id="resetAllBtn" class="btn btn-outline-warning" type="button">Reset</button>
                             <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
@@ -595,39 +617,62 @@
         </div>
         @livewire('utility.popupreg')
     </section>
-
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Debugging logs
+            console.log('Upmana AI page loaded');
+
+            // Log the output content
+            const outputElement = document.getElementById('outChat');
+            if (outputElement) {
+                console.log('Output Content:', outputElement.innerHTML.trim());
+            } else {
+                console.error('Output element #outChat not found!');
+            }
+        });
+
         function setContent() {
-
-            const content = document.getElementById('outChat').innerHTML.trim();
-
-            if (!content) {
-
+            const outChatElement = document.getElementById('outChat');
+            if (!outChatElement) {
+                alert('Please generate Upmana content first!');
                 return false;
             }
-            document.getElementById('content-input').value = content;
 
-            return true;
+            const content = outChatElement.innerHTML.trim();
+            if (!content) {
+                alert('Please generate Upmana content first!');
+                return false;
+            }
+
+            const contentInput = document.getElementById('content-input');
+            if (!contentInput) {
+                alert('Error setting content!');
+                return false;
+            }
+
+            contentInput.value = content;
+
+            // Update model sequence again before submit
+            const sequenceInput = document.getElementById("selected-models-sequence");
+            if (sequenceInput && typeof selectedSequence !== "undefined") {
+                sequenceInput.value = JSON.stringify(selectedSequence);
+                console.log("Final model sequence set:", selectedSequence);
+            }
+
+            return true; // Allow form to submit
         }
 
-        window.addEventListener('closemodal', () => {
-            const modal = bootstrap.Modal.getInstance(document.getElementById('categoryModal'));
-            if (modal) {
-                modal.hide();
+        // Ensure content is set before form submission
+        document.addEventListener('DOMContentLoaded', function() {
+            const form = document.querySelector('form[data-parallel="true"]');
+            if (form) {
+                form.addEventListener('submit', function(event) {
+                    if (!setContent()) {
+                        event.preventDefault();
+                    }
+                });
             }
         });
-        window.addEventListener('showCategorymodal', () => {
-            const modal = bootstrap.Modal.getInstance(document.getElementById('categoryModal'));
-            if (modal) {
-                modal.hide();
-            }
-        });
-
-        function autoResize(textarea) {
-            const lines = textarea.value.split('\n').length;
-            const newRows = Math.min(Math.max(lines, 2), 5);
-            textarea.rows = newRows;
-        }
     </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -684,10 +729,6 @@
                     categoryBadges.innerHTML = `${selectedCount}`
                 }
 
-
-
-
-
             }
 
             checkboxes.forEach(cb => {
@@ -727,6 +768,53 @@
             });
             window.addEventListener('close-register-modal', () => {
                 registerModal.hide();
+            });
+        });
+    </script>
+
+    <script>
+        let selectedSequence = [];
+        document.addEventListener('DOMContentLoaded', function() {
+
+            function updateOrderNumbers() {
+
+                document.querySelectorAll('.order-number').forEach(span => {
+                    span.textContent = '';
+                    span.classList.remove('d-inline-block');
+                });
+                selectedSequence.forEach((model, index) => {
+                    const checkbox = document.querySelector(`input[name="model[]"][data-ai="${model}"]`);
+                    if (checkbox && checkbox.checked) {
+                        const orderSpan = checkbox.closest('label').querySelector('.order-number'); // SAFER
+                        if (orderSpan) {
+                            let mainModal = checkbox.getAttribute('data-ai');
+                            checkbox.value = mainModal + '-' + (index + 1);
+                            orderSpan.textContent = index + 1;
+                            orderSpan.classList.add('d-inline-block');
+                        }
+                    }
+                });
+            }
+            document.querySelectorAll('input[name="model[]"]:checked').forEach(checkbox => {
+                const value = checkbox.getAttribute('data-ai');
+                if (!selectedSequence.includes(value)) {
+                    selectedSequence.push(value);
+                }
+            });
+            updateOrderNumbers();
+
+            document.addEventListener('change', function(e) {
+                if (e.target.matches('input[name="model[]"]')) {
+                    const value = e.target.getAttribute('data-ai');
+                    if (e.target.checked) {
+                        if (!selectedSequence.includes(value)) {
+                            selectedSequence.push(value);
+                        }
+                    } else {
+                        selectedSequence = selectedSequence.filter(v => v !== value);
+                    }
+                    updateOrderNumbers();
+                }
             });
         });
     </script>

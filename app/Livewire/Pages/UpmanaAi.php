@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages;
 
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use App\Services\SentenceService;
 use App\Services\TransformerService;
@@ -23,6 +24,7 @@ class UpmanaAi extends Component
     public $comparisonSentence = '';
     public $activeSection = [];
     public $selectedModels = [];
+    public $selectedSequence = [];
 
     protected $verticalService;
     protected $sentenceService;
@@ -51,6 +53,39 @@ class UpmanaAi extends Component
         ];
         $this->citiesTOChose = $this->sentenceService->geography();
         $this->genHit = session()->get('gen-hit', 0);
+    }
+
+    public function updatedSelectedModels()
+    {
+        // Log the update of selected models
+        Log::info('Selected Models Updated: ', $this->selectedModels);
+        
+        // Directly update sequence based on current selections
+        $this->selectedSequence = $this->selectedModels;
+        
+        // Log the updated sequence
+        Log::info('Updated Sequence: ', $this->selectedSequence);
+    }
+
+    #[On('model-sequence-changed')]
+    public function updateModelSequence($sequence)
+    {
+        // Log the received sequence
+        Log::info('Received Model Sequence: ' . $sequence);
+        
+        // Parse JSON sequence 
+        $parsedSequence = json_decode($sequence, true);
+        
+        // Log the parsed sequence
+        Log::info('Parsed Model Sequence: ', $parsedSequence);
+        
+        // Update sequence from JavaScript event
+        $this->selectedSequence = $parsedSequence ?? [];
+        $this->selectedModels = $parsedSequence ?? [];
+        
+        // Log the updated properties
+        Log::info('Updated Selected Sequence: ', $this->selectedSequence);
+        Log::info('Updated Selected Models: ', $this->selectedModels);
     }
 
     public function toggleMainCheck($main)
@@ -179,6 +214,12 @@ class UpmanaAi extends Component
 
     public function compareResponse()
     {
+        // Log the models before comparison
+        Log::info('Models for Comparison: ', [
+            'selectedModels' => $this->selectedModels,
+            'selectedSequence' => $this->selectedSequence
+        ]);
+
         $this->dispatch('compare-now', ['prompt' => $this->prompt]);
     }
 
