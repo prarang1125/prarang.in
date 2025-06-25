@@ -31,6 +31,7 @@ class UpmanaAi extends Component
     public $selectedCountries = [];
     public $source;
     public $citiesTOChose, $firstCity, $takeme;
+    public $genHit;
 
 
     public function mount(SentenceService $sentenceService)
@@ -49,6 +50,7 @@ class UpmanaAi extends Component
             'output' => false
         ];
         $this->citiesTOChose = $this->sentenceService->geography();
+        $this->genHit = session()->get('gen-hit', 0);
     }
 
     public function toggleMainCheck($main)
@@ -64,6 +66,14 @@ class UpmanaAi extends Component
 
     public function generate()
     {
+        if ($this->genHit == 2) {
+            $this->dispatch('show-register-modal');
+            return;
+        } else {
+            $this->genHit++;
+            session()->put('gen-hit', $this->genHit);
+        }
+
         $this->validate(
             [
                 'subChecks' => 'required|array|min:1',

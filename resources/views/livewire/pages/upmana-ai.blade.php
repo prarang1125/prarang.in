@@ -593,6 +593,7 @@
                 </div>
             </div>
         </div>
+        @livewire('utility.popupreg')
     </section>
 
     <script>
@@ -715,4 +716,17 @@
             const modalInstance = bootstrap.Modal.getInstance(modalEl);
             if (modalInstance) modalInstance.hide();
         }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const registerModal = new bootstrap.Modal(document.getElementById('popupregister'));
+            // registerModal.show();
+
+            window.addEventListener('show-register-modal', () => {
+                registerModal.show();
+            });
+            window.addEventListener('close-register-modal', () => {
+                registerModal.hide();
+            });
+        });
     </script>
