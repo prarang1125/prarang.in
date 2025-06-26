@@ -249,7 +249,7 @@
                                         <div class="flex items-center space-x-2">
 
                                             <!-- Meta Option -->
-                                          <label class="flex items-center space-x-2">
+                                            <label class="flex items-center space-x-2">
                                                 <input type="checkbox" name="model[]" value="meta" data-ai="meta">
                                                 <img src="https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ai.meta.com/&size=256"
                                                     alt="" class="w-6 h-6">
@@ -261,7 +261,7 @@
                                                     class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
                                             </label>
 
-                                                <!-- Gemini Option -->
+                                            <!-- Gemini Option -->
                                             <label class="flex items-center space-x-2">
                                                 <input type="checkbox" name="model[]" value="gemini"
                                                     data-ai="gemini">
@@ -300,18 +300,21 @@
                                                 <span
                                                     class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
                                             </label>
-                                              <!-- Upmana Option -->
+                                            <!-- Upmana Option -->
                                             <label class="flex items-center space-x-2">
-                                               <input type="checkbox" name="model[]" value="upmana" data-ai="upmana">
-                                             <img src="{{ asset('assets/ai/images/byr-btn.png') }}" alt="Upmana Logo" class="w-6 h-6">
-                                             <span>
-                                               <span>Upmana</span>
-                                                <span>Prarang</span>
-                                            </span>
-                                             <span class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
+                                                <input type="checkbox" name="model[]" value="upmana"
+                                                    data-ai="upmana">
+                                                <img src="{{ asset('assets/ai/images/byr-btn.png') }}"
+                                                    alt="Upmana Logo" class="w-6 h-6">
+                                                <span>
+                                                    <span>Upmana</span>
+                                                    <span>Prarang</span>
+                                                </span>
+                                                <span
+                                                    class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
                                             </label>
-                                        
-                                         <!-- Claude Option -->
+
+                                            <!-- Claude Option -->
                                             <label class="flex items-center space-x-2">
                                                 <input type="checkbox" name="model[]" value="claude"
                                                     data-ai="claude">
@@ -323,13 +326,15 @@
                                                 </span>
                                                 <span
                                                     class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
-                                            </label>                                        
+                                            </label>
+                                        </div>
+                                        <button class="btn btn-success" type="submit"
+                                            onclick="return setContents()">
+                                            Compare
+                                        </button>
                                     </div>
-                                    <button class="btn btn-success" type="submit" onclick="return setContent()">
-                                        Compare
-                                    </button>
-                                </div>
                             </form>
+
                         </section>
                     </div>
                 </div>
@@ -627,17 +632,17 @@
             }
         });
 
-        function setContent() {
- 
+        function setContents() {
+
             const outChatElement = document.getElementById('outChat');
-           
-            alert('Please generate Upmana content first!');
+
+
             if (!outChatElement) {
                 alert('Please generate Upmana content first!');
                 return false;
             }
 
-            const content = outChatElement.innerHTML;
+            const content = outChatElement.innerHTML.trim();
             if (!content) {
                 alert('Please generate Upmana content first!');
                 return false;
@@ -651,12 +656,6 @@
 
             contentInput.value = content;
 
-            // Update model sequence again before submit
-            const sequenceInput = document.getElementById("selected-models-sequence");
-            if (sequenceInput && typeof selectedSequence !== "undefined") {
-                sequenceInput.value = JSON.stringify(selectedSequence);
-                console.log("Final model sequence set:", selectedSequence);
-            }
 
             return true; // Allow form to submit
         }
