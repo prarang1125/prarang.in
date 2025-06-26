@@ -43,13 +43,13 @@
         </form>
     </div>
 
-    <div class="section-title">Comparison Report :{{ 
-        (isset($content) && !empty(trim($content)) ? 1 : 0) + 
-        (isset($gptResponse) && !empty(trim($gptResponse)) ? 1 : 0) + 
-        (isset($metaResponse) && !empty(trim($metaResponse)) ? 1 : 0) + 
-        (isset($deepseekResponse) && !empty(trim($deepseekResponse)) ? 1 : 0) + 
-        (isset($geminiResponse) && !empty(trim($geminiResponse)) ? 1 : 0) + 
-        (isset($claudeResponse) && !empty(trim($claudeResponse)) ? 1 : 0) 
+    <div class="section-title">Comparison Report :{{
+        (isset($content) && !empty(trim($content)) ? 1 : 0) +
+        (isset($gptResponse) && !empty(trim($gptResponse)) ? 1 : 0) +
+        (isset($metaResponse) && !empty(trim($metaResponse)) ? 1 : 0) +
+        (isset($deepseekResponse) && !empty(trim($deepseekResponse)) ? 1 : 0) +
+        (isset($geminiResponse) && !empty(trim($geminiResponse)) ? 1 : 0) +
+        (isset($claudeResponse) && !empty(trim($claudeResponse)) ? 1 : 0)
     }} A.I. Models</div>
 
     <div class="info-box">
@@ -66,34 +66,34 @@
                         <?php
                         $modelCount = 0;
                         $responseTypes = [
-                            'meta' => 'metaResponse', 
-                            'gemini' => 'geminiResponse', 
-                            'deepseek' => 'deepseekResponse', 
-                            'chatgpt' => 'gptResponse', 
-                            'upmana' => 'content', 
-                            'claude' => 'claudeResponse', 
+                            'meta' => 'metaResponse',
+                            'gemini' => 'geminiResponse',
+                            'deepseek' => 'deepseekResponse',
+                            'chatgpt' => 'gptResponse',
+                            'upmana' => 'content',
+                            'claude' => 'claudeResponse',
                             'grok' => 'grokResponse'
                         ];
-                        
+
                         $displayedLinks = array();
                         foreach ($model as $modelName) {
                             $varName = $responseTypes[$modelName] ?? null;
                             if ($varName) {
                                 $responseContent = $varName === 'content' ? $content ?? '' : $$varName ?? '';
-                                
+
                                 if (!empty(trim($responseContent))) {
                                     $modelCount++;
-                                    $displayedLinks[] = '<a class="model-link" href="javascript:void(0);" data-container="' . 
-                                        ($modelName === 'upmana' ? 'upmana-container' : $modelName . '-container') . 
-                                        '" onclick="window.scrollToResponse(\'' . 
-                                        ($modelName === 'upmana' ? 'upmana-container' : $modelName . '-container') . 
-                                        '\')">(' . chr(96 + $modelCount) . ')' . 
-                                        ($modelName === 'meta' ? 'Meta Llama' : ucfirst($modelName)) . 
+                                    $displayedLinks[] = '<a class="model-link" href="javascript:void(0);" data-container="' .
+                                        ($modelName === 'upmana' ? 'upmana-container' : $modelName . '-container') .
+                                        '" onclick="window.scrollToResponse(\'' .
+                                        ($modelName === 'upmana' ? 'upmana-container' : $modelName . '-container') .
+                                        '\')">(' . chr(96 + $modelCount) . ')' .
+                                        ($modelName === 'meta' ? 'Meta Llama' : ucfirst($modelName)) .
                                         '</a>';
                                 }
                             }
                         }
-                        
+
                         echo implode(' ', $displayedLinks);
                         ?>
                     </div>
@@ -108,90 +108,90 @@
 
         // Determine Upmana's position
         if (in_array('upmana', $model)) {
-            $upmanaPosition = 'selected';
+        $upmanaPosition = 'selected';
         }
 
         $modelLogos = [
-            'chatgpt' => 'https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg',
-            'gemini' => 'https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg',
-            'claude' => 'https://upload.wikimedia.org/wikipedia/commons/7/78/Anthropic_logo.svg',
-            'grok' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/X_Logo.svg/2048px-X_Logo.svg.png',
-            'deepseek' => 'https://chat.deepseek.com/favicon.svg',
-            'meta' => 'https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ai.meta.com/&size=256',
-            'upmana' => asset('assets/ai/images/byr-btn.png')
+        'chatgpt' => 'https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg',
+        'gemini' => 'https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg',
+        'claude' => 'https://upload.wikimedia.org/wikipedia/commons/7/78/Anthropic_logo.svg',
+        'grok' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/X_Logo.svg/2048px-X_Logo.svg.png',
+        'deepseek' => 'https://chat.deepseek.com/favicon.svg',
+        'meta' => 'https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ai.meta.com/&size=256',
+        'upmana' => asset('assets/ai/images/byr-btn.png')
         ];
 
         $modelFullNames = [
-            'chatgpt' => 'ChatGPT',
-            'gemini' => 'Gemini',
-            'claude' => 'Claude',
-            'grok' => 'Grok',
-            'deepseek' => 'Deepseek',
-            'meta' => 'Meta Llama',
-            'upmana' => 'UPMANA - Knowledge By Comparision'
+        'chatgpt' => 'ChatGPT',
+        'gemini' => 'Gemini',
+        'claude' => 'Claude',
+        'grok' => 'Grok',
+        'deepseek' => 'Deepseek',
+        'meta' => 'Meta Llama',
+        'upmana' => 'UPMANA - Knowledge By Comparision'
         ];
 
         $responseTypes = [
-            'meta' => 'metaResponse', 
-            'gemini' => 'geminiResponse', 
-            'deepseek' => 'deepseekResponse', 
-            'chatgpt' => 'gptResponse', 
-            'upmana' => 'content', 
-            'claude' => 'claudeResponse', 
-            'grok' => 'grokResponse'
+        'meta' => 'metaResponse',
+        'gemini' => 'geminiResponse',
+        'deepseek' => 'deepseekResponse',
+        'chatgpt' => 'gptResponse',
+        'upmana' => 'content',
+        'claude' => 'claudeResponse',
+        'grok' => 'grokResponse'
         ];
         @endphp
 
         @foreach($model as $modelName)
-            @php
-            $varName = $responseTypes[$modelName] ?? null;
-            $responseContent = $varName === 'content' ? $content ?? '' : $$varName ?? '';
-            @endphp
+        @php
+        $varName = $responseTypes[$modelName] ?? null;
+        $responseContent = $varName === 'content' ? $content ?? '' : $$varName ?? '';
+        @endphp
 
-            @if(!empty(trim($responseContent)))
-                @if($modelName === 'upmana' && $upmanaPosition === 'selected')
-                    <div class="response-container" id="content-container">
-                        <div class="response-content">
-                            <div class="ai-name">({{ chr(96 + $count++) }}) {{ $modelFullNames[$modelName] }}</div>
-                            <div class="prompt-box upman">
-                                <strong>Prompt:</strong> {{ $prompt }}
-                            </div>
-                            <div class="p-3 ai-response h-100">
-                                {!! $responseContent !!}
-                            </div>
-                        </div>
-                    </div>
-                @elseif($modelName !== 'upmana')
-                    <div class="response-container" id="{{ $modelName }}-container">
-                        @if($modelLogos[$modelName])
-                            <img src="{{ $modelLogos[$modelName] }}" alt="{{ $modelFullNames[$modelName] }} Logo" class="ai-logo">
-                        @endif
-                        <div class="response-content">
-                            <div class="ai-name">({{ chr(96 + $count++) }}) {{ $modelFullNames[$modelName] }}</div>
-                            <div class="prompt-box {{ $modelName }}">
-                                <strong>Prompt:</strong> {{ $prompt }}
-                            </div>
-                            <div class="p-3 ai-response h-100">
-                                {!! $responseContent !!}
-                            </div>
-                        </div>
-                    </div>
-                @endif
+        @if(!empty(trim($responseContent)))
+        @if($modelName === 'upmana' && $upmanaPosition === 'selected')
+        <div class="response-container" id="content-container">
+            <div class="response-content">
+                <div class="ai-name">({{ chr(96 + $count++) }}) {{ $modelFullNames[$modelName] }}</div>
+                <div class="prompt-box upman">
+                    <strong>Prompt:</strong> {{ $prompt }}
+                </div>
+                <div class="p-3 ai-response h-100">
+                    {!! $responseContent !!}
+                </div>
+            </div>
+        </div>
+        @elseif($modelName !== 'upmana')
+        <div class="response-container" id="{{ $modelName }}-container">
+            @if($modelLogos[$modelName])
+            <img src="{{ $modelLogos[$modelName] }}" alt="{{ $modelFullNames[$modelName] }} Logo" class="ai-logo">
             @endif
+            <div class="response-content">
+                <div class="ai-name">({{ chr(96 + $count++) }}) {{ $modelFullNames[$modelName] }}</div>
+                <div class="prompt-box {{ $modelName }}">
+                    <strong>Prompt:</strong> {{ $prompt }}
+                </div>
+                <div class="p-3 ai-response h-100">
+                    {!! $responseContent !!}
+                </div>
+            </div>
+        </div>
+        @endif
+        @endif
         @endforeach
 
         @if($upmanaPosition === 'last' && isset($content))
-            <div class="response-container" id="content-container">
-                <div class="response-content">
-                    <div class="ai-name">({{ chr(96 + $count++) }}) {{ $modelFullNames['upmana'] }}</div>
-                    <div class="prompt-box upman">
-                        <strong>Prompt:</strong> {{ $prompt }}
-                    </div>
-                    <div class="p-3 ai-response h-100">
-                        {!! $content !!}
-                    </div>
+        <div class="response-container" id="content-container">
+            <div class="response-content">
+                <div class="ai-name">({{ chr(96 + $count++) }}) {{ $modelFullNames['upmana'] }}</div>
+                <div class="prompt-box upman">
+                    <strong>Prompt:</strong> {{ $prompt }}
+                </div>
+                <div class="p-3 ai-response h-100">
+                    {!! $content !!}
                 </div>
             </div>
+        </div>
         @endif
 
         @if(empty($model))
@@ -219,54 +219,54 @@
 
 
     <script>
-    // Define scrollToResponse globally
-    window.scrollToResponse = function(containerId) {
-        console.log('Attempting to scroll to container:', containerId);
+        // Define scrollToResponse globally
+        window.scrollToResponse = function(containerId) {
+            console.log('Attempting to scroll to container:', containerId);
 
-        // Special handling for Upmana response
-        if (containerId === 'upmana-container') {
-            containerId = 'content-container';
-        }
+            // Special handling for Upmana response
+            if (containerId === 'upmana-container') {
+                containerId = 'content-container';
+            }
 
-        const container = document.getElementById(containerId);
+            const container = document.getElementById(containerId);
 
-        if (!container) {
-            console.warn('Container not found:', containerId);
-            alert("That response is not available.");
-            return;
-        }
+            if (!container) {
+                console.warn('Container not found:', containerId);
+                alert("That response is not available.");
+                return;
+            }
 
-        container.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-        });
-    };
-
-    document.addEventListener('DOMContentLoaded', function() {
-        // Attach click event listener to model links
-        document.querySelectorAll('.model-link').forEach(link => {
-            link.addEventListener('click', function(event) {
-                const containerId = this.getAttribute('data-container');
-                if (containerId) {
-                    window.scrollToResponse(containerId);
-                    event.preventDefault();
-                }
+            container.scrollIntoView({
+                behavior: 'smooth',
+                block: 'start'
             });
-        });
+        };
 
-        // Wrap all tables in a container for proper scrolling
-        document.querySelectorAll('.ai-response table').forEach(table => {
-            const container = document.createElement('div');
-            container.className = 'table-container';
-            table.parentNode.insertBefore(container, table);
-            container.appendChild(table);
-        });
+        document.addEventListener('DOMContentLoaded', function() {
+            // Attach click event listener to model links
+            document.querySelectorAll('.model-link').forEach(link => {
+                link.addEventListener('click', function(event) {
+                    const containerId = this.getAttribute('data-container');
+                    if (containerId) {
+                        window.scrollToResponse(containerId);
+                        event.preventDefault();
+                    }
+                });
+            });
 
-        // Ensure parallel processing is initialized
-        if (typeof enableParallelProcessing === 'function') {
-            enableParallelProcessing('ai-compare-form');
-        }
-    });
+            // Wrap all tables in a container for proper scrolling
+            document.querySelectorAll('.ai-response table').forEach(table => {
+                const container = document.createElement('div');
+                container.className = 'table-container';
+                table.parentNode.insertBefore(container, table);
+                container.appendChild(table);
+            });
+
+            // Ensure parallel processing is initialized
+            if (typeof enableParallelProcessing === 'function') {
+                enableParallelProcessing('ai-compare-form');
+            }
+        });
     </script>
- 
+
 </x-layout.main.base>
