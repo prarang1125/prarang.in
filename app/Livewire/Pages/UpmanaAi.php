@@ -54,6 +54,7 @@ class UpmanaAi extends Component
         $this->citiesTOChose = $this->sentenceService->geography();
         $this->genHit = session()->get('gen-hit', 0);
         $this->isRegistered = session()->has('upmana-auth');
+
         if (!$this->isRegistered) {
 
             if ($this->genHit >= 5) {

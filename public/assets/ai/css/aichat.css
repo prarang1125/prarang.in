@@ -1233,3 +1233,9 @@ textarea{
  top:-20px;
 }
 
+/* Paragraph */
+#popupregister .mb-3 p{
+ font-size:12px;
+ text-align:right;
+ margin-top:4px;
+}
