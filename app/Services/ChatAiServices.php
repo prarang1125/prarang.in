@@ -198,28 +198,38 @@ class ChatAiServices
 
     public function generateGptResponse(string $model, array $params): array
     {
-        try {
+         try {
             $maxTokens = max((int)($params['max_output_tokens'] ?? 2048), 16);
-
+            $temperature = (float)($params['temperature'] ?? 1.0);
+            $topP = (float)($params['top_p'] ?? 1.0);
+        
+            // Convert prompt to messages array if it's a string, otherwise use provided messages
+            $messages = $params['prompt'] ?? [];
+            if (is_string($messages)) {
+                $messages = [
+                    ['role' => 'user', 'content' => $messages]
+                ];
+            } elseif (!is_array($messages) || empty($messages)) {
+                // Fallback to empty array or handle invalid input
+                $messages = [
+                    ['role' => 'user', 'content' => 'Default prompt']
+                ];
+            }
+        
             $response = Http::withToken(env('OPENAI_API_KEY'))
-                ->post('https://api.openai.com/v1/responses', [
+                ->post('https://api.openai.com/v1/chat/completions', [
                     'model' => $model,
-                    'input' => $params['input'] ?? [],
-                    'text' => ['format' => ['type' => 'text']],
-                    'reasoning' => new \stdClass(),
-                    'tools' => [],
-                    'temperature' => (float)($params['temperature'] ?? 1.0),
-                    'top_p' => (float)($params['top_p'] ?? 1.0),
-                    'max_output_tokens' => $maxTokens,
-                    'store' => true,
+                    'messages' => $messages,
+                    'temperature' => $temperature,
+                    'top_p' => $topP,
+                    'max_tokens' => $maxTokens,
                 ]);
-
+        
             $responseBody = $response->json();
-            $content = $responseBody['output'][0]['content'][0]['text'] ?? 'No response text available';
-
-            // Parse the response
+            $content = $responseBody['choices'][0]['message']['content'] ?? 'No response text available';
+        
             $parsedContent = $this->parseResponse($content);
-
+        
             return [
                 'success' => true,
                 'response' => $parsedContent,
@@ -363,12 +373,12 @@ class ChatAiServices
 
     public function generateAnthropicResponse(string $prompt, array $params): array
     {
-        try {
+         try {
             $maxTokens = max((int)($params['max_output_tokens'] ?? 2048), 16);
-            $model = $params['model'] ?? 'claude-3.5-haiku-20240601';
+            $model = $params['model'] ?? 'claude-3-5-sonnet-20240620';
     
             $response = Http::withHeaders([
-                'anthropic-version' => '2023-06-01',
+                // 'anthropic-version' => '2023-06-01',
                 'content-type' => 'application/json',
                 'x-api-key' => env('ANTHROPIC_API_KEY'),
             ])->post('https://api.anthropic.com/v1/messages', [
@@ -386,8 +396,7 @@ class ChatAiServices
                 ],
             ]);
     
-            $responseBody = $response->json();
-    
+            $responseBody = $response->json();    
             $content = $responseBody['content'][0]['text'] ?? 'No response text available';
     
             // Optional: parse or clean
@@ -442,7 +451,7 @@ return [
 
     public function generateMetaResponse(string $prompt)
     {
-        try {
+         try {
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer ' . env('OPENROUTER_API_KEY'),
                 'Content-Type' => 'application/json',
@@ -451,16 +460,11 @@ return [
                 'messages' => [
                     [
                         'role' => 'user',
-                        'content' => [
-                            [
-                                'type' => 'text',
-                                'text' => $prompt,
-                            ],
-                        ],
+                    //    'content' => $prompt,
+                       'content' => 'total inidia population 2023',
                     ],
                 ],
             ]);
-
             return $this->parseResponse($response->json()['choices'][0]['message']['content']);
         } catch (\Exception $e) {
             return [

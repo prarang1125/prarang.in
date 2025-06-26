@@ -7,6 +7,7 @@
     </button>
 </div>
 
+
 <div class="section-title">Comparison Report :{{ (isset($content) ? 1 : 0) + (isset($gptResponse) ? 1 : 0) + (isset($geminiResponse) ? 1 : 0) +  (isset($deepSeekResponse) ? 1 : 0) +  (isset($metaResponse) ? 1 : 0) +(isset($claudeResponse) ? 1 : 0) }} A.I. Models</div>
 
 <div class="info-box">
@@ -136,7 +137,7 @@
     @endif
     @if(isset($deepSeekResponse))
     <div class="response-container" id="deepseek-container">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/X_Logo.svg/2048px-X_Logo.svg.png" alt="deepseek Logo" class="ai-logo">
+        <img src="https://chat.deepseek.com/favicon.svg" alt="deepseek Logo" class="ai-logo">
         <div class="response-content">
             <div class="ai-name">({{ chr(96 + $count++) }}) Deepseek</div>
             <div class="ai-response p-3 h-100">

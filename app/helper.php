@@ -63,18 +63,6 @@ if (!function_exists('httpPost')) {
                 'api-auth-type' => env('API_TYPE'),
                 'Content-Type' => 'application/json',
             ];
-<<<<<<< HEAD
-            $response = Http::withHeaders($headers)
-                ->post(env('API_DOMAIN') . '/api/' . $url, $parameters);
-            //Base Url + Parameters
-            if ($response->failed()) {
-                return Redirect::back()->withErrors(['apiError' => $response->status() . ' : Unable to reach.']);
-            } else {
-                return $response->throw()->json();  //  Returning Response  (Json)
-            }
-        } catch (Exception $e) {
-            return response()->json(['status' => 'error', 'message' => $e->getMessage()], 401);
-=======
 
             $fullUrl = rtrim(env('API_DOMAIN'), '/') . '/api/' . ltrim($url, '/');
 
@@ -91,7 +79,6 @@ if (!function_exists('httpPost')) {
                 'status' => 'error',
                 'message' => $e->getMessage()
             ], 500);
->>>>>>> vinita
         }
     }
 }
