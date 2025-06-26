@@ -36,7 +36,7 @@
             @if(isset($metaResponse))
             <input type="hidden" name="meta_response" value="{{ $metaResponse }}">
             @endif
-            <button type="submit"  class="action-button share" title="Share">
+            <button type="button" onclick="handleShare()" class="action-button share" title="Share">
                 {{-- <i class="fas fa-share-alt"></i> --}}
                 Share
             </button>
