@@ -34,7 +34,27 @@ if (!function_exists('httpGet')) {
     }
 }
 
-if (! function_exists('httpPost')) {
+// if (! function_exists('httpPost')) {
+//     function httpPost($url, $parameters)
+//     {
+//         try {
+//             $header = ['api-auth-token' => config('apidata.TOKEN'), 'api-auth-type' => config('apidata.TYPE'), 'Content-Type' => 'application/json'];
+//             $response = Http::withHeaders($header)
+//                 ->post(env('API_DOMAIN') . '/api/' . $url, $parameters);
+//             //Base Url + Parameters
+//             if ($response->failed()) {
+//                 return Redirect::back()->withErrors(['apiError' => $response->status() . ' : Unable to reach.']);
+//             } else {
+//                 return $response->throw()->json();  //  Returning Response  (Json)
+//             }
+//         } catch (Exception $e) {
+//             return response()->json(['status' => 'error', 'message' => $e->getMessage()], 401);
+//         }
+//     }
+// }
+
+
+if (!function_exists('httpPost')) {
     function httpPost($url, $parameters)
     {
         try {
@@ -43,6 +63,7 @@ if (! function_exists('httpPost')) {
                 'api-auth-type' => env('API_TYPE'),
                 'Content-Type' => 'application/json',
             ];
+<<<<<<< HEAD
             $response = Http::withHeaders($headers)
                 ->post(env('API_DOMAIN') . '/api/' . $url, $parameters);
             //Base Url + Parameters
@@ -53,6 +74,24 @@ if (! function_exists('httpPost')) {
             }
         } catch (Exception $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()], 401);
+=======
+
+            $fullUrl = rtrim(env('API_DOMAIN'), '/') . '/api/' . ltrim($url, '/');
+
+            $response = Http::withHeaders($headers)->post($fullUrl, $parameters);
+
+            // Always return the Response object (Laravel HTTP client)
+            return $response;
+
+        } catch (\Exception $e) {
+            Log::error('httpPost() Exception: ' . $e->getMessage());
+
+            // Return a mock Response-like structure
+            return response()->json([
+                'status' => 'error',
+                'message' => $e->getMessage()
+            ], 500);
+>>>>>>> vinita
         }
     }
 }

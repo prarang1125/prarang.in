@@ -180,7 +180,8 @@ class ChatAiServices
                     return $this->generateGiminiResponse($prompt, $params);
                 case 'grok':
                     return $this->generateGrokResponse($prompt, $params);
-                case 'claude':
+                    case 'claude':
+                        return $this->generateGrokResponse($prompt, $params);
                 case 'anthropic':
                     return $this->generateAnthropicResponse($prompt, $params);
                 default:
@@ -365,8 +366,7 @@ class ChatAiServices
         try {
             $maxTokens = max((int)($params['max_output_tokens'] ?? 2048), 16);
             $model = $params['model'] ?? 'claude-3.5-haiku-20240601';
-
-
+    
             $response = Http::withHeaders([
                 'anthropic-version' => '2023-06-01',
                 'content-type' => 'application/json',
@@ -379,29 +379,34 @@ class ChatAiServices
                 'messages' => [
                     [
                         'role' => 'user',
-                        'content' => $prompt,
+                        'content' => [
+                            ['type' => 'text', 'text' => $prompt]
+                        ]
                     ]
                 ],
             ]);
-
+    
             $responseBody = $response->json();
+    
             $content = $responseBody['content'][0]['text'] ?? 'No response text available';
-
-            // Parse the response
+    
+            // Optional: parse or clean
             $parsedContent = $this->parseResponse($content);
-
+    
             return [
                 'success' => true,
                 'response' => $parsedContent,
                 'raw' => $content,
             ];
         } catch (Exception $e) {
+            Log::error('Claude Error: ' . $e->getMessage());
             return [
                 'success' => false,
                 'error' => $e->getMessage(),
             ];
         }
     }
+    
     public function generateDeepseekResponse(string $prompt)
     {
 

@@ -21,7 +21,6 @@ class AIController extends Controller
 
 public function generateAIResponse(Request $request)
 {
-
      try {
         // Step 1: Validate input
         $request->validate([
@@ -62,8 +61,11 @@ public function generateAIResponse(Request $request)
         foreach ($orderedModelNames as $model) {
             switch ($model) {
                 case 'chatgpt':
-                    $result = $this->aiService->generateText('chatgpt', $prompt, ['input' => $prompt]);
-                    $responses['gptResponse'] = $result['success'] ? $result['response'] : 'GPT failed';
+                    $responses['gptResponse'] = $this->aiService->generateGptResponse($prompt, [
+                        'model' => 'gpt-4',
+                        'temperature' => 0.7,
+                        'max_output_tokens' => 2048,
+                    ])['response'] ?? 'GPT failed';
                     break;
 
                 case 'gemini':
@@ -76,9 +78,12 @@ public function generateAIResponse(Request $request)
 
                 case 'claude':
                     $responses['claudeResponse'] = $this->aiService->generateAnthropicResponse($prompt, [
-                        'model' => 'claude-3.5-haiku-20240601',
-                    ])['response'] ?? 'Claude failed';
-                    break;
+                            'model' => 'claude-3.5-haiku-20240601',
+                            'temperature' => 0.7,
+                            'max_output_tokens' => 2048,
+                        ])['response'] ?? 'Claude failed';
+                        break;
+                    
 
                 case 'deepseek':
                     $deepseekResponse = $this->aiService->generateDeepseekResponse($prompt);
@@ -132,7 +137,6 @@ public function generateAIResponse(Request $request)
                 $orderedResponses[$key] = $responses[$key];
             }
         }
-
 
         // Return view with ordered responses
         return view('ai.init_generation', $orderedResponses);

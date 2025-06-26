@@ -332,7 +332,8 @@
                                                     class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
                                             </label>
                                         </div>
-                                        <button class="btn btn-success" type="submit" onclick="return setContent()">
+                                        <button class="btn btn-success" type="submit"
+                                            onclick="return setContents()">
                                             Compare
                                         </button>
                                     </div>
@@ -635,8 +636,11 @@
             }
         });
 
-        function setContent() {
+        function setContents() {
+
             const outChatElement = document.getElementById('outChat');
+
+
             if (!outChatElement) {
                 alert('Please generate Upmana content first!');
                 return false;
@@ -656,12 +660,6 @@
 
             contentInput.value = content;
 
-            // Update model sequence again before submit
-            const sequenceInput = document.getElementById("selected-models-sequence");
-            if (sequenceInput && typeof selectedSequence !== "undefined") {
-                sequenceInput.value = JSON.stringify(selectedSequence);
-                console.log("Final model sequence set:", selectedSequence);
-            }
 
             return true; // Allow form to submit
         }

@@ -60,7 +60,6 @@ Route::get('/share/{uuid}', [SharedResponseController::class, 'show'])->name('sh
 
 // UpmanaAi
 
-
 Route::get('/ai/upmana', UpmanaAi::class)->name('upmana-ai');
 
 
