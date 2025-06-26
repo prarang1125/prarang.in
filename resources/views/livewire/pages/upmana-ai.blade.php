@@ -86,29 +86,21 @@
                                                     class="w-6 h-6" wire:loading.class="d-none">
                                             </div>
                                         </div>
-
                                     </div>
-
-
-
                                 </div>
                             </div>
                             <div class="col-sm-2">
-                                {{-- <div>
+                                <div>
                                     <a class="btn btn-primary" target="_blank"
-                                        href="https://g2c.prarang.in/india">India</a>
+                                        href="https://g2c.prarang.in/ai/India">India</a>
                                     <a class="btn btn-primary" target="_blank"
-                                        href="https://g2c.prarang.in/world">World</a>
-                                </div> --}}
-
+                                        href="https://g2c.prarang.in/ai/World">World</a>
+                                </div>
                             </div>
                         </div>
-
                     </div>
                 @endif
-
             </section>
-
             @if ($output)
                 <div class="row">
                     <div class="col-sm-8">
@@ -119,7 +111,6 @@
                                 </a></p>
                         </div>
                         <section id="outChat">
-
                             <div class="p-3 h-100" id="dfggsgzrf">
                                 @foreach ($output['warnings'] ?? [] as $warning)
                                     <p class="warning-chat">{{ $warning }}</p>
@@ -516,7 +507,9 @@
                                                     <div class="accordion-body">
                                                         <div>
                                                             <input type="checkbox" wire:model="cities"
-                                                                id="group-{{ $continentId }}">
+                                                                id="group-{{ $continentId }}"
+                                                                value="{{ $continent }}">
+
                                                             <label for="group-{{ $continentId }}">
                                                                 {{ $continent }}
                                                             </label>

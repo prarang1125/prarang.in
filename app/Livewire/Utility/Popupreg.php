@@ -46,8 +46,7 @@ class Popupreg extends Component
             'occupation' => 'required',
             'country' => 'required',
             'purpose' => 'required',
-
-            'mobile' => 'required',
+            'mobile' => 'required|regex:/^\+?[1-9]\d{10,12}$/',
         ]);
 
         DB::table('upmana_users')->insert([

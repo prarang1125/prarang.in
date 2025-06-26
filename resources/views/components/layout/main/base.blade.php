@@ -129,7 +129,7 @@
                         </li>
 
                         <li class="col-md col-sm no-padding">
-                            <a target="_blank" href="https://prarang.ai">Blogs</a>
+                            <a target="_blank" href="https://prarang.ai/blog">Blogs</a>
                         </li>
 
                     </ul>
