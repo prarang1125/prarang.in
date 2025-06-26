@@ -59,7 +59,7 @@ function hideLoading() {
 function showError(message) {
     const errorDiv = document.createElement("div");
     errorDiv.className = "error-message";
-    errorDiv.textContent = messagae;
+    errorDiv.textContent = message;
     document.body.appendChild(errorDiv);
     setTimeout(() => errorDiv.remove(), 5000);
 }
@@ -156,6 +156,7 @@ async function handleCompare(event) {
                 year: "numeric",
             })
             .replace(",", ""),
+        results: {}
     };
 
     // API keys (INSECURE: for testing only)

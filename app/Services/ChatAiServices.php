@@ -375,10 +375,10 @@ class ChatAiServices
     {
          try {
             $maxTokens = max((int)($params['max_output_tokens'] ?? 2048), 16);
-            $model = $params['model'] ?? 'claude-3-5-sonnet-20240620';
+            $model = 'claude-3-5-haiku-20241022';
     
             $response = Http::withHeaders([
-                // 'anthropic-version' => '2023-06-01',
+                'anthropic-version' => '2023-06-01',
                 'content-type' => 'application/json',
                 'x-api-key' => env('ANTHROPIC_API_KEY'),
             ])->post('https://api.anthropic.com/v1/messages', [
