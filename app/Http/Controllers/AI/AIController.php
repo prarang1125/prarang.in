@@ -61,11 +61,12 @@ public function generateAIResponse(Request $request)
         foreach ($orderedModelNames as $model) {
             switch ($model) {
                 case 'chatgpt':
-                    $responses['gptResponse'] = $this->aiService->generateGptResponse($prompt, [
-                        'model' => 'gpt-4',
+                    $responses['gptResponse'] = $this->aiService->generateGptResponse('gpt-4', [
+                        'prompt' => $prompt,
                         'temperature' => 0.7,
                         'max_output_tokens' => 2048,
                     ])['response'] ?? 'GPT failed';
+                    
                     break;
 
                 case 'gemini':
@@ -78,13 +79,12 @@ public function generateAIResponse(Request $request)
 
                 case 'claude':
                     $responses['claudeResponse'] = $this->aiService->generateAnthropicResponse($prompt, [
-                            'model' => 'claude-3.5-haiku-20240601',
+                            'model' => 'claude-3-5-haiku-20241022',
                             'temperature' => 0.7,
                             'max_output_tokens' => 2048,
                         ])['response'] ?? 'Claude failed';
                         break;
                     
-
                 case 'deepseek':
                     $deepseekResponse = $this->aiService->generateDeepseekResponse($prompt);
                     $responses['deepseekResponse'] = is_array($deepseekResponse)

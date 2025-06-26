@@ -453,7 +453,6 @@
                                                             @endforeach
                                                             <hr>
                                                         @endforeach
-
                                                     </div>
 
                                                 </div>

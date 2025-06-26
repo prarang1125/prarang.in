@@ -36,7 +36,7 @@
             @if(isset($metaResponse))
             <input type="hidden" name="meta_response" value="{{ $metaResponse }}">
             @endif
-            <button type="button" onclick="handleShare()" class="action-button share" title="Share">
+            <button type="submit"  class="action-button share" title="Share">
                 {{-- <i class="fas fa-share-alt"></i> --}}
                 Share
             </button>
@@ -83,7 +83,13 @@
                                 
                                 if (!empty(trim($responseContent))) {
                                     $modelCount++;
-                                    $displayedLinks[] = '<a class="model-link" href="javascript:void(0);" data-container="' . $modelName . '-container" onclick="window.scrollToResponse(\'' . $modelName . '-container\')">(' . chr(96 + $modelCount) . ')' . ($modelName === 'meta' ? 'Meta Llama' : ucfirst($modelName)) . '</a>';
+                                    $displayedLinks[] = '<a class="model-link" href="javascript:void(0);" data-container="' . 
+                                        ($modelName === 'upmana' ? 'upmana-container' : $modelName . '-container') . 
+                                        '" onclick="window.scrollToResponse(\'' . 
+                                        ($modelName === 'upmana' ? 'upmana-container' : $modelName . '-container') . 
+                                        '\')">(' . chr(96 + $modelCount) . ')' . 
+                                        ($modelName === 'meta' ? 'Meta Llama' : ucfirst($modelName)) . 
+                                        '</a>';
                                 }
                             }
                         }
@@ -216,6 +222,11 @@
     // Define scrollToResponse globally
     window.scrollToResponse = function(containerId) {
         console.log('Attempting to scroll to container:', containerId);
+
+        // Special handling for Upmana response
+        if (containerId === 'upmana-container') {
+            containerId = 'content-container';
+        }
 
         const container = document.getElementById(containerId);
 
