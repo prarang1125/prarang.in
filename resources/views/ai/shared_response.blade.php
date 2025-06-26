@@ -26,7 +26,7 @@
                     @endphp
                     @if(isset($umanResponse))
                     @php $modelCount++; @endphp
-                    <a class="model-link" onclick="scrollToResponse('content-container')">({{ chr(96 + $modelCount) }})Upmana</a>
+                    <a class="model-link" onclick="scrollToResponse('upmana-container')">({{ chr(96 + $modelCount) }})Upmana</a>
                     @endif
 
                     @if(isset($gptResponse))
@@ -66,7 +66,7 @@
     $count=1;
     @endphp
     @if(isset($umanResponse))
-    <div class="response-container" id="content-container">
+    <div class="response-container" id="upmana-container">
         <div class="response-content">
             <div class="ai-name">({{ chr(96 + $count++) }}) UPMANA - Knowledge By Comparison</div>
             <div class="prompt-box upman">
@@ -172,8 +172,21 @@
 </div>
 
 
-@push('scripts')
 <script>
+    function scrollToResponse(containerId) {
+    const container = document.getElementById(containerId);
+    console.log(container);
+    if (container) {
+        console.log("Scrolling to:", containerId);
+        container.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+        });
+    } else {
+        console.warn("Element not found:", containerId);
+    }
+}
+
     document.addEventListener('DOMContentLoaded', function() {
         // Wrap all tables in a container for proper scrolling
         document.querySelectorAll('.ai-response table').forEach(table => {
@@ -184,6 +197,5 @@
         });
     });
 </script>
-@endpush
 
 </x-layout.main.base>
