@@ -1193,3 +1193,43 @@ textarea{
  }
 
 }
+
+/* Items center */
+.space-y-4 .items-center .items-center{
+ flex-direction:row;
+ display:grid !important;
+ column-gap:6px;
+ transform:translatex(0px) translatey(0px);
+}
+
+/* Items center */
+.container div .container .pr-ai-section .row .col-sm-4 .id-selector form div .space-y-4 .items-center .items-center{
+ grid-template-columns:10% 10% 50% 10% 10% !important;
+}
+
+/* Inline block */
+.space-y-4 .items-center .d-inline-block{
+ display:flex !important;
+ justify-content:center;
+ align-items:center;
+ padding-left:4px !important;
+ padding-right:4px !important;
+ width:20px;
+ height:20px;
+ border-radius:50px;
+ /* border-top-right-radius:50px; */
+ color: white!important;
+ background: #000;
+}
+
+/* Heading */
+.first-prompt .firstPrompt h5{
+ margin-bottom:14px !important;
+}
+
+/* First prompt */
+.pr-ai-section .first-prompt > .firstPrompt{
+ position:relative;
+ top:-20px;
+}
+

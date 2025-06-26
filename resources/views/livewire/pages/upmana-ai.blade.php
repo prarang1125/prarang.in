@@ -10,11 +10,15 @@
                 @if ($activeSection['firstPrompt'])
                     <div class="mb-3 text-center firstPrompt">
                         <h5>Comparative A.I. on any Geography</h5>
+                        @if (session()->has('message'))
+                            <p class="text-success" style="font-size: 14px!important; margin: 0px; padding: 0px;">
+                                {{ session('message') }}</p>
+                        @endif
                         <br><br>
-                        <p class="text-end">
+                        {{-- <p class="text-end">
                             <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#aiFaqModal"
                                 class="rounded-pill btn btn-warning btn-sm">FAQ</a>
-                        </p>
+                        </p> --}}
                         <div class="row">
                             <div class="col-sm-2"></div>
                             <div class="col-sm-8">
@@ -90,12 +94,12 @@
                                 </div>
                             </div>
                             <div class="col-sm-2">
-                                <div>
+                                {{-- <div>
                                     <a class="btn btn-primary" target="_blank"
                                         href="https://g2c.prarang.in/india">India</a>
                                     <a class="btn btn-primary" target="_blank"
                                         href="https://g2c.prarang.in/world">World</a>
-                                </div>
+                                </div> --}}
 
                             </div>
                         </div>
@@ -249,7 +253,7 @@
                                         <div class="flex items-center space-x-2">
 
                                             <!-- Meta Option -->
-                                          <label class="flex items-center space-x-2">
+                                            <label class="flex items-center space-x-2">
                                                 <input type="checkbox" name="model[]" value="meta" data-ai="meta">
                                                 <img src="https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ai.meta.com/&size=256"
                                                     alt="" class="w-6 h-6">
@@ -261,7 +265,7 @@
                                                     class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
                                             </label>
 
-                                                <!-- Gemini Option -->
+                                            <!-- Gemini Option -->
                                             <label class="flex items-center space-x-2">
                                                 <input type="checkbox" name="model[]" value="gemini"
                                                     data-ai="gemini">
@@ -300,18 +304,21 @@
                                                 <span
                                                     class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
                                             </label>
-                                              <!-- Upmana Option -->
+                                            <!-- Upmana Option -->
                                             <label class="flex items-center space-x-2">
-                                               <input type="checkbox" name="model[]" value="upmana" data-ai="upmana">
-                                             <img src="{{ asset('assets/ai/images/byr-btn.png') }}" alt="Upmana Logo" class="w-6 h-6">
-                                             <span>
-                                               <span>Upmana</span>
-                                                <span>Prarang</span>
-                                            </span>
-                                             <span class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
+                                                <input type="checkbox" name="model[]" value="upmana"
+                                                    data-ai="upmana">
+                                                <img src="{{ asset('assets/ai/images/byr-btn.png') }}"
+                                                    alt="Upmana Logo" class="w-6 h-6">
+                                                <span>
+                                                    <span>Upmana</span>
+                                                    <span>Prarang</span>
+                                                </span>
+                                                <span
+                                                    class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
                                             </label>
-                                        
-                                         <!-- Claude Option -->
+
+                                            <!-- Claude Option -->
                                             <label class="flex items-center space-x-2">
                                                 <input type="checkbox" name="model[]" value="claude"
                                                     data-ai="claude">
@@ -323,12 +330,13 @@
                                                 </span>
                                                 <span
                                                     class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
-                                            </label>                                        
+                                            </label>
+                                        </div>
+                                        <button class="btn btn-success" type="submit"
+                                            onclick="return setContents()">
+                                            Compare
+                                        </button>
                                     </div>
-                                    <button class="btn btn-success" type="submit" onclick="return setContent()">
-                                        Compare
-                                    </button>
-                                </div>
                             </form>
                         </section>
                     </div>
@@ -611,6 +619,7 @@
                 </div>
             </div>
         </div>
+        @livewire('utility.popupreg')
     </section>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -626,17 +635,17 @@
             }
         });
 
-        function setContent() {
- 
+        function setContents() {
+
             const outChatElement = document.getElementById('outChat');
-           
-            alert('Please generate Upmana content first!');
+
+
             if (!outChatElement) {
                 alert('Please generate Upmana content first!');
                 return false;
             }
 
-            const content = outChatElement.innerHTML;
+            const content = outChatElement.innerHTML.trim();
             if (!content) {
                 alert('Please generate Upmana content first!');
                 return false;
@@ -650,12 +659,6 @@
 
             contentInput.value = content;
 
-            // Update model sequence again before submit
-            const sequenceInput = document.getElementById("selected-models-sequence");
-            if (sequenceInput && typeof selectedSequence !== "undefined") {
-                sequenceInput.value = JSON.stringify(selectedSequence);
-                console.log("Final model sequence set:", selectedSequence);
-            }
 
             return true; // Allow form to submit
         }
@@ -755,6 +758,19 @@
             const modalInstance = bootstrap.Modal.getInstance(modalEl);
             if (modalInstance) modalInstance.hide();
         }
+    </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            const registerModal = new bootstrap.Modal(document.getElementById('popupregister'));
+            // registerModal.show();
+
+            window.addEventListener('show-register-modal', () => {
+                registerModal.show();
+            });
+            window.addEventListener('close-register-modal', () => {
+                registerModal.hide();
+            });
+        });
     </script>
 
     <script>

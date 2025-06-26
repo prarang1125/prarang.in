@@ -50,23 +50,23 @@ class SharedResponseController extends Controller
             'deepseek_response' => 'nullable|string',
             'meta_response' => 'nullable|string',
         ]);
-    
+
         // Add UUID and UTC timestamp
         $data['uuid'] = Str::uuid()->toString();
         $data['created_at_utc'] = now('UTC')->toDateTimeString();
-    
+
         // Make API request
         $response = httpPost('/share-response', $data);
-    
+
         // Handle the response
         if (method_exists($response, 'successful') && $response->successful()) {
             // return response()->json($response->json(), $response->status());
             $responseData = $response->json();
             if (is_array($responseData) && isset($responseData[0]['uuid'])) {
                 return response()->json(['uuid' => $responseData[0]['uuid']], 200);
-            }  
-        }            
-        
+            }
+        }
+
         // Handle failure case
         return response()->json([
             'error' => 'API request failed',
@@ -78,14 +78,14 @@ class SharedResponseController extends Controller
     {
         // Fetch the shared response by UUID
         $response = httpGet("/share-response/$uuid");
-    
+
         // Check if the response is valid and has data
         if (!$response || !$response['status'] || !isset($response['data'])) {
             abort(404);
         }
-    
+
         $sharedResponse = $response['data'];
-    
+
         return view('ai.shared_response', [
             'created_at' => $sharedResponse['created_at_utc'],
             'prompt' => $sharedResponse['prompt'],

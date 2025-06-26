@@ -33,6 +33,7 @@ class UpmanaAi extends Component
     public $selectedCountries = [];
     public $source;
     public $citiesTOChose, $firstCity, $takeme;
+    public $genHit, $isRegistered;
 
 
     public function mount(SentenceService $sentenceService)
@@ -51,39 +52,18 @@ class UpmanaAi extends Component
             'output' => false
         ];
         $this->citiesTOChose = $this->sentenceService->geography();
-    }
+        $this->genHit = session()->get('gen-hit', 0);
+        $this->isRegistered = session()->has('upmana-auth');
+        if (!$this->isRegistered) {
 
-    public function updatedSelectedModels()
-    {
-        // Log the update of selected models
-        Log::info('Selected Models Updated: ', $this->selectedModels);
-        
-        // Directly update sequence based on current selections
-        $this->selectedSequence = $this->selectedModels;
-        
-        // Log the updated sequence
-        Log::info('Updated Sequence: ', $this->selectedSequence);
-    }
-
-    #[On('model-sequence-changed')]
-    public function updateModelSequence($sequence)
-    {
-        // Log the received sequence
-        Log::info('Received Model Sequence: ' . $sequence);
-        
-        // Parse JSON sequence 
-        $parsedSequence = json_decode($sequence, true);
-        
-        // Log the parsed sequence
-        Log::info('Parsed Model Sequence: ', $parsedSequence);
-        
-        // Update sequence from JavaScript event
-        $this->selectedSequence = $parsedSequence ?? [];
-        $this->selectedModels = $parsedSequence ?? [];
-        
-        // Log the updated properties
-        Log::info('Updated Selected Sequence: ', $this->selectedSequence);
-        Log::info('Updated Selected Models: ', $this->selectedModels);
+            if ($this->genHit >= 5) {
+                $this->dispatch('show-register-modal');
+                return;
+            } else {
+                $this->genHit++;
+                session()->put('gen-hit', $this->genHit);
+            }
+        }
     }
 
     public function toggleMainCheck($main)
@@ -93,12 +73,12 @@ class UpmanaAi extends Component
         } else {
             $this->activeMainChecks[] = $main;
         }
-
-        // $this->updatePromptFromState();
     }
 
     public function generate()
     {
+
+
         $this->validate(
             [
                 'subChecks' => 'required|array|min:1',
@@ -177,6 +157,7 @@ class UpmanaAi extends Component
 
     public function updatePromptFromState()
     {
+
 
         if (!$this->sentenceService) {
             $this->sentenceService = new SentenceService;
