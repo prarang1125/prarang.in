@@ -78,7 +78,8 @@ class SharedResponseController extends Controller
         $response = httpGet("/share-response/$uuid");
 
         // Check if the response is valid and has data
-        if (!$response || !$response['status'] || !isset($response['data'])) {
+
+        if (!isset($response['status']) || $response['status'] !== 200 || empty($response['data'])) {
             abort(404);
         }
 

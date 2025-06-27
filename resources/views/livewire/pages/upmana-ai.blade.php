@@ -90,12 +90,14 @@
                                 </div>
                             </div>
                             <div class="col-sm-2">
-                                <div>
+                                {{-- <div>
+
                                     <a class="btn btn-primary" target="_blank"
-                                        href="https://g2c.prarang.in/ai/India">India</a>
+                                        href="https://g2c.prarang.in/ai/world">World</a>
                                     <a class="btn btn-primary" target="_blank"
-                                        href="https://g2c.prarang.in/ai/World">World</a>
-                                </div>
+                                        href="https://g2c.prarang.in/ai/india">India</a>
+
+                                </div> --}}
                             </div>
                         </div>
                     </div>
