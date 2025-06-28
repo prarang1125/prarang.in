@@ -60,7 +60,6 @@
         .container img {
             top: 147px;
         }
-
     }
 </style>
 
