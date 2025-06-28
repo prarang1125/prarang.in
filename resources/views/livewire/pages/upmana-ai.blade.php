@@ -614,10 +614,16 @@
                 </div>
             </div>
         </div>
+
         @livewire('utility.popupreg')
+
+
+
     </section>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
+
+
             // Debugging logs
             console.log('Upmana AI page loaded');
 

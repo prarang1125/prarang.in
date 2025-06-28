@@ -52,7 +52,7 @@ class SharedResponseController extends Controller
         ]);
 
         $data['gimini_response'] = $data['gemini_response'] ?? '';
-        $data['upmana_response'] = htmlspecialchars(BlockSQLInjection($data['upmana_response'] ?? ''), ENT_QUOTES, 'UTF-8');
+
         // Make API request
         $response = httpPost('/share-response', $data);
 

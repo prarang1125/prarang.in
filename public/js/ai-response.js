@@ -156,7 +156,7 @@ async function handleCompare(event) {
                 year: "numeric",
             })
             .replace(",", ""),
-        results: {}
+        results: {},
     };
 
     // API keys (INSECURE: for testing only)
@@ -548,8 +548,11 @@ function handleShare() {
         })
         .then((data) => {
             const shareUrl = `${window.location.origin}/share/${data.uuid}`;
-            document.getElementById("shareLink").value = shareUrl;
-            showShareModal();
+            Livewire.dispatch("loadsharemodal", {
+                title: "Share Comparision",
+                description: "",
+                url: shareUrl,
+            });
         })
         .catch((error) => {
             console.error("Share Error:", error);
