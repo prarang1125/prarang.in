@@ -54,17 +54,6 @@ class UpmanaAi extends Component
         $this->citiesTOChose = $this->sentenceService->geography();
         $this->genHit = session()->get('gen-hit', 0);
         $this->isRegistered = session()->has('upmana-auth');
-
-        if (!$this->isRegistered) {
-
-            if ($this->genHit >= 5) {
-                $this->dispatch('show-register-modal');
-                return;
-            } else {
-                $this->genHit++;
-                session()->put('gen-hit', $this->genHit);
-            }
-        }
     }
 
     public function toggleMainCheck($main)
@@ -80,9 +69,12 @@ class UpmanaAi extends Component
     {
         if (!$this->isRegistered) {
 
-            if ($this->genHit >= 5) {
+            if ($this->genHit >= 3) {
                 $this->dispatch('show-register-modal');
                 return;
+            } else {
+                $this->genHit++;
+                session()->put('gen-hit', $this->genHit);
             }
         }
 
