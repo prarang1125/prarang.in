@@ -83,7 +83,7 @@ class UpmanaAi extends Component
         );
         if (!$this->isRegistered) {
 
-            if ($this->genHit >= 3) {
+            if ($this->genHit >= 5) {
                 $this->dispatch('show-register-modal');
                 return;
             } else {

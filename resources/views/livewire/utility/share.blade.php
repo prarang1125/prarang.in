@@ -83,7 +83,7 @@
                 <div class="text-center ps-3 pe-3">
                     <hr>
                     <b>Google Notebook LM</b>
-                    <p>for one-click AI summary of this comparitive AI Report </p>
+                    <p>for one-click AI summary of this comparative AI Report </p>
                     </p>
                     <a target="_blank" class="btn btn-dark" href="https://notebooklm.google.com/">Notebook LM</a> <br>
                     <small>Note: Copy the Link First and Paste it in Google Notebook LM</small>
