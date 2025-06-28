@@ -65,7 +65,7 @@
 </style>
 
 <body>
-    @livewire('utility.share')>
+    @livewire('utility.share')
     <header class="container">
         <div class="row">
             <div class="order-1 col-sm-4 col-6 order-sm-1">
