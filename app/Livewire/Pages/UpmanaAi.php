@@ -78,7 +78,13 @@ class UpmanaAi extends Component
 
     public function generate()
     {
+        if (!$this->isRegistered) {
 
+            if ($this->genHit >= 5) {
+                $this->dispatch('show-register-modal');
+                return;
+            }
+        }
 
         $this->validate(
             [
