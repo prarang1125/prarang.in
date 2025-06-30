@@ -60,16 +60,16 @@
             font-weight: bold;
         }
     </style>
-    <div class="p-3 border border-dark rounded bg-light">
+    <div class="p-3 border rounded border-dark bg-light">
         <ul class="ps-3" style="list-style: none;">
             <li><a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#whatIsUpmanaModal">Comparison A.I.</a></li>
             <li><a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#aiVsAgiModal">Prompt </a></li>
             <li><a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#upmanabenefitsModal">Comparison A.I & Artificial General Intelligence (AGI) </a></li>
-            <li><a href="{{ route('insight') }}">Intelligent Insights</a></li>
+
         </ul>
     </div>
 
-    <div class="p-3 border border-dark rounded bg-light">
+    <div class="p-3 border rounded border-dark bg-light">
         <ul class="ps-3" style="list-style: none;">
             <li><a target="_blank" href="https://g2c.prarang.in/ai/world">World AI Report</a></li>
             <li><a target="_blank" href="https://g2c.prarang.in/ai/india">India AI Report</a></li>
