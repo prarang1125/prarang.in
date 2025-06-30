@@ -100,75 +100,7 @@ class ChatAiServices
         return $html;
     }
 
-    protected function preprocessTableContent(string $content): string
-    {
-        // If the content already contains a markdown table, return it as is
-        if (strpos($content, '| ---') !== false || strpos($content, '|:---') !== false) {
-            return $content;
-        }
-
-        // Convert ASCII table to markdown table
-        $lines = explode("\n", $content);
-        $tableLines = [];
-        $inTable = false;
-        $headers = [];
-        $rows = [];
-
-        foreach ($lines as $line) {
-            $line = trim($line);
-
-            // Check if line is part of a table
-            if (strpos($line, '|') !== false || strpos($line, '+') !== false) {
-                if (!$inTable) {
-                    $inTable = true;
-                }
-
-                // Skip separator lines
-                if (strpos($line, '+') !== false) {
-                    continue;
-                }
-
-                // Process table line
-                $cells = array_map('trim', explode('|', $line));
-                $cells = array_filter($cells); // Remove empty cells
-
-                if (empty($headers)) {
-                    $headers = $cells;
-                } else {
-                    $rows[] = $cells;
-                }
-            } else {
-                if ($inTable) {
-                    // Convert collected table data to markdown
-                    if (!empty($headers) && !empty($rows)) {
-                        $tableLines[] = '| ' . implode(' | ', $headers) . ' |';
-                        $tableLines[] = '| ' . implode(' | ', array_fill(0, count($headers), '---')) . ' |';
-                        foreach ($rows as $row) {
-                            $tableLines[] = '| ' . implode(' | ', $row) . ' |';
-                        }
-                    }
-                    $inTable = false;
-                    $headers = [];
-                    $rows = [];
-                }
-                $tableLines[] = $line;
-            }
-        }
-
-        // Handle any remaining table data
-        if ($inTable && !empty($headers) && !empty($rows)) {
-            $tableLines[] = '| ' . implode(' | ', $headers) . ' |';
-            $tableLines[] = '| ' . implode(' | ', array_fill(0, count($headers), '---')) . ' |';
-            foreach ($rows as $row) {
-                $tableLines[] = '| ' . implode(' | ', $row) . ' |';
-            }
-        }
-
-        return implode("\n", $tableLines);
-    }
-
-
-
+   
     public function generateText(string $model, string $prompt, array $params = []): array
     {
         try {
@@ -261,7 +193,7 @@ class ChatAiServices
         $maxTokens = max((int)($params['max_output_tokens'] ?? 256), 16);
         $model = $params['model'] ?? 'gemini-2.0-flash';
 
-        try {
+         try {
             $response = Http::post(
                 "https://generativelanguage.googleapis.com/v1beta/models/{$model}:generateContent?key=" . env('GEMINI_API_KEY'),
                 [
@@ -283,10 +215,8 @@ class ChatAiServices
             );
 
             $responseBody = $response->json();
+          
             $content = $responseBody['candidates'][0]['content']['parts'][0]['text'] ?? 'No response text available';
-
-            // Pre-process table content before parsing
-            $content = $this->preprocessTableContent($content);
 
             // Parse the response
             $parsedContent = $this->parseResponse($content);
@@ -316,6 +246,7 @@ class ChatAiServices
             ];
         }
     }
+
 
     public function generateGrokResponse(string $prompt, array $params): array
     {
@@ -371,6 +302,7 @@ class ChatAiServices
         }
     }
 
+
     public function generateAnthropicResponse(string $prompt, array $params): array
     {
          try {
@@ -422,7 +354,7 @@ class ChatAiServices
         try {
             $model = 'deepseek/deepseek-chat-v3-0324:free';
 
-            $response = Http::withHeaders([
+            $response = Http::timeout(60)->withHeaders([
                 'Content-Type' => 'application/json',
                 'Authorization' => 'Bearer ' . env('OPENROUTER_API_KEY'),
             ])->post('https://openrouter.ai/api/v1/chat/completions', [
@@ -434,12 +366,13 @@ class ChatAiServices
                     ],
                 ],
             ]);
-$content = $response->json()['choices'][0]['message']['content'] ?? 'No response';
-return [
+
+    $content = $response->json()['choices'][0]['message']['content'] ?? 'No response';
+
+    return [
     'success' => true,
     'response' => $this->parseResponse($content),
-    'raw' => $content,
-];
+    ];
         } catch (\Exception $e) {
             return [
                 'success' => false,
@@ -451,7 +384,7 @@ return [
 
     public function generateMetaResponse(string $prompt)
     {
-         try {
+          try {
             $response = Http::withHeaders([
                 'Authorization' => 'Bearer ' . env('OPENROUTER_API_KEY'),
                 'Content-Type' => 'application/json',
@@ -460,10 +393,10 @@ return [
                 'messages' => [
                     [
                         'role' => 'user',
-                    //    'content' => $prompt,
-                       'content' => 'total inidia population 2023',
+                       'content' => $prompt,
                     ],
                 ],
+                 'max_tokens' => 500,
             ]);
             return $this->parseResponse($response->json()['choices'][0]['message']['content']);
         } catch (\Exception $e) {
