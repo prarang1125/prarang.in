@@ -15,10 +15,7 @@
                                 {{ session('message') }}</p>
                         @endif
                         <br><br>
-                        {{-- <p class="text-end">
-                            <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#aiFaqModal"
-                                class="rounded-pill btn btn-warning btn-sm">FAQ</a>
-                        </p> --}}
+
                         <div class="row">
                             <div class="col-sm-2"></div>
                             <div class="col-sm-8">
@@ -624,7 +621,11 @@
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="whatIsUpmanaLabel">Comparison A.I.</h5>
+                        <span class="pr1c">●</span><span class="pr2c">●</span><span class="pr3c">●</span>
+                        <h5 class="text-center modal-title" id="whatIsUpmanaLabel">
+
+                            Comparison A.I.
+                        </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
                     </div>
@@ -706,7 +707,8 @@
         <div class="modal fade" id="aiVsAgiModal" tabindex="-1" aria-labelledby="aiVsAgiLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-lg">
                 <div class="modal-content">
-                    <div class="modal-header">
+                    <div class="modal-header"> <span class="pr1c">●</span><span class="pr2c">●</span><span
+                            class="pr3c">●</span>
                         <h5 class="modal-title" id="aiVsAgiLabel">Prompt</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
@@ -739,8 +741,10 @@
             aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered modal-xl">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="upmanaBenefitsLabel">Comparison A.I & Artificial General
+                    <div class="modal-header"> <span class="pr1c">●</span><span class="pr2c">●</span><span
+                            class="pr3c">●</span>
+                        <h5 class="text-center modal-title" id="upmanaBenefitsLabel">Comparison A.I & Artificial
+                            General
                             Intelligence (AGI)</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                             aria-label="Close"></button>
@@ -785,7 +789,7 @@
                             </p>
                         </section>
                         <section>
-                            <h1>AGI vs Upmana</h1>
+
                             <table style="width: 100%; border-collapse: collapse; text-align: left;">
                                 <thead>
                                     <tr style="background-color: #f2f2f2;">
