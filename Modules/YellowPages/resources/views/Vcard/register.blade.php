@@ -15,7 +15,7 @@
 
     $images = [
         'rampur' => 'https://i.ibb.co/GvFF9H1k/Add-a-heading.png',
-        'meerut' => 'https://i.postimg.cc/QdkVw174/image.png',
+        'meerut' => 'https://i.postimg.cc/j5FWqX4F/Thumbnail-6.png',
         'lucknow' => 'https://i.ibb.co/PzYgXpZQ/lucknowog.png',
     ];
 
