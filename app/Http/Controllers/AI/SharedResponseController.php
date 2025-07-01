@@ -51,9 +51,7 @@ class SharedResponseController extends Controller
             'meta_response' => 'nullable|string',
         ]);
 
-        // Add UUID and UTC timestamp
-        $data['uuid'] = Str::uuid()->toString();
-        $data['created_at_utc'] = now('UTC')->toDateTimeString();
+        $data['gimini_response'] = $data['gemini_response'] ?? '';
 
         // Make API request
         $response = httpPost('/share-response', $data);
@@ -80,7 +78,8 @@ class SharedResponseController extends Controller
         $response = httpGet("/share-response/$uuid");
 
         // Check if the response is valid and has data
-        if (!$response || !$response['status'] || !isset($response['data'])) {
+
+        if (!isset($response['status']) || $response['status'] !== 200 || empty($response['data'])) {
             abort(404);
         }
 

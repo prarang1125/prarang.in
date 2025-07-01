@@ -60,11 +60,11 @@
         .container img {
             top: 147px;
         }
-
     }
 </style>
 
 <body>
+    @livewire('utility.share')
     <header class="container">
         <div class="row">
             <div class="order-1 col-sm-4 col-6 order-sm-1">
@@ -129,7 +129,7 @@
                         </li>
 
                         <li class="col-md col-sm no-padding">
-                            <a target="_blank" href="https://prarang.ai">Blogs</a>
+                            <a target="_blank" href="https://prarang.ai/blog">Blogs</a>
                         </li>
 
                     </ul>

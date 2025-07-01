@@ -55,54 +55,9 @@ Route::get('yellow-pages/meerut/landing-page', [LandingPages::class, 'index']);
 Route::any('/upmana/comparision-with-others', ComparisonApi::class)->name('ai.response');
 Route::post('/generate/ai/Response/all', [AIController::class, 'generateAIResponse'])->name('ai.generate.response');;
 // Route::any('/generate/ai/Response/single', [AIController::class, 'generateSingleAIResponse'])->name('ai.single.response');
-Route::post('/share-response', [SharedResponseController::class, 'store'])->name('share.store');
+Route::post('share-response', [SharedResponseController::class, 'store'])->name('share.store');
 Route::get('/share/{uuid}', [SharedResponseController::class, 'show'])->name('share.show');
 
 // UpmanaAi
 
 Route::get('/ai/upmana', UpmanaAi::class)->name('upmana-ai');
-
-
-// Optional: parallel response
-// Route::post('/proxy/{model}', function (Request $request, $model) {
-//     $apiKeys = [
-//         'openai' => env('OPENAI_API_KEY'),
-//         'gemini' => env('GEMINI_API_KEY'),
-//         'anthropic' => env('ANTHROPIC_API_KEY'),
-//         'openrouter' => env('OPENROUTER_API_KEY'),
-//         'xai' => env('XAI_API_KEY')
-//     ];
-
-//     $urls = [
-//         'chatgpt' => 'https://api.openai.com/v1/chat/completions',
-//         'gemini' => "https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key={$apiKeys['gemini']}",
-//         'claude' => 'https://api.anthropic.com/v1/messages',
-//         'deepseek' => 'https://openrouter.ai/api/v1/chat/completions',
-//         'meta' => 'https://openrouter.ai/api/v1/chat/completions',
-//         'grok' => 'https://api.x.ai/v1/chat/completions'
-//     ];
-
-//     if (!isset($urls[$model])) {
-//         return response()->json(['error' => 'Invalid model'], 400);
-//     }
-
-//     $headers = ['Content-Type' => 'application/json'];
-
-//     if ($model === 'chatgpt') {
-//         $headers['Authorization'] = "Bearer {$apiKeys['openai']}";
-//     } elseif ($model === 'claude') {
-//         $headers['anthropic-version'] = '2023-06-01';
-//         $headers['x-api-key'] = $apiKeys['anthropic'];
-//     } elseif ($model === 'deepseek' || $model === 'meta') {
-//         $headers['Authorization'] = "Bearer {$apiKeys['openrouter']}";
-//     } elseif ($model === 'grok') {
-//         $headers['Authorization'] = "Bearer {$apiKeys['xai']}";
-//     }
-
-//     try {
-//         $response = Http::withHeaders($headers)->post($urls[$model], $request->all());
-//         return response()->json($response->json(), $response->status());
-//     } catch (\Exception $e) {
-//         return response()->json(['error' => $e->getMessage()], 500);
-//     }
-// })->middleware('auth');

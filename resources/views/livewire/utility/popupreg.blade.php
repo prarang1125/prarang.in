@@ -23,25 +23,21 @@
                         @error('email') <small class="text-danger">{{ $message }}</small> @enderror
                     </div>
 
-                    <div class="mb-3">
-                        <label>Password</label>
-                        <input type="password" wire:model="password" class="form-control">
-                        @error('password') <small class="text-danger">{{ $message }}</small> @enderror
-                    </div>
+
                     @endif
 
                     {{-- Step 2 --}}
                     @if ($step === 2)
                     <div class="mb-3">
-                        <label>First Name</label>
+                        <label>Full Name</label>
                         <input type="text" wire:model="first_name" class="form-control">
                         @error('first_name') <small class="text-danger">{{ $message }}</small> @enderror
                     </div>
 
                     <div class="mb-3">
-                        <label>Last Name</label>
-                        <input type="text" wire:model="last_name" class="form-control">
-                        @error('last_name') <small class="text-danger">{{ $message }}</small> @enderror
+                        <label>Phone No.</label>
+                        <input type="text" wire:model="mobile" class="form-control">
+                        @error('mobile') <small class="text-danger">{{ $message }}</small> @enderror
                     </div>
                     <div class="mb-3">
                         <label>Country</label>
@@ -137,9 +133,10 @@
 
                         </select>
                         @error('country') <small class="text-danger">{{ $message }}</small> @enderror
+                        <p class="text-muted">If your country is not in the list, please write to us on <a href="mailto:query@prarang.in">query@prarang.in</a></p>
                     </div>
                     <div class="mb-3">
-                        <!-- <label>Occupation</label> -->
+
                         <input type="hidden" wire:model="occupation" class="form-control" value="Other">
                         @error('occupation') <small class="text-danger">{{ $message }}</small> @enderror
                     </div>
@@ -162,9 +159,20 @@
                             <option value="urbanization">Urbanization</option>
                         </select>
                         @error('purpose') <small class="text-danger">{{ $message }}</small> @enderror
+
+                    </div>
+                    <div class="mb-3">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="1" id="interested" wire:model="interested">
+                            <label class="form-check-label" for="interested">
+                                I am also interested in receiving Prarang's daily content.
+                            </label>
+                        </div>
+                        @error('interested') <small class="text-danger">{{ $message }}</small> @enderror
                     </div>
                     @endif
                 </div>
+
 
                 <div class="modal-footer">
                     @if ($step === 1)
