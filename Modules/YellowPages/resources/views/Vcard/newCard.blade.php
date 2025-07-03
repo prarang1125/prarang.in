@@ -252,9 +252,6 @@
 
 }
 
-<<<<<<< HEAD
-    </style>
-=======
 </style>
 <div class="fixed inset-0 flex items-center justify-center min-h-screen bg-gray-100">
     <!-- Content Wrapper -->
@@ -269,7 +266,6 @@
         <!-- Information Section -->
         <div class="flex-1 space-y-2">
             <h5 class="text-2xl font-bold text-gray-800 mb-2">{{ ucfirst($vcard->name) }} Prarang Page</h5>
->>>>>>> origin/vinita
 
     <section class="flex items-center justify-center" style="height: 70vh;">
         <div class="">
