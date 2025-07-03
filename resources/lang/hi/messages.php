@@ -80,5 +80,10 @@ return [
         'open_time' => 'खुलने का समय',
         'close_time' => 'बंद होने का समय',
     ],
+
+//UPMANA - Knowledge By Comparison
+'upmana_title' => 'UPMANA - तुलनात्मक ज्ञान',
+
+
 ];
 

@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="{{ asset('assets/ai/css/aichat.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
     <script src="{{ asset('js/ai-response.js') }}"></script>
-    <p class="text-center main-title-heading">UPMANA - Knowledge By Comparison</p>
+    <p class="text-center main-title-heading">{{ __('messages.upmana_title') }}</p>
     <section class="container p-3 mt-4">
 
         <div class="pr-ai-section">
@@ -513,8 +513,6 @@
                                                             <label for="group-{{ $continentId }}">
                                                                 {{ $continent }}
                                                             </label>
-
-
                                                         </div>
                                                         <div class="row">
                                                             @foreach ($countries as $country)
