@@ -65,7 +65,7 @@
 
 <body>
     @livewire('utility.share')
-    <header class="container">
+    <header class="container">Add commentMore actions
         <div class="row">
             <div class="order-1 col-sm-4 col-6 order-sm-1">
                 <div class="bs5-hcolor-box">
@@ -94,48 +94,7 @@
                 </div>
             </div>
         </div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-faded">
-            <div class="container-fluid">
-                <a class="text-center navbar-brand d-sm-block d-md-none d-lg-none" href="#"></a>
-                <a class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">Menu &nbsp;
-                    <span class="navbar-toggler-icon"></span>
-                </a>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="text-center nav navbar-nav col-md-12 col-sm-12 no-padding">
-                        <li class="col-md col-sm no-padding">
-                            <a href="{{ route('home') }}">Home</a>
-                        </li>
-                        <li class="col-md col-sm no-padding">
-                            <a href="{{ route('market') }}">Market <span>Digital Divide</span></a>
-                        </li>
-                        <li class="col-md col-sm no-padding">
-                            <a href="{{ route('content') }}">Content<span>City Hyperlocal</span></a>
-                        </li>
-                        <li class="col-md col-sm no-padding">
-                            <a href="{{ route('semiotics') }}">Semiotics<span>City Semiotics</span></a>
-                        </li>
-                        <li class="col-md col-sm no-padding">
-                            <a href="{{ route('analytics') }}">Analytics<span>India-World</span></a>
-                        </li>
-                        <li class="col-md col-sm no-padding">
-                            <a href="/ai/upmana">Artificial<span>Intelligence</span></a>
-                        </li>
-                        <li class="col-md col-sm no-padding">
-                            <a href="{{ route('partners') }}">Partners<span>Corp. & Govt.</span></a>
-                        </li>
-                        <li class="col-md col-sm no-padding">
-                            <a href="{{ route('about-us') }}">About Us</a>
-                        </li>
 
-                        <li class="col-md col-sm no-padding">
-                            <a target="_blank" href="https://prarang.ai/blog">Blogs</a>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-        </nav>
     </header>
     <main class="container">
         {{ $slot }}
