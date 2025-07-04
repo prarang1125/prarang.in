@@ -61,7 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <div id="viveks-modal-overlay"></div>
         <div id="viveks-modal-box">
           <div id="viveks-modal-header">
-            <span>About Prarang Projects</span>
+            <span>Connections: Related Websites</span>
             <button id="viveks-modal-close">&times;</button>
           </div>
           <div id="viveks-modal-content" contenteditable="true">
