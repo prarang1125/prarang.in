@@ -64,14 +64,16 @@ document.addEventListener("DOMContentLoaded", function () {
             <span>Connections: Related Websites</span>
             <button id="viveks-modal-close">&times;</button>
           </div>
-          <div id="viveks-modal-content" contenteditable="true">
+          <div id="viveks-modal-content" contenteditable="false">
             <ul>
               <li><strong>Origins of Prarang</strong> – <a href="https://www.shabdachitra.com/" target="_blank">Shabdachitra Research Methodology</a></li>
-              <li><strong>Ownership of Prarang Project</strong> – <a href="https://www.indeur.com/" target="_blank">Indoeuropeans Pvt Ltd Company</a></li>
-              <li><strong>Visual History India Research</strong> – <a href="https://www.facebook.com/profile.php?id=100064708301765" target="_blank">India Visual FB Blog</a></li>
-              <li><strong>Old Social Design Project</strong> – <a href="https://www.rohmoh.com/" target="_blank">Rohilla Mohalla Project</a></li>
-              <li><strong>New World Library Knowledge Project</strong> – <a href="https://sarganga.org/" target="_blank">Saraswati by Ganga</a></li>
-              <li><strong>Colours of Prarang Daily Content</strong> – <a href="http://rangmala.com/" target="_blank">Daily Knowledge Posts – Rangmala</a></li>
+    <li><strong>Ownership of Prarang Project</strong> – <a href="https://www.indeur.com/" target="_blank">Indoeuropeans Pvt Ltd Company</a></li>
+    <li><strong>Visual History India Research</strong> – <a href="https://www.facebook.com/profile.php?id=100064708301765" target="_blank">India Visual FB Blog</a></li>
+    <li><strong>Old Social Design Project</strong> – <a href="https://www.rohmoh.com/" target="_blank">Rohilla Mohalla Project</a></li>
+    <li><strong>New World Library Knowledge Project</strong> – <a href="https://sarganga.org/" target="_blank">Saraswati by Ganga</a></li>
+    <li><strong>Colours of Prarang Daily Content</strong> – <a href="http://rangmala.com/" target="_blank">Daily Knowledge Posts – Rangmala</a></li>
+    <li><strong>Future Prarang</strong> – <a href="http://apratyaksh.in" target="_blank">Under Development Knowledge Solution – Apratyaksh</a></li>
+
             <!-- <li><strong>Future Prarang</strong> – <a href="http://apratyaksh.in" target="_blank">Under Development Knowledge Solution – Apratyaksh</a></li>-->
             </ul>
           </div>
