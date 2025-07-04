@@ -72,7 +72,6 @@ document.addEventListener("DOMContentLoaded", function () {
     <li><strong>Old Social Design Project</strong> – <a href="https://www.rohmoh.com/" target="_blank">Rohilla Mohalla Project</a></li>
     <li><strong>New World Library Knowledge Project</strong> – <a href="https://sarganga.org/" target="_blank">Saraswati by Ganga</a></li>
     <li><strong>Colours of Prarang Daily Content</strong> – <a href="http://rangmala.com/" target="_blank">Daily Knowledge Posts – Rangmala</a></li>
-    <li><strong>Future Prarang</strong> – <a href="http://apratyaksh.in" target="_blank">Under Development Knowledge Solution – Apratyaksh</a></li>
 
             <!-- <li><strong>Future Prarang</strong> – <a href="http://apratyaksh.in" target="_blank">Under Development Knowledge Solution – Apratyaksh</a></li>-->
             </ul>
