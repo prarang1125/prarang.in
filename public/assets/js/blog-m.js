@@ -49,10 +49,26 @@ document.addEventListener("DOMContentLoaded", function () {
       #viveks-modal-content li {
         margin-bottom: 8px;
       }
+
+
+
       @keyframes fadeIn {
         from { transform: scale(0.9); opacity: 0; }
         to { transform: scale(1); opacity: 1; }
       }
+        #viveks-modal-header{
+        text-align:center;
+        text-decoration:none;
+        justify-content:center;
+        display:grid;
+        grid-template-columns:20% 70% 10%;
+        }
+
+
+        #viveks-modal-header span{
+        color:#0000ff;
+        }
+
     `;
     document.head.appendChild(style);
 
@@ -61,6 +77,9 @@ document.addEventListener("DOMContentLoaded", function () {
         <div id="viveks-modal-overlay"></div>
         <div id="viveks-modal-box">
           <div id="viveks-modal-header">
+          <div id="rbgx">
+    <span class="pr1c">●</span><span class="pr2c">●</span><span class="pr3c">●</span>
+          </div>
             <span>Connections: Related Websites</span>
             <button id="viveks-modal-close">&times;</button>
           </div>
