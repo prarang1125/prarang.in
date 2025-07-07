@@ -66,6 +66,9 @@
                                 <tr>
                                     <th scope="row" class="align-middle">{{ $index }}</th> 
                                     <td class="align-middle">{{ $vcard->user->name }}</td>
+                                    <td class="align-middle">
+                                     {{ $vcard->user && $vcard->user->name ? $vcard->user->name : 'N/A' }}
+                                    </td>
                                     <td class="align-middle">{{ $vcard->color_code }}</td> 
                                     <td class="align-middle">
                                         <img src="{{ $vcard->user->profile ? Storage::url($vcard->user->profile) : asset('images/default-profile.png') }}" 
