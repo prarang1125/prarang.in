@@ -61,6 +61,10 @@
             top: 147px;
         }
     }
+
+    body {
+        padding-top: 0px !important;
+    }
 </style>
 
 <body>
@@ -127,10 +131,10 @@
                         <li class="col-md col-sm no-padding">
                             <a href="{{ route('about-us') }}">About Us</a>
                         </li>
-
                         <li class="col-md col-sm no-padding">
-                            <a target="_blank" href="https://prarang.ai/blog">Blogs</a>
+                            <a href="javascript:void(0);" id="viveks-modal">Blogs</a>
                         </li>
+
 
                     </ul>
                 </div>
@@ -198,6 +202,7 @@
         </div>
     </footer>
     @yield('script')
+    <script src="{{ asset('assets/js/blog-m.js') }}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>
@@ -205,7 +210,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
     </script>
-
     <script src="{{ asset('js/ai-response.js') }}"></script>
 </body>
 

@@ -115,114 +115,114 @@
 
         /* Paragraph */
         /* Paragraph */
-#wrapper .col-sm p{
- font-size:15px;
- letter-spacing:normal;
- color:#ffffff;
- text-shadow:rgb(0, 0, 0) 1px 1px 0px, rgb(0, 0, 0) 2px 2px 0px;
- font-weight:500;
-}
+        #wrapper .col-sm p {
+            font-size: 15px;
+            letter-spacing: normal;
+            color: #ffffff;
+            text-shadow: rgb(0, 0, 0) 1px 1px 0px, rgb(0, 0, 0) 2px 2px 0px;
+            font-weight: 500;
+        }
 
-/* Footer */
-#wrapper footer{
- background-color:rgba(0,0,0,0.52) !important;
-}
+        /* Footer */
+        #wrapper footer {
+            background-color: rgba(0, 0, 0, 0.52) !important;
+        }
 
-/* Table */
-#sidebar-left .widget .table{
- background-color:rgba(255,255,255,0) !important;
-}
+        /* Table */
+        #sidebar-left .widget .table {
+            background-color: rgba(255, 255, 255, 0) !important;
+        }
 
-/* Table Data */
-.table tr td{
- background-color:#333333 !important;
- color:#ededed !important;
- font-size:13px !important;
- padding-bottom:4px !important;
-}
+        /* Table Data */
+        .table tr td {
+            background-color: #333333 !important;
+            color: #ededed !important;
+            font-size: 13px !important;
+            padding-bottom: 4px !important;
+        }
 
-#wrapper .col-sm p{
- text-shadow:rgba(0, 0, 0, 0.3) 0px 1px 1px !important;
-}
+        #wrapper .col-sm p {
+            text-shadow: rgba(0, 0, 0, 0.3) 0px 1px 1px !important;
+        }
 
-/* Heading */
-#openModalx h3{
- position:absolute;
- padding-left:154px;
- padding-top:4px;
- padding-right:9px;
-}
+        /* Heading */
+        #openModalx h3 {
+            position: absolute;
+            padding-left: 154px;
+            padding-top: 4px;
+            padding-right: 9px;
+        }
 
-@media (max-width:1316px){
+        @media (max-width:1316px) {
 
- /* Heading */
- #openModalx h3{
-  font-size:20px !important;
-  padding-left:84px;
-  transform:translatex(0px) translatey(0px);
- }
+            /* Heading */
+            #openModalx h3 {
+                font-size: 20px !important;
+                padding-left: 84px;
+                transform: translatex(0px) translatey(0px);
+            }
 
-}
+        }
 
-@media (max-width:991px){
+        @media (max-width:991px) {
 
- /* Heading */
- #openModalx h3{
-  font-size:19px !important;
-  padding-left:277px;
-  padding-right:153px;
-  transform:translatex(0px) translatey(0px);
- }
+            /* Heading */
+            #openModalx h3 {
+                font-size: 19px !important;
+                padding-left: 277px;
+                padding-right: 153px;
+                transform: translatex(0px) translatey(0px);
+            }
 
-}
+        }
 
-@media (max-width:767px){
+        @media (max-width:767px) {
 
- /* Heading */
- #openModalx h3{
-  font-size:15px !important;
-  padding-left:219px;
-  padding-right:142px;
- }
+            /* Heading */
+            #openModalx h3 {
+                font-size: 15px !important;
+                padding-left: 219px;
+                padding-right: 142px;
+            }
 
-}
+        }
 
-@media (min-width:1317px){
+        @media (min-width:1317px) {
 
- /* Heading */
- #openModalx h3{
-  font-size:23px;
- }
+            /* Heading */
+            #openModalx h3 {
+                font-size: 23px;
+            }
 
-}
-@media (max-width:767px){
+        }
 
-/* Heading */
-#openModalx h3{
- padding-left:98px !important;
- padding-right:34px !important;
- font-size:17px;
-}
+        @media (max-width:767px) {
 
-/* Heading */
-#core #columns .columns__inner .lsvr-container .lsvr-grid .columns__main #main div .text-center .popupsub #openModalx h3{
- font-size:17px !important;
-}
+            /* Heading */
+            #openModalx h3 {
+                padding-left: 98px !important;
+                padding-right: 34px !important;
+                font-size: 17px;
+            }
 
-}
+            /* Heading */
+            #core #columns .columns__inner .lsvr-container .lsvr-grid .columns__main #main div .text-center .popupsub #openModalx h3 {
+                font-size: 17px !important;
+            }
 
-@media (max-width:480px){
+        }
 
-/* Heading */
-#openModalx h3{
- padding-left:77px !important;
- padding-right:20px !important;
- top:3px;
- bottom:auto !important;
-}
+        @media (max-width:480px) {
 
-}
+            /* Heading */
+            #openModalx h3 {
+                padding-left: 77px !important;
+                padding-right: 20px !important;
+                top: 3px;
+                bottom: auto !important;
+            }
 
+        }
     </style>
     <div id="wrapper">
         <header class="header--has-languages header--has-map" id="header">
@@ -597,7 +597,15 @@
 
     </div>
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const hash = window.location.hash;
 
+            if (hash === '#subscribeModal') {
+                modal.classList.add("show");
+            }
+        });
+    </script>
     <script>
         // Wait for the DOM to load
         document.addEventListener("DOMContentLoaded", function() {

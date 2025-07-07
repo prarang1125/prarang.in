@@ -24,6 +24,7 @@
 <body>
     @yield('content')
 
+
     {{-- Vite JS --}}
     {{-- {{ module_vite('build-portal', 'resources/assets/js/app.js') }} --}}
 </body>
