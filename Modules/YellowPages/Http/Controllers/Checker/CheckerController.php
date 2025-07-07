@@ -91,7 +91,7 @@ class CheckerController extends Controller
 
     public function CheckCard(Request $request) {
         try {
-            $Vcard_list = VCard::all();
+        $Vcard_list = VCard::with('user')->get();
             $users = User::whereIn('name', $Vcard_list->pluck('slug'))->get(); 
 
             return view('yellowpages::admin.checker-card-list', compact('Vcard_list', 'users'));

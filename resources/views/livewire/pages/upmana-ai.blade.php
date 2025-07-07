@@ -9,7 +9,7 @@
             <section class="first-prompt">
                 @if ($activeSection['firstPrompt'])
                     <div class="mb-3 text-center firstPrompt">
-                        <h5>Comparative A.I. on any Geography</h5>
+                        <h5>{{ __('messages.comparative_ai_title') }}</h5>
                         @if (session()->has('message'))
                             <p class="text-success" style="font-size: 14px!important; margin: 0px; padding: 0px;">
                                 {{ session('message') }}</p>
@@ -25,7 +25,7 @@
                                             <div> <button type="button"
                                                     class="btn btn-secondary btn-lg position-relative"
                                                     data-bs-toggle="modal" data-bs-target="#geographyModal">
-                                                    Select Location<br><small>(2 to 5)</small>
+                                                   {{__('messages.select_location')}}<br><small>(2 to 5)</small>
                                                 </button>
 
                                                 @if (session()->has('cityerror'))
@@ -37,7 +37,7 @@
                                                 <span class="p-2 m-2 border count-box bg-light text-dark"
                                                     id="citiesCount" wire:ignore>
                                                     0
-                                                </span>Selected
+                                                </span>{{__('messages.selected')}}
                                             </div>
 
                                         </div>
@@ -51,12 +51,12 @@
                                             <div> <button type="button"
                                                     class="btn btn-primary btn-lg position-relative"
                                                     data-bs-toggle="modal" data-bs-target="#categoryModal">
-                                                    Select Metrics<br><small>(2 to 5)</small>
+                                                   {{ __('messages.select_metrics')}}<br><small>(2 to 5)</small>
                                                 </button></div>
                                             <div><span class="p-2 m-2 border count-box bg-light text-dark"
                                                     id="category-count" wire:ignore>
                                                     0
-                                                </span>Selected
+                                                </span>{{__('messages.selected')}}
                                             </div>
                                         </div>
                                         <div class="arrow">
@@ -71,7 +71,7 @@
                                                 <div class="text-center">
                                                     <a wire:click="updatePromptFromState"
                                                         class="rounded-pills btn text-ligt btn-primary">
-                                                        Generate AI Prompt</a>
+                                                        {{__('messages.generate_ai_prompt')}}</a>
                                                 </div>
                                             </div>
                                             <div>

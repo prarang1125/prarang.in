@@ -82,7 +82,62 @@ return [
     ],
 
 //UPMANA - Knowledge By Comparison
-'upmana_title' => 'UPMANA - तुलनात्मक ज्ञान',
+'upmana_title' => 'उपमान – तुलना के माध्यम से ज्ञान',
+
+//Comparative A.I. on any Geography
+'comparative_ai_title' => 'तुलनात्मक ए.आई. किसी भी भौगोलिक क्षेत्र पर',
+
+//Select Location
+'select_location' => 'स्थान चुनें',
+
+// Select Metrics
+'select_metrics' => 'मीट्रिक्स चुनें',
+
+//Selected
+'selected' => 'चयनित',
+
+//Generate AI Prompt
+'generate_ai_prompt' => 'ए.आई. प्रॉम्प्ट उत्पन्न करें',
+
+//FAQ
+'FAQ' => 'अक्सर पूछे जाने वाले प्रश्न',
+
+//Comparison A.I.
+'comparison_ai' => 'तुलनात्मक ए.आई.',
+
+//Prompt
+'prompt' => 'प्रश्न',
+
+
+//You can select up to 5 metrics.
+
+
+//Comparison A.I & Artificial General Intelligence (AGI)
+'comparison_ai_agi' => 'तुलनात्मक ए.आई. और विज्ञानी सामान्य बुद्धि (AGI)',
+
+//World AI Report
+'world_ai_report' => 'विश्व ए.आई. रिपोर्ट',
+
+//India AI Report
+'india_ai_report' => 'भारत ए.आई. रिपोर्ट',
+
+//World Development Planner
+'world_development_planner' => 'विश्व विकास योजना',
+
+//World Market Planner
+'world_market_planner' => 'विश्व बाजार योजना',
+
+//India Development Planner
+'india_development_planner' => 'भारत विकास योजना',
+
+//India Market Planner
+'india_market_planner' => 'भारत बाजार योजना',
+
+//India City Sentiment Analytics
+'india_city_sentiment_analytics' => 'भारत शहर सेंटिमेंट एनालिटिक्स',      
+
+
+
 
 
 ];

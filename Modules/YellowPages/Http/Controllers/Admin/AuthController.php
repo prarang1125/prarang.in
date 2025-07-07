@@ -62,7 +62,7 @@ class AuthController extends Controller
             return redirect()->route('admin.login')->with('error', 'ईमेल या पासवर्ड गलत है');
 
         } catch (Exception $e) {
-            dd($e);
+        
             return redirect()->route('admin.login')->with('error', 'प्रमाणीकरण के दौरान त्रुटि: ' );
         }
     }

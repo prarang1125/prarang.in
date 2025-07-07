@@ -208,7 +208,7 @@
 
             <li><a class="text-primary" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#whatIsUpmanaModal"><span class="text-primary pe-1">●</span>Comparison A.I.</a></li>
             <li><a class="text-primary" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#aiVsAgiModal"><span class="text-primary pe-1">●</span>Prompt </a></li>
-            <li><a class="text-primary" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#upmanabenefitsModal"><span class="text-primary pe-1">●</span>Comparison A.I & Artificial General Intelligence (AGI) </a></li>
+            <li><a class="text-primary" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#upmanabenefitsModal"><span class="text-primary pe-1">●</span>Comparison A.I & Artificial General Intelligence (AGI)</a></li>
         </ul>
     </div>
 
