@@ -2,20 +2,20 @@
 @section('title', 'Vcard')
 
 @if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
 @endif
 
 @section('content')
 <!--start page wrapper -->
 <div class="page-content">
     <!--breadcrumb-->
-    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+    <div class="mb-3 page-breadcrumb d-none d-sm-flex align-items-center">
         <div class="breadcrumb-title pe-3">वीकार्ड</div>
         <div class="ps-3">
             <nav aria-label="breadcrumb">
-                <ol class="breadcrumb mb-0 p-0">
+                <ol class="p-0 mb-0 breadcrumb">
                     <li class="breadcrumb-item"><a href="#"><i class="bx bx-user"></i></a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page">वीकार्ड लिस्टिंग</li>
@@ -23,19 +23,19 @@
             </nav>
         </div>
     </div>
-    
+
     <!--end breadcrumb-->
     <div class="row">
-        <div class="col-xl-9 mx-auto w-100">
-            
+        <div class="mx-auto col-xl-9 w-100">
+
             <!-- Success Message -->
             @if(session('success'))
-                <div class="alert alert-success mt-3">
-                    {{ session('success') }}
-                </div>
+            <div class="mt-3 alert alert-success">
+                {{ session('success') }}
+            </div>
             @endif
             <h6 class="mb-0 text-uppercase">वीकार्ड लिस्टिंग</h6>
-            <hr/>
+            <hr />
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex justify-content-end"> <!-- Align to right -->
@@ -46,7 +46,7 @@
                             </div>
                         </form>
                     </div>
-                    
+
                     <table class="table mb-0 table-hover">
                         <thead>
                             <tr>
@@ -99,7 +99,3 @@
     </div>
 </div>
 @endsection
-
-
-
-
