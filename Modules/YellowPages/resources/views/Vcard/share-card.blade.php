@@ -106,7 +106,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        transform: translatex(0px) translatey(0px);
+        /* transform: translatex(0px) translatey(0px); */
     }
 
     /* Italic Tag */
@@ -221,7 +221,7 @@
         /* Justify center */
         #my-vcard .justify-center {
             padding-bottom: 9px;
-            transform: translatex(0px) translatey(0px);
+            /* transform: translatex(0px) translatey(0px); */
             padding-top: 13px !important;
         }
 
@@ -257,13 +257,28 @@
         background-color: #049933;
         color: #ffffff;
     }
+
+    /* Modal backUnknown */
+    .modal-backdrop {
+        background-color: rgba(0, 0, 0, 0) !important;
+        /* transform: translatex(0px) translatey(0px); */
+        /* z-index: -10 !important; */
+    }
+
+    /* Static backUnknown */
+    #staticBackdrop {
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(120, 104, 104, 0.24) !important;
+    }
 </style>
 
 <body class="bg-gray-100">
     <br>
     <section class="flex items-center justify-center">
         <section class="flex items-center justify-center p-4">
-            <div class="w-full md:w-1/2 p-2">
+            <div class="w-full p-2 md:w-1/2">
                 <a href="https://www.prarang.in" target="_blank">
                     <img src="{{ asset('assets/images/logo/yellow_logo.png') }}" alt="Prarang Logo" class="w-48">
                 </a>
@@ -277,147 +292,147 @@
     </div>
 
     @if ($vcard->is_active == 1)
-        <section class="flex items-center justify-center p-4">
+    <section class="flex items-center justify-center p-4">
 
-            <div id="my-vcard"
-                class="flex flex-col md:flex-row w-full max-w-xl overflow-hidden bg-white border border-gray-200 rounded-lg shadow-lg">
+        <div id="my-vcard"
+            class="flex flex-col w-full max-w-xl overflow-hidden bg-white border border-gray-200 rounded-lg shadow-lg md:flex-row">
 
-                <!-- Profile & QR (Upar in Mobile, Left in Desktop) -->
-                <div class="flex flex-col items-center justify-center w-full md:w-1/3 p-6 text-center bg-gradient-to-r from-indigo-500 to-purple-500"
-                    style="background:{{ $vcard->color_code ?? 'black' }}">
-                    <div class="w-24 h-24 md:w-32 md:h-32 overflow-hidden border-4 border-white rounded-full shadow-lg">
-                        <img src="{{ $user->profile ? Storage::url($user->profile) : 'https://via.placeholder.com/150' }}"
-                            alt="{{ $user->name ?? 'User' }}'s Profile" class="object-cover w-full h-full">
-                    </div>
-                    {{-- <h2 class="mt-3 text-lg md:text-xl font-semibold text-white">{{ ucfirst($user->name ?? 'User') }}
-                        {{ ucfirst($user->surname ?? '') }}</h2>
-                    <p class="text-sm text-white opacity-80">+91-{{ $user->phone ?? 'Category' }}</p> --}}
-
-                    <!-- QR Code -->
-                    <div class="w-20 h-20 md:w-24 md:h-24 p-2 mt-4 bg-gray-100 rounded-lg shadow-md">
-                        <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ route('vCard.scan', ['slug' => $vcard->slug]) }}"
-                            alt="QR Code" class="w-full h-full">
-                    </div>
+            <!-- Profile & QR (Upar in Mobile, Left in Desktop) -->
+            <div class="flex flex-col items-center justify-center w-full p-6 text-center md:w-1/3 bg-gradient-to-r from-indigo-500 to-purple-500"
+                style="background:{{ $vcard->color_code ?? 'black' }}">
+                <div class="w-24 h-24 overflow-hidden border-4 border-white rounded-full shadow-lg md:w-32 md:h-32">
+                    <img src="{{ $user->profile ? Storage::url($user->profile) : 'https://via.placeholder.com/150' }}"
+                        alt="{{ $user->name ?? 'User' }}'s Profile" class="object-cover w-full h-full">
                 </div>
+                {{-- <h2 class="mt-3 text-lg font-semibold text-white md:text-xl">{{ ucfirst($user->name ?? 'User') }}
+                {{ ucfirst($user->surname ?? '') }}</h2>
+                <p class="text-sm text-white opacity-80">+91-{{ $user->phone ?? 'Category' }}</p> --}}
 
-                <!-- Contact & Social (Neeche in Mobile, Right in Desktop) -->
-                <div class="flex flex-col justify-between w-full md:w-2/3 p-6">
-
-                    <!-- Contact Details -->
-                    <div class="space-y-3">
-                        @if (!empty($user->name))
-                            <div class="flex items-center space-x-3">
-                                <div><i class="text-lg md:text-xl text-blue-500 bx bxs-user"></i></div>
-                                <div>
-                                    <span class="text-gray-500 mtdclass">नाम(Name)</span>
-
-                                    <span class="text-gray-800 font-semibold"> {{ ucfirst($user->name ?? '') }}
-                                        {{ ucfirst($user->surname ?? '') }}</span>
-                                </div>
-                            </div>
-                        @endif
-
-                        @if (!empty($user->email))
-                            <div class="flex items-center space-x-3">
-                                <div><i class="text-lg md:text-xl text-indigo-500 bx bxs-envelope"></i></div>
-                                <div>
-                                    <span class="text-gray-500 mtdclass"> ईमेल (Email):</span>
-                                    <span class="text-gray-800 font-semibold">{{ $user->email }}</span>
-                                </div>
-                            </div>
-                        @endif
-
-                        @if (!empty($user->phone))
-                            <div class="flex items-center space-x-3">
-                                <div><i class="text-lg md:text-xl text-green-500 bx bxs-phone"></i></div>
-                                <div>
-                                    <span class="text-gray-500 mtdclass">फ़ोन (Phone):</span>
-                                    <span class="text-gray-800 font-semibold">{{ $user->phone }}</span>
-                                </div>
-                            </div>
-                        @endif
-
-                        @if (!empty($user->address))
-                            @php
-                                $addressParts = array_filter([
-                                    $user->address->house_number ?? '',
-                                    $user->address->street ?? '',
-                                    $user->address->area_name ?? '',
-                                    $user->address->city_name ?? '',
-                                ]);
-                            @endphp
-
-                            @if (!empty($addressParts))
-                                <div class="flex items-center space-x-3">
-                                    <div><i class="text-lg text-red-500 md:text-xl bx bxs-map"></i></div>
-                                    <div>
-                                        <span class="text-gray-500 mtdclass">पता (Address):</span>
-                                        <span class="font-semibold text-gray-800">
-                                            {{ isset($addressParts) && is_array($addressParts) ? implode(',', $addressParts) : '' }}
-                                            @php
-                                                $cityName = $user->address->city_name ?? '';
-                                                $state = $user->address->state ?? '';
-                                                $postalCode = $user->address->postal_code ?? '';
-                                                $isHindi = preg_match('/[\p{Devanagari}]/u', $cityName);
-
-                                                // Handle state formatting safely
-                                                $stateParts = explode('(', $state);
-                                                $formattedState =
-                                                    count($stateParts) > 1
-                                                        ? str_replace(')', '', $stateParts[1])
-                                                        : $stateParts[0] ?? '';
-
-                                            @endphp
-                                            ,{{ $isHindi ? $stateParts[0] ?? '' : $formattedState }},
-                                            {{ $isHindi ? 'भारत' : 'India' }},
-                                            {{ $isHindi ? 'पिन' : 'Pin' }} - {{ $postalCode }}
-                                        </span>
-
-                                    </div>
-                                </div>
-                            @endif
-                        @endif
-                    </div>
-
-
-
-                    <!-- Social Media -->
-                    <div>
-                        @if (
-                            !empty($vcard->dynamicFields) &&
-                                collect($vcard->dynamicFields)->filter(fn($social) => !empty($social->data))->isNotEmpty())
-                            <hr>
-                            <h3 class="font-semibold text-gray-800 text-md">सोशल मीडिया</h3>
-                            <div class="flex space-x-3 social-icones">
-                                @foreach ($vcard->dynamicFields as $social)
-                                    @php $socialData = $social->data; @endphp
-                                    @if (!empty($socialData))
-                                        <div class="social-icon">
-                                            <a href="{{ filter_var($socialData, FILTER_VALIDATE_URL) ? $socialData : '#' }}"
-                                                target="_blank" class="text-gray-700 transition hover:text-blue-500">
-                                                <i class="{{ $social->icon ?? 'bx bx-link' }} text-2xl"></i>
-                                            </a>
-                                        </div>
-                                    @endif
-                                @endforeach
-                            </div>
-                        @endif
-                        <hr class="mt-2">
-                        <p class="mt-2 text-sm text-center linkx">
-                            {{ route('vCard.view', ['city_arr' => $user->city->city_arr, 'slug' => $vcard->slug]) }}
-                        </p>
-                    </div>
+                <!-- QR Code -->
+                <div class="w-20 h-20 p-2 mt-4 bg-gray-100 rounded-lg shadow-md md:w-24 md:h-24">
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ route('vCard.scan', ['slug' => $vcard->slug]) }}"
+                        alt="QR Code" class="w-full h-full">
                 </div>
             </div>
 
-        </section>
+            <!-- Contact & Social (Neeche in Mobile, Right in Desktop) -->
+            <div class="flex flex-col justify-between w-full p-6 md:w-2/3">
+
+                <!-- Contact Details -->
+                <div class="space-y-3">
+                    @if (!empty($user->name))
+                    <div class="flex items-center space-x-3">
+                        <div><i class="text-lg text-blue-500 md:text-xl bx bxs-user"></i></div>
+                        <div>
+                            <span class="text-gray-500 mtdclass">नाम(Name)</span>
+
+                            <span class="font-semibold text-gray-800"> {{ ucfirst($user->name ?? '') }}
+                                {{ ucfirst($user->surname ?? '') }}</span>
+                        </div>
+                    </div>
+                    @endif
+
+                    @if (!empty($user->email))
+                    <div class="flex items-center space-x-3">
+                        <div><i class="text-lg text-indigo-500 md:text-xl bx bxs-envelope"></i></div>
+                        <div>
+                            <span class="text-gray-500 mtdclass"> ईमेल (Email):</span>
+                            <span class="font-semibold text-gray-800">{{ $user->email }}</span>
+                        </div>
+                    </div>
+                    @endif
+
+                    @if (!empty($user->phone))
+                    <div class="flex items-center space-x-3">
+                        <div><i class="text-lg text-green-500 md:text-xl bx bxs-phone"></i></div>
+                        <div>
+                            <span class="text-gray-500 mtdclass">फ़ोन (Phone):</span>
+                            <span class="font-semibold text-gray-800">{{ $user->phone }}</span>
+                        </div>
+                    </div>
+                    @endif
+
+                    @if (!empty($user->address))
+                    @php
+                    $addressParts = array_filter([
+                    $user->address->house_number ?? '',
+                    $user->address->street ?? '',
+                    $user->address->area_name ?? '',
+                    $user->address->city_name ?? '',
+                    ]);
+                    @endphp
+
+                    @if (!empty($addressParts))
+                    <div class="flex items-center space-x-3">
+                        <div><i class="text-lg text-red-500 md:text-xl bx bxs-map"></i></div>
+                        <div>
+                            <span class="text-gray-500 mtdclass">पता (Address):</span>
+                            <span class="font-semibold text-gray-800">
+                                {{ isset($addressParts) && is_array($addressParts) ? implode(',', $addressParts) : '' }}
+                                @php
+                                $cityName = $user->address->city_name ?? '';
+                                $state = $user->address->state ?? '';
+                                $postalCode = $user->address->postal_code ?? '';
+                                $isHindi = preg_match('/[\p{Devanagari}]/u', $cityName);
+
+                                // Handle state formatting safely
+                                $stateParts = explode('(', $state);
+                                $formattedState =
+                                count($stateParts) > 1
+                                ? str_replace(')', '', $stateParts[1])
+                                : $stateParts[0] ?? '';
+
+                                @endphp
+                                ,{{ $isHindi ? $stateParts[0] ?? '' : $formattedState }},
+                                {{ $isHindi ? 'भारत' : 'India' }},
+                                {{ $isHindi ? 'पिन' : 'Pin' }} - {{ $postalCode }}
+                            </span>
+
+                        </div>
+                    </div>
+                    @endif
+                    @endif
+                </div>
+
+
+
+                <!-- Social Media -->
+                <div>
+                    @if (
+                    !empty($vcard->dynamicFields) &&
+                    collect($vcard->dynamicFields)->filter(fn($social) => !empty($social->data))->isNotEmpty())
+                    <hr>
+                    <h3 class="font-semibold text-gray-800 text-md">सोशल मीडिया</h3>
+                    <div class="flex space-x-3 social-icones">
+                        @foreach ($vcard->dynamicFields as $social)
+                        @php $socialData = $social->data; @endphp
+                        @if (!empty($socialData))
+                        <div class="social-icon">
+                            <a href="{{ filter_var($socialData, FILTER_VALIDATE_URL) ? $socialData : '#' }}"
+                                target="_blank" class="text-gray-700 transition hover:text-blue-500">
+                                <i class="{{ $social->icon ?? 'bx bx-link' }} text-2xl"></i>
+                            </a>
+                        </div>
+                        @endif
+                        @endforeach
+                    </div>
+                    @endif
+                    <hr class="mt-2">
+                    <p class="mt-2 text-sm text-center linkx">
+                        {{ route('vCard.view', ['city_arr' => $user->city->city_arr, 'slug' => $vcard->slug]) }}
+                    </p>
+                </div>
+            </div>
+        </div>
+
+    </section>
     @endif
     <div class="text-center">
-        <p class="text-center p-1 bg-success"><small id="shareIt"><i class="bx bxs-share"></i></small></p>
+        <p class="p-1 text-center bg-success"><small id="shareIt"><i class="bx bxs-share"></i></small></p>
         @if ($vcard->is_active != 1)
-            <span class="text-center text-red-500"> {{ $user->name }} {{ $user->surname ?? '' }} का कार्ड स्वीकृति
-                की
-                प्रक्रिया में है।</span>
+        <span class="text-center text-red-500"> {{ $user->name }} {{ $user->surname ?? '' }} का कार्ड स्वीकृति
+            की
+            प्रक्रिया में है।</span>
         @endif
     </div>
 
@@ -439,17 +454,16 @@
 
 
         if (navigator.share) {
-            const shareIt=document.getElementById('shareIt').addEventListener('click',()=>{
+            const shareIt = document.getElementById('shareIt').addEventListener('click', () => {
                 navigator.share({
-                    title:document.title,
-                    text:document.text,
-                    url:window.location.href
-            })
-            .then(()=> console.log('Successfuly Share Prompt Opened!'))
-            .catch((error)=>console.error(error))
+                        title: document.title,
+                        text: document.text,
+                        url: window.location.href
+                    })
+                    .then(() => console.log('Successfuly Share Prompt Opened!'))
+                    .catch((error) => console.error(error))
             });
         }
-
     </script>
 
 </body>
