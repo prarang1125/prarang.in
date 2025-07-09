@@ -108,7 +108,7 @@
                             <div class="col-sm-8">
                                 <div class="p-3 m-1 border rounded">
                                     <b>Prompt:</b> {{ $prompt }}
-                                    <p class="text-muted text-end"> <a style="text-decoration: none;" href="/">
+                                    <p class="text-muted text-end"> <a style="text-decoration: none;" href="/ai/upmana">
                                             <small>Edit Prompt</small>
                                         </a></p>
                                 </div>
