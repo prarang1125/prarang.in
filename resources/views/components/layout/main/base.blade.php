@@ -37,26 +37,21 @@
     @yield('css')
 </head>
 <style>
-    /* Link */
     .navbar-nav .col-md a {
         flex-direction: column;
         height: 50px;
     }
 
-    /* Span Tag */
     .navbar-nav a span {
         margin-top: -4px;
         font-size: 14px;
     }
 
-    /* Image */
     .container img {
         bottom: auto !important;
     }
 
     @media (min-width:768px) {
-
-        /* Image */
         .container img {
             top: 147px;
         }

@@ -2,16 +2,18 @@
     <link rel="stylesheet" href="{{ asset('assets/ai/css/aichat.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
     <script src="{{ asset('js/ai-response.js') }}"></script>
+    <button class="@if ($output) d-none @endif btn btn-primary side-button" type="button"
+        data-bs-toggle="offcanvas" data-bs-target="#openFaqExample" aria-controls="openFaqExample">
+        &nbsp;&nbsp;FAQ &nbsp;&nbsp;
+
+    </button>
     <div class="container-fluid">
         <p class="text-center main-title-heading">UPMANA - Knowledge By Comparison</p>
         <div class="row">
             <!-- 8 Column (Main content) -->
             <div
                 class="@if ($output) col-12 @else  col-lg-9 col-md-9 col-sm-12 @endif position-relative">
-                <button class="top-0 m-2 btn btn-light d-block d-lg-none position-absolute end-0" type="button"
-                    data-bs-toggle="offcanvas" data-bs-target="#sidebarCanvas" aria-controls="sidebarCanvas">
-                    <i class="bx bx-chevron-left fs-4"></i>
-                </button>
+
 
                 <div class="pr-ai-section">
                     <section class="first-prompt">
@@ -876,7 +878,16 @@
             </div>
         </div>
     </div>
-
+    <!-- Offcanvas Component -->
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="openFaqExample" aria-labelledby="openFaqExampleLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="openFaqExampleLabel"></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            @livewire('utility.upman-sidebar')
+        </div>
+    </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
