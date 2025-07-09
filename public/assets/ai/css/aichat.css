@@ -1447,3 +1447,23 @@ li:nth-child(3) > .text-primary:nth-child(1){
  }
 
 }
+
+
+/* Column 12/12 */
+.tab-pane.pb-3{
+ position:relative;
+ top:27px;
+ margin-bottom:20px;
+}
+
+/* Span Tag */
+.tab-pane .pb-3 span{
+ position:relative;
+ top:10px;
+}
+
+/* Shadow */
+.tab-pane .shadow-sm{
+ padding-top:2px !important;
+}
+
