@@ -454,7 +454,6 @@
                                                             </div>
                                                         @endif
                                                     @endforeach
-                                                    <hr>
                                                 @endforeach
                                             </div>
 
