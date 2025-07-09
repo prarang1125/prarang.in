@@ -1467,3 +1467,16 @@ li:nth-child(3) > .text-primary:nth-child(1){
  padding-top:2px !important;
 }
 
+/* Column 12/12 */
+.pb-3{
+ position:relative;
+ top:20px;
+ margin-bottom:24px !important;
+}
+
+/* Modal body */
+#categoryModal .modal-xl .modal-body{
+ display:inline-block;
+ transform:translatex(0px) translatey(0px) !important;
+}
+
