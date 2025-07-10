@@ -62,12 +62,16 @@
                                     {{ $user->role == 1 ? 'व्यवस्थापक' : ($user->role == 2 ? 'ग्राहक' : 'अज्ञात') }}
                                 </td>
                                 <td>
-                                    @if($user->city)
-                                    {{ url($user->city->city_arr) }}/ @if($user->vcard)
-                                    {{ $user->vcard['slug'] ?? '' }}
+                                    @php
+                                    $cityUrl = $user->city?->city_arr ?? null;
+                                    $vcardSlug = $user->vcard[0]->slug ?? null;
+                                    @endphp
+                                    @if($cityUrl)
+                                    {{ url($cityUrl) }}/@if($vcardSlug){{ $vcardSlug }}
                                     @endif
                                     @endif
                                 </td>
+
                                 <td class="{{ $user->isActive? 'text-success':'text-danger' }}">{{ $user->isActive? 'अक्रिय':'सक्रिय' }}
                                 </td>
 
