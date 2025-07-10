@@ -68,7 +68,9 @@
                                     $slug=Str::slug($user->name);
                                     @endphp
                                     @if($cityUrl)
-                                    {{ url($cityUrl) }}/@if($vcardSlug){{ $vcardSlug?? $slug }}
+                                    {{ url($cityUrl) }}/
+                                    @if($vcardSlug)
+                                    {{ $vcardSlug ?? $slug }}
                                     @endif
                                     @endif
                                 </td>
