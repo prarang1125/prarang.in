@@ -61,14 +61,15 @@
                                 <td class="{{ $user->role }}">
                                     {{ $user->role == 1 ? 'व्यवस्थापक' : ($user->role == 2 ? 'ग्राहक' : 'अज्ञात') }}
                                 </td>
-                                <td>
+                                <td><a target="_blank" href="
                                     @php
                                     $cityUrl = $user->city?->city_arr ?? null;
                                     $vcardSlug = $user->vcard[0]->slug ?? null;
                                     $slug=Str::slug($user->name);
                                     @endphp @if($cityUrl)
-                                    {{ url($cityUrl) }}/{{ $vcardSlug ?? $slug }}
+                                    {{ url('/yp') }}/{{$cityUrl}}/{{ $vcardSlug ?? $slug }}
                                     @endif
+                                    ">Link</a>
                                 </td>
 
                                 <td class="{{ $user->isActive? 'text-success':'text-danger' }}">{{ $user->isActive? 'अक्रिय':'सक्रिय' }}
