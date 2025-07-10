@@ -65,9 +65,10 @@
                                     @php
                                     $cityUrl = $user->city?->city_arr ?? null;
                                     $vcardSlug = $user->vcard[0]->slug ?? null;
+                                    $slug=Str::slug($user->name);
                                     @endphp
                                     @if($cityUrl)
-                                    {{ url($cityUrl) }}/@if($vcardSlug){{ $vcardSlug }}
+                                    {{ url($cityUrl) }}/@if($vcardSlug){{ $vcardSlug?? $slug }}
                                     @endif
                                     @endif
                                 </td>

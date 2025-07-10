@@ -41,7 +41,4 @@ class VCard extends Model
     {
         return $this->belongsTo(Address::class, 'address_id');
     }
-
-    //  c
-
 }
