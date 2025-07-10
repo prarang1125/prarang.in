@@ -69,9 +69,9 @@
                                     @endphp
                                     @if($cityUrl)
                                     {{ url($cityUrl) }}/
-                                    @if($vcardSlug)
+
                                     {{ $vcardSlug ?? $slug }}
-                                    @endif
+
                                     @endif
                                 </td>
 
