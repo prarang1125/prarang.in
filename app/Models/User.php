@@ -60,18 +60,22 @@ class User extends Authenticatable
     public function subscriptions()
     {
         return $this->hasMany(UserPurchasePlan::class, 'user_id', 'id')
-                    ->where('is_active', 1)
-                    ->orderBy('created_at', 'desc');  // or order it as per your preference
+            ->where('is_active', 1)
+            ->orderBy('created_at', 'desc');  // or order it as per your preference
     }
-    
+
     public function address()
     {
         return $this->hasOne(Address::class, 'user_id');
     }
-       
+
+    public function vcard()
+    {
+        return $this->hasMany(VCard::class, 'user_id');
+    }
+
     public function city()
     {
         return $this->belongsTo(City::class, 'city_id');
     }
-    
 }
