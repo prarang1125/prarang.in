@@ -52,7 +52,7 @@
         /* Form Division */
         .signin-signup div form {
             justify-content: flex-start;
-            {{-- transform: translatex(0px) translatey(0px); --}} display: block;
+            /* {{-- transform: translatex(0px) translatey(0px); --}} display: block; */
         }
 
         /* Small Tag */

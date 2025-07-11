@@ -2,6 +2,7 @@
 @section('title', 'रजिस्टर - बधाई संदेश')
 @section('content')
     <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <style>
         /* Justify center */
         .justify-center {
@@ -375,7 +376,6 @@
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
-
             // Function to get a cookie value
             function getCookie(name) {
                 let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
