@@ -1322,3 +1322,161 @@ li:nth-child(3) > .text-primary:nth-child(1){
  font-weight:600;
 }
 
+
+
+
+/* Button */
+.container div .side-button{
+ position:absolute;
+ right:-16px;
+ transform: rotateZ(-90deg);
+}
+
+ /* Button */
+ .container div .side-button{
+  display:none;
+ }
+
+
+
+@media (max-width:767px){
+
+ /* Button */
+ .container div .side-button{
+  display:block;
+ }
+
+}
+
+@media (max-width:575px){
+
+ /* Button */
+ .container div .side-button{
+  top:40vh;
+ }
+
+}
+@media (max-width:575px){
+
+ /* Button */
+ .container div .side-button{
+  padding-left:17px;
+  padding-right:13px;
+ }
+
+}
+
+@media (max-width:767px){
+
+ /* Border dark */
+ .offcanvas-body div .border-dark{
+  border-style:none !important;
+ }
+
+ /* Paragraph */
+ .offcanvas-body div p{
+  margin-bottom:13px;
+ }
+
+ /* Text gray */
+ .offcanvas-body ul .text-gray{
+  text-decoration:none;
+  color:#0000ff;
+ }
+
+ /* Text gray (hover) */
+ .offcanvas-body ul .text-gray:hover{
+  font-weight:600;
+ }
+
+}
+@media (max-width:575px){
+
+ /* Button */
+ .container div .side-button{
+  z-index:911;
+  padding-left:0px !important;
+  padding-right:0px !important;
+  padding-top:0px;
+  padding-bottom:0px;
+  right:-18px !important;
+    font-size:18px;
+ }
+
+}
+
+
+
+@media (max-width:575px){
+
+
+
+ /* Custom logo tagline */
+ .custom-logo div .custom-logo-tagline{
+  position:relative;
+  top:-3px;
+ }
+
+ /* Image */
+ .custom-logo div img{
+  width:136px;
+ }
+
+}
+
+@media (max-width:575px){
+
+ /* Paragraph */
+ .offcanvas-body div p{
+  font-size:18px;
+  margin-bottom:1px !important;
+  font-weight:600;
+  padding-bottom:13px;
+ }
+
+ /* Offcanvas body */
+ #openFaqExample .offcanvas-body{
+  padding-top:3px;
+ }
+
+ /* Border dark */
+ .offcanvas-body div .border-dark{
+  transform:translatex(0px) translatey(0px);
+  margin-bottom:8px;
+  background-color:#ededed !important;
+ }
+
+}
+
+
+/* Column 12/12 */
+.tab-pane.pb-3{
+ position:relative;
+ top:27px;
+ margin-bottom:20px;
+}
+
+/* Span Tag */
+.tab-pane .pb-3 span{
+ position:relative;
+ top:10px;
+}
+
+/* Shadow */
+.tab-pane .shadow-sm{
+ padding-top:2px !important;
+}
+
+/* Column 12/12 */
+.pb-3{
+ position:relative;
+ top:20px;
+ margin-bottom:24px !important;
+}
+
+/* Modal body */
+#categoryModal .modal-xl .modal-body{
+ display:inline-block;
+ transform:translatex(0px) translatey(0px) !important;
+}
+

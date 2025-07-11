@@ -35,24 +35,37 @@ class AdminController extends Controller
         $Subscribers = UserPurchasePlan::where('is_active', 1)->distinct('user_id')->count('user_id');
         $vcard = VCard::where('is_active', 1)->count();
         return view('yellowpages::admin.dashboard', compact(
-             'totallisting', 'totalCategory', 'totalcitys','totalUser' ,'report','Subscribers','vcard'
+            'totallisting',
+            'totalCategory',
+            'totalcitys',
+            'totalUser',
+            'report',
+            'Subscribers',
+            'vcard'
         ));
     }
 
     ##------------------------- END ---------------------##
-    
+
     ##------------------------- User isting function ---------------------##
 
-    public function userListing(Request $request) {
+    public function userListing(Request $request)
+    {
 
-        try {
-            $users = User::all();
-            return view('yellowpages::admin.user-listing', compact('users'));
-        } catch (Exception $e) {
-            return redirect()->route('admin.dashboard')->withErrors(['error' => 'An error occurred while fetching user listings: ' ]);
-        }
+        // try {
+        // $users = User::with('city')->where('role', 2)->get();
+        $users = User::with(['city', 'vcard' => function ($query) {
+            $query->where('is_active', 1);
+        }])
+            ->where('role', 2)
+            ->get();
+        // dd($users);
+        return view('yellowpages::admin.user-listing', compact('users'));
+        // } catch (Exception $e) {
+        //     return redirect()->route('admin.dashboard')->withErrors(['error' => 'An error occurred while fetching user listings: ']);
+        // }
     }
-     
+
     ##------------------------- END ---------------------##
 
     ##------------------------- userEdit function ---------------------##
@@ -65,7 +78,7 @@ class AdminController extends Controller
         } catch (ModelNotFoundException $e) {
             return redirect()->route('admin.user-listing')->withErrors(['error' => 'User not found.']);
         } catch (Exception $e) {
-            return redirect()->route('admin.user-listing')->withErrors(['error' => 'An error occurred: ' ]);
+            return redirect()->route('admin.user-listing')->withErrors(['error' => 'An error occurred: ']);
         }
     }
 
@@ -87,16 +100,18 @@ class AdminController extends Controller
             $user = User::findOrFail($id);
 
             // Prepare the data to update
-            $dataToUpdate = array_filter([
-                'name' => $validatedData['name'],
-                'email' => $validatedData['email'],
-                'password' => $request->password ? Hash::make($validatedData['password']) : null,
-                'is_active' => $validatedData['is_active'],
-                'updated_at' => Carbon::now(),
-            ],
-            function ($value) {
-                return $value !== null && $value !== '';
-            });
+            $dataToUpdate = array_filter(
+                [
+                    'name' => $validatedData['name'],
+                    'email' => $validatedData['email'],
+                    'password' => $request->password ? Hash::make($validatedData['password']) : null,
+                    'is_active' => $validatedData['is_active'],
+                    'updated_at' => Carbon::now(),
+                ],
+                function ($value) {
+                    return $value !== null && $value !== '';
+                }
+            );
 
             // Remove 'password' if it's null
             if (empty($request->password)) {
@@ -110,7 +125,7 @@ class AdminController extends Controller
         } catch (ModelNotFoundException $e) {
             return redirect()->back()->withErrors(['error' => 'User not found.']);
         } catch (Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred while updating the user: ' ]);
+            return redirect()->back()->withErrors(['error' => 'An error occurred while updating the user: ']);
         }
     }
     ##------------------------- END ---------------------##
@@ -168,10 +183,9 @@ class AdminController extends Controller
                 ]);
                 $user->save();
                 return redirect()->route('admin.user-listing')->with('success', 'User registered successfully.');
-
             } catch (\Exception $e) {
                 // Handle errors in user creation
-                return back()->with('error', 'There was an issue with user registration: ' );
+                return back()->with('error', 'There was an issue with user registration: ');
             }
         } else {
             // Validation failed, return back with errors
@@ -180,13 +194,14 @@ class AdminController extends Controller
                 ->withErrors($validator);
         }
     }
-    
+
     ##------------------------- END ---------------------##
 
 
     ##------------------------- logout function ---------------------##
 
-    public function logout() {
+    public function logout()
+    {
         Auth::guard('admin')->logout();
         return redirect()->route('admin.login');
     }

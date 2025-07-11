@@ -24,7 +24,7 @@
     <meta name="twitter:title" content="{{ $metaData['title'] ?? 'Prarang : Knowledge Webs' }}">
     <meta name="twitter:description" content="{{ $metaData['description'] ?? '' }}">
     <meta name="twitter:image" content="{{ $metaData['image'] ?? 'https://prarang.s3.amazonaws.com/posts-2017-24/og_home_image.png' }}">
-
+    <meta name="google-site-verification" content="-DA48RRV_4JbpmDcYV7r8QBnMMtBXSzO4GmHj-gow2Q" />
     <!-- CSS Files -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
@@ -37,26 +37,21 @@
     @yield('css')
 </head>
 <style>
-    /* Link */
     .navbar-nav .col-md a {
         flex-direction: column;
         height: 50px;
     }
 
-    /* Span Tag */
     .navbar-nav a span {
         margin-top: -4px;
         font-size: 14px;
     }
 
-    /* Image */
     .container img {
         bottom: auto !important;
     }
 
     @media (min-width:768px) {
-
-        /* Image */
         .container img {
             top: 147px;
         }

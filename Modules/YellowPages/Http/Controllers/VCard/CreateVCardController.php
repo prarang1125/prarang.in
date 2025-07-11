@@ -120,7 +120,7 @@ class CreateVCardController extends Controller
         }
 
         return redirect()->route('vCard.view', ['slug' => $slug])
-                         ->with('success', 'Card saved successfully.');
+            ->with('success', 'Card saved successfully.');
     }
     ##------------------------- END ---------------------##
 
@@ -130,7 +130,7 @@ class CreateVCardController extends Controller
         try {
             return view('yellowpages::Vcard.Card');
         } catch (Exception $e) {
-            Log::error('Error editing VCard: ' );
+            Log::error('Error editing VCard: ');
             return redirect()->back()->withErrors(['error' => 'Unable to fetch VCard details for editing.']);
         }
     }
@@ -141,121 +141,121 @@ class CreateVCardController extends Controller
     public function vCardUpdate(Request $request, $id)
     {
         // try {
-            // Validate incoming data
-            $validatedData = $request->validate([
-                'color_code' => 'nullable|string',
-                'category_id' => 'required|exists:yp.categories,id',
-                'city_id' => 'required|exists:yp.cities,id',
-                'name' => 'required|string',
-                'surname' => 'nullable|string',
-                'house_number' => 'nullable|string',
-                'street' => 'nullable|string',
-                'area_name' => 'nullable|string',
-                'postal_code' => 'nullable|string',
-                'dob' => 'nullable|date',
-                'email' => 'nullable|email',
-                'aadhar' => 'nullable|string',
-                'profile' => 'nullable|image|max:2048',
-                'aadhar_front' => 'nullable|image|max:2048',
-                'aadhar_back' => 'nullable|image|max:2048',
-                'dynamic_name'     => 'nullable|array',
-                'dynamic_name.*'   => 'nullable|string',
-                'dynamic_data'     => 'nullable|array',
-                'dynamic_data.*'   => 'nullable|string',
-            ], [
-                'category_id.required' => 'श्रेणी फ़ील्ड आवश्यक है।',
-                'city_id.required' => 'शहर फ़ील्ड आवश्यक है।',
-                'name.required' => 'नाम फ़ील्ड आवश्यक है।',
+        // Validate incoming data
+        $validatedData = $request->validate([
+            'color_code' => 'nullable|string',
+            'category_id' => 'required|exists:yp.categories,id',
+            'city_id' => 'required|exists:yp.cities,id',
+            'name' => 'required|string',
+            'surname' => 'nullable|string',
+            'house_number' => 'nullable|string',
+            'street' => 'nullable|string',
+            'area_name' => 'nullable|string',
+            'postal_code' => 'nullable|string',
+            'dob' => 'nullable|date',
+            'email' => 'nullable|email',
+            'aadhar' => 'nullable|string',
+            'profile' => 'nullable|image|max:2048',
+            'aadhar_front' => 'nullable|image|max:2048',
+            'aadhar_back' => 'nullable|image|max:2048',
+            'dynamic_name'     => 'nullable|array',
+            'dynamic_name.*'   => 'nullable|string',
+            'dynamic_data'     => 'nullable|array',
+            'dynamic_data.*'   => 'nullable|string',
+        ], [
+            'category_id.required' => 'श्रेणी फ़ील्ड आवश्यक है।',
+            'city_id.required' => 'शहर फ़ील्ड आवश्यक है।',
+            'name.required' => 'नाम फ़ील्ड आवश्यक है।',
+        ]);
+
+
+        // Retrieve the vCard
+        $vcard = VCard::findOrFail($id);
+
+        // Ensure user and address relationships exist
+        $user = $vcard->user;
+        if (!$user) {
+            return redirect()->back()->withErrors(['error' => 'User not found for this VCard.']);
+        }
+
+        $address = $user->address;
+        if (!$address) {
+            return redirect()->back()->withErrors(['error' => 'Address not found for this user.']);
+        }
+
+        // Handle file uploads
+        if ($request->hasFile('profile')) {
+            $validatedData['profile'] = $request->file('profile')->store('yellowpages/profiles', 's3');
+        }
+
+
+        if ($request->hasFile('aadhar_front')) {
+            $validatedData['aadhar_front'] = $request->file('aadhar_front')->store('yellowpages/aadhar');
+        }
+
+        if ($request->hasFile('aadhar_back')) {
+            $validatedData['aadhar_back'] = $request->file('aadhar_back')->store('yellowpages/aadhar');
+        }
+
+        // Begin Transaction
+        DB::beginTransaction();
+
+        // Update User Table
+        if ($user) {
+            $user->update([
+                'name' => array_key_exists('name', $validatedData) ? $validatedData['name'] : $user->name,
+                'surname' => array_key_exists('surname', $validatedData) ? $validatedData['surname'] : $user->surname,
+                'dob' => array_key_exists('dob', $validatedData) ? $validatedData['dob'] : $user->dob,
+                'email' => array_key_exists('email', $validatedData) ? $validatedData['email'] : $user->email,
+                'aadhar' => array_key_exists('aadhar', $validatedData) ? $validatedData['aadhar'] : $user->aadhar,
+                'profile' => array_key_exists('profile', $validatedData) ? $validatedData['profile'] : $user->profile,
             ]);
+        }
 
 
-            // Retrieve the vCard
-            $vcard = VCard::findOrFail($id);
+        // Update Address Table
+        $address->update([
+            'house_number' => $validatedData['house_number'] ?? $address->house_number,
+            'street' => $validatedData['street'] ?? $address->street,
+            'area_name' => $validatedData['area_name'] ?? $address->area_name,
+            'postal_code' => $validatedData['postal_code'] ?? $address->postal_code,
+            'city_id' => $validatedData['city_id'] ?? $address->city_id,
+        ]);
 
-            // Ensure user and address relationships exist
-            $user = $vcard->user;
-            if (!$user) {
-                return redirect()->back()->withErrors(['error' => 'User not found for this VCard.']);
-            }
+        // Handle Dynamic Fields
+        if (isset($validatedData['dynamic_name']) && is_array($validatedData['dynamic_name'])) {
+            foreach ($validatedData['dynamic_name'] as $index => $dynamicName) {
+                $dataValue = $validatedData['dynamic_data'][$index] ?? null;
 
-            $address = $user->address;
-            if (!$address) {
-                return redirect()->back()->withErrors(['error' => 'Address not found for this user.']);
-            }
+                if ($dataValue) {
+                    $existingField = DynamicVCard::where('vcard_id', $id)
+                        ->where('title', $dynamicName)
+                        ->first();
 
-            // Handle file uploads
-            if ($request->hasFile('profile')) {
-                $validatedData['profile'] = $request->file('profile')->store('yellowpages/profiles', 's3');
-            }
-
-
-            if ($request->hasFile('aadhar_front')) {
-                $validatedData['aadhar_front'] = $request->file('aadhar_front')->store('yellowpages/aadhar');
-            }
-
-            if ($request->hasFile('aadhar_back')) {
-                $validatedData['aadhar_back'] = $request->file('aadhar_back')->store('yellowpages/aadhar');
-            }
-
-            // Begin Transaction
-            DB::beginTransaction();
-
-            // Update User Table
-            if ($user) {
-                $user->update([
-                    'name' => array_key_exists('name', $validatedData) ? $validatedData['name'] : $user->name,
-                    'surname' => array_key_exists('surname', $validatedData) ? $validatedData['surname'] : $user->surname,
-                    'dob' => array_key_exists('dob', $validatedData) ? $validatedData['dob'] : $user->dob,
-                    'email' => array_key_exists('email', $validatedData) ? $validatedData['email'] : $user->email,
-                    'aadhar' => array_key_exists('aadhar', $validatedData) ? $validatedData['aadhar'] : $user->aadhar,
-                    'profile' => array_key_exists('profile', $validatedData) ? $validatedData['profile'] : $user->profile,
-                ]);
-            }
-
-
-            // Update Address Table
-            $address->update([
-                'house_number' => $validatedData['house_number'] ?? $address->house_number,
-                'street' => $validatedData['street'] ?? $address->street,
-                'area_name' => $validatedData['area_name'] ?? $address->area_name,
-                'postal_code' => $validatedData['postal_code'] ?? $address->postal_code,
-                'city_id' => $validatedData['city_id'] ?? $address->city_id,
-            ]);
-
-            // Handle Dynamic Fields
-            if (isset($validatedData['dynamic_name']) && is_array($validatedData['dynamic_name'])) {
-                foreach ($validatedData['dynamic_name'] as $index => $dynamicName) {
-                    $dataValue = $validatedData['dynamic_data'][$index] ?? null;
-
-                    if ($dataValue) {
-                        $existingField = DynamicVCard::where('vcard_id', $id)
-                            ->where('title', $dynamicName)
-                            ->first();
-
-                        if ($existingField) {
-                            $existingField->update(['data' => $dataValue]);
-                        } else {
-                            DynamicVCard::create([
-                                'vcard_id' => $id,
-                                'title' => $dynamicName,
-                                'data' => $dataValue,
-                            ]);
-                        }
+                    if ($existingField) {
+                        $existingField->update(['data' => $dataValue]);
+                    } else {
+                        DynamicVCard::create([
+                            'vcard_id' => $id,
+                            'title' => $dynamicName,
+                            'data' => $dataValue,
+                        ]);
                     }
                 }
             }
+        }
 
-            // Handle Deleted Fields
-            if ($request->has('deleted_fields')) {
-                $deletedFieldIds = explode(',', $request->input('deleted_fields'));
-                DynamicVCard::where('vcard_id', $id)
-                    ->whereIn('id', $deletedFieldIds)
-                    ->delete();
-            }
+        // Handle Deleted Fields
+        if ($request->has('deleted_fields')) {
+            $deletedFieldIds = explode(',', $request->input('deleted_fields'));
+            DynamicVCard::where('vcard_id', $id)
+                ->whereIn('id', $deletedFieldIds)
+                ->delete();
+        }
 
-            DB::commit();
+        DB::commit();
 
-            return redirect()->route('vCard.list')->with('success', 'वेबपेज सफलतापूर्वक अपडेट(Update) किया गया.');
+        return redirect()->route('vCard.list')->with('success', 'वेबपेज सफलतापूर्वक अपडेट(Update) किया गया.');
         // } catch (Exception $e) {
         //     DB::rollBack();
         //     Log::error('Error updating VCard: ' );
@@ -263,12 +263,12 @@ class CreateVCardController extends Controller
         // }
     }
 
-    public function userPreview($city_arr,$slug)
+    public function userPreview($city_arr, $slug)
     {
 
         $vcard = VCard::where('slug', $slug)
             ->orderBy('id', 'desc')
-            ->with( 'dynamicFields')
+            ->with('dynamicFields')
             ->first();
         $user = User::with('address')->find($vcard->user_id);
         $dynamicFields = DynamicFeild::where('is_active', 1)->get();
@@ -278,52 +278,53 @@ class CreateVCardController extends Controller
         // Check if VCard exists and is approved
         if (!$vcard) {
             $message = 'VCard not found.';
-            return view('yellowpages::Vcard.CardView', compact('user', 'address', 'message','category','city_arr'));
+            return view('yellowpages::Vcard.CardView', compact('user', 'address', 'message', 'category', 'city_arr'));
         }
 
         // If VCard is not approved
         if ($vcard->is_active != 1) {
             $message = 'आपका कार्ड स्वीकृति की प्रक्रिया में है।';
-            return view('yellowpages::Vcard.CardView', compact('user', 'message', 'vcard','category','city_arr'));
+            return view('yellowpages::Vcard.CardView', compact('user', 'message', 'vcard', 'category', 'city_arr'));
         }
 
-        return view('yellowpages::Vcard.CardView', compact('vcard', 'user', 'category', 'dynamicFields','city_arr'));
+        return view('yellowpages::Vcard.CardView', compact('vcard', 'user', 'category', 'dynamicFields', 'city_arr'));
     }
 
-    public function vcardPrint($city_arr,$slug){
+    public function vcardPrint($city_arr, $slug)
+    {
         $vcard = VCard::where('slug', $slug)
-        ->where('is_active', 1)
-        ->orderBy('id', 'desc')
-        ->with( 'dynamicFields')
-        ->first();
-    $user = User::with('address')->find($vcard->user_id);
-    $dynamicFields = DynamicFeild::where('is_active', 1)->get();
+            ->where('is_active', 1)
+            ->orderBy('id', 'desc')
+            ->with('dynamicFields')
+            ->first();
+        $user = User::with('address')->find($vcard->user_id);
+        $dynamicFields = DynamicFeild::where('is_active', 1)->get();
 
-    // Fetch VCard data
-    $category = Category::where('id', $vcard->category_id)->first();
+        // Fetch VCard data
+        $category = Category::where('id', $vcard->category_id)->first();
 
-        return view('yellowpages::Vcard.vcard-print',compact('vcard', 'user', 'category', 'dynamicFields','city_arr'));
+        return view('yellowpages::Vcard.vcard-print', compact('vcard', 'user', 'category', 'dynamicFields', 'city_arr'));
     }
 
     ##------------------------- END ---------------------##
 
-     ##------------------------- VCard share ---------------------##
-     public function view($city_arr,$slug)
-     {
+    ##------------------------- VCard share ---------------------##
+    public function view($city_arr, $slug)
+    {
 
         $vcard = VCard::where('slug', $slug)
-        ->orderBy('id', 'desc')
-        ->with( 'dynamicFields')
-        ->first();
+            ->orderBy('id', 'desc')
+            ->with('dynamicFields')
+            ->first();
 
-    $user = User::with('address')->find($vcard->user_id);
-    $dynamicFields = DynamicFeild::where('is_active', 1)->get();
+        $user = User::with('address')->find($vcard->user_id);
+        $dynamicFields = DynamicFeild::where('is_active', 1)->get();
 
-    $category = Category::where('id', $vcard->category_id)->first();
+        $category = Category::where('id', $vcard->category_id)->first();
 
 
-        return view('yellowpages::Vcard.share-card',compact('vcard', 'user', 'category', 'dynamicFields','city_arr'));
-     }
+        return view('yellowpages::Vcard.share-card', compact('vcard', 'user', 'category', 'dynamicFields', 'city_arr'));
+    }
 
     ##------------------------- END ---------------------##
     ##------------------------- VCard scan ---------------------##
@@ -332,16 +333,16 @@ class CreateVCardController extends Controller
     {
         // Retrieve the vCard record by slug, including its dynamic fields.
         $vcard = VCard::where('slug', $slug)
-        ->with('address')
-        ->firstOrFail();
+            ->with('address')
+            ->firstOrFail();
 
 
         if (!$vcard) {
             abort(404, 'vCard not found.');
         }
 
-        $count =$vcard->increment('scan_count');
-        return redirect()->route('vCard.view', ['slug' => $vcard->slug,'city_arr'=>$vcard->address->city->city_arr]);
+        $count = $vcard->increment('scan_count');
+        return redirect()->route('vCard.view', ['slug' => $vcard->slug, 'city_arr' => $vcard->address->city->city_arr]);
         $user = User::with('address')->find($vcard->user_id);
         if (!$user) {
             abort(404, 'User not found.');
@@ -363,8 +364,9 @@ class CreateVCardController extends Controller
     ##------------------------- END ---------------------##
 
     ##------------------------- VCard list ------------------ ---##
-    public function VcardList(Request $request) {
-     try {
+    public function VcardList(Request $request)
+    {
+        try {
             $userId = Auth::id();
             $user = User::find($userId);
             $Vcard_list = VCard::where('user_id', $userId)->get();
@@ -373,9 +375,9 @@ class CreateVCardController extends Controller
             // Fetch categories if necessary
             $categories = Category::whereIn('id', $Vcard_list->pluck('category_id'))->get()->keyBy('id');
 
-            return view('yellowpages::Vcard.vcard-list', compact('user','Vcard_list', 'cities', 'categories'));
+            return view('yellowpages::Vcard.vcard-list', compact('user', 'Vcard_list', 'cities', 'categories'));
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Error fetching Vcard listings: ' );
+            return redirect()->back()->with('error', 'Error fetching Vcard listings: ');
         }
     }
 
@@ -390,7 +392,7 @@ class CreateVCardController extends Controller
         } catch (ModelNotFoundException $e) {
             return redirect()->route('vCard.list')->withErrors(['error' => 'vcard not found.']);
         } catch (Exception $e) {
-            return redirect()->route('vCard.list')->withErrors(['error' => 'An error occurred while trying to delete the VCard: ' ]);
+            return redirect()->route('vCard.list')->withErrors(['error' => 'An error occurred while trying to delete the VCard: ']);
         }
     }
     ##------------------------- END ---------------------##
@@ -400,16 +402,14 @@ class CreateVCardController extends Controller
     public function cardView($city_arr, $slug)
     {
 
-        $vcard = User::select('users.*','cities.*','users.name as name')
-        ->join('cities', 'cities.id', '=', 'users.city_id')
-        ->leftJoin('address', 'address.user_id', '=', 'users.id')
-        ->where('cities.city_arr', $city_arr)
-        ->where('users.user_code', $slug)
-        ->with('address')
-        ->firstOrFail();
+        $vcard = User::select('users.*', 'cities.*', 'users.name as name')
+            ->join('cities', 'cities.id', '=', 'users.city_id')
+            ->leftJoin('address', 'address.user_id', '=', 'users.id')
+            ->where('cities.city_arr', $city_arr)
+            ->where('users.user_code', $slug)
+            ->with('address')
+            ->firstOrFail();
         // dd($vcard);
-        return view('yellowpages::Vcard.newCard', compact( 'vcard'));
+        return view('yellowpages::Vcard.newCard', compact('vcard'));
     }
-
-
 }

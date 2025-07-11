@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
 
 class VCard extends Model
@@ -26,21 +27,18 @@ class VCard extends Model
     ];
 
     public function dynamicFields()
-{
-    return $this->hasMany(DynamicVCard::class, 'vcard_id');
-}
+    {
+        return $this->hasMany(DynamicVCard::class, 'vcard_id');
+    }
 
-// Vcard model
-public function user()
-{
-    return $this->belongsTo(User::class, 'user_id');
-}
+    // Vcard model
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 
-public function address()
-{
-    return $this->belongsTo(Address::class, 'address_id');
-}
-
-//  c
-
+    public function address()
+    {
+        return $this->belongsTo(Address::class, 'address_id');
+    }
 }
