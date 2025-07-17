@@ -8,7 +8,7 @@
 
     </button>
     <div class="container-fluid">
-        <p class="text-center main-title-heading">UPMANA - Knowledge By Comparison</p>
+        <p class="text-center main-title-heading">{{ $lables['upamana_title'] }}</p>
         <div class="row">
             <!-- 8 Column (Main content) -->
             <div
@@ -19,7 +19,7 @@
                     <section class="first-prompt">
                         @if ($activeSection['firstPrompt'])
                             <div class="mb-3 text-center firstPrompt">
-                                <h5>Comparative A.I. on any Geography</h5>
+                                <h5>{{ $lables['upmana_sub_title'] }}</h5>
                                 @if (session()->has('message'))
                                     <p class="text-success"
                                         style="font-size: 14px!important; margin: 0px; padding: 0px;">

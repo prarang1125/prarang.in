@@ -111,138 +111,142 @@
     .social-icon .transition i {
         height: 35px;
     }
+
     /* Items center */
-.justify-between .space-y-3 .items-center{
- flex-direction:row;
- margin-top:-1px;
-}
+    .justify-between .space-y-3 .items-center {
+        flex-direction: row;
+        margin-top: -1px;
+    }
 
-/* Division */
-.space-y-3 .items-center div{
- display:flex;
- flex-direction:column;
-}
+    /* Division */
+    .space-y-3 .items-center div {
+        display: flex;
+        flex-direction: column;
+    }
 
-/* Font semibold */
-.space-y-3 div .font-semibold{
- padding-top:-13px;
- position:relative;
- top:-1px;
-}
+    /* Font semibold */
+    .space-y-3 div .font-semibold {
+        padding-top: -13px;
+        position: relative;
+        top: -1px;
+    }
 
-/* Mtdclass */
-.space-y-3 div .mtdclass{
- font-size:12px;
-}
+    /* Mtdclass */
+    .space-y-3 div .mtdclass {
+        font-size: 12px;
+    }
 
-/* Font semibold */
-.space-y-3 div .font-semibold{
- top:-3px;
-}
-/* Heading */
-.justify-between div h3{
- margin-top:6px;
-}
-/* Italic Tag */
-.justify-between div .bx{
- font-size:18px !important;
- font-weight:600 !important;
- width:25px;
- height:25px;
- margin-right:0px;
-}
+    /* Font semibold */
+    .space-y-3 div .font-semibold {
+        top: -3px;
+    }
 
-/* Youtube */
-.justify-center #my-vcard .justify-between div .flex .social-icon .transition .bxl-youtube{
- width:25px !important;
- height:25px !important;
-}
+    /* Heading */
+    .justify-between div h3 {
+        margin-top: 6px;
+    }
 
-/* Heading */
-.justify-between div h3{
- font-size:12px;
- font-weight:700;
- color:#5c6065;
- font-style:normal;
-}
+    /* Italic Tag */
+    .justify-between div .bx {
+        font-size: 18px !important;
+        font-weight: 600 !important;
+        width: 25px;
+        height: 25px;
+        margin-right: 0px;
+    }
 
-/* Justify center */
-.justify-center .justify-center{
- padding-left:0px;
- padding-right:0px;
- padding-top:0px;
- padding-bottom:0px;
-}
+    /* Youtube */
+    .justify-center #my-vcard .justify-between div .flex .social-icon .transition .bxl-youtube {
+        width: 25px !important;
+        height: 25px !important;
+    }
 
-/* Image */
-.justify-center a img{
- font-size:24px;
-}
+    /* Heading */
+    .justify-between div h3 {
+        font-size: 12px;
+        font-weight: 700;
+        color: #5c6065;
+        font-style: normal;
+    }
 
-/* Image */
-.justify-center .justify-center .w-full a img{
- width:340px !important;
-}
+    /* Justify center */
+    .justify-center .justify-center {
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-top: 0px;
+        padding-bottom: 0px;
+    }
 
-/* Justify center */
-.justify-center{
- margin-top:1px;
- padding-top:0px;
-}
-/* Import Google Fonts */
-@import url("//fonts.googleapis.com/css2?family=TimesNewRoman:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+    /* Image */
+    .justify-center a img {
+        font-size: 24px;
+    }
 
-/* Justify center */
-.justify-center{
- padding-top:2px !important;
-}
+    /* Image */
+    .justify-center .justify-center .w-full a img {
+        width: 340px !important;
+    }
 
-/* Heading */
-.justify-center h4{
- font-weight:700;
- font-family:'TimesNewRoman','Times New Roman',Times,Baskerville,Georgia,serif;
- font-size:16px;
-}
+    /* Justify center */
+    .justify-center {
+        margin-top: 1px;
+        padding-top: 0px;
+    }
 
-/* Text white */
-.flex-wrap .w-full .text-white{
- margin-right:16px;
-}
+    /* Import Google Fonts */
+    @import url("//fonts.googleapis.com/css2?family=TimesNewRoman:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+
+    /* Justify center */
+    .justify-center {
+        padding-top: 2px !important;
+    }
+
+    /* Heading */
+    .justify-center h4 {
+        font-weight: 700;
+        font-family: 'TimesNewRoman', 'Times New Roman', Times, Baskerville, Georgia, serif;
+        font-size: 16px;
+    }
+
+    /* Text white */
+    .flex-wrap .w-full .text-white {
+        margin-right: 16px;
+    }
 
 
-@media (max-width:576px){
+    @media (max-width:576px) {
 
-/* Image */
-.justify-center .justify-center .w-full a img{
- width:164px !important;
-}
+        /* Image */
+        .justify-center .justify-center .w-full a img {
+            width: 164px !important;
+        }
 
-/* Justify center */
-#my-vcard .justify-center{
- padding-bottom:9px;
- transform:translatex(0px) translatey(0px);
- padding-top:13px !important;
-}
+        /* Justify center */
+        #my-vcard .justify-center {
+            padding-bottom: 9px;
+            transform: translatex(0px) translatey(0px);
+            padding-top: 13px !important;
+        }
 
-/* Justify center */
-.justify-center #my-vcard .justify-center{
- width:100% !important;
-}
+        /* Justify center */
+        .justify-center #my-vcard .justify-center {
+            width: 100% !important;
+        }
 
-/* Image */
-.justify-center #my-vcard .justify-center .overflow-hidden img{
- width:115% !important;
-}
+        /* Image */
+        .justify-center #my-vcard .justify-center .overflow-hidden img {
+            width: 115% !important;
+        }
 
-/* Overflow hidden */
-#my-vcard .justify-center .overflow-hidden{
- width:130px;
- height:130px;
-}
+        /* Overflow hidden */
+        #my-vcard .justify-center .overflow-hidden {
+            width: 130px;
+            height: 130px;
+        }
 
-}
+    }
 
-@media print {
+    @media print {
         body {
             -webkit-print-color-adjust: exact !important;
             print-color-adjust: exact !important;
@@ -259,17 +263,16 @@
             filter: grayscale(100%);
         } */
     }
+
     /* Italic Tag */
-.flex-wrap .w-full .bx{
- padding-right:8px;
-}
+    .flex-wrap .w-full .bx {
+        padding-right: 8px;
+    }
 
-/* Font semibold */
-.space-y-3 div .font-semibold{
- font-size:15px;
-}
-
-
+    /* Font semibold */
+    .space-y-3 div .font-semibold {
+        font-size: 15px;
+    }
 </style>
 
 <body class="bg-gray-100">
@@ -280,12 +283,13 @@
                 <a href="https://www.prarang.in" target="_blank">
                     <img src="{{ asset('assets/images/logo/yellow_logo.png') }}" alt="Prarang Logo" class="w-48">
                 </a>
-        </div>
+            </div>
 
-        </section>    </section>
-        <div class="flex items-center justify-center">
-            <h4>प्रारंग {{$user->city->name}} पेज </h4>
-        </div>
+        </section>
+    </section>
+    <div class="flex items-center justify-center">
+        <h4>प्रारंग {{$user->city->name}} पेज </h4>
+    </div>
     <section class="flex items-center justify-center p-4">
         <div id="my-vcard"
             class="flex flex-col w-full max-w-xl overflow-hidden bg-white border border-gray-200 rounded-lg shadow-lg md:flex-row">
@@ -298,7 +302,7 @@
                         alt="{{ $user->name ?? 'User' }}'s Profile" class="object-cover w-full h-full">
                 </div>
                 {{-- <h2 class="mt-3 text-lg font-semibold text-white md:text-xl">{{ ucfirst($user->name ?? 'User') }}
-                    {{ ucfirst($user->surname ?? '') }}</h2>
+                {{ ucfirst($user->surname ?? '') }}</h2>
                 <p class="text-sm text-white opacity-80">+91-{{ $user->phone ?? 'Category' }}</p> --}}
 
                 <!-- QR Code -->
@@ -314,73 +318,73 @@
                 <!-- Contact Details -->
                 <div class="space-y-3">
                     @if (!empty($user->name))
-                        <div class="flex items-center space-x-3">
-                            <div><i class="text-lg text-blue-500 md:text-xl bx bxs-user"></i></div>
-                            <div>
-                                <span class="text-gray-500 mtdclass">नाम(Name)</span>
+                    <div class="flex items-center space-x-3">
+                        <div><i class="text-lg text-blue-500 md:text-xl bx bxs-user"></i></div>
+                        <div>
+                            <span class="text-gray-500 mtdclass">नाम(Name)</span>
 
-                                <span class="font-semibold text-gray-800"> {{ ucfirst($user->name ?? '') }} {{ ucfirst($user->surname ?? '') }}</span>
-                            </div>
+                            <span class="font-semibold text-gray-800"> {{ ucfirst($user->name ?? '') }} {{ ucfirst($user->surname ?? '') }}</span>
                         </div>
+                    </div>
                     @endif
 
                     @if (!empty($user->email))
-                        <div class="flex items-center space-x-3">
-                            <div><i class="text-lg text-indigo-500 md:text-xl bx bxs-envelope"></i></div>
-                            <div>
-                                <span class="text-gray-500 mtdclass"> ईमेल (Email):</span>
-                                <span class="font-semibold text-gray-800">{{ $user->email }}</span>
-                            </div>
+                    <div class="flex items-center space-x-3">
+                        <div><i class="text-lg text-indigo-500 md:text-xl bx bxs-envelope"></i></div>
+                        <div>
+                            <span class="text-gray-500 mtdclass"> ईमेल (Email):</span>
+                            <span class="font-semibold text-gray-800">{{ $user->email }}</span>
                         </div>
+                    </div>
                     @endif
 
                     @if (!empty($user->phone))
-                        <div class="flex items-center space-x-3">
-                            <div><i class="text-lg text-green-500 md:text-xl bx bxs-phone"></i></div>
-                            <div>
-                                <span class="text-gray-500 mtdclass">फ़ोन (Phone):</span>
-                                <span class="font-semibold text-gray-800">{{ $user->phone }}</span>
-                            </div>
+                    <div class="flex items-center space-x-3">
+                        <div><i class="text-lg text-green-500 md:text-xl bx bxs-phone"></i></div>
+                        <div>
+                            <span class="text-gray-500 mtdclass">फ़ोन (Phone):</span>
+                            <span class="font-semibold text-gray-800">{{ $user->phone }}</span>
                         </div>
+                    </div>
                     @endif
                     @if (!empty($user->address))
                     @php
-                        $addressParts = array_filter([
-                            $user->address->house_number ?? '',
-                            $user->address->street ?? '',
-                            $user->address->area_name ?? '',
-                            $user->address->city_name ?? '',
+                    $addressParts = array_filter([
+                    $user->address->house_number ?? '',
+                    $user->address->street ?? '',
+                    $user->address->area_name ?? '',
+                    $user->address->city_name ?? '',
 
-                        ]);
+                    ]);
                     @endphp
 
                     @if (!empty($addressParts))
-                        <div class="flex items-center space-x-3">
-                            <div><i class="text-lg text-red-500 md:text-xl bx bxs-map"></i></div>
-                            <div>
-                                <span class="text-gray-500 mtdclass">पता (Address):</span>
-                                <span class="font-semibold text-gray-800">
-                                    {{ isset($addressParts) && is_array($addressParts) ? implode(',', $addressParts) : '' }}
-                                    @php
-                                        $cityName = $user->address->city_name ?? '';
-                                        $state = $user->address->state ?? '';
-                                        $postalCode = $user->address->postal_code ?? '';
-                                        $isHindi = preg_match('/[\p{Devanagari}]/u', $cityName);
+                    <div class="flex items-center space-x-3">
+                        <div><i class="text-lg text-red-500 md:text-xl bx bxs-map"></i></div>
+                        <div>
+                            <span class="text-gray-500 mtdclass">पता (Address):</span>
+                            <span class="font-semibold text-gray-800">
+                                {{ isset($addressParts) && is_array($addressParts) ? implode(',', $addressParts) : '' }}
+                                @php
+                                $cityName = $user->address->city_name ?? '';
+                                $state = $user->address->state ?? '';
+                                $postalCode = $user->address->postal_code ?? '';
+                                $isHindi = preg_match('/[\p{Devanagari}]/u', $cityName);
 
-                                        // Handle state formatting safely
-                                        $stateParts = explode('(', $state);
-                                        $formattedState = count($stateParts) > 1 ? str_replace(')', '', $stateParts[1]) : ($stateParts[0] ?? '');
+                                // Handle state formatting safely
+                                $stateParts = explode('(', $state);
+                                $formattedState = count($stateParts) > 1 ? str_replace(')', '', $stateParts[1]) : ($stateParts[0] ?? '');
 
-                                    @endphp
-                                    ,{{ $isHindi ? ($stateParts[0] ?? '') : $formattedState }},
-                                    {{ $isHindi ? "भारत" : "India" }},
-                                    {{ $isHindi ? "पिन" : "Pin" }} - {{ $postalCode }}
-                                </span>
+                                @endphp
+                                ,{{ $isHindi ? ($stateParts[0] ?? '') : $formattedState }},
+                                {{ $isHindi ? "भारत" : "India" }},
+                                {{ $isHindi ? "पिन" : "Pin" }} - {{ $postalCode }}
+                            </span>
 
-                            </div>
                         </div>
+                    </div>
                     @endif
-                @endif
+                    @endif
 
                 </div>
 
@@ -394,15 +398,15 @@
                     <h3 class="font-semibold text-gray-800 text-md">सोशल मीडिया</h3>
                     <div class="flex space-x-3 social-icones">
                         @foreach ($vcard->dynamicFields as $social)
-                            @php $socialData = $social->data; @endphp
-                            @if (!empty($socialData))
-                                <div class="social-icon">
-                                    <a href="{{ filter_var($socialData, FILTER_VALIDATE_URL) ? $socialData : '#' }}"
-                                       target="_blank" class="text-gray-700 transition hover:text-blue-500">
-                                        <i class="{{ $social->icon ?? 'bx bx-link' }} text-2xl"></i>
-                                    </a>
-                                </div>
-                            @endif
+                        @php $socialData = $social->data; @endphp
+                        @if (!empty($socialData))
+                        <div class="social-icon">
+                            <a href="{{ filter_var($socialData, FILTER_VALIDATE_URL) ? $socialData : '#' }}"
+                                target="_blank" class="text-gray-700 transition hover:text-blue-500">
+                                <i class="{{ $social->icon ?? 'bx bx-link' }} text-2xl"></i>
+                            </a>
+                        </div>
+                        @endif
                         @endforeach
                     </div>
                     @endif

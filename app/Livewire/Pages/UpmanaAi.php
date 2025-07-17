@@ -34,7 +34,7 @@ class UpmanaAi extends Component
     public $source;
     public $citiesTOChose, $firstCity, $takeme;
     public $genHit, $isRegistered;
-
+    public $localLocation, $lables;
 
     public function mount(SentenceService $sentenceService)
     {
@@ -54,6 +54,14 @@ class UpmanaAi extends Component
         $this->citiesTOChose = $this->sentenceService->geography();
         $this->genHit = session()->get('gen-hit', 0);
         $this->isRegistered = session()->has('upmana-auth');
+
+        $this->lables = cache()->remember('local-labels-hi', 60 * 60 * 24, function () {
+            $lable = httpGet('/local/lable', ['local' => 'hi']);
+            if ($lable['status'] == 'success') {
+                return $lable['data'];
+            }
+            return [];
+        });
     }
 
     public function toggleMainCheck($main)
