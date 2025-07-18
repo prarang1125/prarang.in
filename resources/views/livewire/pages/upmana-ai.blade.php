@@ -5,16 +5,13 @@
     <button class="@if ($output) d-none @endif btn btn-primary side-button" type="button"
         data-bs-toggle="offcanvas" data-bs-target="#openFaqExample" aria-controls="openFaqExample">
         &nbsp;&nbsp;FAQ &nbsp;&nbsp;
-
     </button>
+
     <div class="container-fluid">
         <p class="text-center main-title-heading">{{ $lables['upamana_title'] }}</p>
         <div class="row">
-            <!-- 8 Column (Main content) -->
             <div
                 class="@if ($output) col-12 @else  col-lg-9 col-md-9 col-sm-12 @endif position-relative">
-
-
                 <div class="pr-ai-section">
                     <section class="first-prompt">
                         @if ($activeSection['firstPrompt'])
@@ -36,7 +33,7 @@
                                                     <div> <button type="button"
                                                             class="btn btn-secondary btn-lg position-relative"
                                                             data-bs-toggle="modal" data-bs-target="#geographyModal">
-                                                            Select Location<br><small>(2 to 5)</small>
+                                                            {{ $lables['select_location'] }}<br><small>{{ $lables['2_to_5'] }}</small>
                                                         </button>
 
                                                         @if (session()->has('cityerror'))
@@ -49,7 +46,7 @@
                                                         <span class="p-2 m-2 border count-box bg-light text-dark"
                                                             id="citiesCount" wire:ignore>
                                                             0
-                                                        </span>Selected
+                                                        </span>{{ $lables['selected'] }}
                                                     </div>
 
                                                 </div>
@@ -63,12 +60,12 @@
                                                     <div> <button type="button"
                                                             class="btn btn-primary btn-lg position-relative"
                                                             data-bs-toggle="modal" data-bs-target="#categoryModal">
-                                                            Select Metrics<br><small>(2 to 5)</small>
+                                                            {{ $lables['select_metrics'] }}<br><small>{{ $lables['2_to_5'] }}</small>
                                                         </button></div>
                                                     <div><span class="p-2 m-2 border count-box bg-light text-dark"
                                                             id="category-count" wire:ignore>
                                                             0
-                                                        </span>Selected
+                                                        </span>{{ $lables['selected'] }}
                                                     </div>
                                                 </div>
                                                 <div class="arrow">
@@ -83,7 +80,7 @@
                                                         <div class="text-center">
                                                             <a wire:click="updatePromptFromState"
                                                                 class="rounded-pills btn text-ligt btn-primary">
-                                                                Generate AI Prompt</a>
+                                                                {{ $lables['generate_ai_prompt'] }}</a>
                                                         </div>
                                                     </div>
                                                     <div>
@@ -109,7 +106,7 @@
                                 <div class="p-3 m-1 border rounded">
                                     <b>Prompt:</b> {{ $prompt }}
                                     <p class="text-muted text-end"> <a style="text-decoration: none;" href="/ai/upmana">
-                                            <small>Edit Prompt</small>
+                                            <small>{{ $lables['edit_prompt'] || 'Edit Prompt' }}</small>
                                         </a></p>
                                 </div>
                                 <section id="outChat">
@@ -166,46 +163,33 @@
                                             </div>
                                         @endisset
 
-
-                                        {{-- @foreach ($output as $key => $data)
-                            @if (is_numeric($key) && !empty($data['paragraphs']))
-                                <div class="mb-2">
-                                    @foreach ($data['paragraphs'] as $paragraph)
-                                        <p class="mb-2">{!! $paragraph !!}</p>
-                                    @endforeach
-                                </div>
-                            @endif
-                        @endforeach --}}
                                         @if (!empty($output['city_comparison']))
                                             <div class="p-3 mt-4 border rounded border-info bg-light">
-                                                <h6 class="text-info">City/District Comparison</h6>
+                                                <h6 class="text-info">{{ $lables['city_district_table_title'] }}</h6>
                                                 {!! $output['city_comparison'] !!}
                                             </div>
                                         @endif
-                                        {{-- @if (!empty($output['state_comparison']))
-                            <div class="p-3 mt-4 border rounded border-info bg-light">
-                                <h6 class="text-info">State Comparison</h6>
-                                {!! $output['state_comparison'] !!}
-                            </div>
-                            @endif --}}
+                                        {
 
                                         {{-- Country Comparison Table --}}
                                         @if (!empty($output['country_comparison']))
                                             <div class="p-3 mt-4 border rounded border-info bg-light">
-                                                <h6 class="text-info">Country Comparison</h6>
+                                                <h6 class="text-info">${ $lables['counrty_table_title'] }</h6>
                                                 {!! $output['country_comparison'] !!}
                                             </div>
                                         @endif
                                         @if (!empty($output['continent_comparison']))
                                             <div class="p-3 mt-4 border rounded border-info bg-light">
-                                                <h6 class="text-info">Continent Comparison</h6>
+                                                <h6 class="text-info">
+                                                    {{ $lables['continent_table_title'] || 'Continent Comparison' }}
+                                                </h6>
                                                 {!! $output['continent_comparison'] !!}
                                             </div>
                                         @endif
 
 
                                         <section class="sourcedat">
-                                            <h6 class="p-2">Sources:</h6>
+                                            <h6 class="p-2">{{ $lables['source'] || 'Source' }}:</h6>
                                             <ul class="list-group">
                                                 @foreach ($output['source'] as $key => $ss)
                                                     <li
@@ -220,12 +204,12 @@
                                             </ul>
                                         </section>
                                         <section class="mt-2 ExploreMoreInsites">
-                                            <p class="fw-bold">Explore More Insights:</p>
+                                            <p class="fw-bold">{{ $lables['explore_more'] || 'Explore More' }}:</p>
                                             <ul class="row">
                                                 @foreach ($cities as $geography)
                                                     <li class="col-4"><a target="_blank" style="text-decoration: none;"
                                                             href="https://g2c.prarang.in/ai/{{ $geography }}">{{ $geography }}
-                                                            Insights</a></li>
+                                                            {{ $lables['insights'] || 'Insights' }}</a></li>
                                                 @endforeach
                                             </ul>
                                         </section>
@@ -234,7 +218,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <section class="id-selector">
-                                    <p>Compare UPMANA Response with other A.I.</p>
+                                    <p>{{ $lables['compare_response'] || 'Compare Response' }}</p>
                                     <form action="{{ route('ai.generate.response') }}" method="POST" target="_blank">
                                         @csrf
                                         <input type="hidden" name="prompt" value="{{ $prompt }}">
@@ -328,7 +312,7 @@
                                                 </div>
                                                 <button class="btn btn-success" type="submit"
                                                     onclick="return setContents()">
-                                                    Compare
+                                                    {{ $lables['compare'] || 'Compare' }}
                                                 </button>
                                             </div>
                                     </form>
@@ -367,7 +351,7 @@
                                     </div>
 
                         </section>
-                        <p class="text-center"><small>Also compare with ChatGPT/Gemini/Claude</small></p>
+                        <p class="text-center"><small>{{ $lables['also_compare_with'] || '' }}</small></p>
                     @endif
 
 
@@ -389,7 +373,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="categoryModalLabel"><small>
-                            <p class="mb-2 text-info">You can select up to 5 metrics.</p>
+                            <p class="mb-2 text-info">{{ $lables['metrics_select_message'] }}</p>
                         </small></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -420,9 +404,7 @@
                                         id="content-{{ $main }}" role="tabpanel"
                                         aria-labelledby="tab-{{ $main }}">
                                         <div class="p-3 border rounded shadow-sm">
-                                            <!-- <strong
-                                                    class="mb-3 d-block fs-6">{{ config('verticals.' . $main) }}
-                                                    Options</strong> -->
+
                                             <div class="row">
                                                 @php
                                                     $types = ['World (& India)', 'World', 'India'];
@@ -432,7 +414,7 @@
                                                     @if (collect($subs)->contains('type', $type))
                                                         <div class="pb-3 col-12">
                                                             <span class="text-muted fw-bold">{{ $type }}
-                                                                Metrics</span>
+                                                                {{ $lables['select_metrics'] }}</span>
                                                         </div>
                                                     @endif
                                                     @foreach ($subs as $sub)
@@ -466,9 +448,10 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button id="resetAllBtn" class="btn btn-outline-warning" type="button">Reset</button>
+                    <button id="resetAllBtn" class="btn btn-outline-warning"
+                        type="button">{{ $lables['reset'] }}</button>
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-                        Done
+                        {{ $lables['done'] }}
                     </button>
                 </div>
             </div>
@@ -482,7 +465,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="categoryModalLabel"><small>
-                            <p class="mb-2 text-info">You can select 2 to 5 geographies.</p>
+                            <p class="mb-2 text-info">{{ $lables['geo_select_message'] }}.</p>
                         </small></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
@@ -497,7 +480,7 @@
 
                             {{-- World Countries --}}
                             <div class="col-sm-6">
-                                <h5 class="mb-3">World - Countries</h5>
+                                <h5 class="mb-3">{{ $lables['geo_select_world'] }}</h5>
                                 @foreach ($citiesTOChose['country'] as $continent => $countries)
                                     @php $continentId = Str::slug($continent, '_'); @endphp
                                     <div class="accordion-item">
@@ -545,7 +528,7 @@
                             </div>
                             {{-- Indian Cities --}}
                             <div class="col-sm-6">
-                                <h5 class="mb-3">India - Districts/District Capitals</h5>
+                                <h5 class="mb-3">{{ $lables['geo_select_ind'] }}</h5>
 
                                 @foreach ($citiesTOChose['city'] as $group => $cities)
                                     @php $groupId = Str::slug($group, '_'); @endphp
@@ -588,8 +571,10 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary" onclick="geoSelect()">Done</button>
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">{{ $lables['close'] }}</button>
+                    <button type="button" class="btn btn-primary"
+                        onclick="geoSelect()">{{ $lables['done'] }}</button>
                 </div>
             </div>
 

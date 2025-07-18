@@ -105,54 +105,62 @@ class SentenceService
         }
     }
 
-    function makePrompt($cities, $fields)
+    function makePrompt(array $cities, array $fields): string
     {
 
         $verticals = httpGet('/upamana/get-metched-verticals', ['fields' => $fields])['data'];
+
+        $localizedCities = $this->localizeArray($cities, 'location');
+
+        $localizedFilters = [];
+
+        foreach ($verticals as $code => $label) {
+            $key = $this->slugifyToKey($label);
+            $translation = __("metrics.$key");
+            $localizedFilters[] = $translation !== "metrics.$key" ? $translation : $label;
+        }
+
+        $and = __('messages.and');
+
         $compare = '';
+        if (count($localizedCities) === 1) {
+            $compare = $localizedCities[0];
+        } elseif (count($localizedCities) === 2) {
+            $compare = implode(" $and ", $localizedCities);
+        } elseif (count($localizedCities) > 2) {
+            $last = array_pop($localizedCities);
+            $compare = implode(', ', $localizedCities) . " $and " . $last;
+        }
 
-        if (count($cities) === 1) {
-            $compare = $cities[0];
-        } elseif (count($cities) === 2) {
-            $compare = implode(' and ', $cities);
-        } elseif (count($cities) > 2) {
-            $last = array_pop($cities);
-            $compare = implode(', ', $cities) . ', and ' . $last;
-        }
-        $subFilters = [];
-        foreach ($verticals as  $sub) {
-            $subFilters[] = $sub;
-        }
         $filterText = '';
-        if (count($subFilters) === 1) {
-            $filterText = $subFilters[0];
-        } elseif (count($subFilters) === 2) {
-            $filterText = implode(' and ', $subFilters);
-        } elseif (count($subFilters) > 2) {
-            $last = array_pop($subFilters);
-            $filterText = implode(', ', $subFilters) . ', and ' . $last;
+        if (count($localizedFilters) === 1) {
+            $filterText = $localizedFilters[0];
+        } elseif (count($localizedFilters) === 2) {
+            $filterText = implode(" $and ", $localizedFilters);
+        } elseif (count($localizedFilters) > 2) {
+            $last = array_pop($localizedFilters);
+            $filterText = implode(', ', $localizedFilters) . " $and " . $last;
         }
 
+        // 6. Load templates
+        $templates = __('messages.prompts');
+        $cityOnlyTemplates = __('messages.cityOnlyPrompt');
+        $filterOnlyTemplates = __('messages.filterOnlyPrompt');
 
+        $templates = is_array($templates) ? $templates : [$templates];
+        $cityOnlyTemplates = is_array($cityOnlyTemplates) ? $cityOnlyTemplates : [$cityOnlyTemplates];
+        $filterOnlyTemplates = is_array($filterOnlyTemplates) ? $filterOnlyTemplates : [$filterOnlyTemplates];
 
-        $templates = config('sentences.prompt');
-        $cityOnlyTemplates = config('sentences.cityOnlyPrompt');
-
-        $filterOnlyTemplates = config('sentences.filterOnlyPrompt');
-
+        // 7. Generate prompt
         if ($compare && $filterText) {
             $template = $templates[array_rand($templates)];
-            $prompt = str_replace(
-                [':cities', ':filters'],
-                [$compare, $filterText],
-                $template
-            );
+            $prompt = strtr($template, [':cities' => $compare, ':filters' => $filterText]);
         } elseif ($compare) {
             $template = $cityOnlyTemplates[array_rand($cityOnlyTemplates)];
-            $prompt = str_replace(':cities', $compare, $template);
+            $prompt = strtr($template, [':cities' => $compare]);
         } elseif ($filterText) {
             $template = $filterOnlyTemplates[array_rand($filterOnlyTemplates)];
-            $prompt = str_replace(':filters', $filterText, $template);
+            $prompt = strtr($template, [':filters' => $filterText]);
         } else {
             $prompt = '';
         }
@@ -162,6 +170,31 @@ class SentenceService
 
     public function geography()
     {
-        return httpGet('/upamana/geograpgy-for-selection', [])['data'];
+
+        return httpGet('/upamana/geograpgy-for-selection', ['locale' => app()->getLocale()])['data'];
+    }
+
+
+    function localizeArray(array $items, string $domain): array
+    {
+        return array_map(function ($item) use ($domain) {
+            $key = strtolower(str_replace([' ', '-'], '_', $item));
+            $translated = __("$domain.$key");
+            return $translated !== "$domain.$key" ? $translated : $item;
+        }, $items);
+    }
+    function slugifyToKey(string $label): string
+    {
+        // Step 1: Replace special characters for consistency
+        $label = str_replace('%', '%', $label); // keep percent sign as-is
+        $label = str_replace(['/', '-', '&'], ['_', '_', 'and'], $label);
+
+        // Step 2: Remove any character that’s not A-Z, a-z, 0-9, space, or punctuation needed for keys
+        $label = preg_replace('/[^A-Za-z0-9\s()_%]/u', '', $label);
+
+        // Step 3: Replace spaces with underscores
+        $label = preg_replace('/\s+/', '_', $label);
+
+        return trim($label, '_');
     }
 }

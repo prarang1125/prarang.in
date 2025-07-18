@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Services\SentenceService;
 use App\Services\TransformerService;
 use App\Services\VerticalService;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
 
@@ -38,6 +39,8 @@ class UpmanaAi extends Component
 
     public function mount(SentenceService $sentenceService)
     {
+        App::setLocale('hi');
+
         session(['chat_id' => uniqid('chat_', true)]);
         $this->verticalService = httpGet('/upamana/get-verticals', [])['data'];
         $this->sentenceService = $sentenceService;
@@ -54,9 +57,10 @@ class UpmanaAi extends Component
         $this->citiesTOChose = $this->sentenceService->geography();
         $this->genHit = session()->get('gen-hit', 0);
         $this->isRegistered = session()->has('upmana-auth');
+        $local = App::getLocale();
+        $this->lables = cache()->remember('local-labelss' . $local, now()->addDays(1), function () use ($local) {
+            $lable = httpGet('/local/lable', ['local' => $local]);
 
-        $this->lables = cache()->remember('local-labels-hi', 60 * 60 * 24, function () {
-            $lable = httpGet('/local/lable', ['local' => 'hi']);
             if ($lable['status'] == 'success') {
                 return $lable['data'];
             }
@@ -75,7 +79,6 @@ class UpmanaAi extends Component
 
     public function generate()
     {
-
 
         $this->validate(
             [
