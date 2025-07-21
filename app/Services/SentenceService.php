@@ -108,7 +108,7 @@ class SentenceService
     function makePrompt(array $cities, array $fields): string
     {
 
-        $verticals = httpGet('/upamana/get-metched-verticals', ['fields' => $fields])['data'];
+        $verticals = httpGet('/upamana/get-metched-verticals/' . app()->getLocale(), ['fields' => $fields])['data'];
 
         $localizedCities = $this->localizeArray($cities, 'location');
 

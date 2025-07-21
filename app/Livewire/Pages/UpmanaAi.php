@@ -7,6 +7,7 @@ use Livewire\Component;
 use App\Services\SentenceService;
 use App\Services\TransformerService;
 use App\Services\VerticalService;
+use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
 use Livewire\Attributes\On;
@@ -42,7 +43,8 @@ class UpmanaAi extends Component
         App::setLocale('hi');
 
         session(['chat_id' => uniqid('chat_', true)]);
-        $this->verticalService = httpGet('/upamana/get-verticals', [])['data'];
+        $this->verticalService = httpGet('/upamana/get-verticals/hi', ['locale' => app()->getLocale()])['data'];
+        // dd($this->verticalService);
         $this->sentenceService = $sentenceService;
 
         $this->mainChecks = $this->verticalService;
@@ -110,7 +112,7 @@ class UpmanaAi extends Component
         $this->messages = [];
         $this->messages['danger'][] = 'Failed to generate response!';
 
-        if (empty($this->geography())) {
+        if (empty($this->geography()['city'])) {
             $this->messages['warning'][] = 'Please provide a location ID and prompt.';
             return;
         }
@@ -126,7 +128,7 @@ class UpmanaAi extends Component
         $topic = array_diff($this->activeMainChecks, $topic);
 
         // $newOutput = $transformerService->transform($this->geography(), $fields, $this->prompt, $topic);
-        $newOutput = httpGet('/upamana/transformer', ['ids' => $this->geography(), 'fields' => $fields, 'prompt' => $this->prompt, 'topic' => $topic])['data'];
+        $newOutput = httpGet('/upamana/transformer', ['ids' => $this->geography()['city'], 'fields' => $fields, 'prompt' => $this->prompt, 'topic' => $topic])['data'];
 
         if ($newOutput == 400) {
             $this->messages['warning'][] = 'Please choose/Compare a different location or field.';
@@ -137,11 +139,7 @@ class UpmanaAi extends Component
             $this->comparisonSentence = $newOutput['comparison_sentence'];
         }
         $this->source = collect($this->makeSource($fields))->toArray();
-        $this->firstCity = $this->geography();
         $this->output = $newOutput;
-        // dd($this->output);
-        // $flattened = $this->flattenValuesOnly($newOutput);
-        // $this->output =  implode('<br>', $flattened);
     }
 
     public function toggleAllSubChecks($main)
@@ -171,8 +169,8 @@ class UpmanaAi extends Component
             $this->sentenceService = new SentenceService;
         }
 
-        if (count($this->geography()) == 2) {
-            $this->comparisonSentence = "In comparison, {$this->geography()[0]} is :area km² in size, and :population in population, while {$this->geography()[1]} is :area2 km² in size, and :population2 in population.";
+        if (count($this->geography()['city']) == 2) {
+            $this->comparisonSentence = "In comparison, {$this->geography()['city'][0]} is :area km² in size, and :population in population, while {$this->geography()['city'][1]} is :area2 km² in size, and :population2 in population.";
         } else {
 
             $this->comparisonSentence = '';
@@ -186,7 +184,7 @@ class UpmanaAi extends Component
             ->values()
             ->all();
 
-        $this->prompt = $this->sentenceService->makePrompt($this->geography(), $fields);
+        $this->prompt = $this->sentenceService->makePrompt($this->geography()['local_name'], $fields);
     }
 
 
@@ -229,10 +227,19 @@ class UpmanaAi extends Component
 
     private function  geography()
     {
-        if (count($this->cities) < 2) {
+
+        $cities = ['city' => [], 'local_name' => []];
+        foreach ($this->cities as $city) {
+            $cities['city'][] = json_decode($city)->name;
+            $cities['local_name'][] = json_decode($city)->real_name;
+        }
+
+        if (count($cities['city']) < 2) {
             session()->flash('cityerror', 'Please select at least two geography to compare.');
         }
-        return $this->cities;
+
+        // $this->cities = $cities['city'];
+        return $cities;
     }
 
 

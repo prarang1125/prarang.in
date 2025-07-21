@@ -20,7 +20,7 @@ if (!function_exists('httpGet')) {
             // Log::info("API Request: " . $fullUrl, ['params' => $parameters]);
 
             $response = Http::withHeaders($headers)->timeout(180)->get($fullUrl, $parameters);
-            // dd($response);
+            // dd($response->json());
             if ($response->failed()) {
                 Log::error("API Failed: " . $response->status(), ['response' => $response->body()]);
                 return ['status' => 'error', 'message' => 'API request failed.', 'code' => $response->status()];

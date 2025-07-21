@@ -106,9 +106,10 @@
                                 <div class="p-3 m-1 border rounded">
                                     <b>Prompt:</b> {{ $prompt }}
                                     <p class="text-muted text-end"> <a style="text-decoration: none;" href="/ai/upmana">
-                                            <small>{{ $lables['edit_prompt'] || 'Edit Prompt' }}</small>
+                                            <small>edit</small>
                                         </a></p>
                                 </div>
+
                                 <section id="outChat">
                                     <div class="p-3 h-100" id="dfggsgzrf">
                                         @foreach ($output['warnings'] ?? [] as $warning)
@@ -129,14 +130,14 @@
                                             <div class="mb-2">
                                                 @foreach ($output['api_sentence'] as $type => $sentence)
                                                     @foreach ($sentence as $paragraph)
-                                                        @php
+                                                        {{-- @php
                                                             $pgx = highlightFirstOccurrence(
                                                                 $paragraph,
                                                                 $firstCity,
                                                                 $type == 'city' ? 'city' : null,
                                                             );
-                                                        @endphp
-                                                        <p class="mb-2">{!! $pgx !!}</p>
+                                                        @endphp --}}
+                                                        <p class="mb-2">{!! $paragraph !!}</p>
                                                     @endforeach
                                                 @endforeach
                                             </div>
@@ -169,19 +170,19 @@
                                                 {!! $output['city_comparison'] !!}
                                             </div>
                                         @endif
-                                        {
+
 
                                         {{-- Country Comparison Table --}}
                                         @if (!empty($output['country_comparison']))
                                             <div class="p-3 mt-4 border rounded border-info bg-light">
-                                                <h6 class="text-info">${ $lables['counrty_table_title'] }</h6>
+                                                <h6 class="text-info">{{ $lables['counrty_table_title'] }}</h6>
                                                 {!! $output['country_comparison'] !!}
                                             </div>
                                         @endif
                                         @if (!empty($output['continent_comparison']))
                                             <div class="p-3 mt-4 border rounded border-info bg-light">
                                                 <h6 class="text-info">
-                                                    {{ $lables['continent_table_title'] || 'Continent Comparison' }}
+                                                    {{ $lables['continent_table_title'] }}
                                                 </h6>
                                                 {!! $output['continent_comparison'] !!}
                                             </div>
@@ -189,14 +190,14 @@
 
 
                                         <section class="sourcedat">
-                                            <h6 class="p-2">{{ $lables['source'] || 'Source' }}:</h6>
+                                            <h6 class="p-2">{{ $lables['source'] }}:</h6>
                                             <ul class="list-group">
                                                 @foreach ($output['source'] as $key => $ss)
                                                     <li
                                                         class="list-group-item d-flex justify-content-between align-items-center">
 
                                                         <span class="text-small"> [{{ $key }}]
-                                                            {{ $ss['source'] }}</span>
+                                                            {{ $ss['local_source'] }}</span>
                                                         <span
                                                             class="badge rounded-pill text-small">{{ $ss['year'] }}</span>
                                                     </li>
@@ -204,12 +205,12 @@
                                             </ul>
                                         </section>
                                         <section class="mt-2 ExploreMoreInsites">
-                                            <p class="fw-bold">{{ $lables['explore_more'] || 'Explore More' }}:</p>
+                                            <p class="fw-bold">{{ $lables['explore_more'] }}:</p>
                                             <ul class="row">
                                                 @foreach ($cities as $geography)
                                                     <li class="col-4"><a target="_blank" style="text-decoration: none;"
-                                                            href="https://g2c.prarang.in/ai/{{ $geography }}">{{ $geography }}
-                                                            {{ $lables['insights'] || 'Insights' }}</a></li>
+                                                            href="https://g2c.prarang.in/ai/{{ json_decode($geography)->name }}">{{ json_decode($geography)->name }}
+                                                            {{ $lables['insights'] }}</a></li>
                                                 @endforeach
                                             </ul>
                                         </section>
@@ -218,7 +219,7 @@
                             </div>
                             <div class="col-sm-4">
                                 <section class="id-selector">
-                                    <p>{{ $lables['compare_response'] || 'Compare Response' }}</p>
+                                    <p>{{ $lables['compare_response'] }}</p>
                                     <form action="{{ route('ai.generate.response') }}" method="POST" target="_blank">
                                         @csrf
                                         <input type="hidden" name="prompt" value="{{ $prompt }}">
@@ -312,7 +313,7 @@
                                                 </div>
                                                 <button class="btn btn-success" type="submit"
                                                     onclick="return setContents()">
-                                                    {{ $lables['compare'] || 'Compare' }}
+                                                    {{ $lables['compare'] }}
                                                 </button>
                                             </div>
                                     </form>
@@ -351,7 +352,7 @@
                                     </div>
 
                         </section>
-                        <p class="text-center"><small>{{ $lables['also_compare_with'] || '' }}</small></p>
+                        <p class="text-center"><small>{{ $lables['also_compare_with'] }}</small></p>
                     @endif
 
 
@@ -407,9 +408,14 @@
 
                                             <div class="row">
                                                 @php
-                                                    $types = ['World (& India)', 'World', 'India'];
+                                                    $types = [
+                                                        'World (& India)',
+                                                        'World Only',
+                                                        'World',
+                                                        'India Only',
+                                                        'India',
+                                                    ];
                                                 @endphp
-
                                                 @foreach ($types as $type)
                                                     @if (collect($subs)->contains('type', $type))
                                                         <div class="pb-3 col-12">
@@ -428,7 +434,7 @@
                                                                         value="{{ $sub['id'] }}">
                                                                     <label class="form-check-label small"
                                                                         for="sub-{{ $sub['type'] }}-{{ $sub['id'] }}">
-                                                                        {{ str_replace('# of', 'No. of', $sub['name']) }}
+                                                                        {{ $sub['local'] }}
                                                                         <span
                                                                             class="text-primary">{{ $sub['geo_type'] == 'in_dist' ? 'District' : '' }}</span>
                                                                     </label>
@@ -489,7 +495,7 @@
                                                 data-bs-toggle="collapse"
                                                 data-bs-target="#collapse-{{ $continentId }}" aria-expanded="false"
                                                 aria-controls="collapse-{{ $continentId }}">
-                                                {{ $continent }}
+                                                {{ __('location.' . str_replace(' ', '_', strtolower($continent))) ?? $continent }}
                                             </button>
                                         </h2>
                                         <div id="collapse-{{ $continentId }}" class="accordion-collapse collapse"
@@ -501,7 +507,7 @@
                                                         id="group-{{ $continentId }}" value="{{ $continent }}">
 
                                                     <label for="group-{{ $continentId }}">
-                                                        {{ $continent }}
+                                                        {{ __('location.' . str_replace(' ', '_', strtolower($continent))) ?? $continent }}
                                                     </label>
 
 
@@ -511,7 +517,8 @@
                                                         <div class="col-6">
 
                                                             <input class="form-check-input me-1" type="checkbox"
-                                                                wire:model="cities" value="{{ $country['Country'] }}"
+                                                                wire:model="cities"
+                                                                value="{{ json_encode(['name' => $country['name'], 'real_name' => $country['Country']]) }}"
                                                                 id="country-{{ $country['id'] }}">
                                                             <label class="form-check-label"
                                                                 for="country-{{ $country['id'] }}">
@@ -539,7 +546,7 @@
                                                 data-bs-target="#collapse-city-{{ $groupId }}"
                                                 aria-expanded="false"
                                                 aria-controls="collapse-city-{{ $groupId }}">
-                                                {{ $group }}
+                                                {{ __('location.' . str_replace(' ', '_', strtolower($group))) ?? $group }}
                                             </button>
                                         </h2>
                                         <div id="collapse-city-{{ $groupId }}"
@@ -551,8 +558,8 @@
                                                 <div class="row">
                                                     @foreach ($cities as $city)
                                                         <div class="col-6">
-                                                            <input class="form-check-input me-1" type="checkbox"
-                                                                wire:model="cities" value="{{ $city['city'] }}"
+                                                            <input class="form-check-input me-1" type="checkbox" wire:
+                                                                value="{{ json_encode(['name' => $city['name'], 'real_name' => $city['city']]) }}"
                                                                 id="city-{{ $city['id'] }}">
                                                             <label class="form-check-label"
                                                                 for="city-{{ $city['id'] }}">
