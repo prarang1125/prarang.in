@@ -43,8 +43,7 @@ class UpmanaAi extends Component
         App::setLocale('hi');
 
         session(['chat_id' => uniqid('chat_', true)]);
-        $this->verticalService = httpGet('/upamana/get-verticals/hi', ['locale' => app()->getLocale()])['data'];
-        // dd($this->verticalService);
+        $this->verticalService = httpGet('/upamana/get-verticals/'.app()->getLocale())['data'];
         $this->sentenceService = $sentenceService;
 
         $this->mainChecks = $this->verticalService;
@@ -61,7 +60,7 @@ class UpmanaAi extends Component
         $this->isRegistered = session()->has('upmana-auth');
         $local = App::getLocale();
         $this->lables = cache()->remember('local-labelss' . $local, now()->addDays(1), function () use ($local) {
-            $lable = httpGet('/local/lable', ['local' => $local]);
+            $lable = httpGet('/local/lable/', ['local' => $local]);
 
             if ($lable['status'] == 'success') {
                 return $lable['data'];
@@ -126,10 +125,14 @@ class UpmanaAi extends Component
             ->all();
 
         $topic = array_diff($this->activeMainChecks, $topic);
-
-        // $newOutput = $transformerService->transform($this->geography(), $fields, $this->prompt, $topic);
-        $newOutput = httpGet('/upamana/transformer', ['ids' => $this->geography()['city'], 'fields' => $fields, 'prompt' => $this->prompt, 'topic' => $topic])['data'];
-
+        $newOutput = httpGet('/upamana/transformer', [
+            'ids' => $this->geography()['city'],
+            'fields' => $fields,
+            'prompt' => $this->prompt,
+            'topic' => $topic,
+            'locale' => app()->getLocale()
+            ]);
+        dd($newOutput);
         if ($newOutput == 400) {
             $this->messages['warning'][] = 'Please choose/Compare a different location or field.';
             return;

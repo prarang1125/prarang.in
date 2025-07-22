@@ -109,7 +109,6 @@ class SentenceService
     {
 
         $verticals = httpGet('/upamana/get-metched-verticals/' . app()->getLocale(), ['fields' => $fields])['data'];
-
         $localizedCities = $this->localizeArray($cities, 'location');
 
         $localizedFilters = [];

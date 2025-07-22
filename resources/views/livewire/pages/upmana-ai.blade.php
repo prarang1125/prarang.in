@@ -558,7 +558,8 @@
                                                 <div class="row">
                                                     @foreach ($cities as $city)
                                                         <div class="col-6">
-                                                            <input class="form-check-input me-1" type="checkbox" wire:
+                                                            <input class="form-check-input me-1" type="checkbox"
+                                                            wire:model="cities"
                                                                 value="{{ json_encode(['name' => $city['name'], 'real_name' => $city['city']]) }}"
                                                                 id="city-{{ $city['id'] }}">
                                                             <label class="form-check-label"
