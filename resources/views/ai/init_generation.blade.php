@@ -2,15 +2,13 @@
     <link rel="stylesheet" href="{{ asset('assets/ai/css/aichat.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
     <style>
-        /* Span Tag */
         .list-group .list-group-item span {
             color: #020202 !important;
         }
     </style>
     <div class="action-buttons-corner" style="top: 92vh;height: 100px !important;">
         <button class=" action-button print" style="height: 42px !important;" onclick="printResponses()" title="Print">
-            {{-- <i class="fas fa-print"></i> --}}
-            Print
+            {{ $label['print'] }}
         </button>
         <form id="shareForm" action="{{ route('share.store') }}" method="POST" style="display: inline;">
             @csrf
@@ -36,25 +34,25 @@
             @if(isset($metaResponse))
             <input type="hidden" name="meta_response" value="{{ $metaResponse }}">
             @endif
-            <button type="button" onclick="handleShare()" class="action-button share" title="Share">
+            <button type="button" onclick="handleShare()" class="action-button share" title="share">
                 {{-- <i class="fas fa-share-alt"></i> --}}
-                Share
+                {{ $label['share'] }}
             </button>
         </form>
     </div>
 
-    <div class="section-title">Comparison Report :{{
+    <div class="section-title">{{ $label['compare_share_report'] }}:{{
         (isset($content) && !empty(trim($content)) ? 1 : 0) +
         (isset($gptResponse) && !empty(trim($gptResponse)) ? 1 : 0) +
         (isset($metaResponse) && !empty(trim($metaResponse)) ? 1 : 0) +
         (isset($deepseekResponse) && !empty(trim($deepseekResponse)) ? 1 : 0) +
         (isset($geminiResponse) && !empty(trim($geminiResponse)) ? 1 : 0) +
         (isset($claudeResponse) && !empty(trim($claudeResponse)) ? 1 : 0)
-    }} A.I. Models</div>
+    }} {{ $label['ai_modal_lable'] }}</div>
 
     <div class="info-box">
         <div class="timestamp">
-            <strong>Result Time (GMT):</strong> {{ now('UTC')->format('d-m-Y') }} | {{ now('UTC')->format('H:i:s') }}
+            <strong>{{ $label['result_time_lable'] }}:</strong> {{ now('UTC')->format('d-m-Y') }} | {{ now('UTC')->format('H:i:s') }}
         </div>
         <div class="model-section">
             <div class="model-links-container">
@@ -154,7 +152,7 @@
             <div class="response-content">
                 <div class="ai-name">({{ chr(96 + $count++) }}) {{ $modelFullNames[$modelName] }}</div>
                 <div class="prompt-box upman">
-                    <strong>Prompt:</strong> {{ $prompt }}
+                    <strong>{{ $label['prompt'] }}:</strong> {{ $prompt }}
                 </div>
                 <div class="p-3 ai-response h-100">
                     {!! $responseContent !!}
@@ -169,7 +167,7 @@
             <div class="response-content">
                 <div class="ai-name">({{ chr(96 + $count++) }}) {{ $modelFullNames[$modelName] }}</div>
                 <div class="prompt-box {{ $modelName }}">
-                    <strong>Prompt:</strong> {{ $prompt }}
+                    <strong>{{ $label['prompt'] }}:</strong> {{ $prompt }}
                 </div>
                 <div class="p-3 ai-response h-100">
                     {!! $responseContent !!}
@@ -185,7 +183,7 @@
             <div class="response-content">
                 <div class="ai-name">({{ chr(96 + $count++) }}) {{ $modelFullNames['upmana'] }}</div>
                 <div class="prompt-box upman">
-                    <strong>Prompt:</strong> {{ $prompt }}
+                    <strong>{{ $label['prompt'] }}:</strong> {{ $prompt }}
                 </div>
                 <div class="p-3 ai-response h-100">
                     {!! $content !!}

@@ -84,6 +84,5 @@ function highlightFirstOccurrence($paragraph, $cityNames, $type = null)
             $paragraph = substr_replace($paragraph, $highlightedCity, $start, $length);
         }
     }
-
     return $paragraph;
 }

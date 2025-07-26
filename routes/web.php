@@ -9,6 +9,7 @@ use App\Http\Controllers\AI\AIController;
 use App\Http\Controllers\AI\SharedResponseController;
 use App\Http\Controllers\PartnerApi;
 use App\Http\Controllers\MobileApi\ChittiList;
+use App\Http\Controllers\ShortnerUrl;
 use App\Livewire\Pages\ComparisonApi;
 use App\Livewire\Pages\UpmanaAi;
 use App\View\Components\Layout\Main\Base;
@@ -61,3 +62,4 @@ Route::get('/share/{uuid}', [SharedResponseController::class, 'show'])->name('sh
 // UpmanaAi
 
 Route::get('/ai/upmana', UpmanaAi::class)->name('upmana-ai');
+Route::get('/post-{query?}', [ShortnerUrl::class, 'index'])->name('shortner-url');

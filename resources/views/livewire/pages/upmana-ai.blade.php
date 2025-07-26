@@ -2,16 +2,39 @@
     <link rel="stylesheet" href="{{ asset('assets/ai/css/aichat.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
     <script src="{{ asset('js/ai-response.js') }}"></script>
+    {{-- <x-locale.font-style/> --}}
+
     <button class="@if ($output) d-none @endif btn btn-primary side-button" type="button"
         data-bs-toggle="offcanvas" data-bs-target="#openFaqExample" aria-controls="openFaqExample">
         &nbsp;&nbsp;FAQ &nbsp;&nbsp;
     </button>
 
     <div class="container-fluid">
-        <p class="text-center main-title-heading">{{ $lables['upamana_title'] }}</p>
-        <div class="row">
+        <div class="text-center">
+
+            <p class="text-end w-25">
+                <span wire:loading wire:target="changeLanguage" class="spinner-border spinner-border-sm ms-3 mt-2"
+                    role="status" aria-hidden="true"></span>
+                {{-- <label for="select-lang"><small>Select Language</small></label> --}}
+                <select id="select-lang" name="change_language" id="change_language" wire:model="selectedLanguage"
+                    wire:change="changeLanguage" class="form-select form-sm ">
+
+                    <option value="hi">हिन्दी</option>
+                    <option value="en" selected>English</option>
+                </select>
+
+            </p>
+        </div>
+
+        <p class="text-center main-title-heading locale-font {{ !empty($output) ? 'd-none' : '' }}"
+            style="color: #0000ff">
+            {{ $lables['upamana_title'] }}
+        </p>
+
+        <div class="row locale-font">
             <div
                 class="@if ($output) col-12 @else  col-lg-9 col-md-9 col-sm-12 @endif position-relative">
+
                 <div class="pr-ai-section">
                     <section class="first-prompt">
                         @if ($activeSection['firstPrompt'])
@@ -101,12 +124,17 @@
                         @endif
                     </section>
                     @if ($output)
+
                         <div class="row">
                             <div class="col-sm-8">
+                                <p class="text-center main-title-heading locale-font" style="color: #0000ff">
+                                    {{ $lables['upamana_title'] }}
+                                </p>
+
                                 <div class="p-3 m-1 border rounded">
-                                    <b>Prompt:</b> {{ $prompt }}
+                                    <b>{{ $lables['prompt'] }}:</b> {{ $prompt }}
                                     <p class="text-muted text-end"> <a style="text-decoration: none;" href="/ai/upmana">
-                                            <small>edit</small>
+                                            <small>{{ __('messages.edit_prompt') }}</small>
                                         </a></p>
                                 </div>
 
@@ -208,7 +236,8 @@
                                             <p class="fw-bold">{{ $lables['explore_more'] }}:</p>
                                             <ul class="row">
                                                 @foreach ($cities as $geography)
-                                                    <li class="col-4"><a target="_blank" style="text-decoration: none;"
+                                                    <li class="col-4"><a target="_blank"
+                                                            style="text-decoration: none;"
                                                             href="https://g2c.prarang.in/ai/{{ json_decode($geography)->name }}">{{ json_decode($geography)->name }}
                                                             {{ $lables['insights'] }}</a></li>
                                                 @endforeach
@@ -220,7 +249,8 @@
                             <div class="col-sm-4">
                                 <section class="id-selector">
                                     <p>{{ $lables['compare_response'] }}</p>
-                                    <form action="{{ route('ai.generate.response') }}" method="POST" target="_blank">
+                                    <form action="{{ route('ai.generate.response') }}" method="POST"
+                                        target="_blank">
                                         @csrf
                                         <input type="hidden" name="prompt" value="{{ $prompt }}">
                                         <input type="hidden" name="content" id="content-input" />
@@ -359,14 +389,13 @@
                 </div>
             </div>
 
+
             <!-- 4 Column (Sidebar as Offcanvas on mobile) -->
             <div class="@if ($output) d-none @else col-lg-3 d-none d-lg-block @endif">
                 @livewire('utility.upman-sidebar')
             </div>
         </div>
     </div>
-
-
     <!-- Category Modal -->
     <div class="modal fade" id="categoryModal" wire:ignore tabindex="-1" aria-labelledby="categoryModalLabel"
         aria-hidden="true">
@@ -378,7 +407,6 @@
                         </small></h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-
                 <div class="modal-body">
                     <div class="row">
                         <div class="mb-3 col-4 col-md-2" id="categoryTabsContainer">
@@ -391,7 +419,7 @@
                                             data-bs-target="#content-{{ $main }}" type="button"
                                             role="tab" aria-controls="content-{{ $main }}"
                                             aria-selected="{{ $loop->first ? 'true' : 'false' }}">
-                                            {{ $subs }}
+                                            {{ __('metrics.' . $subs) }}
                                         </button>
                                     </li>
                                 @endforeach
@@ -419,8 +447,9 @@
                                                 @foreach ($types as $type)
                                                     @if (collect($subs)->contains('type', $type))
                                                         <div class="pb-3 col-12">
-                                                            <span class="text-muted fw-bold">{{ $type }}
-                                                                {{ $lables['select_metrics'] }}</span>
+                                                            <span
+                                                                class="text-muted fw-bold">{{ $lables[strtolower($type) . '_metrics'] }}
+                                                            </span>
                                                         </div>
                                                     @endif
                                                     @foreach ($subs as $sub)
@@ -454,8 +483,8 @@
                 </div>
 
                 <div class="modal-footer">
-                    <button id="resetAllBtn" class="btn btn-outline-warning"
-                        type="button">{{ $lables['reset'] }}</button>
+                    <p class="text-center me-5"><span id="metrics-selecte-alert">0</span> {{ $lables['selected'] }}
+                    </p>
                     <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
                         {{ $lables['done'] }}
                     </button>
@@ -559,7 +588,7 @@
                                                     @foreach ($cities as $city)
                                                         <div class="col-6">
                                                             <input class="form-check-input me-1" type="checkbox"
-                                                            wire:model="cities"
+                                                                wire:model="cities"
                                                                 value="{{ json_encode(['name' => $city['name'], 'real_name' => $city['city']]) }}"
                                                                 id="city-{{ $city['id'] }}">
                                                             <label class="form-check-label"
@@ -579,8 +608,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary"
-                        data-bs-dismiss="modal">{{ $lables['close'] }}</button>
+                    <p class="text-center me-5"><span id="location-selecte-alert">0</span> {{ $lables['selected'] }}
+                    </p>
                     <button type="button" class="btn btn-primary"
                         onclick="geoSelect()">{{ $lables['done'] }}</button>
                 </div>
@@ -608,9 +637,7 @@
             </div>
         </div>
     </div>
-
     @livewire('utility.popupreg')
-
     <!-- What is Upmana Modal -->
     <div class="modal fade" id="whatIsUpmanaModal" tabindex="-1" aria-labelledby="whatIsUpmanaLabel"
         aria-hidden="true">
@@ -620,79 +647,16 @@
                     <span class="pr1c">●</span><span class="pr2c">●</span><span class="pr3c">●</span>
                     <h5 class="text-center modal-title" id="whatIsUpmanaLabel">
 
-                        Comparison A.I.
+                        {{ __('faq.comparison_ai.modal.title') }}
                     </h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <section>
-                        <p>
-                            Knowledge is gained from understanding and using Information (data/facts). All Knowledge
-                            can be classified on the basis of its Information sources – Evidence (Pramana) based,
-                            Estimation (Anumana) based, and Comparison (Upmana) based. Indian logic (Tarkashastra)
-                            classifies Knowledge (Gyana) as – Pramana, Anumana, Upmana, and additionally, a
-                            Non-Apparent (Apratyaksh) form of Knowledge known as Shabda-Gyan (Word Power).
-                        </p>
-                        <p>
-                            Prarang’s <strong>Upmana</strong> is a tool to gain Knowledge by Comparison. Underlying
-                            the tool is Prarang’s Analytics with Information classified (Evidence) and designed
-                            (Estimated) from reliable World & Country data providers. Prarang does no surveys
-                            itself.
-                        </p>
-                        <p>
-                            Upmana offers new insights through four dependent layers of Comparisons:
-                        </p>
-
-                        <ul style="list-style: none;">
-                            <li>
-                                <h5>a. Comparison between Geographies</h5>
-                                <p>
-                                    Countries, States, Districts and Cities can be compared. It can even be used to
-                                    do unconventional (“Apples and Oranges comparison” in English phrase!)
-                                    geographic comparisons. For example – Cities/Districts vs Countries. A maximum
-                                    of 5 Geographies can be simultaneously selected.
-                                </p>
-                            </li>
-
-                            <li>
-                                <h5>b. Comparison by Ranks</h5>
-                                <p>
-                                    A unique ranking system is the DNA of Prarang’s Analytics. All conventional
-                                    Metrics of 195 Countries are ranked from top to bottom, as well as ranked for
-                                    deviation from Average (Samana). Similarly, all conventional metrics of
-                                    approximately 800 cities/districts of India are also ranked in this manner.
-                                </p>
-                            </li>
-
-                            <li>
-                                <h5>c. Comparison of Metrics (Anything Measurable)</h5>
-                                <p>
-                                    Unconventional comparisons create new insights. Upmana allows you to actually
-                                    compare Apple production in one country with Orange production in another and/or
-                                    Gold production in a third! A maximum of 5 different Metrics can be
-                                    simultaneously selected.
-                                </p>
-                            </li>
-
-                            <li>
-                                <h5>d. Comparison with AGI Prompts</h5>
-                                <p>
-                                    The Comparison output generated by Prarang’s Upmana can also be compared (on the
-                                    same Prompt instruction) with AGI (Artificial General Intelligence) outputs from
-                                    Meta’s Llama, Google’s Gemini, Microsoft’s ChatGPT, and others, on a single
-                                    click.
-                                </p>
-                            </li>
-                        </ul>
-
-                        <p>
-                            Your research using Upmana’s Comparison outputs can be easily saved and/or shared with
-                            others.
-                        </p>
-                    </section>
+                    {!! __('faq.comparison_ai.modal.body') !!}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">{{ __('faq.close') }}</button>
                 </div>
             </div>
         </div>
@@ -704,27 +668,15 @@
             <div class="modal-content">
                 <div class="modal-header"> <span class="pr1c">●</span><span class="pr2c">●</span><span
                         class="pr3c">●</span>
-                    <h5 class="modal-title" id="aiVsAgiLabel">Prompt</h5>
+                    <h5 class="modal-title" id="aiVsAgiLabel">{{ __('faq.prompt.modal.title') }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <section>
-                        <p>
-                            A prompt is a question, command, or statement used to interact between a human and an
-                            AGI (Artificial General Intelligence) model that allows the model to produce the
-                            intended output. An AGI model can provide several outputs based on how the prompt is
-                            phrased. The purpose of the prompt is to provide the AGI model with enough information
-                            so that it can produce output relevant to the prompt.
-                        </p>
-                        <p>
-                            Upmana assists you in generating a more precise and meaningful prompt for AGIs by
-                            helping select some geographies and some measurable aspect (from a vast array of world
-                            and country metrics).
-                        </p>
-                    </section>
+                    {!! __('faq.prompt.modal.body') !!}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">{{ __('faq.close') }}</button>
                 </div>
             </div>
         </div>
@@ -737,135 +689,16 @@
             <div class="modal-content">
                 <div class="modal-header"> <span class="pr1c">●</span><span class="pr2c">●</span><span
                         class="pr3c">●</span>
-                    <h5 class="text-center modal-title" id="upmanaBenefitsLabel">Comparison A.I & Artificial
-                        General
-                        Intelligence (AGI)</h5>
+                    <h5 class="text-center modal-title" id="upmanaBenefitsLabel">
+                        {{ __('faq.com_ai_agi.modal.title') }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <section>
-
-
-                        <p>Information is not Knowledge. Knowledge is not Intelligence. Intelligence is not
-                            Wisdom.</p>
-
-                        <p>
-                            <b>Information</b> is structured & organized data & facts, which are useful.
-                            Understanding
-                            information and related concepts creates <b>Knowledge</b>. Application of knowledge at
-                            the
-                            right time & place, is <b>Intelligence</b>. A broad understanding based on experience &
-                            acquired knowledge, used for the betterment of self & society, is <b>Wisdom</b>.
-                        </p>
-
-                        <p>
-                            Artificial General Intelligence (A.G.I.), using LLMs (Large Language Models), is a
-                            method to reformat & restructure Information using a layer of new sentences/language
-                            (based on word & word usage statistics on digitized content). It essentially seems to
-                            skip the step of creating knowledge from Information. A.G.I. thus avoids "knowing".
-                            Instead, based on the query/prompt, it tries to answer promptly, even mimicking human
-                            “reasoning” to some extent.
-                        </p>
-
-                        <p>
-                            Using brute computation power, A.G.I. is fast approaching a state of memorising all
-                            known digitized Information & all known Languages of Mankind, with a man-designed
-                            ability of connecting the two. This code/algorithms (man-designed) is where biases &
-                            errors are coming in.
-                        </p>
-
-                        <p>
-                            <strong>Prarang’s Upmana</strong> focuses on creating knowledge by comparison for its
-                            users. It is not an A.G.I. yet, although it mimics the AGI input prompt & its output is
-                            comparable with AGI outputs for the same prompt. Both AGI & Upmana are still work in
-                            progress. The difference is as follows:
-                        </p>
-                    </section>
-                    <section>
-
-                        <table style="width: 100%; border-collapse: collapse; text-align: left;">
-                            <thead>
-                                <tr style="background-color: #f2f2f2;">
-                                    <th style="border: 1px solid #ddd; padding: 8px;"></th>
-                                    <th style="border: 1px solid #ddd; padding: 8px;">AGI <br><small>(Artificial
-                                            General Intelligence)</small></th>
-                                    <th style="border: 1px solid #ddd; padding: 8px;">Upmana <br><small>(Knowledge
-                                            by Comparison)</small></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Prompt Input</td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Can write &
-                                        ask any question</td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Must select some Geographical
-                                        & some Metric (any Measured) for Upmana to generate text</td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;" rowspan="3">Prompt Output
-                                    </td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Text, data &
-                                        images content, as instructed</td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Text & data content, as
-                                        instructed</td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Hallucinations / errors
-                                        sometimes in text & data</td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">No hallucinations</td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Does not provide clear
-                                        sources for its data</td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Always cites specific data
-                                        source & year</td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;" rowspan="6">Architecture
-                                    </td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Generative AI
-                                    </td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Traditional AI</td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Large Language Model (LLM)
-                                    </td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Small Language Model
-                                        (Language Localisation design)</td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Data sources –
-                                        Screen-Scraping without citations</td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Large data Aggregation from
-                                        reliable sources</td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">LLM – Natural Language
-                                        Processing (NLP) based on Western Linguistics</td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Analytics – Indian
-                                        Linguistics (Tarkashastra) based</td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Word as Token – Extraordinary
-                                        processing power for computation</td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Phoneme as Token – Under
-                                        development, Unknown computation need</td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Photos – Recognition &
-                                        Production: GANS (Generative Adversarial Network) and Diffusion Models</td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Photos – Under development
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </section>
-
-
-
+                    {!! __('faq.com_ai_agi.modal.body') !!}
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary"
+                        data-bs-dismiss="modal">{{ __('faq.close') }}</button>
                 </div>
             </div>
         </div>
@@ -942,6 +775,7 @@
             const accordion = document.getElementById('accordionCitiesCountries');
             const checkboxes = accordion.querySelectorAll('input[type="checkbox"]');
             const countDisplay = document.getElementById('citiesCount');
+            const locationSelecteAlert = document.getElementById('location-selecte-alert');
             const maxLimit = 5;
 
             function updateCountAndToggle() {
@@ -949,6 +783,9 @@
                 const checkedCount = checkedBoxes.length;
                 if (countDisplay) {
                     countDisplay.textContent = checkedCount;
+                }
+                if (locationSelecteAlert) {
+                    locationSelecteAlert.textContent = checkedCount;
                 }
 
                 checkboxes.forEach(cb => {
@@ -971,6 +808,7 @@
             const checkboxes = document.querySelectorAll('#categoryTabsContent input[type="checkbox"]');
             const resetButton = document.getElementById('resetAllBtn');
             const categoryBadges = document.getElementById('category-count');
+            const metricsSelecteAlert = document.getElementById('metrics-selecte-alert');
 
             function updateCheckboxStates() {
                 const selectedCheckboxes = document.querySelectorAll(
@@ -991,7 +829,9 @@
                     // categoryBadges.classList.remove('d-none');/
                     categoryBadges.innerHTML = `${selectedCount}`
                 }
-
+                if (metricsSelecteAlert) {
+                    metricsSelecteAlert.innerHTML = `${selectedCount}`
+                }
             }
 
             checkboxes.forEach(cb => {

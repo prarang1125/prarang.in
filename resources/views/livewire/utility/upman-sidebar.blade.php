@@ -203,24 +203,24 @@
         }
     </style>
     <div class="p-3 border rounded border-dark bg-light">
-        <p class="text-center">FAQ</p>
+        <p class="text-center">{{ __('faq.faq') }}</p>
         <ul class="ps-3" style="list-style: none;">
 
-            <li><a class="text-primary" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#whatIsUpmanaModal"><span class="text-primary pe-1">●</span>Comparison A.I.</a></li>
-            <li><a class="text-primary" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#aiVsAgiModal"><span class="text-primary pe-1">●</span>Prompt </a></li>
-            <li><a class="text-primary" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#upmanabenefitsModal"><span class="text-primary pe-1">●</span>Comparison A.I & Artificial General Intelligence (AGI)</a></li>
+            <li><a class="text-primary" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#whatIsUpmanaModal"><span class="text-primary pe-1">●</span>{{ __('faq.comparison_ai.title') }}</a></li>
+            <li><a class="text-primary" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#aiVsAgiModal"><span class="text-primary pe-1">●</span>{{ __('faq.prompt.title') }}</a></li>
+            <li><a class="text-primary" href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#upmanabenefitsModal"><span class="text-primary pe-1">●</span>{{ __('faq.com_ai_agi.title') }}</a></li>
         </ul>
     </div>
 
     <div class="p-3 border rounded border-dark bg-light">
         <ul class="ps-3" style="list-style: none;">
-            <li><a class="text-gray" target="_blank" href="https://g2c.prarang.in/ai/world"><span class="text-primary pe-1">●</span>World AI Report</a></li>
-            <li><a class="text-gray" target="_blank" href="https://g2c.prarang.in/ai/india"><span class="text-primary pe-1">●</span>India AI Report</a></li>
-            <li><a class="text-gray" target="_blank" href="https://g2c.prarang.in/world/development-planner"><span class="text-primary pe-1">●</span>World Development Planner</a></li>
-            <li><a class="text-gray" target="_blank" href="https://g2c.prarang.in/world/market-planner"><span class="text-primary pe-1">●</span>World Market Planner</a></li>
-            <li><a class="text-gray" target="_blank" href="https://g2c.prarang.in/india/development-planners"><span class="text-primary pe-1">●</span>India Development Planner</a></li>
-            <li><a class="text-gray" target="_blank" href="https://g2c.prarang.in/india/market-planner/states"><span class="text-primary pe-1">●</span>India Market Planner</a></li>
-            <li><a class="text-gray" target="_blank" href="https://www.prarang.in/semiotics"><span class="text-primary pe-1">●</span>India City Sentiment Analytics</a></li>
+            <li><a class="text-gray" target="_blank" href="https://g2c.prarang.in/ai/world"><span class="text-primary pe-1">●</span>{{ __('faq.world_ai_report') }}</a></li>
+            <li><a class="text-gray" target="_blank" href="https://g2c.prarang.in/ai/india"><span class="text-primary pe-1">●</span>{{ __('faq.india_ai_report') }}</a></li>
+            <li><a class="text-gray" target="_blank" href="https://g2c.prarang.in/world/development-planner"><span class="text-primary pe-1">●</span>{{ __('faq.world_development_planner') }}</a></li>
+            <li><a class="text-gray" target="_blank" href="https://g2c.prarang.in/world/market-planner"><span class="text-primary pe-1">●</span>{{ __('faq.world_market_planner') }}</a></li>
+            <li><a class="text-gray" target="_blank" href="https://g2c.prarang.in/india/development-planners"><span class="text-primary pe-1">●</span>{{ __('faq.india_development_planner') }}</a></li>
+            <li><a class="text-gray" target="_blank" href="https://g2c.prarang.in/india/market-planner/states"><span class="text-primary pe-1">●</span>{{ __('faq.india_market_planner') }}</a></li>
+            <li><a class="text-gray" target="_blank" href="https://www.prarang.in/semiotics"><span class="text-primary pe-1">●</span>{{ __('faq.india_city_sentiment_analytics') }}</a></li>
         </ul>
     </div>
 

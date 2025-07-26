@@ -37,15 +37,16 @@ class UpmanaAi extends Component
     public $citiesTOChose, $firstCity, $takeme;
     public $genHit, $isRegistered;
     public $localLocation, $lables;
-
+    public $selectedLanguage = '';
     public function mount(SentenceService $sentenceService)
-    {
-        App::setLocale('hi');
+    {      
+      
+        $this->selectedLanguage=session('locale');
+        app()->setlocale($this->selectedLanguage);        
 
         session(['chat_id' => uniqid('chat_', true)]);
-        $this->verticalService = httpGet('/upamana/get-verticals/'.app()->getLocale())['data'];
+        $this->verticalService = httpGet('/upamana/get-verticals/' . app()->getLocale())['data'];
         $this->sentenceService = $sentenceService;
-
         $this->mainChecks = $this->verticalService;
         $this->messages['success'][] = 'Session started!';
         $this->activeSection = [
@@ -68,7 +69,35 @@ class UpmanaAi extends Component
             return [];
         });
     }
+    public function changeLanguage(SentenceService $sentenceService)
+    {
+        // dd($this->selectedLanguage);
+       
+        if ($this->selectedLanguage) {
+            session()->put('locale', $this->selectedLanguage);
+            APP::setLocale($this->selectedLanguage);
 
+        }
+        $local = App::getLocale();
+        if(isset($this->output) && $this->output != []){
+            $this->updatePromptFromState();
+            $this->generate();
+            $this->lables = cache()->remember('local-labelss' . $local, now()->addDays(1), function () use ($local) {
+                $lable = httpGet('/local/lable/', ['local' => $local]);
+    
+                if ($lable['status'] == 'success') {
+                    return $lable['data'];
+                }
+                return [];
+            });
+        
+        
+        }else{        
+         
+            return redirect()->route('upmana-ai');
+        }
+       
+    }
     public function toggleMainCheck($main)
     {
         if (in_array($main, $this->activeMainChecks)) {
@@ -87,7 +116,6 @@ class UpmanaAi extends Component
                 'subChecks.*' => 'required|array',
             ],
             [
-
                 'subChecks.required' => 'Please choose at least one thing.',
                 'subChecks.min' => 'Please choose at least one thing.',
                 'subChecks.*.required' => 'Please choose at least one things.',
@@ -131,8 +159,8 @@ class UpmanaAi extends Component
             'prompt' => $this->prompt,
             'topic' => $topic,
             'locale' => app()->getLocale()
-            ]);
-        dd($newOutput);
+        ])['data'];
+        // dd($newOutput);
         if ($newOutput == 400) {
             $this->messages['warning'][] = 'Please choose/Compare a different location or field.';
             return;
