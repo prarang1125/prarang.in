@@ -41,7 +41,7 @@ class UpmanaAi extends Component
     public function mount(SentenceService $sentenceService)
     {      
       
-        $this->selectedLanguage=session('locale');
+        $this->selectedLanguage=session('locale','en');
         app()->setlocale($this->selectedLanguage);        
 
         session(['chat_id' => uniqid('chat_', true)]);

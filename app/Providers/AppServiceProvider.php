@@ -21,7 +21,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
       
-        app()->setLocale(session('locale', config('app.locale')));
+        app()->setLocale(session('locale','en'));
         require_once base_path('Modules/YellowPages/Helpers/helper.php');
     }
 }
