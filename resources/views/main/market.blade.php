@@ -419,6 +419,7 @@
                                 Systems</a></li>
                         <li><a type="button" data-bs-toggle="modal" data-bs-target="#box25l"> India-Big non District
                                 Capital Cities</a></li>
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#box25l2"> Multilingualism in India</a></li>
 
                     </ul>
                 </div>
@@ -1178,6 +1179,29 @@
 
                         </li>
                     </ul>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="box25l2" tabindex="-1" aria-labelledby="box25l2Label" aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="box25l2Label">Multilingualism in India</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <h3><strong> •  <a href="https://g2c.prarang.in/script-language-data" target="_blank">India - Country, States & UTs-</a></strong><br>&nbsp; Reports summarizing Census 2011 Multilingualism Results</h3> <br>
+                        <h3><strong> •  <a href="https://g2c.prarang.in/script-language-data" target="_blank">India - Citywise Linguistic Diversity-</a></strong><br>&nbsp; Tool for calculating communication reach of Text (based on literacy) & Images/Video/Audio (without literacy)</h3>
+                       
+                      </div>
                 </div>
 
                 <div class="modal-footer">
