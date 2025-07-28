@@ -20,7 +20,7 @@
                     wire:change="changeLanguage" class="form-select form-sm ">
 
                     <option value="hi">हिन्दी</option>
-                    <option value="en" selected>English</option>
+                    <option value="en">English</option>
                 </select>
 
             </p>

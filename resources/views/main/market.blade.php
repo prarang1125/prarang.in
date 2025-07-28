@@ -351,6 +351,21 @@
             top: 0px !important;
             z-index: 42;
         }
+
+        @media (max-width:576px){
+
+            /* City */
+            .container .container .row .live-cities .row .col-sm-2 .city-btn{
+             width:100% !important;
+            }
+            
+            /* City */
+            .live-cities .city-btn{
+             text-align:center;
+             margin-bottom:7px;
+            }
+            
+           }
     </style>
 
     <section class="bs5-top-heading">
