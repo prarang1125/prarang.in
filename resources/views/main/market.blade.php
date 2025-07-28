@@ -366,6 +366,43 @@
             }
             
            }
+           /* Paragraph */
+.text-left div p{
+ padding-left:10px;
+ font-size:14px;
+}
+
+/* Text */
+.container .modal-body div:nth-child(2) .text-sm{
+ padding-left:8px;
+}
+
+/* Text */
+.container .modal-body div:nth-child(2) .text-sm{
+ padding-left:8px;
+}
+
+/* Modal header */
+.container .modal .modal-header{
+ text-align:center;
+ justify-content:center;
+ flex-direction:column;
+}
+
+/* Modal header */
+.container .modal .modal-dialog .modal-content .modal-header{
+ transform:translatex(0px) translatey(0px) !important;
+}
+
+@media (min-width:1201px){
+
+ /* Modal header */
+ .container .modal .modal-header{
+  padding-top:13px;
+  padding-bottom:4px;
+ }
+ 
+}
     </style>
 
     <section class="bs5-top-heading">
@@ -1197,11 +1234,30 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div>
-                        <h3><strong> •  <a href="https://g2c.prarang.in/script-language-data" target="_blank">India - Country, States & UTs-</a></strong><br>&nbsp; Reports summarizing Census 2011 Multilingualism Results</h3> <br>
-                        <h3><strong> •  <a href="https://g2c.prarang.in/india/reacho-o-meter" target="_blank">India - Citywise Linguistic Diversity-</a></strong><br>&nbsp; Tool for calculating communication reach of Text (based on literacy) & Images/Video/Audio (without literacy)</h3>
-                       
+                    <div class="text-left space-y-4">
+                        <div>
+                          <h3 class="text-lg font-bold mb-1">
+                            • <a href="https://g2c.prarang.in/script-language-data" target="_blank" class="text-blue-600 hover:underline">
+                              India - Country, States & UTs -
+                            </a>
+                          </h3>
+                          <p class="text-sm text-gray-700">
+                            Reports summarizing Census 2011 Multilingualism Results
+                          </p>
+                        </div>
+                      
+                        <div>
+                          <h3 class="text-lg font-bold mb-1">
+                            • <a href="https://g2c.prarang.in/india/reacho-o-meter" target="_blank" class="text-blue-600 hover:underline">
+                              India - Citywise Linguistic Diversity -
+                            </a>
+                          </h3>
+                          <p class="text-sm text-gray-700">
+                            Tool for calculating communication reach of Text (based on literacy) & Images/Video/Audio (without literacy)
+                          </p>
+                        </div>
                       </div>
+                      
                 </div>
 
                 <div class="modal-footer">
