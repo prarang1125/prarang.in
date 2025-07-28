@@ -1199,7 +1199,7 @@
                 <div class="modal-body">
                     <div>
                         <h3><strong> •  <a href="https://g2c.prarang.in/script-language-data" target="_blank">India - Country, States & UTs-</a></strong><br>&nbsp; Reports summarizing Census 2011 Multilingualism Results</h3> <br>
-                        <h3><strong> •  <a href="https://g2c.prarang.in/script-language-data" target="_blank">India - Citywise Linguistic Diversity-</a></strong><br>&nbsp; Tool for calculating communication reach of Text (based on literacy) & Images/Video/Audio (without literacy)</h3>
+                        <h3><strong> •  <a href="https://g2c.prarang.in/india/reacho-o-meter" target="_blank">India - Citywise Linguistic Diversity-</a></strong><br>&nbsp; Tool for calculating communication reach of Text (based on literacy) & Images/Video/Audio (without literacy)</h3>
                        
                       </div>
                 </div>
