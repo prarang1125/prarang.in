@@ -62,4 +62,4 @@ Route::get('/share/{uuid}', [SharedResponseController::class, 'show'])->name('sh
 // UpmanaAi
 
 Route::get('/ai/upmana', UpmanaAi::class)->name('upmana-ai');
-Route::get('/post-{query?}', [ShortnerUrl::class, 'index'])->name('shortner-url');
+Route::get('/00-{query?}', [ShortnerUrl::class, 'index'])->name('shortner-url');
