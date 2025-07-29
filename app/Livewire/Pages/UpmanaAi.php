@@ -39,10 +39,10 @@ class UpmanaAi extends Component
     public $localLocation, $lables;
     public $selectedLanguage = '';
     public function mount(SentenceService $sentenceService)
-    {      
-      
+    {
+
         $this->selectedLanguage=session('locale','en');
-        app()->setlocale($this->selectedLanguage);        
+        app()->setlocale($this->selectedLanguage);
 
         session(['chat_id' => uniqid('chat_', true)]);
         $this->verticalService = httpGet('/upamana/get-verticals/' . app()->getLocale())['data'];
@@ -72,7 +72,7 @@ class UpmanaAi extends Component
     public function changeLanguage(SentenceService $sentenceService)
     {
         // dd($this->selectedLanguage);
-       
+
         if ($this->selectedLanguage) {
             session()->put('locale', $this->selectedLanguage);
             APP::setLocale($this->selectedLanguage);
@@ -84,19 +84,19 @@ class UpmanaAi extends Component
             $this->generate();
             $this->lables = cache()->remember('local-labelss' . $local, now()->addDays(1), function () use ($local) {
                 $lable = httpGet('/local/lable/', ['local' => $local]);
-    
+
                 if ($lable['status'] == 'success') {
                     return $lable['data'];
                 }
                 return [];
             });
-        
-        
-        }else{        
-         
+
+
+        }else{
+
             return redirect()->route('upmana-ai');
         }
-       
+
     }
     public function toggleMainCheck($main)
     {

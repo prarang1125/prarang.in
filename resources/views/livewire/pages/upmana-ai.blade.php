@@ -533,7 +533,7 @@
                                             <div class="accordion-body">
                                                 <div>
                                                     <input type="checkbox" wire:model="cities"
-                                                        id="group-{{ $continentId }}" value="{{ $continent }}">
+                                                        id="group-{{ $continentId }}" value="{{ json_encode(['name' => __('location.' . str_replace(' ', '_', strtolower($continent))), 'real_name' => $continent]) }}">
 
                                                     <label for="group-{{ $continentId }}">
                                                         {{ __('location.' . str_replace(' ', '_', strtolower($continent))) ?? $continent }}
