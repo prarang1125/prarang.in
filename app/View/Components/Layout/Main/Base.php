@@ -74,6 +74,11 @@ class Base extends Component
 
     private function prepareVisitorData(Request $request)
     {
+        $currentUrl = $request->input('current_url', null);
+        $urlParts = parse_url($currentUrl);
+        parse_str($urlParts['query'] ?? '', $query);
+        $source = $query['source'] ?? null;
+
         return [
             'city' => $request->input('city', null),
             'post_id' => $request->input('post_id', null),
@@ -87,7 +92,7 @@ class Base extends Component
             'timestamp' => now(),
             'user_agent' => $request->header('User-Agent'),
             'visit_count' => 1,
-            'referrer' => $request->input('referrer', null),
+            'referrer' =>  $source ?? $request->input('referrer', null),
             'duration' => $request->input('duration', null),
             'scroll' => $request->input('scroll', null),
             'user_type' => $request->input('user_type', null),
