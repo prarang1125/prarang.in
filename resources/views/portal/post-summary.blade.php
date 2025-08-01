@@ -25,64 +25,66 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     {!! $portal->header_scripts !!}
     <style>
-/* Remove all formatting from all tags inside post-description */
-.col-sm-9 .main-post .post-description,
-.col-sm-9 .main-post .post-description * {
-   /* all: unset !important;  /* Removes all styles */
-   /* white-space: pre-line !important; /* Ensures sentence wrapping */
-   /* word-break: normal !important; /* Prevents word breaking */
-   /* overflow-wrap: anywhere !important; /* Ensures natural text flow */
-   /* max-width: 100% !important; /* Prevents overflow */
-   /* display: block !important; /* Ensures block-level behavior */
-}
+        /* Remove all formatting from all tags inside post-description */
+        .col-sm-9 .main-post .post-description,
+        .col-sm-9 .main-post .post-description * {
+            /* all: unset !important;  /* Removes all styles */
+            /* white-space: pre-line !important; /* Ensures sentence wrapping */
+            /* word-break: normal !important; /* Prevents word breaking */
+            /* overflow-wrap: anywhere !important; /* Ensures natural text flow */
+            /* max-width: 100% !important; /* Prevents overflow */
+            /* display: block !important; /* Ensures block-level behavior */
+        }
 
 
-/* Text white */
-.post-description .table .table-responsive .table > .text-white{
- background-color:rgba(255,255,255,0);
- transform:translatex(0px) translatey(0px);
-}
+        /* Text white */
+        .post-description .table .table-responsive .table>.text-white {
+            background-color: rgba(255, 255, 255, 0);
+            transform: translatex(0px) translatey(0px);
+        }
 
-/* Text white */
-.table > .text-white > .text-white > .text-white{
- background-color:rgba(255,255,255,0);
-}
+        /* Text white */
+        .table>.text-white>.text-white>.text-white {
+            background-color: rgba(255, 255, 255, 0);
+        }
 
-/* Popupsub */
-.stk-side div .popupsub{
- font-weight:600;
- color:#020202;
- text-decoration:none;
- padding-left:0px;
- padding-top:10px;
- padding-bottom:10px;
-}
-/* Popupsub */
-.stk-side div .popupsub{
- border-color:#070707;
- border-style:solid;
- border-width:1px;
-}
+        /* Popupsub */
+        .stk-side div .popupsub {
+            font-weight: 600;
+            color: #020202;
+            text-decoration: none;
+            padding-left: 0px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+        }
 
-/* Popupsub (hover) */
-.stk-side div .popupsub:hover{
- background-color:#f7f7f7;
- color:#0000fe;
-}
-/* Form check */
-.sign-in-form .mb-3 .form-check{
- text-align:left;
-}
+        /* Popupsub */
+        .stk-side div .popupsub {
+            border-color: #070707;
+            border-style: solid;
+            border-width: 1px;
+        }
 
-/* Heading */
-#subscribeModal section h3{
- font-size:16px;
- font-weight:700;
-}
+        /* Popupsub (hover) */
+        .stk-side div .popupsub:hover {
+            background-color: #f7f7f7;
+            color: #0000fe;
+        }
 
-.stk-side div > .text-center{
- padding-left:9px;
-}
+        /* Form check */
+        .sign-in-form .mb-3 .form-check {
+            text-align: left;
+        }
+
+        /* Heading */
+        #subscribeModal section h3 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        .stk-side div>.text-center {
+            padding-left: 9px;
+        }
 
 
 
@@ -561,42 +563,43 @@
             font-size: 14px !important;
             line-height: 2.56em;
         }
+
         /* Image */
-.container .row .text-center .stk-side div .text-center .popupsub #openModalx img{
- width:100% !important;
- height:100% !important;
-}
+        .container .row .text-center .stk-side div .text-center .popupsub #openModalx img {
+            width: 100% !important;
+            height: 100% !important;
+        }
 
-/* Popupsub */
-.stk-side div .popupsub{
- border-style:none;
-}
+        /* Popupsub */
+        .stk-side div .popupsub {
+            border-style: none;
+        }
 
-/* Popupsub */
-.stk-side div .popupsub{
- display:flex;
- box-shadow:0px 8px 16px -50px rgba(0,0,0,0.15) !important;
-}
+        /* Popupsub */
+        .stk-side div .popupsub {
+            display: flex;
+            box-shadow: 0px 8px 16px -50px rgba(0, 0, 0, 0.15) !important;
+        }
 
-/* Heading */
-#openModalx h3{
- position:absolute;
- font-weight:600;
- font-size:25px;
- padding-top:8px;
- text-align:center;
- padding-right:7px;
- padding-left:8px;
-}
+        /* Heading */
+        #openModalx h3 {
+            position: absolute;
+            font-weight: 600;
+            font-size: 25px;
+            padding-top: 8px;
+            text-align: center;
+            padding-right: 7px;
+            padding-left: 8px;
+        }
 
-/* Image */
-#openModalx img{
- box-shadow:0px 0px 5px 0px #212529;
- border-top-left-radius:8px;
- border-top-right-radius:8px;
- border-bottom-left-radius:8px;
- border-bottom-right-radius:8px;
-}
+        /* Image */
+        #openModalx img {
+            box-shadow: 0px 0px 5px 0px #212529;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+        }
 
 
 
@@ -622,52 +625,53 @@
                 <div class="mt-4 main-post">
                     <div class="analytics">
                         @if (\Carbon\Carbon::parse($post['dateOfApprove'])->addDays(4)->lte(now()))
-                            @if (!empty($post['totalViewerCount']) && $post['totalViewerCount'] > 0)
-                                {{-- @if ($post['postStatusMakerChecker'] === 'approved' && $post['totalViewerCount'] > 0) --}}
-                                <table class="mb-0 table-sm" border="1">
-                                    <thead>
-                                        <tr>
-                                            <th colspan="5">Post Viewership from Post Date to
-                                                {{ \Carbon\Carbon::parse($post['postViewershipDateTo'])->format('d- M-Y') }}
-                                                {{ $post['monthDay'] }}</th>
-                                        </tr>
-                                        <tr>
-                                            <th>City Subscribers (FB+App)</th>
-                                            <th>Website (Direct+Google)</th>
-                                            <th>Email</th>
-                                            <th>Instagram</th>
-                                            <th>Total</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>{{ intval($post['citySubscriber']) + intval($post['prarangApplication']) }}
-                                            </td>
-                                            <td>{{ $post['websiteCount'] }}</td>
-                                            <td>{{ $post['emailCount'] }}</td>
-                                            <td>{{ $post['instagramCount'] }}</td>
-                                            <td>{{ $post['totalViewerCount'] }}</td>
-                                        </tr>
-                                        <tr>
-                                            <td colspan="5" class="text-start">
-                                                <a href="#analyticsinfo" class="text-dark"
-                                                    style="text-decoration-line: none;">* Please see metrics definition
-                                                    on bottom of this page.</a>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            @endif
+                        @if (!empty($post['totalViewerCount']) && $post['totalViewerCount'] > 0)
+                        {{-- @if ($post['postStatusMakerChecker'] === 'approved' && $post['totalViewerCount'] > 0) --}}
+                        <table class="mb-0 table-sm" border="1">
+                            <thead>
+                                <tr>
+                                    <th colspan="5">Post Viewership from Post Date to
+                                        {{ \Carbon\Carbon::parse($post['postViewershipDateTo'])->format('d- M-Y') }}
+                                        {{ $post['monthDay'] }}
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <th>City Subscribers (FB+App)</th>
+                                    <th>Website (Direct+Google)</th>
+                                    <th>Email</th>
+                                    <th>Instagram</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>{{ intval($post['citySubscriber']) + intval($post['prarangApplication']) }}
+                                    </td>
+                                    <td>{{ $post['websiteCount'] }}</td>
+                                    <td>{{ $post['emailCount'] }}</td>
+                                    <td>{{ $post['instagramCount'] }}</td>
+                                    <td>{{ $post['totalViewerCount'] }}</td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5" class="text-start">
+                                        <a href="#analyticsinfo" class="text-dark"
+                                            style="text-decoration-line: none;">* Please see metrics definition
+                                            on bottom of this page.</a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        @endif
                         @endif
                     </div>
                     @php
-                        $chitti_id = $post['chittiId'];
+                    $chitti_id = $post['chittiId'];
                     @endphp
                     <div class="main-image">
                         @if ($post->images[0]->VideoExist == 1)
-                            {!! $post->images[0]->VideoURL !!}
+                        {!! $post->images[0]->VideoURL !!}
                         @else
-                            <img class="img-fluid" src="{{ $post->images[0]->imageUrl }}" alt="{{ $post->Title }}">
+                        <img class="img-fluid" src="{{ $post->images[0]->imageUrl }}" alt="{{ $post->Title }}">
                         @endif
                     </div>
 
@@ -686,13 +690,13 @@
                     </div>
                     <div class="text-center post-navigation">
                         @if ($previousPost)
-                            <a href="{{ route('post-summary', ['slug' => $slug, 'id' => $previousPost->chittiId, 'subTitle' => Str::slug($previousPost->SubTitle)]) }}"
-                                class="btn btn-primary">पिछला / Previous</a>
+                        <a href="{{ route('post-summary', ['slug' => $slug, 'id' => $previousPost->chittiId, 'subTitle' => Str::slug($previousPost->SubTitle)]) }}"
+                            class="btn btn-primary">पिछला / Previous</a>
                         @endif
 
                         @if ($nextPost)
-                            <a href="{{ route('post-summary', ['slug' => $slug, 'id' => $nextPost->chittiId, 'subTitle' => Str::slug($nextPost->SubTitle)]) }}"
-                                class="btn btn-primary">अगला / Next</a>
+                        <a href="{{ route('post-summary', ['slug' => $slug, 'id' => $nextPost->chittiId, 'subTitle' => Str::slug($nextPost->SubTitle)]) }}"
+                            class="btn btn-primary">अगला / Next</a>
                         @endif
                     </div>
                 </div>
@@ -714,13 +718,13 @@
                     <div class="pt-2 pb-2 mt-3 recent-poet text-start">
                         <h6 class="ps-2 fw-bold">Recent Posts</h6>
                         @foreach ($recentPosts as $post)
-                            <a style="text-decoration-line: none;"
-                                href="{{ route('post-summary', ['slug' => $slug, 'id' => $post->chittiId, 'subTitle' => Str::slug($post->SubTitle)]) }}">
-                                <div class="p-2 mt-3 rounded shadow">
-                                    <img class="img-fluid rounded-top w-100" src="{{ $post->imageUrl }}"
-                                        alt="{{ $post->Title }}">
-                                    <h6 class="mt-2 text-dark ">{{ $post->Title }}</h6>
-                            </a>
+                        <a style="text-decoration-line: none;"
+                            href="{{ route('post-summary', ['slug' => $slug, 'id' => $post->chittiId, 'subTitle' => Str::slug($post->SubTitle)]) }}">
+                            <div class="p-2 mt-3 rounded shadow">
+                                <img class="img-fluid rounded-top w-100" src="{{ $post->imageUrl }}"
+                                    alt="{{ $post->Title }}">
+                                <h6 class="mt-2 text-dark ">{{ $post->Title }}</h6>
+                        </a>
                     </div>
                     @endforeach
                 </div>
@@ -753,23 +757,23 @@
     </div>
 
     @if ($ColorCode === '#4d4d4d')
-        <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const descriptionData = document.querySelector('.post-description');
-                if (descriptionData) {
-                    descriptionData.querySelectorAll('*').forEach(element => {
-                        if (element.tagName !== 'BR' && element.tagName !== 'HR') {
-                            element.classList.add('text-white', 'text-light');
-                        }
-                    });
-                }
-            });
-        </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const descriptionData = document.querySelector('.post-description');
+            if (descriptionData) {
+                descriptionData.querySelectorAll('*').forEach(element => {
+                    if (element.tagName !== 'BR' && element.tagName !== 'HR') {
+                        element.classList.add('text-white', 'text-light');
+                    }
+                });
+            }
+        });
+    </script>
     @endif
     <x-post.footer :city="$city_name" />
     <script src='{{ asset('location.js') }}'></script>
     <script>
-        collectAndSendInformation('{{ $chitti_id }}', '{{ $city_name }}');
+        collectAndSendInformation('{{ $chitti_id }}', '{{ $city_name }}', '{{ $platform }}');
 
         document.addEventListener('DOMContentLoaded', () => {
             const descriptionData = document.querySelector('.post-description');
@@ -793,4 +797,5 @@
     {!! $portal->footer_scripts !!}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

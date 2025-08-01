@@ -1,4 +1,4 @@
-function collectAndSendInformation(postId, city) {
+function collectAndSendInformation(postId, city, platform) {
     /**
      * Collects and sends information about a post to the server.
      *
@@ -11,9 +11,9 @@ function collectAndSendInformation(postId, city) {
 
     const currentUrl = window.location.href;
     const getPostCookie = (postId) => {
-        const cookies = document.cookie.split('; ');
+        const cookies = document.cookie.split("; ");
         for (let cookie of cookies) {
-            const [key, value] = cookie.split('=');
+            const [key, value] = cookie.split("=");
             if (key === `post_${postId}`) return value;
         }
         return null;
@@ -30,9 +30,9 @@ function collectAndSendInformation(postId, city) {
 
     // Helper function to get a cookie value
     const getCookie = (name) => {
-        const cookies = document.cookie.split('; ');
+        const cookies = document.cookie.split("; ");
         for (let cookie of cookies) {
-            const [key, value] = cookie.split('=');
+            const [key, value] = cookie.split("=");
             if (key === name) return value;
         }
         return null;
@@ -49,7 +49,9 @@ function collectAndSendInformation(postId, city) {
     const getGeolocation = async () => {
         return new Promise((resolve, reject) => {
             if (!navigator.geolocation) {
-                return reject(new Error("Geolocation is not supported by this browser."));
+                return reject(
+                    new Error("Geolocation is not supported by this browser.")
+                );
             }
             navigator.geolocation.getCurrentPosition(
                 (position) => resolve(position),
@@ -61,8 +63,9 @@ function collectAndSendInformation(postId, city) {
     // Fetch IP address using ipify API
     const fetchIpAddress = async () => {
         try {
-            const response = await fetch('https://api.ipify.org?format=json');
-            if (!response.ok) throw new Error(`Failed to fetch IP: ${response.status}`);
+            const response = await fetch("https://api.ipify.org?format=json");
+            if (!response.ok)
+                throw new Error(`Failed to fetch IP: ${response.status}`);
             const data = await response.json();
             return data.ip;
         } catch (error) {
@@ -79,11 +82,12 @@ function collectAndSendInformation(postId, city) {
         const ipAddress = await fetchIpAddress();
 
         // Track visits using localStorage
-        const visitCount = parseInt(localStorage.getItem('visitCount') || '0', 10) + 1;
-        localStorage.setItem('visitCount', visitCount);
+        const visitCount =
+            parseInt(localStorage.getItem("visitCount") || "0", 10) + 1;
+        localStorage.setItem("visitCount", visitCount);
 
         // Check if location permission is denied
-        const locationDenied = getCookie('locationDenied');
+        const locationDenied = getCookie("locationDenied");
 
         if (visitCount >= 3 && !locationDenied) {
             try {
@@ -95,7 +99,7 @@ function collectAndSendInformation(postId, city) {
                 // Handle specific geolocation errors
                 if (error.code === error.PERMISSION_DENIED) {
                     console.warn("Location access denied by the user.");
-                    setCookie('locationDenied', 'true', 30);
+                    setCookie("locationDenied", "true", 30);
                 } else if (error.code === error.POSITION_UNAVAILABLE) {
                     console.warn("Location information is unavailable.");
                 } else if (error.code === error.TIMEOUT) {
@@ -111,22 +115,26 @@ function collectAndSendInformation(postId, city) {
         // Gather other data
         const userAgent = navigator.userAgent.toLowerCase();
         const botList = {
-            google_bot: ['googlebot'],
-            facebook_bot: ['facebookexternalhit', 'facebot'],
-            bing_bot: ['bingbot', 'msnbot'],
-            duckduck_bot: ['duckduckbot'],
-            yandex_bot: ['yandexbot'],
-            baidu_bot: ['baiduspider'],
-            twitter_bot: ['twitterbot'],
-            linkedin_bot: ['linkedinbot']
+            google_bot: ["googlebot"],
+            facebook_bot: ["facebookexternalhit", "facebot"],
+            bing_bot: ["bingbot", "msnbot"],
+            duckduck_bot: ["duckduckbot"],
+            yandex_bot: ["yandexbot"],
+            baidu_bot: ["baiduspider"],
+            twitter_bot: ["twitterbot"],
+            linkedin_bot: ["linkedinbot"],
         };
         const detectBot = () => {
             for (const botName in botList) {
-                if (botList[botName].some(identifier => userAgent.includes(identifier))) {
+                if (
+                    botList[botName].some((identifier) =>
+                        userAgent.includes(identifier)
+                    )
+                ) {
                     return botName;
                 }
             }
-            return 'user';
+            return "user";
         };
         const userType = detectBot();
         const language = navigator.language;
@@ -137,23 +145,27 @@ function collectAndSendInformation(postId, city) {
             if (!referrer) return null;
             try {
                 const url = new URL(referrer);
-                const hostnameParts = url.hostname.split('.');
-                return hostnameParts.length > 2 ? hostnameParts[hostnameParts.length - 2] : hostnameParts[0];
+                const hostnameParts = url.hostname.split(".");
+                return hostnameParts.length > 2
+                    ? hostnameParts[hostnameParts.length - 2]
+                    : hostnameParts[0];
             } catch {
                 return null;
             }
         }
 
-        const referrerDomain = getMainDomain(document.referrer);
-
+        const referrerDomain = platform
+            ? platform
+            : getMainDomain(document.referrer) || "prarang";
+        console.log(referrerDomain);
         // Prepare the data as query parameters
         const queryParams = new URLSearchParams({
             city: city,
             post_id: postId,
             current_url: currentUrl,
-            ip_address: ipAddress || 'N/A',
-            latitude: latitude || 'null',
-            longitude: longitude || 'null',
+            ip_address: ipAddress || "N/A",
+            latitude: latitude || "null",
+            longitude: longitude || "null",
             language: language,
             duration: 0,
             scroll: 10,
@@ -168,14 +180,18 @@ function collectAndSendInformation(postId, city) {
 
         if (!getPostCookie(postId)) {
             try {
-                const response = await fetch(`/visitor-location?${queryParams}`, {
-                    method: 'GET',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                });
+                const response = await fetch(
+                    `/visitor-location?${queryParams}`,
+                    {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                    }
+                );
 
-                if (!response.ok) throw new Error(`Failed to send data: ${response.status}`);
+                if (!response.ok)
+                    throw new Error(`Failed to send data: ${response.status}`);
                 const responseData = await response.json();
                 setPostCookie(postId, city);
                 // console.log('Data sent successfully:', responseData);
@@ -183,7 +199,6 @@ function collectAndSendInformation(postId, city) {
                 // console.error("Error sending data:", error.message);
             }
         }
-
     };
 
     // Execute the function
@@ -195,7 +210,8 @@ function collectAndSendInformation(postId, city) {
     let maxScroll = 0;
 
     window.addEventListener("scroll", () => {
-        const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollHeight =
+            document.documentElement.scrollHeight - window.innerHeight;
         if (scrollHeight > 0) {
             const scrollPercent = (window.scrollY / scrollHeight) * 100;
             maxScroll = Math.max(maxScroll, scrollPercent);
@@ -214,27 +230,27 @@ function collectAndSendInformation(postId, city) {
         }).toString();
         // console.log("Query Parameters:", queryParams);
         try {
-            await fetch(`/duration-update?${queryParams}`, { method: 'GET' });
+            await fetch(`/duration-update?${queryParams}`, { method: "GET" });
             // console.log("Duration and scroll data sent.");
         } catch (error) {
             console.error("Error sending duration data:", error.message);
         }
-
     };
 
     let userIp = null; // Global variable to store IP
 
     // Fetch IP when the page loads and store it
     const fetchIP = () => {
-        fetch('https://api.ipify.org?format=json')
-            .then(response => {
-                if (!response.ok) throw new Error(`Failed to fetch IP: ${response.status}`);
+        fetch("https://api.ipify.org?format=json")
+            .then((response) => {
+                if (!response.ok)
+                    throw new Error(`Failed to fetch IP: ${response.status}`);
                 return response.json();
             })
-            .then(data => {
+            .then((data) => {
                 userIp = data.ip; // Store IP globally
             })
-            .catch(error => {
+            .catch((error) => {
                 console.error("Error fetching IP address:", error.message);
             });
     };
@@ -267,5 +283,3 @@ function collectAndSendInformation(postId, city) {
         }
     });
 }
-
-
