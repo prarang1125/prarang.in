@@ -29,7 +29,36 @@
          }
          
         }
-        
+        /* Col 6 */
+.container .col-sm-6{
+ display:flex;
+ justify-content:center;
+ align-items:center;
+}
+
+/* Image */
+.container a img{
+ width:270px !important;
+ display:inline-block;
+ {{-- transform:translatex(0px) translatey(0px) !important; --}}
+}
+
+/* Img flud */
+.container .col-sm-6:nth-child(2) .img-flud{
+ width:571px !important;
+}
+
+/* Border */
+.container .border{
+ border-color:#ffffff !important;
+}
+
+/* Button */
+.container .col-sm-6:nth-child(1) .border:nth-child(1) .btn-primary{
+ width:265px;
+}
+
+
         </style>
         <section class="bs5-top-heading">
                     <p class="">Analytics</p>
@@ -42,12 +71,20 @@
               
                 <div class="row">
                         <div class="col-sm-6">
+                           
                             <div class="text-center p-2 border">
                                 <a  href="https://g2c.prarang.in/india" class="btn btn-lg btn-primary rounded-0">
                                             India Analytics
                                 </a> 
                                 <div class="p-2">
                                <a  href="https://g2c.prarang.in/india"> <img class="img-flud w-75" src="https://www.prarang.in/matric-.JPG" ></a></div>
+                            </div>
+                            <div class="text-center p-2 border">
+                                <a  href="https://g2c.prarang.in/czech-republic" class="btn btn-lg btn-primary rounded-0">
+                                    Czech Republic Analytics
+                                </a> 
+                                <div class="p-2">
+                               <a  href="https://g2c.prarang.in/czech-republic"> <img class="img-flud w-75" src="https://www.prarang.in/matric-.JPG" ></a></div>
                             </div>
                         </div>
                         <div class="col-sm-6">
