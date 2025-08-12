@@ -638,8 +638,8 @@
                                 <tr>
                                     <th>City Subscribers (FB+App)</th>
                                     <th>Website (Direct+Google)</th>
-                                    <th>Email</th>
-                                    <th>Instagram</th>
+                                    <th>Messaging Subscribers</th>
+                                    {{-- <th>Instagram</th> --}}
                                     <th>Total</th>
                                 </tr>
                             </thead>
@@ -648,8 +648,9 @@
                                     <td>{{ intval($post['citySubscriber']) + intval($post['prarangApplication']) }}
                                     </td>
                                     <td>{{ $post['websiteCount'] }}</td>
-                                    <td>{{ $post['emailCount'] }}</td>
-                                    <td>{{ $post['instagramCount'] }}</td>
+                                    {{-- <td>{{ $post['emailCount'] }}</td> --}}
+                                    {{-- <td>{{ $post['instagramCount'] }}</td> --}}
+                                     <td>{{ $post['whatsappCount'] }}</td>
                                     <td>{{ $post['totalViewerCount'] }}</td>
                                 </tr>
                                 <tr>
@@ -745,11 +746,14 @@
             post directly through their browsers and via Google search.
         </p>
         <p>
-            <strong>C. Total Viewership —</strong> This is the Sum of all Subscribers (FB+App), Website
+            <strong>C. Messaging Subscribers -</strong> This is the total viewership from City Portal subscribers who opted for hyperlocal daily messaging and received this post.
+        </p>
+        <p>
+            <strong>D. Total Viewership -</strong> This is the Sum of all Subscribers (FB+App), Website
             (Google+Direct), Email, and Instagram who reached this Prarang post/page.
         </p>
         <p>
-            <strong>D. The Reach (Viewership) -</strong> The reach on the post is updated either on the 6th day from
+            <strong>E. The Reach (Viewership) -</strong> The reach on the post is updated either on the 6th day from
             the day of posting or on the completion (Day 31 or 32) of one month from the day of posting.
         </p>
     </div>

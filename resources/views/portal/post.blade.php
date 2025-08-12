@@ -252,6 +252,25 @@
     width: 100% !important;
   height:100% !important;
  }
+ /* Image */
+.container .mb-4 img{
+ max-height:160px;
+}
+
+/* Heading */
+.container .mb-4 h2{
+ height:104px;
+}
+
+/* Category badge */
+.container .mb-4 .category-badge{
+ right:255px;
+ display:none;
+}
+
+.container .mb-4 .blog-card{
+    box-shadow:0px 4px 2px 1px rgba(0,0,0,0.32);
+}
     </style>
 </head>
 
