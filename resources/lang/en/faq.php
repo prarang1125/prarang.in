@@ -152,83 +152,70 @@ return [
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td rowspan="3" style="border: 1px solid #ddd; padding: 8px;">Prompt Input</td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Can write &
-                                        ask any question</td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Must select some Geographical
-                                        & some Metric (any Measured) for Upmana to generate text</td>
-                                </tr>
-                                <tr>
+                            <!-- Prompt Input -->
+                            <tr>
+                                <td rowspan="2" style="border: 1px solid #ddd; padding: 8px;">Prompt Input</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Can write & ask any question</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Must select some Geographical & some Metric (any Measured) for Upmana to generate text</td>
+                            </tr>
+                            <tr>
                                 <td style="border: 1px solid #ddd; padding: 8px;">Ability to do precise writing/summary.</td>
                                 <td style="border: 1px solid #ddd; padding: 8px;">No ability to size/resize output</td>
                             </tr>
-                                <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;" rowspan="3">Prompt Output
-                                    </td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Text, data &
-                                        images content, as instructed</td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Text & data content, as
-                                        instructed</td>
-                                </tr>
-                                <tr>
-                                <td style="border: 1px solid #ddd; padding: 8px;">Unstable Response : Unique sentences are created as answer for an identical prompt, on every attempt.</td>
-                                <td style="border: 1px solid #ddd; padding: 8px;">Stable Response: Consistent output as answer for same prompt, on every attempt.</td>
-                            </tr>
-                                <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Hallucinations / errors
-                                        sometimes in text & data</td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">No hallucinations</td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Does not provide clear
-                                        sources for its data</td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Always cites specific data
-                                        source & year</td>
-                                </tr>
-                                <tr>
-                                <td style="border: 1px solid #ddd; padding: 8px;">Ability to write software code.</td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Unable to write any software code</td>
 
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;" rowspan="6">Architecture
-                                    </td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Generative AI
-                                    </td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Traditional AI</td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Large Language Model (LLM)
-                                    </td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Small Language Model
-                                        (Language Localisation design)</td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Data sources –
-                                        Screen-Scraping without citations</td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Large data Aggregation from
-                                        reliable sources</td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">LLM – Natural Language
-                                        Processing (NLP) based on Western Linguistics</td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Analytics – Indian
-                                        Linguistics (Tarkashastra) based</td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Word as Token – Extraordinary
-                                        processing power for computation</td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Phoneme as Token – Under
-                                        development, Unknown computation need</td>
-                                </tr>
-                                <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Photos – Recognition &
-                                        Production: GANS (Generative Adversarial Network) and Diffusion Models</td>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Photos – Under development
-                                    </td>
-                                </tr>
-                            </tbody>
+                            <!-- Prompt Output -->
+                            <tr>
+                                <td rowspan="4" style="border: 1px solid #ddd; padding: 8px;">Prompt Output</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Text, data & images content, as instructed</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Text & data content, as instructed</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Unstable Response: Unique sentences created for identical prompts, every attempt.</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Stable Response: Consistent output for same prompt, every attempt.</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Hallucinations / errors sometimes in text & data</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">No hallucinations</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Does not provide clear sources for its data</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Always cites specific data source & year</td>
+                            </tr>
+
+                            <!-- Coding Capability -->
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Ability to write software code.</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Unable to write any software code</td>
+                            </tr>
+
+                            <!-- Architecture -->
+                            <tr>
+                                <td rowspan="6" style="border: 1px solid #ddd; padding: 8px;">Architecture</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Generative AI</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Traditional AI</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Large Language Model (LLM)</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Small Language Model (Language Localisation design)</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Data sources – Screen-Scraping without citations</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Large data Aggregation from reliable sources</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">LLM – NLP based on Western Linguistics</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Analytics – Indian Linguistics (Tarkashastra) based</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Word as Token – High computation need</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Phoneme as Token – Under development, unknown computation need</td>
+                            </tr>
+                            <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Photos – Recognition & Production: GANs and Diffusion Models</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Photos – Under development</td>
+                            </tr>
+                        </tbody>
+
                         </table>
                     </section>
 
