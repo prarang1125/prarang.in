@@ -153,12 +153,16 @@ return [
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td style="border: 1px solid #ddd; padding: 8px;">Prompt Input</td>
+                                    <td rowspan="3" style="border: 1px solid #ddd; padding: 8px;">Prompt Input</td>
                                     <td style="border: 1px solid #ddd; padding: 8px;">Can write &
                                         ask any question</td>
                                     <td style="border: 1px solid #ddd; padding: 8px;">Must select some Geographical
                                         & some Metric (any Measured) for Upmana to generate text</td>
                                 </tr>
+                                <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Ability to do precise writing/summary.</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">No ability to size/resize output</td>
+                            </tr>
                                 <tr>
                                     <td style="border: 1px solid #ddd; padding: 8px;" rowspan="3">Prompt Output
                                     </td>
@@ -167,6 +171,10 @@ return [
                                     <td style="border: 1px solid #ddd; padding: 8px;">Text & data content, as
                                         instructed</td>
                                 </tr>
+                                <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Unstable Response : Unique sentences are created as answer for an identical prompt, on every attempt.</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Stable Response: Consistent output as answer for same prompt, on every attempt.</td>
+                            </tr>
                                 <tr>
                                     <td style="border: 1px solid #ddd; padding: 8px;">Hallucinations / errors
                                         sometimes in text & data</td>
@@ -177,6 +185,11 @@ return [
                                         sources for its data</td>
                                     <td style="border: 1px solid #ddd; padding: 8px;">Always cites specific data
                                         source & year</td>
+                                </tr>
+                                <tr>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Ability to write software code.</td>
+                                    <td style="border: 1px solid #ddd; padding: 8px;">Unable to write any software code</td>
+
                                 </tr>
                                 <tr>
                                     <td style="border: 1px solid #ddd; padding: 8px;" rowspan="6">Architecture
