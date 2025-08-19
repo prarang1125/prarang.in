@@ -165,7 +165,7 @@ return [
 
                             <!-- Prompt Output -->
                             <tr>
-                                <td rowspan="4" style="border: 1px solid #ddd; padding: 8px;">Prompt Output</td>
+                                <td rowspan="5" style="border: 1px solid #ddd; padding: 8px;">Prompt Output</td>
                                 <td style="border: 1px solid #ddd; padding: 8px;">Text, data & images content, as instructed</td>
                                 <td style="border: 1px solid #ddd; padding: 8px;">Text & data content, as instructed</td>
                             </tr>
