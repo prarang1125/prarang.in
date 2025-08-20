@@ -159,7 +159,7 @@ return [
                                 <td style="border: 1px solid #ddd; padding: 8px;">Must select some Geographical & some Metric (any Measured) for Upmana to generate text</td>
                             </tr>
                             <tr>
-                                <td style="border: 1px solid #ddd; padding: 8px;">Ability to do precise writing/summary.</td>
+                                <td style="border: 1px solid #ddd; padding: 8px;">Ability to do Precis writing/summary.</td>
                                 <td style="border: 1px solid #ddd; padding: 8px;">No ability to size/resize output</td>
                             </tr>
 
