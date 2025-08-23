@@ -49,7 +49,7 @@ Such information will not be considered as sensitive if it is freely available a
     <li>Device information (device type, model, OS version)</li>
     <li>Mobile device identifiers (e.g., Android Advertising ID)</li>
     <li>App usage statistics and crash logs</li>
-    <li>Access to phone features (such as camera, microphone, storage) strictly for providing requested services</li>
+    <li>Access to phone features (such as location, storage) strictly for providing requested services</li>
     <li><strong>Personal information such as your name, email address, and location (as provided by you)</strong></li>
   </ul>
 <strong>COOKIES</strong>
