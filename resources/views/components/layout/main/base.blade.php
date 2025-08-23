@@ -145,7 +145,7 @@
             <div class="container mt-3">
                 <div class="footer-design row">
                     <div class="col-sm-3">
-                        <a href="{{route('privacy-policy')}}" class="">
+                        <a href="https://www.prarang.in/privacy-policy" class="">
                             Privacy Policy
                         </a>
                     </div>

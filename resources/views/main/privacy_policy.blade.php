@@ -43,7 +43,15 @@ All required information is service dependent and we may use the above said user
 Such information will not be considered as sensitive if it is freely available and accessible in the public domain or is furnished under the Right to Information Act, 2005 or any other law for the time being in force.
 </p>
 <p>
-
+<strong>Mobile App-specific data</strong>
+  <p>In addition, when using the Mobile App, we may collect:</p>
+  <ul>
+    <li>Device information (device type, model, OS version)</li>
+    <li>Mobile device identifiers (e.g., Android Advertising ID)</li>
+    <li>App usage statistics and crash logs</li>
+    <li>Access to phone features (such as camera, microphone, storage) strictly for providing requested services</li>
+    <li><strong>Personal information such as your name, email address, and location (as provided by you)</strong></li>
+  </ul>
 <strong>COOKIES</strong>
 </p>
 <p>
