@@ -85,14 +85,13 @@ document.addEventListener("DOMContentLoaded", function () {
           </div>
           <div id="viveks-modal-content" contenteditable="false">
             <ul>
-              <li><strong>Origins of Prarang</strong> – <a href="https://www.shabdachitra.com/" target="_blank">Shabdachitra Research Methodology</a></li>
+              <li><strong>Prarang Past</strong> – <a href="https://www.shabdachitra.com/" target="_blank">Shabdachitra</a></li>
+              <li><strong>Prarang Future</strong> – <a href="http://apratyaksh.com" target="_blank">Apratyaksh</a></li>
     <li><strong>Ownership of Prarang Project</strong> – <a href="https://www.indeur.com/" target="_blank">Indoeuropeans Pvt Ltd Company</a></li>
     <li><strong>Visual History India Research</strong> – <a href="https://www.facebook.com/profile.php?id=100064708301765" target="_blank">India Visual FB Blog</a></li>
     <li><strong>Old Social Design Project</strong> – <a href="https://www.rohmoh.com/" target="_blank">Rohilla Mohalla Project</a></li>
     <li><strong>New World Library Knowledge Project</strong> – <a href="https://sarganga.org/" target="_blank">Saraswati by Ganga</a></li>
     <li><strong>Colours of Prarang Daily Content</strong> – <a href="http://rangmala.com/" target="_blank">Daily Knowledge Posts – Rangmala</a></li>
-
-           <li><strong>Prarang WIP</strong> – <a href="http://apratyaksh.com" target="_blank">Shabda Gyan - Knowledge of the Word</a></li>
             </ul>
           </div>
         </div>
