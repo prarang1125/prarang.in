@@ -24,6 +24,7 @@ $USERNAME = "prarangdb";
 $PASSWORD = "PradbDec24";
 $DATABASENAME = "prarangdb";
 
+
 // Establish database connection
 $dbconnect = mysqli_connect($HOSTNAME, $USERNAME, $PASSWORD, $DATABASENAME);
 
