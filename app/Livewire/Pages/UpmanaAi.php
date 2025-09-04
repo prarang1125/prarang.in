@@ -38,9 +38,12 @@ class UpmanaAi extends Component
     public $genHit, $isRegistered;
     public $localLocation, $lables;
     public $selectedLanguage = '';
-    public function mount(SentenceService $sentenceService)
+    public function mount(SentenceService $sentenceService, $lang = null)
     {
-
+        if ($lang) {
+            session()->put('locale', $lang);
+            APP::setLocale($lang);
+        }
         $this->selectedLanguage=session('locale','en');
         app()->setlocale($this->selectedLanguage);
 
