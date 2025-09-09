@@ -30,6 +30,10 @@ switch ($geographyCode) {
         $areaId = 0;
         $geographyId = 0;
         break;
+    default:
+        $areaId = 2;
+        $geographyId = 2;
+        break;
 }
 
 if ($tagId == '') {
