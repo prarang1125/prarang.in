@@ -38,13 +38,12 @@ if ($tagId == '') {
     exit;
 }
 
-$sqlChittiList = mysqli_query($dbconnect, "SELECT DISTINCT cm.chittiId 
-    FROM chittitagmapping cm 
-    INNER JOIN chittigeographymapping cg ON cm.chittiId = cg.chittiId 
-    WHERE cm.tagId = '$tagId' 
-    AND cg.areaId = '$areaId' 
-    AND cg.geographyId = '$geographyId' 
-    COLLATE utf8mb4_unicode_ci");
+$sqlChittiList = mysqli_query($dbconnect, "SELECT DISTINCT cm.chittiId
+    FROM chittitagmapping cm
+    INNER JOIN chittigeographymapping cg ON cm.chittiId = cg.chittiId
+    WHERE cm.tagId = '$tagId'
+    AND cg.areaId = '$areaId'
+    AND cg.geographyId = '$geographyId'");
 
 $chittiIdList = [];
 if ($sqlChittiList) {
@@ -60,14 +59,13 @@ $queryCondition = $offset < 1
     ? "ORDER BY ch.dateOfApprove DESC LIMIT 10"
     : "AND ch.chittiId > $offset ORDER BY ch.dateOfApprove ASC LIMIT 10";
 
-$sql = "SELECT ch.Title, ch.chittiId, ch.SubTitle, cg.geography, ch.description, 
-               ch.languageId, ch.dateOfApprove, IFNULL(cl.likes, 0) AS totalLike, 
-               IFNULL(cl.comments, 0) AS totalComment, ch.colorcode, ch.isLiked 
-        FROM chittimaster ch 
-        INNER JOIN chittigeographymapping cg ON ch.chittiId = cg.chittiId 
-        LEFT JOIN chittilikes cl ON ch.chittiId = cl.chittiId 
-        WHERE ch.chittiId IN ($chittiList) $queryCondition 
-        COLLATE utf8mb4_unicode_ci";
+$sql = "SELECT ch.Title, ch.chittiId, ch.SubTitle, cg.geographyId, ch.description,
+               ch.languageId, ch.dateOfApprove, IFNULL(cl.isLiked, 0) AS totalLike,
+               IFNULL(cl.isLiked, 0) AS totalComment, ch.color_value, cl.isLiked
+        FROM chitti ch
+        INNER JOIN chittigeographymapping cg ON ch.chittiId = cg.chittiId
+        LEFT JOIN chittilike cl ON ch.chittiId = cl.chittiId
+        WHERE ch.chittiId IN ($chittiList) $queryCondition";
 
 $result = mysqli_query($dbconnect, $sql);
 
@@ -84,20 +82,20 @@ if ($result && mysqli_num_rows($result) > 0) {
             "Title" => $obj["Title"],
             "chittiId" => $obj["chittiId"],
             "SubTitle" => $obj["SubTitle"],
-            "geography" => $obj["geography"],
+            "geography" => $obj["geographyId"],
             "description" => $obj["description"],
             "dateOfApprove" => $obj["dateOfApprove"],
             "totalLike" => $obj["totalLike"],
             "totalComment" => $obj["totalComment"],
-            "colorcode" => $obj["colorcode"],
+            "colorcode" => $obj["color_value"],
             "isLiked" => $obj["isLiked"]
         ];
         array_push($json["Payload"], $chitti);
     }
     echo json_encode($json, JSON_UNESCAPED_UNICODE);
 } else {
-    $message = $languageCode === 'hi' 
-        ? 'माफ़ करे पत्र उपलब्ध नही है, दूसरा भुगोल चुने।' 
+    $message = $languageCode === 'hi'
+        ? 'माफ़ करे पत्र उपलब्ध नही है, दूसरा भुगोल चुने।'
         : 'Sorry, no letters here. Pick another geography!';
     $code = ['responseCode' => '0', 'message' => $message];
     echo json_encode($code);
@@ -146,12 +144,12 @@ if ($tagId == '') {
     exit;
 }
 
-$sqlChittiList = mysqli_query($dbconnect, "SELECT DISTINCT cm.chittiId 
-    FROM chittitagmapping cm 
-    INNER JOIN chittigeographymapping cg ON cm.chittiId = cg.chittiId 
-    WHERE cm.tagId = '$tagId' 
-    AND cg.areaId = '$areaId' 
-    AND cg.geographyId = '$geographyId' 
+$sqlChittiList = mysqli_query($dbconnect, "SELECT DISTINCT cm.chittiId
+    FROM chittitagmapping cm
+    INNER JOIN chittigeographymapping cg ON cm.chittiId = cg.chittiId
+    WHERE cm.tagId = '$tagId'
+    AND cg.areaId = '$areaId'
+    AND cg.geographyId = '$geographyId'
     COLLATE utf8mb4_unicode_ci");
 
 $chittiIdList = [];
@@ -168,13 +166,13 @@ $queryCondition = $offset < 1
     ? "ORDER BY ch.dateOfApprove DESC LIMIT 10"
     : "AND ch.chittiId > $offset ORDER BY ch.dateOfApprove ASC LIMIT 10";
 
-$sql = "SELECT ch.Title, ch.chittiId, ch.SubTitle, cg.geography, ch.description, 
-               ch.languageId, ch.dateOfApprove, IFNULL(cl.likes, 0) AS totalLike, 
-               IFNULL(cl.comments, 0) AS totalComment, ch.colorcode, ch.isLiked 
-        FROM chittimaster ch 
-        INNER JOIN chittigeographymapping cg ON ch.chittiId = cg.chittiId 
-        LEFT JOIN chittilikes cl ON ch.chittiId = cl.chittiId 
-        WHERE ch.chittiId IN ($chittiList) $queryCondition 
+$sql = "SELECT ch.Title, ch.chittiId, ch.SubTitle, cg.geography, ch.description,
+               ch.languageId, ch.dateOfApprove, IFNULL(cl.likes, 0) AS totalLike,
+               IFNULL(cl.comments, 0) AS totalComment, ch.colorcode, ch.isLiked
+        FROM chittimaster ch
+        INNER JOIN chittigeographymapping cg ON ch.chittiId = cg.chittiId
+        LEFT JOIN chittilike cl ON ch.chittiId = cl.chittiId
+        WHERE ch.chittiId IN ($chittiList) $queryCondition
         COLLATE utf8mb4_unicode_ci";
 
 $result = mysqli_query($dbconnect, $sql);
@@ -204,8 +202,8 @@ if ($result && mysqli_num_rows($result) > 0) {
     }
     echo json_encode($json, JSON_UNESCAPED_UNICODE);
 } else {
-    $message = $languageCode === 'hi' 
-        ? 'माफ़ करे पत्र उपलब्ध नही है, दूसरा भुगोल चुने।' 
+    $message = $languageCode === 'hi'
+        ? 'माफ़ करे पत्र उपलब्ध नही है, दूसरा भुगोल चुने।'
         : 'Sorry, no letters here. Pick another geography!';
     $code = ['responseCode' => '0', 'message' => $message];
     echo json_encode($code);

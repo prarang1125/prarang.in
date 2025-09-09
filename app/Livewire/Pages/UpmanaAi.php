@@ -43,9 +43,11 @@ class UpmanaAi extends Component
         if ($lang) {
             session()->put('locale', $lang);
             APP::setLocale($lang);
+        } else {
+            $this->selectedLanguage = session('locale', 'en');
+            app()->setlocale($this->selectedLanguage);
         }
-        $this->selectedLanguage=session('locale','en');
-        app()->setlocale($this->selectedLanguage);
+
 
         session(['chat_id' => uniqid('chat_', true)]);
         $this->verticalService = httpGet('/upamana/get-verticals/' . app()->getLocale())['data'];
@@ -53,6 +55,8 @@ class UpmanaAi extends Component
         $this->mainChecks = $this->verticalService;
         $this->messages['success'][] = 'Session started!';
         $this->activeSection = [
+
+
             'firstPrompt' => true,
             'category' => true,
             'promptBox' => true,
@@ -79,10 +83,9 @@ class UpmanaAi extends Component
         if ($this->selectedLanguage) {
             session()->put('locale', $this->selectedLanguage);
             APP::setLocale($this->selectedLanguage);
-
         }
         $local = App::getLocale();
-        if(isset($this->output) && $this->output != []){
+        if (isset($this->output) && $this->output != []) {
             $this->updatePromptFromState();
             $this->generate();
             $this->lables = cache()->remember('local-labelss' . $local, now()->addDays(1), function () use ($local) {
@@ -93,13 +96,10 @@ class UpmanaAi extends Component
                 }
                 return [];
             });
-
-
-        }else{
+        } else {
 
             return redirect()->route('upmana-ai');
         }
-
     }
     public function toggleMainCheck($main)
     {
