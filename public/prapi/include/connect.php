@@ -20,10 +20,12 @@ $_SESSION['timeout'] = time(); // Reset session timeout
 
 // Database configuration
 $HOSTNAME = "localhost";
-$USERNAME = "prarangdb";
-$PASSWORD = "PradbDec24";
+// $USERNAME = "prarangdb";
+$USERNAME = "root";
+// $PASSWORD = "PradbDec24";
+// $DATABASENAME = "prarangdb";
+$PASSWORD = "";
 $DATABASENAME = "prarangdb";
-
 
 // Establish database connection
 $dbconnect = mysqli_connect($HOSTNAME, $USERNAME, $PASSWORD, $DATABASENAME);
@@ -36,5 +38,3 @@ if (!$dbconnect) {
 // Database connection is successful
 // echo "Database connection established successfully.";
 // die();
-?>
-
