@@ -44,10 +44,16 @@ class SubPopUp extends Component
         $this->banner = $banner;
         $this->portal = $portal;
         $this->cities = City::all();
-        if($slug!=null){
-            $this->city=City::where('slug', $slug)->first()->id;
-        }elseif(isset($_COOKIE['register_city'])) {
-            $this->city = $_COOKIE['register_city'];
+        try {
+            if($slug!=null){
+                $this->city=City::where('slug', $slug)->first()->id;
+            }elseif(isset($_COOKIE['register_city'])) {
+                $this->city = $_COOKIE['register_city'];
+            }
+        } catch(\Exception $e) {
+            return;
+            // If there's an error, we'll leave $this->city unset
+            // You may want to log the error here
         }
 
         if (isset($_COOKIE['yp_share_url'])) {
