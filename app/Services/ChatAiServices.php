@@ -352,7 +352,7 @@ class ChatAiServices
     {
 
         try {
-            $model = 'deepseek/deepseek-chat';
+            $model = 'deepseek/deepseek-r1-0528-qwen3-8b:free';
             $temperature = (float)($params['temperature'] ?? 0.7);
             $maxTokens = max((int)($params['max_output_tokens'] ?? 2048), 16);
 
