@@ -21,6 +21,7 @@ class AIController extends Controller
 
 public function generateAIResponse(Request $request)
 {
+    ini_set('max_execution_time', 300); // Increase to 5 minutes for multiple API calls
     $local =session('locale');
     $label=httpGet('/local/lable',['local' => $local])['data'];
     
@@ -89,17 +90,19 @@ public function generateAIResponse(Request $request)
                         break;
                     
                 case 'deepseek':
-                    $deepseekResponse = $this->aiService->generateDeepseekResponse($prompt);
-                    $responses['deepseekResponse'] = is_array($deepseekResponse)
-                        ? implode('', $deepseekResponse)
-                        : ($deepseekResponse ?? 'Deepseek failed');
+                    $deepseekResponse = $this->aiService->generateDeepseekResponse($prompt, [
+                        'temperature' => 0.7,
+                        'max_output_tokens' => 2048,
+                    ]);
+                    $responses['deepseekResponse'] = $deepseekResponse['response'] ?? ($deepseekResponse['error'] ?? 'Deepseek failed');
                     break;
 
                 case 'meta':
-                    $metaResponse = $this->aiService->generateMetaResponse($prompt);
-                    $responses['metaResponse'] = is_array($metaResponse)
-                        ? implode('', $metaResponse)
-                        : ($metaResponse ?? 'Meta failed');
+                    $metaResponse = $this->aiService->generateMetaResponse($prompt, [
+                        'temperature' => 0.7,
+                        'max_output_tokens' => 2048,
+                    ]);
+                    $responses['metaResponse'] = $metaResponse['response'] ?? ($metaResponse['error'] ?? 'Meta failed');
                     break;
 
                 case 'grok':

@@ -348,11 +348,13 @@ class ChatAiServices
         }
     }
     
-    public function generateDeepseekResponse(string $prompt)
+    public function generateDeepseekResponse(string $prompt, array $params = [])
     {
 
         try {
-            $model = 'deepseek/deepseek-chat-v3-0324:free';
+            $model = 'deepseek/deepseek-chat';
+            $temperature = (float)($params['temperature'] ?? 0.7);
+            $maxTokens = max((int)($params['max_output_tokens'] ?? 2048), 16);
 
             $response = Http::timeout(60)->withHeaders([
                 'Content-Type' => 'application/json',
@@ -365,6 +367,8 @@ class ChatAiServices
                         'content' => $prompt,
                     ],
                 ],
+                'temperature' => $temperature,
+                'max_tokens' => $maxTokens,
             ]);
 
     $content = $response->json()['choices'][0]['message']['content'] ?? 'No response';
@@ -382,23 +386,30 @@ class ChatAiServices
     }
 
 
-    public function generateMetaResponse(string $prompt)
+    public function generateMetaResponse(string $prompt, array $params = [])
     {
-          try {
-            $response = Http::withHeaders([
+           try {
+            $maxTokens = max((int)($params['max_output_tokens'] ?? 2048), 16);
+            $temperature = (float)($params['temperature'] ?? 0.7);
+            $response = Http::timeout(30)->withHeaders([
                 'Authorization' => 'Bearer ' . env('OPENROUTER_API_KEY'),
                 'Content-Type' => 'application/json',
             ])->post('https://openrouter.ai/api/v1/chat/completions', [
-                'model' => 'meta-llama/llama-4-maverick:free',
+                'model' => 'meta-llama/llama-3.2-3b-instruct:free',
                 'messages' => [
                     [
                         'role' => 'user',
                        'content' => $prompt,
                     ],
                 ],
-                 'max_tokens' => 500,
+                 'max_tokens' => $maxTokens,
+                 'temperature' => $temperature,
             ]);
-            return $this->parseResponse($response->json()['choices'][0]['message']['content']);
+            $content = $response->json()['choices'][0]['message']['content'] ?? 'No response';
+            return [
+                'success' => true,
+                'response' => $this->parseResponse($content),
+            ];
         } catch (\Exception $e) {
             return [
                 'success' => false,
