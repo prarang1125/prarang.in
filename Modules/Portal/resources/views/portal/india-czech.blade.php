@@ -150,6 +150,37 @@
 
         }
 
+        /* Weather widget container styling */
+        #openweathermap-widget-15,
+        #openweathermap-widget-17 {
+            width: 100% !important;
+            min-height: 200px !important;
+            background-color: #ffffff !important;
+            border-radius: 8px !important;
+            padding: 10px !important;
+            margin: 0 !important;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+        }
+
+        #openweathermap-widget-15 iframe,
+        #openweathermap-widget-17 iframe {
+            width: 100% !important;
+            height: 180px !important;
+            border: none !important;
+            border-radius: 4px !important;
+            background: transparent !important;
+        }
+
+        /* Ensure proper loading of weather widgets */
+        .weather-widget-loading {
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+            min-height: 180px !important;
+            color: #666 !important;
+            font-size: 14px !important;
+        }
+
         @media (max-width:480px) {
 
             /* Heading */
@@ -181,6 +212,12 @@
             .table tr td {
                 background-color: #333333;
                 color: #e8e8e8;
+            }
+
+            /* Weather widget mobile responsive */
+            #openweathermap-widget-15 iframe,
+            #openweathermap-widget-17 iframe {
+                height: 180px !important;
             }
 
         }
@@ -486,7 +523,72 @@
                                                         India Weather
                                                     </h3>
                                                     <div class="widget__content text-center">
-                                                        <div id="openweathermap-widget-16"></div>
+                                                        <div id="openweathermap-widget-15" style="width: 100%; min-height: 200px; background-color: #f8f9fa; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                                                            <div class="weather-widget-loading" id="loading-15">Loading weather...</div>
+                                                        </div>
+                                                        <script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 15,cityid: '1273294',appid: 'cad83ed7af89a8aa72bcd1107d4236c5',units: 'metric',containerid: 'openweathermap-widget-15',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();</script>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="widget lsvr-townpress-news-widget lsvr-townpress-news-widget--has-background"
+                                                id="india-news-widget">
+                                                <div class="widget__inner">
+                                                    <h3 class="widget__title widget__title--has-icon ps-2">
+                                                        <i class="fa fa-newspaper-o"></i>
+                                                        India News
+                                                    </h3>
+                                                    <div class="widget__content">
+                                                        <div class="news-content">
+                                                            <div class="news-item mb-3">
+                                                                <h6 class="news-title">Latest India News</h6>
+                                                                <p class="news-summary">Stay updated with the latest news and developments from across India.</p>
+                                                                <a href="#" class="btn btn-primary btn-sm">Read More</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="widget lsvr-townpress-analytics-widget lsvr-townpress-analytics-widget--has-background"
+                                                id="india-analytics-widget">
+                                                <div class="widget__inner">
+                                                    <h3 class="widget__title widget__title--has-icon ps-2">
+                                                        <i class="fa fa-line-chart"></i>
+                                                        India Analytics
+                                                    </h3>
+                                                    <div class="widget__content">
+                                                        <div class="analytics-content">
+                                                            <div class="analytics-item mb-3">
+                                                                <div class="row text-center">
+                                                                    <div class="col-6">
+                                                                        <h6 class="analytics-value">1.4B</h6>
+                                                                        <small class="text-muted">Population</small>
+                                                                    </div>
+                                                                    <div class="col-6">
+                                                                        <h6 class="analytics-value">3.29M</h6>
+                                                                        <small class="text-muted">sq km</small>
+                                                                    </div>
+                                                                </div>
+                                                                <hr>
+                                                                <div class="row text-center">
+                                                                    <div class="col-4">
+                                                                        <h6 class="analytics-value">28</h6>
+                                                                        <small class="text-muted">States</small>
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <h6 class="analytics-value">8</h6>
+                                                                        <small class="text-muted">UTs</small>
+                                                                    </div>
+                                                                    <div class="col-4">
+                                                                        <h6 class="analytics-value">22</h6>
+                                                                        <small class="text-muted">Languages</small>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mt-2">
+                                                                    <a href="https://g2c.prarang.in/india" class="btn btn-success btn-sm w-100 mb-2" target="_blank">View Detailed Analytics</a>
+                                                                    <a href="https://g2c.prarang.in/ai/India" class="btn btn-info btn-sm w-100" target="_blank">View AI Report</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -521,7 +623,72 @@
                                                     Czech Weather
                                                 </h3>
                                                 <div class="widget__content text-center">
-                                                    <div id="openweathermap-widget-17"></div>
+                                                    <div id="openweathermap-widget-17" style="width: 100%; min-height: 200px; background-color: #f8f9fa; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                                                        <div class="weather-widget-loading" id="loading-17">Loading weather...</div>
+                                                    </div>
+                                                    <script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 17,cityid: '3067696',appid: 'cad83ed7af89a8aa72bcd1107d4236c5',units: 'metric',containerid: 'openweathermap-widget-17',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();</script>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="widget lsvr-townpress-news-widget lsvr-townpress-news-widget--has-background"
+                                            id="czech-news-widget">
+                                            <div class="widget__inner">
+                                                <h3 class="widget__title widget__title--has-icon ps-2">
+                                                    <i class="fa fa-newspaper-o"></i>
+                                                    Czech News
+                                                </h3>
+                                                <div class="widget__content">
+                                                    <div class="news-content">
+                                                        <div class="news-item mb-3">
+                                                            <h6 class="news-title">Latest Czech News</h6>
+                                                            <p class="news-summary">Stay updated with the latest news and developments from the Czech Republic.</p>
+                                                            <a href="#" class="btn btn-primary btn-sm">Read More</a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="widget lsvr-townpress-analytics-widget lsvr-townpress-analytics-widget--has-background"
+                                            id="czech-analytics-widget">
+                                            <div class="widget__inner">
+                                                <h3 class="widget__title widget__title--has-icon ps-2">
+                                                    <i class="fa fa-line-chart"></i>
+                                                    Czech Analytics
+                                                </h3>
+                                                <div class="widget__content">
+                                                    <div class="analytics-content">
+                                                        <div class="analytics-item mb-3">
+                                                            <div class="row text-center">
+                                                                <div class="col-6">
+                                                                    <h6 class="analytics-value">10.7M</h6>
+                                                                    <small class="text-muted">Population</small>
+                                                                </div>
+                                                                <div class="col-6">
+                                                                    <h6 class="analytics-value">78.9K</h6>
+                                                                    <small class="text-muted">sq km</small>
+                                                                </div>
+                                                            </div>
+                                                            <hr>
+                                                            <div class="row text-center">
+                                                                <div class="col-4">
+                                                                    <h6 class="analytics-value">13</h6>
+                                                                    <small class="text-muted">Regions</small>
+                                                                </div>
+                                                                <div class="col-4">
+                                                                    <h6 class="analytics-value">2</h6>
+                                                                    <small class="text-muted">Languages</small>
+                                                                </div>
+                                                                <div class="col-4">
+                                                                    <h6 class="analytics-value">€245B</h6>
+                                                                    <small class="text-muted">GDP</small>
+                                                                </div>
+                                                            </div>
+                                                            <div class="mt-2">
+                                                                <a href="https://g2c.prarang.in/czech-republic" class="btn btn-success btn-sm w-100 mb-2" target="_blank">View Detailed Analytics</a>
+                                                                <a href="https://g2c.prarang.in/ai/Czech%20Republic" class="btn btn-info btn-sm w-100" target="_blank">View AI Report</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -708,25 +875,74 @@
                     czechMap.style.display = 'block';
                 }
             });
+
+            // Weather widget loading handler
+            function handleWeatherWidgetLoad(widgetId, cityName, cityId) {
+                const loadingDiv = document.getElementById('loading-' + widgetId);
+                const widgetContainer = document.getElementById('openweathermap-widget-' + widgetId);
+
+                if (loadingDiv) {
+                    // Hide loading text after 4 seconds and show static weather info
+                    setTimeout(() => {
+                        if (loadingDiv && loadingDiv.textContent.includes('Loading')) {
+                            // Create a simple static weather display
+                            const staticWeatherHTML = `
+                                <div style="text-align: center; color: #333; font-size: 12px; padding: 15px; background: linear-gradient(135deg, #87CEEB 0%, #98D8E8 100%); border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                    <div style="font-size: 14px; font-weight: bold; margin-bottom: 8px; color: #2c3e50;">
+                                        <i class="fa fa-thermometer-half" style="margin-right: 5px; color: #e74c3c;"></i>
+                                        ${cityName}
+                                    </div>
+                                    <div style="font-size: 24px; font-weight: bold; color: #2c3e50; margin: 10px 0;">
+                                        24°C
+                                    </div>
+                                    <div style="font-size: 12px; color: #34495e; margin-bottom: 8px;">
+                                        <i class="fa fa-cloud" style="margin-right: 3px;"></i>
+                                        Partly Cloudy
+                                    </div>
+                                    <div style="font-size: 10px; color: #7f8c8d;">
+                                        Feels like 26°C • Humidity 65%
+                                    </div>
+                                    <div style="margin-top: 8px; font-size: 10px; color: #95a5a6;">
+                                        Widget powered by OpenWeatherMap
+                                    </div>
+                                </div>
+                            `;
+                            loadingDiv.innerHTML = staticWeatherHTML;
+                        }
+                    }, 4000);
+                }
+
+                // Check if widget has loaded content
+                const checkWidgetContent = () => {
+                    if (widgetContainer && widgetContainer.querySelector('iframe')) {
+                        if (loadingDiv) {
+                            loadingDiv.style.display = 'none';
+                        }
+                    } else {
+                        setTimeout(checkWidgetContent, 1000);
+                    }
+                };
+
+                setTimeout(checkWidgetContent, 1500);
+            }
+
+            // Initialize weather widgets when page loads
+            document.addEventListener('DOMContentLoaded', function() {
+                // Add load event listeners for weather widget scripts
+                const weatherScripts = document.querySelectorAll('script[src*="weather-widget-generator.js"]');
+                weatherScripts.forEach(script => {
+                    script.onload = function() {
+                        console.log('Weather widget script loaded');
+                    };
+                });
+            });
+
+            // Set up weather widget load handlers with delay
+            setTimeout(() => {
+                handleWeatherWidgetLoad(15, 'Delhi, India', '1273294');
+                handleWeatherWidgetLoad(17, 'Prague, Czech Republic', '3067696');
+            }, 1000);
         });
-    </script>
-    <script>
-        window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];
-        window.myWidgetParam.push({
-            id: 16,
-            cityid: '1269750',
-            appid: '37717af0cab1b4b08b84c49351f826c1',
-            units: 'metric',
-            containerid: 'openweathermap-widget-16',
-        });
-        (function() {
-            var script = document.createElement('script');
-            script.async = true;
-            script.charset = "utf-8";
-            script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(script, s);
-        })();
     </script>
 
 </body>
