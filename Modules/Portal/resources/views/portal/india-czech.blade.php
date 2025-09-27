@@ -753,6 +753,14 @@
                                     </span>
                                 </button>
                                 <!-- HEADER MAP TOGGLE : end -->
+                                <!-- HEADER SUBSCRIBE BUTTON : begin -->
+                                <button type="button" class="btn btn-primary header-toolbar__item" data-bs-toggle="modal" data-bs-target="#subscribeModal">
+                                    <i class="fa fa-envelope"></i>
+                                    <span class="header-map-toggle__label">
+                                        <b>Subscribe</b>
+                                    </span>
+                                </button>
+                                <!-- HEADER SUBSCRIBE BUTTON : end -->
                                 <!-- HEADER MOBILE MENU : begin -->
                                 <nav aria-label="Main Menu" class="header-mobile-menu"
                                     data-label-collapse-submenu="Collapse submenu"
@@ -780,6 +788,38 @@
             </div>
 
         </header>
+
+        <!-- SUBSCRIBE MODAL : begin -->
+        <div class="modal fade" id="subscribeModal" tabindex="-1" aria-labelledby="subscribeModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="subscribeModalLabel">Subscribe to Our Newsletter</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="subscribeForm">
+                            <div class="mb-3">
+                                <label for="subscriberName" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="subscriberName" placeholder="Enter your full name" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subscriberEmail" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="subscriberEmail" placeholder="Enter your email address" required>
+                            </div>
+                            <div class="alert alert-info" role="alert" id="subscribeMessage" style="display: none;">
+                                <i class="fa fa-info-circle"></i> Coming Soon! This feature is under development.
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn btn-primary" id="subscribeBtn">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SUBSCRIBE MODAL : end -->
 
         <!-- HEADER : end -->
         <div class="header-background header-background--singled" data-slideshow-speed="10">
@@ -1620,6 +1660,47 @@
                     this.style.boxShadow = 'none';
                 });
             });
+
+            // Subscribe modal functionality
+            const subscribeBtn = document.getElementById('subscribeBtn');
+            const subscribeForm = document.getElementById('subscribeForm');
+            const subscribeMessage = document.getElementById('subscribeMessage');
+            const subscriberName = document.getElementById('subscriberName');
+            const subscriberEmail = document.getElementById('subscriberEmail');
+
+            if (subscribeBtn) {
+                subscribeBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    // Validate form
+                    if (!subscriberName.value.trim() || !subscriberEmail.value.trim()) {
+                        alert('Please fill in all fields');
+                        return;
+                    }
+
+                    // Show coming soon message
+                    subscribeMessage.style.display = 'block';
+
+                    // Disable the subscribe button
+                    subscribeBtn.disabled = true;
+                    subscribeBtn.innerHTML = '<i class="fa fa-check"></i> Subscribed';
+
+                    // Close modal after 2 seconds
+                    setTimeout(() => {
+                        const modal = bootstrap.Modal.getInstance(document.getElementById('subscribeModal'));
+                        if (modal) {
+                            modal.hide();
+                        }
+                        // Reset form after modal closes
+                        setTimeout(() => {
+                            subscribeForm.reset();
+                            subscribeMessage.style.display = 'none';
+                            subscribeBtn.disabled = false;
+                            subscribeBtn.innerHTML = 'Subscribe';
+                        }, 300);
+                    }, 2000);
+                });
+            }
         });
     </script>
 
