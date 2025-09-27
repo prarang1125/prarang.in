@@ -329,6 +329,16 @@
                                                 </span>
                                             </a>
                                         </li>
+                                        <li class="header-mobile-menu__item header-mobile-menu__item--level-0 menu-item menu-item-type-post_type menu-item-object-page"
+                                            id="header-mobile-menu__item-222" role="presentation">
+                                            <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-0"
+                                                href="{{ route('portal.india-czech') }}"
+                                                id="header-mobile-menu__item-link-222" role="menuitem">
+                                                <span class="header-mobile-menu__item-link-label">
+                                                    Indo-Czech
+                                                </span>
+                                            </a>
+                                        </li>
                                 </nav>
                                 <!-- HEADER MOBILE MENU : end -->
                             </div>
@@ -450,6 +460,32 @@
                                                                         <span
                                                                             class="lsvr-townpress-menu-widget__item-link-label">
                                                                             District Metrics / जिला मेट्रिक्स
+                                                                        </span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-0 menu-item menu-item-type-post_type menu-item-object-page"
+                                                                    id="lsvr-townpress-menu-widget__item-222-830"
+                                                                    role="presentation">
+                                                                    <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
+                                                                        href="{{ route('portal.india-czech') }}"
+                                                                        id="lsvr-townpress-menu-widget__item-link-222-830"
+                                                                        role="menuitem">
+                                                                        <span
+                                                                            class="lsvr-townpress-menu-widget__item-link-label">
+                                                                            Indo-Czech
+                                                                        </span>
+                                                                    </a>
+                                                                </li>
+                                                                <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-0 menu-item menu-item-type-post_type menu-item-object-page"
+                                                                    id="lsvr-townpress-menu-widget__item-222-830"
+                                                                    role="presentation">
+                                                                    <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
+                                                                        href="{{ route('portal.india-czech') }}"
+                                                                        id="lsvr-townpress-menu-widget__item-link-222-830"
+                                                                        role="menuitem">
+                                                                        <span
+                                                                            class="lsvr-townpress-menu-widget__item-link-label">
+                                                                            Indo-Czech
                                                                         </span>
                                                                     </a>
                                                                 </li>
