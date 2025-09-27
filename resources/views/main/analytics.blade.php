@@ -73,8 +73,19 @@
         <a href="https://g2c.prarang.in/login" class="btn btn-warning btn-sm">Partner Login</a>
     </p>
     <section class="container">
-        <p>Prarang's Geographic Intelligence is a comprehensive big data solution that provides valuable insights into various geographic regions in India and across the world. It is a powerful solution that provides businesses with the data they need to plan their global expansion, understand regional development disparities in India, select the best entry points for market expansion, and run successful advertising campaigns in local languages, tailored to specific regional preferences. With access to these crucial insights, companies & governments/NGOs can make data-driven decisions and thrive by going hyper-local in today's competitive business market.</p>
-
+        <p>Prarang's Geographic Intelligence is a comprehensive big data solution that provides valuable insights into
+            various geographic regions in India and across the world. It is a powerful solution that provides businesses
+            with the data they need to plan their global expansion, understand regional development disparities in
+            India, select the best entry points for market expansion, and run successful advertising campaigns in local
+            languages, tailored to specific regional preferences. With access to these crucial insights, companies &
+            governments/NGOs can make data-driven decisions and thrive by going hyper-local in today's competitive
+            business market.</p>
+        <style>
+            /* Image */
+            .container .container .row .col-sm-6 .border .p-2 a img {
+                width: 100% !important;
+            }
+        </style>
         <div class="row">
             <div class="col-sm-6">
 
@@ -83,17 +94,11 @@
                         India Analytics
                     </a>
                     <div class="p-2">
-                        <a href="https://g2c.prarang.in/india"> <img class="img-flud w-75" src="https://www.prarang.in/matric-.JPG"></a>
+                        <a href="https://g2c.prarang.in/india"> <img class="img-flud w-75"
+                                src="https://www.prarang.in/matric-.JPG"></a>
                     </div>
                 </div>
-                <div class="p-2 text-center border">
-                    <a target="_blank" href="https://g2c.prarang.in/czech-republic" class="btn btn-lg btn-primary rounded-0">
-                        Czech Republic Analytics
-                    </a>
-                    <div class="p-2">
-                        <a target="_blank" href="https://g2c.prarang.in/czech-republic"> <img class="img-flud w-75" src="https://www.prarang.in/matric-.JPG"></a>
-                    </div>
-                </div>
+
             </div>
             <div class="col-sm-6">
                 <div class="p-2 text-center border ">
@@ -101,7 +106,8 @@
                         World Analytics
                     </a>
                     <div class="p-2">
-                        <a href="https://g2c.prarang.in/world"><img class="img-flud w-75" src="https://www.prarang.in/matric-.JPG"></a>
+                        <a href="https://g2c.prarang.in/world"><img class="img-flud w-75"
+                                src="https://www.prarang.in/matric-.JPG"></a>
                     </div>
                 </div>
             </div>
