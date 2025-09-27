@@ -9,6 +9,7 @@ include "include/connect.php";
 $languageCode = BlockSQLInjection($_REQUEST['languageCode']);
 @$geographyCode = BlockSQLInjection($_REQUEST['geographyCode']);
 
+
 switch ($geographyCode) {
     case "c2":
         $areaId = 2;
@@ -35,6 +36,7 @@ switch ($geographyCode) {
         $geographyId = 2;
         break;
 }
+
 
 if ($tagId == '') {
     $code = ['responseCode' => '0', 'message' => 'String not Found'];
