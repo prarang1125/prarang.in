@@ -383,7 +383,7 @@
                                                         <h3 class="text-center">{{ $portal->city_name_local }} के आंकड़े
                                                         </h3>
                                                         <a target="_blank"
-                                                            href="{{ env('G2C_URL') }}/{{ $portal->city_name }}/hi"><img
+                                                            href="{{ env('HINDI_URL') }}/{{ $portal->city_name }}"><img
                                                                 src="{{ asset('assets/portal/images/matrix-24.jpg') }}"
                                                                 alt=""></a>
                                                     </div>
@@ -521,9 +521,9 @@
                                                 {!! $portal->weather_widget_code !!}
                                             </div>
                                             <p class="text-center">
-                                                <a href="{{ route('city.show',['city_name'=>$yellowPages->name]) }}"><img class="img-fluid" style="height:450px;"
+                                                <a href="{{ $yellowPages ? route('city.show', ['city_name' => $yellowPages->name]) : '#' }}"><img class="img-fluid" style="height:450px;"
                                                         src="{{ asset('assets/images/yellowpages.jpg') }}"
-                                                        alt=""></a>
+                                                        alt="Yellow Pages"></a>
                                             </p>
                                         </div>
                                     </aside>
