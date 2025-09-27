@@ -300,6 +300,11 @@
             }
 
         }
+
+        /* Clock date text color - white */
+        #india-date, #czech-date {
+            color: #ffffff !important;
+        }
     </style>
     <div id="wrapper">
         <header class="header--has-languages header--has-map" id="header">
