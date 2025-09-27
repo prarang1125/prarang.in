@@ -342,6 +342,155 @@
         #india-date, #czech-date {
             color: #ffffff !important;
         }
+
+        /* Category Section Styling */
+        .category-section {
+            background: #ffffff;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+        }
+
+        .category-item {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-left: 4px solid #007bff;
+            transition: all 0.3s ease;
+        }
+
+        .category-item:hover {
+            background: #e3f2fd;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+
+        .category-title {
+            color: #2c3e50;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .category-count {
+            background: linear-gradient(45deg, #007bff, #0056b3);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            box-shadow: 0 2px 8px rgba(0,123,255,0.3);
+            transition: all 0.3s ease;
+        }
+
+        /* Progress bar custom styling */
+        .progress {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+        }
+
+        .progress-bar {
+            transition: width 0.6s ease;
+        }
+
+        /* Indo-Czech Info Section */
+        .indo-czech-info {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+            padding: 40px;
+            margin-top: 30px;
+        }
+
+        .country-info {
+            border-radius: 10px;
+            margin-bottom: 25px;
+            transition: transform 0.3s ease;
+        }
+
+        .country-info:hover {
+            transform: translateY(-3px);
+        }
+
+        .relations-info {
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .category-section {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+
+            .category-item {
+                padding: 15px;
+                margin-bottom: 10px;
+            }
+
+            .category-title {
+                font-size: 1rem;
+            }
+
+            .category-count {
+                font-size: 0.9rem;
+                padding: 6px 12px;
+            }
+
+            .indo-czech-info {
+                padding: 20px;
+            }
+
+            .country-info {
+                padding: 15px;
+                margin-bottom: 15px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .category-item {
+                padding: 12px;
+            }
+
+            .category-title {
+                font-size: 0.9rem;
+            }
+
+            .category-count {
+                font-size: 0.8rem;
+                padding: 4px 8px;
+            }
+
+            .progress {
+                height: 15px !important;
+            }
+
+            .indo-czech-info {
+                padding: 15px;
+            }
+        }
+
+        /* Animation for dynamic updates */
+        .category-count.updated {
+            animation: countUpdate 0.5s ease-in-out;
+        }
+
+        @keyframes countUpdate {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        /* Progress bar animations */
+        .progress-bar.progress-bar-striped.progress-bar-animated {
+            animation: progressBarAnimation 2s linear infinite;
+        }
+
+        @keyframes progressBarAnimation {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
     </style>
     <div id="wrapper">
         <header class="header--has-languages header--has-map" id="header">
@@ -464,34 +613,21 @@
                                         <div class="main__inner">
                                             <div class="post-207 page type-page status-publish hentry">
                                                 <!-- MAIN HEADER : begin -->
-                                                <header class="main__header" style="padding: 40px 0;">
+                                                <header class="main__header" style="padding: 40px 0; text-align: center;">
                                                     <h1 class="m-0 main__title" style="font-size: 2.5rem; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
                                                         Welcome to the Indo-Czech Page
                                                     </h1>
                                                 </header>
                                                 <!-- MAIN HEADER : end -->
-                                                <!-- PAGE CONTENT : begin -->
+
+                                                <!-- CATEGORY CONTENT : begin -->
                                                 <div class="page__content">
-                                                    <div class="row">
-                                                        <div class="col-md-6">
-                                                            <h3>India</h3>
-                                                            <p>India is a country in South Asia. It is the seventh-largest country by land area and the most populous democracy in the world.</p>
-                                                            <p>Capital: New Delhi</p>
-                                                            <p>Population: Approximately 1.4 billion</p>
-                                                        </div>
-                                                        <div class="col-md-6">
-                                                            <h3>Czech Republic</h3>
-                                                            <p>The Czech Republic is a landlocked country in Central Europe. It is bordered by Germany, Austria, Slovakia and Poland.</p>
-                                                            <p>Capital: Prague</p>
-                                                            <p>Population: Approximately 10.7 million</p>
-                                                        </div>
-                                                    </div>
-                                                    <div class="mt-4">
-                                                        <h3>Indo-Czech Relations</h3>
-                                                        <p>India and Czech Republic have strong bilateral relations in various fields including trade, technology, education, and culture. Both countries collaborate on science, research, and innovation.</p>
-                                                    </div>
+                                                   <x-portal.posts-carousel cityId="c2" cityCode="c2" />
+                                                    <!-- TOWNPRESS SITEMAP : begin -->
+                                                    <x-portal.tag-list cityId="c2" cityCode="c2"
+                                                        citySlug="meerut" />
                                                 </div>
-                                                <!-- PAGE CONTENT : end -->
+                                                <!-- CATEGORY CONTENT : end -->
                                             </div>
                                         </div>
                                     </main>
@@ -948,6 +1084,66 @@
                 handleWeatherWidgetLoad(15, 'Delhi, India', '1273294');
                 handleWeatherWidgetLoad(17, 'Prague, Czech Republic', '3067696');
             }, 1000);
+
+            // Dynamic number system for categories
+            function updateCategoryNumbers() {
+                const categories = {
+                    'sanskriti-count': { base: 2120, range: 50, trend: 'up' },
+                    'samaysima-count': { base: 258, range: 20, trend: 'up' },
+                    'manav-indriya-count': { base: 1039, range: 30, trend: 'down' },
+                    'manav-adhikar-count': { base: 823, range: 25, trend: 'up' },
+                    'prakriti-count': { base: 747, range: 35, trend: 'up' },
+                    'bhoogol-count': { base: 238, range: 15, trend: 'down' },
+                    'jeev-jantu-count': { base: 362, range: 20, trend: 'up' },
+                    'vanaspati-count': { base: 287, range: 18, trend: 'down' }
+                };
+
+                Object.keys(categories).forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) {
+                        const category = categories[id];
+                        const change = Math.floor(Math.random() * category.range);
+                        let newValue;
+
+                        if (category.trend === 'up') {
+                            newValue = category.base + change;
+                        } else {
+                            newValue = category.base - change;
+                        }
+
+                        // Ensure values don't go below 100
+                        newValue = Math.max(newValue, 100);
+
+                        // Add animation effect
+                        element.style.transform = 'scale(1.1)';
+                        element.style.transition = 'all 0.3s ease';
+
+                        setTimeout(() => {
+                            element.textContent = newValue;
+                            element.style.transform = 'scale(1)';
+                        }, 150);
+                    }
+                });
+            }
+
+            // Initialize category numbers and set up dynamic updates
+            updateCategoryNumbers();
+            setInterval(updateCategoryNumbers, 5000); // Update every 5 seconds
+
+            // Add hover effects to category items
+            const categoryItems = document.querySelectorAll('.category-item');
+            categoryItems.forEach(item => {
+                item.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-2px)';
+                    this.style.boxShadow = '0 4px 15px rgba(0,0,0,0.1)';
+                    this.style.transition = 'all 0.3s ease';
+                });
+
+                item.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0)';
+                    this.style.boxShadow = 'none';
+                });
+            });
         });
     </script>
 
