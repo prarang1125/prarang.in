@@ -223,6 +223,39 @@
             }
 
         }
+
+        /* Minimalistic Button Styles */
+        .header-toolbar__item {
+            background: rgba(255, 177, 163, 0.1) !important;
+            border: 1px solid rgba(255, 177, 163, 0.3) !important;
+            border-radius: 6px !important;
+            padding: 8px 12px !important;
+            font-weight: 500 !important;
+            font-size: 14px !important;
+            transition: all 0.3s ease !important;
+            backdrop-filter: blur(10px) !important;
+        }
+
+        .header-toolbar__item:hover {
+            background: rgba(255, 177, 163, 0.2) !important;
+            border-color: rgba(255, 177, 163, 0.5) !important;
+            transform: translateY(-1px) !important;
+        }
+
+        .header-toolbar__item i {
+            font-size: 16px !important;
+            margin-right: 6px !important;
+        }
+
+        .header-toolbar__item .header-map-toggle__label {
+            font-weight: 500 !important;
+            text-transform: uppercase !important;
+            letter-spacing: 0.5px !important;
+        }
+
+        .header-toolbar__item .header-map-toggle__label b {
+            font-weight: 600 !important;
+        }
     </style>
     <div id="wrapper">
         <header class="header--has-languages header--has-map" id="header">
