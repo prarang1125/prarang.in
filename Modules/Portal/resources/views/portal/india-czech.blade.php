@@ -443,7 +443,7 @@
         <!-- HEADER : end -->
         <div class="header-background header-background--singled" data-slideshow-speed="10">
             <div class="header-background__image header-background__image--default"
-                style="background-image: url('{{ asset('images/prarang-1.jpg') }}'); ">
+                style="background-image: url('{{ asset('images/prarang-1.jpg') }}'); height: 120vh; min-height: 800px;">
 
             </div>
 
@@ -457,15 +457,15 @@
                     <div class="columns__inner">
                         <div class="lsvr-container">
                             <div class="lsvr-grid">
-                                <div class="columns__main lsvr-grid__col lsvr-grid__col--span-6 lsvr-grid__col--push-3">
+                                <div class="columns__main lsvr-grid__col lsvr-grid__col--span-6 lsvr-grid__col--push-3" style="margin-top: 150px;">
 
                                     <!-- MAIN : begin -->
                                     <main id="main">
                                         <div class="main__inner">
                                             <div class="post-207 page type-page status-publish hentry">
                                                 <!-- MAIN HEADER : begin -->
-                                                <header class="main__header">
-                                                    <h1 class="m-0 main__title">
+                                                <header class="main__header" style="padding: 40px 0;">
+                                                    <h1 class="m-0 main__title" style="font-size: 2.5rem; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
                                                         Welcome to the Indo-Czech Page
                                                     </h1>
                                                 </header>
@@ -549,7 +549,7 @@
                                                 </div>
                                             </div>
                                             <div class="widget lsvr-townpress-analytics-widget lsvr-townpress-analytics-widget--has-background"
-                                                id="india-analytics-widget">
+                                                 id="india-analytics-widget">
                                                 <div class="widget__inner">
                                                     <h3 class="widget__title widget__title--has-icon ps-2">
                                                         <i class="fa fa-line-chart"></i>
@@ -558,34 +558,37 @@
                                                     <div class="widget__content">
                                                         <div class="analytics-content">
                                                             <div class="analytics-item mb-3">
-                                                                <div class="row text-center">
-                                                                    <div class="col-6">
-                                                                        <h6 class="analytics-value">1.4B</h6>
-                                                                        <small class="text-muted">Population</small>
-                                                                    </div>
-                                                                    <div class="col-6">
-                                                                        <h6 class="analytics-value">3.29M</h6>
-                                                                        <small class="text-muted">sq km</small>
-                                                                    </div>
-                                                                </div>
-                                                                <hr>
-                                                                <div class="row text-center">
-                                                                    <div class="col-4">
-                                                                        <h6 class="analytics-value">28</h6>
-                                                                        <small class="text-muted">States</small>
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <h6 class="analytics-value">8</h6>
-                                                                        <small class="text-muted">UTs</small>
-                                                                    </div>
-                                                                    <div class="col-4">
-                                                                        <h6 class="analytics-value">22</h6>
-                                                                        <small class="text-muted">Languages</small>
-                                                                    </div>
+                                                                <div class="text-center mb-3">
+                                                                    <a href="https://g2c.prarang.in/india" target="_blank">
+                                                                        <img src="https://www.prarang.in/matric-.JPG"
+                                                                             alt="India Analytics"
+                                                                             style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                                                    </a>
                                                                 </div>
                                                                 <div class="mt-2">
-                                                                    <a href="https://g2c.prarang.in/india" class="btn btn-success btn-sm w-100 mb-2" target="_blank">View Detailed Analytics</a>
                                                                     <a href="https://g2c.prarang.in/ai/India" class="btn btn-info btn-sm w-100" target="_blank">View AI Report</a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="widget lsvr-townpress-embassy-widget lsvr-townpress-embassy-widget--has-background"
+                                                 id="india-embassy-widget">
+                                                <div class="widget__inner">
+                                                    <h3 class="widget__title widget__title--has-icon ps-2">
+                                                        <i class="fa fa-building-o"></i>
+                                                        Important Links
+                                                    </h3>
+                                                    <div class="widget__content">
+                                                        <div class="embassy-content">
+                                                            <div class="embassy-item mb-3">
+                                                                <div class="text-center">
+                                                                    <h6 class="embassy-title">Embassy of India</h6>
+                                                                    <p class="embassy-location">Prague, Czech Republic</p>
+                                                                    <a href="https://www.indianembassy.cz/" class="btn btn-warning btn-sm w-100" target="_blank">
+                                                                        <i class="fa fa-external-link"></i> Visit Embassy Website
+                                                                    </a>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -658,34 +661,37 @@
                                                 <div class="widget__content">
                                                     <div class="analytics-content">
                                                         <div class="analytics-item mb-3">
-                                                            <div class="row text-center">
-                                                                <div class="col-6">
-                                                                    <h6 class="analytics-value">10.7M</h6>
-                                                                    <small class="text-muted">Population</small>
-                                                                </div>
-                                                                <div class="col-6">
-                                                                    <h6 class="analytics-value">78.9K</h6>
-                                                                    <small class="text-muted">sq km</small>
-                                                                </div>
-                                                            </div>
-                                                            <hr>
-                                                            <div class="row text-center">
-                                                                <div class="col-4">
-                                                                    <h6 class="analytics-value">13</h6>
-                                                                    <small class="text-muted">Regions</small>
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <h6 class="analytics-value">2</h6>
-                                                                    <small class="text-muted">Languages</small>
-                                                                </div>
-                                                                <div class="col-4">
-                                                                    <h6 class="analytics-value">€245B</h6>
-                                                                    <small class="text-muted">GDP</small>
-                                                                </div>
+                                                            <div class="text-center mb-3">
+                                                                <a href="https://g2c.prarang.in/czech-republic" target="_blank">
+                                                                    <img src="https://www.prarang.in/matric-.JPG"
+                                                                         alt="Czech Analytics"
+                                                                         style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                                                </a>
                                                             </div>
                                                             <div class="mt-2">
-                                                                <a href="https://g2c.prarang.in/czech-republic" class="btn btn-success btn-sm w-100 mb-2" target="_blank">View Detailed Analytics</a>
                                                                 <a href="https://g2c.prarang.in/ai/Czech%20Republic" class="btn btn-info btn-sm w-100" target="_blank">View AI Report</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="widget lsvr-townpress-embassy-widget lsvr-townpress-embassy-widget--has-background"
+                                                 id="czech-embassy-widget">
+                                                <div class="widget__inner">
+                                                    <h3 class="widget__title widget__title--has-icon ps-2">
+                                                        <i class="fa fa-building-o"></i>
+                                                        Important Links
+                                                    </h3>
+                                                    <div class="widget__content">
+                                                        <div class="embassy-content">
+                                                            <div class="embassy-item mb-3">
+                                                                <div class="text-center">
+                                                                    <h6 class="embassy-title">Embassy of Czech Republic</h6>
+                                                                    <p class="embassy-location">New Delhi, India</p>
+                                                                    <a href="https://www.mzv.cz/newdelhi/" class="btn btn-warning btn-sm w-100" target="_blank">
+                                                                        <i class="fa fa-external-link"></i> Visit Embassy Website
+                                                                    </a>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
