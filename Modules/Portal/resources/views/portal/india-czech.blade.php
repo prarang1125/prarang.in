@@ -155,7 +155,7 @@
         #openweathermap-widget-17 {
             width: 100% !important;
             min-height: 200px !important;
-            background-color: #ffffff !important;
+            background-color: #FFFACD !important;
             border-radius: 8px !important;
             padding: 10px !important;
             margin: 0 !important;
@@ -336,11 +336,203 @@
                 bottom: auto !important;
             }
 
+            /* Mobile Clock Styling */
+            #india-time, #czech-time {
+                font-size: 1.8rem !important;
+                letter-spacing: 0.5px !important;
+            }
+
+            #india-date, #czech-date {
+                font-size: 0.85rem !important;
+                padding: 6px 12px !important;
+            }
+
+            #india-time-widget .widget__title,
+            #czech-time-widget .widget__title {
+                font-size: 1rem !important;
+            }
+
+            #india-time::before, #czech-time::before {
+                right: -15px !important;
+                width: 6px !important;
+                height: 6px !important;
+            }
+
+        }
+
+        /* Tablet Responsive */
+        @media (max-width:768px) and (min-width:481px) {
+            #india-time, #czech-time {
+                font-size: 2rem !important;
+            }
+
+            #india-date, #czech-date {
+                font-size: 0.9rem !important;
+            }
+        }
+
+        /* Large Mobile */
+        @media (max-width:576px) {
+            #india-time-widget, #czech-time-widget {
+                margin-bottom: 15px !important;
+            }
+
+            #india-time, #czech-time {
+                font-size: 1.9rem !important;
+            }
         }
 
         /* Clock date text color - white */
         #india-date, #czech-date {
             color: #ffffff !important;
+        }
+
+        /* Enhanced Clock Widget Styling */
+        #india-time-widget, #czech-time-widget {
+            background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%) !important;
+            border-radius: 15px !important;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1) !important;
+            border: 1px solid rgba(255, 177, 163, 0.2) !important;
+            overflow: hidden !important;
+            transition: all 0.3s ease !important;
+        }
+
+        #india-time-widget:hover, #czech-time-widget:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.15) !important;
+        }
+
+        #india-time-widget .widget__inner,
+        #czech-time-widget .widget__inner {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+            position: relative !important;
+        }
+
+        #india-time-widget .widget__inner::before,
+        #czech-time-widget .widget__inner::before {
+            content: '' !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+            right: 0 !important;
+            height: 4px !important;
+            background: linear-gradient(90deg, #007bff, #0056b3, #FFB1A3) !important;
+        }
+
+        #india-time-widget .widget__title,
+        #czech-time-widget .widget__title {
+            color: #2c3e50 !important;
+            font-weight: 600 !important;
+            font-size: 1.1rem !important;
+            background: rgba(255, 255, 255, 0.8) !important;
+            backdrop-filter: blur(10px) !important;
+            margin-bottom: 15px !important;
+        }
+
+        #india-time-widget .widget__title i,
+        #czech-time-widget .widget__title i {
+            background: linear-gradient(45deg, #007bff, #0056b3) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+        }
+
+        /* Modern Clock Display */
+        #india-time, #czech-time {
+            font-family: 'Source Sans Pro', sans-serif !important;
+            font-size: 2.2rem !important;
+            font-weight: 700 !important;
+            color: #000000 !important;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1) !important;
+            letter-spacing: 1px !important;
+            position: relative !important;
+            display: inline-block !important;
+        }
+
+        #india-time::after,
+        #czech-time::after {
+            content: '' !important;
+            position: absolute !important;
+            bottom: -5px !important;
+            left: 0 !important;
+            width: 100% !important;
+            height: 3px !important;
+            background: linear-gradient(90deg, #000000, #333333) !important;
+            border-radius: 2px !important;
+            animation: shimmer 2s infinite !important;
+        }
+
+        @keyframes shimmer {
+            0% { opacity: 0.3; }
+            50% { opacity: 0.7; }
+            100% { opacity: 0.3; }
+        }
+
+        #india-date, #czech-date {
+            color: #6c757d !important;
+            font-size: 0.95rem !important;
+            font-weight: 500 !important;
+            letter-spacing: 0.5px !important;
+            margin-top: 8px !important;
+            background: rgba(255, 255, 255, 0.7) !important;
+            padding: 8px 15px !important;
+            border-radius: 20px !important;
+            display: inline-block !important;
+            backdrop-filter: blur(5px) !important;
+        }
+
+        /* Clock Animation Effects */
+        #india-time.updated, #czech-time.updated {
+            animation: timeUpdate 0.6s ease-in-out !important;
+        }
+
+        @keyframes timeUpdate {
+            0% {
+                transform: scale(1) !important;
+                color: #333333 !important;
+            }
+            50% {
+                transform: scale(1.05) !important;
+                color: #000000 !important;
+            }
+            100% {
+                transform: scale(1) !important;
+                color: #000000 !important;
+            }
+        }
+
+        /* Second indicator pulse effect */
+        #india-time, #czech-time {
+            position: relative !important;
+        }
+
+        #india-time::before, #czech-time::before {
+            content: '' !important;
+            position: absolute !important;
+            top: 50% !important;
+            right: -20px !important;
+            transform: translateY(-50%) !important;
+            width: 8px !important;
+            height: 8px !important;
+            background: radial-gradient(circle, #ff6b6b 0%, #ee5a5a 70%) !important;
+            border-radius: 50% !important;
+            animation: pulse 1s infinite !important;
+            box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7) !important;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: translateY(-50%) scale(0.95) !important;
+                box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.7) !important;
+            }
+            70% {
+                transform: translateY(-50%) scale(1) !important;
+                box-shadow: 0 0 0 10px rgba(255, 107, 107, 0) !important;
+            }
+            100% {
+                transform: translateY(-50%) scale(0.95) !important;
+                box-shadow: 0 0 0 0 rgba(255, 107, 107, 0) !important;
+            }
         }
 
         /* Category Section Styling */
@@ -615,7 +807,7 @@
                                                 <!-- MAIN HEADER : begin -->
                                                 <header class="main__header" style="padding: 40px 0; text-align: center;">
                                                     <h1 class="m-0 main__title" style="font-size: 2.5rem; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
-                                                        Welcome to the Indo-Czech Page
+                                                        India-Czech
                                                     </h1>
                                                 </header>
                                                 <!-- MAIN HEADER : end -->
@@ -659,7 +851,7 @@
                                                         India Weather
                                                     </h3>
                                                     <div class="widget__content text-center">
-                                                        <div id="openweathermap-widget-15" style="width: 100%; min-height: 200px; background-color: #f8f9fa; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                                                        <div id="openweathermap-widget-15" style="width: 100%; min-height: 200px; background-color: #FFFACD; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center;">
                                                             <div class="weather-widget-loading" id="loading-15">Loading weather...</div>
                                                         </div>
                                                         <script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 15,cityid: '1273294',appid: 'cad83ed7af89a8aa72bcd1107d4236c5',units: 'metric',containerid: 'openweathermap-widget-15',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();</script>
@@ -714,10 +906,11 @@
                                                 <div class="widget__inner">
                                                     <h3 class="widget__title widget__title--has-icon ps-2">
                                                         <i class="fa fa-building-o"></i>
-                                                        Important Links
+                                                        Important Links of India
                                                     </h3>
                                                     <div class="widget__content">
                                                         <div class="embassy-content">
+                                                            <!-- Embassy Section -->
                                                             <div class="embassy-item mb-3">
                                                                 <div class="text-center">
                                                                     <h6 class="embassy-title">Embassy of India</h6>
@@ -725,6 +918,117 @@
                                                                     <a href="https://www.indianembassy.cz/" class="btn btn-warning btn-sm w-100" target="_blank">
                                                                         <i class="fa fa-external-link"></i> Visit Embassy Website
                                                                     </a>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Tourist Places Section -->
+                                                            <div class="embassy-item mb-3">
+                                                                <div class="text-center">
+                                                                    <h6 class="embassy-title" style="color: #28a745;">
+                                                                        <i class="fa fa-map-marker"></i> Popular Tourist Places
+                                                                    </h6>
+                                                                    <div class="mt-2">
+                                                                        <a href="https://www.incredibleindia.org/" class="btn btn-success btn-sm mb-2" target="_blank" style="width: 100%;">
+                                                                            <i class="fa fa-globe"></i> Incredible India Portal
+                                                                        </a>
+                                                                        <a href="https://tourism.gov.in/" class="btn btn-info btn-sm mb-2" target="_blank" style="width: 100%;">
+                                                                            <i class="fa fa-info-circle"></i> Ministry of Tourism
+                                                                        </a>
+                                                                        <div class="row">
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.tajmahal.gov.in/" class="btn btn-outline-primary btn-sm" target="_blank" style="font-size: 10px; padding: 4px;">
+                                                                                    Taj Mahal
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.keralatourism.org/" class="btn btn-outline-success btn-sm" target="_blank" style="font-size: 10px; padding: 4px;">
+                                                                                    Kerala Tourism
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mt-1">
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.rajasthantourism.gov.in/" class="btn btn-outline-warning btn-sm" target="_blank" style="font-size: 10px; padding: 4px;">
+                                                                                    Rajasthan
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.goatourism.gov.in/" class="btn btn-outline-info btn-sm" target="_blank" style="font-size: 10px; padding: 4px;">
+                                                                                    Goa Tourism
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Czech Living Indians Section -->
+                                                            <div class="embassy-item mb-3">
+                                                                <div class="text-center">
+                                                                    <h6 class="embassy-title" style="color: #17a2b8;">
+                                                                        <i class="fa fa-users"></i> Indians Living in Czech Republic
+                                                                    </h6>
+                                                                    <div class="mt-2">
+                                                                        <a href="https://www.indianembassy.cz/consular-services" class="btn btn-primary btn-sm mb-2" target="_blank" style="width: 100%;">
+                                                                            <i class="fa fa-address-book"></i> Consular Services
+                                                                        </a>
+                                                                        <a href="https://www.expats.cz/czech-republic/prague/indian-community" class="btn btn-secondary btn-sm mb-2" target="_blank" style="width: 100%;">
+                                                                            <i class="fa fa-handshake-o"></i> Indian Community Prague
+                                                                        </a>
+                                                                        <div class="row">
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.facebook.com/IndianCommunityInCzechRepublic" class="btn btn-outline-info btn-sm" target="_blank" style="font-size: 9px; padding: 3px;">
+                                                                                    <i class="fa fa-facebook"></i> Facebook Group
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.indianassociation.cz/" class="btn btn-outline-warning btn-sm" target="_blank" style="font-size: 9px; padding: 3px;">
+                                                                                    <i class="fa fa-users"></i> Indian Association
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mt-1">
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.bollywood.cz/" class="btn btn-outline-danger btn-sm" target="_blank" style="font-size: 9px; padding: 3px;">
+                                                                                    <i class="fa fa-film"></i> Bollywood Events
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.indianrestaurants.cz/" class="btn btn-outline-success btn-sm" target="_blank" style="font-size: 9px; padding: 3px;">
+                                                                                    <i class="fa fa-cutlery"></i> Indian Restaurants
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Additional Resources -->
+                                                            <div class="embassy-item mb-3">
+                                                                <div class="text-center">
+                                                                    <h6 class="embassy-title" style="color: #6f42c1;">
+                                                                        <i class="fa fa-book"></i> Resources & Information
+                                                                    </h6>
+                                                                    <div class="mt-2">
+                                                                        <a href="https://www.india.gov.in/" class="btn btn-outline-primary btn-sm mb-2" target="_blank" style="width: 100%;">
+                                                                            <i class="fa fa-university"></i> National Portal of India
+                                                                        </a>
+                                                                        <a href="https://www.mea.gov.in/" class="btn btn-outline-secondary btn-sm mb-2" target="_blank" style="width: 100%;">
+                                                                            <i class="fa fa-globe"></i> Ministry of External Affairs
+                                                                        </a>
+                                                                        <div class="row">
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.incredibleindia.org/content/incredible-india-v2/en.html" class="btn btn-outline-info btn-sm" target="_blank" style="font-size: 8px; padding: 2px;">
+                                                                                    Cultural Heritage
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.ayush.gov.in/" class="btn btn-outline-success btn-sm" target="_blank" style="font-size: 8px; padding: 2px;">
+                                                                                    AYUSH Tourism
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -762,7 +1066,7 @@
                                                     Czech Weather
                                                 </h3>
                                                 <div class="widget__content text-center">
-                                                    <div id="openweathermap-widget-17" style="width: 100%; min-height: 200px; background-color: #f8f9fa; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center;">
+                                                    <div id="openweathermap-widget-17" style="width: 100%; min-height: 200px; background-color: #FFFACD; border-radius: 8px; padding: 10px; display: flex; align-items: center; justify-content: center;">
                                                         <div class="weather-widget-loading" id="loading-17">Loading weather...</div>
                                                     </div>
                                                     <script>window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];  window.myWidgetParam.push({id: 17,cityid: '3067696',appid: 'cad83ed7af89a8aa72bcd1107d4236c5',units: 'metric',containerid: 'openweathermap-widget-17',  });  (function() {var script = document.createElement('script');script.async = true;script.charset = "utf-8";script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(script, s);  })();</script>
@@ -816,10 +1120,11 @@
                                                 <div class="widget__inner">
                                                     <h3 class="widget__title widget__title--has-icon ps-2">
                                                         <i class="fa fa-building-o"></i>
-                                                        Important Links
+                                                        Important Links of Czech
                                                     </h3>
                                                     <div class="widget__content">
                                                         <div class="embassy-content">
+                                                            <!-- Embassy Section -->
                                                             <div class="embassy-item mb-3">
                                                                 <div class="text-center">
                                                                     <h6 class="embassy-title">Embassy of Czech Republic</h6>
@@ -827,6 +1132,153 @@
                                                                     <a href="https://www.mzv.cz/newdelhi/" class="btn btn-warning btn-sm w-100" target="_blank">
                                                                         <i class="fa fa-external-link"></i> Visit Embassy Website
                                                                     </a>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Tourist Places Section -->
+                                                            <div class="embassy-item mb-3">
+                                                                <div class="text-center">
+                                                                    <h6 class="embassy-title" style="color: #28a745;">
+                                                                        <i class="fa fa-map-marker"></i> Popular Tourist Places in Czech Republic
+                                                                    </h6>
+                                                                    <div class="mt-2">
+                                                                        <a href="https://www.visitczechia.com/" class="btn btn-success btn-sm mb-2" target="_blank" style="width: 100%;">
+                                                                            <i class="fa fa-globe"></i> Official Tourism Portal
+                                                                        </a>
+                                                                        <a href="https://www.prague.eu/" class="btn btn-info btn-sm mb-2" target="_blank" style="width: 100%;">
+                                                                            <i class="fa fa-info-circle"></i> Prague City Tourism
+                                                                        </a>
+                                                                        <div class="row">
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.prague.eu/en" class="btn btn-outline-primary btn-sm" target="_blank" style="font-size: 10px; padding: 4px;">
+                                                                                    Prague Castle
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.ckrumlov.info/" class="btn btn-outline-success btn-sm" target="_blank" style="font-size: 10px; padding: 4px;">
+                                                                                    Český Krumlov
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mt-1">
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.kutna-hora.cz/" class="btn btn-outline-warning btn-sm" target="_blank" style="font-size: 10px; padding: 4px;">
+                                                                                    Kutná Hora
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.visitbrno.cz/" class="btn btn-outline-info btn-sm" target="_blank" style="font-size: 10px; padding: 4px;">
+                                                                                    Brno Tourism
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mt-1">
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.visitplzen.eu/" class="btn btn-outline-danger btn-sm" target="_blank" style="font-size: 10px; padding: 4px;">
+                                                                                    Plzeň (Pilsen)
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.karlovyvary.cz/" class="btn btn-outline-secondary btn-sm" target="_blank" style="font-size: 10px; padding: 4px;">
+                                                                                    Karlovy Vary
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Indians Living in Czech Section -->
+                                                            <div class="embassy-item mb-3">
+                                                                <div class="text-center">
+                                                                    <h6 class="embassy-title" style="color: #17a2b8;">
+                                                                        <i class="fa fa-users"></i> Indians Living in Czech Republic
+                                                                    </h6>
+                                                                    <div class="mt-2">
+                                                                        <a href="https://www.indianembassy.cz/consular-services" class="btn btn-primary btn-sm mb-2" target="_blank" style="width: 100%;">
+                                                                            <i class="fa fa-address-book"></i> Consular Services
+                                                                        </a>
+                                                                        <a href="https://www.expats.cz/czech-republic/prague/indian-community" class="btn btn-secondary btn-sm mb-2" target="_blank" style="width: 100%;">
+                                                                            <i class="fa fa-handshake-o"></i> Indian Community Prague
+                                                                        </a>
+                                                                        <div class="row">
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.facebook.com/IndianCommunityInCzechRepublic" class="btn btn-outline-info btn-sm" target="_blank" style="font-size: 9px; padding: 3px;">
+                                                                                    <i class="fa fa-facebook"></i> Facebook Group
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.indianassociation.cz/" class="btn btn-outline-warning btn-sm" target="_blank" style="font-size: 9px; padding: 3px;">
+                                                                                    <i class="fa fa-users"></i> Indian Association
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mt-1">
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.bollywood.cz/" class="btn btn-outline-danger btn-sm" target="_blank" style="font-size: 9px; padding: 3px;">
+                                                                                    <i class="fa fa-film"></i> Bollywood Events
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.indianrestaurants.cz/" class="btn btn-outline-success btn-sm" target="_blank" style="font-size: 9px; padding: 3px;">
+                                                                                    <i class="fa fa-cutlery"></i> Indian Restaurants
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mt-1">
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.indianschool.cz/" class="btn btn-outline-primary btn-sm" target="_blank" style="font-size: 9px; padding: 3px;">
+                                                                                    <i class="fa fa-graduation-cap"></i> Indian Schools
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.indian-temple.cz/" class="btn btn-outline-warning btn-sm" target="_blank" style="font-size: 9px; padding: 3px;">
+                                                                                    <i class="fa fa-building"></i> Indian Temples
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!-- Additional Resources -->
+                                                            <div class="embassy-item mb-3">
+                                                                <div class="text-center">
+                                                                    <h6 class="embassy-title" style="color: #6f42c1;">
+                                                                        <i class="fa fa-book"></i> Resources & Information
+                                                                    </h6>
+                                                                    <div class="mt-2">
+                                                                        <a href="https://www.mvcr.cz/" class="btn btn-outline-primary btn-sm mb-2" target="_blank" style="width: 100%;">
+                                                                            <i class="fa fa-university"></i> Ministry of Interior
+                                                                        </a>
+                                                                        <a href="https://www.mpsv.cz/" class="btn btn-outline-secondary btn-sm mb-2" target="_blank" style="width: 100%;">
+                                                                            <i class="fa fa-briefcase"></i> Ministry of Labour
+                                                                        </a>
+                                                                        <div class="row">
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.czech.cz/" class="btn btn-outline-info btn-sm" target="_blank" style="font-size: 8px; padding: 2px;">
+                                                                                    Czech Republic Portal
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.businessinfo.cz/" class="btn btn-outline-success btn-sm" target="_blank" style="font-size: 8px; padding: 2px;">
+                                                                                    Business Info
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                        <div class="row mt-1">
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.expats.cz/" class="btn btn-outline-warning btn-sm" target="_blank" style="font-size: 8px; padding: 2px;">
+                                                                                    Expats in Czech
+                                                                                </a>
+                                                                            </div>
+                                                                            <div class="col-6">
+                                                                                <a href="https://www.foreigners.cz/" class="btn btn-outline-danger btn-sm" target="_blank" style="font-size: 8px; padding: 2px;">
+                                                                                    Foreigners.cz
+                                                                                </a>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -946,8 +1398,20 @@
                 day: 'numeric'
             });
 
-            document.getElementById('india-time').textContent = timeString;
-            document.getElementById('india-date').textContent = dateString;
+            const timeElement = document.getElementById('india-time');
+            const dateElement = document.getElementById('india-date');
+
+            // Add animation effect
+            timeElement.classList.add('updated');
+
+            // Update content
+            timeElement.textContent = timeString;
+            dateElement.textContent = dateString;
+
+            // Remove animation class after animation completes
+            setTimeout(() => {
+                timeElement.classList.remove('updated');
+            }, 600);
         }
 
         // Function to update Czech time (CET/CEST - UTC+1/+2)
@@ -973,8 +1437,20 @@
                 day: 'numeric'
             });
 
-            document.getElementById('czech-time').textContent = timeString;
-            document.getElementById('czech-date').textContent = dateString;
+            const timeElement = document.getElementById('czech-time');
+            const dateElement = document.getElementById('czech-date');
+
+            // Add animation effect
+            timeElement.classList.add('updated');
+
+            // Update content
+            timeElement.textContent = timeString;
+            dateElement.textContent = dateString;
+
+            // Remove animation class after animation completes
+            setTimeout(() => {
+                timeElement.classList.remove('updated');
+            }, 600);
         }
 
         // Wait for the DOM to load
