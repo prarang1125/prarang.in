@@ -971,7 +971,7 @@
                                                 <div class="widget__inner">
                                                     <h3 class="widget__title widget__title--has-icon ps-2">
                                                         <i class="fa fa-building-o"></i>
-                                                        Important Links of India
+                                                        Important Links for Czechs
                                                     </h3>
                                                     <div class="widget__content">
                                                         <div class="embassy-content">
@@ -1020,39 +1020,15 @@
                                                             <div class="embassy-item mb-3">
                                                                 <div class="text-center">
                                                                     <h6 class="embassy-title" style="color: #17a2b8;">
-                                                                        <i class="fa fa-users"></i> Indians Living in Czech Republic
+                                                                        <i class="fa fa-users"></i> community pages of Czechs
                                                                     </h6>
                                                                     <div class="mt-2">
-                                                                        <a href="https://www.indianembassy.cz/consular-services" class="btn btn-primary btn-sm mb-2" target="_blank" style="width: 100%;">
-                                                                            <i class="fa fa-address-book"></i> Consular Services
+                                                                        <a href="https://www.internations.org/india-expats/czechs" class="btn btn-primary btn-sm mb-2" target="_blank" style="width: 100%;">
+                                                                            <i class="fa fa-external-link"></i> Internations - India Expats Czechs
                                                                         </a>
-                                                                        <a href="https://www.expats.cz/czech-republic/prague/indian-community" class="btn btn-secondary btn-sm mb-2" target="_blank" style="width: 100%;">
-                                                                            <i class="fa fa-handshake-o"></i> Indian Community Prague
+                                                                        <a href="https://www.czechtradeoffices.com/in" class="btn btn-secondary btn-sm mb-2" target="_blank" style="width: 100%;">
+                                                                            <i class="fa fa-building"></i> Czech Trade Offices in India
                                                                         </a>
-                                                                        <div class="row">
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.facebook.com/IndianCommunityInCzechRepublic" class="btn btn-outline-info btn-sm" target="_blank" style="font-size: 9px; padding: 3px;">
-                                                                                    <i class="fa fa-facebook"></i> Facebook Group
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.indianassociation.cz/" class="btn btn-outline-warning btn-sm" target="_blank" style="font-size: 9px; padding: 3px;">
-                                                                                    <i class="fa fa-users"></i> Indian Association
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row mt-1">
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.bollywood.cz/" class="btn btn-outline-danger btn-sm" target="_blank" style="font-size: 9px; padding: 3px;">
-                                                                                    <i class="fa fa-film"></i> Bollywood Events
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.indianrestaurants.cz/" class="btn btn-outline-success btn-sm" target="_blank" style="font-size: 9px; padding: 3px;">
-                                                                                    <i class="fa fa-cutlery"></i> Indian Restaurants
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1199,7 +1175,7 @@
                                                 <div class="widget__inner">
                                                     <h3 class="widget__title widget__title--has-icon ps-2">
                                                         <i class="fa fa-building-o"></i>
-                                                        Important Links of Czech
+                                                        Important Links for Indians
                                                     </h3>
                                                     <div class="widget__content">
                                                         <div class="embassy-content">
@@ -1260,51 +1236,15 @@
                                                             <div class="embassy-item mb-3">
                                                                 <div class="text-center">
                                                                     <h6 class="embassy-title" style="color: #17a2b8;">
-                                                                        <i class="fa fa-users"></i> Indians Living in Czech Republic
+                                                                        <i class="fa fa-users"></i> community pages of Czechs
                                                                     </h6>
                                                                     <div class="mt-2">
-                                                                        <a href="https://www.indianembassy.cz/consular-services" class="btn btn-primary btn-sm mb-2" target="_blank" style="width: 100%;">
-                                                                            <i class="fa fa-address-book"></i> Consular Services
+                                                                        <a href="https://www.internations.org/india-expats/czechs" class="btn btn-primary btn-sm mb-2" target="_blank" style="width: 100%;">
+                                                                            <i class="fa fa-external-link"></i> Internations - India Expats Czechs
                                                                         </a>
-                                                                        <a href="https://www.expats.cz/czech-republic/prague/indian-community" class="btn btn-secondary btn-sm mb-2" target="_blank" style="width: 100%;">
-                                                                            <i class="fa fa-handshake-o"></i> Indian Community Prague
+                                                                        <a href="https://www.czechtradeoffices.com/in" class="btn btn-secondary btn-sm mb-2" target="_blank" style="width: 100%;">
+                                                                            <i class="fa fa-building"></i> Czech Trade Offices in India
                                                                         </a>
-                                                                        <div class="row">
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.facebook.com/IndianCommunityInCzechRepublic" class="btn btn-outline-info btn-sm" target="_blank" style="font-size: 9px; padding: 3px;">
-                                                                                    <i class="fa fa-facebook"></i> Facebook Group
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.indianassociation.cz/" class="btn btn-outline-warning btn-sm" target="_blank" style="font-size: 9px; padding: 3px;">
-                                                                                    <i class="fa fa-users"></i> Indian Association
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row mt-1">
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.bollywood.cz/" class="btn btn-outline-danger btn-sm" target="_blank" style="font-size: 9px; padding: 3px;">
-                                                                                    <i class="fa fa-film"></i> Bollywood Events
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.indianrestaurants.cz/" class="btn btn-outline-success btn-sm" target="_blank" style="font-size: 9px; padding: 3px;">
-                                                                                    <i class="fa fa-cutlery"></i> Indian Restaurants
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row mt-1">
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.indianschool.cz/" class="btn btn-outline-primary btn-sm" target="_blank" style="font-size: 9px; padding: 3px;">
-                                                                                    <i class="fa fa-graduation-cap"></i> Indian Schools
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.indian-temple.cz/" class="btn btn-outline-warning btn-sm" target="_blank" style="font-size: 9px; padding: 3px;">
-                                                                                    <i class="fa fa-building"></i> Indian Temples
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
