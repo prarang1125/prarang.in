@@ -8,10 +8,11 @@ use Modules\Portal\Models\Portal;
 
 class PortalController extends Controller
 {
-    public function portal(Portal $portal)
+    public function portal($slug)
     {
+        $portal = Portal::where('slug', $slug)->firstOrFail();
         $cityCode = $portal->city_code;
         $yellowPages = City::where('portal_id', $portal->id)->first();
-        return view('portal::portal.home', compact('cityCode', 'portal','yellowPages'));
+        return view('portal::portal.home', compact('cityCode', 'portal', 'yellowPages'));
     }
 }
