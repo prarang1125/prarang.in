@@ -10,8 +10,8 @@ class Portal extends Model
 {
     use HasFactory;
 
-    
-    protected $connection = 'main'; 
+
+    protected $connection = 'main';
     protected $fillable = [
         'slug',
         'city_id',
@@ -22,5 +22,5 @@ class Portal extends Model
         'sports_widget_code',
         'news_widget_code',
         'local_matrics',
-    ];     
+    ];
 }

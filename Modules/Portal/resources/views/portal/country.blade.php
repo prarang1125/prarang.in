@@ -1,4 +1,5 @@
-<x-layout.portal.base :portal="$portal">
+<x-layout.portal.base>
+
     <style>
         #header .header-map--gmaps {
             height: 100vh;
@@ -694,8 +695,9 @@
                 <div class="header-map header-map--loading header-map--gmaps">
                     <div class="map-selector mb-3">
                         <select id="map-select" class="form-select">
-                            <option value="india">India Map</option>
-                            <option value="czech" selected>Czech Map</option>
+                            <option value="india">{{ $primary['country_name'] ?? 'India' }} Map</option>
+                            <option value="czech" selected>{{ $secondary['country_name'] ?? 'Czech Republic' }} Map
+                            </option>
                         </select>
                     </div>
                     <div id="map-container">
@@ -742,7 +744,7 @@
                                     <i class="fa fa-map-marker"></i>
 
                                     <span class="header-map-toggle__label">
-                                        <b>Czech Map</b>
+                                        <b>{{ $secondary['country_name'] ?? 'Czech Republic' }} Map</b>
                                     </span>
                                 </button>
                                 <!-- HEADER MAP TOGGLE : end -->
@@ -758,7 +760,7 @@
 
                                     <i class="fa fa-map-marker"></i>
                                     <span class="header-map-toggle__label">
-                                        <b>Czech Map</b>
+                                        <b>{{ $secondary['country_name'] ?? 'Czech Republic' }} Map</b>
                                     </span>
                                 </button>
                                 <!-- HEADER MAP TOGGLE : end -->
@@ -864,8 +866,12 @@
                                                     style="padding: 40px 0; text-align: center;">
                                                     <h1 class="m-0 main__title"
                                                         style="font-size: 2.5rem; font-weight: 700; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">
-                                                        India-Czech
+                                                        {{ $main['title'] ?? 'India-Czech' }}
                                                     </h1>
+                                                    <p class="main__slogan"
+                                                        style="font-size: 1.2rem; color: #fff; margin-top: 10px;">
+                                                        {{ $main['slogan'] ?? 'Connecting Cultures' }}
+                                                    </p>
                                                 </header>
                                                 <!-- MAIN HEADER : end -->
 
@@ -873,8 +879,8 @@
                                                 <div class="page__content">
                                                     <x-portal.posts-carousel cityId="c2" cityCode="c2" />
                                                     <!-- TOWNPRESS SITEMAP : begin -->
-                                                    <x-portal.tag-list cityId="c2" cityCode="c2"
-                                                        citySlug="meerut" />
+                                                    <x-portal.tag-list cityId="CON24" cityCode="CON24"
+                                                        citySlug="CON24" />
                                                 </div>
                                                 <!-- CATEGORY CONTENT : end -->
                                             </div>
@@ -892,7 +898,7 @@
                                                 <div class="widget__inner">
                                                     <h3 class="widget__title widget__title--has-icon ps-2">
                                                         <i class="fa fa-clock-o"></i>
-                                                        India Time (IST)
+                                                        {{ $primary['country_name'] ?? 'India' }} Time (IST)
                                                     </h3>
                                                     <div class="widget__content text-center">
                                                         <div id="india-time" class="h4 text-primary">Loading...
@@ -935,7 +941,7 @@
                                                 <div class="widget__inner">
                                                     <h3 class="widget__title widget__title--has-icon ps-2">
                                                         <i class="fa fa-sun-o"></i>
-                                                        India Weather
+                                                        {{ $primary['country_name'] ?? 'India' }} Weather
                                                     </h3>
                                                     <div class="widget__content text-center">
                                                         <div id="openweathermap-widget-15"
@@ -947,8 +953,8 @@
                                                             window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];
                                                             window.myWidgetParam.push({
                                                                 id: 15,
-                                                                cityid: '1273294',
-                                                                appid: 'cad83ed7af89a8aa72bcd1107d4236c5',
+                                                                cityid: '{{ $primary['weather_city_id'] ?? '1273294' }}',
+                                                                appid: '{{ $primary['weather_api_key'] ?? 'cad83ed7af89a8aa72bcd1107d4236c5' }}',
                                                                 units: 'metric',
                                                                 containerid: 'openweathermap-widget-15',
                                                             });
@@ -969,17 +975,21 @@
                                                 <div class="widget__inner">
                                                     <h3 class="widget__title widget__title--has-icon ps-2">
                                                         <i class="fa fa-newspaper-o"></i>
-                                                        India News
+                                                        {{ $primary['country_name'] ?? 'India' }} News
                                                     </h3>
                                                     <div class="widget__content">
-                                                        <div class="news-content">
+                                                        <div class="news-content"
+                                                            data-news-sources="{{ $primary['news_sources'] ?? '[]' }}">
                                                             <div class="news-item mb-3">
-                                                                <h6 class="news-title">Latest India News</h6>
-                                                                <p class="news-summary">Stay updated with the
-                                                                    latest news and developments from across India.
-                                                                </p>
-                                                                <a href="#" class="btn btn-primary btn-sm">Read
-                                                                    More</a>
+                                                                <h6 class="news-title">Latest
+                                                                    {{ $primary['country_name'] ?? 'India' }} News</h6>
+                                                                <p class="news-summary">Stay updated with the latest
+                                                                    news and developments from
+                                                                    {{ $primary['country_name'] ?? 'India' }}.</p>
+                                                                <div id="india-news-list">
+                                                                    <a href="#"
+                                                                        class="btn btn-primary btn-sm">Read More</a>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -990,13 +1000,13 @@
                                                 <div class="widget__inner">
                                                     <h3 class="widget__title widget__title--has-icon ps-2">
                                                         <i class="fa fa-line-chart"></i>
-                                                        India Analytics
+                                                        {{ $primary['country_name'] ?? 'India' }} Analytics
                                                     </h3>
                                                     <div class="widget__content">
                                                         <div class="analytics-content">
                                                             <div class="analytics-item mb-3">
                                                                 <div class="text-center mb-3">
-                                                                    <a href="https://g2c.prarang.in/india"
+                                                                    <a href="https://g2c.prarang.in/{{ $primary['analytics_slug'] ?? 'india' }}"
                                                                         target="_blank">
                                                                         <img src="https://www.prarang.in/matric-.JPG"
                                                                             alt="India Analytics"
@@ -1004,7 +1014,7 @@
                                                                     </a>
                                                                 </div>
                                                                 <div class="mt-2">
-                                                                    <a href="https://g2c.prarang.in/ai/India"
+                                                                    <a href="https://g2c.prarang.in/ai/{{ urlencode($primary['country_name'] ?? 'India') }}"
                                                                         class="btn btn-info btn-sm w-100"
                                                                         target="_blank">View AI Report</a>
                                                                 </div>
@@ -1022,6 +1032,15 @@
                                                     </h3>
                                                     <div class="widget__content">
                                                         <div class="embassy-content">
+                                                            @php
+                                                                $embassy = json_decode(
+                                                                    $primary['embassy_links'] ?? '{}',
+                                                                    true,
+                                                                );
+                                                                $touristPlaces = $embassy['tourist_places'] ?? [];
+                                                                $communityPages = $embassy['community_pages'] ?? [];
+                                                                $resources = $embassy['resources'] ?? [];
+                                                            @endphp
                                                             <!-- Tourist Places Section -->
                                                             <div class="embassy-item mb-3">
                                                                 <div class="text-center">
@@ -1030,54 +1049,30 @@
                                                                         Tourist Places
                                                                     </h6>
                                                                     <div class="mt-2">
-                                                                        <a href="https://www.incredibleindia.org/"
-                                                                            class="btn btn-success btn-sm mb-2"
-                                                                            target="_blank" style="width: 100%;">
-                                                                            <i class="fa fa-globe"></i> Incredible
-                                                                            India Portal
-                                                                        </a>
-                                                                        <a href="https://tourism.gov.in/"
-                                                                            class="btn btn-info btn-sm mb-2"
-                                                                            target="_blank" style="width: 100%;">
-                                                                            <i class="fa fa-info-circle"></i>
-                                                                            Ministry of Tourism
-                                                                        </a>
-                                                                        <div class="row">
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.tajmahal.gov.in/"
-                                                                                    class="btn btn-outline-primary btn-sm"
+                                                                        @if (count($touristPlaces) > 0)
+                                                                            @foreach ($touristPlaces as $index => $link)
+                                                                                <a href="{{ $link }}"
+                                                                                    class="btn btn-success btn-sm mb-2"
                                                                                     target="_blank"
-                                                                                    style="font-size: 10px; padding: 4px;">
-                                                                                    Taj Mahal
+                                                                                    style="width: 100%;">
+                                                                                    <i class="fa fa-globe"></i> Tourist
+                                                                                    Place {{ $index + 1 }}
                                                                                 </a>
-                                                                            </div>
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.keralatourism.org/"
-                                                                                    class="btn btn-outline-success btn-sm"
-                                                                                    target="_blank"
-                                                                                    style="font-size: 10px; padding: 4px;">
-                                                                                    Kerala Tourism
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row mt-1">
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.rajasthantourism.gov.in/"
-                                                                                    class="btn btn-outline-warning btn-sm"
-                                                                                    target="_blank"
-                                                                                    style="font-size: 10px; padding: 4px;">
-                                                                                    Rajasthan
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.goatourism.gov.in/"
-                                                                                    class="btn btn-outline-info btn-sm"
-                                                                                    target="_blank"
-                                                                                    style="font-size: 10px; padding: 4px;">
-                                                                                    Goa Tourism
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
+                                                                            @endforeach
+                                                                        @else
+                                                                            <a href="https://www.incredibleindia.org/"
+                                                                                class="btn btn-success btn-sm mb-2"
+                                                                                target="_blank" style="width: 100%;">
+                                                                                <i class="fa fa-globe"></i> Incredible
+                                                                                India Portal
+                                                                            </a>
+                                                                            <a href="https://tourism.gov.in/"
+                                                                                class="btn btn-info btn-sm mb-2"
+                                                                                target="_blank" style="width: 100%;">
+                                                                                <i class="fa fa-info-circle"></i>
+                                                                                Ministry of Tourism
+                                                                            </a>
+                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1090,18 +1085,30 @@
                                                                         of Czechs
                                                                     </h6>
                                                                     <div class="mt-2">
-                                                                        <a href="https://www.internations.org/india-expats/czechs"
-                                                                            class="btn btn-primary btn-sm mb-2"
-                                                                            target="_blank" style="width: 100%;">
-                                                                            <i class="fa fa-external-link"></i>
-                                                                            Internations - India Expats Czechs
-                                                                        </a>
-                                                                        <a href="https://www.czechtradeoffices.com/in"
-                                                                            class="btn btn-secondary btn-sm mb-2"
-                                                                            target="_blank" style="width: 100%;">
-                                                                            <i class="fa fa-building"></i> Czech
-                                                                            Trade Offices in India
-                                                                        </a>
+                                                                        @if (count($communityPages) > 0)
+                                                                            @foreach ($communityPages as $index => $link)
+                                                                                <a href="{{ $link }}"
+                                                                                    class="btn btn-primary btn-sm mb-2"
+                                                                                    target="_blank"
+                                                                                    style="width: 100%;">
+                                                                                    <i class="fa fa-external-link"></i>
+                                                                                    Community Page {{ $index + 1 }}
+                                                                                </a>
+                                                                            @endforeach
+                                                                        @else
+                                                                            <a href="https://www.internations.org/india-expats/czechs"
+                                                                                class="btn btn-primary btn-sm mb-2"
+                                                                                target="_blank" style="width: 100%;">
+                                                                                <i class="fa fa-external-link"></i>
+                                                                                Internations - India Expats Czechs
+                                                                            </a>
+                                                                            <a href="https://www.czechtradeoffices.com/in"
+                                                                                class="btn btn-secondary btn-sm mb-2"
+                                                                                target="_blank" style="width: 100%;">
+                                                                                <i class="fa fa-building"></i> Czech
+                                                                                Trade Offices in India
+                                                                            </a>
+                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1114,36 +1121,30 @@
                                                                         Information
                                                                     </h6>
                                                                     <div class="mt-2">
-                                                                        <a href="https://www.india.gov.in/"
-                                                                            class="btn btn-outline-primary btn-sm mb-2"
-                                                                            target="_blank" style="width: 100%;">
-                                                                            <i class="fa fa-university"></i>
-                                                                            National Portal of India
-                                                                        </a>
-                                                                        <a href="https://www.mea.gov.in/"
-                                                                            class="btn btn-outline-secondary btn-sm mb-2"
-                                                                            target="_blank" style="width: 100%;">
-                                                                            <i class="fa fa-globe"></i> Ministry of
-                                                                            External Affairs
-                                                                        </a>
-                                                                        <div class="row">
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.incredibleindia.org/content/incredible-india-v2/en.html"
-                                                                                    class="btn btn-outline-info btn-sm"
+                                                                        @if (count($resources) > 0)
+                                                                            @foreach ($resources as $index => $link)
+                                                                                <a href="{{ $link }}"
+                                                                                    class="btn btn-outline-primary btn-sm mb-2"
                                                                                     target="_blank"
-                                                                                    style="font-size: 8px; padding: 2px;">
-                                                                                    Cultural Heritage
+                                                                                    style="width: 100%;">
+                                                                                    <i class="fa fa-university"></i>
+                                                                                    Resource {{ $index + 1 }}
                                                                                 </a>
-                                                                            </div>
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.ayush.gov.in/"
-                                                                                    class="btn btn-outline-success btn-sm"
-                                                                                    target="_blank"
-                                                                                    style="font-size: 8px; padding: 2px;">
-                                                                                    AYUSH Tourism
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
+                                                                            @endforeach
+                                                                        @else
+                                                                            <a href="https://www.india.gov.in/"
+                                                                                class="btn btn-outline-primary btn-sm mb-2"
+                                                                                target="_blank" style="width: 100%;">
+                                                                                <i class="fa fa-university"></i>
+                                                                                National Portal of India
+                                                                            </a>
+                                                                            <a href="https://www.mea.gov.in/"
+                                                                                class="btn btn-outline-secondary btn-sm mb-2"
+                                                                                target="_blank" style="width: 100%;">
+                                                                                <i class="fa fa-globe"></i> Ministry of
+                                                                                External Affairs
+                                                                            </a>
+                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1165,7 +1166,8 @@
                                                 <div class="widget__inner">
                                                     <h3 class="widget__title widget__title--has-icon ps-2">
                                                         <i class="fa fa-clock-o"></i>
-                                                        Czech Time (CET/CEST)
+                                                        {{ $secondary['country_name'] ?? 'Czech Republic' }} Time
+                                                        (CET/CEST)
                                                     </h3>
                                                     <div class="widget__content text-center">
                                                         <div id="czech-time" class="h4 text-primary">Loading...
@@ -1210,7 +1212,7 @@
                                             <div class="widget__inner">
                                                 <h3 class="widget__title widget__title--has-icon ps-2">
                                                     <i class="fa fa-sun-o"></i>
-                                                    Czech Weather
+                                                    {{ $secondary['country_name'] ?? 'Czech Republic' }} Weather
                                                 </h3>
                                                 <div class="widget__content text-center">
                                                     <div id="openweathermap-widget-17"
@@ -1222,8 +1224,8 @@
                                                         window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];
                                                         window.myWidgetParam.push({
                                                             id: 17,
-                                                            cityid: '3067696',
-                                                            appid: 'cad83ed7af89a8aa72bcd1107d4236c5',
+                                                            cityid: '{{ $secondary['weather_city_id'] ?? '3067696' }}',
+                                                            appid: '{{ $secondary['weather_api_key'] ?? 'cad83ed7af89a8aa72bcd1107d4236c5' }}',
                                                             units: 'metric',
                                                             containerid: 'openweathermap-widget-17',
                                                         });
@@ -1244,16 +1246,23 @@
                                             <div class="widget__inner">
                                                 <h3 class="widget__title widget__title--has-icon ps-2">
                                                     <i class="fa fa-newspaper-o"></i>
-                                                    Czech News
+                                                    {{ $secondary['country_name'] ?? 'Czech Republic' }} News
                                                 </h3>
                                                 <div class="widget__content">
-                                                    <div class="news-content">
+                                                    <div class="news-content"
+                                                        data-news-sources="{{ $secondary['news_sources'] ?? '[]' }}">
                                                         <div class="news-item mb-3">
-                                                            <h6 class="news-title">Latest Czech News</h6>
-                                                            <p class="news-summary">Stay updated with the latest
-                                                                news and developments from the Czech Republic.</p>
-                                                            <a href="#" class="btn btn-primary btn-sm">Read
-                                                                More</a>
+                                                            <h6 class="news-title">Latest
+                                                                {{ $secondary['country_name'] ?? 'Czech Republic' }}
+                                                                News</h6>
+                                                            <p class="news-summary">Stay updated with the latest news
+                                                                and developments from the
+                                                                {{ $secondary['country_name'] ?? 'Czech Republic' }}.
+                                                            </p>
+                                                            <div id="czech-news-list">
+                                                                <a href="#" class="btn btn-primary btn-sm">Read
+                                                                    More</a>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -1264,13 +1273,13 @@
                                             <div class="widget__inner">
                                                 <h3 class="widget__title widget__title--has-icon ps-2">
                                                     <i class="fa fa-line-chart"></i>
-                                                    Czech Analytics
+                                                    {{ $secondary['country_name'] ?? 'Czech Republic' }} Analytics
                                                 </h3>
                                                 <div class="widget__content">
                                                     <div class="analytics-content">
                                                         <div class="analytics-item mb-3">
                                                             <div class="text-center mb-3">
-                                                                <a href="https://g2c.prarang.in/czech-republic"
+                                                                <a href="https://g2c.prarang.in/{{ $secondary['analytics_slug'] ?? 'czech-republic' }}"
                                                                     target="_blank">
                                                                     <img src="https://www.prarang.in/matric-.JPG"
                                                                         alt="Czech Analytics"
@@ -1278,7 +1287,7 @@
                                                                 </a>
                                                             </div>
                                                             <div class="mt-2">
-                                                                <a href="https://g2c.prarang.in/ai/Czech%20Republic"
+                                                                <a href="https://g2c.prarang.in/ai/{{ urlencode($secondary['country_name'] ?? 'Czech Republic') }}"
                                                                     class="btn btn-info btn-sm w-100"
                                                                     target="_blank">View AI Report</a>
                                                             </div>
@@ -1295,80 +1304,48 @@
                                                     </h3>
                                                     <div class="widget__content">
                                                         <div class="embassy-content">
+                                                            @php
+                                                                $embassy = json_decode(
+                                                                    $secondary['embassy_links'] ?? '{}',
+                                                                    true,
+                                                                );
+                                                                $touristPlaces = $embassy['tourist_places'] ?? [];
+                                                                $communityPages = $embassy['community_pages'] ?? [];
+                                                                $resources = $embassy['resources'] ?? [];
+                                                            @endphp
                                                             <!-- Tourist Places Section -->
                                                             <div class="embassy-item mb-3">
                                                                 <div class="text-center">
                                                                     <h6 class="embassy-title" style="color: #28a745;">
                                                                         <i class="fa fa-map-marker"></i> Popular
-                                                                        Tourist Places in Czech Republic
+                                                                        Tourist Places in
+                                                                        {{ $secondary['country_name'] ?? 'Czech Republic' }}
                                                                     </h6>
                                                                     <div class="mt-2">
-                                                                        <a href="https://www.visitczechia.com/"
-                                                                            class="btn btn-success btn-sm mb-2"
-                                                                            target="_blank" style="width: 100%;">
-                                                                            <i class="fa fa-globe"></i> Official
-                                                                            Tourism Portal
-                                                                        </a>
-                                                                        <a href="https://www.prague.eu/"
-                                                                            class="btn btn-info btn-sm mb-2"
-                                                                            target="_blank" style="width: 100%;">
-                                                                            <i class="fa fa-info-circle"></i>
-                                                                            Prague City Tourism
-                                                                        </a>
-                                                                        <div class="row">
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.prague.eu/en"
-                                                                                    class="btn btn-outline-primary btn-sm"
+                                                                        @if (count($touristPlaces) > 0)
+                                                                            @foreach ($touristPlaces as $index => $link)
+                                                                                <a href="{{ $link }}"
+                                                                                    class="btn btn-success btn-sm mb-2"
                                                                                     target="_blank"
-                                                                                    style="font-size: 10px; padding: 4px;">
-                                                                                    Prague Castle
+                                                                                    style="width: 100%;">
+                                                                                    <i class="fa fa-globe"></i> Tourist
+                                                                                    Place {{ $index + 1 }}
                                                                                 </a>
-                                                                            </div>
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.ckrumlov.info/"
-                                                                                    class="btn btn-outline-success btn-sm"
-                                                                                    target="_blank"
-                                                                                    style="font-size: 10px; padding: 4px;">
-                                                                                    Český Krumlov
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row mt-1">
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.kutna-hora.cz/"
-                                                                                    class="btn btn-outline-warning btn-sm"
-                                                                                    target="_blank"
-                                                                                    style="font-size: 10px; padding: 4px;">
-                                                                                    Kutná Hora
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.visitbrno.cz/"
-                                                                                    class="btn btn-outline-info btn-sm"
-                                                                                    target="_blank"
-                                                                                    style="font-size: 10px; padding: 4px;">
-                                                                                    Brno Tourism
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row mt-1">
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.visitplzen.eu/"
-                                                                                    class="btn btn-outline-danger btn-sm"
-                                                                                    target="_blank"
-                                                                                    style="font-size: 10px; padding: 4px;">
-                                                                                    Plzeň (Pilsen)
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.karlovyvary.cz/"
-                                                                                    class="btn btn-outline-secondary btn-sm"
-                                                                                    target="_blank"
-                                                                                    style="font-size: 10px; padding: 4px;">
-                                                                                    Karlovy Vary
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
+                                                                            @endforeach
+                                                                        @else
+                                                                            <a href="https://www.visitczechia.com/"
+                                                                                class="btn btn-success btn-sm mb-2"
+                                                                                target="_blank" style="width: 100%;">
+                                                                                <i class="fa fa-globe"></i> Official
+                                                                                Tourism Portal
+                                                                            </a>
+                                                                            <a href="https://www.prague.eu/"
+                                                                                class="btn btn-info btn-sm mb-2"
+                                                                                target="_blank" style="width: 100%;">
+                                                                                <i class="fa fa-info-circle"></i>
+                                                                                Prague City Tourism
+                                                                            </a>
+                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1378,21 +1355,27 @@
                                                                 <div class="text-center">
                                                                     <h6 class="embassy-title" style="color: #17a2b8;">
                                                                         <i class="fa fa-users"></i> community pages
-                                                                        of Czechs
+                                                                        of Indians
                                                                     </h6>
                                                                     <div class="mt-2">
-                                                                        <a href="https://www.internations.org/india-expats/czechs"
-                                                                            class="btn btn-primary btn-sm mb-2"
-                                                                            target="_blank" style="width: 100%;">
-                                                                            <i class="fa fa-external-link"></i>
-                                                                            Internations - India Expats Czechs
-                                                                        </a>
-                                                                        <a href="https://www.czechtradeoffices.com/in"
-                                                                            class="btn btn-secondary btn-sm mb-2"
-                                                                            target="_blank" style="width: 100%;">
-                                                                            <i class="fa fa-building"></i> Czech
-                                                                            Trade Offices in India
-                                                                        </a>
+                                                                        @if (count($communityPages) > 0)
+                                                                            @foreach ($communityPages as $index => $link)
+                                                                                <a href="{{ $link }}"
+                                                                                    class="btn btn-primary btn-sm mb-2"
+                                                                                    target="_blank"
+                                                                                    style="width: 100%;">
+                                                                                    <i class="fa fa-external-link"></i>
+                                                                                    Community Page {{ $index + 1 }}
+                                                                                </a>
+                                                                            @endforeach
+                                                                        @else
+                                                                            <a href="https://www.internations.org/czech-expats/indians"
+                                                                                class="btn btn-primary btn-sm mb-2"
+                                                                                target="_blank" style="width: 100%;">
+                                                                                <i class="fa fa-external-link"></i>
+                                                                                Internations - Czech Expats Indians
+                                                                            </a>
+                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1405,54 +1388,30 @@
                                                                         Information
                                                                     </h6>
                                                                     <div class="mt-2">
-                                                                        <a href="https://www.mvcr.cz/"
-                                                                            class="btn btn-outline-primary btn-sm mb-2"
-                                                                            target="_blank" style="width: 100%;">
-                                                                            <i class="fa fa-university"></i>
-                                                                            Ministry of Interior
-                                                                        </a>
-                                                                        <a href="https://www.mpsv.cz/"
-                                                                            class="btn btn-outline-secondary btn-sm mb-2"
-                                                                            target="_blank" style="width: 100%;">
-                                                                            <i class="fa fa-briefcase"></i>
-                                                                            Ministry of Labour
-                                                                        </a>
-                                                                        <div class="row">
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.czech.cz/"
-                                                                                    class="btn btn-outline-info btn-sm"
+                                                                        @if (count($resources) > 0)
+                                                                            @foreach ($resources as $index => $link)
+                                                                                <a href="{{ $link }}"
+                                                                                    class="btn btn-outline-primary btn-sm mb-2"
                                                                                     target="_blank"
-                                                                                    style="font-size: 8px; padding: 2px;">
-                                                                                    Czech Republic Portal
+                                                                                    style="width: 100%;">
+                                                                                    <i class="fa fa-university"></i>
+                                                                                    Resource {{ $index + 1 }}
                                                                                 </a>
-                                                                            </div>
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.businessinfo.cz/"
-                                                                                    class="btn btn-outline-success btn-sm"
-                                                                                    target="_blank"
-                                                                                    style="font-size: 8px; padding: 2px;">
-                                                                                    Business Info
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
-                                                                        <div class="row mt-1">
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.expats.cz/"
-                                                                                    class="btn btn-outline-warning btn-sm"
-                                                                                    target="_blank"
-                                                                                    style="font-size: 8px; padding: 2px;">
-                                                                                    Expats in Czech
-                                                                                </a>
-                                                                            </div>
-                                                                            <div class="col-6">
-                                                                                <a href="https://www.foreigners.cz/"
-                                                                                    class="btn btn-outline-danger btn-sm"
-                                                                                    target="_blank"
-                                                                                    style="font-size: 8px; padding: 2px;">
-                                                                                    Foreigners.cz
-                                                                                </a>
-                                                                            </div>
-                                                                        </div>
+                                                                            @endforeach
+                                                                        @else
+                                                                            <a href="https://www.mvcr.cz/"
+                                                                                class="btn btn-outline-primary btn-sm mb-2"
+                                                                                target="_blank" style="width: 100%;">
+                                                                                <i class="fa fa-university"></i>
+                                                                                Ministry of Interior
+                                                                            </a>
+                                                                            <a href="https://www.mpsv.cz/"
+                                                                                class="btn btn-outline-secondary btn-sm mb-2"
+                                                                                target="_blank" style="width: 100%;">
+                                                                                <i class="fa fa-briefcase"></i>
+                                                                                Ministry of Labour
+                                                                            </a>
+                                                                        @endif
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -1878,6 +1837,65 @@
                     }, 2000);
                 });
             }
+        });
+    </script>
+
+    <!-- Edit Portal Data Modal -->
+    <div class="modal fade" id="editPortalModal" tabindex="-1" aria-labelledby="editPortalModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editPortalModalLabel">Edit Portal Data</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="editPortalForm">
+                        <div class="mb-3">
+                            <label for="mainData" class="form-label">Main Portal Data (JSON)</label>
+                            <textarea class="form-control" id="mainData" rows="3">{{ json_encode($main ?? []) }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="primaryData" class="form-label">Primary Country Data (JSON)</label>
+                            <textarea class="form-control" id="primaryData" rows="5">{{ json_encode($primary ?? []) }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label for="secondaryData" class="form-label">Secondary Country Data (JSON)</label>
+                            <textarea class="form-control" id="secondaryData" rows="5">{{ json_encode($secondary ?? []) }}</textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="savePortalData">Save Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden button to open modal (for admin use) -->
+    <button id="editPortalBtn" style="position: fixed; bottom: 20px; right: 20px; z-index: 9999; display: none;"
+        class="btn btn-warning btn-sm" data-bs-toggle="modal" data-bs-target="#editPortalModal">
+        <i class="fa fa-edit"></i> Edit
+    </button>
+
+    <script>
+        // Show edit button if user is admin (you can add your logic here)
+        // For demo, show it always
+        document.getElementById('editPortalBtn').style.display = 'block';
+
+        document.getElementById('savePortalData').addEventListener('click', function() {
+            const mainData = document.getElementById('mainData').value;
+            const primaryData = document.getElementById('primaryData').value;
+            const secondaryData = document.getElementById('secondaryData').value;
+
+            // Here you would send the data to the server via AJAX
+            // For demo, just alert
+            alert('Data saved! (In real implementation, send to server)');
+
+            // Close modal
+            const modal = bootstrap.Modal.getInstance(document.getElementById('editPortalModal'));
+            modal.hide();
         });
     </script>
 

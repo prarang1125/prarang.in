@@ -4,12 +4,25 @@ namespace Modules\Portal\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\City;
+use Illuminate\Support\Facades\DB;
+use Modules\Portal\Models\BiletralPortal;
+use Modules\Portal\Models\CountryPortal;
 use Modules\Portal\Models\Portal;
 
 class PortalController extends Controller
 {
     public function portal($portal)
     {
+        $isCityPortal = Portal::where('slug', $portal)->exists();
+        $isCityPortalBiletral = BiletralPortal::where('slug', $portal)->exists();
+        if ($isCityPortal) {
+            return $this->indianCitiesPortal($portal);
+        } elseif ($isCityPortalBiletral) {
+            return $this->bilateralCountriesPortal($portal);
+        } else {
+            abort(404);
+        }
+
         return $this->indianCitiesPortal($portal);
     }
 
@@ -21,8 +34,16 @@ class PortalController extends Controller
         return view('portal::portal.home', compact('cityCode', 'portal', 'yellowPages'));
     }
 
-    public function byletralCountriesPortal()
+    public function bilateralCountriesPortal(string $slug)
     {
-        return view('portal::portal.country', compact('cityCode', 'portal', 'yellowPages'));
+        // Fetch portal with related countries
+        $main = BiletralPortal::with(['primaryCountry', 'secondaryCountry'])
+            ->where('slug', $slug)
+            ->firstOrFail();
+
+        $primary   = $main->primaryCountry;
+        $secondary = $main->secondaryCountry;
+
+        return view('portal::portal.country', compact('main', 'primary', 'secondary'));
     }
 }
