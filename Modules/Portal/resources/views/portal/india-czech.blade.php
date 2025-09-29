@@ -883,6 +883,31 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <!-- Embassy Section -->
+                                            <div class="widget lsvr-townpress-embassy-widget lsvr-townpress-embassy-widget--has-background"
+                                                id="india-embassy-moved">
+                                                <div class="widget__inner">
+                                                    <h3 class="widget__title widget__title--has-icon ps-2">
+                                                        <i class="fa fa-building-o"></i>
+                                                        Embassy of India
+                                                    </h3>
+                                                    <div class="widget__content">
+                                                        <div class="embassy-content">
+                                                            <div class="embassy-item mb-3">
+                                                                <div class="text-center">
+                                                                    <h6 class="embassy-title">Embassy of India</h6>
+                                                                    <p class="embassy-location">Prague, Czech Republic</p>
+                                                                    <a href="https://www.indianembassy.cz/" class="btn btn-warning btn-sm w-100" target="_blank">
+                                                                        <i class="fa fa-external-link"></i> Visit Embassy Website
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                             <div class="widget lsvr-townpress-weather-widget lsvr-townpress-weather-widget--has-background"
                                                 id="india-weather-widget">
                                                 <div class="widget__inner">
@@ -950,17 +975,6 @@
                                                     </h3>
                                                     <div class="widget__content">
                                                         <div class="embassy-content">
-                                                            <!-- Embassy Section -->
-                                                            <div class="embassy-item mb-3">
-                                                                <div class="text-center">
-                                                                    <h6 class="embassy-title">Embassy of India</h6>
-                                                                    <p class="embassy-location">Prague, Czech Republic</p>
-                                                                    <a href="https://www.indianembassy.cz/" class="btn btn-warning btn-sm w-100" target="_blank">
-                                                                        <i class="fa fa-external-link"></i> Visit Embassy Website
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-
                                                             <!-- Tourist Places Section -->
                                                             <div class="embassy-item mb-3">
                                                                 <div class="text-center">
@@ -1097,6 +1111,31 @@
                                                     </div>
                                                 </div>
                                             </div>
+
+                                            <!-- Embassy Section -->
+                                            <div class="widget lsvr-townpress-embassy-widget lsvr-townpress-embassy-widget--has-background"
+                                                id="czech-embassy-moved">
+                                                <div class="widget__inner">
+                                                    <h3 class="widget__title widget__title--has-icon ps-2">
+                                                        <i class="fa fa-building-o"></i>
+                                                        Embassy of Czech Republic
+                                                    </h3>
+                                                    <div class="widget__content">
+                                                        <div class="embassy-content">
+                                                            <div class="embassy-item mb-3">
+                                                                <div class="text-center">
+                                                                    <h6 class="embassy-title">Embassy of Czech Republic</h6>
+                                                                    <p class="embassy-location">New Delhi, India</p>
+                                                                    <a href="https://www.mzv.cz/newdelhi/" class="btn btn-warning btn-sm w-100" target="_blank">
+                                                                        <i class="fa fa-external-link"></i> Visit Embassy Website
+                                                                    </a>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
                                         </div>
                                         <div class="widget lsvr-townpress-weather-widget lsvr-townpress-weather-widget--has-background"
                                             id="czech-weather-widget">
@@ -1164,17 +1203,6 @@
                                                     </h3>
                                                     <div class="widget__content">
                                                         <div class="embassy-content">
-                                                            <!-- Embassy Section -->
-                                                            <div class="embassy-item mb-3">
-                                                                <div class="text-center">
-                                                                    <h6 class="embassy-title">Embassy of Czech Republic</h6>
-                                                                    <p class="embassy-location">New Delhi, India</p>
-                                                                    <a href="https://www.mzv.cz/newdelhi/" class="btn btn-warning btn-sm w-100" target="_blank">
-                                                                        <i class="fa fa-external-link"></i> Visit Embassy Website
-                                                                    </a>
-                                                                </div>
-                                                            </div>
-
                                                             <!-- Tourist Places Section -->
                                                             <div class="embassy-item mb-3">
                                                                 <div class="text-center">
