@@ -1,0 +1,52 @@
+<?php
+
+return [
+
+
+    'africa' => 'अफ्रीका',
+    'asia' => 'एशिया',
+    'central_america_and_the_caribbean' => 'मध्य अमेरिका और कैरेबियन',
+    'europe' => 'यूरोप',
+    'north_america' => 'उत्तरी अमेरिका',
+    'south_america' => 'दक्षिण अमेरिका',
+    'south_east_asia_and_oceania' => 'दक्षिण-पूर्व एशिया और ओशिनिया',
+
+
+    'andhra_pradesh' => 'आंध्र प्रदेश',
+    'arunachal_pradesh' => 'अरुणाचल प्रदेश',
+    'assam' => 'असम',
+    'bihar' => 'बिहार',
+    'chattisgarh' => 'छत्तीसगढ़',
+    'goa' => 'गोवा',
+    'gujarat' => 'गुजरात',
+    'haryana' => 'हरियाणा',
+    'himachal_pradesh' => 'हिमाचल प्रदेश',
+    'jharkhand' => 'झारखंड',
+    'karnataka' => 'कर्नाटक',
+    'kerala' => 'केरल',
+    'madhya_pradesh' => 'मध्य प्रदेश',
+    'maharashtra' => 'महाराष्ट्र',
+    'manipur' => 'मणिपुर',
+    'meghalaya' => 'मेघालय',
+    'mizoram' => 'मिज़ोरम',
+    'nagaland' => 'नागालैंड',
+    'odisha' => 'ओडिशा',
+    'punjab' => 'पंजाब',
+    'rajasthan' => 'राजस्थान',
+    'sikkim' => 'सिक्किम',
+    'tamil_nadu' => 'तमिलनाडु',
+    'telangana' => 'तेलंगाना',
+    'tripura' => 'त्रिपुरा',
+    'uttar_pradesh' => 'उत्तर प्रदेश',
+    'uttarakhand' => 'उत्तराखंड',
+    'west_bengal' => 'पश्चिम बंगाल',
+    'andaman_and_nicobar' => 'अंडमान और निकोबार द्वीपसमूह',
+    'chandigarh' => 'चंडीगढ़',
+    'dadra_and_nagar_haveli_and_daman_and_diu' => 'दादरा और नगर हवेली और दमन और दीव',
+    'jammu_and_kashmir' => 'जम्मू और कश्मीर',
+    'ladakh' => 'लद्दाख',
+    'lakshadweep' => 'लक्षद्वीप',
+    'national_capital_territory_of_delhi' => 'राष्ट्रीय राजधानी क्षेत्र दिल्ली',
+    'puducherry' => 'पुडुचेरी',
+
+];

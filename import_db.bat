@@ -1,0 +1,9 @@
+@echo off
+echo Dropping existing database if it exists...
+"C:\xampp\mysql\bin\mysql" -u root -e "DROP DATABASE IF EXISTS prarangdb;"
+echo Creating fresh database...
+"C:\xampp\mysql\bin\mysql" -u root -e "CREATE DATABASE prarangdb;"
+echo Importing SQL dump with force option...
+"C:\xampp\mysql\bin\mysql" -u root --force prarangdb < prarangdb.sql
+echo Import completed.
+pause
