@@ -1438,38 +1438,37 @@
                                                 </div>
                                             </div>
 
-                                        </div>
-                                        @if(!empty($secondary->weather))
-                                            <div style="position: relative; left: 0; margin: 10px 0;">
-                                                {!! $secondary->weather !!}
-                                            </div>
-                                        @elseif(!empty($secondary->weather_city_id) && !empty($secondary->weather_api_key))
-                                            <div id="openweathermap-widget-17"
-                                                style="width: 100%; min-height: 200px; display: flex; align-items: center; justify-content: center; margin: 10px 0;">
-                                                <div class="weather-widget-loading" id="loading-17">
-                                                    Loading weather...</div>
-                                            </div>
-                                            <script>
-                                                window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];
-                                                window.myWidgetParam.push({
-                                                    id: 17,
-                                                    cityid: '{{ $secondary->weather_city_id }}',
-                                                    appid: '{{ $secondary->weather_api_key }}',
-                                                    units: 'metric',
-                                                    containerid: 'openweathermap-widget-17',
-                                                });
-                                                (function() {
-                                                    var script = document.createElement('script');
-                                                    script.async = true;
-                                                    script.charset = "utf-8";
-                                                    script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
-                                                    var s = document.getElementsByTagName('script')[0];
-                                                    s.parentNode.insertBefore(script, s);
-                                                })();
-                                            </script>
-                                        @endif
-                                        <div class="widget lsvr-townpress-news-widget lsvr-townpress-news-widget--has-background"
-                                            id="czech-news-widget">
+                                            @if(!empty($secondary->weather))
+                                                <div style="position: relative; left: 0; margin: 10px 0;">
+                                                    {!! $secondary->weather !!}
+                                                </div>
+                                            @elseif(!empty($secondary->weather_city_id) && !empty($secondary->weather_api_key))
+                                                <div id="openweathermap-widget-17"
+                                                    style="width: 100%; min-height: 200px; display: flex; align-items: center; justify-content: center; margin: 10px 0;">
+                                                    <div class="weather-widget-loading" id="loading-17">
+                                                        Loading weather...</div>
+                                                </div>
+                                                <script>
+                                                    window.myWidgetParam ? window.myWidgetParam : window.myWidgetParam = [];
+                                                    window.myWidgetParam.push({
+                                                        id: 17,
+                                                        cityid: '{{ $secondary->weather_city_id }}',
+                                                        appid: '{{ $secondary->weather_api_key }}',
+                                                        units: 'metric',
+                                                        containerid: 'openweathermap-widget-17',
+                                                    });
+                                                    (function() {
+                                                        var script = document.createElement('script');
+                                                        script.async = true;
+                                                        script.charset = "utf-8";
+                                                        script.src = "//openweathermap.org/themes/openweathermap/assets/vendor/owm/js/weather-widget-generator.js";
+                                                        var s = document.getElementsByTagName('script')[0];
+                                                        s.parentNode.insertBefore(script, s);
+                                                    })();
+                                                </script>
+                                            @endif
+                                            <div class="widget lsvr-townpress-news-widget lsvr-townpress-news-widget--has-background"
+                                                id="czech-news-widget">
                                             <div class="widget__inner">
                                                 <h3 class="widget__title widget__title--has-icon ps-2">
                                                     <i class="fa fa-newspaper-o"></i>
@@ -1503,28 +1502,29 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="widget lsvr-townpress-analytics-widget lsvr-townpress-analytics-widget--has-background"
-                                            id="czech-analytics-widget">
-                                            <div class="widget__inner">
-                                                <h3 class="widget__title widget__title--has-icon ps-2">
-                                                    <i class="fa fa-line-chart"></i>
-                                                    {{ $secondary->country_name ?? 'Czech Republic' }} Analytics
-                                                </h3>
-                                                <div class="widget__content">
-                                                    <div class="analytics-content">
-                                                        <div class="analytics-item mb-3">
-                                                            <div class="text-center mb-3">
-                                                                <a href="https://g2c.prarang.in/{{ $secondary->analytics_slug ?? 'czech-republic' }}"
-                                                                    target="_blank">
-                                                                    <img src="https://www.prarang.in/matric-.JPG"
-                                                                        alt="Czech Analytics"
-                                                                        style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
-                                                                </a>
-                                                            </div>
-                                                            <div class="mt-2">
-                                                                <a href="https://g2c.prarang.in/ai/{{ urlencode($secondary->country_name ?? 'Czech Republic') }}"
-                                                                    class="btn btn-info btn-sm w-100"
-                                                                    target="_blank">View AI Report</a>
+                                            <div class="widget lsvr-townpress-analytics-widget lsvr-townpress-analytics-widget--has-background"
+                                                id="czech-analytics-widget">
+                                                <div class="widget__inner">
+                                                    <h3 class="widget__title widget__title--has-icon ps-2">
+                                                        <i class="fa fa-line-chart"></i>
+                                                        {{ $secondary->country_name ?? 'Czech Republic' }} Analytics
+                                                    </h3>
+                                                    <div class="widget__content">
+                                                        <div class="analytics-content">
+                                                            <div class="analytics-item mb-3">
+                                                                <div class="text-center mb-3">
+                                                                    <a href="https://g2c.prarang.in/{{ $secondary->analytics_slug ?? 'czech-republic' }}"
+                                                                        target="_blank">
+                                                                        <img src="https://www.prarang.in/matric-.JPG"
+                                                                            alt="Czech Analytics"
+                                                                            style="max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                                                                    </a>
+                                                                </div>
+                                                                <div class="mt-2">
+                                                                    <a href="https://g2c.prarang.in/ai/{{ urlencode($secondary->country_name ?? 'Czech Republic') }}"
+                                                                        class="btn btn-info btn-sm w-100"
+                                                                        target="_blank">View AI Report</a>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1640,9 +1640,10 @@
                                                 </div>
                                             </div>
                                         </div>
+                                    </aside>
+                                    <!-- RIGHT SIDEBAR : end -->
                                 </div>
                             </div>
-                            </aside>
                         </div>
                     </div>
                 </div>
