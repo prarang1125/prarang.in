@@ -1028,6 +1028,15 @@
                                                 </header>
                                                 <!-- MAIN HEADER : end -->
 
+                                                <!-- CATEGORY CONTENT : begin -->
+                                                <div class="page__content">
+                                                    <x-portal.posts-carousel cityId="c2" cityCode="c2" />
+                                                    <!-- TOWNPRESS SITEMAP : begin -->
+                                                    <x-portal.tag-list cityId="CON24" cityCode="CON24"
+                                                        citySlug="CON24" />
+                                                </div>
+                                                <!-- CATEGORY CONTENT : end -->
+
                                                 <!-- UPMANA AI LINK : begin -->
                                                 <div class="upmana-ai-section" style="margin: 30px 0; text-align: center;">
                                                     <div class="upmana-ai-widget" style="background: linear-gradient(135deg, #fedd59 0%, #f6e39a 100%); border-radius: 12px; padding: 25px; box-shadow: 0 8px 25px rgba(254, 221, 89, 0.25); transition: all 0.3s ease; position: relative; overflow: hidden; border: 1px solid rgba(254, 221, 89, 0.2);">
@@ -1112,15 +1121,6 @@
                                                     }
                                                 </style>
                                                 <!-- UPMANA AI LINK : end -->
-
-                                                <!-- CATEGORY CONTENT : begin -->
-                                                <div class="page__content">
-                                                    <x-portal.posts-carousel cityId="c2" cityCode="c2" />
-                                                    <!-- TOWNPRESS SITEMAP : begin -->
-                                                    <x-portal.tag-list cityId="CON24" cityCode="CON24"
-                                                        citySlug="CON24" />
-                                                </div>
-                                                <!-- CATEGORY CONTENT : end -->
 
                                                 {{-- COUNTRY CONNECTIONS SECTION : begin --}}
                                                 <!--
