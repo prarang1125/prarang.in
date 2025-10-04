@@ -64,14 +64,109 @@
                 margin-top: 101px;
             }
 
-            /* Container openweathermap widget 15 */
-            #container-openweathermap-widget-15 {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
         }
+
+        /* ========== WEATHER WIDGET FIX - COMPREHENSIVE SOLUTION ========== */
+        
+        /* Sidebar right - main container */
+        #sidebar-right {
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #sidebar-right .sidebar-right__inner {
+            width: 100%;
+            max-width: 100%;
+            overflow: hidden;
+            padding: 0 10px;
+            box-sizing: border-box;
+        }
+
+        /* Weather widget wrapper - critical containment */
+        #sidebar-right .text-center {
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow: hidden !important;
+            padding: 0 !important;
+            margin: 0 !important;
+            box-sizing: border-box !important;
+            position: relative;
+        }
+
+        /* Standalone weather widget - no box wrapper */
+        #india-weather-widget {
+            width: 100% !important;
+            max-width: 100% !important;
+            overflow: hidden !important;
+            padding: 20px 0 !important;
+            display: flex !important;
+            justify-content: center !important;
+            align-items: center !important;
+        }
+
+        /* Override any transform styles from other stylesheets */
+        #india-weather-widget,
+        #india-weather-widget > div,
+        #india-weather-widget * {
+            transform: translatex(0px) translatey(0px) !important;
+            box-sizing: border-box !important;
+        }
+
+        /* OpenWeatherMap widget container - force proper sizing */
+        #container-openweathermap-widget-15 {
+            width: 100% !important;
+            max-width: 290px !important;
+            margin: 0 auto !important;
+            transform: scale(0.85) !important;
+            transform-origin: center center !important;
+            position: relative !important;
+            left: 0 !important;
+            right: 0 !important;
+            overflow: visible !important;
+        }
+
+        /* All child elements must respect boundaries */
+        #sidebar-right .text-center.widget *,
+        #container-openweathermap-widget-15 * {
+            box-sizing: border-box !important;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 1200px) {
+            #container-openweathermap-widget-15 {
+                transform: scale(0.8) !important;
+                max-width: 280px !important;
+            }
+        }
+
+        @media (max-width: 991px) {
+            #container-openweathermap-widget-15 {
+                transform: scale(0.75) !important;
+                max-width: 270px !important;
+            }
+            
+            #sidebar-right .sidebar-right__inner {
+                padding: 0 15px;
+            }
+        }
+
+        @media (max-width: 767px) {
+            #container-openweathermap-widget-15 {
+                transform: scale(0.7) !important;
+                max-width: 260px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            #container-openweathermap-widget-15 {
+                transform: scale(0.65) !important;
+                max-width: 250px !important;
+            }
+        }
+
+        /* ========== END WEATHER WIDGET FIX ========== */
 
         @media (max-width:480px) {
 
@@ -517,7 +612,7 @@
                                     <aside id="sidebar-right">
                                         <div class="sidebar-right__inner">
                                             <x-portal.widgets.smart-meeting :portal="$portal" />
-                                            <div class="text-center widget">
+                                            <div class="text-center" id="india-weather-widget">
                                                 {!! $portal->weather_widget_code !!}
                                             </div>
                                             <p class="text-center">

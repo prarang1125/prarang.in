@@ -1154,7 +1154,7 @@
                                                     </h3>
                                                     <div class="widget__content text-center">
                                                         @if(!empty($primary->weather))
-                                                            <div class="weather-widget-container">
+                                                            <div style="position: relative; left: 0;">
                                                                 {!! $primary->weather !!}
                                                             </div>
                                                         @elseif(!empty($primary->weather_city_id) && !empty($primary->weather_api_key))
@@ -1463,7 +1463,7 @@
                                                 </h3>
                                                 <div class="widget__content text-center">
                                                     @if(!empty($secondary->weather))
-                                                        <div class="weather-widget-container">
+                                                        <div style="position: relative; left: 0;">
                                                             {!! $secondary->weather !!}
                                                         </div>
                                                     @elseif(!empty($secondary->weather_city_id) && !empty($secondary->weather_api_key))
@@ -1684,70 +1684,31 @@
                 margin-bottom: 5px !important;
             }
             
-            /* Weather widget container styling - expanded to fit content */
-            .weather-widget-container {
-                width: 100% !important;
-                min-height: 250px !important;
-                background-color: #FFFACD !important;
-                border-radius: 8px !important;
-                padding: 15px !important;
-                margin: 0 auto !important;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
-                overflow: visible !important;
-                position: relative !important;
-                box-sizing: border-box !important;
-            }
-            
-            .weather-widget-container iframe {
-                width: 100% !important;
-                min-height: 220px !important;
-                border: none !important;
-                border-radius: 4px !important;
-                background: transparent !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                box-sizing: border-box !important;
-            }
-            
-            /* Ensure proper loading of weather widgets */
+            /* Weather widget loading styling */
             .weather-widget-loading {
                 display: flex !important;
                 align-items: center !important;
                 justify-content: center !important;
-                min-height: 220px !important;
+                min-height: 250px !important;
+                height: auto !important;
                 color: #666 !important;
                 font-size: 16px !important;
+                width: 100% !important;
             }
             
             /* Responsive adjustments */
             @media (max-width: 768px) {
-                .weather-widget-container {
-                    min-height: 220px !important;
-                    padding: 12px !important;
-                }
-                
-                .weather-widget-container iframe {
-                    min-height: 190px !important;
-                }
-                
                 .weather-widget-loading {
-                    min-height: 190px !important;
+                    min-height: 220px !important;
+                    height: auto !important;
                     font-size: 14px !important;
                 }
             }
             
             @media (max-width: 480px) {
-                .weather-widget-container {
-                    min-height: 200px !important;
-                    padding: 10px !important;
-                }
-                
-                .weather-widget-container iframe {
-                    min-height: 170px !important;
-                }
-                
                 .weather-widget-loading {
-                    min-height: 170px !important;
+                    min-height: 200px !important;
+                    height: auto !important;
                     font-size: 12px !important;
                 }
             }
