@@ -133,21 +133,187 @@
         #openweathermap-widget-15,
         #openweathermap-widget-17 {
             width: 100% !important;
-            min-height: 200px !important;
-            background-color: #FFFACD !important;
-            border-radius: 8px !important;
-            padding: 10px !important;
-            margin: 0 !important;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+            min-height: 250px !important;
+            max-height: 320px !important;
+            background: linear-gradient(135deg, #FFD54F 0%, #FFEB3B 100%) !important;
+            border-radius: 12px !important;
+            padding: 15px !important;
+            margin: 10px 0 !important;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+            overflow: visible !important;
+            position: relative !important;
+            display: block !important;
+        }
+
+        #openweathermap-widget-15 > div,
+        #openweathermap-widget-17 > div {
+            min-height: 220px !important;
+            max-height: 290px !important;
+            display: block !important;
+            width: 100% !important;
+            overflow: visible !important;
         }
 
         #openweathermap-widget-15 iframe,
         #openweathermap-widget-17 iframe {
             width: 100% !important;
-            height: 180px !important;
+            min-height: 220px !important;
+            max-height: 280px !important;
+            height: 280px !important;
             border: none !important;
-            border-radius: 4px !important;
+            border-radius: 8px !important;
             background: transparent !important;
+            display: block !important;
+        }
+
+        /* Force consistent widget layout */
+        #openweathermap-widget-15 .owm-widget-15,
+        #openweathermap-widget-17 .owm-widget-17 {
+            background: linear-gradient(135deg, #FFD54F 0%, #FFEB3B 100%) !important;
+            border-radius: 8px !important;
+        }
+
+        /* Aggressive CSS to force both widgets to look identical */
+        #openweathermap-widget-15 *,
+        #openweathermap-widget-17 * {
+            box-sizing: border-box !important;
+        }
+
+        /* Force widget content to be horizontal layout */
+        #openweathermap-widget-15 > div > div,
+        #openweathermap-widget-17 > div > div {
+            display: block !important;
+            width: 100% !important;
+            padding: 0 !important;
+            min-height: 220px !important;
+            overflow: visible !important;
+        }
+
+        /* Style city name consistently */
+        #openweathermap-widget-15 .city-name,
+        #openweathermap-widget-17 .city-name,
+        #openweathermap-widget-15 h2,
+        #openweathermap-widget-17 h2,
+        #openweathermap-widget-15 .owm-city,
+        #openweathermap-widget-17 .owm-city {
+            font-size: 22px !important;
+            font-weight: bold !important;
+            color: #2c3e50 !important;
+            margin: 0 !important;
+            padding: 0 !important;
+        }
+
+        /* Style temperature consistently */
+        #openweathermap-widget-15 .owm-temperature,
+        #openweathermap-widget-17 .owm-temperature,
+        #openweathermap-widget-15 .temperature,
+        #openweathermap-widget-17 .temperature,
+        #openweathermap-widget-15 .temp,
+        #openweathermap-widget-17 .temp {
+            font-size: 48px !important;
+            font-weight: 700 !important;
+            color: #000000 !important;
+            line-height: 1 !important;
+        }
+
+        /* Style weather description */
+        #openweathermap-widget-15 .owm-description,
+        #openweathermap-widget-17 .owm-description,
+        #openweathermap-widget-15 .description,
+        #openweathermap-widget-17 .description {
+            font-size: 14px !important;
+            color: #666666 !important;
+            text-transform: capitalize !important;
+        }
+
+        /* Style weather details (feels like, wind, humidity, pressure) */
+        #openweathermap-widget-15 .owm-details,
+        #openweathermap-widget-17 .owm-details,
+        #openweathermap-widget-15 .details,
+        #openweathermap-widget-17 .details {
+            font-size: 12px !important;
+            color: #555555 !important;
+            margin-top: 8px !important;
+        }
+
+        /* Override any OpenWeatherMap default styles */
+        #openweathermap-widget-15 div[class*="owm"],
+        #openweathermap-widget-17 div[class*="owm"] {
+            background: transparent !important;
+        }
+
+        /* Target all possible OpenWeatherMap class names */
+        #openweathermap-widget-15 .openweathermap-widget,
+        #openweathermap-widget-17 .openweathermap-widget {
+            min-height: 220px !important;
+            padding: 15px !important;
+            background: transparent !important;
+        }
+
+        /* Ensure left section (city + temp) is consistent */
+        #openweathermap-widget-15 .owm-left,
+        #openweathermap-widget-17 .owm-left,
+        #openweathermap-widget-15 > div > div > div:first-child,
+        #openweathermap-widget-17 > div > div > div:first-child {
+            flex: 1 !important;
+            min-width: 60% !important;
+        }
+
+        /* Ensure right section (details) is consistent */
+        #openweathermap-widget-15 .owm-right,
+        #openweathermap-widget-17 .owm-right,
+        #openweathermap-widget-15 > div > div > div:last-child,
+        #openweathermap-widget-17 > div > div > div:last-child {
+            flex: 1 !important;
+            max-width: 40% !important;
+            text-align: right !important;
+        }
+
+        /* Force all text to be visible */
+        #openweathermap-widget-15 *,
+        #openweathermap-widget-17 * {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        /* Remove any borders from inner elements */
+        #openweathermap-widget-15 * ,
+        #openweathermap-widget-17 * {
+            border: none !important;
+        }
+
+        /* Make sure weather icon is visible and sized consistently */
+        #openweathermap-widget-15 img,
+        #openweathermap-widget-17 img,
+        #openweathermap-widget-15 .owm-icon,
+        #openweathermap-widget-17 .owm-icon {
+            width: 80px !important;
+            height: 80px !important;
+            object-fit: contain !important;
+        }
+
+        /* Ensure parent containers don't clip the widgets */
+        #sidebar-left .sidebar-left__inner,
+        #sidebar-right .sidebar-right__inner {
+            overflow: visible !important;
+        }
+
+        #sidebar-left,
+        #sidebar-right {
+            overflow: visible !important;
+        }
+
+        /* Ensure weather widget wrapper divs are properly sized */
+        #openweathermap-widget-15 > div,
+        #openweathermap-widget-17 > div {
+            position: relative !important;
+        }
+
+        /* Make iframes fully visible */
+        #openweathermap-widget-15 iframe,
+        #openweathermap-widget-17 iframe {
+            transform: scale(1) !important;
+            transform-origin: top left !important;
         }
 
         /* Ensure proper loading of weather widgets */
@@ -1942,6 +2108,59 @@
                 setTimeout(checkWidgetContent, 1500);
             }
 
+            // Force consistent styling on weather widgets after they load
+            function forceWeatherWidgetConsistency() {
+                const widget15 = document.getElementById('openweathermap-widget-15');
+                const widget17 = document.getElementById('openweathermap-widget-17');
+                
+                if (widget15 && widget17) {
+                    // Force both to use same background and dimensions
+                    [widget15, widget17].forEach(widget => {
+                        widget.style.background = 'linear-gradient(135deg, #FFD54F 0%, #FFEB3B 100%)';
+                        widget.style.minHeight = '250px';
+                        widget.style.maxHeight = '320px';
+                        widget.style.width = '100%';
+                        widget.style.borderRadius = '12px';
+                        widget.style.padding = '15px';
+                        widget.style.boxShadow = '0 4px 12px rgba(0, 0, 0, 0.15)';
+                        widget.style.overflow = 'visible';
+                        widget.style.position = 'relative';
+                        widget.style.display = 'block';
+                        widget.style.margin = '10px 0';
+                    });
+                    
+                    // Fix inner div
+                    const widget15Inner = widget15.querySelector('div');
+                    const widget17Inner = widget17.querySelector('div');
+                    
+                    if (widget15Inner && widget17Inner) {
+                        [widget15Inner, widget17Inner].forEach(inner => {
+                            inner.style.minHeight = '220px';
+                            inner.style.width = '100%';
+                            inner.style.overflow = 'visible';
+                            inner.style.position = 'relative';
+                        });
+                    }
+                    
+                    // Fix iframes if they exist
+                    const iframe15 = widget15.querySelector('iframe');
+                    const iframe17 = widget17.querySelector('iframe');
+                    
+                    if (iframe15 && iframe17) {
+                        [iframe15, iframe17].forEach(iframe => {
+                            iframe.style.width = '100%';
+                            iframe.style.height = '280px';
+                            iframe.style.border = 'none';
+                            iframe.style.borderRadius = '8px';
+                            iframe.style.background = 'transparent';
+                            iframe.style.display = 'block';
+                        });
+                    }
+                    
+                    console.log('Weather widgets consistency applied');
+                }
+            }
+
             // Initialize weather widgets when page loads
             document.addEventListener('DOMContentLoaded', function() {
                 // Add load event listeners for weather widget scripts
@@ -1950,8 +2169,13 @@
                 weatherScripts.forEach(script => {
                     script.onload = function() {
                         console.log('Weather widget script loaded');
+                        // Apply consistency after widgets load
+                        setTimeout(forceWeatherWidgetConsistency, 2000);
                     };
                 });
+                
+                // Also apply consistency periodically in case widgets load late
+                setInterval(forceWeatherWidgetConsistency, 3000);
             });
 
             // Set up weather widget load handlers with delay
