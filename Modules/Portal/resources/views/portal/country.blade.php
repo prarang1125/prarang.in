@@ -1147,7 +1147,14 @@
 
                                             @if(!empty($primary->weather))
                                                 <div style="position: relative; left: 0; margin: 10px 0;">
-                                                    {!! $primary->weather !!}
+                                                    @php
+                                                        // Ensure primary weather widget uses unique IDs (id: 15, openweathermap-widget-15)
+                                                        $primaryWeather = $primary->weather;
+                                                        // Replace any existing widget ID with 15 for primary
+                                                        $primaryWeather = preg_replace('/id:\s*\d+/', 'id: 15', $primaryWeather);
+                                                        $primaryWeather = preg_replace('/openweathermap-widget-\d+/', 'openweathermap-widget-15', $primaryWeather);
+                                                    @endphp
+                                                    {!! $primaryWeather !!}
                                                 </div>
                                             @elseif(!empty($primary->weather_city_id) && !empty($primary->weather_api_key))
                                                 <div id="openweathermap-widget-15"
@@ -1440,7 +1447,14 @@
 
                                             @if(!empty($secondary->weather))
                                                 <div style="position: relative; left: 0; margin: 10px 0;">
-                                                    {!! $secondary->weather !!}
+                                                    @php
+                                                        // Ensure secondary weather widget uses unique IDs (id: 17, openweathermap-widget-17)
+                                                        $secondaryWeather = $secondary->weather;
+                                                        // Replace any existing widget ID with 17 for secondary
+                                                        $secondaryWeather = preg_replace('/id:\s*\d+/', 'id: 17', $secondaryWeather);
+                                                        $secondaryWeather = preg_replace('/openweathermap-widget-\d+/', 'openweathermap-widget-17', $secondaryWeather);
+                                                    @endphp
+                                                    {!! $secondaryWeather !!}
                                                 </div>
                                             @elseif(!empty($secondary->weather_city_id) && !empty($secondary->weather_api_key))
                                                 <div id="openweathermap-widget-17"
