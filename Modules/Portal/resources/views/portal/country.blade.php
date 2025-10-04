@@ -1123,6 +1123,7 @@
                                                 <!-- CATEGORY CONTENT : end -->
 
                                                 {{-- COUNTRY CONNECTIONS SECTION : begin --}}
+                                                <!--
                                                 <div class="country-connections-section" style="margin: 60px 0; padding: 30px; background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); border-radius: 15px; border: 2px solid #007bff; position: relative; overflow: hidden;">
                                                     <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: rgba(0, 123, 255, 0.1); border-radius: 50%;"></div>
                                                     <div style="position: absolute; bottom: -15px; left: -15px; width: 80px; height: 80px; background: rgba(0, 123, 255, 0.05); border-radius: 50%;"></div>
@@ -1215,6 +1216,7 @@
                                                         </p>
                                                     </div>
                                                 </div>
+                                                -->
                                                 {{-- COUNTRY CONNECTIONS SECTION : end --}}
                                             </div>
                                         </div>
