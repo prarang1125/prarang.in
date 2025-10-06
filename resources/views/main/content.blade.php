@@ -208,6 +208,14 @@
             padding-top: 0px;
             padding-bottom: 0px;
         }
+
+        /* Division */
+        #sidebar-right .widg .weather-widgetx>div {
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+            padding-top: 0px !important;
+            padding-bottom: 0px !important;
+        }
     </style>
     <section class="bs5-top-heading">
         <p class="">Content</p>

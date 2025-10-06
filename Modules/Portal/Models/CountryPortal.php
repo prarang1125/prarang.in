@@ -12,4 +12,9 @@ class CountryPortal extends Model
 
     protected $connection = 'main';
     protected $guarded = [];
+
+
+    protected $casts = [
+        'important_links' => 'array',
+    ];
 }
