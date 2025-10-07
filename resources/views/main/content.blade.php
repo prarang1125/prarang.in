@@ -222,6 +222,23 @@
             text-align: left !important;
             padding-left: 32px;
         }
+
+        /* Button */
+        .container .flex-wrap a {
+            padding-left: 10px;
+            padding-right: 10px;
+            width: 201px;
+        }
+
+        /* Row */
+        .container .align-items-center {
+            margin-bottom: 2px !important;
+        }
+
+        /* Button (hover) */
+        .container .flex-wrap a:hover {
+            font-weight: 500;
+        }
     </style>
     <section class="bs5-top-heading">
         <p class="">Content</p>
@@ -266,67 +283,76 @@
         </div>
 
 
-        <div class="mt-2 row">
-            <div class="text-center col-sm-2">
-                <b>Daily Posts:</b>
-            </div>
-            <div class="col-sm-2 ">
-                <a href="/lucknow/all-posts" target="_blank" class="btn btn-sm btn-warning w-75 ">Lucknow</a>
-            </div>
-            <div class="col-sm-2">
-                <a href="/meerut/all-posts" target="_blank" class="btn btn-sm btn-warning w-75">Meerut</a>
-            </div>
-            <div class="col-sm-2">
-                <a href="/rampur/all-posts" target="_blank" class="btn btn-sm btn-warning w-75">Rampur</a>
-            </div>
-            <div class="col-sm-2">
-                <a href="/jaunpur/all-posts" target="_blank" class="btn btn-sm btn-warning w-75">Jaunpur</a>
-            </div>
-        </div>
-        <div class="mt-2 row mt-2">
-            <div class="text-center col-sm-2">
-                <b>Business:</b>
-            </div>
-            <div class="col-sm-2 ">
-                <a href="{{ route('city.show', ['city_name' => 'lucknow']) }}" target="_blank"
-                    class="btn btn-sm btn-warning w-75 ">Lucknow</a>
-            </div>
-            <div class="col-sm-2">
-                <a href="{{ route('city.show', ['city_name' => 'meerut']) }}" target="_blank"
-                    class="btn btn-sm btn-warning w-75">Meerut</a>
-            </div>
-            <div class="col-sm-2">
-                <a href="{{ route('city.show', ['city_name' => 'rampur']) }}" target="_blank"
-                    class="btn btn-sm btn-warning w-75">Rampur</a>
-            </div>
-            <div class="col-sm-2">
-                <a href="{{ route('city.show', ['city_name' => 'jaunpur']) }}" target="_blank"
-                    class="btn btn-sm btn-warning w-75">Jaunpur</a>
-            </div>
-        </div>
-        <div class="row mt-2">
-            <div class="text-center col-sm-2">
-                <b>India Portals:</b>
-            </div>
-            @foreach ($portal as $inPortal)
-                <div class="col-sm-2 ">
-                    <a href="/{{ $inPortal->slug }}" target="_blank"
-                        class="btn btn-sm btn-warning w-75 ">{{ $inPortal->city_name }}</a>
+        <div class="container mt-4">
+
+            <!-- Daily Posts -->
+            <div class="row align-items-center mb-3">
+                <div class="col-md-2 text-md-right text-center">
+                    <h6 class="mb-0 font-weight-bold">Daily Posts:</h6>
                 </div>
-            @endforeach
-        </div>
-        <div class="row mt-2">
-            <div class="text-center col-sm-2">
-                <b>Bilateral Portals:</b>
-            </div>
-            @foreach ($biletrals as $bilateral)
-                <div class="col-sm-3">
-                    <a href="/{{ $bilateral->slug }}" target="_blank"
-                        class="btn btn-sm btn-warning w-75 ">{{ ucwords(str_replace('-', ' ', $bilateral->slug)) }}</a>
+                <div class="col-md-10">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="/lucknow/all-posts" target="_blank" class="btn btn-sm btn-warning m-1">Lucknow</a>
+                        <a href="/meerut/all-posts" target="_blank" class="btn btn-sm btn-warning m-1">Meerut</a>
+                        <a href="/rampur/all-posts" target="_blank" class="btn btn-sm btn-warning m-1">Rampur</a>
+                        <a href="/jaunpur/all-posts" target="_blank" class="btn btn-sm btn-warning m-1">Jaunpur</a>
+                    </div>
                 </div>
-            @endforeach
+            </div>
+
+            <!-- Business -->
+            <div class="row align-items-center mb-3">
+                <div class="col-md-2 text-md-right text-center">
+                    <h6 class="mb-0 font-weight-bold">Business:</h6>
+                </div>
+                <div class="col-md-10">
+                    <div class="d-flex flex-wrap gap-2">
+                        <a href="{{ route('city.show', ['city_name' => 'lucknow']) }}" target="_blank"
+                            class="btn btn-sm btn-warning m-1">Lucknow</a>
+                        <a href="{{ route('city.show', ['city_name' => 'meerut']) }}" target="_blank"
+                            class="btn btn-sm btn-warning m-1">Meerut</a>
+                        <a href="{{ route('city.show', ['city_name' => 'rampur']) }}" target="_blank"
+                            class="btn btn-sm btn-warning m-1">Rampur</a>
+                        <a href="{{ route('city.show', ['city_name' => 'jaunpur']) }}" target="_blank"
+                            class="btn btn-sm btn-warning m-1">Jaunpur</a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- India Portals -->
+            <div class="row align-items-center mb-3">
+                <div class="col-md-2 text-md-right text-center">
+                    <h6 class="mb-0 font-weight-bold">India Portals:</h6>
+                </div>
+                <div class="col-md-10">
+                    <div class="d-flex flex-wrap gap-2">
+                        @foreach ($portal as $inPortal)
+                            <a href="/{{ $inPortal->slug }}" target="_blank" class="btn btn-sm btn-warning m-1">
+                                {{ $inPortal->city_name }}
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bilateral Portals -->
+            <div class="row align-items-center mb-3">
+                <div class="col-md-2 text-md-right text-center">
+                    <h6 class="mb-0 font-weight-bold">Bilateral Portals:</h6>
+                </div>
+                <div class="col-md-10">
+                    <div class="d-flex flex-wrap gap-2">
+                        @foreach ($biletrals as $bilateral)
+                            <a href="/{{ $bilateral->slug }}" target="_blank" class="btn btn-sm btn-warning m-1">
+                                {{ ucwords(str_replace('-', ' ', $bilateral->slug)) }}
+                            </a>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
 
         </div>
+
     </section>
 
 
