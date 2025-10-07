@@ -239,6 +239,25 @@
         .container .flex-wrap a:hover {
             font-weight: 500;
         }
+
+        /* Row */
+        .container .align-items-center {
+            box-shadow: 0px 0px 3px 0.5px #ced3d8;
+            border-top-left-radius: 4px;
+            border-top-right-radius: 4px;
+            border-bottom-left-radius: 4px;
+            border-bottom-right-radius: 4px;
+        }
+
+        /* Row */
+        .container .container .container .align-items-center {
+            margin-bottom: 15px !important;
+        }
+
+        /* Flex wrap */
+        .container .flex-wrap {
+            box-shadow: 0px 0px 4px -50px #212529;
+        }
     </style>
     <section class="bs5-top-heading">
         <p class="">Content</p>
