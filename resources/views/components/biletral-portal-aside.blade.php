@@ -80,6 +80,70 @@
         #right-time-widget .widget__inner {
             background-color: rgba(51, 51, 51, 0.69);
         }
+
+        /* Link */
+        #left-links-widget li a {
+            flex-direction: row;
+            justify-content: normal;
+        }
+
+        /* Font Icon */
+        #left-links-widget li .fa-external-link {
+            margin-right: 7px !important;
+            position: relative;
+            top: 2px;
+        }
+
+        /* Font Icon */
+        #right-links-widget li .fa-external-link {
+            position: relative;
+            top: 2px;
+        }
+
+        /* Heading */
+        #right-links-widget div h6 {
+            margin-bottom: 3px;
+        }
+
+        /* Link */
+        #right-links-widget li a {
+            padding-left: 6px;
+            color: rgba(49, 137, 225, 0.75) !important;
+
+        }
+
+        #right-links-widget li a:hover {
+            padding-left: 8px;
+            color: rgba(49, 137, 225, 0.75) !important;
+            font-weight: 600;
+        }
+
+        /* Widget  content */
+        #right-links-widget .widget__content {
+            /* transform: translatex(0px) translatey(0px); */
+        }
+
+        /* Widget Title */
+        #right-links-widget h3 {
+            margin-bottom: 0px !important;
+        }
+
+        /* Widget Title */
+        #left-links-widget h3 {
+            margin-bottom: 0px !important;
+        }
+
+        /* Link (hover) */
+        #left-links-widget li a:hover {
+            color: rgba(22, 13, 185, 0.75) !important;
+            font-weight: 600;
+            padding-left: 8px;
+        }
+
+        #left-links-widget li a {
+            color: rgba(22, 13, 185, 0.75) !important;
+            padding-left: 6px;
+        }
     </style>
     <aside id="sidebar-{{ $side }}" class="mt-3">
         <div class="sidebar-{{ $side }}__inner">
@@ -99,23 +163,6 @@
                 </div>
             </div>
 
-            <!-- Embassy Section -->
-            <div class="card shadow-sm mb-4 border-0 rounded" id="{{ $side }}-embassy-card">
-                <div class="card-body text-center">
-                    <h5 class="card-title mb-3 fw-bold text-primary">
-                        <i class="fa fa-building-o me-2"></i>
-                        Embassy of {{ $data->country_name ?? 'N/A' }}
-                    </h5>
-
-                    @if (!empty($data->embassy_link))
-                        <a href="{{ $data->embassy_link }}" class="btn btn-primary w-100 fw-semibold" target="_blank">
-                            <i class="fa fa-external-link me-1"></i> Visit Embassy Website
-                        </a>
-                    @else
-                        <span class="text-danger small">Embassy link not available.</span>
-                    @endif
-                </div>
-            </div>
             <!-- Weather Widget -->
 
             <div class="widg">
@@ -125,8 +172,6 @@
                     <p class="text-muted small mb-0">Weather data not available</p>
                 @endif
             </div>
-
-
             <!-- News Widget -->
             <div class="widget lsvr-townpress-news-widget lsvr-townpress-news-widget--has-background shadow-sm mb-4 border rounded"
                 id="{{ $side }}-news-widget">
@@ -150,7 +195,23 @@
                     </div>
                 </div>
             </div>
+            <!-- Embassy Section -->
+            <div class="card shadow-sm mb-4 border-0 rounded" id="{{ $side }}-embassy-card">
+                <div class="card-body text-center">
+                    <h5 class="card-title mb-3 fw-bold text-primary">
+                        <i class="fa fa-building-o me-2"></i>
+                        Embassy of {{ $data->country_name ?? 'N/A' }}
+                    </h5>
 
+                    @if (!empty($data->embassy_link))
+                        <a href="{{ $data->embassy_link }}" class="btn btn-primary w-100 fw-semibold" target="_blank">
+                            <i class="fa fa-external-link me-1"></i> Visit Embassy Website
+                        </a>
+                    @else
+                        <span class="text-danger small">Embassy link not available.</span>
+                    @endif
+                </div>
+            </div>
             <!-- Analytics Widget -->
             {{-- place here --}}
 
@@ -161,31 +222,33 @@
                 <div class="widget__inner p-3">
                     <h3 class="widget__title widget__title--has-icon ps-2 mb-3 text-center fw-bold text-danger">
                         <i class="fa fa-link me-2"></i>
-                        Important Links for {{ $data->country_name ?? 'N/A' }}
+                        Important Links of {{ $data->country_name ?? 'N/A' }}
                     </h3>
 
                     <div class="widget__content">
-
                         @if (!empty($data->important_links) && is_array($data->important_links))
-                            <ul class="list-unstyled mb-0">
-                                @foreach ($data->important_links as $key => $link)
-                                    @foreach ($link as $value)
-                                        <li class="mb-2">
-                                            <a href="{{ $value['key'] }}" target="_blank"
-                                                class="fw-semibold text-decoration-none text-secondary">
-                                                <i class="fa fa-external-link me-1"></i>
-                                                {{ $value['value'] ?? 'Link' }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                @endforeach
-                            </ul>
+
+                            @foreach ($data->important_links as $key => $links)
+                                <div class="">
+                                    <h6 class="fw-bold text-primary text-capitalize">
+                                        {{ str_replace('_', ' ', $key) }}
+                                    </h6>
+                                    <ul class="list-unstyled">
+                                        @foreach ($links as $link)
+                                            <li class="">
+                                                <a href="{{ $link['url'] }}" target="_blank"
+                                                    class="text-muted text-decoration-none d-flex align-items-center rounded hover-shadow">
+                                                    <i class="fa fa-external-link me-2 text-secondary"></i>
+                                                    <span>{{ $link['name'] }}</span>
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endforeach
                         @else
                             <p class="text-muted small mb-0">No important links available</p>
                         @endif
-
-
-
                     </div>
                 </div>
             </div>

@@ -3,6 +3,33 @@
     <style>
         #header .header-map--gmaps {
             height: 100vh;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 9999;
+            background: rgba(0, 0, 0, 0.9);
+            display: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .header-map--visible {
+            display: flex !important;
+            opacity: 1 !important;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-map--loading::before {
+            content: "Loading map...";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 18px;
+            z-index: 10000;
         }
 
         .map-selector select {
@@ -32,6 +59,7 @@
             top: 20px;
             left: 20px;
             z-index: 1000;
+            min-width: 200px;
         }
 
         .map-selector::before {
@@ -41,6 +69,59 @@
             top: 50%;
             transform: translateY(-50%);
             font-size: 16px;
+        }
+
+        #map-container {
+            width: 90%;
+            max-width: 800px;
+            height: 70vh;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        #map-container iframe {
+            width: 100% !important;
+            height: 100% !important;
+            border: none !important;
+            border-radius: 10px;
+        }
+
+        .header-map__close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.9);
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            z-index: 1001;
+        }
+
+        .header-map__close:hover {
+            background: rgba(255, 255, 255, 1);
+            transform: scale(1.1);
+        }
+
+        .header-map__close-ico {
+            font-size: 20px;
+            color: #333;
+        }
+
+        /* Mobile menu styles */
+        .header-mobile-menu {
+            display: none;
+        }
+
+        .header-mobile-menu--visible {
+            display: block;
         }
 
         @media (max-width:991px) {
@@ -767,37 +848,162 @@
         #right-news-widget h3 {
             color: #0d34a9 !important;
         }
+
+        /* Header background  image */
+        .header-background__image {
+            background-position-y: 0px !important;
+        }
+
+        /* Text center */
+        #main .shadow h3.text-center {
+            font-size: 25px;
+        }
+
+        /* Text center */
+        #main .shadow .text-center {
+            margin-top: 14px !important;
+            margin-bottom: 18px !important;
+        }
+
+        /* Shadow */
+        #main .shadow {
+            padding-top: 5px;
+        }
+
+        /* Font Icon */
+        #main .btn-success i {
+            position: relative;
+            top: 2px;
+        }
+
+        /* Column 6/12 */
+        #columns footer .col-6 {
+            color: #ffffff;
+        }
+
+        /* Span Tag */
+        #columns footer span {
+            color: #ffffff;
+            font-size: 20px;
+        }
+
+        /* Font Icon */
+        #columns a .fa-twitter {
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+        /* Font Icon */
+        #columns a .fa-facebook {
+            font-size: 19px;
+            color: #ffffff;
+        }
+
+        /* Font Icon */
+        #columns a .fa-instagram {
+            font-size: 18px;
+            color: #ffffff;
+        }
+
+        /* Font Icon */
+        #columns a .fa-linkedin {
+            color: #ffffff;
+            font-size: 10px;
+        }
+
+        /* Link */
+        .row .col-sm .row .col-6 a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        /* Footer */
+        #wrapper #core .core__inner #columns footer {
+            background-color: rgba(0, 0, 0, 0.67) !important;
+        }
+
+        /* Col */
+        #columns footer .col-sm {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Span Tag */
+        #columns footer span {
+            font-size: 18px !important;
+            position: relative;
+            top: 3px;
+        }
+
+        /* Font Icon */
+        #columns a .fa-linkedin {
+            font-size: 18px !important;
+        }
+
+        /* Header background  singled */
+        #wrapper .header-background--singled {
+            position: fixed;
+            transform: translatex(0px) translatey(0px);
+        }
+
+        /* Header  content inner */
+        #header .header__content-inner {
+            padding-bottom: 0px;
+            transform: translatex(0px) translatey(0px);
+            padding-top: 1px;
+        }
+
+        /* Image */
+        .header-logo--front .header-logo__link img {
+            width: 51px;
+        }
+
+        /* Division */
+        #wrapper .header-background__image--default {
+            transform: translatex(0px) translatey(0px);
+        }
+
+        /* Columns */
+        #columns {
+            transform: translatex(0px) translatey(0px);
+            margin-top: -130px;
+        }
+
+        /* Lsvr container */
+        #columns .lsvr-container {
+            margin-top: -50px;
+            transform: translatex(0px) translatey(0px);
+        }
+
+        @media (min-width:992px) {
+
+            /* Header  content */
+            #header .header__content {
+                height: 47px;
+            }
+
+        }
+
+        /* Image */
+        .header-logo--front .header-logo__link img {
+            position: relative;
+            top: 5px;
+        }
+
+        /* Image */
+        #wrapper #header .header__inner .header__content .lsvr-container .header__content-inner .header-logo--front .header-logo__link img {
+            width: 75px !important;
+        }
+
+        /* Shadow */
     </style>
     <div id="wrapper">
         <header class="header--has-languages header--has-map" id="header">
             <div class="header__inner">
-                <!-- HEADER MAP : begin -->
-                <div class="header-map header-map--loading header-map--gmaps">
-                    <div class="map-selector mb-3">
-                        <select id="map-select" class="form-select">
-                            <option value="india">{{ $primary->country_name ?? 'India' }} Map</option>
-                            <option value="secondary" selected>{{ $secondary->country_name ?? 'Pakistan' }} Map
-                            </option>
-                        </select>
-                    </div>
-                    <div id="map-container">
-                        <iframe id="india-map"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d30766769.397866964!2d60.96789011826587!3d19.72500300181898!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x30635ff06b92b791%3A0xd78c4fa1854213a6!2sIndia!5e0!3m2!1sen!2sin!4v1758963998299!5m2!1sen!2sin"
-                            width="600" height="450" style="border:0;" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade" style="display: none;"></iframe>
-                        <iframe id="secondary-map"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7215464.636316154!2d67.00576915!3d30.3753!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38db52d2f8fd751f%3A0x46b7a1f7e614925c!2sPakistan!5e0!3m2!1sen!2sin!4v1758963754171!5m2!1sen!2sin"
-                            width="600" height="450" style="border:0;" loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade"></iframe>
-                    </div>
 
-                    <button aria-label="Close map" class="header-map__close" type="button">
-                        <i aria-hidden="true" class="header-map__close-ico fa fa-times">
-                        </i>
-                    </button>
-                </div>
-                <!-- HEADER MAP : end -->
-                <!-- HEADER CONTENT : begin -->
                 <div class="header__content">
                     <div class="lsvr-container">
                         <div class="header__content-inner">
@@ -808,68 +1014,22 @@
                                         src="{{ asset('assets/images/logo2x.png') }}" />
                                 </a>
                             </div>
-                            <div class="header-toolbar-toggle header-toolbar-toggle--has-map">
-                                <button aria-controls="header-mobile-menu" aria-expanded="false" aria-haspopup="true"
-                                    class="header-toolbar-toggle__menu-button" type="button">
-                                    <i class="fa fa-bars"></i>
-
-                                    <span class="header-toolbar-toggle__menu-button-label">
-                                        Menu
-                                    </span>
-                                </button>
-                                <!-- HEADER MAP TOGGLE : begin -->
-                                <button aria-label="Open / close map"
-                                    class="header-map-toggle header-map-toggle--mobile" type="button">
-
-                                    <i class="fa fa-map-marker"></i>
-
-                                    <span class="header-map-toggle__label">
-                                        <b>{{ $secondary->country_name ?? 'Pakistan' }} Map</b>
-                                    </span>
-                                </button>
-                                <!-- HEADER MAP TOGGLE : end -->
-                            </div>
                             <!-- HEADER TOOLBAR TOGGLE : end -->
                             <!-- HEADER TOOLBAR : begin -->
                             <div class="header-toolbar">
 
-                                <!-- HEADER MAP TOGGLE : begin -->
+                                {{-- <!-- HEADER MAP TOGGLE : begin -->
                                 <button aria-label="Open / close map"
                                     class="header-map-toggle header-map-toggle--desktop header-toolbar__item"
-                                    type="button">
+                                    type="button" data-bs-toggle="modal" data-bs-target="#mapModal">
 
                                     <i class="fa fa-map-marker"></i>
                                     <span class="header-map-toggle__label">
-                                        <b>{{ $secondary->country_name ?? 'Pakistan' }} Map</b>
+                                        <b>View Maps</b>
                                     </span>
-                                </button>
-                                <!-- HEADER MAP TOGGLE : end -->
-                                <!-- HEADER SUBSCRIBE BUTTON : begin -->
-                                <button type="button" class="btn btn-primary header-toolbar__item"
-                                    data-bs-toggle="modal" data-bs-target="#subscribeModal">
-                                    <i class="fa fa-envelope"></i>
-                                    <span class="header-map-toggle__label">
-                                        <b>Subscribe</b>
-                                    </span>
-                                </button>
-                                <!-- HEADER SUBSCRIBE BUTTON : end -->
-                                <!-- HEADER MOBILE MENU : begin -->
-                                <nav aria-label="Main Menu" class="header-mobile-menu"
-                                    data-label-collapse-submenu="Collapse submenu"
-                                    data-label-expand-submenu="Expand submenu" id="header-mobile-menu">
-                                    <ul class="header-mobile-menu__list" id="menu-main-menu" role="menu">
-                                        <li class="header-mobile-menu__item header-mobile-menu__item--level-0 menu-item menu-item-type-post_type menu-item-object-page"
-                                            id="header-mobile-menu__item-222" role="presentation">
-                                            <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-0"
-                                                href="{{ route('portal', ['portal' => 'lucknow']) }}"
-                                                id="header-mobile-menu__item-link-222" role="menuitem">
-                                                <span class="header-mobile-menu__item-link-label">
-                                                    Lucknow Portal
-                                                </span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
+                                </button> --}}
+
+
                                 <!-- HEADER MOBILE MENU : end -->
                             </div>
                             <!-- HEADER TOOLBAR : end -->
@@ -881,41 +1041,48 @@
 
         </header>
 
-        <!-- SUBSCRIBE MODAL : begin -->
-        <div class="modal fade" id="subscribeModal" tabindex="-1" aria-labelledby="subscribeModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
+        <!-- MAP MODAL -->
+        <div class="modal fade" id="mapModal" tabindex="-1" aria-labelledby="mapModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="subscribeModalLabel">Subscribe to Our Newsletter</h5>
+                        <h5 class="modal-title" id="mapModalLabel">
+                            <i class="fa fa-map-marker me-2"></i>Country Maps
+                        </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <form id="subscribeForm">
-                            <div class="mb-3">
-                                <label for="subscriberName" class="form-label">Full Name</label>
-                                <input type="text" class="form-control" id="subscriberName"
-                                    placeholder="Enter your full name" required>
+                        <div class="mb-3">
+                            <label class="form-label d-block mb-2">Select Country:</label>
+                            <div id="countrySelectGroup">
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="countrySelect"
+                                        id="countryPrimary" value="primary">
+                                    <label class="form-check-label"
+                                        for="countryPrimary">{{ $primary->country_name ?? 'Primary Country' }}</label>
+                                </div>
+                                <div class="form-check form-check-inline">
+                                    <input class="form-check-input" type="radio" name="countrySelect"
+                                        id="countrySecondary" value="secondary">
+                                    <label class="form-check-label"
+                                        for="countrySecondary">{{ $secondary->country_name ?? 'Secondary Country' }}</label>
+                                </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="subscriberEmail" class="form-label">Email Address</label>
-                                <input type="email" class="form-control" id="subscriberEmail"
-                                    placeholder="Enter your email address" required>
-                            </div>
-                            <div class="alert alert-info" role="alert" id="subscribeMessage"
-                                style="display: none;">
-                                <i class="fa fa-info-circle"></i> Coming Soon! This feature is under development.
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary" id="subscribeBtn">Subscribe</button>
+                        </div>
+
+
+                        <div id="mapContainer"
+                            style="width: 100%; height: 500px; border: 1px solid #ddd; border-radius: 8px; overflow: hidden;">
+                            {!! $primary->maps ?? '' !!}
+
+                            {!! $secondary->maps ?? '' !!}
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- SUBSCRIBE MODAL : end -->
+
+
 
         <!-- HEADER : end -->
         <div class="header-background header-background--singled" data-slideshow-speed="10">
@@ -970,13 +1137,12 @@
 
 
                                         </div>
-                                        <div class=" shadow  mt-3 pb-2">
+                                        <div class=" shadow  mt-3 pb-2 bg-light">
                                             <h3 class="text-center h2">UPMANA - Knowledge By Comparison</h3>
                                             <div class="text-center my-4">
                                                 <a href="https://www.prarang.in/ai/upmana" target="_blank"
                                                     class="btn btn-success">
-                                                    Try now <i class="fa fa-external-link ms-2"
-                                                        aria-hidden="true"></i>
+                                                    Try now <i class="fa fa-external-link ms-2" aria-hidden="true"></i>
                                                 </a>
                                             </div>
 
@@ -1002,11 +1168,7 @@
                                                                             alt="{{ $primary->country_name ?? 'Country' }} Analytics"
                                                                             class="img-fluid rounded shadow-sm mb-3 border">
                                                                     </a>
-                                                                    <a href="https://g2c.prarang.in/ai/{{ urlencode($primary->country_name ?? 'Country') }}"
-                                                                        class="btn btn-info btn-sm w-100 fw-semibold"
-                                                                        target="_blank">
-                                                                        <i class="fa fa-robot me-1"></i> View AI Report
-                                                                    </a>
+
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1029,16 +1191,30 @@
                                                                             alt="{{ $secondary->country_name ?? 'Country' }} Analytics"
                                                                             class="img-fluid rounded shadow-sm mb-3 border">
                                                                     </a>
-                                                                    <a href="https://g2c.prarang.in/ai/{{ urlencode($secondary->country_name ?? 'Country') }}"
-                                                                        class="btn btn-info btn-sm w-100 fw-semibold"
-                                                                        target="_blank">
-                                                                        <i class="fa fa-robot me-1"></i> View AI Report
-                                                                    </a>
+
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
+                                        </section>
+                                        <section class="p-2 pt-1 shadow bg-light">
+                                            <h5 class="p-0 m-0 text-center">AI Reports</h5>
+                                            <div class="row">
+                                                <div class="col-sm-6"><a
+                                                        href="https://g2c.prarang.in/ai/{{ urlencode($primary->analytics_slug ?? 'Country') }}"
+                                                        class="btn btn-info btn-sm w-100 fw-semibold" target="_blank">
+                                                        <i class="fa fa-robot me-1"></i>
+                                                        {{ $primary->country_name ?? 'Country' }} AI Report
+                                                    </a></div>
+                                                <div class="col-sm-6"><a
+                                                        href="https://g2c.prarang.in/ai/{{ urlencode($secondary->analytics_slug ?? 'Country') }}"
+                                                        class="btn btn-info btn-sm w-100 fw-semibold" target="_blank">
+                                                        <i class="fa fa-robot me-1"></i>
+                                                        {{ $secondary->country_name ?? 'Country' }} AI Report
+                                                    </a></div>
+
                                             </div>
                                         </section>
                                     </main>
@@ -1131,6 +1307,7 @@
 
                 </div>
 
+
                 <script id="jquery-core-js" src="https://preview.lsvr.sk/townpress/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"
                     type="text/javascript"></script>
 
@@ -1143,13 +1320,31 @@
                     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
                 </script>
                 {!! $portal['footer_scripts'] ?? '' !!}
-                <script>
-                    document.addEventListener('DOMContentLoaded', () => {
-                        const hash = window.location.hash;
 
-                        if (hash === '#subscribeModal') {
-                            modal.classList.add("show");
-                        }
+                <!-- Map Functionality Script -->
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const radios = document.querySelectorAll('input[name="countrySelect"]');
+                        const mapContainer = document.getElementById('mapContainer');
+                        const primaryMap = mapContainer.children[0];
+                        const secondaryMap = mapContainer.children[1];
+
+                        radios.forEach(radio => {
+                            radio.addEventListener('change', function() {
+                                if (this.value === 'primary') {
+                                    primaryMap.style.display = 'block';
+                                    secondaryMap.style.display = 'none';
+                                } else {
+                                    primaryMap.style.display = 'none';
+                                    secondaryMap.style.display = 'block';
+                                }
+                            });
+                        });
+
+                        // Set default to secondary country
+                        document.getElementById('countrySecondary').checked = true;
+                        primaryMap.style.display = 'none';
+                        secondaryMap.style.display = 'block';
                     });
                 </script>
 

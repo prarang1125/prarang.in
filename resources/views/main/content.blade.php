@@ -216,6 +216,12 @@
             padding-top: 0px !important;
             padding-bottom: 0px !important;
         }
+
+        /* Text center */
+        .container .row .text-center {
+            text-align: left !important;
+            padding-left: 32px;
+        }
     </style>
     <section class="bs5-top-heading">
         <p class="">Content</p>
@@ -258,32 +264,8 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="text-center col-sm-2">
-                <b>Portals:</b>
-            </div>
-            <div class="col-sm-2 ">
-                <a href="/lucknow" target="_blank" class="btn btn-sm btn-warning w-75 ">Lucknow</a>
-            </div>
-            <div class="col-sm-2">
-                <a href="/meerut" target="_blank" class="btn btn-sm btn-warning w-75">Meerut</a>
-            </div>
-            <div class="col-sm-2">
-                <a href="/rampur" target="_blank" class="btn btn-sm btn-warning w-75">Rampur</a>
-            </div>
-            <div class="col-sm-2">
-                <a href="/jaunpur" target="_blank" class="btn btn-sm btn-warning w-75">Jaunpur</a>
-            </div>
-        </div>
 
-        <div class="row mt-2">
-            <div class="text-center col-sm-2">
-                <b>Bilateral Portals:</b>
-            </div>
-            <div class="col-sm-3 ">
-                <a href="/indo-czech" target="_blank" class="btn btn-sm btn-warning w-75 ">India - Czech Republic</a>
-            </div>
-        </div>
+
         <div class="mt-2 row">
             <div class="text-center col-sm-2">
                 <b>Daily Posts:</b>
@@ -301,7 +283,7 @@
                 <a href="/jaunpur/all-posts" target="_blank" class="btn btn-sm btn-warning w-75">Jaunpur</a>
             </div>
         </div>
-        <div class="mt-2 row">
+        <div class="mt-2 row mt-2">
             <div class="text-center col-sm-2">
                 <b>Business:</b>
             </div>
@@ -321,6 +303,29 @@
                 <a href="{{ route('city.show', ['city_name' => 'jaunpur']) }}" target="_blank"
                     class="btn btn-sm btn-warning w-75">Jaunpur</a>
             </div>
+        </div>
+        <div class="row mt-2">
+            <div class="text-center col-sm-2">
+                <b>India Portals:</b>
+            </div>
+            @foreach ($portal as $inPortal)
+                <div class="col-sm-2 ">
+                    <a href="/{{ $inPortal->slug }}" target="_blank"
+                        class="btn btn-sm btn-warning w-75 ">{{ $inPortal->city_name }}</a>
+                </div>
+            @endforeach
+        </div>
+        <div class="row mt-2">
+            <div class="text-center col-sm-2">
+                <b>Bilateral Portals:</b>
+            </div>
+            @foreach ($biletrals as $bilateral)
+                <div class="col-sm-3">
+                    <a href="/{{ $bilateral->slug }}" target="_blank"
+                        class="btn btn-sm btn-warning w-75 ">{{ ucwords(str_replace('-', ' ', $bilateral->slug)) }}</a>
+                </div>
+            @endforeach
+
         </div>
     </section>
 
@@ -345,8 +350,7 @@
                             <p>
                                 <strong class="text-primary">Daily City Posts - Free Subscription – </strong><a
                                     class="links style-TYdFv" href="https://www.facebook.com/prarang.in" target="_blank"
-                                    contenteditable="false" id="style-TYdFv">FB Page</a>, <a
-                                    class="links style-wDEqa"
+                                    contenteditable="false" id="style-TYdFv">FB Page</a>, <a class="links style-wDEqa"
                                     href="https://play.google.com/store/apps/details?id=com.riversanskiriti.prarang"
                                     target="_blank" contenteditable="false" id="style-wDEqa">Mobile App</a> ( Coming
                                 soon – X, eMail, Instagram, Whatsapp, Sharechat )
@@ -559,7 +563,8 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="city-btn">
-                                        <a target="_blank" href="{{ route('city.show', ['city_name' => 'jaunpur']) }}"
+                                        <a target="_blank"
+                                            href="{{ route('city.show', ['city_name' => 'jaunpur']) }}"
                                             contenteditable="false" id="style-twSAO" class="style-twSAO">Jaunpur,
                                             U.P</a>
                                     </div>
