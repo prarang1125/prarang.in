@@ -357,7 +357,7 @@
             <!-- Bilateral Portals -->
             <div class="row align-items-center mb-3">
                 <div class="col-md-2 text-md-right text-center">
-                    <h6 class="mb-0 font-weight-bold">Bilateral Portals:</h6>
+                    <h6 class="mb-0 font-weight-bold">World Portals:</h6>
                 </div>
                 <div class="col-md-10">
                     <div class="d-flex flex-wrap gap-2">
