@@ -998,6 +998,18 @@
             width: 75px !important;
         }
 
+        /* Modal body */
+        .hentry div .modal-body {
+            height: 605px;
+        }
+
+        /* Modal body */
+        #core .lsvr-container .lsvr-grid .columns__main #main .main__inner .hentry .page__content div .modal .modal-dialog .modal-content .modal-body {
+            transform: translatex(0px) translatey(0px) !important;
+        }
+
+
+
         /* Shadow */
     </style>
     <div id="wrapper">

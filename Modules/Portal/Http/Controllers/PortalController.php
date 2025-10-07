@@ -14,7 +14,6 @@ class PortalController extends Controller
 {
     public function portal($portal)
     {
-
         $isCityPortal = Portal::where('slug', $portal)->exists();
 
         $isCityPortalBiletral = BiletralPortal::where('slug', $portal)->exists();
