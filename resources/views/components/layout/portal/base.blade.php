@@ -14,10 +14,10 @@
     <!-- Open Graph Tags -->
     <meta property="og:title" content="{{ $portal->city_name ?? 'Default Title' }} Portal | Prarang" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="{{asset('assets/images/portal_meta_image.webp')}}" />
+    <meta property="og:image" content="{{ asset('assets/images/portal_meta_image.webp') }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:description" content="{{ $portal->city_slogan ?? '' }}" />
-    <title>{{ $portal->city_name }} Portal | Prarang</title>
+    <title>{{ $portal->city_name ?? '' }} Portal | Prarang</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
@@ -31,7 +31,7 @@
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    {!! $portal->header_scripts !!}
+    {!! $portal->header_scripts ?? '' !!}
 
 </head>
 
@@ -51,7 +51,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-    {!! $portal->footer_scripts !!}
+    {!! $portal->footer_scripts ?? '   ' !!}
 </body>
 
 </html>

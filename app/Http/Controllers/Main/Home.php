@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Main;
 
 use App\Http\Controllers\Controller;
+use App\Models\Portal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Exception;
 use Illuminate\Support\Facades\Hash;
+use Modules\Portal\Models\BiletralPortal;
 
 class Home extends Controller
 {
@@ -31,7 +33,10 @@ class Home extends Controller
     // Function for Content page
     public function content()
     {
-        return view('main.content');
+
+        $portal = Portal::all();
+        $biletrals = BiletralPortal::all();
+        return view('main.content', compact('portal', 'biletrals'));
     }
     public function semiotics()
     {
