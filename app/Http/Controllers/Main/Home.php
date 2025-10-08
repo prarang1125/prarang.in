@@ -34,7 +34,7 @@ class Home extends Controller
     public function content()
     {
 
-        $portal = Portal::all();
+        $portal = Portal::orderby('created_at', 'desc')->get();
         $biletrals = BiletralPortal::all();
         return view('main.content', compact('portal', 'biletrals'));
     }
