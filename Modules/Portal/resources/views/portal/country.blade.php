@@ -1065,6 +1065,23 @@
         }
 
 
+        /* Img fluid */
+        #core .lsvr-container .lsvr-grid .columns__main #main .main__inner .hentry .page__content div .modal .modal-dialog .modal-content .modal-body section .img-fluid {
+            width: 100% !important;
+        }
+
+        /* Image */
+        .hentry p img {
+            text-align: center;
+            margin-bottom: 18px;
+            margin-top: 9px;
+        }
+
+        /* Image */
+        .lsvr-grid .columns__main #main .main__inner .hentry .page__content div .modal .modal-dialog .modal-content .modal-body section .main-dec p img {
+            width: 100% !important;
+        }
+
 
         /* Shadow */
     </style>
