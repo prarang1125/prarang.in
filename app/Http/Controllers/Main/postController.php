@@ -9,13 +9,21 @@ use App\Models\Geography;
 use App\Models\Portal;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
+use Modules\Portal\Models\BiletralPortal;
 
 class postController extends Controller
 {
     public function getChittiData($city, $name = null, $forAbour = null)
     {
-        $portal = Portal::where('slug', $city)->firstOrFail();
-        $geography = Geography::where('geographycode', $portal->city_code)->first();
+
+        $portal = Portal::select('city_name_local as title', 'slug', 'city_code as geography_code', 'header_image', 'footer_image')->where('slug', $city)
+            ->union(
+                BiletralPortal::select('title', 'slug', 'content_country_code as geography_code', 'header_image', 'footer_image')->where('slug', $city)
+            )
+            ->firstOrFail();
+
+        $geography = Geography::where('geographycode', $portal->geography_code)->first();
+
         if (! $geography) {
             return abort(404, 'Geography not found');
         }
@@ -56,9 +64,9 @@ class postController extends Controller
         });
 
         return view('portal.post', [
-            'city_name' => $city,
+            'title' => $portal->title,
             'postsByMonth' => $postsByMonth,
-            'cityCode' => $geography->geographycode,
+            'geographyCode' => $geography->geographycode,
             'chittis' => $chittis,
             'name' => $name,
             'portal' => $portal,
@@ -80,7 +88,12 @@ class postController extends Controller
         $ColorCode = $post->color->colorcode ?? '';
 
         $geography = $post->geography;
-        $portal = Portal::where('slug', $slug)->firstOrFail();
+
+        $portal = Portal::select('city_name_local as title', 'slug', 'city_code as geography_code', 'header_image', 'footer_image')->where('slug', $slug)
+            ->union(
+                BiletralPortal::select('title', 'slug', 'content_country_code as geography_code', 'header_image', 'footer_image')->where('slug', $slug)
+            )
+            ->firstOrFail();
 
         $previousPost = $this->postButton($post, $portal, 'pre');
         $nextPost = $this->postButton($post, $portal, 'next');
@@ -101,6 +114,7 @@ class postController extends Controller
 
                 return $recent;
             });
+
         $post->tagInUnicode = $post->tagMappings->first()->tag->tagInUnicode;
 
         return view('portal.post-summary', [
@@ -109,7 +123,7 @@ class postController extends Controller
             'previousPost' => $previousPost,
             'nextPost' => $nextPost,
             'recentPosts' => $recentPosts,
-            'cityCode' => $geography->Geography ?? null,
+            'geographyCode' => $geography->Geography ?? null,
             'ColorCode' => $ColorCode,
             'city_name' => $portal->slug ?? 'Unknown',
             'portal' => $portal,

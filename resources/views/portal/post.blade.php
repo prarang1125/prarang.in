@@ -9,15 +9,15 @@
     <meta property="og:type" content="article" />
     <meta property="og:image:width" content="600" />
     <meta property="og:image:height" content="315" />
-    <meta property="og:site_name" content="{{ $portal->city_name ?? 'Prarang' }} Portal | Prarang" />
+    <meta property="og:site_name" content="{{ $portal->title ?? 'Prarang' }} Portal | Prarang" />
 
     <!-- Open Graph Tags -->
-    <meta property="og:title" content="{{ $portal->city_name ?? 'Default Title' }} Portal | Prarang" />
+    <meta property="og:title" content="{{ $portal->title ?? 'Default Title' }} Portal | Prarang" />
     <meta property="og:type" content="website" />
-    <meta property="og:image" content="{{ Storage::url($portal->header_image)?? 'default-image-url.jpg' }}" />
+    <meta property="og:image" content="{{ Storage::url($portal->header_image) ?? 'default-image-url.jpg' }}" />
     <meta property="og:url" content="{{ url()->current() }}" />
     <meta property="og:description" content="{{ $portal->city_slogan ?? '' }}" />
-    <title>{{ $portal->city_name }} Daily Posts | Prarang</title>
+    <title>{{ $portal->title }} Daily Posts | Prarang</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
@@ -233,49 +233,52 @@
             min-height: 55px !important;
             overflow: hidden;
         }
-        @media (max-width:768px){
 
-/* Image */
-.container .mb-5 img{
- display:inline-block;
- transform:translatex(0px) translatey(0px) !important;
- max-height:255px;
-}
+        @media (max-width:768px) {
 
-/* Image */
-.container .mb-5 .row .mt-3 .blog-card .image-wrapper img{
- height:100% !important;
-}
+            /* Image */
+            .container .mb-5 img {
+                display: inline-block;
+                transform: translatex(0px) translatey(0px) !important;
+                max-height: 255px;
+            }
 
-}
-.container .mt-3 img{
-    width: 100% !important;
-  height:100% !important;
- }
- /* Image */
-.container .mb-4 img{
- max-height:160px;
-}
+            /* Image */
+            .container .mb-5 .row .mt-3 .blog-card .image-wrapper img {
+                height: 100% !important;
+            }
 
-/* Heading */
-.container .mb-4 h2{
- height:104px;
-}
+        }
 
-/* Category badge */
-.container .mb-4 .category-badge{
- right:255px;
- display:none;
-}
+        .container .mt-3 img {
+            width: 100% !important;
+            height: 100% !important;
+        }
 
-.container .mb-4 .blog-card{
-    box-shadow:0px 4px 2px 1px rgba(0,0,0,0.32);
-}
+        /* Image */
+        .container .mb-4 img {
+            max-height: 160px;
+        }
+
+        /* Heading */
+        .container .mb-4 h2 {
+            height: 104px;
+        }
+
+        /* Category badge */
+        .container .mb-4 .category-badge {
+            right: 255px;
+            display: none;
+        }
+
+        .container .mb-4 .blog-card {
+            box-shadow: 0px 4px 2px 1px rgba(0, 0, 0, 0.32);
+        }
     </style>
 </head>
 
 <body>
-    <x-post.navbar cityId="12" :cityCode="$cityCode" />
+    <x-post.navbar :geographyCode="$geographyCode" />
 
     <div class="container">
         @isset($name)
@@ -284,64 +287,20 @@
 
             </div>
         @else
-            <h3 class="main-title-city">{{ ucfirst($city_name) }} Posts</h3>
+            <h3 class="main-title-city">{{ ucfirst($city_name ?? '') }} Posts</h3>
         @endisset
 
 
-    @if ($isTags)
-        <div class="row">
-            @foreach ($postsByMonth as $month => $posts)
-                @foreach ($posts as $post)
-                    <!-- Card with responsive column classes -->
-                    <div class="mt-3 mb-3 col-lg-3 col-md-6 col-sm-12">
-                        <div class="card blog-card h-100" style="background-color: {{ $post['color'] }}">
-                            <div class="image-wrapper">
-                                <img src="{{ $post['imageUrl'] ?? 'default-image.jpg' }}"
-                                    class="card-img-top" alt="{{ $post['title'] }}">
-                                <div class="category-badge" style="background-color: {{ $post['color'] }}">
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <h2 class="card-title">
-                                    <a href="{{ route('post-summary', [
-                                        'id' => $post['id'],
-                                        'slug' => $city_name,
-                                        'subTitle' => isset($post['subTitle']) ? str_replace(' ', '-', $post['subTitle']) : null,
-                                    ]) }}"
-                                        class="text-decoration-none {{ $post['color'] === '#4d4d4d' ? 'text-light' : '' }}">
-                                        {{ $post['title'] }}
-                                    </a>
-                                </h2>
-                                <div class="mb-3 meta-info">
-                                    <div class="mb-2 tags">
-                                        <span class="badge bg-primary">{{ $post['tags'] }}</span>
-                                    </div>
-                                    <div
-                                        class="post-info {{ $post['color'] === '#4d4d4d' ? 'text-light' : 'text-dark' }}">
-                                        <i class="bi bi-calendar3"></i>
-                                        <small
-                                            class="{{ $post['color'] === '#4d4d4d' ? 'text-light' : 'text-dark' }}">{{ \Carbon\Carbon::parse($post['createDate'])->format('d M Y') }}</small>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach
-            @endforeach
-        </div>
-    @else
-        @forelse ($postsByMonth as $month => $posts)
-            <div class="mb-4">
-                <!-- Month Header -->
-                <h6 class="p-0 ps-2 fw-bold">{{ $month }}</h6>
-                <div class="row">
+        @if ($isTags)
+            <div class="row">
+                @foreach ($postsByMonth as $month => $posts)
                     @foreach ($posts as $post)
                         <!-- Card with responsive column classes -->
                         <div class="mt-3 mb-3 col-lg-3 col-md-6 col-sm-12">
                             <div class="card blog-card h-100" style="background-color: {{ $post['color'] }}">
                                 <div class="image-wrapper">
-                                    <img src="{{ $post['imageUrl'] ?? 'default-image.jpg' }}"
-                                        class="card-img-top" alt="{{ $post['title'] }}">
+                                    <img src="{{ $post['imageUrl'] ?? 'default-image.jpg' }}" class="card-img-top"
+                                        alt="{{ $post['title'] }}">
                                     <div class="category-badge" style="background-color: {{ $post['color'] }}">
                                     </div>
                                 </div>
@@ -349,7 +308,7 @@
                                     <h2 class="card-title">
                                         <a href="{{ route('post-summary', [
                                             'id' => $post['id'],
-                                            'slug' => $city_name,
+                                            'slug' => $portal->slug,
                                             'subTitle' => isset($post['subTitle']) ? str_replace(' ', '-', $post['subTitle']) : null,
                                         ]) }}"
                                             class="text-decoration-none {{ $post['color'] === '#4d4d4d' ? 'text-light' : '' }}">
@@ -371,15 +330,59 @@
                             </div>
                         </div>
                     @endforeach
-                </div>
+                @endforeach
             </div>
-        @empty
-            <p>No posts found for this city.</p>
-        @endforelse
-    @endif
+        @else
+            @forelse ($postsByMonth as $month => $posts)
+                <div class="mb-4">
+                    <!-- Month Header -->
+                    <h6 class="p-0 ps-2 fw-bold">{{ $month }}</h6>
+                    <div class="row">
+                        @foreach ($posts as $post)
+                            <!-- Card with responsive column classes -->
+                            <div class="mt-3 mb-3 col-lg-3 col-md-6 col-sm-12">
+                                <div class="card blog-card h-100" style="background-color: {{ $post['color'] }}">
+                                    <div class="image-wrapper">
+                                        <img src="{{ $post['imageUrl'] ?? 'default-image.jpg' }}" class="card-img-top"
+                                            alt="{{ $post['title'] }}">
+                                        <div class="category-badge" style="background-color: {{ $post['color'] }}">
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        <h2 class="card-title">
+                                            <a href="{{ route('post-summary', [
+                                                'id' => $post['id'],
+                                                'slug' => $portal->slug,
+                                                'subTitle' => isset($post['subTitle']) ? str_replace(' ', '-', $post['subTitle']) : null,
+                                            ]) }}"
+                                                class="text-decoration-none {{ $post['color'] === '#4d4d4d' ? 'text-light' : '' }}">
+                                                {{ $post['title'] }}
+                                            </a>
+                                        </h2>
+                                        <div class="mb-3 meta-info">
+                                            <div class="mb-2 tags">
+                                                <span class="badge bg-primary">{{ $post['tags'] }}</span>
+                                            </div>
+                                            <div
+                                                class="post-info {{ $post['color'] === '#4d4d4d' ? 'text-light' : 'text-dark' }}">
+                                                <i class="bi bi-calendar3"></i>
+                                                <small
+                                                    class="{{ $post['color'] === '#4d4d4d' ? 'text-light' : 'text-dark' }}">{{ \Carbon\Carbon::parse($post['createDate'])->format('d M Y') }}</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @empty
+                <p>No posts found for this city.</p>
+            @endforelse
+        @endif
 
 
-</div>
+    </div>
 
     <!-- Pagination Controls -->
     <div class="mt-4 d-flex justify-content-center">
@@ -388,8 +391,8 @@
 
     {{-- @include('layout.footer') --}}
 
-    {{-- <x-post.footer /> --}}
-    <x-post.footer :city="$city_name" />
+    {{-- <x-post.footer />/ --}}
+    <x-post.footer :city="$title" :slug="$portal->slug" />
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

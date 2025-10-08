@@ -9,6 +9,7 @@ use App\Models\Chitti;
 use App\Models\Portal;
 // use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Modules\Portal\Models\BiletralPortal;
 
 class PostArchives extends Controller
 {
@@ -30,7 +31,7 @@ class PostArchives extends Controller
         //    return  $portal = Portal::orderBy('city_name', 'asc')->where('slug',$cityCode)->get();
         switch ($catg) {
             case 'time':
-                return redirect()->route('posts.city', ['city' => $cityCode, 'name' => ucfirst($cityCode).' Archive']);
+                return redirect()->route('posts.city', ['city' => $cityCode, 'name' => ucfirst($cityCode) . ' Archive']);
 
             case 'work':
                 $profession = DB::table('professionmapping')
@@ -83,8 +84,13 @@ class PostArchives extends Controller
     public function archivePosts($citySlug, $catg, $ids, $name)
     {
         $ids = explode('-', $ids);
-        $portal = Portal::where('slug', $citySlug)->firstOrFail();
-        $cityCode = $portal->city_code;
+        $portal = Portal::select('city_name_local as title', 'slug', 'city_code as geography_code', 'header_image', 'footer_image')->where('slug', $citySlug)
+            ->union(
+                BiletralPortal::select('title', 'slug', 'content_country_code as geography_code', 'header_image', 'footer_image')->where('slug', $citySlug)
+            )
+            ->firstOrFail();
+        $cityCode = $portal->geography_code;
+
         $chittiIds = DB::table('chittitagmapping as tag')
             ->join('vChittiGeography as vg', 'vg.chittiId', '=', 'tag.chittiId')
             ->where('vg.Geography', $cityCode);
@@ -116,7 +122,7 @@ class PostArchives extends Controller
         })->map(function ($chittis) {
             return $chittis->map(function ($chitti) {
 
-                 $imageUrl = $chitti->images->first()->imageUrl ?? asset('default_image.jpg');
+                $imageUrl = $chitti->images->first()->imageUrl ?? asset('default_image.jpg');
 
                 $tags = $chitti->tagMappings->map(function ($tagMapping) {
                     return $tagMapping->tag->tagInUnicode;
@@ -128,20 +134,20 @@ class PostArchives extends Controller
                     'description' => $chitti->description,
                     'imageUrl' => $imageUrl,
                     'tags' => $tags,
-                    'color' => isset($chitti->color->colorcode) ?$chitti->color->colorcode:'',
+                    'color' => isset($chitti->color->colorcode) ? $chitti->color->colorcode : '',
                     'createDate' => $chitti->dateOfApprove,
                 ];
             });
         });
 
         return view('portal.post', [
-            'city_name' => $portal->city_name,
+            'title' => $portal->city_name,
             'postsByMonth' => $postsByMonth,
-            'cityCode' => $portal->city_code,
+            'geographyCode' => $portal->geography_code,
             'chittis' => $chittis,
             'name' => ucfirst($name),
             'portal' => $portal,
-            'isTags'=>true,
+            'isTags' => true,
         ]);
     }
 }

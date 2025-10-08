@@ -10,15 +10,16 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Log;
 use Illuminate\View\Component;
+use Modules\Portal\Models\BiletralPortal;
 
 class Navbar extends Component
 {
     /**
      * Create a new component instance.
      */
-    public $cityCode;
+    public $geographyCode;
 
-    public $cityId;
+    public $cityId = 12;
 
     public $tagCounts;
 
@@ -26,31 +27,36 @@ class Navbar extends Component
 
     public $portal;
 
-    public function __construct($cityId, $cityCode)
+    public function __construct($geographyCode)
     {
-        $this->portal = Portal::where('city_code', $cityCode)->firstOrFail();
 
-        $cacheKey = "tag_counts_{$cityCode}";
+        $this->portal = Portal::select('city_name_local as title', 'slug', 'city_code as geography_code', 'header_image', 'footer_image')->where('city_code', $geographyCode)
+            ->union(
+                BiletralPortal::select('title', 'slug', 'content_country_code as geography_code', 'header_image', 'footer_image')->where('content_country_code', $geographyCode)
+            )
+            ->firstOrFail();
 
-        $taglist = Cache::remember($cacheKey.'_list', now()->addMinutes(330), function () use ($cityId, $cityCode) {
-            return new TagList($cityId, $cityCode, $this->portal->slug);
+        $cacheKey = "tag_counts_{$geographyCode}";
+
+        $taglist = Cache::remember($cacheKey . '_list', now()->addMinutes(330), function () use ($geographyCode) {
+            return new TagList($this->cityId, $geographyCode, $this->portal->slug);
         });
         try {
 
-            $this->tagCounts = Cache::remember($cacheKey, now()->addMinutes(330), function () use ($cityCode, $taglist) {
-                return $taglist->getCounts($cityCode);
+            $this->tagCounts = Cache::remember($cacheKey, now()->addMinutes(330), function () use ($geographyCode, $taglist) {
+                return $taglist->getCounts($geographyCode);
             });
         } catch (Exception $e) {
-            Log::error('Error fetching tag counts: '.$e->getMessage());
+            Log::error('Error fetching tag counts: ' . $e->getMessage());
             $tagCounts = [];
         }
         try {
 
-            $this->tagSubCounts = Cache::remember($cacheKey.'tag', now()->addMinutes(330), function () use ($cityCode, $taglist) {
-                return $taglist->getChittiTagsData($cityCode);
+            $this->tagSubCounts = Cache::remember($cacheKey . 'tag', now()->addMinutes(330), function () use ($geographyCode, $taglist) {
+                return $taglist->getChittiTagsData($geographyCode);
             });
         } catch (Exception $e) {
-            Log::error('Error fetching tag counts: '.$e->getMessage());
+            Log::error('Error fetching tag counts: ' . $e->getMessage());
             $tagSubCounts = [];
         }
     }

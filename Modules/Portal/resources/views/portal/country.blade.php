@@ -1008,6 +1008,62 @@
             transform: translatex(0px) translatey(0px) !important;
         }
 
+        /* Header toolbar */
+        #wrapper #header .header__inner .header__content .lsvr-container .header__content-inner .header-toolbar {
+            z-index: 1000 !important;
+        }
+
+        /* Header toolbar */
+        #header .header-toolbar {
+            bottom: -10px;
+        }
+
+        /* Columns */
+        #columns {
+            position: relative;
+            top: 30px;
+        }
+
+        /* Lsvr grid */
+        #core .lsvr-grid {
+            top: -40px;
+        }
+
+        @media (min-width:992px) {
+
+            /* Header toolbar */
+            #header .header-toolbar {
+                position: fixed;
+                top: 5px;
+                right: 14px;
+            }
+
+        }
+
+        /* Core  inner */
+        #core .core__inner {
+            position: relative;
+            top: 30px;
+        }
+
+        /* Columns */
+        #columns {
+            top: 10px !important;
+            bottom: auto !important;
+        }
+
+        /* Core */
+        #core {
+            top: 130px;
+            padding-top: -12px;
+            transform: translatex(0px) translatey(0px);
+        }
+
+        /* Lsvr grid */
+        #core .lsvr-grid {
+            margin-top: -50px;
+        }
+
 
 
         /* Shadow */
@@ -1028,18 +1084,18 @@
                             </div>
                             <!-- HEADER TOOLBAR TOGGLE : end -->
                             <!-- HEADER TOOLBAR : begin -->
-                            <div class="header-toolbar">
 
-                                {{-- <!-- HEADER MAP TOGGLE : begin -->
-                                <button aria-label="Open / close map"
-                                    class="header-map-toggle header-map-toggle--desktop header-toolbar__item"
-                                    type="button" data-bs-toggle="modal" data-bs-target="#mapModal">
+                            <div class="header-toolbar" style=" z-index: 999 !important;">
+
+
+                                <a class="header-map-toggle header-map-toggle--desktop header-toolbar__item"
+                                    href="{{ url($main->slug) }}/all-posts">
 
                                     <i class="fa fa-map-marker"></i>
                                     <span class="header-map-toggle__label">
-                                        <b>View Maps</b>
+                                        <b>All Posts</b>
                                     </span>
-                                </button> --}}
+                                </a>
 
 
                                 <!-- HEADER MOBILE MENU : end -->

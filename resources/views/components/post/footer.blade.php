@@ -7,7 +7,7 @@
                 <h5>{{ $linksTitle ?? 'Quick Links' }}</h5>
                 <ul>
                     <li>
-                        <a href="{{ $homeLink ?? 'https://www.prarang.in/' . $city }}"> {{ ucfirst($city) }} होम </a>
+                        <a href="{{ $homeLink ?? 'https://www.prarang.in/' . $slug }}"> {{ ucfirst($city) }} होम </a>
                     </li>
                     {{-- <li>
                         <a href="{{ $servicesLink ?? '' . $city . '/' }}"> {{ ucfirst($city) }} स्मार्ट सर्विसेज </a>
@@ -28,10 +28,14 @@
             <div class="col-md-4">
                 <h5>Connect With Us</h5>
                 <ul class="social-links">
-                    <li><a href="{{ $facebook ?? 'https://www.facebook.com/prarang.in/' }}" target="_blank"><i class="fab fa-facebook"></i> Facebook</a></li>
-                    <li><a href="{{ $instagram ?? 'https://www.instagram.com/prarang_in/?hl=en' }}" target="_blank"><i class="fab fa-instagram"></i> Instagram</a></li>
-                    <li><a href="{{ $playstore ?? 'https://play.google.com/store/apps/details?id=com.riversanskiriti.prarang&hl=en_IN' }}" target="_blank"><i class="fab fa-google-play"></i> Play Store</a></li>
-                    <li><a href="{{ $twitter ?? 'https://x.com/prarang_in?lang=en' }}" target="_blank"><i class="fab fa-twitter"></i> Twitter</a></li>
+                    <li><a href="{{ $facebook ?? 'https://www.facebook.com/prarang.in/' }}" target="_blank"><i
+                                class="fab fa-facebook"></i> Facebook</a></li>
+                    <li><a href="{{ $instagram ?? 'https://www.instagram.com/prarang_in/?hl=en' }}" target="_blank"><i
+                                class="fab fa-instagram"></i> Instagram</a></li>
+                    <li><a href="{{ $playstore ?? 'https://play.google.com/store/apps/details?id=com.riversanskiriti.prarang&hl=en_IN' }}"
+                            target="_blank"><i class="fab fa-google-play"></i> Play Store</a></li>
+                    <li><a href="{{ $twitter ?? 'https://x.com/prarang_in?lang=en' }}" target="_blank"><i
+                                class="fab fa-twitter"></i> Twitter</a></li>
                 </ul>
             </div>
         </div>
@@ -39,7 +43,9 @@
 
     <!-- Footer Bottom Section -->
     <div class="footer-bottom">
-        <p>2017 - &copy; {{ date('Y') }}, All content on this website, such as text, graphics, logos, button icons, software, images, and its selection, arrangement, presentation & overall design, is the property of Indoeuropeans India Pvt. Ltd. and protected by international copyright laws.</p>
+        <p>2017 - &copy; {{ date('Y') }}, All content on this website, such as text, graphics, logos, button icons,
+            software, images, and its selection, arrangement, presentation & overall design, is the property of
+            Indoeuropeans India Pvt. Ltd. and protected by international copyright laws.</p>
     </div>
 </footer>
 
