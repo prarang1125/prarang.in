@@ -353,7 +353,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Bilateral Portals -->
             <div class="row align-items-center mb-3">
                 <div class="col-md-2 text-md-right text-center">

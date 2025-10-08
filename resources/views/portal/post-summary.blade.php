@@ -608,7 +608,7 @@
 </head>
 
 <body>
-    <x-post.navbar cityId="12" :cityCode="$cityCode" />
+    <x-post.navbar :geographyCode="$geographyCode" />
     <div class="container">
         <div class="row">
             <div class="col-sm-9">
@@ -625,54 +625,54 @@
                 <div class="mt-4 main-post">
                     <div class="analytics">
                         @if (\Carbon\Carbon::parse($post['dateOfApprove'])->addDays(4)->lte(now()))
-                        @if (!empty($post['totalViewerCount']) && $post['totalViewerCount'] > 0)
-                        {{-- @if ($post['postStatusMakerChecker'] === 'approved' && $post['totalViewerCount'] > 0) --}}
-                        <table class="mb-0 table-sm" border="1">
-                            <thead>
-                                <tr>
-                                    <th colspan="5">Post Viewership from Post Date to
-                                        {{ \Carbon\Carbon::parse($post['postViewershipDateTo'])->format('d- M-Y') }}
-                                        {{ $post['monthDay'] }}
-                                    </th>
-                                </tr>
-                                <tr>
-                                    <th>City Subscribers (FB+App)</th>
-                                    <th>Website (Direct+Google)</th>
-                                    <th>Messaging Subscribers</th>
-                                    {{-- <th>Instagram</th> --}}
-                                    <th>Total</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>{{ intval($post['citySubscriber']) + intval($post['prarangApplication']) }}
-                                    </td>
-                                    <td>{{ $post['websiteCount'] }}</td>
-                                    {{-- <td>{{ $post['emailCount'] }}</td> --}}
-                                    {{-- <td>{{ $post['instagramCount'] }}</td> --}}
-                                     <td>{{ $post['whatsappCount'] }}</td>
-                                    <td>{{ $post['totalViewerCount'] }}</td>
-                                </tr>
-                                <tr>
-                                    <td colspan="5" class="text-start">
-                                        <a href="#analyticsinfo" class="text-dark"
-                                            style="text-decoration-line: none;">* Please see metrics definition
-                                            on bottom of this page.</a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        @endif
+                            @if (!empty($post['totalViewerCount']) && $post['totalViewerCount'] > 0)
+                                {{-- @if ($post['postStatusMakerChecker'] === 'approved' && $post['totalViewerCount'] > 0) --}}
+                                <table class="mb-0 table-sm" border="1">
+                                    <thead>
+                                        <tr>
+                                            <th colspan="5">Post Viewership from Post Date to
+                                                {{ \Carbon\Carbon::parse($post['postViewershipDateTo'])->format('d- M-Y') }}
+                                                {{ $post['monthDay'] }}
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <th>City Subscribers (FB+App)</th>
+                                            <th>Website (Direct+Google)</th>
+                                            <th>Messaging Subscribers</th>
+                                            {{-- <th>Instagram</th> --}}
+                                            <th>Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>{{ intval($post['citySubscriber']) + intval($post['prarangApplication']) }}
+                                            </td>
+                                            <td>{{ $post['websiteCount'] }}</td>
+                                            {{-- <td>{{ $post['emailCount'] }}</td> --}}
+                                            {{-- <td>{{ $post['instagramCount'] }}</td> --}}
+                                            <td>{{ $post['whatsappCount'] }}</td>
+                                            <td>{{ $post['totalViewerCount'] }}</td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="5" class="text-start">
+                                                <a href="#analyticsinfo" class="text-dark"
+                                                    style="text-decoration-line: none;">* Please see metrics definition
+                                                    on bottom of this page.</a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            @endif
                         @endif
                     </div>
                     @php
-                    $chitti_id = $post['chittiId'];
+                        $chitti_id = $post['chittiId'];
                     @endphp
                     <div class="main-image">
                         @if ($post->images[0]->VideoExist == 1)
-                        {!! $post->images[0]->VideoURL !!}
+                            {!! $post->images[0]->VideoURL !!}
                         @else
-                        <img class="img-fluid" src="{{ $post->images[0]->imageUrl }}" alt="{{ $post->Title }}">
+                            <img class="img-fluid" src="{{ $post->images[0]->imageUrl }}" alt="{{ $post->Title }}">
                         @endif
                     </div>
 
@@ -691,13 +691,13 @@
                     </div>
                     <div class="text-center post-navigation">
                         @if ($previousPost)
-                        <a href="{{ route('post-summary', ['slug' => $slug, 'id' => $previousPost->chittiId, 'subTitle' => Str::slug($previousPost->SubTitle)]) }}"
-                            class="btn btn-primary">पिछला / Previous</a>
+                            <a href="{{ route('post-summary', ['slug' => $slug, 'id' => $previousPost->chittiId, 'subTitle' => Str::slug($previousPost->SubTitle)]) }}"
+                                class="btn btn-primary">पिछला / Previous</a>
                         @endif
 
                         @if ($nextPost)
-                        <a href="{{ route('post-summary', ['slug' => $slug, 'id' => $nextPost->chittiId, 'subTitle' => Str::slug($nextPost->SubTitle)]) }}"
-                            class="btn btn-primary">अगला / Next</a>
+                            <a href="{{ route('post-summary', ['slug' => $slug, 'id' => $nextPost->chittiId, 'subTitle' => Str::slug($nextPost->SubTitle)]) }}"
+                                class="btn btn-primary">अगला / Next</a>
                         @endif
                     </div>
                 </div>
@@ -705,7 +705,7 @@
             </div>
             <div class="text-center col-sm-3 ps-1">
                 <div class="stk-side"><br><br>
-                    @livewire('portal.elements.sub-pop-up',['banner'=>'sub-2','slug'=>$portal->slug,'portal'=>$portal])
+                    @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-2', 'slug' => $portal->slug, 'portal' => $portal])
                     {{-- <div class="p-2 text-center shadow app-fb">
                         <p class="p-0">Follow Us on</p>
                         <a class="text-center btn btn-primary" href="https://facebook.com/prarang.in" target="_blank"><i
@@ -719,13 +719,13 @@
                     <div class="pt-2 pb-2 mt-3 recent-poet text-start">
                         <h6 class="ps-2 fw-bold">Recent Posts</h6>
                         @foreach ($recentPosts as $post)
-                        <a style="text-decoration-line: none;"
-                            href="{{ route('post-summary', ['slug' => $slug, 'id' => $post->chittiId, 'subTitle' => Str::slug($post->SubTitle)]) }}">
-                            <div class="p-2 mt-3 rounded shadow">
-                                <img class="img-fluid rounded-top w-100" src="{{ $post->imageUrl }}"
-                                    alt="{{ $post->Title }}">
-                                <h6 class="mt-2 text-dark ">{{ $post->Title }}</h6>
-                        </a>
+                            <a style="text-decoration-line: none;"
+                                href="{{ route('post-summary', ['slug' => $slug, 'id' => $post->chittiId, 'subTitle' => Str::slug($post->SubTitle)]) }}">
+                                <div class="p-2 mt-3 rounded shadow">
+                                    <img class="img-fluid rounded-top w-100" src="{{ $post->imageUrl }}"
+                                        alt="{{ $post->Title }}">
+                                    <h6 class="mt-2 text-dark ">{{ $post->Title }}</h6>
+                            </a>
                     </div>
                     @endforeach
                 </div>
@@ -746,7 +746,8 @@
             post directly through their browsers and via Google search.
         </p>
         <p>
-            <strong>C. Messaging Subscribers -</strong> This is the total viewership from City Portal subscribers who opted for hyperlocal daily messaging and received this post.
+            <strong>C. Messaging Subscribers -</strong> This is the total viewership from City Portal subscribers who
+            opted for hyperlocal daily messaging and received this post.
         </p>
         <p>
             <strong>D. Total Viewership -</strong> This is the Sum of all Subscribers (FB+App), Website
@@ -761,20 +762,20 @@
     </div>
 
     @if ($ColorCode === '#4d4d4d')
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const descriptionData = document.querySelector('.post-description');
-            if (descriptionData) {
-                descriptionData.querySelectorAll('*').forEach(element => {
-                    if (element.tagName !== 'BR' && element.tagName !== 'HR') {
-                        element.classList.add('text-white', 'text-light');
-                    }
-                });
-            }
-        });
-    </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const descriptionData = document.querySelector('.post-description');
+                if (descriptionData) {
+                    descriptionData.querySelectorAll('*').forEach(element => {
+                        if (element.tagName !== 'BR' && element.tagName !== 'HR') {
+                            element.classList.add('text-white', 'text-light');
+                        }
+                    });
+                }
+            });
+        </script>
     @endif
-    <x-post.footer :city="$city_name" />
+    <x-post.footer :city="$portal->title" :slug="$portal->slug" />
     <script src='{{ asset('location.js') }}'></script>
     <script>
         collectAndSendInformation('{{ $chitti_id }}', '{{ $city_name }}', '{{ $platform }}');
@@ -801,4 +802,5 @@
     {!! $portal->footer_scripts !!}
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
+
 </html>

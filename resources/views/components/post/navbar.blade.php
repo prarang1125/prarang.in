@@ -112,7 +112,7 @@
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link"
-                            href="{{ route('portal', ['portal' => $portal->slug]) }}">{{ $portal->city_name_local }}
+                            href="{{ route('portal', ['portal' => $portal->slug]) }}">{{ $portal->title }}
                             पोर्टल</a>
                     </li>
                     <li class="nav-item">
@@ -221,7 +221,7 @@
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
                                     <a target="_blank" style="text-decoration-line: none; !important;"
-                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' =>str_replace('/', ',', $tag->tagInUnicode), 'cityCode' => $portal->slug]) }}">
+                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ',', $tag->tagInUnicode), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
@@ -270,7 +270,7 @@
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
                                     <a target="_blank" style="text-decoration-line: none; !important;"
-                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' =>str_replace('/', ',', $tag->tagInUnicode), 'cityCode' => $portal->slug]) }}">
+                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ',', $tag->tagInUnicode), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
@@ -335,7 +335,7 @@
                             @foreach ($tagSubCounts['tag_6'] as $tag)
                                 <div class="mb-1">
                                     <a target="_blank" style="text-decoration-line: none; !important;"
-                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ',', $tag->tagInUnicode),'cityCode' => $portal->slug]) }}">
+                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ',', $tag->tagInUnicode), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
