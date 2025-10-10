@@ -4,6 +4,7 @@ namespace Modules\Portal\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\City;
+use App\Models\PortalLocaleizetion;
 use Illuminate\Database\Eloquent\Casts\Json;
 use Illuminate\Support\Facades\DB;
 use Modules\Portal\Models\BiletralPortal;
@@ -12,6 +13,8 @@ use Modules\Portal\Models\Portal;
 
 class PortalController extends Controller
 {
+
+
     public function portal($portal)
     {
         $isCityPortal = Portal::where('slug', $portal)->exists();
@@ -31,10 +34,12 @@ class PortalController extends Controller
 
     public function indianCitiesPortal($portal)
     {
+        $locale = PortalLocaleizetion::firstOrFail();
+        $locale = $locale['json'] ?? [];
         $portal = Portal::where('slug', $portal)->firstOrFail();
         $cityCode = $portal->city_code;
         $yellowPages = City::where('portal_id', $portal->id)->first();
-        return view('portal::portal.home', compact('cityCode', 'portal', 'yellowPages'));
+        return view('portal::portal.home', compact('cityCode', 'portal', 'yellowPages', 'locale'));
     }
 
     public function bilateralCountriesPortal(string $slug)
@@ -49,7 +54,8 @@ class PortalController extends Controller
         $primary->important_links = json_decode($primary->important_links) ?: [];
         $secondary = $main->secondaryCountry;
         $secondary->important_links = json_decode($secondary->important_links) ?: [];
-
-        return view('portal::portal.country', compact('main', 'primary', 'secondary'));
+        $locale = PortalLocaleizetion::firstOrFail();
+        $locale = $locale['json'] ?? [];
+        return view('portal::portal.country', compact('main', 'primary', 'secondary', 'local'));
     }
 }

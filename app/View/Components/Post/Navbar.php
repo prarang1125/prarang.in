@@ -3,6 +3,7 @@
 namespace App\View\Components\Post;
 
 use App\Models\Portal;
+use App\Models\PortalLocaleizetion;
 use App\View\Components\Portal\TagList;
 use Closure;
 use Exception;
@@ -25,7 +26,7 @@ class Navbar extends Component
 
     public $tagSubCounts;
 
-    public $portal;
+    public $portal, $locale;
 
     public function __construct($geographyCode)
     {
@@ -35,7 +36,8 @@ class Navbar extends Component
                 BiletralPortal::select('title', 'slug', 'content_country_code as geography_code', 'header_image', 'footer_image')->where('content_country_code', $geographyCode)
             )
             ->firstOrFail();
-
+        $locale = PortalLocaleizetion::firstOrFail();
+        $this->locale = $locale['json'] ?? [];
         $cacheKey = "tag_counts_{$geographyCode}";
 
         $taglist = Cache::remember($cacheKey . '_list', now()->addMinutes(330), function () use ($geographyCode) {

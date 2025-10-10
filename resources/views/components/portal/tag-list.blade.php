@@ -62,12 +62,14 @@
             padding-bottom: 1px;
         }
     </style>
+
     <section class="p-3 pt-4 border borede bg-light">
         <div class="row">
             <div class="col-sm-6">
                 <div class="text-center mdl-card mdl-card1 mdl-shadow--2dp snipcss-ADolR"
                     style="min-height:125px !important"><br>
-                    <span class="culture seo style-NJkA2" id="style-NJkA2"><strong>संस्कृति</strong></span>
+                    <span class="culture seo style-NJkA2"
+                        id="style-NJkA2"><strong>{{ $locale['culture'] ?? '' }}</strong></span>
                     <span id="style-iGLiM" class="style-iGLiM"><strong>{{ $tagCounts['culture_count'] }}</strong></span>
                     <div id="top-line" class="style-h84A5">
                         <div class="chunk">&nbsp;<span class="filler style-hjjgy" id="style-hjjgy"></span></div>
@@ -91,7 +93,7 @@
                             <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_1"
                                 class="text-center mdl-card mdl-shadow--2dp col-md-9 col-xs-10 padngbox">
                                 <div class="timeline-heading">
-                                    <span class="mb-10 prangtxt"><strong>समयसीमा
+                                    <span class="mb-10 prangtxt"><strong>{{ $locale['categories']['1'] ?? 'समय - सीमा' }}
                                         </strong></span>
                                 </div>
                                 <span id="style-gLZHU"
