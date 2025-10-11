@@ -5,5 +5,5 @@ use Modules\Portal\Http\Controllers\PortalController;
 
 
 Route::get('/{portal}', [PortalController::class, 'portal'])
-    ->where('portal', '^(?!yp|yellow-pages|partner-api|prapi).*')
+    ->where('portal', '^(?!yp|yellow-pages|partner-api|prapi|api).*')
     ->name('portal');
