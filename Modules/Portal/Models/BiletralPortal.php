@@ -5,11 +5,12 @@ namespace Modules\Portal\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 // use Modules\Portal\Database\Factories\PortalFactory;
+use Illuminate\Database\Eloquent\SoftDeletes; // 👈 import this
 
 class BiletralPortal extends Model
 {
-    use HasFactory;
-
+     use HasFactory, SoftDeletes; 
+    protected $dates = ['deleted_at']; 
     protected $table = 'byletral_portals';
     protected $connection = 'main';
     protected $guarded = [];
