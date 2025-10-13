@@ -43,7 +43,7 @@ class Navbar extends Component
         $cacheKey = "tag_counts_{$geographyCode}";
 
         $taglist = Cache::remember($cacheKey . '_list', now()->addMinutes(330), function () use ($geographyCode) {
-            return new TagList($this->cityId, $geographyCode, $this->portal->slug);
+            return new TagList($this->cityId, $geographyCode, $this->portal->slug, $this->locale);
         });
         try {
 
