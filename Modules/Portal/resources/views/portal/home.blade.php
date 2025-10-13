@@ -377,7 +377,7 @@
                                                     <x-portal.posts-carousel :cityId="$cityCode" :cityCode="$cityCode" />
                                                     <!-- TOWNPRESS SITEMAP : begin -->
                                                     <x-portal.tag-list :cityId="$cityCode" :cityCode="$cityCode"
-                                                        :citySlug="$portal->slug" />
+                                                        :citySlug="$portal->slug" :locale="$locale" />
 
                                                     <div class="p-2 mt-3 " style="border:2px solid #FFB1A3">
                                                         <h3 class="text-center">{{ $portal->city_name_local }} के आंकड़े

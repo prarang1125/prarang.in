@@ -34,7 +34,7 @@ class PortalController extends Controller
 
     public function indianCitiesPortal($portal)
     {
-        $locale = PortalLocaleizetion::firstOrFail();
+        $locale = PortalLocaleizetion::where('lang_code', 'hi')->firstOrFail();
         $locale = $locale['json'] ?? [];
         $portal = Portal::where('slug', $portal)->firstOrFail();
         $cityCode = $portal->city_code;
@@ -54,8 +54,8 @@ class PortalController extends Controller
         $primary->important_links = json_decode($primary->important_links) ?: [];
         $secondary = $main->secondaryCountry;
         $secondary->important_links = json_decode($secondary->important_links) ?: [];
-        $locale = PortalLocaleizetion::firstOrFail();
+        $locale = PortalLocaleizetion::where('lang_code', 'en')->firstOrFail();
         $locale = $locale['json'] ?? [];
-        return view('portal::portal.country', compact('main', 'primary', 'secondary', 'local'));
+        return view('portal::portal.country', compact('main', 'primary', 'secondary', 'locale'));
     }
 }

@@ -1212,10 +1212,8 @@
                                                         cityId="{{ $main->content_country_code ?? 'CON24' }}"
                                                         cityCode="{{ $main->content_country_code ?? 'CON24' }}" />
                                                     <!-- TOWNPRESS SITEMAP : begin -->
-                                                    <x-portal.tag-list
-                                                        cityId="{{ $main->content_country_code ?? 'CON2' }}"
-                                                        cityCode="{{ $main->content_country_code ?? 'CON2' }}"
-                                                        citySlug="{{ $main->content_country_code ?? 'CON2' }}" />
+                                                    <x-portal.tag-list :cityId="$main->content_country_code" :cityCode="$main->content_country_code"
+                                                        :citySlug="$main->slug" :locale="$locale" />
                                                 </div>
                                                 <!-- CATEGORY CONTENT : end -->
                                             </div>

@@ -20,7 +20,7 @@ class TagList extends Component
     public $tagSubCounts;
     public $citySlug, $locale;
 
-    public function __construct($cityId, $cityCode, $citySlug)
+    public function __construct($cityId, $cityCode, $citySlug, $locale)
     {
         $this->cityId = $cityId;
         $this->cityCode = $cityCode;
@@ -32,8 +32,7 @@ class TagList extends Component
         $this->tagSubCounts = Cache::remember($cacheKey . 'tag', 60 * 60, function () use ($cityCode) {
             return $this->getChittiTagsData($cityCode);
         });
-        $locale = PortalLocaleizetion::firstOrFail();
-        $this->locale = $locale['json'] ?? [];
+        $this->locale = $locale;
     }
 
     /**

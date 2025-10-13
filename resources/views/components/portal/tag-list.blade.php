@@ -61,6 +61,17 @@
             padding-top: 2px;
             padding-bottom: 1px;
         }
+
+        /* Rounded circle */
+        .hentry .tagListx .rounded-circle {
+            height: 43px !important;
+        }
+
+        /* Heading */
+        .hentry a h6 {
+            position: relative;
+            top: 6px;
+        }
     </style>
 
     <section class="p-3 pt-4 border borede bg-light">
@@ -110,9 +121,8 @@
                             <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_2"
                                 class="text-center mdl-card mdl-shadow--2dp col-md-9 col-xs-10 padngbox">
                                 <div class="timeline-heading">
-                                    <span class="mb-10 prangtxt"><strong>मानव
-                                            व उनकी
-                                            इन्द्रियाँ</strong></span>
+                                    <span
+                                        class="mb-10 prangtxt"><strong>{{ $locale['categories']['2'] ?? 'मानव व उनकी इन्द्रियाँ' }}</strong></span>
                                 </div>
                                 <span id="style-xhvhP"
                                     class="style-xhvhP"><strong>{{ $tagCounts['man_senses_count'] }}</strong></span>
@@ -128,9 +138,8 @@
                             <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_3"
                                 class="text-center mdl-card mdl-shadow--2dp col-md-9 col-xs-10 padngbox">
                                 <div class="timeline-heading">
-                                    <span class="mb-10 prangtxt"><strong>मानव
-                                            व उसके
-                                            आविष्कार</strong></span>
+                                    <span
+                                        class="mb-10 prangtxt"><strong>{{ $locale['categories']['3'] ?? 'मानव व उसके आविष्कार' }}</strong></span>
                                 </div>
                                 <span id="style-oGlBW"
                                     class="style-oGlBW"><strong>{{ $tagCounts['man_inventions_count'] }}</strong></span>
@@ -142,7 +151,7 @@
                 <div class="text-center mdl-card mdl-card1 mdl-shadow--2dp snipcss0-2-2-3 snipcss-xJBZh"
                     style="min-height:125px !important"><br class="snipcss0-3-3-4">
                     <span class="culture seo snipcss0-3-3-5 style-U4EGH" id="style-U4EGH"><strong
-                            class="snipcss0-4-5-6">प्रकृति</strong></span>
+                            class="snipcss0-4-5-6">{{ $locale['culture'] ?? 'प्रकृति' }}</strong></span>
                     <span class="snipcss0-3-3-7 style-9ay34" id="style-9ay34"><strong
                             class="snipcss0-4-7-8">{{ $tagCounts['nature_count'] }}</strong></span>
                     <div id="top-line" class="snipcss0-3-3-9 style-oo6iY">
@@ -169,7 +178,7 @@
                             <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_4"
                                 class="text-center mdl-card mdl-shadow--2dp col-md-9 col-xs-10 padngbox">
                                 <div class="timeline-heading">
-                                    <span class="mb-10 prangtxt"><strong>भूगोल
+                                    <span class="mb-10 prangtxt"><strong>{{ $locale['categories']['4'] ?? 'भूगोल' }}
                                         </strong></span>
                                 </div>
                                 <span id="style-gLZHU"
@@ -185,7 +194,8 @@
                             <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_5"
                                 class="text-center mdl-card mdl-shadow--2dp col-md-9 col-xs-10 padngbox">
                                 <div class="timeline-heading">
-                                    <span class="mb-10 prangtxt"><strong>जीव - जन्तु</strong></span>
+                                    <span
+                                        class="mb-10 prangtxt"><strong>{{ $locale['categories']['5'] ?? 'जीव - जन्तु' }}</strong></span>
                                 </div>
                                 <span id="style-xhvhP"
                                     class="style-xhvhP"><strong>{{ $tagCounts['fauna_count'] }}</strong></span>
@@ -201,7 +211,8 @@
                             <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_6"
                                 class="text-center mdl-card mdl-shadow--2dp col-md-9 col-xs-10 padngbox">
                                 <div class="timeline-heading">
-                                    <span class="mb-10 prangtxt"><strong>वनस्पति</strong></span>
+                                    <span
+                                        class="mb-10 prangtxt"><strong>{{ $locale['categories']['6'] ?? 'वनस्पति' }}</strong></span>
                                 </div>
                                 <span id="style-oGlBW"
                                     class="style-oGlBW"><strong>{{ $tagCounts['flora_count'] }}</strong></span>
@@ -226,7 +237,7 @@
                             {{-- {{dd($tag)}} --}}
                             <div class="mb-1">
                                 <a target="_blank"
-                                    href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ', ', $tag->tagInUnicode), 'cityCode' => $citySlug]) }}">
+                                    href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ', ', $locale['tags'][$tag->tagId]), 'cityCode' => $citySlug]) }}">
                                     <div class="row">
                                         <div class="col-2">
                                             <img class="border img-fluid rounded-circle"
@@ -237,8 +248,8 @@
                                             <div class="row">
                                                 <div class="p-0 m-0 col-10">
                                                     {{-- {{$tag->tagInUnicode}} --}}
-                                                    <h6 class="p-0 m--0">{{ $tag->tagInUnicode }}</h6>
-                                                    <small> {{ $tag->tagInEnglish }}</small>
+                                                    <h6 class="p-0 m--0">{{ $locale['tags'][$tag->tagId] }}</h6>
+                                                    <small></small>
                                                 </div>
                                                 <div class="col-2">
                                                     <div class="border w-100 h-100 rounded-circle">{{ $tag->count }}
