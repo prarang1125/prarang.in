@@ -274,6 +274,11 @@
         .container .mb-4 .blog-card {
             box-shadow: 0px 4px 2px 1px rgba(0, 0, 0, 0.32);
         }
+
+        /* Heading */
+        .mb-4 .mt-3 h2 {
+            height: 140px;
+        }
     </style>
 </head>
 
