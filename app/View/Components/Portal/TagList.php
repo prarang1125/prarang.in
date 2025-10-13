@@ -2,6 +2,7 @@
 
 namespace App\View\Components\Portal;
 
+use App\Models\PortalLocaleizetion;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -17,19 +18,21 @@ class TagList extends Component
     public $cityCode;
     public $tagCounts;
     public $tagSubCounts;
-    public $citySlug;
-    public function __construct($cityId,$cityCode,$citySlug)
+    public $citySlug, $locale;
+
+    public function __construct($cityId, $cityCode, $citySlug, $locale)
     {
-        $this->cityId=$cityId;
-        $this->cityCode=$cityCode;
-        $this->citySlug=$citySlug;
+        $this->cityId = $cityId;
+        $this->cityCode = $cityCode;
+        $this->citySlug = $citySlug;
         $cacheKey = 'tag_counts_' . $cityCode;
-        $this->tagCounts = Cache::remember($cacheKey, 60*60, function () use ($cityCode) {
+        $this->tagCounts = Cache::remember($cacheKey, 60 * 60, function () use ($cityCode) {
             return $this->getCounts($cityCode); // Fetch counts if not in cache
         });
-        $this->tagSubCounts = Cache::remember($cacheKey.'tag', 60*60, function () use ($cityCode) {
-            return $this->getChittiTagsData($cityCode); 
-        });       
+        $this->tagSubCounts = Cache::remember($cacheKey . 'tag', 60 * 60, function () use ($cityCode) {
+            return $this->getChittiTagsData($cityCode);
+        });
+        $this->locale = $locale;
     }
 
     /**
@@ -89,24 +92,32 @@ class TagList extends Component
             'flora_count' => $floraCount
         ];
     }
-    function getChittiTagsData($city){
-         $tagCategories = DB::connection('main')->table('mtag as mt')                  
-        ->select('mt.tagId','mtc.tagCategoryId', 'mt.tagInEnglish', 'mt.tagInUnicode', 'mt.tagIcon', 'mtc.tagCategoryInEnglish', 
-            DB::raw("CASE WHEN ct1.ChittiCount IS NULL THEN 0 ELSE ct1.ChittiCount END AS count"))
-        ->join('mtagcategory as mtc', 'mtc.tagCategoryId', '=', 'mt.tagCategoryId')
-        ->leftJoin(DB::raw('(SELECT ct.tagid, COUNT(DISTINCT ch.chittiId) AS ChittiCount
+    function getChittiTagsData($city)
+    {
+        $tagCategories = DB::connection('main')->table('mtag as mt')
+            ->select(
+                'mt.tagId',
+                'mtc.tagCategoryId',
+                'mt.tagInEnglish',
+                'mt.tagInUnicode',
+                'mt.tagIcon',
+                'mtc.tagCategoryInEnglish',
+                DB::raw("CASE WHEN ct1.ChittiCount IS NULL THEN 0 ELSE ct1.ChittiCount END AS count")
+            )
+            ->join('mtagcategory as mtc', 'mtc.tagCategoryId', '=', 'mt.tagCategoryId')
+            ->leftJoin(DB::raw('(SELECT ct.tagid, COUNT(DISTINCT ch.chittiId) AS ChittiCount
                              FROM chittitagmapping AS ct
                              LEFT JOIN chitti AS ch ON ct.chittiId = ch.chittiId
                              LEFT JOIN vChittiGeography AS vCg ON ch.chittiId = vCg.chittiId
                              LEFT JOIN vGeography AS vg ON vg.geographycode = vCg.Geography
                              WHERE ch.finalStatus = "approved" AND vg.geographycode LIKE "%' . $city . '%"
                              GROUP BY ct.tagId) as ct1'), 'ct1.tagId', '=', 'mt.tagId')
-        // ->where('mtc.tagCategoryId', '=', )
-        // ->groupBy('mtc.tagCategoryId')
-        ->get();
-        foreach( $tagCategories as $data){
-                       $subCatG['tag_'.$data->tagCategoryId][]=$data;
+            // ->where('mtc.tagCategoryId', '=', )
+            // ->groupBy('mtc.tagCategoryId')
+            ->get();
+        foreach ($tagCategories as $data) {
+            $subCatG['tag_' . $data->tagCategoryId][] = $data;
         }
-        return $subCatG;        
+        return $subCatG;
     }
 }

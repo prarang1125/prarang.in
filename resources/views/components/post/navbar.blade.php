@@ -113,17 +113,17 @@
                     <li class="nav-item">
                         <a class="nav-link"
                             href="{{ route('portal', ['portal' => $portal->slug]) }}">{{ $portal->title }}
-                            पोर्टल</a>
+                            {{ $locale['info']['portal'] ?? 'पोर्टल' }}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#cultureModal">
-                            संस्कृति
+                            {{ $locale['culture'] ?? 'संस्कृति' }}
                             <span class="badge bg-secondary">{{ $tagCounts['culture_count'] }}</span>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#" data-bs-toggle="modal" data-bs-target="#natureModal">
-                            प्रकृति
+                            {{ $locale['nature'] ?? 'प्रकृति' }}
                             <span class="badge bg-secondary">{{ $tagCounts['nature_count'] }}</span>
                         </a>
                     </li>
@@ -143,7 +143,8 @@
                     <div class="text-center row">
                         <div class="col-sm-4">
                             <p class="border-bottom">
-                                <span class="mb-10 prangtxt"><strong>समयसीमा</strong></span>
+                                <span
+                                    class="mb-10 prangtxt"><strong>{{ $locale['categories']['1'] ?? '' }}</strong></span>
                                 <strong>{{ $tagCounts['timeline_count'] }}</strong>
                             </p>
 
@@ -151,7 +152,7 @@
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
                                     <a target="_blank" style="text-decoration-line: none; !important;"
-                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ',', $tag->tagInUnicode), 'cityCode' => $portal->slug]) }}">
+                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ',', $locale['tags'][$tag->tagId] ?? $tag->tagId), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
@@ -161,7 +162,9 @@
                                                 <div class="row">
                                                     <div class="p-0 m-0 col-10">
 
-                                                        <h6 class="p-0 m--0">{{ $tag->tagInUnicode }}</h6>
+
+                                                        <h6 class="p-0 m--0">
+                                                            {{ $locale['tags'][$tag->tagId] ?? $tag->tagId }}</h6>
 
                                                     </div>
                                                     <div class="col-2">
@@ -177,16 +180,15 @@
                         </div>
                         <div class="col-sm-4">
                             <p class="border-bottom">
-                                <span class="mb-10 prangtxt"><strong>मानव
-                                        व उनकी
-                                        इन्द्रियाँ</strong></span>
+                                <span
+                                    class="mb-10 prangtxt"><strong>{{ $locale['categories']['2'] ?? '' }}</strong></span>
                                 <strong>{{ $tagCounts['man_senses_count'] }}</strong>
                             </p>
                             @foreach ($tagSubCounts['tag_2'] as $tag)
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
                                     <a target="_blank" style="text-decoration-line: none; !important;"
-                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ',', $tag->tagInUnicode), 'cityCode' => $portal->slug]) }}">
+                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ',', $locale['tags'][$tag->tagId] ?? $tag->tagId), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
@@ -195,9 +197,8 @@
                                             <div class="border col-10 rounded-pill tagListx">
                                                 <div class="row">
                                                     <div class="p-0 m-0 col-10">
-                                                        {{-- {{$tag->tagInUnicode}} --}}
-                                                        <h6 class="p-0 m--0">{{ $tag->tagInUnicode }}</h6>
-                                                        {{-- <small> {{$tag->tagInEnglish}}</small> --}}
+                                                        <h6 class="p-0 m--0">
+                                                            {{ $locale['tags'][$tag->tagId] ?? $tag->tagId }}</h6>
                                                     </div>
                                                     <div class="col-2">
                                                         <div class="border w-100 h-100 rounded-circle">
@@ -212,16 +213,15 @@
                         </div>
                         <div class="col-sm-4">
                             <p class="border-bottom">
-                                <span class="mb-10 prangtxt"><strong>मानव
-                                        व उसके
-                                        आविष्कार</strong></span>
+                                <span
+                                    class="mb-10 prangtxt"><strong>{{ $locale['categories']['3'] ?? '' }}</strong></span>
                                 <strong>{{ $tagCounts['man_inventions_count'] }}</strong>
                             </p>
                             @foreach ($tagSubCounts['tag_3'] as $tag)
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
                                     <a target="_blank" style="text-decoration-line: none; !important;"
-                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ',', $tag->tagInUnicode), 'cityCode' => $portal->slug]) }}">
+                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ',', $locale['tags'][$tag->tagId] ?? $tag->tagId), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
@@ -230,9 +230,8 @@
                                             <div class="border col-10 rounded-pill tagListx">
                                                 <div class="row">
                                                     <div class="p-0 m-0 col-10">
-                                                        {{-- {{$tag->tagInUnicode}} --}}
-                                                        <h6 class="p-0 m--0">{{ $tag->tagInUnicode }}</h6>
-                                                        {{-- <small> {{$tag->tagInEnglish}}</small> --}}
+                                                        <h6 class="p-0 m--0">
+                                                            {{ $locale['tags'][$tag->tagId] ?? $tag->tagId }}</h6>
                                                     </div>
                                                     <div class="col-2">
                                                         <div class="border w-100 h-100 rounded-circle">
@@ -263,14 +262,15 @@
                     <div class="text-center row">
                         <div class="col-sm-4">
                             <p class="border-bottom">
-                                <span class="mb-10 prangtxt"><strong>भूगोल</strong></span>
+                                <span
+                                    class="mb-10 prangtxt"><strong>{{ $locale['categories']['4'] ?? '' }}</strong></span>
                                 <strong>{{ $tagCounts['geography_count'] }}</strong>
                             </p>
                             @foreach ($tagSubCounts['tag_4'] as $tag)
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
                                     <a target="_blank" style="text-decoration-line: none; !important;"
-                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ',', $tag->tagInUnicode), 'cityCode' => $portal->slug]) }}">
+                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ',', $locale['tags'][$tag->tagId] ?? $tag->tagId), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
@@ -279,9 +279,8 @@
                                             <div class="border col-10 rounded-pill tagListx">
                                                 <div class="row">
                                                     <div class="p-0 m-0 col-10">
-                                                        {{-- {{$tag->tagInUnicode}} --}}
-                                                        <h6 class="p-0 m--0">{{ $tag->tagInUnicode }}</h6>
-                                                        {{-- <small> {{$tag->tagInEnglish}}</small> --}}
+                                                        <h6 class="p-0 m--0">
+                                                            {{ $locale['tags'][$tag->tagId] ?? $tag->tagId }}</h6>
                                                     </div>
                                                     <div class="col-2">
                                                         <div class="border w-100 h-100 rounded-circle">
@@ -296,14 +295,15 @@
                         </div>
                         <div class="col-sm-4">
                             <p class="border-bottom">
-                                <span class="mb-10 prangtxt"><strong>जीव - जन्तु</strong></span>
+                                <span
+                                    class="mb-10 prangtxt"><strong>{{ $locale['categories']['5'] ?? '' }}</strong></span>
                                 <strong>{{ $tagCounts['fauna_count'] }}</strong>
                             </p>
                             @foreach ($tagSubCounts['tag_5'] as $tag)
                                 {{-- {{dd($tag)}} --}}
                                 <div class="mb-1">
                                     <a target="_blank" style="text-decoration-line: none; !important;"
-                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ',', $tag->tagInUnicode), 'cityCode' => $portal->slug]) }}">
+                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ',', $locale['tags'][$tag->tagId] ?? $tag->tagId), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
@@ -312,9 +312,8 @@
                                             <div class="border col-10 rounded-pill tagListx">
                                                 <div class="row">
                                                     <div class="p-0 m-0 col-10">
-                                                        {{-- {{$tag->tagInUnicode}} --}}
-                                                        <h6 class="p-0 m--0">{{ $tag->tagInUnicode }}</h6>
-                                                        {{-- <small> {{$tag->tagInEnglish}}</small> --}}
+                                                        <h6 class="p-0 m--0">
+                                                            {{ $locale['tags'][$tag->tagId] ?? $tag->tagId }}</h6>
                                                     </div>
                                                     <div class="col-2">
                                                         <div class="border w-100 h-100 rounded-circle">
@@ -329,13 +328,14 @@
                         </div>
                         <div class="col-sm-4">
                             <p class="border-bottom">
-                                <span class="mb-10 prangtxt"><strong>वनस्पति</strong></span>
+                                <span
+                                    class="mb-10 prangtxt"><strong>{{ $locale['categories']['6'] ?? '' }}</strong></span>
                                 <strong>{{ $tagCounts['flora_count'] }}</strong>
                             </p>
                             @foreach ($tagSubCounts['tag_6'] as $tag)
                                 <div class="mb-1">
                                     <a target="_blank" style="text-decoration-line: none; !important;"
-                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ',', $tag->tagInUnicode), 'cityCode' => $portal->slug]) }}">
+                                        href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ',', $locale['tags'][$tag->tagId] ?? $tag->tagId), 'cityCode' => $portal->slug]) }}">
                                         <div class="row">
                                             <div class="col-2">
                                                 <img class="img-fluid rounded-circle"
@@ -344,9 +344,8 @@
                                             <div class="border col-10 rounded-pill tagListx">
                                                 <div class="row">
                                                     <div class="p-0 m-0 col-10">
-                                                        {{-- {{$tag->tagInUnicode}} --}}
-                                                        <h6 class="p-0 m--0">{{ $tag->tagInUnicode }}</h6>
-                                                        {{-- <small> {{$tag->tagInEnglish}}</small> --}}
+                                                        <h6 class="p-0 m--0">
+                                                            {{ $locale['tags'][$tag->tagId] ?? $tag->tagId }}</h6>
                                                     </div>
                                                     <div class="col-2">
                                                         <div class="border w-100 h-100 rounded-circle">

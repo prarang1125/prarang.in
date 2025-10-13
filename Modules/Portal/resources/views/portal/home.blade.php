@@ -362,7 +362,7 @@
 
                                     <!-- MAIN : begin -->
                                     <main id="main">
-                                        @livewire('portal.elements.sub-pop-up',['banner'=>'sub-1','slug'=>$portal->slug,'portal'=>$portal])
+                                        @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-1', 'slug' => $portal->slug, 'portal' => $portal])
                                         <div class="main__inner">
                                             <div class="post-207 page type-page status-publish hentry">
                                                 <!-- MAIN HEADER : begin -->
@@ -377,7 +377,7 @@
                                                     <x-portal.posts-carousel :cityId="$cityCode" :cityCode="$cityCode" />
                                                     <!-- TOWNPRESS SITEMAP : begin -->
                                                     <x-portal.tag-list :cityId="$cityCode" :cityCode="$cityCode"
-                                                        :citySlug="$portal->slug" />
+                                                        :citySlug="$portal->slug" :locale="$locale" />
 
                                                     <div class="p-2 mt-3 " style="border:2px solid #FFB1A3">
                                                         <h3 class="text-center">{{ $portal->city_name_local }} के आंकड़े
@@ -521,7 +521,9 @@
                                                 {!! $portal->weather_widget_code !!}
                                             </div>
                                             <p class="text-center">
-                                                <a href="{{ $yellowPages ? route('city.show', ['city_name' => $yellowPages->name]) : '#' }}"><img class="img-fluid" style="height:450px;"
+                                                <a
+                                                    href="{{ $yellowPages ? route('city.show', ['city_name' => $yellowPages->name]) : '#' }}"><img
+                                                        class="img-fluid" style="height:450px;"
                                                         src="{{ asset('assets/images/yellowpages.jpg') }}"
                                                         alt="Yellow Pages"></a>
                                             </p>
@@ -545,7 +547,10 @@
             <div class="row g-2">
                 <div class="col-sm">
                     <h4 class="text-center">प्रारंग के बारे में </h4>
-                    <p>प्रारंग प्रदान करता है, देश-विदेश के शहरों को समझने हेतु संपूर्ण जानकारी। जिसमे शामिल है स्थानीय भाषा में शहर की प्रकृति-संस्कृति के नॉलेज वेब, शहर की व्यवसाय सूची के येलो पेज, शहर के मेट्रिक्स या आंकड़ों का विस्तृत विश्लेषण, तथा AI द्वारा संचालित शहरवासियों से प्राप्त विशिष्ट सांकेतिकता</p>
+                    <p>प्रारंग प्रदान करता है, देश-विदेश के शहरों को समझने हेतु संपूर्ण जानकारी। जिसमे शामिल है स्थानीय
+                        भाषा में शहर की प्रकृति-संस्कृति के नॉलेज वेब, शहर की व्यवसाय सूची के येलो पेज, शहर के मेट्रिक्स
+                        या आंकड़ों का विस्तृत विश्लेषण, तथा AI द्वारा संचालित शहरवासियों से प्राप्त विशिष्ट सांकेतिकता
+                    </p>
                 </div>
                 <div class="text-center col-sm">
                     <h4 class="text-center">हमें फॉलो करें</h4>

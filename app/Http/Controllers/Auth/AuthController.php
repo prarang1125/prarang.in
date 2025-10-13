@@ -12,13 +12,13 @@ class AuthController extends Controller
 {
     public function login(Request $request)
     {
-    
+
         // Validate the input fields
         $request->validate([
             'email' => 'required|email',
             'password' => 'required'
         ]);
-    
+
         // Attempt to log in the user
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             // Check if it's an AJAX request
@@ -33,7 +33,7 @@ class AuthController extends Controller
             return redirect()->back()->withErrors(['loginError' => 'Invalid credentials']);  // Show error on failed login
         }
     }
-    
+
     // Register Function
     public function register(Request $request)
     {
@@ -43,7 +43,7 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users,email',
             'password' => 'required|string|min:6|confirmed',  // Ensure passwords match
         ]);
-    
+
         // Create a new user
         $user = User::create([
             'name' => $request->name,
@@ -51,17 +51,16 @@ class AuthController extends Controller
             'password' => Hash::make($request->password),  // Hash the password
             'role' => 2  // Assuming '1' is the default role
         ]);
-    
+
         // Log the user in after successful registration
         Auth::login($user);
-    
+
         // Handle the response
         if ($request->ajax()) {
             return response()->json(['success' => true]);
         }
-    
+
         // Redirect the user to the dashboard on successful registration
         return redirect('/home')->with('success', 'Registration successful, you are now logged in.');
     }
-
 }
