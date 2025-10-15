@@ -16,6 +16,7 @@ class Base extends Component
     public function __construct($portal = [])
     {
         $this->portal = $portal;
+
     }
 
 

@@ -32,9 +32,9 @@ class Navbar extends Component
     public function __construct($geographyCode)
     {
 
-        $this->portal = Portal::select('city_name_local as title', 'slug', 'city_code as geography_code', 'header_image', 'footer_image', DB::raw("'portal' as type"))->where('city_code', $geographyCode)
+        $this->portal = Portal::select('city_name_local as title', 'slug', 'city_code as geography_code', 'header_image', 'footer_image','header_scripts', DB::raw("'portal' as type"))->where('city_code', $geographyCode)
             ->union(
-                BiletralPortal::select('title', 'slug', 'content_country_code as geography_code', 'header_image', 'footer_image', DB::raw("'bilateral' as type"))->where('content_country_code', $geographyCode)
+                BiletralPortal::select('title', 'slug', 'content_country_code as geography_code', 'header_image', 'footer_image','header_scripts', DB::raw("'bilateral' as type"))->where('content_country_code', $geographyCode)
             )
             ->firstOrFail();
 

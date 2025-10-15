@@ -84,9 +84,9 @@ class PostArchives extends Controller
     public function archivePosts($citySlug, $catg, $ids, $name)
     {
         $ids = explode('-', $ids);
-        $portal = Portal::select('city_name_local as title', 'slug', 'city_code as geography_code', 'header_image', 'footer_image')->where('slug', $citySlug)
+        $portal = Portal::select('city_name_local as title', 'slug', 'city_code as geography_code', 'header_image', 'footer_image','header_scripts')->where('slug', $citySlug)
             ->union(
-                BiletralPortal::select('title', 'slug', 'content_country_code as geography_code', 'header_image', 'footer_image')->where('slug', $citySlug)
+                BiletralPortal::select('title', 'slug', 'content_country_code as geography_code', 'header_image', 'footer_image','header_scripts')->where('slug', $citySlug)
             )
             ->firstOrFail();
         $cityCode = $portal->geography_code;

@@ -16,9 +16,9 @@ class postController extends Controller
     public function getChittiData($city, $name = null, $forAbour = null)
     {
 
-        $portal = Portal::select('city_name_local as title', 'slug', 'city_code as geography_code', 'header_image', 'footer_image')->where('slug', $city)
+        $portal = Portal::select('city_name_local as title', 'slug', 'city_code as geography_code', 'header_image', 'footer_image','header_scripts')->where('slug', $city)
             ->union(
-                BiletralPortal::select('title', 'slug', 'content_country_code as geography_code', 'header_image', 'footer_image')->where('slug', $city)
+                BiletralPortal::select('title', 'slug', 'content_country_code as geography_code', 'header_image', 'footer_image','header_scripts')->where('slug', $city)
             )
             ->firstOrFail();
 

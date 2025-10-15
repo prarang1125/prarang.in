@@ -29,7 +29,6 @@ class PortalController extends Controller
             abort(404);
         }
 
-        return $this->indianCitiesPortal($portal);
     }
 
     public function indianCitiesPortal($portal)
@@ -49,7 +48,7 @@ class PortalController extends Controller
         $main = BiletralPortal::with(['primaryCountry', 'secondaryCountry'])
             ->where('slug', $slug)
             ->firstOrFail();
-        // dd($main);2
+
         $primary   = $main->primaryCountry;
         $primary->important_links = json_decode($primary->important_links) ?: [];
         $secondary = $main->secondaryCountry;
