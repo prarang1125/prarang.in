@@ -1,5 +1,5 @@
 <x-layout.portal.base :portal="$portal">
-    {!! $portal->header_scripts ?? "" !!}
+
 
     <style>
         #header .header-map--gmaps {
