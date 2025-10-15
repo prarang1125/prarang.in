@@ -1084,6 +1084,102 @@
 
 
         /* Shadow */
+
+        @media (max-width:767px) {
+
+            /* Lsvr grid */
+            #core .lsvr-grid {
+                transform: translatex(0px) translatey(0px);
+                top: -310px !important;
+            }
+
+            /* Lsvr grid */
+            #wrapper #core .core__inner #columns .columns__inner .lsvr-container .lsvr-grid {
+                bottom: auto !important;
+            }
+
+        }
+
+        @media (max-width:576px) {
+
+            /* Top line */
+            #top-line {
+                transform: translatex(0px) translatey(0px);
+            }
+
+            /* Style */
+            #style-LdSff {
+                left: 48px !important;
+                right: auto !important;
+            }
+
+            /* Style */
+            #style-tSQyz {
+                left: 30px !important;
+                right: auto !important;
+            }
+
+            /* Style */
+            #style-jGmEr {
+                left: 17px !important;
+                right: auto !important;
+            }
+
+        }
+
+        @media (max-width:480px) {
+
+            /* Style */
+            #style-tSQyz {
+                left: 31px !important;
+                right: auto !important;
+            }
+
+            /* Style */
+            #style-jGmEr {
+                left: 27px !important;
+                right: auto !important;
+
+            }
+
+            /* Light */
+            #main>.bg-light:nth-child(2) {
+                margin-top: 84px !important;
+            }
+
+            /* Container openweathermap widget 19 */
+            #container-openweathermap-widget-19 {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            /* Container openweathermap widget 16 */
+            #container-openweathermap-widget-16 {
+                display: flex;
+                justify-content: center;
+            }
+
+            /* Lsvr container */
+            #columns .lsvr-container {
+                height: 4036px;
+            }
+
+            /* Footer */
+            #columns footer {
+                background-size: cover;
+            }
+
+        }
+
+        @media (max-width:767px) {
+
+            /* Light */
+            #main>.bg-light:nth-child(2) {
+                margin-top: 85px !important;
+            }
+
+        }
     </style>
     <div id="wrapper">
         <header class="header--has-languages header--has-map" id="header">
