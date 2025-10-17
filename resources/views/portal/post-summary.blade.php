@@ -616,7 +616,8 @@
                     <h1 class="fw-bold">{{ $post['Title'] }}</h1>
                     <div class="mt-3 row">
                         <div class="col-sm-6 text-start"> <span
-                                class="p-1 bg-primary rounded-pill ps-3 pe-3 text-light">{{ $post['tagInUnicode'] }}</span>
+                                class="p-1 bg-primary rounded-pill ps-3 pe-3 text-light">
+                                {{ $locale['tags'][$post->tagId] ?? $post->tagId }}</span>
                         </div>
                         <div class="col-sm-6 text-end"> <i class="fa fa-calendar"> </i> {{ $post['dateOfApprove'] }}
                         </div>
@@ -686,7 +687,8 @@
                             style="background-color: #ff0000; color: white; padding: 10px 20px; border-radius: 5px; display: inline-block; text-decoration: none; cursor: default; transition: background-color 0.3s ease;"
                             onmouseover="this.style.backgroundColor='#0056b3';"
                             onmouseout="this.style.backgroundColor='#007bff';">
-                            {{ $post['tagInUnicode'] }}
+                            {{ $locale['tags'][$post->tagId] ?? $post->tagId }}
+
                         </a>
                     </div>
                     <div class="text-center post-navigation">
@@ -705,59 +707,34 @@
             </div>
             <div class="text-center col-sm-3 ps-1">
                 <div class="stk-side"><br><br>
-                    @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-2', 'slug' => $portal->slug, 'portal' => $portal])
-                    {{-- <div class="p-2 text-center shadow app-fb">
-                        <p class="p-0">Follow Us on</p>
-                        <a class="text-center btn btn-primary" href="https://facebook.com/prarang.in" target="_blank"><i
-                                class=""></i>
-                            Facebook</a>
-                        <a class="text-center btn btn-success " href="" target="_blank"><i
-                                class="fa fa-mobile"></i>
-                            Mobile
-                            App</a>
-                    </div> --}}
-                    <div class="pt-2 pb-2 mt-3 recent-poet text-start">
-                        <h6 class="ps-2 fw-bold">Recent Posts</h6>
-                        @foreach ($recentPosts as $post)
-                            <a style="text-decoration-line: none;"
-                                href="{{ route('post-summary', ['slug' => $slug, 'id' => $post->chittiId, 'subTitle' => Str::slug($post->SubTitle)]) }}">
-                                <div class="p-2 mt-3 rounded shadow">
-                                    <img class="img-fluid rounded-top w-100" src="{{ $post->imageUrl }}"
-                                        alt="{{ $post->Title }}">
-                                    <h6 class="mt-2 text-dark ">{{ $post->Title }}</h6>
-                            </a>
+                    @if ($portal->type == 'portal')
+                        @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-2', 'slug' => $portal->slug, 'portal' => $portal])
+                    @endif
+                    @empty($recentPosts)
+
+                    @else
+
+                        <div class="pt-2 pb-2 mt-3 recent-poet text-start">
+                            <h6 class="ps-2 fw-bold">Recent Posts</h6>
+                            @foreach ($recentPosts as $post)
+                                <a style="text-decoration-line: none;"
+                                    href="{{ route('post-summary', ['slug' => $slug, 'id' => $post->chittiId, 'subTitle' => Str::slug($post->SubTitle)]) }}">
+                                    <div class="p-2 mt-3 rounded shadow">
+                                        <img class="img-fluid rounded-top w-100" src="{{ $post->imageUrl }}"
+                                            alt="{{ $post->Title }}">
+                                        <h6 class="mt-2 text-dark ">{{ $post->Title }}</h6>
+                                </div></a>
+
+                        @endforeach
                     </div>
-                    @endforeach
-                </div>
+                @endisset
             </div>
 
         </div>
     </div>
 
 
-    <div id="analyticsinfo" class="definitions" style="background-color: {{ $ColorCode }};">
-        <h3>Definitions of the Post Viewership Metrics</h3>
-        <p>
-            <strong>A. City Subscribers (FB + App) -</strong> This is the Total city-based unique subscribers from
-            the Prarang Hindi FB page and the Prarang App who reached this specific post.
-        </p>
-        <p>
-            <strong>B. Website (Google + Direct) -</strong> This is the Total viewership of readers who reached this
-            post directly through their browsers and via Google search.
-        </p>
-        <p>
-            <strong>C. Messaging Subscribers -</strong> This is the total viewership from City Portal subscribers who
-            opted for hyperlocal daily messaging and received this post.
-        </p>
-        <p>
-            <strong>D. Total Viewership -</strong> This is the Sum of all Subscribers (FB+App), Website
-            (Google+Direct), Email, and Instagram who reached this Prarang post/page.
-        </p>
-        <p>
-            <strong>E. The Reach (Viewership) -</strong> The reach on the post is updated either on the 6th day from
-            the day of posting or on the completion (Day 31 or 32) of one month from the day of posting.
-        </p>
-    </div>
+    {!! $portal->viewership ?? '' !!}
 
     </div>
 
@@ -775,7 +752,7 @@
             });
         </script>
     @endif
-    <x-post.footer :city="$portal->title" :slug="$portal->slug" />
+    <x-post.footer :city="$portal->title" :slug="$portal->slug" :locale="$locale" />
     <script src='{{ asset('location.js') }}'></script>
     <script>
         collectAndSendInformation('{{ $chitti_id }}', '{{ $city_name }}', '{{ $platform }}');

@@ -13,15 +13,14 @@ class PostsCarousel extends Component
     /**
      * Create a new component instance.
      */
-    public $chittiArray;
+    public $chittiArray,$locale;
 
-    public function __construct($cityId, $cityCode)
+    public function __construct($cityId, $cityCode,$locale)
     {
-        // dd($this->getPosts($cityCode));
+        $this->locale = $locale;
         $cacheKey = 'carousal_post_'.$cityCode;
-
         $this->chittiArray = Cache::remember($cacheKey, 60 * 60 * 60, function () use ($cityCode) {
-            return $this->getPosts($cityCode); // Fetch counts if not in cache
+            return $this->getPosts($cityCode);
         });
 
     }

@@ -7,12 +7,21 @@ use App\Models\Chitti;
 // use App\Models\ChittiGeography;
 // use App\Models\ChittiTagMapping;
 use App\Models\Portal;
+use App\Models\PortalLocaleizetion;
+use App\Services\PortalUnion;
 // use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Modules\Portal\Models\BiletralPortal;
 
 class PostArchives extends Controller
 {
+    protected $portalUnion;
+    function __construct()
+    {
+        $this->portalUnion = new PortalUnion();
+    }
+
+
     public function archive($cityCode = null)
     {
         if ($cityCode == null) {
@@ -84,13 +93,10 @@ class PostArchives extends Controller
     public function archivePosts($citySlug, $catg, $ids, $name)
     {
         $ids = explode('-', $ids);
-        $portal = Portal::select('city_name_local as title', 'slug', 'city_code as geography_code', 'header_image', 'footer_image','header_scripts')->where('slug', $citySlug)
-            ->union(
-                BiletralPortal::select('title', 'slug', 'content_country_code as geography_code', 'header_image', 'footer_image','header_scripts')->where('slug', $citySlug)
-            )
-            ->firstOrFail();
+        $portal=$this->portalUnion->getPortalUnion(['slug', $citySlug],['slug',$citySlug]);
         $cityCode = $portal->geography_code;
-
+        $locale=PortalLocaleizetion::where('lang_code', $portal->type=='portal'?'hi':'en')->firstOrFail();
+        $locale = $locale['json'] ?? [];
         $chittiIds = DB::table('chittitagmapping as tag')
             ->join('vChittiGeography as vg', 'vg.chittiId', '=', 'tag.chittiId')
             ->where('vg.Geography', $cityCode);
@@ -125,7 +131,7 @@ class PostArchives extends Controller
                 $imageUrl = $chitti->images->first()->imageUrl ?? asset('default_image.jpg');
 
                 $tags = $chitti->tagMappings->map(function ($tagMapping) {
-                    return $tagMapping->tag->tagInUnicode;
+                    return $tagMapping->tag->tagId;
                 })->filter()->join(', ');
                 return [
                     'id' => $chitti->chittiId,
@@ -148,6 +154,7 @@ class PostArchives extends Controller
             'name' => ucfirst($name),
             'portal' => $portal,
             'isTags' => true,
+            'locale'=>$locale
         ]);
     }
 }

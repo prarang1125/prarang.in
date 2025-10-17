@@ -159,7 +159,7 @@
                         data-bs-target="#exampleModal{{ $postImg->chittiId }}" src="{{ $postImg->imageUrl }}"
                         alt="Post Image">
                     <small class="p-0 m-0 test-center"
-                        style="font-size:12px">{{ \Illuminate\Support\Str::limit($postImg->Title, 30, '...') }}</small>
+                        style="font-size:12px">{{ \Illuminate\Support\Str::limit($postImg->Title, 22, '...') }}</small>
                 </div>
             @endforeach
         </div>
@@ -176,11 +176,10 @@
                     <div class="modal-body" style="background:{{$post->colorcode}};">
                         <section>
                             <h3>{{ $post->Title }}</h3>
-                            <div class="row">
+                            <div class="row flex" >
                                 <div class="col-sm-6">
-                                    <p class="text-start">
-                                        {{ $post->tagInUnicode }} <br>
-                                        <small> {{ $post->tagInEnglish }}</small>
+                                    <p class="text-start h6  text-dark bg-gray">
+                                        {{ $locale['tags'][$post->tagId] ?? $post->tagId }}
                                     </p>
                                 </div>
                                 <div class="col-sm-6">

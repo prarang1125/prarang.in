@@ -14,11 +14,11 @@ class TagApiController extends Controller
               $request->validate([
                 'count'=>'nullable|boolean',
                 'location' => 'nullable|string',
-                'location_type' => 'nullable|string|in:city,state,country',               
+                'location_type' => 'nullable|string|in:city,state,country',
                 'language' => 'nullable|string|in:en,es,fr,de,it,pt,ru,zh,hi,mr',
             ]);
             return $tagService->tags($request);
-            
+
         }
        catch (ValidationException $e) {
             return response()->json([
@@ -29,5 +29,5 @@ class TagApiController extends Controller
             ], 422);
         }
     }
-    
+
 }
