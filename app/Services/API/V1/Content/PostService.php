@@ -64,14 +64,15 @@ class PostService extends BaseService
 
                 $chittiQuery->whereIn('chittiId', $chittiIds);
             }
-            $locale = PortalLocaleizetion::where('lang_code', $language)->first();
+            $locale = PortalLocaleizetion::where('lang_code', $language)->first()['json'];
+
             $chittiQuery->where('finalStatus', 'approved')
                 ->orderByRaw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y') $orderBy")
                 ->with(['tagMappings.tag', 'images']);
 
             $chittis = $chittiQuery->paginate($per_page, ['*'], 'page', $page);
 
-            $processedChittis = $chittis->map(function ($chitti)   {
+            $processedChittis = $chittis->map(function ($chitti) use ($locale) {
                 $imageUrl = $chitti->images->first()->imageUrl ?? asset('images/prarang-1.jpg');
 
                 $tags = $chitti->tagMappings->map(function ($tagMapping)  {
@@ -83,8 +84,9 @@ class PostService extends BaseService
                     'title' => $chitti->Title,
                     'en_title' => $chitti->SubTitle,
                     'short_description' => strip_tags(Str::limit($chitti->description, 125)),
+                    'description' => $chitti->description,
                     'image_url' => $imageUrl,
-                    'tags' => $tags,
+                    'tags' => $locale['tags'][$tags] ??  $tags,
                     'color' => $chitti->color->colorcode ?? '',
                     'createDate' => $chitti->dateOfApprove,
                 ];
@@ -134,8 +136,10 @@ class PostService extends BaseService
 
     public function getPostById($request){
 
+        $language = $request->language ?? 'en';
+        $id=$request->id;
         try {
-            $post = Chitti::where('chittiId', $request->id)
+            $post = Chitti::where('chittiId', $id)
                 ->with(['tagMappings.tag', 'images'])
                 ->first();
 
@@ -148,14 +152,16 @@ class PostService extends BaseService
             $tags = $post->tagMappings->map(function ($tagMapping)  {
                 return $tagMapping->tag->tagId;
             })->filter()->join(', ');
+            sleep(1);
+            $locale = PortalLocaleizetion::where('lang_code', $request->language)->first()['json'];
 
             $responseData = [
                 'id' => $post->chittiId,
                 'title' => $post->Title,
                 'en_title' => $post->SubTitle,
-                'short_description' => $post->description,
+                'description' => $post->description,
                 'image_url' => $imageUrl,
-                'tags' => $tags,
+                'tags' => $locale['tags'][$tags] ??  $tags,
                 'color' => $post->color->colorcode ?? '',
                 'createDate' => $post->dateOfApprove,
             ];
