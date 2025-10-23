@@ -1,5 +1,4 @@
 <?php
-
 namespace Modules\Portal\Models;
 
 use Illuminate\Database\Eloquent\Model;
@@ -14,12 +13,6 @@ class BiletralPortal extends Model
     protected $table = 'byletral_portals';
     protected $connection = 'main';
     protected $guarded = [];
-
-    protected $casts = [
-        'local_metrics' => 'array',
-    ];
-
-
     public function primaryCountry()
     {
         return $this->belongsTo(CountryPortal::class, 'primary_country_id');
