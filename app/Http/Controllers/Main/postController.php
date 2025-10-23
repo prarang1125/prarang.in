@@ -7,23 +7,27 @@ use App\Models\Chitti;
 use App\Models\ChittiGeography;
 use App\Models\Geography;
 use App\Models\Portal;
+use App\Models\PortalLocaleizetion;
+use App\Services\PortalUnion;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Modules\Portal\Models\BiletralPortal;
 
 class postController extends Controller
 {
-    public function getChittiData($city, $name = null, $forAbour = null)
+    public function getChittiData($city, $name = null, $forAbour = null, ?PortalUnion $portalUnion = null)
     {
+        // Ensure PortalUnion is available (container-resolved when not injected)
+        $portalUnion = $portalUnion ?? app(PortalUnion::class);
 
-        $portal = Portal::select('city_name_local as title', 'slug', 'city_code as geography_code', 'header_image', 'footer_image','header_scripts')->where('slug', $city)
-            ->union(
-                BiletralPortal::select('title', 'slug', 'content_country_code as geography_code', 'header_image', 'footer_image','header_scripts')->where('slug', $city)
-            )
-            ->firstOrFail();
+        // Resolve portal using PortalUnion
+        $portal = $portalUnion->getPortalUnion(['slug', $city], ['slug', $city]);
 
+        if (! $portal) {
+            return abort(404, 'Portal not found');
+        }
+        $locale = PortalLocaleizetion::where('lang_code', $portal->type == 'portal' ? 'hi' : 'en')->firstOrFail()['json'] ?? [];
         $geography = Geography::where('geographycode', $portal->geography_code)->first();
-
         if (! $geography) {
             return abort(404, 'Geography not found');
         }
@@ -44,7 +48,7 @@ class postController extends Controller
         })->map(function ($chittis) {
             return $chittis->map(function ($chitti) {
 
-                $imageUrl = $chitti->images->first()->imageUrl ?? asset('default_image.jpg');
+                $imageUrl = $chitti->images->first()->imageUrl ?? asset('images/prarang-1.jpg');
 
                 $tags = $chitti->tagMappings->map(function ($tagMapping) {
                     return $tagMapping->tag->tagInEnglish;
@@ -71,13 +75,17 @@ class postController extends Controller
             'name' => $name,
             'portal' => $portal,
             'isTags' => false,
+            'locale' => $locale,
         ]);
     }
 
     //updated public function post_summary($slug, $postId)
 
-    public function post_summary($slug, $postId)
+    public function post_summary($slug, $postId, ?PortalUnion $portalUnion = null)
     {
+        // Ensure PortalUnion is available (container-resolved when not injected)
+        $portalUnion = $portalUnion ?? app(PortalUnion::class);
+
         $platform = strtolower(request()->source ?? null);
 
         $post = Chitti::where('chittiId', $postId)
@@ -89,11 +97,8 @@ class postController extends Controller
 
         $geography = $post->geography;
 
-        $portal = Portal::select('city_name_local as title', 'slug', 'city_code as geography_code', 'header_image', 'footer_image')->where('slug', $slug)
-            ->union(
-                BiletralPortal::select('title', 'slug', 'content_country_code as geography_code', 'header_image', 'footer_image')->where('slug', $slug)
-            )
-            ->firstOrFail();
+        $portal = $portalUnion->getPortalUnion(['city_code', $geography->Geography], ['content_country_code', $geography->Geography]);
+        $locale= PortalLocaleizetion::where('lang_code', $portal->type == 'portal' ? 'hi' : 'en')->firstOrFail()['json'] ?? [];
 
         $previousPost = $this->postButton($post, $portal, 'pre');
         $nextPost = $this->postButton($post, $portal, 'next');
@@ -101,6 +106,7 @@ class postController extends Controller
         $recentPosts = Chitti::whereHas('geography.portal', function ($query) use ($slug) {
             $query->where('slug', $slug);
         })
+
             ->where('chittiId', '!=', $postId)
             ->whereRaw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y %h:%i %p') BETWEEN DATE_SUB(CURDATE(), INTERVAL 4 DAY) AND DATE_ADD(CURDATE(), INTERVAL 1 DAY)")
             ->where('finalStatus', 'approved')
@@ -110,12 +116,12 @@ class postController extends Controller
             ->take(5)
             ->get()
             ->map(function ($recent) {
-                $recent->imageUrl = optional($recent->images->first())->imageUrl ?? 'images/default_image.jpg';
+                $recent->imageUrl = optional($recent->images->first())->imageUrl ?? asset('images/prarang-1.jpg');
 
                 return $recent;
             });
 
-        $post->tagInUnicode = $post->tagMappings->first()->tag->tagInUnicode;
+        $post->tagId = $post->tagMappings->first()->tag->tagId;
 
         return view('portal.post-summary', [
             'post' => $post,
@@ -128,6 +134,7 @@ class postController extends Controller
             'city_name' => $portal->slug ?? 'Unknown',
             'portal' => $portal,
             'platform' => $platform,
+            'locale' => $locale
         ]);
     }
 

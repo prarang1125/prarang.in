@@ -1180,6 +1180,29 @@
             }
 
         }
+@media (max-width:576px){
+
+ /* Button */
+ #main .btn-info{
+  margin-bottom:8px;
+ }
+
+}@media (max-width:480px){
+
+ /* Container fluid */
+ .lsvr-grid .columns__sidebar .container-fluid{
+  margin-bottom:28px;
+ }
+
+ /* Footer */
+ #columns footer{
+  margin-top:792px !important;
+ }
+
+}
+ #core .lsvr-container .lsvr-grid .columns__main #main .main__inner .hentry .page__content div .modal .modal-dialog .modal-content .modal-body{
+  height:85vh !important;
+ }
     </style>
     <div id="wrapper">
         <header class="header--has-languages header--has-map" id="header">
@@ -1306,7 +1329,8 @@
                                                 <div class="page__content">
                                                     <x-portal.posts-carousel
                                                         cityId="{{ $main->content_country_code ?? 'CON24' }}"
-                                                        cityCode="{{ $main->content_country_code ?? 'CON24' }}" />
+                                                        cityCode="{{ $main->content_country_code ?? 'CON24' }}"
+                                                        :locale="$locale"/>
                                                     <!-- TOWNPRESS SITEMAP : begin -->
                                                     <x-portal.tag-list :cityId="$main->content_country_code" :cityCode="$main->content_country_code"
                                                         :citySlug="$main->slug" :locale="$locale" />

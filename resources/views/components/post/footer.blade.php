@@ -7,7 +7,7 @@
                 <h5>{{ $linksTitle ?? 'Quick Links' }}</h5>
                 <ul>
                     <li>
-                        <a href="{{ $homeLink ?? 'https://www.prarang.in/' . $slug }}"> {{ ucfirst($city) }} होम </a>
+                        <a href="{{ $homeLink ?? 'https://www.prarang.in/' . $slug }}"> {{ ucfirst($city) }} {{ $locale['info']['home'] }} </a>
                     </li>
                     {{-- <li>
                         <a href="{{ $servicesLink ?? '' . $city . '/' }}"> {{ ucfirst($city) }} स्मार्ट सर्विसेज </a>

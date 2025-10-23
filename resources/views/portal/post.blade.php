@@ -322,7 +322,7 @@
                                     </h2>
                                     <div class="mb-3 meta-info">
                                         <div class="mb-2 tags">
-                                            <span class="badge bg-primary">{{ $post['tags'] }}</span>
+                                            <span class="badge bg-primary">{{ $locale['tags'][$post['tags']] }}</span>
                                         </div>
                                         <div
                                             class="post-info {{ $post['color'] === '#4d4d4d' ? 'text-light' : 'text-dark' }}">
@@ -397,7 +397,7 @@
     {{-- @include('layout.footer') --}}
 
     {{-- <x-post.footer />/ --}}
-    <x-post.footer :city="$title" :slug="$portal->slug" />
+    <x-post.footer :city="$title" :slug="$portal->slug" :locale="$locale" />
 
 
     <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>

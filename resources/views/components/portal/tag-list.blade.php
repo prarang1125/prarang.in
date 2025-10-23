@@ -151,7 +151,7 @@
                 <div class="text-center mdl-card mdl-card1 mdl-shadow--2dp snipcss0-2-2-3 snipcss-xJBZh"
                     style="min-height:125px !important"><br class="snipcss0-3-3-4">
                     <span class="culture seo snipcss0-3-3-5 style-U4EGH" id="style-U4EGH"><strong
-                            class="snipcss0-4-5-6">{{ $locale['culture'] ?? 'प्रकृति' }}</strong></span>
+                            class="snipcss0-4-5-6">{{ $locale['nature'] ?? 'प्रकृति' }}</strong></span>
                     <span class="snipcss0-3-3-7 style-9ay34" id="style-9ay34"><strong
                             class="snipcss0-4-7-8">{{ $tagCounts['nature_count'] }}</strong></span>
                     <div id="top-line" class="snipcss0-3-3-9 style-oo6iY">

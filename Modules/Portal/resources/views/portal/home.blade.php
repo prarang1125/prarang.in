@@ -376,7 +376,7 @@
                                                 <!-- MAIN HEADER : end -->
                                                 <!-- PAGE CONTENT : begin -->
                                                 <div class="page__content">
-                                                    <x-portal.posts-carousel :cityId="$cityCode" :cityCode="$cityCode" />
+                                                    <x-portal.posts-carousel :cityId="$cityCode" :cityCode="$cityCode" :locale="$locale" />
                                                     <!-- TOWNPRESS SITEMAP : begin -->
                                                     <x-portal.tag-list :cityId="$cityCode" :cityCode="$cityCode"
                                                         :citySlug="$portal->slug" :locale="$locale" />

@@ -64,7 +64,6 @@ if (!function_exists('httpPost')) {
     }
 }
 
-
 function highlightFirstOccurrence($paragraph, $cityNames, $type = null)
 {
     foreach ($cityNames as $city) {

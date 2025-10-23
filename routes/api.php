@@ -16,6 +16,7 @@ Route::prefix('v1')->group(function () {
     });
     Route::get('tags',[TagApiController::class,'getTags'])->name('tags');
     Route::get('/daily-posts/list', [PostApiController::class, 'getAllPosts']);
+    Route::get('/post', [PostApiController::class, 'getPostById']);
 
 
 });

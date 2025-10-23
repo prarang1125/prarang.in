@@ -172,6 +172,37 @@
                     <p class="text-muted small mb-0">Weather data not available</p>
                 @endif
             </div>
+<div class="border shadow p-2 mt-3 shadow bg-light rounded">
+    <h4 class=" ps-2 text-center  text-dark h5">
+                        <i class="fa fa-analysis-o me-2"></i>
+                       {{$data->country_name}} Local Metrics
+                    </h4>
+    @php
+        $decoded = json_decode($data->local_metrics, true);
+        // If still a string, decode again
+        $metrics = is_string($decoded) ? json_decode($decoded, true) : $decoded;
+    @endphp
+
+    @if (is_array($metrics))
+        <table class="table table-bordered ">
+
+            <tbody>
+                @foreach ($metrics as $row)
+                    <tr>
+                        <td>{{ $row['key'] ?? '' }}</td>
+                        <td>{{ $row['value'] ?? '' }}</td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+    @else
+        <p class="text-danger">Invalid JSON format in <code>local_metrics</code>.</p>
+        <pre>{{ $data->local_metrics }}</pre>
+    @endif
+</div>
+
+
+
             <!-- News Widget -->
             <div class="widget lsvr-townpress-news-widget lsvr-townpress-news-widget--has-background shadow-sm mb-4 border rounded"
                 id="{{ $side }}-news-widget">
