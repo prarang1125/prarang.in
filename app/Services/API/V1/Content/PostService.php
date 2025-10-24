@@ -27,6 +27,7 @@ class PostService extends BaseService
             $location = $request->location ?? null;
             $location_type = $request->location_type ?? null;
             $orderBy = strtoupper($request->order_by ?? 'desc');
+            $tag_id = $request->tag_id ?? null;
 
             $portalUnion = app(PortalUnion::class);
 
@@ -69,6 +70,12 @@ class PostService extends BaseService
             $chittiQuery->where('finalStatus', 'approved')
                 ->orderByRaw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y') $orderBy")
                 ->with(['tagMappings.tag', 'images']);
+
+            if($tag_id){
+                $chittiQuery->whereHas('tagMappings', function ($query) use ($tag_id) {
+                    $query->where('tagId', $tag_id);
+                });
+            }
 
             $chittis = $chittiQuery->paginate($per_page, ['*'], 'page', $page);
 

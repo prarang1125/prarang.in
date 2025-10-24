@@ -2,6 +2,7 @@
 
 namespace App\Services\API\V1\Content;
 
+use App\Models\PortalLocaleizetion;
 use App\Services\API\V1\BaseService;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
@@ -11,12 +12,15 @@ class TagService extends BaseService
 
     public function tags($request)
     {
-        $categories = Cache::remember('api_tags_category', 12 * 60 * 60, function () {
-            return $this->getCounts();
+        $language=$request->language??'en';
+        $locale=PortalLocaleizetion::where('lang_code',$language)->first()['json'];
+
+        $categories = Cache::remember("api_tags_category_{$language}", 12 * 60 * 60, function () use($locale) {
+            return $this->getCounts($locale);
         });
 
-        $tags = Cache::remember('api_tags', 12 * 60 * 60, function () {
-            return $this->getChittiTagsData();
+        $tags = Cache::remember("api_tags_{$language}", 12 * 60 * 60, function () use ($locale) {
+            return $this->getChittiTagsData($locale);
         });
 
         return $this->apiResponse(true, 'Tags fetched successfully', compact('categories', 'tags'), 200);
@@ -36,30 +40,46 @@ class TagService extends BaseService
     }
 
 
-    public function getCounts()
+    public function getCounts($locale)
     {
-        $categories = [
-            'culture_count' => [1, 2, 3],
-            'nature_count' => [4, 5, 6],
-            'timeline_count' => [1],
-            'man_senses_count' => [2],
-            'man_inventions_count' => [3],
-            'geography_count' => [4],
-            'fauna_count' => [5],
-            'flora_count' => [6],
+        $maincategories = [
+            'culture' => [1, 2, 3],
+            'nature' => [4, 5, 6],
+        ];
+        $subcategories = [
+            '1' => [1],
+            '2' => [2],
+            '3' => [3],
+            '4' => [4],
+            '5' => [5],
+            '6' => [6],
         ];
 
         $results = [];
-        foreach ($categories as $key => $tagCategoryIds) {
-            $results[$key] = $this->getChittiCountByCategory($tagCategoryIds);
+        foreach ($maincategories as $key => $tagCategoryIds) {
+             $results['maincategories'][$key] = [
+                'count' => $this->getChittiCountByCategory($tagCategoryIds),
+                'icon' => "",
+                'category_name'=>$locale[$key],
+            ];
+        }
+        foreach ($subcategories as $key => $tagCategoryIds) {
+            $results['subcategories'][$key] = [
+                'count' => $this->getChittiCountByCategory($tagCategoryIds),
+                'icon' => "",
+                'category_name'=>$locale['categories'][$key],
+            ];
+
         }
 
         return $results;
     }
 
 
-    private function getChittiTagsData()
+    private function getChittiTagsData($locale)
     {
+
+
         $tags = DB::connection('main')->table('mtag as mt')
             ->select(
                 'mt.tagId',
@@ -82,7 +102,14 @@ class TagService extends BaseService
 
         $grouped = [];
         foreach ($tags as $tag) {
-            $grouped['tag_' . $tag->tagCategoryId][] = $tag;
+            $grouped['tag_' . $tag->tagCategoryId][] = [
+                'tagId' => $tag->tagId,
+                'tagCategoryId' => $tag->tagCategoryId,
+                'tagName'=>$locale['tags'][$tag->tagId],
+                'tagIcon' =>'https://prarang.s3.amazonaws.com/'. $tag->tagIcon,
+                'tagCategoryInEnglish' => $tag->tagCategoryInEnglish,
+                'count' => $tag->count,
+            ];
         }
         return $grouped;
     }

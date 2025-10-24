@@ -21,6 +21,7 @@ class PostApiController extends Controller
                 'location' => 'nullable|string',
                 'location_type' => 'nullable|string|in:city,state,country',
                 'order_by' => 'nullable|string|in:asc,desc',
+                'tag_id'=>'nullable|integer',
             ]);
         } catch (\Illuminate\Validation\ValidationException $e) {
             return response()->json([
