@@ -32,6 +32,8 @@ class PostService extends BaseService
             $portalUnion = app(PortalUnion::class);
 
             $chittiQuery = Chitti::query();
+             $chittiQuery->join('vChittiGeography', 'chitti.chittiId', '=', 'vChittiGeography.chittiId')
+            ->whereNot('vChittiGeography.Geography', 'LIKE', "%CON%");
 
             if ($location) {
                 try {

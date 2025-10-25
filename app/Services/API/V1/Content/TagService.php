@@ -33,9 +33,12 @@ class TagService extends BaseService
             ->join('chitti as ch', 'ct.chittiId', '=', 'ch.chittiId')
             ->join('mtag as mt', 'mt.tagId', '=', 'ct.tagId')
             ->join('mtagcategory as mtc', 'mtc.tagCategoryId', '=', 'mt.tagCategoryId')
+            ->join('vChittiGeography as vCg', 'ch.chittiId', '=', 'vCg.chittiId')
             ->whereIn('mtc.tagCategoryId', $tagCategoryIds)
             ->where('ch.finalStatus', 'approved')
+            ->whereNot('vCg.Geography', 'LIKE', "%CON%")
             ->distinct('ct.chittiId')
+
             ->count('ct.chittiId');
     }
 
