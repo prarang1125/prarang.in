@@ -1412,7 +1412,7 @@
                                                         {{ $primary->country_name ?? 'Country' }} AI Report
                                                     </a></div>
                                                 <div class="col-sm-6"><a
-                                                        href="https://g2c.prarang.in/ai/{{ urlencode($secondary->analytics_slug ?? 'Country') }}"
+                                                        href="https://g2c.prarang.in/ai/{{ ucfirst($secondary->analytics_slug ?? 'Country') }}"
                                                         class="btn btn-info btn-sm w-100 fw-semibold" target="_blank">
                                                         <i class="fa fa-robot me-1"></i>
                                                         {{ $secondary->country_name ?? 'Country' }} AI Report

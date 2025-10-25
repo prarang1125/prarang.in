@@ -212,9 +212,10 @@
                         {{ $data->country_name ?? 'N/A' }} News
                     </h3>
                     <div class="widget__content">
+
                         <div class="rounded p-3 bg-light border text-center">
                             @if (!empty($data->news))
-                                <a href="{{ $data->news }}" target="_blank"
+                                <a href="{{ str_replace(' ', '"', $data->news) }}" target="_blank"
                                     class="fw-semibold text-decoration-none text-primary">
                                     <i class="fa fa-external-link me-1"></i>
                                     {{ $data->country_name ?? 'N/A' }} News
