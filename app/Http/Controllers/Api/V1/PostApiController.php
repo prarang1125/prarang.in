@@ -54,7 +54,4 @@ class PostApiController extends Controller
         return $postService->getPostById($request);
     }
 
-
-
-
 }
