@@ -92,6 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <li><strong>Old Social Design Project</strong> – <a href="https://www.rohmoh.com/" target="_blank">Rohilla Mohalla Project</a></li>
     <li><strong>New World Library Knowledge Project</strong> – <a href="https://sarganga.org/" target="_blank">Saraswati by Ganga</a></li>
     <li><strong>Colours of Prarang Daily Content</strong> – <a href="http://rangmala.com/" target="_blank">Daily Knowledge Posts – Rangmala</a></li>
+     <li><strong>Hindi Web</strong> – <a href="https://xn--v1bm1eh4ce.xn--h2brj9c/" target="_blank">हमसबएक.भारत </a></li>
             </ul>
           </div>
         </div>
