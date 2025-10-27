@@ -1519,19 +1519,9 @@
                                             <button type="button" class="btn-close btn-close-white" onclick="closeComingSoon()"></button>
                                         </div>
                                         <div class="modal-body text-center p-5">
-                                            <div class="mb-4">
-                                                <i class="fa fa-rocket" style="font-size: 4rem; color: #667eea;"></i>
-                                            </div>
-                                            <h4 class="mb-3" style="color: #2c3e50;">We're Working On It!</h4>
                                             <p class="text-muted" style="font-size: 1.1rem;">
-                                                This feature is coming soon. Stay tuned for updates!
+                                                Coming Soon...
                                             </p>
-                                            <div class="mt-4">
-                                                <button type="button" class="btn btn-primary px-4 py-2" onclick="closeComingSoon()"
-                                                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; border-radius: 25px;">
-                                                    <i class="fa fa-check me-2"></i>Got It
-                                                </button>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
