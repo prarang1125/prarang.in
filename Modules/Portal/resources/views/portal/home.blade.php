@@ -446,7 +446,7 @@
                                                                     id="lsvr-townpress-menu-widget__item-222-830"
                                                                     role="presentation">
                                                                     <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
-                                                                        href="{{ env('G2C_URL') }}/{{ $portal->city_name }}/{{ $portal->local_lang }}"
+                                                                        href="https://hindi.prarang.in/{{ $portal->city_name }}"
                                                                         id="lsvr-townpress-menu-widget__item-link-222-830"
                                                                         role="menuitem">
                                                                         <span
