@@ -1447,25 +1447,19 @@
                         <div class="row g-2">
                             <div class="col-sm">
                                 <h4 class="text-center">About Prarang</h4>
-                                <p>Prarang provides complete information to understand cities of the country and abroad.
-                                    This
-                                    includes knowledge web of nature-culture of the city in the local language, yellow
-                                    pages of
-                                    the business list of the city, detailed analysis of the metrics or statistics of the
-                                    city,
-                                    and specific symbolism received from the citizens operated by AI.</p>
+                                <p>Prarang provides integrated digital solutions and unique insights to understand the cities of India and the World. Through our composite methodology of traditional research from rare books, maps and images, a Big database of India and World Metrics, an in-house LLM based on Indian Linguistics, we provide in depth city - hyperlocal knowledge, comprehensive knowledge by comparison between cities of the world, through our content, analytics, and semiotics solutions, for governance & corporate communication, while being localisation ready for any language/script. </p>
                             </div>
                             <div class="text-center col-sm">
                                 <h4 class="text-center">Follow Us</h4>
                                 <div class="row">
                                     <div class="col-6">
-                                        <a href="https://www.facebook.com/prarang.in" target="_blank">
+                                        <a href="javascript:void(0)" onclick="showComingSoon(event)">
                                             <i class="p-2 shadow fa fa-facebook rounded-circle fa-2x"></i> <span
                                                 class="h4">Facebook</span>
                                         </a>
                                     </div>
                                     <div class="col-6">
-                                        <a href="https://twitter.com/prarangin" target="_blank">
+                                        <a href="javascript:void(0)" onclick="showComingSoon(event)">
                                             <i class="p-2 shadow fa fa-twitter rounded-circle fa-2x"></i><span
                                                 class="h4">
                                                 Twitter</span>
@@ -1474,13 +1468,13 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
-                                        <a href="https://www.instagram.com/prarang.in/" target="_blank">
+                                        <a href="javascript:void(0)" onclick="showComingSoon(event)">
                                             <i class="p-2 shadow fa fa-instagram rounded-circle fa-2x"></i> <span
                                                 class="h4">Instagram</span>
                                         </a>
                                     </div>
                                     <div class="col-6">
-                                        <a href="https://www.linkedin.com/company/prarang-in" target="_blank">
+                                        <a href="javascript:void(0)" onclick="showComingSoon(event)">
                                             <i class="p-2 shadow fa fa-linkedin rounded-circle fa-2x"></i> <span
                                                 class="h4">
                                                 LinkedIn</span>
@@ -1548,6 +1542,65 @@
                         document.getElementById('countrySecondary').checked = true;
                         primaryMap.style.display = 'none';
                         secondaryMap.style.display = 'block';
+                    });
+
+                    // Coming Soon Modal Function
+                    function showComingSoon(event) {
+                        event.preventDefault();
+
+                        // Create modal HTML
+                        const modalHTML = `
+                            <div class="modal fade show" id="comingSoonModal" tabindex="-1" style="display: block; background: rgba(0,0,0,0.5);">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content" style="border-radius: 15px; overflow: hidden;">
+                                        <div class="modal-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                                            <h5 class="modal-title text-white fw-bold">
+                                                <i class="fa fa-clock-o me-2"></i>Coming Soon
+                                            </h5>
+                                            <button type="button" class="btn-close btn-close-white" onclick="closeComingSoon()"></button>
+                                        </div>
+                                        <div class="modal-body text-center p-5">
+                                            <div class="mb-4">
+                                                <i class="fa fa-rocket" style="font-size: 4rem; color: #667eea;"></i>
+                                            </div>
+                                            <h4 class="mb-3" style="color: #2c3e50;">We're Working On It!</h4>
+                                            <p class="text-muted" style="font-size: 1.1rem;">
+                                                This feature is coming soon. Stay tuned for updates!
+                                            </p>
+                                            <div class="mt-4">
+                                                <button type="button" class="btn btn-primary px-4 py-2" onclick="closeComingSoon()"
+                                                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; border-radius: 25px;">
+                                                    <i class="fa fa-check me-2"></i>Got It
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+
+                        // Append modal to body
+                        document.body.insertAdjacentHTML('beforeend', modalHTML);
+                        document.body.style.overflow = 'hidden';
+                    }
+
+                    function closeComingSoon() {
+                        const modal = document.getElementById('comingSoonModal');
+                        if (modal) {
+                            modal.classList.remove('show');
+                            setTimeout(() => {
+                                modal.remove();
+                                document.body.style.overflow = 'auto';
+                            }, 150);
+                        }
+                    }
+
+                    // Close modal on backdrop click
+                    document.addEventListener('click', function(event) {
+                        const modal = document.getElementById('comingSoonModal');
+                        if (modal && event.target === modal) {
+                            closeComingSoon();
+                        }
                     });
                 </script>
 
