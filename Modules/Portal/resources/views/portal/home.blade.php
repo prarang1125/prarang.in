@@ -324,7 +324,7 @@
                                         <li class="header-mobile-menu__item header-mobile-menu__item--level-0 menu-item menu-item-type-post_type menu-item-object-page"
                                             id="header-mobile-menu__item-222" role="presentation">
                                             <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-0"
-                                                href="{{ env('G2C_URL') }}/{{ $portal->city_name }}/{{ $portal->local_lang }}"
+                                                href="https://hindi.prarang.in/{{ $portal->city_name }}"
                                                 id="header-mobile-menu__item-link-222" role="menuitem">
                                                 <span class="header-mobile-menu__item-link-label">
                                                     District Metrics / जिला मेट्रिक्स
