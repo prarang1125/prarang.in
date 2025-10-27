@@ -1453,13 +1453,13 @@
                                 <h4 class="text-center">Follow Us</h4>
                                 <div class="row">
                                     <div class="col-6">
-                                        <a href="javascript:void(0)" onclick="showComingSoon(event)">
+                                        <a href="javascript:void(0)" onclick="showComingSoon(event)" target="_blank">
                                             <i class="p-2 shadow fa fa-facebook rounded-circle fa-2x"></i> <span
                                                 class="h4">Facebook</span>
                                         </a>
                                     </div>
                                     <div class="col-6">
-                                        <a href="javascript:void(0)" onclick="showComingSoon(event)">
+                                        <a href="javascript:void(0)" onclick="showComingSoon(event)"  target="_blank">
                                             <i class="p-2 shadow fa fa-twitter rounded-circle fa-2x"></i><span
                                                 class="h4">
                                                 Twitter</span>
@@ -1468,13 +1468,13 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
-                                        <a href="javascript:void(0)" onclick="showComingSoon(event)">
+                                        <a href=" https://www.instagram.com/prarang_in/?hl=en" target="_blank">
                                             <i class="p-2 shadow fa fa-instagram rounded-circle fa-2x"></i> <span
                                                 class="h4">Instagram</span>
                                         </a>
                                     </div>
                                     <div class="col-6">
-                                        <a href="javascript:void(0)" onclick="showComingSoon(event)">
+                                        <a href="https://www.linkedin.com/company/indeur-prarang/" target="_blank">
                                             <i class="p-2 shadow fa fa-linkedin rounded-circle fa-2x"></i> <span
                                                 class="h4">
                                                 LinkedIn</span>
@@ -1503,49 +1503,8 @@
                     </footer>
 
                 </div>
-
-
-                <script id="jquery-core-js" src="https://preview.lsvr.sk/townpress/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"
-                    type="text/javascript"></script>
-
-
-
-                <script id="lsvr-townpress-main-scripts-js"
-                    src="https://preview.lsvr.sk/townpress/wp-content/themes/townpress/assets/js/townpress-scripts.min.js?ver=3.8.8"
-                    type="text/javascript"></script>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-                    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
-                </script>
-                {!! $portal['footer_scripts'] ?? '' !!}
-
-                <!-- Map Functionality Script -->
                 <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        const radios = document.querySelectorAll('input[name="countrySelect"]');
-                        const mapContainer = document.getElementById('mapContainer');
-                        const primaryMap = mapContainer.children[0];
-                        const secondaryMap = mapContainer.children[1];
-
-                        radios.forEach(radio => {
-                            radio.addEventListener('change', function() {
-                                if (this.value === 'primary') {
-                                    primaryMap.style.display = 'block';
-                                    secondaryMap.style.display = 'none';
-                                } else {
-                                    primaryMap.style.display = 'none';
-                                    secondaryMap.style.display = 'block';
-                                }
-                            });
-                        });
-
-                        // Set default to secondary country
-                        document.getElementById('countrySecondary').checked = true;
-                        primaryMap.style.display = 'none';
-                        secondaryMap.style.display = 'block';
-                    });
-
-                    // Coming Soon Modal Function
-                    function showComingSoon(event) {
+                     function showComingSoon(event) {
                         event.preventDefault();
 
                         // Create modal HTML
@@ -1601,6 +1560,46 @@
                         if (modal && event.target === modal) {
                             closeComingSoon();
                         }
+                    });
+                </script>
+
+                <script id="jquery-core-js" src="https://preview.lsvr.sk/townpress/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"
+                    type="text/javascript"></script>
+
+
+
+                <script id="lsvr-townpress-main-scripts-js"
+                    src="https://preview.lsvr.sk/townpress/wp-content/themes/townpress/assets/js/townpress-scripts.min.js?ver=3.8.8"
+                    type="text/javascript"></script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+                    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+                </script>
+                {!! $portal['footer_scripts'] ?? '' !!}
+
+                <!-- Map Functionality Script -->
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const radios = document.querySelectorAll('input[name="countrySelect"]');
+                        const mapContainer = document.getElementById('mapContainer');
+                        const primaryMap = mapContainer.children[0];
+                        const secondaryMap = mapContainer.children[1];
+
+                        radios.forEach(radio => {
+                            radio.addEventListener('change', function() {
+                                if (this.value === 'primary') {
+                                    primaryMap.style.display = 'block';
+                                    secondaryMap.style.display = 'none';
+                                } else {
+                                    primaryMap.style.display = 'none';
+                                    secondaryMap.style.display = 'block';
+                                }
+                            });
+                        });
+
+                        // Set default to secondary country
+                        document.getElementById('countrySecondary').checked = true;
+                        primaryMap.style.display = 'none';
+                        secondaryMap.style.display = 'block';
                     });
                 </script>
 
