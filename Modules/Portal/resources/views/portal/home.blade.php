@@ -445,7 +445,7 @@
                                                                 <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-0 menu-item menu-item-type-post_type menu-item-object-page"
                                                                     id="lsvr-townpress-menu-widget__item-222-830"
                                                                     role="presentation">
-                                                                    <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
+                                                                    <a target="_blank" class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
                                                                         href="https://hindi.prarang.in/{{ $portal->city_name }}"
                                                                         id="lsvr-townpress-menu-widget__item-link-222-830"
                                                                         role="menuitem">
