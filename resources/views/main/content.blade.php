@@ -344,13 +344,18 @@
                     <h6 class="mb-0 font-weight-bold">India Portals:</h6>
                 </div>
                 <div class="col-md-10">
-                    <div class="d-flex flex-wrap gap-2">
-                        @foreach ($portal as $inPortal)
-                            <a href="/{{ $inPortal->slug }}" target="_blank" class="btn btn-sm btn-warning m-1">
+
+                        @foreach ($portal as $key=>$inPortalx)
+                        <h6>{{$key}}</h6>
+                          <div class="d-flex flex-wrap gap-2">
+                        @foreach ( $inPortalx as $inPortal)
+                         <a href="/{{ $inPortal->slug }}" target="_blank" class="btn btn-sm btn-warning m-1">
                                 {{ $inPortal->city_name }}
                             </a>
                         @endforeach
-                    </div>
+                             </div>
+                        @endforeach
+
                 </div>
             </div>
             <!-- Bilateral Portals -->
