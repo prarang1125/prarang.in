@@ -1453,13 +1453,13 @@
                                 <h4 class="text-center">Follow Us</h4>
                                 <div class="row">
                                     <div class="col-6">
-                                        <a href="javascript:void(0)" onclick="showComingSoon(event)">
+                                        <a href="javascript:void(0)" onclick="showComingSoon(event)" target="_blank">
                                             <i class="p-2 shadow fa fa-facebook rounded-circle fa-2x"></i> <span
                                                 class="h4">Facebook</span>
                                         </a>
                                     </div>
                                     <div class="col-6">
-                                        <a href="javascript:void(0)" onclick="showComingSoon(event)">
+                                        <a href="javascript:void(0)" onclick="showComingSoon(event)"  target="_blank">
                                             <i class="p-2 shadow fa fa-twitter rounded-circle fa-2x"></i><span
                                                 class="h4">
                                                 Twitter</span>
@@ -1468,13 +1468,13 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-6">
-                                        <a href="javascript:void(0)" onclick="showComingSoon(event)">
+                                        <a href=" https://www.instagram.com/prarang_in/?hl=en" target="_blank">
                                             <i class="p-2 shadow fa fa-instagram rounded-circle fa-2x"></i> <span
                                                 class="h4">Instagram</span>
                                         </a>
                                     </div>
                                     <div class="col-6">
-                                        <a href="javascript:void(0)" onclick="showComingSoon(event)">
+                                        <a href="https://www.linkedin.com/company/indeur-prarang/" target="_blank">
                                             <i class="p-2 shadow fa fa-linkedin rounded-circle fa-2x"></i> <span
                                                 class="h4">
                                                 LinkedIn</span>
@@ -1503,7 +1503,55 @@
                     </footer>
 
                 </div>
+                <script>
+                     function showComingSoon(event) {
+                        event.preventDefault();
 
+                        // Create modal HTML
+                        const modalHTML = `
+                            <div class="modal fade show" id="comingSoonModal" tabindex="-1" style="display: block; background: rgba(0,0,0,0.5);">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content" style="border-radius: 15px; overflow: hidden;">
+                                        <div class="modal-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                                            <h5 class="modal-title text-white fw-bold">
+                                                <i class="fa fa-clock-o me-2"></i>Coming Soon
+                                            </h5>
+                                            <button type="button" class="btn-close btn-close-white" onclick="closeComingSoon()"></button>
+                                        </div>
+                                        <div class="modal-body text-center p-5">
+                                            <p class="text-muted" style="font-size: 1.1rem;">
+                                                Coming Soon...
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+
+                        // Append modal to body
+                        document.body.insertAdjacentHTML('beforeend', modalHTML);
+                        document.body.style.overflow = 'hidden';
+                    }
+
+                    function closeComingSoon() {
+                        const modal = document.getElementById('comingSoonModal');
+                        if (modal) {
+                            modal.classList.remove('show');
+                            setTimeout(() => {
+                                modal.remove();
+                                document.body.style.overflow = 'auto';
+                            }, 150);
+                        }
+                    }
+
+                    // Close modal on backdrop click
+                    document.addEventListener('click', function(event) {
+                        const modal = document.getElementById('comingSoonModal');
+                        if (modal && event.target === modal) {
+                            closeComingSoon();
+                        }
+                    });
+                </script>
 
                 <script id="jquery-core-js" src="https://preview.lsvr.sk/townpress/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"
                     type="text/javascript"></script>
@@ -1542,65 +1590,6 @@
                         document.getElementById('countrySecondary').checked = true;
                         primaryMap.style.display = 'none';
                         secondaryMap.style.display = 'block';
-                    });
-
-                    // Coming Soon Modal Function
-                    function showComingSoon(event) {
-                        event.preventDefault();
-
-                        // Create modal HTML
-                        const modalHTML = `
-                            <div class="modal fade show" id="comingSoonModal" tabindex="-1" style="display: block; background: rgba(0,0,0,0.5);">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content" style="border-radius: 15px; overflow: hidden;">
-                                        <div class="modal-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
-                                            <h5 class="modal-title text-white fw-bold">
-                                                <i class="fa fa-clock-o me-2"></i>Coming Soon
-                                            </h5>
-                                            <button type="button" class="btn-close btn-close-white" onclick="closeComingSoon()"></button>
-                                        </div>
-                                        <div class="modal-body text-center p-5">
-                                            <div class="mb-4">
-                                                <i class="fa fa-rocket" style="font-size: 4rem; color: #667eea;"></i>
-                                            </div>
-                                            <h4 class="mb-3" style="color: #2c3e50;">We're Working On It!</h4>
-                                            <p class="text-muted" style="font-size: 1.1rem;">
-                                                This feature is coming soon. Stay tuned for updates!
-                                            </p>
-                                            <div class="mt-4">
-                                                <button type="button" class="btn btn-primary px-4 py-2" onclick="closeComingSoon()"
-                                                    style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; border-radius: 25px;">
-                                                    <i class="fa fa-check me-2"></i>Got It
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        `;
-
-                        // Append modal to body
-                        document.body.insertAdjacentHTML('beforeend', modalHTML);
-                        document.body.style.overflow = 'hidden';
-                    }
-
-                    function closeComingSoon() {
-                        const modal = document.getElementById('comingSoonModal');
-                        if (modal) {
-                            modal.classList.remove('show');
-                            setTimeout(() => {
-                                modal.remove();
-                                document.body.style.overflow = 'auto';
-                            }, 150);
-                        }
-                    }
-
-                    // Close modal on backdrop click
-                    document.addEventListener('click', function(event) {
-                        const modal = document.getElementById('comingSoonModal');
-                        if (modal && event.target === modal) {
-                            closeComingSoon();
-                        }
                     });
                 </script>
 
