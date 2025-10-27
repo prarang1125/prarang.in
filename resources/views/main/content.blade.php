@@ -258,6 +258,22 @@
         .container .flex-wrap {
             box-shadow: 0px 0px 4px -50px #212529;
         }
+        /* Heading */
+.container .col-md-10 h6{
+ margin-bottom:0px;
+ padding-left:7px;
+ color:#767a7e;
+ font-weight:400;
+ font-size:14px;
+}
+
+/* Row */
+.container .align-items-center{
+ padding-top:4px;
+ padding-bottom:4px;
+}
+
+
     </style>
     <section class="bs5-top-heading">
         <p class="">Content</p>
