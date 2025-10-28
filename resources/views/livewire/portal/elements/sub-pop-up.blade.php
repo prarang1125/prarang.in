@@ -223,13 +223,12 @@
             <div class="shadow popupsub">
                 <a href="javascript:void(0)" class="text-dark" style="text-decoration:none;" id="openModalx">
                     @if ($showWelcome)
-                        <h3>सफलता पूर्वक सब्सक्राइब हुआ</h3>
+                        <h3>{{ $locale['subscribe']['success'] ?? 'सफलता पूर्वक सब्सक्राइब हुआ' }}</h3>
                     @else
                         @if ($portal->city_name_local)
-                            <h3>प्रारंग के {{ $portal->city_name_local }} दैनिक पोस्ट (Post) को प्रतिदिन WhatsApp पर पाए
-                            </h3>
+                            <h3>{{ $locale['subscribe']['city_daily_post'] ?? 'प्रारंग के' }} {{ $portal->city_name_local }} {{ $locale['subscribe']['daily_post_whatsapp'] ?? 'दैनिक पोस्ट (Post) को प्रतिदिन WhatsApp पर पाए' }}</h3>
                         @else
-                            <h3>प्रारंग के दैनिक पोस्ट (Post) को प्रतिदिन WhatsApp पर पाए</h3>
+                            <h3>{{ $locale['subscribe']['daily_post_whatsapp'] ?? 'प्रारंग के दैनिक पोस्ट (Post) को प्रतिदिन WhatsApp पर पाए' }}</h3>
                         @endif
                     @endif
 
@@ -253,52 +252,49 @@
                 <span class="close closex">&times;</span>
                 @if ($showWelcome)
                     <section>
-                        <h3 class="text-center text-primary mb-3">आपका स्वागत है</h3>
-                        <p class="text-center">प्रारंग के साथ जुड़ने के लिए धन्यवाद.</p>
+                        <h3 class="text-center text-primary mb-3">{{ $locale['subscribe']['welcome'] ?? 'आपका स्वागत है' }}</h3>
+                        <p class="text-center">{{ $locale['subscribe']['thanks'] ?? 'प्रारंग के साथ जुड़ने के लिए धन्यवाद.' }}</p>
                     @else
                         <section>
                             <form wire:submit.prevent="register" class="sign-in-form">
-                                <h3 class="text-center text-primary mb-3">प्रतिदिन मुफ़्त लेख प्राप्त करे </h3>
+                                <h3 class="text-center text-primary mb-3">{{ $locale['subscribe']['get_free_daily'] ?? 'प्रतिदिन मुफ़्त लेख प्राप्त करे' }}</h3>
 
                                 <!-- City Selection -->
                                 <div class="mb-3">
-                                    <label for="city" class="form-label fw-bold">शहर चुनें:</label>
+                                    <label for="city" class="form-label fw-bold">{{ $locale['subscribe']['select_city'] ?? 'शहर चुनें:' }}</label>
                                     <select wire:change="validatePhone('city')" wire:model="city" id="city"
                                         class="form-select @error('city') is-invalid animate__animated animate__headShake @enderror">
-                                        <option value="">कृपया शहर चुनें</option>
+                                        <option value="">{{ $locale['subscribe']['choose_city'] ?? 'कृपया शहर चुनें' }}</option>
                                         @foreach ($cities as $option)
                                             <option value="{{ $option->id }}">{{ $option->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('city')
-                                        <small
-                                            class="text-danger animate__animated animate__headShake">{{ $message }}</small>
+                                        <small class="text-danger animate__animated animate__headShake">{{ $message }}</small>
                                     @enderror
                                 </div>
 
                                 <!-- Name Input -->
                                 <div class="mb-3">
-                                    <label for="name" class="form-label fw-bold">नाम:</label>
+                                    <label for="name" class="form-label fw-bold">{{ $locale['subscribe']['name_label'] ?? 'नाम:' }}</label>
                                     <input type="text" wire:model="name" wire:change="validatePhone('name')"
                                         id="name"
                                         class="form-control @error('name') is-invalid animate__animated animate__headShake @enderror"
-                                        placeholder="नाम">
+                                        placeholder="{{ $locale['subscribe']['name_placeholder'] ?? 'नाम' }}">
                                     @error('name')
-                                        <small
-                                            class="text-danger animate__animated animate__headShake">{{ $message }}</small>
+                                        <small class="text-danger animate__animated animate__headShake">{{ $message }}</small>
                                     @enderror
                                 </div>
 
                                 <!-- Phone Input -->
                                 <div class="mb-3">
-                                    <label for="phone" class="form-label fw-bold">फोन नंबर:</label>
+                                    <label for="phone" class="form-label fw-bold">{{ $locale['subscribe']['phone_label'] ?? 'फोन नंबर:' }}</label>
                                     <input type="text" wire:change="validatePhone('phone')"
                                         wire:model.debounce.250ms="phone" id="phone"
                                         class="form-control @error('phone') is-invalid animate__animated animate__headShake @enderror"
-                                        placeholder="फोन नंबर">
+                                        placeholder="{{ $locale['subscribe']['phone_placeholder'] ?? 'फोन नंबर' }}">
                                     @error('phone')
-                                        <small
-                                            class="text-danger animate__animated animate__headShake">{{ $message }}</small>
+                                        <small class="text-danger animate__animated animate__headShake">{{ $message }}</small>
                                     @enderror
                                 </div>
 
@@ -306,10 +302,10 @@
 
                                 <div class="mb-3">
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" wire:model.="isVcard"
+                                        <input class="form-check-input" type="checkbox" wire:model="isVcard"
                                             wire:change="checkedVcard" id="isVcard">
                                         <label class="form-check-label" for="isVcard">
-                                            अपना मुफ़्त वेबपेज भी बनाएं
+                                            {{ $locale['subscribe']['create_free_webpage'] ?? 'अपना मुफ़्त वेबपेज भी बनाएं' }}
                                         </label>
                                     </div>
                                 </div>
@@ -317,20 +313,19 @@
                                 @if ($showPassword)
                                     <!-- Password Input -->
                                     <div class="mb-3">
-                                        <label for="password" class="form-label fw-bold">पासवर्ड:</label>
+                                        <label for="password" class="form-label fw-bold">{{ $locale['subscribe']['password_label'] ?? 'पासवर्ड:' }}</label>
                                         <input type="password" wire:change="validatePhone('password')"
                                             wire:model="password" id="password"
                                             class="form-control @error('password') is-invalid animate__animated animate__headShake @enderror"
-                                            placeholder="पासवर्ड दर्ज करे ">
+                                            placeholder="{{ $locale['subscribe']['password_placeholder'] ?? 'पासवर्ड दर्ज करे ' }}">
                                         @error('password')
-                                            <small
-                                                class="text-danger animate__animated animate__headShake">{{ $message }}</small>
+                                            <small class="text-danger animate__animated animate__headShake">{{ $message }}</small>
                                         @enderror
                                     </div>
                                 @endif
                                 <!-- Submit Button -->
                                 <button type="submit" class="btn btn-primary w-100 fw-bold">
-                                    <span wire:loading.remove>सब्सक्राइब करें</span>
+                                    <span wire:loading.remove>{{ $locale['subscribe']['subscribe_btn'] ?? 'सब्सक्राइब करें' }}</span>
                                     <span wire:loading class="spinner-border spinner-border-sm"></span>
                                 </button>
                             </form>

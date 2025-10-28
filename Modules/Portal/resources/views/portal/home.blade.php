@@ -364,7 +364,7 @@
 
                                     <!-- MAIN : begin -->
                                     <main id="main">
-                                        @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-1', 'slug' => $portal->slug, 'portal' => $portal])
+                                        @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-1', 'slug' => $portal->slug, 'portal' => $portal,'locale' => $locale])
                                         <div class="main__inner">
                                             <div class="post-207 page type-page status-publish hentry">
                                                 <!-- MAIN HEADER : begin -->
@@ -549,38 +549,41 @@
                     <h4 class="text-center">{{ $locale['ui']['about_prarang'] ?? 'About Prarang' }}</h4>
                     <p>{{ $locale['ui']['about_description'] ?? 'Prarang' }}</p>
                 </div>
-                <div class="text-center col-sm">
-                    <h4 class="text-center">{{ $locale['ui']['follow_us'] ?? 'Follow Us' }}</h4>
-                    <div class="row">
-                        <div class="col-6">
-                            <a href="https://www.facebook.com/prarang.in" target="_blank">
-                                <i class="p-2 shadow fa fa-facebook rounded-circle fa-2x"></i> <span
-                                    class="h4">{{ $locale['ui']['facebook'] ?? 'Facebook' }}</span>
-                            </a>
-                        </div>
-                        <div class="col-6">
-                            <a href="https://twitter.com/prarangin" target="_blank">
-                                <i class="p-2 shadow fa fa-twitter rounded-circle fa-2x"></i><span class="h4">
-                                    {{ $locale['ui']['twitter'] ?? 'Twitter' }}</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <a href="https://www.instagram.com/prarang.in/" target="_blank">
-                                <i class="p-2 shadow fa fa-instagram rounded-circle fa-2x"></i> <span
-                                    class="h4">{{ $locale['ui']['instagram'] ?? 'Instagram' }}</span>
-                            </a>
-                        </div>
-                        <div class="col-6">
-                            <a href="https://www.linkedin.com/company/prarang-in" target="_blank">
-                                <i class="p-2 shadow fa fa-linkedin rounded-circle fa-2x"></i> <span class="h4">
-                                    {{ $locale['ui']['linkedin'] ?? 'LinkedIn' }}</span>
+                  <div class="text-center col-sm">
+                                <h4 class="text-center">Follow Us</h4>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <a href="https://www.facebook.com/prarang.in" target="_blank">
+                                            <i class="p-2 shadow fa fa-facebook rounded-circle fa-2x"></i> <span
+                                                class="h4">Facebook</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="javascript:void(0)" onclick="showComingSoon(event)"  target="_blank">
+                                            <img width="30" src="https://images.freeimages.com/image/grids/9fe/x-twitter-light-grey-logo-5694251.png">
+                                            <span
+                                                class="h4">
+                                                Twitter</span>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <a href=" https://www.instagram.com/prarang_in/?hl=en" target="_blank">
+                                            <i class="p-2 shadow fa fa-instagram rounded-circle fa-2x"></i> <span
+                                                class="h4">Instagram</span>
+                                        </a>
+                                    </div>
+                                    <div class="col-6">
+                                        <a href="https://www.linkedin.com/company/indeur-prarang/" target="_blank">
+                                            <i class="p-2 shadow fa fa-linkedin rounded-circle fa-2x"></i> <span
+                                                class="h4">
+                                                LinkedIn</span>
 
-                            </a>
-                        </div>
-                    </div>
-                </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                 <div class="col-sm ps-3">
                     <h4 class="text-center"><i class="tp tp-eye"></i> {{ $locale['ui']['address'] ?? 'Address' }}</h4>
                     <p>{{ $locale['ui']['office'] ?? 'Office' }}</p>
@@ -595,7 +598,55 @@
         </footer>
 
     </div>
+ <script>
+                     function showComingSoon(event) {
+                        event.preventDefault();
 
+                        // Create modal HTML
+                        const modalHTML = `
+                            <div class="modal fade show" id="comingSoonModal" tabindex="-1" style="display: block; background: rgba(0,0,0,0.5);">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content" style="border-radius: 15px; overflow: hidden;">
+                                        <div class="modal-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
+                                            <h5 class="modal-title text-white fw-bold">
+                                                <i class="fa fa-clock-o me-2"></i>Coming Soon
+                                            </h5>
+                                            <button type="button" class="btn-close btn-close-white" onclick="closeComingSoon()"></button>
+                                        </div>
+                                        <div class="modal-body text-center p-5">
+                                            <p class="text-muted" style="font-size: 1.1rem;">
+                                                Coming Soon...
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+
+                        // Append modal to body
+                        document.body.insertAdjacentHTML('beforeend', modalHTML);
+                        document.body.style.overflow = 'hidden';
+                    }
+
+                    function closeComingSoon() {
+                        const modal = document.getElementById('comingSoonModal');
+                        if (modal) {
+                            modal.classList.remove('show');
+                            setTimeout(() => {
+                                modal.remove();
+                                document.body.style.overflow = 'auto';
+                            }, 150);
+                        }
+                    }
+
+                    // Close modal on backdrop click
+                    document.addEventListener('click', function(event) {
+                        const modal = document.getElementById('comingSoonModal');
+                        if (modal && event.target === modal) {
+                            closeComingSoon();
+                        }
+                    });
+                </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const hash = window.location.hash;
