@@ -21,6 +21,7 @@ class PortalController extends Controller
 
         $isCityPortalBiletral = BiletralPortal::where('slug', $portal)->exists();
         if ($isCityPortal) {
+
             return $this->indianCitiesPortal($portal);
         } elseif ($isCityPortalBiletral) {
 
@@ -33,9 +34,12 @@ class PortalController extends Controller
 
     public function indianCitiesPortal($portal)
     {
-        $locale = PortalLocaleizetion::where('lang_code', 'hi')->firstOrFail();
-        $locale = $locale['json'] ?? [];
         $portal = Portal::where('slug', $portal)->firstOrFail();
+        $locale = PortalLocaleizetion::where('lang_code', $portal->local_lang)->firstOrFail();
+        $locale = $locale['json'] ?? [];
+        // dd($locale);
+
+
         $cityCode = $portal->city_code;
         $yellowPages = City::where('portal_id', $portal->id)->first();
         return view('portal::portal.home', compact('cityCode', 'portal', 'yellowPages', 'locale'));

@@ -27,17 +27,16 @@
     <div class="widget__inner">
         <h3 class="widget__title widget__title--has-icon ps-2">
             {{-- <i class="fa fa-news"></i> --}}
-            Smart Citizens {{ $portal->city_name }} Interaction
+            {{ $locale['ui']['smart_citizens'] ?? 'Smart Citizens' }} {{ $portal->city_name }} {{ $locale['ui']['interaction'] ?? 'Interaction' }}
         </h3>
         <div class="widget__content">
 
             <ul>
                 <li><b><a class="smart-p-link" class="btn btn-primary" data-bs-toggle="modal"
-                            data-bs-target="#smartMeetingP">{{ $presentation['date'] }}
-                            Meeting</a></b></li>
+                            data-bs-target="#smartMeetingP">{{ $presentation['date'] }} {{ $locale['ui']['meeting'] ?? 'Meeting' }}</a></b></li>
                 <li><b><a class="smart-p-link" target="_blank"
                             href="{{ env('B2B_URL') }}/semiotic/{{ base64_encode($portal->city_code) }}">{{ $portal->city_name }}
-                            Semiotics</a></b></li>
+                            {{ $locale['ui']['semiotics'] ?? 'Semiotics' }}</a></b></li>
             </ul>
         </div>
     </div>
@@ -52,7 +51,7 @@
                         <small>(.pdf)</small></a>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ $locale['ui']['close'] ?? 'Close' }}</button>
 
                 </div>
             </div>
@@ -64,19 +63,19 @@
     <div class="widget__inner">
         <h3 class="widget__title widget__title--has-icon ps-2">
             {{-- <i class="fa fa-news"></i> --}}
-            Join Prarang {{ $portal->city_name }} Free Subscription
+            {{ $locale['ui']['join_prarang'] ?? 'Join Prarang' }} {{ $portal->city_name }} {{ $locale['ui']['free_subscription'] ?? 'Free Subscription' }}
         </h3>
         <div class="widget__content text-center">
 
 
             <a class="btn btn-primary" target="_blank" href="https://www.facebook.com/prarang.in"
                 contenteditable="false" style="cursor: pointer;">
-                <i class="fa fa-facebook-f"></i> Facebook Page
+                <i class="fa fa-facebook-f"></i> {{ $locale['ui']['facebook_page'] ?? 'Facebook Page' }}
             </a>
             <a class="btn btn-success" target="_blank"
-                href="https://play.google.com/store/apps/details?id=com.riversanskiriti.prarang" contenteditable="false"
+                href="https://play.google.com/store/apps/details?id=com.riversansskriti.prarang" contenteditable="false"
                 style="cursor: pointer;">
-                <i class="fa fa-mobile"></i> Mobile App
+                <i class="fa fa-mobile"></i> {{ $locale['ui']['mobile_app'] ?? 'Mobile App' }}
             </a>
         </div>
     </div>

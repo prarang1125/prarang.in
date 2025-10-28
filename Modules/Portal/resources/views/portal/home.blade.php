@@ -256,17 +256,17 @@
                                     <i class="fa fa-bars"></i>
 
                                     <span class="header-toolbar-toggle__menu-button-label">
-                                        Menu
+                                        {{ $locale['ui']['menu'] ?? 'Menu' }}
                                     </span>
                                 </button>
                                 <!-- HEADER MAP TOGGLE : begin -->
-                                <button aria-label="Open / close map"
+                                <button aria-label="{{ $locale['ui']['close_map'] ?? 'Close Map' }}"
                                     class="header-map-toggle header-map-toggle--mobile" type="button">
 
                                     <i class="fa fa-map-marker"></i>
 
                                     <span class="header-map-toggle__label">
-                                        <b>शहर का नक्शा</b>
+                                        <b>{{ $locale['ui']['city_map'] ?? 'City Map' }}</b>
                                     </span>
                                 </button>
                                 <!-- HEADER MAP TOGGLE : end -->
@@ -276,13 +276,13 @@
                             <div class="header-toolbar">
 
                                 <!-- HEADER MAP TOGGLE : begin -->
-                                <button aria-label="Open / close map"
+                                <button aria-label="{{ $locale['ui']['close_map'] ?? 'Close Map' }}"
                                     class="header-map-toggle header-map-toggle--desktop header-toolbar__item"
                                     type="button">
 
                                     <i class="fa fa-map-marker"></i>
                                     <span class="header-map-toggle__label">
-                                        <b>शहर का नक्शा</b>
+                                        <b>{{ $locale['ui']['city_map'] ?? 'City Map' }}</b>
                                     </span>
                                 </button>
                                 <!-- HEADER MAP TOGGLE : end -->
@@ -297,7 +297,7 @@
                                                 href="{{ route('portal', ['portal' => $portal->slug]) }}"
                                                 id="header-mobile-menu__item-link-222" role="menuitem">
                                                 <span class="header-mobile-menu__item-link-label">
-                                                    HOME / होम
+                                                    {{ $locale['ui']['home'] ?? 'HOME' }}
                                                 </span>
                                             </a>
                                         </li>
@@ -307,7 +307,7 @@
                                                 href="{{ route('posts.city', ['city' => $portal->slug]) }}"
                                                 id="header-mobile-menu__item-link-222" role="menuitem">
                                                 <span class="header-mobile-menu__item-link-label">
-                                                    See All Posts /सभी रंग देखे
+                                                    {{ $locale['ui']['see_all_posts'] ?? 'See All Posts' }}
                                                 </span>
                                             </a>
                                         </li>
@@ -327,7 +327,7 @@
                                                 href="https://hindi.prarang.in/{{ $portal->city_name }}"
                                                 id="header-mobile-menu__item-link-222" role="menuitem">
                                                 <span class="header-mobile-menu__item-link-label">
-                                                    District Metrics / जिला मेट्रिक्स
+                                                    {{ $locale['ui']['district_metrics'] ?? 'District Metrics' }}
                                                 </span>
                                             </a>
                                         </li>
@@ -382,8 +382,8 @@
                                                         :citySlug="$portal->slug" :locale="$locale" />
 
                                                     <div class="p-2 mt-3 " style="border:2px solid #FFB1A3">
-                                                        <h3 class="text-center">{{ $portal->city_name_local }} के आंकड़े
-                                                        </h3>
+                                                    <h3 class="text-center">{{ $portal->city_name_local }} {{ $locale['ui']['statistics'] ?? 'Statistics' }}
+                                                    </h3>
                                                         <a target="_blank"
                                                             href="{{ env('HINDI_URL') }}/{{ $portal->city_name }}"><img
                                                                 src="{{ asset('assets/portal/images/matrix-24.jpg') }}"
@@ -423,7 +423,7 @@
                                                                         role="menuitem">
                                                                         <span
                                                                             class="lsvr-townpress-menu-widget__item-link-label">
-                                                                            HOME / होम
+                                                                            {{ $locale['ui']['home']}}
                                                                         </span>
                                                                     </a>
 
@@ -438,7 +438,7 @@
                                                                         role="menuitem">
                                                                         <span
                                                                             class="lsvr-townpress-menu-widget__item-link-label">
-                                                                            See All Posts /सभी रंग देखे
+                                                                            {{$locale['ui']['see_all_posts'] ?? 'See All Posts'}}
                                                                         </span>
                                                                     </a>
                                                                 </li>
@@ -451,7 +451,7 @@
                                                                         role="menuitem">
                                                                         <span
                                                                             class="lsvr-townpress-menu-widget__item-link-label">
-                                                                            District Metrics / जिला मेट्रिक्स
+                                                                             {{$locale['ui']['district_metrics'] ?? 'District Metrics'}}
                                                                         </span>
                                                                     </a>
                                                                 </li>
@@ -464,12 +464,10 @@
                                                                         role="menuitem">
                                                                         <span
                                                                             class="lsvr-townpress-menu-widget__item-link-label">
-                                                                            ABOUT US / हमारे बारे में
+                                                                            {{$locale['ui']['about_us'] ?? 'ABOUT US'}}
                                                                         </span>
                                                                     </a>
                                                                 </li>
-
-
                                                             </ul>
                                                         </nav>
                                                     </div>
@@ -480,7 +478,7 @@
                                                 <div class="widget__inner">
                                                     <h3 class="widget__title widget__title--has-icon ps-2">
                                                         <i class="fa fa-map-marker"></i>
-                                                        स्थानीय जानकारी
+                                                        {{ $locale['ui']['local_info'] ?? 'स्थानीय जानकारी' }}
                                                     </h3>
                                                     <div class="widget__content">
 
@@ -497,7 +495,7 @@
                                                     <h3 class="widget__title widget__title--has-icon ps-2 text-dark">
                                                         <i class="fa fa-newspaper-o"></i>
                                                         {{ $portal->city_name }} NEWS/ {{ $portal->city_name_local }}
-                                                        समाचार
+                                                        {{ $locale['ui']['news_section'] ?? 'समाचार' }}
                                                     </h3>
                                                     <div class="widget__content">
 
@@ -548,25 +546,22 @@
             style="background-color: #FFB1A3; margin-top:200px;  background-image: url('{{ Storage::url($portal->footer_image) }}');">
             <div class="row g-2">
                 <div class="col-sm">
-                    <h4 class="text-center">प्रारंग के बारे में </h4>
-                    <p>प्रारंग प्रदान करता है, देश-विदेश के शहरों को समझने हेतु संपूर्ण जानकारी। जिसमे शामिल है स्थानीय
-                        भाषा में शहर की प्रकृति-संस्कृति के नॉलेज वेब, शहर की व्यवसाय सूची के येलो पेज, शहर के मेट्रिक्स
-                        या आंकड़ों का विस्तृत विश्लेषण, तथा AI द्वारा संचालित शहरवासियों से प्राप्त विशिष्ट सांकेतिकता
-                    </p>
+                    <h4 class="text-center">{{ $locale['ui']['about_prarang'] ?? 'About Prarang' }}</h4>
+                    <p>{{ $locale['ui']['about_description'] ?? 'Prarang' }}</p>
                 </div>
                 <div class="text-center col-sm">
-                    <h4 class="text-center">हमें फॉलो करें</h4>
+                    <h4 class="text-center">{{ $locale['ui']['follow_us'] ?? 'Follow Us' }}</h4>
                     <div class="row">
                         <div class="col-6">
                             <a href="https://www.facebook.com/prarang.in" target="_blank">
                                 <i class="p-2 shadow fa fa-facebook rounded-circle fa-2x"></i> <span
-                                    class="h4">Facebook</span>
+                                    class="h4">{{ $locale['ui']['facebook'] ?? 'Facebook' }}</span>
                             </a>
                         </div>
                         <div class="col-6">
                             <a href="https://twitter.com/prarangin" target="_blank">
                                 <i class="p-2 shadow fa fa-twitter rounded-circle fa-2x"></i><span class="h4">
-                                    Twitter</span>
+                                    {{ $locale['ui']['twitter'] ?? 'Twitter' }}</span>
                             </a>
                         </div>
                     </div>
@@ -574,31 +569,28 @@
                         <div class="col-6">
                             <a href="https://www.instagram.com/prarang.in/" target="_blank">
                                 <i class="p-2 shadow fa fa-instagram rounded-circle fa-2x"></i> <span
-                                    class="h4">Instagram</span>
+                                    class="h4">{{ $locale['ui']['instagram'] ?? 'Instagram' }}</span>
                             </a>
                         </div>
                         <div class="col-6">
                             <a href="https://www.linkedin.com/company/prarang-in" target="_blank">
                                 <i class="p-2 shadow fa fa-linkedin rounded-circle fa-2x"></i> <span class="h4">
-                                    LinkedIn</span>
+                                    {{ $locale['ui']['linkedin'] ?? 'LinkedIn' }}</span>
 
                             </a>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm ps-3">
-                    <h4 class="text-center"><i class="tp tp-eye"></i> पता</h4>
-                    <p>ऑफिस #25,11th फ्लोर,दा आई- थम,A40,</p>
-                    <p>सेक्टर 62,नॉएडा(U.P),इंडिया 201309</p>
-                    <p>फ़ोन: 0120-4561284</p>
-                    <p>मेल: <a href="mailto:query@prarangin">Query@prarang.in</a> </p>
+                    <h4 class="text-center"><i class="tp tp-eye"></i> {{ $locale['ui']['address'] ?? 'Address' }}</h4>
+                    <p>{{ $locale['ui']['office'] ?? 'Office' }}</p>
+                    <p>{{ $locale['ui']['sector'] ?? 'Sector' }}</p>
+                    <p>{{ $locale['ui']['phone'] ?? 'Phone' }}</p>
+                    <p>{{ $locale['ui']['email'] ?? 'Email' }} <a href="mailto:query@prarangin">Query@prarang.in</a> </p>
                 </div>
             </div>
             <div class="p-4">
-                <p>© - {{ date('Y') }} All content on this website, such as text, graphics, logos, button icons,
-                    software, images
-                    and its selection, arrangement, presentation & overall design, is the property of Indoeuropeans
-                    India Pvt. Ltd. and protected by international copyright laws.</p>
+                <p>{{ str_replace('{year}', date('Y'), $locale['ui']['copyright'] ?? 'All rights reserved') }}</p>
             </div>
         </footer>
 

@@ -32,14 +32,16 @@ class Navbar extends Component
     public function __construct($geographyCode)
     {
 
-        $this->portal = Portal::select('city_name_local as title', 'slug', 'city_code as geography_code', 'header_image', 'footer_image','header_scripts', DB::raw("'portal' as type"))->where('city_code', $geographyCode)
+        $this->portal = Portal::select('city_name_local as title', 'slug', 'city_code as geography_code', 'header_image', 'footer_image','header_scripts', DB::raw("'portal' as type"),'local_lang as lang_code')->where('city_code', $geographyCode)
             ->union(
-                BiletralPortal::select('title', 'slug', 'content_country_code as geography_code', 'header_image', 'footer_image','header_scripts', DB::raw("'bilateral' as type"))->where('content_country_code', $geographyCode)
+                BiletralPortal::select('title', 'slug', 'content_country_code as geography_code', 'header_image', 'footer_image','header_scripts', DB::raw("'bilateral' as type"),DB::raw("'en' as lang_code"))->where('content_country_code', $geographyCode)
             )
             ->firstOrFail();
 
-        $locale = PortalLocaleizetion::where('lang_code', $this->portal->type == 'portal' ? 'hi' : 'en')->firstOrFail();
+        $locale = PortalLocaleizetion::where('lang_code', $this->portal['lang_code'])->firstOrFail();
+
         $this->locale = $locale['json'] ?? [];
+
         $cacheKey = "tag_counts_{$geographyCode}";
 
         $taglist = Cache::remember($cacheKey . '_list', now()->addMinutes(330), function () use ($geographyCode) {
