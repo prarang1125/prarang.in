@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class SubPopUp extends Component
 {
-    public $cities;
+    public $cities,$locale = [];
     public $city, $name, $phone, $password, $slug, $banner, $portal;
     public $loading = false;
     public $shareUrl = null;
@@ -28,22 +28,28 @@ class SubPopUp extends Component
             'password' => $this->isVcard ? 'required|min:6' : 'nullable',
         ];
     }
-    protected $messages = [
-        'city.required'     => 'कृपया शहर का चयन करें।',
-        'name.required'     => 'नाम आवश्यक है।',
-        'name.string'       => 'नाम मान्य होना चाहिए।',
-        'name.min'          => 'नाम कम से कम 3 अक्षर का होना चाहिए।',
-        'name.max'          => 'नाम फ़ील्ड 30 वर्णों से अधिक नहीं होनी चाहिए।',
-        'phone.required'    => 'फोन नंबर दर्ज करना आवश्यक है।',
-        'phone.regex'       => 'फोन नंबर मान्य नहीं है, कृपया 10 अंकों का नंबर दर्ज करें या +91 के साथ सही प्रारूप में डालें।',
-        'phone.unique'      => 'यह फ़ोन नंबर पहले से मौजूद है। कृपया दूसरा फ़ोन नंबर दर्ज करें।',
-        'password.required' => 'पासवर्ड आवश्यक है।',
-        'password.min'      => 'पासवर्ड कम से कम 6 अक्षर का होना चाहिए।',
-    ];
-    public function mount($banner, $portal, $slug = null)
+    protected function messages()
+    {
+        // Return messages dynamically so locale is available
+        return [
+            'city.required'     => $this->locale['subscribe']['city_required'] ?? 'Please select a city.',
+            'name.required'     => $this->locale['subscribe']['name_required'] ?? 'Name is required.',
+            'name.string'       => $this->locale['subscribe']['name_string'] ?? 'Name must be a string.',
+            'name.min'          => $this->locale['subscribe']['name_min'] ?? 'Name must be at least 3 characters.',
+            'name.max'          => $this->locale['subscribe']['name_max'] ?? 'Name must not be greater than 30 characters.',
+            'phone.required'    => $this->locale['subscribe']['phone_required'] ?? 'Phone number is required.',
+            'phone.regex'       => $this->locale['subscribe']['phone_regex'] ?? 'Phone number must be a valid 10-digit number or a number with +91 prefix.',
+            'phone.unique'      => $this->locale['subscribe']['phone_unique'] ?? 'This phone number already exists.',
+            'password.required' => $this->locale['subscribe']['password_required'] ?? 'Password is required.',
+            'password.min'      => $this->locale['subscribe']['password_min'] ?? 'Password must be at least 6 characters.',
+        ];
+    }
+
+    public function mount($banner, $portal, $locale, $slug = null)
     {
         $this->banner = $banner;
         $this->portal = $portal;
+        $this->locale = $locale;
         $this->cities = City::all();
         try {
             if ($slug != null) {
@@ -71,7 +77,7 @@ class SubPopUp extends Component
         $this->phone = str_replace('+91', '', $this->phone);
         if (User::where('phone', $this->phone)->where('city_id', $this->city)->exists()) {
             if ($this->isVcard)
-                $this->addError('phone', 'यह फ़ोन नंबर और शहर का संयोजन पहले से मौजूद है।');
+                $this->addError('phone', $locale['subscribe']['phone_city_exists'] ?? 'यह फ़ोन नंबर और शहर का संयोजन पहले से मौजूद है।');
             else {
                 $this->showWelcome = true;
             }
@@ -100,7 +106,7 @@ class SubPopUp extends Component
         setcookie('pop-sub-mobile', 'true', time() + (200 * 24 * 60 * 60), "/");
         setcookie('sub-user-id', $user->id, time() + (200 * 24 * 60 * 60), "/");
         if ($this->isVcard) {
-            session()->flash('success', 'आपका अकाउंट बनाया गया है।');
+            session()->flash('success', $locale['subscribe']['account_created'] ?? 'आपका अकाउंट बनाया गया है।');
             $this->loading = false;
             Auth::login($user);
             $this->shareUrl = route('vCard.view', ['city_arr' => Str::slug($city->city_arr), 'slug' => $user->user_code]);

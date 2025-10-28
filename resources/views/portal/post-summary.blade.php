@@ -708,7 +708,7 @@
             <div class="text-center col-sm-3 ps-1">
                 <div class="stk-side"><br><br>
                     @if ($portal->type == 'portal')
-                        @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-2', 'slug' => $portal->slug, 'portal' => $portal])
+                        @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-2', 'slug' => $portal->slug, 'portal' => $portal,'locale' => $locale])
                     @endif
                     @empty($recentPosts)
 

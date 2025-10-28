@@ -1460,7 +1460,7 @@
                                     </div>
                                     <div class="col-6">
                                         <a href="javascript:void(0)" onclick="showComingSoon(event)"  target="_blank">
-                                            <i class="p-2 shadow fa fa-twitter rounded-circle fa-2x"></i><span
+                                             <img width="30" src="https://images.freeimages.com/image/grids/9fe/x-twitter-light-grey-logo-5694251.png"><span
                                                 class="h4">
                                                 Twitter</span>
                                         </a>
