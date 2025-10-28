@@ -94,8 +94,9 @@ class PostArchives extends Controller
     {
         $ids = explode('-', $ids);
         $portal=$this->portalUnion->getPortalUnion(['slug', $citySlug],['slug',$citySlug]);
+
         $cityCode = $portal->geography_code;
-        $locale=PortalLocaleizetion::where('lang_code', $portal->type=='portal'?'hi':'en')->firstOrFail();
+        $locale=PortalLocaleizetion::where('lang_code', $portal->lang_code)->firstOrFail();
         $locale = $locale['json'] ?? [];
         $chittiIds = DB::table('chittitagmapping as tag')
             ->join('vChittiGeography as vg', 'vg.chittiId', '=', 'tag.chittiId')
