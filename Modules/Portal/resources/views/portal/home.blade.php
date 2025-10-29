@@ -553,6 +553,7 @@
                                 <h4 class="text-center">Follow Us</h4>
                                 <div class="row">
                                     <div class="col-6">
+
                                         <a href="https://www.facebook.com/prarang.in" target="_blank">
                                             <i class="p-2 shadow fa fa-facebook rounded-circle fa-2x"></i> <span
                                                 class="h4">Facebook</span>

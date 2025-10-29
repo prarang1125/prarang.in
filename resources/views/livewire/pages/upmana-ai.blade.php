@@ -11,6 +11,9 @@
 
     <div class="container-fluid">
         <div class="text-center">
+            @if ($output)
+                <p class="mt-2"></p>
+                @else
 
             <p class="text-end w-25">
                 <span wire:loading wire:target="changeLanguage" class="spinner-border spinner-border-sm ms-3 mt-2"
@@ -24,6 +27,7 @@
                 </select>
 
             </p>
+              @endif
         </div>
 
         <p class="text-center main-title-heading locale-font {{ !empty($output) ? 'd-none' : '' }}"
@@ -531,7 +535,7 @@
                                             aria-labelledby="heading-{{ $continentId }}"
                                             data-bs-parent="#accordionCitiesCountries">
                                             <div class="accordion-body">
-                                                <div>
+                                                {{-- <div>
                                                     <input type="checkbox" wire:model="cities"
                                                         id="group-{{ $continentId }}"
                                                         value="{{ json_encode(['name' => __('location.' . str_replace(' ', '_', strtolower($continent))), 'real_name' => $continent]) }}">
@@ -541,7 +545,7 @@
                                                     </label>
 
 
-                                                </div>
+                                                </div> --}}
                                                 <div class="row">
                                                     @foreach ($countries as $country)
                                                         <div class="col-6">
