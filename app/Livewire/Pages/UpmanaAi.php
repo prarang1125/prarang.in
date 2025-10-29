@@ -281,6 +281,6 @@ class UpmanaAi extends Component
 
     public function processHtml()
     {
-        dd($this->takeme);
+        // dd($this->takeme);
     }
 }
