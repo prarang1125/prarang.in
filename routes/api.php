@@ -16,9 +16,7 @@ Route::prefix('v1')->group(function () {
         Route::post('/logout', [AuthController::class, 'logout']);
     });
     Route::get('/portal', [PortalApiController::class, 'getPortal']);
-    Route::get('tags',[TagApiController::class,'getTags'])->name('tags');
+    Route::get('tags', [TagApiController::class, 'getTags'])->name('tags');
     Route::get('/daily-posts/list', [PostApiController::class, 'getAllPosts']);
     Route::get('/post', [PostApiController::class, 'getPostById']);
-
-
 });

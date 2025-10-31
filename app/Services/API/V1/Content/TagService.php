@@ -12,22 +12,23 @@ class TagService extends BaseService
 
     public function tags($request)
     {
-        $language=$request->language??'en';
-        $locale=PortalLocaleizetion::where('lang_code',$language)->first()['json'];
+        $language = $request->language ?? 'en';
+        $location_coede = $request->location ?? null;
+        $locale = PortalLocaleizetion::where('lang_code', $language)->first()['json'];
 
-        $categories = Cache::remember("api_tags_category_{$language}", 12 * 60 * 60, function () use($locale) {
-            return $this->getCounts($locale);
+        $categories = Cache::remember("api_tags_category_{$language}_{$location_coede}", 12 * 60 * 60, function () use ($locale, $location_coede) {
+            return $this->getCounts($locale, $location_coede);
         });
 
-        $tags = Cache::remember("api_tags_{$language}", 12 * 60 * 60, function () use ($locale) {
-            return $this->getChittiTagsData($locale);
+        $tags = Cache::remember("api_tags_{$language}_{$location_coede}", 12 * 60 * 60, function () use ($locale, $location_coede) {
+            return $this->getChittiTagsData($locale, $location_coede);
         });
 
         return $this->apiResponse(true, 'Tags fetched successfully', compact('categories', 'tags'), 200);
     }
 
 
-    private function getChittiCountByCategory(array $tagCategoryIds)
+    private function getChittiCountByCategory(array $tagCategoryIds, $location_coede = null)
     {
         return DB::connection('main')->table('chittitagmapping as ct')
             ->join('chitti as ch', 'ct.chittiId', '=', 'ch.chittiId')
@@ -37,13 +38,16 @@ class TagService extends BaseService
             ->whereIn('mtc.tagCategoryId', $tagCategoryIds)
             ->where('ch.finalStatus', 'approved')
             ->whereNot('vCg.Geography', 'LIKE', "%CON%")
+            ->when($location_coede, function ($query) use ($location_coede) {
+                $query->where('vCg.Geography', 'LIKE', "%{$location_coede}%");
+            })
             ->distinct('ct.chittiId')
 
             ->count('ct.chittiId');
     }
 
 
-    public function getCounts($locale)
+    public function getCounts($locale, $location_coede = null)
     {
         $maincategories = [
             'culture' => [1, 2, 3],
@@ -60,26 +64,25 @@ class TagService extends BaseService
 
         $results = [];
         foreach ($maincategories as $key => $tagCategoryIds) {
-             $results['maincategories'][$key] = [
-                'count' => $this->getChittiCountByCategory($tagCategoryIds),
+            $results['maincategories'][$key] = [
+                'count' => $this->getChittiCountByCategory($tagCategoryIds, $location_coede),
                 'icon' => "",
-                'category_name'=>$locale[$key],
+                'category_name' => $locale[$key],
             ];
         }
         foreach ($subcategories as $key => $tagCategoryIds) {
             $results['subcategories'][$key] = [
-                'count' => $this->getChittiCountByCategory($tagCategoryIds),
+                'count' => $this->getChittiCountByCategory($tagCategoryIds, $location_coede),
                 'icon' => "",
-                'category_name'=>$locale['categories'][$key],
+                'category_name' => $locale['categories'][$key],
             ];
-
         }
 
         return $results;
     }
 
 
-    private function getChittiTagsData($locale)
+    private function getChittiTagsData($locale, $location_coede = null)
     {
 
 
@@ -108,8 +111,8 @@ class TagService extends BaseService
             $grouped['tag_' . $tag->tagCategoryId][] = [
                 'tagId' => $tag->tagId,
                 'tagCategoryId' => $tag->tagCategoryId,
-                'tagName'=>$locale['tags'][$tag->tagId],
-                'tagIcon' =>'https://prarang.s3.amazonaws.com/'. $tag->tagIcon,
+                'tagName' => $locale['tags'][$tag->tagId],
+                'tagIcon' => 'https://prarang.s3.amazonaws.com/' . $tag->tagIcon,
                 'tagCategoryInEnglish' => $tag->tagCategoryInEnglish,
                 'count' => $tag->count,
             ];

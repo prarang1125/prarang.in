@@ -32,48 +32,22 @@ class PostService extends BaseService
             $portalUnion = app(PortalUnion::class);
 
             $chittiQuery = Chitti::query();
-             $chittiQuery->join('vChittiGeography', 'chitti.chittiId', '=', 'vChittiGeography.chittiId')
-            ->whereNot('vChittiGeography.Geography', 'LIKE', "%CON%");
+            $chittiQuery->select('chitti.*')
+                ->join('vChittiGeography as vCg', 'chitti.chittiId', '=', 'vCg.chittiId')
+                // use whereRaw to be explicit about the NOT LIKE
+                ->whereRaw('vCg.Geography NOT LIKE ?', ['%CON%'])
+                // use a truthy condition check for $location
+                ->when($location, function ($query) use ($location) {
+                    $query->whereRaw('vCg.Geography  LIKE ?', ['%' . $location . '%']);
+                });
 
-            if ($location) {
-                try {
-                    $portal = $portalUnion->getPortalUnion(['slug', $location], ['slug', $location]);
-                } catch (ModelNotFoundException $e) {
-                    return $this->apiResponse(false, 'The requested location was not found', [], 404);
-                }
-
-
-                $geography = Geography::where('geographycode', $portal->geography_code)->first();
-
-                if (!$geography) {
-                    return $this->apiResponse(false, 'Geography not found for the given portal', [], 404);
-                }
-
-                $chittiIds = ChittiGeography::where('Geography', $geography->geographycode)
-                    ->pluck('chittiId');
-
-                if ($chittiIds->isEmpty()) {
-                    $responseData = [
-                        'data' => [],
-                        'pagination' => [
-                            'current_page' => 1,
-                            'per_page' => (int)$per_page,
-                            'total' => 0,
-                            'last_page' => 1,
-                        ]
-                    ];
-                    return $this->apiResponse(true, 'No posts found for the given location', $responseData, 200);
-                }
-
-                $chittiQuery->whereIn('chittiId', $chittiIds);
-            }
             $locale = PortalLocaleizetion::where('lang_code', $language)->first()['json'];
 
             $chittiQuery->where('finalStatus', 'approved')
                 ->orderByRaw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y') $orderBy")
                 ->with(['tagMappings.tag', 'images']);
 
-            if($tag_id){
+            if ($tag_id) {
                 $chittiQuery->whereHas('tagMappings', function ($query) use ($tag_id) {
                     $query->where('tagId', $tag_id);
                 });
@@ -84,7 +58,7 @@ class PostService extends BaseService
             $processedChittis = $chittis->map(function ($chitti) use ($locale) {
                 $imageUrl = $chitti->images->first()->imageUrl ?? asset('images/prarang-1.jpg');
 
-                $tags = $chitti->tagMappings->map(function ($tagMapping)  {
+                $tags = $chitti->tagMappings->map(function ($tagMapping) {
                     return $tagMapping->tag->tagId;
                 })->filter()->join(', ');
 
@@ -133,7 +107,6 @@ class PostService extends BaseService
                 return $this->apiResponse(true, 'No posts found', $responseData, 200);
             }
             return $this->apiResponse(true, 'Posts retrieved successfully', $responseData, 200);
-
         } catch (QueryException $e) {
             Log::error('Database query error in PostService@getPosts: ' . $e->getMessage(), ['exception' => $e]);
             return $this->apiResponse(false, 'Database error while retrieving posts', [], 500);
@@ -143,10 +116,11 @@ class PostService extends BaseService
         }
     }
 
-    public function getPostById($request){
+    public function getPostById($request)
+    {
 
         $language = $request->language ?? 'en';
-        $id=$request->id;
+        $id = $request->id;
         try {
             $post = Chitti::where('chittiId', $id)
                 ->with(['tagMappings.tag', 'images'])
@@ -158,7 +132,7 @@ class PostService extends BaseService
 
             $imageUrl = $post->images->first()->imageUrl ?? asset('images/prarang-1.jpg');
 
-            $tags = $post->tagMappings->map(function ($tagMapping)  {
+            $tags = $post->tagMappings->map(function ($tagMapping) {
                 return $tagMapping->tag->tagId;
             })->filter()->join(', ');
             sleep(1);
@@ -184,6 +158,4 @@ class PostService extends BaseService
             return $this->apiResponse(false, 'Unexpected error while retrieving post', [], 500);
         }
     }
-
-
 }
