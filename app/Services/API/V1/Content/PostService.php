@@ -118,7 +118,6 @@ class PostService extends BaseService
 
     public function getPostById($request)
     {
-
         $language = $request->language ?? 'en';
         $id = $request->id;
         try {
@@ -147,6 +146,18 @@ class PostService extends BaseService
                 'tags' => $locale['tags'][$tags] ??  $tags,
                 'color' => $post->color->colorcode ?? '',
                 'createDate' => $post->dateOfApprove,
+                'analytics' => [
+                    'post_viewership_date' => $post->postViewershipDate,
+                    'post_viewership_date_to' => $post->postViewershipDateTo,
+                    'days' => $post->noofDaysfromUpload,
+                    'city_subscrivers' => $post->citySubscriber,
+                    'total_views' => $post->totalViewerCount,
+                    'app_views' => $post->prarangApplication,
+                    'website_views' => $post->websiteCount,
+                    'email_views' => $post->emailCount,
+                    'instagram_views' => $post->instagramCount,
+                    'whatsapp_views' => $post->whatsappCount,
+                ]
             ];
 
             return $this->apiResponse(true, 'Post retrieved successfully', $responseData, 200);
@@ -158,4 +169,6 @@ class PostService extends BaseService
             return $this->apiResponse(false, 'Unexpected error while retrieving post', [], 500);
         }
     }
+
+    private function analyticsReport($postId) {}
 }
