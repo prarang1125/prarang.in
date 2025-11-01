@@ -147,16 +147,16 @@ class PostService extends BaseService
                 'color' => $post->color->colorcode ?? '',
                 'createDate' => $post->dateOfApprove,
                 'analytics' => [
-                    'post_viewership_date' => $post->postViewershipDate,
-                    'post_viewership_date_to' => $post->postViewershipDateTo,
-                    'days' => $post->noofDaysfromUpload,
-                    'city_subscrivers' => $post->citySubscriber,
-                    'total_views' => $post->totalViewerCount,
-                    'app_views' => $post->prarangApplication,
-                    'website_views' => $post->websiteCount,
-                    'email_views' => $post->emailCount,
-                    'instagram_views' => $post->instagramCount,
-                    'whatsapp_views' => $post->whatsappCount,
+                    'post_viewership_date' => $post->postViewershipDate ?? '',
+                    'post_viewership_date_to' => $post->postViewershipDateTo ?? '',
+                    'days' => $post->noofDaysfromUpload ?? 0,
+                    'city_subscrivers' => $post->citySubscriber ?? 0,
+                    'total_views' => $post->totalViewerCount ?? 0,
+                    'app_views' => $post->appCount ?? 0,
+                    'website_views' => $post->websiteCount ?? 0,
+                    'email_views' => $post->emailCount ?? 0,
+                    'instagram_views' => $post->instagramCount ?? 0,
+                    'whatsapp_views' => $post->whatsappCount ?? 0,
                 ]
             ];
 
