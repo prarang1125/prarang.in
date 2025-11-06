@@ -11,7 +11,7 @@ use Livewire\Component;
 
 class SubPopUp extends Component
 {
-    public $cities,$locale = [];
+    public $cities, $locale = [];
     public $city, $name, $phone, $password, $slug, $banner, $portal;
     public $loading = false;
     public $shareUrl = null;
