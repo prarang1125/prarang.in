@@ -148,7 +148,7 @@ class PostService extends BaseService
                 'createDate' => $post->dateOfApprove,
                 'analytics' => [
                     'post_viewership_date' => $post->postViewershipDate ?? '',
-                    'post_viewership_date_to' => \Carbon\Carbon::parse($post->postViewershipDateTo)->format('d-M-Y') ?? '',
+                    'post_viewership_date_to' => " " . \Carbon\Carbon::parse($post->postViewershipDateTo)->format('d-M-Y') ?? '',
                     'days' => $post->noofDaysfromUpload ?? 0,
                     'month_days' => $post->monthDay ?? "5th",
                     'city_subscrivers' => $post->citySubscriber ?? 0,
