@@ -98,7 +98,7 @@ class postController extends Controller
         $geography = $post->geography;
 
         $portal = $portalUnion->getPortalUnion(['city_code', $geography->Geography], ['content_country_code', $geography->Geography]);
-        $locale= PortalLocaleizetion::where('lang_code', $portal->lang_code)->firstOrFail()['json'] ?? [];
+        $locale = PortalLocaleizetion::where('lang_code', $portal->lang_code)->firstOrFail()['json'] ?? [];
 
         $previousPost = $this->postButton($post, $portal, 'pre');
         $nextPost = $this->postButton($post, $portal, 'next');

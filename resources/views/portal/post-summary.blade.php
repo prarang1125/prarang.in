@@ -708,12 +708,10 @@
             <div class="text-center col-sm-3 ps-1">
                 <div class="stk-side"><br><br>
                     @if ($portal->type == 'portal')
-                        @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-2', 'slug' => $portal->slug, 'portal' => $portal,'locale' => $locale])
+                        @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-2', 'slug' => $portal->slug, 'portal' => $portal, 'locale' => $locale])
                     @endif
                     @empty($recentPosts)
-
                     @else
-
                         <div class="pt-2 pb-2 mt-3 recent-poet text-start">
                             <h6 class="ps-2 fw-bold">Recent Posts</h6>
                             @foreach ($recentPosts as $post)
@@ -723,18 +721,18 @@
                                         <img class="img-fluid rounded-top w-100" src="{{ $post->imageUrl }}"
                                             alt="{{ $post->Title }}">
                                         <h6 class="mt-2 text-dark ">{{ $post->Title }}</h6>
-                                </div></a>
+                                    </div>
+                                </a>
+                            @endforeach
+                        </div>
+                    @endisset
+                </div>
 
-                        @endforeach
-                    </div>
-                @endisset
             </div>
-
         </div>
-    </div>
 
 
-    {!! $portal->viewership ?? '' !!}
+        {!! $portal->viewership ?? '' !!}
 
     </div>
 

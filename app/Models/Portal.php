@@ -3,21 +3,20 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes; // 👈 import this
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Portal extends Model
 {
-     use SoftDeletes;
+    use SoftDeletes;
     protected $table = 'portals';
-  protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at'];
     public function geography()
     {
         return $this->belongsTo(ChittiGeography::class, 'city_code', 'geography');
     }
 
     public function city()
-{
-    return $this->hasOne(City::class, 'portal_id', 'id');
-}
-
+    {
+        return $this->hasOne(City::class, 'portal_id', 'id');
+    }
 }
