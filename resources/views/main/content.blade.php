@@ -258,22 +258,32 @@
         .container .flex-wrap {
             box-shadow: 0px 0px 4px -50px #212529;
         }
+
         /* Heading */
-.container .col-md-10 h6{
- margin-bottom:0px;
- padding-left:7px;
- color:#767a7e;
- font-weight:400;
- font-size:14px;
-}
+        .container .col-md-10 h6 {
+            margin-bottom: 0px;
+            padding-left: 7px;
+            color: #767a7e;
+            font-weight: 400;
+            font-size: 14px;
+        }
 
-/* Row */
-.container .align-items-center{
- padding-top:4px;
- padding-bottom:4px;
-}
+        /* Row */
+        .container .align-items-center {
+            padding-top: 4px;
+            padding-bottom: 4px;
+        }
 
+        /* List */
+        .container .flex-wrap ul {
+            width: 255px;
+            left: -20px !important;
+        }
 
+        /* List */
+        .container .container .container .align-items-center .col-md-10 .flex-wrap .btn-group ul {
+            right: auto !important;
+        }
     </style>
     <section class="bs5-top-heading">
         <p class="">Content</p>
@@ -355,25 +365,58 @@
             </div>
 
             <!-- India Portals -->
-            <div class="row align-items-center mb-3">
-                <div class="col-md-2 text-md-right text-center">
-                    <h6 class="mb-0 font-weight-bold">India Portals:</h6>
-                </div>
-                <div class="col-md-10">
+            @foreach ($portal as $key => $inPortalx)
+                <div class="row align-items-center mb-3">
+                    <div class="col-md-2 text-md-right text-center">
+                        <h6 class="mb-0 font-weight-bold">India Portals - {{ $key }}:</h6>
+                    </div>
+                    <div class="col-md-10">
 
-                        @foreach ($portal as $key=>$inPortalx)
-                        <h6>{{$key}}</h6>
-                          <div class="d-flex flex-wrap gap-2">
-                        @foreach ( $inPortalx as $inPortal)
-                         <a href="/{{ $inPortal->slug }}" target="_blank" class="btn btn-sm btn-warning m-1">
-                                {{ $inPortal->city_name }}
-                            </a>
-                        @endforeach
-                             </div>
-                        @endforeach
 
+                        <h6>{{ $key }} Webs</h6>
+                        <div class="d-flex flex-wrap gap-2">
+                            @foreach ($inPortalx as $inPortal)
+                                @if ($inPortal->slug == 'meerut')
+                                    <div class="btn-group">
+                                        <a type="button" class="btn btn-sm btn-warning m-1" data-bs-toggle="dropdown"
+                                            aria-expanded="false">
+                                            {{ $inPortal->city_name }}
+                                        </a>
+                                        <ul class="dropdown-menu">
+                                            <li><a class="dropdown-item" href="/{{ $inPortal->slug }}">Prarang
+                                                    Meerut</a></li>
+
+                                            <hr class="dropdown-divider">
+                                            <li><a class="dropdown-item" target="_blank"
+                                                    href="https://meerutrang.in">Meerut English
+                                                    Domain</a></li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            <li><a class="dropdown-item" target="_blank"
+                                                    href="https://xn--i1b6bza9ckb2n.xn--h2brj9c/">Meerut Devanagari
+                                                    Domain</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                @else
+                                    <a href="/{{ $inPortal->slug }}" target="_blank" class="btn btn-sm btn-warning m-1">
+                                        {{ $inPortal->city_name }}
+                                    </a>
+                                @endif
+                            @endforeach
+                            @if ($key == 'Hindi')
+                                <a href="https://xn--v1bm1eh4ce.xn--h2brj9c/" target="_blank"
+                                    class="btn btn-sm btn-warning m-1">
+                                    All Hindi Webs
+                                </a>
+                            @endif
+                        </div>
+
+
+                    </div>
                 </div>
-            </div>
+            @endforeach
             <!-- Bilateral Portals -->
             <div class="row align-items-center mb-3">
                 <div class="col-md-2 text-md-right text-center">
@@ -414,8 +457,9 @@
                         <div>
                             <p>
                                 <strong class="text-primary">Daily City Posts - Free Subscription – </strong><a
-                                    class="links style-TYdFv" href="https://www.facebook.com/prarang.in" target="_blank"
-                                    contenteditable="false" id="style-TYdFv">FB Page</a>, <a class="links style-wDEqa"
+                                    class="links style-TYdFv" href="https://www.facebook.com/prarang.in"
+                                    target="_blank" contenteditable="false" id="style-TYdFv">FB Page</a>, <a
+                                    class="links style-wDEqa"
                                     href="https://play.google.com/store/apps/details?id=com.riversanskiriti.prarang"
                                     target="_blank" contenteditable="false" id="style-wDEqa">Mobile App</a> ( Coming
                                 soon – X, eMail, Instagram, Whatsapp, Sharechat )
@@ -607,7 +651,8 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="city-btn">
-                                        <a target="_blank" href="{{ route('city.show', ['city_name' => 'lucknow']) }}"
+                                        <a target="_blank"
+                                            href="{{ route('city.show', ['city_name' => 'lucknow']) }}"
                                             contenteditable="false" id="style-9wwWF" class="style-9wwWF">Lucknow,
                                             U.P</a>
                                     </div>

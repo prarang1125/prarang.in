@@ -93,6 +93,7 @@ document.addEventListener("DOMContentLoaded", function () {
     <li><strong>New World Library Knowledge Project</strong> – <a href="https://sarganga.org/" target="_blank">Saraswati by Ganga</a></li>
     <li><strong>Colours of Prarang Daily Content</strong> – <a href="http://rangmala.com/" target="_blank">Daily Knowledge Posts – Rangmala</a></li>
      <li><strong>Hindi Web</strong> – <a href="https://xn--v1bm1eh4ce.xn--h2brj9c/" target="_blank">हमसबएक.भारत </a></li>
+     <li><strong>Meerut Website</strong> – <a href="https://xn--i1b6bza9ckb2n.xn--h2brj9c/" target="_blank">मेरठरंग.भारत </a></li>
             </ul>
           </div>
         </div>
