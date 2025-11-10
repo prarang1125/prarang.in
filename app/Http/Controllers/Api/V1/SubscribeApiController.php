@@ -16,15 +16,30 @@ class SubscribeApiController extends Controller
     {
         try {
             $validated = $request->validate([
-                'mobile' => 'required|string',
-                'name' => 'required|string',
-                'city' => 'required',
+                'mobile' => 'required|string|regex:/^[0-9]{10}$/',
+                'name' => 'required|string|max:255',
+                'city' => 'required|string|max:255',
+                'email' => 'nullable|email|max:255',
             ]);
 
             $mobile = $validated['mobile'];
-            $city = $validated['city'];
+            $city_name = $validated['city'];
             $name = $validated['name'];
-            $city_id = City::where('name', 'like', "%$city%")->value('id');
+            $email = $validated['email'] ?? null;
+
+            // Find city by name (use 'yp' connection same as City model)
+            $city = City::where('name', 'like', "%{$city_name}%")->first();
+
+            if (!$city) {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'City not found',
+                    'data' => [],
+                ], 404);
+            }
+
+            $city_id = $city->id;
+
             // Check if user with same phone & city already exists
             if (User::where('phone', $mobile)->where('city_id', $city_id)->exists()) {
                 return response()->json([
@@ -45,8 +60,8 @@ class SubscribeApiController extends Controller
                 'name' => $name,
                 'phone' => $mobile,
                 'city_id' => $city_id,
-                'email' => $validated['email'] ?? null,
-                'password' =>  Hash::make(Str::random(8)),
+                'email' => $email,
+                'password' => Hash::make(Str::random(8)),
                 'role' => 4,
                 'user_code' => $userCode,
             ]);
@@ -54,12 +69,16 @@ class SubscribeApiController extends Controller
             return response()->json([
                 'status' => true,
                 'message' => 'Subscription successful',
-            ], 200);
+                'data' => [
+                    'user_id' => $user->id,
+                    'user_code' => $user->user_code,
+                ],
+            ], 201);
         } catch (\Illuminate\Validation\ValidationException $e) {
             return response()->json([
                 'status' => false,
                 'message' => 'Validation Error',
-                'errors' => $e->errors(),
+                'errors' => 'Validation Error',
                 'data' => [],
             ], 422);
         } catch (\Throwable $e) {
