@@ -6,86 +6,90 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\City;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Validation\ValidationException;
 
 class SubscribeApiController extends Controller
 {
     public function subscribe(Request $request)
     {
         try {
+            // ✅ Validate request inputs
             $validated = $request->validate([
-                'mobile' => 'required|string|regex:/^[0-9]{10}$/',
-                'name' => 'required|string|max:255',
-                'city' => 'required|string|max:255',
-                'email' => 'nullable|email|max:255',
+                'mobile' => ['required', 'regex:/^[0-9]{10}$/'],
+                'name'   => ['required', 'string', 'max:255'],
+                'city'   => ['required', 'string', 'max:255'],
+                'email'  => ['nullable', 'email', 'max:255'],
             ]);
 
             $mobile = $validated['mobile'];
-            $city_name = $validated['city'];
-            $name = $validated['name'];
-            $email = $validated['email'] ?? null;
+            $name   = $validated['name'];
+            $cityName = $validated['city'];
+            $email  = $validated['email'] ?? null;
 
-            // Find city by name (use 'yp' connection same as City model)
-            $city = City::where('name', 'like', "%{$city_name}%")->first();
+            // ✅ Find city (case-insensitive search)
+            $city = City::where('name', 'like', "%{$cityName}%")->first();
 
             if (!$city) {
                 return response()->json([
-                    'status' => false,
-                    'message' => 'City not found',
-                    'data' => [],
+                    'status'  => false,
+                    'message' => 'City not found.',
+                    'data'    => [],
                 ], 404);
             }
 
-            $city_id = $city->id;
+            // ✅ Check if same user already exists for that city
+            $existingUser = User::where('phone', $mobile)
+                ->where('city_id', $city->id)
+                ->first();
 
-            // Check if user with same phone & city already exists
-            if (User::where('phone', $mobile)->where('city_id', $city_id)->exists()) {
+            if ($existingUser) {
                 return response()->json([
-                    'status' => false,
-                    'message' => 'This phone number and city combination already exists.',
-                    'data' => [],
+                    'status'  => false,
+                    'message' => 'This phone number is already subscribed for this city.',
+                    'data'    => [],
                 ], 409);
             }
 
-            // Generate unique user code
-            $userCode = Str::slug($name) . '-' . Str::random(4);
-            while (User::where('user_code', $userCode)->exists()) {
+            // ✅ Generate unique user_code
+            do {
                 $userCode = Str::slug($name) . '-' . Str::random(4);
-            }
+            } while (User::where('user_code', $userCode)->exists());
 
-            // Create user
+            // ✅ Create new user
             $user = User::create([
-                'name' => $name,
-                'phone' => $mobile,
-                'city_id' => $city_id,
-                'email' => $email,
-                'password' => Hash::make(Str::random(8)),
-                'role' => 4,
+                'name'      => $name,
+                'phone'     => $mobile,
+                'city_id'   => $city->id,
+                'email'     => $email,
+                'password'  => Hash::make(Str::random(8)), // temporary random password
+                'role'      => 4,
                 'user_code' => $userCode,
             ]);
 
+
             return response()->json([
-                'status' => true,
-                'message' => 'Subscription successful',
-                'data' => [
-                    'user_id' => $user->id,
+                'status'  => true,
+                'message' => 'Subscription successful.',
+                'data'    => [
+                    'user_id'   => $user->id,
                     'user_code' => $user->user_code,
                 ],
             ], 201);
-        } catch (\Illuminate\Validation\ValidationException $e) {
+        } catch (ValidationException $e) {
             return response()->json([
-                'status' => false,
-                'message' => 'Validation Error',
-                'errors' => 'Validation Error',
-                'data' => [],
+                'status'  => false,
+                'message' => 'Validation error.',
+                'errors'  => $e->errors(),
+                'data'    => [],
             ], 422);
-        } catch (\Throwable $e) {
+        } catch (\Exception $e) {
             return response()->json([
-                'status' => false,
-                'message' => 'Subscription failed',
-                'data' => [],
+                'status'  => false,
+                'message' => 'Something went wrong.',
+                'error'   => $e->getMessage(),
+                'data'    => [],
             ], 500);
         }
     }
