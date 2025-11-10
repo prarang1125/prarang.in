@@ -16,23 +16,17 @@ class SubscribeApiController extends Controller
     {
         try {
             $validated = $request->validate([
-                'email' => 'nullable|email',
-                'phone' => 'required|string',
+                'mobile' => 'required|string',
                 'name' => 'required|string',
-                'city_id' => 'required',
-                'password' => 'required_if:is_vcard,true|string|min:6',
-                'is_vcard' => 'nullable|boolean',
-                'language' => 'nullable|string|in:en,es,fr,de,it,pt,ru,zh,hi,mr',
+                'city' => 'required',
             ]);
 
-            $phone = $validated['phone'];
-            $city_id = $validated['city_id'];
+            $mobile = $validated['mobile'];
+            $city = $validated['city'];
             $name = $validated['name'];
-            $is_vcard = $validated['is_vcard'] ?? false;
-            $password = $validated['password'] ?? null;
-
+            $city_id = City::where('name', 'like', "%$city%")->value('id');
             // Check if user with same phone & city already exists
-            if (User::where('phone', $phone)->where('city_id', $city_id)->exists()) {
+            if (User::where('phone', $mobile)->where('city_id', $city_id)->exists()) {
                 return response()->json([
                     'status' => false,
                     'message' => 'This phone number and city combination already exists.',
@@ -49,28 +43,18 @@ class SubscribeApiController extends Controller
             // Create user
             $user = User::create([
                 'name' => $name,
-                'phone' => $phone,
+                'phone' => $mobile,
                 'city_id' => $city_id,
-                'email' => $validated['email'],
-                'password' => $is_vcard ? Hash::make($password) : Str::random(8),
-                'role' => $is_vcard ? 2 : 4,
+                'email' => $validated['email'] ?? null,
+                'password' =>  Hash::make(Str::random(8)),
+                'role' => 4,
                 'user_code' => $userCode,
             ]);
-
-            $city = City::find($city_id);
 
             return response()->json([
                 'status' => true,
                 'message' => 'Subscription successful',
-                'data' => [
-                    'user_id' => $user->id,
-                    'user_code' => $user->user_code,
-                    'share_url' => $is_vcard ? route('vCard.view', [
-                        'city_arr' => Str::slug($city->city_arr ?? $city->name),
-                        'slug' => $user->user_code
-                    ]) : null,
-                ],
-            ], 201);
+            ], 200);
         } catch (\Illuminate\Validation\ValidationException $e) {
             return response()->json([
                 'status' => false,
