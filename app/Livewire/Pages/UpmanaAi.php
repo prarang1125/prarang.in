@@ -8,8 +8,9 @@ use App\Services\SentenceService;
 use App\Services\TransformerService;
 use App\Services\VerticalService;
 use Illuminate\Database\Eloquent\Casts\Json;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\DB;
+
 use Livewire\Attributes\On;
 
 class UpmanaAi extends Component
@@ -38,8 +39,9 @@ class UpmanaAi extends Component
     public $genHit, $isRegistered;
     public $localLocation, $lables;
     public $selectedLanguage = '';
-    public function mount(SentenceService $sentenceService, $lang = null)
+    public function mount(Request $request, SentenceService $sentenceService, $lang = null)
     {
+
         if ($lang) {
             session()->put('locale', $lang);
             APP::setLocale($lang);
@@ -48,15 +50,13 @@ class UpmanaAi extends Component
             app()->setlocale($this->selectedLanguage);
         }
 
-
+        // $this->cities[] = ['name' => 'meerut', 'real_name' => 'Meerut'];
         session(['chat_id' => uniqid('chat_', true)]);
         $this->verticalService = httpGet('/upamana/get-verticals/' . app()->getLocale())['data'];
         $this->sentenceService = $sentenceService;
         $this->mainChecks = $this->verticalService;
         $this->messages['success'][] = 'Session started!';
         $this->activeSection = [
-
-
             'firstPrompt' => true,
             'category' => true,
             'promptBox' => true,

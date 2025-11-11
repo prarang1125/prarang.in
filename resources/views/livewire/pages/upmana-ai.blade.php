@@ -13,21 +13,20 @@
         <div class="text-center">
             @if ($output)
                 <p class="mt-2"></p>
-                @else
+            @else
+                <p class="text-end w-25">
+                    <span wire:loading wire:target="changeLanguage" class="spinner-border spinner-border-sm ms-3 mt-2"
+                        role="status" aria-hidden="true"></span>
+                    {{-- <label for="select-lang"><small>Select Language</small></label> --}}
+                    <select id="select-lang" name="change_language" id="change_language" wire:model="selectedLanguage"
+                        wire:change="changeLanguage" class="form-select form-sm ">
 
-            <p class="text-end w-25">
-                <span wire:loading wire:target="changeLanguage" class="spinner-border spinner-border-sm ms-3 mt-2"
-                    role="status" aria-hidden="true"></span>
-                {{-- <label for="select-lang"><small>Select Language</small></label> --}}
-                <select id="select-lang" name="change_language" id="change_language" wire:model="selectedLanguage"
-                    wire:change="changeLanguage" class="form-select form-sm ">
+                        <option value="hi">हिन्दी</option>
+                        <option value="en">English</option>
+                    </select>
 
-                    <option value="hi">हिन्दी</option>
-                    <option value="en">English</option>
-                </select>
-
-            </p>
-              @endif
+                </p>
+            @endif
         </div>
 
         <p class="text-center main-title-heading locale-font {{ !empty($output) ? 'd-none' : '' }}"
@@ -273,6 +272,18 @@
                                                         <span>
                                                             <span>Meta Llama</span>
                                                             <span>Meta</span>
+                                                        </span>
+                                                        <span
+                                                            class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>
+                                                    </label>
+                                                    <label class="flex items-center space-x-2">
+                                                        <input type="checkbox" name="model[]" value="perplexity"
+                                                            data-ai="perplexity">
+                                                        <img src="https://framerusercontent.com/images/gcMkPKyj2RX8EOEja8A1GWvCb7E.jpg?width=2000&height=2000"
+                                                            alt="" class="w-6 h-6">
+                                                        <span>
+                                                            <span>Perplexity</span>
+                                                            <span>Perplexity AI</span>
                                                         </span>
                                                         <span
                                                             class="px-2 py-1 ml-6 text-xs bg-blue-600 rounded-full order-number d-inline-block"></span>

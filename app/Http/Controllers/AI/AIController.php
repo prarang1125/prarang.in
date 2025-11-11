@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AI;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Services\ChatAiServices;
+use App\Services\TextToHtmlParser;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Support\Carbon;
@@ -19,143 +20,169 @@ class AIController extends Controller
         $this->aiService = $aiService;
     }
 
-public function generateAIResponse(Request $request)
-{
-    ini_set('max_execution_time', 300); // Increase to 5 minutes for multiple API calls
-    $local =session('locale');
-    $label=httpGet('/local/lable',['local' => $local])['data'];
-    
-     try {
-        // Step 1: Validate input
-        $request->validate([
-            'prompt' => 'required|string',
-            'model' => 'required|array',
-            'model.*' => ['required', 'regex:/^(chatgpt|gemini|claude|grok|deepseek|meta|upmana)-\d+$/'],
-            'content' => 'nullable|string',
-        ]);
+    public function generateAIResponse(Request $request)
+    {
+        ini_set('max_execution_time', 300); // Increase to 5 minutes for multiple API calls
+        $local = session('locale');
+        $label = httpGet('/local/lable', ['local' => $local])['data'];
+
+        try {
+            // Step 1: Validate input
+            $request->validate([
+                'prompt' => 'required|string',
+                'model' => 'required|array',
+                'model.*' => ['required', 'regex:/^(chatgpt|gemini|claude|grok|deepseek|meta|upmana|perplexity)-\d+$/'],
+                'content' => 'nullable|string',
+            ]);
 
 
-        // Step 2: Extract input
-        $prompt = $request->prompt;
-        $modelsWithVersions = $request->model; // e.g. ["meta-5", "gemini-1", ...]
-        $content = $request->content;
+            // Step 2: Extract input
+            $prompt = $request->prompt;
+            $modelsWithVersions = $request->model; // e.g. ["meta-5", "gemini-1", ...]
+            $content = $request->content;
 
-        // Step 3: Sort by version and extract names
-        usort($modelsWithVersions, function($a, $b) {
-            return intval(explode('-', $a)[1]) <=> intval(explode('-', $b)[1]);
-        });
+            // Step 3: Sort by version and extract names
+            usort($modelsWithVersions, function ($a, $b) {
+                return intval(explode('-', $a)[1]) <=> intval(explode('-', $b)[1]);
+            });
 
-        $orderedModelNames = array_map(function($model) {
-            return strtolower(explode('-', $model)[0]); // "meta-5" => "meta"
-        }, $modelsWithVersions);
+            $orderedModelNames = array_map(function ($model) {
+                return strtolower(explode('-', $model)[0]); // "meta-5" => "meta"
+            }, $modelsWithVersions);
 
-        // Add Upmana to the end if not already in the list
-        if (!in_array('upmana', $orderedModelNames)) {
-            $orderedModelNames[] = 'upmana';
-        }
-
-        // Step 4: Initialize responses
-        $responses = [
-            'prompt' => $prompt,
-            'model' => $orderedModelNames,
-            'upmanaResponse' => $content ?? null,
-        ];
-
-        // Step 5: Generate responses by model
-        foreach ($orderedModelNames as $model) {
-            switch ($model) {
-                case 'chatgpt':
-                    $responses['gptResponse'] = $this->aiService->generateGptResponse('gpt-4', [
-                        'prompt' => $prompt,
-                        'temperature' => 0.7,
-                        'max_output_tokens' => 2048,
-                    ])['response'] ?? 'GPT failed';
-                    
-                    break;
-
-                case 'gemini':
-                    $responses['geminiResponse'] = $this->aiService->generateGiminiResponse($prompt, [
-                        'model' => 'gemini-2.0-flash',
-                        'temperature' => 0.7,
-                        'max_output_tokens' => 2048,
-                    ])['response'] ?? 'Gemini failed';
-                    break;
-
-                case 'claude':
-                    $responses['claudeResponse'] = $this->aiService->generateAnthropicResponse($prompt, [
-                            'model' => 'claude-3-5-haiku-20241022',
-                            'temperature' => 0.7,
-                            'max_output_tokens' => 2048,
-                        ])['response'] ?? 'Claude failed';
-                        break;
-                    
-                case 'deepseek':
-                    $deepseekResponse = $this->aiService->generateDeepseekResponse($prompt, [
-                        'temperature' => 0.7,
-                        'max_output_tokens' => 2048,
-                    ]);
-                    $responses['deepseekResponse'] = $deepseekResponse['response'] ?? ($deepseekResponse['error'] ?? 'Deepseek failed');
-                    break;
-
-                case 'meta':
-                    $metaResponse = $this->aiService->generateMetaResponse($prompt, [
-                        'temperature' => 0.7,
-                        'max_output_tokens' => 2048,
-                    ]);
-                    $responses['metaResponse'] = $metaResponse['response'] ?? ($metaResponse['error'] ?? 'Meta failed');
-                    break;
-
-                case 'grok':
-                    $responses['grokResponse'] = $this->aiService->generateGrokResponse($prompt, [
-                        'model' => 'grok-3',
-                        'temperature' => 0.7,
-                        'max_output_tokens' => 2048,
-                    ])['response'] ?? 'Grok failed';
-                    break;
-
-                case 'upmana':
-                    $responses['upmanaResponse'] = $content ? trim($content) : 'Upmana content not available';
-                    break;
+            // Add Upmana to the end if not already in the list
+            if (!in_array('upmana', $orderedModelNames)) {
+                $orderedModelNames[] = 'upmana';
             }
-        }
 
-        // Step 6: Order keys for response
-        $responseTypes = [
-            'chatgpt' => 'gptResponse',
-            'gemini' => 'geminiResponse',
-            'claude' => 'claudeResponse',
-            'grok' => 'grokResponse',
-            'deepseek' => 'deepseekResponse',
-            'meta' => 'metaResponse',
-            'upmana' => 'upmanaResponse'
-        ];
+            // Step 4: Initialize responses
+            $responses = [
+                'prompt' => $prompt,
+                'model' => $orderedModelNames,
+                'upmanaResponse' => $content ?? null,
+            ];
 
-        $orderedResponses = [
-            'prompt' => $prompt,
-            'model' => $orderedModelNames,
-            'content' => $responses['upmanaResponse'] ?? $content,
-            'generatedAt' => now()->format('H:i:s d-m-Y'),
-            'label'=>$label
-        ];
 
-        foreach ($orderedModelNames as $model) {
-            $key = $responseTypes[$model] ?? null;
-            if ($key && isset($responses[$key])) {
-                $orderedResponses[$key] = $responses[$key];
+            // Step 5: Generate responses for each model using OpenRouter API
+            $openRouterUrl = 'http://localhost:4000/run';
+            $openRouterModels = [
+                'google' => 'google/gemini-2.0-flash-lite-001',
+                'gemini' => 'google/gemini-2.0-flash-lite-001',
+                'chatgpt' => 'openai/chatgpt-4o-latest',
+                'claude' => 'anthropic/claude-3-haiku',
+                'grok' => 'x-ai/grok-4-fast',
+                'deepseek' => 'deepseek/deepseek-chat-v3.1:free',
+                'meta' => 'meta-llama/llama-4-maverick:free',
+                'perplexity' => 'perplexity/sonar-reasoning-pro',
+            ];
+
+            try {
+                // Build models array for OpenRouter API
+                $apiModels = [];
+                foreach ($orderedModelNames as $modelName) {
+                    if (isset($openRouterModels[$modelName])) {
+                        $apiModels[] = $openRouterModels[$modelName];
+                    }
+                }
+                // Call OpenRouter API
+                if (!empty($apiModels)) {
+                    $openRouterPayload = [
+                        'prompt' => $prompt . "Don’t give recommendations — just provide data in tabular form with data-driven results",
+                        'models' => $apiModels,
+                    ];
+
+                    $client = new \GuzzleHttp\Client();
+                    $openRouterResponse = $client->post($openRouterUrl, [
+                        'json' => $openRouterPayload,
+                        'timeout' => 300, // 5 minute timeout
+                        'http_errors' => false,
+                    ]);
+
+                    $openRouterData = json_decode($openRouterResponse->getBody(), true);
+
+                    // Map OpenRouter responses to model names
+                    if (isset($openRouterData['responses']) && is_array($openRouterData['responses'])) {
+                        foreach ($openRouterData['responses'] as $modelResponse) {
+                            $model = $modelResponse['model'];
+                            $output = $modelResponse['output'] ?? 'No response';
+
+                            // Extract model name and map to response key
+                            $shortName = explode('/', $model)[0]; // "google", "openai", etc
+                            if ($shortName === 'google') {
+                                $responses['geminiResponse'] = $output;
+                            } elseif ($shortName === 'openai') {
+                                $responses['gptResponse'] = $output;
+                            } elseif ($shortName === 'anthropic') {
+                                $responses['claudeResponse'] = $output;
+                            } elseif ($shortName === 'deepseek') {
+                                $responses['deepseekResponse'] = $output;
+                            } elseif ($shortName === 'meta-llama') {
+                                $responses['metaResponse'] = $output;
+                            } elseif ($shortName === 'openrouter') {
+                                $responses['grokResponse'] = $output;
+                            } elseif ($shortName === 'perplexity') {
+                                $responses['perplexityResponse'] = $output;
+                            }
+                        }
+                    }
+
+                    // Log::info('OpenRouter API Response', [
+                    //     'duration' => $openRouterData['total_duration'] ?? 'N/A',
+                    //     'successful' => $openRouterData['successful'] ?? 0,
+                    //     'failed' => $openRouterData['failed'] ?? 0,
+                    // ]);
+                }
+            } catch (\Exception $e) {
+                Log::warning('OpenRouter API Error: ' . $e->getMessage());
+                // Continue without OpenRouter responses
             }
-        }
-           // Return view with ordered responses
-        return view('ai.init_generation', $orderedResponses);
 
-    } catch (ValidationException $e) {
-        return back()->withErrors($e->errors())->withInput();
-    } catch (\Exception $e) {
-        Log::error('AI Response Error: ' . $e->getMessage());
-        return back()->with('error', 'Something went wrong while generating AI responses.')->withInput();
+
+
+
+            // Step 6: Order keys for response
+            $responseTypes = [
+                'chatgpt' => 'gptResponse',
+                'gemini' => 'geminiResponse',
+                'claude' => 'claudeResponse',
+                'grok' => 'grokResponse',
+                'deepseek' => 'deepseekResponse',
+                'meta' => 'metaResponse',
+                'upmana' => 'upmanaResponse',
+                'perplexity' => 'perplexityResponse',
+            ];
+
+            $orderedResponses = [
+                'prompt' => $prompt,
+                'model' => $orderedModelNames,
+                'content' => $responses['upmanaResponse'] ?? $content,
+                'generatedAt' => now()->format('H:i:s d-m-Y'),
+                'label' => $label
+            ];
+
+            foreach ($orderedModelNames as $model) {
+                $key = $responseTypes[$model] ?? null;
+                if ($key && isset($responses[$key])) {
+                    // Parse response text to HTML
+                    $rawResponse = $responses[$key];
+                    $orderedResponses[$key] = TextToHtmlParser::parse($rawResponse);
+                    // Also keep raw version for reference
+                    $orderedResponses[$key . '_raw'] = $rawResponse;
+                }
+            }
+
+            // Parse content if available
+            if ($orderedResponses['content']) {
+                $orderedResponses['content_html'] = TextToHtmlParser::parse($orderedResponses['content']);
+            }
+
+            // Return view with ordered responses
+            return view('ai.init_generation', $orderedResponses);
+        } catch (ValidationException $e) {
+            return back()->withErrors($e->errors())->withInput();
+        } catch (\Exception $e) {
+            Log::error('AI Response Error: ' . $e->getMessage());
+            return back()->with('error', 'Something went wrong while generating AI responses.')->withInput();
+        }
     }
-}
-
-
-
-
 }

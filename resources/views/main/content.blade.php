@@ -383,8 +383,8 @@
                                             {{ $inPortal->city_name }}
                                         </a>
                                         <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="/{{ $inPortal->slug }}">Prarang
-                                                    Meerut</a></li>
+                                            <li><a class="dropdown-item" href="/{{ $inPortal->slug }}">
+                                                    Meerut Portal</a></li>
 
                                             <hr class="dropdown-divider">
                                             <li><a class="dropdown-item" target="_blank"

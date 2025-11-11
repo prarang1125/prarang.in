@@ -637,7 +637,7 @@
                                             </th>
                                         </tr>
                                         <tr>
-                                            <th>City Subscribers (FB+App)</th>
+                                            <th>City Readerships (FB+App)</th>
                                             <th>Website (Direct+Google)</th>
                                             <th>Messaging Subscribers</th>
                                             {{-- <th>Instagram</th> --}}

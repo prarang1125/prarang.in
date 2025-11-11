@@ -1,0 +1,44 @@
+{
+  "prompt": "What is the capital of France? Answer in one sentence.",
+  "models": [
+    "gpt-3.5-turbo",
+    "claude-2",
+    "llama-2-70b"
+  ]
+}
+
+---
+
+Example 2 - Creative Writing:
+{
+  "prompt": "Write a short poem about artificial intelligence in 3 lines",
+  "models": [
+    "openrouter/auto",
+    "meta-llama/llama-2-70b-chat",
+    "anthropic/claude-3-5-sonnet"
+  ]
+}
+
+---
+
+Example 3 - Code Generation:
+{
+  "prompt": "Write a JavaScript function to calculate factorial of a number",
+  "models": [
+    "gpt-4",
+    "claude-3-opus",
+    "mistral-large"
+  ]
+}
+
+---
+
+Example 4 - Explanation:
+{
+  "prompt": "Explain quantum computing in simple terms for a beginner",
+  "models": [
+    "claude-3-sonnet",
+    "gpt-3.5-turbo",
+    "llama-2-chat"
+  ]
+}

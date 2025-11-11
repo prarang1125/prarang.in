@@ -41,7 +41,8 @@
              "Modules\\": "Modules/"
         },
         "files": [
-            "app/helper.php"
+            "app/helper.php",
+            "app/Helpers/HtmlParser.php"
         ]
     },
     "autoload-dev": {
