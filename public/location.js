@@ -230,7 +230,7 @@ function collectAndSendInformation(postId, city, platform) {
         }).toString();
         // console.log("Query Parameters:", queryParams);
         try {
-            await fetch(`https://prarang.in/api/v1/duration-update?${queryParams}`, { method: "GET" });
+            await fetch(`https://prarang.in/api/v1/duration-update?${queryParams}`, { method: "POST" });
             // console.log("Duration and scroll data sent.");
         } catch (error) {
             console.error("Error sending duration data:", error.message);
