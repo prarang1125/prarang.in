@@ -82,17 +82,17 @@
         }
 
         .ai-response table th {
-            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
-            color: white;
+            background: linear-gradient(135deg, #e4e7eb 0%, #e7eaec 100%);
+            color: black;
             font-weight: bold;
             padding: 15px;
             text-align: left;
-            border: 1px solid #0056b3;
+            border: 1px solid #2e3033;
         }
 
         .ai-response table td {
             padding: 12px 15px;
-            border: 1px solid #ddd;
+            border: 1px solid #474343;
             text-align: left;
         }
 
@@ -168,207 +168,6 @@
 
         .ai-response blockquote p {
             margin: 0;
-        }
-
-        /* Icon and Text Alignment Styles */
-        .response-header-with-icon {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            padding: 15px;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            border-radius: 8px;
-        }
-
-        .response-header-with-icon .icon-left {
-            flex-shrink: 0;
-            font-size: 40px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 60px;
-            height: 60px;
-            background: white;
-            border-radius: 50%;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        .response-header-with-icon .content-middle {
-            flex: 1;
-        }
-
-        .response-header-with-icon .content-middle h2 {
-            margin: 0 0 5px 0;
-            font-size: 22px;
-            color: #333;
-        }
-
-        .response-header-with-icon .content-middle p {
-            margin: 0;
-            color: #666;
-            font-size: 14px;
-        }
-
-        .response-header-with-icon .icon-right {
-            flex-shrink: 0;
-            font-size: 35px;
-            color: #007bff;
-            opacity: 0.5;
-        }
-
-        /* Side-by-side layout */
-        .response-content-columns {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .response-content-columns.three-cols {
-            grid-template-columns: repeat(3, 1fr);
-        }
-
-        .response-column {
-            padding: 20px;
-            background: #f9f9f9;
-            border-left: 4px solid #007bff;
-            border-radius: 5px;
-        }
-
-        .response-column h4 {
-            margin-top: 0;
-            color: #007bff;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .response-column-icon {
-            font-size: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 35px;
-            height: 35px;
-            background: #007bff;
-            color: white;
-            border-radius: 50%;
-        }
-
-        /* List with icons */
-        .ai-response .list-with-icons {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .ai-response .list-with-icons li {
-            display: flex;
-            align-items: flex-start;
-            gap: 12px;
-            margin-bottom: 15px;
-            padding-left: 0;
-        }
-
-        .ai-response .list-with-icons li::before {
-            content: '✓';
-            flex-shrink: 0;
-            width: 24px;
-            height: 24px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: #28a745;
-            color: white;
-            border-radius: 50%;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        /* Horizontal layout - icon top, text bottom */
-        .feature-card {
-            text-align: center;
-            padding: 20px;
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transform: translateY(-5px);
-        }
-
-        .feature-card-icon {
-            font-size: 48px;
-            margin-bottom: 15px;
-            color: #007bff;
-        }
-
-        .feature-card h4 {
-            margin: 10px 0 8px 0;
-            color: #333;
-        }
-
-        .feature-card p {
-            margin: 0;
-            font-size: 13px;
-            color: #666;
-        }
-
-        /* Horizontal layout - icon left, text right */
-        .info-box-horizontal {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            padding: 20px;
-            background: #f0f8ff;
-            border-left: 4px solid #0066cc;
-            border-radius: 5px;
-            margin: 15px 0;
-        }
-
-        .info-box-horizontal-icon {
-            flex-shrink: 0;
-            font-size: 36px;
-            color: #0066cc;
-        }
-
-        .info-box-horizontal-content h4 {
-            margin: 0 0 8px 0;
-            color: #333;
-        }
-
-        .info-box-horizontal-content p {
-            margin: 0;
-            font-size: 14px;
-            color: #555;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .response-content-columns {
-                grid-template-columns: 1fr;
-            }
-
-            .response-content-columns.three-cols {
-                grid-template-columns: 1fr;
-            }
-
-            .response-header-with-icon {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .response-header-with-icon .icon-left {
-                margin-bottom: 10px;
-            }
-
-            .info-box-horizontal {
-                flex-direction: column;
-                text-align: center;
-            }
         }
     </style>
     <div class="action-buttons-corner" style="top: 92vh;height: 100px !important;">

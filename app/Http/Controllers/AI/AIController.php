@@ -87,7 +87,7 @@ class AIController extends Controller
                 // Call OpenRouter API
                 if (!empty($apiModels)) {
                     $openRouterPayload = [
-                        'prompt' => $prompt . "Don’t give recommendations — just provide data in tabular form with data-driven results",
+                        'prompt' => $prompt, # "The paragraph summarizes key insights using actual numbers.Percentages and ratios are calculated and phrased naturally.The table aligns all fields cleanly.Give the source of data and consume only a maximum of 700 tokens.",
                         'models' => $apiModels,
                     ];
 
