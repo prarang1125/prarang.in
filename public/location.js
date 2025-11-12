@@ -181,7 +181,7 @@ function collectAndSendInformation(postId, city, platform) {
         if (!getPostCookie(postId)) {
             try {
                 const response = await fetch(
-                    `https://prarang.in/api/v1/visitor-location?${queryParams}`,
+                    `/visitor-location?${queryParams}`,
                     {
                         method: "GET",
                         headers: {
@@ -230,7 +230,7 @@ function collectAndSendInformation(postId, city, platform) {
         }).toString();
         // console.log("Query Parameters:", queryParams);
         try {
-            await fetch(`https://prarang.in/api/v1/duration-update?${queryParams}`, { method: "POST" });
+            await fetch(`/duration-update?${queryParams}`, { method: "POST" });
             // console.log("Duration and scroll data sent.");
         } catch (error) {
             console.error("Error sending duration data:", error.message);
@@ -271,7 +271,7 @@ function collectAndSendInformation(postId, city, platform) {
         }).toString();
 
         // Using sendBeacon for reliable data sending
-        navigator.sendBeacon(`https://prarang.in/api/v1/duration-update?${data}`);
+        navigator.sendBeacon(`/duration-update?${data}`);
     });
 
     window.addEventListener("visibilitychange", () => {
