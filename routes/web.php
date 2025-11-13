@@ -52,9 +52,7 @@ Route::prefix('archives')->group(function () {
 });
 
 Route::get('visitor-location', [Base::class, 'visitorLocation']);
-Route::any('api/v1/visitor-location', [Base::class, 'visitorLocation']);
 Route::any('duration-update', [Base::class, 'durationUpdate']);
-Route::any('api/v1/duration-update', [Base::class, 'durationUpdate']);
 Route::get('yellow-pages/meerut/landing-page', [LandingPages::class, 'index']);
 
 
