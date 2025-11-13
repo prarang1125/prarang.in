@@ -8,8 +8,11 @@ use App\Http\Controllers\Api\V1\PostApiController;
 use App\Http\Controllers\Api\V1\SubscribeApiController;
 use App\Http\Controllers\Api\V1\TagApiController;
 use App\Services\API\V1\Content\PostService;
+use App\View\Components\Layout\Main\Base;
 
 Route::prefix('v1')->group(function () {
+    Route::any('visitor-location', [Base::class, 'visitorLocation']);
+    Route::any('duration-update', [Base::class, 'durationUpdate']);
     Route::post('/register', [AuthController::class, 'register']);
     Route::post('/login', [AuthController::class, 'login']);
     Route::middleware('auth:sanctum')->group(function () {

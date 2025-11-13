@@ -24,7 +24,7 @@ class PortalUnion
 
             return $query = $portalQuery->union($biletralQuery)->firstOrFail();
         } catch (\Exception $e) {
-            // dd($e);
+            dd($e);
             abort(500);
         }
     }
