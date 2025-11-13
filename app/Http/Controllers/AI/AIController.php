@@ -68,12 +68,12 @@ class AIController extends Controller
             $openRouterModels = [
                 'google' => 'google/gemini-2.0-flash-lite-001',
                 'gemini' => 'google/gemini-2.0-flash-lite-001',
-                'chatgpt' => 'openai/chatgpt-4o-latest',
+                'chatgpt' => 'openai/gpt-5-nano',
                 'claude' => 'anthropic/claude-3-haiku',
                 'grok' => 'x-ai/grok-4-fast',
                 'deepseek' => 'deepseek/deepseek-r1-0528-qwen3-8b:free',
                 'meta' => 'meta-llama/llama-4-maverick:free',
-                'perplexity' => 'perplexity/sonar-reasoning-pro',
+                'perplexity' => 'perplexity/sonar',
             ];
 
             try {
