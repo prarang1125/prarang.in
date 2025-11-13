@@ -300,7 +300,7 @@ class OpenRouterService
                 'prompt' => $prompt,
                 'models' => $models,
             ]);
-        
+
         return $response->json();
     }
 }

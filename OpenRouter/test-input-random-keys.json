@@ -1,0 +1,10 @@
+{
+  "prompt": "Write a short poem about artificial intelligence",
+  "models": [
+    "openai/gpt-3.5-turbo",
+    "anthropic/claude-3-sonnet",
+    "meta-llama/llama-2-70b-chat",
+    "google/gemini-2.0-flash-lite-001"
+  ],
+  "random_key": true
+}

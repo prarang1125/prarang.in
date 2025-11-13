@@ -66,7 +66,7 @@ create_payload() {
     local prompt="$1"
     shift
     local models=("$@")
-    
+
     # Build models array
     local models_json="["
     for i in "${!models[@]}"; do
@@ -76,7 +76,7 @@ create_payload() {
         models_json+="\"${models[$i]}\""
     done
     models_json+="]"
-    
+
     # Create payload
     cat <<EOF
 {
@@ -89,34 +89,34 @@ EOF
 # Function to send request
 send_request() {
     local payload="$1"
-    
+
     print_info "Sending request with ${#MODELS[@]} model(s)..."
     print_info "Prompt: $PROMPT"
     echo ""
-    
+
     # Send request with curl
     local response=$(curl -s -X POST "$API_URL" \
         -H "Content-Type: application/json" \
         --max-time $TIMEOUT \
         -d "$payload")
-    
+
     echo "$response"
 }
 
 # Function to parse response
 parse_response() {
     local response="$1"
-    
+
     # Check if response contains error
     if echo "$response" | grep -q "error"; then
         print_error "API returned an error:"
         echo "$response" | jq . 2>/dev/null || echo "$response"
         return 1
     fi
-    
+
     # Pretty print response
     echo "$response" | jq . 2>/dev/null || echo "$response"
-    
+
     # Extract summary
     if echo "$response" | jq -e '.total_duration' > /dev/null 2>&1; then
         echo ""
@@ -124,7 +124,7 @@ parse_response() {
         local duration=$(echo "$response" | jq -r '.total_duration')
         local successful=$(echo "$response" | jq -r '.successful')
         local failed=$(echo "$response" | jq -r '.failed')
-        
+
         echo -e "${GREEN}Duration: $duration${NC}"
         echo -e "${GREEN}Successful: $successful${NC}"
         echo -e "${RED}Failed: $failed${NC}"
@@ -135,28 +135,28 @@ parse_response() {
 main() {
     print_header "OpenRouter API Test Script"
     echo ""
-    
+
     # Check if API is running
     if ! check_api; then
         exit 1
     fi
-    
+
     echo ""
-    
+
     # Create and send payload
     print_header "Creating Request"
     PAYLOAD=$(create_payload "$PROMPT" "${MODELS[@]}")
-    
+
     echo "Payload:"
     echo "$PAYLOAD" | jq . 2>/dev/null || echo "$PAYLOAD"
     echo ""
-    
+
     print_header "Sending Request"
     RESPONSE=$(send_request "$PAYLOAD")
-    
+
     print_header "Response"
     parse_response "$RESPONSE"
-    
+
     echo ""
     print_success "Test completed!"
 }
