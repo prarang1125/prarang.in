@@ -60,7 +60,7 @@ class PostService extends BaseService
 
                 $tags = $chitti->tagMappings->map(function ($tagMapping) {
                     return $tagMapping->tag->tagId;
-                })->filter()->join(', ');
+                })->toArray()[0];
 
                 return [
                     'id' => $chitti->chittiId,
@@ -133,7 +133,7 @@ class PostService extends BaseService
 
             $tags = $post->tagMappings->map(function ($tagMapping) {
                 return $tagMapping->tag->tagId;
-            })->filter()->join(', ');
+            })->toArray()[0];
             sleep(1);
             $locale = PortalLocaleizetion::where('lang_code', $request->language)->first()['json'];
 
