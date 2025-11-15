@@ -4,48 +4,19 @@ import axios from 'axios';
 
 const app = express();
 app.use(express.json());
-dotenv.config();
+
 // 🔑 Base OpenRouter API
 const OPENROUTER_API = 'https://openrouter.ai/api/v1/chat/completions';
-
-// 🔐 Multiple API Keys (rotate randomly)
-const API_KEYS = [
-    // process.env.OPENROUTER_API_KEY_1,
-    process.env.OPENROUTER_API_KEY_2,
-    process.env.OPENROUTER_API_KEY_3,
-    process.env.OPENROUTER_API_KEY_4,
-];
-
-let keyIndex = 0;
-
-// 🔀 Get random API key
-function getRandomApiKey() {
-    const randomIndex = Math.floor(Math.random() * API_KEYS.length);
-    console.log(`🔑 Using API Key #${randomIndex + 1} (${API_KEYS[randomIndex].substring(0, 20)}...)`);
-    return API_KEYS[randomIndex];
-}
-
-// 🔀 Get rotated API key (round-robin)
-function getRotatedApiKey() {
-    const key = API_KEYS[keyIndex];
-    console.log(`🔑 Using API Key #${keyIndex + 1} (${key.substring(0, 20)}...)`);
-    keyIndex = (keyIndex + 1) % API_KEYS.length;
-    return key;
-}
+const headers = {
+    'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
+    'HTTP-Referer': 'https://prarang.in/', // optional
+    'X-Title': 'Parallel LLM Service',
+    'Content-Type': 'application/json',
+};
 
 // 🧠 Helper to call a model
-async function callModel(model, prompt, useRandom = true) {
+async function callModel(model, prompt) {
     try {
-        // Get API key (random or rotated)
-        const apiKey = useRandom ? getRandomApiKey() : getRotatedApiKey();
-
-        const headers = {
-            'Authorization': `Bearer ${apiKey}`,
-            'HTTP-Referer': 'https://prarang.in',
-            'X-Title': 'Parallel LLM Service',
-            'Content-Type': 'application/json',
-        };
-
         const res = await axios.post(
             OPENROUTER_API,
             {
@@ -65,11 +36,11 @@ async function callModel(model, prompt, useRandom = true) {
 
 // 🚀 POST /run
 app.post('/run', async (req, res) => {
-    const { prompt, models, random_key = true } = req.body;
+    const { prompt, models } = req.body;
 
     if (!prompt || !models || !Array.isArray(models)) {
         return res.status(400).json({
-            error: "Invalid request. Expected { prompt: string, models: string[], random_key?: boolean }"
+            error: "Invalid request. Expected { prompt: string, models: string[] }"
         });
     }
 
@@ -79,7 +50,6 @@ app.post('/run', async (req, res) => {
 
     try {
         console.log(`🔄 Processing ${models.length} models...`);
-        console.log(`🔀 Key rotation mode: ${random_key ? 'RANDOM' : 'ROUND-ROBIN'}`);
         const startTime = Date.now();
 
         // Run all models in parallel and wait for ALL to complete
@@ -88,7 +58,7 @@ app.post('/run', async (req, res) => {
                 const modelStartTime = Date.now();
                 try {
                     console.log(`⏳ Calling ${model}...`);
-                    const output = await callModel(model, prompt, random_key);
+                    const output = await callModel(model, prompt);
                     const duration = ((Date.now() - modelStartTime) / 1000).toFixed(2);
                     console.log(`✅ ${model} completed in ${duration}s`);
                     return { model, output, status: 'success', duration };
@@ -123,7 +93,6 @@ app.post('/run', async (req, res) => {
             total_models: models.length,
             successful: processedResults.filter(r => r.status === 'success').length,
             failed: processedResults.filter(r => r.status === 'error').length,
-            key_rotation: random_key ? 'random' : 'round-robin',
             responses: processedResults,
         });
 
@@ -134,9 +103,7 @@ app.post('/run', async (req, res) => {
 });
 
 app.get('/', (req, res) => {
-    res.send('🤖 AI Parallel Service is Running...' +
-        `\n\nActive API Keys: ${API_KEYS.length}` +
-        `\nKey rotation modes: random, round-robin`);
+    res.send('🤖 AI Parallel Service is Running...');
 });
 
 const PORT = process.env.PORT || 4000;
