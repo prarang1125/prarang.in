@@ -34,6 +34,34 @@ if (!function_exists('httpGet')) {
     }
 }
 
+if (!function_exists('httpGet')) {
+    function httpGetAPS($url, $parameters = [])
+    {
+        try {
+            $headers = [
+                'api-auth-token' => env('API_TOKEN'),
+                'api-auth-type' => env('API_TYPE'),
+                'Content-Type' => 'application/json',
+            ];
+            $fullUrl = rtrim(env('API_DOMAIN_APS'), '/') . ltrim($url, '/');
+
+            // Log::info("API Request: " . $fullUrl, ['params' => $parameters]);
+
+            $response = Http::withHeaders($headers)->timeout(180)->get($fullUrl, $parameters);
+            // dd($response->json());
+            if ($response->failed()) {
+                Log::error("API Failed: " . $response->status(), ['response' => $response->body()]);
+                return ['status' => 'error', 'message' => 'API request failed.', 'code' => $response->status()];
+            }
+
+            return $response->json();
+        } catch (Exception $e) {
+            Log::error("API Exception: " . $e->getMessage());
+            return ['status' => 'error', 'message' => $e->getMessage()];
+        }
+    }
+}
+
 
 
 if (!function_exists('httpPost')) {

@@ -21,15 +21,12 @@ class PortalController extends Controller
 
         $isCityPortalBiletral = BiletralPortal::where('slug', $portal)->exists();
         if ($isCityPortal) {
-
             return $this->indianCitiesPortal($portal);
         } elseif ($isCityPortalBiletral) {
-
             return $this->bilateralCountriesPortal($portal);
         } else {
             abort(404);
         }
-
     }
 
     public function indianCitiesPortal($portal)
@@ -39,7 +36,6 @@ class PortalController extends Controller
         $locale = $locale['json'] ?? [];
         // dd($locale);
 
-
         $cityCode = $portal->city_code;
         $yellowPages = City::where('portal_id', $portal->id)->first();
         return view('portal::portal.home', compact('cityCode', 'portal', 'yellowPages', 'locale'));
@@ -47,7 +43,6 @@ class PortalController extends Controller
 
     public function bilateralCountriesPortal(string $slug)
     {
-
         // Fetch portal with related countries
         $main = BiletralPortal::with(['primaryCountry', 'secondaryCountry'])
             ->where('slug', $slug)

@@ -93,10 +93,10 @@ class PostArchives extends Controller
     public function archivePosts($citySlug, $catg, $ids, $name)
     {
         $ids = explode('-', $ids);
-        $portal=$this->portalUnion->getPortalUnion(['slug', $citySlug],['slug',$citySlug]);
+        $portal = $this->portalUnion->getPortalUnion(['slug', $citySlug], ['slug', $citySlug]);
 
         $cityCode = $portal->geography_code;
-        $locale=PortalLocaleizetion::where('lang_code', $portal->lang_code)->firstOrFail();
+        $locale = PortalLocaleizetion::where('lang_code', $portal->lang_code)->firstOrFail();
         $locale = $locale['json'] ?? [];
         $chittiIds = DB::table('chittitagmapping as tag')
             ->join('vChittiGeography as vg', 'vg.chittiId', '=', 'tag.chittiId')
@@ -132,8 +132,9 @@ class PostArchives extends Controller
                 $imageUrl = $chitti->images->first()->imageUrl ?? asset('default_image.jpg');
 
                 $tags = $chitti->tagMappings->map(function ($tagMapping) {
+
                     return $tagMapping->tag->tagId;
-                })->filter()->join(', ');
+                })->toArray()[0];
                 return [
                     'id' => $chitti->chittiId,
                     'title' => $chitti->Title,
@@ -155,7 +156,7 @@ class PostArchives extends Controller
             'name' => ucfirst($name),
             'portal' => $portal,
             'isTags' => true,
-            'locale'=>$locale
+            'locale' => $locale
         ]);
     }
 }
