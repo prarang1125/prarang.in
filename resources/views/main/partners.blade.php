@@ -179,8 +179,8 @@
                 </div>
             </div>
             <div class="cirs">
-                <a class="btn btn-lg btn-warning border border-danger" target="_blank"
-                    href="https://apratyaksh.com/cirus">CIRUS <br> Cyber Intelligence & Risk Unified System</a>
+                <a class="btn btn-lg btn-warning border border-danger" href="/cirus">CIRUS <br> Cyber
+                    Intelligence & Risk Unified System</a>
             </div>
             </div>
             <p class="h5 text-start">Live City Knowledge Webs - Reach & Market Size :</h3>
