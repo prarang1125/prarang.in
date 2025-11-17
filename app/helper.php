@@ -34,7 +34,7 @@ if (!function_exists('httpGet')) {
     }
 }
 
-if (!function_exists('httpGet')) {
+if (!function_exists('httpGetAPS')) {
     function httpGetAPS($url, $parameters = [])
     {
         try {
@@ -43,7 +43,7 @@ if (!function_exists('httpGet')) {
                 'api-auth-type' => env('API_TYPE'),
                 'Content-Type' => 'application/json',
             ];
-            $fullUrl = rtrim(env('API_DOMAIN_APS'), '/') . ltrim($url, '/');
+            $fullUrl = rtrim(env('API_DOMAIN_APS'), '/') . "/" . ltrim($url, '/');
 
             // Log::info("API Request: " . $fullUrl, ['params' => $parameters]);
 
@@ -112,4 +112,14 @@ function highlightFirstOccurrence($paragraph, $cityNames, $type = null)
         }
     }
     return $paragraph;
+}
+
+if (!function_exists('is_assoc')) {
+    function is_assoc($array)
+    {
+        if (!is_array($array) || empty($array)) {
+            return false;
+        }
+        return array_keys($array) !== range(0, count($array) - 1);
+    }
 }

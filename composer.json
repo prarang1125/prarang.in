@@ -19,6 +19,7 @@
         "league/flysystem-aws-s3-v3": "^3.29",
         "livewire/livewire": "^3.6",
         "nwidart/laravel-modules": "^11.1",
+        "phpoffice/phpspreadsheet": "^5.2",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-sitemap": "^7.3",
         "stripe/stripe-php": "^16.3",
