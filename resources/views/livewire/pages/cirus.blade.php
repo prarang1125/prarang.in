@@ -342,6 +342,8 @@
                 <div class="card border-0 shadow-lg"
                     style="border-radius: 16px; overflow: hidden; border-top: 4px solid #0488cd;">
                     <div class="card-body p-4">
+                        <p class="text-end text-muted">Last updated on:
+                            {{ \Carbon\Carbon::now()->subMonth(1)->format('F, Y') }}</p>
                         <div class="">
                             <h2 class="card-title fs-4 fw-bold mb-0" style="color: #1a2332;">
                                 High Risk State/District Capitals
@@ -625,6 +627,8 @@
                 <div class="card border-0 shadow-lg"
                     style="border-radius: 16px; overflow: hidden; border-top: 4px solid #0488cd;">
                     <div class="card-body p-4">
+                        <p class="text-end text-muted">Last updated on:
+                            {{ \Carbon\Carbon::now()->subMonth(1)->format('F, Y') }}</p>
                         <div class="align-items-center justify-content-between ">
                             <h2 class="card-title fs-4 fw-bold mb-0" style="color: #1a2332;">
 
