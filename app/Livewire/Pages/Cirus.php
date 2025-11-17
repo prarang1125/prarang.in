@@ -36,8 +36,9 @@ class Cirus extends Component
 
     public $limitSelection = 10;
 
-    public function mount()
+    public function mount($type = 'india')
     {
+        $this->view = $type;
         $this->loadData();
     }
     private function loadData()

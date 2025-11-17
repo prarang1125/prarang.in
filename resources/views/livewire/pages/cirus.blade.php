@@ -265,6 +265,16 @@
             justify-content: normal;
             align-items: center;
         }
+
+        /* Form check */
+        .border-top div .form-check {
+            border-style: none !important;
+        }
+
+        /* Label (hover) */
+        .border-top div label:hover {
+            color: #0456a9;
+        }
     </style>
 
     <div x-data="districtComparison()" @districts-synced.window="syncDistrictData($event.detail)">
@@ -869,10 +879,10 @@
                     if (this.selectedCountryIds.includes(id)) {
                         this.selectedCountryIds = this.selectedCountryIds.filter(x => x !== id);
                     } else {
-                        if (this.selectedCountryIds.length < 10) {
+                        if (this.selectedCountryIds.length < 5) {
                             this.selectedCountryIds.push(id);
                         } else {
-                            alert('Maximum 10 countries can be selected');
+                            alert('Maximum 5 countries can be selected');
                         }
                     }
                     console.log('Selected countries:', this.selectedCountryIds);
