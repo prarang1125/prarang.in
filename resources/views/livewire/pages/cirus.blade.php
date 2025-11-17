@@ -244,11 +244,6 @@
             transform: translatex(0px) translatey(0px);
         }
 
-        /* Text start */
-        .container tr:nth-child(2) .text-start:nth-child(1) {
-            position: sticky;
-            left: 9px;
-        }
 
         /* Alpine.js cloak */
         [x-cloak] {
@@ -292,11 +287,10 @@
             justify-content: flex-end;
         }
 
-        /* Table responsive */
-        .container div .table-responsive {
+        /* Table responsive .container div .table-responsive {
             max-height: 80vh;
             transform: translatex(0px) translatey(0px);
-        }
+        } */
     </style>
 
     <div x-data="districtComparison()" @districts-synced.window="syncDistrictData($event.detail)">

@@ -104,7 +104,7 @@ class Cirus extends Component
                 'topCountries' => $topCountries,
                 'stateCities' => $stateCities,
                 'worldCountries' => $worldCountries,
-            ], 3600);
+            ], 1296000); // 15 days in seconds
 
             $this->allDhqRows = $dhq;
             $this->allCountries = $countries;
