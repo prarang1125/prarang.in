@@ -2,7 +2,7 @@
     <style>
         /* Custom Scrollbar Styling */
         .table-responsive::-webkit-scrollbar {
-            height: 12px;
+            height: 20px;
         }
 
         .table-responsive::-webkit-scrollbar-track {
@@ -133,7 +133,7 @@
             z-index: 20;
             background-color: #f8f9fa;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
-            width: 50px !important;
+            2 width: 50px !important;
             min-width: 50px !important;
             max-width: 50px !important;
         }

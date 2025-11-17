@@ -17,7 +17,6 @@ class Cirus extends Component
     public $topDhqRows = [];
     public $stateTableData = [];
     public $stateDistrictsMap = [];
-    public $expandedStates = [];
     public $selectedDistricts = [];
     public $showCompareIndia = false;
     public $indiaComparisonRows = [];
@@ -28,12 +27,12 @@ class Cirus extends Component
     public $topCountries = [];
     public $continents = [];
     public $continentCountriesMap = [];
-    public $expandedContinents = [];
     public $selectedCountries = [];
     public $showCompareWorld = false;
     public $worldComparisonRows = [];
     public $selectedCountryIds = [];
-
+    public $stateCities = [];
+    public $worldCountries = [];
     public $limitSelection = 10;
 
     public function mount($type = 'india')
@@ -43,6 +42,7 @@ class Cirus extends Component
     }
     private function loadData()
     {
+
         try {
             // Cache data to reduce API calls
             $cacheKey = 'cirus_dashboard_data';
@@ -56,6 +56,8 @@ class Cirus extends Component
                 $this->stateTableData = $stateData;
                 $this->topDhqRows = $topDhq;
                 $this->topCountries = $topCountries;
+                $this->stateCities = $stateCities;
+                $this->worldCountries = $worldCountries;
                 return;
             }
 
@@ -64,8 +66,9 @@ class Cirus extends Component
             $states = httpGetAPS('/cirus/states')['data'] ?? [];
             $countries = httpGetAPS('/cirus/countries')['data'] ?? [];
             $continents = httpGetAPS('/cirus/continents')['data'] ?? [];
+            $stateCities = collect($dhq)->groupBy('state_ut')->toArray();
+            $worldCountries = collect($countries)->groupBy('continent')->toArray();
 
-            // Normalize state table
             $stateData = collect($states)
                 ->map(function ($s) {
                     if (is_string($s)) return ['state' => $s];
@@ -99,6 +102,8 @@ class Cirus extends Component
                 'stateData' => $stateData,
                 'topDhq' => $topDhq,
                 'topCountries' => $topCountries,
+                'stateCities' => $stateCities,
+                'worldCountries' => $worldCountries,
             ], 3600);
 
             $this->allDhqRows = $dhq;
@@ -118,30 +123,7 @@ class Cirus extends Component
     }
 
     // Load districts under state
-    public function toggleStateExpanded($state)
-    {
-        // Agar same state already open hai → close kar do
-        if (in_array($state, $this->expandedStates)) {
-            $this->expandedStates = [];
-            return;
-        }
 
-        // Ek hi state open rahegi → purani sab clear
-        $this->expandedStates = [$state];
-
-        // Districts data load (cached)
-        if (!isset($this->stateDistrictsMap[$state])) {
-            $cacheKey = 'cirus_districts_' . md5($state);
-            $data = cache()->get($cacheKey);
-
-            if (!$data) {
-                $data = httpGetAPS("/cirus/dhq/" . $state)['data'] ?? [];
-                cache()->put($cacheKey, $data, 86400);
-            }
-
-            $this->stateDistrictsMap[$state] = $data;
-        }
-    }
 
 
     public function toggleDistrictSelect($rowId)
@@ -180,24 +162,7 @@ class Cirus extends Component
     }
 
     // Continent expand
-    public function toggleContinentExpanded($continent)
-    {
-        if (in_array($continent, $this->expandedContinents)) {
-            $this->expandedContinents = array_diff($this->expandedContinents, [$continent]);
-            return;
-        }
 
-        $this->expandedContinents[] = $continent;
-        if (!isset($this->continentCountriesMap[$continent])) {
-            $cacheKey = 'cirus_countries_' . md5($continent);
-            $data = cache()->get($cacheKey);
-            if (!$data) {
-                $data = httpGetAPS("/cirus/countries/" . $continent)['data'] ?? [];
-                cache()->put($cacheKey, $data, 86400); // Cache for 24 hours
-            }
-            $this->continentCountriesMap[$continent] = $data;
-        }
-    }
 
     public function toggleCountrySelect($rowId)
     {
@@ -247,12 +212,9 @@ class Cirus extends Component
 
     public function resetIndia()
     {
-        $this->selectedDistricts = [];
         $this->selectedDistrictIds = [];
         $this->showCompareIndia = false;
         $this->indiaComparisonRows = [];
-        $this->expandedStates = [];
-        $this->stateDistrictsMap = [];
     }
 
     public function nextWorld()
@@ -268,12 +230,9 @@ class Cirus extends Component
 
     public function resetWorld()
     {
-        $this->selectedCountries = [];
         $this->selectedCountryIds = [];
         $this->showCompareWorld = false;
         $this->worldComparisonRows = [];
-        $this->expandedContinents = [];
-        $this->continentCountriesMap = [];
     }
 
     public function downloadDistrictExcel()

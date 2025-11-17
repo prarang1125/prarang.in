@@ -1,4 +1,5 @@
 <div class="">
+
     <style>
         /* Modal Styling */
         .modal.show {
@@ -275,6 +276,27 @@
         .border-top div label:hover {
             color: #0456a9;
         }
+
+        /* Form check */
+        .table-striped .p-0 .form-check {
+            margin-bottom: -16px;
+        }
+
+        /* Label */
+        .table-striped .p-0 label {
+            font-size: 16px;
+        }
+
+        /* Flex wrap */
+        .container div .flex-wrap {
+            justify-content: flex-end;
+        }
+
+        /* Table responsive */
+        .container div .table-responsive {
+            max-height: 80vh;
+            transform: translatex(0px) translatey(0px);
+        }
     </style>
 
     <div x-data="districtComparison()" @districts-synced.window="syncDistrictData($event.detail)">
@@ -365,6 +387,7 @@
                             <h2 class="card-title fs-4 fw-bold mb-0" style="color: #1a2332;">
                                 Select & Compare State/District Capitals
                             </h2>
+                            <p class=" m-0 p-0">Click on a state/UT to Choose State/District Capitals</p>
                             <span wire:loading wire:target="toggleStateExpanded">
                                 <span class="spinner-border spinner-border-sm text-primary" role="status"></span>
                                 <span class="ms-2 text-muted small">Loading...</span>
@@ -403,73 +426,86 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                        $count = 1;
+                                    @endphp
+                                    <tr>
+                                        <td colspan="{{ count($stateColumns) + 1 }}">
+                                            States
+                                        </td>
+                                    </tr>
                                     @forelse ($stateTableData as $index => $state)
                                         @php $name = $state['state']; @endphp
-                                        <tr style="transition: all 0.2s ease;">
+                                        @if ($state['id'] == 29)
+                                            @php $count=1; @endphp
+                                            <tr>
+                                                <td colspan="{{ count($stateColumns) + 1 }}">
+                                                    Union Territories
+                                                </td>
+                                            </tr>
+                                        @endif
+
+                                        <tr style="transition: all 0.2s ease;" data-state="{{ $name }}">
                                             <td class="text-start sticky-name-column"
                                                 style="position: sticky; left: 0; z-index: 20; background-color: #ffffff; box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);">
-                                                <button class="btn btn-link text-decoration-none p-0 fw-semibold"
+                                                <button
+                                                    class="btn btn-link text-decoration-none p-0 fw-semibold accordion-toggle"
                                                     style="color: #0488cd; transition: all 0.2s ease;"
-                                                    wire:click="toggleStateExpanded('{{ $name }}')">
-                                                    <i class="bi {{ in_array($name, $expandedStates) ? 'bi-chevron-down' : 'bi-chevron-right' }} me-2"
+                                                    onclick="toggleStateAccordion(this, '{{ $name }}')">
+                                                    <i class="bi bi-chevron-right me-2 accordion-icon"
                                                         style="transition: transform 0.3s ease; font-size: 1.1rem;"></i>
-                                                    {{ $name }}
-                                                    <span wire:loading
-                                                        wire:target="toggleStateExpanded('{{ $name }}')"
-                                                        class="spinner-border spinner-border-sm ms-2"></span>
+                                                    {{ $count++ }}. &nbsp;{{ $name }}
                                                 </button>
                                             </td>
                                             @foreach ($stateColumns as $col)
                                                 <td class="text-start">{{ $state[$col] ?? '-' }}</td>
                                             @endforeach
                                         </tr>
-                                        @if (in_array($name, $expandedStates))
-                                            <tr>
-                                                <td colspan="{{ count($stateColumns) + 1 }}" class="p-0">
-                                                    <div class="p-3 bg-light border-top">
-                                                        <div wire:loading
-                                                            wire:target="toggleStateExpanded('{{ $name }}')"
-                                                            class="text-center py-3">
-                                                            <div class="spinner-border spinner-border-sm text-primary">
-                                                            </div>
-                                                            <span class="ms-2">Loading districts...</span>
-                                                        </div>
-                                                        <div wire:loading.remove
-                                                            wire:target="toggleStateExpanded('{{ $name }}')">
-                                                            @php $districts = $stateDistrictsMap[$name] ?? []; @endphp
-                                                            @if (count($districts) > 0)
-                                                                <h6 class="fw-bold mb-3">Districts in
-                                                                    {{ $name }}:</h6>
-                                                                <div class="row g-2">
-                                                                    @foreach ($districts as $d)
-                                                                        <div class="col-12 col-md-6 col-lg-3">
-                                                                            <div class="form-check p-2 border rounded"
-                                                                                style="background-color: #fff;">
-                                                                                <input class="form-check-input"
-                                                                                    type="checkbox"
-                                                                                    id="district_{{ $index }}_{{ $loop->index }}"
-                                                                                    @change="toggleSelect('{{ $d['id'] ?? $d['state_district_capital'] }}')"
-                                                                                    :checked="selectedDistrictIds.includes(
-                                                                                        '{{ $d['id'] ?? $d['state_district_capital'] }}'
-                                                                                    )">
-                                                                                <label
-                                                                                    class="form-check-label ms-2 small"
-                                                                                    for="district_{{ $index }}_{{ $loop->index }}">
-                                                                                    {{ $d['state_district_capital'] ?? 'District' }}
-                                                                                </label>
-                                                                            </div>
-                                                                        </div>
-                                                                    @endforeach
+                                        <tr class="accordion-content" data-state-cities="{{ $name }}"
+                                            style="display: none;" wire:ignore.self>
+                                            <td colspan="{{ count($stateColumns) + 1 }}" class="p-0">
+                                                <div class="p-3 bg-light border-top">
+
+                                                    <div class="row g-3" wire:ignore.self>
+                                                        @php
+                                                            $cities = $stateCities[$name] ?? [];
+                                                        @endphp
+
+                                                        @if (count($cities) > 0)
+                                                            @foreach ($cities as $city)
+                                                                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                                                    <div class="form-check p-2 border rounded d-flex align-items-center"
+                                                                        style="background-color: #fff; transition: all 0.2s ease; min-height: 40px;"
+                                                                        onmouseover="this.style.backgroundColor='#f0f8ff'; this.style.borderColor='#0488cd';"
+                                                                        onmouseout="this.style.backgroundColor='#fff'; this.style.borderColor='#dee2e6';">
+                                                                        <input
+                                                                            class="form-check-input m-0 flex-shrink-0"
+                                                                            type="checkbox"
+                                                                            id="city_{{ $name }}_{{ $loop->index }}"
+                                                                            @change="toggleSelect('{{ $city['id'] ?? $city['state_district_capital'] }}')"
+                                                                            :checked="selectedDistrictIds.includes(
+                                                                                '{{ $city['id'] ?? $city['state_district_capital'] }}'
+                                                                            )"
+                                                                            style="cursor: pointer;">
+                                                                        <label
+                                                                            class="form-check-label ms-2 mb-0 small flex-grow-1"
+                                                                            for="city_{{ $name }}_{{ $loop->index }}"
+                                                                            style="cursor: pointer; line-height: 1.4;">
+                                                                            {{ $city['state_district_capital'] ?? 'City' }}
+                                                                        </label>
+                                                                    </div>
                                                                 </div>
-                                                            @else
-                                                                <p class="text-muted fst-italic mb-0">No districts
+                                                            @endforeach
+                                                        @else
+                                                            <div class="col-12">
+                                                                <p class="text-muted fst-italic mb-0">No cities
                                                                     available</p>
-                                                            @endif
-                                                        </div>
+                                                            </div>
+                                                        @endif
                                                     </div>
-                                                </td>
-                                            </tr>
-                                        @endif
+                                                </div>
+                                            </td>
+                                        </tr>
                                     @empty
                                         <tr>
                                             <td colspan="{{ count($stateColumns) + 1 }}" class="text-center py-4">
@@ -486,10 +522,10 @@
                         <div class="mt-4 p-3 bg-light rounded-3">
                             <div class="d-flex gap-3 flex-wrap align-items-center">
                                 <button @click="compareDistricts()" wire:loading.attr="disabled"
-                                    class="btn btn-primary btn-lg shadow-sm"
+                                    x-show="selectedDistrictIds.length > 0" class="btn btn-primary btn-lg shadow-sm"
                                     :disabled="selectedDistrictIds.length === 0"
                                     style="background: linear-gradient(135deg, #0488cd 0%, #0366a3 100%); border: none; border-radius: 12px; transition: all 0.3s ease;">
-                                    <i class="bi bi-bar-chart-fill me-2"></i>
+
                                     <span wire:loading.remove wire:target="syncDistrictSelectionAndCompare">
                                         Compare Selected Districts (<span x-text="selectedDistrictIds.length">0</span>)
                                     </span>
@@ -498,14 +534,11 @@
                                     </span>
                                 </button>
                                 <button @click="resetSelection()" class="btn btn-outline-secondary btn-lg shadow-sm"
+                                    x-show="selectedDistrictIds.length > 0"
                                     style="border-radius: 12px; transition: all 0.3s ease;">
-                                    <i class="bi bi-arrow-counterclockwise me-2"></i>Reset Selection
+                                    <i class="bi bi-arrow-counterclockwise"></i>
                                 </button>
-                                <span class="ms-auto badge bg-info bg-gradient px-3 py-2"
-                                    x-show="selectedDistrictIds.length > 0" style="font-size: 0.9rem;" x-cloak>
-                                    <i class="bi bi-check2-circle me-1"></i><span
-                                        x-text="selectedDistrictIds.length">0</span> Selected
-                                </span>
+
                             </div>
                         </div>
                     </div>
@@ -588,7 +621,7 @@
         @if ($view == 'world')
 
             {{-- TOP 5 COUNTRIES --}}
-            <div class="container-lg mb-5">
+            <div class="container-lg mb-5" wire:ignore.self>
                 <div class="card border-0 shadow-lg"
                     style="border-radius: 16px; overflow: hidden; border-top: 4px solid #0488cd;">
                     <div class="card-body p-4">
@@ -638,14 +671,15 @@
                 <div class="card border-0 shadow-lg"
                     style="border-radius: 16px; overflow: hidden; border-top: 4px solid #0488cd;">
                     <div class="card-body p-4">
-                        <div class="d-flex align-items-center justify-content-between ">
+                        <div class=" align-items-center justify-content-between ">
                             <h2 class="card-title fs-4 fw-bold mb-0" style="color: #1a2332;">
 
                                 Select & Compare Countries
                             </h2>
+                            <p class="text-muted">Click on a continent to choose countries</p>
                         </div>
 
-                        <div class="table-responsive">
+                        <div class="table-responsive" wire:ignore.self>
                             <table class="table table-hover table-striped table-sm mb-0 border">
                                 <thead class="table-light">
                                     <tr>
@@ -672,74 +706,70 @@
                                         @endforeach
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody wire:ignore.self>
+                                    @php $ccount=1; @endphp
                                     @forelse ($continents as $index => $c)
                                         @php $name = $c['continent'] ?? $c['name']; @endphp
-                                        <tr style="transition: all 0.2s ease;">
+                                        <tr style="transition: all 0.2s ease;" data-continent="{{ $name }}">
                                             <td class="text-start sticky-name-column"
                                                 style="position: sticky; left: 0; z-index: 20; background-color: #ffffff; box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);">
-                                                <button class="btn btn-link text-decoration-none p-0 fw-semibold"
+                                                <button
+                                                    class="btn btn-link text-decoration-none p-0 fw-semibold accordion-toggle"
                                                     style="color: #0488cd; transition: all 0.2s ease;"
-                                                    wire:click="toggleContinentExpanded('{{ $name }}')">
-                                                    <i class="bi {{ in_array($name, $expandedContinents) ? 'bi-chevron-down' : 'bi-chevron-right' }} me-2"
+                                                    onclick="toggleContinentAccordion(this, '{{ $name }}')">
+                                                    <i class="bi bi-chevron-right me-2 accordion-icon"
                                                         style="transition: transform 0.3s ease; font-size: 1.1rem;"></i>
-                                                    {{ $name }}
-                                                    <span wire:loading
-                                                        wire:target="toggleContinentExpanded('{{ $name }}')"
-                                                        class="spinner-border spinner-border-sm ms-2"></span>
+                                                    {{ $ccount++ }}. &nbsp; {{ $name }}
                                                 </button>
                                             </td>
                                             @foreach ($continentColumns as $col)
                                                 <td class="text-start">{{ $c[$col] ?? '-' }}</td>
                                             @endforeach
                                         </tr>
-                                        @if (in_array($name, $expandedContinents))
-                                            <tr>
-                                                <td colspan="{{ count($continentColumns) + 1 }}" class="p-0">
-                                                    <div class="p-3 bg-light border-top">
-                                                        <div wire:loading
-                                                            wire:target="toggleContinentExpanded('{{ $name }}')"
-                                                            class="text-center py-3">
-                                                            <div class="spinner-border spinner-border-sm text-primary">
-                                                            </div>
-                                                            <span class="ms-2">Loading countries...</span>
-                                                        </div>
-                                                        <div wire:loading.remove
-                                                            wire:target="toggleContinentExpanded('{{ $name }}')">
-                                                            @php $list = $continentCountriesMap[$name] ?? []; @endphp
-                                                            @if (count($list) > 0)
-                                                                <h6 class="fw-bold mb-3">Countries in
-                                                                    {{ $name }}:</h6>
-                                                                <div class="row g-2">
-                                                                    @foreach ($list as $cc)
-                                                                        <div class="col-12 col-md-6 col-lg-3">
-                                                                            <div class="form-check p-2 border rounded"
-                                                                                style="background-color: #fff;">
-                                                                                <input class="form-check-input"
-                                                                                    type="checkbox"
-                                                                                    id="country_{{ $index }}_{{ $loop->index }}"
-                                                                                    @change="toggleCountry('{{ $cc['id'] ?? $cc['country'] }}')"
-                                                                                    :checked="selectedCountryIds.includes(
-                                                                                        '{{ $cc['id'] ?? $cc['country'] }}'
-                                                                                    )">
-                                                                                <label
-                                                                                    class="form-check-label ms-2 small"
-                                                                                    for="country_{{ $index }}_{{ $loop->index }}">
-                                                                                    {{ $cc['country'] ?? 'Country' }}
-                                                                                </label>
-                                                                            </div>
-                                                                        </div>
-                                                                    @endforeach
+                                        <tr class="accordion-content" data-continent-countries="{{ $name }}"
+                                            style="display: none;" wire:ignore.self>
+                                            <td colspan="{{ count($continentColumns) + 1 }}" class="p-0">
+                                                <div class="p-3 bg-light border-top">
+
+                                                    <div class="row g-3" wire:ignore.self>
+                                                        @php
+                                                            $countries = $worldCountries[$name] ?? [];
+                                                        @endphp
+                                                        @if (count($countries) > 0)
+                                                            @foreach ($countries as $country)
+                                                                <div class="col-12 col-sm-6 col-md-4 col-lg-3">
+                                                                    <div class="form-check p-2 border rounded d-flex align-items-center"
+                                                                        style="background-color: #fff; transition: all 0.2s ease; min-height: 40px;"
+                                                                        onmouseover="this.style.backgroundColor='#f0f8ff'; this.style.borderColor='#0488cd';"
+                                                                        onmouseout="this.style.backgroundColor='#fff'; this.style.borderColor='#dee2e6';">
+                                                                        <input
+                                                                            class="form-check-input m-0 flex-shrink-0"
+                                                                            type="checkbox"
+                                                                            id="country_{{ $name }}_{{ $loop->index }}"
+                                                                            @change="toggleCountry('{{ $country['id'] ?? $country['country'] }}')"
+                                                                            :checked="selectedCountryIds.includes(
+                                                                                '{{ $country['id'] ?? $country['country'] }}'
+                                                                            )"
+                                                                            style="cursor: pointer;">
+                                                                        <label
+                                                                            class="form-check-label ms-2 mb-0 small flex-grow-1"
+                                                                            for="country_{{ $name }}_{{ $loop->index }}"
+                                                                            style="cursor: pointer; line-height: 1.4;">
+                                                                            {{ $country['country'] ?? 'Country' }}
+                                                                        </label>
+                                                                    </div>
                                                                 </div>
-                                                            @else
+                                                            @endforeach
+                                                        @else
+                                                            <div class="col-12">
                                                                 <p class="text-muted fst-italic mb-0">No countries
                                                                     available</p>
-                                                            @endif
-                                                        </div>
+                                                            </div>
+                                                        @endif
                                                     </div>
-                                                </td>
-                                            </tr>
-                                        @endif
+                                                </div>
+                                            </td>
+                                        </tr>
                                     @empty
                                         <tr>
                                             <td colspan="{{ count($continentColumns) + 1 }}"
@@ -753,10 +783,11 @@
                             </table>
                         </div>
 
-                        <div class="mt-4 p-3 bg-light rounded-3">
+                        <div class="mt-4 p-3 bg-light rounded-3 text-end" wire:ignore.self>
                             <div class="d-flex gap-3 flex-wrap align-items-center">
                                 <button @click="compareCountries()" wire:loading.attr="disabled"
-                                    class="btn btn-primary btn-lg shadow-sm"
+                                    x-show="selectedCountryIds.length > 0"
+                                    class="btn btn-primary btn-lg shadow-sm btn-md"
                                     :disabled="selectedCountryIds.length === 0"
                                     style="background: linear-gradient(135deg, #0488cd 0%, #0366a3 100%); border: none; border-radius: 12px; transition: all 0.3s ease;">
                                     <i class="bi bi-bar-chart-fill me-2"></i>
@@ -767,16 +798,11 @@
                                         <span class="spinner-border spinner-border-sm me-2"></span>Comparing...
                                     </span>
                                 </button>
-                                <button @click="resetCountrySelection()"
-                                    class="btn btn-outline-secondary btn-lg shadow-sm"
+                                <button @click="resetCountrySelection()" x-show="selectedCountryIds.length > 0"
+                                    class="btn btn-outline-secondary btn-md btn-lg shadow-sm"
                                     style="border-radius: 12px; transition: all 0.3s ease;">
                                     <i class="bi bi-arrow-counterclockwise me-2"></i>Reset Selection
                                 </button>
-                                <span class="ms-auto badge bg-info bg-gradient px-3 py-2"
-                                    x-show="selectedCountryIds.length > 0" style="font-size: 0.9rem;" x-cloak>
-                                    <i class="bi bi-check2-circle me-1"></i><span
-                                        x-text="selectedCountryIds.length">0</span> Selected
-                                </span>
                             </div>
                         </div>
                     </div>
@@ -1025,6 +1051,68 @@
             `);
 
             printWindow.document.close();
+        }
+
+        // Accordion toggle for states
+        function toggleStateAccordion(button, stateName) {
+            const row = button.closest('tr');
+            const contentRow = row.nextElementSibling;
+            const icon = button.querySelector('.accordion-icon');
+
+            if (contentRow && contentRow.classList.contains('accordion-content')) {
+                const isVisible = contentRow.style.display !== 'none';
+
+                // Close all other accordions
+                document.querySelectorAll('tr.accordion-content[data-state-cities]').forEach(tr => {
+                    tr.style.display = 'none';
+                });
+                document.querySelectorAll('.accordion-toggle .accordion-icon').forEach(i => {
+                    i.classList.remove('bi-chevron-down');
+                    i.classList.add('bi-chevron-right');
+                });
+
+                // Toggle current accordion
+                if (isVisible) {
+                    contentRow.style.display = 'none';
+                    icon.classList.remove('bi-chevron-down');
+                    icon.classList.add('bi-chevron-right');
+                } else {
+                    contentRow.style.display = 'table-row';
+                    icon.classList.remove('bi-chevron-right');
+                    icon.classList.add('bi-chevron-down');
+                }
+            }
+        }
+
+        // Accordion toggle for continents
+        function toggleContinentAccordion(button, continentName) {
+            const row = button.closest('tr');
+            const contentRow = row.nextElementSibling;
+            const icon = button.querySelector('.accordion-icon');
+
+            if (contentRow && contentRow.classList.contains('accordion-content')) {
+                const isVisible = contentRow.style.display !== 'none';
+
+                // Close all other accordions
+                document.querySelectorAll('tr.accordion-content[data-continent-countries]').forEach(tr => {
+                    tr.style.display = 'none';
+                });
+                document.querySelectorAll('.accordion-toggle .accordion-icon').forEach(i => {
+                    i.classList.remove('bi-chevron-down');
+                    i.classList.add('bi-chevron-right');
+                });
+
+                // Toggle current accordion
+                if (isVisible) {
+                    contentRow.style.display = 'none';
+                    icon.classList.remove('bi-chevron-down');
+                    icon.classList.add('bi-chevron-right');
+                } else {
+                    contentRow.style.display = 'table-row';
+                    icon.classList.remove('bi-chevron-right');
+                    icon.classList.add('bi-chevron-down');
+                }
+            }
         }
     </script>
 </div>
