@@ -94,12 +94,63 @@
             -webkit-text-fill-color: transparent;
             font-weight: 700 !important;
         }
+
+        /* Sticky First Column */
+        .table thead th:first-child,
+        .table tbody td:first-child {
+            position: sticky;
+            left: 0;
+            z-index: 20;
+            background-color: #f8f9fa;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .table tbody td:first-child {
+            background-color: #ffffff;
+            font-weight: 600;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) td:first-child {
+            background-color: rgba(4, 136, 205, 0.02);
+        }
+
+        .table-hover tbody tr:hover td:first-child {
+            background-color: rgba(4, 136, 205, 0.08) !important;
+        }
+
+        /* Sticky Second Column (Serial Number if present) */
+        .table thead th:nth-child(2).serial-column,
+        .table tbody td:nth-child(2).serial-column {
+            position: sticky;
+            left: 0;
+            z-index: 20;
+            background-color: #f8f9fa;
+            box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .table tbody td:nth-child(2).serial-column {
+            background-color: #ffffff;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) td:nth-child(2).serial-column {
+            background-color: rgba(4, 136, 205, 0.02);
+        }
+
+        .table-hover tbody tr:hover td:nth-child(2).serial-column {
+            background-color: rgba(4, 136, 205, 0.08) !important;
+        }
+
+        /* Adjust left position when serial number exists */
+        .has-serial thead th:nth-child(2),
+        .has-serial tbody td:nth-child(2) {
+            left: 50px !important;
+        }
     </style>
     <table class="table table-hover table-striped table-sm mb-0 shadow-sm" style="border-radius: 8px; overflow: hidden;">
         <thead class="table-light">
             <tr>
                 @if ($showSerial ?? false)
-                    <th class="text-start fw-bold">#</th>
+                    <th class="text-start fw-bold">Sr.</th>
                 @endif
                 @php
                     $firstRow = collect($rows)->first();
@@ -113,10 +164,8 @@
                     } else {
                         $columns = $allColumns;
                     }
-
                     // Filter to only include columns that exist in data
                     $columns = array_intersect($columns, $allColumns);
-
                     // Get labels and tooltips from config based on view type
                     $viewType = $viewType ?? 'india'; // Default to india
                     $labels = config("cirus.{$viewType}.field_labels", []);
@@ -128,7 +177,7 @@
                         $label = $labels[$c] ?? str_replace('_', ' ', ucwords($c, '_'));
                         $tooltip = $tooltips[$c] ?? '';
                     @endphp
-                    <th class="text-start fw-bold"
+                    <th class="text-start fw-bold {{ $c == 'risk_index' ? 'text-danger' : '' }}"
                         @if ($tooltip) title="{{ $tooltip }}"
                             data-bs-toggle="tooltip"
                             data-bs-placement="top"
@@ -139,17 +188,18 @@
             </tr>
         </thead>
 
-        <tbody>
+        <tbody class="{{ $showSerial ?? false ? 'has-serial' : '' }}">
             @forelse($rows as $idx => $r)
                 <tr>
                     @if ($showSerial ?? false)
-                        <td class="text-muted fw-medium">{{ $idx + 1 }}</td>
+                        <td class="text-muted fw-medium serial-column ">{{ $idx + 1 }}</td>
                     @endif
                     @foreach ($columns as $c)
                         <td class="text-start"
                             style="max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"
                             title="{{ is_array($r[$c] ?? null) ? json_encode($r[$c]) : $r[$c] ?? '' }}">
-                            {{ is_array($r[$c] ?? null) ? json_encode($r[$c]) : $r[$c] ?? '' }}
+                            <span
+                                class="{{ $c == 'risk_index' ? 'text-danger fw-semibold' : '' }}  fw-medium">{{ is_array($r[$c] ?? null) ? json_encode($r[$c]) : $r[$c] ?? '' }}</span>
                         </td>
                     @endforeach
                 </tr>

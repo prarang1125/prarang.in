@@ -13,7 +13,8 @@
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="{{ $metaData['title'] ?? 'Prarang : Knowledge Webs' }}">
     <meta name="title" property="og:title" content="{{ $metaData['title'] ?? 'Prarang : Knowledge Webs' }}">
-    <meta name="image" property="og:image" content="{{ $metaData['image'] ?? 'https://prarang.s3.amazonaws.com/posts-2017-24/og_home_image.png' }}">
+    <meta name="image" property="og:image"
+        content="{{ $metaData['image'] ?? 'https://prarang.s3.amazonaws.com/posts-2017-24/og_home_image.png' }}">
     <meta name="description" property="og:description" content="{{ $metaData['description'] ?? '' }}">
     <meta property="og:url" content="https://prarang.in">
     <meta property="og:type" content="website">
@@ -23,17 +24,20 @@
     <meta name="twitter:site" content="Prarang">
     <meta name="twitter:title" content="{{ $metaData['title'] ?? 'Prarang : Knowledge Webs' }}">
     <meta name="twitter:description" content="{{ $metaData['description'] ?? '' }}">
-    <meta name="twitter:image" content="{{ $metaData['image'] ?? 'https://prarang.s3.amazonaws.com/posts-2017-24/og_home_image.png' }}">
+    <meta name="twitter:image"
+        content="{{ $metaData['image'] ?? 'https://prarang.s3.amazonaws.com/posts-2017-24/og_home_image.png' }}">
     <meta name="google-site-verification" content="-DA48RRV_4JbpmDcYV7r8QBnMMtBXSzO4GmHj-gow2Q" />
     <!-- CSS Files -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
-    <link rel="stylesheet" href="{{asset('assets/main/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('assets/main/css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('css/ai-response.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
     <script src="https://cdn.jsdelivr.net/npm/typeit@8.7.1/dist/index.umd.js"></script>
 
+    @livewireStyles
     @yield('css')
 </head>
 <style>
@@ -150,17 +154,17 @@
                         </a>
                     </div>
                     <div class="col-sm-3">
-                        <a href="{{route('terms-conditions')}}" class="">
+                        <a href="{{ route('terms-conditions') }}" class="">
                             Terms &amp; Conditions
                         </a>
                     </div>
                     <div class="col-sm-3">
-                        <a href="{{route('refund-cancellation')}}">
+                        <a href="{{ route('refund-cancellation') }}">
                             Cancellations and Refund
                         </a>
                     </div>
                     <div class="col-sm-3">
-                        <a href="{{route('about-us')}}">
+                        <a href="{{ route('about-us') }}">
                             About Us
                         </a>
                     </div>
@@ -206,6 +210,9 @@
         integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
     </script>
     <script src="{{ asset('js/ai-response.js') }}"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
+
+    @livewireScripts
 </body>
 
 </html>

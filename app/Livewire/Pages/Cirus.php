@@ -318,31 +318,31 @@ class Cirus extends Component
             'cyber_crime_rate_per_1000_internet'
         ];
 
-        $col = 1;
         $labels = config('cirus.india.field_labels', []);
+        $columnLetter = 'A';
         foreach ($columns as $header) {
             $label = $labels[$header] ?? str_replace('_', ' ', ucwords($header, '_'));
-            $sheet->setCellValueByColumnAndRow($col, 2, $label);
-            $col++;
+            $sheet->setCellValue($columnLetter . '2', $label);
+            $columnLetter++;
         }
 
         $sheet->getStyle('A2:M2')->getFont()->setBold(true);
-        $sheet->getStyle('A2:M2')->getFill()->setFillType(Fill::FILL_SOLID)->setStartColor(['argb' => 'FF0488CD']);
+        $sheet->getStyle('A2:M2')->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setARGB('FF0488CD');
 
         // Add data
         $row = 3;
         foreach ($this->indiaComparisonRows as $data) {
-            $col = 1;
+            $columnLetter = 'A';
             foreach ($columns as $column) {
-                $sheet->setCellValueByColumnAndRow($col, $row, $data[$column] ?? '');
-                $col++;
+                $sheet->setCellValue($columnLetter . $row, $data[$column] ?? '');
+                $columnLetter++;
             }
             $row++;
         }
 
         // Auto-size columns
-        foreach (range(1, count($columns)) as $col) {
-            $sheet->getColumnDimensionByColumn($col)->setAutoSize(true);
+        foreach (range('A', 'M') as $columnID) {
+            $sheet->getColumnDimension($columnID)->setAutoSize(true);
         }
 
         $filename = storage_path('app/district-comparison-' . time() . '.xlsx');
@@ -378,31 +378,31 @@ class Cirus extends Component
             'cyber_crime_rate_per_1000_internet'
         ];
 
-        $col = 1;
         $labels = config('cirus.world.field_labels', []);
+        $columnLetter = 'A';
         foreach ($columns as $header) {
             $label = $labels[$header] ?? str_replace('_', ' ', ucwords($header, '_'));
-            $sheet->setCellValueByColumnAndRow($col, 2, $label);
-            $col++;
+            $sheet->setCellValue($columnLetter . '2', $label);
+            $columnLetter++;
         }
 
         $sheet->getStyle('A2:L2')->getFont()->setBold(true);
-        $sheet->getStyle('A2:L2')->getFill()->setFillType(Fill::FILL_SOLID)->setStartColor(['argb' => 'FF0488CD']);
+        $sheet->getStyle('A2:L2')->getFill()->setFillType(Fill::FILL_SOLID)->getStartColor()->setARGB('FF0488CD');
 
         // Add data
         $row = 3;
         foreach ($this->worldComparisonRows as $data) {
-            $col = 1;
+            $columnLetter = 'A';
             foreach ($columns as $column) {
-                $sheet->setCellValueByColumnAndRow($col, $row, $data[$column] ?? '');
-                $col++;
+                $sheet->setCellValue($columnLetter . $row, $data[$column] ?? '');
+                $columnLetter++;
             }
             $row++;
         }
 
         // Auto-size columns
-        foreach (range(1, count($columns)) as $col) {
-            $sheet->getColumnDimensionByColumn($col)->setAutoSize(true);
+        foreach (range('A', 'L') as $columnID) {
+            $sheet->getColumnDimension($columnID)->setAutoSize(true);
         }
 
         $filename = storage_path('app/country-comparison-' . time() . '.xlsx');

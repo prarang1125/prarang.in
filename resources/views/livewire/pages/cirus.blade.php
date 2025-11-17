@@ -87,7 +87,6 @@
             animation: spinner-border 0.75s linear infinite;
         }
 
-        /* Smooth Transitions */
         * {
             transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
             transition-timing-function: ease-in-out;
@@ -138,6 +137,25 @@
         .btn-outline-secondary:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Sticky Column Hover Effects */
+        .table-hover tbody tr:hover .sticky-name-column {
+            background-color: rgba(4, 136, 205, 0.12) !important;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) .sticky-name-column {
+            background-color: rgba(4, 136, 205, 0.03);
+        }
+
+
+        /* Sticky Column Hover Effects */
+        .table-hover tbody tr:hover .sticky-name-column {
+            background-color: rgba(4, 136, 205, 0.12) !important;
+        }
+
+        .table-striped tbody tr:nth-of-type(odd) .sticky-name-column {
+            background-color: rgba(4, 136, 205, 0.03);
         }
 
         /* Container */
@@ -197,10 +215,59 @@
         .container tr .border-top {
             padding-top: 8px !important;
         }
+
+        /* Button */
+        .container tr .fw-semibold {
+            text-align: left;
+        }
+
+        /* Text muted */
+        .container tr .text-muted {
+            max-width: 0px;
+            min-width: 0px;
+        }
+
+        /* Table Data */
+        .container div div .container-lg .card .card-body .table-responsive .table-striped tbody tr .p-0 {
+            width: 183px !important;
+        }
+
+        /* Border top */
+        .container tr .border-top {
+            width: 1188px;
+        }
+
+        /* Text start */
+        .container tbody .text-start {
+            position: relative;
+            transform: translatex(0px) translatey(0px);
+        }
+
+        /* Text start */
+        .container tr:nth-child(2) .text-start:nth-child(1) {
+            position: sticky;
+            left: 9px;
+        }
+
+        /* Alpine.js cloak */
+        [x-cloak] {
+            display: none !important;
+        }
+
+        /* Button */
+        .container tr .btn-link {
+            display: flex;
+        }
+
+        /* Button */
+        .container tr .btn-link {
+            flex-direction: row;
+            justify-content: normal;
+            align-items: center;
+        }
     </style>
 
-    <div x-data="districtComparison()" x-init="$watch('selectedDistrictIds', value => $wire.set('selectedDistrictIds', value));
-    $watch('selectedCountryIds', value => $wire.set('selectedCountryIds', value))" @districts-synced.window="syncDistrictData($event.detail)">
+    <div x-data="districtComparison()" @districts-synced.window="syncDistrictData($event.detail)">
         {{-- Header --}}
         <div class="container-lg mb-5 pt-5 text-center pb-4 px-5"
             style="background: linear-gradient(135deg, #0488cd 0%, #0366a3 100%); border-radius: 0 0 24px 24px; box-shadow: 0 4px 20px rgba(4, 136, 205, 0.3);">
@@ -298,7 +365,8 @@
                             <table class="table table-hover table-striped table-sm mb-0 border">
                                 <thead class="table-light">
                                     <tr>
-                                        <th class="text-start fw-bold" style="cursor: help;"
+                                        <th class="text-start fw-bold sticky-name-column"
+                                            style="cursor: help; position: sticky; left: 0; z-index: 30; background-color: #f8f9fa; box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);"
                                             title="Click to view districts">State / UT</th>
                                         @php
                                             $stateColumns = [
@@ -307,6 +375,9 @@
                                                 'facebook_audience_literate',
                                                 'linkedin_audience_literate',
                                                 'twitter_audience_literate',
+                                                'internet_audience_literate',
+                                                'facebook_audience_literate',
+                                                'linkedin_audience_literate',
                                             ];
                                             $labels = config('cirus.india.field_labels', []);
                                             $tooltips = config('cirus.india.tooltips', []);
@@ -325,7 +396,8 @@
                                     @forelse ($stateTableData as $index => $state)
                                         @php $name = $state['state']; @endphp
                                         <tr style="transition: all 0.2s ease;">
-                                            <td class="text-start">
+                                            <td class="text-start sticky-name-column"
+                                                style="position: sticky; left: 0; z-index: 20; background-color: #ffffff; box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);">
                                                 <button class="btn btn-link text-decoration-none p-0 fw-semibold"
                                                     style="color: #0488cd; transition: all 0.2s ease;"
                                                     wire:click="toggleStateExpanded('{{ $name }}')">
@@ -403,28 +475,26 @@
                         {{-- Actions --}}
                         <div class="mt-4 p-3 bg-light rounded-3">
                             <div class="d-flex gap-3 flex-wrap align-items-center">
-                                <input type="hidden" wire:model="selectedDistrictIds"
-                                    x-bind:value="JSON.stringify(selectedDistrictIds)">
-                                <button wire:click="syncDistrictSelectionAndCompare" wire:self
-                                    wire:loading.attr="disabled" class="btn btn-primary btn-lg shadow-sm"
+                                <button @click="compareDistricts()" wire:loading.attr="disabled"
+                                    class="btn btn-primary btn-lg shadow-sm"
                                     :disabled="selectedDistrictIds.length === 0"
-                                    @click="$wire.selectedDistrictIds = selectedDistrictIds"
                                     style="background: linear-gradient(135deg, #0488cd 0%, #0366a3 100%); border: none; border-radius: 12px; transition: all 0.3s ease;">
                                     <i class="bi bi-bar-chart-fill me-2"></i>
-                                    <span>Compare Selected Districts (<span
-                                            x-text="selectedDistrictIds.length"></span>)</span>
-                                    {{-- <span wire:loading><span
-                                            class="spinner-border spinner-border-sm me-2"></span>Comparing...</span> --}}
+                                    <span wire:loading.remove wire:target="syncDistrictSelectionAndCompare">
+                                        Compare Selected Districts (<span x-text="selectedDistrictIds.length">0</span>)
+                                    </span>
+                                    <span wire:loading wire:target="syncDistrictSelectionAndCompare">
+                                        <span class="spinner-border spinner-border-sm me-2"></span>Comparing...
+                                    </span>
                                 </button>
-                                <button @click="resetSelection(); $wire.set('selectedDistrictIds', [])"
-                                    class="btn btn-outline-secondary btn-lg shadow-sm"
+                                <button @click="resetSelection()" class="btn btn-outline-secondary btn-lg shadow-sm"
                                     style="border-radius: 12px; transition: all 0.3s ease;">
                                     <i class="bi bi-arrow-counterclockwise me-2"></i>Reset Selection
                                 </button>
                                 <span class="ms-auto badge bg-info bg-gradient px-3 py-2"
-                                    x-show="selectedDistrictIds.length > 0" style="font-size: 0.9rem;">
+                                    x-show="selectedDistrictIds.length > 0" style="font-size: 0.9rem;" x-cloak>
                                     <i class="bi bi-check2-circle me-1"></i><span
-                                        x-text="selectedDistrictIds.length"></span> Selected
+                                        x-text="selectedDistrictIds.length">0</span> Selected
                                 </span>
                             </div>
                         </div>
@@ -447,11 +517,12 @@
                                     selected</span>
                             </div>
                             <div class="modal-body">
-                                {{-- <div wire:target="nextIndia" class="alert alert-info mb-3">
+                                <div wire:loading wire:target="syncDistrictSelectionAndCompare"
+                                    class="alert alert-info mb-3">
                                     <div class="spinner-border spinner-border-sm" role="status"></div>
                                     <span class="ms-2">Loading comparison data...</span>
-                                </div> --}}
-                                <div wire:loading.remove wire:target="nextIndia">
+                                </div>
+                                <div wire:loading.remove wire:target="syncDistrictSelectionAndCompare">
                                     @if (count($indiaComparisonRows) > 0)
                                         @include('livewire.partials.simple-table', [
                                             'rows' => $indiaComparisonRows,
@@ -484,7 +555,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-info"
-                                    onclick="printModalData('indiaComparisonModal')">
+                                    onclick="printModalTable('indiaComparisonModal')">
                                     <i class="bi bi-printer me-2"></i>Print
                                 </button>
                                 <button type="button" class="btn btn-success" wire:click="downloadDistrictExcel">
@@ -511,14 +582,13 @@
                 <div class="card border-0 shadow-lg"
                     style="border-radius: 16px; overflow: hidden; border-top: 4px solid #0488cd;">
                     <div class="card-body p-4">
-                        <div class="d-flex align-items-center justify-content-between mb-4">
+                        <div class="align-items-center justify-content-between ">
                             <h2 class="card-title fs-4 fw-bold mb-0" style="color: #1a2332;">
-                                <i class="bi bi-trophy-fill text-warning me-2" style="font-size: 1.5rem;"></i>
-                                Top 5 Countries by Cyber Risk
+
+                                High Risk Countries
                             </h2>
-                            <span class="badge bg-primary bg-gradient px-3 py-2" style="font-size: 0.85rem;">
-                                <i class="bi bi-star-fill me-1"></i>Top Ranked
-                            </span>
+                            <p class="text-muted">Top 5 countries by cyber risk.</p>
+
                         </div>
                         {{-- <div wire:target="toggleContinentExpanded,toggleCountrySelect,nextWorld,resetWorld"
                             class="alert alert-info mb-3" role="alert">
@@ -558,10 +628,10 @@
                 <div class="card border-0 shadow-lg"
                     style="border-radius: 16px; overflow: hidden; border-top: 4px solid #0488cd;">
                     <div class="card-body p-4">
-                        <div class="d-flex align-items-center justify-content-between mb-4">
+                        <div class="d-flex align-items-center justify-content-between ">
                             <h2 class="card-title fs-4 fw-bold mb-0" style="color: #1a2332;">
-                                <i class="bi bi-globe-americas text-primary me-2" style="font-size: 1.5rem;"></i>
-                                Continents & Countries
+
+                                Select & Compare Countries
                             </h2>
                         </div>
 
@@ -569,7 +639,8 @@
                             <table class="table table-hover table-striped table-sm mb-0 border">
                                 <thead class="table-light">
                                     <tr>
-                                        <th class="text-start fw-bold" style="cursor: help;"
+                                        <th class="text-start fw-bold sticky-name-column"
+                                            style="cursor: help; position: sticky; left: 0; z-index: 30; background-color: #f8f9fa; box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);"
                                             title="Click to view countries">Continent</th>
                                         @php
                                             $continentColumns = [
@@ -595,7 +666,8 @@
                                     @forelse ($continents as $index => $c)
                                         @php $name = $c['continent'] ?? $c['name']; @endphp
                                         <tr style="transition: all 0.2s ease;">
-                                            <td class="text-start">
+                                            <td class="text-start sticky-name-column"
+                                                style="position: sticky; left: 0; z-index: 20; background-color: #ffffff; box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);">
                                                 <button class="btn btn-link text-decoration-none p-0 fw-semibold"
                                                     style="color: #0488cd; transition: all 0.2s ease;"
                                                     wire:click="toggleContinentExpanded('{{ $name }}')">
@@ -673,28 +745,27 @@
 
                         <div class="mt-4 p-3 bg-light rounded-3">
                             <div class="d-flex gap-3 flex-wrap align-items-center">
-                                <input type="hidden" wire:model="selectedCountryIds"
-                                    x-bind:value="JSON.stringify(selectedCountryIds)">
-                                <button wire:click="syncCountrySelectionAndCompare" wire:self
-                                    wire:loading.attr="disabled" class="btn btn-primary btn-lg shadow-sm"
+                                <button @click="compareCountries()" wire:loading.attr="disabled"
+                                    class="btn btn-primary btn-lg shadow-sm"
                                     :disabled="selectedCountryIds.length === 0"
-                                    @click="$wire.selectedCountryIds = selectedCountryIds"
                                     style="background: linear-gradient(135deg, #0488cd 0%, #0366a3 100%); border: none; border-radius: 12px; transition: all 0.3s ease;">
                                     <i class="bi bi-bar-chart-fill me-2"></i>
-                                    <span>Compare Selected Countries (<span
-                                            x-text="selectedCountryIds.length"></span>)</span>
-                                    {{-- <span wire:loading><span
-                                            class="spinner-border spinner-border-sm me-2"></span>Comparing...</span> --}}
+                                    <span wire:loading.remove wire:target="syncCountrySelectionAndCompare">
+                                        Compare Selected Countries (<span x-text="selectedCountryIds.length">0</span>)
+                                    </span>
+                                    <span wire:loading wire:target="syncCountrySelectionAndCompare">
+                                        <span class="spinner-border spinner-border-sm me-2"></span>Comparing...
+                                    </span>
                                 </button>
-                                <button @click="resetCountrySelection(); $wire.set('selectedCountryIds', [])"
+                                <button @click="resetCountrySelection()"
                                     class="btn btn-outline-secondary btn-lg shadow-sm"
                                     style="border-radius: 12px; transition: all 0.3s ease;">
                                     <i class="bi bi-arrow-counterclockwise me-2"></i>Reset Selection
                                 </button>
                                 <span class="ms-auto badge bg-info bg-gradient px-3 py-2"
-                                    x-show="selectedCountryIds.length > 0" style="font-size: 0.9rem;">
+                                    x-show="selectedCountryIds.length > 0" style="font-size: 0.9rem;" x-cloak>
                                     <i class="bi bi-check2-circle me-1"></i><span
-                                        x-text="selectedCountryIds.length"></span> Selected
+                                        x-text="selectedCountryIds.length">0</span> Selected
                                 </span>
                             </div>
                         </div>
@@ -717,11 +788,12 @@
                                     selected</span>
                             </div>
                             <div class="modal-body">
-                                <div wire:target="nextWorld" class="alert alert-info mb-3" role="alert">
+                                <div wire:loading wire:target="syncCountrySelectionAndCompare"
+                                    class="alert alert-info mb-3" role="alert">
                                     <div class="spinner-border spinner-border-sm" role="status"></div>
                                     <span class="ms-2">Comparing countries...</span>
                                 </div>
-                                <div wire:loading.remove wire:target="nextWorld">
+                                <div wire:loading.remove wire:target="syncCountrySelectionAndCompare">
                                     @if (count($worldComparisonRows) > 0)
                                         @include('livewire.partials.simple-table', [
                                             'rows' => $worldComparisonRows,
@@ -752,7 +824,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-info"
-                                    onclick="printModalData('worldComparisonModal')">
+                                    onclick="printModalTable('worldComparisonModal')">
                                     <i class="bi bi-printer me-2"></i>Print
                                 </button>
                                 <button type="button" class="btn btn-success" wire:click="downloadCountryExcel">
@@ -771,44 +843,178 @@
     </div>
 
     <script>
-        function districtComparison() {
-            return {
+        document.addEventListener('alpine:init', () => {
+            Alpine.data('districtComparison', () => ({
                 selectedDistrictIds: [],
                 selectedCountryIds: [],
+
                 toggleSelect(id) {
+                    console.log('Toggle district:', id);
                     if (this.selectedDistrictIds.includes(id)) {
                         this.selectedDistrictIds = this.selectedDistrictIds.filter(x => x !== id);
                     } else {
                         if (this.selectedDistrictIds.length < 10) {
                             this.selectedDistrictIds.push(id);
+                        } else {
+                            alert('Maximum 10 districts can be selected');
                         }
                     }
+                    console.log('Selected districts:', this.selectedDistrictIds);
+                    // Sync to Livewire
+                    this.$wire.set('selectedDistrictIds', this.selectedDistrictIds);
                 },
+
                 toggleCountry(id) {
+                    console.log('Toggle country:', id);
                     if (this.selectedCountryIds.includes(id)) {
                         this.selectedCountryIds = this.selectedCountryIds.filter(x => x !== id);
                     } else {
                         if (this.selectedCountryIds.length < 10) {
                             this.selectedCountryIds.push(id);
+                        } else {
+                            alert('Maximum 10 countries can be selected');
                         }
                     }
+                    console.log('Selected countries:', this.selectedCountryIds);
+                    // Sync to Livewire
+                    this.$wire.set('selectedCountryIds', this.selectedCountryIds);
                 },
-                handleDistrictCompare() {
-                    console.log('District IDs to compare:', this.selectedDistrictIds);
+
+                compareDistricts() {
+                    console.log('Comparing districts:', this.selectedDistrictIds);
+                    if (this.selectedDistrictIds.length > 0) {
+                        this.$wire.syncDistrictSelectionAndCompare();
+                    }
                 },
-                handleCountryCompare() {
-                    console.log('Country IDs to compare:', this.selectedCountryIds);
+
+                compareCountries() {
+                    console.log('Comparing countries:', this.selectedCountryIds);
+                    if (this.selectedCountryIds.length > 0) {
+                        this.$wire.syncCountrySelectionAndCompare();
+                    }
                 },
+
                 resetSelection() {
+                    console.log('Resetting district selection');
                     this.selectedDistrictIds = [];
+                    this.$wire.set('selectedDistrictIds', []);
                 },
+
                 resetCountrySelection() {
+                    console.log('Resetting country selection');
                     this.selectedCountryIds = [];
-                },
-                syncDistrictData(data) {
-                    this.selectedDistrictIds = data.ids || [];
+                    this.$wire.set('selectedCountryIds', []);
                 }
+            }))
+        });
+
+        // Print function for modal tables
+        function printModalTable(modalId) {
+            const modal = document.getElementById(modalId);
+            if (!modal) {
+                console.error('Modal not found:', modalId);
+                return;
             }
+
+            // Get the modal title and table
+            const modalTitle = modal.querySelector('.modal-title')?.innerText || 'Comparison Report';
+            const modalBody = modal.querySelector('.modal-body');
+            const table = modalBody?.querySelector('table');
+
+            if (!table) {
+                console.error('Table not found in modal');
+                return;
+            }
+
+            // Create a new window for printing
+            const printWindow = window.open('', '', 'height=600,width=1000');
+
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html>
+                <head>
+                    <title>${modalTitle}</title>
+                    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+                    <style>
+                        @media print {
+                            body {
+                                margin: 20px;
+                            }
+                            .no-print {
+                                display: none !important;
+                            }
+                            table {
+                                page-break-inside: auto;
+                            }
+                            tr {
+                                page-break-inside: avoid;
+                                page-break-after: auto;
+                            }
+                            thead {
+                                display: table-header-group;
+                            }
+                            tfoot {
+                                display: table-footer-group;
+                            }
+                        }
+                        body {
+                            font-family: Arial, sans-serif;
+                            padding: 20px;
+                        }
+                        h1 {
+                            color: #0488cd;
+                            margin-bottom: 20px;
+                            font-size: 24px;
+                        }
+                        table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            margin-top: 20px;
+                        }
+                        th, td {
+                            border: 1px solid #dee2e6;
+                            padding: 8px;
+                            text-align: left;
+                            font-size: 12px;
+                        }
+                        th {
+                            background-color: #f8f9fa;
+                            font-weight: bold;
+                        }
+                        tr:nth-child(even) {
+                            background-color: #f8f9fa;
+                        }
+                        .print-header {
+                            margin-bottom: 20px;
+                            border-bottom: 2px solid #0488cd;
+                            padding-bottom: 10px;
+                        }
+                        .print-date {
+                            color: #6c757d;
+                            font-size: 12px;
+                            margin-top: 5px;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="print-header">
+                        <h1>${modalTitle}</h1>
+                        <div class="print-date">Generated on: ${new Date().toLocaleString()}</div>
+                    </div>
+                    ${table.outerHTML}
+                    <script>
+                        window.onload = function() {
+                            window.print();
+                            window.onafterprint = function() {
+                                window.close();
+                            };
+                        };
+                    <\/script>
+                </body>
+                </html>
+            `);
+
+            printWindow.document.close();
         }
     </script>
 </div>
