@@ -1,15 +1,28 @@
 <div class="table-responsive">
     <style>
+        /* Custom Scrollbar Styling */
+        .table-responsive::-webkit-scrollbar {
+            height: 20px;
+        }
+
+        .table-responsive::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 6px;
+        }
+
+        .table-responsive::-webkit-scrollbar-thumb {
+            background: #0488cd;
+            border-radius: 6px;
+        }
+
+        .table-responsive::-webkit-scrollbar-thumb:hover {
+            background: #036aa3;
+        }
+
         tbody {
             position: relative;
         }
 
-        tbody tr:nth-child(2) {
-            position: sticky;
-            left: 100px;
-            z-index: 1000;
-            background-color: #e1dfdf !important;
-        }
 
         /* Text capitalize */
         .table-striped tr .text-capitalize {
@@ -78,9 +91,6 @@
             /* vertical-align: middle; */
         }
 
-        .table-striped tbody tr:nth-of-type(odd) {
-            background-color: rgba(4, 136, 205, 0.02);
-        }
 
         .table-hover tbody tr:hover {
             background-color: rgba(4, 136, 205, 0.08) !important;
@@ -110,9 +120,6 @@
             font-weight: 600;
         }
 
-        .table-striped tbody tr:nth-of-type(odd) td:first-child {
-            background-color: rgba(4, 136, 205, 0.02);
-        }
 
         .table-hover tbody tr:hover td:first-child {
             background-color: rgba(4, 136, 205, 0.08) !important;
@@ -126,11 +133,11 @@
             z-index: 20;
             background-color: #f8f9fa;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+            2 width: 50px !important;
+            min-width: 50px !important;
+            max-width: 50px !important;
         }
 
-        .table tbody td:nth-child(2).serial-column {
-            background-color: #ffffff;
-        }
 
         .table-striped tbody tr:nth-of-type(odd) td:nth-child(2).serial-column {
             background-color: rgba(4, 136, 205, 0.02);
@@ -145,12 +152,29 @@
         .has-serial tbody td:nth-child(2) {
             left: 50px !important;
         }
+
+        /* Serial column */
+        .container div div .container-lg .card .card-body div .table-responsive .table-striped tbody tr .serial-column {
+            padding-top: 1px !important;
+        }
+
+        /* Text start */
+        .container div div .container-lg .card .card-body div .table-responsive .table-striped tbody tr .text-start {
+            height: 3px !important;
+        }
+
+        /* Text start */
+        .container div div .container-lg .card .card-body div .table-responsive .table-striped .table-light tr .text-start {
+            min-width: 145px !important;
+        }
     </style>
-    <table class="table table-hover table-striped table-sm mb-0 shadow-sm" style="border-radius: 8px; overflow: hidden;">
+    <table class="table table-hover table-sm mb-0 shadow-sm" style="border-radius: 8px; overflow: hidden;">
         <thead class="table-light">
             <tr>
                 @if ($showSerial ?? false)
-                    <th class="text-start fw-bold">Sr.</th>
+                    <th class="text-start fw-bold"
+                        style="width: 50px !important; min-width: 50px !important; max-width: 50px !important; padding: 8px 4px !important;">
+                        Sr.</th>
                 @endif
                 @php
                     $firstRow = collect($rows)->first();
@@ -192,7 +216,9 @@
             @forelse($rows as $idx => $r)
                 <tr>
                     @if ($showSerial ?? false)
-                        <td class="text-muted fw-medium serial-column ">{{ $idx + 1 }}</td>
+                        <td class="text-muted fw-medium serial-column"
+                            style="width: 50px !important; min-width: 50px !important; max-width: 50px !important; padding: 8px 4px !important;">
+                            {{ $idx + 1 }}</td>
                     @endif
                     @foreach ($columns as $c)
                         <td class="text-start"
