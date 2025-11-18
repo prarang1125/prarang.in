@@ -24,6 +24,9 @@ return [
             'twitter_audience_internet' => 'Percentage of internet subscribers using Twitter (X). (As per Twitter Ad Module, September 2025; TRAI, June 2025)',
             'cyber_crime_rate_per_1000' => 'Number of reported cyber crime cases per million internet users. (As per NCRB IPC 2022 and TRAI, June 2025)',
             'cyber_crime_rate' => 'Cyber Crime Rate (per \'000 Internet Subscribers)',
+            'instagram_audience_literate' => 'Percentage of literate individuals using LinkedIn. (As per LinkedIn Ad Module, September 2025)',
+            'instagram_audience_internet' => 'Percentage of internet subscribers using Instagram. (As per Facebook Ad Module, September 2025; TRAI, June 2025)',
+
         ],
 
         'field_labels' => [
@@ -43,6 +46,8 @@ return [
             'cyber_crime_rate_per_1000' => 'Cyber Crime Rate (per \'000 Internet Subscribers)',
             'cyber_crime_rate' => 'Cyber Crime Rate (per \'000 Internet Subscribers)',
             'cyber_risk_rank' => 'Cyber Risk Rank',
+            'instagram_audience_literate' => 'Instagram Audience (% of Literate Population)',
+            'instagram_audience_internet' => 'Instagram Audience (% of Internet Subscribers)',
         ],
     ],
 
@@ -77,6 +82,8 @@ return [
             'twitter_audience_percent_internet' => 'Percentage of internet subscribers who use Twitter (X). (As per Twitter Ad Module, September 2025; UN ICT Data, 2024)',
             'twitter_internet' => 'Percentage of internet subscribers who use Twitter (X). (As per Twitter Ad Module, September 2025; UN ICT Data, 2024)',
             'cyber_crime_rate_per_1000_internet' => 'Number of reported cyber crime cases per thousand internet users globally.',
+            'instagram_literate' => 'Percentage of literate individuals using Instagram. (As per Facebook Ad Module, October 2025)',
+            'instagram_internet' => 'Percentage of internet subscribers who use Instagram. (As per Facebook Ad Module, October 2025; UN ICT Data, 2024)',
         ],
 
         'field_labels' => [
@@ -103,6 +110,8 @@ return [
             'twitter_audience_percent_internet' => 'Twitter Audience (% of Internet Subscribers)',
             'twitter_internet' => 'Twitter Users (% of Internet Subscribers)',
             'cyber_crime_rate_per_1000_internet' => 'Cyber Crime Rate (per \'000 Internet Subscribers)',
+            'instagram_literate' => 'Instagram Users (% of Literate Population)',
+            'instagram_internet' => 'Instagram Users (% of Internet Subscribers)',
         ],
     ],
 
