@@ -265,17 +265,19 @@ class Cirus extends Component
         $columns = [
             'state_district_capital',
             'state_ut',
-            'cyber_risk_index',
-            'internet_penetration_percent',
-            'internet_audience_percent_literate',
-            'facebook_audience_percent_literate',
-            'facebook_audience_percent_internet',
-            'linkedin_audience_percent_literate',
-            'linkedin_audience_percent_internet',
-            'linkedin_audience_per_100_formal_employees',
-            'twitter_audience_percent_literate',
-            'twitter_audience_percent_internet',
-            'cyber_crime_rate_per_1000_internet'
+            'risk_index',
+            'internet_penetration',
+            'internet_audience_literate',
+            'facebook_audience_literate',
+            'facebook_audience_internet',
+            'instagram_audience_literate',
+            'instagram_audience_internet',
+            'linkedin_audience_literate',
+            'linkedin_audience_internet',
+            'linkedin_audience_formal_employment',
+            'twitter_audience_literate',
+            'twitter_audience_internet',
+            'cyber_crime_rate_per_1000',
         ];
 
         $labels = config('cirus.india.field_labels', []);
@@ -325,17 +327,18 @@ class Cirus extends Component
         // Add headers
         $columns = [
             'country',
-            'cyber_risk_index',
-            'internet_penetration_percent',
-            'internet_audience_percent_literate',
-            'facebook_audience_percent_literate',
-            'facebook_audience_percent_internet',
-            'linkedin_audience_percent_literate',
-            'linkedin_audience_percent_internet',
-            'linkedin_audience_per_100_formal_employees',
-            'twitter_audience_percent_literate',
-            'twitter_audience_percent_internet',
-            'cyber_crime_rate_per_1000_internet'
+            'continent',
+            'risk_index',
+            'internet_subscribers_pop',
+            'internet_subscribers_literate',
+            'facebook_literate',
+            'facebook_internet',
+            'instagram_literate',
+            'instagram_internet',
+            'linkedin_literate',
+            'linkedin_internet',
+            'twitter_literate',
+            'twitter_internet',
         ];
 
         $labels = config('cirus.world.field_labels', []);

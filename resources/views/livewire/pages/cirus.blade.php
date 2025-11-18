@@ -360,6 +360,8 @@
                                     'internet_audience_literate',
                                     'facebook_audience_literate',
                                     'facebook_audience_internet',
+                                    'instagram_audience_literate',
+                                    'instagram_audience_internet',
                                     'linkedin_audience_literate',
                                     'linkedin_audience_internet',
                                     'linkedin_audience_formal_employment',
@@ -402,11 +404,10 @@
                                                 'internet_penetration',
                                                 'internet_audience_literate',
                                                 'facebook_audience_literate',
+                                                'instagram_audience_literate',
                                                 'linkedin_audience_literate',
                                                 'twitter_audience_literate',
                                                 'internet_audience_literate',
-                                                'facebook_audience_literate',
-                                                'linkedin_audience_literate',
                                             ];
                                             $labels = config('cirus.india.field_labels', []);
                                             $tooltips = config('cirus.india.tooltips', []);
@@ -575,6 +576,8 @@
                                                 'internet_audience_literate',
                                                 'facebook_audience_literate',
                                                 'facebook_audience_internet',
+                                                'instagram_audience_literate',
+                                                'instagram_audience_internet',
                                                 'linkedin_audience_literate',
                                                 'linkedin_audience_internet',
                                                 'linkedin_audience_formal_employment',
@@ -652,6 +655,8 @@
                                     'internet_subscribers_literate',
                                     'facebook_literate',
                                     'facebook_internet',
+                                    'instagram_literate',
+                                    'instagram_internet',
                                     'linkedin_literate',
                                     'linkedin_internet',
                                     'twitter_literate',
@@ -688,6 +693,7 @@
                                             $continentColumns = [
                                                 'internet_subscribers_pop',
                                                 'facebook_internet',
+                                                'instagram_internet',
                                                 'linkedin_internet',
                                                 'twitter_internet',
                                             ];
@@ -841,6 +847,8 @@
                                                 'internet_subscribers_literate',
                                                 'facebook_literate',
                                                 'facebook_internet',
+                                                'instagram_literate',
+                                                'instagram_internet',
                                                 'linkedin_literate',
                                                 'linkedin_internet',
                                                 'twitter_literate',
