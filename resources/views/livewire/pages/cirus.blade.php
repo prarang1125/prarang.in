@@ -291,6 +291,38 @@
             max-height: 80vh;
             transform: translatex(0px) translatey(0px);
         } */
+        /* Division */
+        .card-body>div:nth-child(1) {
+            display: grid;
+            grid-template-columns: 49% 49%;
+        }
+
+        /* Division */
+        .container:nth-child(4) div:nth-child(1) div:nth-child(2) .container-lg:nth-child(3) .card .card-body>div:nth-child(1) {
+            grid-template-columns: 49% 49% !important;
+        }
+
+        /* Paragraph */
+        .container .card-body div:nth-child(1) p {
+            padding-left: 0px;
+            text-align: center;
+            margin-bottom: 17px !important;
+            background-color: #333860;
+            color: #ffffff !important;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            font-size: 18px;
+            font-weight: 600;
+        }
+
+        /* Light */
+        .container div div>.bg-light {
+            position: fixed;
+            right: -3px;
+            bottom: 105px;
+        }
     </style>
 
     <div x-data="districtComparison()" @districts-synced.window="syncDistrictData($event.detail)">
@@ -385,7 +417,7 @@
                             <h2 class="card-title fs-4 fw-bold mb-0" style="color: #1a2332;">
                                 Select & Compare State/District Capitals
                             </h2>
-                            <p class=" m-0 p-0">Click on a state/UT to Choose State/District Capitals</p>
+                            <p class=" m-0 p-0">Click on a State/UT to Choose State/District Capitals</p>
                             <span wire:loading wire:target="toggleStateExpanded">
                                 <span class="spinner-border spinner-border-sm text-primary" role="status"></span>
                                 <span class="ms-2 text-muted small">Loading...</span>
@@ -515,33 +547,33 @@
                             </table>
                         </div>
 
-                        {{-- Actions --}}
-                        <div class="mt-4 p-3 bg-light rounded-3">
-                            <div class="d-flex gap-3 flex-wrap align-items-center">
-                                <button @click="compareDistricts()" wire:loading.attr="disabled"
-                                    x-show="selectedDistrictIds.length > 0" class="btn btn-primary btn-lg shadow-sm"
-                                    :disabled="selectedDistrictIds.length === 0"
-                                    style="background: linear-gradient(135deg, #0488cd 0%, #0366a3 100%); border: none; border-radius: 12px; transition: all 0.3s ease;">
 
-                                    <span wire:loading.remove wire:target="syncDistrictSelectionAndCompare">
-                                        Compare Selected Districts (<span x-text="selectedDistrictIds.length">0</span>)
-                                    </span>
-                                    <span wire:loading wire:target="syncDistrictSelectionAndCompare">
-                                        <span class="spinner-border spinner-border-sm me-2"></span>Comparing...
-                                    </span>
-                                </button>
-                                <button @click="resetSelection()" class="btn btn-outline-secondary btn-lg shadow-sm"
-                                    x-show="selectedDistrictIds.length > 0"
-                                    style="border-radius: 12px; transition: all 0.3s ease;">
-                                    <i class="bi bi-arrow-counterclockwise"></i>
-                                </button>
-
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
+            {{-- Actions --}}
+            <div class="mt-4 p-3 bg-light rounded-3">
+                <div class="d-flex gap-3 flex-wrap align-items-center">
+                    <button @click="compareDistricts()" wire:loading.attr="disabled"
+                        x-show="selectedDistrictIds.length > 0" class="btn btn-primary btn-lg shadow-sm"
+                        :disabled="selectedDistrictIds.length === 0"
+                        style="background: linear-gradient(135deg, #0488cd 0%, #0366a3 100%); border: none; border-radius: 12px; transition: all 0.3s ease;">
 
+                        <span wire:loading.remove wire:target="syncDistrictSelectionAndCompare">
+                            Compare Selected Districts (<span x-text="selectedDistrictIds.length">0</span>)
+                        </span>
+                        <span wire:loading wire:target="syncDistrictSelectionAndCompare">
+                            <span class="spinner-border spinner-border-sm me-2"></span>Comparing...
+                        </span>
+                    </button>
+                    <button @click="resetSelection()" class="btn btn-outline-secondary btn-lg shadow-sm"
+                        x-show="selectedDistrictIds.length > 0"
+                        style="border-radius: 12px; transition: all 0.3s ease;">
+                        <i class="bi bi-arrow-counterclockwise"></i>
+                    </button>
+
+                </div>
+            </div>
             {{-- COMPARISON MODAL --}}
             @if ($showCompareIndia)
                 <div class="modal fade show d-block" id="indiaComparisonModal" tabindex="-1"
@@ -787,28 +819,7 @@
                             </table>
                         </div>
 
-                        <div class="mt-4 p-3 bg-light rounded-3 text-end" wire:ignore.self>
-                            <div class="d-flex gap-3 flex-wrap align-items-center">
-                                <button @click="compareCountries()" wire:loading.attr="disabled"
-                                    x-show="selectedCountryIds.length > 0"
-                                    class="btn btn-primary btn-lg shadow-sm btn-md"
-                                    :disabled="selectedCountryIds.length === 0"
-                                    style="background: linear-gradient(135deg, #0488cd 0%, #0366a3 100%); border: none; border-radius: 12px; transition: all 0.3s ease;">
-                                    <i class="bi bi-bar-chart-fill me-2"></i>
-                                    <span wire:loading.remove wire:target="syncCountrySelectionAndCompare">
-                                        Compare Selected Countries (<span x-text="selectedCountryIds.length">0</span>)
-                                    </span>
-                                    <span wire:loading wire:target="syncCountrySelectionAndCompare">
-                                        <span class="spinner-border spinner-border-sm me-2"></span>Comparing...
-                                    </span>
-                                </button>
-                                <button @click="resetCountrySelection()" x-show="selectedCountryIds.length > 0"
-                                    class="btn btn-outline-secondary btn-md btn-lg shadow-sm"
-                                    style="border-radius: 12px; transition: all 0.3s ease;">
-                                    <i class="bi bi-arrow-counterclockwise me-2"></i>Reset Selection
-                                </button>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
@@ -881,7 +892,29 @@
                     </div>
                 </div>
             @endif
+            <div class="mt-4 p-3 bg-light rounded-3 text-end" wire:ignore.self>
+                <div class="d-flex gap-3 flex-wrap align-items-center">
+                    <button @click="compareCountries()" wire:loading.attr="disabled"
+                        x-show="selectedCountryIds.length > 0" class="btn btn-primary btn-lg shadow-sm btn-md"
+                        :disabled="selectedCountryIds.length === 0"
+                        style="background: linear-gradient(135deg, #0488cd 0%, #0366a3 100%); border: none; border-radius: 12px; transition: all 0.3s ease;">
+                        <i class="bi bi-bar-chart-fill me-2"></i>
+                        <span wire:loading.remove wire:target="syncCountrySelectionAndCompare">
+                            Compare Selected Countries (<span x-text="selectedCountryIds.length">0</span>)
+                        </span>
+                        <span wire:loading wire:target="syncCountrySelectionAndCompare">
+                            <span class="spinner-border spinner-border-sm me-2"></span>Comparing...
+                        </span>
+                    </button>
+                    <button @click="resetCountrySelection()" x-show="selectedCountryIds.length > 0"
+                        class="btn btn-outline-secondary btn-md btn-lg shadow-sm"
+                        style="border-radius: 12px; transition: all 0.3s ease;">
+                        <i class="bi bi-arrow-counterclockwise me-2"></i>
+                    </button>
+                </div>
+            </div>
         @endif
+
     </div>
 
     <script>
