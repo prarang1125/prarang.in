@@ -91,7 +91,6 @@
             /* vertical-align: middle; */
         }
 
-
         .table-hover tbody tr:hover {
             background-color: rgba(4, 136, 205, 0.08) !important;
             cursor: pointer;
@@ -119,7 +118,6 @@
             background-color: #ffffff;
             font-weight: 600;
         }
-
 
         .table-hover tbody tr:hover td:first-child {
             background-color: rgba(4, 136, 205, 0.08) !important;
