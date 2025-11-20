@@ -375,7 +375,6 @@
                                 High Risk State/District Capitals
                             </h2>
                             <p class="text-muted m-0 p-0">Top 10 district capitals by cyber risk.</p>
-
                         </div>
 
                         <div wire:ignore.self
