@@ -43,9 +43,17 @@ class PostService extends BaseService
 
             $locale = PortalLocaleizetion::where('lang_code', $language)->first()['json'];
             try {
-                $viewership = $chittiQuery->where('chitti.finalStatus', 'approved')->where('chitti.totalViewerCount', '>', 0)->orderByRaw("STR_TO_DATE(chitti.dateOfApprove, '%d-%m-%Y') $orderBy")->first()->totalViewerCount;
+                $queryClone = clone $chittiQuery;
+
+                $record = $queryClone
+                    ->where('chitti.finalStatus', 'approved')
+                    ->where('chitti.totalViewerCount', '>', 0)
+                    ->orderByRaw("STR_TO_DATE(chitti.dateOfApprove, '%d-%m-%Y') $orderBy")
+                    ->first();
+
+                $viewership = $record ? $record->totalViewerCount : 0;
             } catch (\Throwable $e) {
-                $viewership = "0";
+                $viewership = 0;
             }
 
             $chittiQuery->where('finalStatus', 'approved')
