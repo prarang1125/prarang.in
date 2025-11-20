@@ -46,9 +46,9 @@ class PostService extends BaseService
                 $viewership = $chittiQuery->where('chitti.finalStatus', 'approved')->where('chitti.totalViewerCount', '>', 0)->orderByRaw("STR_TO_DATE(chitti.dateOfApprove, '%d-%m-%Y') $orderBy")->first(['*']);
                 dd($viewership);
             } catch (\Throwable $e) {
-                dd($e->getMessage());
+                $viewership = "0";
             }
-            dd($viewership ?? []);
+
             $chittiQuery->where('finalStatus', 'approved')
                 ->orderByRaw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y') $orderBy")
                 ->with(['tagMappings.tag', 'images']);
@@ -100,6 +100,7 @@ class PostService extends BaseService
                 $responseData = [
                     'group_by_month' => $group_by_month,
                     'posts' => $processedChittis->toArray(),
+                    'viewership' => $viewership,
                     'pagination' => [
                         'current_page' => $chittis->currentPage(),
                         'per_page' => $chittis->perPage(),
