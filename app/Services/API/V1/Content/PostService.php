@@ -88,6 +88,7 @@ class PostService extends BaseService
                 $responseData = [
                     'group_by_month' => $group_by_month,
                     'posts' => $groupedData,
+                    'viewership' => $viewership,
                     'pagination' => [
                         'current_page' => $chittis->currentPage(),
                         'per_page' => $chittis->perPage(),
