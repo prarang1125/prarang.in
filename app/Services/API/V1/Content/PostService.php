@@ -42,7 +42,13 @@ class PostService extends BaseService
                 });
 
             $locale = PortalLocaleizetion::where('lang_code', $language)->first()['json'];
-
+            try {
+                $viewership = $chittiQuery->where('chitti.finalStatus', 'approved')->where('chitti.totalViewerCount', '>', 0)->orderBy('chitti.chittiId', 'desc')->first(['*']);
+                dd($viewership);
+            } catch (\Throwable $e) {
+                dd($e->getMessage());
+            }
+            dd($viewership ?? []);
             $chittiQuery->where('finalStatus', 'approved')
                 ->orderByRaw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y') $orderBy")
                 ->with(['tagMappings.tag', 'images']);
