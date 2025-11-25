@@ -153,6 +153,19 @@
             padding-right: 26px !important;
             padding-left: 26px !important;
         }
+
+        /* Link */
+
+
+        /* Heading */
+        .img-click a h3 {
+            width: 339px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 26px;
+            white-space: break-spaces;
+        }
     </style>
 
     <div class="comparison-tool-container mt-2">
