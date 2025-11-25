@@ -147,6 +147,12 @@
         .comparison-tool-container section .img-click {
             margin-top: 30px;
         }
+
+        /* Button */
+        .container div .comparison-tool-container .row .col-lg-9 .flex-column .btn-primary {
+            padding-right: 26px !important;
+            padding-left: 26px !important;
+        }
     </style>
 
     <div class="comparison-tool-container mt-2">
@@ -178,7 +184,6 @@
                                 <span class="fw-bold" style="font-size: 1.1rem;">Selected</span>
                             </div>
                         </div>
-
                         {{-- Arrow Indicator --}}
                         <div class="text-center">
                             <i class="bi bi-arrow-down text-primary" style="font-size: 2rem;"></i>
