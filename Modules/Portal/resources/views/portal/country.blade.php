@@ -804,30 +804,6 @@
     </style>
 
     <style>
-        /* Column 6/12 */
-        /* #core .lsvr-grid .columns__main {
-            position: sticky;
-            top: 2px;
-        } */
-
-        /* Lsvr grid */
-        /* #core .lsvr-grid {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: normal;
-        } */
-
-
-        /* Column 6/12 */
-        /* #core .lsvr-grid .columns__main {
-            left: 413px;
-
-        } */
-        /* #core .lsvr-grid .columns__main {
-            justify-content: center;
-        } */
-        /* Text center */
         #main .shadow h3.text-center {
             font-weight: 600;
             color: #020202;
@@ -1180,29 +1156,73 @@
             }
 
         }
-@media (max-width:576px){
 
- /* Button */
- #main .btn-info{
-  margin-bottom:8px;
- }
+        @media (max-width:576px) {
 
-}@media (max-width:480px){
+            /* Button */
+            #main .btn-info {
+                margin-bottom: 8px;
+            }
 
- /* Container fluid */
- .lsvr-grid .columns__sidebar .container-fluid{
-  margin-bottom:28px;
- }
+        }
 
- /* Footer */
- #columns footer{
-  margin-top:792px !important;
- }
+        @media (max-width:480px) {
 
-}
- #core .lsvr-container .lsvr-grid .columns__main #main .main__inner .hentry .page__content div .modal .modal-dialog .modal-content .modal-body{
-  height:85vh !important;
- }
+            /* Container fluid */
+            .lsvr-grid .columns__sidebar .container-fluid {
+                margin-bottom: 28px;
+            }
+
+            /* Footer */
+            #columns footer {
+                margin-top: 792px !important;
+            }
+
+        }
+
+        #core .lsvr-container .lsvr-grid .columns__main #main .main__inner .hentry .page__content div .modal .modal-dialog .modal-content .modal-body {
+            height: 85vh !important;
+        }
+
+        /* Comparison links */
+        #main .comparison-links {
+            background-color: rgba(13, 202, 240, 0);
+            color: #000000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Link */
+        #main .comparison-links a {
+            text-align: center;
+            color: #000000 !important;
+            display: flex;
+            justify-content: center;
+            background-color: #0dcaf0;
+            margin-left: 10px;
+            margin-right: 10px;
+            padding-left: 0px;
+            padding-right: 0px;
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+
+        /* Link */
+        .comparison-links a {
+            flex-direction: column;
+            font-weight: 600;
+        }
+
+        /* Span Tag */
+        .comparison-links .cursor-pointer span {
+            font-size: 12px;
+        }
+
+        /* Link (hover) */
+        #core .lsvr-container .lsvr-grid .columns__main #main .bg-light .comparison-links .col-sm-6 a:hover {
+            color: #0619a6 !important;
+        }
     </style>
     <div id="wrapper">
         <header class="header--has-languages header--has-map" id="header">
@@ -1330,7 +1350,7 @@
                                                     <x-portal.posts-carousel
                                                         cityId="{{ $main->content_country_code ?? 'CON24' }}"
                                                         cityCode="{{ $main->content_country_code ?? 'CON24' }}"
-                                                        :locale="$locale"/>
+                                                        :locale="$locale" />
                                                     <!-- TOWNPRESS SITEMAP : begin -->
                                                     <x-portal.tag-list :cityId="$main->content_country_code" :cityCode="$main->content_country_code"
                                                         :citySlug="$main->slug" :locale="$locale" />
@@ -1341,12 +1361,18 @@
 
                                         </div>
                                         <div class=" shadow  mt-3 pb-2 bg-light">
-                                            <h3 class="text-center h2">UPMANA - Knowledge By Comparison</h3>
-                                            <div class="text-center my-4">
-                                                <a href="https://www.prarang.in/ai/upmana" target="_blank"
-                                                    class="btn btn-success">
-                                                    Try now <i class="fa fa-external-link ms-2" aria-hidden="true"></i>
-                                                </a>
+                                            <h3 class="text-center h3">Comparison Tools </h3>
+                                            <div class="comparison-links">
+                                                <div class="col-sm-6">
+                                                    <a class="cursor-pointer text-light rounded-none"
+                                                        href="/czech-republic-regional-comparison">Regional
+                                                        Comparison <span>Czech - India</span></a>
+                                                </div>
+                                                <div class="col-sm-6">
+                                                    <a class="cursor-pointer text-light rounded-none"
+                                                        href="/czech-republic-country-comparison">Country Comparison
+                                                        <span>Czech with Other Countries</span></a>
+                                                </div>
                                             </div>
 
                                         </div>
@@ -1447,7 +1473,14 @@
                         <div class="row g-2">
                             <div class="col-sm">
                                 <h4 class="text-center">About Prarang</h4>
-                                <p>Prarang provides integrated digital solutions and unique insights to understand the cities of India and the World. Through our composite methodology of traditional research from rare books, maps and images, a Big database of India and World Metrics, an in-house LLM based on Indian Linguistics, we provide in depth city - hyperlocal knowledge, comprehensive knowledge by comparison between cities of the world, through our content, analytics, and semiotics solutions, for governance & corporate communication, while being localisation ready for any language/script. </p>
+                                <p>Prarang provides integrated digital solutions and unique insights to understand the
+                                    cities of India and the World. Through our composite methodology of traditional
+                                    research from rare books, maps and images, a Big database of India and World
+                                    Metrics, an in-house LLM based on Indian Linguistics, we provide in depth city -
+                                    hyperlocal knowledge, comprehensive knowledge by comparison between cities of the
+                                    world, through our content, analytics, and semiotics solutions, for governance &
+                                    corporate communication, while being localisation ready for any language/script.
+                                </p>
                             </div>
                             <div class="text-center col-sm">
                                 <h4 class="text-center">Follow Us</h4>
@@ -1459,8 +1492,9 @@
                                         </a>
                                     </div>
                                     <div class="col-6">
-                                        <a href="javascript:void(0)" onclick="showComingSoon(event)"  target="_blank">
-                                             <img width="30" src="https://images.freeimages.com/image/grids/9fe/x-twitter-light-grey-logo-5694251.png"><span
+                                        <a href="javascript:void(0)" onclick="showComingSoon(event)" target="_blank">
+                                            <img width="30"
+                                                src="https://images.freeimages.com/image/grids/9fe/x-twitter-light-grey-logo-5694251.png"><span
                                                 class="h4">
                                                 Twitter</span>
                                         </a>
@@ -1504,7 +1538,7 @@
 
                 </div>
                 <script>
-                     function showComingSoon(event) {
+                    function showComingSoon(event) {
                         event.preventDefault();
 
                         // Create modal HTML

@@ -11,6 +11,7 @@ use App\Http\Controllers\PartnerApi;
 use App\Http\Controllers\MobileApi\ChittiList;
 use App\Http\Controllers\ShortnerUrl;
 use App\Livewire\Pages\ComparisonApi;
+use App\Livewire\Pages\CzeComparisonTool;
 use App\Livewire\Pages\UpmanaAi;
 use App\View\Components\Layout\Main\Base;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,8 @@ Route::prefix('/')->group(function () {
     Route::get('/refund-cancellation', [Home::class, 'refundCancellation'])->name('refund-cancellation');
     Route::get('/terms-conditions', [Home::class, 'termsConditions'])->name('terms-conditions');
 });
+
+
 
 Route::get('/{city}/all-posts/{name?}/{forabour?}', [postController::class, 'getChittiData'])->name('posts.city');
 Route::get('/{slug}/posts/{id}/{subTitle?}', [PostController::class, 'post_summary'])->name('post-summary');
@@ -69,3 +72,6 @@ Route::get('/00-{query?}', [ShortnerUrl::class, 'index'])->name('shortner-url');
 
 
 Route::get('/cirus/{type?}', App\Livewire\Pages\Cirus::class)->name('cirus.dashboard');
+
+
+Route::get('/czech-republic-regional-comparison', CzeComparisonTool::class);
