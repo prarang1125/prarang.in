@@ -2,14 +2,14 @@
 
 namespace App\Livewire\Pages;
 
-use Illuminate\Support\Facades\Log;
 use Livewire\Component;
+use Illuminate\Support\Facades\Log;
 use App\Services\SentenceService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 
 
-class UpmanaAi extends Component
+class CzeCountryComparison extends Component
 {
     public $output = [];
     public $entity = [];
@@ -46,7 +46,8 @@ class UpmanaAi extends Component
             app()->setlocale($this->selectedLanguage);
         }
 
-        // $this->cities[] = ['name' => 'meerut', 'real_name' => 'Meerut'];
+        // Auto-select Czech Republic (id 122)
+        $this->cities[] = json_encode(['name' => 'Czech Republic', 'real_name' => 'Czech Republic']);
         session(['chat_id' => uniqid('chat_', true)]);
         $this->verticalService = httpGet('/upamana/get-verticals/' . app()->getLocale())['data'];
         $this->sentenceService = $sentenceService;
@@ -120,16 +121,7 @@ class UpmanaAi extends Component
                 'subChecks.*.required' => 'Please choose at least one things.',
             ]
         );
-        if (!$this->isRegistered) {
 
-            if ($this->genHit >= 5) {
-                $this->dispatch('show-register-modal');
-                return;
-            } else {
-                $this->genHit++;
-                session()->put('gen-hit', $this->genHit);
-            }
-        }
 
         $this->activeSection['firstPrompt'] = false;
         $this->activeSection['promptBox'] = false;
@@ -235,10 +227,6 @@ class UpmanaAi extends Component
         return httpGet('/upamana/make-source', ['fields' => $fields])['data'];
     }
 
-    public function render()
-    {
-        return view('livewire.pages.upmana-ai')->layout('components.layout.main.base');
-    }
 
     public function flattenValuesOnly(array $array): array
     {
@@ -268,7 +256,6 @@ class UpmanaAi extends Component
             session()->flash('cityerror', 'Please select at least two geography to compare.');
         }
 
-        // $this->cities = $cities['city'];
         return $cities;
     }
 
@@ -278,5 +265,10 @@ class UpmanaAi extends Component
     public function processHtml()
     {
         // dd($this->takeme);
+    }
+
+    public function render()
+    {
+        return view('livewire.pages.cze-country-comparison')->layout('components.layout.main.cze');
     }
 }

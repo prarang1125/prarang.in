@@ -32,13 +32,20 @@ class PortalController extends Controller
     public function indianCitiesPortal($portal)
     {
         $portal = Portal::where('slug', $portal)->firstOrFail();
+        try {
+            $books = json_decode($portal->books, true);
+            $links = json_decode($portal->links, true);
+        } catch (\JsonException $e) {
+            $books = [];
+            $links = [];
+        }
         $locale = PortalLocaleizetion::where('lang_code', $portal->local_lang)->firstOrFail();
         $locale = $locale['json'] ?? [];
         // dd($locale);
 
         $cityCode = $portal->city_code;
         $yellowPages = City::where('portal_id', $portal->id)->first();
-        return view('portal::portal.home', compact('cityCode', 'portal', 'yellowPages', 'locale'));
+        return view('portal::portal.home', compact('cityCode', 'portal', 'yellowPages', 'locale', 'books', 'links'));
     }
 
     public function bilateralCountriesPortal(string $slug)

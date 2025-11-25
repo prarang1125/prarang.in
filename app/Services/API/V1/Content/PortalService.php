@@ -11,6 +11,7 @@ class PortalService extends BaseService
     {
         $portalSlug = $request->slug;
         $portal = Portal::where('slug', $portalSlug)->first();
+
         $portal['image_base'] = "https://prarang.s3.amazonaws.com/";
         return $this->apiResponse(true, 'Portal retrieved successfully', compact('portal'), 200);
     }

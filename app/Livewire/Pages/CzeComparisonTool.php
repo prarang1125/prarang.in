@@ -16,19 +16,19 @@ class CzeComparisonTool extends Component
     // Constants
     public const MAX_INDIA_CITIES = 3;
     public const CZECH_REGIONS = [
-        1 => 'Prague',
-        2 => 'Ceske Budejovice',
+        1 => 'Prague and Central Bohemia',
+        2 => 'South Bohemia',
         3 => 'Pilsen',
         4 => 'Karlovy Vary',
         5 => 'Usti nad Labem',
         6 => 'Liberec',
         7 => 'Hradec Kralove',
         8 => 'Pardubice',
-        9 => 'Jihlava',
-        10 => 'Brno',
+        9 => 'Vysocina',
+        10 => 'South Moravia',
         11 => 'Olomouc',
         12 => 'Zlin',
-        13 => 'Ostrava',
+        13 => 'Moravia-Silesia',
     ];
 
     /**
@@ -150,6 +150,6 @@ class CzeComparisonTool extends Component
             'czechRegions' => self::CZECH_REGIONS,
             'indianStates' => $this->getIndianCitiesWithState(),
             'maxIndiaCities' => self::MAX_INDIA_CITIES,
-        ])->layout('components.layout.main.base');
+        ])->layout('components.layout.main.cze');
     }
 }

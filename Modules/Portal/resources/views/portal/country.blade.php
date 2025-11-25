@@ -1364,12 +1364,12 @@
                                             <h3 class="text-center h3">Comparison Tools </h3>
                                             <div class="comparison-links">
                                                 <div class="col-sm-6">
-                                                    <a class="cursor-pointer text-light rounded-none"
+                                                    <a class="cursor-pointer text-light rounded-none" target="_blank"
                                                         href="/czech-republic-regional-comparison">Regional
                                                         Comparison <span>Czech - India</span></a>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <a class="cursor-pointer text-light rounded-none"
+                                                    <a class="cursor-pointer text-light rounded-none" target="_blank"
                                                         href="/czech-republic-country-comparison">Country Comparison
                                                         <span>Czech with Other Countries</span></a>
                                                 </div>
