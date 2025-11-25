@@ -85,15 +85,81 @@
         #locationModal {
             transform: translatex(0px) translatey(0px);
         }
+
+        /* Button */
+        .flex-column .d-flex .btn-primary {
+            font-size: 16px;
+        }
+
+        /* Button */
+        .col-lg-9 .flex-column .btn-primary {
+            border-top-left-radius: 6px !important;
+            border-top-right-radius: 6px !important;
+            border-bottom-left-radius: 6px !important;
+            border-bottom-right-radius: 6px !important;
+            position: relative;
+            left: 0px;
+        }
+
+        /* Svg */
+        .flex-column .bi {
+            position: relative;
+            left: -70px;
+        }
+
+        /* Button */
+        .container div .btn-primary:nth-child(3) {
+            left: -76px;
+            padding-right: 17px !important;
+            padding-left: 43px !important;
+        }
+
+        /* Bold */
+        .flex-column .d-flex .fw-bold {
+            font-weight: 400 !important;
+            font-size: 16px !important;
+        }
+
+        /* Button */
+        .container div .btn-primary:nth-child(3) {
+            left: -69px !important;
+        }
+
+        /* Button */
+        .container div .comparison-tool-container .row .col-lg-9 .flex-column .btn-primary:nth-child(3) {
+            right: auto !important;
+        }
+
+        /* Paragraph */
+        .comparison-tool-container section p {
+            color: #000000;
+        }
+
+        /* Span Tag */
+
+
+        /* Paragraph */
+        .comparison-tool-container section p {
+            margin-bottom: 5px;
+        }
+
+        /* Img click */
+        .comparison-tool-container section .img-click {
+            margin-top: 30px;
+        }
     </style>
-    <div class="text-center mb-4">
-        <h2 class="fw-bold text-dark mb-2">Regional Comparison</h2>
-        <p class="text-dark opacity-90 mb-0">Compare Czech Republic Regions with Indian Districts</p>
-    </div>
+
     <div class="comparison-tool-container mt-2">
         <div class="row">
-            <div class="@if ($isConfirmed) col-12 @else col-lg-8 col-md-7 @endif">
-
+            @if ($isConfirmed)
+                <a href="/czech-republic-regional-comparison " class="btn btn-dark btn-sm" style="width: 100px"><i
+                        class="bx bi-arrow-left "></i>Back</a>
+            @endif
+            <div class="@if ($isConfirmed) col-12 @else col-lg-9 col-md-7 @endif">
+                <div class="text-center mb-4">
+                    <h3 class="fw-bold text-dark mb-2">Regional Comparison</h3>
+                    <p class="text-dark opacity-90 mb-0">Compare Czech Republic Regions with Indian Districts</p>
+                </div>
                 @if (!$isConfirmed)
                     {{-- Selection Mode --}}
                     <section class="d-flex flex-column align-items-center gap-4">
@@ -115,11 +181,7 @@
 
                         {{-- Arrow Indicator --}}
                         <div class="text-center">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="currentColor"
-                                class="bi bi-arrow-down-circle-fill text-primary" viewBox="0 0 16 16">
-                                <path
-                                    d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0M8.5 4.5a.5.5 0 0 0-1 0v5.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293z" />
-                            </svg>
+                            <i class="bi bi-arrow-down text-primary" style="font-size: 2rem;"></i>
                         </div>
 
                         {{-- Compare Button with Loading State --}}
@@ -147,7 +209,8 @@
                     <section>
                         @if ($output)
                             @foreach ($output['cze'] as $czesen)
-                                <p> {!! $czesen !!}</p>
+                                {{-- <p><span style="color: #0000ff" class="fw-bold"> {!! $this->czeRegionName !!}, </span><br> --}}
+                                {!! $czesen !!}</p>
                             @endforeach
                             @foreach ($output['india'] as $indiasen)
                                 <p> {!! $indiasen !!}</p>
@@ -324,24 +387,29 @@
             </div>
 
             {{-- Sidebar --}}
-            <div class="col-lg-4 col-md-5" @if ($isConfirmed) style="display: none;" @endif>
+            <div class="col-lg-3 col-md-5" @if ($isConfirmed) style="display: none;" @endif>
+                <br><br>
                 <div class="card shadow-sm border-0">
 
                     <div class="list-group list-group-flush">
                         <button type="button" class="list-group-item list-group-item-action" data-bs-toggle="modal"
-                            data-bs-target="#locationModal">
-                            <span class="fw-semibold">Regional Comparison</span>
+                            data-bs-target="#faqModal">
+                            <span class="">Regional Comparison</span>
                         </button>
-                        <a href="#" class="list-group-item list-group-item-action" target="_blank">
+                        <a href="https://g2c.prarang.in/ai/czech-republic" target="_blank"
+                            class="list-group-item list-group-item-action" target="_blank">
                             Czech Republic AI Report
                         </a>
-                        <a href="#" class="list-group-item list-group-item-action" target="_blank">
+                        <a href="https://g2c.prarang.in/ai/India" class="list-group-item list-group-item-action"
+                            target="_blank">
                             India AI Report
                         </a>
-                        <a href="#" class="list-group-item list-group-item-action" target="_blank">
+                        <a href="https://g2c.prarang.in/india/development-planners"
+                            class="list-group-item list-group-item-action" target="_blank">
                             India Development Planner
                         </a>
-                        <a href="#" class="list-group-item list-group-item-action" target="_blank">
+                        <a href="https://g2c.prarang.in/india/market-planner/states"
+                            class="list-group-item list-group-item-action" target="_blank">
                             India Market Planner
                         </a>
                         <button type="button" class="list-group-item list-group-item-action text-muted"
@@ -355,12 +423,6 @@
                     </div>
                 </div>
 
-                <div class="mt-3">
-                    <button type="button" class="btn btn-outline-primary w-100 btn-lg" data-bs-toggle="modal"
-                        data-bs-target="#faqModal">
-                        FAQ
-                    </button>
-                </div>
             </div>
         </div>
 
@@ -416,9 +478,12 @@
                             <div id="faqCollapseOne" class="accordion-collapse collapse show"
                                 aria-labelledby="faqHeadingOne" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    This tool allows users to compare any region (Kraj) of the Czech Republic with up to
-                                    three districts from India. It provides informative statements about the selected
-                                    regions and links directly to their detailed data pages in our database, where each
+                                    This tool allows users to compare any region (Kraj) of the Czech Republic with
+                                    up to
+                                    three districts from India. It provides informative statements about the
+                                    selected
+                                    regions and links directly to their detailed data pages in our database, where
+                                    each
                                     region is presented in ranked form for easier interpretation.
                                 </div>
                             </div>
@@ -435,10 +500,13 @@
                             <div id="faqCollapseTwo" class="accordion-collapse collapse"
                                 aria-labelledby="faqHeadingTwo" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    <strong>Czech Republic:</strong> You can select one of the 13 traditional regions
-                                    (Kraj). Prague and Central Bohemia are treated as a single combined region in this
+                                    <strong>Czech Republic:</strong> You can select one of the 13 traditional
+                                    regions
+                                    (Kraj). Prague and Central Bohemia are treated as a single combined region in
+                                    this
                                     tool.<br><br>
-                                    <strong>India:</strong> You may select 1–3 districts from a total of 768 districts
+                                    <strong>India:</strong> You may select 1–3 districts from a total of 768
+                                    districts
                                     included in our analytics database.
                                 </div>
                             </div>
@@ -455,14 +523,16 @@
                             <div id="faqCollapseThree" class="accordion-collapse collapse"
                                 aria-labelledby="faqHeadingThree" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    In the Czech Republic, The Czech Census - conducted at regular intervals since 1869
-                                    - is organized at the regional (Kraj) level. The data has historically recognized 13
-                                    regions, with Prague counted as a separate region.<br><br>
+                                    In the Czech Republic, population censuses have been conducted at regular intervals
+                                    since 1869. In recent decades, data is typically reported at the level of the 14
+                                    current regions (kraje) - 13 regions plus the capital city of Prague as a separate
+                                    region. <br><br>
                                     In India, the Census has been conducted since the 1880s, and the 2011 Census
-                                    officially recorded 640 districts. The next Census is expected in 2026, and in the
+                                    officially recorded 640 districts. The next Census is expected in 2027, and in the
                                     years between, the number of districts has increased to 800+. In our analytics
-                                    database, these have been standardized to 768 districts to maintain consistency and
-                                    enable meaningful comparison across regions.
+                                    database, these have been standardized to 768 districts as of now, to maintain
+                                    consistency and enable meaningful comparison across regions.
+
                                 </div>
                             </div>
                         </div>

@@ -364,7 +364,7 @@
 
                                     <!-- MAIN : begin -->
                                     <main id="main">
-                                        @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-1', 'slug' => $portal->slug, 'portal' => $portal,'locale' => $locale])
+                                        @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-1', 'slug' => $portal->slug, 'portal' => $portal, 'locale' => $locale])
                                         <div class="main__inner">
                                             <div class="post-207 page type-page status-publish hentry">
                                                 <!-- MAIN HEADER : begin -->
@@ -376,14 +376,16 @@
                                                 <!-- MAIN HEADER : end -->
                                                 <!-- PAGE CONTENT : begin -->
                                                 <div class="page__content">
-                                                    <x-portal.posts-carousel :cityId="$cityCode" :cityCode="$cityCode" :locale="$locale" />
+                                                    <x-portal.posts-carousel :cityId="$cityCode" :cityCode="$cityCode"
+                                                        :locale="$locale" />
                                                     <!-- TOWNPRESS SITEMAP : begin -->
                                                     <x-portal.tag-list :cityId="$cityCode" :cityCode="$cityCode"
                                                         :citySlug="$portal->slug" :locale="$locale" />
 
                                                     <div class="p-2 mt-3 " style="border:2px solid #FFB1A3">
-                                                    <h3 class="text-center">{{ $portal->city_name_local }} {{ $locale['ui']['statistics'] ?? 'Statistics' }}
-                                                    </h3>
+                                                        <h3 class="text-center">{{ $portal->city_name_local }}
+                                                            {{ $locale['ui']['statistics'] ?? 'Statistics' }}
+                                                        </h3>
                                                         <a target="_blank"
                                                             href="{{ env('HINDI_URL') }}/{{ $portal->city_name }}"><img
                                                                 src="{{ asset('assets/portal/images/matrix-24.jpg') }}"
@@ -423,7 +425,7 @@
                                                                         role="menuitem">
                                                                         <span
                                                                             class="lsvr-townpress-menu-widget__item-link-label">
-                                                                            {{ $locale['ui']['home']}}
+                                                                            {{ $locale['ui']['home'] }}
                                                                         </span>
                                                                     </a>
 
@@ -438,20 +440,21 @@
                                                                         role="menuitem">
                                                                         <span
                                                                             class="lsvr-townpress-menu-widget__item-link-label">
-                                                                            {{$locale['ui']['see_all_posts'] ?? 'See All Posts'}}
+                                                                            {{ $locale['ui']['see_all_posts'] ?? 'See All Posts' }}
                                                                         </span>
                                                                     </a>
                                                                 </li>
                                                                 <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-0 menu-item menu-item-type-post_type menu-item-object-page"
                                                                     id="lsvr-townpress-menu-widget__item-222-830"
                                                                     role="presentation">
-                                                                    <a target="_blank" class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
+                                                                    <a target="_blank"
+                                                                        class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
                                                                         href="https://hindi.prarang.in/{{ $portal->city_name }}"
                                                                         id="lsvr-townpress-menu-widget__item-link-222-830"
                                                                         role="menuitem">
                                                                         <span
                                                                             class="lsvr-townpress-menu-widget__item-link-label">
-                                                                             {{$locale['ui']['district_metrics'] ?? 'District Metrics'}}
+                                                                            {{ $locale['ui']['district_metrics'] ?? 'District Metrics' }}
                                                                         </span>
                                                                     </a>
                                                                 </li>
@@ -464,7 +467,7 @@
                                                                         role="menuitem">
                                                                         <span
                                                                             class="lsvr-townpress-menu-widget__item-link-label">
-                                                                            {{$locale['ui']['about_us'] ?? 'ABOUT US'}}
+                                                                            {{ $locale['ui']['about_us'] ?? 'ABOUT US' }}
                                                                         </span>
                                                                     </a>
                                                                 </li>
@@ -549,48 +552,48 @@
                     <h4 class="text-center">{{ $locale['ui']['about_prarang'] ?? 'About Prarang' }}</h4>
                     <p>{{ $locale['ui']['about_description'] ?? 'Prarang' }}</p>
                 </div>
-                  <div class="text-center col-sm">
-                                <h4 class="text-center">Follow Us</h4>
-                                <div class="row">
-                                    <div class="col-6">
+                <div class="text-center col-sm">
+                    <h4 class="text-center">Follow Us</h4>
+                    <div class="row">
+                        <div class="col-6">
 
-                                        <a href="https://www.facebook.com/prarang.in" target="_blank">
-                                            <i class="p-2 shadow fa fa-facebook rounded-circle fa-2x"></i> <span
-                                                class="h4">Facebook</span>
-                                        </a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a href="javascript:void(0)" onclick="showComingSoon(event)"  target="_blank">
-                                            <img width="30" src="https://images.freeimages.com/image/grids/9fe/x-twitter-light-grey-logo-5694251.png">
-                                            <span
-                                                class="h4">
-                                                Twitter</span>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <a href=" https://www.instagram.com/prarang_in/?hl=en" target="_blank">
-                                            <i class="p-2 shadow fa fa-instagram rounded-circle fa-2x"></i> <span
-                                                class="h4">Instagram</span>
-                                        </a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a href="https://www.linkedin.com/company/indeur-prarang/" target="_blank">
-                                            <i class="p-2 shadow fa fa-linkedin rounded-circle fa-2x"></i> <span
-                                                class="h4">
-                                                LinkedIn</span>
-
-                                        </a>
-                                    </div>
-                                </div>
-                            </div>
+                            <a href="https://www.facebook.com/prarang.in" target="_blank">
+                                <i class="p-2 shadow fa fa-facebook rounded-circle fa-2x"></i> <span
+                                    class="h4">Facebook</span>
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="javascript:void(0)" onclick="showComingSoon(event)" target="_blank">
+                                <img width="30"
+                                    src="https://images.freeimages.com/image/grids/9fe/x-twitter-light-grey-logo-5694251.png">
+                                <span class="h4">
+                                    Twitter</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6">
+                            <a href=" https://www.instagram.com/prarang_in/?hl=en" target="_blank">
+                                <i class="p-2 shadow fa fa-instagram rounded-circle fa-2x"></i> <span
+                                    class="h4">Instagram</span>
+                            </a>
+                        </div>
+                        <div class="col-6">
+                            <a href="https://www.linkedin.com/company/indeur-prarang/" target="_blank">
+                                <i class="p-2 shadow fa fa-linkedin rounded-circle fa-2x"></i> <span class="h4">
+                                    LinkedIn</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-sm ps-3">
-                    <h4 class="text-center"><i class="tp tp-eye"></i> {{ $locale['ui']['address'] ?? 'Address' }}</h4>
+                    <h4 class="text-center"><i class="tp tp-eye"></i> {{ $locale['ui']['address'] ?? 'Address' }}
+                    </h4>
                     <p>{{ $locale['ui']['office'] ?? 'Office' }}</p>
                     <p>{{ $locale['ui']['sector'] ?? 'Sector' }}</p>
                     <p>{{ $locale['ui']['phone'] ?? 'Phone' }}</p>
-                    <p>{{ $locale['ui']['email'] ?? 'Email' }} <a href="mailto:query@prarangin">Query@prarang.in</a> </p>
+                    <p>{{ $locale['ui']['email'] ?? 'Email' }} <a href="mailto:query@prarangin">Query@prarang.in</a>
+                    </p>
                 </div>
             </div>
             <div class="p-4">
@@ -599,12 +602,12 @@
         </footer>
 
     </div>
- <script>
-                     function showComingSoon(event) {
-                        event.preventDefault();
+    <script>
+        function showComingSoon(event) {
+            event.preventDefault();
 
-                        // Create modal HTML
-                        const modalHTML = `
+            // Create modal HTML
+            const modalHTML = `
                             <div class="modal fade show" id="comingSoonModal" tabindex="-1" style="display: block; background: rgba(0,0,0,0.5);">
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content" style="border-radius: 15px; overflow: hidden;">
@@ -624,30 +627,30 @@
                             </div>
                         `;
 
-                        // Append modal to body
-                        document.body.insertAdjacentHTML('beforeend', modalHTML);
-                        document.body.style.overflow = 'hidden';
-                    }
+            // Append modal to body
+            document.body.insertAdjacentHTML('beforeend', modalHTML);
+            document.body.style.overflow = 'hidden';
+        }
 
-                    function closeComingSoon() {
-                        const modal = document.getElementById('comingSoonModal');
-                        if (modal) {
-                            modal.classList.remove('show');
-                            setTimeout(() => {
-                                modal.remove();
-                                document.body.style.overflow = 'auto';
-                            }, 150);
-                        }
-                    }
+        function closeComingSoon() {
+            const modal = document.getElementById('comingSoonModal');
+            if (modal) {
+                modal.classList.remove('show');
+                setTimeout(() => {
+                    modal.remove();
+                    document.body.style.overflow = 'auto';
+                }, 150);
+            }
+        }
 
-                    // Close modal on backdrop click
-                    document.addEventListener('click', function(event) {
-                        const modal = document.getElementById('comingSoonModal');
-                        if (modal && event.target === modal) {
-                            closeComingSoon();
-                        }
-                    });
-                </script>
+        // Close modal on backdrop click
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('comingSoonModal');
+            if (modal && event.target === modal) {
+                closeComingSoon();
+            }
+        });
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             const hash = window.location.hash;
