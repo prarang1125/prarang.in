@@ -35,9 +35,12 @@ class CzeCountryComparison extends Component
     public $genHit, $isRegistered;
     public $localLocation, $lables;
     public $selectedLanguage = '';
-    public function mount(Request $request, SentenceService $sentenceService, $lang = null)
-    {
 
+    public $type;
+
+    public function mount(Request $request, $type, SentenceService $sentenceService, $lang = null)
+    {
+        $this->type = $type;
         if ($lang) {
             session()->put('locale', $lang);
             APP::setLocale($lang);

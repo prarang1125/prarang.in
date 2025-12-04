@@ -155,8 +155,6 @@
         }
 
         /* Link */
-
-
         /* Heading */
         .img-click a h3 {
             width: 339px;
