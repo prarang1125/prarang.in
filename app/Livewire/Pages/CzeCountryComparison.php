@@ -38,6 +38,33 @@ class CzeCountryComparison extends Component
 
     public $type;
 
+    // Regional comparison properties
+    public $selectedCzeRegion = null;
+    public $selectedIndiaCities = [];
+    public $isConfirmed = false;
+    public $errorMessage = '';
+    public $czeFields = [];
+    public $insCities = [];
+
+
+    // Constants for regional comparison
+    public const MAX_INDIA_CITIES = 3;
+    public const CZECH_REGIONS = [
+        1 => 'Prague and Central Bohemia',
+        2 => 'South Bohemia',
+        3 => 'Pilsen',
+        4 => 'Karlovy Vary',
+        5 => 'Usti nad Labem',
+        6 => 'Liberec',
+        7 => 'Hradec Kralove',
+        8 => 'Pardubice',
+        9 => 'Vysocina',
+        10 => 'South Moravia',
+        11 => 'Olomouc',
+        12 => 'Zlin',
+        13 => 'Moravia-Silesia',
+    ];
+
     public function mount(Request $request, $type, SentenceService $sentenceService, $lang = null)
     {
         $this->type = $type;
@@ -49,10 +76,14 @@ class CzeCountryComparison extends Component
             app()->setlocale($this->selectedLanguage);
         }
 
-        // Auto-select Czech Republic (id 122)
-        $this->cities[] = json_encode(['name' => 'Czech Republic', 'real_name' => 'Czech Republic']);
+        // Auto-select Czech Republic only for country comparison
+        if ($this->type === 'country') {
+            $this->cities[] = json_encode(['name' => 'Czech Republic', 'real_name' => 'Czech Republic']);
+        }
+
         session(['chat_id' => uniqid('chat_', true)]);
         $this->verticalService = httpGet('/upamana/get-verticals/' . app()->getLocale())['data'];
+        $this->czeFields = httpGet('/upamana/get-cze-india-verticals/')['data'];
         $this->sentenceService = $sentenceService;
         $this->mainChecks = $this->verticalService;
         $this->messages['success'][] = 'Session started!';
@@ -113,6 +144,12 @@ class CzeCountryComparison extends Component
     public function generate()
     {
 
+        // For regional mode, use confirmSelection instead
+        if ($this->type === 'regional') {
+            $this->confirmSelection();
+        }
+
+        // Country mode validation and generation
         $this->validate(
             [
                 'subChecks' => 'required|array|min:1',
@@ -145,7 +182,6 @@ class CzeCountryComparison extends Component
             ->unique()
             ->values()
             ->all();
-
         $topic = array_diff($this->activeMainChecks, $topic);
         $newOutput = httpGet('/upamana/transformer', [
             'ids' => $this->geography()['city'],
@@ -154,7 +190,7 @@ class CzeCountryComparison extends Component
             'topic' => $topic,
             'locale' => app()->getLocale()
         ])['data'];
-        // dd($newOutput);
+
         if ($newOutput == 400) {
             $this->messages['warning'][] = 'Please choose/Compare a different location or field.';
             return;
@@ -254,11 +290,19 @@ class CzeCountryComparison extends Component
             $cities['city'][] = json_decode($city)->name;
             $cities['local_name'][] = json_decode($city)->real_name;
         }
+        if ($this->selectedCzeRegion) {
+            $cities['city'][] = $this->selectedCzeRegion;
+            $cities['local_name'][] = $this->selectedCzeRegion;
+        }
+        foreach ($this->selectedIndiaCities as $city) {
+            $cities['city'][] = $city['city'];
+            $cities['local_name'][] = $city['city'];
+        }
 
         if (count($cities['city']) < 2) {
             session()->flash('cityerror', 'Please select at least two geography to compare.');
         }
-
+        $this->insCities = $cities['city'];
         return $cities;
     }
 
@@ -270,8 +314,124 @@ class CzeCountryComparison extends Component
         // dd($this->takeme);
     }
 
+    /**
+     * Get Indian cities grouped by state from API (for regional mode)
+     */
+    public function getIndianCitiesWithState()
+    {
+        $response = httpGet('/cities', ['groupby' => 1, 'group' => 'MSTR1']);
+        $cities = $response['data'] ?? [];
+
+        // Convert to array if it's a collection
+        if (is_object($cities) && method_exists($cities, 'toArray')) {
+            $cities = $cities->toArray();
+        }
+
+        return $cities;
+    }
+
+    /**
+     * Toggle Czech Republic region selection (only 1 allowed)
+     */
+    public function toggleCzeRegion($regionId)
+    {
+        // Toggle: if same region clicked, deselect; otherwise select new one
+        $this->selectedCzeRegion = ($this->selectedCzeRegion == $regionId) ? null : $regionId;
+    }
+
+    /**
+     * Toggle Indian city selection (max 3 allowed)
+     */
+    public function toggleIndiaCity($cityId, $cityName)
+    {
+        $index = array_search($cityId, array_column($this->selectedIndiaCities, 'id'));
+
+        if ($index !== false) {
+            // City already selected - remove it
+            unset($this->selectedIndiaCities[$index]);
+            $this->selectedIndiaCities = array_values($this->selectedIndiaCities);
+        } else {
+            // City not selected - add if under limit
+            if (count($this->selectedIndiaCities) < self::MAX_INDIA_CITIES) {
+                $this->selectedIndiaCities[] = [
+                    'id' => $cityId,
+                    'city' => $cityName
+                ];
+                $this->errorMessage = ''; // Clear any previous error
+            } else {
+                $this->errorMessage = 'Maximum ' . self::MAX_INDIA_CITIES . ' cities can be selected';
+            }
+        }
+    }
+
+    /**
+     * Confirm selection and show comparison results (for regional mode)
+     */
+    public function confirmSelection()
+    {
+        if (!$this->selectedCzeRegion) {
+            $this->errorMessage = 'Please select a Czech region';
+            return;
+        }
+
+        if (empty($this->selectedIndiaCities)) {
+            $this->errorMessage = 'Please select at least one Indian city';
+            return;
+        }
+
+        // Validate metrics selection
+        $this->validate(
+            [
+                'subChecks' => 'required|array|min:1',
+                'subChecks.*' => 'required|array',
+            ],
+            [
+                'subChecks.required' => 'Please choose at least one metric.',
+                'subChecks.min' => 'Please choose at least one metric.',
+                'subChecks.*.required' => 'Please choose at least one metric.',
+            ]
+        );
+
+        $this->errorMessage = '';
+        $this->isConfirmed = true;
+    }
+
+    /**
+     * Reset all selections (for regional mode)
+     */
+    public function resetSelection()
+    {
+        $this->selectedCzeRegion = null;
+        $this->selectedIndiaCities = [];
+        $this->isConfirmed = false;
+        $this->output = [];
+        $this->errorMessage = '';
+    }
+
+    /**
+     * Get total selected count (for regional mode)
+     */
+    public function getSelectedCountProperty()
+    {
+        return ($this->selectedCzeRegion ? 1 : 0) + count($this->selectedIndiaCities);
+    }
+
+    /**
+     * Get Czech region name by ID (for regional mode)
+     */
+    public function getCzeRegionNameProperty()
+    {
+        return self::CZECH_REGIONS[$this->selectedCzeRegion] ?? 'None';
+    }
+
     public function render()
     {
-        return view('livewire.pages.cze-country-comparison')->layout('components.layout.main.cze');
+        $data = [
+            'czechRegions' => self::CZECH_REGIONS,
+            'indianStates' => $this->type === 'regional' ? $this->getIndianCitiesWithState() : [],
+            'maxIndiaCities' => self::MAX_INDIA_CITIES,
+        ];
+
+        return view('livewire.pages.cze-country-comparison', $data)->layout('components.layout.main.cze');
     }
 }
