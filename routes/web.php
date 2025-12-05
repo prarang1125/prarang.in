@@ -74,5 +74,5 @@ Route::get('/00-{query?}', [ShortnerUrl::class, 'index'])->name('shortner-url');
 
 Route::get('/cirus/{type?}', App\Livewire\Pages\Cirus::class)->name('cirus.dashboard');
 
-Route::get('/czech-republic-regional-comparison', CzeComparisonTool::class);
-Route::get('/czech-republic-country-comparison', CzeCountryComparison::class);
+// Route::get('/czech-republic-regional-comparison', CzeComparisonTool::class);
+Route::get('/czech-republic-{type}-comparison', CzeCountryComparison::class);
