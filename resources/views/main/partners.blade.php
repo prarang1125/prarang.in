@@ -460,7 +460,7 @@
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
-                            'auth-token': 'eb146cdf0c53ca9d738b4f473ad1712f'
+                            'auth-token': 'eb146cdf0c53ca9d738b4f473ad1712fd'
                         },
                         body: JSON.stringify(requestData),
                     })
