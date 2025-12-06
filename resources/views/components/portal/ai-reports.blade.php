@@ -98,8 +98,8 @@
     }
 
 
-    /* #NorthZoneModal .modal-dialog, #SouthZoneModal .modal-dialog, #WestZoneModal .modal-dialog, 
-#EastZoneModal .modal-dialog, #CentralZoneModal .modal-dialog, #NortheastZoneModal .modal-dialog, 
+    /* #NorthZoneModal .modal-dialog, #SouthZoneModal .modal-dialog, #WestZoneModal .modal-dialog,
+#EastZoneModal .modal-dialog, #CentralZoneModal .modal-dialog, #NortheastZoneModal .modal-dialog,
 #UTZoneModal .modal-dialog {
     z-index: 1061 !important;
 } */
@@ -200,8 +200,8 @@
         font-weight: 700;
     }
 </style>
-<div class="modal fade" id="czechRegionsModal" tabindex="-1" aria-labelledby="czechRegionsModalLabel" aria-hidden="true"
-    data-backdrop="static" data-bs-keyboard="false">
+<div class="modal fade" id="czechRegionsModal" tabindex="-1" aria-labelledby="czechRegionsModalLabel"
+    aria-hidden="true" data-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-lg">
         <div class="modal-content position-relative">
             <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"
@@ -244,7 +244,7 @@
                         </div>
                         <div class="region-box"><a target="_blank"
                                 href="https://g2c.prarang.in/czech-republic/liberec">Liberec</a></div>
-                        <div class="region-box"><a target="_blank" href="https://g2c.prarang.in/czech-republic">Czech
+                        <div class="region-box"><a target="_blank" href="https://g2c.prarang.in/Czech Republic">Czech
                                 Republic</a></div>
                     </div>
                 </div>
@@ -257,7 +257,9 @@
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         // Move modals to body
-        var modalIds = ['czechRegionsModal', 'indiaRegionsModal', 'NorthZoneModal', 'SouthZoneModal', 'WestZoneModal', 'EastZoneModal', 'CentralZoneModal', 'NortheastZoneModal', 'UTZoneModal'];
+        var modalIds = ['czechRegionsModal', 'indiaRegionsModal', 'NorthZoneModal', 'SouthZoneModal',
+            'WestZoneModal', 'EastZoneModal', 'CentralZoneModal', 'NortheastZoneModal', 'UTZoneModal'
+        ];
         modalIds.forEach(function(id) {
             var modal = document.getElementById(id);
             if (modal) {
@@ -267,8 +269,8 @@
 
         function openZoneModal(zoneId) {
             const indiaModalEl = document.getElementById('indiaRegionsModal');
-            const indiaModal = bootstrap.Modal.getInstance(indiaModalEl) 
-                || new bootstrap.Modal(indiaModalEl);
+            const indiaModal = bootstrap.Modal.getInstance(indiaModalEl) ||
+                new bootstrap.Modal(indiaModalEl);
 
             const zoneModalEl = document.getElementById(zoneId);
             const zoneModal = new bootstrap.Modal(zoneModalEl);
@@ -277,11 +279,13 @@
             indiaModal.hide();
 
             setTimeout(() => zoneModal.show(), 300);
-            
+
             // Re-open India modal after zone closes
             zoneModalEl.addEventListener('hidden.bs.modal', () => {
                 indiaModal.show();
-            }, { once: true });
+            }, {
+                once: true
+            });
         }
 
         // Attach click handler to all zone buttons
@@ -297,8 +301,8 @@
 
 
 <!-- India Regions Modal -->
-<div class="modal fade" id="indiaRegionsModal" tabindex="-1" aria-labelledby="indiaRegionsModalLabel" aria-hidden="true"
-    data-backdrop="static" data-bs-keyboard="false">
+<div class="modal fade" id="indiaRegionsModal" tabindex="-1" aria-labelledby="indiaRegionsModalLabel"
+    aria-hidden="true" data-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-lg">
         <div class="modal-content position-relative">
             <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"
@@ -313,8 +317,10 @@
                         <div class="region-box"><a href="#" data-zone-modal="SouthZoneModal">South</a></div>
                         <div class="region-box"><a href="#" data-zone-modal="WestZoneModal">West</a></div>
                         <div class="region-box"><a href="#" data-zone-modal="EastZoneModal">East</a></div>
-                        <div class="region-box"><a href="#" data-zone-modal="CentralZoneModal">Central</a></div>
-                        <div class="region-box"><a href="#" data-zone-modal="NortheastZoneModal">Northeast</a></div>
+                        <div class="region-box"><a href="#" data-zone-modal="CentralZoneModal">Central</a>
+                        </div>
+                        <div class="region-box"><a href="#" data-zone-modal="NortheastZoneModal">Northeast</a>
+                        </div>
                     </div>
                     <p class="text-primary fw-bold mb-2 mt-4">8 Union Territories</p>
                     <div class="region-grid">
@@ -345,7 +351,8 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
                                 data-bs-toggle="collapse" data-bs-target="#collapseHaryana">Haryana</button></h2>
-                        <div id="collapseHaryana" class="accordion-collapse collapse" data-bs-parent="#accordionNorth">
+                        <div id="collapseHaryana" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionNorth">
                             <div class="accordion-body">
                                 <div class="row">
                                     <div class="col-6"><a target="_blank"
@@ -375,7 +382,8 @@
                                             href="https://g2c.prarang.in/206/Kurukshetra">Kurukshetra</a></div>
                                     <div class="col-6"><a target="_blank"
                                             href="https://g2c.prarang.in/207/Narnaul">Narnaul</a></div>
-                                    <div class="col-6"><a target="_blank" href="https://g2c.prarang.in/208/Nuh">Nuh</a>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/208/Nuh">Nuh</a>
                                     </div>
                                     <div class="col-6"><a target="_blank"
                                             href="https://g2c.prarang.in/209/Palwal">Palwal</a></div>
@@ -425,7 +433,8 @@
                                             href="https://g2c.prarang.in/226/Nahan">Nahan</a></div>
                                     <div class="col-6"><a target="_blank"
                                             href="https://g2c.prarang.in/227/Solan">Solan</a></div>
-                                    <div class="col-6"><a target="_blank" href="https://g2c.prarang.in/228/Una">Una</a>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/228/Una">Una</a>
                                     </div>
                                 </div>
                             </div>
@@ -434,7 +443,8 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
                                 data-bs-toggle="collapse" data-bs-target="#collapsePunjab">Punjab</button></h2>
-                        <div id="collapsePunjab" class="accordion-collapse collapse" data-bs-parent="#accordionNorth">
+                        <div id="collapsePunjab" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionNorth">
                             <div class="accordion-body">
                                 <div class="row">
                                     <div class="col-6"><a target="_blank"
@@ -636,7 +646,8 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
                                 data-bs-toggle="collapse" data-bs-target="#collapseKerala">Kerala</button></h2>
-                        <div id="collapseKerala" class="accordion-collapse collapse" data-bs-parent="#accordionSouth">
+                        <div id="collapseKerala" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionSouth">
                             <div class="accordion-body">
                                 <div class="row">
                                     <div class="col-6"><a target="_blank"
@@ -672,7 +683,8 @@
                                             href="https://g2c.prarang.in/560/Tiruchirappalli">Tiruchirappalli</a></div>
                                     <div class="col-6"><a target="_blank"
                                             href="https://g2c.prarang.in/556/Salem">Salem</a></div>
-                                    <div class="col-6"><a target="_blank" href="/562/Tirunelveli">Tirunelveli</a></div>
+                                    <div class="col-6"><a target="_blank" href="/562/Tirunelveli">Tirunelveli</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -738,7 +750,8 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
                                 data-bs-toggle="collapse" data-bs-target="#collapseGujarat">Gujarat</button></h2>
-                        <div id="collapseGujarat" class="accordion-collapse collapse" data-bs-parent="#accordionWest">
+                        <div id="collapseGujarat" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionWest">
                             <div class="accordion-body">
                                 <div class="row">
                                     <div class="col-6"><a target="_blank"
@@ -784,7 +797,8 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
                                 data-bs-toggle="collapse" data-bs-target="#collapseRajasthan">Rajasthan</button></h2>
-                        <div id="collapseRajasthan" class="accordion-collapse collapse" data-bs-parent="#accordionWest">
+                        <div id="collapseRajasthan" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionWest">
                             <div class="accordion-body">
                                 <div class="row">
                                     <div class="col-6"><a target="_blank"
@@ -833,7 +847,8 @@
                                 <div class="row">
                                     <div class="col-6"><a target="_blank"
                                             href="https://g2c.prarang.in/111/Muzaffarpur">Muzaffarpur</a></div>
-                                    <div class="col-6"><a target="_blank" href="https://g2c.prarang.in/99/Gaya">Gaya</a>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/99/Gaya">Gaya</a>
                                     </div>
                                     <div class="col-6"><a target="_blank"
                                             href="https://g2c.prarang.in/94/Bhagalpur">Bhagalpur</a></div>
@@ -846,7 +861,8 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
                                 data-bs-toggle="collapse" data-bs-target="#collapseJharkhand">Jharkhand</button></h2>
-                        <div id="collapseJharkhand" class="accordion-collapse collapse" data-bs-parent="#accordionEast">
+                        <div id="collapseJharkhand" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionEast">
                             <div class="accordion-body">
                                 <div class="row">
                                     <div class="col-6"><a target="_blank"
@@ -995,7 +1011,8 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
                                 data-bs-toggle="collapse" data-bs-target="#collapseMeghalaya">Meghalaya</button></h2>
-                        <div id="collapseMeghalaya" class="accordion-collapse collapse" data-bs-parent="#accordionNE">
+                        <div id="collapseMeghalaya" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionNE">
                             <div class="accordion-body">
                                 <div class="row">
                                     <div class="col-6"><a target="_blank" href="/393/Shillong">Shillong</a></div>
@@ -1007,7 +1024,8 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
                                 data-bs-toggle="collapse" data-bs-target="#collapseTripura">Tripura</button></h2>
-                        <div id="collapseTripura" class="accordion-collapse collapse" data-bs-parent="#accordionNE">
+                        <div id="collapseTripura" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionNE">
                             <div class="accordion-body">
                                 <div class="row">
                                     <div class="col-6"><a target="_blank" href="/605/Agartala">Agartala</a></div>
@@ -1017,7 +1035,8 @@
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#collapseManipurNagaMiAP">Manipur, Nagaland,
+                                data-bs-toggle="collapse" data-bs-target="#collapseManipurNagaMiAP">Manipur,
+                                Nagaland,
                                 Mizoram, Arunachal Pradesh</button></h2>
                         <div id="collapseManipurNagaMiAP" class="accordion-collapse collapse"
                             data-bs-parent="#accordionNE">
@@ -1034,7 +1053,8 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
                                 data-bs-toggle="collapse" data-bs-target="#collapseSikkim">Sikkim</button></h2>
-                        <div id="collapseSikkim" class="accordion-collapse collapse" data-bs-parent="#accordionNE">
+                        <div id="collapseSikkim" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionNE">
                             <div class="accordion-body">
                                 <div class="row">
                                     <div class="col-6"><a target="_blank" href="/528/Gangtok">Gangtok</a></div>
@@ -1052,8 +1072,8 @@
 </div>
 
 <!-- Union Territories Modal -->
-<div class="modal fade text-dark" id="UTZoneModal" tabindex="-1" aria-labelledby="UTZoneModalLabel" aria-hidden="true"
-    data-backdrop="static" data-bs-keyboard="false">
+<div class="modal fade text-dark" id="UTZoneModal" tabindex="-1" aria-labelledby="UTZoneModalLabel"
+    aria-hidden="true" data-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header bg-secondary text-white">
@@ -1069,7 +1089,8 @@
                         <div id="collapseDelhi" class="accordion-collapse collapse" data-bs-parent="#accordionUT">
                             <div class="accordion-body">
                                 <div class="row">
-                                    <div class="col-6"><a target="_blank" href="/152/New Delhi">New Delhi</a></div>
+                                    <div class="col-6"><a target="_blank" href="/152/New Delhi">New Delhi</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1089,7 +1110,8 @@
                     <div class="accordion-item">
                         <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
                                 data-bs-toggle="collapse" data-bs-target="#collapseLadakh">Ladakh</button></h2>
-                        <div id="collapseLadakh" class="accordion-collapse collapse" data-bs-parent="#accordionUT">
+                        <div id="collapseLadakh" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionUT">
                             <div class="accordion-body">
                                 <div class="row">
                                     <div class="col-6"><a target="_blank" href="/766/Leh">Leh</a></div>
@@ -1100,41 +1122,51 @@
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#collapseChandigarh">Chandigarh</button></h2>
-                        <div id="collapseChandigarh" class="accordion-collapse collapse" data-bs-parent="#accordionUT">
-                            <div class="accordion-body">
-                                <div class="row">
-                                    <div class="col-6"><a target="_blank" href="/763/Chandigarh">Chandigarh</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#collapsePuducherry">Puducherry</button></h2>
-                        <div id="collapsePuducherry" class="accordion-collapse collapse" data-bs-parent="#accordionUT">
-                            <div class="accordion-body">
-                                <div class="row">
-                                    <div class="col-6"><a target="_blank" href="/468/Puducherry">Puducherry</a></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="accordion-item">
-                        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#collapseAndaman">Andaman & Nicobar</button>
+                                data-bs-toggle="collapse" data-bs-target="#collapseChandigarh">Chandigarh</button>
                         </h2>
-                        <div id="collapseAndaman" class="accordion-collapse collapse" data-bs-parent="#accordionUT">
+                        <div id="collapseChandigarh" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionUT">
                             <div class="accordion-body">
                                 <div class="row">
-                                    <div class="col-6"><a target="_blank" href="/759/Port Blair">Port Blair</a></div>
+                                    <div class="col-6"><a target="_blank" href="/763/Chandigarh">Chandigarh</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="accordion-item">
                         <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
-                                data-bs-toggle="collapse" data-bs-target="#collapseDNH">Dadra & Nagar Haveli and Daman &
+                                data-bs-toggle="collapse" data-bs-target="#collapsePuducherry">Puducherry</button>
+                        </h2>
+                        <div id="collapsePuducherry" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionUT">
+                            <div class="accordion-body">
+                                <div class="row">
+                                    <div class="col-6"><a target="_blank" href="/468/Puducherry">Puducherry</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseAndaman">Andaman &
+                                Nicobar</button>
+                        </h2>
+                        <div id="collapseAndaman" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionUT">
+                            <div class="accordion-body">
+                                <div class="row">
+                                    <div class="col-6"><a target="_blank" href="/759/Port Blair">Port Blair</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="accordion-item">
+                        <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
+                                data-bs-toggle="collapse" data-bs-target="#collapseDNH">Dadra & Nagar Haveli and
+                                Daman &
                                 Diu</button></h2>
                         <div id="collapseDNH" class="accordion-collapse collapse" data-bs-parent="#accordionUT">
                             <div class="accordion-body">
@@ -1149,10 +1181,12 @@
                         <h2 class="accordion-header"><button class="accordion-button collapsed" type="button"
                                 data-bs-toggle="collapse" data-bs-target="#collapseLakshadweep">Lakshadweep</button>
                         </h2>
-                        <div id="collapseLakshadweep" class="accordion-collapse collapse" data-bs-parent="#accordionUT">
+                        <div id="collapseLakshadweep" class="accordion-collapse collapse"
+                            data-bs-parent="#accordionUT">
                             <div class="accordion-body">
                                 <div class="row">
-                                    <div class="col-6"><a target="_blank" href="/768/Kavaratti">Kavaratti</a></div>
+                                    <div class="col-6"><a target="_blank" href="/768/Kavaratti">Kavaratti</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -1169,7 +1203,9 @@
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Move all modals to body to fix stacking context issues
-        var modalIds = ['czechRegionsModal', 'indiaRegionsModal', 'NorthZoneModal', 'SouthZoneModal', 'WestZoneModal', 'EastZoneModal', 'CentralZoneModal', 'NortheastZoneModal', 'UTZoneModal'];
+        var modalIds = ['czechRegionsModal', 'indiaRegionsModal', 'NorthZoneModal', 'SouthZoneModal',
+            'WestZoneModal', 'EastZoneModal', 'CentralZoneModal', 'NortheastZoneModal', 'UTZoneModal'
+        ];
         modalIds.forEach(function(id) {
             var modal = document.getElementById(id);
             if (modal) {
