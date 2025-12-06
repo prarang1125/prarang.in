@@ -190,6 +190,15 @@
         min-height: 119px;
         background-color: #0d6efd;
     }
+
+    .accordion-body a {
+        color: #2f2e2c !important;
+    }
+
+    .accordion-body a:hover {
+        color: #2f2e2c !important;
+        font-weight: 700;
+    }
 </style>
 <div class="modal fade" id="czechRegionsModal" tabindex="-1" aria-labelledby="czechRegionsModalLabel" aria-hidden="true"
     data-backdrop="static" data-bs-keyboard="false">
@@ -204,26 +213,39 @@
                         falls within Central Bohemia.</p>
                     <div class="region-grid">
                         <div class="region-box"><a target="_blank"
-                                href="/czech-republic/prague-and-central-bohemia">Prague and Central Bohemia</a></div>
-                        <div class="region-box"><a target="_blank" href="/czech-republic/south-bohemia">South
-                                Bohemia</a></div>
-                        <div class="region-box"><a target="_blank" href="/czech-republic/pilsen">Pilsen</a></div>
-                        <div class="region-box"><a target="_blank" href="/czech-republic/south-moravia">South
-                                Moravia</a></div>
-                        <div class="region-box"><a target="_blank" href="/czech-republic/vysocina">Vysocina</a></div>
+                                href="https://g2c.prarang.in/czech-republic/prague-and-central-bohemia">Prague and
+                                Central Bohemia</a></div>
                         <div class="region-box"><a target="_blank"
-                                href="/czech-republic/moravia--silesia">Moravia-Silesia</a></div>
-                        <div class="region-box"><a target="_blank" href="/czech-republic/usti-nad-labem">Usti nad
+                                href="https://g2c.prarang.in/czech-republic/south-bohemia">South
+                                Bohemia</a></div>
+                        <div class="region-box"><a target="_blank"
+                                href="https://g2c.prarang.in/czech-republic/pilsen">Pilsen</a></div>
+                        <div class="region-box"><a target="_blank"
+                                href="https://g2c.prarang.in/czech-republic/south-moravia">South
+                                Moravia</a></div>
+                        <div class="region-box"><a target="_blank"
+                                href="https://g2c.prarang.in/czech-republic/vysocina">Vysocina</a></div>
+                        <div class="region-box"><a target="_blank"
+                                href="https://g2c.prarang.in/czech-republic/moravia--silesia">Moravia-Silesia</a></div>
+                        <div class="region-box"><a target="_blank"
+                                href="https://g2c.prarang.in/czech-republic/usti-nad-labem">Usti nad
                                 Labem</a></div>
-                        <div class="region-box"><a target="_blank" href="/czech-republic/olomouc">Olomouc</a></div>
-                        <div class="region-box"><a target="_blank" href="/czech-republic/hradec-kralove">Hradec
+                        <div class="region-box"><a target="_blank"
+                                href="https://g2c.prarang.in/czech-republic/olomouc">Olomouc</a></div>
+                        <div class="region-box"><a target="_blank"
+                                href="https://g2c.prarang.in/czech-republic/hradec-kralove">Hradec
                                 Kralove</a></div>
-                        <div class="region-box"><a target="_blank" href="/czech-republic/pardubice">Pardubice</a></div>
-                        <div class="region-box"><a target="_blank" href="/czech-republic/zlin">Zlin</a></div>
-                        <div class="region-box"><a target="_blank" href="/czech-republic/karlovy-vary">Karlovy Vary</a>
+                        <div class="region-box"><a target="_blank"
+                                href="https://g2c.prarang.in/czech-republic/pardubice">Pardubice</a></div>
+                        <div class="region-box"><a target="_blank"
+                                href="https://g2c.prarang.in/czech-republic/zlin">Zlin</a></div>
+                        <div class="region-box"><a target="_blank"
+                                href="https://g2c.prarang.in/czech-republic/karlovy-vary">Karlovy Vary</a>
                         </div>
-                        <div class="region-box"><a target="_blank" href="/czech-republic/liberec">Liberec</a></div>
-                        <div class="region-box"><a target="_blank" href="/czech-republic">Czech Republic</a></div>
+                        <div class="region-box"><a target="_blank"
+                                href="https://g2c.prarang.in/czech-republic/liberec">Liberec</a></div>
+                        <div class="region-box"><a target="_blank" href="https://g2c.prarang.in/czech-republic">Czech
+                                Republic</a></div>
                     </div>
                 </div>
             </div>
@@ -298,7 +320,7 @@
                     <div class="region-grid">
                         <div class="region-box" style="background-color: #6c757d;"><a href="#"
                                 data-zone-modal="UTZoneModal">Union Territories</a></div>
-                        <div class="region-box"><a target="_blank" href="https://g2c.prarang.in/ai/india">India</a>
+                        <div class="region-box"><a target="_blank" href="https://g2c.prarang.in/ai/India">India</a>
                         </div>
                     </div>
                 </div>
@@ -326,29 +348,51 @@
                         <div id="collapseHaryana" class="accordion-collapse collapse" data-bs-parent="#accordionNorth">
                             <div class="accordion-body">
                                 <div class="row">
-                                    <div class="col-6"><a target="_blank" href="/195/Ambala">Ambala</a></div>
-                                    <div class="col-6"><a target="_blank" href="/196/Bhiwani">Bhiwani</a></div>
-                                    <div class="col-6"><a target="_blank" href="/197/Charkhi Dadri">Charkhi Dadri</a>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/195/Ambala">Ambala</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/196/Bhiwani">Bhiwani</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/197/Charkhi Dadri">Charkhi Dadri</a>
                                     </div>
-                                    <div class="col-6"><a target="_blank" href="/198/Faridabad">Faridabad</a></div>
-                                    <div class="col-6"><a target="_blank" href="/199/Fatehabad">Fatehabad</a></div>
-                                    <div class="col-6"><a target="_blank" href="/200/Gurugram">Gurugram</a></div>
-                                    <div class="col-6"><a target="_blank" href="/201/Hisar">Hisar</a></div>
-                                    <div class="col-6"><a target="_blank" href="/202/Jhajjar">Jhajjar</a></div>
-                                    <div class="col-6"><a target="_blank" href="/203/Jind">Jind</a></div>
-                                    <div class="col-6"><a target="_blank" href="/204/Kaithal">Kaithal</a></div>
-                                    <div class="col-6"><a target="_blank" href="/205/Karnal">Karnal</a></div>
-                                    <div class="col-6"><a target="_blank" href="/206/Kurukshetra">Kurukshetra</a></div>
-                                    <div class="col-6"><a target="_blank" href="/207/Narnaul">Narnaul</a></div>
-                                    <div class="col-6"><a target="_blank" href="/208/Nuh">Nuh</a></div>
-                                    <div class="col-6"><a target="_blank" href="/209/Palwal">Palwal</a></div>
-                                    <div class="col-6"><a target="_blank" href="/210/Panchkula">Panchkula</a></div>
-                                    <div class="col-6"><a target="_blank" href="/211/Panipat">Panipat</a></div>
-                                    <div class="col-6"><a target="_blank" href="/212/Rewari">Rewari</a></div>
-                                    <div class="col-6"><a target="_blank" href="/213/Rohtak">Rohtak</a></div>
-                                    <div class="col-6"><a target="_blank" href="/214/Sirsa">Sirsa</a></div>
-                                    <div class="col-6"><a target="_blank" href="/215/Sonipat">Sonipat</a></div>
-                                    <div class="col-6"><a target="_blank" href="/216/Yamunanagar">Yamunanagar</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/198/Faridabad">Faridabad</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/199/Fatehabad">Fatehabad</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/200/Gurugram">Gurugram</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/201/Hisar">Hisar</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/202/Jhajjar">Jhajjar</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/203/Jind">Jind</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/204/Kaithal">Kaithal</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/205/Karnal">Karnal</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/206/Kurukshetra">Kurukshetra</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/207/Narnaul">Narnaul</a></div>
+                                    <div class="col-6"><a target="_blank" href="https://g2c.prarang.in/208/Nuh">Nuh</a>
+                                    </div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/209/Palwal">Palwal</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/210/Panchkula">Panchkula</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/211/Panipat">Panipat</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/212/Rewari">Rewari</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/213/Rohtak">Rohtak</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/214/Sirsa">Sirsa</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/215/Sonipat">Sonipat</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/216/Yamunanagar">Yamunanagar</a></div>
                                 </div>
                             </div>
                         </div>
@@ -360,19 +404,29 @@
                             <div class="accordion-body">
                                 <div class="row">
                                     <div class="col-6"><a target="_blank"
-                                            href="/217/Bilaspur (Bilaspur HP)">Bilaspur</a></div>
-                                    <div class="col-6"><a target="_blank" href="/218/Chamba">Chamba</a></div>
+                                            href="https://g2c.prarang.in/217/Bilaspur (Bilaspur HP)">Bilaspur</a></div>
                                     <div class="col-6"><a target="_blank"
-                                            href="/219/Hamirpur (Hamirpur HP)">Hamirpur</a></div>
-                                    <div class="col-6"><a target="_blank" href="/220/Dharamshala">Dharamshala</a></div>
-                                    <div class="col-6"><a target="_blank" href="/221/Reckong Peo">Reckong Peo</a></div>
-                                    <div class="col-6"><a target="_blank" href="/222/Kullu">Kullu</a></div>
-                                    <div class="col-6"><a target="_blank" href="/223/Keylong">Keylong</a></div>
-                                    <div class="col-6"><a target="_blank" href="/224/Mandi">Mandi</a></div>
-                                    <div class="col-6"><a target="_blank" href="/225/Shimla">Shimla</a></div>
-                                    <div class="col-6"><a target="_blank" href="/226/Nahan">Nahan</a></div>
-                                    <div class="col-6"><a target="_blank" href="/227/Solan">Solan</a></div>
-                                    <div class="col-6"><a target="_blank" href="/228/Una">Una</a></div>
+                                            href="https://g2c.prarang.in/218/Chamba">Chamba</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/219/Hamirpur (Hamirpur HP)">Hamirpur</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/220/Dharamshala">Dharamshala</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/221/Reckong Peo">Reckong Peo</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/222/Kullu">Kullu</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/223/Keylong">Keylong</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/224/Mandi">Mandi</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/225/Shimla">Shimla</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/226/Nahan">Nahan</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/227/Solan">Solan</a></div>
+                                    <div class="col-6"><a target="_blank" href="https://g2c.prarang.in/228/Una">Una</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -383,30 +437,52 @@
                         <div id="collapsePunjab" class="accordion-collapse collapse" data-bs-parent="#accordionNorth">
                             <div class="accordion-body">
                                 <div class="row">
-                                    <div class="col-6"><a target="_blank" href="/472/Amritsar">Amritsar</a></div>
-                                    <div class="col-6"><a target="_blank" href="/473/Barnala">Barnala</a></div>
-                                    <div class="col-6"><a target="_blank" href="/474/Bathinda">Bathinda</a></div>
-                                    <div class="col-6"><a target="_blank" href="/475/Firozpur">Firozpur</a></div>
-                                    <div class="col-6"><a target="_blank" href="/476/Faridkot">Faridkot</a></div>
-                                    <div class="col-6"><a target="_blank" href="/477/Fatehgarh Sahib">Fatehgarh
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/472/Amritsar">Amritsar</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/473/Barnala">Barnala</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/474/Bathinda">Bathinda</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/475/Firozpur">Firozpur</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/476/Faridkot">Faridkot</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/477/Fatehgarh Sahib">Fatehgarh
                                             Sahib</a></div>
-                                    <div class="col-6"><a target="_blank" href="/478/Fazilka">Fazilka</a></div>
-                                    <div class="col-6"><a target="_blank" href="/479/Gurdaspur">Gurdaspur</a></div>
-                                    <div class="col-6"><a target="_blank" href="/480/Hoshiarpur">Hoshiarpur</a></div>
-                                    <div class="col-6"><a target="_blank" href="/481/Jalandhar">Jalandhar</a></div>
-                                    <div class="col-6"><a target="_blank" href="/482/Kapurthala">Kapurthala</a></div>
-                                    <div class="col-6"><a target="_blank" href="/483/Ludhiana">Ludhiana</a></div>
-                                    <div class="col-6"><a target="_blank" href="/484/Malerkotla">Malerkotla</a></div>
-                                    <div class="col-6"><a target="_blank" href="/485/Mansa">Mansa</a></div>
-                                    <div class="col-6"><a target="_blank" href="/486/Moga">Moga</a></div>
-                                    <div class="col-6"><a target="_blank" href="/487/Sri Muktsar Sahib">Sri Muktsar
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/478/Fazilka">Fazilka</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/479/Gurdaspur">Gurdaspur</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/480/Hoshiarpur">Hoshiarpur</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/481/Jalandhar">Jalandhar</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/482/Kapurthala">Kapurthala</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/483/Ludhiana">Ludhiana</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/484/Malerkotla">Malerkotla</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/485/Mansa">Mansa</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/486/Moga">Moga</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/487/Sri Muktsar Sahib">Sri Muktsar
                                             Sahib</a></div>
-                                    <div class="col-6"><a target="_blank" href="/488/Pathankot">Pathankot</a></div>
-                                    <div class="col-6"><a target="_blank" href="/489/Patiala">Patiala</a></div>
-                                    <div class="col-6"><a target="_blank" href="/490/Rupnagar">Rupnagar</a></div>
-                                    <div class="col-6"><a target="_blank" href="/491/Mohali">Mohali</a></div>
-                                    <div class="col-6"><a target="_blank" href="/492/Sangrur">Sangrur</a></div>
-                                    <div class="col-6"><a target="_blank" href="/493/Nawanshehr">Nawanshehr</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/488/Pathankot">Pathankot</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/489/Patiala">Patiala</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/490/Rupnagar">Rupnagar</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/491/Mohali">Mohali</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/492/Sangrur">Sangrur</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/493/Nawanshehr">Nawanshehr</a></div>
                                     <div class="col-6"><a target="_blank" href="/494/Tarn Taran Sahib">Tarn Taran
                                             Sahib</a></div>
                                 </div>
@@ -421,19 +497,32 @@
                             data-bs-parent="#accordionNorth">
                             <div class="accordion-body">
                                 <div class="row">
-                                    <div class="col-6"><a target="_blank" href="/688/Almora">Almora</a></div>
-                                    <div class="col-6"><a target="_blank" href="/689/Bageshwar">Bageshwar</a></div>
-                                    <div class="col-6"><a target="_blank" href="/690/Gopeshwar">Gopeshwar</a></div>
-                                    <div class="col-6"><a target="_blank" href="/691/Champawat">Champawat</a></div>
-                                    <div class="col-6"><a target="_blank" href="/692/Dehradun">Dehradun</a></div>
-                                    <div class="col-6"><a target="_blank" href="/693/Haridwar">Haridwar</a></div>
-                                    <div class="col-6"><a target="_blank" href="/694/Nainital">Nainital</a></div>
-                                    <div class="col-6"><a target="_blank" href="/695/Pauri">Pauri</a></div>
-                                    <div class="col-6"><a target="_blank" href="/696/Pithoragarh">Pithoragarh</a></div>
-                                    <div class="col-6"><a target="_blank" href="/697/Rudraprayag">Rudraprayag</a></div>
-                                    <div class="col-6"><a target="_blank" href="/698/New Tehri">New Tehri</a></div>
-                                    <div class="col-6"><a target="_blank" href="/699/Rudrapur">Rudrapur</a></div>
-                                    <div class="col-6"><a target="_blank" href="/700/Uttarkashi">Uttarkashi</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/688/Almora">Almora</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/689/Bageshwar">Bageshwar</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/690/Gopeshwar">Gopeshwar</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/691/Champawat">Champawat</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/692/Dehradun">Dehradun</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/693/Haridwar">Haridwar</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/694/Nainital">Nainital</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/695/Pauri">Pauri</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/696/Pithoragarh">Pithoragarh</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/697/Rudraprayag">Rudraprayag</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/698/New Tehri">New Tehri</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/699/Rudrapur">Rudrapur</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/700/Uttarkashi">Uttarkashi</a></div>
                                 </div>
                             </div>
                         </div>
@@ -444,20 +533,34 @@
                         <div id="collapseUP" class="accordion-collapse collapse" data-bs-parent="#accordionNorth">
                             <div class="accordion-body">
                                 <div class="row">
-                                    <div class="col-6"><a target="_blank" href="/613/Agra">Agra</a></div>
-                                    <div class="col-6"><a target="_blank" href="/614/Aligarh">Aligarh</a></div>
-                                    <div class="col-6"><a target="_blank" href="/619/Ayodhya">Ayodhya</a></div>
-                                    <div class="col-6"><a target="_blank" href="/627/Bareilly">Bareilly</a></div>
-                                    <div class="col-6"><a target="_blank" href="/641/Noida">Noida</a></div>
-                                    <div class="col-6"><a target="_blank" href="/642/Ghaziabad">Ghaziabad</a></div>
-                                    <div class="col-6"><a target="_blank" href="/645/Gorakhpur">Gorakhpur</a></div>
-                                    <div class="col-6"><a target="_blank" href="/652/Jhansi">Jhansi</a></div>
-                                    <div class="col-6"><a target="_blank" href="/655/Kanpur">Kanpur</a></div>
-                                    <div class="col-6"><a target="_blank" href="/661/Lucknow">Lucknow</a></div>
-                                    <div class="col-6"><a target="_blank" href="/665/Mathura">Mathura</a></div>
-                                    <div class="col-6"><a target="_blank" href="/667/Meerut">Meerut</a></div>
-                                    <div class="col-6"><a target="_blank" href="/673/Allahabad">Prayagraj</a></div>
-                                    <div class="col-6"><a target="_blank" href="/687/Varanasi">Varanasi</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/613/Agra">Agra</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/614/Aligarh">Aligarh</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/619/Ayodhya">Ayodhya</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/627/Bareilly">Bareilly</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/641/Noida">Noida</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/642/Ghaziabad">Ghaziabad</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/645/Gorakhpur">Gorakhpur</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/652/Jhansi">Jhansi</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/655/Kanpur">Kanpur</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/661/Lucknow">Lucknow</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/665/Mathura">Mathura</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/667/Meerut">Meerut</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/673/Allahabad">Prayagraj</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/687/Varanasi">Varanasi</a></div>
                                 </div>
                             </div>
                         </div>
@@ -489,13 +592,19 @@
                         <div id="collapseAP" class="accordion-collapse collapse" data-bs-parent="#accordionSouth">
                             <div class="accordion-body">
                                 <div class="row">
-                                    <div class="col-6"><a target="_blank" href="/16/Vijayawada">Vijayawada</a></div>
-                                    <div class="col-6"><a target="_blank" href="/23/Tirupati">Tirupati</a></div>
-                                    <div class="col-6"><a target="_blank" href="/24/Visakhapatnam">Visakhapatnam</a>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/16/Vijayawada">Vijayawada</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/23/Tirupati">Tirupati</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/24/Visakhapatnam">Visakhapatnam</a>
                                     </div>
-                                    <div class="col-6"><a target="_blank" href="/11/Guntur">Guntur</a></div>
-                                    <div class="col-6"><a target="_blank" href="/14/Kurnool">Kurnool</a></div>
-                                    <div class="col-6"><a target="_blank" href="/27/Kadapa">Kadapa</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/11/Guntur">Guntur</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/14/Kurnool">Kurnool</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/27/Kadapa">Kadapa</a></div>
                                 </div>
                             </div>
                         </div>
@@ -508,12 +617,18 @@
                             <div class="accordion-body">
                                 <div class="row">
                                     <div class="col-6"><a target="_blank"
-                                            href="/257/Bengaluru (Bengaluru Urban)">Bengaluru</a></div>
-                                    <div class="col-6"><a target="_blank" href="/274/Mysore">Mysore</a></div>
-                                    <div class="col-6"><a target="_blank" href="/263/Mangalore">Mangalore</a></div>
-                                    <div class="col-6"><a target="_blank" href="/255/Belgaum">Belgaum</a></div>
-                                    <div class="col-6"><a target="_blank" href="/267/Kalaburagi">Kalaburagi</a></div>
-                                    <div class="col-6"><a target="_blank" href="/264/Davangere">Davangere</a></div>
+                                            href="https://g2c.prarang.in/257/Bengaluru (Bengaluru Urban)">Bengaluru</a>
+                                    </div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/274/Mysore">Mysore</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/263/Mangalore">Mangalore</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/255/Belgaum">Belgaum</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/267/Kalaburagi">Kalaburagi</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/264/Davangere">Davangere</a></div>
                                 </div>
                             </div>
                         </div>
@@ -525,12 +640,18 @@
                             <div class="accordion-body">
                                 <div class="row">
                                     <div class="col-6"><a target="_blank"
-                                            href="/296/Thiruvananthapuram">Thiruvananthapuram</a></div>
-                                    <div class="col-6"><a target="_blank" href="/291/Kozhikode">Kozhikode</a></div>
-                                    <div class="col-6"><a target="_blank" href="/285/Kakkanad">Kochi</a></div>
-                                    <div class="col-6"><a target="_blank" href="/295/Thrissur">Thrissur</a></div>
-                                    <div class="col-6"><a target="_blank" href="/289/Kollam">Kollam</a></div>
-                                    <div class="col-6"><a target="_blank" href="/284/Alappuzha">Alappuzha</a></div>
+                                            href="https://g2c.prarang.in/296/Thiruvananthapuram">Thiruvananthapuram</a>
+                                    </div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/291/Kozhikode">Kozhikode</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/285/Kakkanad">Kochi</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/295/Thrissur">Thrissur</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/289/Kollam">Kollam</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/284/Alappuzha">Alappuzha</a></div>
                                 </div>
                             </div>
                         </div>
@@ -541,12 +662,16 @@
                         <div id="collapseTN" class="accordion-collapse collapse" data-bs-parent="#accordionSouth">
                             <div class="accordion-body">
                                 <div class="row">
-                                    <div class="col-6"><a target="_blank" href="/536/Chennai">Chennai</a></div>
-                                    <div class="col-6"><a target="_blank" href="/537/Coimbatore">Coimbatore</a></div>
-                                    <div class="col-6"><a target="_blank" href="/547/Madurai">Madurai</a></div>
                                     <div class="col-6"><a target="_blank"
-                                            href="/560/Tiruchirappalli">Tiruchirappalli</a></div>
-                                    <div class="col-6"><a target="_blank" href="/556/Salem">Salem</a></div>
+                                            href="https://g2c.prarang.in/536/Chennai">Chennai</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/537/Coimbatore">Coimbatore</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/547/Madurai">Madurai</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/560/Tiruchirappalli">Tiruchirappalli</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/556/Salem">Salem</a></div>
                                     <div class="col-6"><a target="_blank" href="/562/Tirunelveli">Tirunelveli</a></div>
                                 </div>
                             </div>
@@ -560,12 +685,17 @@
                             <div class="accordion-body">
                                 <div class="row">
                                     <div class="col-6"><a target="_blank"
-                                            href="/575/Hyderabad (Hyderabad)">Hyderabad</a></div>
-                                    <div class="col-6"><a target="_blank" href="/574/Hanamkonda">Warangal</a></div>
-                                    <div class="col-6"><a target="_blank" href="/581/Karimnagar">Karimnagar</a></div>
-                                    <div class="col-6"><a target="_blank" href="/594/Nizamabad">Nizamabad</a></div>
-                                    <div class="col-6"><a target="_blank" href="/582/Khammam">Khammam</a></div>
-                                    <div class="col-6"><a target="_blank" href="/585/Mahbubnagar">Mahbubnagar</a></div>
+                                            href="https://g2c.prarang.in/575/Hyderabad (Hyderabad)">Hyderabad</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/574/Hanamkonda">Warangal</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/581/Karimnagar">Karimnagar</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/594/Nizamabad">Nizamabad</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/582/Khammam">Khammam</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/585/Mahbubnagar">Mahbubnagar</a></div>
                                 </div>
                             </div>
                         </div>
@@ -576,8 +706,10 @@
                         <div id="collapseGoa" class="accordion-collapse collapse" data-bs-parent="#accordionSouth">
                             <div class="accordion-body">
                                 <div class="row">
-                                    <div class="col-6"><a target="_blank" href="/160/Panaji">Panaji</a></div>
-                                    <div class="col-6"><a target="_blank" href="/161/Margao">Margao</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/160/Panaji">Panaji</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/161/Margao">Margao</a></div>
                                 </div>
                             </div>
                         </div>
@@ -609,11 +741,16 @@
                         <div id="collapseGujarat" class="accordion-collapse collapse" data-bs-parent="#accordionWest">
                             <div class="accordion-body">
                                 <div class="row">
-                                    <div class="col-6"><a target="_blank" href="/162/Ahmedabad">Ahmedabad</a></div>
-                                    <div class="col-6"><a target="_blank" href="/190/Surat">Surat</a></div>
-                                    <div class="col-6"><a target="_blank" href="/193/Vadodara">Vadodara</a></div>
-                                    <div class="col-6"><a target="_blank" href="/188/Rajkot">Rajkot</a></div>
-                                    <div class="col-6"><a target="_blank" href="/174/Gandhinagar">Gandhinagar</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/162/Ahmedabad">Ahmedabad</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/190/Surat">Surat</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/193/Vadodara">Vadodara</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/188/Rajkot">Rajkot</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/174/Gandhinagar">Gandhinagar</a></div>
                                     <div class="col-6"><a target="_blank" href="/168/Bhavnagar">Bhavnagar</a></div>
                                 </div>
                             </div>
@@ -627,13 +764,19 @@
                             data-bs-parent="#accordionWest">
                             <div class="accordion-body">
                                 <div class="row">
-                                    <div class="col-6"><a target="_blank" href="/366/Mumbai">Mumbai</a></div>
-                                    <div class="col-6"><a target="_blank" href="/374/Pune">Pune</a></div>
-                                    <div class="col-6"><a target="_blank" href="/370/Nagpur">Nagpur</a></div>
-                                    <div class="col-6"><a target="_blank" href="/382/Thane">Thane</a></div>
-                                    <div class="col-6"><a target="_blank" href="/371/Nashik">Nashik</a></div>
                                     <div class="col-6"><a target="_blank"
-                                            href="/377/Aurangabad (Sambhajinagar)">Aurangabad</a></div>
+                                            href="https://g2c.prarang.in/366/Mumbai">Mumbai</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/374/Pune">Pune</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/370/Nagpur">Nagpur</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/382/Thane">Thane</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/371/Nashik">Nashik</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/377/Aurangabad (Sambhajinagar)">Aurangabad</a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -644,12 +787,18 @@
                         <div id="collapseRajasthan" class="accordion-collapse collapse" data-bs-parent="#accordionWest">
                             <div class="accordion-body">
                                 <div class="row">
-                                    <div class="col-6"><a target="_blank" href="/514/Jaipur">Jaipur</a></div>
-                                    <div class="col-6"><a target="_blank" href="/513/Jodhpur">Jodhpur</a></div>
-                                    <div class="col-6"><a target="_blank" href="/518/Kota">Kota</a></div>
-                                    <div class="col-6"><a target="_blank" href="/497/Bikaner">Bikaner</a></div>
-                                    <div class="col-6"><a target="_blank" href="/495/Ajmer">Ajmer</a></div>
-                                    <div class="col-6"><a target="_blank" href="/527/Udaipur (Udaipur RJ)">Udaipur</a>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/514/Jaipur">Jaipur</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/513/Jodhpur">Jodhpur</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/518/Kota">Kota</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/497/Bikaner">Bikaner</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/495/Ajmer">Ajmer</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/527/Udaipur (Udaipur RJ)">Udaipur</a>
                                     </div>
                                 </div>
                             </div>
@@ -682,10 +831,14 @@
                         <div id="collapseBihar" class="accordion-collapse collapse" data-bs-parent="#accordionEast">
                             <div class="accordion-body">
                                 <div class="row">
-                                    <div class="col-6"><a target="_blank" href="/111/Muzaffarpur">Muzaffarpur</a></div>
-                                    <div class="col-6"><a target="_blank" href="/99/Gaya">Gaya</a></div>
-                                    <div class="col-6"><a target="_blank" href="/94/Bhagalpur">Bhagalpur</a></div>
-                                    <div class="col-6"><a target="_blank" href="/97/Darbhanga">Darbhanga</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/111/Muzaffarpur">Muzaffarpur</a></div>
+                                    <div class="col-6"><a target="_blank" href="https://g2c.prarang.in/99/Gaya">Gaya</a>
+                                    </div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/94/Bhagalpur">Bhagalpur</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/97/Darbhanga">Darbhanga</a></div>
                                 </div>
                             </div>
                         </div>
@@ -696,10 +849,14 @@
                         <div id="collapseJharkhand" class="accordion-collapse collapse" data-bs-parent="#accordionEast">
                             <div class="accordion-body">
                                 <div class="row">
-                                    <div class="col-6"><a target="_blank" href="/245/Ranchi">Ranchi</a></div>
-                                    <div class="col-6"><a target="_blank" href="/236/Jamshedpur">Jamshedpur</a></div>
-                                    <div class="col-6"><a target="_blank" href="/233/Dhanbad">Dhanbad</a></div>
-                                    <div class="col-6"><a target="_blank" href="/232/Bokaro">Bokaro</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/245/Ranchi">Ranchi</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/236/Jamshedpur">Jamshedpur</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/233/Dhanbad">Dhanbad</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/232/Bokaro">Bokaro</a></div>
                                 </div>
                             </div>
                         </div>
@@ -710,10 +867,14 @@
                         <div id="collapseOdisha" class="accordion-collapse collapse" data-bs-parent="#accordionEast">
                             <div class="accordion-body">
                                 <div class="row">
-                                    <div class="col-6"><a target="_blank" href="/418/Bhubaneswar">Bhubaneswar</a></div>
-                                    <div class="col-6"><a target="_blank" href="/429/Cuttack">Cuttack</a></div>
-                                    <div class="col-6"><a target="_blank" href="/446/Rourkela">Rourkela</a></div>
-                                    <div class="col-6"><a target="_blank" href="/423/Brahmapur">Brahmapur</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/418/Bhubaneswar">Bhubaneswar</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/429/Cuttack">Cuttack</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/446/Rourkela">Rourkela</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/423/Brahmapur">Brahmapur</a></div>
                                 </div>
                             </div>
                         </div>
@@ -724,10 +885,14 @@
                         <div id="collapseWB" class="accordion-collapse collapse" data-bs-parent="#accordionEast">
                             <div class="accordion-body">
                                 <div class="row">
-                                    <div class="col-6"><a target="_blank" href="/717/Kolkata">Kolkata</a></div>
-                                    <div class="col-6"><a target="_blank" href="/710/Howrah">Howrah</a></div>
-                                    <div class="col-6"><a target="_blank" href="/704/Durgapur">Durgapur</a></div>
-                                    <div class="col-6"><a target="_blank" href="/701/Asansol">Asansol</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/717/Kolkata">Kolkata</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/710/Howrah">Howrah</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/704/Durgapur">Durgapur</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/701/Asansol">Asansol</a></div>
                                 </div>
                             </div>
                         </div>
@@ -759,12 +924,18 @@
                         <div id="collapseMP" class="accordion-collapse collapse" data-bs-parent="#accordionCentral">
                             <div class="accordion-body">
                                 <div class="row">
-                                    <div class="col-6"><a target="_blank" href="/307/Bhopal">Bhopal</a></div>
-                                    <div class="col-6"><a target="_blank" href="/320/Indore">Indore</a></div>
-                                    <div class="col-6"><a target="_blank" href="/321/Jabalpur">Jabalpur</a></div>
-                                    <div class="col-6"><a target="_blank" href="/317/Gwalior">Gwalior</a></div>
-                                    <div class="col-6"><a target="_blank" href="/349/Ujjain">Ujjain</a></div>
-                                    <div class="col-6"><a target="_blank" href="/346/Sagar">Sagar</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/307/Bhopal">Bhopal</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/320/Indore">Indore</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/321/Jabalpur">Jabalpur</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/317/Gwalior">Gwalior</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/349/Ujjain">Ujjain</a></div>
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/346/Sagar">Sagar</a></div>
                                 </div>
                             </div>
                         </div>
