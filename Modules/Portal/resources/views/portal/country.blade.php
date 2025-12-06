@@ -1223,6 +1223,87 @@
         #core .lsvr-container .lsvr-grid .columns__main #main .bg-light .comparison-links .col-sm-6 a:hover {
             color: #0619a6 !important;
         }
+
+        /* New Comparison Section Styles */
+        .comparison-links-new {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .comparison-btn {
+            display: block;
+            background-color: #0d6efd;
+            color: #ffffff !important;
+            padding: 12px 20px;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 4px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        .comparison-btn:hover {
+            background-color: #0b5ed7;
+            color: #ffffff !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(13, 110, 253, 0.3);
+        }
+
+        .comparison-btn strong {
+            font-weight: 600;
+        }
+
+        .comparison-btn span {
+            font-size: 13px;
+            font-weight: 400;
+        }
+    </style>
+    <style>
+        /* Link */
+        #main .comparison-links-new a {
+            font-size: 16px;
+            transform: translatex(0px) translatey(0px);
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+
+        /* Heading */
+        #columns .columns__inner .lsvr-container .lsvr-grid .columns__main #main .bg-light h3 {
+            margin-bottom: 9px !important;
+            margin-top: 7px !important;
+        }
+
+        /* Heading */
+        #main .bg-light h3 {
+            font-size: 17px !important;
+        }
+
+        /* Text center */
+        #core .lsvr-container .lsvr-grid .columns__main #main .bg-light h5.text-center {
+            margin-top: 9px !important;
+            margin-bottom: 19px !important;
+        }
+
+        /* Col 6 */
+        #main .bg-light .col-sm-6 {
+            min-height: 0px;
+        }
+
+        /* Button */
+        #main .btn-sm {
+            min-height: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-size: 15px;
+        }
+
+        /* Widget Title */
+        #-analytics-widget .text-secondary {
+            text-transform: capitalize;
+            margin-bottom: 0px !important;
+        }
     </style>
     <div id="wrapper">
         <header class="header--has-languages header--has-map" id="header">
@@ -1282,14 +1363,14 @@
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="countrySelect"
                                         id="countryPrimary" value="primary">
-                                    <label class="form-check-label"
-                                        for="countryPrimary">{{ $primary->country_name ?? 'Primary Country' }}</label>
+                                    <label class="form-check-label" for="countryPrimary">{{ $primary->country_name ??
+                                        'Primary Country' }}</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="countrySelect"
                                         id="countrySecondary" value="secondary">
-                                    <label class="form-check-label"
-                                        for="countrySecondary">{{ $secondary->country_name ?? 'Secondary Country' }}</label>
+                                    <label class="form-check-label" for="countrySecondary">{{ $secondary->country_name
+                                        ?? 'Secondary Country' }}</label>
                                 </div>
                             </div>
                         </div>
@@ -1352,32 +1433,32 @@
                                                         cityCode="{{ $main->content_country_code ?? 'CON24' }}"
                                                         :locale="$locale" />
                                                     <!-- TOWNPRESS SITEMAP : begin -->
-                                                    <x-portal.tag-list :cityId="$main->content_country_code" :cityCode="$main->content_country_code"
-                                                        :citySlug="$main->slug" :locale="$locale" />
+                                                    <x-portal.tag-list :cityId="$main->content_country_code"
+                                                        :cityCode="$main->content_country_code" :citySlug="$main->slug"
+                                                        :locale="$locale" />
                                                 </div>
                                                 <!-- CATEGORY CONTENT : end -->
                                             </div>
 
 
                                         </div>
-                                        <div class=" shadow  mt-3 pb-2 bg-light">
-                                            <h3 class="text-center h3">Comparison Tools </h3>
-                                            <div class="comparison-links">
-                                                <div class="col-sm-6">
-                                                    <a class="cursor-pointer text-light rounded-none" target="_blank"
-                                                        href="/czech-republic-regional-comparison">Regional
-                                                        Comparison <span>Czech - India</span></a>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <a class="cursor-pointer text-light rounded-none" target="_blank"
-                                                        href="/czech-republic-country-comparison">Country Comparison
-                                                        <span>Czech with Other Countries</span></a>
-                                                </div>
+                                        <div class="shadow mt-2 bg-light">
+                                            <h3 class="text-center h5 fw-bold ">Knowledge By Comparison</h3>
+                                            <div class="comparison-links-new px-3 pb-2">
+                                                <a class="comparison-btn" target="_blank"
+                                                    href="/czech-republic-country-comparison">
+                                                    <strong>Country Comparison :</strong> <span>Compare Czech with Other
+                                                        Countries</span>
+                                                </a>
+                                                <a class="comparison-btn mt-2" target="_blank"
+                                                    href="/czech-republic-regional-comparison">
+                                                    <strong>Regional Comparison :</strong> <span>Compare Czech with
+                                                        Indian Regions</span>
+                                                </a>
                                             </div>
-
                                         </div>
+                                        <x-portal.ai-reports :primary="$primary" :secondary="$secondary" />
                                         <section class="mt-3">
-
 
                                             <div class="row">
                                                 <div class="col-sm-6">
@@ -1386,19 +1467,13 @@
                                                         <div class="widget__inner p-3">
                                                             <h3
                                                                 class="widget__title widget__title--has-icon ps-2 mb-3 text-center text-secondary fw-bold">
-                                                                <i class="fa fa-line-chart me-2"></i>
+                                                                {{-- <i class="fa fa-line-chart me-2"></i> --}}
                                                                 {{ $primary->country_name ?? 'N/A' }} Analytics
                                                             </h3>
                                                             <div class="widget__content text-center">
-                                                                <div class="analytics-content">
-                                                                    <a href="https://g2c.prarang.in/{{ $primary->analytics_slug ?? 'country' }}"
-                                                                        target="_blank">
-                                                                        <img src="https://www.prarang.in/matric-.JPG"
-                                                                            alt="{{ $primary->country_name ?? 'Country' }} Analytics"
-                                                                            class="img-fluid rounded shadow-sm mb-3 border">
-                                                                    </a>
-
-                                                                </div>
+                                                                <x-portal.cityanaytics
+                                                                    :title="$primary->country_name ?? 'N/A'"
+                                                                    :code="$primary->analytics_slug ?? 'country'" />
                                                             </div>
                                                         </div>
                                                     </div>
@@ -1409,43 +1484,22 @@
                                                         <div class="widget__inner p-3">
                                                             <h3
                                                                 class="widget__title widget__title--has-icon ps-2 mb-3 text-center text-secondary fw-bold">
-                                                                <i class="fa fa-line-chart me-2"></i>
+                                                                {{-- <i class="fa fa-line-chart me-2"></i> --}}
                                                                 {{ $secondary->country_name ?? 'N/A' }} Analytics
                                                             </h3>
                                                             <div class="widget__content text-center">
-                                                                <div class="analytics-content">
-                                                                    <a href="https://g2c.prarang.in/{{ $secondary->analytics_slug ?? 'country' }}"
-                                                                        target="_blank">
-                                                                        <img src="https://www.prarang.in/matric-.JPG"
-                                                                            alt="{{ $secondary->country_name ?? 'Country' }} Analytics"
-                                                                            class="img-fluid rounded shadow-sm mb-3 border">
-                                                                    </a>
 
-                                                                </div>
+                                                                <x-portal.cityanaytics
+                                                                    :title="$secondary->country_name ?? 'N/A'"
+                                                                    :code="$secondary->analytics_slug ?? 'country'" />
+
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </section>
-                                        <section class="p-2 pt-1 shadow bg-light">
-                                            <h5 class="p-0 m-0 text-center">AI Reports</h5>
-                                            <div class="row">
-                                                <div class="col-sm-6"><a
-                                                        href="https://g2c.prarang.in/ai/{{ urlencode($primary->analytics_slug ?? 'Country') }}"
-                                                        class="btn btn-info btn-sm w-100 fw-semibold" target="_blank">
-                                                        <i class="fa fa-robot me-1"></i>
-                                                        {{ $primary->country_name ?? 'Country' }} AI Report
-                                                    </a></div>
-                                                <div class="col-sm-6"><a
-                                                        href="https://g2c.prarang.in/ai/{{ ucfirst($secondary->analytics_slug ?? 'Country') }}"
-                                                        class="btn btn-info btn-sm w-100 fw-semibold" target="_blank">
-                                                        <i class="fa fa-robot me-1"></i>
-                                                        {{ $secondary->country_name ?? 'Country' }} AI Report
-                                                    </a></div>
 
-                                            </div>
-                                        </section>
                                     </main>
                                     <!-- MAIN : end -->
                                 </div>
@@ -1587,7 +1641,8 @@
                     });
                 </script>
 
-                <script id="jquery-core-js" src="https://preview.lsvr.sk/townpress/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"
+                <script id="jquery-core-js"
+                    src="https://preview.lsvr.sk/townpress/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"
                     type="text/javascript"></script>
 
 
@@ -1596,7 +1651,8 @@
                     src="https://preview.lsvr.sk/townpress/wp-content/themes/townpress/assets/js/townpress-scripts.min.js?ver=3.8.8"
                     type="text/javascript"></script>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-                    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+                    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                    crossorigin="anonymous">
                 </script>
                 {!! $portal['footer_scripts'] ?? '' !!}
 

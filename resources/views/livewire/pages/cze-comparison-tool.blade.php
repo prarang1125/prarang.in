@@ -17,7 +17,6 @@
             display: grid !important;
         }
 
-
         /* Img click */
         .img-click {
             grid-template-columns: 48% 48% !important;
