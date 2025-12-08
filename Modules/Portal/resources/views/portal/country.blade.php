@@ -1363,14 +1363,14 @@
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="countrySelect"
                                         id="countryPrimary" value="primary">
-                                    <label class="form-check-label" for="countryPrimary">{{ $primary->country_name ??
-                                        'Primary Country' }}</label>
+                                    <label class="form-check-label"
+                                        for="countryPrimary">{{ $primary->country_name ?? 'Primary Country' }}</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="countrySelect"
                                         id="countrySecondary" value="secondary">
-                                    <label class="form-check-label" for="countrySecondary">{{ $secondary->country_name
-                                        ?? 'Secondary Country' }}</label>
+                                    <label class="form-check-label"
+                                        for="countrySecondary">{{ $secondary->country_name ?? 'Secondary Country' }}</label>
                                 </div>
                             </div>
                         </div>
@@ -1433,9 +1433,8 @@
                                                         cityCode="{{ $main->content_country_code ?? 'CON24' }}"
                                                         :locale="$locale" />
                                                     <!-- TOWNPRESS SITEMAP : begin -->
-                                                    <x-portal.tag-list :cityId="$main->content_country_code"
-                                                        :cityCode="$main->content_country_code" :citySlug="$main->slug"
-                                                        :locale="$locale" />
+                                                    <x-portal.tag-list :cityId="$main->content_country_code" :cityCode="$main->content_country_code"
+                                                        :citySlug="$main->slug" :locale="$locale" />
                                                 </div>
                                                 <!-- CATEGORY CONTENT : end -->
                                             </div>
@@ -1457,7 +1456,8 @@
                                                 </a>
                                             </div>
                                         </div>
-                                        <x-portal.ai-reports :primary="$primary" :secondary="$secondary" />
+                                        <x-portal.ai-reports :primary="$primary" :secondary="$secondary" :cities="$indianCities"
+                                            :zone="$stateZones" />
                                         <section class="mt-3">
 
                                             <div class="row">
@@ -1471,8 +1471,7 @@
                                                                 {{ $primary->country_name ?? 'N/A' }} Analytics
                                                             </h3>
                                                             <div class="widget__content text-center">
-                                                                <x-portal.cityanaytics
-                                                                    :title="$primary->country_name ?? 'N/A'"
+                                                                <x-portal.cityanaytics :title="$primary->country_name ?? 'N/A'"
                                                                     :code="$primary->analytics_slug ?? 'country'" />
                                                             </div>
                                                         </div>
@@ -1489,8 +1488,7 @@
                                                             </h3>
                                                             <div class="widget__content text-center">
 
-                                                                <x-portal.cityanaytics
-                                                                    :title="$secondary->country_name ?? 'N/A'"
+                                                                <x-portal.cityanaytics :title="$secondary->country_name ?? 'N/A'"
                                                                     :code="$secondary->analytics_slug ?? 'country'" />
 
                                                             </div>
@@ -1641,8 +1639,7 @@
                     });
                 </script>
 
-                <script id="jquery-core-js"
-                    src="https://preview.lsvr.sk/townpress/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"
+                <script id="jquery-core-js" src="https://preview.lsvr.sk/townpress/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"
                     type="text/javascript"></script>
 
 
@@ -1651,8 +1648,7 @@
                     src="https://preview.lsvr.sk/townpress/wp-content/themes/townpress/assets/js/townpress-scripts.min.js?ver=3.8.8"
                     type="text/javascript"></script>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-                    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
-                    crossorigin="anonymous">
+                    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
                 </script>
                 {!! $portal['footer_scripts'] ?? '' !!}
 

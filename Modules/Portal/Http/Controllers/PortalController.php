@@ -50,6 +50,9 @@ class PortalController extends Controller
 
     public function bilateralCountriesPortal(string $slug)
     {
+
+        // Initially, I thought this portal works for all countries, but after completing the project, there were many changes and some customizations didn't fit for all countries, so yes, this is not a dynamic solution for all countries.
+
         // Fetch portal with related countries
         $main = BiletralPortal::with(['primaryCountry', 'secondaryCountry'])
             ->where('slug', $slug)
@@ -61,6 +64,11 @@ class PortalController extends Controller
         $secondary->important_links = json_decode($secondary->important_links) ?: [];
         $locale = PortalLocaleizetion::where('lang_code', 'en')->firstOrFail();
         $locale = $locale['json'] ?? [];
-        return view('portal::portal.country', compact('main', 'primary', 'secondary', 'locale'));
+        $indianCities = httpGet('/cities', ['groupby' => 1, 'group' => 'MSTR2'])['data'] ?? [];
+        $stateZones = httpGet('/state-zone')['data'] ?? [];
+
+
+
+        return view('portal::portal.country', compact('main', 'primary', 'secondary', 'locale', "indianCities", 'stateZones'));
     }
 }
