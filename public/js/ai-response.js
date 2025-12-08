@@ -240,7 +240,7 @@ async function handleCompare(event) {
                     success: true,
                     response: parseResponse(
                         data.candidates[0].content.parts[0].text ||
-                            "No response"
+                        "No response"
                     ),
                 };
             } catch (error) {
@@ -455,14 +455,12 @@ function renderResponses(responses) {
             <div class="response-container" id="content-container">
                 <div class="response-content">
                     <div class="ai-name">(${String.fromCharCode(
-                        96 + count++
-                    )}) UPMANA - Knowledge By Comparison</div>
-                    <div class="prompt-box upman"><strong>Prompt:</strong> ${
-                        responses.prompt
-                    }</div>
-                    <div class="p-3 ai-response h-100">${
-                        responses.content
-                    }</div>
+            96 + count++
+        )}) UPMANA - Knowledge By Comparison</div>
+                    <div class="prompt-box upman"><strong>Prompt:</strong> ${responses.prompt
+            }</div>
+                    <div class="p-3 ai-response h-100">${responses.content
+            }</div>
                 </div>
             </div>
         `;
@@ -477,16 +475,14 @@ function renderResponses(responses) {
         if (response && modelInfo[model]) {
             responseHtml += `
                 <div class="response-container" id="${model}-container">
-                    <img src="${modelInfo[model].logo}" alt="${
-                modelInfo[model].name
-            } Logo" class="ai-logo">
+                    <img src="${modelInfo[model].logo}" alt="${modelInfo[model].name
+                } Logo" class="ai-logo">
                     <div class="response-content">
                         <div class="ai-name">(${String.fromCharCode(
-                            96 + count++
-                        )}) ${modelInfo[model].name}</div>
-                        <div class="prompt-box ${
-                            modelInfo[model].class
-                        }"><strong>Prompt:</strong> ${responses.prompt}</div>
+                    96 + count++
+                )}) ${modelInfo[model].name}</div>
+                        <div class="prompt-box ${modelInfo[model].class
+                }"><strong>Prompt:</strong> ${responses.prompt}</div>
                         <div class="p-3 ai-response h-100">${response}</div>
                     </div>
                 </div>

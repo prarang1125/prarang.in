@@ -254,6 +254,57 @@
             }
 
         }
+
+        /* Heading */
+        .first-prompt .firstPrompt h2 {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 15px !important;
+        }
+
+        /* Image */
+        .first-prompt .firstPrompt img {
+            margin-right: 26px !important;
+            margin-left: 23px !important;
+            width: 40px !important;
+            border-top-left-radius: 0px !important;
+            border-bottom-left-radius: 0px !important;
+            border-top-right-radius: 0px !important;
+            border-bottom-right-radius: 0px !important;
+            box-shadow: 0px 0px 8px 2px #212529;
+        }
+
+        /* Paragraph */
+        .first-prompt .firstPrompt>p {
+            margin-bottom: 22px !important;
+        }
+
+        /* List group item */
+        .card .list-group-flush a.list-group-item {
+            cursor: pointer;
+        }
+
+        /* List group item (hover) */
+        .card .list-group-flush a.list-group-item:hover {
+            font-weight: 500;
+        }
+
+        /* Image */
+        .pr-ai-section .justify-center img {
+            width: 40px;
+            box-shadow: 0px 0px 3px 1px #212529;
+        }
+
+        /* Heading */
+        .pr-ai-section h2 {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            font-weight: 600;
+        }
     </style>
     <div class="container-fluid">
         <div class="row locale-font">
@@ -265,10 +316,40 @@
                         @if ($activeSection['firstPrompt'])
                             <div class="mb-3 text-center firstPrompt">
                                 @if ($type === 'regional')
-                                    <h2>Regional Comparison</h2>
-                                    <p>Compare Czech Republic Regions with Indian Districts</p>
+                                    <h2 class="flex justify-center items-center"><img class="mx-2"
+                                            src="https://g2c.prarang.in/storage/images/world/195Counties/IND__flag.jpg"
+                                            alt="">Indo-Czech Comparison <img class="mx-2"
+                                            src="https://g2c.prarang.in/storage/images/world/195Counties/CZE__flag.jpg"
+                                            alt=""></h2>
+                                    <p>Compare Czech Republic Regions(Kraj) with Indian Regions</p>
                                 @else
-                                    <h2>Country Comparison</h2>
+                                    <style>
+                                        /* Image */
+                                        .first-prompt h2 img {
+                                            box-shadow: 0px 0px 0px -50px #212529 !important;
+                                            min-height: 43px;
+                                        }
+
+                                        /* Image */
+                                        .container div .container-fluid .row .position-relative .pr-ai-section .first-prompt .firstPrompt h2 img {
+                                            width: 50px !important;
+                                            margin-right: 10px !important;
+                                        }
+
+                                        /* Heading */
+                                        .first-prompt .firstPrompt h2 {
+                                            transform: translatex(0px) translatey(0px);
+                                            align-items: baseline !important;
+                                        }
+
+                                        /* Heading */
+                                        .container div .container-fluid .row .position-relative .pr-ai-section .first-prompt .firstPrompt h2 {
+                                            margin-bottom: 13px !important;
+                                        }
+                                    </style>
+                                    <h2><img class="mx-2 cze-mapx"
+                                            src="https://g2c.prarang.in/storage/images/world/195Counties/CZE_MAP.jpg"
+                                            alt="">Country Comparison</h2>
                                     <p>Compare Czech Republic with other Countries</p>
                                 @endif
                                 @if (session()->has('message'))
@@ -288,8 +369,8 @@
                                                             class="btn btn-secondary btn-lg position-relative"
                                                             data-bs-toggle="modal" data-bs-target="#geographyModal">
                                                             @if ($type === 'regional')
-                                                                Select Locations<br><small>(1 Czech + up to
-                                                                    {{ $maxIndiaCities }} Indian)</small>
+                                                                Select Locations<br><small>(Up to 3
+                                                                    Czech/3 India)</small>
                                                             @else
                                                                 {{ $lables['select_location'] }}<br><small>(1 to
                                                                     3)</small>
@@ -305,7 +386,8 @@
                                                     <div>
                                                         <span class="p-2 m-2 border count-box bg-light text-dark"
                                                             id="citiesCount"
-                                                            @if ($type === 'regional') wire:ignore.self @else wire:ignore @endif>
+                                                            @if ($type === 'regional') wire:ignore.self
+                                                        @else wire:ignore @endif>
                                                             @if ($type === 'regional')
                                                                 {{ $this->selectedCount }}
                                                             @else
@@ -347,7 +429,8 @@
                                                                 role="button" tabindex="0"
                                                                 wire:loading.attr="disabled"><span
                                                                     class="spinner-border spinner-border-sm"
-                                                                    wire:loading> </span>&nbsp;
+                                                                    wire:loading>
+                                                                </span>&nbsp;
                                                                 Compare
                                                             </a>
 
@@ -372,31 +455,53 @@
                         <div class="row">
                             <div class="col-sm-12">
                                 <p class="text-center main-title-heading locale-font" style="color: #0000ff">
-                                    {{ $type == 'regional' ? 'Regional Comparison' : 'Country Comparison' }}
-                                </p>
 
+
+                                    @if ($type === 'regional')
+                                        <h2 class="flex justify-center items-center"><img class="mx-2"
+                                                src="https://g2c.prarang.in/storage/images/world/195Counties/IND__flag.jpg"
+                                                alt="">Indo-Czech Comparison <img class="mx-2"
+                                                src="https://g2c.prarang.in/storage/images/world/195Counties/CZE__flag.jpg"
+                                                alt=""></h2>
+                                    @else
+                                        <h2>
+                                            <style>
+                                                .pr-ai-section h2 {
+                                                    align-items: baseline !important;
+                                                }
+                                            </style>
+                                            <img class="mx-2 cze-mapx " style="width: 50px; height: 50px;"
+                                                src="https://g2c.prarang.in/storage/images/world/195Counties/CZE_MAP.jpg"
+                                                alt="">Country Comparison
+                                        </h2>
+                                    @endif
+                                </p>
 
                                 <section id="outChat">
                                     <div class="p-3 h-100" id="dfggsgzrf">
+                                        <p class="rounded border py-2 px-1 mb-3">
+                                            {{ $prompt ?? '' }}
+                                        </p>
 
-                                        @if ($type !== 'regional')
-                                            @foreach ($output['warnings'] ?? [] as $warning)
-                                                <p class="warning-chat">{{ $warning }}</p>
-                                            @endforeach
-                                            <p class="com-chat">
-                                                @isset($output['comparison_statement'])
-                                                    {{ $output['comparison_statement'] }}
-                                                @endisset
-                                            </p>
+                                        @foreach ($output['warnings'] ?? [] as $warning)
+                                            <p class="warning-chat">{{ $warning }}</p>
+                                        @endforeach
 
-                                            <p class="com-chat">
-                                                @isset($output['comparison_sentence']['sentence'])
-                                                    {!! $output['comparison_sentence']['sentence'] !!}
-                                                    {!! $output['comparison_sentence']['compare'] !!}
-                                                @endisset
-                                            </p>
+                                        <p class="com-chat">
+                                            @isset($output['comparison_statement'])
+                                                {{ $output['comparison_statement'] }}
+                                            @endisset
+                                        </p>
 
-                                        @endif
+                                        <p class="com-chat">
+                                            @isset($output['comparison_sentence']['sentence'])
+                                                {!! $output['comparison_sentence']['sentence'] !!}
+                                                <br>
+                                                {!! $output['comparison_sentence']['compare'] !!}
+                                            @endisset
+                                        </p>
+
+
 
                                         <div class="mb-2">
                                             @foreach (['cze', 'city', 'country'] as $key)
@@ -487,12 +592,14 @@
                                             <section class="mt-2 ExploreMoreInsites">
                                                 <p class="fw-bold">{{ $lables['explore_more'] }}:</p>
                                                 <ul class="row">
-                                                    {{-- @dd($cities) --}}
-                                                    @foreach ($insCities as $geography)
-                                                        <li class="col-4"><a target="_blank"
-                                                                style="text-decoration: none;"
-                                                                href="https://g2c.prarang.in/{{ $geography }}?data">{{ $geography }}
-                                                                Insights</a></li>
+
+                                                    @foreach ($insCities as $key => $geographyx)
+                                                        @foreach ($geographyx as $geography)
+                                                            <li class="col-4"><a target="_blank"
+                                                                    style="text-decoration: none;"
+                                                                    href="https://g2c.prarang.in/{{ $key == 'city' ? 'ai/' : 'czech-republic/' }}{{ $geography }}">{{ $geography }}
+                                                                    {{ $lables['insights'] }}</a></li>
+                                                        @endforeach
                                                     @endforeach
                                                 </ul>
                                             </section>
@@ -537,17 +644,17 @@
                         <div class="list-group list-group-flush">
                             <a javascript:void(0) class="list-group-item list-group-item-action"
                                 data-bs-toggle="modal" data-bs-target="#faqModal">
-                                Regional Comparison
+                                Indo-Czech Comparison <small>(FAQ)</small>
                             </a>
-                            <a href="https://g2c.prarang.in/ai/czech-republic" target="_blank"
+                            <a href="https://g2c.prarang.in/czech-republic" target="_blank"
                                 class="list-group-item list-group-item-action" target="_blank">
                                 Czech Republic AI Report
                             </a>
-                            <a href="https://g2c.prarang.in/ai/India" class="list-group-item list-group-item-action"
+                            <a href="https://g2c.prarang.in/india" class="list-group-item list-group-item-action"
                                 target="_blank">
                                 India AI Report
                             </a>
-                            <a href="https://g2c.prarang.in/india/development-planners"
+                            {{-- <a href="https://g2c.prarang.in/india/development-planners"
                                 class="list-group-item list-group-item-action" target="_blank">
                                 India Development Planner
                             </a>
@@ -562,7 +669,7 @@
                             <button type="button" class="list-group-item list-group-item-action text-muted"
                                 onclick="showComingSoonToast()">
                                 Czech Market Planner <small>(Coming Soon)</small>
-                            </button>
+                            </button> --}}
                         </div>
                     </div>
                 @else
@@ -572,9 +679,9 @@
 
                             <a class="list-group-item list-group-item-action side-buttons" type="button"
                                 href="javascript:void(0)" type="button" data-bs-toggle="offcanvas">Country
-                                Comparison</a>
+                                Comparison <small>(FAQ)</small></a>
 
-                            <a href="https://g2c.prarang.in/ai/czech-republic"
+                            <a href="https://g2c.prarang.in/czech-republic"
                                 class="list-group-item list-group-item-action" target="_blank">
                                 Czech Republic AI Report
                             </a>
@@ -586,14 +693,14 @@
                                 class="list-group-item list-group-item-action" target="_blank">
                                 World Market Planner
                             </a>
-                            <a href="javascript:void(0)" class="list-group-item list-group-item-action"
+                            {{-- <a href="javascript:void(0)" class="list-group-item list-group-item-action"
                                 target="_blank">
                                 Czech Development Planner <small>(Coming Soon)</small>
                             </a>
                             <a href="javascript:void(0)" class="list-group-item list-group-item-action"
                                 target="_blank">
                                 Czech Market Planner <small>(Coming Soon)</small>
-                            </a>
+                            </a> --}}
                         </div>
                     </div>
                 @endif
@@ -731,9 +838,9 @@
                     <h5 class="modal-title" id="geographyModalLabel"><small>
                             {{-- Debug: Type = {{ $type }} --}}
                             @if ($type === 'regional')
-                                <p class="mb-2 ">Choose 1 Czech region
-                                    and up to {{ $maxIndiaCities }} Indian
-                                    cities</p>
+                                <p class="mb-2 ">Choose up to {{ $maxCzeRegions ?? 3 }} Czech regions (kraj)
+                                    and {{ $maxIndiaCities }} Indian
+                                    regions.</p>
                             @else
                                 <p class="mb-2 text-info">You can select up to
                                     3 Countries.</p>
@@ -753,18 +860,27 @@
                                     <h6 class="fw-bold mb-0">
                                         Czech Republic – 13 Regions (Kraj)
                                     </h6>
+                                    <span class="badge"
+                                        :class="count($selectedCzeRegions) >=
+                                            ($maxCzeRegions ?? 3) ? 'bg-danger' :
+                                            'bg-success'">
+                                        {{ count($selectedCzeRegions) }}/{{ $maxCzeRegions ?? 3 }}
+                                    </span>
                                 </div>
                                 <div class="list-group" style="max-height: 450px; overflow-y: auto;" wire:ignore.self>
                                     @foreach ($czechRegions as $id => $regionName)
+                                        @php
+                                            $isSelectedCze = in_array($regionName, $selectedCzeRegions);
+                                        @endphp
                                         <label
                                             class="list-group-item d-flex font-bold align-items-center gap-3 border-0 py-2"
                                             style="cursor: pointer; transition: background-color 0.2s;"
                                             onmouseover="this.style.backgroundColor='#f8f9fa'"
                                             onmouseout="this.style.backgroundColor='transparent'">
-                                            <input class="form-check-input flex-shrink-0 m-0" type="radio"
-                                                wire:ignore.self name="czechRegion" value="{{ $regionName }}"
+                                            <input class="form-check-input flex-shrink-0 m-0" type="checkbox"
+                                                wire:ignore.self name="czechRegion[]" value="{{ $regionName }}"
                                                 wire:click="toggleCzeRegion('{{ $regionName }}')"
-                                                @checked($selectedCzeRegion == $id)>
+                                                @checked($isSelectedCze) @disabled(count($selectedCzeRegions) >= ($maxCzeRegions ?? 3) && !$isSelectedCze)>
                                             <span class="form-check-label">{{ $regionName }}</span>
                                         </label>
                                     @endforeach
@@ -1160,7 +1276,8 @@
                     @if ($type === 'regional')
                         {{-- Regional Mode FAQs --}}
                         <p>The Regional Comparison Tool helps users create knowledge by comparison. It enables clear and
-                            structured comparisons between the Regions of the Czech Republic and India’s Districts,
+                            structured comparisons between the Regions of the Czech Republic and India’s Regions
+                            (Districts),
                             offering practical insights into region-level metrics.
                         </p>
                         <div class="accordion" id="faqAccordion">
@@ -1170,21 +1287,19 @@
                                     <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                         data-bs-target="#faqCollapseOne" aria-expanded="true"
                                         aria-controls="faqCollapseOne">
-                                        How do I compare countries using this tool?
+                                        How do I compare regions using this tool?
                                     </button>
                                 </h2>
                                 <div id="faqCollapseOne" class="accordion-collapse collapse show"
                                     aria-labelledby="faqHeadingOne" data-bs-parent="#faqAccordion">
                                     <div class="accordion-body">
                                         <ul>
-                                            <li>Select any one region of the Czech Republic you wish to compare with up
-                                                to 3 of India’s Districts.</li>
-                                            <li>
-                                                In the next step, select any metric from our multidimensional database
+                                            <li>Select up to three regions (Kraje) in the Czech Republic and up to three
+                                                regions in India that you wish to compare.</li>
+                                            <>
+                                                In the next step, choose any metric from our multidimensional database
                                                 on which you want the comparison to be performed.</li>
-                                            <p>
-                                                The tool will then generate analytical insights based on the selected
-                                                regions, giving ranks and metrics.</p>
+
                                         </ul>
                                     </div>
                                 </div>
@@ -1202,11 +1317,11 @@
                                     aria-labelledby="faqHeadingTwo" data-bs-parent="#faqAccordion">
                                     <div class="accordion-body">
                                         <ul>
-                                            <li>Czech Republic: You can select one of the 13 traditional regions (Kraj).
-                                                Prague and Central Bohemia are treated as a single combined region in
-                                                this tool.</li>
-                                            <li>India: You may select 1–3 districts from a total of 768 districts
-                                                included in our analytics database.</li>
+                                            <li>Czech Republic: You may select 1–3 regions (Kraje). Prague and Central
+                                                Bohemia are treated as a single combined region in this tool.
+                                            </li>
+                                            <li>India: You may select 1–3 regions (districts) from the 768 districts
+                                                included in the India analytics database.</li>
                                         </ul>
                                     </div>
                                 </div>

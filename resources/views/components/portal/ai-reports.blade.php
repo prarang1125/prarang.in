@@ -277,7 +277,7 @@
     document.addEventListener("DOMContentLoaded", () => {
         // Move modals to body
         var modalIds = ['czechRegionsModal', 'indiaRegionsModal', 'NorthZoneModal', 'SouthZoneModal',
-            'WestZoneModal', 'EastZoneModal', 'CentralZoneModal', 'NortheastZoneModal', 'UTZoneModal'
+            'WestZoneModal', 'EastZoneModal', 'CentralZoneModal', 'NorthEastZoneModal', 'UTZoneModal'
         ];
         modalIds.forEach(function(id) {
             var modal = document.getElementById(id);
@@ -329,7 +329,7 @@
                 <div class="text-center">
                     <strong class="text-primary fs-5">India AI Reports</strong>
                     <p class="mt-2 mb-3">768 District Capitals – Discover beyond 28 States & 8 UTs.</p>
-                    <p class="text-primary fw-bold mb-2">28 States</p>
+
                     <div class="region-grid">
                         <div class="region-box"><a href="#" data-zone-modal="NorthZoneModal">North</a></div>
                         <div class="region-box"><a href="#" data-zone-modal="SouthZoneModal">South</a></div>
@@ -337,22 +337,15 @@
                         <div class="region-box"><a href="#" data-zone-modal="EastZoneModal">East</a></div>
                         <div class="region-box"><a href="#" data-zone-modal="CentralZoneModal">Central</a>
                         </div>
-                        <div class="region-box"><a href="#" data-zone-modal="NortheastZoneModal">Northeast</a>
+                        <div class="region-box"><a href="#" data-zone-modal="NorthEastZoneModal">Northeast</a>
                         </div>
-                    </div>
-                    <div class="text-center flex flex-column">
-                        <div>
-                            <p class="text-primary fw-bold mb-2 mt-4">8 Union Territories</p>
-                            <div class="region-grid">
-                                <div class="region-box" style="background-color: #6c757d;"><a href="#"
-                                        data-zone-modal="UnionTerritoriesZoneModal">Union Territories</a></div>
-
-                            </div>
+                        <div class="region-box"><a href="#" data-zone-modal="UnionTerritoriesZoneModal">Union
+                                Territories</a>
                         </div>
-                        <div></div>
                         <div class="region-box"><a target="_blank" href="https://g2c.prarang.in/ai/India">India</a>
                         </div>
                     </div>
+
 
                 </div>
             </div>
@@ -411,7 +404,7 @@
     document.addEventListener('DOMContentLoaded', function() {
         // Move all modals to body to fix stacking context issues
         var modalIds = ['czechRegionsModal', 'indiaRegionsModal', 'NorthZoneModal', 'SouthZoneModal',
-            'WestZoneModal', 'EastZoneModal', 'CentralZoneModal', 'NortheastZoneModal',
+            'WestZoneModal', 'EastZoneModal', 'CentralZoneModal', 'NorthEastZoneModal',
             'UnionTerritoriesZoneModal'
         ];
         modalIds.forEach(function(id) {
