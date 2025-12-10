@@ -1304,6 +1304,16 @@
             text-transform: capitalize;
             margin-bottom: 0px !important;
         }
+
+        @media (max-width:480px) {
+
+            /* Footer */
+            #columns footer {
+                position: relative;
+                top: 300px;
+            }
+
+        }
     </style>
     <div id="wrapper">
         <header class="header--has-languages header--has-map" id="header">
@@ -1452,7 +1462,7 @@
                                                 </a>
                                                 <a class="comparison-btn mt-2" target="_blank"
                                                     href="/czech-republic-regional-comparison">
-                                                    <strong>Regional Comparison :</strong> <span>Compare Czech with
+                                                    <strong>Indo-Czech Comparison :</strong> <span>Compare Czech with
                                                         Indian Regions</span>
                                                 </a>
                                             </div>
@@ -1469,7 +1479,7 @@
                                                             <h3
                                                                 class="widget__title widget__title--has-icon ps-2 mb-3 text-center text-secondary fw-bold">
                                                                 {{-- <i class="fa fa-line-chart me-2"></i> --}}
-                                                                {{ $primary->country_name ?? 'N/A' }} Analytics
+                                                                {{ $primary->country_name ?? 'N/A' }} Data Analytics
                                                             </h3>
                                                             <div class="widget__content text-center">
                                                                 <x-portal.cityanaytics
@@ -1486,7 +1496,7 @@
                                                             <h3
                                                                 class="widget__title widget__title--has-icon ps-2 mb-3 text-center text-secondary fw-bold">
                                                                 {{-- <i class="fa fa-line-chart me-2"></i> --}}
-                                                                {{ $secondary->country_name ?? 'N/A' }} Analytics
+                                                                {{ $secondary->country_name ?? 'N/A' }} Data Analytics
                                                             </h3>
                                                             <div class="widget__content text-center">
 

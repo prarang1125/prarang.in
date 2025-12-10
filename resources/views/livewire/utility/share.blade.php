@@ -33,42 +33,50 @@
                     <!-- Social Icons -->
                     <div class="text-center row g-3">
                         <div class="col-4">
-                            <a href="https://wa.me/?text={{ $shareText }}" target="_blank" class="text-success text-decoration-none">
+                            <a href="https://wa.me/?text={{ $shareText }}" target="_blank"
+                                class="text-success text-decoration-none">
                                 <i class='bx bxl-whatsapp display-6'></i><br>WhatsApp
                             </a>
                         </div>
                         <div class="col-4">
-                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ $encodedUrl }}" target="_blank" class="text-primary text-decoration-none">
+                            <a href="https://www.facebook.com/sharer/sharer.php?u={{ $encodedUrl }}" target="_blank"
+                                class="text-primary text-decoration-none">
                                 <i class='bx bxl-facebook display-6'></i><br>Facebook
                             </a>
                         </div>
                         <div class="col-4">
-                            <a href="https://twitter.com/intent/tweet?url={{ $encodedUrl }}&text={{ $encodedTitle }}" target="_blank" class="text-info text-decoration-none">
+                            <a href="https://twitter.com/intent/tweet?url={{ $encodedUrl }}&text={{ $encodedTitle }}"
+                                target="_blank" class="text-info text-decoration-none">
                                 <i class='bx bxl-twitter display-6'></i><br>Twitter
                             </a>
                         </div>
                         <div class="col-4">
-                            <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ $encodedUrl }}&title={{ $encodedTitle }}&summary={{ $encodedDesc }}" target="_blank" class="text-primary text-decoration-none">
+                            <a href="https://www.linkedin.com/shareArticle?mini=true&url={{ $encodedUrl }}&title={{ $encodedTitle }}&summary={{ $encodedDesc }}"
+                                target="_blank" class="text-primary text-decoration-none">
                                 <i class='bx bxl-linkedin display-6'></i><br>LinkedIn
                             </a>
                         </div>
                         <div class="col-4">
-                            <a href="https://t.me/share/url?url={{ $encodedUrl }}&text={{ $shareText }}" target="_blank" class="text-info text-decoration-none">
+                            <a href="https://t.me/share/url?url={{ $encodedUrl }}&text={{ $shareText }}" target="_blank"
+                                class="text-info text-decoration-none">
                                 <i class='bx bxl-telegram display-6'></i><br>Telegram
                             </a>
                         </div>
                         <div class="col-4">
-                            <a href="https://reddit.com/submit?url={{ $encodedUrl }}&title={{ $encodedTitle }}" target="_blank" class="text-danger text-decoration-none">
+                            <a href="https://reddit.com/submit?url={{ $encodedUrl }}&title={{ $encodedTitle }}"
+                                target="_blank" class="text-danger text-decoration-none">
                                 <i class='bx bxl-reddit display-6'></i><br>Reddit
                             </a>
                         </div>
                         <div class="col-4">
-                            <a href="https://pinterest.com/pin/create/button/?url={{ $encodedUrl }}&description={{ $encodedDesc }}" target="_blank" class="text-danger text-decoration-none">
+                            <a href="https://pinterest.com/pin/create/button/?url={{ $encodedUrl }}&description={{ $encodedDesc }}"
+                                target="_blank" class="text-danger text-decoration-none">
                                 <i class='bx bxl-pinterest display-6'></i><br>Pinterest
                             </a>
                         </div>
                         <div class="col-4">
-                            <a href="mailto:?subject={{ $encodedTitle }}&body={{ $shareText }}" target="_blank" class="text-secondary text-decoration-none">
+                            <a href="mailto:?subject={{ $encodedTitle }}&body={{ $shareText }}" target="_blank"
+                                class="text-secondary text-decoration-none">
                                 <i class='bx bxs-envelope display-6'></i><br>Email
                             </a>
                         </div>
