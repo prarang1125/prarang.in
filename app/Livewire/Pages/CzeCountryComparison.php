@@ -161,7 +161,7 @@ class CzeCountryComparison extends Component
         if ($this->type === 'regional') {
             $this->confirmSelection();
         }
-        if (!$fieldIds) {
+        if (!$fieldIds && true) {
 
             $this->validate(
                 [
@@ -405,8 +405,9 @@ class CzeCountryComparison extends Component
      */
     public function confirmSelection()
     {
+        return;
         if (empty($this->selectedCzeRegions)) {
-            $this->errorMessage = 'Please select at least one Czech region';
+            // $this->errorMessage = 'Please select at least one Czech region';
             return;
         }
 
