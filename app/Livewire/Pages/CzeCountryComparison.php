@@ -116,7 +116,7 @@ class CzeCountryComparison extends Component
             $share = explode('@', $request->query('share'));
             $location = $share[0];
             $fields = $share[1];
-
+            $this->prompt = "";
             $this->generate(explode('-', $location), explode('-', $fields));
         }
     }

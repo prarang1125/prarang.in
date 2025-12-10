@@ -67,7 +67,7 @@
             color: #707579;
         }
 
-        /* Regional Comparison Styles */
+        /* Indo-Czech Comparison Styles */
         .comparison-tool-container section p {
             text-align: justify;
             color: #000000;
@@ -391,6 +391,87 @@
         .container div #toprint .row .position-relative .pr-ai-section .share-back-print .d-flex .btn-warning {
             margin-left: 0px !important;
         }
+
+        @media (max-width:767px) {
+
+            /* Th */
+            #dfggsgzrf tr th {
+                min-width: 170px;
+            }
+
+        }
+
+        @media (max-width:575px) {
+
+            /* Share back print */
+            .position-relative .pr-ai-section .share-back-print {
+                grid-template-columns: 70fr 30fr;
+            }
+
+            /* Container */
+            .container {
+                grid-template-columns: 70fr 30fr;
+            }
+
+            /* Row */
+            .position-relative .pr-ai-section>.row {
+                position: relative;
+                top: 20px;
+                transform: translatex(0px) translatey(0px);
+            }
+
+            /* Col 12 */
+            .pr-ai-section .col-sm-12 {
+                top: 0px !important;
+            }
+
+            /* Col 12 */
+            .container div #toprint .row .position-relative .pr-ai-section .row .col-sm-12 {
+                bottom: auto !important;
+            }
+
+            /* Th */
+            #dfggsgzrf tr th {
+                transform: translatex(0px) translatey(0px);
+            }
+
+            /* Table striped */
+            #dfggsgzrf .table-striped {
+                overflow: scroll;
+                min-width: 1px;
+                transform: translatex(0px) translatey(0px);
+            }
+
+            /* Table striped */
+            .container div #toprint .row .position-relative .pr-ai-section .row .col-sm-12 #outChat #dfggsgzrf .border-info .table-striped {
+                width: 100% !important;
+            }
+
+            /* Text info */
+            #dfggsgzrf .text-info {
+                position: sticky;
+                left: -1px;
+            }
+
+            /* Th */
+            #dfggsgzrf .border-info:nth-child(10) th:nth-child(1) {
+                position: sticky;
+                left: -15px;
+                z-index: 2;
+            }
+
+        }
+
+        @media (max-width:575px) {
+
+            /* Th */
+            #dfggsgzrf .border-info:nth-child(9) th:nth-child(1) {
+                position: sticky;
+                left: -15px;
+                z-index: 2;
+            }
+
+        }
     </style>
     <div class="container-fluid" id="toprint">
 
@@ -574,11 +655,11 @@
 
                             <section id="outChat">
                                 <div class="p-3 h-100" id="dfggsgzrf">
-                                    @if($share!==null)
+
                                     <p class="rounded border py-2 px-1 mb-3">
                                         {{ $prompt ?? '' }}
                                     </p>
-                                    @endif
+
 
                                     @foreach ($output['warnings'] ?? [] as $warning)
                                     <p class="warning-chat">{{ $warning }}</p>
@@ -691,7 +772,8 @@
 
                                             @foreach ($insCities as $key => $geographyx)
                                             @foreach ($geographyx as $geography)
-                                            <li class="col-4"><a target="_blank" style="text-decoration: none;"
+                                            <li class="col-12  col-md-3"><a target="_blank"
+                                                    style="text-decoration: none;"
                                                     href="https://g2c.prarang.in/{{ $key == 'city' ? 'ai/' : 'czech-republic/' }}{{ $geography }}">{{
                                                     $geography }}
                                                     {{ $lables['insights'] }}</a></li>
@@ -704,7 +786,8 @@
                                         <p class="fw-bold">{{ $lables['explore_more'] }}:</p>
                                         <ul class="row">
                                             @foreach ($cities as $geography)
-                                            <li class="col-4"><a target="_blank" style="text-decoration: none;"
+                                            <li class="col-12 col-md-3"><a target="_blank"
+                                                    style="text-decoration: none;"
                                                     href="https://g2c.prarang.in/ai/{{ json_decode($geography)->name }}">{{
                                                     json_decode($geography)->name }}
                                                     {{ $lables['insights'] }}</a></li>
@@ -1378,7 +1461,7 @@
                     <div class="modal-header">
                         <h5 class="modal-title" id="faqModalLabel">
                             @if ($type === 'regional')
-                            Regional Comparison Tool - FAQ
+                            Indo-Czech Comparison Tool - FAQ
                             @else
                             Country Comparison Tool - FAQ
                             @endif
@@ -1388,7 +1471,8 @@
                     <div class="modal-body">
                         @if ($type === 'regional')
                         {{-- Regional Mode FAQs --}}
-                        <p>The Regional Comparison Tool helps users create knowledge by comparison. It enables clear and
+                        <p>The Indo-Czech Comparison Tool helps users create knowledge by comparison. It enables clear
+                            and
                             structured comparisons between the Regions of the Czech Republic and India’s Regions
                             (Districts),
                             offering practical insights into region-level metrics.
