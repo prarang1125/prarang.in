@@ -320,6 +320,72 @@
         .pr-ai-section .row .col-sm-12 #outChat #dfggsgzrf .sourcedat .list-group .list-group-item {
             margin-bottom: 0px !important;
         }
+
+        @media (max-width:575px) {
+
+            /* Column 12/12 */
+            #content-e_ints .mb-2 {
+                padding-bottom: 39px;
+                margin-top: 6px;
+            }
+
+        }
+
+        @media (max-width:575px) {
+
+            /* Heading */
+            .first-prompt .firstPrompt h2 {
+                transform: translatex(0px) translatey(0px);
+                display: grid !important;
+                column-gap: 3px;
+                grid-template-columns: 10% 76% 10%;
+                font-size: 24px !important;
+            }
+
+            /* Image */
+            #toprint .row .position-relative .pr-ai-section .first-prompt .firstPrompt .justify-center img {
+                margin-right: 2px !important;
+                margin-left: 2px !important;
+            }
+
+            /* Heading */
+            .container div #toprint .row .position-relative .pr-ai-section .first-prompt .firstPrompt h2 {
+                grid-template-columns: 10% 76% 10% !important;
+            }
+
+            /* Modal footer */
+            #faqModal .modal-dialog .modal-footer {
+                transform: translatex(0px) translatey(0px);
+            }
+
+            /* Heading */
+            .pr-ai-section h2 {
+                display: grid !important;
+                grid-template-columns: 10% 76% 10%;
+                align-content: center;
+                column-gap: 10px;
+                transform: translatex(0px) translatey(0px);
+                font-size: 25px;
+                text-align: center;
+            }
+
+            /* Heading */
+            .container div #toprint .row .position-relative .pr-ai-section .row .col-sm-12 h2 {
+                grid-template-columns: 10% 76% 10% !important;
+            }
+
+            /* Col 12 */
+            .pr-ai-section .col-sm-12 {
+                position: relative;
+                top: 20px;
+            }
+
+        }
+
+        .pr-ai-section .col-sm-12 {
+            position: relative;
+            top: 20px;
+        }
     </style>
     <div class="container-fluid" id="toprint">
 
@@ -443,9 +509,9 @@
                                                         <div class="text-center">
                                                             <a class="btn btn-primary" wire:click="generate"
                                                                 role="button" tabindex="0"
-                                                                wire:loading.attr="disabled"><span
-                                                                    class="spinner-border spinner-border-sm"
-                                                                    wire:loading>
+                                                                wire:loading.attr="disabled" wire:target="generate">
+                                                                <span class="spinner-border spinner-border-sm"
+                                                                    wire:loading wire:target="generate">
                                                                 </span>&nbsp;
                                                                 Compare
                                                             </a>
@@ -857,25 +923,61 @@
     <div class="modal fade" id="geographyModal" tabindex="-1" aria-labelledby="geographyModalLabel"
         aria-hidden="true" wire:ignore.self>
         <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered" wire:ignore.self>
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="geographyModalLabel"><small>
-                            {{-- Debug: Type = {{ $type }} --}}
-                            @if ($type === 'regional')
-                                <p class="mb-2 ">Choose up to {{ $maxCzeRegions ?? 3 }} Czech regions (kraj)
-                                    and {{ $maxIndiaCities }} Indian
-                                    regions.</p>
-                            @else
-                                <p class="mb-2 text-info">You can select up to
-                                    3 Countries.</p>
-                            @endif
-                        </small></h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
+            @if ($type === 'regional')
+                <div class="modal-content" x-data="{
+                    selectedCze: @entangle('selectedCzeRegions'),
+                    selectedIndia: @entangle('selectedIndiaCities'),
+                    maxCze: @js($maxCzeRegions ?? 3),
+                    maxIndia: @js($maxIndiaCities ?? 3),
+                    toggleCze(region) {
+                        if (this.selectedCze.includes(region)) {
+                            this.selectedCze = this.selectedCze.filter(r => r !== region);
+                        } else {
+                            if (this.selectedCze.length < this.maxCze) {
+                                this.selectedCze.push(region);
+                                $wire.set('errorMessage', '');
+                            }
+                        }
+                    },
+                    toggleIndia(id, city) {
+                        let index = this.selectedIndia.findIndex(c => c.id == id);
+                        if (index !== -1) {
+                            this.selectedIndia.splice(index, 1);
+                        } else {
+                            if (this.selectedIndia.length < this.maxIndia) {
+                                this.selectedIndia.push({ id: id, city: city });
+                                $wire.set('errorMessage', '');
+                            }
+                        }
+                    },
+                    isCzeDisabled(region) {
+                        return this.selectedCze.length >= this.maxCze && !this.selectedCze.includes(region);
+                    },
+                    isIndiaDisabled(id) {
+                        return this.selectedIndia.length >= this.maxIndia && !this.selectedIndia.some(c => c.id == id);
+                    }
+                }">
+                @else
+                    <div class="modal-content">
+            @endif
+            <div class="modal-header">
+                <h5 class="modal-title" id="geographyModalLabel"><small>
+                        {{-- Debug: Type = {{ $type }} --}}
+                        @if ($type === 'regional')
+                            <p class="mb-2 ">Choose up to {{ $maxCzeRegions ?? 3 }} Czech regions (kraj)
+                                and {{ $maxIndiaCities }} Indian
+                                regions.</p>
+                        @else
+                            <p class="mb-2 text-info">You can select up to
+                                3 Countries.</p>
+                        @endif
+                    </small></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
 
-                <div class="modal-body" wire:ignore.self>
-                    @if ($type === 'regional')
-
+            <div class="modal-body" wire:ignore.self>
+                @if ($type === 'regional')
+                    <div>
                         {{-- Regional Mode: Czech Regions + Indian Cities --}}
                         <div class="row">
                             {{-- Czech Republic Regions --}}
@@ -885,26 +987,22 @@
                                         Czech Republic – 13 Regions (Kraj)
                                     </h6>
                                     <span class="badge"
-                                        :class="count($selectedCzeRegions) >=
-                                            ($maxCzeRegions ?? 3) ? 'bg-danger' :
-                                            'bg-success'">
-                                        {{ count($selectedCzeRegions) }}/{{ $maxCzeRegions ?? 3 }}
+                                        :class="selectedCze.length >= maxCze ? 'bg-danger' : 'bg-success'">
+                                        <span x-text="selectedCze.length"></span>/<span x-text="maxCze"></span>
                                     </span>
                                 </div>
-                                <div class="list-group" style="max-height: 450px; overflow-y: auto;" wire:ignore.self>
+                                <div class="list-group" style="max-height: 450px; overflow-y: auto;">
                                     @foreach ($czechRegions as $id => $regionName)
-                                        @php
-                                            $isSelectedCze = in_array($regionName, $selectedCzeRegions);
-                                        @endphp
                                         <label
                                             class="list-group-item d-flex font-bold align-items-center gap-3 border-0 py-2"
                                             style="cursor: pointer; transition: background-color 0.2s;"
                                             onmouseover="this.style.backgroundColor='#f8f9fa'"
                                             onmouseout="this.style.backgroundColor='transparent'">
                                             <input class="form-check-input flex-shrink-0 m-0" type="checkbox"
-                                                wire:ignore.self name="czechRegion[]" value="{{ $regionName }}"
-                                                wire:click="toggleCzeRegion('{{ $regionName }}')"
-                                                @checked($isSelectedCze) @disabled(count($selectedCzeRegions) >= ($maxCzeRegions ?? 3) && !$isSelectedCze)>
+                                                value="{{ $regionName }}"
+                                                @change="toggleCze('{{ $regionName }}')"
+                                                :checked="selectedCze.includes('{{ $regionName }}')"
+                                                :disabled="isCzeDisabled('{{ $regionName }}')">
                                             <span class="form-check-label">{{ $regionName }}</span>
                                         </label>
                                     @endforeach
@@ -918,17 +1016,15 @@
                                         India 768 Regions (Districts)
                                     </h6>
                                     <span class="badge"
-                                        :class="count($selectedIndiaCities) >=
-                                            $maxIndiaCities ? 'bg-danger' :
-                                            'bg-success'">
-                                        {{ count($selectedIndiaCities) }}/{{ $maxIndiaCities }}
+                                        :class="selectedIndia.length >= maxIndia ? 'bg-danger' : 'bg-success'">
+                                        <span x-text="selectedIndia.length"></span>/<span x-text="maxIndia"></span>
                                     </span>
                                 </div>
 
-                                <div class="accordion" id="indianStatesAccordion "
-                                    style="max-height: 450px; overflow-y: auto;" wire:ignore.self>
+                                <div class="accordion" id="indianStatesAccordion" wire:ignore.self
+                                    style="max-height: 450px; overflow-y: auto;">
                                     @foreach ($indianStates as $stateName => $cities)
-                                        <div class="accordion-item" wire:ignore.self>
+                                        <div class="accordion-item">
                                             <h2 class="accordion-header"
                                                 id="heading{{ str_replace(' ', '', $stateName) }}">
                                                 <button class="accordion-button collapsed fw-semibold" type="button"
@@ -943,15 +1039,9 @@
                                                 class="accordion-collapse collapse"
                                                 aria-labelledby="heading{{ str_replace(' ', '', $stateName) }}"
                                                 data-bs-parent="#indianStatesAccordion">
-                                                <div class="accordion-body">
+                                                <div class="accordion-body" wire:ignore.self>
                                                     <div class="row g-2">
                                                         @foreach ($cities as $cityData)
-                                                            @php
-                                                                $isSelected = in_array(
-                                                                    $cityData['id'],
-                                                                    array_column($selectedIndiaCities, 'id'),
-                                                                );
-                                                            @endphp
                                                             <div class="col-md-6 col-12">
                                                                 <label
                                                                     class="d-flex align-items-center gap-2 p-2 rounded"
@@ -961,9 +1051,10 @@
                                                                     <input class="form-check-input m-0 flex-shrink-0"
                                                                         type="checkbox"
                                                                         value="{{ $cityData['city'] }}"
-                                                                        wire:click="toggleIndiaCity('{{ $cityData['city'] }}', '{{ $cityData['city'] }}')"
-                                                                        @checked($isSelected)
-                                                                        @disabled(count($selectedIndiaCities) >= $maxIndiaCities && !$isSelected)>
+                                                                        @change="toggleIndia('{{ $cityData['id'] }}', '{{ $cityData['city'] }}')"
+                                                                        :checked="selectedIndia.some(c => c.id ==
+                                                                            '{{ $cityData['id'] }}')"
+                                                                        :disabled="isIndiaDisabled('{{ $cityData['id'] }}')">
                                                                     <span
                                                                         class="form-check-label">{{ $cityData['city'] }}</span>
                                                                 </label>
@@ -987,493 +1078,492 @@
                                     wire:click="$set('errorMessage', '')"></button>
                             </div>
                         @endif
-                    @else
-                        {{-- Country Mode: Country Selection --}}
-                        <div id="selectesGeographyAll"></div>
+                    </div>
+                @else
+                    {{-- Country Mode: Country Selection --}}
+                    <div id="selectesGeographyAll"></div>
 
-                        {{-- @php use Illuminate\Support\Str; @endphp --}}
+                    {{-- @php use Illuminate\Support\Str; @endphp --}}
 
-                        <div class="accordion" id="accordionCitiesCountries">
-                            <div class="row">
+                    <div class="accordion" id="accordionCitiesCountries">
+                        <div class="row">
 
-                                {{-- World Countries --}}
-                                <div class="col-sm-12">
-                                    <h5 class="mb-3">Compare Czech Republic
-                                        with ...</h5>
-                                    @foreach ($citiesTOChose['country'] as $continent => $countries)
-                                        @php $continentId = Str::slug($continent, '_'); @endphp
-                                        <div class="accordion-item">
-                                            <h2 class="accordion-header" id="heading-{{ $continentId }}">
-                                                <button class="accordion-button collapsed" type="button"
-                                                    data-bs-toggle="collapse"
-                                                    data-bs-target="#collapse-{{ $continentId }}"
-                                                    aria-expanded="false"
-                                                    aria-controls="collapse-{{ $continentId }}">
-                                                    {{ __('location.' . str_replace(' ', '_', strtolower($continent))) ?? $continent }}
-                                                </button>
-                                            </h2>
-                                            <div id="collapse-{{ $continentId }}"
-                                                class="accordion-collapse collapse"
-                                                aria-labelledby="heading-{{ $continentId }}"
-                                                data-bs-parent="#accordionCitiesCountries">
-                                                <div class="accordion-body">
+                            {{-- World Countries --}}
+                            <div class="col-sm-12">
+                                <h5 class="mb-3">Compare Czech Republic
+                                    with ...</h5>
+                                @foreach ($citiesTOChose['country'] as $continent => $countries)
+                                    @php $continentId = Str::slug($continent, '_'); @endphp
+                                    <div class="accordion-item">
+                                        <h2 class="accordion-header" id="heading-{{ $continentId }}">
+                                            <button class="accordion-button collapsed" type="button"
+                                                data-bs-toggle="collapse"
+                                                data-bs-target="#collapse-{{ $continentId }}" aria-expanded="false"
+                                                aria-controls="collapse-{{ $continentId }}">
+                                                {{ __('location.' . str_replace(' ', '_', strtolower($continent))) ?? $continent }}
+                                            </button>
+                                        </h2>
+                                        <div id="collapse-{{ $continentId }}" class="accordion-collapse collapse"
+                                            aria-labelledby="heading-{{ $continentId }}"
+                                            data-bs-parent="#accordionCitiesCountries">
+                                            <div class="accordion-body">
 
-                                                    <div class="row">
-                                                        @foreach ($countries as $country)
-                                                            <div class="col-4 col-md-3 mb-2">
+                                                <div class="row">
+                                                    @foreach ($countries as $country)
+                                                        <div class="col-6 col-md-4 mb-2">
 
-                                                                <input class="form-check-input me-1" type="checkbox"
-                                                                    wire:model="cities"
-                                                                    value="{{ json_encode(['name' => $country['name'], 'real_name' => $country['Country']]) }}"
-                                                                    @if ($country['id'] == 122) checked disabled @endif
-                                                                    id="country-{{ $country['id'] }}">
-                                                                <label class="form-check-label"
-                                                                    for="country-{{ $country['id'] }}">
-                                                                    {{ $country['Country'] }}
-                                                                </label>
-                                                            </div>
-                                                        @endforeach
-                                                    </div>
-
+                                                            <input class="form-check-input me-1" type="checkbox"
+                                                                wire:model="cities"
+                                                                value="{{ json_encode(['name' => $country['name'], 'real_name' => $country['Country']]) }}"
+                                                                @if ($country['id'] == 122) checked disabled @endif
+                                                                id="country-{{ $country['id'] }}">
+                                                            <label class="form-check-label"
+                                                                for="country-{{ $country['id'] }}">
+                                                                {{ $country['Country'] }}
+                                                            </label>
+                                                        </div>
+                                                    @endforeach
                                                 </div>
+
                                             </div>
                                         </div>
-                                    @endforeach
-                                </div>
+                                    </div>
+                                @endforeach
                             </div>
                         </div>
-                    @endif
-                </div>
-                <div class="modal-footer">
-                    @if ($type === 'regional')
-                        <div class="d-flex align-items-center justify-content-between w-100">
-                            <div class="text-muted small">
-                                Selected:
-                                <strong>{{ $this->selectedCount }}</strong>
-                            </div>
-                            <div class="d-flex gap-2">
-                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                    Close
-                                </button>
-                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-                                    Done
-                                </button>
-                            </div>
+                    </div>
+                @endif
+            </div>
+            <div class="modal-footer">
+                @if ($type === 'regional')
+                    <div class="d-flex align-items-center justify-content-between w-100">
+                        <div class="text-muted small">
+                            Selected:
+                            <strong
+                                x-text="selectedCze.length + selectedIndia.length">{{ $this->selectedCount }}</strong>
                         </div>
-                    @else
-                        <p class="text-center me-5"><span id="location-selecte-alert">0</span>
-                            {{ $lables['selected'] }}
-                        </p>
-                        <button type="button" class="btn btn-primary"
-                            onclick="geoSelect()">{{ $lables['done'] }}</button>
-                    @endif
-                </div>
+                        <div class="d-flex gap-2">
+                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                Close
+                            </button>
+                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                                wire:click="confirmSelection">
+                                Done
+                            </button>
+                        </div>
+                    </div>
+                @else
+                    <p class="text-center me-5"><span id="location-selecte-alert">0</span>
+                        {{ $lables['selected'] }}
+                    </p>
+                    <button type="button" class="btn btn-primary"
+                        onclick="geoSelect()">{{ $lables['done'] }}</button>
+                @endif
             </div>
         </div>
     </div>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Debugging logs
-            console.log('Upmana AI page loaded');
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Debugging logs
+        console.log('Upmana AI page loaded');
 
-            // Log the output content
-            const outputElement = document.getElementById('outChat');
-            if (outputElement) {
-                console.log('Output Content:', outputElement.innerHTML.trim());
-            } else {
-                console.error('Output element #outChat not found!');
-            }
-        });
+        // Log the output content
+        const outputElement = document.getElementById('outChat');
+        if (outputElement) {
+            console.log('Output Content:', outputElement.innerHTML.trim());
+        } else {
+            console.error('Output element #outChat not found!');
+        }
+    });
 
-        function setContents() {
+    function setContents() {
 
-            const outChatElement = document.getElementById('outChat');
-
-
-            if (!outChatElement) {
-                alert('Please generate Upmana content first!');
-                return false;
-            }
-
-            const content = outChatElement.innerHTML.trim();
-            if (!content) {
-                alert('Please generate Upmana content first!');
-                return false;
-            }
-
-            const contentInput = document.getElementById('content-input');
-            if (!contentInput) {
-                alert('Error setting content!');
-                return false;
-            }
-
-            contentInput.value = content;
+        const outChatElement = document.getElementById('outChat');
 
 
-            return true; // Allow form to submit
+        if (!outChatElement) {
+            alert('Please generate Upmana content first!');
+            return false;
         }
 
-        // Ensure content is set before form submission
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.querySelector('form[data-parallel="true"]');
-            if (form) {
-                form.addEventListener('submit', function(event) {
-                    if (!setContent()) {
-                        event.preventDefault();
-                    }
-                });
+        const content = outChatElement.innerHTML.trim();
+        if (!content) {
+            alert('Please generate Upmana content first!');
+            return false;
+        }
+
+        const contentInput = document.getElementById('content-input');
+        if (!contentInput) {
+            alert('Error setting content!');
+            return false;
+        }
+
+        contentInput.value = content;
+
+
+        return true; // Allow form to submit
+    }
+
+    // Ensure content is set before form submission
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form[data-parallel="true"]');
+        if (form) {
+            form.addEventListener('submit', function(event) {
+                if (!setContent()) {
+                    event.preventDefault();
+                }
+            });
+        }
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const accordion = document.getElementById('accordionCitiesCountries');
+        const checkboxes = accordion.querySelectorAll('input[type="checkbox"]');
+        const countDisplay = document.getElementById('citiesCount');
+        const locationSelecteAlert = document.getElementById('location-selecte-alert');
+        const maxLimit = 3;
+
+        function updateCountAndToggle() {
+            const czechRepublicCheckbox = document.getElementById('country-122');
+            if (czechRepublicCheckbox.checked === false) {
+                czechRepublicCheckbox.checked = true;
             }
+
+            const checkedBoxes = Array.from(checkboxes).filter(cb => cb.checked);
+            const checkedCount = checkedBoxes.length - 1; // Exclude Czech Republic
+            if (countDisplay) {
+                countDisplay.textContent = checkedCount;
+            }
+            if (locationSelecteAlert) {
+                locationSelecteAlert.textContent = checkedCount;
+            }
+
+            checkboxes.forEach(cb => {
+                if (!cb.checked) {
+                    cb.disabled = checkedCount >= maxLimit;
+                } else {
+                    cb.disabled = false;
+                }
+            });
+        }
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', updateCountAndToggle);
         });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const accordion = document.getElementById('accordionCitiesCountries');
-            const checkboxes = accordion.querySelectorAll('input[type="checkbox"]');
-            const countDisplay = document.getElementById('citiesCount');
-            const locationSelecteAlert = document.getElementById('location-selecte-alert');
-            const maxLimit = 3;
+        updateCountAndToggle();
+    });
+</script>
 
-            function updateCountAndToggle() {
-                const czechRepublicCheckbox = document.getElementById('country-122');
-                if (czechRepublicCheckbox.checked === false) {
-                    czechRepublicCheckbox.checked = true;
-                }
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const checkboxes = document.querySelectorAll('#categoryTabsContent input[type="checkbox"]');
+        const resetButton = document.getElementById('resetAllBtn');
+        const categoryBadges = document.getElementById('category-count');
+        const metricsSelecteAlert = document.getElementById('metrics-selecte-alert');
 
-                const checkedBoxes = Array.from(checkboxes).filter(cb => cb.checked);
-                const checkedCount = checkedBoxes.length - 1; // Exclude Czech Republic
-                if (countDisplay) {
-                    countDisplay.textContent = checkedCount;
-                }
-                if (locationSelecteAlert) {
-                    locationSelecteAlert.textContent = checkedCount;
-                }
+        function updateCheckboxStates() {
+            const selectedCheckboxes = document.querySelectorAll(
+                '#categoryTabsContent input[type="checkbox"]:checked');
+            const selectedCount = selectedCheckboxes.length;
 
+            if (selectedCount >= 5) {
                 checkboxes.forEach(cb => {
                     if (!cb.checked) {
-                        cb.disabled = checkedCount >= maxLimit;
-                    } else {
-                        cb.disabled = false;
+                        cb.disabled = true;
                     }
                 });
-            }
-            checkboxes.forEach(cb => {
-                cb.addEventListener('change', updateCountAndToggle);
-            });
-            updateCountAndToggle();
-        });
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const checkboxes = document.querySelectorAll('#categoryTabsContent input[type="checkbox"]');
-            const resetButton = document.getElementById('resetAllBtn');
-            const categoryBadges = document.getElementById('category-count');
-            const metricsSelecteAlert = document.getElementById('metrics-selecte-alert');
-
-            function updateCheckboxStates() {
-                const selectedCheckboxes = document.querySelectorAll(
-                    '#categoryTabsContent input[type="checkbox"]:checked');
-                const selectedCount = selectedCheckboxes.length;
-
-                if (selectedCount >= 5) {
-                    checkboxes.forEach(cb => {
-                        if (!cb.checked) {
-                            cb.disabled = true;
-                        }
-                    });
-                } else {
-                    checkboxes.forEach(cb => cb.disabled = false);
-                }
-
-                if (selectedCount > 0) {
-                    // categoryBadges.classList.remove('d-none');/
-                    categoryBadges.innerHTML = `${selectedCount}`
-                }
-                if (metricsSelecteAlert) {
-                    metricsSelecteAlert.innerHTML = `${selectedCount}`
-                }
+            } else {
+                checkboxes.forEach(cb => cb.disabled = false);
             }
 
-            checkboxes.forEach(cb => {
-                cb.addEventListener('change', function() {
-                    updateCheckboxStates();
-                });
-            });
+            if (selectedCount > 0) {
+                // categoryBadges.classList.remove('d-none');/
+                categoryBadges.innerHTML = `${selectedCount}`
+            }
+            if (metricsSelecteAlert) {
+                metricsSelecteAlert.innerHTML = `${selectedCount}`
+            }
+        }
 
-            resetButton.addEventListener('click', () => {
-                checkboxes.forEach(cb => {
-                    cb.checked = false;
-                    cb.disabled = false;
-                });
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', function() {
                 updateCheckboxStates();
             });
+        });
 
+        resetButton.addEventListener('click', () => {
+            checkboxes.forEach(cb => {
+                cb.checked = false;
+                cb.disabled = false;
+            });
             updateCheckboxStates();
         });
-    </script>
 
-    <script>
-        function geoSelect() {
+        updateCheckboxStates();
+    });
+</script>
 
-            // Close Bootstrap modal
-            const modalEl = document.getElementById('geographyModal');
-            const modalInstance = bootstrap.Modal.getInstance(modalEl);
-            if (modalInstance) modalInstance.hide();
+<script>
+    function geoSelect() {
+
+        // Close Bootstrap modal
+        const modalEl = document.getElementById('geographyModal');
+        const modalInstance = bootstrap.Modal.getInstance(modalEl);
+        if (modalInstance) modalInstance.hide();
+    }
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const registerModal = new bootstrap.Modal(document.getElementById('popupregister'));
+        // registerModal.show();
+
+        window.addEventListener('show-register-modal', () => {
+            registerModal.show();
+        });
+        window.addEventListener('close-register-modal', () => {
+            registerModal.hide();
+        });
+    });
+</script>
+
+<script>
+    let selectedSequence = [];
+    document.addEventListener('DOMContentLoaded', function() {
+
+        function updateOrderNumbers() {
+
+            document.querySelectorAll('.order-number').forEach(span => {
+                span.textContent = '';
+                span.classList.remove('d-inline-block');
+            });
+            selectedSequence.forEach((model, index) => {
+                const checkbox = document.querySelector(`input[name="model[]"][data-ai="${model}"]`);
+                if (checkbox && checkbox.checked) {
+                    const orderSpan = checkbox.closest('label').querySelector('.order-number'); // SAFER
+                    if (orderSpan) {
+                        let mainModal = checkbox.getAttribute('data-ai');
+                        checkbox.value = mainModal + '-' + (index + 1);
+                        orderSpan.textContent = index + 1;
+                        orderSpan.classList.add('d-inline-block');
+                    }
+                }
+            });
         }
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const registerModal = new bootstrap.Modal(document.getElementById('popupregister'));
-            // registerModal.show();
-
-            window.addEventListener('show-register-modal', () => {
-                registerModal.show();
-            });
-            window.addEventListener('close-register-modal', () => {
-                registerModal.hide();
-            });
-        });
-    </script>
-
-    <script>
-        let selectedSequence = [];
-        document.addEventListener('DOMContentLoaded', function() {
-
-            function updateOrderNumbers() {
-
-                document.querySelectorAll('.order-number').forEach(span => {
-                    span.textContent = '';
-                    span.classList.remove('d-inline-block');
-                });
-                selectedSequence.forEach((model, index) => {
-                    const checkbox = document.querySelector(`input[name="model[]"][data-ai="${model}"]`);
-                    if (checkbox && checkbox.checked) {
-                        const orderSpan = checkbox.closest('label').querySelector('.order-number'); // SAFER
-                        if (orderSpan) {
-                            let mainModal = checkbox.getAttribute('data-ai');
-                            checkbox.value = mainModal + '-' + (index + 1);
-                            orderSpan.textContent = index + 1;
-                            orderSpan.classList.add('d-inline-block');
-                        }
-                    }
-                });
+        document.querySelectorAll('input[name="model[]"]:checked').forEach(checkbox => {
+            const value = checkbox.getAttribute('data-ai');
+            if (!selectedSequence.includes(value)) {
+                selectedSequence.push(value);
             }
-            document.querySelectorAll('input[name="model[]"]:checked').forEach(checkbox => {
-                const value = checkbox.getAttribute('data-ai');
-                if (!selectedSequence.includes(value)) {
-                    selectedSequence.push(value);
-                }
-            });
-            updateOrderNumbers();
-
-            document.addEventListener('change', function(e) {
-                if (e.target.matches('input[name="model[]"]')) {
-                    const value = e.target.getAttribute('data-ai');
-                    if (e.target.checked) {
-                        if (!selectedSequence.includes(value)) {
-                            selectedSequence.push(value);
-                        }
-                    } else {
-                        selectedSequence = selectedSequence.filter(v => v !== value);
-                    }
-                    updateOrderNumbers();
-                }
-            });
         });
-    </script>
+        updateOrderNumbers();
 
-    <!-- FAQ Modal -->
-    <div class="modal fade" id="faqModal" tabindex="-1" aria-labelledby="faqModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="faqModalLabel">
-                        @if ($type === 'regional')
-                            Regional Comparison Tool - FAQ
-                        @else
-                            Country Comparison Tool - FAQ
-                        @endif
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
+        document.addEventListener('change', function(e) {
+            if (e.target.matches('input[name="model[]"]')) {
+                const value = e.target.getAttribute('data-ai');
+                if (e.target.checked) {
+                    if (!selectedSequence.includes(value)) {
+                        selectedSequence.push(value);
+                    }
+                } else {
+                    selectedSequence = selectedSequence.filter(v => v !== value);
+                }
+                updateOrderNumbers();
+            }
+        });
+    });
+</script>
+
+<!-- FAQ Modal -->
+<div class="modal fade" id="faqModal" tabindex="-1" aria-labelledby="faqModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="faqModalLabel">
                     @if ($type === 'regional')
-                        {{-- Regional Mode FAQs --}}
-                        <p>The Regional Comparison Tool helps users create knowledge by comparison. It enables clear and
-                            structured comparisons between the Regions of the Czech Republic and India’s Regions
-                            (Districts),
-                            offering practical insights into region-level metrics.
-                        </p>
-                        <div class="accordion" id="faqAccordion">
-                            <!-- Q1 -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="faqHeadingOne">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#faqCollapseOne" aria-expanded="true"
-                                        aria-controls="faqCollapseOne">
-                                        How do I compare regions using this tool?
-                                    </button>
-                                </h2>
-                                <div id="faqCollapseOne" class="accordion-collapse collapse show"
-                                    aria-labelledby="faqHeadingOne" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        <ul>
-                                            <li>Select up to three regions (Kraje) in the Czech Republic and up to three
-                                                regions in India that you wish to compare.</li>
-                                            <>
-                                                In the next step, choose any metric from our multidimensional database
-                                                on which you want the comparison to be performed.</li>
-
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Q2 -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="faqHeadingTwo">
-                                    <button class="accordion-button collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#faqCollapseTwo"
-                                        aria-expanded="false" aria-controls="faqCollapseTwo">
-                                        How many regions can I compare?
-                                    </button>
-                                </h2>
-                                <div id="faqCollapseTwo" class="accordion-collapse collapse"
-                                    aria-labelledby="faqHeadingTwo" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        <ul>
-                                            <li>Czech Republic: You may select 1–3 regions (Kraje). Prague and Central
-                                                Bohemia are treated as a single combined region in this tool.
-                                            </li>
-                                            <li>India: You may select 1–3 regions (districts) from the 768 districts
-                                                included in the India analytics database.</li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Q3 -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="faqHeadingThree">
-                                    <button class="accordion-button collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#faqCollapseThree"
-                                        aria-expanded="false" aria-controls="faqCollapseThree">
-                                        Why does the tool use 13+1 Czech regions and 768 Indian districts?
-                                    </button>
-                                </h2>
-                                <div id="faqCollapseThree" class="accordion-collapse collapse"
-                                    aria-labelledby="faqHeadingThree" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        <ul>
-                                            <li>In the Czech Republic, The Czech Census - conducted at regular intervals
-                                                since 1869 - is organized at the regional (Kraj) level. The data has
-                                                historically recognized 13 regions, with Prague counted as a separate
-                                                region.</li>
-                                            <li>
-                                                In India, the Census has been conducted since the 1880s, and the 2011
-                                                Census officially recorded 640 districts. The next Census is expected in
-                                                2026, and in the years between, the number of districts has increased to
-                                                800+. In our analytics database, these have been standardized to 768
-                                                districts to maintain consistency and enable meaningful comparison
-                                                across regions.
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        Regional Comparison Tool - FAQ
                     @else
-                        {{-- Country Mode FAQs --}}
-                        <p class="mb-4">
-                            The Country Comparison Tool helps users create
-                            knowledge through comparison. It enables
-                            clear
-                            and structured comparisons between the Czech
-                            Republic and other countries, offering
-                            practical
-                            insights into country-level metrics, relative
-                            advantages, and differences across multiple
-                            analytical dimensions.
-                        </p>
+                        Country Comparison Tool - FAQ
+                    @endif
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @if ($type === 'regional')
+                    {{-- Regional Mode FAQs --}}
+                    <p>The Regional Comparison Tool helps users create knowledge by comparison. It enables clear and
+                        structured comparisons between the Regions of the Czech Republic and India’s Regions
+                        (Districts),
+                        offering practical insights into region-level metrics.
+                    </p>
+                    <div class="accordion" id="faqAccordion">
+                        <!-- Q1 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faqCollapseOne" aria-expanded="true"
+                                    aria-controls="faqCollapseOne">
+                                    How do I compare regions using this tool?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseOne" class="accordion-collapse collapse show"
+                                aria-labelledby="faqHeadingOne" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li>Select up to three regions (Kraje) in the Czech Republic and up to three
+                                            regions in India that you wish to compare.</li>
+                                        <>
+                                            In the next step, choose any metric from our multidimensional database
+                                            on which you want the comparison to be performed.</li>
 
-                        <div class="accordion" id="faqAccordion">
-                            <!-- Q1 -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingOne">
-                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapseOne" aria-expanded="true"
-                                        aria-controls="collapseOne">
-                                        What does this comparison tool do?
-                                    </button>
-                                </h2>
-                                <div id="collapseOne" class="accordion-collapse collapse show"
-                                    aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        The Tool enables users to compare the
-                                        Czech Republic with one to three
-                                        countries
-                                        out
-                                        of the 195 UN-recognized countries,
-                                        using an analytical context. It allows
-                                        meaningful comparison across geographies
-                                        based on metrics drawn from our
-                                        multidimensional data framework.
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Q2 -->
-                            <div class="accordion-item">
-                                <h2 class="accordion-header" id="headingTwo">
-                                    <button class="accordion-button collapsed" type="button"
-                                        data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false"
-                                        aria-controls="collapseTwo">
-                                        How do I compare countries using this
-                                        tool?
-                                    </button>
-                                </h2>
-                                <div id="collapseTwo" class="accordion-collapse collapse"
-                                    aria-labelledby="headingTwo" data-bs-parent="#faqAccordion">
-                                    <div class="accordion-body">
-                                        <ol>
-                                            <li><strong>Select the
-                                                    countries</strong> you wish
-                                                to compare with the Czech
-                                                Republic. You may choose 1–3
-                                                countries.</li>
-                                            <li><strong>Select any
-                                                    metric</strong> from our
-                                                multidimensional database on
-                                                which you want the comparison to
-                                                be performed.</li>
-                                            <li><strong>View results:</strong>
-                                                The tool will then generate
-                                                analytical
-                                                insights based on the selected
-                                                geographies and metrics.</li>
-                                        </ol>
-                                    </div>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
-                    @endif
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
+                        <!-- Q2 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faqCollapseTwo" aria-expanded="false"
+                                    aria-controls="faqCollapseTwo">
+                                    How many regions can I compare?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseTwo" class="accordion-collapse collapse"
+                                aria-labelledby="faqHeadingTwo" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li>Czech Republic: You may select 1–3 regions (Kraje). Prague and Central
+                                            Bohemia are treated as a single combined region in this tool.
+                                        </li>
+                                        <li>India: You may select 1–3 regions (districts) from the 768 districts
+                                            included in the India analytics database.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q3 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faqCollapseThree" aria-expanded="false"
+                                    aria-controls="faqCollapseThree">
+                                    Why does the tool use 13+1 Czech regions and 768 Indian districts?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseThree" class="accordion-collapse collapse"
+                                aria-labelledby="faqHeadingThree" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <ul>
+                                        <li>In the Czech Republic, The Czech Census - conducted at regular intervals
+                                            since 1869 - is organized at the regional (Kraj) level. The data has
+                                            historically recognized 13 regions, with Prague counted as a separate
+                                            region.</li>
+                                        <li>
+                                            In India, the Census has been conducted since the 1880s, and the 2011
+                                            Census officially recorded 640 districts. The next Census is expected in
+                                            2026, and in the years between, the number of districts has increased to
+                                            800+. In our analytics database, these have been standardized to 768
+                                            districts to maintain consistency and enable meaningful comparison
+                                            across regions.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @else
+                    {{-- Country Mode FAQs --}}
+                    <p class="mb-4">
+                        The Country Comparison Tool helps users create
+                        knowledge through comparison. It enables
+                        clear
+                        and structured comparisons between the Czech
+                        Republic and other countries, offering
+                        practical
+                        insights into country-level metrics, relative
+                        advantages, and differences across multiple
+                        analytical dimensions.
+                    </p>
+
+                    <div class="accordion" id="faqAccordion">
+                        <!-- Q1 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    What does this comparison tool do?
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show"
+                                aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    The Tool enables users to compare the
+                                    Czech Republic with one to three
+                                    countries
+                                    out
+                                    of the 195 UN-recognized countries,
+                                    using an analytical context. It allows
+                                    meaningful comparison across geographies
+                                    based on metrics drawn from our
+                                    multidimensional data framework.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Q2 -->
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    How do I compare countries using this
+                                    tool?
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    <ol>
+                                        <li><strong>Select the
+                                                countries</strong> you wish
+                                            to compare with the Czech
+                                            Republic. You may choose 1–3
+                                            countries.</li>
+                                        <li><strong>Select any
+                                                metric</strong> from our
+                                            multidimensional database on
+                                            which you want the comparison to
+                                            be performed.</li>
+                                        <li><strong>View results:</strong>
+                                            The tool will then generate
+                                            analytical
+                                            insights based on the selected
+                                            geographies and metrics.</li>
+                                    </ol>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
+</div>
 
-    <script>
-        // Open FAQ modal when FAQ button is clicked
-        document.addEventListener('DOMContentLoaded', function() {
-            const faqButton = document.querySelector('.side-buttons');
-            if (faqButton) {
-                faqButton.addEventListener('click', function() {
-                    const faqModal = new bootstrap.Modal(document.getElementById('faqModal'));
-                    faqModal.show();
-                });
-            }
-        });
-    </script>
+<script>
+    // Open FAQ modal when FAQ button is clicked
+    document.addEventListener('DOMContentLoaded', function() {
+        const faqButton = document.querySelector('.side-buttons');
+        if (faqButton) {
+            faqButton.addEventListener('click', function() {
+                const faqModal = new bootstrap.Modal(document.getElementById('faqModal'));
+                faqModal.show();
+            });
+        }
+    });
+</script>
 
 </div>
