@@ -669,10 +669,11 @@
                     // Use Czech region names directly (not IDs)
                     $regionValues = implode('-', $insCities['region'] ?? []);
                     $cityValues = implode('-', $insCities['city'] ?? []);
-                    $czeMetrics = implode('-', array_keys($subChecks['CZE'] ?? [])) . '-' . implode('-',
-                    array_keys($subChecks['city'] ?? [])) . '-' . implode('-', array_keys($subChecks['country'] ?? []));
+                    $czeMetrics = implode('-', array_keys($subChecks['CZE'] ?? []));
                     $concatenatedString = $regionValues . '-' . $cityValues . '@' . $czeMetrics;
+
                     $currentUrl = url($backUrl)."?share=".base64_encode($concatenatedString);
+
                     @endphp
 
 
