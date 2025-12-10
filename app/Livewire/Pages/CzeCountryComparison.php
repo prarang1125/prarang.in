@@ -51,11 +51,11 @@ class CzeCountryComparison extends Component
     public const MAX_INDIA_CITIES = 3;
     public const MAX_CZE_REGIONS = 3;
     public const CZECH_REGIONS = [
-        1 => 'Prague - Central Bohemia',
+        1 => 'Prague and Central Bohemia',
         2 => 'South Bohemia',
         3 => 'Pilsen',
         4 => 'Karlovy Vary',
-        5 => 'Usti - Labem',
+        5 => 'Usti and Labem',
         6 => 'Liberec',
         7 => 'Hradec Kralove',
         8 => 'Pardubice',
@@ -63,13 +63,11 @@ class CzeCountryComparison extends Component
         10 => 'South Moravia',
         11 => 'Olomouc',
         12 => 'Zlin',
-        13 => 'Moravia-Silesia',
+        13 => 'Moravia Silesia',
     ];
 
     public function mount(Request $request, $type, SentenceService $sentenceService, $lang = null)
     {
-
-
 
         $this->type = $type;
         if ($lang) {
@@ -110,14 +108,123 @@ class CzeCountryComparison extends Component
             }
             return [];
         });
+        
+        // Handle share link
         $this->share = $request->query('share', null);
         if ($this->share) {
+            $this->handleShareLink($this->share);
+        }
+    }
 
-            $share = explode('@', base64_decode($request->query('share')));
-            $location = $share[0];
-            $fields = $share[1];
+    /**
+     * Handle incoming share link
+     * Format: base64(czechRegionIDs|indianCityNames@metricIds)
+     * Example: base64("1-2-3|city1-city2@metric1-metric2")
+     */
+    protected function handleShareLink($shareToken)
+    {
+        try {
+            // Decode the share token
+            $decoded = base64_decode($shareToken);
+            if (!$decoded) {
+                return;
+            }
+
+            // Split into locations and metrics
+            $parts = explode('@', $decoded);
+            if (count($parts) !== 2) {
+                return;
+            }
+
+            [$locations, $metrics] = $parts;
+            
+            // Parse all location parts - separate Czech region names from Indian city names
+            $locationParts = array_filter(explode('-', $locations));
+            
+            $czechRegions = [];
+            $indianCities = [];
+            
+            foreach ($locationParts as $part) {
+                // Check if it's a Czech region name
+                if (in_array($part, self::CZECH_REGIONS)) {
+                    $czechRegions[] = $part;
+                } else {
+                    // It's an Indian city name
+                    $indianCities[] = $part;
+                }
+            }
+
+            // Set the selections
+            $this->selectedCzeRegions = $czechRegions;
+            
+            // For Indian cities, we need to get their IDs
+            if (!empty($indianCities)) {
+                $citiesData = [];
+                foreach ($indianCities as $cityName) {
+                    // Find city ID from citiesTOChose
+                    foreach ($this->citiesTOChose as $city) {
+                        // Handle both JSON string and array formats
+                        $cityObj = is_string($city) ? json_decode($city) : (object)$city;
+                        
+                        if ($cityObj && isset($cityObj->name) && $cityObj->name === $cityName) {
+                            $citiesData[] = [
+                                'id' => $cityObj->id,
+                                'city' => $cityName
+                            ];
+                            break;
+                        }
+                    }
+                }
+                $this->selectedIndiaCities = $citiesData;
+            }
+
+            // Parse and set metrics
+            $metricIds = array_filter(explode('-', $metrics));
+            if (!empty($metricIds)) {
+                // Clear existing selections
+                $this->subChecks = [];
+                
+                // Categorize metrics by prefix
+                foreach ($metricIds as $metricId) {
+                    if (strpos($metricId, 'CZE') === 0) {
+                        // Czech metric
+                        if (!isset($this->subChecks['CZE'])) {
+                            $this->subChecks['CZE'] = [];
+                        }
+                        $this->subChecks['CZE'][$metricId] = true;
+                    } elseif (strpos($metricId, 'city') === 0 || in_array($metricId, ['CITY', 'URBAN'])) {
+                        // City metric
+                        if (!isset($this->subChecks['city'])) {
+                            $this->subChecks['city'] = [];
+                        }
+                        $this->subChecks['city'][$metricId] = true;
+                    } else {
+                        // Country/other metric
+                        if (!isset($this->subChecks['country'])) {
+                            $this->subChecks['country'] = [];
+                        }
+                        $this->subChecks['country'][$metricId] = true;
+                    }
+                }
+            }
+
+            // Clear prompt and generate
             $this->prompt = "";
-            $this->generate(explode('-', $location), explode('-', $fields));
+            
+            // Prepare location IDs for generation
+            $locationIds = array_merge(
+                $czechRegions,
+                array_column($citiesData ?? [], 'id')
+            );
+            
+            // Generate the comparison
+            if (!empty($locationIds) && !empty($metricIds)) {
+                $this->generate($locationIds, $metricIds);
+            }
+            
+        } catch (\Exception $e) {
+            // Silently fail if share link is invalid
+            logger()->error('Share link parsing failed: ' . $e->getMessage());
         }
     }
     public function changeLanguage(SentenceService $sentenceService)

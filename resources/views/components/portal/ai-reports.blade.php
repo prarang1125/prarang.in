@@ -219,9 +219,14 @@
         margin-left: 56px;
         margin-right: 16px;
     }
+
+    /* Modal header */
+    .modal-dialog .modal-header {
+        background-color: #ffffff !important;
+    }
 </style>
-<div class="modal fade" id="czechRegionsModal" tabindex="-1" aria-labelledby="czechRegionsModalLabel"
-    aria-hidden="true" data-backdrop="static" data-bs-keyboard="false">
+<div class="modal fade" id="czechRegionsModal" tabindex="-1" aria-labelledby="czechRegionsModalLabel" aria-hidden="true"
+    data-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-lg">
         <div class="modal-content position-relative">
             <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"
@@ -319,8 +324,8 @@
 </script>
 
 <!-- India Regions Modal -->
-<div class="modal fade" id="indiaRegionsModal" tabindex="-1" aria-labelledby="indiaRegionsModalLabel"
-    aria-hidden="true" data-backdrop="static" data-bs-keyboard="false">
+<div class="modal fade" id="indiaRegionsModal" tabindex="-1" aria-labelledby="indiaRegionsModalLabel" aria-hidden="true"
+    data-backdrop="static" data-bs-keyboard="false">
     <div class="modal-dialog modal-lg">
         <div class="modal-content position-relative">
             <button type="button" class="btn-close position-absolute top-0 end-0 m-3" data-bs-dismiss="modal"
@@ -354,50 +359,54 @@
 </div>
 
 @foreach ($zone as $key => $z)
-    <div class="modal fade text-dark" id="{{ str_replace(' ', '', $key) }}ZoneModal" tabindex="-1"
-        aria-labelledby="{{ str_replace(' ', '', $key) }}ZoneModalLabel" aria-hidden="true" data-backdrop="static"
-        data-bs-keyboard="false">
-        <div class="modal-dialog modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header bg-primary text-white">
-                    <h5 class="modal-title" id="{{ str_replace(' ', '', $key) }}ZoneModalLabel">{{ $key }}
-                        Zone</h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-start" style="min-height:75vh">
-                    <div class="accordion" id="accordion{{ str_replace(' ', '', $key) }}">
+<div class="modal fade text-dark" id="{{ str_replace(' ', '', $key) }}ZoneModal" tabindex="-1"
+    aria-labelledby="{{ str_replace(' ', '', $key) }}ZoneModalLabel" aria-hidden="true" data-backdrop="static"
+    data-bs-keyboard="false">
+    <div class="modal-dialog modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="{{ str_replace(' ', '', $key) }}ZoneModalLabel">{{ $key }}
+                    Zone</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                    aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-start" style="min-height:75vh">
+                <div class="accordion" id="accordion{{ str_replace(' ', '', $key) }}">
 
-                        @foreach ($z as $states)
-                            <div class="accordion-item">
-                                <h2 class="accordion-header"><button class="accordion-button collapsed"
-                                        type="button" data-bs-toggle="collapse"
-                                        data-bs-target="#collapse{{ $states['state_code'] }}">{{ $states['state_ut'] }}</button>
-                                </h2>
-                                <div id="collapse{{ $states['state_code'] }}" class="accordion-collapse collapse"
-                                    data-bs-parent="#accordion{{ str_replace(' ', '', $states['state_code']) }}">
-                                    <div class="accordion-body">
-                                        <div class="row">
-                                            @foreach ($cities[$states['state_code']] as $city)
-                                                <div class="col-6"><a target="_blank"
-                                                        href="https://g2c.prarang.in/ai/{{ $city['city'] }}">{{ $city['city'] }}</a>
-                                                </div>
-                                            @endforeach
-                                        </div>
+                    @foreach ($z as $states)
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{ $states['state_code'] }}">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#collapse{{ $states['state_code'] }}" aria-expanded="false"
+                                aria-controls="collapse{{ $states['state_code'] }}">
+                                {{ $states['state_ut'] }}
+                            </button>
+                        </h2>
+                        <div id="collapse{{ $states['state_code'] }}" class="accordion-collapse collapse"
+                            data-bs-parent="#accordion{{ str_replace(' ', '', $key) }}"
+                            aria-labelledby="heading{{ $states['state_code'] }}">
+                            <div class="accordion-body">
+                                <div class="row">
+                                    @foreach ($cities[$states['state_code']] as $city)
+                                    <div class="col-6"><a target="_blank"
+                                            href="https://g2c.prarang.in/ai/{{ $city['city'] }}">{{ $city['city'] }}</a>
                                     </div>
+                                    @endforeach
                                 </div>
                             </div>
-                        @endforeach
-
-
+                        </div>
                     </div>
+                    @endforeach
+
+
                 </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
+</div>
 @endforeach
 
 <script>
