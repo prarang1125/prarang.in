@@ -621,7 +621,8 @@
                     $cityValues = implode('-', $insCities['city'] ?? []);
                     $czeMetrics = implode('-', array_keys($subChecks['CZE'] ?? []));
                     $concatenatedString = $regionValues . '-' . $cityValues . '@' . $czeMetrics;
-                    $currentUrl = url($backUrl)."?share=".$concatenatedString;
+                    $currentUrl = url($backUrl)."?share=".base64_encode($concatenatedString);
+
                     @endphp
 
 
