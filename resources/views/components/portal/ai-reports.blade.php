@@ -253,7 +253,7 @@
                         <div class="region-box"><a target="_blank"
                                 href="https://g2c.prarang.in/czech-republic/moravia--silesia">Moravia-Silesia</a></div>
                         <div class="region-box"><a target="_blank"
-                                href="https://g2c.prarang.in/czech-republic/usti-nad-labem">Usti nad
+                                href="https://g2c.prarang.in/czech-republic/usti-and-labem">Usti nad
                                 Labem</a></div>
                         <div class="region-box"><a target="_blank"
                                 href="https://g2c.prarang.in/czech-republic/olomouc">Olomouc</a></div>
