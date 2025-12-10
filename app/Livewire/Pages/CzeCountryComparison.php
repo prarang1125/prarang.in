@@ -270,6 +270,8 @@ class CzeCountryComparison extends Component
                     'subChecks.*.required' => 'Please choose at least one things.',
                 ]
             );
+            
+              $this->updatePromptFromState();
         }
        
         $fields = collect($this->subChecks)
@@ -297,7 +299,7 @@ class CzeCountryComparison extends Component
         $topic = array_keys($this->subChecks);
         // dd($this->subChecks);
         $topic = array_diff($this->activeMainChecks, $topic);
-        // $this->updatePromptFromState();
+      
         $newOutput = httpGet('/upamana/transformer', [
             'ids' => $cities ?? $this->geography()['city'],
             'fields' => $fields,
