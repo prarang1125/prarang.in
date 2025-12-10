@@ -1545,10 +1545,8 @@
                                         <ul>
                                             <li>Select up to three regions (Kraje) in the Czech Republic and up to three
                                                 regions in India that you wish to compare.</li>
-                                            <>
-                                                In the next step, choose any metric from our multidimensional database
+                                            <li>In the next step, choose any metric from our multidimensional database
                                                 on which you want the comparison to be performed.</li>
-
                                         </ul>
                                     </div>
                                 </div>
