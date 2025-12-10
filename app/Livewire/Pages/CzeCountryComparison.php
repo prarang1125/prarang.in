@@ -51,11 +51,11 @@ class CzeCountryComparison extends Component
     public const MAX_INDIA_CITIES = 3;
     public const MAX_CZE_REGIONS = 3;
     public const CZECH_REGIONS = [
-        1 => 'Prague and Central Bohemia',
+        1 => 'Prague - Central Bohemia',
         2 => 'South Bohemia',
         3 => 'Pilsen',
         4 => 'Karlovy Vary',
-        5 => 'Usti nad Labem',
+        5 => 'Usti - Labem',
         6 => 'Liberec',
         7 => 'Hradec Kralove',
         8 => 'Pardubice',
@@ -158,9 +158,10 @@ class CzeCountryComparison extends Component
     {
 
         // For regional mode, use confirmSelection instead
-        if ($this->type === 'regional') {
-            $this->confirmSelection();
-        }
+        // if ($this->type === 'regional') {
+        //     $this->confirmSelection();
+        // }
+      
         if (!$fieldIds && true) {
 
             $this->validate(
@@ -175,6 +176,7 @@ class CzeCountryComparison extends Component
                 ]
             );
         }
+       
         $fields = collect($this->subChecks)
             ->flatMap(fn($group) => array_keys(array_filter($group)))
             ->unique()
@@ -192,15 +194,13 @@ class CzeCountryComparison extends Component
         $this->messages = [];
         $this->messages['danger'][] = 'Failed to generate response!';
 
-        if (empty($this->geography()['city'])) {
-            $this->messages['warning'][] = 'Please provide a location ID and prompt.';
-            return;
-        }
-
+        // if (empty($this->geography()['city'])) {
+        //     $this->messages['warning'][] = 'Please provide a location ID and prompt.';
+        //     return;
+        // }
+        // dd($locationIds, $fieldIds);
         $topic = array_keys($this->subChecks);
-
-
-
+        // dd($this->subChecks);
         $topic = array_diff($this->activeMainChecks, $topic);
         $this->updatePromptFromState();
         $newOutput = httpGet('/upamana/transformer', [
@@ -325,7 +325,7 @@ class CzeCountryComparison extends Component
         if (count($cities['city']) < 2) {
             session()->flash('cityerror', 'Please select at least two geography to compare.');
         }
-        $this->insCities = $cities['location_type'];
+        $this->insCities = $cities['location_type']??[];
         return $cities;
     }
 
