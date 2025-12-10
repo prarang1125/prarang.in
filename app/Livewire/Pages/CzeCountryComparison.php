@@ -153,7 +153,7 @@ class CzeCountryComparison extends Component
                     $indianCities[] = $part;
                 }
             }
-
+         
             // Set the selections
             $this->selectedCzeRegions = $czechRegions;
             
@@ -161,23 +161,11 @@ class CzeCountryComparison extends Component
             if (!empty($indianCities)) {
                 $citiesData = [];
                 foreach ($indianCities as $cityName) {
-                    // Find city ID from citiesTOChose
-                    foreach ($this->citiesTOChose as $city) {
-                        // Handle both JSON string and array formats
-                        $cityObj = is_string($city) ? json_decode($city) : (object)$city;
-                        
-                        if ($cityObj && isset($cityObj->name) && $cityObj->name === $cityName) {
-                            $citiesData[] = [
-                                'id' => $cityObj->id,
-                                'city' => $cityName
-                            ];
-                            break;
-                        }
-                    }
+                      $this->selectedIndiaCities['city'][] = $cityName;
                 }
-                $this->selectedIndiaCities = $citiesData;
+              
             }
-
+            // dd($this->selectedCzeRegions, $this->selectedIndiaCities);
             // Parse and set metrics
             $metricIds = array_filter(explode('-', $metrics));
             if (!empty($metricIds)) {
@@ -214,9 +202,9 @@ class CzeCountryComparison extends Component
             // Prepare location IDs for generation
             $locationIds = array_merge(
                 $czechRegions,
-                array_column($citiesData ?? [], 'id')
+                $this->selectedIndiaCities['city']
             );
-            
+         
             // Generate the comparison
             if (!empty($locationIds) && !empty($metricIds)) {
                 $this->generate($locationIds, $metricIds);
@@ -269,7 +257,7 @@ class CzeCountryComparison extends Component
         //     $this->confirmSelection();
         // }
       
-        if (!$fieldIds && true) {
+        if (!$fieldIds) {
 
             $this->validate(
                 [
@@ -309,7 +297,7 @@ class CzeCountryComparison extends Component
         $topic = array_keys($this->subChecks);
         // dd($this->subChecks);
         $topic = array_diff($this->activeMainChecks, $topic);
-        $this->updatePromptFromState();
+        // $this->updatePromptFromState();
         $newOutput = httpGet('/upamana/transformer', [
             'ids' => $cities ?? $this->geography()['city'],
             'fields' => $fields,
