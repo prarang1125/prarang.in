@@ -39,16 +39,17 @@ class CzeCountryComparison extends Component
     public $type;
 
     // Regional comparison properties
-    public $selectedCzeRegion = null;
+    public $selectedCzeRegions = [];
     public $selectedIndiaCities = [];
     public $isConfirmed = false;
     public $errorMessage = '';
     public $czeFields = [];
     public $insCities = [];
-
+    public $share;
 
     // Constants for regional comparison
     public const MAX_INDIA_CITIES = 3;
+    public const MAX_CZE_REGIONS = 3;
     public const CZECH_REGIONS = [
         1 => 'Prague and Central Bohemia',
         2 => 'South Bohemia',
@@ -67,6 +68,9 @@ class CzeCountryComparison extends Component
 
     public function mount(Request $request, $type, SentenceService $sentenceService, $lang = null)
     {
+
+
+
         $this->type = $type;
         if ($lang) {
             session()->put('locale', $lang);
@@ -106,6 +110,15 @@ class CzeCountryComparison extends Component
             }
             return [];
         });
+        $this->share = $request->query('share', null);
+        if ($this->share) {
+
+            $share = explode('@', $request->query('share'));
+            $location = $share[0];
+            $fields = $share[1];
+
+            $this->generate(explode('-', $location), explode('-', $fields));
+        }
     }
     public function changeLanguage(SentenceService $sentenceService)
     {
@@ -141,28 +154,37 @@ class CzeCountryComparison extends Component
         }
     }
 
-    public function generate()
+    public function generate($locationIds = null, $fieldIds = null)
     {
 
         // For regional mode, use confirmSelection instead
         if ($this->type === 'regional') {
             $this->confirmSelection();
         }
+        if (!$fieldIds) {
 
-        // Country mode validation and generation
-        $this->validate(
-            [
-                'subChecks' => 'required|array|min:1',
-                'subChecks.*' => 'required|array',
-            ],
-            [
-                'subChecks.required' => 'Please choose at least one thing.',
-                'subChecks.min' => 'Please choose at least one thing.',
-                'subChecks.*.required' => 'Please choose at least one things.',
-            ]
-        );
+            $this->validate(
+                [
+                    'subChecks' => 'required|array|min:1',
+                    'subChecks.*' => 'required|array',
+                ],
+                [
+                    'subChecks.required' => 'Please choose at least one thing.',
+                    'subChecks.min' => 'Please choose at least one thing.',
+                    'subChecks.*.required' => 'Please choose at least one things.',
+                ]
+            );
+        }
+        $fields = collect($this->subChecks)
+            ->flatMap(fn($group) => array_keys(array_filter($group)))
+            ->unique()
+            ->values()
+            ->all();
+        if ($locationIds && $fieldIds) {
+            $fields = $fieldIds;
 
-
+            $cities = $locationIds;
+        }
         $this->activeSection['firstPrompt'] = false;
         $this->activeSection['promptBox'] = false;
         $this->activeSection['output'] = true;
@@ -177,14 +199,12 @@ class CzeCountryComparison extends Component
 
         $topic = array_keys($this->subChecks);
 
-        $fields = collect($this->subChecks)
-            ->flatMap(fn($group) => array_keys(array_filter($group)))
-            ->unique()
-            ->values()
-            ->all();
+
+
         $topic = array_diff($this->activeMainChecks, $topic);
+        $this->updatePromptFromState();
         $newOutput = httpGet('/upamana/transformer', [
-            'ids' => $this->geography()['city'],
+            'ids' => $cities ?? $this->geography()['city'],
             'fields' => $fields,
             'prompt' => $this->prompt,
             'topic' => $topic,
@@ -288,21 +308,24 @@ class CzeCountryComparison extends Component
         $cities = ['city' => [], 'local_name' => []];
         foreach ($this->cities as $city) {
             $cities['city'][] = json_decode($city)->name;
+            $cities['location_type']['city'][] =  json_decode($city)->name;
             $cities['local_name'][] = json_decode($city)->real_name;
         }
-        if ($this->selectedCzeRegion) {
-            $cities['city'][] = $this->selectedCzeRegion;
-            $cities['local_name'][] = $this->selectedCzeRegion;
+        foreach ($this->selectedCzeRegions as $region) {
+            $cities['city'][] = $region;
+            $cities['location_type']['region'][] = $region;
+            $cities['local_name'][] = $region;
         }
         foreach ($this->selectedIndiaCities as $city) {
             $cities['city'][] = $city['city'];
+            $cities['location_type']['city'][] = $city['city'];
             $cities['local_name'][] = $city['city'];
         }
 
         if (count($cities['city']) < 2) {
             session()->flash('cityerror', 'Please select at least two geography to compare.');
         }
-        $this->insCities = $cities['city'];
+        $this->insCities = $cities['location_type'];
         return $cities;
     }
 
@@ -331,12 +354,25 @@ class CzeCountryComparison extends Component
     }
 
     /**
-     * Toggle Czech Republic region selection (only 1 allowed)
+     * Toggle Czech Republic region selection (max 3 allowed)
      */
     public function toggleCzeRegion($regionId)
     {
-        // Toggle: if same region clicked, deselect; otherwise select new one
-        $this->selectedCzeRegion = ($this->selectedCzeRegion == $regionId) ? null : $regionId;
+        $index = array_search($regionId, $this->selectedCzeRegions);
+
+        if ($index !== false) {
+            // Region already selected - remove it
+            unset($this->selectedCzeRegions[$index]);
+            $this->selectedCzeRegions = array_values($this->selectedCzeRegions);
+        } else {
+            // Region not selected - add if under limit
+            if (count($this->selectedCzeRegions) < self::MAX_CZE_REGIONS) {
+                $this->selectedCzeRegions[] = $regionId;
+                $this->errorMessage = ''; // Clear any previous error
+            } else {
+                $this->errorMessage = 'Maximum ' . self::MAX_CZE_REGIONS . ' Czech regions can be selected';
+            }
+        }
     }
 
     /**
@@ -369,8 +405,8 @@ class CzeCountryComparison extends Component
      */
     public function confirmSelection()
     {
-        if (!$this->selectedCzeRegion) {
-            $this->errorMessage = 'Please select a Czech region';
+        if (empty($this->selectedCzeRegions)) {
+            $this->errorMessage = 'Please select at least one Czech region';
             return;
         }
 
@@ -401,7 +437,7 @@ class CzeCountryComparison extends Component
      */
     public function resetSelection()
     {
-        $this->selectedCzeRegion = null;
+        $this->selectedCzeRegions = [];
         $this->selectedIndiaCities = [];
         $this->isConfirmed = false;
         $this->output = [];
@@ -413,15 +449,24 @@ class CzeCountryComparison extends Component
      */
     public function getSelectedCountProperty()
     {
-        return ($this->selectedCzeRegion ? 1 : 0) + count($this->selectedIndiaCities);
+        return count($this->selectedCzeRegions) + count($this->selectedIndiaCities);
     }
 
     /**
      * Get Czech region name by ID (for regional mode)
      */
-    public function getCzeRegionNameProperty()
+    /**
+     * Get selected Czech region names (for regional mode)
+     */
+    public function getCzeRegionNamesProperty()
     {
-        return self::CZECH_REGIONS[$this->selectedCzeRegion] ?? 'None';
+        if (empty($this->selectedCzeRegions)) {
+            return 'None';
+        }
+
+        return collect($this->selectedCzeRegions)
+            ->map(fn($region) => self::CZECH_REGIONS[array_search($region, self::CZECH_REGIONS)] ?? $region)
+            ->implode(', ');
     }
 
     public function render()
@@ -430,6 +475,8 @@ class CzeCountryComparison extends Component
             'czechRegions' => self::CZECH_REGIONS,
             'indianStates' => $this->type === 'regional' ? $this->getIndianCitiesWithState() : [],
             'maxIndiaCities' => self::MAX_INDIA_CITIES,
+            'maxCzeRegions' => self::MAX_CZE_REGIONS,
+            'selectedCzeRegions' => $this->selectedCzeRegions,
         ];
 
         return view('livewire.pages.cze-country-comparison', $data)->layout('components.layout.main.cze');
