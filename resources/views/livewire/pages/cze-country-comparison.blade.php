@@ -472,16 +472,65 @@
             }
 
         }
+
+        @media (max-width:575px) {
+
+            /* Row */
+            #dfggsgzrf .ExploreMoreInsites ul {
+                grid-template-columns: 1fr !important;
+                /* transform: translatex(0px) translatey(0px); */
+            }
+
+        }
+
+        /* Button */
+        .first-prompt .text-end a {
+            margin-top: 1px;
+            top: 20px;
+            bottom: auto !important;
+        }
+
+        @media (max-width:575px) {
+
+            /* Button */
+            .first-prompt .text-end a {
+                transform: rotateZ(-90deg);
+                margin-right: -1px;
+                top: 248px;
+            }
+
+            /* Modal header */
+
+
+        }
+
+        @media (max-width:575px) {
+
+
+
+            /* Button */
+            .first-prompt .text-end a {
+                z-index: 1000;
+            }
+
+        }
     </style>
     <div class="container-fluid" id="toprint">
 
         <div class="row locale-font">
-            <div class="@if ($output) col-12 @else  col-lg-9 col-md-9 col-sm-12 @endif position-relative">
+            <div class="@if ($output) col-12 @else  -  @endif position-relative">
                 <div class="pr-ai-section">
                     <section class="first-prompt">
                         @if ($activeSection['firstPrompt'])
                         <div class="mb-3 text-center firstPrompt">
+                            <p class="text-end mt-3">
+                                <a javascript:void(0) class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#faqModal" data-bs-toggle="offcanvas">
+                                    FAQ
+                                </a>
+                            </p>
                             @if ($type === 'regional')
+
                             <h2 class="flex justify-center items-center"><img class="mx-2"
                                     src="https://g2c.prarang.in/storage/images/world/195Counties/IND__flag.jpg"
                                     alt="">Indo-Czech Comparison <img class="mx-2"
@@ -615,14 +664,15 @@
 
                     {{-- Country Mode Output --}}
                     @php
-
                     $backUrl = "/czech-republic-".$type."-comparison";
+
+                    // Use Czech region names directly (not IDs)
                     $regionValues = implode('-', $insCities['region'] ?? []);
                     $cityValues = implode('-', $insCities['city'] ?? []);
-                    $czeMetrics = implode('-', array_keys($subChecks['CZE'] ?? []));
+                    $czeMetrics = implode('-', array_keys($subChecks['CZE'] ?? [])) . '-' . implode('-',
+                    array_keys($subChecks['city'] ?? [])) . '-' . implode('-', array_keys($subChecks['country'] ?? []));
                     $concatenatedString = $regionValues . '-' . $cityValues . '@' . $czeMetrics;
                     $currentUrl = url($backUrl)."?share=".base64_encode($concatenatedString);
-
                     @endphp
 
 
@@ -635,9 +685,10 @@
 
 
                                 @if ($type === 'regional')
+
                             <h2 class="flex justify-center items-center"><img class="mx-2"
                                     src="https://g2c.prarang.in/storage/images/world/195Counties/IND__flag.jpg"
-                                    alt="">Indo-Czech Comparison <img class="mx-2"
+                                    alt="">Indo-Czech Comparisons<img class="mx-2"
                                     src="https://g2c.prarang.in/storage/images/world/195Counties/CZE__flag.jpg" alt="">
                             </h2>
                             @else
@@ -816,7 +867,7 @@
 
 
             <!-- 4 Column (Sidebar as Offcanvas on mobile) -->
-            <div class="@if ($output) d-none @else col-lg-3 @endif">
+            <div class="@if ($output) d-none @else col-lg-3 d-none @endif">
                 <br><br>
                 @if ($type === 'regional')
                 <div class="card shadow-sm border-0">
