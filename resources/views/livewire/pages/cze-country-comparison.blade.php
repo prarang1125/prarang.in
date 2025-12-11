@@ -560,6 +560,15 @@
                 z-index: 1000;
             }
 
+            .mb-2 .form-check {
+                height: 65px !important;
+            }
+
+            .rounded {
+                height: 516px;
+
+            }
+
         }
     </style>
     <div class="container-fluid" id="toprint">
