@@ -570,6 +570,10 @@
             }
 
         }
+
+        #content-e_edus .mb-2 {
+            height: 64px !important;
+        }
     </style>
     <div class="container-fluid" id="toprint">
 
