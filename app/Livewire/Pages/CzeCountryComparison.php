@@ -427,18 +427,11 @@ class CzeCountryComparison extends Component
         $this->insCities = $cities['location_type'] ?? [];
         return $cities;
     }
-
-
-
-
     public function processHtml()
     {
         // dd($this->takeme);
     }
 
-    /**
-     * Get Indian cities grouped by state from API (for regional mode)
-     */
     public function getIndianCitiesWithState()
     {
         $response = httpGet('/cities', ['groupby' => 1, 'group' => 'MSTR1']);
