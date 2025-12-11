@@ -305,6 +305,53 @@
             align-items: center;
             font-weight: 600;
         }
+
+        @media (max-width:767px) {
+
+            /* Th */
+            .table-striped tr th:nth-child(1) {
+                position: sticky;
+                left: -15px;
+                z-index: 2;
+            }
+
+            /* Heading */
+            #dfggsgzrf .border-info h6 {
+                position: sticky;
+                left: -14px;
+            }
+
+        }
+
+        @media (max-width:575px) {
+
+            /* Th */
+            .container div #toprint .row .position-relative .pr-ai-section .row .col-sm-12 #outChat #dfggsgzrf .border-info .table-striped thead tr th:nth-child(1) {
+                position: sticky !important;
+            }
+
+            /* Share back print */
+            .position-relative .pr-ai-section .share-back-print {
+                grid-template-columns: 55fr 45fr !important;
+            }
+
+        }
+
+        /* Form check */
+        #content-e_langs .mb-2 .form-check {
+            height: 147px;
+        }
+
+        /* Label */
+        #content-e_langs .mb-2 label {
+            padding-bottom: 5px;
+            top: 3px;
+        }
+
+        /* Column 12/12 */
+        #content-e_langs .mb-2 {
+            min-height: 37px;
+        }
     </style>
     <style>
         /* Flex */
@@ -536,7 +583,7 @@
                                             src="https://g2c.prarang.in/storage/images/world/195Counties/CZE__flag.jpg"
                                             alt="">
                                     </h2>
-                                    <p>Compare Czech Republic Regions(Kraj) with Indian Regions</p>
+                                    <p>Compare Czech Republic Regions(Kraje) with Indian Regions</p>
                                 @else
                                     <style>
                                         /* Image */
@@ -1108,7 +1155,7 @@
                 <h5 class="modal-title" id="geographyModalLabel"><small>
                         {{-- Debug: Type = {{ $type }} --}}
                         @if ($type === 'regional')
-                            <p class="mb-2 ">Choose up to {{ $maxCzeRegions ?? 3 }} Czech regions (kraj)
+                            <p class="mb-2 ">Choose up to {{ $maxCzeRegions ?? 3 }} Czech regions (kraje)
                                 and {{ $maxIndiaCities }} Indian
                                 regions.</p>
                         @else
@@ -1128,7 +1175,7 @@
                             <div class="col-md-5 border-end">
                                 <div class="d-flex align-items-center justify-content-between mb-3">
                                     <h6 class="fw-bold mb-0">
-                                        Czech Republic – 13 Regions (Kraj)
+                                        Czech Republic – 13 Regions (Kraje)
                                     </h6>
                                     <span class="badge"
                                         :class="selectedCze.length >= maxCze ? 'bg-danger' : 'bg-success'">

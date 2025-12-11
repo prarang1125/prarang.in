@@ -168,8 +168,8 @@
     <div class="comparison-tool-container mt-2">
         <div class="row">
             @if ($isConfirmed)
-            <a href="/czech-republic-regional-comparison " class="btn btn-dark btn-sm" style="width: 100px"><i
-                    class="bx bi-arrow-left "></i>Back</a>
+                <a href="/czech-republic-regional-comparison " class="btn btn-dark btn-sm" style="width: 100px"><i
+                        class="bx bi-arrow-left "></i>Back</a>
             @endif
             <div class="@if ($isConfirmed) col-12 @else col-lg-9 col-md-7 @endif">
                 <div class="text-center mb-4">
@@ -177,81 +177,81 @@
                     <p class="text-dark opacity-90 mb-0">Compare Czech Republic Regions with Indian Districts</p>
                 </div>
                 @if (!$isConfirmed)
-                {{-- Selection Mode --}}
-                <section class="d-flex flex-column align-items-center gap-4">
-                    {{-- Selection Button & Counter --}}
-                    <div class="d-flex align-items-center gap-3">
-                        <button type="button" class="btn btn-primary btn-lg shadow-sm" data-bs-toggle="modal"
-                            data-bs-target="#locationModal" style="border-radius: 12px; padding: 12px 24px;">
-                            Select Locations<br>
-                            <small class="opacity-75">(1 Czech + up to {{ $maxIndiaCities }} Indian)</small>
-                        </button>
-                        <div class="d-flex align-items-center gap-2">
-                            <span class="badge bg-info text-white px-3 py-2"
-                                style="font-size: 1.5rem; border-radius: 8px;">
-                                {{ $this->selectedCount }}
-                            </span>
-                            <span class="fw-bold" style="font-size: 1.1rem;">Selected</span>
+                    {{-- Selection Mode --}}
+                    <section class="d-flex flex-column align-items-center gap-4">
+                        {{-- Selection Button & Counter --}}
+                        <div class="d-flex align-items-center gap-3">
+                            <button type="button" class="btn btn-primary btn-lg shadow-sm" data-bs-toggle="modal"
+                                data-bs-target="#locationModal" style="border-radius: 12px; padding: 12px 24px;">
+                                Select Locations<br>
+                                <small class="opacity-75">(1 Czech + up to {{ $maxIndiaCities }} Indian)</small>
+                            </button>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="badge bg-info text-white px-3 py-2"
+                                    style="font-size: 1.5rem; border-radius: 8px;">
+                                    {{ $this->selectedCount }}
+                                </span>
+                                <span class="fw-bold" style="font-size: 1.1rem;">Selected</span>
+                            </div>
                         </div>
-                    </div>
-                    {{-- Arrow Indicator --}}
-                    <div class="text-center">
-                        <i class="bi bi-arrow-down text-primary" style="font-size: 2rem;"></i>
-                    </div>
+                        {{-- Arrow Indicator --}}
+                        <div class="text-center">
+                            <i class="bi bi-arrow-down text-primary" style="font-size: 2rem;"></i>
+                        </div>
 
-                    {{-- Compare Button with Loading State --}}
-                    <button class="btn btn-primary btn-lg px-5 py-3 fw-bold shadow"
-                        style="border-radius: 12px; font-size: 1.1rem;" wire:click="confirmSelection"
-                        wire:loading.attr="disabled" wire:target="confirmSelection">
-                        <span wire:loading.remove wire:target="confirmSelection">
-                            Compare Regions
-                        </span>
-                        <span wire:loading wire:target="confirmSelection">
-                            <span class="spinner-border spinner-border-sm me-2"></span>Loading...
-                        </span>
-                    </button>
+                        {{-- Compare Button with Loading State --}}
+                        <button class="btn btn-primary btn-lg px-5 py-3 fw-bold shadow"
+                            style="border-radius: 12px; font-size: 1.1rem;" wire:click="confirmSelection"
+                            wire:loading.attr="disabled" wire:target="confirmSelection">
+                            <span wire:loading.remove wire:target="confirmSelection">
+                                Compare Regions
+                            </span>
+                            <span wire:loading wire:target="confirmSelection">
+                                <span class="spinner-border spinner-border-sm me-2"></span>Loading...
+                            </span>
+                        </button>
 
-                    {{-- Error Message Display --}}
-                    @if ($errorMessage)
-                    <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
-                        <i class="bi bi-exclamation-triangle-fill me-2"></i>
-                        {{ $errorMessage }}
-                        <button type="button" class="btn-close" wire:click="$set('errorMessage', '')"></button>
-                    </div>
-                    @endif
-                </section>
+                        {{-- Error Message Display --}}
+                        @if ($errorMessage)
+                            <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
+                                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                                {{ $errorMessage }}
+                                <button type="button" class="btn-close" wire:click="$set('errorMessage', '')"></button>
+                            </div>
+                        @endif
+                    </section>
                 @else
-                <section>
-                    @if ($output)
-                    @foreach ($output['cze'] as $czesen)
-                    {{-- <p><span style="color: #0000ff" class="fw-bold"> {!! $this->czeRegionName !!}, </span><br> --}}
-                        {!! $czesen !!}</p>
-                    @endforeach
-                    @foreach ($output['india'] as $indiasen)
-                    <p> {!! $indiasen !!}</p>
-                    @endforeach
+                    <section>
+                        @if ($output)
+                            @foreach ($output['cze'] as $czesen)
+                                {{-- <p><span style="color: #0000ff" class="fw-bold"> {!! $this->czeRegionName !!}, </span><br> --}}
+                                {!! $czesen !!}</p>
+                            @endforeach
+                            @foreach ($output['india'] as $indiasen)
+                                <p> {!! $indiasen !!}</p>
+                            @endforeach
 
-                    @endif
-                </section>
-                {{-- Comparison Results --}}
-                <section class="">
+                        @endif
+                    </section>
+                    {{-- Comparison Results --}}
+                    <section class="">
 
-                    <div class="img-click">
-                        <a href="https://g2c.prarang.in/czech-republic/{{ Str::slug($this->czeRegionName) }}?data=1"
-                            target="_blank">
-                            <h3>{{ $this->czeRegionName }}</h3>
-                            <img src="https://www.prarang.in/matric-.JPG" alt="Czech - India Comparison Data"
-                                class="img-fluid rounded shadow-sm border">
-                        </a>
-                        @foreach ($selectedIndiaCities as $cityData)
-                        <a href="https://g2c.prarang.in/{{ $cityData['city'] }}?data=1" target="_blank">
-                            <h3>{{ $cityData['city'] }}</h3>
-                            <img src="https://www.prarang.in/matric-.JPG" alt="Czech - India Comparison Data"
-                                class="img-fluid rounded shadow-sm border">
-                        </a>
-                        @endforeach
-                    </div>
-                </section>
+                        <div class="img-click">
+                            <a href="https://g2c.prarang.in/czech-republic/{{ Str::slug($this->czeRegionName) }}?data=1"
+                                target="_blank">
+                                <h3>{{ $this->czeRegionName }}</h3>
+                                <img src="https://www.prarang.in/matric-.JPG" alt="Czech - India Comparison Data"
+                                    class="img-fluid rounded shadow-sm border">
+                            </a>
+                            @foreach ($selectedIndiaCities as $cityData)
+                                <a href="https://g2c.prarang.in/{{ $cityData['city'] }}?data=1" target="_blank">
+                                    <h3>{{ $cityData['city'] }}</h3>
+                                    <img src="https://www.prarang.in/matric-.JPG" alt="Czech - India Comparison Data"
+                                        class="img-fluid rounded shadow-sm border">
+                                </a>
+                            @endforeach
+                        </div>
+                    </section>
                 @endif
 
                 {{-- Location Selection Modal --}}
@@ -291,16 +291,17 @@
 
                                         <div class="list-group" style="max-height: 450px; overflow-y: auto;">
                                             @foreach ($czechRegions as $id => $regionName)
-                                            <label class="list-group-item d-flex align-items-center gap-3 border-0 py-2"
-                                                style="cursor: pointer; transition: background-color 0.2s;"
-                                                onmouseover="this.style.backgroundColor='#f8f9fa'"
-                                                onmouseout="this.style.backgroundColor='transparent'">
-                                                <input class="form-check-input flex-shrink-0 m-0" type="radio"
-                                                    name="czechRegion" value="{{ $id }}"
-                                                    wire:click="toggleCzeRegion({{ $id }})"
-                                                    @checked($selectedCzeRegion==$id)>
-                                                <span class="form-check-label">{{ $regionName }}</span>
-                                            </label>
+                                                <label
+                                                    class="list-group-item d-flex align-items-center gap-3 border-0 py-2"
+                                                    style="cursor: pointer; transition: background-color 0.2s;"
+                                                    onmouseover="this.style.backgroundColor='#f8f9fa'"
+                                                    onmouseout="this.style.backgroundColor='transparent'">
+                                                    <input class="form-check-input flex-shrink-0 m-0" type="radio"
+                                                        name="czechRegion" value="{{ $id }}"
+                                                        wire:click="toggleCzeRegion({{ $id }})"
+                                                        @checked($selectedCzeRegion == $id)>
+                                                    <span class="form-check-label">{{ $regionName }}</span>
+                                                </label>
                                             @endforeach
                                         </div>
                                     </div>
@@ -324,53 +325,54 @@
                                         <div class="accordion" id="indianStatesAccordion"
                                             style="max-height: 450px; overflow-y: auto;" wire:ignore.self>
                                             @foreach ($indianStates as $stateName => $cities)
-                                            <div class="accordion-item" wire:ignore.self>
-                                                <h2 class="accordion-header"
-                                                    id="heading{{ str_replace(' ', '', $stateName) }}">
-                                                    <button class="accordion-button collapsed fw-semibold" type="button"
-                                                        data-bs-toggle="collapse"
-                                                        data-bs-target="#collapse{{ str_replace(' ', '', $stateName) }}"
-                                                        aria-expanded="false"
-                                                        aria-controls="collapse{{ str_replace(' ', '', $stateName) }}">
-                                                        {{ $stateName }}
-                                                        <!-- <span
+                                                <div class="accordion-item" wire:ignore.self>
+                                                    <h2 class="accordion-header"
+                                                        id="heading{{ str_replace(' ', '', $stateName) }}">
+                                                        <button class="accordion-button collapsed fw-semibold"
+                                                            type="button" data-bs-toggle="collapse"
+                                                            data-bs-target="#collapse{{ str_replace(' ', '', $stateName) }}"
+                                                            aria-expanded="false"
+                                                            aria-controls="collapse{{ str_replace(' ', '', $stateName) }}">
+                                                            {{ $stateName }}
+                                                            <!-- <span
                                                                 class="badge bg-secondary ms-2">{{ count($cities) }}</span> -->
-                                                    </button>
-                                                </h2>
-                                                <div id="collapse{{ str_replace(' ', '', $stateName) }}"
-                                                    wire:ignore.self class="accordion-collapse collapse"
-                                                    aria-labelledby="heading{{ str_replace(' ', '', $stateName) }}"
-                                                    data-bs-parent="#indianStatesAccordion">
-                                                    <div class="accordion-body">
-                                                        <div class="row g-2">
-                                                            @foreach ($cities as $cityData)
-                                                            @php
-                                                            $isSelected = in_array(
-                                                            $cityData['id'],
-                                                            array_column($selectedIndiaCities, 'id'),
-                                                            );
-                                                            @endphp
-                                                            <div class="col-md-6 col-12">
-                                                                <label
-                                                                    class="d-flex align-items-center gap-2 p-2 rounded"
-                                                                    style="cursor: pointer; transition: background-color 0.2s;"
-                                                                    onmouseover="this.style.backgroundColor='#f0f8ff'"
-                                                                    onmouseout="this.style.backgroundColor='transparent'">
-                                                                    <input class="form-check-input m-0 flex-shrink-0"
-                                                                        type="checkbox" value="{{ $cityData['id'] }}"
-                                                                        wire:click="toggleIndiaCity({{ $cityData['id'] }}, '{{ $cityData['city'] }}')"
-                                                                        @checked($isSelected)
-                                                                        @disabled(count($selectedIndiaCities)>=
-                                                                    $maxIndiaCities && !$isSelected)>
-                                                                    <span class="form-check-label">{{ $cityData['city']
-                                                                        }}</span>
-                                                                </label>
+                                                        </button>
+                                                    </h2>
+                                                    <div id="collapse{{ str_replace(' ', '', $stateName) }}"
+                                                        wire:ignore.self class="accordion-collapse collapse"
+                                                        aria-labelledby="heading{{ str_replace(' ', '', $stateName) }}"
+                                                        data-bs-parent="#indianStatesAccordion">
+                                                        <div class="accordion-body">
+                                                            <div class="row g-2">
+                                                                @foreach ($cities as $cityData)
+                                                                    @php
+                                                                        $isSelected = in_array(
+                                                                            $cityData['id'],
+                                                                            array_column($selectedIndiaCities, 'id'),
+                                                                        );
+                                                                    @endphp
+                                                                    <div class="col-md-6 col-12">
+                                                                        <label
+                                                                            class="d-flex align-items-center gap-2 p-2 rounded"
+                                                                            style="cursor: pointer; transition: background-color 0.2s;"
+                                                                            onmouseover="this.style.backgroundColor='#f0f8ff'"
+                                                                            onmouseout="this.style.backgroundColor='transparent'">
+                                                                            <input
+                                                                                class="form-check-input m-0 flex-shrink-0"
+                                                                                type="checkbox"
+                                                                                value="{{ $cityData['id'] }}"
+                                                                                wire:click="toggleIndiaCity({{ $cityData['id'] }}, '{{ $cityData['city'] }}')"
+                                                                                @checked($isSelected)
+                                                                                @disabled(count($selectedIndiaCities) >= $maxIndiaCities && !$isSelected)>
+                                                                            <span
+                                                                                class="form-check-label">{{ $cityData['city'] }}</span>
+                                                                        </label>
+                                                                    </div>
+                                                                @endforeach
                                                             </div>
-                                                            @endforeach
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
                                             @endforeach
                                         </div>
                                     </div>
@@ -383,7 +385,8 @@
                                         Selected: <strong>{{ $this->selectedCount }}</strong>
                                     </div>
                                     <div class="d-flex gap-2">
-                                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                        <button type="button" class="btn btn-outline-secondary"
+                                            data-bs-dismiss="modal">
                                             Close
                                         </button>
                                         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
@@ -508,12 +511,12 @@
                                     How many regions can I compare?
                                 </button>
                             </h2>
-                            <div id="faqCollapseTwo" class="accordion-collapse collapse" aria-labelledby="faqHeadingTwo"
-                                data-bs-parent="#faqAccordion">
+                            <div id="faqCollapseTwo" class="accordion-collapse collapse"
+                                aria-labelledby="faqHeadingTwo" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
                                     <strong>Czech Republic:</strong> You can select one of the 13 traditional
                                     regions
-                                    (Kraj). Prague and Central Bohemia are treated as a single combined region in
+                                    (Kraje). Prague and Central Bohemia are treated as a single combined region in
                                     this
                                     tool.<br><br>
                                     <strong>India:</strong> You may select 1–3 districts from a total of 768
@@ -557,8 +560,8 @@
     </div>
 
     @push('scripts')
-    <script>
-        // Show "Coming Soon" toast
+        <script>
+            // Show "Coming Soon" toast
             function showComingSoonToast() {
                 const toastEl = document.getElementById('comingSoonToast');
                 const toast = new bootstrap.Toast(toastEl, {
@@ -585,6 +588,6 @@
                     toast.show();
                 });
             });
-    </script>
+        </script>
     @endpush
 </div>
