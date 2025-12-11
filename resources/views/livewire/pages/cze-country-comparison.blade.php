@@ -1076,7 +1076,7 @@
                                                         @endif
                                                         @foreach ($subs as $sub)
                                                             @if ($sub['type'] === $typeIs)
-                                                                <div class="mb-2 col-12 col-sm-4 col-lg-3">
+                                                                <div class="mb-2 col-12 col-sm-4 col-lg-4">
                                                                     <div class="form-check">
                                                                         <input wire:loading.attr="disabled"
                                                                             wire:model="subChecks.{{ $sub['type'] }}.{{ $sub['id'] }}"
