@@ -35,9 +35,7 @@ class CzeCountryComparison extends Component
     public $genHit, $isRegistered;
     public $localLocation, $lables;
     public $selectedLanguage = '';
-
     public $type;
-
     // Regional comparison properties
     public $selectedCzeRegions = [];
     public $selectedIndiaCities = [];
@@ -46,6 +44,7 @@ class CzeCountryComparison extends Component
     public $czeFields = [];
     public $insCities = [];
     public $share;
+
 
     // Constants for regional comparison
     public const MAX_INDIA_CITIES = 3;
@@ -79,9 +78,7 @@ class CzeCountryComparison extends Component
         }
 
         // Auto-select Czech Republic only for country comparison
-        if ($this->type === 'country') {
-            $this->cities[] = json_encode(['name' => 'Czech Republic', 'real_name' => 'Czech Republic']);
-        }
+
 
         session(['chat_id' => uniqid('chat_', true)]);
         $this->verticalService = httpGet('/upamana/get-verticals/' . app()->getLocale())['data'];
@@ -108,19 +105,19 @@ class CzeCountryComparison extends Component
             }
             return [];
         });
-        
+
         // Handle share link
         $this->share = $request->query('share', null);
         if ($this->share) {
             $this->handleShareLink($this->share);
+        } else {
+            if ($this->type === 'country') {
+                $this->cities[] = json_encode(['name' => 'Czech Republic', 'real_name' => 'Czech Republic']);
+            }
         }
     }
 
-    /**
-     * Handle incoming share link
-     * Format: base64(czechRegionIDs|indianCityNames@metricIds)
-     * Example: base64("1-2-3|city1-city2@metric1-metric2")
-     */
+
     protected function handleShareLink($shareToken)
     {
         try {
@@ -137,14 +134,15 @@ class CzeCountryComparison extends Component
             }
 
             [$locations, $metrics] = $parts;
-            
+
             // Parse all location parts - separate Czech region names from Indian city names
             $locationParts = array_filter(explode('-', $locations));
-            
+
             $czechRegions = [];
             $indianCities = [];
-            
+
             foreach ($locationParts as $part) {
+                $this->cities[] = json_encode(['name' => $part, 'real_name' => $part]);
                 // Check if it's a Czech region name
                 if (in_array($part, self::CZECH_REGIONS)) {
                     $czechRegions[] = $part;
@@ -153,25 +151,23 @@ class CzeCountryComparison extends Component
                     $indianCities[] = $part;
                 }
             }
-         
+
             // Set the selections
             $this->selectedCzeRegions = $czechRegions;
-            
+
             // For Indian cities, we need to get their IDs
             if (!empty($indianCities)) {
                 $citiesData = [];
                 foreach ($indianCities as $cityName) {
-                      $this->selectedIndiaCities['city'][] = $cityName;
+                    $this->selectedIndiaCities['city'][] = $cityName;
                 }
-              
             }
-            // dd($this->selectedCzeRegions, $this->selectedIndiaCities);
-            // Parse and set metrics
+
             $metricIds = array_filter(explode('-', $metrics));
             if (!empty($metricIds)) {
                 // Clear existing selections
                 $this->subChecks = [];
-                
+
                 // Categorize metrics by prefix
                 foreach ($metricIds as $metricId) {
                     if (strpos($metricId, 'CZE') === 0) {
@@ -198,19 +194,20 @@ class CzeCountryComparison extends Component
 
             // Clear prompt and generate
             $this->prompt = "";
-            
+
             // Prepare location IDs for generation
             $locationIds = array_merge(
                 $czechRegions,
                 $this->selectedIndiaCities['city']
             );
-         
+
+
             // Generate the comparison
             if (!empty($locationIds) && !empty($metricIds)) {
-                $this->generate($locationIds, $metricIds);
+                $this->generate();
             }
-            
         } catch (\Exception $e) {
+            dd($e);
             // Silently fail if share link is invalid
             logger()->error('Share link parsing failed: ' . $e->getMessage());
         }
@@ -242,6 +239,7 @@ class CzeCountryComparison extends Component
     }
     public function toggleMainCheck($main)
     {
+
         if (in_array($main, $this->activeMainChecks)) {
             $this->activeMainChecks = array_diff($this->activeMainChecks, [$main]);
         } else {
@@ -256,7 +254,7 @@ class CzeCountryComparison extends Component
         // if ($this->type === 'regional') {
         //     $this->confirmSelection();
         // }
-      
+
         if (!$fieldIds) {
 
             $this->validate(
@@ -270,10 +268,8 @@ class CzeCountryComparison extends Component
                     'subChecks.*.required' => 'Please choose at least one things.',
                 ]
             );
-            
-              $this->updatePromptFromState();
         }
-       
+
         $fields = collect($this->subChecks)
             ->flatMap(fn($group) => array_keys(array_filter($group)))
             ->unique()
@@ -299,7 +295,7 @@ class CzeCountryComparison extends Component
         $topic = array_keys($this->subChecks);
         // dd($this->subChecks);
         $topic = array_diff($this->activeMainChecks, $topic);
-      
+        $this->updatePromptFromState();
         $newOutput = httpGet('/upamana/transformer', [
             'ids' => $cities ?? $this->geography()['city'],
             'fields' => $fields,
@@ -342,7 +338,7 @@ class CzeCountryComparison extends Component
     public function updatePromptFromState()
     {
 
-
+        // dd($this->subChecks, $this->geography()['local_name']);
         if (!$this->sentenceService) {
             $this->sentenceService = new SentenceService;
         }
@@ -408,21 +404,27 @@ class CzeCountryComparison extends Component
             $cities['location_type']['city'][] =  json_decode($city)->name;
             $cities['local_name'][] = json_decode($city)->real_name;
         }
-        foreach ($this->selectedCzeRegions as $region) {
-            $cities['city'][] = $region;
-            $cities['location_type']['region'][] = $region;
-            $cities['local_name'][] = $region;
-        }
-        foreach ($this->selectedIndiaCities as $city) {
-            $cities['city'][] = $city['city'];
-            $cities['location_type']['city'][] = $city['city'];
-            $cities['local_name'][] = $city['city'];
+
+        if (!$this->share) {
+            if (!empty($this->selectedCzeRegions))
+                foreach ($this->selectedCzeRegions as $region) {
+                    $cities['city'][] = $region;
+                    $cities['location_type']['region'][] = $region;
+                    $cities['local_name'][] = $region;
+                }
+            if (!empty($this->selectedCzeRegions)) {
+                foreach ($this->selectedIndiaCities as $city) {
+                    $cities['city'][] = $city['city'];
+                    $cities['location_type']['city'][] = $city['city'];
+                    $cities['local_name'][] = $city['city'];
+                }
+            }
         }
 
         if (count($cities['city']) < 2) {
             session()->flash('cityerror', 'Please select at least two geography to compare.');
         }
-        $this->insCities = $cities['location_type']??[];
+        $this->insCities = $cities['location_type'] ?? [];
         return $cities;
     }
 
