@@ -415,7 +415,7 @@
             <!-- Bilateral Portals -->
             <div class="row align-items-center mb-3">
                 <div class="col-md-2 text-md-right text-center">
-                    <h6 class="mb-0 font-weight-bold">World Portals:</h6>
+                    <h6 class="mb-0 font-weight-bold">Country Portals:</h6>
                 </div>
                 <div class="col-md-10">
                     <div class="d-flex flex-wrap gap-2">
@@ -425,11 +425,34 @@
                             </a>
                         @endforeach
 
-                        <a href="https://xn--v1bm1eh4ce.xn--h2brj9c/" target="_blank"
-                            class="btn btn-sm btn-warning m-1">
-                            Hindi Web
-                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="row align-items-center mb-3">
+                <div class="col-md-2 text-md-right text-center">
+                    <h6 class="mb-0 font-weight-bold">World Portals:</h6>
+                </div>
+                <div class="col-md-10">
+                    <div class="d-flex flex-wrap gap-2">
 
+                        <div class="btn-group">
+                            <a type="button" class="btn btn-sm btn-warning m-1" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                Hindi Web
+                            </a>
+                            <ul class="dropdown-menu">
+
+                                <li><a class="dropdown-item" target="_blank" href="https://humsabek.in">English
+                                        Domain</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" target="_blank"
+                                        href="https://xn--v1bm1eh4ce.xn--h2brj9c/">Devanagari
+                                        Domain</a>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -440,8 +463,8 @@
 
 
 
-    <div class="modal fade modal-xl" id="TheseMTw1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="TheseMTw1Label" aria-hidden="true">
+    <div class="modal fade modal-xl" id="TheseMTw1" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="TheseMTw1Label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
