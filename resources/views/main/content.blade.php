@@ -405,12 +405,7 @@
                                     </a>
                                 @endif
                             @endforeach
-                            @if ($key == 'Hindi')
-                                <a href="https://xn--v1bm1eh4ce.xn--h2brj9c/" target="_blank"
-                                    class="btn btn-sm btn-warning m-1">
-                                    All Hindi Webs
-                                </a>
-                            @endif
+
                         </div>
 
 
@@ -429,6 +424,12 @@
                                 {{ ucwords(str_replace('-', ' ', $bilateral->slug)) }}
                             </a>
                         @endforeach
+
+                        <a href="https://xn--v1bm1eh4ce.xn--h2brj9c/" target="_blank"
+                            class="btn btn-sm btn-warning m-1">
+                            Hindi Web
+                        </a>
+
                     </div>
                 </div>
             </div>
