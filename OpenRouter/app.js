@@ -8,11 +8,7 @@ app.use(express.json());
 // 🔑 Base OpenRouter API
 const OPENROUTER_API = 'https://openrouter.ai/api/v1/chat/completions';
 const headers = {
-<<<<<<< HEAD
     'Authorization': 'Bearer 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',
-=======
-    'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
->>>>>>> origin/openrouter
     'HTTP-Referer': 'https://prarang.in/', // optional
     'X-Title': 'Parallel LLM Service',
     'Content-Type': 'application/json',
