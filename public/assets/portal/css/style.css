@@ -1,4 +1,442 @@
-body{color:#565656;background-color:#f2f2f2}a{color:#d93a1e}button{color:#565656}h1,h3,h4,h5{color:#333}.c-spinner{background-color:#333}.header-map{background-color:#bebebe}.header-map__close{color:#FFF;background-color:#d93a1e}.header-map__close:hover{-moz-box-shadow:inset 0 0 0 5px rgba(0,0,0,0.1);-webkit-box-shadow:inset 0 0 0 5px rgba(0,0,0,0.1);box-shadow:inset 0 0 0 5px rgba(0,0,0,0.1)}.header-map__close:active{-moz-box-shadow:inset 0 0 0 8px rgba(0,0,0,0.1);-webkit-box-shadow:inset 0 0 0 8px rgba(0,0,0,0.1);box-shadow:inset 0 0 0 8px rgba(0,0,0,0.1)}.header-map-toggle{background-color:#FFF}.header-map-toggle:hover{-moz-box-shadow:inset 0 0 0 5px rgba(0,0,0,0.1);-webkit-box-shadow:inset 0 0 0 5px rgba(0,0,0,0.1);box-shadow:inset 0 0 0 5px rgba(0,0,0,0.1)}.header-map-toggle:active{-moz-box-shadow:inset 0 0 0 8px rgba(0,0,0,0.1);-webkit-box-shadow:inset 0 0 0 8px rgba(0,0,0,0.1);box-shadow:inset 0 0 0 8px rgba(0,0,0,0.1)}.header-toolbar-toggle__menu-button{color:#565656;background-color:#FFF}.header-toolbar-toggle__menu-button:hover{-moz-box-shadow:inset 0 0 0 5px rgba(0,0,0,0.1);-webkit-box-shadow:inset 0 0 0 5px rgba(0,0,0,0.1);box-shadow:inset 0 0 0 5px rgba(0,0,0,0.1)}.header-toolbar-toggle__menu-button:active{-moz-box-shadow:inset 0 0 0 8px rgba(0,0,0,0.1);-webkit-box-shadow:inset 0 0 0 8px rgba(0,0,0,0.1);box-shadow:inset 0 0 0 8px rgba(0,0,0,0.1)}.header-mobile-menu{background-color:#d93a1e;border-color:rgba(0,0,0,0.2)}.header-mobile-menu__item-link{color:#FFF}.header-mobile-menu__toggle{color:#FFF}.header-mobile-menu__item--level-0{border-color:rgba(255,255,255,0.1)}.header-mobile-menu__submenu--level-0{background-color:rgba(0,0,0,0.1)}.header-mobile-menu__item--level-1{border-color:rgba(255,255,255,0.1)}.header-background:after{background-color:transparent;background-image:-webkit-gradient(linear, left top, left bottom, from(rgba(242,242,242,0)), to(#f2f2f2));background-image:-webkit-linear-gradient(top, rgba(242,242,242,0), #f2f2f2);background-image:-moz-linear-gradient(top, rgba(242,242,242,0), #f2f2f2);background-image:-o-linear-gradient(top, rgba(242,242,242,0), #f2f2f2);background-image:linear-gradient(to bottom, rgba(242,242,242,0), #f2f2f2)}.main__header{color:#FFF;background-color:rgba(0,0,0,0.8)}.main__title{color:#FFF}.widget__inner{background-color:#FFF;-moz-box-shadow:1px 1px 0 rgba(0,0,0,0.05);-webkit-box-shadow:1px 1px 0 rgba(0,0,0,0.05);box-shadow:1px 1px 0 rgba(0,0,0,0.05)}.widget__title{color:#333}.widget__title-icon{color:#d93a1e}.widget__more{border-color:#f0f0f0}.lsvr-townpress-menu-widget .widget__inner{-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none}.lsvr-townpress-menu-widget__nav{background-color:#d93a1e;border-color:rgba(0,0,0,0.1)}.lsvr-townpress-menu-widget__toggle{color:#FFF}.lsvr-townpress-menu-widget__item--level-0{border-color:rgba(255,255,255,0.1)}.lsvr-townpress-menu-widget__item-link--level-0{color:#FFF}.lsvr-townpress-menu-widget__item--level-0.menu-item-has-children:after{color:#FFF}@media (min-width: 992px){.lsvr-townpress-menu-widget__submenu--level-0{background-color:#FFF;-moz-box-shadow:1px 1px 0 rgba(0,0,0,0.05);-webkit-box-shadow:1px 1px 0 rgba(0,0,0,0.05);box-shadow:1px 1px 0 rgba(0,0,0,0.05)}.lsvr-townpress-menu-widget__item--level-1{border-color:#f0f0f0}.lsvr-townpress-menu-widget__item--level-1.menu-item-has-children:after{color:#8a949b}.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-item>.lsvr-townpress-menu-widget__submenu,.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-ancestor>.lsvr-townpress-menu-widget__submenu{background-color:transparent;-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none}.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-item>.lsvr-townpress-menu-widget__submenu--level-0,.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-ancestor>.lsvr-townpress-menu-widget__submenu--level-0{background-color:rgba(0,0,0,0.1)}.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-item>.lsvr-townpress-menu-widget__submenu>.lsvr-townpress-menu-widget__item,.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-ancestor>.lsvr-townpress-menu-widget__submenu>.lsvr-townpress-menu-widget__item{border-color:rgba(255,255,255,0.1)}.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-item>.lsvr-townpress-menu-widget__submenu>.lsvr-townpress-menu-widget__item.menu-item-has-children:after,.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-ancestor>.lsvr-townpress-menu-widget__submenu>.lsvr-townpress-menu-widget__item.menu-item-has-children:after{color:#FFF}.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-item>.lsvr-townpress-menu-widget__submenu>.lsvr-townpress-menu-widget__item>.lsvr-townpress-menu-widget__item-link,.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-ancestor>.lsvr-townpress-menu-widget__submenu>.lsvr-townpress-menu-widget__item>.lsvr-townpress-menu-widget__item-link{color:#FFF}.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-item.lsvr-townpress-menu-widget__item--level-1 .lsvr-townpress-menu-widget__item-link,.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-ancestor.lsvr-townpress-menu-widget__item--level-1 .lsvr-townpress-menu-widget__item-link{color:#FFF}}.lsvr-townpress-weather-widget__weather,.lsvr-townpress-weather-widget__weather-item,.lsvr-townpress-weather-widget__text{border-color:#f0f0f0}.lsvr-townpress-weather-widget--has-background .widget__inner{color:#FFF;background-color:#333}.lsvr-townpress-weather-widget--has-background .widget__title{color:#FFF}.lsvr-townpress-weather-widget--has-background .widget__title-icon{color:#FFF}.lsvr-townpress-weather-widget--has-background a{color:#FFF}.lsvr-townpress-weather-widget--has-background .lsvr-townpress-weather-widget__weather-spinner{background-color:#FFF}.lsvr-townpress-weather-widget--has-background .lsvr-townpress-weather-widget__time{border-color:rgba(255,255,255,0.2)}.lsvr-townpress-weather-widget--has-background .lsvr-townpress-weather-widget__time-title{color:#FFF}.lsvr-townpress-weather-widget--has-background .lsvr-townpress-weather-widget__weather,.lsvr-townpress-weather-widget--has-background .lsvr-townpress-weather-widget__weather-item{border-color:rgba(255,255,255,0.2)}.lsvr-townpress-weather-widget--has-background .lsvr-townpress-weather-widget__weather-item-title,.lsvr-townpress-weather-widget--has-background .lsvr-townpress-weather-widget__weather-item-date{color:#FFF}.lsvr-townpress-weather-widget--has-background .lsvr-townpress-weather-widget__text{border-color:rgba(255,255,255,0.2)}.lsvr_notice-list-widget__item{border-color:#f0f0f0}.lsvr_listing-list-widget__item{border-color:#f0f0f0}.lsvr_event-list-widget__item{border-color:#f0f0f0}.lsvr_event-list-widget__item-date-month{color:#FFF;background-color:#d93a1e}.lsvr_event-list-widget__item-date-day{color:#333;background-color:#f0f0f0}.lsvr_document-list-widget__item{border-color:#f0f0f0}.widget_media_image .widget__inner{background-color:transparent;-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none}.footer--has-background:before{background-image:-webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(rgba(242,242,242,0.9)));background-image:-webkit-linear-gradient(top, #f2f2f2, rgba(242,242,242,0.9));background-image:-moz-linear-gradient(top, #f2f2f2, rgba(242,242,242,0.9));background-image:-o-linear-gradient(top, #f2f2f2, rgba(242,242,242,0.9));background-image:linear-gradient(to bottom, #f2f2f2, rgba(242,242,242,0.9))}.footer-widgets{color:#d7dcdf;background-color:rgba(17,17,17,0.9)}.footer-widgets .widget__inner{background-color:transparent;-moz-box-shadow:none;-webkit-box-shadow:none;box-shadow:none}.footer-widgets .widget__title{color:#FFF}.footer-widgets .widget__title-icon{color:#d93a1e}.footer-widgets .widget__more{border-color:rgba(255,255,255,0.1)}.footer-widgets a{color:#FFF}.footer-widgets .lsvr-townpress-weather-widget{color:#FFF;background-color:transparent}.footer-widgets .lsvr-townpress-weather-widget .widget__title{color:#FFF}.footer-widgets .lsvr-townpress-weather-widget .widget__title-icon{color:#FFF}.footer-widgets .lsvr-townpress-weather-widget a{color:#FFF}.footer-widgets .lsvr-townpress-weather-widget .lsvr-townpress-weather-widget__weather-spinner{background-color:#FFF}.footer-widgets .lsvr-townpress-weather-widget .lsvr-townpress-weather-widget__time{border-color:rgba(255,255,255,0.1)}.footer-widgets .lsvr-townpress-weather-widget .lsvr-townpress-weather-widget__time-title{color:#FFF}.footer-widgets .lsvr-townpress-weather-widget .lsvr-townpress-weather-widget__weather,.footer-widgets .lsvr-townpress-weather-widget .lsvr-townpress-weather-widget__weather-item{border-color:rgba(255,255,255,0.1)}.footer-widgets .lsvr-townpress-weather-widget .lsvr-townpress-weather-widget__weather-item-title,.footer-widgets .lsvr-townpress-weather-widget .lsvr-townpress-weather-widget__weather-item-date{color:#FFF}.footer-widgets .lsvr-townpress-weather-widget .lsvr-townpress-weather-widget__text{border-color:rgba(255,255,255,0.1)}.footer-widgets .lsvr_notice-list-widget__item{border-color:rgba(255,255,255,0.1)}.footer-widgets .lsvr_listing-list-widget__item{border-color:rgba(255,255,255,0.1)}.footer-widgets .lsvr_document-list-widget__item{border-color:rgba(255,255,255,0.1)}.footer-widgets .lsvr_event-list-widget__item{border-color:rgba(255,255,255,0.1)}.footer-bottom{background-image:-webkit-gradient(linear, left top, left bottom, from(rgba(242,242,242,0.9)), to(#f2f2f2));background-image:-webkit-linear-gradient(top, rgba(242,242,242,0.9), #f2f2f2);background-image:-moz-linear-gradient(top, rgba(242,242,242,0.9), #f2f2f2);background-image:-o-linear-gradient(top, rgba(242,242,242,0.9), #f2f2f2);background-image:linear-gradient(to bottom, rgba(242,242,242,0.9), #f2f2f2)}.footer-social__link{color:#FFF;background-color:#d93a1e}.footer-social__link:hover{-moz-box-shadow:inset 0 0 0 50px rgba(255,255,255,0.1);-webkit-box-shadow:inset 0 0 0 50px rgba(255,255,255,0.1);box-shadow:inset 0 0 0 50px rgba(255,255,255,0.1)}.footer-social__link--facebook{background-color:#3b5998}.footer-social__link--twitter{background-color:#55acee}.footer-social__link--youtube{background-color:#e52d27}@media (max-width: 991px){.lsvr-townpress-menu-widget__item{border-color:rgba(255,255,255,0.1)}.lsvr-townpress-menu-widget__item-link{color:#FFF}.lsvr-townpress-menu-widget__submenu--level-0{background-color:rgba(0,0,0,0.1)}}
+body {
+	color: #565656;
+	background-color: #f2f2f2
+}
+
+a {
+	color: #d93a1e
+}
+
+button {
+	color: #565656
+}
+
+h1,
+h3,
+h4,
+h5 {
+	color: #333
+}
+
+.c-spinner {
+	background-color: #333
+}
+
+.header-map {
+	background-color: #bebebe
+}
+
+.header-map__close {
+	color: #FFF;
+	background-color: #d93a1e
+}
+
+.header-map__close:hover {
+	-moz-box-shadow: inset 0 0 0 5px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: inset 0 0 0 5px rgba(0, 0, 0, 0.1);
+	box-shadow: inset 0 0 0 5px rgba(0, 0, 0, 0.1)
+}
+
+.header-map__close:active {
+	-moz-box-shadow: inset 0 0 0 8px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: inset 0 0 0 8px rgba(0, 0, 0, 0.1);
+	box-shadow: inset 0 0 0 8px rgba(0, 0, 0, 0.1)
+}
+
+.header-map-toggle {
+	background-color: #FFF
+}
+
+.header-map-toggle:hover {
+	-moz-box-shadow: inset 0 0 0 5px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: inset 0 0 0 5px rgba(0, 0, 0, 0.1);
+	box-shadow: inset 0 0 0 5px rgba(0, 0, 0, 0.1)
+}
+
+.header-map-toggle:active {
+	-moz-box-shadow: inset 0 0 0 8px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: inset 0 0 0 8px rgba(0, 0, 0, 0.1);
+	box-shadow: inset 0 0 0 8px rgba(0, 0, 0, 0.1)
+}
+
+.header-toolbar-toggle__menu-button {
+	color: #565656;
+	background-color: #FFF
+}
+
+.header-toolbar-toggle__menu-button:hover {
+	-moz-box-shadow: inset 0 0 0 5px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: inset 0 0 0 5px rgba(0, 0, 0, 0.1);
+	box-shadow: inset 0 0 0 5px rgba(0, 0, 0, 0.1)
+}
+
+.header-toolbar-toggle__menu-button:active {
+	-moz-box-shadow: inset 0 0 0 8px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: inset 0 0 0 8px rgba(0, 0, 0, 0.1);
+	box-shadow: inset 0 0 0 8px rgba(0, 0, 0, 0.1)
+}
+
+.header-mobile-menu {
+	background-color: #d93a1e;
+	border-color: rgba(0, 0, 0, 0.2)
+}
+
+.header-mobile-menu__item-link {
+	color: #FFF
+}
+
+.header-mobile-menu__toggle {
+	color: #FFF
+}
+
+.header-mobile-menu__item--level-0 {
+	border-color: rgba(255, 255, 255, 0.1)
+}
+
+.header-mobile-menu__submenu--level-0 {
+	background-color: rgba(0, 0, 0, 0.1)
+}
+
+.header-mobile-menu__item--level-1 {
+	border-color: rgba(255, 255, 255, 0.1)
+}
+
+.header-background:after {
+	background-color: transparent;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(242, 242, 242, 0)), to(#f2f2f2));
+	background-image: -webkit-linear-gradient(top, rgba(242, 242, 242, 0), #f2f2f2);
+	background-image: -moz-linear-gradient(top, rgba(242, 242, 242, 0), #f2f2f2);
+	background-image: -o-linear-gradient(top, rgba(242, 242, 242, 0), #f2f2f2);
+	background-image: linear-gradient(to bottom, rgba(242, 242, 242, 0), #f2f2f2)
+}
+
+.main__header {
+	color: #FFF;
+	background-color: rgba(0, 0, 0, 0.8)
+}
+
+.main__title {
+	color: #FFF
+}
+
+.widget__inner {
+	background-color: #FFF;
+	-moz-box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.05);
+	-webkit-box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.05);
+	box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.05)
+}
+
+.widget__title {
+	color: #333
+}
+
+.widget__title-icon {
+	color: #d93a1e
+}
+
+.widget__more {
+	border-color: #f0f0f0
+}
+
+.lsvr-townpress-menu-widget .widget__inner {
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none
+}
+
+.lsvr-townpress-menu-widget__nav {
+	background-color: #d93a1e;
+	border-color: rgba(0, 0, 0, 0.1)
+}
+
+.lsvr-townpress-menu-widget__toggle {
+	color: #FFF
+}
+
+.lsvr-townpress-menu-widget__item--level-0 {
+	border-color: rgba(255, 255, 255, 0.1)
+}
+
+.lsvr-townpress-menu-widget__item-link--level-0 {
+	color: #FFF
+}
+
+.lsvr-townpress-menu-widget__item--level-0.menu-item-has-children:after {
+	color: #FFF
+}
+
+@media (min-width: 992px) {
+	.lsvr-townpress-menu-widget__submenu--level-0 {
+		background-color: #FFF;
+		-moz-box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.05);
+		-webkit-box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.05);
+		box-shadow: 1px 1px 0 rgba(0, 0, 0, 0.05)
+	}
+
+	.lsvr-townpress-menu-widget__item--level-1 {
+		border-color: #f0f0f0
+	}
+
+	.lsvr-townpress-menu-widget__item--level-1.menu-item-has-children:after {
+		color: #8a949b
+	}
+
+	.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-item>.lsvr-townpress-menu-widget__submenu,
+	.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-ancestor>.lsvr-townpress-menu-widget__submenu {
+		background-color: transparent;
+		-moz-box-shadow: none;
+		-webkit-box-shadow: none;
+		box-shadow: none
+	}
+
+	.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-item>.lsvr-townpress-menu-widget__submenu--level-0,
+	.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-ancestor>.lsvr-townpress-menu-widget__submenu--level-0 {
+		background-color: rgba(0, 0, 0, 0.1)
+	}
+
+	.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-item>.lsvr-townpress-menu-widget__submenu>.lsvr-townpress-menu-widget__item,
+	.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-ancestor>.lsvr-townpress-menu-widget__submenu>.lsvr-townpress-menu-widget__item {
+		border-color: rgba(255, 255, 255, 0.1)
+	}
+
+	.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-item>.lsvr-townpress-menu-widget__submenu>.lsvr-townpress-menu-widget__item.menu-item-has-children:after,
+	.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-ancestor>.lsvr-townpress-menu-widget__submenu>.lsvr-townpress-menu-widget__item.menu-item-has-children:after {
+		color: #FFF
+	}
+
+	.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-item>.lsvr-townpress-menu-widget__submenu>.lsvr-townpress-menu-widget__item>.lsvr-townpress-menu-widget__item-link,
+	.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-ancestor>.lsvr-townpress-menu-widget__submenu>.lsvr-townpress-menu-widget__item>.lsvr-townpress-menu-widget__item-link {
+		color: #FFF
+	}
+
+	.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-item.lsvr-townpress-menu-widget__item--level-1 .lsvr-townpress-menu-widget__item-link,
+	.lsvr-townpress-menu-widget__nav--expanded-active .current-menu-ancestor.lsvr-townpress-menu-widget__item--level-1 .lsvr-townpress-menu-widget__item-link {
+		color: #FFF
+	}
+}
+
+.lsvr-townpress-weather-widget__weather,
+.lsvr-townpress-weather-widget__weather-item,
+.lsvr-townpress-weather-widget__text {
+	border-color: #f0f0f0
+}
+
+.lsvr-townpress-weather-widget--has-background .widget__inner {
+	color: #FFF;
+	background-color: #333
+}
+
+.lsvr-townpress-weather-widget--has-background .widget__title {
+	color: #FFF
+}
+
+.lsvr-townpress-weather-widget--has-background .widget__title-icon {
+	color: #FFF
+}
+
+.lsvr-townpress-weather-widget--has-background a {
+	color: #FFF
+}
+
+.lsvr-townpress-weather-widget--has-background .lsvr-townpress-weather-widget__weather-spinner {
+	background-color: #FFF
+}
+
+.lsvr-townpress-weather-widget--has-background .lsvr-townpress-weather-widget__time {
+	border-color: rgba(255, 255, 255, 0.2)
+}
+
+.lsvr-townpress-weather-widget--has-background .lsvr-townpress-weather-widget__time-title {
+	color: #FFF
+}
+
+.lsvr-townpress-weather-widget--has-background .lsvr-townpress-weather-widget__weather,
+.lsvr-townpress-weather-widget--has-background .lsvr-townpress-weather-widget__weather-item {
+	border-color: rgba(255, 255, 255, 0.2)
+}
+
+.lsvr-townpress-weather-widget--has-background .lsvr-townpress-weather-widget__weather-item-title,
+.lsvr-townpress-weather-widget--has-background .lsvr-townpress-weather-widget__weather-item-date {
+	color: #FFF
+}
+
+.lsvr-townpress-weather-widget--has-background .lsvr-townpress-weather-widget__text {
+	border-color: rgba(255, 255, 255, 0.2)
+}
+
+.lsvr_notice-list-widget__item {
+	border-color: #f0f0f0
+}
+
+.lsvr_listing-list-widget__item {
+	border-color: #f0f0f0
+}
+
+.lsvr_event-list-widget__item {
+	border-color: #f0f0f0
+}
+
+.lsvr_event-list-widget__item-date-month {
+	color: #FFF;
+	background-color: #d93a1e
+}
+
+.lsvr_event-list-widget__item-date-day {
+	color: #333;
+	background-color: #f0f0f0
+}
+
+.lsvr_document-list-widget__item {
+	border-color: #f0f0f0
+}
+
+.widget_media_image .widget__inner {
+	background-color: transparent;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none
+}
+
+.footer--has-background:before {
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#f2f2f2), to(rgba(242, 242, 242, 0.9)));
+	background-image: -webkit-linear-gradient(top, #f2f2f2, rgba(242, 242, 242, 0.9));
+	background-image: -moz-linear-gradient(top, #f2f2f2, rgba(242, 242, 242, 0.9));
+	background-image: -o-linear-gradient(top, #f2f2f2, rgba(242, 242, 242, 0.9));
+	background-image: linear-gradient(to bottom, #f2f2f2, rgba(242, 242, 242, 0.9))
+}
+
+.footer-widgets {
+	color: #d7dcdf;
+	background-color: rgba(17, 17, 17, 0.9)
+}
+
+.footer-widgets .widget__inner {
+	background-color: transparent;
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none
+}
+
+.footer-widgets .widget__title {
+	color: #FFF
+}
+
+.footer-widgets .widget__title-icon {
+	color: #d93a1e
+}
+
+.footer-widgets .widget__more {
+	border-color: rgba(255, 255, 255, 0.1)
+}
+
+.footer-widgets a {
+	color: #FFF
+}
+
+.footer-widgets .lsvr-townpress-weather-widget {
+	color: #FFF;
+	background-color: transparent
+}
+
+.footer-widgets .lsvr-townpress-weather-widget .widget__title {
+	color: #FFF
+}
+
+.footer-widgets .lsvr-townpress-weather-widget .widget__title-icon {
+	color: #FFF
+}
+
+.footer-widgets .lsvr-townpress-weather-widget a {
+	color: #FFF
+}
+
+.footer-widgets .lsvr-townpress-weather-widget .lsvr-townpress-weather-widget__weather-spinner {
+	background-color: #FFF
+}
+
+.footer-widgets .lsvr-townpress-weather-widget .lsvr-townpress-weather-widget__time {
+	border-color: rgba(255, 255, 255, 0.1)
+}
+
+.footer-widgets .lsvr-townpress-weather-widget .lsvr-townpress-weather-widget__time-title {
+	color: #FFF
+}
+
+.footer-widgets .lsvr-townpress-weather-widget .lsvr-townpress-weather-widget__weather,
+.footer-widgets .lsvr-townpress-weather-widget .lsvr-townpress-weather-widget__weather-item {
+	border-color: rgba(255, 255, 255, 0.1)
+}
+
+.footer-widgets .lsvr-townpress-weather-widget .lsvr-townpress-weather-widget__weather-item-title,
+.footer-widgets .lsvr-townpress-weather-widget .lsvr-townpress-weather-widget__weather-item-date {
+	color: #FFF
+}
+
+.footer-widgets .lsvr-townpress-weather-widget .lsvr-townpress-weather-widget__text {
+	border-color: rgba(255, 255, 255, 0.1)
+}
+
+.footer-widgets .lsvr_notice-list-widget__item {
+	border-color: rgba(255, 255, 255, 0.1)
+}
+
+.footer-widgets .lsvr_listing-list-widget__item {
+	border-color: rgba(255, 255, 255, 0.1)
+}
+
+.footer-widgets .lsvr_document-list-widget__item {
+	border-color: rgba(255, 255, 255, 0.1)
+}
+
+.footer-widgets .lsvr_event-list-widget__item {
+	border-color: rgba(255, 255, 255, 0.1)
+}
+
+.footer-bottom {
+	background-image: -webkit-gradient(linear, left top, left bottom, from(rgba(242, 242, 242, 0.9)), to(#f2f2f2));
+	background-image: -webkit-linear-gradient(top, rgba(242, 242, 242, 0.9), #f2f2f2);
+	background-image: -moz-linear-gradient(top, rgba(242, 242, 242, 0.9), #f2f2f2);
+	background-image: -o-linear-gradient(top, rgba(242, 242, 242, 0.9), #f2f2f2);
+	background-image: linear-gradient(to bottom, rgba(242, 242, 242, 0.9), #f2f2f2)
+}
+
+.footer-social__link {
+	color: #FFF;
+	background-color: #d93a1e
+}
+
+.footer-social__link:hover {
+	-moz-box-shadow: inset 0 0 0 50px rgba(255, 255, 255, 0.1);
+	-webkit-box-shadow: inset 0 0 0 50px rgba(255, 255, 255, 0.1);
+	box-shadow: inset 0 0 0 50px rgba(255, 255, 255, 0.1)
+}
+
+.footer-social__link--facebook {
+	background-color: #3b5998
+}
+
+.footer-social__link--twitter {
+	background-color: #55acee
+}
+
+.footer-social__link--youtube {
+	background-color: #e52d27
+}
+
+@media (max-width: 991px) {
+	.lsvr-townpress-menu-widget__item {
+		border-color: rgba(255, 255, 255, 0.1)
+	}
+
+	.lsvr-townpress-menu-widget__item-link {
+		color: #FFF
+	}
+
+	.lsvr-townpress-menu-widget__submenu--level-0 {
+		background-color: rgba(0, 0, 0, 0.1)
+	}
+}
+
 /*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
 html {
 	font-family: sans-serif;
@@ -1806,10 +2244,10 @@ body {
 }
 
 /* Header toolbar  item */
-#header .header-toolbar .header-toolbar__item{
-    background-color:#d93a1e;
-    color:#ffffff;
-   }
+#header .header-toolbar .header-toolbar__item {
+	background-color: #d93a1e;
+	color: #ffffff;
+}
 
 
 
@@ -1818,7 +2256,7 @@ body {
 }
 
 
-@media (max-width:991px){
+@media (max-width:991px) {
 	#header .header__content {
 		height: 230px;
 	}
@@ -1830,595 +2268,633 @@ body {
 	width: 150px;
 }
 
-:after,:before {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+:after,
+:before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
-*,:before,:after {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+*,
+:before,
+:after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
 
- a:hover {
-    text-decoration: none !important;
+a:hover {
+	text-decoration: none !important;
 }
 
 span {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
 
 strong {
-    font-weight: 700;
+	font-weight: 700;
 }
 
 strong {
-    margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 100%;
-    font: inherit;
-    vertical-align: baseline;
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
 }
 
 strong {
-    font-weight: bold;
+	font-weight: bold;
 }
-#core{
+
+#core {
 	top: 100px;
-	position:relative;
-	z-index:10;
-   }
+	position: relative;
+	z-index: 10;
+}
 
-   /* Modal backUnknown */
-   .modal-backdrop{
-	z-index:20;
+/* Modal backUnknown */
+.modal-backdrop {
+	z-index: 20;
 	/* transform:translatex(0px) translatey(0px); */
-   }
+}
 
-   /* Modal dialog */
-   .modal-dialog{
-	z-index:30 !important;
-   }
+/* Modal dialog */
+.modal-dialog {
+	z-index: 30 !important;
+}
 
-   a{color:#d93a1e}button{color:#565656}h1{color:#333}
-   /*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
+a {
+	color: #d93a1e
+}
 
+button {
+	color: #565656
+}
 
-   section {
-       display: block
-   }
+h1 {
+	color: #333
+}
 
-   h1 {
-       font-size: 2em;
-       margin: 0.67em 0
-   }
-
-   a {
-       background-color: transparent;
-       -webkit-text-decoration-skip: objects
-   }
-
-   a:active,
-   a:hover {
-       outline-width: 0
-   }
+/*! normalize.css v5.0.0 | MIT License | github.com/necolas/normalize.css */
 
 
-   strong {
-       font-weight: inherit
-   }
+section {
+	display: block
+}
+
+h1 {
+	font-size: 2em;
+	margin: 0.67em 0
+}
+
+a {
+	background-color: transparent;
+	-webkit-text-decoration-skip: objects
+}
+
+a:active,
+a:hover {
+	outline-width: 0
+}
 
 
-   strong {
-       font-weight: bolder
-   }
-
-   img {
-       border-style: none
-   }
-
-   button {
-       font-family: sans-serif;
-       font-size: 100%;
-       line-height: 1.15;
-       margin: 0
-   }
-
-   button {
-       overflow: visible
-   }
-
-   button {
-       text-transform: none
-   }
+strong {
+	font-weight: inherit
+}
 
 
-   button {
-       -webkit-appearance: button
-   }
+strong {
+	font-weight: bolder
+}
 
-   [type=button]::-moz-focus-inner,
-   button::-moz-focus-inner {
-       border-style: none;
-       padding: 0
-   }
+img {
+	border-style: none
+}
 
-   [type=button]:-moz-focusring,
-   button:-moz-focusring {
-       outline: 1px dotted ButtonText
-   }
+button {
+	font-family: sans-serif;
+	font-size: 100%;
+	line-height: 1.15;
+	margin: 0
+}
 
-   ::-webkit-file-upload-button {
-       -webkit-appearance: button;
-       font: inherit
-   }
+button {
+	overflow: visible
+}
 
-   @font-face {
-       font-family: "townpress-icons";
-       src: url("../fonts/townpress-icons.eot?v1fc62");
-       src: url("../fonts/townpress-icons.eot?v1fc62#iefix") format("embedded-opentype"), url("../fonts/townpress-icons.ttf?v1fc62") format("truetype"), url("../fonts/townpress-icons.woff?v1fc62") format("woff"), url("../fonts/townpress-icons.svg?v1fc62#townpress-icons") format("svg");
-       font-weight: normal;
-       font-style: normal
-   }
+button {
+	text-transform: none
+}
 
-   button::-moz-focus-inner {
-       padding: 0;
-       border: 0
-   }
 
-   @-webkit-keyframes fadeOut {
-       0% {
-           opacity: 1
-       }
+button {
+	-webkit-appearance: button
+}
 
-       to {
-           opacity: 0
-       }
-   }
+[type=button]::-moz-focus-inner,
+button::-moz-focus-inner {
+	border-style: none;
+	padding: 0
+}
 
-   @keyframes fadeOut {
-       0% {
-           opacity: 1
-       }
+[type=button]:-moz-focusring,
+button:-moz-focusring {
+	outline: 1px dotted ButtonText
+}
 
-       to {
-           opacity: 0
-       }
-   }
+::-webkit-file-upload-button {
+	-webkit-appearance: button;
+	font: inherit
+}
 
-   a {
-       -webkit-transition: all 200ms;
-       -moz-transition: all 200ms;
-       -ms-transition: all 200ms;
-       -o-transition: all 200ms;
-       transition: all 200ms
-   }
+@font-face {
+	font-family: "townpress-icons";
+	src: url("../fonts/townpress-icons.eot?v1fc62");
+	src: url("../fonts/townpress-icons.eot?v1fc62#iefix") format("embedded-opentype"), url("../fonts/townpress-icons.ttf?v1fc62") format("truetype"), url("../fonts/townpress-icons.woff?v1fc62") format("woff"), url("../fonts/townpress-icons.svg?v1fc62#townpress-icons") format("svg");
+	font-weight: normal;
+	font-style: normal
+}
 
-   a,
-   a:active,
-   a:hover {
-       text-decoration: none;
-       outline: none
-   }
+button::-moz-focus-inner {
+	padding: 0;
+	border: 0
+}
 
-   a:hover {
-       text-decoration: underline
-   }
+@-webkit-keyframes fadeOut {
+	0% {
+		opacity: 1
+	}
 
-   button {
-       background: none;
-       cursor: pointer;
-       outline: 0;
-       border: 0;
-       -webkit-transition: all 150ms;
-       -moz-transition: all 150ms;
-       -ms-transition: all 150ms;
-       -o-transition: all 150ms;
-       transition: all 150ms
-   }
+	to {
+		opacity: 0
+	}
+}
 
-   img {
-       max-width: 100%;
-       height: auto
-   }
+@keyframes fadeOut {
+	0% {
+		opacity: 1
+	}
 
-   strong {
-       font-weight: bold
-   }
+	to {
+		opacity: 0
+	}
+}
 
-   h1 {
-       margin: 0 0 24px 0;
-       line-height: 1.2em;
-       font-weight: bold
-   }
+a {
+	-webkit-transition: all 200ms;
+	-moz-transition: all 200ms;
+	-ms-transition: all 200ms;
+	-o-transition: all 200ms;
+	transition: all 200ms
+}
 
-   h1 {
-       font-size: 1.875em
-   }
+a,
+a:active,
+a:hover {
+	text-decoration: none;
+	outline: none
+}
 
-   @-webkit-keyframes lsvr-townpress-scaleout {
-       0% {
-           -webkit-transform: scale(0)
-       }
+a:hover {
+	text-decoration: underline
+}
 
-       to {
-           -webkit-transform: scale(1);
-           opacity: 0
-       }
-   }
+button {
+	background: none;
+	cursor: pointer;
+	outline: 0;
+	border: 0;
+	-webkit-transition: all 150ms;
+	-moz-transition: all 150ms;
+	-ms-transition: all 150ms;
+	-o-transition: all 150ms;
+	transition: all 150ms
+}
 
-   @keyframes lsvr-townpress-scaleout {
-       0% {
-           -webkit-transform: scale(0);
-           transform: scale(0)
-       }
+img {
+	max-width: 100%;
+	height: auto
+}
 
-       to {
-           -webkit-transform: scale(1);
-           transform: scale(1);
-           opacity: 0
-       }
-   }
+strong {
+	font-weight: bold
+}
 
-   /* #footer {
+h1 {
+	margin: 0 0 24px 0;
+	line-height: 1.2em;
+	font-weight: bold
+}
+
+h1 {
+	font-size: 1.875em
+}
+
+@-webkit-keyframes lsvr-townpress-scaleout {
+	0% {
+		-webkit-transform: scale(0)
+	}
+
+	to {
+		-webkit-transform: scale(1);
+		opacity: 0
+	}
+}
+
+@keyframes lsvr-townpress-scaleout {
+	0% {
+		-webkit-transform: scale(0);
+		transform: scale(0)
+	}
+
+	to {
+		-webkit-transform: scale(1);
+		transform: scale(1);
+		opacity: 0
+	}
+}
+
+/* #footer {
        position: relative;
        z-index: 10;
        background-position: center 0;
        background-size: cover
    } */
 
-   @keyframes spin {
-       from {
-           transform: rotate(0deg);
-       }
-
-       to {
-           transform: rotate(360deg);
-       }
-   }
-
-   @keyframes blink {
-       from {
-           opacity: 0;
-       }
-
-       50% {
-           opacity: 1;
-       }
-
-       to {
-           opacity: 0;
-       }
-   }
-
-
-   /* Yellow Pen CSS Statrt */
-
-
-   button {
-       font-family: 'Source Sans Pro', Arial, sans-serif;
-   }
-
-   .mdl-card {
-       cursor: pointer;
-       width: auto;
-       min-height: inherit;
-       position: static;
-       overflow: visible;
-       display: block;
-       padding: 5px 25px;
-       box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.03), 0 3px 1px -2px rgba(0, 0, 0, 0.03), 0 1px 5px 0 rgba(0, 0, 0, 0.03);
-   }
-
-   .mdl-card {
-       display: -webkit-flex;
-       display: -ms-flexbox;
-       display: flex;
-       -webkit-flex-direction: column;
-       -ms-flex-direction: column;
-       flex-direction: column;
-       font-size: 16px;
-       font-weight: 400;
-       min-height: 160px;
-       overflow: hidden;
-       box-shadow: 0px 1px 2px #6c727ea3;
-       z-index: 1;
-       position: relative;
-       background: #fff;
-       border-radius: 2px;
-       box-sizing: border-box;
-   }
-
-   :after,:before {
-       -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-       box-sizing: border-box;
-   }
-
-   *,:before,:after {
-       -webkit-box-sizing: border-box;
-       -moz-box-sizing: border-box;
-       box-sizing: border-box;
-   }
-
-    a:hover {
-       text-decoration: none !important;
-   }
-
-   span {
-       margin: 0;
-       padding: 0;
-       border: 0;
-       font-size: 100%;
-       font: inherit;
-       vertical-align: baseline;
-   }
-
-   #top-line {
-       position: absolute;
-       margin-left: 15%;
-       top: 72%;
-   }
-
-   strong {
-       font-weight: 700;
-   }
-
-   strong {
-       margin: 0;
-       padding: 0;
-       border: 0;
-       font-size: 100%;
-       font: inherit;
-       vertical-align: baseline;
-   }
-
-   strong {
-       font-weight: bold;
-   }
-
-   #top-line .chunk  {
-       width: 49px;
-       display: block;
-       float: left;
-       position: relative;
-   }
-
-   #top-line .filler  {
-       height: 10px;
-       position: absolute;
-       width: 100%;
-       left: 0;
-       top: 0;
-   }
-
-
-   /* These were inline style tags. Uses id+class to override almost everything */
-   #style-NJkA2.style-NJkA2 {
-      font-size:1.5em;
-      margin-bottom:9px;
-   }
-   #style-iGLiM.style-iGLiM {
-      font-size: 14px;
-      background-color: #2f89ca;
-       color: white;
-       padding: 4px 10px;
-       width: 55px;
-       margin: 0px auto;
-           text-align: center;
-   }
-   #top-line.style-h84A5 {
-      position:relative;
-      top:6px;
-      margin:auto;
-   }
-   #style-hjjgy.style-hjjgy {
-      background-color:#ff0006;
-       height: 40px;
-   }
-   #style-Vk2dD.style-Vk2dD {
-      background-color:#ffff19;
-       overflow: hidden;
-       height: 40px;
-       background-position: initial initial;
-       background-repeat: initial initial;
-   }
-   #style-VnOPB.style-VnOPB {
-      background-color:#0000fe;
-       height: 40px;
-       overflow: hidden;
-       background-position: initial initial;
-       background-repeat: initial initial;
-   }
-
-
-   /* These were inline style tags. Uses id+class to override almost everything */
-   #style-U4EGH.style-U4EGH {
-       font-size:1.5em;
-       margin-bottom:9px;
-    }
-    #style-9ay34.style-9ay34 {
-       font-size: 14px;
-       background-color: #2f89ca;
-        color: white;
-        padding: 4px 10px;
-        width: 55px;
-        margin: 0px auto;
-            text-align: center;
-    }
-    #top-line.style-oo6iY {
-       position:relative;
-       top:6px;
-       marfin:auto;
-    }
-    #style-LdSff.style-LdSff {
-       background-color:#faff98;
-        height: 40px;
-    }
-    #style-tSQyz.style-tSQyz {
-       background-color:#c8ff01;
-        overflow: hidden;
-        height: 40px;
-        background-position: initial initial;
-        background-repeat: initial initial;
-    }
-    #style-jGmEr.style-jGmEr {
-       background-color:#339933;
-        height: 40px;
-        overflow: hidden;
-        background-position: initial initial;
-        background-repeat: initial initial;
-    }
-    /* Lsvr grid */
-
-      /* Style */
-      #style-LdSff{
-       left:18px !important;
-       right:auto !important;
-       top:1px !important;
-      }
-
-      /* Style */
-      #style-tSQyz{
-       transform:translatex(18px) translatey(0px);
-      }
-
-      /* Style */
-      #style-jGmEr{
-       transform:translatex(22px) translatey(0px);
-       left:-3px !important;
-       right:auto !important;
-      }
-
-
-   /* These were inline style tags. Uses id+class to override almost everything */
-   #style-mbLJB.style-mbLJB {
-       color: rgb(86, 86, 86);
-        cursor: pointer;
-    }
-    #style-eg4E2.style-eg4E2 {
-       color: rgb(86, 86, 86);
-        cursor: pointer;
-    }
-    #style-ULjVO.style-ULjVO {
-       color: rgb(37, 38, 39) !important;
-        cursor: pointer;
-    }
-    #style-mO25o.style-mO25o {
-           float: left;
-    }
-    #style-gLZHU.style-gLZHU {
-       position: absolute;
-       bottom: 1px;
-       font-size: 10px;
-       background-color: #2f89ca;
-       color: white;
-       padding: 2px 10px;
-       right: 0px;
-    }
-    #style-mgvYD.style-mgvYD {
-       color: rgb(37, 38, 39) !important;
-        cursor: pointer;
-    }
-    #style-tC6ly.style-tC6ly {
-           float: left;
-    }
-    #style-xhvhP.style-xhvhP {
-       position: absolute;
-       bottom: 1px;
-       font-size: 10px;
-       background-color: #2f89ca;
-       color: white;
-       padding: 2px 10px;
-       right: 0px;
-    }
-    #style-tokkM.style-tokkM {
-       color: rgb(37, 38, 39) !important;
-        cursor: pointer;
-    }
-    #style-COp3Q.style-COp3Q {
-           float: left;
-    }
-    #style-oGlBW.style-oGlBW {
-       position: absolute;
-       bottom: 1px;
-       font-size: 10px;
-       background-color: #2f89ca;
-       color: white;
-       padding: 2px 10px;
-       right: 0px;
-    }
-
-    /* Column 3/12 */
-   #style-ULjVO .padngbox{
-       min-height:50px;
-       height:50px;
-       justify-content:center;
-      }
-
-      /* Column 3/12 */
-      #style-mgvYD .padngbox{
-       min-height:5px;
-       height:50px;
-       justify-content:center;
-      }
-
-      /* Column 3/12 */
-      #style-tokkM .padngbox{
-       min-height:50px;
-       height:50px;
-       justify-content:center;
-      }
-
-      /* Column 12/12 */
-      .bg-light .snipcss-LolCx .mb-15{
-       padding-bottom:7px;
-       padding-top:3px;
-      }
-
-      /* Snipcss dolr */
-      .bg-light .snipcss-ADolR{
-       margin-bottom:7px;
-      }
-
-   /* Snipcss */
-   .bg-light .snipcss-xJBZh{
-       margin-bottom:7px;
-      }
-
-	  .city_matrix table tr{
-		border-bottom: 1px solid #d93a1e;
+@keyframes spin {
+	from {
+		transform: rotate(0deg);
 	}
 
-	/* Widget  inner */
-#sidebar-right section .widget__inner{
-	border-style:solid;
-	border-color:#ffb1a3;
-   }
+	to {
+		transform: rotate(360deg);
+	}
+}
 
-   /* Light */
-   .hentry div .bg-light{
-	border-color:#ffb1a3 !important;
-	border-width:2px !important;
-   }
+@keyframes blink {
+	from {
+		opacity: 0;
+	}
 
-   /* Carousel wrap */
-   .hentry div .carousel-wrap{
-	border-width:2px;
-	border-color:#ffb1a3;
-   }
+	50% {
+		opacity: 1;
+	}
 
-   /* Widget  inner */
-   #sidebar-left .widget .widget__inner{
-	border-width:2px;
-	border-color:#ffb1a3;
-   }
+	to {
+		opacity: 0;
+	}
+}
 
+
+/* Yellow Pen CSS Statrt */
+
+
+button {
+	font-family: 'Source Sans Pro', Arial, sans-serif;
+}
+
+.mdl-card {
+	cursor: pointer;
+	width: auto;
+	min-height: inherit;
+	position: static;
+	overflow: visible;
+	display: block;
+	padding: 5px 25px;
+	box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.03), 0 3px 1px -2px rgba(0, 0, 0, 0.03), 0 1px 5px 0 rgba(0, 0, 0, 0.03);
+}
+
+.mdl-card {
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	-webkit-flex-direction: column;
+	-ms-flex-direction: column;
+	flex-direction: column;
+	font-size: 16px;
+	font-weight: 400;
+	min-height: 160px;
+	overflow: hidden;
+	box-shadow: 0px 1px 2px #6c727ea3;
+	z-index: 1;
+	position: relative;
+	background: #fff;
+	border-radius: 2px;
+	box-sizing: border-box;
+}
+
+:after,
+:before {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+*,
+:before,
+:after {
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+a:hover {
+	text-decoration: none !important;
+}
+
+span {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+#top-line {
+	position: absolute;
+	margin-left: 15%;
+	top: 72%;
+}
+
+strong {
+	font-weight: 700;
+}
+
+strong {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+
+strong {
+	font-weight: bold;
+}
+
+#top-line .chunk {
+	width: 49px;
+	display: block;
+	float: left;
+	position: relative;
+}
+
+#top-line .filler {
+	height: 10px;
+	position: absolute;
+	width: 100%;
+	left: 0;
+	top: 0;
+}
+
+
+/* These were inline style tags. Uses id+class to override almost everything */
+#style-NJkA2.style-NJkA2 {
+	font-size: 1.5em;
+	margin-bottom: 9px;
+}
+
+#style-iGLiM.style-iGLiM {
+	font-size: 14px;
+	background-color: #2f89ca;
+	color: white;
+	padding: 4px 10px;
+	width: 55px;
+	margin: 0px auto;
+	text-align: center;
+}
+
+#top-line.style-h84A5 {
+	position: relative;
+	top: 6px;
+	margin: auto;
+}
+
+#style-hjjgy.style-hjjgy {
+	background-color: #ff0006;
+	height: 40px;
+}
+
+#style-Vk2dD.style-Vk2dD {
+	background-color: #ffff19;
+	overflow: hidden;
+	height: 40px;
+	background-position: initial initial;
+	background-repeat: initial initial;
+}
+
+#style-VnOPB.style-VnOPB {
+	background-color: #0000fe;
+	height: 40px;
+	overflow: hidden;
+	background-position: initial initial;
+	background-repeat: initial initial;
+}
+
+
+/* These were inline style tags. Uses id+class to override almost everything */
+#style-U4EGH.style-U4EGH {
+	font-size: 1.5em;
+	margin-bottom: 9px;
+}
+
+#style-9ay34.style-9ay34 {
+	font-size: 14px;
+	background-color: #2f89ca;
+	color: white;
+	padding: 4px 10px;
+	width: 55px;
+	margin: 0px auto;
+	text-align: center;
+}
+
+#top-line.style-oo6iY {
+	position: relative;
+	top: 6px;
+	marfin: auto;
+}
+
+#style-LdSff.style-LdSff {
+	background-color: #faff98;
+	height: 40px;
+}
+
+#style-tSQyz.style-tSQyz {
+	background-color: #c8ff01;
+	overflow: hidden;
+	height: 40px;
+	background-position: initial initial;
+	background-repeat: initial initial;
+}
+
+#style-jGmEr.style-jGmEr {
+	background-color: #339933;
+	height: 40px;
+	overflow: hidden;
+	background-position: initial initial;
+	background-repeat: initial initial;
+}
+
+/* Lsvr grid */
+
+/* Style */
+#style-LdSff {
+	left: 18px !important;
+	right: auto !important;
+	top: 1px !important;
+}
+
+/* Style */
+#style-tSQyz {
+	transform: translatex(18px) translatey(0px);
+}
+
+/* Style */
+#style-jGmEr {
+	transform: translatex(22px) translatey(0px);
+	left: -3px !important;
+	right: auto !important;
+}
+
+
+/* These were inline style tags. Uses id+class to override almost everything */
+#style-mbLJB.style-mbLJB {
+	color: rgb(86, 86, 86);
+	cursor: pointer;
+}
+
+#style-eg4E2.style-eg4E2 {
+	color: rgb(86, 86, 86);
+	cursor: pointer;
+}
+
+#style-ULjVO.style-ULjVO {
+	color: rgb(37, 38, 39) !important;
+	cursor: pointer;
+}
+
+#style-mO25o.style-mO25o {
+	float: left;
+}
+
+#style-gLZHU.style-gLZHU {
+	position: absolute;
+	bottom: 1px;
+	font-size: 10px;
+	background-color: #2f89ca;
+	color: white;
+	padding: 2px 10px;
+	right: 0px;
+}
+
+#style-mgvYD.style-mgvYD {
+	color: rgb(37, 38, 39) !important;
+	cursor: pointer;
+}
+
+#style-tC6ly.style-tC6ly {
+	float: left;
+}
+
+#style-xhvhP.style-xhvhP {
+	position: absolute;
+	bottom: 1px;
+	font-size: 10px;
+	background-color: #2f89ca;
+	color: white;
+	padding: 2px 10px;
+	right: 0px;
+}
+
+#style-tokkM.style-tokkM {
+	color: rgb(37, 38, 39) !important;
+	cursor: pointer;
+}
+
+#style-COp3Q.style-COp3Q {
+	float: left;
+}
+
+#style-oGlBW.style-oGlBW {
+	position: absolute;
+	bottom: 1px;
+	font-size: 10px;
+	background-color: #2f89ca;
+	color: white;
+	padding: 2px 10px;
+	right: 0px;
+}
+
+/* Column 3/12 */
+#style-ULjVO .padngbox {
+	min-height: 50px;
+	height: 50px;
+	justify-content: center;
+}
+
+/* Column 3/12 */
+#style-mgvYD .padngbox {
+	min-height: 5px;
+	height: 50px;
+	justify-content: center;
+}
+
+/* Column 3/12 */
+#style-tokkM .padngbox {
+	min-height: 50px;
+	height: 50px;
+	justify-content: center;
+}
+
+/* Column 12/12 */
+.bg-light .snipcss-LolCx .mb-15 {
+	padding-bottom: 7px;
+	padding-top: 3px;
+}
+
+/* Snipcss dolr */
+.bg-light .snipcss-ADolR {
+	margin-bottom: 7px;
+}
+
+/* Snipcss */
+.bg-light .snipcss-xJBZh {
+	margin-bottom: 7px;
+}
+
+.city_matrix table tr {
+	border-bottom: 1px solid #d93a1e;
+}
+
+/* Widget  inner */
+#sidebar-right section .widget__inner {
+	border-style: solid;
+	border-color: #ffb1a3;
+}
+
+/* Light */
+.hentry div .bg-light {
+	border-color: #ffb1a3 !important;
+	border-width: 2px !important;
+}
+
+/* Carousel wrap */
+.hentry div .carousel-wrap {
+	border-width: 2px;
+	border-color: #ffb1a3;
+}
+
+/* Widget  inner */
+#sidebar-left .widget .widget__inner {
+	border-width: 2px;
+	border-color: #ffb1a3;
+}
