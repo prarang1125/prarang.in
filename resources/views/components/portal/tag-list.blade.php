@@ -1,224 +1,126 @@
 <div>
-    <style>
-        /* Column 10/12 */
-        .hentry .tagListx {
-            display: inline;
-            justify-content: normal;
-            align-items: stretch;
-        }
-
-        /* Row */
-        .mb-1>.row {
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Heading */
-        .hentry div h6 {
-            margin-bottom: 0px;
-            font-weight: 600;
-        }
-
-        /* Column 10/12 */
-        #core .lsvr-container .lsvr-grid .columns__main #main .main__inner .hentry .page__content div .modal .modal-dialog .modal-content .modal-body .mb-1 .row .tagListx {
-            transform: translatex(0px) translatey(0px) !important;
-        }
-
-        /* Column 10/12 */
-        .hentry .mb-1 .m-0 {
-            padding-left: 18px !important;
-        }
-
-        .tagListx {
-            padding: 25px, 5px, 5px, 5px;
-            background-color: #7A7B7B;
-            color: #ffffff;
-        }
-
-        .tagListx:hover {
-            background-color: #ea420e;
-            color: #ffffff;
-        }
-
-        /* Rounded circle */
-        .hentry .tagListx .rounded-circle {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-right: 62px;
-
-            color: #ffffff;
-            background-color: #7A7B7B;
-        }
-
-        /* Rounded circle */
-        .hentry div .modal .modal-dialog .modal-content .modal-body .mb-1 .row .tagListx .row .col-2 .rounded-circle {
-            transform: translatex(0px) translatey(0px) !important;
-        }
-
-        /* Modal footer */
-        .hentry div .modal-footer {
-            padding-top: 2px;
-            padding-bottom: 1px;
-        }
-
-        /* Rounded circle */
-        .hentry .tagListx .rounded-circle {
-            height: 43px !important;
-        }
-
-        /* Heading */
-        .hentry a h6 {
-            position: relative;
-            top: 6px;
-        }
-    </style>
-
-    <section class="p-3 pt-4 border borede bg-light">
-        <div class="row">
-            <div class="col-sm-6">
-                <div class="text-center mdl-card mdl-card1 mdl-shadow--2dp snipcss-ADolR"
-                    style="min-height:125px !important"><br>
-                    <span class="culture seo style-NJkA2"
-                        id="style-NJkA2"><strong>{{ $locale['culture'] ?? '' }}</strong></span>
-                    <span id="style-iGLiM" class="style-iGLiM"><strong>{{ $tagCounts['culture_count'] }}</strong></span>
-                    <div id="top-line" class="style-h84A5">
-                        <div class="chunk">&nbsp;<span class="filler style-hjjgy" id="style-hjjgy"></span></div>
-                        <div class="chunk">&nbsp;<span class="filler style-Vk2dD" id="style-Vk2dD"></span></div>
-                        <div class="chunk">&nbsp;<span class="filler style-VnOPB" id="style-VnOPB"></span></div>
+    <section class="py-6 px-1">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            {{-- CULTURE (संस्कृति) SECTION --}}
+            <div class="space-y-4">
+                {{-- Main Category Card --}}
+                <div
+                    class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col items-center py-6">
+                    <h2 class="text-2xl font-black text-gray-800 mb-2">{{ $locale['culture'] ?? 'संस्कृति' }}</h2>
+                    <div class="bg-[#2563eb] text-white text-lg font-bold px-8 py-1.5 rounded-md shadow-sm mb-4">
+                        {{ $tagCounts['culture_count'] }}
                     </div>
-                    <br>
-                    <br>
+                    {{-- Color Bars --}}
+                    <div class="flex w-3/4 h-8">
+                        <div class="flex-1 bg-[#ef4444]"></div>
+                        <div class="flex-1 bg-[#fef08a]"></div>
+                        <div class="flex-1 bg-[#0000ff]"></div>
+                    </div>
                 </div>
-                <!-- Exported with SnipCSS extension (Ver 1.8.8) -->
-                <div class="row snipcss-LolCx" id="newboxes1"><a href="post-summary.php" contenteditable="false"
-                        id="style-mbLJB" class="style-mbLJB">
-                    </a>
-                    <div class="col-md-12 mb-15"><a href="post-summary.php" contenteditable="false" id="style-eg4E2"
-                            class="style-eg4E2"> </a><a href="#" onclick="Tagsfunction(1);"
-                            contenteditable="false" id="style-ULjVO" class="style-ULjVO">
-                            <div class="text-center mdl-card mdl-shadow--2dp col-md-3 col-xs-2 padngbox inner-border1 style-mO25o"
-                                id="style-mO25o"> <img src="{{ asset('assets/images/icons/culture/samay-sima.png') }}"
-                                    width="30" class="img-tag">
+
+                {{-- Sub Tags List (Culture) --}}
+                <div class="space-y-3">
+                    @php
+                        $cultureTags = [
+                            [
+                                'icon' => 'samay-sima.png',
+                                'label' => $locale['categories']['1'] ?? 'समय - सीमा',
+                                'count' => $tagCounts['timeline_count'],
+                                'target' => 'tagModaltag_1',
+                            ],
+                            [
+                                'icon' => 'manav-wa-indirya.png',
+                                'label' =>
+                                    $locale['categories']['2'] ??
+                                    'मानव व उनकी
+                    इन्द्रियाँ',
+                                'count' => $tagCounts['man_senses_count'],
+                                'target' => 'tagModaltag_2',
+                            ],
+                            [
+                                'icon' => 'manav-wa-awishkar.png',
+                                'label' => $locale['categories']['3'] ?? 'मानव व उसके आविष्कार',
+                                'count' => $tagCounts['man_inventions_count'],
+                                'target' => 'tagModaltag_3',
+                            ],
+                        ];
+                    @endphp
+                    @foreach ($cultureTags as $t)
+                        <div onclick="openTagModal('{{ $t['target'] }}')"
+                            class="bg-white rounded-xl border border-gray-100 shadow-sm p-3 flex items-center gap-4 cursor-pointer hover:bg-gray-50 transition-colors">
+                            <div
+                                class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0">
+                                <img src="{{ asset('assets/images/icons/culture/' . $t['icon']) }}"
+                                    class="w-7 h-7 object-contain opacity-70">
                             </div>
-                            <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_1"
-                                class="text-center mdl-card mdl-shadow--2dp col-md-9 col-xs-10 padngbox">
-                                <div class="timeline-heading">
-                                    <span class="mb-10 prangtxt"><strong>{{ $locale['categories']['1'] ?? 'समय - सीमा' }}
-                                        </strong></span>
-                                </div>
-                                <span id="style-gLZHU"
-                                    class="style-gLZHU"><strong>{{ $tagCounts['timeline_count'] }}</strong></span>
+                            <span
+                                class="flex-grow font-bold text-gray-700 text-sm md:text-base">{{ $t['label'] }}</span>
+                            <div
+                                class="bg-[#2563eb] text-white text-sm font-bold w-16 py-2 rounded-md text-center shadow-sm">
+                                {{ $t['count'] }}
                             </div>
-                        </a> </div>
-                    <div class="col-md-12 mb-15"> <a href="#" onclick="Tagsfunction(2);" contenteditable="false"
-                            id="style-mgvYD" class="style-mgvYD">
-                            <div class="text-center mdl-card mdl-shadow--2dp col-md-3 col-xs-2 padngbox inner-border2 style-tC6ly"
-                                id="style-tC6ly"> <img
-                                    src="{{ asset('assets/images/icons/culture/manav-wa-indirya.png') }}" width="30"
-                                    class="img-tag">
-                            </div>
-                            <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_2"
-                                class="text-center mdl-card mdl-shadow--2dp col-md-9 col-xs-10 padngbox">
-                                <div class="timeline-heading">
-                                    <span
-                                        class="mb-10 prangtxt"><strong>{{ $locale['categories']['2'] ?? 'मानव व उनकी इन्द्रियाँ' }}</strong></span>
-                                </div>
-                                <span id="style-xhvhP"
-                                    class="style-xhvhP"><strong>{{ $tagCounts['man_senses_count'] }}</strong></span>
-                            </div>
-                        </a> </div>
-                    <div class="col-md-12 mb-15"> <a href="#" onclick="Tagsfunction(3);" contenteditable="false"
-                            id="style-tokkM" class="style-tokkM">
-                            <div class="text-center mdl-card mdl-shadow--2dp col-md-3 col-xs-2 padngbox inner-border3 style-COp3Q"
-                                id="style-COp3Q"> <img
-                                    src="{{ asset('assets/images/icons/culture/manav-wa-awishkar.png') }}"
-                                    width="30" class="img-tag">
-                            </div>
-                            <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_3"
-                                class="text-center mdl-card mdl-shadow--2dp col-md-9 col-xs-10 padngbox">
-                                <div class="timeline-heading">
-                                    <span
-                                        class="mb-10 prangtxt"><strong>{{ $locale['categories']['3'] ?? 'मानव व उसके आविष्कार' }}</strong></span>
-                                </div>
-                                <span id="style-oGlBW"
-                                    class="style-oGlBW"><strong>{{ $tagCounts['man_inventions_count'] }}</strong></span>
-                            </div>
-                        </a> </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
-            <div class="col-sm-6">
-                <div class="text-center mdl-card mdl-card1 mdl-shadow--2dp snipcss0-2-2-3 snipcss-xJBZh"
-                    style="min-height:125px !important"><br class="snipcss0-3-3-4">
-                    <span class="culture seo snipcss0-3-3-5 style-U4EGH" id="style-U4EGH"><strong
-                            class="snipcss0-4-5-6">{{ $locale['nature'] ?? 'प्रकृति' }}</strong></span>
-                    <span class="snipcss0-3-3-7 style-9ay34" id="style-9ay34"><strong
-                            class="snipcss0-4-7-8">{{ $tagCounts['nature_count'] }}</strong></span>
-                    <div id="top-line" class="snipcss0-3-3-9 style-oo6iY">
-                        <div class="chunk snipcss0-4-9-10">&nbsp;<span class="filler snipcss0-5-10-11 style-LdSff"
-                                id="style-LdSff"></span></div>
-                        <div class="chunk snipcss0-4-9-12">&nbsp;<span class="filler snipcss0-5-12-13 style-tSQyz"
-                                id="style-tSQyz"></span></div>
-                        <div class="chunk snipcss0-4-9-14">&nbsp;<span class="filler snipcss0-5-14-15 style-jGmEr"
-                                id="style-jGmEr"></span></div>
+
+            {{-- NATURE (प्रकृति) SECTION --}}
+            <div class="space-y-4">
+                {{-- Main Category Card --}}
+                <div
+                    class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden flex flex-col items-center py-6">
+                    <h2 class="text-2xl font-black text-gray-800 mb-2">{{ $locale['nature'] ?? 'प्रकृति' }}</h2>
+                    <div class="bg-[#2563eb] text-white text-lg font-bold px-8 py-1.5 rounded-md shadow-sm mb-4">
+                        {{ $tagCounts['nature_count'] }}
                     </div>
-                    <br class="snipcss0-3-3-16">
-                    <br class="snipcss0-3-3-17">
+                    {{-- Color Bars --}}
+                    <div class="flex w-3/4 h-8">
+                        <div class="flex-1 bg-[#fef08a]"></div>
+                        <div class="flex-1 bg-[#bef264]"></div>
+                        <div class="flex-1 bg-[#22c55e]"></div>
+                    </div>
                 </div>
-                <div class="row snipcss-LolCx" id="newboxes1"><a href="post-summary.php" contenteditable="false"
-                        id="style-mbLJB" class="style-mbLJB">
-                    </a>
-                    <div class="col-md-12 mb-15"><a href="post-summary.php" contenteditable="false" id="style-eg4E2"
-                            class="style-eg4E2"> </a><a href="#" onclick="Tagsfunction(1);"
-                            contenteditable="false" id="style-ULjVO" class="style-ULjVO">
-                            <div class="text-center mdl-card mdl-shadow--2dp col-md-3 col-xs-2 padngbox inner-border1 style-mO25o"
-                                id="style-mO25o"> <img src="{{ asset('assets/images/icons/nature/bhugol.png') }}"
-                                    width="30" class="img-tag">
+
+                {{-- Sub Tags List (Nature) --}}
+                <div class="space-y-3">
+                    @php
+                        $natureTags = [
+                            [
+                                'icon' => 'bhugol.png',
+                                'label' => $locale['categories']['4'] ?? 'भूगोल',
+                                'count' => $tagCounts['geography_count'],
+                                'target' => 'tagModaltag_4',
+                            ],
+                            [
+                                'icon' => 'jiw-jantu.png',
+                                'label' => $locale['categories']['5'] ?? 'जीव - जन्तु',
+                                'count' => $tagCounts['fauna_count'],
+                                'target' => 'tagModaltag_5',
+                            ],
+                            [
+                                'icon' => 'vanaspati.png',
+                                'label' => $locale['categories']['6'] ?? 'वनस्पति',
+                                'count' => $tagCounts['flora_count'],
+                                'target' => 'tagModaltag_6',
+                            ],
+                        ];
+                    @endphp
+                    @foreach ($natureTags as $t)
+                        <div onclick="openTagModal('{{ $t['target'] }}')"
+                            class="bg-white rounded-xl border border-gray-100 shadow-sm p-3 flex items-center gap-4 cursor-pointer hover:bg-gray-50 transition-colors">
+                            <div
+                                class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0">
+                                <img src="{{ asset('assets/images/icons/nature/' . $t['icon']) }}"
+                                    class="w-7 h-7 object-contain opacity-70">
                             </div>
-                            <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_4"
-                                class="text-center mdl-card mdl-shadow--2dp col-md-9 col-xs-10 padngbox">
-                                <div class="timeline-heading">
-                                    <span class="mb-10 prangtxt"><strong>{{ $locale['categories']['4'] ?? 'भूगोल' }}
-                                        </strong></span>
-                                </div>
-                                <span id="style-gLZHU"
-                                    class="style-gLZHU"><strong>{{ $tagCounts['geography_count'] }}</strong></span>
+                            <span
+                                class="flex-grow font-bold text-gray-700 text-sm md:text-base">{{ $t['label'] }}</span>
+                            <div
+                                class="bg-[#2563eb] text-white text-sm font-bold w-16 py-2 rounded-md text-center shadow-sm">
+                                {{ $t['count'] }}
                             </div>
-                        </a> </div>
-                    <div class="col-md-12 mb-15"> <a href="#" onclick="Tagsfunction(2);"
-                            contenteditable="false" id="style-mgvYD" class="style-mgvYD">
-                            <div class="text-center mdl-card mdl-shadow--2dp col-md-3 col-xs-2 padngbox inner-border2 style-tC6ly"
-                                id="style-tC6ly"> <img src="{{ asset('assets/images/icons/nature/jiw-jantu.png') }}"
-                                    width="30" class="img-tag">
-                            </div>
-                            <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_5"
-                                class="text-center mdl-card mdl-shadow--2dp col-md-9 col-xs-10 padngbox">
-                                <div class="timeline-heading">
-                                    <span
-                                        class="mb-10 prangtxt"><strong>{{ $locale['categories']['5'] ?? 'जीव - जन्तु' }}</strong></span>
-                                </div>
-                                <span id="style-xhvhP"
-                                    class="style-xhvhP"><strong>{{ $tagCounts['fauna_count'] }}</strong></span>
-                            </div>
-                        </a> </div>
-                    <div class="col-md-12 mb-15">
-                        <a href="#" onclick="Tagsfunction(3);" contenteditable="false" id="style-tokkM"
-                            class="style-tokkM">
-                            <div class="text-center mdl-card mdl-shadow--2dp col-md-3 col-xs-2 padngbox inner-border3 style-COp3Q"
-                                id="style-COp3Q"> <img src="{{ asset('assets/images/icons/nature/vanaspati.png') }}"
-                                    width="30" class="img-tag">
-                            </div>
-                            <div data-bs-toggle="modal" data-bs-target="#exampleModaltag_6"
-                                class="text-center mdl-card mdl-shadow--2dp col-md-9 col-xs-10 padngbox">
-                                <div class="timeline-heading">
-                                    <span
-                                        class="mb-10 prangtxt"><strong>{{ $locale['categories']['6'] ?? 'वनस्पति' }}</strong></span>
-                                </div>
-                                <span id="style-oGlBW"
-                                    class="style-oGlBW"><strong>{{ $tagCounts['flora_count'] }}</strong></span>
-                            </div>
-                        </a>
-                    </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -227,48 +129,75 @@
 
     @foreach ($tagSubCounts as $tagid => $tagCArray)
         <!-- Modal -->
-        <div class="modal fade" data-bs-backdrop="false" id="exampleModal{{ $tagid }}" tabindex="-1"
-            aria-labelledby="exampleModalLabel{{ $tagid }}" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
+        <div id="tagModal{{ $tagid }}"
+            class="fixed inset-0 z-[9999] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 overflow-y-auto"
+            onclick="if(event.target == this) closeTagModal('tagModal{{ $tagid }}')">
 
-                    <div class="modal-body">
+            <div
+                class="relative w-full max-w-2xl bg-white rounded-2xl shadow-2xl overflow-hidden transform transition-all animate__animated animate__zoomIn animate__faster my-auto">
+                <div class="border-b border-gray-100 px-8 py-6 flex items-center justify-between">
+                    <h5 class="font-black text-2xl text-gray-800">
+                        {{ $locale['categories'][$tagid] ?? '' }}
+                    </h5>
+                    <button type="button" onclick="closeTagModal('tagModal{{ $tagid }}')"
+                        class="text-gray-400 hover:text-gray-600 text-2xl font-bold">&times;</button>
+                </div>
+                <div class="p-1 bg-gray-50/50">
+                    <div class="grid grid-cols-1 md:grid-cols-1 gap-1">
                         @foreach ($tagCArray as $tag)
-                            {{-- {{dd($tag)}} --}}
-                            <div class="mb-1">
-                                <a target="_blank"
-                                    href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ', ', $locale['tags'][$tag->tagId]), 'cityCode' => $citySlug]) }}">
-                                    <div class="row">
-                                        <div class="col-2">
-                                            <img class="border img-fluid rounded-circle"
-                                                src="{{ Storage::url($tag->tagIcon) }}"
-                                                alt="{{ $tag->tagInEnglish }}">
-                                        </div>
-                                        <div class="border col-10 rounded-pill tagListx">
-                                            <div class="row">
-                                                <div class="p-0 m-0 col-10">
-                                                    {{-- {{$tag->tagInUnicode}} --}}
-                                                    <h6 class="p-0 m--0">{{ $locale['tags'][$tag->tagId] }}</h6>
-                                                    <small></small>
-                                                </div>
-                                                <div class="col-2">
-                                                    <div class="border w-100 h-100 rounded-circle">{{ $tag->count }}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
+                            <a target="_blank"
+                                href="{{ route('post-archive', ['ids' => $tag->tagId, 'catg' => 'tags', 'name' => str_replace('/', ', ', $locale['tags'][$tag->tagId]), 'cityCode' => $citySlug]) }}"
+                                class="group bg-white  border border-gray-100 shadow-sm flex items-center gap-4 no-underline hover:border-blue-400 hover:shadow-md transition-all">
+                                <div
+                                    class="w-14 h-14 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center flex-shrink-0 group-hover:bg-blue-100 transition-colors overflow-hidden">
+                                    @if ($tag->tagIcon)
+                                        <img src="{{ Storage::url($tag->tagIcon) }}" class="w-10 h-10 object-contain"
+                                            alt="{{ $tag->tagInEnglish }}">
+                                    @else
+                                        <i class="fa fa-tags text-blue-400 text-xl"></i>
+                                    @endif
+                                </div>
+                                <div class="flex-grow">
+                                    <h6
+                                        class="font-bold text-gray-800 m-0 group-hover:text-blue-600 transition-colors uppercase tracking-wide text-sm">
+                                        {{ $locale['tags'][$tag->tagId] ?? $tag->tagInUnicode }}
+                                    </h6>
+                                </div>
+                                <div
+                                    class="bg-[#2563eb] text-white text-xs font-black min-w-[50px] py-1.5 px-2 rounded-lg text-center shadow-sm">
+                                    {{ $tag->count }}
+                                </div>
+                            </a>
                         @endforeach
-
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ $locale['ui']['close'] ?? 'Close' }}</button>
-
-                    </div>
+                </div>
+                <div class="border-t border-gray-100 px-8 py-4 flex justify-end">
+                    <button type="button" onclick="closeTagModal('tagModal{{ $tagid }}')"
+                        class="bg-white hover:bg-gray-100 text-gray-700 font-bold px-8 py-2.5 rounded-xl transition-all shadow-sm border border-gray-200 uppercase text-xs tracking-widest">
+                        {{ $locale['ui']['close'] ?? 'बंद करें' }}
+                    </button>
                 </div>
             </div>
         </div>
     @endforeach
+
+    <script>
+        function openTagModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeTagModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+            }
+        }
+    </script>
 </div>

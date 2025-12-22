@@ -1,69 +1,52 @@
-<div>
- 
-         <style>
-        /* Set fixed height and enable overflow */
-        .news-container {
-            height: 400px;
-            overflow: hidden;
-            position: relative;
-            border: 1px solid #ccc;
-            padding: 10px;
-        }
-
-        /* Style for list inside the container */
-        .news-container ul {
-            /* list-style-type: none; */
-            padding: 0;
-            margin: 0;
-            position: absolute;
-            top: 0;
-            transition: top 1s linear;
-            font-weight: 600;
-            font-size:12px;
-        }
-
-        .news-container li {
-            margin-bottom: 10px;
-        }
-        .news-li:hover{
-            background: #ed8c8c;
-            color: darkblue;
-        }
-    </style>
-  <div class="news-container">
-    <ul id="news-list">
-        @foreach ($newsItems as $news)
-            <li class="border-bottom news-li ps-1">
-                <a class="text-dark" href="{{ $news['link'] }}" target="_blank">{{ $news['title'] }}</a><br>
-                <small>{{ \Illuminate\Support\Str::limit($news['description'], 150) }}</small>
-
+<div class="news-widget">
+    {{-- Modern News Container --}}
+    <div class="h-[500px] overflow-hidden relative border border-gray-100 rounded-xl bg-white shadow-sm p-1">
+        <ul id="news-list"
+            class="absolute top-0 left-0 w-full transition-all duration-1000 ease-in-out list-none m-0 p-0">
+            @foreach ($newsItems as $news)
+            <li
+                class="p-4 border-b border-gray-50 hover:bg-blue-50/50 transition-colors cursor-pointer group last:border-0">
+                <a class="block no-underline" href="{{ $news['link'] }}" target="_blank">
+                    <h5
+                        class="text-sm font-bold text-gray-900 group-hover:text-blue-600 transition-colors leading-snug mb-1">
+                        {{ $news['title'] }}
+                    </h5>
+                    <p class="text-xs text-gray-500 line-clamp-2 leading-relaxed">
+                        {{ \Illuminate\Support\Str::limit($news['description'], 150) }}
+                    </p>
+                </a>
             </li>
-        @endforeach
-    </ul>
-</div>
+            @endforeach
+        </ul>
+    </div>
+
     <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        document.addEventListener("DOMContentLoaded", function() {
             const newsList = document.getElementById("news-list");
-            const listItemHeight = newsList.children[0].offsetHeight; // Height of one item
-            const visibleItems = 4;
-            const scrollStep = listItemHeight;
+            if (!newsList || newsList.children.length === 0) return;
+
+            const firstItem = newsList.children[0];
+            const listItemHeight = firstItem.offsetHeight;
+            const visibleHeight = 400;
             let currentPosition = 0;
 
             function autoScrollNews() {
-                const maxScrollHeight = newsList.scrollHeight - (listItemHeight * visibleItems);
+                const totalHeight = newsList.scrollHeight;
 
-                // Reset to the top if we’ve reached the end
-                if (currentPosition >= maxScrollHeight) {
+                // If the list is shorter than container, don't scroll
+                if (totalHeight <= visibleHeight) return;
+
+                // Adjust positioning
+                if (currentPosition + visibleHeight >= totalHeight) {
                     currentPosition = 0;
                 } else {
-                    // Scroll up by one item height
-                    currentPosition += scrollStep;
+                    currentPosition += listItemHeight;
                 }
 
-                newsList.style.top = `-${currentPosition}px`;
+                newsList.style.transform = `translateY(-${currentPosition}px)`;
             }
 
-            // Start auto-scrolling every 2 seconds
+            // Start auto-scrolling every 4 seconds
             setInterval(autoScrollNews, 4000);
         });
     </script>
