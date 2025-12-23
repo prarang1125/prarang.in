@@ -31,7 +31,7 @@
 </head>
 
 <body class="bg-no-repeat bg-fixed bg-cover bg-center"
-    style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%), url({{ Storage::url($portal->header_image) }});">
+    style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%)">
     <header class="px-5 py-4 ">
         <div class="flex flex-col lg:flex-row items-center justify-between gap-4">
 
