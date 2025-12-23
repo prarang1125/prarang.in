@@ -2,223 +2,280 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/assets/owl.carousel.min.css">
     <style>
         .carousel-wrap {
-            /* margin: 90px auto; */
-            padding: 0 5%;
             width: 100%;
             position: relative;
+            padding: 0 20px;
+            background: transparent;
         }
 
-        .owl-carousel {
-            padding: 10px;
-            /* Add some padding to prevent content from sticking to edges */
-        }
-
-        /* Fix blank or flashing items on the carousel */
         .owl-carousel .item {
             position: relative;
-            z-index: 100;
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-        }
-
-        /* Image inside carousel items */
-        .owl-carousel .item img {
-            display: block;
-            width: 100%;
-            /* Ensure images fill the container */
-            height: auto;
-            /* Maintain image aspect ratio */
-        }
-
-        /* Owl navigation controls */
-        .owl-nav>div {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #cdcbcd;
+            border-radius: 12px;
+            overflow: hidden;
+            height: 240px;
             cursor: pointer;
-            font-size: 30px;
-            /* Control the size of the arrows */
+            transition: all 0.3s ease;
         }
 
-        /* Adjust the position of the prev and next buttons */
+        .owl-carousel .item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .item-bg {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .owl-carousel .item:hover .item-bg {
+            transform: scale(1.1);
+        }
+
+        .item-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0.4) 50%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 16px;
+            color: white;
+        }
+
+        .item-tag {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            background: #2563eb;
+            color: white;
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-size: 11px;
+            font-weight: 700;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+
+        .item-title {
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin-bottom: 4px;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .item-subtitle {
+            font-size: 12px;
+            opacity: 0.8;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        /* Owl Nav & Dots Container */
+        .owl-controls {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 20px;
+            padding: 0 10px;
+        }
+
+        /* Combined Layout Hack: Positioning dots and nav together */
+        .owl-dots {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 8px 16px;
+            border-radius: 99px;
+            display: flex !important;
+            align-items: center;
+            gap: 6px;
+            margin: 0 !important;
+        }
+
+        .owl-dot {
+            width: 8px !important;
+            height: 8px !important;
+            background: rgba(255, 255, 255, 0.4) !important;
+            border-radius: 50% !important;
+            border: none !important;
+            padding: 0 !important;
+            transition: all 0.3s ease;
+        }
+
+        .owl-dot.active {
+            width: 24px !important;
+            background: white !important;
+            border-radius: 10px !important;
+        }
+
+        .owl-nav {
+            display: flex;
+            gap: 8px;
+            margin: 0 !important;
+        }
+
+        .owl-nav button {
+            width: 40px !important;
+            height: 40px !important;
+            border-radius: 50% !important;
+            display: flex !important;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease !important;
+            border: none !important;
+            position: static !important;
+            transform: none !important;
+            margin: 0 !important;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1) !important;
+        }
+
         .owl-nav .owl-prev {
-            left: -30px;
+            background-color: #e5e7eb !important;
+            /* light gray */
+            color: #1f2937 !important;
+            /* dark gray text/icon */
+        }
+
+        .owl-nav .owl-prev:hover {
+            background-color: #d1d5db !important;
         }
 
         .owl-nav .owl-next {
-            right: -30px;
+            background-color: #2563eb !important;
+            /* blue */
+            color: white !important;
         }
 
-        .owl-nav i {
-            font-size: 40px;
-            /* Size of the icons */
-        }
-
-        /* Optional: Add some hover effects to navigation buttons */
-        .owl-nav .owl-prev:hover,
         .owl-nav .owl-next:hover {
-            color: #fff;
+            background-color: #1d4ed8 !important;
         }
 
-        /* Carousel wrap */
-        .hentry div .carousel-wrap {
-            background-color: #ffffff;
-            margin-bottom: 12px;
-
-            /* border-color:#cd3308; */
-        }
-
-        /* Font Icon */
-        .owl-nav .owl-next i {
-            color: #cd3308;
-        }
-
-        /* Font Icon */
-        .owl-nav .owl-prev i {
-            color: #cd3308;
-        }
-
-        /* CSS to ensure all images in the carousel are the same size */
-        .img-carousel {
-            width: 100%;
-            /* Full width within its container */
-            height: 200px;
-            /* Fixed height for consistency */
-            object-fit: cover;
-            /* Maintain aspect ratio, crop overflow if necessary */
-        }
-
-        /* Column 10/12 */
-        .hentry a .m-0 {
-            padding-top: 8px !important;
-            /* cursor:alias; */
-        }
-
-        /* Column 10/12 */
-        .hentry div .modal .modal-dialog .modal-content .modal-body .mb-1 a .row .tagListx .row .m-0 {
-            transform: translatex(0px) translatey(0px) !important;
-        }
-
-        /* Rounded circle */
-        .hentry .tagListx .rounded-circle {
-            padding-left: 4px;
-            margin-left: 0px;
-            position: relative;
-            left: 8px;
-        }
-
-        /* Rounded circle */
-        .hentry div .modal .modal-dialog .modal-content .modal-body .mb-1 a .row .tagListx .row .col-2 .rounded-circle {
-            width: 112% !important;
-        }
-
-        .hentry div .modal {
-            /* border: 1px solid #cd3308; */
-            background: rgba(83, 81, 81, 0.8);
-        }
-
-        /* Small Tag */
-        .hentry a small {
-            position: relative;
-            top: -2px;
-        }
-
-        /* Modal body */
-        .hentry div .modal-body {
-            padding-right: 26px;
-        }
-
-        /* Modal body */
-        #core .lsvr-container .lsvr-grid .columns__main #main .main__inner .hentry .page__content div .modal .modal-dialog .modal-content .modal-body {
-            transform: translatex(0px) translatey(0px) !important;
-        }
-
-        /* Heading */
-        .hentry a h6 {
-            font-weight: 500 !important;
-            font-size: 14px;
-        }
-
-        /* Img fluid */
-        .hentry a .img-fluid {
-            border-style: solid;
-            border-width: 2px !important;
-            border-color: #cd3308 !important;
-            width: 44px;
-            position: relative;
-            top: 4px;
+        /* Custom Icon Sizes */
+        .owl-nav button i {
+            font-size: 16px;
+            font-weight: bold;
         }
     </style>
-    {{-- {{dd($chittiArray)}} --}}
-    <div class="shadow carousel-wrap">
-        <div class="owl-carousel">
+
+    <div class="carousel-wrap">
+        <div class="owl-carousel owl-theme">
             @foreach ($chittiArray as $postImg)
-                <div class="p-1 rounded shadow item" id="carousel-item" style="min-height:80px;">
-                    <img class="img-carousel rounded-top"data-bs-toggle="modal"
-                        data-bs-target="#exampleModal{{ $postImg->chittiId }}" src="{{ $postImg->imageUrl }}"
-                        alt="Post Image">
-                    <small class="p-0 m-0 test-center"
-                        style="font-size:12px">{{ \Illuminate\Support\Str::limit($postImg->Title, 22, '...') }}</small>
+                <div class="item" onclick="openChittiModal('carouselModal{{ $postImg->chittiId }}')">
+                    <div class="item-bg" style="background-image: url('{{ $postImg->imageUrl }}')"></div>
+                    <div class="item-overlay">
+                        <span class="item-tag">
+                            {{ $locale['tags'][$postImg->tagId] ?? $postImg->tagId }}
+                        </span>
+                        <h4 class="item-title text-white">{{ $postImg->Title }}</h4>
+                        <p class="item-subtitle text-white/80">{{ strip_tags($postImg->description) }}</p>
+                    </div>
                 </div>
             @endforeach
         </div>
+
+        {{-- Navigation Bar below carousel --}}
+        <div class="flex items-center justify-center md:justify-end gap-4 mt-6 px-4 mb-4">
+            <div id="customDots" class="owl-dots"></div>
+            <div id="customNav" class="owl-nav"></div>
+        </div>
     </div>
-    <!-- Button trigger modal -->
 
     @foreach ($chittiArray as $post)
         <!-- Modal -->
-        <div class="modal fade" data-bs-backdrop="false" id="exampleModal{{ $post->chittiId }}" tabindex="-1"
-            aria-labelledby="exampleModal{{ $post->chittiId }}Label" aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-scrollable">
-                <div class="modal-content">
-                    {{-- {{dd($post)}} --}}
-                    <div class="modal-body" style="background:{{$post->colorcode}};">
-                        <section>
-                            <h3>{{ $post->Title }}</h3>
-                            <div class="row flex" >
-                                <div class="col-sm-6">
-                                    <p class="text-start h6  text-dark bg-gray">
-                                        {{ $locale['tags'][$post->tagId] ?? $post->tagId }}
-                                    </p>
-                                </div>
-                                <div class="col-sm-6">
-                                    <p class="text-end">
-                                        {{ $post->dateOfApprove }}
-                                        <br>
-                                        {{ $post->geography }}
-                                    </p>
-                                </div>
-                            </div>
+        <div id="carouselModal{{ $post->chittiId }}"
+            class="chitti-modal fixed inset-0 z-[9999] hidden items-center justify-center bg-black/60 backdrop-blur-sm p-4 overflow-y-auto"
+            onclick="if(event.target == this) closeChittiModal('carouselModal{{ $post->chittiId }}')" wire:ignore.self>
 
-                            <img class="rounded img-fluid" src="{{ $post->imageUrl }}" alt="{{ $post->SubTitle }}">
-                            <br><br>
-                            <div class="main-dec{{$post->colorcode=='#4d4d4d' ? 'text-light text-white' : ''}}">
-                            {!! $post->description !!}</div>
-                        </section>
+            <div
+                class="relative w-full max-w-4xl bg-white rounded-2xl shadow-2xl overflow-hidden transform transition-all animate__animated animate__zoomIn animate__faster my-auto">
+                {{-- Premium Header --}}
+                <div class="relative h-2 bg-gradient-to-r from-red-500 via-yellow-400 to-blue-500"></div>
+
+                <div class="p-0">
+                    {{-- Post Content Header --}}
+                    <div class="px-8 pt-8 pb-4">
+                        <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+                            <span
+                                class="bg-blue-600 text-white text-[10px] font-black uppercase tracking-widest px-3 py-1 rounded-md shadow-sm">
+                                {{ $locale['tags'][$post->tagId] ?? $post->tagId }}
+                            </span>
+                            <div class="text-right text-gray-400 text-xs font-bold uppercase tracking-tighter">
+                                {{ $post->dateOfApprove }} @if ($post->geography)
+                                    • {{ $post->geography }}
+                                @endif
+                            </div>
+                        </div>
+                        <h3 class="text-2xl md:text-3xl font-black text-gray-900 leading-tight mb-6">
+                            {{ $post->Title }}
+                        </h3>
                     </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ $locale['ui']['close'] ?? 'Close' }}</button>
-                        {{-- <button type="button" class="btn btn-primary">Save changes</button> --}}
+
+                    {{-- Main Post Image --}}
+                    <div class="px-8 mb-6">
+                        <div class="relative group">
+                            <img class="w-full rounded-xl shadow-lg object-cover max-h-[400px]"
+                                src="{{ $post->imageUrl }}" alt="{{ $post->Title }}">
+                            <div class="absolute inset-0 rounded-xl ring-1 ring-inset ring-black/10"></div>
+                        </div>
                     </div>
+
+                    {{-- Description Area --}}
+                    <div class="px-8 pb-10 prose prose-slate max-w-none">
+                        <div class="text-gray-700 leading-relaxed text-lg">
+                            {!! $post->description !!}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-gray-50/50 px-8 py-4 border-t border-gray-100 flex justify-end">
+                    <button type="button" onclick="closeChittiModal('carouselModal{{ $post->chittiId }}')"
+                        class="bg-white hover:bg-gray-100 text-gray-700 font-bold px-8 py-2.5 rounded-xl transition-all shadow-sm border border-gray-200">
+                        {{ $locale['ui']['close'] ?? 'Close' }}
+                    </button>
                 </div>
             </div>
         </div>
     @endforeach
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.1.3/owl.carousel.min.js"></script>
     <script>
+        function openChittiModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                document.body.style.overflow = 'hidden';
+            }
+        }
+
+        function closeChittiModal(id) {
+            const modal = document.getElementById(id);
+            if (modal) {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                document.body.style.overflow = 'auto';
+            }
+        }
+
         // Initialize Owl Carousel
         $('.owl-carousel').owlCarousel({
             loop: true,
             margin: 10,
             nav: true,
             navText: [
-                "<i class='fa fa-caret-left'></i>",
-                "<i class='fa fa-caret-right'></i>"
+                "<i class='fa fa-angle-left'></i>",
+                "<i class='fa fa-angle-right'></i>"
             ],
+            dots: true,
+            dotsContainer: '#customDots',
+            navContainer: '#customNav',
             autoplay: true,
             autoplayHoverPause: true,
             responsive: {
@@ -229,7 +286,7 @@
                     items: 3
                 },
                 1000: {
-                    items: 5
+                    items: 3
                 }
             }
         });

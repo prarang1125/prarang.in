@@ -1,686 +1,323 @@
 <x-layout.portal.base :portal="$portal">
 
+    <section class="w-full px-4 py-8">
+        <div class="container mx-auto flex flex-col lg:flex-row gap-8">
+            {{-- Left Sidebar --}}
+            <div class="w-full lg:w-3/12 bg-white/10 rounded order-2 lg:order-1">
+                <nav aria-label="Main Menu" class="hidden lg:block bg-white rounded overflow-hidden">
 
-    <style>
-        #header .header-map--gmaps {
-            height: 100vh;
-        }
+                    <ul role="menu" class="flex flex-col  p-4 text-gray-800  bg-[#d83a1f]">
 
-        @media (max-width:991px) {
-            #main .hentry {
-                position: relative;
-                top: 65px;
-            }
-        }
+                        {{-- HOME --}}
+                        <li role="presentation">
+                            <a target="_blank" href="{{ route('portal', ['portal' => $portal->slug]) }}" role="menuitem"
+                                class="flex items-center px-4 text-white  transition group">
+                                <span class="uppercase tracking-wide">
+                                    {{ $locale['ui']['home'] ?? 'HOME' }}
+                                </span>
+                            </a>
+                        </li>
 
-        #wrapper footer>.container-fluid {
-            background-color: rgba(213, 209, 209, 0.226);
-        }
+                        {{-- SEE ALL POSTS --}}
+                        <li role="presentation">
+                            <a target="_blank" href="{{ route('posts.city', ['city' => $portal->slug]) }}"
+                                role="menuitem" class="flex items-center px-4  text-white  transition group">
+                                <span class="uppercase tracking-wide">
+                                    {{ $locale['ui']['see_all_posts'] ?? 'See All Posts' }}
+                                </span>
+                            </a>
+                        </li>
 
-        #wrapper footer {
-            background-color: rgba(0, 0, 0, 0.288) !important;
-
-            background-size: auto;
-            background-blend-mode: darken;
-            background-attachment: fixed;
-            transform: translatex(0px) translatey(0px);
-        }
-
-        #wrapper .header-background--single {
-            background-color: rgba(0, 0, 0, 0.79) !important;
-
-            background-size: auto;
-            background-blend-mode: darken;
-            background-attachment: fixed;
-        }
-
-        #wrapper footer p {
-            color: #ffffff;
-            font-size: 18px;
-        }
-
-        #wrapper footer .text-center {
-            font-size: 24px;
-            color: #ffffff;
-        }
-
-        /* Image */
-        #carousel-item img {
-            height: 70px !important;
-            text-align: center;
-            overflow: hidden;
-            min-height: 80px !important;
-            max-height: 80px !important;
-        }
-
-        /* Small Tag */
-        #carousel-item small {
-            white-space: break-spaces;
-            text-align: center;
-        }
-
-        @media (max-width:991px) {
-
-            /* Sidebar left  inner */
-            #sidebar-left .sidebar-left__inner {
-                margin-top: 101px;
-            }
-
-            /* Container openweathermap widget 15 */
-            #container-openweathermap-widget-15 {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-        }
-
-        @media (max-width:480px) {
-
-            /* Heading */
-            .hentry .main__header h1 {
-                font-size: 14px;
-            }
-
-            /* Header */
-            #main .hentry header {
-                text-align: center;
-            }
-
-            /* Image */
-            #wrapper #core .core__inner #columns .columns__inner .lsvr-container .lsvr-grid .columns__sidebar #sidebar-right .sidebar-right__inner .text-center a img {
-                width: 100% !important;
-            }
-
-            /* Image */
-            #sidebar-right a img {
-                height: 500px !important;
-            }
-
-            /* Table */
-            #sidebar-left .widget .table {
-                background-color: rgba(0, 0, 0, 0);
-            }
-
-            /* Table Data */
-            .table tr td {
-                background-color: #333333;
-                color: #e8e8e8;
-            }
-
-        }
-
-        /* Header background  single */
-        #wrapper .header-background--single {
-            background-color: rgba(0, 0, 0, 0.24) !important;
-        }
-
-        /* Paragraph */
-        /* Paragraph */
-        #wrapper .col-sm p {
-            font-size: 15px;
-            letter-spacing: normal;
-            color: #ffffff;
-            text-shadow: rgb(0, 0, 0) 1px 1px 0px, rgb(0, 0, 0) 2px 2px 0px;
-            font-weight: 500;
-        }
-
-        /* Footer */
-        #wrapper footer {
-            background-color: rgba(0, 0, 0, 0.52) !important;
-        }
-
-        /* Table */
-        #sidebar-left .widget .table {
-            background-color: rgba(255, 255, 255, 0) !important;
-        }
-
-        /* Table Data */
-        .table tr td {
-            background-color: #333333 !important;
-            color: #ededed !important;
-            font-size: 13px !important;
-            padding-bottom: 4px !important;
-        }
-
-        #wrapper .col-sm p {
-            text-shadow: rgba(0, 0, 0, 0.3) 0px 1px 1px !important;
-        }
-
-        /* Heading */
-        #openModalx h3 {
-            position: absolute;
-            padding-left: 154px;
-            padding-top: 4px;
-            padding-right: 9px;
-        }
-
-        @media (max-width:1316px) {
-
-            /* Heading */
-            #openModalx h3 {
-                font-size: 20px !important;
-                padding-left: 84px;
-                transform: translatex(0px) translatey(0px);
-            }
-
-        }
-
-        @media (max-width:991px) {
-
-            /* Heading */
-            #openModalx h3 {
-                font-size: 19px !important;
-                padding-left: 277px;
-                padding-right: 153px;
-                transform: translatex(0px) translatey(0px);
-            }
-
-        }
-
-        @media (max-width:767px) {
-
-            /* Heading */
-            #openModalx h3 {
-                font-size: 15px !important;
-                padding-left: 219px;
-                padding-right: 142px;
-            }
-
-        }
-
-        @media (min-width:1317px) {
-
-            /* Heading */
-            #openModalx h3 {
-                font-size: 23px;
-            }
-
-        }
-
-        @media (max-width:767px) {
-
-            /* Heading */
-            #openModalx h3 {
-                padding-left: 98px !important;
-                padding-right: 34px !important;
-                font-size: 17px;
-            }
-
-            /* Heading */
-            #core #columns .columns__inner .lsvr-container .lsvr-grid .columns__main #main div .text-center .popupsub #openModalx h3 {
-                font-size: 17px !important;
-            }
-
-        }
-
-        @media (max-width:480px) {
-
-            /* Heading */
-            #openModalx h3 {
-                padding-left: 77px !important;
-                padding-right: 20px !important;
-                top: 3px;
-                bottom: auto !important;
-            }
-
-        }
-    </style>
-    <div id="wrapper">
-        <header class="header--has-languages header--has-map" id="header">
-            <div class="header__inner">
-                <!-- HEADER MAP : begin -->
-                <div class="header-map header-map--loading header-map--gmaps">
-                    {!! $portal->map_link !!}
-
-                    <button aria-label="Close map" class="header-map__close" type="button">
-                        <i aria-hidden="true" class="header-map__close-ico fa fa-times">
-                        </i>
-                    </button>
+                        {{-- DISTRICT METRICS --}}
+                        <li role="presentation">
+                            <a target="_blank" href="https://hindi.prarang.in/{{ $portal->city_name }}" role="menuitem"
+                                class="flex items-center px-4  text-white  transition group">
+                                <span class="uppercase tracking-wide">
+                                    {{ $locale['ui']['district_metrics'] ?? 'District Metrics' }}
+                                </span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="mt-6 px-4 bg-white p-3 rounded">
+                    <h3 class="text-xl font-bold text-black mb-2">
+                        <i class="fa fa-newspaper-o"></i>
+                        {{-- {{ $portal->city_name }} NEWS/ {{ $portal->city_name_local }} --}}
+                        {{-- {{ $locale['ui']['news_section'] ?? 'समाचार' }} --}}{{ $portal->city_name_local }} के समाचार
+                    </h3>
+                    <x-portal.widgets.news :url="$portal->news_widget_code" />
                 </div>
-                <!-- HEADER MAP : end -->
-                <!-- HEADER CONTENT : begin -->
-                <div class="header__content">
-                    <div class="lsvr-container">
-                        <div class="header__content-inner">
-                            <!-- HEADER BRANDING : begin -->
-                            <div class="header-logo header-logo--front">
-                                <a aria-label="Site logo" class="header-logo__link" href="{{ url()->current() }}">
-                                    <img alt="TownPress" class="header-logo__image"
-                                        src="{{ asset('assets/images/logo2x.png') }}" />
-                                </a>
-                            </div>
-                            <div class="header-toolbar-toggle header-toolbar-toggle--has-map">
-                                <button aria-controls="header-mobile-menu" aria-expanded="false" aria-haspopup="true"
-                                    class="header-toolbar-toggle__menu-button" type="button">
-                                    <i class="fa fa-bars"></i>
-
-                                    <span class="header-toolbar-toggle__menu-button-label">
-                                        {{ $locale['ui']['menu'] ?? 'Menu' }}
-                                    </span>
-                                </button>
-                                <!-- HEADER MAP TOGGLE : begin -->
-                                <button aria-label="{{ $locale['ui']['close_map'] ?? 'Close Map' }}"
-                                    class="header-map-toggle header-map-toggle--mobile" type="button">
-
-                                    <i class="fa fa-map-marker"></i>
-
-                                    <span class="header-map-toggle__label">
-                                        <b>{{ $locale['ui']['city_map'] ?? 'City Map' }}</b>
-                                    </span>
-                                </button>
-                                <!-- HEADER MAP TOGGLE : end -->
-                            </div>
-                            <!-- HEADER TOOLBAR TOGGLE : end -->
-                            <!-- HEADER TOOLBAR : begin -->
-                            <div class="header-toolbar">
-
-                                <!-- HEADER MAP TOGGLE : begin -->
-                                <button aria-label="{{ $locale['ui']['close_map'] ?? 'Close Map' }}"
-                                    class="header-map-toggle header-map-toggle--desktop header-toolbar__item"
-                                    type="button">
-
-                                    <i class="fa fa-map-marker"></i>
-                                    <span class="header-map-toggle__label">
-                                        <b>{{ $locale['ui']['city_map'] ?? 'City Map' }}</b>
-                                    </span>
-                                </button>
-                                <!-- HEADER MAP TOGGLE : end -->
-                                <!-- HEADER MOBILE MENU : begin -->
-                                <nav aria-label="Main Menu" class="header-mobile-menu"
-                                    data-label-collapse-submenu="Collapse submenu"
-                                    data-label-expand-submenu="Expand submenu" id="header-mobile-menu">
-                                    <ul class="header-mobile-menu__list" id="menu-main-menu" role="menu">
-                                        <li class="header-mobile-menu__item header-mobile-menu__item--level-0 menu-item menu-item-type-post_type menu-item-object-page"
-                                            id="header-mobile-menu__item-222" role="presentation">
-                                            <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-0"
-                                                href="{{ route('portal', ['portal' => $portal->slug]) }}"
-                                                id="header-mobile-menu__item-link-222" role="menuitem">
-                                                <span class="header-mobile-menu__item-link-label">
-                                                    {{ $locale['ui']['home'] ?? 'HOME' }}
-                                                </span>
-                                            </a>
-                                        </li>
-                                        <li class="header-mobile-menu__item header-mobile-menu__item--level-0 menu-item menu-item-type-post_type menu-item-object-page"
-                                            id="header-mobile-menu__item-222" role="presentation">
-                                            <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-0"
-                                                href="{{ route('posts.city', ['city' => $portal->slug]) }}"
-                                                id="header-mobile-menu__item-link-222" role="menuitem">
-                                                <span class="header-mobile-menu__item-link-label">
-                                                    {{ $locale['ui']['see_all_posts'] ?? 'See All Posts' }}
-                                                </span>
-                                            </a>
-                                        </li>
-                                        {{-- <li class="header-mobile-menu__item header-mobile-menu__item--level-0 menu-item menu-item-type-post_type menu-item-object-page"
-                                            id="header-mobile-menu__item-222" role="presentation">
-                                            <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-0"
-                                                href="https://preview.lsvr.sk/townpress/news/"
-                                                id="header-mobile-menu__item-link-222" role="menuitem">
-                                                <span class="header-mobile-menu__item-link-label">
-                                                    News
-                                                </span>
-                                            </a>
-                                        </li> --}}
-                                        <li class="header-mobile-menu__item header-mobile-menu__item--level-0 menu-item menu-item-type-post_type menu-item-object-page"
-                                            id="header-mobile-menu__item-222" role="presentation">
-                                            <a class="header-mobile-menu__item-link header-mobile-menu__item-link--level-0"
-                                                href="https://hindi.prarang.in/{{ $portal->city_name }}"
-                                                id="header-mobile-menu__item-link-222" role="menuitem">
-                                                <span class="header-mobile-menu__item-link-label">
-                                                    {{ $locale['ui']['district_metrics'] ?? 'District Metrics' }}
-                                                </span>
-                                            </a>
-                                        </li>
-                                </nav>
-                                <!-- HEADER MOBILE MENU : end -->
-                            </div>
-                            <!-- HEADER TOOLBAR : end -->
-                        </div>
-                    </div>
+                <div class="mt-6 px-4 bg-white p-3 rounded">
+                    <h3 class="text-xl font-bold text-black mb-2">
+                        <i class="fa fa-map-marker"></i>
+                        {{ $locale['ui']['local_info'] ?? 'स्थानीय जानकारी' }}
+                    </h3>
+                    {!! $portal->local_matrics !!}
                 </div>
-                <!-- HEADER CONTENT : end -->
+                <div class="mt-6 px-4 bg-white p-3 rounded">
+                    @livewire('portal.books-links', ['books' => $portal->books, 'links' => $portal->links, 'cityName' => $portal->city_name, 'cityNameLocal' => $portal->city_name_local])
+                </div>
             </div>
 
-        </header>
+            {{-- Main Content --}}
+            <div class="w-full lg:w-6/12 order-1 lg:order-2 space-y-6">
+                @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-1', 'slug' => $portal->slug, 'portal' => $portal, 'locale' => $locale])
+                <div class="text-center py-5 rounded bg-black/50 text-2xl text-white font-bold shadow-md">
+                    {!! $portal->city_slogan !!}
+                </div>
+                {{-- MOBILE MENU --}}
+                <nav aria-label="Main Menu" id="header-mobile-menu"
+                    class="lg:hidden block bg-[#d83a1f] rounded overflow-hidden shadow-lg">
+                    <ul role="menu" class="divide-y divide-white/10 text-white font-semibold text-base">
+                        {{-- HOME --}}
+                        <li role="presentation">
+                            <a target="_blank" href="{{ route('portal', ['portal' => $portal->slug]) }}" role="menuitem"
+                                class="block px-6 py-1 uppercase tracking-wide hover:bg-black/10 transition">
+                                {{ $locale['ui']['home'] ?? 'HOME' }}
+                            </a>
+                        </li>
 
-        <!-- HEADER : end -->
-        <div class="header-background header-background--singled" data-slideshow-speed="10">
-            <div class="header-background__image header-background__image--default"
-                style="background-image: url('{{ Storage::url($portal->header_image) }}'); ">
+                        {{-- SEE ALL POSTS --}}
+                        <li role="presentation">
+                            <a target="_blank" href="{{ route('posts.city', ['city' => $portal->slug]) }}"
+                                role="menuitem"
+                                class="block px-6 py-1  uppercase tracking-wide hover:bg-black/10 transition">
+                                {{ $locale['ui']['see_all_posts'] ?? 'See All Posts' }}
+                            </a>
+                        </li>
 
-            </div>
+                        {{-- DISTRICT METRICS --}}
+                        <li role="presentation">
+                            <a target="_blank" href="https://hindi.prarang.in/{{ $portal->city_name }}" role="menuitem"
+                                class="block px-6 py-1 uppercase tracking-wide hover:bg-black/10 transition">
+                                {{ $locale['ui']['district_metrics'] ?? 'District Metrics' }}
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
 
-        </div>
+                {{-- END MOBILE MENU --}}
+                <div class="bg-white p-2 rounded">
+                    <x-portal.posts-carousel :cityId="$cityCode" :cityCode="$cityCode" :locale="$locale" />
+                    <!-- TOWNPRESS SITEMAP : begin -->
+                    <x-portal.tag-list :cityId="$cityCode" :cityCode="$cityCode" :citySlug="$portal->slug" :locale="$locale" />
+                </div>
 
-        <!-- CORE : begin -->
-        <div id="core">
-            <div class="core__inner">
-                <!-- COLUMNS : begin -->
-                <div id="columns">
-                    <div class="columns__inner">
-                        <div class="lsvr-container">
-                            <div class="lsvr-grid">
-                                <div class="columns__main lsvr-grid__col lsvr-grid__col--span-6 lsvr-grid__col--push-3">
 
-                                    <!-- MAIN : begin -->
-                                    <main id="main">
-                                        @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-1', 'slug' => $portal->slug, 'portal' => $portal, 'locale' => $locale])
-                                        <div class="main__inner">
-                                            <div class="post-207 page type-page status-publish hentry">
-                                                <!-- MAIN HEADER : begin -->
-                                                <header class="main__header">
-                                                    <h1 class="m-0 main__title">
-                                                        {!! $portal->city_slogan !!}
-                                                    </h1>
-                                                </header>
-                                                <!-- MAIN HEADER : end -->
-                                                <!-- PAGE CONTENT : begin -->
-                                                <div class="page__content">
-                                                    <x-portal.posts-carousel :cityId="$cityCode" :cityCode="$cityCode"
-                                                        :locale="$locale" />
-                                                    <!-- TOWNPRESS SITEMAP : begin -->
-                                                    <x-portal.tag-list :cityId="$cityCode" :cityCode="$cityCode"
-                                                        :citySlug="$portal->slug" :locale="$locale" />
+                <div class="py-3 text-2xl font-bold mt-2  bg-white rounded text-black">
 
-                                                    <div class="p-2 mt-3 " style="border:2px solid #FFB1A3">
-                                                        <h3 class="text-center">{{ $portal->city_name_local }}
-                                                            {{ $locale['ui']['statistics'] ?? 'Statistics' }}
-                                                        </h3>
-                                                        <a target="_blank"
-                                                            href="{{ env('HINDI_URL') }}/{{ $portal->city_name }}"><img
-                                                                src="{{ asset('assets/portal/images/matrix-24.jpg') }}"
-                                                                alt=""></a>
-                                                    </div>
-                                                    <!-- TOWNPRESS SITEMAP : end -->
-                                                </div>
-                                                <!-- PAGE CONTENT : end -->
-                                            </div>
-                                        </div>
-                                    </main>
-                                    <!-- MAIN : end -->
+                    <a a target="_blank" href="https://hindi.prarang.in/{{ $portal->city_name }}">
+                        <h3 class="text-center">{{ $portal->city_name_local }}
+                            {{ $locale['ui']['statistics'] ?? 'Statistics' }}
+                        </h3>
+                    </a>
+                </div>
+                <div class="py-3 bg-white p-3">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div
+                            class="group relative bg-blue-500 p-8 shadow-xl hover:shadow-2xl transition-all duration-500  overflow-hidden">
+                            <div class="absolute inset-0 opacity-30">
+                                <div class="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-3xl opacity-50">
                                 </div>
                                 <div
-                                    class="columns__sidebar columns__sidebar--left lsvr-grid__col lsvr-grid__col--span-3 lsvr-grid__col--pull-6">
-                                    <!-- LEFT SIDEBAR : begin -->
-                                    <aside id="sidebar-left">
-                                        <div class="sidebar-left__inner">
-                                            <div class="widget lsvr-townpress-menu-widget" id="lsvr_townpress_menu-2">
-                                                <div class="widget__inner">
-                                                    <div class="widget__content">
-                                                        <nav aria-label="Main Menu"
-                                                            class="lsvr-townpress-menu-widget__nav lsvr-townpress-menu-widget__nav--expanded-active"
-                                                            data-label-collapse-submenu="Collapse submenu"
-                                                            data-label-expand-submenu="Expand submenu">
-                                                            <ul class="lsvr-townpress-menu-widget__list"
-                                                                id="menu-main-menu-1" role="menu">
-                                                                <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-0 menu-item menu-item-type-post_type menu-item-object-page menu-item-home current-menu-item page_item page-item-207 current_page_item current-menu-ancestor current-menu-parent current_page_parent current_page_ancestor menu-item-has-children"
-                                                                    id="lsvr-townpress-menu-widget__item-226-251"
-                                                                    role="presentation">
-                                                                    <a aria-controls="lsvr-townpress-menu-widget__submenu-226-251"
-                                                                        aria-expanded="false" aria-haspopup="true"
-                                                                        aria-owns="lsvr-townpress-menu-widget__submenu-226-251"
-                                                                        class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
-                                                                        href="{{ route('portal', ['portal' => $portal->slug]) }}"
-                                                                        id="lsvr-townpress-menu-widget__item-link-226-251"
-                                                                        role="menuitem">
-                                                                        <span
-                                                                            class="lsvr-townpress-menu-widget__item-link-label">
-                                                                            {{ $locale['ui']['home'] }}
-                                                                        </span>
-                                                                    </a>
-
-
-                                                                </li>
-                                                                <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-0 menu-item menu-item-type-post_type menu-item-object-page"
-                                                                    id="lsvr-townpress-menu-widget__item-222-830"
-                                                                    role="presentation">
-                                                                    <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
-                                                                        href="{{ route('posts.city', ['city' => $portal->slug]) }}"
-                                                                        id="lsvr-townpress-menu-widget__item-link-222-830"
-                                                                        role="menuitem">
-                                                                        <span
-                                                                            class="lsvr-townpress-menu-widget__item-link-label">
-                                                                            {{ $locale['ui']['see_all_posts'] ?? 'See All Posts' }}
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-0 menu-item menu-item-type-post_type menu-item-object-page"
-                                                                    id="lsvr-townpress-menu-widget__item-222-830"
-                                                                    role="presentation">
-                                                                    <a target="_blank"
-                                                                        class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
-                                                                        href="https://hindi.prarang.in/{{ $portal->city_name }}"
-                                                                        id="lsvr-townpress-menu-widget__item-link-222-830"
-                                                                        role="menuitem">
-                                                                        <span
-                                                                            class="lsvr-townpress-menu-widget__item-link-label">
-                                                                            {{ $locale['ui']['district_metrics'] ?? 'District Metrics' }}
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-                                                                <li class="lsvr-townpress-menu-widget__item lsvr-townpress-menu-widget__item--level-0 menu-item menu-item-type-post_type menu-item-object-page"
-                                                                    id="lsvr-townpress-menu-widget__item-222-830"
-                                                                    role="presentation">
-                                                                    <a class="lsvr-townpress-menu-widget__item-link lsvr-townpress-menu-widget__item-link--level-0"
-                                                                        href="{{ route('about-us') }}"
-                                                                        id="lsvr-townpress-menu-widget__item-link-222-830"
-                                                                        role="menuitem">
-                                                                        <span
-                                                                            class="lsvr-townpress-menu-widget__item-link-label">
-                                                                            {{ $locale['ui']['about_us'] ?? 'ABOUT US' }}
-                                                                        </span>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </nav>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="widget lsvr-townpress-weather-widget lsvr-townpress-weather-widget--has-background"
-                                                id="lsvr_townpress_weather-2">
-                                                <div class="widget__inner">
-                                                    <h3 class="widget__title widget__title--has-icon ps-2">
-                                                        <i class="fa fa-map-marker"></i>
-                                                        {{ $locale['ui']['local_info'] ?? 'स्थानीय जानकारी' }}
-                                                    </h3>
-                                                    <div class="widget__content">
-
-                                                        <div class="city_matrix">
-                                                            {!! $portal->local_matrics !!}
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="widget lsvr-townpress-weather-widget lsvr-townpress-weather-widget--has-background"
-                                                id="lsvr_townpress_weather-2">
-                                                <div class="widget__inner"
-                                                    style="background:white; color:black; border:2px solid #FFB1A3;">
-                                                    <h3 class="widget__title widget__title--has-icon ps-2 text-dark">
-                                                        <i class="fa fa-newspaper-o"></i>
-                                                        {{ $portal->city_name }} NEWS/ {{ $portal->city_name_local }}
-                                                        {{ $locale['ui']['news_section'] ?? 'समाचार' }}
-                                                    </h3>
-                                                    <div class="widget__content">
-
-                                                        <div class="city_matrix">
-                                                            <!-- TODO: News Update link -->
-                                                            <x-portal.widgets.news :url="$portal->news_widget_code" />
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </aside>
-                                    <!-- LEFT SIDEBAR : end -->
-                                </div>
-                                <div
-                                    class="columns__sidebar columns__sidebar--right lsvr-grid__col lsvr-grid__col--span-3">
-                                    <!-- RIGHT SIDEBAR : begin -->
-                                    <aside id="sidebar-right">
-                                        <div class="sidebar-right__inner">
-                                            <x-portal.widgets.smart-meeting :portal="$portal" />
-                                            <div class="text-center widget">
-                                                {!! $portal->weather_widget_code !!}
-                                            </div>
-                                            <p class="text-center">
-                                                <a
-                                                    href="{{ $yellowPages ? route('city.show', ['city_name' => $yellowPages->name]) : '#' }}"><img
-                                                        class="img-fluid" style="height:450px;"
-                                                        src="{{ asset('assets/images/yellowpages.jpg') }}"
-                                                        alt="Yellow Pages"></a>
-                                            </p>
-                                        </div>
-                                    </aside>
+                                    class="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full blur-2xl opacity-50">
                                 </div>
                             </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <style>
-            #wrapper footer .row .col p {
-                margin-bottom: 5px !important;
-            }
-        </style>
-
-        <footer class="p-4 ps-4 pe-4"
-            style="background-color: #FFB1A3; margin-top:200px;  background-image: url('{{ Storage::url($portal->footer_image) }}');">
-            <div class="row g-2">
-                <div class="col-sm">
-                    <h4 class="text-center">{{ $locale['ui']['about_prarang'] ?? 'About Prarang' }}</h4>
-                    <p>{{ $locale['ui']['about_description'] ?? 'Prarang' }}</p>
-                </div>
-                <div class="text-center col-sm">
-                    <h4 class="text-center">Follow Us</h4>
-                    <div class="row">
-                        <div class="col-6">
-
-                            <a href="https://www.facebook.com/prarang.in" target="_blank">
-                                <i class="p-2 shadow fa fa-facebook rounded-circle fa-2x"></i> <span
-                                    class="h4">Facebook</span>
-                            </a>
-                        </div>
-                        <div class="col-6">
-                            <a href="javascript:void(0)" onclick="showComingSoon(event)" target="_blank">
-                                <img width="30"
-                                    src="https://images.freeimages.com/image/grids/9fe/x-twitter-light-grey-logo-5694251.png">
-                                <span class="h4">
-                                    Twitter</span>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <a href=" https://www.instagram.com/prarang_in/?hl=en" target="_blank">
-                                <i class="p-2 shadow fa fa-instagram rounded-circle fa-2x"></i> <span
-                                    class="h4">Instagram</span>
-                            </a>
-                        </div>
-                        <div class="col-6">
-                            <a href="https://www.linkedin.com/company/indeur-prarang/" target="_blank">
-                                <i class="p-2 shadow fa fa-linkedin rounded-circle fa-2x"></i> <span class="h4">
-                                    LinkedIn</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm ps-3">
-                    <h4 class="text-center"><i class="tp tp-eye"></i> {{ $locale['ui']['address'] ?? 'Address' }}
-                    </h4>
-                    <p>{{ $locale['ui']['office'] ?? 'Office' }}</p>
-                    <p>{{ $locale['ui']['sector'] ?? 'Sector' }}</p>
-                    <p>{{ $locale['ui']['phone'] ?? 'Phone' }}</p>
-                    <p>{{ $locale['ui']['email'] ?? 'Email' }} <a href="mailto:query@prarangin">Query@prarang.in</a>
-                    </p>
-                </div>
-            </div>
-            <div class="p-4">
-                <p>{{ str_replace('{year}', date('Y'), $locale['ui']['copyright'] ?? 'All rights reserved') }}</p>
-            </div>
-        </footer>
-
-    </div>
-    <script>
-        function showComingSoon(event) {
-            event.preventDefault();
-
-            // Create modal HTML
-            const modalHTML = `
-                            <div class="modal fade show" id="comingSoonModal" tabindex="-1" style="display: block; background: rgba(0,0,0,0.5);">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content" style="border-radius: 15px; overflow: hidden;">
-                                        <div class="modal-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
-                                            <h5 class="modal-title text-white fw-bold">
-                                                <i class="fa fa-clock-o me-2"></i>Coming Soon
-                                            </h5>
-                                            <button type="button" class="btn-close btn-close-white" onclick="closeComingSoon()"></button>
-                                        </div>
-                                        <div class="modal-body text-center p-5">
-                                            <p class="text-muted" style="font-size: 1.1rem;">
-                                                Coming Soon...
-                                            </p>
-                                        </div>
+                            <div class="relative z-10">
+                                <div class="flex items-center justify-center mb-6">
+                                    <div>
+                                        <h5 class="text-3xl text-center md:text-4xl font-extrabold text-white mb-2 ">
+                                            बिज़नेस
+                                            का यंत्र</h5>
+                                        <p class="text-blue-50 text-sm md:text-base font-medium text-center">अपने
+                                            बिज़नेस के
+                                            लिए नए अवसर
+                                            खोजें</p>
                                     </div>
                                 </div>
+                                <div class="space-y-4 mb-6">
+                                    <a href="https://hindi.prarang.in/india/market-planner/states?city=-{{ $portal->city_id }}"
+                                        target="_blank"
+                                        class="block p-4 bg-white/20 backdrop-blur-sm rounded-xl hover:bg-white/30 transition-all duration-300 group/link border border-white/30 hover:border-white/50">
+                                        <div class="flex items-center justify-between"><span
+                                                class="text-white font-bold text-base md:text-lg group-hover/link:translate-x-1 transition-transform ">भारत
+                                                में नए अवसर खोजें</span><span
+                                                class="text-white/70 group-hover/link:text-white text-xl transition-all">→</span>
+                                        </div>
+                                        <small>(शहरों का चयन करें)</small>
+                                    </a><a href="https://hindi.prarang.in/world/market-planner" target="_blank"
+                                        class="block p-4 bg-white/20 backdrop-blur-sm rounded-xl hover:bg-white/30 transition-all duration-300 group/link border border-white/30 hover:border-white/50">
+                                        <div class="flex items-center justify-between"><span
+                                                class="text-white font-bold text-base md:text-lg group-hover/link:translate-x-1 transition-transform">विश्व
+                                                में नए अवसर खोजें</span><span
+                                                class="text-white/70 group-hover/link:text-white text-xl transition-all">→</span>
+                                        </div>
+                                        <small>(देशों का चयन करें)</small>
+                                    </a>
+                                </div>
                             </div>
-                        `;
+                        </div>
+                        <div
+                            class="group relative bg-green-600 p-8 shadow-xl hover:shadow-2xl transition-all duration-500  overflow-hidden">
+                            <div class="absolute inset-0 opacity-30">
+                                <div class="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-3xl opacity-50">
+                                </div>
+                                <div
+                                    class="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full blur-2xl opacity-50">
+                                </div>
+                            </div>
+                            <div class="relative z-10">
+                                <div class="flex items-center justify-center mb-6">
+                                    <div>
+                                        <h5
+                                            class="text-3xl md:text-4xl font-extrabold text-white mb-2 tracking-tight text-center">
+                                            विकास
+                                            का यंत्र</h5>
+                                        <p class="text-green-50 text-sm md:text-base text-center font-medium">अपने
+                                            शहर/देश
+                                            की प्रगति की
+                                            तुलना करें </p>
+                                    </div>
+                                </div>
+                                <div class="space-y-4 mb-6">
+                                    <a href="https://hindi.prarang.in/india/development-planners?city=-{{ $portal->city_id }}"
+                                        target="_blank"
+                                        class="block p-4 bg-white/20 backdrop-blur-sm rounded-xl hover:bg-white/30 transition-all duration-300 group/link border border-white/30 hover:border-white/50">
+                                        <div class="flex items-center justify-between"><span
+                                                class="text-white font-bold text-base md:text-lg group-hover/link:translate-x-1 transition-transform">भारत
+                                                में विकास की तुलना</span><span
+                                                class="text-white/70 group-hover/link:text-white text-xl transition-all">→</span>
+                                        </div>
+                                        <small>(शहरों का चयन करें)</small>
+                                    </a><a href="https://hindi.prarang.in/world/development-planner" target="_blank"
+                                        class="block p-4 bg-white/20 backdrop-blur-sm rounded-xl hover:bg-white/30 transition-all duration-300 group/link border border-white/30 hover:border-white/50">
+                                        <div class="flex items-center justify-between"><span
+                                                class="text-white font-bold text-base md:text-lg group-hover/link:translate-x-1 transition-transform">विश्व
+                                                में विकास की तुलना</span><span
+                                                class="text-white/70 group-hover/link:text-white text-xl transition-all">→</span>
+                                        </div>
+                                        <small>(देशों का चयन करें)</small>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-            // Append modal to body
-            document.body.insertAdjacentHTML('beforeend', modalHTML);
-            document.body.style.overflow = 'hidden';
-        }
+            {{-- Right Sidebar --}}
+            <div class="w-full lg:w-3/12 order-3 lg:order-3">
+                <div class="w-full bg-white border-t border-b border-gray-200 px-4 shadow-sm">
+                    <div class="max-w-7xl mx-auto">
+                        <div class="flex items-center justify-center gap-8 md:gap-12">
+                            <a href="https://www.facebook.com/prarang.in" target="_blank" rel="noopener noreferrer"
+                                title="Facebook"
+                                class="flex items-center justify-center transition-all duration-300 p-2 rounded-lg text-blue-600 hover:text-blue-700 hover:bg-blue-50">
+                                <i class="fa fa-facebook-f text-2xl md:text-3xl"></i>
+                            </a>
+                            <a href="https://chat.whatsapp.com/HpjFX0qe7Du7q9fi3DQR7P" target="_blank"
+                                rel="noopener noreferrer" title="WhatsApp"
+                                class="flex items-center justify-center transition-all duration-300 p-2 rounded-lg text-green-500 hover:text-green-600 hover:bg-green-50">
+                                <i class="fa fa-whatsapp text-2xl md:text-3xl"></i>
+                            </a>
+                            <a href="https://www.indusappstore.com/apps/news-and-magazines/prarang/com.riversanskiriti.prarang?page=details&amp;id=com.riversanskiriti.prarang"
+                                target="_blank" rel="noopener noreferrer" title="Google Play"
+                                class="flex items-center justify-center transition-all duration-300 p-2 rounded-lg text-red-600 hover:text-red-700 hover:bg-red-50">
+                                <i class="fa fa-play-circle-o text-2xl md:text-3xl"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <livewire:portal.internate-data :city_code="$portal->city_code" :city_id="$portal->city_id" :city_name="$portal->city_name_local" />
+                <div class="flex justify-center items-center p-2 w-full ">
+                    {!! $portal->weather_widget_code !!}
+                </div>
+                <div>
+                    <a target="_blank" href="https://prarang.in/yp/{{ $portal->slug }}">
+                        <img src="https://www.prarang.in/assets/images/yellowpages.jpg" alt=""></a>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        function closeComingSoon() {
-            const modal = document.getElementById('comingSoonModal');
-            if (modal) {
-                modal.classList.remove('show');
-                setTimeout(() => {
-                    modal.remove();
-                    document.body.style.overflow = 'auto';
-                }, 150);
-            }
-        }
+    <footer class="mt-32 px-6 py-12 text-gray-800"
+        style="background-color: #FFB1A3; background-image: url('{{ Storage::url($portal->footer_image) }}'); background-size: cover; background-position: center;">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+                {{-- About Section --}}
+                <div class="space-y-4">
+                    <h4 class="text-xl font-bold border-b-2 border-red-500 pb-2 inline-block md:block">
+                        {{ $locale['ui']['about_prarang'] ?? 'About Prarang' }}
+                    </h4>
+                    <p class="text-sm leading-relaxed opacity-90">
+                        {{ $locale['ui']['about_description'] ?? 'Prarang' }}
+                    </p>
+                </div>
 
-        // Close modal on backdrop click
-        document.addEventListener('click', function(event) {
-            const modal = document.getElementById('comingSoonModal');
-            if (modal && event.target === modal) {
-                closeComingSoon();
-            }
-        });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const hash = window.location.hash;
+                {{-- Social Links Section --}}
+                <div class="space-y-6">
+                    <h4 class="text-xl font-bold border-b-2 border-red-500 pb-2 inline-block md:block text-center">
+                        Follow Us
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-xs mx-auto md:mx-0">
+                        <a href="https://www.facebook.com/prarang.in" target="_blank"
+                            class="flex items-center justify-center md:justify-start gap-3 p-3 bg-white/20 hover:bg-white/40 rounded-xl transition-all group backdrop-blur-sm border border-white/30 no-underline text-gray-800">
+                            <i class="fa fa-facebook text-xl group-hover:scale-110 transition-transform"></i>
+                            <span class="font-bold text-sm">Facebook</span>
+                        </a>
+                        <a href="javascript:void(0)" onclick="showComingSoon(event)"
+                            class="flex items-center justify-center md:justify-start gap-3 p-3 bg-white/20 hover:bg-white/40 rounded-xl transition-all group backdrop-blur-sm border border-white/30 no-underline text-gray-800">
+                            <img width="20"
+                                src="https://images.freeimages.com/image/grids/9fe/x-twitter-light-grey-logo-5694251.png"
+                                class="group-hover:scale-110 transition-transform">
+                            <span class="font-bold text-sm text-gray-800">Twitter</span>
+                        </a>
+                        <a href="https://www.instagram.com/prarang_in/?hl=en" target="_blank"
+                            class="flex items-center justify-center md:justify-start gap-3 p-3 bg-white/20 hover:bg-white/40 rounded-xl transition-all group backdrop-blur-sm border border-white/30 no-underline text-gray-800">
+                            <i class="fa fa-instagram text-xl group-hover:scale-110 transition-transform"></i>
+                            <span class="font-bold text-sm">Instagram</span>
+                        </a>
+                        <a href="https://www.linkedin.com/company/indeur-prarang/" target="_blank"
+                            class="flex items-center justify-center md:justify-start gap-3 p-3 bg-white/20 hover:bg-white/40 rounded-xl transition-all group backdrop-blur-sm border border-white/30 no-underline text-gray-800">
+                            <i class="fa fa-linkedin text-xl group-hover:scale-110 transition-transform"></i>
+                            <span class="font-bold text-sm">LinkedIn</span>
+                        </a>
+                    </div>
+                </div>
 
-            if (hash === '#subscribeModal') {
-                modal.classList.add("show");
-            }
-        });
-    </script>
-    <script>
-        // Wait for the DOM to load
-        document.addEventListener("DOMContentLoaded", function() {
-            // Select the parent element with the class 'header-map'
-            const headerMapElement = document.querySelector('.header-map');
+                {{-- Address Section --}}
+                <div class="space-y-4">
+                    <h4 class="text-xl font-bold border-b-2 border-red-500 pb-2 inline-block md:block">
+                        <i class="fa fa-map-marker me-2"></i> {{ $locale['ui']['address'] ?? 'Address' }}
+                    </h4>
+                    <div class="space-y-2 text-sm opacity-90">
+                        <p class="flex items-start gap-2 justify-center md:justify-start">
+                            <span class="font-bold text-red-600">Office:</span>
+                            {{ $locale['ui']['office'] ?? 'Office' }}
+                        </p>
+                        <p class="flex items-start gap-2 justify-center md:justify-start">
+                            <span class="font-bold text-red-600">Sector:</span>
+                            {{ $locale['ui']['sector'] ?? 'Sector' }}
+                        </p>
+                        <p class="flex items-start gap-2 justify-center md:justify-start">
+                            <span class="font-bold text-red-600">Phone:</span>
+                            {{ $locale['ui']['phone'] ?? 'Phone' }}
+                        </p>
+                        <p class="flex items-start gap-2 justify-center md:justify-start">
+                            <span class="font-bold text-red-600">Email:</span>
+                            <a href="mailto:query@prarang.in"
+                                class="hover:text-red-700 underline decoration-red-400">query@prarang.in</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
 
-            if (headerMapElement) {
-                // Find the iframe inside the 'header-map' element
-                const iframe = headerMapElement.querySelector('iframe');
-
-                if (iframe) {
-                    // Apply the desired classes to the iframe
-                    iframe.classList.add('header-map__canvas', 'header-map__canvas--loading');
-                    console.log("Classes added to the iframe inside header-map.");
-                } else {
-                    console.warn("No iframe found inside the 'header-map' element.");
-                }
-            } else {
-                console.error("The 'header-map' element is not found in the DOM.");
-            }
-        });
-    </script>
-
+            {{-- Copyright Section --}}
+            <div class="mt-12 pt-8 border-t border-black/10 text-center">
+                <p class="text-sm font-medium opacity-80">
+                    {{ str_replace('{year}', date('Y'), $locale['ui']['copyright'] ?? 'All rights reserved') }}
+                </p>
+            </div>
+        </div>
+    </footer>
 </x-layout.portal.base>

@@ -20,6 +20,7 @@ class PortalController extends Controller
         $isCityPortal = Portal::where('slug', $portal)->exists();
 
         $isCityPortalBiletral = BiletralPortal::where('slug', $portal)->exists();
+
         if ($isCityPortal) {
             return $this->indianCitiesPortal($portal);
         } elseif ($isCityPortalBiletral) {
@@ -27,11 +28,13 @@ class PortalController extends Controller
         } else {
             abort(404);
         }
+        dd(123);
     }
 
     public function indianCitiesPortal($portal)
     {
         $portal = Portal::where('slug', $portal)->firstOrFail();
+
         try {
             $books = json_decode($portal->books, true);
             $links = json_decode($portal->links, true);
@@ -39,9 +42,15 @@ class PortalController extends Controller
             $books = [];
             $links = [];
         }
+
         $locale = PortalLocaleizetion::where('lang_code', $portal->local_lang)->firstOrFail();
+
         $locale = $locale['json'] ?? [];
         // dd($locale);
+        // $cities = httpGet('/', ['groupby' => 1, 'group' => 'MSTR2'])['data'] ?? [];
+        // dd($cities);
+
+
 
         $cityCode = $portal->city_code;
         $yellowPages = City::where('portal_id', $portal->id)->first();

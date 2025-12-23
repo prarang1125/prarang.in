@@ -320,16 +320,11 @@
                         <li>
                             <a type="button" data-bs-toggle="modal" data-bs-target="#TheseMT">City Business</a>
                         </li>
-
-
                     </ul>
                 </div>
             </div>
         </div>
-
-
         <div class="container mt-4">
-
             <!-- Daily Posts -->
             <div class="row align-items-center mb-3">
                 <div class="col-md-2 text-md-right text-center">
@@ -344,7 +339,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- Business -->
             <div class="row align-items-center mb-3">
                 <div class="col-md-2 text-md-right text-center">
@@ -363,7 +357,6 @@
                     </div>
                 </div>
             </div>
-
             <!-- India Portals -->
             @foreach ($portal as $key => $inPortalx)
                 <div class="row align-items-center mb-3">
@@ -371,8 +364,6 @@
                         <h6 class="mb-0 font-weight-bold">India Portals - {{ $key }}:</h6>
                     </div>
                     <div class="col-md-10">
-
-
                         <h6>{{ $key }} Webs</h6>
                         <div class="d-flex flex-wrap gap-2">
                             @foreach ($inPortalx as $inPortal)

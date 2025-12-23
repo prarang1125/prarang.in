@@ -13,16 +13,15 @@ class PostsCarousel extends Component
     /**
      * Create a new component instance.
      */
-    public $chittiArray,$locale;
+    public $chittiArray, $locale;
 
-    public function __construct($cityId, $cityCode,$locale)
+    public function __construct($cityId, $cityCode, $locale)
     {
         $this->locale = $locale;
-        $cacheKey = 'carousal_post_'.$cityCode;
+        $cacheKey = 'carousal_post_' . $cityCode;
         $this->chittiArray = Cache::remember($cacheKey, 60 * 60 * 60, function () use ($cityCode) {
             return $this->getPosts($cityCode);
         });
-
     }
 
     /**
@@ -43,7 +42,7 @@ class PostsCarousel extends Component
             ->join('vGeography as vg', 'vg.geographycode', '=', 'vCg.Geography')
             ->join('mtag as mt', 'mt.tagId', '=', 'ct.tagId')
             ->join('mtagcategory as mtc', 'mtc.tagCategoryId', '=', 'mt.tagCategoryId')
-            ->rightJoin('colorinfo','colorinfo.id','=','ch.color_value')
+            ->rightJoin('colorinfo', 'colorinfo.id', '=', 'ch.color_value')
             ->where('ch.finalStatus', 'approved')
             ->where('vg.geographycode', $city)
             ->orderBy(DB::raw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y')"), 'desc')
