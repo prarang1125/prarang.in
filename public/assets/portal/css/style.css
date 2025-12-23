@@ -10,7 +10,6 @@ header .lg\:flex-row .w-full .text-white{
  background-color:rgba(0,0,0,0.65);
 }
 
-
 /* Division */
 .w-full div .md\:justify-end{
  margin-bottom:0px;
@@ -546,5 +545,21 @@ header .lg\:flex-row .shadow-md{
 /* Span Tag */
 header .justify-center .justify-center span{
  font-size:24px;
+}
+
+/* Button */
+header .flex-col a{
+ font-size:14px !important;
+}
+
+/* Button (hover) */
+header .flex-col a:hover{
+ color:#0932ae;
+}
+
+/* Text */
+.w-full .grid .text-xs{
+ border-style:solid;
+ border-width:8px;
 }
 

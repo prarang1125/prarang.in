@@ -106,7 +106,7 @@
 
                 <div class="py-3 text-2xl font-bold mt-2  bg-white rounded text-black">
 
-                    <a target="_blank" href="{{ env('HINDI_URL') }}/{{ $portal->city_name }}">
+                    <a a target="_blank" href="https://hindi.prarang.in/{{ $portal->city_name }}">
                         <h3 class="text-center">{{ $portal->city_name_local }}
                             {{ $locale['ui']['statistics'] ?? 'Statistics' }}
                         </h3>
@@ -228,7 +228,7 @@
                         </div>
                     </div>
                 </div>
-                <livewire:portal.internate-data :city_id="$portal->city_code" />
+                <livewire:portal.internate-data :city_code="$portal->city_code" :city_id="$portal->city_id" :city_name="$portal->city_name_local" />
                 <div class="flex justify-center items-center p-2 w-full ">
                     {!! $portal->weather_widget_code !!}
                 </div>

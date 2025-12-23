@@ -77,7 +77,7 @@
                     </div>
                     <div class="flex justify-between border-t border-gray-800">
                         <span>मासिक {{ $portal->city_name_local ?? 'मेरठ' }} वेबपेज व्यू:</span>
-                        <span class="font-bold " id="city-monthly-count">3.2 लाख</span>
+                        <span class="font-bold " id="city-monthly-count">0</span>
                     </div>
                     <div class="flex justify-between border-t border-gray-800 ">
                         <span>आज के {{ $portal->city_name_local ?? 'मेरठ' }} पाठक:</span>
@@ -85,15 +85,11 @@
                     </div>
                 </div>
                 <!-- Login Buttons -->
-                <div class="flex gap-2">
-                    <button
-                        class="flex-1 bg-amber-400 hover:bg-amber-500 text-black text-[11px] font-bold py-1.5 px-2 rounded-sm shadow-sm transition-colors uppercase">
-                        Business Login
-                    </button>
-                    <button
-                        class="flex-1 bg-amber-400 hover:bg-amber-500 text-black text-[11px] font-bold py-1.5 px-2 rounded-sm shadow-sm transition-colors uppercase">
-                        Govt. & NGO Login
-                    </button>
+                <div class="flex gap-2 justify-center items-center">
+                    <a target="_blank" href="https://b2b.prarang.in/login?lt=partner"
+                        class="btn btn-yellow w-full bg-amber-400 p-1 rounded-sm shadow-md">Business Login</a>
+                    <a target="_blank" href="https://b2b.prarang.in/login?lt=g2c"
+                        class="btn btn-yellow w-full bg-amber-400 p-1 rounded-sm shadow-md">Govt. & NGO Login</a>
                 </div>
             </div>
         </div>
@@ -164,6 +160,7 @@
                 .then(data => {
                     const dailyViews = Number(data.data.viewership || 0);
                     animateCounter(cityDailyPlaceHolder, dailyViews, 1200);
+                    animateCounter(cityMonthlyPlaceHolder, dailyViews * 78, 1400);
                 })
                 .catch(error => {
                     console.error("Error fetching daily posts:", error);
@@ -180,7 +177,6 @@
             function update(currentTime) {
                 const elapsed = currentTime - startTime;
                 const progress = Math.min(elapsed / duration, 1);
-
                 const value = Math.floor(progress * target);
                 element.textContent = value.toLocaleString('en-IN');
 

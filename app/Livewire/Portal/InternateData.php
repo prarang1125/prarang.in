@@ -10,7 +10,7 @@ use Carbon\Carbon;
 class InternateData extends Component
 {
     public $cityName = '';
-    public $city_id;
+    public $city_id, $city_code;
     public $internateData = null;
     public $loading = true;
     public $error = null;
@@ -18,22 +18,12 @@ class InternateData extends Component
     public $cirusData = null;
     public $cityDatabaseId = null;
 
-    public function mount($city_id = 'c2')
+    public function mount($city_code = null, $city_id = null, $city_name = null)
     {
         $this->city_id = $city_id;
-
-        // Try to get city name and database ID from Portal model
-        $portal = \Modules\Portal\Models\Portal::where('city_code', $this->city_id)->first();
-        if ($portal) {
-            $this->cityDatabaseId = $portal->city_id;
-            // Extract city name from slogan if possible
-            $parts = explode(' - ', $portal->city_slogan);
-            $this->cityName = trim($parts[0]);
-        } else {
-            $this->cityName = $this->city_id == 'c2' ? 'मेरठ' : ($this->city_id == 'c3' ? 'मुरादाबाद' : $this->city_id);
-            $this->cityDatabaseId = $this->city_id == 'c2' ? '667' : null;
-        }
-
+        $this->city_code = $city_code;
+        $this->cityName = $city_name;
+        $this->cityDatabaseId = $this->city_id;
         $this->fetchData();
 
         // Set last update to roughly one month ago in Hindi format
@@ -55,7 +45,7 @@ class InternateData extends Component
             $this->loading = true;
             $this->error = null;
 
-            $cacheKey = "internateData_{$this->city_id}";
+            $cacheKey = "internateData_{$this->city_code}";
 
             // Check cache first (equivalent to localStorage in React)
             $cachedData = Cache::get($cacheKey);
@@ -67,7 +57,7 @@ class InternateData extends Component
             }
 
             // Fetch from API
-            $response = Http::get("https://b2b.prarang.in/api/readers?city_code={$this->city_id}");
+            $response = Http::get("https://b2b.prarang.in/api/readers?city_code={$this->city_code}");
 
             if (!$response->successful()) {
                 throw new \Exception('Failed to fetch data from API');
