@@ -28,7 +28,6 @@ class PortalController extends Controller
         } else {
             abort(404);
         }
-        dd(123);
     }
 
     public function indianCitiesPortal($portal)
@@ -44,14 +43,7 @@ class PortalController extends Controller
         }
 
         $locale = PortalLocaleizetion::where('lang_code', $portal->local_lang)->firstOrFail();
-
         $locale = $locale['json'] ?? [];
-        // dd($locale);
-        // $cities = httpGet('/', ['groupby' => 1, 'group' => 'MSTR2'])['data'] ?? [];
-        // dd($cities);
-
-
-
         $cityCode = $portal->city_code;
         $yellowPages = City::where('portal_id', $portal->id)->first();
         return view('portal::portal.home', compact('cityCode', 'portal', 'yellowPages', 'locale', 'books', 'links'));
@@ -59,7 +51,6 @@ class PortalController extends Controller
 
     public function bilateralCountriesPortal(string $slug)
     {
-
         // Initially, I thought this portal works for all countries, but after completing the project, there were many changes and some customizations didn't fit for all countries, so yes, this is not a dynamic solution for all countries.
 
         // Fetch portal with related countries
