@@ -633,3 +633,37 @@ header sup span{
  }
 
 }
+/* Heading */
+.w-full .lg\:flex-row .w-full div .w-full .overflow-hidden #openModalx .w-full .md\:flex-row h3{
+ bottom:auto !important;
+}
+
+/* Flex col */
+header .lg\:flex-row .flex-col:nth-child(4){
+ width:251px !important;
+ /* transform:translatex(0px) translatey(0px); */
+}
+
+/* Button */
+header .flex-col a{
+ font-size:12px !important;
+}
+
+/* Division */
+header .lg\:flex-row .md\:flex{
+ width:174px;
+}
+
+@media (min-width:435px){
+
+ /* Heading */
+ #openModalx .w-full h3{
+  top:-11px !important;
+ }
+
+ /* Font Icon */
+ #openModalx .w-full i{
+  top:-9px;
+ }
+
+}
