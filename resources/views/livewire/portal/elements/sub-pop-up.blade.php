@@ -37,13 +37,13 @@
         }
 
         /* Open modalx */
-        #openModalx {
+        /* #openModalx {
             background-image: url("https://www.prarang.in/images/sub-main-bg.png");
             background-size: cover;
             min-height: 141px;
             padding-right: 5px;
             padding-left: 153px;
-        }
+        } */
 
         /* Heading */
         .w-full .lg\:flex-row .w-full div .w-full .overflow-hidden #openModalx .w-full h3 {
@@ -60,16 +60,10 @@
 
     @if (!$isSubscribed)
         <div class="w-full">
-            <div class="relative  rounded overflow-hidden shadow-lg border border-gray-100 group">
+            <div class="relative  rounded overflow-hidden shadow-lg border border-white group">
                 {{-- Background Image --}}
-                <div class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110"
-                    style="background-image: url('@switch($banner)
-                    @case('sub-2')
-                        {{ asset('images/sub-6-bg.png') }}
-                        @break
-                    @default
-                        {{ asset('images/sub-main-bg.png') }}
-                @endswitch');">
+                <div
+                    class="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-110">
                     {{-- Darken overlay for better text contrast if needed --}}
                     <div class="absolute inset-0 bg-white/20 backdrop-blur-[2px]"></div>
                 </div>
@@ -84,19 +78,23 @@
                                 {{ $locale['subscribe']['success'] ?? 'सफलता पूर्वक सब्सक्राइब हुआ' }}
                             </h3>
                         @else
-                            <h3
-                                class="flex flex-col gap-1 text-base md:text-xl lg:text-2xl font-black leading-tight animate-colorful-blink tracking-tight">
+                            <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+                                <i class="fa fa-whatsapp"></i>
+                                <h3
+                                    class="flex flex-col gap-1 text-base md:text-xl lg:text-2xl font-black leading-tight animate-colorful-blink tracking-tight">
 
-                                {{ $locale['subscribe']['city_daily_post'] ?? 'प्रारंग के' }}
-                                @if ($portal->city_name_local)
-                                    {{ $portal->city_name_local }}
-                                @endif
+                                    {{ $locale['subscribe']['city_daily_post'] ?? 'प्रारंग के' }}
+                                    @if ($portal->city_name_local)
+                                        {{ $portal->city_name_local }}
+                                    @endif
 
-                                {{ $locale['subscribe']['daily_post_whatsapp_part1'] ?? 'दैनिक पोस्ट (Post) को' }}
+                                    {{ $locale['subscribe']['daily_post_whatsapp_part1'] ?? 'दैनिक पोस्ट (Post) को' }}
 
-                                {{ $locale['subscribe']['daily_post_whatsapp_part2'] ?? 'प्रतिदिन WhatsApp पर पाए' }}
+                                    {{ $locale['subscribe']['daily_post_whatsapp_part2'] ?? 'प्रतिदिन WhatsApp पर पाए' }}
 
-                            </h3>
+                                </h3>
+                            </div>
+
 
 
                         @endif

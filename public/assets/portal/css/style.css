@@ -563,3 +563,73 @@ header .flex-col a:hover{
  border-width:8px;
 }
 
+/* Span Tag */
+header sup span{
+ position:relative;
+ left:-10px;
+ font-size:20px !important;
+}
+
+/* Open modalx */
+#openModalx{
+ background-color:#ffffff;
+ padding-bottom:14px;
+ padding-top:14px;
+ padding-left:14px;
+ transform:translatex(0px) translatey(0px);
+ padding-right:14px;
+ height:82px !important;
+}
+
+/* Font Icon */
+#openModalx .w-full i{
+ font-size:72px;
+ color:#21be2c;
+ transform:translatex(0px) translatey(0px);
+ position:relative;
+ top:-10px;
+}
+
+/* Font Icon */
+.w-full .lg\:flex-row .w-full div .w-full .overflow-hidden #openModalx .w-full .md\:flex-row i{
+ width:79px !important;
+}
+
+/* Heading */
+#openModalx .w-full h3{
+ min-height:66px;
+ top:-9px !important;
+}
+
+/* Division */
+#openModalx .w-full .md\:flex-row{
+ position:relative;
+ top:7px;
+}
+
+/* Heading */
+.w-full .lg\:flex-row .w-full div .w-full .overflow-hidden #openModalx .w-full .md\:flex-row h3{
+ bottom:auto !important;
+}
+
+@media (min-width:435px){
+
+ /* Heading */
+ #openModalx .w-full h3{
+  /* transform:translatex(0px) translatey(0px); */
+  top:-29px !important;
+ }
+
+ /* Heading */
+ .w-full .lg\:flex-row .w-full div .w-full .overflow-hidden #openModalx .w-full .md\:flex-row h3{
+  bottom:auto !important;
+  font-size:21px !important;
+ }
+
+ /* Font Icon */
+ #openModalx .w-full i{
+  font-size:47px;
+  top:-30px;
+ }
+
+}
