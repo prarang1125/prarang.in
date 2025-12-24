@@ -34,13 +34,10 @@
     style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%)">
     <header class="px-5 py-4 ">
         <div class="flex flex-col lg:flex-row items-center justify-between gap-4">
-
             <!-- Logo Section -->
             <div class="flex flex-col items-center">
-
                 <img src="https://i.ibb.co/6c4JQSpJ/Prarang-logox.png" alt="Prarang Logo" class="h-[130px] w-[130px]">
             </div>
-
             <!-- Time Box -->
             <div
                 class="hidden md:flex flex-col items-center justify-center bg-black text-white p-3 rounded-md border border-gray-700 w-48 shadow-lg">
