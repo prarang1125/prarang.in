@@ -23,6 +23,7 @@
     <title>{{ $post['Title'] }}</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+
     {!! $portal->header_scripts !!}
     <style>
         /* Remove all formatting from all tags inside post-description */
@@ -707,9 +708,9 @@
             </div>
             <div class="text-center col-sm-3 ps-1">
                 <div class="stk-side"><br><br>
-                    @if ($portal->type == 'portal')
+                    {{-- @if ($portal->type == 'portal')
                         @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-2', 'slug' => $portal->slug, 'portal' => $portal, 'locale' => $locale])
-                    @endif
+                    @endif --}}
                     @empty($recentPosts)
                     @else
                         <div class="pt-2 pb-2 mt-3 recent-poet text-start">
