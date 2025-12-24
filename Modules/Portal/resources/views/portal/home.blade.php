@@ -43,7 +43,8 @@
                     <h3 class="text-xl font-bold text-black mb-2">
                         <i class="fa fa-newspaper-o"></i>
                         {{-- {{ $portal->city_name }} NEWS/ {{ $portal->city_name_local }} --}}
-                        {{-- {{ $locale['ui']['news_section'] ?? 'समाचार' }} --}}{{ $portal->city_name_local }} के समाचार
+                        {{-- {{ $locale['ui']['news_section'] ?? 'समाचार' }} --}}{{ $portal->city_name_local }} के
+                        समाचार
                     </h3>
                     <x-portal.widgets.news :url="$portal->news_widget_code" />
                 </div>
@@ -55,16 +56,29 @@
                     {!! $portal->local_matrics !!}
                 </div>
                 <div class="mt-6 px-4 bg-white p-3 rounded">
-                    @livewire('portal.books-links', ['books' => $portal->books, 'links' => $portal->links, 'cityName' => $portal->city_name, 'cityNameLocal' => $portal->city_name_local])
+                    @livewire('portal.books-links', ['books' => $portal->books, 'links' => $portal->links, 'cityName' =>
+                    $portal->city_name, 'cityNameLocal' => $portal->city_name_local])
                 </div>
             </div>
 
             {{-- Main Content --}}
             <div class="w-full lg:w-6/12 order-1 lg:order-2 space-y-6">
-                @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-1', 'slug' => $portal->slug, 'portal' => $portal, 'locale' => $locale])
-                <div class="text-center py-5 rounded bg-black/50 text-2xl text-white font-bold shadow-md">
-                    {!! $portal->city_slogan !!}
+                <div class="relative overflow-hidden rounded-lg shadow-xl group">
+                    <img src="{{ Storage::url($portal->header_image) }}" alt="Header Image" class="w-full h-auto ">
+                    <div class="absolute bottom-0 left-0 w-full backdrop-blur py-1 text-center">
+                        <h1 class="text-white text-sm md:text-sm font-extrabold px-6 drop-shadow-lg">
+                            {!! $portal->city_slogan !!}
+                        </h1>
+                    </div>
                 </div>
+
+
+
+                @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-1', 'slug' => $portal->slug, 'portal' =>
+                $portal, 'locale' => $locale])
+                {{-- <div class="text-center py-5 rounded bg-black/50 text-2xl text-white font-bold shadow-md">
+                    {!! $portal->city_slogan !!}
+                </div> --}}
                 {{-- MOBILE MENU --}}
                 <nav aria-label="Main Menu" id="header-mobile-menu"
                     class="lg:hidden block bg-[#d83a1f] rounded overflow-hidden shadow-lg">
@@ -100,7 +114,8 @@
                 <div class="bg-white p-2 rounded">
                     <x-portal.posts-carousel :cityId="$cityCode" :cityCode="$cityCode" :locale="$locale" />
                     <!-- TOWNPRESS SITEMAP : begin -->
-                    <x-portal.tag-list :cityId="$cityCode" :cityCode="$cityCode" :citySlug="$portal->slug" :locale="$locale" />
+                    <x-portal.tag-list :cityId="$cityCode" :cityCode="$cityCode" :citySlug="$portal->slug"
+                        :locale="$locale" />
                 </div>
 
 
@@ -228,7 +243,8 @@
                         </div>
                     </div>
                 </div>
-                <livewire:portal.internate-data :city_code="$portal->city_code" :city_id="$portal->city_id" :city_name="$portal->city_name_local" />
+                <livewire:portal.internate-data :city_code="$portal->city_code" :city_id="$portal->city_id"
+                    :city_name="$portal->city_name_local" />
                 <div class="flex justify-center items-center p-2 w-full ">
                     {!! $portal->weather_widget_code !!}
                 </div>
