@@ -48,16 +48,20 @@
                     </h3>
                     <x-portal.widgets.news :url="$portal->news_widget_code" />
                 </div>
-                <div class="mt-6 px-4 bg-white p-3 rounded">
-                    <h3 class="text-xl font-bold text-black mb-2">
-                        <i class="fa fa-map-marker"></i>
-                        {{ $locale['ui']['local_info'] ?? 'स्थानीय जानकारी' }}
-                    </h3>
-                    {!! $portal->local_matrics !!}
+                <div class="local-info-box mt-6 px-4 p-3 rounded"
+                    style="background-image: url('{{ Storage::url($portal->local_info_image ?? 'default.jpg') }}');">
+
+                    <div class="local-info-content">
+                        <h3 class="text-xl font-bold text-center text-black mb-2"> <i class="fa fa-map-marker"></i>
+                            {{-- {{ $locale['ui']['local_info'] ?? 'स्थानीय जानकारी' }} --}}
+                            {{ $portal->city_name_local }} की स्थानीय जानकारी
+                        </h3>
+                        {!! $portal->local_matrics !!}
+                    </div>
                 </div>
+
                 <div class="mt-6 px-4 bg-white p-3 rounded">
-                    @livewire('portal.books-links', ['books' => $portal->books, 'links' => $portal->links, 'cityName' =>
-                    $portal->city_name, 'cityNameLocal' => $portal->city_name_local])
+                    @livewire('portal.books-links', ['books' => $portal->books, 'links' => $portal->links, 'cityName' => $portal->city_name, 'cityNameLocal' => $portal->city_name_local])
                 </div>
             </div>
 
@@ -74,8 +78,7 @@
 
 
 
-                @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-1', 'slug' => $portal->slug, 'portal' =>
-                $portal, 'locale' => $locale])
+                @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-1', 'slug' => $portal->slug, 'portal' => $portal, 'locale' => $locale])
                 {{-- <div class="text-center py-5 rounded bg-black/50 text-2xl text-white font-bold shadow-md">
                     {!! $portal->city_slogan !!}
                 </div> --}}
@@ -85,7 +88,8 @@
                     <ul role="menu" class="divide-y divide-white/10 text-white font-semibold text-base">
                         {{-- HOME --}}
                         <li role="presentation">
-                            <a target="_blank" href="{{ route('portal', ['portal' => $portal->slug]) }}" role="menuitem"
+                            <a target="_blank" href="{{ route('portal', ['portal' => $portal->slug]) }}"
+                                role="menuitem"
                                 class="block px-6 py-1 uppercase tracking-wide hover:bg-black/10 transition">
                                 {{ $locale['ui']['home'] ?? 'HOME' }}
                             </a>
@@ -114,8 +118,7 @@
                 <div class="bg-white p-2 rounded">
                     <x-portal.posts-carousel :cityId="$cityCode" :cityCode="$cityCode" :locale="$locale" />
                     <!-- TOWNPRESS SITEMAP : begin -->
-                    <x-portal.tag-list :cityId="$cityCode" :cityCode="$cityCode" :citySlug="$portal->slug"
-                        :locale="$locale" />
+                    <x-portal.tag-list :cityId="$cityCode" :cityCode="$cityCode" :citySlug="$portal->slug" :locale="$locale" />
                 </div>
 
 
@@ -243,8 +246,7 @@
                         </div>
                     </div>
                 </div>
-                <livewire:portal.internate-data :city_code="$portal->city_code" :city_id="$portal->city_id"
-                    :city_name="$portal->city_name_local" />
+                <livewire:portal.internate-data :city_code="$portal->city_code" :city_id="$portal->city_id" :city_name="$portal->city_name_local" />
                 <div class="flex justify-center items-center p-2 w-full ">
                     {!! $portal->weather_widget_code !!}
                 </div>

@@ -79,9 +79,9 @@
                             </h3>
                         @else
                             <div class="flex flex-col md:flex-row items-center justify-center gap-4">
-                                <i class="fa fa-whatsapp"></i>
+
                                 <h3
-                                    class="flex flex-col gap-1 text-base md:text-xl lg:text-2xl font-black leading-tight animate-colorful-blink tracking-tight">
+                                    class="flex flex-col gap-1 text-base md:text-xl lg:text-[30px] font-black leading-tight animate-colorful-blink tracking-tight">
 
                                     {{ $locale['subscribe']['city_daily_post'] ?? 'प्रारंग के' }}
                                     @if ($portal->city_name_local)

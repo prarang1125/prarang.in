@@ -12,8 +12,8 @@
                     </div>
                     {{-- Color Bars --}}
                     <div class="flex w-3/4 h-8">
-                        <div class="flex-1 bg-[#ef4444]"></div>
-                        <div class="flex-1 bg-[#fef08a]"></div>
+                        <div class="flex-1 bg-[#ff0000]"></div>
+                        <div class="flex-1 bg-[#f7f601]"></div>
                         <div class="flex-1 bg-[#0000ff]"></div>
                     </div>
                 </div>
