@@ -1,580 +1,12 @@
 <div>
     <link rel="stylesheet" href="{{ asset('assets/ai/css/aichat.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('assets/portal/css/comparison.css') }}">
 
-    <style>
-        /* Heading */
-        .first-prompt .firstPrompt h2 {
-            font-weight: 600;
-        }
 
-        /* Paragraph */
-        .first-prompt .firstPrompt>p {
-            font-size: 14px !important;
-            margin-top: 0px !important;
-            margin-bottom: 0px;
-        }
 
-        /* Heading */
-        .first-prompt .firstPrompt h2 {
-            margin-bottom: 0px;
-        }
 
-        /* Heading */
-        .first-prompt .firstPrompt h2 {
-            font-size: 28px;
-            font-weight: 700 !important;
-        }
 
-        /* Paragraph */
-        .container div .container-fluid .row .position-relative .pr-ai-section .first-prompt .firstPrompt>p {
-            font-size: 16px !important;
-        }
-
-        /* Paragraph */
-        .first-prompt .firstPrompt>p {
-            line-height: 1.2em;
-        }
-
-        /* Column 12/12 */
-        .first-prompt .firstPrompt .col-12 {
-            transform: translatex(0px) translatey(0px);
-        }
-
-        /* First prompt */
-        .container div .first-prompt {
-            transform: translatex(0px) translatey(0px);
-        }
-
-        /* First prompt */
-        .container div .container-fluid .row .position-relative .pr-ai-section .first-prompt>.firstPrompt {
-            top: 5px !important;
-            bottom: auto !important;
-        }
-
-        /* Link */
-        .card .list-group-flush a {
-            transform: translatex(0px) translatey(0px);
-        }
-
-        /* List group item */
-        .card .list-group-flush .list-group-item:nth-child(5) {
-            color: #6f7276;
-        }
-
-        /* List group item */
-        .card .list-group-flush .list-group-item:nth-child(6) {
-            color: #707579;
-        }
-
-        /* Indo-Czech Comparison Styles */
-        .comparison-tool-container section p {
-            text-align: justify;
-            color: #000000;
-            margin-bottom: 5px;
-        }
-
-        .img-click {
-            display: grid;
-            grid-template-columns: 48% 48% !important;
-            align-self: center;
-            margin-top: 30px;
-        }
-
-        .img-click a img {
-            width: 350px;
-        }
-
-        .comparison-tool-container .img-click {
-            display: block !important;
-            justify-content: center;
-        }
-
-        .comparison-tool-container .img-click a {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transform: translatex(0px) translatey(0px);
-            margin-bottom: 19px;
-        }
-
-        .img-click a h3,
-        .img-click a h4 {
-            background-color: #0d6efd;
-            color: #ffffff;
-            padding-left: 20px;
-            padding-right: 20px;
-            width: 339px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 26px;
-            white-space: break-spaces;
-        }
-    </style>
-    <style>
-        /* Shadow */
-        #categoryTabsContent .shadow {
-            padding-top: 2px;
-            padding-left: 12px !important;
-            /* transform: translatex(0px) translatey(0px); */
-            box-shadow: 0px 8px 3px -7px rgba(0, 0, 0, 0.15) !important;
-        }
-
-        /* Column 12/12 */
-        #categoryTabsContent .row .mb-2 {
-            margin-bottom: 1px !important;
-            height: 26px;
-        }
-
-        /* Form check */
-        #categoryTabsContent .mb-2 .form-check {
-            font-weight: 500;
-        }
-
-        /* Bold */
-        #categoryTabsContent .fw-bold {
-            margin-top: 9px !important;
-        }
-
-        /* Modal body */
-        #categoryModal .modal-dialog .modal-body {
-            padding-top: 7px;
-        }
-
-        /* Form check label */
-        #geographyModal .list-group .form-check-label {
-            font-size: 14px;
-            color: #000000;
-            font-weight: 500;
-        }
-
-        /* Button */
-        .position-relative .pr-ai-section a {
-            position: absolute;
-        }
-
-        /* Button */
-        .select-prompt div a {
-            top: 11px;
-            bottom: auto !important;
-            right: auto !important;
-        }
-
-        /* Paragraph */
-        .main-button-area div p {
-            top: 9px !important;
-        }
-
-        /* Paragraph */
-        .container div .container-fluid .row .position-relative .pr-ai-section .first-prompt .firstPrompt .row .col-12 .firstPrompt .main-button-area .arrow div p {
-            bottom: auto !important;
-        }
-
-        /* Select category */
-        .first-prompt .firstPrompt .select-category {
-            top: 0px !important;
-        }
-
-        /* Select category */
-        .container div .container-fluid .row .position-relative .pr-ai-section .first-prompt .firstPrompt .row .col-12 .firstPrompt .main-button-area .select-category {
-            bottom: auto !important;
-        }
-
-        .main-button-area .arrow:nth-child(4) p {
-            padding-top: 4px;
-        }
-
-        @media (min-width:768px) {
-
-            /* Button */
-            .select-prompt div a {
-                left: -8px;
-                width: 100%;
-            }
-
-        }
-
-        /* Column 12/12 */
-        #content-c_data .mb-2 {
-            height: 29px !important;
-            padding-bottom: 45px;
-        }
-
-        /* Form check */
-        #content-c_data .mb-2 .form-check {
-            align-items: normal;
-        }
-    </style>
-    <style>
-        @media (max-width:575px) {
-
-            /* Button */
-            .select-prompt div a {
-                left: -35px !important;
-            }
-
-            /* Button */
-            .first-prompt .firstPrompt .row .col-12 .firstPrompt .main-button-area .select-prompt div .text-center a {
-                right: auto !important;
-            }
-
-            /* Small Tag */
-            .select-location div small {
-                font-size: 11px !important;
-                margin-bottom: 11px;
-            }
-
-            /* Button */
-            .select-location div .btn-lg {
-                padding-bottom: 13px;
-                min-height: 83px;
-            }
-
-            /* Flex */
-            .modal-content .modal-body .row .col-md-7 .d-flex {
-                margin-top: 31px;
-                background-color: #ffffff;
-            }
-
-            /* List group */
-            #geographyModal .modal-body .list-group {
-                box-shadow: 0px 0px 5px 0px #212529;
-            }
-
-        }
-
-        @media (max-width:575px) {
-
-            /* List group */
-            #geographyModal .modal-body .list-group {
-                max-height: 100% !important;
-                min-height: 55px;
-            }
-
-        }
-
-        /* Heading */
-        .first-prompt .firstPrompt h2 {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 15px !important;
-        }
-
-        /* Image */
-        .first-prompt .firstPrompt img {
-            margin-right: 26px !important;
-            margin-left: 23px !important;
-            width: 40px !important;
-            border-top-left-radius: 0px !important;
-            border-bottom-left-radius: 0px !important;
-            border-top-right-radius: 0px !important;
-            border-bottom-right-radius: 0px !important;
-            box-shadow: 0px 0px 8px 2px #212529;
-        }
-
-        /* Paragraph */
-        .first-prompt .firstPrompt>p {
-            margin-bottom: 22px !important;
-        }
-
-        /* List group item */
-        .card .list-group-flush a.list-group-item {
-            cursor: pointer;
-        }
-
-        /* List group item (hover) */
-        .card .list-group-flush a.list-group-item:hover {
-            font-weight: 500;
-        }
-
-        /* Image */
-        .pr-ai-section .justify-center img {
-            width: 40px;
-            box-shadow: 0px 0px 3px 1px #212529;
-        }
-
-        /* Heading */
-        .pr-ai-section h2 {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-            font-weight: 600;
-        }
-
-        @media (max-width:767px) {
-
-            /* Th */
-            .table-striped tr th:nth-child(1) {
-                position: sticky;
-                left: -15px;
-                z-index: 2;
-            }
-
-            /* Heading */
-            #dfggsgzrf .border-info h6 {
-                position: sticky;
-                left: -14px;
-            }
-
-        }
-
-        @media (max-width:575px) {
-
-            /* Th */
-            .container div #toprint .row .position-relative .pr-ai-section .row .col-sm-12 #outChat #dfggsgzrf .border-info .table-striped thead tr th:nth-child(1) {
-                position: sticky !important;
-            }
-
-            /* Share back print */
-            .position-relative .pr-ai-section .share-back-print {
-                grid-template-columns: 55fr 45fr !important;
-            }
-
-        }
-
-        /* Form check */
-        #content-e_langs .mb-2 .form-check {
-            height: 147px;
-        }
-
-        /* Label */
-        #content-e_langs .mb-2 label {
-            padding-bottom: 5px;
-            top: 3px;
-        }
-
-        /* Column 12/12 */
-        #content-e_langs .mb-2 {
-            min-height: 37px;
-        }
-    </style>
-    <style>
-        /* Flex */
-        .position-relative .pr-ai-section .d-flex {
-            margin-bottom: -18px !important;
-        }
-
-        /* Button */
-        .pr-ai-section .d-flex .btn-warning {
-            margin-left: 76px !important;
-        }
-
-        .pr-ai-section .row .col-sm-12 #outChat #dfggsgzrf .sourcedat .list-group .list-group-item {
-            margin-bottom: 0px !important;
-        }
-
-        @media (max-width:575px) {
-
-            /* Column 12/12 */
-            #content-e_ints .mb-2 {
-                padding-bottom: 39px;
-                margin-top: 6px;
-            }
-
-        }
-
-        @media (max-width:575px) {
-
-            /* Heading */
-            .first-prompt .firstPrompt h2 {
-                transform: translatex(0px) translatey(0px);
-                display: grid !important;
-                column-gap: 3px;
-                grid-template-columns: 10% 76% 10%;
-                font-size: 24px !important;
-            }
-
-            /* Image */
-            #toprint .row .position-relative .pr-ai-section .first-prompt .firstPrompt .justify-center img {
-                margin-right: 2px !important;
-                margin-left: 2px !important;
-            }
-
-            /* Heading */
-            .container div #toprint .row .position-relative .pr-ai-section .first-prompt .firstPrompt h2 {
-                grid-template-columns: 10% 76% 10% !important;
-            }
-
-            /* Modal footer */
-            #faqModal .modal-dialog .modal-footer {
-                transform: translatex(0px) translatey(0px);
-            }
-
-            /* Heading */
-            .pr-ai-section h2 {
-                display: grid !important;
-                grid-template-columns: 10% 76% 10%;
-                align-content: center;
-                column-gap: 10px;
-                transform: translatex(0px) translatey(0px);
-                font-size: 25px;
-                text-align: center;
-            }
-
-            /* Heading */
-            .container div #toprint .row .position-relative .pr-ai-section .row .col-sm-12 h2 {
-                grid-template-columns: 10% 76% 10% !important;
-            }
-
-            /* Col 12 */
-            .pr-ai-section .col-sm-12 {
-                position: relative;
-                top: 20px;
-            }
-
-        }
-
-        .pr-ai-section .col-sm-12 {
-            position: relative;
-            top: 20px;
-        }
-    </style>
-    <style>
-        .container div #toprint .row .position-relative .pr-ai-section .share-back-print .d-flex .btn-warning {
-            margin-left: 0px !important;
-        }
-
-        @media (max-width:767px) {
-
-            /* Th */
-            #dfggsgzrf tr th {
-                min-width: 170px;
-            }
-
-        }
-
-        @media (max-width:575px) {
-
-            /* Share back print */
-            .position-relative .pr-ai-section .share-back-print {
-                grid-template-columns: 70fr 30fr;
-            }
-
-            /* Container */
-            .container {
-                grid-template-columns: 70fr 30fr;
-            }
-
-            /* Row */
-            .position-relative .pr-ai-section>.row {
-                position: relative;
-                top: 20px;
-                transform: translatex(0px) translatey(0px);
-            }
-
-            /* Col 12 */
-            .pr-ai-section .col-sm-12 {
-                top: 0px !important;
-            }
-
-            /* Col 12 */
-            .container div #toprint .row .position-relative .pr-ai-section .row .col-sm-12 {
-                bottom: auto !important;
-            }
-
-            /* Th */
-            #dfggsgzrf tr th {
-                transform: translatex(0px) translatey(0px);
-            }
-
-            /* Table striped */
-            #dfggsgzrf .table-striped {
-                overflow: scroll;
-                min-width: 1px;
-                transform: translatex(0px) translatey(0px);
-            }
-
-            /* Table striped */
-            .container div #toprint .row .position-relative .pr-ai-section .row .col-sm-12 #outChat #dfggsgzrf .border-info .table-striped {
-                width: 100% !important;
-            }
-
-            /* Text info */
-            #dfggsgzrf .text-info {
-                position: sticky;
-                left: -1px;
-            }
-
-            /* Th */
-            #dfggsgzrf .border-info:nth-child(10) th:nth-child(1) {
-                position: sticky;
-                left: -15px;
-                z-index: 2;
-            }
-
-        }
-
-        @media (max-width:575px) {
-
-            /* Th */
-            #dfggsgzrf .border-info:nth-child(9) th:nth-child(1) {
-                position: sticky;
-                left: -15px;
-                z-index: 2;
-            }
-
-        }
-
-        @media (max-width:575px) {
-
-            /* Row */
-            #dfggsgzrf .ExploreMoreInsites ul {
-                grid-template-columns: 1fr !important;
-                /* transform: translatex(0px) translatey(0px); */
-            }
-
-        }
-
-        /* Button */
-        .first-prompt .text-end a {
-            margin-top: 1px;
-            top: 20px;
-            bottom: auto !important;
-        }
-
-        @media (max-width:575px) {
-
-            /* Button */
-            .first-prompt .text-end a {
-                transform: rotateZ(-90deg);
-                margin-right: -1px;
-                top: 248px;
-            }
-
-            /* Modal header */
-
-
-        }
-
-        @media (max-width:575px) {
-
-
-
-            /* Button */
-            .first-prompt .text-end a {
-                z-index: 1000;
-            }
-
-            .mb-2 .form-check {
-                height: 65px !important;
-            }
-
-            .rounded {
-                height: 516px;
-
-            }
-
-        }
-
-        #content-e_edus .mb-2 {
-            height: 64px !important;
-        }
-    </style>
     <div class="container-fluid" id="toprint">
 
         <div class="row locale-font">
@@ -582,348 +14,318 @@
                 <div class="pr-ai-section">
                     <section class="first-prompt">
                         @if ($activeSection['firstPrompt'])
-                            <div class="mb-3 text-center firstPrompt">
-                                <p class="text-end mt-3">
-                                    <a javascript:void(0) class="btn btn-primary btn-sm" data-bs-toggle="modal"
-                                        data-bs-target="#faqModal" data-bs-toggle="offcanvas">
-                                        FAQ
-                                    </a>
-                                </p>
-                                @if ($type === 'regional')
-                                    <h2 class="flex justify-center items-center"><img class="mx-2"
-                                            src="https://g2c.prarang.in/storage/images/world/195Counties/IND__flag.jpg"
-                                            alt="">Indo-Czech Comparison <img class="mx-2"
-                                            src="https://g2c.prarang.in/storage/images/world/195Counties/CZE__flag.jpg"
-                                            alt="">
-                                    </h2>
-                                    <p>Compare Czech Republic Regions(Kraje) with Indian Regions</p>
-                                @else
-                                    <style>
-                                        /* Image */
-                                        .first-prompt h2 img {
-                                            box-shadow: 0px 0px 0px -50px #212529 !important;
-                                            min-height: 43px;
-                                        }
+                        <div class="mb-3 text-center firstPrompt">
+                            <p class="text-end mt-3">
+                                <a javascript:void(0) class="btn btn-primary btn-sm" data-bs-toggle="modal"
+                                    data-bs-target="#faqModal" data-bs-toggle="offcanvas">
+                                    FAQ
+                                </a>
+                            </p>
+                            @if ($type === 'regional')
+                            <h2 class="flex justify-center items-center"><img class="mx-2"
+                                    src="https://g2c.prarang.in/storage/images/world/195Counties/IND__flag.jpg"
+                                    alt="">Indo-Czech Comparison <img class="mx-2"
+                                    src="https://g2c.prarang.in/storage/images/world/195Counties/CZE__flag.jpg" alt="">
+                            </h2>
+                            <p>Compare Czech Republic Regions(Kraje) with Indian Regions</p>
+                            @else
 
-                                        /* Image */
-                                        .container div .container-fluid .row .position-relative .pr-ai-section .first-prompt .firstPrompt h2 img {
-                                            width: 50px !important;
-                                            margin-right: 10px !important;
-                                        }
+                            <h2><img class="mx-2 cze-mapx"
+                                    src="https://g2c.prarang.in/storage/images/world/195Counties/CZE_MAP.jpg"
+                                    alt="">Country Comparison</h2>
+                            <p>Compare Czech Republic with other Countries</p>
+                            @endif
+                            @if (session()->has('message'))
+                            <p class="text-success" style="font-size: 14px!important; margin: 0px; padding: 0px;">
+                                {{ session('message') }}</p>
+                            @endif
+                            <br><br>
 
-                                        /* Heading */
-                                        .first-prompt .firstPrompt h2 {
-                                            transform: translatex(0px) translatey(0px);
-                                            align-items: baseline !important;
-                                        }
+                            <div class="row">
 
-                                        /* Heading */
-                                        .container div .container-fluid .row .position-relative .pr-ai-section .first-prompt .firstPrompt h2 {
-                                            margin-bottom: 13px !important;
-                                        }
-                                    </style>
-                                    <h2><img class="mx-2 cze-mapx"
-                                            src="https://g2c.prarang.in/storage/images/world/195Counties/CZE_MAP.jpg"
-                                            alt="">Country Comparison</h2>
-                                    <p>Compare Czech Republic with other Countries</p>
-                                @endif
-                                @if (session()->has('message'))
-                                    <p class="text-success"
-                                        style="font-size: 14px!important; margin: 0px; padding: 0px;">
-                                        {{ session('message') }}</p>
-                                @endif
-                                <br><br>
-
-                                <div class="row">
-
-                                    <div class="col-12">
-                                        <div class="mb-3 firstPrompt">
-                                            <div class="main-button-area">
-                                                <div class="select-location">
-                                                    <div> <button type="button"
-                                                            class="btn btn-secondary btn-lg position-relative"
-                                                            data-bs-toggle="modal" data-bs-target="#geographyModal">
-                                                            @if ($type === 'regional')
-                                                                Select Locations<br><small>(Up to 3
-                                                                    Czech/3 India)</small>
-                                                            @else
-                                                                {{ $lables['select_location'] }}<br><small>(1 to
-                                                                    3)</small>
-                                                            @endif
-                                                        </button>
-
-                                                        @if (session()->has('cityerror'))
-                                                            <br>
-                                                            <small class="text-danger">
-                                                                {{ session('cityerror') }}</small>
+                                <div class="col-12">
+                                    <div class="mb-3 firstPrompt">
+                                        <div class="main-button-area">
+                                            <div class="select-location">
+                                                <div> <button type="button"
+                                                        class="btn btn-secondary btn-lg position-relative"
+                                                        data-bs-toggle="modal" data-bs-target="#geographyModal">
+                                                        @if ($type === 'regional')
+                                                        Select Locations<br><small>(Up to 3
+                                                            Czech/3 India)</small>
+                                                        @else
+                                                        {{ $lables['select_location'] }}<br><small>(1 to
+                                                            3)</small>
                                                         @endif
-                                                    </div>
-                                                    <div>
-                                                        <span class="p-2 m-2 border count-box bg-light text-dark"
-                                                            id="citiesCount"
-                                                            @if ($type === 'regional') wire:ignore.self
+                                                    </button>
+
+                                                    @if (session()->has('cityerror'))
+                                                    <br>
+                                                    <small class="text-danger">
+                                                        {{ session('cityerror') }}</small>
+                                                    @endif
+                                                </div>
+                                                <div>
+                                                    <span class="p-2 m-2 border count-box bg-light text-dark"
+                                                        id="citiesCount" @if ($type==='regional' ) wire:ignore.self
                                                         @else wire:ignore @endif>
-                                                            @if ($type === 'regional')
-                                                                {{ $this->selectedCount }}
-                                                            @else
-                                                                0
-                                                            @endif
-                                                        </span>{{ $lables['selected'] ?? 'Selected' }}
-                                                    </div>
+                                                        @if ($type === 'regional')
+                                                        {{ $this->selectedCount }}
+                                                        @else
+                                                        0
+                                                        @endif
+                                                    </span>{{ $lables['selected'] ?? 'Selected' }}
+                                                </div>
 
+                                            </div>
+                                            <div class="arrow">
+                                                <div>
+                                                    <p><i class='bx bx-down-arrow-alt'></i></p>
                                                 </div>
-                                                <div class="arrow">
-                                                    <div>
-                                                        <p><i class='bx bx-down-arrow-alt'></i></p>
-                                                    </div>
-                                                    <div></div>
+                                                <div></div>
+                                            </div>
+                                            <div class="select-category">
+                                                <div> <button type="button"
+                                                        class="btn btn-primary btn-lg position-relative"
+                                                        data-bs-toggle="modal" data-bs-target="#categoryModal">
+                                                        {{ $lables['select_metrics'] }}<br><small>(1 to 5)</small>
+                                                    </button></div>
+                                                <div><span class="p-2 m-2 border count-box bg-light text-dark"
+                                                        id="category-count" wire:ignore>
+                                                        0
+                                                    </span>{{ $lables['selected'] }}
                                                 </div>
-                                                <div class="select-category">
-                                                    <div> <button type="button"
-                                                            class="btn btn-primary btn-lg position-relative"
-                                                            data-bs-toggle="modal" data-bs-target="#categoryModal">
-                                                            {{ $lables['select_metrics'] }}<br><small>(1 to 5)</small>
-                                                        </button></div>
-                                                    <div><span class="p-2 m-2 border count-box bg-light text-dark"
-                                                            id="category-count" wire:ignore>
-                                                            0
-                                                        </span>{{ $lables['selected'] }}
-                                                    </div>
+                                            </div>
+                                            <div class="arrow">
+                                                <div>
+                                                    <p><i class='bx bx-down-arrow-alt'></i></p>
                                                 </div>
-                                                <div class="arrow">
-                                                    <div>
-                                                        <p><i class='bx bx-down-arrow-alt'></i></p>
-                                                    </div>
-                                                    <div></div>
+                                                <div></div>
 
-                                                </div>
-                                                <div class="select-prompt">
-                                                    <div>
-                                                        <div class="text-center">
-                                                            <a class="btn btn-primary" wire:click="generate"
-                                                                role="button" tabindex="0"
-                                                                wire:loading.attr="disabled" wire:target="generate">
-                                                                <span class="spinner-border spinner-border-sm"
-                                                                    wire:loading wire:target="generate">
-                                                                </span>&nbsp;
-                                                                Compare
-                                                            </a>
+                                            </div>
+                                            <div class="select-prompt">
+                                                <div>
+                                                    <div class="text-center">
+                                                        <a class="btn btn-primary" wire:click="generate" role="button"
+                                                            tabindex="0" wire:loading.attr="disabled"
+                                                            wire:target="generate">
+                                                            <span class="spinner-border spinner-border-sm" wire:loading
+                                                                wire:target="generate">
+                                                            </span>&nbsp;
+                                                            Compare
+                                                        </a>
 
-                                                        </div>
                                                     </div>
-                                                    <div>
-                                                    </div>
+                                                </div>
+                                                <div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
+
                             </div>
+                        </div>
                         @endif
                     </section>
                     @if ($output)
 
-                        {{-- Country Mode Output --}}
-                        @php
-                            $backUrl = '/czech-republic-' . $type . '-comparison';
+                    {{-- Country Mode Output --}}
+                    @php
+                    $backUrl = '/czech-republic-' . $type . '-comparison';
 
-                            // Use Czech region names directly (not IDs)
-                            $regionValues = implode('-', $insCities['region'] ?? []);
-                            $cityValues = implode('-', $insCities['city'] ?? []);
-                            $czeMetrics =
-                                implode('-', array_keys($subChecks['CZE'] ?? [])) .
-                                '-' .
-                                implode('-', array_keys($subChecks['World'] ?? []));
-                            $concatenatedString = $regionValues . '-' . $cityValues . '@' . $czeMetrics;
+                    // Use Czech region names directly (not IDs)
+                    $regionValues = implode('-', $insCities['region'] ?? []);
+                    $cityValues = implode('-', $insCities['city'] ?? []);
+                    $czeMetrics =
+                    implode('-', array_keys($subChecks['CZE'] ?? [])) .
+                    '-' .
+                    implode('-', array_keys($subChecks['World'] ?? []));
+                    $concatenatedString = $regionValues . '-' . $cityValues . '@' . $czeMetrics;
 
-                            $currentUrl = url($backUrl) . '?share=' . base64_encode($concatenatedString);
-                        @endphp
-
-
-                        <x-action-buttons :backUrl="$backUrl" :currentUrl="$currentUrl" />
+                    $currentUrl = url($backUrl) . '?share=' . base64_encode($concatenatedString);
+                    @endphp
 
 
-                        <div class="row">
-                            <div class="col-sm-12">
-                                <p class="text-center main-title-heading locale-font" style="color: #0000ff">
+                    <x-action-buttons :backUrl="$backUrl" :currentUrl="$currentUrl" />
 
 
-                                    @if ($type === 'regional')
-                                        <h2 class="flex justify-center items-center"><img class="mx-2"
-                                                src="https://g2c.prarang.in/storage/images/world/195Counties/IND__flag.jpg"
-                                                alt="">Indo-Czech Comparisons<img class="mx-2"
-                                                src="https://g2c.prarang.in/storage/images/world/195Counties/CZE__flag.jpg"
-                                                alt="">
-                                        </h2>
-                                    @else
-                                        <h2>
-                                            <style>
-                                                .pr-ai-section h2 {
-                                                    align-items: baseline !important;
-                                                }
-                                            </style>
-                                            <img class="mx-2 cze-mapx " style="width: 50px; height: 50px;"
-                                                src="https://g2c.prarang.in/storage/images/world/195Counties/CZE_MAP.jpg"
-                                                alt="">Country Comparison
-                                        </h2>
-                                    @endif
-                                </p>
-
-                                <section id="outChat">
-                                    <div class="p-3 h-100" id="dfggsgzrf">
-
-                                        <p class="rounded border py-2 px-1 mb-3">
-                                            {{ $prompt ?? '' }}
-                                        </p>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <p class="text-center main-title-heading locale-font" style="color: #0000ff">
 
 
-                                        @foreach ($output['warnings'] ?? [] as $warning)
-                                            <p class="warning-chat">{{ $warning }}</p>
+                                @if ($type === 'regional')
+                            <h2 class="flex justify-center items-center"><img class="mx-2"
+                                    src="https://g2c.prarang.in/storage/images/world/195Counties/IND__flag.jpg"
+                                    alt="">Indo-Czech Comparisons<img class="mx-2"
+                                    src="https://g2c.prarang.in/storage/images/world/195Counties/CZE__flag.jpg" alt="">
+                            </h2>
+                            @else
+                            <h2>
+
+                                <img class="mx-2 cze-mapx " style="width: 50px; height: 50px;"
+                                    src="https://g2c.prarang.in/storage/images/world/195Counties/CZE_MAP.jpg"
+                                    alt="">Country Comparison
+                            </h2>
+                            @endif
+                            </p>
+
+                            <section id="outChat">
+                                <div class="p-3 h-100" id="dfggsgzrf">
+
+                                    <p class="rounded border py-2 px-1 mb-3">
+                                        {{ $prompt ?? '' }}
+                                    </p>
+
+
+                                    @foreach ($output['warnings'] ?? [] as $warning)
+                                    <p class="warning-chat">{{ $warning }}</p>
+                                    @endforeach
+
+                                    <p class="com-chat">
+                                        @isset($output['comparison_statement'])
+                                        {{ $output['comparison_statement'] }}
+                                        @endisset
+                                    </p>
+
+                                    <p class="com-chat">
+                                        @isset($output['comparison_sentence']['sentence'])
+                                        {!! $output['comparison_sentence']['sentence'] !!}
+                                        <br>
+                                        {!! $output['comparison_sentence']['compare'] !!}
+                                        @endisset
+                                    </p>
+
+
+
+                                    <div class="mb-2">
+                                        @foreach (['cze', 'city', 'country'] as $key)
+                                        @isset($output['api_sentence'][$key])
+                                        @foreach ($output['api_sentence'][$key] as $paragraph)
+                                        <p class="mb-2">{!! $paragraph !!}</p>
                                         @endforeach
-
-                                        <p class="com-chat">
-                                            @isset($output['comparison_statement'])
-                                                {{ $output['comparison_statement'] }}
-                                            @endisset
-                                        </p>
-
-                                        <p class="com-chat">
-                                            @isset($output['comparison_sentence']['sentence'])
-                                                {!! $output['comparison_sentence']['sentence'] !!}
-                                                <br>
-                                                {!! $output['comparison_sentence']['compare'] !!}
-                                            @endisset
-                                        </p>
-
-
-
-                                        <div class="mb-2">
-                                            @foreach (['cze', 'city', 'country'] as $key)
-                                                @isset($output['api_sentence'][$key])
-                                                    @foreach ($output['api_sentence'][$key] as $paragraph)
-                                                        <p class="mb-2">{!! $paragraph !!}</p>
-                                                    @endforeach
-                                                @endisset
-                                            @endforeach
-                                        </div>
-
-                                        @isset($output['sentences']['cze'])
-                                            <div class="mb-2">
-                                                <p class="mb-2">{!! $output['sentences']['cze'] !!}</p>
-                                            </div>
                                         @endisset
-                                        @isset($output['sentences']['country'])
-                                            <div class="mb-2">
-                                                <p class="mb-2">{!! $output['sentences']['country'] !!}</p>
-                                            </div>
-                                        @endisset
-                                        @isset($output['sentences']['city'])
-                                            <div class="mb-2">
-                                                <p class="mb-2">{!! $output['sentences']['city'] !!}</p>
-                                            </div>
-                                        @endisset
-                                        @isset($output['sentences']['state'])
-                                            <div class="mb-2">
-                                                <p class="mb-2">{!! $output['sentences']['state'] !!}</p>
-                                            </div>
-                                        @endisset
-
-                                        @isset($output['sentences']['continent'])
-                                            <div class="mb-2">
-                                                <p class="mb-2">{!! $output['sentences']['continent'] !!}</p>
-                                            </div>
-                                        @endisset
-
-                                        @if (!empty($output['cze_comparison']))
-                                            <div class="p-3 mt-4 border rounded border-info bg-light">
-                                                <h6 class="text-info">Czech Republic Region (Kraj) Comparison</h6>
-                                                {!! $output['cze_comparison'] !!}
-                                            </div>
-                                        @endif
-                                        @if (!empty($output['city_comparison']))
-                                            <div class="p-3 mt-4 border rounded border-info bg-light">
-                                                <h6 class="text-info">India Region (City/District) Comparison
-                                                </h6>
-                                                {!! $output['city_comparison'] !!}
-                                            </div>
-                                        @endif
-
-
-                                        {{-- Country Comparison Table --}}
-                                        @if (!empty($output['country_comparison']))
-                                            <div class="p-3 mt-4 border rounded border-info bg-light">
-                                                <h6 class="text-info">{{ $lables['counrty_table_title'] }}</h6>
-                                                {!! $output['country_comparison'] !!}
-                                            </div>
-                                        @endif
-                                        @if (!empty($output['continent_comparison']))
-                                            <div class="p-3 mt-4 border rounded border-info bg-light">
-                                                <h6 class="text-info">
-                                                    {{ $lables['continent_table_title'] }}
-                                                </h6>
-                                                {!! $output['continent_comparison'] !!}
-                                            </div>
-                                        @endif
-
-
-
-                                        <section class="sourcedat">
-                                            <h6 class="p-2">{{ $lables['source'] }}:</h6>
-                                            <ul class="list-group">
-                                                @foreach ($output['source'] as $key => $ss)
-                                                    <li
-                                                        class="list-group-item d-flex justify-content-between align-items-center">
-
-                                                        <span class="text-small"> [{{ $key }}]
-                                                            {{ $ss['local_source'] ?? $ss['source'] }}</span>
-                                                        <span
-                                                            class="badge rounded-pill text-small">{{ $ss['year'] }}</span>
-                                                    </li>
-                                                @endforeach
-                                            </ul>
-                                        </section>
-                                        @if ($type === 'regional')
-                                            <section class="mt-2 ExploreMoreInsites">
-                                                <p class="fw-bold">{{ $lables['explore_more'] }}:</p>
-                                                <ul class="row">
-
-                                                    @foreach ($insCities as $key => $geographyx)
-                                                        @foreach ($geographyx as $geography)
-                                                            <li class="col-12  col-md-3"><a target="_blank"
-                                                                    style="text-decoration: none;"
-                                                                    href="https://g2c.prarang.in/{{ $key == 'city' ? 'ai/' : 'czech-republic/' }}{{ $geography }}">{{ $geography }}
-                                                                    {{ $lables['insights'] }}</a></li>
-                                                        @endforeach
-                                                    @endforeach
-                                                </ul>
-                                            </section>
-                                        @else
-                                            <section class="mt-2 ExploreMoreInsites">
-                                                <p class="fw-bold">{{ $lables['explore_more'] }}:</p>
-                                                <ul class="row">
-                                                    @foreach ($cities as $geography)
-                                                        <li class="col-12 col-md-3"><a target="_blank"
-                                                                style="text-decoration: none;"
-                                                                href="https://g2c.prarang.in/ai/{{ json_decode($geography)->name }}">{{ json_decode($geography)->name }}
-                                                                {{ $lables['insights'] }}</a></li>
-                                                    @endforeach
-                                                </ul>
-                                            </section>
-                                        @endif
+                                        @endforeach
                                     </div>
-                                </section>
-                            </div>
 
+                                    @isset($output['sentences']['cze'])
+                                    <div class="mb-2">
+                                        <p class="mb-2">{!! $output['sentences']['cze'] !!}</p>
+                                    </div>
+                                    @endisset
+                                    @isset($output['sentences']['country'])
+                                    <div class="mb-2">
+                                        <p class="mb-2">{!! $output['sentences']['country'] !!}</p>
+                                    </div>
+                                    @endisset
+                                    @isset($output['sentences']['city'])
+                                    <div class="mb-2">
+                                        <p class="mb-2">{!! $output['sentences']['city'] !!}</p>
+                                    </div>
+                                    @endisset
+                                    @isset($output['sentences']['state'])
+                                    <div class="mb-2">
+                                        <p class="mb-2">{!! $output['sentences']['state'] !!}</p>
+                                    </div>
+                                    @endisset
+
+                                    @isset($output['sentences']['continent'])
+                                    <div class="mb-2">
+                                        <p class="mb-2">{!! $output['sentences']['continent'] !!}</p>
+                                    </div>
+                                    @endisset
+
+                                    @if (!empty($output['cze_comparison']))
+                                    <div class="p-3 mt-4 border rounded border-info bg-light">
+                                        <h6 class="text-info">Czech Republic Region (Kraj) Comparison</h6>
+                                        {!! $output['cze_comparison'] !!}
+                                    </div>
+                                    @endif
+                                    @if (!empty($output['city_comparison']))
+                                    <div class="p-3 mt-4 border rounded border-info bg-light">
+                                        <h6 class="text-info">India Region (City/District) Comparison
+                                        </h6>
+                                        {!! $output['city_comparison'] !!}
+                                    </div>
+                                    @endif
+
+
+                                    {{-- Country Comparison Table --}}
+                                    @if (!empty($output['country_comparison']))
+                                    <div class="p-3 mt-4 border rounded border-info bg-light">
+                                        <h6 class="text-info">{{ $lables['counrty_table_title'] }}</h6>
+                                        {!! $output['country_comparison'] !!}
+                                    </div>
+                                    @endif
+                                    @if (!empty($output['continent_comparison']))
+                                    <div class="p-3 mt-4 border rounded border-info bg-light">
+                                        <h6 class="text-info">
+                                            {{ $lables['continent_table_title'] }}
+                                        </h6>
+                                        {!! $output['continent_comparison'] !!}
+                                    </div>
+                                    @endif
+
+
+
+                                    <section class="sourcedat">
+                                        <h6 class="p-2">{{ $lables['source'] }}:</h6>
+                                        <ul class="list-group">
+                                            @foreach ($output['source'] as $key => $ss)
+                                            <li
+                                                class="list-group-item d-flex justify-content-between align-items-center">
+
+                                                <span class="text-small"> [{{ $key }}]
+                                                    {{ $ss['local_source'] ?? $ss['source'] }}</span>
+                                                <span class="badge rounded-pill text-small">{{ $ss['year'] }}</span>
+                                            </li>
+                                            @endforeach
+                                        </ul>
+                                    </section>
+                                    @if ($type === 'regional')
+                                    <section class="mt-2 ExploreMoreInsites">
+                                        <p class="fw-bold">{{ $lables['explore_more'] }}:</p>
+                                        <ul class="row">
+
+                                            @foreach ($insCities as $key => $geographyx)
+                                            @foreach ($geographyx as $geography)
+                                            <li class="col-12  col-md-3"><a target="_blank"
+                                                    style="text-decoration: none;"
+                                                    href="https://g2c.prarang.in/{{ $key == 'city' ? 'ai/' : 'czech-republic/' }}{{ $geography }}">{{
+                                                    $geography }}
+                                                    {{ $lables['insights'] }}</a></li>
+                                            @endforeach
+                                            @endforeach
+                                        </ul>
+                                    </section>
+                                    @else
+                                    <section class="mt-2 ExploreMoreInsites">
+                                        <p class="fw-bold">{{ $lables['explore_more'] }}:</p>
+                                        <ul class="row">
+                                            @foreach ($cities as $geography)
+                                            <li class="col-12 col-md-3"><a target="_blank"
+                                                    style="text-decoration: none;"
+                                                    href="https://g2c.prarang.in/ai/{{ json_decode($geography)->name }}">{{
+                                                    json_decode($geography)->name }}
+                                                    {{ $lables['insights'] }}</a></li>
+                                            @endforeach
+                                        </ul>
+                                    </section>
+                                    @endif
+                                </div>
+                            </section>
                         </div>
+
+                    </div>
                     @endif
 
                     <section id="error-section">
                         @if ($errors->has('cities'))
-                            <h6 class="text-danger">{{ $errors->first('cities') }}</h6>
+                        <h6 class="text-danger">{{ $errors->first('cities') }}</h6>
                         @endif
                         @if ($errors->has('subChecks'))
-                            <h6 class="text-danger">{{ $errors->first('subChecks') }}</h6>
+                        <h6 class="text-danger">{{ $errors->first('subChecks') }}</h6>
                         @endif
                     </section>
                 </div>
@@ -934,22 +336,22 @@
             <div class="@if ($output) d-none @else col-lg-3 d-none @endif">
                 <br><br>
                 @if ($type === 'regional')
-                    <div class="card shadow-sm border-0">
+                <div class="card shadow-sm border-0">
 
-                        <div class="list-group list-group-flush">
-                            <a javascript:void(0) class="list-group-item list-group-item-action"
-                                data-bs-toggle="modal" data-bs-target="#faqModal">
-                                Indo-Czech Comparison <small>(FAQ)</small>
-                            </a>
-                            <a href="https://g2c.prarang.in/czech-republic" target="_blank"
-                                class="list-group-item list-group-item-action" target="_blank">
-                                Czech Republic AI Report
-                            </a>
-                            <a href="https://g2c.prarang.in/india" class="list-group-item list-group-item-action"
-                                target="_blank">
-                                India AI Report
-                            </a>
-                            {{-- <a href="https://g2c.prarang.in/india/development-planners"
+                    <div class="list-group list-group-flush">
+                        <a javascript:void(0) class="list-group-item list-group-item-action" data-bs-toggle="modal"
+                            data-bs-target="#faqModal">
+                            Indo-Czech Comparison <small>(FAQ)</small>
+                        </a>
+                        <a href="https://g2c.prarang.in/czech-republic" target="_blank"
+                            class="list-group-item list-group-item-action" target="_blank">
+                            Czech Republic AI Report
+                        </a>
+                        <a href="https://g2c.prarang.in/india" class="list-group-item list-group-item-action"
+                            target="_blank">
+                            India AI Report
+                        </a>
+                        {{-- <a href="https://g2c.prarang.in/india/development-planners"
                             class="list-group-item list-group-item-action" target="_blank">
                             India Development Planner
                         </a>
@@ -965,38 +367,38 @@
                             onclick="showComingSoonToast()">
                             Czech Market Planner <small>(Coming Soon)</small>
                         </button> --}}
-                        </div>
                     </div>
+                </div>
                 @else
-                    <div class="card shadow-sm border-0">
+                <div class="card shadow-sm border-0">
 
-                        <div class="list-group list-group-flush">
+                    <div class="list-group list-group-flush">
 
-                            <a class="list-group-item list-group-item-action side-buttons" type="button"
-                                href="javascript:void(0)" type="button" data-bs-toggle="offcanvas">Country
-                                Comparison <small>(FAQ)</small></a>
+                        <a class="list-group-item list-group-item-action side-buttons" type="button"
+                            href="javascript:void(0)" type="button" data-bs-toggle="offcanvas">Country
+                            Comparison <small>(FAQ)</small></a>
 
-                            <a href="https://g2c.prarang.in/czech-republic"
-                                class="list-group-item list-group-item-action" target="_blank">
-                                Czech Republic AI Report
-                            </a>
-                            <a href="https://g2c.prarang.in/world/development-planner"
-                                class="list-group-item list-group-item-action" target="_blank">
-                                World Development Planner
-                            </a>
-                            <a href="https://g2c.prarang.in/world/market-planner"
-                                class="list-group-item list-group-item-action" target="_blank">
-                                World Market Planner
-                            </a>
-                            {{-- <a href="javascript:void(0)" class="list-group-item list-group-item-action"
+                        <a href="https://g2c.prarang.in/czech-republic" class="list-group-item list-group-item-action"
+                            target="_blank">
+                            Czech Republic AI Report
+                        </a>
+                        <a href="https://g2c.prarang.in/world/development-planner"
+                            class="list-group-item list-group-item-action" target="_blank">
+                            World Development Planner
+                        </a>
+                        <a href="https://g2c.prarang.in/world/market-planner"
+                            class="list-group-item list-group-item-action" target="_blank">
+                            World Market Planner
+                        </a>
+                        {{-- <a href="javascript:void(0)" class="list-group-item list-group-item-action"
                             target="_blank">
                             Czech Development Planner <small>(Coming Soon)</small>
                         </a>
                         <a href="javascript:void(0)" class="list-group-item list-group-item-action" target="_blank">
                             Czech Market Planner <small>(Coming Soon)</small>
                         </a> --}}
-                        </div>
                     </div>
+                </div>
                 @endif
             </div>
         </div>
@@ -1014,15 +416,69 @@
                 </div>
                 <div class="modal-body">
                     @if ($type === 'regional')
-                        <div id="categoryTabsContent">
+                    <div id="categoryTabsContent">
 
-                            @foreach ($czeFields as $main => $subs)
-                                <div class="rounded shadow px-2 mb-2">
-                                    <h6 class="fw-bold mt-3">{{ __('metrics.' . $main) }}</h6>
-                                    <div class="row">
+                        @foreach ($czeFields as $main => $subs)
+                        <div class="rounded shadow px-2 mb-2">
+                            <h6 class="fw-bold mt-3">{{ __('metrics.' . $main) }}</h6>
+                            <div class="row">
 
-                                        @foreach ($subs as $sub)
-                                            <div class="mb-2 col-12 col-sm-4 col-lg-3">
+                                @foreach ($subs as $sub)
+                                <div class="mb-2 col-12 col-sm-4 col-lg-3">
+                                    <div class="form-check">
+                                        <input wire:loading.attr="disabled"
+                                            wire:model="subChecks.{{ $sub['type'] }}.{{ $sub['id'] }}" type="checkbox"
+                                            class="form-check-input" id="sub-{{ $sub['type'] }}-{{ $sub['id'] }}"
+                                            value="{{ $sub['id'] }}">
+                                        <label class="form-check-label small"
+                                            for="sub-{{ $sub['type'] }}-{{ $sub['id'] }}">
+                                            {{ $sub['name'] }}
+
+                                        </label>
+                                    </div>
+                                </div>
+                                @endforeach
+
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    @else
+                    <div class="row">
+                        <div class="mb-3 col-4 col-md-2" id="categoryTabsContainer">
+                            <ul class="nav nav-pills flex-column" id="categoryTabs" role="tablist">
+                                @foreach (config('verticals') as $main => $subs)
+                                <li class="mb-1 nav-item" role="presentation">
+                                    <button class="nav-link w-100 text-start @if ($loop->first) active @endif"
+                                        id="tab-{{ $main }}" data-bs-toggle="tab" data-bs-target="#content-{{ $main }}"
+                                        type="button" role="tab" aria-controls="content-{{ $main }}"
+                                        aria-selected="{{ $loop->first ? 'true' : 'false' }}">
+                                        {{ __('metrics.' . $subs) }}
+                                    </button>
+                                </li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <div class="col-8 col-md-10">
+                            <div class="tab-content" id="categoryTabsContent">
+
+                                @foreach ($mainChecks as $main => $subs)
+                                <div class="tab-pane fade @if ($loop->first) show active @endif"
+                                    id="content-{{ $main }}" role="tabpanel" aria-labelledby="tab-{{ $main }}">
+                                    <div class="p-3 border rounded shadow-sm">
+
+                                        <div class="row">
+                                            @php
+                                            $types = ['World'];
+                                            @endphp
+                                            @foreach ($types as $typeIs)
+                                            @if (collect($subs)->contains('type', $typeIs))
+                                            <div class="pb-3 col-12">
+                                            </div>
+                                            @endif
+                                            @foreach ($subs as $sub)
+                                            @if ($sub['type'] === $typeIs)
+                                            <div class="mb-2 col-12 col-sm-4 col-lg-4">
                                                 <div class="form-check">
                                                     <input wire:loading.attr="disabled"
                                                         wire:model="subChecks.{{ $sub['type'] }}.{{ $sub['id'] }}"
@@ -1031,83 +487,25 @@
                                                         value="{{ $sub['id'] }}">
                                                     <label class="form-check-label small"
                                                         for="sub-{{ $sub['type'] }}-{{ $sub['id'] }}">
-                                                        {{ $sub['name'] }}
-
+                                                        {{ $sub['local'] }}
+                                                        <span class="text-primary">{{ $sub['geo_type'] == 'in_dist' ?
+                                                            'District' : '' }}</span>
                                                     </label>
                                                 </div>
                                             </div>
-                                        @endforeach
+                                            @endif
+                                            @endforeach
+                                            @endforeach
+
+                                        </div>
 
                                     </div>
                                 </div>
-                            @endforeach
-                        </div>
-                    @else
-                        <div class="row">
-                            <div class="mb-3 col-4 col-md-2" id="categoryTabsContainer">
-                                <ul class="nav nav-pills flex-column" id="categoryTabs" role="tablist">
-                                    @foreach (config('verticals') as $main => $subs)
-                                        <li class="mb-1 nav-item" role="presentation">
-                                            <button
-                                                class="nav-link w-100 text-start @if ($loop->first) active @endif"
-                                                id="tab-{{ $main }}" data-bs-toggle="tab"
-                                                data-bs-target="#content-{{ $main }}" type="button"
-                                                role="tab" aria-controls="content-{{ $main }}"
-                                                aria-selected="{{ $loop->first ? 'true' : 'false' }}">
-                                                {{ __('metrics.' . $subs) }}
-                                            </button>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                            <div class="col-8 col-md-10">
-                                <div class="tab-content" id="categoryTabsContent">
+                                @endforeach
 
-                                    @foreach ($mainChecks as $main => $subs)
-                                        <div class="tab-pane fade @if ($loop->first) show active @endif"
-                                            id="content-{{ $main }}" role="tabpanel"
-                                            aria-labelledby="tab-{{ $main }}">
-                                            <div class="p-3 border rounded shadow-sm">
-
-                                                <div class="row">
-                                                    @php
-                                                        $types = ['World'];
-                                                    @endphp
-                                                    @foreach ($types as $typeIs)
-                                                        @if (collect($subs)->contains('type', $typeIs))
-                                                            <div class="pb-3 col-12">
-                                                            </div>
-                                                        @endif
-                                                        @foreach ($subs as $sub)
-                                                            @if ($sub['type'] === $typeIs)
-                                                                <div class="mb-2 col-12 col-sm-4 col-lg-4">
-                                                                    <div class="form-check">
-                                                                        <input wire:loading.attr="disabled"
-                                                                            wire:model="subChecks.{{ $sub['type'] }}.{{ $sub['id'] }}"
-                                                                            type="checkbox" class="form-check-input"
-                                                                            id="sub-{{ $sub['type'] }}-{{ $sub['id'] }}"
-                                                                            value="{{ $sub['id'] }}">
-                                                                        <label class="form-check-label small"
-                                                                            for="sub-{{ $sub['type'] }}-{{ $sub['id'] }}">
-                                                                            {{ $sub['local'] }}
-                                                                            <span
-                                                                                class="text-primary">{{ $sub['geo_type'] == 'in_dist' ? 'District' : '' }}</span>
-                                                                        </label>
-                                                                    </div>
-                                                                </div>
-                                                            @endif
-                                                        @endforeach
-                                                    @endforeach
-
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    @endforeach
-
-                                </div>
                             </div>
                         </div>
+                    </div>
                     @endif
                 </div>
 
@@ -1124,11 +522,11 @@
     </div>
 
     <!-- Geography Modal -->
-    <div class="modal fade" id="geographyModal" tabindex="-1" aria-labelledby="geographyModalLabel"
-        aria-hidden="true" wire:ignore.self>
+    <div class="modal fade" id="geographyModal" tabindex="-1" aria-labelledby="geographyModalLabel" aria-hidden="true"
+        wire:ignore.self>
         <div class="modal-dialog modal-xl modal-dialog-scrollable modal-dialog-centered" wire:ignore.self>
             @if ($type === 'regional')
-                <div class="modal-content" x-data="{
+            <div class="modal-content" x-data="{
                     selectedCze: @entangle('selectedCzeRegions'),
                     selectedIndia: @entangle('selectedIndiaCities'),
                     maxCze: @js($maxCzeRegions ?? 3),
@@ -1162,72 +560,71 @@
                     }
                 }">
                 @else
-                    <div class="modal-content">
-            @endif
-            <div class="modal-header">
-                <h5 class="modal-title" id="geographyModalLabel"><small>
-                        {{-- Debug: Type = {{ $type }} --}}
-                        @if ($type === 'regional')
-                            <p class="mb-2 ">Choose up to {{ $maxCzeRegions ?? 3 }} Czech regions (kraje)
-                                and {{ $maxIndiaCities }} Indian
-                                regions.</p>
-                        @else
-                            <p class="mb-2 text-info">You can select up to
-                                3 Countries.</p>
-                        @endif
-                    </small></h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
+                <div class="modal-content">
+                    @endif
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="geographyModalLabel"><small>
+                                {{-- Debug: Type = {{ $type }} --}}
+                                @if ($type === 'regional')
+                                <p class="mb-2 ">Choose up to {{ $maxCzeRegions ?? 3 }} Czech regions (kraje)
+                                    and {{ $maxIndiaCities }} Indian
+                                    regions.</p>
+                                @else
+                                <p class="mb-2 text-info">You can select up to
+                                    3 Countries.</p>
+                                @endif
+                            </small></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
 
-            <div class="modal-body" wire:ignore.self>
-                @if ($type === 'regional')
-                    <div>
-                        {{-- Regional Mode: Czech Regions + Indian Cities --}}
-                        <div class="row">
-                            {{-- Czech Republic Regions --}}
-                            <div class="col-md-5 border-end">
-                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                    <h6 class="fw-bold mb-0">
-                                        Czech Republic – 13 Regions (Kraje)
-                                    </h6>
-                                    <span class="badge"
-                                        :class="selectedCze.length >= maxCze ? 'bg-danger' : 'bg-success'">
-                                        <span x-text="selectedCze.length"></span>/<span x-text="maxCze"></span>
-                                    </span>
-                                </div>
-                                <div class="list-group" style="max-height: 450px; overflow-y: auto;">
-                                    @foreach ($czechRegions as $id => $regionName)
+                    <div class="modal-body" wire:ignore.self>
+                        @if ($type === 'regional')
+                        <div>
+                            {{-- Regional Mode: Czech Regions + Indian Cities --}}
+                            <div class="row">
+                                {{-- Czech Republic Regions --}}
+                                <div class="col-md-5 border-end">
+                                    <div class="d-flex align-items-center justify-content-between mb-3">
+                                        <h6 class="fw-bold mb-0">
+                                            Czech Republic – 13 Regions (Kraje)
+                                        </h6>
+                                        <span class="badge"
+                                            :class="selectedCze.length >= maxCze ? 'bg-danger' : 'bg-success'">
+                                            <span x-text="selectedCze.length"></span>/<span x-text="maxCze"></span>
+                                        </span>
+                                    </div>
+                                    <div class="list-group" style="max-height: 450px; overflow-y: auto;">
+                                        @foreach ($czechRegions as $id => $regionName)
                                         <label
                                             class="list-group-item d-flex font-bold align-items-center gap-3 border-0 py-2"
                                             style="cursor: pointer; transition: background-color 0.2s;"
                                             onmouseover="this.style.backgroundColor='#f8f9fa'"
                                             onmouseout="this.style.backgroundColor='transparent'">
                                             <input class="form-check-input flex-shrink-0 m-0" type="checkbox"
-                                                value="{{ $regionName }}"
-                                                @change="toggleCze('{{ $regionName }}')"
+                                                value="{{ $regionName }}" @change="toggleCze('{{ $regionName }}')"
                                                 :checked="selectedCze.includes('{{ $regionName }}')"
                                                 :disabled="isCzeDisabled('{{ $regionName }}')">
                                             <span class="form-check-label">{{ $regionName }}</span>
                                         </label>
-                                    @endforeach
-                                </div>
-                            </div>
-
-                            {{-- Indian Cities --}}
-                            <div class="col-md-7">
-                                <div class="d-flex align-items-center justify-content-between mb-3">
-                                    <h6 class="fw-bold mb-0">
-                                        India 768 Regions (Districts)
-                                    </h6>
-                                    <span class="badge"
-                                        :class="selectedIndia.length >= maxIndia ? 'bg-danger' : 'bg-success'">
-                                        <span x-text="selectedIndia.length"></span>/<span x-text="maxIndia"></span>
-                                    </span>
+                                        @endforeach
+                                    </div>
                                 </div>
 
-                                <div class="accordion" id="indianStatesAccordion" wire:ignore.self
-                                    style="max-height: 450px; overflow-y: auto;">
-                                    @foreach ($indianStates as $stateName => $cities)
+                                {{-- Indian Cities --}}
+                                <div class="col-md-7">
+                                    <div class="d-flex align-items-center justify-content-between mb-3">
+                                        <h6 class="fw-bold mb-0">
+                                            India 768 Regions (Districts)
+                                        </h6>
+                                        <span class="badge"
+                                            :class="selectedIndia.length >= maxIndia ? 'bg-danger' : 'bg-success'">
+                                            <span x-text="selectedIndia.length"></span>/<span x-text="maxIndia"></span>
+                                        </span>
+                                    </div>
+
+                                    <div class="accordion" id="indianStatesAccordion" wire:ignore.self
+                                        style="max-height: 450px; overflow-y: auto;">
+                                        @foreach ($indianStates as $stateName => $cities)
                                         <div class="accordion-item">
                                             <h2 class="accordion-header"
                                                 id="heading{{ str_replace(' ', '', $stateName) }}">
@@ -1246,65 +643,62 @@
                                                 <div class="accordion-body" wire:ignore.self>
                                                     <div class="row g-2">
                                                         @foreach ($cities as $cityData)
-                                                            <div class="col-md-6 col-12">
-                                                                <label
-                                                                    class="d-flex align-items-center gap-2 p-2 rounded"
-                                                                    style="cursor: pointer; transition: background-color 0.2s;"
-                                                                    onmouseover="this.style.backgroundColor='#f0f8ff'"
-                                                                    onmouseout="this.style.backgroundColor='transparent'">
-                                                                    <input class="form-check-input m-0 flex-shrink-0"
-                                                                        type="checkbox"
-                                                                        value="{{ $cityData['city'] }}"
-                                                                        @change="toggleIndia('{{ $cityData['id'] }}', '{{ $cityData['city'] }}')"
-                                                                        :checked="selectedIndia.some(c => c.id ==
+                                                        <div class="col-md-6 col-12">
+                                                            <label class="d-flex align-items-center gap-2 p-2 rounded"
+                                                                style="cursor: pointer; transition: background-color 0.2s;"
+                                                                onmouseover="this.style.backgroundColor='#f0f8ff'"
+                                                                onmouseout="this.style.backgroundColor='transparent'">
+                                                                <input class="form-check-input m-0 flex-shrink-0"
+                                                                    type="checkbox" value="{{ $cityData['city'] }}"
+                                                                    @change="toggleIndia('{{ $cityData['id'] }}', '{{ $cityData['city'] }}')"
+                                                                    :checked="selectedIndia.some(c => c.id ==
                                                                             '{{ $cityData['id'] }}')"
-                                                                        :disabled="isIndiaDisabled('{{ $cityData['id'] }}')">
-                                                                    <span
-                                                                        class="form-check-label">{{ $cityData['city'] }}</span>
-                                                                </label>
-                                                            </div>
+                                                                    :disabled="isIndiaDisabled('{{ $cityData['id'] }}')">
+                                                                <span class="form-check-label">{{ $cityData['city']
+                                                                    }}</span>
+                                                            </label>
+                                                        </div>
                                                         @endforeach
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    @endforeach
+                                        @endforeach
+                                    </div>
                                 </div>
                             </div>
-                        </div>
 
-                        {{-- Error Message Display --}}
-                        @if ($errorMessage)
+                            {{-- Error Message Display --}}
+                            @if ($errorMessage)
                             <div class="alert alert-danger alert-dismissible fade show mt-3" role="alert">
                                 <i class="bi bi-exclamation-triangle-fill me-2"></i>
                                 {{ $errorMessage }}
-                                <button type="button" class="btn-close"
-                                    wire:click="$set('errorMessage', '')"></button>
+                                <button type="button" class="btn-close" wire:click="$set('errorMessage', '')"></button>
                             </div>
-                        @endif
-                    </div>
-                @else
-                    {{-- Country Mode: Country Selection --}}
-                    <div id="selectesGeographyAll"></div>
+                            @endif
+                        </div>
+                        @else
+                        {{-- Country Mode: Country Selection --}}
+                        <div id="selectesGeographyAll"></div>
 
-                    {{-- @php use Illuminate\Support\Str; @endphp --}}
+                        {{-- @php use Illuminate\Support\Str; @endphp --}}
 
-                    <div class="accordion" id="accordionCitiesCountries">
-                        <div class="row">
+                        <div class="accordion" id="accordionCitiesCountries">
+                            <div class="row">
 
-                            {{-- World Countries --}}
-                            <div class="col-sm-12">
-                                <h5 class="mb-3">Compare Czech Republic
-                                    with ...</h5>
-                                @foreach ($citiesTOChose['country'] as $continent => $countries)
+                                {{-- World Countries --}}
+                                <div class="col-sm-12">
+                                    <h5 class="mb-3">Compare Czech Republic
+                                        with ...</h5>
+                                    @foreach ($citiesTOChose['country'] as $continent => $countries)
                                     @php $continentId = Str::slug($continent, '_'); @endphp
                                     <div class="accordion-item">
                                         <h2 class="accordion-header" id="heading-{{ $continentId }}">
                                             <button class="accordion-button collapsed" type="button"
-                                                data-bs-toggle="collapse"
-                                                data-bs-target="#collapse-{{ $continentId }}" aria-expanded="false"
-                                                aria-controls="collapse-{{ $continentId }}">
-                                                {{ __('location.' . str_replace(' ', '_', strtolower($continent))) ?? $continent }}
+                                                data-bs-toggle="collapse" data-bs-target="#collapse-{{ $continentId }}"
+                                                aria-expanded="false" aria-controls="collapse-{{ $continentId }}">
+                                                {{ __('location.' . str_replace(' ', '_', strtolower($continent))) ??
+                                                $continent }}
                                             </button>
                                         </h2>
                                         <div id="collapse-{{ $continentId }}" class="accordion-collapse collapse"
@@ -1314,61 +708,61 @@
 
                                                 <div class="row">
                                                     @foreach ($countries as $country)
-                                                        <div class="col-6 col-md-4 mb-2">
+                                                    <div class="col-6 col-md-4 mb-2">
 
-                                                            <input class="form-check-input me-1" type="checkbox"
-                                                                wire:model="cities"
-                                                                value="{{ json_encode(['name' => $country['name'], 'real_name' => $country['Country']]) }}"
-                                                                @if ($country['id'] == 122) checked disabled @endif
-                                                                id="country-{{ $country['id'] }}">
-                                                            <label class="form-check-label"
-                                                                for="country-{{ $country['id'] }}">
-                                                                {{ $country['Country'] }}
-                                                            </label>
-                                                        </div>
+                                                        <input class="form-check-input me-1" type="checkbox"
+                                                            wire:model="cities"
+                                                            value="{{ json_encode(['name' => $country['name'], 'real_name' => $country['Country']]) }}"
+                                                            @if ($country['id']==122) checked disabled @endif
+                                                            id="country-{{ $country['id'] }}">
+                                                        <label class="form-check-label"
+                                                            for="country-{{ $country['id'] }}">
+                                                            {{ $country['Country'] }}
+                                                        </label>
+                                                    </div>
                                                     @endforeach
                                                 </div>
 
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
                         </div>
+                        @endif
                     </div>
-                @endif
-            </div>
-            <div class="modal-footer">
-                @if ($type === 'regional')
-                    <div class="d-flex align-items-center justify-content-between w-100">
-                        <div class="text-muted small">
-                            Selected:
-                            <strong
-                                x-text="selectedCze.length + selectedIndia.length">{{ $this->selectedCount }}</strong>
+                    <div class="modal-footer">
+                        @if ($type === 'regional')
+                        <div class="d-flex align-items-center justify-content-between w-100">
+                            <div class="text-muted small">
+                                Selected:
+                                <strong x-text="selectedCze.length + selectedIndia.length">{{ $this->selectedCount
+                                    }}</strong>
+                            </div>
+                            <div class="d-flex gap-2">
+                                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                                    Close
+                                </button>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                                    wire:click="confirmSelection">
+                                    Done
+                                </button>
+                            </div>
                         </div>
-                        <div class="d-flex gap-2">
-                            <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                                Close
-                            </button>
-                            <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                                wire:click="confirmSelection">
-                                Done
-                            </button>
-                        </div>
+                        @else
+                        <p class="text-center me-5"><span id="location-selecte-alert">0</span>
+                            {{ $lables['selected'] }}
+                        </p>
+                        <button type="button" class="btn btn-primary" onclick="geoSelect()">{{ $lables['done']
+                            }}</button>
+                        @endif
                     </div>
-                @else
-                    <p class="text-center me-5"><span id="location-selecte-alert">0</span>
-                        {{ $lables['selected'] }}
-                    </p>
-                    <button type="button" class="btn btn-primary"
-                        onclick="geoSelect()">{{ $lables['done'] }}</button>
-                @endif
+                </div>
             </div>
         </div>
-    </div>
-</div>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
         // Debugging logs
         console.log('Upmana AI page loaded');
 
@@ -1420,9 +814,9 @@
             });
         }
     });
-</script>
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
+        </script>
+        <script>
+            document.addEventListener('DOMContentLoaded', function() {
         const accordion = document.getElementById('accordionCitiesCountries');
         const checkboxes = accordion.querySelectorAll('input[type="checkbox"]');
         const countDisplay = document.getElementById('citiesCount');
@@ -1457,10 +851,10 @@
         });
         updateCountAndToggle();
     });
-</script>
+        </script>
 
-<script>
-    document.addEventListener('DOMContentLoaded', () => {
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
         const checkboxes = document.querySelectorAll('#categoryTabsContent input[type="checkbox"]');
         const resetButton = document.getElementById('resetAllBtn');
         const categoryBadges = document.getElementById('category-count');
@@ -1506,19 +900,19 @@
 
         updateCheckboxStates();
     });
-</script>
+        </script>
 
-<script>
-    function geoSelect() {
+        <script>
+            function geoSelect() {
 
         // Close Bootstrap modal
         const modalEl = document.getElementById('geographyModal');
         const modalInstance = bootstrap.Modal.getInstance(modalEl);
         if (modalInstance) modalInstance.hide();
     }
-</script>
-<script>
-    document.addEventListener("DOMContentLoaded", () => {
+        </script>
+        <script>
+            document.addEventListener("DOMContentLoaded", () => {
         const registerModal = new bootstrap.Modal(document.getElementById('popupregister'));
         // registerModal.show();
 
@@ -1529,10 +923,10 @@
             registerModal.hide();
         });
     });
-</script>
+        </script>
 
-<script>
-    let selectedSequence = [];
+        <script>
+            let selectedSequence = [];
     document.addEventListener('DOMContentLoaded', function() {
 
         function updateOrderNumbers() {
@@ -1576,188 +970,188 @@
             }
         });
     });
-</script>
+        </script>
 
-<!-- FAQ Modal -->
-<div class="modal fade" id="faqModal" tabindex="-1" aria-labelledby="faqModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="faqModalLabel">
-                    @if ($type === 'regional')
-                        Indo-Czech Comparison Tool - FAQ
-                    @else
-                        Country Comparison Tool - FAQ
-                    @endif
-                </h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                @if ($type === 'regional')
-                    {{-- Regional Mode FAQs --}}
-                    <p>The Indo-Czech Comparison Tool helps users create knowledge by comparison. It enables clear
-                        and
-                        structured comparisons between the Regions of the Czech Republic and India’s Regions
-                        (Districts),
-                        offering practical insights into region-level metrics.
-                    </p>
-                    <div class="accordion" id="faqAccordion">
-                        <!-- Q1 -->
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="faqHeadingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faqCollapseOne" aria-expanded="true"
-                                    aria-controls="faqCollapseOne">
-                                    How do I compare regions using this tool?
-                                </button>
-                            </h2>
-                            <div id="faqCollapseOne" class="accordion-collapse collapse show"
-                                aria-labelledby="faqHeadingOne" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
-                                    <ul>
-                                        <li>Select up to three regions (Kraje) in the Czech Republic and up to three
-                                            regions in India that you wish to compare.</li>
-                                        <li>In the next step, choose any metric from our multidimensional database
-                                            on which you want the comparison to be performed.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Q2 -->
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="faqHeadingTwo">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faqCollapseTwo" aria-expanded="false"
-                                    aria-controls="faqCollapseTwo">
-                                    How many regions can I compare?
-                                </button>
-                            </h2>
-                            <div id="faqCollapseTwo" class="accordion-collapse collapse"
-                                aria-labelledby="faqHeadingTwo" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
-                                    <ul>
-                                        <li>Czech Republic: You may select 1–3 regions (Kraje). Prague and Central
-                                            Bohemia are treated as a single combined region in this tool.
-                                        </li>
-                                        <li>India: You may select 1–3 regions (districts) from the 768 districts
-                                            included in the India analytics database.</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Q3 -->
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="faqHeadingThree">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faqCollapseThree" aria-expanded="false"
-                                    aria-controls="faqCollapseThree">
-                                    Why does the tool use 13+1 Czech regions and 768 Indian districts?
-                                </button>
-                            </h2>
-                            <div id="faqCollapseThree" class="accordion-collapse collapse"
-                                aria-labelledby="faqHeadingThree" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
-                                    <ul>
-                                        <li>In the Czech Republic, The Czech Census - conducted at regular intervals
-                                            since 1869 - is organized at the regional (Kraj) level. The data has
-                                            historically recognized 13 regions, with Prague counted as a separate
-                                            region.</li>
-                                        <li>
-                                            In India, the Census has been conducted since the 1880s, and the 2011
-                                            Census officially recorded 640 districts. The next Census is expected in
-                                            2026, and in the years between, the number of districts has increased to
-                                            800+. In our analytics database, these have been standardized to 768
-                                            districts to maintain consistency and enable meaningful comparison
-                                            across regions.
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+        <!-- FAQ Modal -->
+        <div class="modal fade" id="faqModal" tabindex="-1" aria-labelledby="faqModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="faqModalLabel">
+                            @if ($type === 'regional')
+                            Indo-Czech Comparison Tool - FAQ
+                            @else
+                            Country Comparison Tool - FAQ
+                            @endif
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                @else
-                    {{-- Country Mode FAQs --}}
-                    <p class="mb-4">
-                        The Country Comparison Tool helps users create
-                        knowledge through comparison. It enables
-                        clear
-                        and structured comparisons between the Czech
-                        Republic and other countries, offering
-                        practical
-                        insights into country-level metrics, relative
-                        advantages, and differences across multiple
-                        analytical dimensions.
-                    </p>
-
-                    <div class="accordion" id="faqAccordion">
-                        <!-- Q1 -->
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingOne">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    What does this comparison tool do?
-                                </button>
-                            </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse show"
-                                aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
-                                    The Tool enables users to compare the
-                                    Czech Republic with one to three
-                                    countries
-                                    out
-                                    of the 195 UN-recognized countries,
-                                    using an analytical context. It allows
-                                    meaningful comparison across geographies
-                                    based on metrics drawn from our
-                                    multidimensional data framework.
+                    <div class="modal-body">
+                        @if ($type === 'regional')
+                        {{-- Regional Mode FAQs --}}
+                        <p>The Indo-Czech Comparison Tool helps users create knowledge by comparison. It enables clear
+                            and
+                            structured comparisons between the Regions of the Czech Republic and India’s Regions
+                            (Districts),
+                            offering practical insights into region-level metrics.
+                        </p>
+                        <div class="accordion" id="faqAccordion">
+                            <!-- Q1 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faqHeadingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faqCollapseOne" aria-expanded="true"
+                                        aria-controls="faqCollapseOne">
+                                        How do I compare regions using this tool?
+                                    </button>
+                                </h2>
+                                <div id="faqCollapseOne" class="accordion-collapse collapse show"
+                                    aria-labelledby="faqHeadingOne" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li>Select up to three regions (Kraje) in the Czech Republic and up to three
+                                                regions in India that you wish to compare.</li>
+                                            <li>In the next step, choose any metric from our multidimensional database
+                                                on which you want the comparison to be performed.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Q2 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faqHeadingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faqCollapseTwo" aria-expanded="false"
+                                        aria-controls="faqCollapseTwo">
+                                        How many regions can I compare?
+                                    </button>
+                                </h2>
+                                <div id="faqCollapseTwo" class="accordion-collapse collapse"
+                                    aria-labelledby="faqHeadingTwo" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li>Czech Republic: You may select 1–3 regions (Kraje). Prague and Central
+                                                Bohemia are treated as a single combined region in this tool.
+                                            </li>
+                                            <li>India: You may select 1–3 regions (districts) from the 768 districts
+                                                included in the India analytics database.</li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Q3 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="faqHeadingThree">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#faqCollapseThree" aria-expanded="false"
+                                        aria-controls="faqCollapseThree">
+                                        Why does the tool use 13+1 Czech regions and 768 Indian districts?
+                                    </button>
+                                </h2>
+                                <div id="faqCollapseThree" class="accordion-collapse collapse"
+                                    aria-labelledby="faqHeadingThree" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <ul>
+                                            <li>In the Czech Republic, The Czech Census - conducted at regular intervals
+                                                since 1869 - is organized at the regional (Kraj) level. The data has
+                                                historically recognized 13 regions, with Prague counted as a separate
+                                                region.</li>
+                                            <li>
+                                                In India, the Census has been conducted since the 1880s, and the 2011
+                                                Census officially recorded 640 districts. The next Census is expected in
+                                                2026, and in the years between, the number of districts has increased to
+                                                800+. In our analytics database, these have been standardized to 768
+                                                districts to maintain consistency and enable meaningful comparison
+                                                across regions.
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        @else
+                        {{-- Country Mode FAQs --}}
+                        <p class="mb-4">
+                            The Country Comparison Tool helps users create
+                            knowledge through comparison. It enables
+                            clear
+                            and structured comparisons between the Czech
+                            Republic and other countries, offering
+                            practical
+                            insights into country-level metrics, relative
+                            advantages, and differences across multiple
+                            analytical dimensions.
+                        </p>
 
-                        <!-- Q2 -->
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="headingTwo">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                    How do I compare countries using this
-                                    tool?
-                                </button>
-                            </h2>
-                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
-                                data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
-                                    <ol>
-                                        <li><strong>Select the
-                                                countries</strong> you wish
-                                            to compare with the Czech
-                                            Republic. You may choose 1–3
-                                            countries.</li>
-                                        <li><strong>Select any
-                                                metric</strong> from our
-                                            multidimensional database on
-                                            which you want the comparison to
-                                            be performed.</li>
-                                        <li><strong>View results:</strong>
-                                            The tool will then generate
-                                            analytical
-                                            insights based on the selected
-                                            geographies and metrics.</li>
-                                    </ol>
+                        <div class="accordion" id="faqAccordion">
+                            <!-- Q1 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingOne">
+                                    <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        What does this comparison tool do?
+                                    </button>
+                                </h2>
+                                <div id="collapseOne" class="accordion-collapse collapse show"
+                                    aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        The Tool enables users to compare the
+                                        Czech Republic with one to three
+                                        countries
+                                        out
+                                        of the 195 UN-recognized countries,
+                                        using an analytical context. It allows
+                                        meaningful comparison across geographies
+                                        based on metrics drawn from our
+                                        multidimensional data framework.
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Q2 -->
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="headingTwo">
+                                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                                        data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        How do I compare countries using this
+                                        tool?
+                                    </button>
+                                </h2>
+                                <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo"
+                                    data-bs-parent="#faqAccordion">
+                                    <div class="accordion-body">
+                                        <ol>
+                                            <li><strong>Select the
+                                                    countries</strong> you wish
+                                                to compare with the Czech
+                                                Republic. You may choose 1–3
+                                                countries.</li>
+                                            <li><strong>Select any
+                                                    metric</strong> from our
+                                                multidimensional database on
+                                                which you want the comparison to
+                                                be performed.</li>
+                                            <li><strong>View results:</strong>
+                                                The tool will then generate
+                                                analytical
+                                                insights based on the selected
+                                                geographies and metrics.</li>
+                                        </ol>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+                        @endif
                     </div>
-                @endif
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
 
-<script>
-    // Open FAQ modal when FAQ button is clicked
+        <script>
+            // Open FAQ modal when FAQ button is clicked
     document.addEventListener('DOMContentLoaded', function() {
         const faqButton = document.querySelector('.side-buttons');
         if (faqButton) {
@@ -1767,6 +1161,6 @@
             });
         }
     });
-</script>
+        </script>
 
-</div>
+    </div>
