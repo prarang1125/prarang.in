@@ -17,25 +17,27 @@ use Illuminate\Database\Eloquent\ModelNotFoundException;
 class CitiesController extends Controller
 {
     ##------------------------- citiesListing function ---------------------##
-    public function citiesListing(Request $request) {
+    public function citiesListing(Request $request)
+    {
         try {
             $cities = City::where('is_active', 1)->get();
             return view('yellowpages::admin.cities-listing', compact('cities'));
         } catch (\Exception $e) {
-            return redirect()->route('admin.dashboard')->withErrors(['error' => 'An error occurred while fetching cities: ' ]);
+            return redirect()->route('admin.dashboard')->withErrors(['error' => 'An error occurred while fetching cities: ']);
         }
     }
     ##------------------------- END ---------------------##
 
     ##------------------------- citiesEdit function ---------------------##
-    public function citiesEdit($id){
+    public function citiesEdit($id)
+    {
         try {
             $cities = City::findOrFail($id);
             return view('yellowpages::admin.cities-edit', compact('cities'));
         } catch (ModelNotFoundException $e) {
             return redirect()->route('admin.cities-listing')->withErrors(['error' => 'City not found.']);
         } catch (\Exception $e) {
-            return redirect()->route('admin.cities-listing')->withErrors(['error' => 'An error occurred: ' ]);
+            return redirect()->route('admin.cities-listing')->withErrors(['error' => 'An error occurred: ']);
         }
     }
     ##------------------------- END ---------------------##
@@ -58,7 +60,7 @@ class CitiesController extends Controller
                 // Delete the old image if it exists
                 if ($city->cities_url && Storage::exists($city->cities_url)) {
                     Storage::delete($city->cities_url);
-                }                
+                }
 
                 // Store the new image
                 $imagePath = $request->file('image')->store('yellowpages/cities');
@@ -78,7 +80,7 @@ class CitiesController extends Controller
         } catch (ModelNotFoundException $e) {
             return redirect()->back()->withErrors(['error' => 'City not found.']);
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
+            return redirect()->back()->withErrors(['error' => 'An error occurred: ']);
         }
     }
     ##------------------------- END ---------------------##
@@ -93,7 +95,7 @@ class CitiesController extends Controller
         } catch (ModelNotFoundException $e) {
             return redirect()->route('admin.cities-listing')->withErrors(['error' => 'City not found.']);
         } catch (\Exception $e) {
-            return redirect()->route('admin.cities-listing')->withErrors(['error' => 'An error occurred while trying to delete the city: ' ]);
+            return redirect()->route('admin.cities-listing')->withErrors(['error' => 'An error occurred while trying to delete the city: ']);
         }
     }
     ##------------------------- END ---------------------##
@@ -115,6 +117,9 @@ class CitiesController extends Controller
             'name' => 'required|string|max:255',
             'image' => 'required|image',  // Image validation with file type restrictions
             'portal_id' => 'nullable',
+            'slug' => 'required|string|max:255|unique:cities,slug',
+            'city_arr' => 'required|string|max:10',
+            'city_slug' => 'required|string|max:255',
         ]);
 
         // Proceed if validation passes
@@ -122,22 +127,25 @@ class CitiesController extends Controller
             $currentDateTime = Carbon::now();
 
             // try {
-                // Handle the file upload
-                if ($request->hasFile('image')) {
-                    // Store the image and get the path
-                    $imagePath = $request->file('image')->store('yellowpages/cities');
-                }
+            // Handle the file upload
+            if ($request->hasFile('image')) {
+                // Store the image and get the path
+                $imagePath = $request->file('image')->store('yellowpages/cities');
+            }
 
-                // Create a new city record
-                City::create([
-                    'name' => $request->name,
-                    'cities_url' => $imagePath, // Store the image path
-                    'portal_id' =>$request->portal_id,
-                    'timezone' => 'Asia/Kolkata',
-                    'created_at' => $currentDateTime,
-                ]);
+            // Create a new city record
+            City::create([
+                'name' => $request->name,
+                'cities_url' => $imagePath, // Store the image path
+                'portal_id' => $request->portal_id,
+                'slug' => $request->slug,
+                'city_arr' => $request->city_arr,
+                'city_slug' => $request->city_slug,
+                'timezone' => 'Asia/Kolkata',
+                'created_at' => $currentDateTime,
+            ]);
 
-                return redirect()->route('admin.cities-listing')->with('success', 'City created successfully.');
+            return redirect()->route('admin.cities-listing')->with('success', 'City created successfully.');
 
             // } catch (\Exception $e) {
             //     // Handle errors in city creation
