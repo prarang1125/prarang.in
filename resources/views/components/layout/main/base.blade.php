@@ -9,13 +9,17 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/apple-touch-icon.png') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/favicon-32x32.png') }}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/favicon-16x16.png') }}">
+    <link rel="manifest" href="{{ asset('/site.webmanifest') }}">
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="{{ $metaData['title'] ?? 'Prarang : Knowledge Webs' }}">
     <meta name="title" property="og:title" content="{{ $metaData['title'] ?? 'Prarang : Knowledge Webs' }}">
     <meta name="image" property="og:image"
         content="{{ $metaData['image'] ?? 'https://prarang.s3.amazonaws.com/posts-2017-24/og_home_image.png' }}">
-    <meta name="description" property="og:description" content="{{ $metaData['description'] ?? '' }}">
+    <meta name="description" property="og:description"
+        content="{{ $metaData['description'] ?? 'Knowledge webs for smarter citizenship, advertising, and governance.' }}">
     <meta property="og:url" content="https://prarang.in">
     <meta property="og:type" content="website">
 
@@ -23,7 +27,8 @@
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="Prarang">
     <meta name="twitter:title" content="{{ $metaData['title'] ?? 'Prarang : Knowledge Webs' }}">
-    <meta name="twitter:description" content="{{ $metaData['description'] ?? '' }}">
+    <meta name="twitter:description"
+        content="{{ $metaData['description'] ?? 'Knowledge webs for smarter citizenship, advertising, and governance.' }}">
     <meta name="twitter:image"
         content="{{ $metaData['image'] ?? 'https://prarang.s3.amazonaws.com/posts-2017-24/og_home_image.png' }}">
     <meta name="google-site-verification" content="-DA48RRV_4JbpmDcYV7r8QBnMMtBXSzO4GmHj-gow2Q" />
@@ -125,13 +130,14 @@
                             <a href="/ai/upmana">Artificial<span>Intelligence</span></a>
                         </li>
                         <li class="col-md col-sm no-padding">
-                            <a href="{{ route('partners') }}">Partners<span>Corp. & Govt.</span></a>
+                            <a href="{{ route('partners') }}" rel="nofollow">Partners<span>Corp. &
+                                    Govt.</span></a>
                         </li>
                         <li class="col-md col-sm no-padding">
-                            <a href="{{ route('about-us') }}">About Us</a>
+                            <a href="{{ route('about-us') }}" rel="nofollow">About Us</a>
                         </li>
                         <li class="col-md col-sm no-padding">
-                            <a href="javascript:void(0);" id="viveks-modal">Blogs</a>
+                            <a href="javascript:void(0);" id="viveks-modal" rel="nofollow">Blogs</a>
                         </li>
 
 
