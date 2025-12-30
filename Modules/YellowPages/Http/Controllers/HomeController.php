@@ -18,41 +18,41 @@ class HomeController extends Controller
     {
         try {
             $timezone = 'Asia/Kolkata';
-    
+
             $categories = Category::where('is_active', 1)->get();
             $cities = City::where('is_active', 1)->get();
-    
+
             $listings = BusinessListing::with(['category', 'hours', 'reviews'])->where('is_active', 1)->get();
 
             $listings->each(function ($listing) use ($timezone) {
                 $listing->load('hours'); // Ensure hours are loaded
-                
+
                 $currentDateTime = Carbon::now($timezone);
                 $currentTime = $currentDateTime->format('H:i:s');
                 $currentDay = $currentDateTime->format('l');
-            
+
                 $listing->is_open = false;
-            
+
                 if ($listing->hours) {
                     foreach ($listing->hours as $hours) {
                         if ($hours->is_24_hours) {
                             $listing->is_open = true;
                             break;
                         }
-            
+
                         if (strtolower($hours->day) === strtolower($currentDay)) {
                             $openTime1 = $hours->open_time ? Carbon::createFromFormat('H:i:s', $hours->open_time, $timezone) : null;
                             $closeTime1 = $hours->close_time ? Carbon::createFromFormat('H:i:s', $hours->close_time, $timezone) : null;
-            
+
                             $isOpen1 = $openTime1 && $closeTime1 && $currentTime >= $openTime1->format('H:i:s') && $currentTime <= $closeTime1->format('H:i:s');
-            
+
                             $isOpen2 = false;
                             if ($hours->open_time2 && $hours->close_time2) {
                                 $openTime2 = Carbon::createFromFormat('H:i:s', $hours->open_time2, $timezone);
                                 $closeTime2 = Carbon::createFromFormat('H:i:s', $hours->close_time2, $timezone);
                                 $isOpen2 = $currentTime >= $openTime2->format('H:i:s') && $currentTime <= $closeTime2->format('H:i:s');
                             }
-            
+
                             if ($isOpen1 || $isOpen2) {
                                 $listing->is_open = true;
                                 break;
@@ -60,8 +60,8 @@ class HomeController extends Controller
                         }
                     }
                 }
-            });            
-    
+            });
+
             $topRatedListings = $listings->sortByDesc(function ($listing) {
                 if ($listing->ratings && $listing->ratings->count() > 0) {
                     $averageRating = $listing->ratings->avg(function ($rating) {
@@ -69,25 +69,25 @@ class HomeController extends Controller
                     });
                     return $averageRating;
                 }
-                return 0; 
+                return 0;
             })->take(5);
 
-    
+
             return view('yellowpages::home.home', compact('categories', 'cities', 'topRatedListings'));
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while fetching data: ' ]);
+            return back()->withErrors(['error' => 'An error occurred while fetching data: ']);
         }
     }
-    
+
     ##------------------------- END ---------------------##
-    
+
     ##------------------------- Listing Plan ---------------------##
     public function listing_plan()
     {
         try {
             return view("yellowpages::home.listing_plan");
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while loading the listing plan page: ' ]);
+            return back()->withErrors(['error' => 'An error occurred while loading the listing plan page: ']);
         }
     }
     ##------------------------- END ---------------------##
@@ -98,7 +98,7 @@ class HomeController extends Controller
         try {
             return view("yellowpages::home.bazzar_plan");
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while loading the bazaar plan page: ' ]);
+            return back()->withErrors(['error' => 'An error occurred while loading the bazaar plan page: ']);
         }
     }
     ##------------------------- END ---------------------##
@@ -109,7 +109,7 @@ class HomeController extends Controller
         try {
             return view('yellowpages::home.add_listing');
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while loading the add listing page: ' ]);
+            return back()->withErrors(['error' => 'An error occurred while loading the add listing page: ']);
         }
     }
     ##------------------------- END ---------------------##
@@ -123,7 +123,7 @@ class HomeController extends Controller
 
             return view('Home.homapage', compact('categories'));
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while fetching categories: ' ]);
+            return back()->withErrors(['error' => 'An error occurred while fetching categories: ']);
         }
     }
     ##------------------------- END ---------------------##
@@ -138,7 +138,7 @@ class HomeController extends Controller
 
             return view('yellowpages::home.home', compact('categories', 'cities'));
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while fetching dropdown data: ' ]);
+            return back()->withErrors(['error' => 'An error occurred while fetching dropdown data: ']);
         }
     }
     ##------------------------- END ---------------------##
@@ -147,11 +147,11 @@ class HomeController extends Controller
     public function plan()
     {
         try {
-            $plans= Plan::all();
+            $plans = Plan::all();
 
             return view('yellowpages::home.plan', compact('plans'));
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while fetching dropdown data: ' ]);
+            return back()->withErrors(['error' => 'An error occurred while fetching dropdown data: ']);
         }
     }
 
@@ -161,12 +161,9 @@ class HomeController extends Controller
     public function privacyPolicy()
     {
         // try {
-            return view('yellowpages::home.privacyPolicy');
+        return view('yellowpages::home.privacyPolicy');
         // } catch (\Exception $e) {
         //     return back()->withErrors(['error' => 'An error occurred while fetching dropdown data' ]);
         // }
     }
-
-
-
 }
