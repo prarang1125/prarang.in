@@ -48,16 +48,11 @@
                     </h3>
                     <x-portal.widgets.news :url="$portal->news_widget_code" />
                 </div>
-                <div class="local-info-box mt-6 px-4 p-3 rounded"
-                    style="background-image: url('{{ Storage::url($portal->local_info_image ?? 'default.jpg') }}');">
 
-                    <div class="local-info-content">
-                        <h3 class="text-xl font-bold text-center text-black mb-2"> <i class="fa fa-map-marker"></i>
-                            {{-- {{ $locale['ui']['local_info'] ?? 'स्थानीय जानकारी' }} --}}
-                            {{ $portal->city_name_local }} की स्थानीय जानकारी
-                        </h3>
-                        {!! $portal->local_matrics !!}
-                    </div>
+                <div class=" mt-6 bg-white rounded">
+
+                    <x-portal.ai-pages />
+
                 </div>
 
                 <div class="mt-6 px-4 bg-white p-3 rounded">
@@ -76,8 +71,6 @@
                     </div>
                 </div>
 
-
-
                 @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-1', 'slug' => $portal->slug, 'portal' => $portal, 'locale' => $locale])
                 {{-- <div class="text-center py-5 rounded bg-black/50 text-2xl text-white font-bold shadow-md">
                     {!! $portal->city_slogan !!}
@@ -88,8 +81,7 @@
                     <ul role="menu" class="divide-y divide-white/10 text-white font-semibold text-base">
                         {{-- HOME --}}
                         <li role="presentation">
-                            <a target="_blank" href="{{ route('portal', ['portal' => $portal->slug]) }}"
-                                role="menuitem"
+                            <a target="_blank" href="{{ route('portal', ['portal' => $portal->slug]) }}" role="menuitem"
                                 class="block px-6 py-1 uppercase tracking-wide hover:bg-black/10 transition">
                                 {{ $locale['ui']['home'] ?? 'HOME' }}
                             </a>
@@ -122,14 +114,22 @@
                 </div>
 
 
-                <div class="py-3 text-2xl font-bold mt-2  bg-white rounded text-black">
+                <div class="flex gap-6 mt-2 mb-3 text-black">
+                    <a target="_blank" href="https://hindi.prarang.in/{{ $portal->city_name }}"
+                        class="flex-1 text-center bg-blue-500 text-white font-bold py-3 rounded-lg
+               hover:bg-blue-600 transition-colors duration-200">
+                        {{ $portal->city_name_local }}
+                        {{ $locale['ui']['statistics'] ?? 'Statistics' }}
+                    </a>
 
-                    <a a target="_blank" href="https://hindi.prarang.in/{{ $portal->city_name }}">
-                        <h3 class="text-center">{{ $portal->city_name_local }}
-                            {{ $locale['ui']['statistics'] ?? 'Statistics' }}
-                        </h3>
+                    <a target="_blank" href="https://hindi.prarang.in/ai/{{ $portal->city_name }}"
+                        class="flex-1 text-center bg-blue-500 text-white font-bold py-3 rounded-lg
+               hover:bg-blue-600 transition-colors duration-200">
+                        {{ $portal->city_name_local }} ए.आई. रिपोर्ट
                     </a>
                 </div>
+
+
                 <div class="py-3 bg-white p-3">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div
@@ -250,10 +250,30 @@
                 <div class="flex justify-center items-center p-2 w-full ">
                     {!! $portal->weather_widget_code !!}
                 </div>
-                <div>
-                    <a target="_blank" href="https://prarang.in/yp/{{ $portal->slug }}">
-                        <img src="https://www.prarang.in/assets/images/yellowpages.jpg" alt=""></a>
+                <div class="mt-3">
+                    <a href="https://prarang.in/yp/{{ $portal->slug }}" target="_blank"
+                        class="relative block overflow-hidden rounded-lg group">
+
+                        <!-- IMAGE -->
+                        <img src="https://meerutrang.in/images/yellow-pages-row.png" alt="Login"
+                            class="w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
+
+                        <!-- OVERLAY -->
+                        <div class="absolute inset-0 "></div>
+
+                        <!-- TEXT ON IMAGE -->
+                        <div class="absolute inset-0 flex flex-col items-center justify-center text-center z-10">
+                            <h2 class="text-[36px] font-bold text-black drop-shadow-md">
+                                {{ $portal->city_name_local }} व्यवसाय
+                            </h2>
+                            <h4 class="text-sm font-semibold text-black mt-1 drop-shadow">
+                                हिंदी येलो पेज (Yellow Pages)
+                            </h4>
+                        </div>
+
+                    </a>
                 </div>
+
             </div>
         </div>
     </section>
