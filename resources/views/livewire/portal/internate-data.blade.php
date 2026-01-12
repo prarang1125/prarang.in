@@ -26,8 +26,10 @@
 
     @if($loading)
     <div class="text-center text-gray-500 py-4">लोड हो रहा है...</div>
-    @elseif($error)
-    <div class="text-center text-red-500 py-4">त्रुटि: {{ $error }}</div>
+    @else
+    {{-- INTERNATE DATA SECTION --}}
+    @if($internateError)
+    <div class="text-center text-red-500 py-4">त्रुटि: {{ $internateError }}</div>
     @elseif($internateData && !empty($internateData['city_info']))
     <div class="space-y-3">
         <div class="space-y-2">
@@ -89,32 +91,32 @@
                 </div>
             </div>
             @endforeach
-
         </div>
-
-        {{-- CIRUS Data Section --}}
-        @if($cirusData)
-        <div class="mt-4 border-t-4 border-red-900 pt-4 bg-red-50/30 p-4 rounded-b-lg shadow-inner">
-            <h3 class="font-bold text-red-900 mb-2 flex items-center gap-2">
-                <i class="fa fa-shield-alt text-red-600"></i> {{ $cityName }} में साइबर सुरक्षा
-            </h3>
-            <div class="space-y-2 text-sm">
-                <div class="flex justify-between items-center bg-white p-2 rounded border border-red-100">
-                    <span class="text-gray-700 font-medium">साइबर जोखिम सूचकांक:</span>
-                    <span class="font-bold text-red-900 text-lg">{{ $cirusData['risk_index'] ?? '-' }}</span>
-                </div>
-            </div>
-            <div class="flex justify-end items-center mt-3">
-                <a href="https://prarang.in/cirus" target="_blank"
-                    class="text-sm font-bold text-blue-800 hover:text-blue-600 flex items-center gap-1 group">
-                    अधिक देखें और समझे
-                    <i class="fa fa-external-link-alt text-[10px] group-hover:translate-x-0.5 transition-transform"></i>
-                </a>
-            </div>
-        </div>
-        @endif
     </div>
     @else
     <div class="text-center text-gray-500 py-8">कोई डेटा उपलब्ध नहीं</div>
+    @endif
+
+    {{-- CIRUS Data Section --}}
+    @if($cirusData)
+    <div class="mt-4 border-t-4 border-red-900 pt-4 bg-red-50/30 p-4 rounded-b-lg shadow-inner">
+        <h3 class="font-bold text-red-900 mb-2 flex items-center gap-2">
+            <i class="fa fa-shield-alt text-red-600"></i> {{ $cityName }} में साइबर सुरक्षा
+        </h3>
+        <div class="space-y-2 text-sm">
+            <div class="flex justify-between items-center bg-white p-2 rounded border border-red-100">
+                <span class="text-gray-700 font-medium">साइबर जोखिम सूचकांक:</span>
+                <span class="font-bold text-red-900 text-lg">{{ $cirusData['risk_index'] ?? '-' }}</span>
+            </div>
+        </div>
+        <div class="flex justify-end items-center mt-3">
+            <a href="https://prarang.in/cirus" target="_blank"
+                class="text-sm font-bold text-blue-800 hover:text-blue-600 flex items-center gap-1 group">
+                अधिक देखें और समझे
+                <i class="fa fa-external-link-alt text-[10px] group-hover:translate-x-0.5 transition-transform"></i>
+            </a>
+        </div>
+    </div>
+    @endif
     @endif
 </div>
