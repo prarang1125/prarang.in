@@ -126,7 +126,7 @@ class InternateData extends Component
                 if ($result['success'] && isset($result['data'])) {
                     // Filter for the specific city database ID (string comparison as per React)
                     $filtered = collect($result['data'])->firstWhere('id', (string)$this->cityDatabaseId);
-                    dd($filtered);
+                    // dd($filtered);
                     if ($filtered) {
                         Cache::put($cacheKey, $filtered, now()->addDay());
                         $this->cirusData = $filtered;
