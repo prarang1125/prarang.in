@@ -3,7 +3,7 @@
 
     <div id="wrapper">
         <header class="header--has-languages header--has-map" id="header">
-            <div class="header__inner">
+            <div class="header__inner" style="position: relative; z-index: 10;">
 
                 <div class="header__content">
                     <div class="lsvr-container">
@@ -12,7 +12,7 @@
                             <div class="header-logo header-logo--front">
                                 <a aria-label="Site logo" class="header-logo__link" href="{{ url()->current() }}">
                                     <img alt="TownPress" class="header-logo__image"
-                                        src="https://i.ibb.co/6c4JQSpJ/Prarang-logox.png" />
+                                        src="https://i.ibb.co/TDKtQQrd/prarang-logo-dark.png" />
                                 </a>
                             </div>
                             <!-- HEADER TOOLBAR TOGGLE : end -->
@@ -88,7 +88,7 @@
         <!-- HEADER : end -->
         <div class="header-background header-background--singled">
             <div class="header-background__image header-background__image--default"
-                style="background-image: url('{{ Storage::url($main->header_image) }}'); height: 120vh; min-height: 1800px;">
+                style="background-image: url('{{ Storage::url($main->header_image) }}');">
             </div>
 
         </div>
@@ -102,7 +102,7 @@
                         <div class="lsvr-container">
                             <div class="lsvr-grid">
                                 <div class="columns__main lsvr-grid__col lsvr-grid__col--span-6 lsvr-grid__col--push-3"
-                                    style="margin-top: 150px;">
+                                    style="margin-top: 100px;">
 
                                     <!-- MAIN : begin -->
                                     <main id="main">
@@ -220,18 +220,18 @@
                         style="background-color: #FFB1A3; margin-top:200px;  background-image: url('{{ Storage::url($main->footer_image) }}');">
                         <div class="row g-2">
                             <div class="col-sm">
-                                <h4 class="text-center">About Prarang</h4>
+                                <h4 class="text-center h4">About Prarang</h4>
                                 <p>Prarang provides integrated digital solutions and unique insights to understand the
                                     cities of India and the World. Through our composite methodology of traditional
                                     research from rare books, maps and images, a Big database of India and World
-                                    Metrics, an in-house LLM based on Indian Linguistics, we provide in depth city -
+                                    Metrics, our own SLM Model based on Indian Linguistics, we provide in depth city -
                                     hyperlocal knowledge, comprehensive knowledge by comparison between cities of the
                                     world, through our content, analytics, and semiotics solutions, for governance &
                                     corporate communication, while being localisation ready for any language/script.
                                 </p>
                             </div>
                             <div class="text-center col-sm">
-                                <h4 class="text-center">Follow Us</h4>
+                                <h4 class="text-center h4">Follow Us</h4>
                                 <div class="row">
                                     <div class="col-6">
                                         <a href="javascript:void(0)" onclick="showComingSoon(event)" target="_blank">
@@ -266,11 +266,12 @@
                                 </div>
                             </div>
                             <div class="col-sm ps-3">
-                                <h4 class="text-center"><i class="tp tp-eye"></i> Address</h4>
-                                <p>Office #25, 11th Floor, The I-Thum, A40,</p>
-                                <p>Sector 62, Noida (U.P), India 201309</p>
-                                <p>Phone: 0120-4561284</p>
-                                <p>Mail: <a href="mailto:query@prarangin">Query@prarang.in</a> </p>
+                                <h4 class="text-center h4"><i class="tp tp-eye"></i> Address</h4>
+                                <p class="text-center">Office #25, 11th Floor, The I-Thum, A40,</p>
+                                <p class="text-center">Sector 62, Noida (U.P), India 201309</p>
+                                <p class="text-center">Phone: 0120-4561284</p>
+                                <p class="text-center">Mail: <a href="mailto:query@prarangin">Query@prarang.in</a>
+                                </p>
                             </div>
                         </div>
                         <div class="p-4">

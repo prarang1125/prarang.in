@@ -237,7 +237,7 @@ h5 {
     color: #fff;
 }
 
-.lsvr-townpress-weather-widget--has-background .lsvr-townpress-weather-widget__weather-spinner {}
+
 
 .lsvr-townpress-weather-widget--has-background .lsvr-townpress-weather-widget__time {
     border-color: rgba(255, 255, 255, 0.2);
@@ -1123,10 +1123,9 @@ ul ul {
     right: 0;
     bottom: 0;
     width: 100%;
-    height: 500px;
-    z-index: 1;
+    height: 70vh;
+    z-index: -1;
     overflow: hidden;
-    z-index: 2;
     transition-timing-function: linear;
 }
 
@@ -1137,12 +1136,12 @@ ul ul {
     left: 0;
     right: 0;
     bottom: 0;
-    height: 300px;
-    z-index: 2;
-    -webkit-transition: height 300ms;
-    -moz-transition: height 300ms;
-    -ms-transition: height 300ms;
-    -o-transition: height 300ms;
+    height: 400px;
+    background-image: linear-gradient(to bottom,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(255, 255, 255, 0.8) 50%,
+            #ffffff 100%);
+    z-index: 3;
     transition: height 300ms;
 }
 
@@ -1156,7 +1155,8 @@ ul ul {
     width: 100%;
     height: 100%;
     background-size: cover;
-    background-position: center 0;
+    background-position: center center;
+    background-attachment: fixed;
     z-index: 1;
 }
 
@@ -2167,7 +2167,8 @@ body {
 
 /* Header background  singled */
 #wrapper .header-background--singled {
-    height: 161px;
+    height: 100vh;
+    position: fixed !important;
 }
 
 /* Link */
@@ -2178,8 +2179,8 @@ body {
 
 /* Image */
 .header-logo--front .header-logo__link img {
-    height: 100px;
-    width: 135px;
+    height: 120px;
+    width: auto;
 }
 
 /* Header */
@@ -2276,4 +2277,92 @@ body {
     #main .bg-light .col-sm-6 {
         padding-top: 4px;
     }
+}
+
+#left-news-widget {
+    background-color: #f7f6f6;
+}
+
+#right-news-widget {
+    background-color: #ffffff;
+}
+
+/* Widget  inner */
+#left-links-widget .widget__inner {
+    background-color: #ffffff;
+}
+
+/* Widget  inner */
+#right-links-widget .widget__inner {
+    background-color: #ffffff;
+}
+
+/* Widget  inner */
+#-analytics-widget .widget__inner {
+    background-color: #ffffff;
+}
+
+/* Link */
+#header .header-toolbar a {
+    background-color: #f8fa7a;
+}
+
+/* Paragraph */
+#columns footer .p-4 p {
+    font-size: 13px;
+}
+
+/* Paragraph */
+#columns .col-sm p {
+    font-size: 16px;
+}
+
+/* Weather right  temperature */
+#container-openweathermap-widget-19 .widget-right .weather-right__temperature {
+    letter-spacing: 6.4px;
+}
+
+/* Column 6/12 */
+#columns footer .col-6 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Link */
+.row .col-sm .row .col-6 a {
+    display: flex;
+}
+
+/* Span Tag */
+#columns footer span {
+    position: relative;
+    top: 5px;
+}
+
+/* Font Icon */
+#columns a .fa-instagram {
+    box-shadow: -50px -50px 0px -50px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Font Icon */
+#columns a .fa-linkedin {
+    box-shadow: -50px -50px 0px -50px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Span Tag */
+#columns footer span {
+    top: 10px;
+}
+
+/* Font Icon */
+#columns a .fa-facebook {
+    box-shadow: -50px -50px 0px -50px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Image */
+#columns footer img {
+    position: relative;
+    top: 7px;
 }
