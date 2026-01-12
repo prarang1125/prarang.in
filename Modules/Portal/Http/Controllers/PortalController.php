@@ -41,12 +41,6 @@ class PortalController extends Controller
         }
         $locale = PortalLocaleizetion::where('lang_code', $portal->local_lang)->firstOrFail();
         $locale = $locale['json'] ?? [];
-        // dd($locale);
-        // $cities = httpGet('/', ['groupby' => 1, 'group' => 'MSTR2'])['data'] ?? [];
-        // dd($cities);
-
-
-
         $cityCode = $portal->city_code;
         $yellowPages = City::where('portal_id', $portal->id)->first();
         return view('portal::portal.home', compact('cityCode', 'portal', 'yellowPages', 'locale', 'books', 'links'));
