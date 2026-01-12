@@ -12,7 +12,7 @@
                             <div class="header-logo header-logo--front">
                                 <a aria-label="Site logo" class="header-logo__link" href="{{ url()->current() }}">
                                     <img alt="TownPress" class="header-logo__image"
-                                        src="{{ asset('assets/images/logo2x.png') }}" />
+                                        src="https://i.ibb.co/6c4JQSpJ/Prarang-logox.png" />
                                 </a>
                             </div>
                             <!-- HEADER TOOLBAR TOGGLE : end -->
@@ -86,9 +86,9 @@
 
 
         <!-- HEADER : end -->
-        <div class="header-background header-background--singled" data-slideshow-speed="10">
+        <div class="header-background header-background--singled">
             <div class="header-background__image header-background__image--default"
-                style="background-image: url('{{ Storage::url($main->header_image) }}'); height: 120vh; min-height: 800px;">
+                style="background-image: url('{{ Storage::url($main->header_image) }}'); height: 120vh; min-height: 1800px;">
             </div>
 
         </div>
