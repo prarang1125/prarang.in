@@ -13,7 +13,7 @@ class InternateData extends Component
     public $city_id, $city_code;
     public $internateData = null;
     public $loading = true;
-    public $error = null;
+    public $internateError = null;
     public $lastUpdate = '';
     public $cirusData = null;
     public $cityDatabaseId = null;
@@ -43,7 +43,7 @@ class InternateData extends Component
     {
         try {
             $this->loading = true;
-            $this->error = null;
+            $this->internateError = null;
 
             $cacheKey = "internateData_{$this->city_code}";
 
@@ -68,8 +68,6 @@ class InternateData extends Component
             if (!isset($result['data'])) {
                 throw new \Exception('Invalid API response format');
             }
-
-            $cityInfo = $result['data']['city_info'] ?? [];
 
             $cityInfo = $result['data']['city_info'] ?? [];
 
@@ -103,7 +101,7 @@ class InternateData extends Component
 
             $this->internateData = $filteredData;
         } catch (\Exception $e) {
-            $this->error = $e->getMessage();
+            $this->internateError = $e->getMessage();
         } finally {
             $this->loading = false;
         }
@@ -112,7 +110,7 @@ class InternateData extends Component
     public function fetchCirusData()
     {
         try {
-            $cacheKey = "cirusData_{$this->cityDatabaseId}";
+            $cacheKey = "cirusData_{$this->cityDatabaseId}-1";
             $cachedData = Cache::get($cacheKey);
 
             if ($cachedData) {
@@ -128,6 +126,7 @@ class InternateData extends Component
                 if ($result['success'] && isset($result['data'])) {
                     // Filter for the specific city database ID (string comparison as per React)
                     $filtered = collect($result['data'])->firstWhere('id', (string)$this->cityDatabaseId);
+                    dd($filtered);
                     if ($filtered) {
                         Cache::put($cacheKey, $filtered, now()->addDay());
                         $this->cirusData = $filtered;
