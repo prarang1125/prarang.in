@@ -1009,40 +1009,41 @@
                                 <button class="accordion-button" type="button" data-bs-toggle="collapse"
                                     data-bs-target="#faqCollapseOnea" aria-expanded="true"
                                     aria-controls="faqCollapseOnea">
-                                    What is Comparative A.I?
+                                    What is Comparative A.I.?
                                 </button>
                             </h2>
                             <div id="faqCollapseOnea" class="accordion-collapse collapse show"
                                 aria-labelledby="faqHeadingOnea" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    Information is not Knowledge. Knowledge is not Intelligence. Intelligence is
-                                    not Wisdom.
+                                    Information is not knowledge. Knowledge is not intelligence. Intelligence is
+                                    not wisdom.
                                     <p>
 
-                                        <span class="fw-bold">Information </span> structured & organized data & facts,
+                                        <span class="fw-bold">Information</span> structured and organized data and
+                                        facts,
                                         which
                                         are useful.
-                                        Understanding information and related concepts creates <span
-                                            class="fw-bold">Knowledge</span>.
-                                        Application of knowledge at the right time & place, is <span
-                                            class="fw-bold">Intelligence</span>. Application of Intelligence. A
+                                        Understanding information and related concepts creates <span
+                                            class="fw-bold">knowledge</span>. <br>
+                                        Application of knowledge at the right time and place, is <span
+                                            class="fw-bold">intelligence</span>. Application of intelligence. A
                                         broad
-                                        understanding based on experience & acquired knowledge, used for the
-                                        betterment of self & society, is<span class="fw-bold"> Wisdom</span>.
-
+                                        understanding based on experience and acquired knowledge, used for the
+                                        betterment of self and society, is <span class="fw-bold">wisdom</span>.
+                                        <br>
                                         Generative Artificial Intelligence (GenAI), using LLMs (Large Language
-                                        Models), is a method to reformat & restructure Information using a layer of
-                                        new sentences/language (based on word & word usage statistics on digitized
+                                        Models), is a method to reformat and restructure information using a layer of
+                                        new sentences/language (based on word and word usage statistics on digitized
                                         content). It essentially seems to skip the step of creating knowledge from
-                                        Information. GenAI thus avoids "knowing". Instead, based on the
+                                        information. GenAI thus avoids "knowing". Instead, based on the
                                         query/prompt, it tries to answer promptly, even mimicking human “reasoning”
                                         to some extent.
-
-                                        <span class="fw-bold">Prarang’s Comparative AI
-                                        </span> focuses on creating knowledge by comparison for its
-                                        users. It is not a GenAI yet, although it mimics the GenAI input prompt &
+                                        <br>
+                                        <span class="fw-bold">Prarang’s Comparative AI</span> focuses on creating
+                                        knowledge by comparison for its
+                                        users. It is not a GenAI yet, although it mimics the GenAI input prompt and
                                         its output is comparable with GenAI outputs for the same prompt. Both GenAI
-                                        & Upmana are still work in progress.
+                                        and Upmana are still work in progress.
                                     </p>
                                 </div>
                             </div>
@@ -1056,7 +1057,7 @@
                                     How do I compare regions using this tool?
                                 </button>
                             </h2>
-                            <div id="faqCollapseOne" class="accordion-collapse collapse show"
+                            <div id="faqCollapseOne" class="accordion-collapse collapse"
                                 aria-labelledby="faqHeadingOne" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
                                     <ul>
@@ -1154,13 +1155,13 @@
                                         which
                                         are useful.
                                         Understanding information and related concepts creates <span
-                                            class="fw-bold">Knowledge</span>.
+                                            class="fw-bold">Knowledge</span>. <br>
                                         Application of knowledge at the right time & place, is <span
                                             class="fw-bold">Intelligence</span>. Application of Intelligence. A
                                         broad
                                         understanding based on experience & acquired knowledge, used for the
                                         betterment of self & society, is<span class="fw-bold"> Wisdom</span>.
-
+                                        <br>
                                         Generative Artificial Intelligence (GenAI), using LLMs (Large Language
                                         Models), is a method to reformat & restructure Information using a layer of
                                         new sentences/language (based on word & word usage statistics on digitized
@@ -1168,7 +1169,7 @@
                                         Information. GenAI thus avoids "knowing". Instead, based on the
                                         query/prompt, it tries to answer promptly, even mimicking human “reasoning”
                                         to some extent.
-
+                                        <br>
                                         <span class="fw-bold">Prarang’s Comparative AI
                                         </span> focuses on creating knowledge by comparison for its
                                         users. It is not a GenAI yet, although it mimics the GenAI input prompt &
@@ -1186,8 +1187,8 @@
                                     What does this comparison tool do?
                                 </button>
                             </h2>
-                            <div id="collapseOne" class="accordion-collapse collapse show"
-                                aria-labelledby="headingOne" data-bs-parent="#faqAccordion">
+                            <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne"
+                                data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
                                     The Tool enables users to compare the
                                     Czech Republic with one to three
