@@ -4,18 +4,18 @@
         <ul id="news-list"
             class="absolute top-0 left-0 w-full transition-all duration-1000 ease-in-out list-none m-0 p-0">
             @foreach ($newsItems as $news)
-            <li
-                class="p-4 border-b border-gray-50 hover:bg-blue-50/50 transition-colors cursor-pointer group last:border-0">
-                <a class="block no-underline" href="{{ $news['link'] }}" target="_blank">
-                    <h5
-                        class="text-sm font-bold text-gray-900 group-hover:text-blue-600 transition-colors leading-snug mb-1">
-                        {{ $news['title'] }}
-                    </h5>
-                    <p class="text-xs text-gray-500 line-clamp-2 leading-relaxed">
-                        {{ \Illuminate\Support\Str::limit($news['description'], 150) }}
-                    </p>
-                </a>
-            </li>
+                <li
+                    class="p-4 border-b border-gray-50 hover:bg-blue-50/50 transition-colors cursor-pointer group last:border-0">
+                    <a class="block no-underline" href="{{ $news['link'] }}" target="_blank">
+                        <h5
+                            class="text-sm font-bold text-gray-900 group-hover:text-blue-600 transition-colors leading-snug mb-1">
+                            {{ $news['title'] }}
+                        </h5>
+                        <p class="text-xs text-gray-500 line-clamp-2 leading-relaxed">
+                            {{ \Illuminate\Support\Str::limit($news['description'], 150) }}
+                        </p>
+                    </a>
+                </li>
             @endforeach
         </ul>
     </div>

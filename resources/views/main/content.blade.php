@@ -410,11 +410,14 @@
                 </div>
                 <div class="col-md-10">
                     <div class="d-flex flex-wrap gap-2">
-                        @foreach ($biletrals as $bilateral)
+                        <a href="https://www.indiaczech.com" target="_blank" class="btn btn-sm btn-warning m-1">
+                            India Czech Portal
+                        </a>
+                        {{-- @foreach ($biletrals as $bilateral)
                             <a href="/{{ $bilateral->slug }}" target="_blank" class="btn btn-sm btn-warning m-1">
                                 {{ ucwords(str_replace('-', ' ', $bilateral->slug)) }}
                             </a>
-                        @endforeach
+                        @endforeach --}}
 
                     </div>
                 </div>

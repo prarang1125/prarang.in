@@ -689,7 +689,6 @@
                             onmouseover="this.style.backgroundColor='#0056b3';"
                             onmouseout="this.style.backgroundColor='#007bff';">
                             {{ $locale['tags'][$post->tagId] ?? $post->tagId }}
-
                         </a>
                     </div>
                     <div class="text-center post-navigation">

@@ -97,9 +97,8 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link"
-                            href="{{ route('portal', ['portal' => 'india-czech-republic']) }}">Indo-Czech Knowledge
-                            Web Portal</a>
+                        <a class="nav-link" href="https://www.indiaczech.com">India-Czech
+                            Portal</a>
                         </a>
                     </li>
 

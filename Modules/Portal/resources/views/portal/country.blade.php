@@ -147,7 +147,7 @@
                                                 </a>
                                                 <a class="comparison-btn mt-2" target="_blank"
                                                     href="/czech-republic-regional-comparison">
-                                                    <strong>Indo-Czech Comparison :</strong> <span>Compare Czech with
+                                                    <strong>India-Czech Comparison :</strong> <span>Compare Czech with
                                                         Indian Regions</span>
                                                 </a>
                                             </div>
