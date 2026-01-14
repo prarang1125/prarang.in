@@ -26,7 +26,7 @@ class TagList extends Component
         $this->cityCode = $cityCode;
         $this->citySlug = $citySlug;
         $cacheKey = 'tag_counts_' . $cityCode;
-        $this->tagCounts = Cache::remember($cacheKey, 60 * 60,function  () use ($cityCode) {
+        $this->tagCounts = Cache::remember($cacheKey, 60 * 60, function () use ($cityCode) {
             return $this->getCounts($cityCode); // Fetch counts if not in cache
         });
         $this->tagSubCounts = Cache::remember($cacheKey . 'tag', 60 * 60, function () use ($cityCode) {

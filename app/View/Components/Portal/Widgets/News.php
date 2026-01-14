@@ -12,14 +12,14 @@ class News extends Component
     /**
      * Create a new component instance.
      */
-   
-     public $newsItems;
+
+    public $newsItems;
     public function __construct($url)
     {
         $response = Http::get($url);
-        if ($response->ok()) {           
-            $rss = simplexml_load_string($response->body());                    
-            $newsItems = [];             
+        if ($response->ok()) {
+            $rss = simplexml_load_string($response->body());
+            $newsItems = [];
             foreach ($rss->channel->item as $item) {
                 $newsItems[] = [
                     'title' => (string) $item->title,
@@ -27,9 +27,9 @@ class News extends Component
                     'description' => (string) $item->description,
                     'pubDate' => (string) $item->pubDate
                 ];
-            }              
-        } 
-        $this->newsItems=$newsItems;
+            }
+        }
+        $this->newsItems = $newsItems;
         // dd($this->newsItems);
     }
 

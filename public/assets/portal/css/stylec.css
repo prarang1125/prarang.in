@@ -2366,3 +2366,8 @@ body {
     position: relative;
     top: 7px;
 }
+
+/* Header  content inner */
+#header .header__content-inner {
+    padding-top: 2px;
+}
