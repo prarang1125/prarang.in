@@ -19,6 +19,15 @@
         .first-prompt .firstPrompt h2 {
             padding-right: 35px;
         }
+
+        @media (min-width:576px) {
+
+            /* Form check */
+            #content-e_langs .mb-2 .form-check {
+                height: 51px !important;
+            }
+
+        }
     </style>
 
     <div class="container-fluid" id="toprint">
