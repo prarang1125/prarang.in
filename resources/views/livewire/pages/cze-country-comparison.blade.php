@@ -1004,6 +1004,49 @@
                         offering practical insights into region-level metrics.
                     </p>
                     <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingOnea">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faqCollapseOnea" aria-expanded="true"
+                                    aria-controls="faqCollapseOnea">
+                                    What is Comparative A.I?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseOnea" class="accordion-collapse collapse show"
+                                aria-labelledby="faqHeadingOnea" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Information is not Knowledge. Knowledge is not Intelligence. Intelligence is
+                                    not Wisdom.
+                                    <p>
+
+                                        <span class="fw-bold">Information </span> structured & organized data & facts,
+                                        which
+                                        are useful.
+                                        Understanding information and related concepts creates <span
+                                            class="fw-bold">Knowledge</span>.
+                                        Application of knowledge at the right time & place, is <span
+                                            class="fw-bold">Intelligence</span>. Application of Intelligence. A
+                                        broad
+                                        understanding based on experience & acquired knowledge, used for the
+                                        betterment of self & society, is<span class="fw-bold"> Wisdom</span>.
+
+                                        Generative Artificial Intelligence (GenAI), using LLMs (Large Language
+                                        Models), is a method to reformat & restructure Information using a layer of
+                                        new sentences/language (based on word & word usage statistics on digitized
+                                        content). It essentially seems to skip the step of creating knowledge from
+                                        Information. GenAI thus avoids "knowing". Instead, based on the
+                                        query/prompt, it tries to answer promptly, even mimicking human “reasoning”
+                                        to some extent.
+
+                                        <span class="fw-bold">Prarang’s Comparative AI
+                                        </span> focuses on creating knowledge by comparison for its
+                                        users. It is not a GenAI yet, although it mimics the GenAI input prompt &
+                                        its output is comparable with GenAI outputs for the same prompt. Both GenAI
+                                        & Upmana are still work in progress.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                         <!-- Q1 -->
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="faqHeadingOne">
@@ -1092,6 +1135,49 @@
                     </p>
 
                     <div class="accordion" id="faqAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="faqHeadingOnea">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
+                                    data-bs-target="#faqCollapseOnea" aria-expanded="true"
+                                    aria-controls="faqCollapseOnea">
+                                    What is Comparative A.I?
+                                </button>
+                            </h2>
+                            <div id="faqCollapseOnea" class="accordion-collapse collapse show"
+                                aria-labelledby="faqHeadingOnea" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Information is not Knowledge. Knowledge is not Intelligence. Intelligence is
+                                    not Wisdom.
+                                    <p>
+
+                                        <span class="fw-bold">Information </span> structured & organized data & facts,
+                                        which
+                                        are useful.
+                                        Understanding information and related concepts creates <span
+                                            class="fw-bold">Knowledge</span>.
+                                        Application of knowledge at the right time & place, is <span
+                                            class="fw-bold">Intelligence</span>. Application of Intelligence. A
+                                        broad
+                                        understanding based on experience & acquired knowledge, used for the
+                                        betterment of self & society, is<span class="fw-bold"> Wisdom</span>.
+
+                                        Generative Artificial Intelligence (GenAI), using LLMs (Large Language
+                                        Models), is a method to reformat & restructure Information using a layer of
+                                        new sentences/language (based on word & word usage statistics on digitized
+                                        content). It essentially seems to skip the step of creating knowledge from
+                                        Information. GenAI thus avoids "knowing". Instead, based on the
+                                        query/prompt, it tries to answer promptly, even mimicking human “reasoning”
+                                        to some extent.
+
+                                        <span class="fw-bold">Prarang’s Comparative AI
+                                        </span> focuses on creating knowledge by comparison for its
+                                        users. It is not a GenAI yet, although it mimics the GenAI input prompt &
+                                        its output is comparable with GenAI outputs for the same prompt. Both GenAI
+                                        & Upmana are still work in progress.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
                         <!-- Q1 -->
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
