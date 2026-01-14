@@ -22,16 +22,22 @@
                                 @if ($type === 'regional')
                                     <h2 class="flex justify-center items-center"><img class="mx-2"
                                             src="https://g2c.prarang.in/storage/images/world/195Counties/IND__flag.jpg"
-                                            alt="">India-Czech Comparison <img class="mx-2"
+                                            alt="">Compare Czech Republic Regions (Kraje) with Indian Regions
+                                        (Districts)
+
+                                        <img class="mx-2"
                                             src="https://g2c.prarang.in/storage/images/world/195Counties/CZE__flag.jpg"
                                             alt="">
                                     </h2>
-                                    <p>Compare Czech Republic Regions(Kraje) with Indian Regions</p>
+                                    <p>(Powered by Prarang’s Comparative A.I.)</p>
                                 @else
                                     <h2><img class="mx-2 cze-mapx"
                                             src="https://g2c.prarang.in/storage/images/world/195Counties/CZE_MAP.jpg"
-                                            alt="">Country Comparison</h2>
-                                    <p>Compare Czech Republic with other Countries</p>
+                                            alt="">Compare Czech Republic with other Countries
+                                    </h2>
+                                    <p>(Powered by Prarang’s Comparative A.I.)
+
+                                    </p>
                                 @endif
                                 @if (session()->has('message'))
                                     <p class="text-success"
