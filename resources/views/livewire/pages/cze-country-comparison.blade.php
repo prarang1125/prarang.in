@@ -3,7 +3,23 @@
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/portal/css/comparison.css') }}">
 
+    <style>
+        /* Small Tag */
+        .first-prompt .firstPrompt>small {
+            position: relative;
+            top: -22px;
+        }
 
+        /* Small Tag */
+        .first-prompt .firstPrompt>small {
+            position: relative;
+            top: -26px;
+        }
+
+        .first-prompt .firstPrompt h2 {
+            padding-right: 35px;
+        }
+    </style>
 
     <div class="container-fluid" id="toprint">
 
