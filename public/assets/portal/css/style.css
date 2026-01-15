@@ -653,3 +653,9 @@ header sup span {
 #openModalx .w-full {
     display: flex;
 }
+
+/* Text */
+.max-w-md div .text-xs {
+    font-size: 12px !important;
+    color: #f73535 !important;
+}
