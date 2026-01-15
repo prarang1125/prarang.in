@@ -643,6 +643,10 @@ header sup span {
     position: relative;
     top: -25px;
 }
+/* Heading */
+.w-full .mt-3 h2 {
+    font-size: 30px;
+}
 
 /* Heading */
 .w-full .mt-3 h4 {
@@ -658,4 +662,9 @@ header sup span {
 .max-w-md div .text-xs {
     font-size: 12px !important;
     color: #f73535 !important;
+}
+/* Flex col */
+header .lg\:flex-row .flex-col:nth-child(4) {
+    margin-left: 0px;
+    width: 300px !important;
 }
