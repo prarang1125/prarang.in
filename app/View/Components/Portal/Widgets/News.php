@@ -29,7 +29,7 @@ class News extends Component
                 ];
             }
         }
-        $this->newsItems = $newsItems;
+        $this->newsItems = $newsItems ?? [];
         // dd($this->newsItems);
     }
 
