@@ -53,15 +53,18 @@
             </div>
 
             <!-- Title Box -->
+
             <div class="flex-grow flex items-center justify-center">
-                <div class="bg-blue-600 text-white px-8 py-4 rounded-sm shadow-md text-center max-w-2xl">
+                @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-1', 'slug' => $portal->slug, 'portal' => $portal, 'locale' => $portal->local_lang])
+
+                {{-- <div class="bg-blue-600 text-white px-8 py-4 rounded-sm shadow-md text-center max-w-2xl">
                     <h2
                         class="text-xl md:text-2xl font-bold flex flex-wrap items-center justify-center gap-2 tracking-wide">
                         <sup><span class="text-sm font-normal">प्रारंग के</span></sup>
                         <span class="text-yellow-300">{{ $portal->city_name_local ?? '' }} रंग:</span>
                         <span>{{ $portal->city_name_local ?? '' }}वासियों की अपनी वेबसाइट</span>
                     </h2>
-                </div>
+                </div> --}}
             </div>
 
             <!-- Stats & Login Box -->
