@@ -668,3 +668,14 @@ header .lg\:flex-row .flex-col:nth-child(4) {
     margin-left: 0px;
     width: 300px !important;
 }
+/* Font medium */
+.w-full .lg\:flex-row .w-full > .justify-center .font-medium {
+    background-color: #f1c103;
+    color: #020202;
+    width: 100% !important;
+}
+
+/* Map modal */
+#mapModal {
+    background-color: rgba(49, 49, 42, 0.3);
+}

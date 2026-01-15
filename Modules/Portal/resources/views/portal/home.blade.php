@@ -162,7 +162,8 @@
                                                 class="text-white/70 group-hover/link:text-white text-xl transition-all">→</span>
                                         </div>
                                         <small>(शहरों का चयन करें)</small>
-                                    </a><a href="https://hindi.prarang.in/world/market-planner" target="_blank"
+                                    </a><a href="https://hindi.prarang.in/world/market-planner?country=63"
+                                        target="_blank"
                                         class="block p-4 bg-white/20 backdrop-blur-sm rounded-xl hover:bg-white/30 transition-all duration-300 group/link border border-white/30 hover:border-white/50">
                                         <div class="flex items-center justify-between"><span
                                                 class="text-white font-bold text-base md:text-lg group-hover/link:translate-x-1 transition-transform">विश्व
@@ -206,7 +207,8 @@
                                                 class="text-white/70 group-hover/link:text-white text-xl transition-all">→</span>
                                         </div>
                                         <small>(शहरों का चयन करें)</small>
-                                    </a><a href="https://hindi.prarang.in/world/development-planner" target="_blank"
+                                    </a><a href="https://hindi.prarang.in/world/development-planner?country=63"
+                                        target="_blank"
                                         class="block p-4 bg-white/20 backdrop-blur-sm rounded-xl hover:bg-white/30 transition-all duration-300 group/link border border-white/30 hover:border-white/50">
                                         <div class="flex items-center justify-between"><span
                                                 class="text-white font-bold text-base md:text-lg group-hover/link:translate-x-1 transition-transform">विश्व
@@ -249,6 +251,38 @@
                 <div class="flex justify-center items-center p-2 w-full ">
                     {!! $portal->weather_widget_code !!}
                 </div>
+                <!-- Wrapper -->
+                <div class="flex justify-center items-center p-2 w-full">
+                    <!-- Open Button -->
+                    <button type="button" onclick="openMapModal()"
+                        class="bg-blue-600 hover:bg-blue-700 text-white font-medium px-4 py-2 rounded">
+                        <i class="fa fa-map"></i> शहर का नक्शा
+                    </button>
+                </div>
+
+                <!-- Modal Overlay -->
+                <div id="mapModal"
+                    class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-50">
+                    <!-- Modal Box -->
+                    <div class="bg-white w-full max-w-lg rounded-lg shadow-lg">
+                        <!-- Header -->
+                        <div class="flex justify-between items-center px-4 py-3 border-b">
+                            <h3 class="text-lg font-semibold">Map</h3>
+                            <button onclick="closeMapModal()"
+                                class="text-gray-500 hover:text-gray-700 text-xl leading-none">
+                                &times;
+                            </button>
+                        </div>
+
+                        <!-- Body -->
+                        <div class="p-4">
+                            <div class=" bg-gray-100 flex items-center justify-center">
+                                {!! $portal->map_link !!}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
                 <div class="mt-3">
                     <a href="https://prarang.in/yp/{{ $portal->slug }}" target="_blank"
                         class="relative block overflow-hidden rounded-lg group">
@@ -302,13 +336,13 @@
                             <i class="fa fa-facebook text-xl group-hover:scale-110 transition-transform"></i>
                             <span class="font-bold text-sm">Facebook</span>
                         </a>
-                        <a href="javascript:void(0)" onclick="showComingSoon(event)"
+                        {{-- <a href="javascript:void(0)" onclick="showComingSoon(event)"
                             class="flex items-center justify-center md:justify-start gap-3 p-3 bg-white/20 hover:bg-white/40 rounded-xl transition-all group backdrop-blur-sm border border-white/30 no-underline text-gray-800">
                             <img width="20"
                                 src="https://images.freeimages.com/image/grids/9fe/x-twitter-light-grey-logo-5694251.png"
                                 class="group-hover:scale-110 transition-transform">
                             <span class="font-bold text-sm text-gray-800">Twitter</span>
-                        </a>
+                        </a> --}}
                         <a href="https://www.instagram.com/prarang_in/?hl=en" target="_blank"
                             class="flex items-center justify-center md:justify-start gap-3 p-3 bg-white/20 hover:bg-white/40 rounded-xl transition-all group backdrop-blur-sm border border-white/30 no-underline text-gray-800">
                             <i class="fa fa-instagram text-xl group-hover:scale-110 transition-transform"></i>
@@ -357,4 +391,18 @@
             </div>
         </div>
     </footer>
+    <script>
+        function openMapModal() {
+            const modal = document.getElementById('mapModal');
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeMapModal() {
+            const modal = document.getElementById('mapModal');
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+        }
+    </script>
+
 </x-layout.portal.base>
