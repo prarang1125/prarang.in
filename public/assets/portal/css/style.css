@@ -649,3 +649,7 @@ header sup span {
     position: relative;
     top: -31px;
 }
+/* Full */
+#openModalx .w-full {
+    display: flex;
+}

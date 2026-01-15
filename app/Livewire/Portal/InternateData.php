@@ -24,6 +24,7 @@ class InternateData extends Component
         $this->city_code = $city_code;
         $this->cityName = $city_name;
         $this->cityDatabaseId = $this->city_id;
+
         $this->fetchData();
 
         // Set last update to roughly one month ago in Hindi format
@@ -45,7 +46,7 @@ class InternateData extends Component
             $this->loading = true;
             $this->internateError = null;
 
-            $cacheKey = "internateData_{$this->city_code}";
+            $cacheKey = "internateData_{$this->city_id}_news";
 
             // Check cache first (equivalent to localStorage in React)
             $cachedData = Cache::get($cacheKey);
@@ -57,44 +58,8 @@ class InternateData extends Component
             }
 
             // Fetch from API
-            $response = Http::get("https://b2b.prarang.in/api/readers?city_code={$this->city_code}");
 
-            if (!$response->successful()) {
-                throw new \Exception('Failed to fetch data from API');
-            }
-
-            $result = $response->json();
-
-            if (!isset($result['data'])) {
-                throw new \Exception('Invalid API response format');
-            }
-
-            $cityInfo = $result['data']['city_info'] ?? [];
-
-            // Targeted SNOs for the required metrics
-            $targetSNOs = [2, 6, 7, 8, 9];
-
-            $filteredCityInfo = array_filter($cityInfo, function ($city) use ($targetSNOs) {
-                return in_array((int)$city['sno'], $targetSNOs);
-            });
-
-            // Sort by target order to ensure consistency
-            usort($filteredCityInfo, function ($a, $b) use ($targetSNOs) {
-                return array_search((int)$a['sno'], $targetSNOs) <=> array_search((int)$b['sno'], $targetSNOs);
-            });
-
-            // Re-index and map
-            $filteredData = [
-                'city_info' => array_values(array_map(function ($city) {
-                    return [
-                        'sno' => $city['sno'],
-                        'title' => $city['title'],
-                        'value' => $city['value']
-
-                    ];
-                }, $filteredCityInfo)),
-                'reader_info' => $result['data']['reader_info'] ?? null
-            ];
+            $filteredData = httpGet('/internate-data/cities', ['city_id' => $this->city_id])['data'];
 
             // Cache for a while (e.g., 24 hours) as per React localStorage intent
             Cache::put($cacheKey, $filteredData, now()->addDay());

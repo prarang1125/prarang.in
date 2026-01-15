@@ -64,14 +64,13 @@
             <div class="w-full lg:w-6/12 order-1 lg:order-2 space-y-6">
                 <div class="relative overflow-hidden rounded-lg shadow-xl group">
                     <img src="{{ Storage::url($portal->header_image) }}" alt="Header Image" class="w-full h-auto ">
-                    <div class="absolute bottom-0 left-0 w-full backdrop-blur py-1 text-center">
+                    {{-- <div class="absolute bottom-0 left-0 w-full backdrop-blur py-1 text-center">
                         <h1 class="text-white text-sm md:text-sm font-extrabold px-6 drop-shadow-lg">
                             {!! $portal->city_slogan !!}
                         </h1>
-                    </div>
+                    </div> --}}
                 </div>
 
-                @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-1', 'slug' => $portal->slug, 'portal' => $portal, 'locale' => $locale])
                 {{-- <div class="text-center py-5 rounded bg-black/50 text-2xl text-white font-bold shadow-md">
                     {!! $portal->city_slogan !!}
                 </div> --}}

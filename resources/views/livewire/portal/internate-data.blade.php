@@ -1,4 +1,5 @@
 <div class="w-full bg-white shadow-sm p-4 mt-2">
+
     <style>
         /* Hover */
         .home-bg div .hover\:shadow-md {
@@ -24,99 +25,96 @@
         <small>नयी अपडेट : {{ $lastUpdate }}</small>
     </p>
 
-    @if($loading)
-    <div class="text-center text-gray-500 py-4">लोड हो रहा है...</div>
+    @if ($loading)
+        <div class="text-center text-gray-500 py-4">लोड हो रहा है...</div>
     @else
-    {{-- INTERNATE DATA SECTION --}}
-    @if($internateError)
-    <div class="text-center text-red-500 py-4">त्रुटि: {{ $internateError }}</div>
-    @elseif($internateData && !empty($internateData['city_info']))
-    <div class="space-y-3">
-        <div class="space-y-2">
-            @foreach($internateData['city_info'] as $city)
-            @php
-            $categoryLabel = '';
-            $categoryColor = '';
-            $icon = '';
-            $iconColor = '';
+        {{-- INTERNATE DATA SECTION --}}
+        @if ($internateError)
+            <div class="text-center text-red-500 py-4">त्रुटि: {{ $internateError }}</div>
+        @elseif($internateData && !empty($internateData))
+            <div class="space-y-3">
+                <div class="space-y-2">
+                    @php
+                        $categories = [
+                            'city_population' => [
+                                'label' => 'जनसंख्या (2025)',
+                                'bg' => 'bg-purple-50 border-purple-200',
+                                'icon' => 'fa fa-users',
+                                'icon_color' => 'text-purple-600',
+                            ],
+                            'internet_users' => [
+                                'label' => 'इंटरनेट उपयोगकर्ता',
+                                'bg' => 'bg-blue-50 border-blue-200',
+                                'icon' => 'fa fa-globe',
+                                'icon_color' => 'text-blue-600',
+                            ],
+                            'facebook_users' => [
+                                'label' => 'फेसबुक उपयोगकर्ता',
+                                'bg' => 'bg-blue-50 border-blue-200',
+                                'icon' => 'fa fa-facebook',
+                                'icon_color' => 'text-blue-600',
+                            ],
+                            'linkedin_users' => [
+                                'label' => 'लिंक्डइन उपयोगकर्ता',
+                                'bg' => 'bg-blue-50 border-blue-200',
+                                'icon' => 'fa fa-linkedin',
+                                'icon_color' => 'text-blue-700',
+                            ],
+                            'twitter_users' => [
+                                'label' => 'ट्विटर उपयोगकर्ता',
+                                'bg' => 'bg-sky-50 border-sky-200',
+                                'icon' => 'fa fa-times',
+                                'icon_color' => 'text-dark',
+                            ],
+                            'instagram_users' => [
+                                'label' => 'इंस्टाग्राम उपयोगकर्ता',
+                                'bg' => 'bg-pink-50 border-pink-200',
+                                'icon' => 'fa fa-instagram',
+                                'icon_color' => 'text-pink-600',
+                            ],
+                        ];
 
-            switch ($city['sno']) {
-            case 2:
-            $categoryLabel = 'जनसंख्या (2025)';
-            $categoryColor = 'bg-purple-50 border-purple-200';
-            $icon = 'fa fa-users';
-            $iconColor = 'text-purple-600';
-            break;
-            case 6:
-            $categoryLabel = 'इंटरनेट उपयोगकर्ता';
-            $categoryColor = 'bg-blue-50 border-blue-200';
-            $icon = 'fa fa-globe';
-            $iconColor = 'text-blue-600';
-            break;
-            case 7:
-            $categoryLabel = 'फेसबुक उपयोगकर्ता';
-            $categoryColor = 'bg-blue-50 border-blue-200';
-            $icon = 'fa fa-facebook';
-            $iconColor = 'text-blue-600';
-            break;
-            case 8:
-            $categoryLabel = 'लिंक्डइन उपयोगकर्ता';
-            $categoryColor = 'bg-blue-50 border-blue-200';
-            $icon = 'fa fa-linkedin';
-            $iconColor = 'text-blue-700';
-            break;
-            case 9:
-            $categoryLabel = 'ट्विटर उपयोगकर्ता';
-            $categoryColor = 'bg-sky-50 border-sky-200';
-            $icon = 'fa fa-times';
-            $iconColor = 'text-dark';
-            break;
-            default:
-            $categoryLabel = $city['title'];
-            $categoryColor = 'bg-white border-gray-200';
-            $icon = 'fa fa-chart-bar';
-            $iconColor = 'text-gray-600';
-            }
-            @endphp
-
-            <div class="p-1 flex justify-between items-center">
-                <div class="flex items-center gap-3">
-                    <i class="{{ $icon }} text-2xl {{ $iconColor }}"></i>
-                    <span class="text-base font-semibold text-gray-800">{{ $categoryLabel }}</span>
-                </div>
-                <div class="text-right">
-                    <span class="text-lg font-bold text-gray-900">
-                        {{ is_numeric($city['value']) ? number_format($city['value'], 0, '.', ',') : $city['value'] }}
-                    </span>
+                    @endphp
+                    @foreach ($categories as $key => $category)
+                        <div class="p-1 flex justify-between items-center">
+                            <div class="flex items-center gap-3">
+                                <i class="{{ $category['icon'] }} text-2xl {{ $category['icon_color'] }}"></i>
+                                <span class="text-base font-semibold text-gray-800">{{ $category['label'] }}</span>
+                            </div>
+                            <div class="text-right">
+                                <span class="text-lg font-bold text-gray-900">
+                                    {{ is_numeric($internateData[$key]) ? number_format($internateData[$key]) : $internateData[$key] }}
+                                </span>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
-            @endforeach
-        </div>
-    </div>
-    @else
-    <div class="text-center text-gray-500 py-8">कोई डेटा उपलब्ध नहीं</div>
-    @endif
+        @else
+            <div class="text-center text-gray-500 py-8">कोई डेटा उपलब्ध नहीं</div>
+        @endif
 
-    {{-- CIRUS Data Section --}}
-    @if($cirusData)
-    <div class="mt-4 border-t-4 border-red-900 pt-4 bg-red-50/30 p-4 rounded-b-lg shadow-inner">
-        <h3 class="font-bold text-red-900 mb-2 flex items-center gap-2">
-            <i class="fa fa-shield-alt text-red-600"></i> {{ $cityName }} में साइबर सुरक्षा
-        </h3>
-        <div class="space-y-2 text-sm">
-            <div class="flex justify-between items-center bg-white p-2 rounded border border-red-100">
-                <span class="text-gray-700 font-medium">साइबर जोखिम सूचकांक:</span>
-                <span class="font-bold text-red-900 text-lg">{{ $cirusData['risk_index'] ?? '-' }}</span>
+        {{-- CIRUS Data Section --}}
+        @if ($cirusData)
+            <div class="mt-4 border-t-4 border-red-900 pt-4 bg-red-50/30 p-4 rounded-b-lg shadow-inner">
+                <h3 class="font-bold text-red-900 mb-2 flex items-center gap-2">
+                    <i class="fa fa-shield-alt text-red-600"></i> {{ $cityName }} में साइबर सुरक्षा
+                </h3>
+                <div class="space-y-2 text-sm">
+                    <div class="flex justify-between items-center bg-white p-2 rounded border border-red-100">
+                        <span class="text-gray-700 font-medium">साइबर जोखिम सूचकांक:</span>
+                        <span class="font-bold text-red-900 text-lg">{{ $cirusData['risk_index'] ?? '-' }}</span>
+                    </div>
+                </div>
+                <div class="flex justify-end items-center mt-3">
+                    <a href="https://prarang.in/cirus" target="_blank"
+                        class="text-sm font-bold text-blue-800 hover:text-blue-600 flex items-center gap-1 group">
+                        अधिक देखें और समझे
+                        <i
+                            class="fa fa-external-link-alt text-[10px] group-hover:translate-x-0.5 transition-transform"></i>
+                    </a>
+                </div>
             </div>
-        </div>
-        <div class="flex justify-end items-center mt-3">
-            <a href="https://prarang.in/cirus" target="_blank"
-                class="text-sm font-bold text-blue-800 hover:text-blue-600 flex items-center gap-1 group">
-                अधिक देखें और समझे
-                <i class="fa fa-external-link-alt text-[10px] group-hover:translate-x-0.5 transition-transform"></i>
-            </a>
-        </div>
-    </div>
-    @endif
+        @endif
     @endif
 </div>
