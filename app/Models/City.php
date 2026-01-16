@@ -15,6 +15,7 @@ class City extends Model
         'city_arr',
         'city_slug',
         'cities_url',
+        'cover',
         'portal_id',
         'timezone',
         'created_at',

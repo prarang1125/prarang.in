@@ -31,8 +31,11 @@ class CitiesController extends Controller
     ##------------------------- citiesEdit function ---------------------##
     public function citiesEdit($id)
     {
+
         try {
+
             $cities = City::findOrFail($id);
+
             return view('yellowpages::admin.cities-edit', compact('cities'));
         } catch (ModelNotFoundException $e) {
             return redirect()->route('admin.cities-listing')->withErrors(['error' => 'City not found.']);
@@ -52,7 +55,8 @@ class CitiesController extends Controller
             // Validate the request data
             $validated = $request->validate([
                 'name' => 'required|string|max:255',
-                'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048', // Optional image upload
+                'image' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+                'cover' => 'nullable|image|mimes:jpg,png,jpeg,gif,svg|max:2048', // Optional image upload
             ]);
 
             // Handle the file upload if a new image is provided
@@ -69,10 +73,26 @@ class CitiesController extends Controller
                 $imagePath = $city->cities_url;
             }
 
+
+            if ($request->hasFile('cover')) {
+                // Delete the old image if it exists
+                if ($city->cover && Storage::exists($city->cover)) {
+                    Storage::delete($city->cover);
+                }
+
+                // Store the new image
+                $coverPath = $request->file('cover')->store('yellowpages/cities');
+            } else {
+                // Keep the existing image URL if no new image is uploaded
+                $coverPath = $city->cover;
+            }
+
             // Update city details
             $city->update([
                 'name' => $request->name,
                 'cities_url' => $imagePath,
+                'cover' => $coverPath,
+
                 'updated_at' => Carbon::now(),
             ]);
 
@@ -112,12 +132,14 @@ class CitiesController extends Controller
     ##------------------------- citiesStore function ---------------------##
     public function citiesStore(Request $request)
     {
+        // dd($request->all());
         // Validation rules
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'image' => 'required|image',  // Image validation with file type restrictions
+            'cover' => 'required|image',
             'portal_id' => 'nullable',
-            'slug' => 'required|string|max:255|unique:cities,slug',
+            'slug' => 'required|string|max:255',
             'city_arr' => 'required|string|max:10',
             'city_slug' => 'required|string|max:255',
         ]);
@@ -132,11 +154,16 @@ class CitiesController extends Controller
                 // Store the image and get the path
                 $imagePath = $request->file('image')->store('yellowpages/cities');
             }
+            if ($request->hasFile('cover')) {
+                // Store the image and get the path
+                $coverPath = $request->file('cover')->store('yellowpages/cities');
+            }
 
             // Create a new city record
-            City::create([
+            DB::connection('yp')->table('cities')->insert([
                 'name' => $request->name,
                 'cities_url' => $imagePath, // Store the image path
+                'cover' => $coverPath,
                 'portal_id' => $request->portal_id,
                 'slug' => $request->slug,
                 'city_arr' => $request->city_arr,
