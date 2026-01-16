@@ -103,6 +103,16 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="row mt-3">
+                            <div class="col-md-6">
+                                <label for="inputimage" class="form-label">Cover Image (अधिक छवि) (1200 x 500)px</label>
+                                <input type="file" class="form-control @error('cover') is-invalid @enderror"
+                                    id="inputimage" name="cover">
+                                @error('cover')
+                                    <p class="invalid-feedback">{{ $message }}</p>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="modal-footer mt-3">
                             <button type="submit" class="btn btn-primary">बनाएं</button>

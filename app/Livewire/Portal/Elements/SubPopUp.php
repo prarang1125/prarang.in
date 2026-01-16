@@ -103,8 +103,8 @@ class SubPopUp extends Component
         $city = City::find($this->city);
         $this->reset();
         $this->cities = City::all();
-        setcookie('pop-sub-mobile', 'true', time() + (200 * 24 * 60 * 60), "/");
-        setcookie('sub-user-id', $user->id, time() + (200 * 24 * 60 * 60), "/");
+        // setcookie('pop-sub-mobile', 'true', time() + (200 * 24 * 60 * 60), "/");
+        // setcookie('sub-user-id', $user->id, time() + (200 * 24 * 60 * 60), "/");
         if ($this->isVcard) {
             session()->flash('success', $locale['subscribe']['account_created'] ?? 'आपका अकाउंट बनाया गया है।');
             $this->loading = false;
