@@ -91,7 +91,6 @@ class ListingController extends Controller
 
             // Return the view with required data
             return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'category_name', 'portal'));
-
         } catch (\Exception $e) {
             // Log error for debugging
             Log::error('Error in showByCategory: ' . $e->getMessage());
@@ -119,15 +118,15 @@ class ListingController extends Controller
                 $city = City::where('name', 'LIKE', "%{$city_name}%")->first();
             }
             setcookie('register_city', $city->id, time() + 3600, '/');
-            $city_name=$city->name;
+            $city_name = $city->name;
             $portal = Portal::where('id', $city->portal_id)->first();
 
-            $listings = BusinessListing::with(['category', 'hours', 'city','address','user'])
+            $listings = BusinessListing::with(['category', 'hours', 'city', 'address', 'user'])
                 ->where('is_active', 1)
                 ->whereHas('city', fn($q) => $q->where('city_id', $city->id))
                 ->get();
 
-                   // Define the timezone
+            // Define the timezone
             $timezone = 'Asia/Kolkata';
             $currentDateTime = Carbon::now($timezone);
             $currentTime = $currentDateTime->format('H:i:s');
@@ -165,10 +164,10 @@ class ListingController extends Controller
                     }
                 }
             });
-            return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'city','city_name','portal'));
+            return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'city', 'city_name', 'portal'));
         } catch (\Exception $e) {
             return $e;
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
+            return redirect()->back()->withErrors(['error' => 'An error occurred: ']);
         }
     }
     ##------------------------- END---------------------##
@@ -178,8 +177,8 @@ class ListingController extends Controller
     {
         try {
             $categories = Category::where('is_active', 1)->get();
-            $city_name= City::where('is_active', 1)->get();
-            $sz=City::where('name', $city)->first();
+            $city_name = City::where('is_active', 1)->get();
+            $sz = City::where('name', $city)->first();
             $query = BusinessListing::where('is_active', 1);
 
             if ($category) {
@@ -219,11 +218,11 @@ class ListingController extends Controller
                 return $listing;
             });
 
-                return view('yellowpages::home.categories', compact('listings', 'categories', 'city','portal'));
-            } catch (\Exception $e) {
-                return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
-            }
+            return view('yellowpages::home.categories', compact('listings', 'categories', 'city', 'portal'));
+        } catch (\Exception $e) {
+            return redirect()->back()->withErrors(['error' => 'An error occurred: ']);
         }
+    }
     ##------------------------- END ---------------------##
 
     ##------------------------- Submit Listing  ---------------------##
@@ -258,17 +257,17 @@ class ListingController extends Controller
                 'social_media'
             ));
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
+            return redirect()->back()->withErrors(['error' => 'An error occurred: ']);
         }
     }
     ##------------------------- END---------------------##
 
     ##------------------------- Add Listing ---------------------##
     public function store(BusinessListingRequest $request)
-{
-    //  dd($request->all());
-    $validated = $request->validated();
-    // try {
+    {
+        //  dd($request->all());
+        $validated = $request->validated();
+        // try {
         if ($request->hasFile('image')) {
             $validated['image'] = $request->file('image')->store('yellowpages/business', 's3');
         } else {
@@ -322,32 +321,32 @@ class ListingController extends Controller
         }
 
         if (!empty($validated['day'])) {
-            try{
+            try {
 
 
-            foreach ($validated['day'] as $index => $day) {
-                BusinessHour::create([
-                    'business_id' => $listing->id,
-                    'day' => $day,
-                    'open_time' => $validated['open_time'][$index] ?? null,
-                    'close_time' => $validated['close_time'][$index] ?? null,
-                    'open_time_2' => $validated['open_time_2'][$index] ?? null,
-                    'close_time_2' => $validated['close_time_2'][$index] ?? null,
-                    'is_24_hours' => !empty($validated['is_24_hours'][$index]) ? 1 : 0,
-                    'add_2nd_time_slot' => !empty($validated['add_2nd_time_slot'][$index]) ? 1 : 0,
-                ]);
+                foreach ($validated['day'] as $index => $day) {
+                    BusinessHour::create([
+                        'business_id' => $listing->id,
+                        'day' => $day,
+                        'open_time' => $validated['open_time'][$index] ?? null,
+                        'close_time' => $validated['close_time'][$index] ?? null,
+                        'open_time_2' => $validated['open_time_2'][$index] ?? null,
+                        'close_time_2' => $validated['close_time_2'][$index] ?? null,
+                        'is_24_hours' => !empty($validated['is_24_hours'][$index]) ? 1 : 0,
+                        'add_2nd_time_slot' => !empty($validated['add_2nd_time_slot'][$index]) ? 1 : 0,
+                    ]);
+                }
+            } catch (\Exception $e) {
+                dd($e->getMessage());
             }
-        }catch (\Exception $e) {
-            dd($e->getMessage());
-        }
         }
 
         return redirect()->route('yp.listing.submit')->with('success', 'Listing created/updated successfully!');
-    // } catch (\Exception $e) {
-    //     Log::error('Business Listing Store Error: ' . $e->getMessage());
-    //     return redirect()->back()->withErrors(['error' => 'An error occurred while processing your request. Please try again.']);
-    // }
-}
+        // } catch (\Exception $e) {
+        //     Log::error('Business Listing Store Error: ' . $e->getMessage());
+        //     return redirect()->back()->withErrors(['error' => 'An error occurred while processing your request. Please try again.']);
+        // }
+    }
 
     ##------------------------- END---------------------##
 
@@ -455,7 +454,7 @@ class ListingController extends Controller
 
             return redirect()->back()->with('success', 'Saved successfully!');
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
+            return redirect()->back()->withErrors(['error' => 'An error occurred: ']);
         }
     }
     ##------------------------- Save Listing ---------------------##
