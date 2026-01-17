@@ -699,3 +699,7 @@ footer .font-medium {
 .w-full .overflow-hidden a:hover {
     background-color: #fcfcfc;
 }
+/* Block (hover) */
+.cursor-pointer .block:hover {
+    background-color: #ffffff !important;
+}
