@@ -230,52 +230,28 @@
                 </div>
             </div>
         </div>
+
         <script>
             var modal = document.getElementById("subscribeModal");
             var btn = document.getElementById("openModalx");
             var span = document.getElementsByClassName("closex")[0];
 
-            function openModal() {
+            btn.onclick = function() {
                 modal.classList.remove("hidden");
                 modal.classList.add("flex");
             }
 
-            function closeModal() {
+            span.onclick = function() {
                 modal.classList.add("hidden");
                 modal.classList.remove("flex");
             }
 
-            // Button click
-            if (btn) {
-                btn.onclick = function() {
-                    openModal();
-                    window.location.hash = "open"; // optional: keep URL in sync
-                };
-            }
-
-            // Close button
-            if (span) {
-                span.onclick = function() {
-                    closeModal();
-                    history.replaceState(null, null, " "); // remove #open
-                };
-            }
-
-            // Outside click
             window.onclick = function(event) {
-                if (event.target === modal) {
-                    closeModal();
-                    history.replaceState(null, null, " ");
+                if (event.target == modal) {
+                    modal.classList.add("hidden");
+                    modal.classList.remove("flex");
                 }
-            };
-
-            // 🔥 AUTO OPEN if URL has #open
-            window.addEventListener("load", function() {
-                if (window.location.hash === "#open") {
-                    openModal();
-                }
-            });
+            }
         </script>
-
     @endif
 </div>
