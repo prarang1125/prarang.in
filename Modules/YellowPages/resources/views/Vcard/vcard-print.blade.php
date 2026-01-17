@@ -356,106 +356,106 @@
     <button onclick="window.print()" class="m-3 btn btn-primary">Print</button>
 
     <div class="a4-page">
-        @for ($i = 0; $i < 8; $i++)
-            <div class="card-x">
-                <div class="card-col-4" style="background: {{$vcard->color_code}}">
-                    <div><img class="profile-img"
-                            src="{{ $user->profile ? Storage::url($user->profile) : 'https://via.placeholder.com/150' }}"
-                            alt=""></div>
+        @for ($i = 0; $i < 8; $i++) <div class="card-x">
+            <div class="card-col-4" style="background: {{$vcard->color_code}}">
+                <div><img class="profile-img"
+                        src="{{ $user->profile ? Storage::url($user->profile) : 'https://via.placeholder.com/150' }}"
+                        alt=""></div>
 
-                    <div class="p-2 mt-2 rounded bg-light">
-                        <img class="qr-code"
-                            src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ route('vCard.scan', ['slug' => $vcard->slug]) }}"
-                            alt="">
+                <div class="p-2 mt-2 rounded bg-light">
+                    <img class="qr-code"
+                        src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data={{ route('vCard.scan', ['slug' => $vcard->slug]) }}"
+                        alt="">
+                </div>
+            </div>
+            <div class="card-col-8">
+                <div class="topx">
+                    @if (!empty($user->email))
+
+                    @else
+                    <br>
+                    @endif
+                    <div class="maing">
+                        <div class="iconex"> <i class="bx bxs-user"></i></div>
+                        <div class="valuex">
+                            <span class="slugs text-muted">{{ __('formyp.name_label') }}:</span>
+                            <span class="valued">{{ ucfirst($user->name ?? '') }}
+                                {{ ucfirst($user->surname ?? '') }}</span>
+                        </div>
+                    </div>
+                    <div class="maing">
+                        <div class="iconex"> <i class="bx bxs-phone"></i></div>
+                        <div class="valuex">
+                            <span class="slugs text-muted">{{ __('formyp.phone_number_label') }}:</span>
+                            <span class="valued">+91 {{ $user->phone }}</span>
+                        </div>
+                    </div>
+                    @if (!empty($user->email))
+                    <div class="maing">
+                        <div class="iconex"> <i class="bx bxs-envelope"></i></div>
+                        <div class="valuex">
+                            <span class="slugs text-muted">{{ __('yp.email') }}:</span>
+                            <span class="valued">{{ $user->email }}</span>
+                        </div>
+                    </div>
+                    @else
+                    <div class="maing">
+                        <div class="iconex"></div>
+                        <div class="valuex">
+                            <span class="slugs text-muted"></span>
+                            <span class="valued"><br></span>
+                        </div>
+                    </div>
+                    @endif
+                </div>
+
+                @if (!empty($user->address))
+                <div class="midx">
+                    <div class="maing">
+                        <div class="iconex"><i class="bx bxs-map"></i></div>
+                        <div class="valuex">
+                            <span class="slugs text-muted">{{ __('formyp.address_label') }}:</span>
+                            @php
+                            $cityName = $user->address->city_name ?? '';
+                            $state = $user->address->state ?? '';
+                            $postalCode = $user->address->postal_code ?? '';
+                            $isHindi = preg_match('/[\p{Devanagari}]/u', $cityName);
+
+                            // Handle state formatting safely
+                            $stateParts = explode('(', $state);
+                            $formattedState = count($stateParts) > 1 ? str_replace(')', '', $stateParts[1]) :
+                            ($stateParts[0] ?? '');
+
+                            // Address parts excluding country & pin (handled separately)
+                            $addressParts = array_filter([
+                            $user->address->house_number ?? '',
+                            $user->address->street ?? '',
+                            $user->address->area_name ?? '',
+                            $user->address->city_name ?? '',
+                            ]);
+                            @endphp
+
+                            @if (!empty($addressParts))
+                            <span class="valued">{{ implode(', ', $addressParts) }},
+                                {{ $isHindi ? ($stateParts[0] ?? '') : $formattedState }},
+                                {{ $isHindi ? __('yp.india') : "India" }},
+                                {{ $isHindi ? __('yp.pin') : "Pin" }} - {{ $postalCode }}
+                            </span>
+                            @endif
+                        </div>
                     </div>
                 </div>
-                <div class="card-col-8">
-                    <div class="topx">
-                        @if (!empty($user->email))
-
-                        @else
-                        <br>
-                    @endif
-                        <div class="maing">
-                            <div class="iconex"> <i class="bx bxs-user"></i></div>
-                            <div class="valuex">
-                                <span class="slugs text-muted">Name:</span>
-                                <span class="valued">{{ ucfirst($user->name ?? '') }}
-                                    {{ ucfirst($user->surname ?? '') }}</span>
-                            </div>
-                        </div>
-                        <div class="maing">
-                            <div class="iconex"> <i class="bx bxs-phone"></i></div>
-                            <div class="valuex">
-                                <span class="slugs text-muted">Mobile:</span>
-                                <span class="valued">+91 {{ $user->phone }}</span>
-                            </div>
-                        </div>
-                        @if (!empty($user->email))
-                            <div class="maing">
-                                <div class="iconex"> <i class="bx bxs-envelope"></i></div>
-                                <div class="valuex">
-                                    <span class="slugs text-muted">Email:</span>
-                                    <span class="valued">{{ $user->email }}</span>
-                                </div>
-                            </div>
-                            @else
-                            <div class="maing">
-                                <div class="iconex"></div>
-                                <div class="valuex">
-                                    <span class="slugs text-muted"></span>
-                                    <span class="valued"><br></span>
-                                </div>
-                            </div>
-                        @endif
-                    </div>
-
-                    @if (!empty($user->address))
-                    <div class="midx">
-                        <div class="maing">
-                            <div class="iconex"><i class="bx bxs-map"></i></div>
-                            <div class="valuex">
-                                <span class="slugs text-muted">Address:</span>
-                                @php
-                                    $cityName = $user->address->city_name ?? '';
-                                    $state = $user->address->state ?? '';
-                                    $postalCode = $user->address->postal_code ?? '';
-                                    $isHindi = preg_match('/[\p{Devanagari}]/u', $cityName);
-
-                                    // Handle state formatting safely
-                                    $stateParts = explode('(', $state);
-                                    $formattedState = count($stateParts) > 1 ? str_replace(')', '', $stateParts[1]) : ($stateParts[0] ?? '');
-
-                                    // Address parts excluding country & pin (handled separately)
-                                    $addressParts = array_filter([
-                                        $user->address->house_number ?? '',
-                                        $user->address->street ?? '',
-                                        $user->address->area_name ?? '',
-                                        $user->address->city_name ?? '',
-                                    ]);
-                                @endphp
-
-                                @if (!empty($addressParts))
-                                    <span class="valued">{{ implode(', ', $addressParts) }},
-                                        {{ $isHindi ? ($stateParts[0] ?? '') : $formattedState }},
-                                        {{ $isHindi ? "भारत" : "India" }},
-                                        {{ $isHindi ? "पिन" : "Pin" }} - {{ $postalCode }}
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-                    </div>
                 @endif
 
 
 
-                    <div class="bottomx">
-                        <a
-                            href="">{{ route('vCard.view', ['city_arr' => $user->city->city_arr, 'slug' => $vcard->slug]) }}</a>
-                    </div>
+                <div class="bottomx">
+                    <a href="">{{ route('vCard.view', ['city_arr' => $user->city->city_arr, 'slug' => $vcard->slug])
+                        }}</a>
                 </div>
             </div>
-        @endfor
+    </div>
+    @endfor
 
     </div>
 

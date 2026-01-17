@@ -20,7 +20,7 @@ class AuthModalController extends Controller
             $cities = City::where('is_active', 1)->get();
             return view('yellowpages::Vcard.login', compact('cities'));
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while loading the login page.']);
+            return back()->withErrors(['error' => __('yp.login_page_error')]);
         }
     }
 
@@ -30,12 +30,12 @@ class AuthModalController extends Controller
         $request->validate([
             'phone' => 'required|regex:/^(\+91)?\d{10}$/',
             'password' => 'required',
-            'city_id'=>'required',
+            'city_id' => 'required',
         ], [
-            'phone.required' => 'फोन नंबर आवश्यक है।',
-            'phone.regex' => 'कृपया एक वैध फोन नंबर दर्ज करें।',
-            'password.required' => 'पासवर्ड आवश्यक है।',
-            'city_id.required' => 'शहर आवश्यक है।',
+            'phone.required' => __('yp.phone_required'),
+            'phone.regex' => __('yp.phone_regex'),
+            'password.required' => __('yp.password_required'),
+            'city_id.required' => __('yp.city_required'),
         ]);
         // Remove '+91' from the beginning of the phone number if it exists
         if (strpos($request->phone, '+91') === 0) {
@@ -48,32 +48,30 @@ class AuthModalController extends Controller
 
             // Check if user exists with given city and phone
             $user = User::where('city_id', $credentials['city_id'])
-                        ->where('phone', $credentials['phone'])
-                        ->first();
+                ->where('phone', $credentials['phone'])
+                ->first();
 
             if (!$user || !Hash::check($credentials['password'], $user->password)) {
                 return redirect()->back()
-                    ->withErrors(['error' => 'आपके द्वारा दिए गए विवरण सही नहीं हैं। कृपया फिर से प्रयास करें।'])
+                    ->withErrors(['error' => __('yp.invalid_credentials')])
                     ->withInput();
             }
 
             // Check if the user has the required role
             if ($user->role != 2) {
                 return redirect()->back()
-                    ->withErrors(['error' => 'पहुँच प्रतिबंधित है। आपके पास ग्राहक अधिकार नहीं हैं।'])
+                    ->withErrors(['error' => __('yp.access_restricted')])
                     ->withInput();
             }
 
             // Authenticate and redirect the user
             Auth::login($user);
             return redirect()->route('vCard.createCard');
-
         } catch (\Exception $e) {
             return redirect()->back()
-                ->withErrors(['error' => 'लॉगिन के दौरान एक त्रुटि हुई: ' . $e->getMessage()])
+                ->withErrors(['error' => __('yp.login_error') . $e->getMessage()])
                 ->withInput();
         }
-
     }
 
     public function newAccount($city = null)
@@ -83,7 +81,7 @@ class AuthModalController extends Controller
         try {
             return view('yellowpages::Vcard.register', compact('slug'));
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while loading the registration page.']);
+            return back()->withErrors(['error' => __('yp.register_page_error')]);
         }
     }
 
@@ -96,10 +94,9 @@ class AuthModalController extends Controller
             Auth::logout();
             $request->session()->invalidate();
             $request->session()->regenerateToken();
-            return redirect()->route('yp.home')->with('success', 'लॉगआउट (logout) सफलतापूर्वक हो गया।');
+            return redirect()->route('yp.home')->with('success', __('yp.logout_success'));
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'लॉगआउट (logout) के दौरान एक त्रुटि हुई। कृपया फिर से प्रयास करें।']);
+            return redirect()->back()->withErrors(['error' => __('yp.logout_error')]);
         }
     }
-
 }

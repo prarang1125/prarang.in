@@ -96,7 +96,7 @@ class ListingController extends Controller
             Log::error('Error in showByCategory: ' . $e->getMessage());
 
             // Redirect back with error message
-            return redirect()->back()->withErrors(['error' => 'An error occurred while loading the category listings.']);
+            return redirect()->back()->withErrors(['error' => __('yp.category_listings_error')]);
         }
     }
 
@@ -167,7 +167,7 @@ class ListingController extends Controller
             return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'city', 'city_name', 'portal'));
         } catch (\Exception $e) {
             return $e;
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ']);
+            return redirect()->back()->withErrors(['error' => __('yp.fetch_data_error')]);
         }
     }
     ##------------------------- END---------------------##
@@ -220,7 +220,7 @@ class ListingController extends Controller
 
             return view('yellowpages::home.categories', compact('listings', 'categories', 'city', 'portal'));
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ']);
+            return redirect()->back()->withErrors(['error' => __('yp.fetch_data_error')]);
         }
     }
     ##------------------------- END ---------------------##
@@ -257,7 +257,7 @@ class ListingController extends Controller
                 'social_media'
             ));
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ']);
+            return redirect()->back()->withErrors(['error' => __('yp.listing_submitted_title')]);
         }
     }
     ##------------------------- END---------------------##
@@ -341,7 +341,7 @@ class ListingController extends Controller
             }
         }
 
-        return redirect()->route('yp.listing.submit')->with('success', 'Listing created/updated successfully!');
+        return redirect()->route('yp.listing.submit')->with('success', __('yp.listing_created_success'));
         // } catch (\Exception $e) {
         //     Log::error('Business Listing Store Error: ' . $e->getMessage());
         //     return redirect()->back()->withErrors(['error' => 'An error occurred while processing your request. Please try again.']);
@@ -426,7 +426,7 @@ class ListingController extends Controller
             // return view('yellowpages::home.listing', compact('listing', 'listingHours'));
 
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Listing not found.');
+            return redirect()->back()->with('error', __('yp.listing_not_found'));
         }
     }
 
@@ -444,7 +444,7 @@ class ListingController extends Controller
                 ->exists();
 
             if ($exists) {
-                return redirect()->back()->with('error', 'This business is already saved!');
+                return redirect()->back()->with('error', __('yp.business_already_saved'));
             }
 
             Savelisting::create([
@@ -452,9 +452,9 @@ class ListingController extends Controller
                 'business_id' => $id,
             ]);
 
-            return redirect()->back()->with('success', 'Saved successfully!');
+            return redirect()->back()->with('success', __('yp.saved_success'));
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ']);
+            return redirect()->back()->withErrors(['error' => __('yp.fetch_data_error')]);
         }
     }
     ##------------------------- Save Listing ---------------------##

@@ -1,172 +1,186 @@
 @extends('yellowpages::layout.vcard.vcard')
 
-@section('title', 'Manage VCard')
+@section('title', __('formyp.manage_vcard'))
 
 @section('content')
 <br>
 <div class="container my-5">
-    <h2 class="text-center mt-6 mb-4">वेबपेज बनाएं</h2>
+    <h2 class="text-center mt-6 mb-4">{{ __('formyp.create_webpage_heading') }}</h2>
     <div class="row">
         <!-- Left Card: Form -->
         <div class="col-md-6">
             <div class="card border-0">
                 <div class="card-body">
-                    <h5 class="mb-4">वेबपेज(Webpage) सूचना</h5>
+                    <h5 class="mb-4">{{ __('formyp.webpage_info') }}</h5>
                     @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                     @endif
                     <form action="{{ route('vCard.update', $vcard->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        
+
                         <!-- Color Picker -->
                         <div class="mb-3">
-                            <label for="color_code" class="form-label">रंग पसंद करो</label>
-                            <input type="color" class="form-control form-control-color" id="color_code" name="color_code" value="#007bff">
+                            <label for="color_code" class="form-label">{{ __('formyp.choose_color') }}</label>
+                            <input type="color" class="form-control form-control-color" id="color_code"
+                                name="color_code" value="#007bff">
                         </div>
-                    
+
                         <!-- Photo Upload (Profile Image) -->
                         <div class="mb-3">
-                            <label for="profile" class="form-label">फ़ोटो अपलोड करें</label>
-                            
+                            <label for="profile" class="form-label">{{ __('formyp.upload_photo') }}</label>
+
                             <!-- Existing Profile Picture -->
                             @if(old('profile', $user->profile ?? false))
-                                <div class="mb-2">
-                                    <img src="{{ Storage::url(old('profile', $user->profile)) }}" 
-                                         class="img-thumbnail" 
-                                         style="width: 120px; height: 120px; object-fit: cover;" 
-                                         alt="Profile Picture">
-                                </div>
+                            <div class="mb-2">
+                                <img src="{{ Storage::url(old('profile', $user->profile)) }}" class="img-thumbnail"
+                                    style="width: 120px; height: 120px; object-fit: cover;" alt="Profile Picture">
+                            </div>
                             @endif
-                            
+
                             <!-- File Input Field -->
                             <input type="file" class="form-control" id="profile" name="profile" accept="image/*">
-                            
+
                             <!-- Hidden Input to Retain Old Image -->
                             <input type="hidden" name="old_profile" value="{{ $user->profile }}">
-                        </div>                        
-                    
+                        </div>
+
                         <!-- Category Dropdown -->
                         <div class="mb-3">
-                            <label for="category" class="form-label">श्रेणी चुनें</label>
+                            <label for="category" class="form-label">{{ __('formyp.select_category_opt') }}</label>
                             <select class="form-control" id="category" name="category_id">
-                                <option value="">चुनें</option>
+                                <option value="">{{ __('formyp.select_option') }}</option>
                                 @foreach($categories as $category)
-                                    <option value="{{ $category->id }}" {{ old('category_id', $vcard->category_id ?? '') == $category->id ? 'selected' : '' }}>
-                                        {{ $category->name }}
-                                    </option>
+                                <option value="{{ $category->id }}" {{ old('category_id', $vcard->category_id ?? '') ==
+                                    $category->id ? 'selected' : '' }}>
+                                    {{ $category->name }}
+                                </option>
                                 @endforeach
                             </select>
                         </div>
-                    
+
                         <!-- City Dropdown -->
                         <div class="mb-3">
-                            <label for="city" class="form-label">शहर चुनें</label>
+                            <label for="city" class="form-label">{{ __('formyp.select_city') }}</label>
                             <select class="form-control" id="city" name="city_id">
-                                <option value="">चुनें</option>
+                                <option value="">{{ __('formyp.select_option') }}</option>
                                 @foreach($cities as $city)
-                                    <option value="{{ $city->id }}" {{ old('city_id', $vcard->city_id ?? '') == $city->id ? 'selected' : '' }}>
-                                        {{ $city->name }}
-                                    </option>
+                                <option value="{{ $city->id }}" {{ old('city_id', $vcard->city_id ?? '') == $city->id ?
+                                    'selected' : '' }}>
+                                    {{ $city->name }}
+                                </option>
                                 @endforeach
                             </select>
                         </div>
-                    
+
                         <!-- Name and Surname -->
                         <div class="mb-3">
-                            <label for="name" class="form-label">नाम</label>
-                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name', $user->name ?? '') }}">
+                            <label for="name" class="form-label">{{ __('formyp.name') }}</label>
+                            <input type="text" class="form-control" id="name" name="name"
+                                value="{{ old('name', $user->name ?? '') }}">
                         </div>
-                    
+
                         <div class="mb-3">
-                            <label for="surname" class="form-label">उपनाम</label>
-                            <input type="text" class="form-control" id="surname" name="surname" value="{{ old('surname', $user->surname ?? '') }}">
+                            <label for="surname" class="form-label">{{ __('formyp.surname') }}</label>
+                            <input type="text" class="form-control" id="surname" name="surname"
+                                value="{{ old('surname', $user->surname ?? '') }}">
                         </div>
-                    
+
                         <!-- Address Fields -->
                         <div class="mb-3">
-                            <label class="form-label">पता</label>
-                            <input type="text" class="form-control" id="house_number" name="house_number" placeholder="मकान नंबर" value="{{ old('house_number', $address->house_number ?? '') }}">
-                            <input type="text" class="form-control mt-2" id="road_street" name="road_street" placeholder="सड़क/गली" value="{{ old('road_street', $address->street ?? '') }}">
-                            <input type="text" class="form-control mt-2" id="area_name" name="area_name" placeholder="क्षेत्र नाम (सार्वजनिक)" value="{{ old('area_name', $address->area_name ?? '') }}">
+                            <label class="form-label">{{ __('formyp.address_label') }}</label>
+                            <input type="text" class="form-control" id="house_number" name="house_number"
+                                placeholder="{{ __('formyp.house_no_placeholder') }}"
+                                value="{{ old('house_number', $address->house_number ?? '') }}">
+                            <input type="text" class="form-control mt-2" id="road_street" name="road_street"
+                                placeholder="{{ __('formyp.road_street') }}"
+                                value="{{ old('road_street', $address->street ?? '') }}">
+                            <input type="text" class="form-control mt-2" id="area_name" name="area_name"
+                                placeholder="{{ __('formyp.area_name_public') }}"
+                                value="{{ old('area_name', $address->area_name ?? '') }}">
                         </div>
-                    
+
                         <!-- Optional Fields -->
                         <div class="mb-3">
-                            <label for="pincode" class="form-label">पिनकोड (वैकल्पिक)</label>
-                            <input type="text" class="form-control" id="pincode" name="pincode" value="{{ old('postal_code', $address->postal_code ?? '') }}">
+                            <label for="pincode" class="form-label">{{ __('formyp.pincode_optional') }}</label>
+                            <input type="text" class="form-control" id="pincode" name="pincode"
+                                value="{{ old('postal_code', $address->postal_code ?? '') }}">
                         </div>
-                    
+
                         <div class="mb-3">
-                            <label for="dob" class="form-label">जन्म तिथि (वैकल्पिक)</label>
-                            <input type="date" class="form-control" id="dob" name="dob" value="{{ old('dob', $user->dob ?? '') }}">
+                            <label for="dob" class="form-label">{{ __('formyp.dob_optional') }}</label>
+                            <input type="date" class="form-control" id="dob" name="dob"
+                                value="{{ old('dob', $user->dob ?? '') }}">
                         </div>
-                    
+
                         <div class="mb-3">
-                            <label for="email" class="form-label">ईमेल (वैकल्पिक)</label>
-                            <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $user->email ?? '') }}">
+                            <label for="email" class="form-label">{{ __('formyp.email_optional') }}</label>
+                            <input type="email" class="form-control" id="email" name="email"
+                                value="{{ old('email', $user->email ?? '') }}">
                         </div>
-                    
+
                         <div class="mb-3">
-                            <label for="aadhar" class="form-label">आधार संख्या (वैकल्पिक)</label>
-                            <input type="text" class="form-control" id="aadhar" name="aadhar" value="{{ old('aadhar', $user->aadhar ?? '') }}">
+                            <label for="aadhar" class="form-label">{{ __('formyp.aadhar_optional') }}</label>
+                            <input type="text" class="form-control" id="aadhar" name="aadhar"
+                                value="{{ old('aadhar', $user->aadhar ?? '') }}">
                         </div>
-                    
+
                         <!-- Aadhar Upload (Front) -->
                         <div class="mb-3">
-                            <label for="aadhar_front" class="form-label">आधार कार्ड (Front)</label>
+                            <label for="aadhar_front" class="form-label">{{ __('formyp.aadhar_front') }}</label>
                             @if(!empty($vcard->aadhar_front))
-                                <div class="mb-2">
-                                    <img src="{{ Storage::url($vcard->aadhar_front) }}" 
-                                         class="img-thumbnail" 
-                                         style="width: 120px; height: 120px; object-fit: cover;">
-                                </div>
+                            <div class="mb-2">
+                                <img src="{{ Storage::url($vcard->aadhar_front) }}" class="img-thumbnail"
+                                    style="width: 120px; height: 120px; object-fit: cover;">
+                            </div>
                             @endif
-                            <input type="file" class="form-control" id="aadhar_front" name="aadhar_front" accept="image/*">
+                            <input type="file" class="form-control" id="aadhar_front" name="aadhar_front"
+                                accept="image/*">
                             <input type="hidden" name="old_aadhar_front" value="{{ $vcard->aadhar_front }}">
                         </div>
-                    
+
                         <!-- Aadhar Upload (Back) -->
                         <div class="mb-3">
-                            <label for="aadhar_back" class="form-label">आधार कार्ड (Back)</label>
+                            <label for="aadhar_back" class="form-label">{{ __('formyp.aadhar_back') }}</label>
                             @if(!empty($vcard->aadhar_back))
-                                <div class="mb-2">
-                                    <img src="{{ Storage::url($vcard->aadhar_back) }}" 
-                                         class="img-thumbnail" 
-                                         style="width: 120px; height: 120px; object-fit: cover;">
-                                </div>
+                            <div class="mb-2">
+                                <img src="{{ Storage::url($vcard->aadhar_back) }}" class="img-thumbnail"
+                                    style="width: 120px; height: 120px; object-fit: cover;">
+                            </div>
                             @endif
-                            <input type="file" class="form-control" id="aadhar_back" name="aadhar_back" accept="image/*">
+                            <input type="file" class="form-control" id="aadhar_back" name="aadhar_back"
+                                accept="image/*">
                             <input type="hidden" name="old_aadhar_back" value="{{ $vcard->aadhar_back }}">
                         </div>
                         @foreach($vcardInfo as $dynamicField)
                         <div class="mb-3 dynamic-field" id="field-{{ $dynamicField->id }}">
                             <label for="{{$dynamicField->title}}" class="form-label">{{ $dynamicField->title }}</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" id="{{ $dynamicField->title }}" 
-                                       name="data[{{ $dynamicField->id }}]" 
-                                       value="{{ old('data.'.$dynamicField->id, $dynamicField->data) }}">
-                                <button type="button" class="btn btn-danger remove-field" data-id="{{ $dynamicField->id }}">
+                                <input type="text" class="form-control" id="{{ $dynamicField->title }}"
+                                    name="data[{{ $dynamicField->id }}]"
+                                    value="{{ old('data.'.$dynamicField->id, $dynamicField->data) }}">
+                                <button type="button" class="btn btn-danger remove-field"
+                                    data-id="{{ $dynamicField->id }}">
                                     X
                                 </button>
                             </div>
                         </div>
-                    @endforeach
-                    
-                    <!-- Hidden field to store deleted field IDs -->
-                    <input type="hidden" name="deleted_fields" id="deletedFields" value="">
+                        @endforeach
+
+                        <!-- Hidden field to store deleted field IDs -->
+                        <input type="hidden" name="deleted_fields" id="deletedFields" value="">
                         <div id="dynamic-fields"></div>
                         <!-- Save Button -->
                         <div class="text-end">
-                            <button type="submit" class="btn btn-primary">सबमिट(Submit) करें</button>
+                            <button type="submit" class="btn btn-primary">{{ __('formyp.submit_btn') }}</button>
                         </div>
-                    </form>                    
+                    </form>
                 </div>
             </div>
         </div>
@@ -175,29 +189,30 @@
         <div class="col-md-6 fixed-container">
             <div class="card border-0 shadow-sm">
                 <div class="card-body text-center">
-                    <h5 class="mb-3">आपनी सोशल जानकारी जोड़ें</h5>
+                    <h5 class="mb-3">{{ __('formyp.add_social_info') }}</h5>
                     <div class="container">
                         @foreach ($dynamicFields->chunk(3) as $chunk)
-                            <div class="row d-flex justify-content-center align-items-center mb-2">
-                                @foreach ($chunk as $field)
-                                    <div class="col-4 text-center" onclick="addField('{{ $field->name }}', '{{ $field->icon }}', '{{ $field->type }}')">
-                                        <i class="{{ $field->icon }}" title="{{ $field->name }}" style="font-size: 24px;"></i>
-                                        <p class="mt-1">{{ $field->name }}</p>
-                                    </div>
-                                @endforeach
+                        <div class="row d-flex justify-content-center align-items-center mb-2">
+                            @foreach ($chunk as $field)
+                            <div class="col-4 text-center"
+                                onclick="addField('{{ $field->name }}', '{{ $field->icon }}', '{{ $field->type }}')">
+                                <i class="{{ $field->icon }}" title="{{ $field->name }}" style="font-size: 24px;"></i>
+                                <p class="mt-1">{{ $field->name }}</p>
                             </div>
+                            @endforeach
+                        </div>
                         @endforeach
                     </div>
                 </div>
             </div>
-        </div>              
+        </div>
     </div>
 </div>
 
 @endsection
 
 <script>
-document.addEventListener("DOMContentLoaded", function () {
+    document.addEventListener("DOMContentLoaded", function () {
     let deletedFields = [];
 
     // Event Delegation for Remove Button

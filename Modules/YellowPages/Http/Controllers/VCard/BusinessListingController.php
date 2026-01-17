@@ -35,23 +35,24 @@ class BusinessListingController extends Controller
 {
 
     ##------------------------- Business Listing ---------------------##
-    public function businessListing(Request $request) {
+    public function businessListing(Request $request)
+    {
         try {
             $business_listing = BusinessListing::where('user_id', Auth::id())->get();
             $user = User::find(Auth::id());
-            return view('yellowpages::Vcard.business-listing', compact('business_listing','user'));
+            return view('yellowpages::Vcard.business-listing', compact('business_listing', 'user'));
         } catch (Exception $e) {
             // return $e->getMessage();
-            return redirect()->back()->with('error', 'Error fetching business listings: ' );
+            return redirect()->back()->with('error', __('yp.error_fetching_listings'));
         }
     }
     ##------------------------- END ---------------------##
     ##------------------------- Business Listing Register ---------------------##
     public function businessRegister(Request $request)
     {
-        // try {
-            
-            $user = User::find(Auth::id()); 
+        try {
+
+            $user = User::find(Auth::id());
             $address = Address::where('user_id', Auth::id())->first();
             $vcard = VCard::where('user_id', Auth::id())->orderBy('id', 'desc')->first();
             $cities = City::on('yp')->get();
@@ -60,7 +61,7 @@ class BusinessListingController extends Controller
             $monthly_turnovers = DB::connection('yp')->table('monthly_turnovers')->get();
             $monthly_advertising_mediums = DB::connection('yp')->table('monthly_advertising_mediums')->get();
             $monthly_advertising_prices = DB::connection('yp')->table('monthly_advertising_prices')->get();
-            $social_media = DynamicFeild::on('yp')->get();  
+            $social_media = DynamicFeild::on('yp')->get();
             $categories = Category::on('yp')->get();
 
 
@@ -77,13 +78,11 @@ class BusinessListingController extends Controller
                 'address',
                 'vcard'
             ));
-    
-        // } catch (Exception $e) {
-        //     return redirect()->back()->withErrors(['error' => 'An error occurred, please try again later.']);
-        // }
-        
+        } catch (Exception $e) {
+            return redirect()->back()->withErrors(['error' => __('yp.generic_error')]);
+        }
     }
-    
+
     ##------------------------- END ---------------------##
     ##------------------------- Save Business ---------------------##
     public function saveBusiness(Request $request)
@@ -91,29 +90,30 @@ class BusinessListingController extends Controller
         try {
             // Retrieve saved listings for the authenticated user
             $save_listing = Savelisting::where('user_id', Auth::id())->get();
-    
-            $business_listing = collect(); 
-            
+
+            $business_listing = collect();
+
             if ($save_listing->isNotEmpty()) {
                 // Get the business IDs from the saved listings
                 $business_ids = $save_listing->pluck('business_id');
-                
+
                 // Retrieve the associated business listings
                 $business_listing = BusinessListing::whereIn('id', $business_ids)->get();
             }
-    
+
             // Pass the data to the view
             return view('yellowpages::Vcard.Save-listing', compact('business_listing', 'save_listing'));
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Error retrieving business listing: ' );
+            return redirect()->back()->with('error', __('yp.error_retrieving_listing'));
         }
     }
     ##------------------------- END ---------------------##
 
     ##------------------------- Business Listing Edit---------------------##
-    public function listingEdit($id) {
+    public function listingEdit($id)
+    {
 
-         try {
+        try {
             $listing = BusinessListing::findOrFail($id);
             $user = User::where('id', $listing->user_id)->first();
             $listinghours = BusinessHour::where('business_id', $listing->id)->get();
@@ -125,11 +125,11 @@ class BusinessListingController extends Controller
             $monthly_turnovers = MonthlyTurnover::all();
             $monthly_advertising_mediums = AdvertisingMedium::all();
             $monthly_advertising_prices = AdvertisingPrice::all();
-            $social_media = DynamicFeild::on('yp')->get();  
+            $social_media = DynamicFeild::on('yp')->get();
             $social_media_data = BusinessSocialMedia::where('listing_id', $listing->id)
-            ->whereIn('social_id', $social_media->pluck('id'))
-            ->get();
-                  
+                ->whereIn('social_id', $social_media->pluck('id'))
+                ->get();
+
             return view('yellowpages::Vcard.business-listing-edit', compact(
                 'listing',
                 'cities',
@@ -146,7 +146,7 @@ class BusinessListingController extends Controller
                 'address'
             ));
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Error fetching business data: ' );
+            return redirect()->back()->with('error', __('yp.error_fetching_data'));
         }
     }
 
@@ -155,16 +155,16 @@ class BusinessListingController extends Controller
 
     public function listingUpdate(BusinessListingRequest $request, $id)
     {
-        $validated = $request->validated();     
+        $validated = $request->validated();
         // Get listing
         $listing = BusinessListing::where('id', $id)->first();
-    
+
         // Handle image upload
         $imagePath = $listing ? $listing->business_img : null;
         if ($request->hasFile('image')) {
             $imagePath = $request->file('image')->store('yellowpages/business');
         }
-    
+
         $data = [
             'user_id' => Auth::id(),
             'city_id' => $validated['location'],
@@ -182,14 +182,14 @@ class BusinessListingController extends Controller
             'business_img' => $imagePath,
             'business_address' => $validated['business_address'],
         ];
-    
+
         // Update or create listing
         if ($listing) {
             $listing->update($data);
         } else {
             $listing = BusinessListing::create($data);
         }
-    
+
         if ($listing) {
             User::where('id', Auth::id())->update([
                 'email' => $validated['primaryEmail'],
@@ -197,7 +197,7 @@ class BusinessListingController extends Controller
                 'name' => $validated['primaryContact'],
             ]);
         }
-    
+
         // Handle social media
         if (!empty($validated['socialId'])) {
             foreach ($validated['socialId'] as $index => $socialId) {
@@ -212,12 +212,12 @@ class BusinessListingController extends Controller
                 );
             }
         }
-    
+
         // Handle business hours (only if day[] exists)
         if (!empty($validated['day'])) {
             BusinessHour::where('business_id', $listing->id)
-            ->whereNotIn('day', $validated['day'])
-            ->delete();
+                ->whereNotIn('day', $validated['day'])
+                ->delete();
             foreach ($validated['day'] as $index => $day) {
                 BusinessHour::updateOrCreate(
                     [
@@ -235,10 +235,10 @@ class BusinessListingController extends Controller
                 );
             }
         }
-    
-        return redirect()->route('vCard.business-listing')->with('success', 'सूची सफलतापूर्वक अद्यतन की गई!');
+
+        return redirect()->route('vCard.business-listing')->with('success', __('yp.listing_updated_success'));
     }
-    
+
     ##------------------------- END ---------------------##
 
     ##------------------------- Business Listing Delete ---------------------##
@@ -247,11 +247,11 @@ class BusinessListingController extends Controller
         try {
             $categories = BusinessListing::findOrFail($id);
             $categories->delete();
-            return redirect()->route('vCard.business-listing')->with('success', 'Listing deleted successfully.');
+            return redirect()->route('vCard.business-listing')->with('success', __('yp.listing_deleted_success'));
         } catch (ModelNotFoundException $e) {
-            return redirect()->route('vCard.business-listing')->withErrors(['error' => 'Listing not found.']);
+            return redirect()->route('vCard.business-listing')->withErrors(['error' => __('yp.listing_not_found_error')]);
         } catch (\Exception $e) {
-            return redirect()->route('vCard.business-listing')->withErrors(['error' => 'An error occurred while trying to delete the user.']);
+            return redirect()->route('vCard.business-listing')->withErrors(['error' => __('yp.delete_error')]);
         }
     }
     ##------------------------- END ---------------------##
@@ -263,11 +263,11 @@ class BusinessListingController extends Controller
         try {
             $categories = Savelisting::findOrFail($id);
             $categories->delete();
-            return redirect()->route('vCard.business-save')->with('success', 'सूची सफलतापूर्वक अनसेव की गई.');
+            return redirect()->route('vCard.business-save')->with('success', __('yp.listing_unsaved_success'));
         } catch (ModelNotFoundException $e) {
-            return redirect()->route('vCard.business-save')->withErrors(['error' => 'सूची नहीं मिली.']);
+            return redirect()->route('vCard.business-save')->withErrors(['error' => __('yp.listing_not_found_hind')]);
         } catch (Exception $e) {
-            return redirect()->route('vCard.business-save')->withErrors(['error' => 'उपयोगकर्ता को हटाने का प्रयास करते समय एक त्रुटि हुई.']);
+            return redirect()->route('vCard.business-save')->withErrors(['error' => __('yp.delete_error_hind')]);
         }
     }
     ##------------------------- END ---------------------##

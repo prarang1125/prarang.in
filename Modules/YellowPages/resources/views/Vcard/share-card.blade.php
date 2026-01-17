@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html lang="hi">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Business vCard for {{ $user->name ?? 'User' }}">
-    <title>{{ $user->name ?? 'User' }} {{ $user->surname ?? '' }} | प्रारंग {{ $user->city->name ?? '' }} पेज </title>
+    <title>{{ $user->name ?? 'User' }} {{ $user->surname ?? '' }} | {{ __('yp.prarang') }} {{ $user->city->name ?? '' }}
+        {{ __('yp.page') }} </title>
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="{{ $user->name ?? 'User' }} | प्रारंग {{ $user->city->name ?? '' }} पेज ">
+    <meta property="og:title"
+        content="{{ $user->name ?? 'User' }} | {{ __('yp.prarang') }} {{ $user->city->name ?? '' }} {{ __('yp.page') }} ">
     <meta property="og:description" content="Business vCard for {{ $user->name ?? 'User' }}.">
     <meta property="og:image"
         content="{{ !empty($user->profile) && Storage::exists($user->profile) ? Storage::url($user->profile) : asset('assets/images/yplogo.jpg') }}">
@@ -19,7 +21,8 @@
     <meta property="og:image:type" content="image/jpeg">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="Prarang">
-    <meta name="twitter:title" content="{{ $user->name ?? 'User' }} | प्रारंग {{ $user->city->name ?? '' }} पेज ">
+    <meta name="twitter:title"
+        content="{{ $user->name ?? 'User' }} | {{ __('yp.prarang') }} {{ $user->city->name ?? '' }} {{ __('yp.page') }} ">
     <meta name="twitter:description" content="Business vCard for {{ $user->name ?? 'User' }}.">
     <meta name="twitter:image"
         content="{{ !empty($user->profile) && Storage::exists($user->profile) ? Storage::url($user->profile) : asset('assets/images/yplogo.jpg') }}">
@@ -288,7 +291,7 @@
         </section>
     </section>
     <div class="flex items-center justify-center">
-        <h4>प्रारंग {{ $user->city->name }} पेज </h4>
+        <h4>{{ __('yp.prarang') }} {{ $user->city->name }} {{ __('yp.page') }} </h4>
     </div>
 
     @if ($vcard->is_active == 1)
@@ -302,10 +305,10 @@
                 style="background:{{ $vcard->color_code ?? 'black' }}">
                 <div class="w-24 h-24 overflow-hidden border-4 border-white rounded-full shadow-lg md:w-32 md:h-32">
                     <img src="{{ $user->profile ? Storage::url($user->profile) : 'https://via.placeholder.com/150' }}"
-                        alt="{{ $user->name ?? 'User' }}'s Profile" class="object-cover w-full h-full">
+                        alt="{{ $user->name ?? __('yp.user') }}'s Profile" class="object-cover w-full h-full">
                 </div>
                 {{-- <h2 class="mt-3 text-lg font-semibold text-white md:text-xl">{{ ucfirst($user->name ?? 'User') }}
-                {{ ucfirst($user->surname ?? '') }}</h2>
+                    {{ ucfirst($user->surname ?? '') }}</h2>
                 <p class="text-sm text-white opacity-80">+91-{{ $user->phone ?? 'Category' }}</p> --}}
 
                 <!-- QR Code -->
@@ -324,7 +327,7 @@
                     <div class="flex items-center space-x-3">
                         <div><i class="text-lg text-blue-500 md:text-xl bx bxs-user"></i></div>
                         <div>
-                            <span class="text-gray-500 mtdclass">नाम(Name)</span>
+                            <span class="text-gray-500 mtdclass">{{ __('formyp.name_label_card') }}</span>
 
                             <span class="font-semibold text-gray-800"> {{ ucfirst($user->name ?? '') }}
                                 {{ ucfirst($user->surname ?? '') }}</span>
@@ -336,7 +339,7 @@
                     <div class="flex items-center space-x-3">
                         <div><i class="text-lg text-indigo-500 md:text-xl bx bxs-envelope"></i></div>
                         <div>
-                            <span class="text-gray-500 mtdclass"> ईमेल (Email):</span>
+                            <span class="text-gray-500 mtdclass"> {{ __('formyp.email_label_card') }}:</span>
                             <span class="font-semibold text-gray-800">{{ $user->email }}</span>
                         </div>
                     </div>
@@ -346,7 +349,7 @@
                     <div class="flex items-center space-x-3">
                         <div><i class="text-lg text-green-500 md:text-xl bx bxs-phone"></i></div>
                         <div>
-                            <span class="text-gray-500 mtdclass">फ़ोन (Phone):</span>
+                            <span class="text-gray-500 mtdclass">{{ __('formyp.phone_label_card') }}:</span>
                             <span class="font-semibold text-gray-800">{{ $user->phone }}</span>
                         </div>
                     </div>
@@ -366,7 +369,7 @@
                     <div class="flex items-center space-x-3">
                         <div><i class="text-lg text-red-500 md:text-xl bx bxs-map"></i></div>
                         <div>
-                            <span class="text-gray-500 mtdclass">पता (Address):</span>
+                            <span class="text-gray-500 mtdclass">{{ __('formyp.address_label_card') }}:</span>
                             <span class="font-semibold text-gray-800">
                                 {{ isset($addressParts) && is_array($addressParts) ? implode(',', $addressParts) : '' }}
                                 @php
@@ -384,8 +387,8 @@
 
                                 @endphp
                                 ,{{ $isHindi ? $stateParts[0] ?? '' : $formattedState }},
-                                {{ $isHindi ? 'भारत' : 'India' }},
-                                {{ $isHindi ? 'पिन' : 'Pin' }} - {{ $postalCode }}
+                                {{ $isHindi ? __('yp.india') : 'India' }},
+                                {{ $isHindi ? __('yp.pin') : 'Pin' }} - {{ $postalCode }}
                             </span>
 
                         </div>
@@ -402,7 +405,7 @@
                     !empty($vcard->dynamicFields) &&
                     collect($vcard->dynamicFields)->filter(fn($social) => !empty($social->data))->isNotEmpty())
                     <hr>
-                    <h3 class="font-semibold text-gray-800 text-md">सोशल मीडिया</h3>
+                    <h3 class="font-semibold text-gray-800 text-md">{{ __('yp.social_media') }}</h3>
                     <div class="flex space-x-3 social-icones">
                         @foreach ($vcard->dynamicFields as $social)
                         @php $socialData = $social->data; @endphp
@@ -430,9 +433,8 @@
     <div class="text-center">
         <p class="p-1 text-center bg-success"><small id="shareIt"><i class="bx bxs-share"></i></small></p>
         @if ($vcard->is_active != 1)
-        <span class="text-center text-red-500"> {{ $user->name }} {{ $user->surname ?? '' }} का कार्ड स्वीकृति
-            की
-            प्रक्रिया में है।</span>
+        <span class="text-center text-red-500"> {{ $user->name }} {{ $user->surname ?? '' }} {{
+            __('yp.vcard_approval_suffix') }}</span>
         @endif
     </div>
 

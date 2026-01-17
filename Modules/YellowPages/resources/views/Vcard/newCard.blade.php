@@ -1,5 +1,5 @@
 @extends('yellowpages::layout.auth')
-@section('title', 'रजिस्टर - बधाई संदेश')
+@section('title', __('yp.register_congratulations'))
 @section('content')
 <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css" />
 <style>
@@ -257,16 +257,18 @@
 </style>
 <div class="fixed inset-0 flex items-center justify-center min-h-screen bg-gray-100">
     <!-- Content Wrapper -->
-    <div class="relative flex flex-col max-w-md p-4 mx-auto transition duration-300 ease-in-out bg-white border border-gray-300 rounded-lg shadow-md md:flex-row hover:border-indigo-500">
+    <div
+        class="relative flex flex-col max-w-md p-4 mx-auto transition duration-300 ease-in-out bg-white border border-gray-300 rounded-lg shadow-md md:flex-row hover:border-indigo-500">
 
         <!-- Logo at the top center -->
-        <div class="absolute top-0 p-2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full shadow-md left-1/2">
+        <div
+            class="absolute top-0 p-2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-full shadow-md left-1/2">
             <img src="{{ asset('path-to-your-logo.png') }}" alt="Logo" class="w-12 h-12">
         </div>
 
         <!-- Information Section -->
         <div class="flex-1 space-y-2">
-            <h5 class="mb-2 text-2xl font-bold text-gray-800">{{ ucfirst($vcard->name) }} Prarang Page</h5>
+            <h5 class="mb-2 text-2xl font-bold text-gray-800">{{ ucfirst($vcard->name) }} {{ __('yp.page') }}</h5>
 
             <section class="flex items-center justify-center" style="height: 70vh;">
                 <div class="">
@@ -288,7 +290,7 @@
                                 <div class="textsata">
                                     <div><i class="bx bxs-user"></i></div>
                                     <div>
-                                        <span class="text-muted mtdclass">नाम (Name):</span>
+                                        <span class="text-muted mtdclass">{{ __('formyp.name_label') }}:</span>
                                         <span class="font-semibold text-gray-800"> {{ ucfirst($vcard->name ?? '') }}
                                             {{ ucfirst($user->surname ?? '') }}</span>
                                     </div>
@@ -296,21 +298,21 @@
                                 <div class="textsata">
                                     <div><i class="bx bxs-phone"></i></div>
                                     <div>
-                                        <span class="text-muted mtdclass">फ़ोन (Phone):</span>
+                                        <span class="text-muted mtdclass">{{ __('formyp.phone_number_label') }}:</span>
                                         <span class="font-semibold text-gray-800"> +91 {{$vcard->phone}}</span>
                                     </div>
                                 </div>
                                 <div class="textsata">
                                     <div><i class="bx bxs-envelope"></i></div>
                                     <div>
-                                        <span class="text-muted mtdclass">ईमेल (Email):</span>
+                                        <span class="text-muted mtdclass">{{ __('yp.email') }}:</span>
                                         <span class="font-semibold text-gray-800">example@gmail.com</span>
                                     </div>
                                 </div>
                                 <div class="textsata">
                                     <div><i class="bx bxs-map"></i></div>
                                     <div>
-                                        <span class="text-muted mtdclass">पता (Address):</span>
+                                        <span class="text-muted mtdclass">{{ __('formyp.address_label') }}:</span>
                                         <span class="font-semibold text-gray-800"> ?? ?? </span>
                                     </div>
                                 </div>
@@ -325,40 +327,42 @@
                 </div>
                 <div>
                     <a class="btn btn-primary"
-                        href="{{ route('vCard.createCard', ['slug' => $vcard->slug, 'city_arr' => $vcard->city_arr]) }}">अपनी तस्वीर
+                        href="{{ route('vCard.createCard', ['slug' => $vcard->slug, 'city_arr' => $vcard->city_arr]) }}">अपनी
+                        तस्वीर
                         और पता जोड़े | </a>
                 </div>
             </section>
 
-            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+            <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+                aria-labelledby="staticBackdropLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-bottom">
                     <div class="modal-content">
                         <div class="modal-header">
-                            {{-- <h5 class="modal-title" id="staticBackdropLabel">अपने कार्ड की तस्वीर और पता जोड़े</h5> --}}
+                            {{-- <h5 class="modal-title" id="staticBackdropLabel">अपने कार्ड की तस्वीर और पता जोड़े</h5>
+                            --}}
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <section>
-                                <h1>🎉 बधाई हो! 🎉</h1>
-                                <p>आपका अपना वेबपेज खुल गया है।</p>
+                                <h1>{{ __('yp.congratulations') }}</h1>
+                                <p>{{ __('yp.webpage_open_msg') }}</p>
                                 <br>
                                 <a href="{{ url()->current() }}">{{ url()->current() }}</a>
-                                <p> <small>आप अपनी वेबसाइट को याद रखें या इसे याद रखने के लिए खुद को
-                                        <strong>WhatsApp</strong> या <strong>SMS</strong> करें।</small>
+                                <p> <small>{{ __('yp.remember_website_msg') }}</small>
                                 </p>
                                 <div class="btnx">
                                     <p>
                                         <a href="https://wa.me/?text={{ urlencode('*मेरा वेब पेज देखें*- %0a' . url()->current()) }}"
-                                            class="mb-2 btn btn-success btn-block"
-                                            target="_blank" rel="noopener noreferrer">
-                                            <i class="fab fa-whatsapp"></i> WhatsApp पर साझा करें
+                                            class="mb-2 btn btn-success btn-block" target="_blank"
+                                            rel="noopener noreferrer">
+                                            <i class="fab fa-whatsapp"></i> {{ __('yp.share_whatsapp') }}
                                         </a>
                                     </p>
                                     <p>
                                         <a href="sms:?body={{ urlencode('मेरा वेब पेज देखें\n' . url()->current()) }}"
-                                            class="mb-2 btn btn-primary btn-block"
-                                            target="_blank" rel="noopener noreferrer">
-                                            <i class="fas fa-sms"></i> SMS पर साझा करें
+                                            class="mb-2 btn btn-primary btn-block" target="_blank"
+                                            rel="noopener noreferrer">
+                                            <i class="fas fa-sms"></i> {{ __('yp.share_sms') }}
                                         </a>
                                     </p>
 
@@ -367,7 +371,8 @@
                             </section>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">बंद करे</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{
+                                __('yp.close_btn') }}</button>
                         </div>
                     </div>
                 </div>
@@ -435,6 +440,7 @@
                 <div class="modal__content">
                     <span class="modal__close" onclick="closeModal()">&times;</span>
                     <h1>🎉 बधाई हो! 🎉</h1>
-                    <p>आपका अपना वेबपेज खुल गया है। आप अपनी वेबसाइट को याद रखें या इसे याद रखने के लिए खुद को <strong>WhatsApp</strong> या <strong>SMS</strong> करें।</p>
+                    <p>आपका अपना वेबपेज खुल गया है। आप अपनी वेबसाइट को याद रखें या इसे याद रखने के लिए खुद को
+                        <strong>WhatsApp</strong> या <strong>SMS</strong> करें।</p>
                 </div>
             </div>

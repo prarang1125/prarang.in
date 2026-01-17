@@ -22,7 +22,7 @@ class EditVcard extends Component
 
     public $color_code = '#E6C72D';
     public $profile, $category_id, $city_id, $name, $surname, $dob, $email, $phone;
-    public $house_number, $cityname, $road_street, $area_name, $pincode, $state='उत्तर प्रदेश (Uttar Pradesh)';
+    public $house_number, $cityname, $road_street, $area_name, $pincode, $state;
     public $vcard, $address;
     public $photo;
     public $dynamicFields = [];
@@ -35,7 +35,7 @@ class EditVcard extends Component
         $userId = auth()->id();
         $this->vcard = VCard::where('user_id', $userId)->first();
         $this->address = Address::where('user_id', $userId)->first();
-        $this->user=$user = User::find($userId);
+        $this->user = $user = User::find($userId);
 
         if ($user) {
             $this->name = $user->name;
@@ -58,6 +58,7 @@ class EditVcard extends Component
             $this->area_name = $this->address->area_name;
             $this->pincode = $this->address->postal_code;
             $this->cityname = $this->address->city_name ?? '';
+            $this->state = $this->address->state ?? 'उत्तर प्रदेश (Uttar Pradesh)';
         }
         $this->options = DynamicFeild::all()->keyBy('id')->toArray();
 
@@ -129,15 +130,13 @@ class EditVcard extends Component
             Storage::disk('s3')->put($storagePath, file_get_contents($tempFile));
 
 
-            $status=auth()->user()->update(['profile' => $storagePath]);
-            if($status && $oldImage){
-                    Storage::delete($oldImage);
+            $status = auth()->user()->update(['profile' => $storagePath]);
+            if ($status && $oldImage) {
+                Storage::delete($oldImage);
             }
 
             $this->profile = $storagePath;
             unlink($tempFile);
-
-
         }
     }
 
@@ -194,56 +193,65 @@ class EditVcard extends Component
 
 
     protected $messages = [
-        'color_code.required' => 'रंग कोड आवश्यक है।',
-        'photo.max' => 'फोटो का आकार 600 KB से अधिक नहीं हो सकता।',
-        'photo.image'=>'Must be Image',
-        'category_id.required' => 'श्रेणी का चयन आवश्यक है।',
-        'category_id.integer' => 'श्रेणी आईडी एक मान्य संख्या होनी चाहिए।',
+        'color_code.required' => 'formyp.color_code_required',
+        'photo.max' => 'formyp.photo_max_size',
+        'photo.image' => 'formyp.photo_image_type',
+        'category_id.required' => 'formyp.category_required',
+        'category_id.integer' => 'formyp.category_integer',
 
-        'city_id.required' => 'शहर का चयन आवश्यक है।',
-        'city_id.integer' => 'शहर आईडी एक मान्य संख्या होनी चाहिए।',
+        'city_id.required' => 'formyp.city_required',
+        'city_id.integer' => 'formyp.city_integer',
 
-        'name.required' => 'नाम आवश्यक है।',
-        'name.string' => 'नाम केवल अक्षरों में होना चाहिए।',
-        'name.max' => 'नाम 10 अक्षरों से अधिक नहीं हो सकता।',
-        'name.regex' => 'नाम में केवल अक्षर होने चाहिए, बिना स्पेस या विशेष अक्षरों के।',
-        'surname.regex' => 'उपनाम में केवल अक्षर होने चाहिए, बिना स्पेस या विशेष अक्षरों के।',
+        'name.required' => 'formyp.name_required',
+        'name.string' => 'formyp.name_string',
+        'name.max' => 'formyp.name_max',
+        'name.regex' => 'formyp.name_regex',
+        'surname.regex' => 'formyp.surname_regex',
 
 
-        'surname.string' => 'उपनाम केवल अक्षरों में होना चाहिए।',
-        'surname.max' => 'उपनाम 10 अक्षरों से अधिक नहीं हो सकता।',
+        'surname.string' => 'formyp.surname_string',
+        'surname.max' => 'formyp.surname_max',
 
-        'dob.date' => 'जन्मतिथि एक मान्य तिथि होनी चाहिए।',
-        'dob.before_or_equal' => 'जन्मतिथि आज की तिथि या इससे पहले की होनी चाहिए।',
+        'dob.date' => 'formyp.dob_date',
+        'dob.before_or_equal' => 'formyp.dob_before',
 
-        'email.email' => 'कृपया एक मान्य ईमेल पता दर्ज करें।',
-        'email.max' => 'ईमेल 255 अक्षरों से अधिक नहीं हो सकता।',
+        'email.email' => 'formyp.email_invalid',
+        'email.max' => 'formyp.email_max',
 
-        'phone.required' => 'फ़ोन नंबर आवश्यक है।',
-        'phone.string' => 'फ़ोन नंबर केवल संख्याओं और अक्षरों में होना चाहिए।',
-        'phone.max' => 'फ़ोन नंबर 15 अंकों से अधिक नहीं हो सकता।',
+        'phone.required' => 'formyp.phone_required',
+        'phone.string' => 'formyp.phone_string',
+        'phone.max' => 'formyp.phone_max',
 
-        'house_number.regex' => 'मकान संख्या में कम से कम एक संख्या होनी चाहिए और केवल (, - /) विशेष वर्णों की अनुमति है।',
-        'house_number.max' => 'मकान संख्या 8 अक्षरों से अधिक नहीं हो सकती।',
+        'house_number.regex' => 'formyp.house_number_regex',
+        'house_number.max' => 'formyp.house_number_max',
 
-        'road_street.regex' => 'सड़क/गली का नाम केवल अक्षरों और संख्याओं में होना चाहिए।',
-        'road_street.max' => 'सड़क/गली का नाम 15 अक्षरों से अधिक नहीं हो सकता।',
+        'road_street.regex' => 'formyp.road_street_regex',
+        'road_street.max' => 'formyp.road_street_max',
 
-        'area_name.required' => 'पता आवश्यक है।',
-        'area_name.regex' => 'पता केवल अक्षर और स्पेस होने चाहिए।',
-        'area_name.max' => 'पता 40 अक्षरों से अधिक नहीं हो सकता।',
+        'area_name.required' => 'formyp.area_name_required',
+        'area_name.regex' => 'formyp.area_name_regex',
+        'area_name.max' => 'formyp.area_name_max',
 
-        'pincode.required' => 'पिन कोड आवश्यक है।',
-        'pincode.digits' => 'पिन कोड ठीक 6 अंकों का होना चाहिए।',
+        'pincode.required' => 'formyp.pincode_required',
+        'pincode.digits' => 'formyp.pincode_digits',
 
-        'cityname.required' => 'शहर का नाम आवश्यक है।',
-        'cityname.regex' => 'शहर के नाम में केवल अक्षर और स्पेस होने चाहिए।',
-        'cityname.max' => 'शहर का नाम 15 अक्षरों से अधिक नहीं हो सकता।',
+        'cityname_required' => 'formyp.cityname_required',
+        'cityname.regex' => 'formyp.cityname_regex',
+        'cityname.max' => 'formyp.cityname_max',
 
-        'state.required' => 'राज्य का नाम आवश्यक है।',
-        'state.regex' => 'राज्य के नाम में केवल अक्षर और स्पेस होने चाहिए।',
-        'state.max' => 'राज्य का नाम 30 अक्षरों से अधिक नहीं हो सकता।',
+        'state.required' => 'formyp.state_required',
+        'state.regex' => 'formyp.state_regex',
+        'state.max' => 'formyp.state_max',
     ];
+
+    public function getMessages()
+    {
+        $localizedMessages = [];
+        foreach ($this->messages as $key => $value) {
+            $localizedMessages[$key] = __($value);
+        }
+        return $localizedMessages;
+    }
 
 
 
@@ -253,7 +261,7 @@ class EditVcard extends Component
     }
     public function submit()
     {
-        $this->validate();
+        $this->validate(null, $this->getMessages());
         try {
 
             $userId = auth()->id();
@@ -315,9 +323,9 @@ class EditVcard extends Component
             }
 
             return redirect()->route('vCard.list')
-                ->with('success_message', 'VCard successfully updated!');
+                ->with('success_message', __('formyp.vcard_updated_success'));
         } catch (\Exception $e) {
-            session()->flash('error', 'Error updating VCard: ' . $e->getMessage());
+            session()->flash('error', __('formyp.vcard_update_error') . $e->getMessage());
         }
     }
 

@@ -25,9 +25,9 @@ class PlanController extends Controller
 
             // Fetch Payment History
             $purchasePlan = UserPurchasePlan::where('user_id', $userId)
-            ->where('is_active', 1)
-            ->orderBy('created_at', 'desc')
-            ->first();  
+                ->where('is_active', 1)
+                ->orderBy('created_at', 'desc')
+                ->first();
 
             // Fetch Plan Details
             $planDetails = Plan::where('id', $purchasePlan->plan_id)->first();
@@ -35,9 +35,9 @@ class PlanController extends Controller
             // Fetch Payment History
             $planHistory = PaymentHistory::where('plan_id', $purchasePlan->plan_id)->first();
 
-            return view('yellowpages::Vcard.plan', compact('purchasePlan','planHistory', 'planDetails'));
+            return view('yellowpages::Vcard.plan', compact('purchasePlan', 'planHistory', 'planDetails'));
         } catch (\Exception $e) {
-            Log::error('Error fetching plan details: ' );
+            Log::error('Error fetching plan details: ');
             return redirect()->back()->with('error', 'Unable to fetch plan details.');
         }
     }
@@ -49,20 +49,20 @@ class PlanController extends Controller
         try {
             // Get all available plans
             $plans = Plan::all();
-    
+
             // Get all active purchase plans for the authenticated user
             $purchasePlans = UserPurchasePlan::where('user_id', Auth::id())
-                                             ->where('is_active', 1)  // Ensure the plan is active
-                                             ->orderBy('created_at', 'desc')  // Order by most recent
-                                             ->get(); // Fetch all active plans
-    
+                ->where('is_active', 1)  // Ensure the plan is active
+                ->orderBy('created_at', 'desc')  // Order by most recent
+                ->get(); // Fetch all active plans
+
             return view("yellowpages::Vcard.planDetails", compact('plans', 'purchasePlans'));
         } catch (\Exception $e) {
-            Log::error('Error fetching plan details: ' );
+            Log::error('Error fetching plan details: ');
             return redirect()->back()->with('error', 'Unable to fetch plan details.');
         }
     }
-    
+
     ##------------------------- END ---------------------##
 
     ##------------------------- Payment  ---------------------##
@@ -70,7 +70,7 @@ class PlanController extends Controller
     {
         $plan = Plan::findOrFail($request->plan_id);
         $expiresAt = now()->addDays($plan->duration);
-        if ($plan->price <=0) {
+        if ($plan->price <= 0) {
             // Save user purchase plan details
             UserPurchasePlan::create([
                 'user_id' => Auth::id(),
@@ -87,7 +87,7 @@ class PlanController extends Controller
                 'plan_id' => $request->plan_id,
             ]);
 
-            return redirect()->route('vCard.planDetails')->with('success', 'Free Plan successful  activated!');
+            return redirect()->route('vCard.planDetails')->with('success', __('yp.free_plan_activated'));
         }
         try {
 
@@ -116,8 +116,8 @@ class PlanController extends Controller
 
             return redirect($checkoutSession->url);
         } catch (\Exception $e) {
-            Log::error('Error during Stripe Checkout: ' );
-            return redirect()->back()->with('error', 'Unable to initiate payment. Please try again.');
+            Log::error('Error during Stripe Checkout: ');
+            return redirect()->back()->with('error', __('yp.payment_initiate_error'));
         }
     }
 
@@ -129,55 +129,55 @@ class PlanController extends Controller
     {
 
         // try {
-            $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
+        $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
 
-            // Retrieve the session details from Stripe
-            $session = $stripe->checkout->sessions->retrieve($request->session_id);
+        // Retrieve the session details from Stripe
+        $session = $stripe->checkout->sessions->retrieve($request->session_id);
 
 
-            if (!$session) {
-                return redirect()->back()->with('error', 'Invalid session ID.');
-            }
+        if (!$session) {
+            return redirect()->back()->with('error', __('yp.invalid_session'));
+        }
 
-            // Access the plan_id from the metadata
-            $plan_id = $session->metadata->plan_id ?? null;
+        // Access the plan_id from the metadata
+        $plan_id = $session->metadata->plan_id ?? null;
 
-            // Ensure the plan exists
-            $plan = Plan::find($plan_id);
-            if (!$plan) {
-                return redirect()->back()->with('error', 'Invalid plan ID.');
-            }
+        // Ensure the plan exists
+        $plan = Plan::find($plan_id);
+        if (!$plan) {
+            return redirect()->back()->with('error', __('yp.invalid_plan'));
+        }
 
-            // Calculate expiration date
-            $expiresAt = now()->addDays($plan->duration);
+        // Calculate expiration date
+        $expiresAt = now()->addDays($plan->duration);
 
-            // Save payment history
-            $plann=PaymentHistory::create([
-                'user_id' => Auth::id(),
-                'plan_id' => $plan_id,
-                'transaction_id' => $session->payment_intent,
-                'amount' => $session->amount_total / 100, // Stripe amount is in cents
-                'currency' => $session->currency,
-                'status' => $session->payment_status,
-            ]);
+        // Save payment history
+        $plann = PaymentHistory::create([
+            'user_id' => Auth::id(),
+            'plan_id' => $plan_id,
+            'transaction_id' => $session->payment_intent,
+            'amount' => $session->amount_total / 100, // Stripe amount is in cents
+            'currency' => $session->currency,
+            'status' => $session->payment_status,
+        ]);
 
-            // Save user purchase plan details
-            UserPurchasePlan::create([
-                'user_id' => Auth::id(),
-                'plan_id' => $plan_id,
-                'purchased_at' => now(),
-                'expires_at' => $expiresAt,
-                'amount' => $session->amount_total / 100,
-                'payment_status' => $session->payment_status,
-                'transaction_id' => $session->payment_intent,
-            ]);
+        // Save user purchase plan details
+        UserPurchasePlan::create([
+            'user_id' => Auth::id(),
+            'plan_id' => $plan_id,
+            'purchased_at' => now(),
+            'expires_at' => $expiresAt,
+            'amount' => $session->amount_total / 100,
+            'payment_status' => $session->payment_status,
+            'transaction_id' => $session->payment_intent,
+        ]);
 
-            // Update user's active plan
-            User::where('id', Auth::id())->update([
-                'plan_id' => $plan_id,
-            ]);
+        // Update user's active plan
+        User::where('id', Auth::id())->update([
+            'plan_id' => $plan_id,
+        ]);
 
-            return redirect()->route('vCard.planDetails')->with('success', 'Payment successful and plan activated!');
+        return redirect()->route('vCard.planDetails')->with('success', __('yp.payment_success_msg'));
         // } catch (\Exception $e) {
         //     Log::error('Error in payment success: ' );
         //     return redirect()->back()->with('error', 'Unable to process payment. Please contact support.');
@@ -191,10 +191,10 @@ class PlanController extends Controller
     public function paymentCancel()
     {
         try {
-            return redirect()->route('vCard.planDetails')->with('error', 'Payment was canceled.');
+            return redirect()->route('vCard.planDetails')->with('error', __('yp.payment_canceled'));
         } catch (\Exception $e) {
-            Log::error('Error handling payment cancellation: ' );
-            return redirect()->back()->with('error', 'Unable to handle payment cancellation.');
+            Log::error('Error handling payment cancellation: ');
+            return redirect()->back()->with('error', __('yp.payment_cancel_error'));
         }
     }
 
@@ -208,8 +208,8 @@ class PlanController extends Controller
             $paymentHistories = PaymentHistory::with('plan')->where('user_id', $userId)->get();            // Assuming 'plan' relationship exists
             return view('yellowpages::Vcard.payment_history', compact('paymentHistories'));
         } catch (\Exception $e) {
-            Log::error('Error fetching payment history: ' );
-            return redirect()->back()->with('error', 'Unable to fetch payment history.');
+            Log::error('Error fetching payment history: ');
+            return redirect()->back()->with('error', __('yp.payment_history_fetch_error'));
         }
     }
 

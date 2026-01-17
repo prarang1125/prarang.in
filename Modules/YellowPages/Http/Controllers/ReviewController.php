@@ -58,10 +58,10 @@ class ReviewController extends Controller
             ]);
 
             // Redirect with success message
-            return redirect()->route('review.submit')->with('success', 'Review submitted successfully!');
+            return redirect()->route('review.submit')->with('success', __('yp.review_submitted_success'));
         } catch (\Exception $e) {
             // Handle errors and redirect back with an error message
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ' ]);
+            return redirect()->back()->withErrors(['error' => __('yp.error_occurred')]);
         }
     }
 
