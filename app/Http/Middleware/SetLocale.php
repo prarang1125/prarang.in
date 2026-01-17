@@ -18,11 +18,11 @@ class SetLocale
     public function handle($request, Closure $next)
     {
         // Get the locale from the session, defaulting to 'hi' (Hindi) if not set
-        $locale = Session::get('locale', 'hi'); // Default to Hindi if not set
+        $locale = Session::get('locale', 'cz'); // Default to Hindi if not set
 
         // If the locale is invalid, set to 'hi'
         if (!in_array($locale, ['en', 'hi'])) {
-            $locale = 'hi'; // Default to Hindi if the locale is not valid
+            $locale = 'cz'; // Default to Hindi if the locale is not valid
         }
 
         // Set the application's locale
