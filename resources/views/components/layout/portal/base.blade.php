@@ -130,6 +130,7 @@
                         Number(data.data.reader_info.a3);
 
                     animateCounter(citySubscriberPlaceHolder, totalSubscribers, 1500);
+                    animateCounter(cityMonthlyPlaceHolder, Number(data.data.reader_info.c1), 1200);
                 })
                 .catch(error => {
                     console.error('Error fetching portal stats:', error);
@@ -160,7 +161,7 @@
                 .then(data => {
                     const dailyViews = Number(data.data.viewership || 0);
                     animateCounter(cityDailyPlaceHolder, dailyViews, 1200);
-                    animateCounter(cityMonthlyPlaceHolder, dailyViews * 78, 1400);
+                    // animateCounter(cityMonthlyPlaceHolder, dailyViews * 78, 1400);
                 })
                 .catch(error => {
                     console.error("Error fetching daily posts:", error);
