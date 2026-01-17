@@ -248,9 +248,6 @@ header .flex-col .justify-between .font-bold {
 }
 
 /* Cursor pointer (hover) */
-.px-1 .grid .cursor-pointer:hover {
-    border-color: rgba(132, 132, 245, 0.97);
-}
 
 /* White */
 .w-full:nth-child(2)
@@ -554,9 +551,6 @@ header .flex-col a {
 }
 
 /* Button (hover) */
-header .flex-col a:hover {
-    color: #0932ae;
-}
 
 /* Text */
 .w-full .grid .text-xs {
