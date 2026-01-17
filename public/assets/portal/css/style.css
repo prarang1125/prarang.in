@@ -679,3 +679,29 @@ header .lg\:flex-row .flex-col:nth-child(4) {
 #mapModal {
     background-color: rgba(49, 49, 42, 0.3);
 }
+/* Leading relaxed */
+.md\:text-left .space-y-4 .leading-relaxed {
+    font-size: 14px;
+}
+
+/* Font bold */
+.max-w-xs .md\:justify-start .font-bold {
+    visibility: hidden;
+}
+
+/* Link */
+.md\:text-left .max-w-xs .md\:justify-start {
+    width: 43px;
+    height: 49px;
+    padding-left: 13px;
+}
+
+/* Max */
+.md\:text-left .space-y-6 .max-w-xs {
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+/* Font medium */
+footer .font-medium {
+    font-size: 14px;
+}
