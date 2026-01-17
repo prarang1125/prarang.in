@@ -395,11 +395,6 @@ header .flex-col .justify-between .font-bold {
     font-size: 14px;
 }
 
-/* Link (hover) */
-.w-full .grid a:hover {
-    border-color: rgba(125, 198, 246, 0.75);
-}
-
 /* Span Tag */
 .px-1 .grid .md\:text-base {
     font-size: 17px;
@@ -698,4 +693,9 @@ header .lg\:flex-row .flex-col:nth-child(4) {
 /* Font medium */
 footer .font-medium {
     font-size: 14px;
+}
+
+/* Link (hover) */
+.w-full .overflow-hidden a:hover {
+    background-color: #fcfcfc;
 }
