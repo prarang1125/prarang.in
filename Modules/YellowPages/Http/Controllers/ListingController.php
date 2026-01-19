@@ -115,8 +115,12 @@ class ListingController extends Controller
                 }
             }
             if (!$city) {
-                $city = City::where('name', 'LIKE', "%{$city_name}%")->first();
+                $city = City::where(function ($query) use ($city_name) {
+                    $query->where('slug', '=', $city_name)
+                        ->orWhere('name', 'LIKE', "%{$city_name}%");
+                })->first();
             }
+
             setcookie('register_city', $city->id, time() + 3600, '/');
             $city_name = $city->name;
             $portal = Portal::where('id', $city->portal_id)->first();

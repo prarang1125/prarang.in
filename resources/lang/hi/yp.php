@@ -348,4 +348,15 @@ return [
     'report_fetch_error' => 'Error fetching report listings: ',
     'review_fetch_error' => 'Unable to fetch reviews. Please try again later.',
     'generic_error' => 'An error occurred, please try again later.',
+
+
+    // 19-01-2026
+    'craft' => 'शिल्प',
+    'government' => 'सरकार',
+    'industry' => 'उद्योग',
+    'real_estate' => 'रियल एस्टेट',
+    'retail' => 'खुदरा',
+    'services' => 'सेवाएं',
+    'student' => 'विद्यार्थी',
+    'housewife' => 'हाउसवाइफ',
 ];

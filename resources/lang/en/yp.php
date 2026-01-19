@@ -348,4 +348,16 @@ return [
     'report_fetch_error' => 'Error fetching report listings: ',
     'review_fetch_error' => 'Unable to fetch reviews. Please try again later.',
     'generic_error' => 'An error occurred, please try again later.',
+
+
+
+    // 19-01-2026
+    'craft' => 'Craft',
+    'government' => 'Government',
+    'industry' => 'Industry',
+    'real_estate' => 'Real Estate',
+    'retail' => 'Retail',
+    'services' => 'Services',
+    'student' => 'Student',
+    'housewife' => 'Housewife',
 ];
