@@ -81,7 +81,7 @@ class CreateVCardController extends Controller
         ]);
 
         if (!$address) {
-            throw new Exception('Failed to save address.');
+            throw new Exception(__('yp.address_save_error'));
         }
 
         // Assign address ID to validated data
@@ -100,7 +100,7 @@ class CreateVCardController extends Controller
         ]);
 
         if (!$card) {
-            throw new Exception('Failed to create VCard.');
+            throw new Exception(__('yp.vcard_create_error'));
         }
 
         // Save dynamic fields if provided
@@ -120,7 +120,7 @@ class CreateVCardController extends Controller
         }
 
         return redirect()->route('vCard.view', ['slug' => $slug])
-            ->with('success', 'Card saved successfully.');
+            ->with('success', __('yp.vcard_saved_success'));
     }
     ##------------------------- END ---------------------##
 
@@ -131,7 +131,7 @@ class CreateVCardController extends Controller
             return view('yellowpages::Vcard.Card');
         } catch (Exception $e) {
             Log::error('Error editing VCard: ');
-            return redirect()->back()->withErrors(['error' => 'Unable to fetch VCard details for editing.']);
+            return redirect()->back()->withErrors(['error' => __('yp.vcard_fetch_error')]);
         }
     }
 
@@ -163,9 +163,9 @@ class CreateVCardController extends Controller
             'dynamic_data'     => 'nullable|array',
             'dynamic_data.*'   => 'nullable|string',
         ], [
-            'category_id.required' => 'श्रेणी फ़ील्ड आवश्यक है।',
-            'city_id.required' => 'शहर फ़ील्ड आवश्यक है।',
-            'name.required' => 'नाम फ़ील्ड आवश्यक है।',
+            'category_id.required' => __('formyp.category_required'),
+            'city_id.required' => __('formyp.city_required'),
+            'name.required' => __('formyp.name_required'),
         ]);
 
 
@@ -175,12 +175,12 @@ class CreateVCardController extends Controller
         // Ensure user and address relationships exist
         $user = $vcard->user;
         if (!$user) {
-            return redirect()->back()->withErrors(['error' => 'User not found for this VCard.']);
+            return redirect()->back()->withErrors(['error' => __('yp.vcard_user_not_found')]);
         }
 
         $address = $user->address;
         if (!$address) {
-            return redirect()->back()->withErrors(['error' => 'Address not found for this user.']);
+            return redirect()->back()->withErrors(['error' => __('yp.vcard_address_not_found')]);
         }
 
         // Handle file uploads
@@ -255,7 +255,7 @@ class CreateVCardController extends Controller
 
         DB::commit();
 
-        return redirect()->route('vCard.list')->with('success', 'वेबपेज सफलतापूर्वक अपडेट(Update) किया गया.');
+        return redirect()->route('vCard.list')->with('success', __('yp.vcard_updated_success_msg'));
         // } catch (Exception $e) {
         //     DB::rollBack();
         //     Log::error('Error updating VCard: ' );
@@ -270,20 +270,20 @@ class CreateVCardController extends Controller
             ->orderBy('id', 'desc')
             ->with('dynamicFields')
             ->first();
-        $user = User::with('address')->find($vcard->user_id);
+        $user = User::with(['address', 'listings.products'])->find($vcard->user_id);
         $dynamicFields = DynamicFeild::where('is_active', 1)->get();
 
         // Fetch VCard data
         $category = Category::where('id', $vcard->category_id)->first();
         // Check if VCard exists and is approved
         if (!$vcard) {
-            $message = 'VCard not found.';
+            $message = __('yp.vcard_not_found');
             return view('yellowpages::Vcard.CardView', compact('user', 'address', 'message', 'category', 'city_arr'));
         }
 
         // If VCard is not approved
         if ($vcard->is_active != 1) {
-            $message = 'आपका कार्ड स्वीकृति की प्रक्रिया में है।';
+            $message = __('yp.vcard_pending_approval');
             return view('yellowpages::Vcard.CardView', compact('user', 'message', 'vcard', 'category', 'city_arr'));
         }
 
@@ -297,7 +297,7 @@ class CreateVCardController extends Controller
             ->orderBy('id', 'desc')
             ->with('dynamicFields')
             ->first();
-        $user = User::with('address')->find($vcard->user_id);
+        $user = User::with(['address', 'listings.products'])->find($vcard->user_id);
         $dynamicFields = DynamicFeild::where('is_active', 1)->get();
 
         // Fetch VCard data
@@ -317,7 +317,7 @@ class CreateVCardController extends Controller
             ->with('dynamicFields')
             ->first();
 
-        $user = User::with('address')->find($vcard->user_id);
+        $user = User::with(['address', 'listings.products'])->find($vcard->user_id);
         $dynamicFields = DynamicFeild::where('is_active', 1)->get();
 
         $category = Category::where('id', $vcard->category_id)->first();
@@ -338,14 +338,14 @@ class CreateVCardController extends Controller
 
 
         if (!$vcard) {
-            abort(404, 'vCard not found.');
+            abort(404, __('yp.vcard_not_found'));
         }
 
         $count = $vcard->increment('scan_count');
         return redirect()->route('vCard.view', ['slug' => $vcard->slug, 'city_arr' => $vcard->address->city->city_arr]);
-        $user = User::with('address')->find($vcard->user_id);
+        $user = User::with(['address', 'listings.products'])->find($vcard->user_id);
         if (!$user) {
-            abort(404, 'User not found.');
+            abort(404, __('yp.vcard_user_not_found'));
         }
 
         $dynamicFields = DynamicFeild::where('is_active', 1)->get();
@@ -377,7 +377,7 @@ class CreateVCardController extends Controller
 
             return view('yellowpages::Vcard.vcard-list', compact('user', 'Vcard_list', 'cities', 'categories'));
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Error fetching Vcard listings: ');
+            return redirect()->back()->with('error', __('yp.vcard_list_fetch_error'));
         }
     }
 
@@ -388,11 +388,11 @@ class CreateVCardController extends Controller
         try {
             $city = VCard::findOrFail($id);
             $city->delete();
-            return redirect()->route('vCard.createCard')->with('success', 'Vcard deleted successfully.');
+            return redirect()->route('vCard.createCard')->with('success', __('yp.vcard_deleted_success'));
         } catch (ModelNotFoundException $e) {
-            return redirect()->route('vCard.list')->withErrors(['error' => 'vcard not found.']);
+            return redirect()->route('vCard.list')->withErrors(['error' => __('yp.vcard_not_found')]);
         } catch (Exception $e) {
-            return redirect()->route('vCard.list')->withErrors(['error' => 'An error occurred while trying to delete the VCard: ']);
+            return redirect()->route('vCard.list')->withErrors(['error' => __('yp.vcard_delete_error')]);
         }
     }
     ##------------------------- END ---------------------##

@@ -1,179 +1,131 @@
 <div>
-    <style>
-        .registration-form {
-            max-width: 400px;
-            margin: auto;
-            background: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
+    {{-- Internal styling removed to favor parent wrapper styles --}}
+    <div class="registration-container">
+        @if (session()->has('success'))
+        <div class="alert alert-success py-3 px-4 small border-0 mb-4 rounded-4 animate__animated animate__fadeIn"
+            style="background: rgba(40, 167, 69, 0.08); color: #28a745; display: flex; align-items: center;">
+            <i class="fas fa-check-circle me-3 fs-5"></i> {{ session('success') }}
+        </div>
+        @endif
 
-        .title {
-            text-align: center;
-            font-size: 22px;
-            color: #333;
-        }
+        <div class="card shadow-lg border-0 rounded-4">
+            <div class="card-body p-4 p-md-5">
+                @if ($shareUrl)
+                <div class="success-screen text-center animate__animated animate__fadeIn">
+                    <div class="success-icon mb-4">
+                        <div class="rounded-circle d-flex align-items-center justify-content-center mx-auto"
+                            style="width: 80px; height: 80px; background: rgba(255, 193, 7, 0.15); color: #ff9800;">
+                            <i class="fas fa-rocket fa-2x"></i>
+                        </div>
+                    </div>
+                    <h2 class="fw-bold mb-3" style="color: #1a1a1a;">{{ __('yp.congratulations') }}</h2>
+                    <p class="mb-4 text-muted">{{ __('yp.webpage_opened') }}</p>
 
-        input,
-        select {
-            width: 100%;
-            padding: 10px;
-            margin-top: 10px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
+                    <div class="share-url-box p-3 mb-4 rounded-4 border-2 border-dashed"
+                        style="border-color: #ffc107; background: #fffbeb;">
+                        <a href="{{ $shareUrl }}" class="fw-bold text-decoration-none" style="color: #e67e22;">{{
+                            $shareUrl }}</a>
+                    </div>
 
-        .error {
-            color: red;
-            font-size: 12px;
-        }
+                    <p class="small text-muted mb-4">{!! __('yp.save_website_msg') !!}</p>
 
-        .btn {
-            width: 100%;
-            {{-- background: #f39c12; --}} {{-- color: white; --}} padding: 10px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-
-        .btn.loading {
-            background: #e67e22;
-        }
-
-        .alert.success {
-            color: green;
-            padding: 10px;
-            background: #e6ffe6;
-            border: 1px solid green;
-        }
-
-        /* Form Division */
-        .signin-signup div form {
-            justify-content: flex-start;
-            {{-- transform: translatex(0px) translatey(0px); --}} display: block;
-        }
-
-        /* Small Tag */
-        .registration-form .sign-in-form small {
-            padding-left: 12px;
-        }
-
-        /* Button */
-        .card p .btn-success {
-            color: #ffffff !important;
-        }
-
-        /* Button */
-        .card p .btn-primary {
-            color: #ffffff !important;
-        }
-
-        /* Paragraph */
-        .card section p {
-            margin-bottom: 0px !important;
-        }
-    </style>
-    <!-- Include Bootstrap & Animate.css -->
-
-
-    <div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <div class="card shadow-lg p-4 rounded" style="max-width: 400px; width: 100%;">
-            @if (session()->has('success'))
-                <div class="alert alert-success text-center animate__animated animate__fadeIn" role="alert">
-                    {{ session('success') }}
-                </div>
-            @endif
-            @if ($shareUrl)
-                <section>
-                    <h1>🎉 बधाई हो! 🎉</h1>
-                    <p>आपका अपना वेबपेज खुल गया है।</p>
-
-                    <a href="{{ $shareUrl }}">{{ $shareUrl }}</a>
-                    <p> <small>आप अपनी वेबसाइट को याद रखें या इसे याद रखने के लिए खुद को
-                            <strong>WhatsApp</strong> या <strong>SMS</strong> करें।</small>
-                    </p>
-                   <div class="btnx">
-                    <p>
-                        <a href="https://wa.me/?text={{ $shareUrl }}" class="btn btn-success btn-block mb-2"
-                            target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-whatsapp"></i> WhatsApp पर साझा करें
+                    <div class="d-grid gap-3">
+                        <a href="https://wa.me/?text={{ $shareUrl }}"
+                            class="btn btn-primary d-flex align-items-center justify-content-center gap-2"
+                            style="background: #25D366 !important; border: none !important;" target="_blank">
+                            <i class="fab fa-whatsapp"></i> {{ __('yp.share_on_whatsapp') }}
                         </a>
-                    </p>
-                    <p>
-                        <a href="sms:?body={{ $shareUrl }}" class="btn btn-primary btn-block mb-2" target="_blank"
-                            rel="noopener noreferrer">
-                            <i class="fas fa-sms"></i> SMS पर साझा करें
+                        <a href="sms:?body={{ $shareUrl }}"
+                            class="btn btn-dark d-flex align-items-center justify-content-center gap-2" target="_blank">
+                            <i class="fas fa-sms"></i> {{ __('yp.share_on_sms') }}
                         </a>
-                    </p>
+                    </div>
                 </div>
-
-                </section>
-            @else
-                <form wire:submit.prevent="register" class="sign-in-form">
-                    <h2 class="text-center text-primary mb-3">रजिस्ट्रेशन (Registration)</h2>
+                @else
+                <form wire:submit.prevent="register" class="registration-form">
+                    <h2 class="mb-2">{{ __('yp.registration_title') }}</h2>
+                    <p class="text-muted mb-4 small">
+                        {{ __('yp.registration_subtitle') }}
+                    </p>
 
                     <!-- City Selection -->
-                    <div class="mb-3">
-                        <label for="city" class="form-label fw-bold">शहर चुनें:</label>
-                        <select wire:change="validatePhone('city')" wire:model="city" id="city"
-                            class="form-select @error('city') is-invalid animate__animated animate__headShake @enderror">
-                            <option value="">कृपया शहर चुनें</option>
-                            @foreach ($cities as $option)
-                                <option value="{{ $option->id }}">{{ $option->name }}</option>
-                            @endforeach
-                        </select>
+                    <div class="mb-4">
+                        <label for="city" class="form-label">{{ __('yp.country_city') }}</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                            <select wire:model="city" id="city" class="form-select @error('city') is-invalid @enderror">
+                                <option value="">{{ __('yp.select_country_city') }}</option>
+                                @foreach ($cities as $cityItem)
+                                <option value="{{ $cityItem->id }}">{{ $cityItem->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
                         @error('city')
-                            <small class="text-danger animate__animated animate__headShake">{{ $message }}</small>
+                        <div class="error-msg"><i class="fas fa-info-circle"></i> {{ $message }}</div>
                         @enderror
                     </div>
 
                     <!-- Name Input -->
-                    <div class="mb-3">
-                        <label for="name" class="form-label fw-bold">नाम:</label>
-                        <input type="text" wire:model="name" wire:change="validatePhone('name')" id="name"
-                            class="form-control @error('name') is-invalid animate__animated animate__headShake @enderror"
-                            placeholder="उपयोगकर्ता नाम">
+                    <div class="mb-4">
+                        <label for="name" class="form-label">{{ __('yp.name') }}</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-building"></i></span>
+                            <input type="text" wire:model="name" id="name"
+                                class="form-control @error('name') is-invalid @enderror"
+                                placeholder="{{ __('yp.username_placeholder') }}">
+                        </div>
                         @error('name')
-                            <small class="text-danger animate__animated animate__headShake">{{ $message }}</small>
+                        <div class="error-msg"><i class="fas fa-info-circle"></i> {{ $message }}</div>
                         @enderror
                     </div>
 
                     <!-- Phone Input -->
-                    <div class="mb-3">
-                        <label for="phone" class="form-label fw-bold">फोन नंबर:</label>
-                        <input type="text" wire:change="validatePhone('phone')" wire:model.debounce.250ms="phone"
-                            id="phone"
-                            class="form-control @error('phone') is-invalid animate__animated animate__headShake @enderror"
-                            placeholder="फोन नंबर दर्ज करें">
+                    <div class="mb-4">
+                        <label for="phone" class="form-label">{{ __('yp.phone_email_label') }}</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-phone-alt"></i></span>
+                            <input type="text" wire:model.debounce.250ms="phone" id="phone"
+                                class="form-control @error('phone') is-invalid @enderror"
+                                placeholder="{{ __('yp.enter_phone_email') }}">
+                        </div>
                         @error('phone')
-                            <small class="text-danger animate__animated animate__headShake">{{ $message }}</small>
+                        <div class="error-msg"><i class="fas fa-info-circle"></i> {{ $message }}</div>
                         @enderror
                     </div>
 
-
                     <!-- Password Input -->
-                    <div class="mb-3">
-                        <label for="password" class="form-label fw-bold">पासवर्ड:</label>
-                        <input type="password" wire:change="validatePhone('password')" wire:model="password"
-                            id="password"
-                            class="form-control @error('password') is-invalid animate__animated animate__headShake @enderror"
-                            placeholder="पासवर्ड दर्ज करें">
+                    <div class="mb-4">
+                        <label for="password" class="form-label">{{ __('yp.password') }}</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                            <input type="password" wire:model="password" id="password"
+                                class="form-control @error('password') is-invalid @enderror"
+                                placeholder="{{ __('yp.enter_password') }}">
+                        </div>
                         @error('password')
-                            <small class="text-danger animate__animated animate__headShake">{{ $message }}</small>
+                        <div class="error-msg"><i class="fas fa-info-circle"></i> {{ $message }}</div>
                         @enderror
                     </div>
 
                     <!-- Submit Button -->
-                    <button type="submit" class="btn btn-primary w-100 fw-bold">
-                        <span wire:loading.remove>रजिस्टर (Register)</span>
-                        <span wire:loading class="spinner-border spinner-border-sm"></span>
+                    <button type="submit" class="btn btn-primary w-100 py-3 mt-2 btn-register"
+                        wire:loading.attr="disabled">
+                        <span wire:loading.remove>
+                            {{ __('yp.register') }} <i class="fas fa-arrow-right ms-2 small"></i>
+                        </span>
+                        <span wire:loading>
+                            <span class="spinner-border spinner-border-sm me-2"></span>
+                            {{ __('yp.loading') }}
+                        </span>
                     </button>
-                </form>
-                <a href="{{ route('yp.login') }}">पहले से खाता है? लॉगिन (Login) करें </a>
 
-            @endif
+                    <div class="footer-links">
+                        {{ __('yp.already_have_account') }}
+                        <a href="{{ route('yp.login') }}">{{ __('yp.login') }}</a>
+                    </div>
+                </form>
+                @endif
+            </div>
         </div>
     </div>
 </div>

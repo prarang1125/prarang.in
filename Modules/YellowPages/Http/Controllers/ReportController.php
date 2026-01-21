@@ -1,4 +1,5 @@
 <?php
+
 namespace Modules\YellowPages\Http\Controllers;
 
 use App\Http\Controllers\Controller;
@@ -45,7 +46,7 @@ class ReportController extends Controller
 
             // Store the report in the database
             Report::create([
-                'user_id'=>Auth::id(),
+                'user_id' => Auth::id(),
                 'name' => $request->name,
                 'business_email' => $request->business_email,
                 'number' => $request->number,
@@ -53,21 +54,22 @@ class ReportController extends Controller
                 'file' => $filePath,
             ]);
 
-            return redirect()->back()->with('success', 'पूछताछ फॉर्म सफलतापूर्वक सबमिट किया गया।');
+            return redirect()->back()->with('success', __('yp.enquiry_form_success'));
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'सबमिट करते समय त्रुटि हुई।');
+            return redirect()->back()->with('error', __('yp.enquiry_submit_error'));
         }
     }
 
     ##------------------------- END ---------------------##
 
     ##------------------------- Report list ---------------------##
-    public function list(Request $request) {
+    public function list(Request $request)
+    {
         try {
             $report_list = Report::where('user_id', Auth::id())->get();
             return view('yellowpages::Vcard.report-list', compact('report_list'));
         } catch (Exception $e) {
-            return redirect()->back()->with('error', 'Error fetching report listings: ' );
+            return redirect()->back()->with('error', __('yp.report_fetch_error'));
         }
     }
     ##------------------------- END ---------------------##

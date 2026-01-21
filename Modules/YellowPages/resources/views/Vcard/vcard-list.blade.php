@@ -1,10 +1,10 @@
 @extends('yellowpages::layout.vcard.vcard')
 @section('title', 'Business Listing')
 
-{{-- @if(session('success'))
-    <div class="alert alert-success">
-        {{ session('success') }}
-    </div>
+{{-- @if (session('success'))
+<div class="alert alert-success">
+    {{ session('success') }}
+</div>
 @endif --}}
 
 
@@ -15,14 +15,14 @@
 <div class="page-content">
     <!--breadcrumb-->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">वीकार्ड</div>
+        <div class="breadcrumb-title pe-3">{{ __('yp.vcard') }}</div>
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
                     <li class="breadcrumb-item">
                         <a href="#"><i class="bx bx-user"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">वीकार्ड लिस्टिंग</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ __('yp.vcard_listing_title') }}</li>
                 </ol>
             </nav>
         </div>
@@ -31,20 +31,20 @@
     <div class="row">
         <div class="col-xl-9 mx-auto w-100">
             <!-- Success Message -->
-            @if(session('success'))
-                <div class="alert alert-success mt-3">
-                    {{ session('success') }}
-                </div>
+            @if (session('success'))
+            <div class="alert alert-success mt-3">
+                {{ session('success') }}
+            </div>
             @endif
-            @if(session('errors_message'))
+            @if (session('errors_message'))
             <div class="alert alert-danger">
-            {{ session('errors_message') }}
+                {{ session('errors_message') }}
             </div>
             @endif
 
 
-            <h6 class="mb-0 text-uppercase">वीकार्ड लिस्टिंग</h6>
-            <hr/>
+            <h6 class="mb-0 text-uppercase">{{ __('yp.vcard_listing_title') }}</h6>
+            <hr />
             <div class="card">
                 {{-- <div class="card-body d-flex justify-content-end align-items-center">
                     <a href="{{ route('vCard.createCard') }}" class="btn btn-primary">वीकार्ड संपादित करें</a>
@@ -56,54 +56,77 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">काउंटर</th>
-                                    <th scope="col">फोटो(Photo)</th>
-                                    <th scope="col">रंग</th>
-                                    <th scope="col">शहर</th>
-                                    <th scope="col">श्रेणी</th>
-                                    <th scope="col">रिपोर्ट तिथि</th>
-                                    <th scope="col">कार्रवाई</th>
+                                    <th scope="col">{{ __('yp.counter') }}</th>
+                                    <th scope="col">{{ __('yp.photo') }}</th>
+                                    <th scope="col">{{ __('yp.color') }}</th>
+                                    <th scope="col">{{ __('yp.city') }}</th>
+                                    <th scope="col">{{ __('yp.category') }}</th>
+                                    <th scope="col">{{ __('yp.report_date') }}</th>
+                                    <th scope="col">{{ __('yp.actions') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @php $index = 1; @endphp
-                                @foreach($Vcard_list as $vcard)
-                                    <tr>
-                                        <th scope="row" class="align-middle">{{ $index }}</th>
-                                        <td class="align-middle">{{ $vcard->user->name }}</td>
-                                        <td class="align-middle">
-                                            <img src="{{ $vcard->user->profile ? Storage::url($vcard->user->profile) : asset('images/default-profile.png') }}"
-                                                 alt="Profile Image"
-                                                 style="max-width: 100px;">
-                                        </td>
+                                @foreach ($Vcard_list as $vcard)
+                                <tr>
+                                    <th scope="row" class="align-middle">{{ $index }}</th>
+                                    <td class="align-middle">{{ $vcard->user->name }}</td>
+                                    <td class="align-middle">
+                                        <img src="{{ $vcard->user->profile ? Storage::url($vcard->user->profile) : asset('images/default-profile.png') }}"
+                                            alt="Profile Image" style="max-width: 100px;">
+                                    </td>
 
-                                        <td class="align-middle">{{ $vcard->color_code }}</td>
-                                        <td class="align-middle">{{ $cities->get($vcard->city_id)->name ?? '' }}</td>
-                                        <td class="align-middle">{{ $categories->get($vcard->category_id)->name ?? '' }}</td>
-                                        <td class="align-middle">{{ $vcard->created_at }}</td>
-                                        <td class="align-middle">
-                                            <a href="{{ route('vCard.vcard-edit', $vcard->id) }}" class="btn btn-sm btn-primary"><i class="bx bx-edit"></i>सुधर करे</a>
+                                    <td class="align-middle">{{ $vcard->color_code }}</td>
+                                    <td class="align-middle">{{ $cities->get($vcard->city_id)->name ?? '' }}</td>
+                                    <td class="align-middle">
+                                        {{ $categories->get($vcard->category_id)->name ?? '' }}
+                                    </td>
+                                    <td class="align-middle">{{ $vcard->created_at }}</td>
+                                    <td class="align-middle">
+                                        <a href="{{ route('vCard.vcard-edit', $vcard->id) }}"
+                                            class="btn btn-sm btn-primary"><i class="bx bx-edit"></i>{{ __('yp.edit')
+                                            }}</a>
 
-                                            @if($cities->has($vcard->city_id))
-                                            @php
-                                            $user = auth()->user()->load('city');
-                                            $cityArr = $user->city->city_arr;
-                                            @endphp
-                                           <a target="_blank" href="{{ route('vCard.userPreview', ['city_arr' => Str::slug($cityArr), 'slug' => Str::slug($vcard->slug)]) }}" class="btn btn-sm btn-primary"><i class="bx bx-show"></i>देखे</a>
-
-                                           @endif
-                                           <form action="{{ route('vCard.vcard-delete', $vcard->id) }}" method="POST" style="display:inline;">
+                                        @if ($cities->has($vcard->city_id))
+                                        @php
+                                        $user = auth()->user()->load('city');
+                                        $cityArr = $user->city->city_arr;
+                                        @endphp
+                                        <a target="_blank"
+                                            href="{{ route('vCard.userPreview', ['city_arr' => Str::slug($cityArr), 'slug' => Str::slug($vcard->slug)]) }}"
+                                            class="btn btn-sm btn-primary"><i class="bx bx-show"></i>{{
+                                            __('yp.view_vcard') }}</a>
+                                        @endif
+                                        <form action="{{ route('vCard.vcard-delete', $vcard->id) }}" method="POST"
+                                            style="display:inline;">
                                             @csrf
-                                            <button type="submit" class="btn btn-sm btn-danger ms-3" onclick="return confirm('क्या आप इस वीकार्ड को हटाना चाहते हैं?')"><i class="bx bx-trash"></i></button>
+                                            <button type="submit" class="btn btn-sm btn-danger ms-3"
+                                                onclick="return confirm('{{ __('yp.delete_vcard_confirm') }}')"><i
+                                                    class="bx bx-trash"></i></button>
                                         </form>
-                                        </td>
-                                    </tr>
+                                    </td>
+                                </tr>
 
-                                    @php $index++; @endphp
+                                @php $index++; @endphp
                                 @endforeach
                             </tbody>
+
+
+
+
                         </table>
                     </div><!-- /.table-responsive -->
+
+                </div>
+
+            </div>
+            <div class="card mt-3">
+                <div class="card-body text-center p-4">
+                    <h5 class="card-title fw-bold mb-3">{{ __('yp.add_your_business_listing') }}</h5>
+                    <p class="card-text text-muted mb-4">{{ __('yp.get_business_online') }}</p>
+                    <a href="{{ route('vCard.business-listing-register') }}" class="btn btn-primary btn-lg px-5">
+                        <i class="bx bx-plus-circle me-1"></i> {{ __('yp.add_business_listing') }}
+                    </a>
                 </div>
             </div>
         </div>

@@ -24,6 +24,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 
 
 class ListingController extends Controller
@@ -96,7 +97,7 @@ class ListingController extends Controller
             Log::error('Error in showByCategory: ' . $e->getMessage());
 
             // Redirect back with error message
-            return redirect()->back()->withErrors(['error' => 'An error occurred while loading the category listings.']);
+            return redirect()->back()->withErrors(['error' => __('yp.category_listings_error')]);
         }
     }
 
@@ -104,9 +105,31 @@ class ListingController extends Controller
     {
 
         try {
+
             $categories = Category::where('is_active', 1)->get();
             $cities = City::where('is_active', 1)->get();
-            $city = City::where('name', $city_name)->first();
+            $tmp = 0;
+            try {
+                $city = City::where(function ($query) use ($city_name) {
+                    $query->where('slug', '=', $city_name)
+                        ->orWhere('name', 'LIKE', "%{$city_name}%");
+                })->first();
+            } catch (\Exception $e) {
+
+                if ($tmp >= 2) {
+                    Session::put('locale', 'en');
+                    app()->setLocale('en');
+                    return redirect()->current();
+                }
+                $tmp++;
+            }
+
+
+            if (isset($city->locale_code)) {
+
+                Session::put('locale', $city->locale_code);
+                app()->setLocale($city->locale_code);
+            }
 
             if (!$city) {
                 $portal = Portal::where('slug', $city_name)->first();
@@ -115,8 +138,12 @@ class ListingController extends Controller
                 }
             }
             if (!$city) {
-                $city = City::where('name', 'LIKE', "%{$city_name}%")->first();
+                $city = City::where(function ($query) use ($city_name) {
+                    $query->where('slug', '=', $city_name)
+                        ->orWhere('name', 'LIKE', "%{$city_name}%");
+                })->first();
             }
+
             setcookie('register_city', $city->id, time() + 3600, '/');
             $city_name = $city->name;
             $portal = Portal::where('id', $city->portal_id)->first();
@@ -164,10 +191,11 @@ class ListingController extends Controller
                     }
                 }
             });
+
             return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'city', 'city_name', 'portal'));
         } catch (\Exception $e) {
             return $e;
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ']);
+            return redirect()->back()->withErrors(['error' => __('yp.fetch_data_error')]);
         }
     }
     ##------------------------- END---------------------##
@@ -220,7 +248,7 @@ class ListingController extends Controller
 
             return view('yellowpages::home.categories', compact('listings', 'categories', 'city', 'portal'));
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ']);
+            return redirect()->back()->withErrors(['error' => __('yp.fetch_data_error')]);
         }
     }
     ##------------------------- END ---------------------##
@@ -257,7 +285,7 @@ class ListingController extends Controller
                 'social_media'
             ));
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ']);
+            return redirect()->back()->withErrors(['error' => __('yp.listing_submitted_title')]);
         }
     }
     ##------------------------- END---------------------##
@@ -265,16 +293,27 @@ class ListingController extends Controller
     ##------------------------- Add Listing ---------------------##
     public function store(BusinessListingRequest $request)
     {
-        //  dd($request->all());
         $validated = $request->validated();
-        // try {
+
+        // Handle image upload
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('yellowpages/business', 's3');
+            $validated['image'] = $request->file('image')->store('yellowpages/business', 'public');
         } else {
             $validated['image'] = null;
         }
-        $cityName = City::find($validated['city_id'])->name ?? '';
-        $businessAddress = implode(' ', array_filter([
+
+        // Handle logo upload
+        if ($request->hasFile('logo')) {
+            $validated['logo'] = $request->file('logo')->store('yellowpages/logos', 'public');
+        } else {
+            $validated['logo'] = null;
+        }
+
+        // Use location if city_id is not provided
+        $cityId = $validated['city_id'] ?? $validated['location'];
+        $cityName = City::find($cityId)->name ?? '';
+
+        $businessAddress = $validated['business_address'] ?? implode(', ', array_filter([
             $validated['house_number'] ?? '',
             $validated['street'] ?? '',
             $validated['area_name'] ?? '',
@@ -284,7 +323,7 @@ class ListingController extends Controller
 
         $data = [
             'user_id' => Auth::id(),
-            'city_id' => $validated['city_id'] ?? null,
+            'city_id' => $cityId,
             'listing_title' => $validated['listingTitle'] ?? '',
             'tagline' => $validated['tagline'] ?? '',
             'business_name' => $validated['businessName'] ?? '',
@@ -298,54 +337,57 @@ class ListingController extends Controller
             'description' => $validated['description'] ?? null,
             'business_address' => $businessAddress,
             'business_img' => $validated['image'],
-            'agree' => isset($validated['agree']) ? 1 : 0,
+            'logo' => $validated['logo'],
+            'agree' => 1, // Validation ensures it's accepted
         ];
 
-        $listing = BusinessListing::create($data);
+        try {
+            DB::beginTransaction();
 
-        User::where('id', Auth::id())->update([
-            'email' => $validated['primaryEmail'] ?? null,
-            'phone' => $validated['primaryPhone'] ?? null,
-            'name' => $validated['primaryContact'] ?? null,
-        ]);
+            $listing = BusinessListing::create($data);
 
-        if (!empty($validated['socialId'])) {
-            $listing->socialMedia()->delete();
-            foreach ($validated['socialId'] as $index => $socialId) {
-                BusinessSocialMedia::create([
-                    'listing_id' => $listing->id,
-                    'social_id' => $socialId,
-                    'description' => $validated['socialDescription'][$index] ?? null,
-                ]);
-            }
-        }
+            User::where('id', Auth::id())->update([
+                'email' => $validated['primaryEmail'] ?? null,
+                'phone' => $validated['primaryPhone'] ?? null,
+                'name' => $validated['primaryContact'] ?? null,
+            ]);
 
-        if (!empty($validated['day'])) {
-            try {
-
-
-                foreach ($validated['day'] as $index => $day) {
-                    BusinessHour::create([
-                        'business_id' => $listing->id,
-                        'day' => $day,
-                        'open_time' => $validated['open_time'][$index] ?? null,
-                        'close_time' => $validated['close_time'][$index] ?? null,
-                        'open_time_2' => $validated['open_time_2'][$index] ?? null,
-                        'close_time_2' => $validated['close_time_2'][$index] ?? null,
-                        'is_24_hours' => !empty($validated['is_24_hours'][$index]) ? 1 : 0,
-                        'add_2nd_time_slot' => !empty($validated['add_2nd_time_slot'][$index]) ? 1 : 0,
-                    ]);
+            if (!empty($validated['socialId'])) {
+                foreach ($validated['socialId'] as $index => $socialId) {
+                    if (!empty($socialId)) {
+                        BusinessSocialMedia::create([
+                            'listing_id' => $listing->id,
+                            'social_id' => $socialId,
+                            'description' => $validated['socialDescription'][$index] ?? null,
+                        ]);
+                    }
                 }
-            } catch (\Exception $e) {
-                dd($e->getMessage());
             }
-        }
 
-        return redirect()->route('yp.listing.submit')->with('success', 'Listing created/updated successfully!');
-        // } catch (\Exception $e) {
-        //     Log::error('Business Listing Store Error: ' . $e->getMessage());
-        //     return redirect()->back()->withErrors(['error' => 'An error occurred while processing your request. Please try again.']);
-        // }
+            if (!empty($validated['day'])) {
+                foreach ($validated['day'] as $index => $day) {
+                    if (!empty($day)) {
+                        BusinessHour::create([
+                            'business_id' => $listing->id,
+                            'day' => $day,
+                            'open_time' => $validated['open_time'][$index] ?? null,
+                            'close_time' => $validated['close_time'][$index] ?? null,
+                            'open_time_2' => $validated['open_time_2'][$index] ?? null,
+                            'close_time_2' => $validated['close_time_2'][$index] ?? null,
+                            'is_24_hours' => isset($validated['is_24_hours'][$index]) ? 1 : 0,
+                            'add_2nd_time_slot' => isset($validated['add_2nd_time_slot'][$index]) ? 1 : 0,
+                        ]);
+                    }
+                }
+            }
+
+            DB::commit();
+            return redirect()->route('yp.listing.submit')->with('success', __('yp.listing_created_success'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Business Listing Store Error: ' . $e->getMessage());
+            return redirect()->back()->withInput()->withErrors(['error' => __('yp.generic_error')]);
+        }
     }
 
     ##------------------------- END---------------------##
@@ -355,7 +397,7 @@ class ListingController extends Controller
     {
         try {
             // Fetch the listing or fail with a 404
-            $listing = BusinessListing::with('address')->findOrFail($listingId);
+            $listing = BusinessListing::with(['address', 'products'])->findOrFail($listingId);
             $listingHours = BusinessHour::where('business_id', $listing->id)->get();
 
             // Check if the user is not the owner of this specific listing
@@ -426,7 +468,7 @@ class ListingController extends Controller
             // return view('yellowpages::home.listing', compact('listing', 'listingHours'));
 
         } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Listing not found.');
+            return redirect()->back()->with('error', __('yp.listing_not_found'));
         }
     }
 
@@ -444,7 +486,7 @@ class ListingController extends Controller
                 ->exists();
 
             if ($exists) {
-                return redirect()->back()->with('error', 'This business is already saved!');
+                return redirect()->back()->with('error', __('yp.business_already_saved'));
             }
 
             Savelisting::create([
@@ -452,9 +494,9 @@ class ListingController extends Controller
                 'business_id' => $id,
             ]);
 
-            return redirect()->back()->with('success', 'Saved successfully!');
+            return redirect()->back()->with('success', __('yp.saved_success'));
         } catch (\Exception $e) {
-            return redirect()->back()->withErrors(['error' => 'An error occurred: ']);
+            return redirect()->back()->withErrors(['error' => __('yp.fetch_data_error')]);
         }
     }
     ##------------------------- Save Listing ---------------------##

@@ -9,7 +9,7 @@ class StoreVCardRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
-  
+
 
     /**
      * Get the validation rules that apply to the request.
@@ -47,27 +47,27 @@ class StoreVCardRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'profile.required'       => 'प्रोफ़ाइल छवि आवश्यक है।',
-            'profile.image'          => 'प्रोफ़ाइल एक मान्य छवि होनी चाहिए।',
-            'profile.max'            => 'प्रोफ़ाइल छवि का आकार अधिकतम 2MB होना चाहिए।',
-            'category_id.required'   => 'श्रेणी आवश्यक है।',
-            'category_id.exists'     => 'चयनित श्रेणी अमान्य है।',
-            'city_id.required'       => 'शहर आवश्यक है।',
-            'city_id.exists'         => 'चयनित शहर अमान्य है।',
-            'name.required'          => 'नाम आवश्यक है।',
-            'house_number.required'  => 'मकान नंबर आवश्यक है।',
-            'road_street.required'   => 'सड़क/गली आवश्यक है।',
-            'area_name.required'     => 'क्षेत्र का नाम आवश्यक है।',
-            'pincode.string'         => 'पिन कोड एक मान्य स्ट्रिंग होनी चाहिए।',
-            'aadhar.string'          => 'आधार संख्या एक मान्य स्ट्रिंग होनी चाहिए।',
-            'dob.date'               => 'जन्मतिथि एक मान्य तिथि होनी चाहिए।',
-            'aadhar_front.image'     => 'आधार का अगला भाग एक मान्य छवि होनी चाहिए।',
-            'aadhar_back.image'      => 'आधार का पिछला भाग एक मान्य छवि होनी चाहिए।',
-            'dynamic_name.array'     => 'डायनामिक नाम एक सूची होनी चाहिए।',
-            'dynamic_data.array'     => 'डायनामिक डेटा एक सूची होनी चाहिए।',
-            'dynamic_icon.array'     => 'डायनामिक आइकन एक सूची होनी चाहिए।',
-            'email.email' => 'कृपया एक मान्य ईमेल पता दर्ज करें।',
-            'email.unique' => 'यह ईमेल पहले से ही पंजीकृत है। कृपया दूसरा ईमेल उपयोग करें।',
+            'profile.required'       => __('formyp.profile_image_required'),
+            'profile.image'          => __('formyp.profile_image_invalid'),
+            'profile.max'            => __('formyp.profile_image_max'),
+            'category_id.required'   => __('formyp.category_required'),
+            'category_id.exists'     => __('formyp.category_invalid'),
+            'city_id.required'       => __('formyp.city_required'),
+            'city_id.exists'         => __('formyp.city_invalid'),
+            'name.required'          => __('formyp.name_required'),
+            'house_number.required'  => __('formyp.house_number_required'),
+            'road_street.required'   => __('formyp.road_street_required'),
+            'area_name.required'     => __('formyp.area_name_required'),
+            'pincode.string'         => __('formyp.pincode_invalid'),
+            'aadhar.string'          => __('formyp.aadhar_invalid'),
+            'dob.date'               => __('formyp.dob_invalid'),
+            'aadhar_front.image'     => __('formyp.aadhar_front_invalid'),
+            'aadhar_back.image'      => __('formyp.aadhar_back_invalid'),
+            'dynamic_name.array'     => __('formyp.dynamic_name_invalid'),
+            'dynamic_data.array'     => __('formyp.dynamic_data_invalid'),
+            'dynamic_icon.array'     => __('formyp.dynamic_icon_invalid'),
+            'email.email'            => __('formyp.email_invalid'),
+            'email.unique'           => __('formyp.email_already_registered'),
         ];
     }
 }

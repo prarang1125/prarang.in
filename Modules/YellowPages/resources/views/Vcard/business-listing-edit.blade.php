@@ -1,527 +1,621 @@
 @extends('yellowpages::layout.vcard.vcard')
-@section('title', 'Edit Business Listing')
+
+@section('title', __('formyp.edit_listing_breadcrumb'))
+
 @section('content')
+
+<style>
+    /* Card title */
+    .card .card-body .card-title {
+        font-weight: 700;
+        font-size: 24px;
+    }
+
+    /* Text uppercase */
+    #listingForm .text-uppercase {
+        padding-left: 4px;
+        padding-right: 8px;
+        padding-top: 10px;
+        padding-bottom: 8px;
+        font-weight: 700;
+    }
+</style>
 
 <div class="page-content">
     <!-- Breadcrumb -->
     <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
-        <div class="breadcrumb-title pe-3">विकार्ड</div>
+        <div class="breadcrumb-title pe-3">{{ __('formyp.vcard_breadcrumb') }}</div>
         <div class="ps-3">
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb mb-0 p-0">
-                    <li class="breadcrumb-item">
-                        <a href="{{ route('vCard.listing-edit', $listing->id) }}"><i class="bx bx-list-ul"></i></a>
+                    <li class="breadcrumb-item"><a href="{{ route('vCard.dashboard') }}"><i
+                                class="bx bx-home-alt"></i></a>
                     </li>
-                    <li class="breadcrumb-item active" aria-current="page">व्यवसाय सूची संपादित करें</li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ __('formyp.edit_listing_breadcrumb') }}
+                    </li>
                 </ol>
             </nav>
         </div>
     </div>
 
-    <!-- Header Section -->
-  
-    <div style="text-align: center;">
-        <h1 class="position-relative z-index-1">अपनी सूची संपादित करें</h1>
+    <div class="row">
+        <div class="col-xl-9 mx-auto">
+            <div class="card border-top border-0 border-4 border-primary">
+                <div class="card-body p-5">
+                    <div class="card-title d-flex align-items-center">
+                        <div><i class="bx bxs-edit me-1 font-22 text-primary"></i></div>
+                        <h5 class="mb-0 text-primary">{{ __('formyp.edit_listing_heading') }}</h5>
+                    </div>
+                    <p class="mb-4">{{ __('formyp.add_listing_details_sub') }}</p>
+                    <hr>
+
+                    <form action="{{ route('vCard.listing-update', $listing->id) }}" method="POST" id="listingForm"
+                        enctype="multipart/form-data" class="row g-3">
+                        @csrf
+                        @method('PUT')
+
+                        <!-- Section: Primary Details -->
+                        <div class="col-12">
+                            <h6 class="mb-0 text-uppercase">{{ __('formyp.primary_listing_details') }}</h6>
+                            <hr>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="location" class="form-label">{{ __('formyp.location') }} <span
+                                    class="text-danger">*</span></label>
+                            <select id="location" class="form-select @error('location') is-invalid @enderror"
+                                name="location">
+                                <option selected disabled>{{ __('formyp.select_location') }}</option>
+                                @foreach ($cities as $city)
+                                <option value="{{ $city->id }}" {{ old('location', $listing->city_id) == $city->id ?
+                                    'selected' : '' }}>
+                                    {{ $city->name }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('location')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="listingTitle" class="form-label">{{ __('formyp.listing_title') }} <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control @error('listingTitle') is-invalid @enderror"
+                                id="listingTitle" name="listingTitle"
+                                value="{{ old('listingTitle', $listing->listing_title) }}"
+                                placeholder="{{ __('formyp.enter_listing_title') }}">
+                            @error('listingTitle')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="toggleTagline" {{ $listing->tagline
+                                ? 'checked' : '' }} onclick="toggleTaglineField()">
+                                <label class="form-check-label" for="toggleTagline">{{ __('formyp.has_tagline')
+                                    }}</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12" id="taglineField"
+                            style="display: {{ $listing->tagline ? 'block' : 'none' }};">
+                            <label for="tagline" class="form-label">{{ __('formyp.tagline') }}</label>
+                            <input type="text" class="form-control @error('tagline') is-invalid @enderror" id="tagline"
+                                name="tagline" value="{{ old('tagline', $listing->tagline) }}"
+                                placeholder="{{ __('formyp.enter_tagline') }}">
+                            @error('tagline')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="businessName" class="form-label">{{ __('formyp.business_name') }} <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control @error('businessName') is-invalid @enderror"
+                                id="businessName" name="businessName"
+                                value="{{ old('businessName', $listing->business_name) }}"
+                                placeholder="{{ __('formyp.enter_business_name') }}">
+                            @error('businessName')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="businessType" class="form-label">{{ __('formyp.business_type') }} <span
+                                    class="text-danger">*</span></label>
+                            <select id="businessType" class="form-select @error('businessType') is-invalid @enderror"
+                                name="businessType">
+                                <option selected disabled>{{ __('formyp.select_type') }}</option>
+                                @foreach ($company_legal_type as $type)
+                                <option value="{{ $type->id }}" {{ old('businessType', $listing->legal_type_id) ==
+                                    $type->id ? 'selected' : '' }}>
+                                    {{ __('yp.biz_type.' . $type->id) }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('businessType')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="employees" class="form-label">{{ __('formyp.employee_range') }} <span
+                                    class="text-danger">*</span></label>
+                            <select id="employees" class="form-select @error('employees') is-invalid @enderror"
+                                name="employees">
+                                <option selected disabled>{{ __('formyp.select_employee_count') }}</option>
+                                @foreach ($number_of_employees as $range)
+                                <option value="{{ $range->id }}" {{ old('employees', $listing->employee_range_id) ==
+                                    $range->id ? 'selected' : '' }}>
+                                    {{ __('yp.emp_no.' . $range->id) }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('employees')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="turnover" class="form-label">{{ __('formyp.turnover') }} <span
+                                    class="text-danger">*</span></label>
+                            <select id="turnover" class="form-select @error('turnover') is-invalid @enderror"
+                                name="turnover">
+                                <option selected disabled>{{ __('formyp.select_turnover') }}</option>
+                                @foreach ($monthly_turnovers as $turnover)
+                                <option value="{{ $turnover->id }}" {{ old('turnover', $listing->turnover_id) ==
+                                    $turnover->id ? 'selected' : '' }}>
+                                    {{ __('yp.turnovers.' . $turnover->id) }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('turnover')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="advertising" class="form-label">{{ __('formyp.advertising') }} <span
+                                    class="text-danger">*</span></label>
+                            <select id="advertising" class="form-select @error('advertising') is-invalid @enderror"
+                                name="advertising">
+                                <option selected disabled>{{ __('formyp.select_advertising') }}</option>
+                                @foreach ($monthly_advertising_mediums as $medium)
+                                <option value="{{ $medium->id }}" {{ old('advertising', $listing->advertising_medium_id)
+                                    == $medium->id ? 'selected' : '' }}>
+                                    {{ __('yp.ad_type.' . $medium->id) }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('advertising')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="advertising_price" class="form-label">{{ __('formyp.ad_price_label') }} <span
+                                    class="text-danger">*</span></label>
+                            <select id="advertising_price"
+                                class="form-select @error('advertising_price') is-invalid @enderror"
+                                name="advertising_price">
+                                <option selected disabled>{{ __('formyp.select_ad_price') }}</option>
+                                @foreach ($monthly_advertising_prices as $price)
+                                <option value="{{ $price->id }}" {{ old('advertising_price', $listing->
+                                    advertising_price_id) == $price->id ? 'selected' : '' }}>
+                                    {{ __('yp.ad_price.' . $price->id) }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('advertising_price')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="category" class="form-label">{{ __('formyp.category') }} <span
+                                    class="text-danger">*</span></label>
+                            <select id="category" class="form-select @error('category') is-invalid @enderror"
+                                name="category">
+                                <option selected disabled>{{ __('formyp.select_category_opt') }}</option>
+                                @foreach ($categories as $cat)
+                                <option value="{{ $cat->id }}" {{ old('category', $listing->category_id) == $cat->id ?
+                                    'selected' : '' }}>
+                                    {{ __('yp.' . $cat->name) }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('category')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <!-- Section: Contact Details -->
+                        <div class="col-12 mt-4">
+                            <h6 class="mb-0 text-uppercase">{{ __('formyp.contact_info') }}</h6>
+                            <hr>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="primaryContact" class="form-label">{{ __('formyp.primary_contact') }} <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control @error('primaryContact') is-invalid @enderror"
+                                id="primaryContact" name="primaryContact"
+                                value="{{ old('primaryContact', $user->name) }}"
+                                placeholder="{{ __('formyp.enter_primary_contact') }}">
+                            @error('primaryContact')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="primaryPhone" class="form-label">{{ __('formyp.primary_phone') }} <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control @error('primaryPhone') is-invalid @enderror"
+                                id="primaryPhone" name="primaryPhone" value="{{ old('primaryPhone', $user->phone) }}"
+                                placeholder="{{ __('formyp.enter_primary_phone') }}">
+                            @error('primaryPhone')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="primaryEmail" class="form-label">{{ __('formyp.primary_email') }} <span
+                                    class="text-danger">*</span></label>
+                            <input type="email" class="form-control @error('primaryEmail') is-invalid @enderror"
+                                id="primaryEmail" name="primaryEmail" value="{{ old('primaryEmail', $user->email) }}"
+                                placeholder="{{ __('formyp.enter_primary_email') }}">
+                            @error('primaryEmail')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="website" class="form-label">{{ __('formyp.website') }}</label>
+                            <input type="url" class="form-control @error('website') is-invalid @enderror" id="website"
+                                name="website" value="{{ old('website', $listing->website) }}"
+                                placeholder="{{ __('formyp.enter_website') }}">
+                            @error('website')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <!-- Section: Address Details -->
+                        <div class="col-12 mt-4">
+                            <h6 class="mb-0 text-uppercase">{{ __('formyp.address_details') }}</h6>
+                            <hr>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="business_address" class="form-label">{{ __('formyp.business_address') }}</label>
+                            <input type="text" class="form-control @error('business_address') is-invalid @enderror"
+                                id="business_address" name="business_address"
+                                value="{{ old('business_address', $listing->business_address) }}"
+                                placeholder="{{ __('formyp.enter_business_address') }}">
+                            @error('business_address')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <!-- Section: Description -->
+                        <div class="col-12 mt-4">
+                            <h6 class="mb-0 text-uppercase">{{ __('formyp.more_info') }}</h6>
+                            <hr>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="description" class="form-label">{{ __('formyp.description') }}</label>
+                            <textarea class="form-control @error('description') is-invalid @enderror" id="description"
+                                name="description" rows="4"
+                                placeholder="{{ __('formyp.enter_description') }}">{{ old('description', $listing->description) }}</textarea>
+                            @error('description')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <!-- Section: Working Hours -->
+                        <div class="col-12 mt-4">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h6 class="mb-0 text-uppercase">{{ __('formyp.working_hours') }}</h6>
+                                <button type="button" class="btn btn-sm btn-outline-primary" onclick="addWorkingHour()">
+                                    <i class="bx bx-plus"></i> {{ __('formyp.add_day') }}
+                                </button>
+                            </div>
+                            <hr>
+                        </div>
+
+                        <div class="col-12">
+                            <div id="workingHoursContainer">
+                                @php
+                                $hours = old('day') ? collect(old('day')) : $listinghours;
+                                @endphp
+
+                                @foreach ($hours as $index => $hour)
+                                <div class="row g-2 mb-3 align-items-end working-hour-row">
+                                    <div class="col-md-3">
+                                        <label class="form-label small">{{ __('formyp.select_day') }}</label>
+                                        <select name="day[]" class="form-select form-select-sm">
+                                            @foreach (['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
+                                            'Saturday', 'Sunday'] as $dayName)
+                                            @php
+                                            $dayLower = strtolower($dayName);
+                                            $selectedDay = old(
+                                            'day.' . $index,
+                                            is_string($hour) ? $hour : $hour->day,
+                                            );
+                                            @endphp
+                                            <option value="{{ $dayLower }}" {{ $selectedDay==$dayLower ? 'selected' : ''
+                                                }}>
+                                                {{ __('formyp.' . $dayLower) }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label small">Open</label>
+                                        <input type="time" name="open_time[]" class="form-control form-control-sm"
+                                            value="{{ old('open_time.' . $index, is_string($hour) ? '' : $hour->open_time) }}">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label small">Close</label>
+                                        <input type="time" name="close_time[]" class="form-control form-control-sm"
+                                            value="{{ old('close_time.' . $index, is_string($hour) ? '' : $hour->close_time) }}">
+                                    </div>
+                                    <div class="col-md-2 text-center">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox"
+                                                name="is_24_hours[{{ $index }}]" value="1" {{ old('is_24_hours.' .
+                                                $index, is_string($hour) ? false : $hour->is_24_hours) ? 'checked' : ''
+                                            }}>
+                                            <label class="form-check-label small">{{ __('formyp.24_hours') }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="button" class="btn btn-sm btn-outline-danger"
+                                            onclick="removeRow(this)">
+                                            <i class="bx bx-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <!-- Section: Social Media -->
+                        <div class="col-12 mt-4">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h6 class="mb-0 text-uppercase">{{ __('formyp.social_media_links') }}</h6>
+                                <button type="button" class="btn btn-sm btn-outline-primary" onclick="addSocialMedia()">
+                                    <i class="bx bx-plus"></i> {{ __('formyp.add_new') }}
+                                </button>
+                            </div>
+                            <hr>
+                        </div>
+
+                        <div class="col-12">
+                            <div id="socialMediaContainer">
+                                @php
+                                $socials = old('socialId') ? collect(old('socialId')) : $social_media_data;
+                                @endphp
+
+                                @foreach ($socials as $index => $socialItem)
+                                <div class="row g-2 mb-3 align-items-end social-media-row">
+                                    <div class="col-md-4">
+                                        <label class="form-label small">{{ __('formyp.select_social_media') }}</label>
+                                        <select name="socialId[]" class="form-select form-select-sm">
+                                            @foreach ($social_media as $platform)
+                                            @php
+                                            $selectedPlatform = old(
+                                            'socialId.' . $index,
+                                            is_numeric($socialItem)
+                                            ? $socialItem
+                                            : (is_object($socialItem)
+                                            ? $socialItem->social_id
+                                            : null),
+                                            );
+                                            @endphp
+                                            <option value="{{ $platform->id }}" {{ $selectedPlatform==$platform->id ?
+                                                'selected' : '' }}>
+                                                {{ __('yp.social_types.' . $platform->id) }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small">{{ __('formyp.enter_link_desc') }}</label>
+                                        <input type="text" name="socialDescription[]"
+                                            class="form-control form-control-sm"
+                                            value="{{ old('socialDescription.' . $index, is_numeric($socialItem) ? '' : (is_object($socialItem) ? $socialItem->description : '')) }}"
+                                            placeholder="https://...">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="button" class="btn btn-sm btn-outline-danger"
+                                            onclick="removeRow(this)">
+                                            <i class="bx bx-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <!-- Section: Media -->
+                        <div class="col-12 mt-4">
+                            <h6 class="mb-0 text-uppercase">{{ __('formyp.media') }}</h6>
+                            <hr>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="image" class="form-label">{{ __('formyp.cover_image') }}</label>
+                            <input type="file" class="form-control @error('image') is-invalid @enderror" id="image"
+                                name="image" accept="image/*" onchange="previewMedia(this, 'coverPreview')">
+                            <div class="form-text text-muted">Max size: 2048KB. Formats: jpeg, png, jpg, gif.</div>
+                            <div class="mt-2">
+                                <img id="coverPreview" src="{{ Storage::url($listing->business_img ?? 'default.jpg') }}"
+                                    alt="Cover Preview" class="img-thumbnail"
+                                    style="max-height: 150px; {{ $listing->business_img ? '' : 'display:none;' }}">
+                            </div>
+                            @error('image')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="logo" class="form-label">{{ __('formyp.logo') }}</label>
+                            <input type="file" class="form-control @error('logo') is-invalid @enderror" id="logo"
+                                name="logo" accept="image/*" onchange="previewMedia(this, 'logoPreview')">
+                            <div class="form-text text-muted">Max size: 1024KB. Formats: jpeg, png, jpg, gif.</div>
+                            <div class="mt-2">
+                                <img id="logoPreview" src="{{ Storage::url($listing->logo ?? 'default.jpg') }}"
+                                    alt="Logo Preview" class="img-thumbnail"
+                                    style="max-height: 150px; {{ $listing->logo ? '' : 'display:none;' }}">
+                            </div>
+                            @error('logo')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-12 mt-5">
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary px-5">{{ __('formyp.update_listing_btn')
+                                    }}</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-    
+</div>
+@endsection
 
-    <!-- Main Form -->
-    <form action="{{ route('vCard.listing-update', $listing->id) }}" id="listingForm" method="POST" enctype="multipart/form-data" class="form-container">
-        @csrf
-        @method('PUT')
+@push('scripts')
+<script>
+    function toggleTaglineField() {
+            const taglineField = document.getElementById('taglineField');
+            const checkbox = document.getElementById('toggleTagline');
+            taglineField.style.display = checkbox.checked ? 'block' : 'none';
+        }
 
-        <!-- Error Messages -->
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
+        function removeRow(btn) {
+            btn.closest('.row').remove();
+        }
 
-        <!-- Primary Details Section -->
-        <div class="form-section" style="max-width: 900px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-            <h5>प्राथमिक सूची विवरण</h5>
-            <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
-            <div class="mb-3">
-                <label for="location" class="form-label">जगह</label>
-                <select id="location" name="location" class="form-select">
-                    <option selected disabled>स्थान चुनें</option>
-                    @foreach($cities as $city)
-                    <option value="{{ $city->id }}" 
-                        {{ (old('legal_type_id', $listing->city_id) == $city->id) ? 'selected' : '' }}>
-                        {{ $city->name }}
-                    </option>
-                    @endforeach
-                </select>
-            </div>
-            <div class="mb-3">
-                <label for="listingTitle" class="form-label">लिस्टिंग शीर्षक</label>
-                <input type="text" id="listingTitle" name="listingTitle" class="form-control" value="{{ old('listing_title', $listing->listing_title) }}">
-            </div>
-            <div class="form-check mb-3">
-                <input type="checkbox" class="form-check-input" id="hasTagline" {{ $listing->tagline ? 'checked' : '' }}
-                       onclick="toggleTaglineField()">
-                <label class="form-check-label" for="hasTagline">क्या आपके व्यवसाय की कोई टैगलाइन है?</label>
-            </div>
-            <div class="mb-3" id="taglineField" style="display: {{ $listing->tagline ? 'block' : 'none' }};">
-                <label for="tagline" class="form-label">टैगलाइन</label>
-                <input type="text" id="tagline" name="tagline" class="form-control" value="{{ old('tagline', $listing->tagline) }}" placeholder="Enter tagline">
-            </div>
-                <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label for="businessName" class="form-label">व्यवसाय/कंपनी का नाम</label>
-                        <input type="text" id="businessName" name="businessName" class="form-control" placeholder="व्यवसाय का नाम दर्ज करें" value="{{ old('businessName',$listing->business_name) }}">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="primaryPhone" class="form-label">फ़ोन नंबर</label>
-                        <input type="text" id="primaryPhone" name="primaryPhone" class="form-control" placeholder="प्राथमिक फ़ोन दर्ज करें" value="{{ old('primaryPhone', $user->phone) }}">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="primaryContact" class="form-label">संपर्क नाम</label>
-                        <input type="text" id="primaryContact" name="primaryContact" class="form-control" placeholder="प्राथमिक संपर्क नाम दर्ज करें" value="{{ old('primaryContact', $user->name) }}">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="primaryEmail" class="form-label">ईमेल</label>
-                        <input type="text" id="primaryEmail" name="primaryEmail" class="form-control" placeholder="प्राथमिक ईमेल दर्ज करें" value="{{ old('primaryEmail', $user->email) }}">
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="businessType" class="form-label">व्यवसाय/कंपनी कानूनी प्रकार *</label>
-                        <select id="businessType" name="businessType" class="form-select">
-                            <option value="" disabled selected>प्रकार चुनें</option>
-                            @foreach($company_legal_type as $Cl_type)
-                                <option value="{{ $Cl_type->id }}" {{ old('businessType',$listing->legal_type_id) == $Cl_type->id ? 'selected' : '' }}>
-                                    {{ $Cl_type->name }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="employee_range" class="form-label">व्यवसाय/कंपनी कर्मचारियों की संख्या (लगभग) *</label>
-                        <select id="employee_range" name="employees" class="form-select">
-                            <option value="" disabled selected>कर्मचारियों की संख्या चुनें</option>
-                            @foreach($number_of_employees as $number_employee)
-                                <option value="{{ $number_employee->id }}" 
-                                    {{ old('employees', $listing->employee_range_id) == $number_employee->id ? 'selected' : '' }}>
-                                    {{ $number_employee->range }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>                    
-                    <div class="col-md-6 mb-3">
-                        <label for="turnover" class="form-label">व्यवसाय/कंपनी का मासिक कारोबार (लगभग) *</label>
-                        <select id="turnover" name="turnover" class="form-select">
-                            <option value="" disabled selected>टर्नओवर(Turnover) चुनें</option>
-                            @foreach($monthly_turnovers as $turnovers)
-                                <option value="{{ $turnovers->id }}" {{ old('turnover',$listing->turnover_id) == $turnovers->id ? 'selected' : '' }}>
-                                    {{ $turnovers->range }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="advertising" class="form-label">व्यवसाय/कंपनी मासिक विज्ञापन (मध्यम)</label>
-                        <select id="advertising" name="advertising" class="form-select">
-                            <option value="" disabled selected>विज्ञापन का चयन करें</option>
-                            @foreach($monthly_advertising_mediums as $advertising)
-                                <option value="{{ $advertising->id }}" {{ old('advertising',$listing->advertising_medium_id) == $advertising->id ? 'selected' : '' }}>
-                                    {{ $advertising->medium }}
-                                </option>
-                            @endforeach
-                        </select>
-                    </div>
-                    <div class="col-md-6 mb-3">
-                        <label for="advertising_price" class="form-label">व्यवसाय/कंपनी विज्ञापन (मध्यम) मूल्य*</label>
-                        <select id="advertising_price" name="advertising_price" class="form-select">
-                            <option value="" disabled selected>विज्ञापन मूल्य चुनें</option>
-                            @foreach($monthly_advertising_prices as $advertising)
-                                <option value="{{ $advertising->id }}" {{ old('advertising_price',$listing->advertising_price_id) == $advertising->id ? 'selected' : '' }}>
-                                    {{ $advertising->range }}
-                                </option>
-                            @endforeach
-                        </select>
+        function previewMedia(input, previewId) {
+            const preview = document.getElementById(previewId);
+            if (input.files && input.files[0]) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.style.display = 'block';
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        let workingHourIndex = {{ old('day') ? count(old('day')) : (isset($listinghours) ? count($listinghours) : 0) }};
+
+        function addWorkingHour() {
+            const container = document.getElementById('workingHoursContainer');
+            const html = `
+            <div class="row g-2 mb-3 align-items-end working-hour-row animate__animated animate__fadeIn">
+                <div class="col-md-3">
+                    <label class="form-label small">{{ __('formyp.select_day') }}</label>
+                    <select name="day[]" class="form-select form-select-sm">
+                        <option value="monday">{{ __('formyp.monday') }}</option>
+                        <option value="tuesday">{{ __('formyp.tuesday') }}</option>
+                        <option value="wednesday">{{ __('formyp.wednesday') }}</option>
+                        <option value="thursday">{{ __('formyp.thursday') }}</option>
+                        <option value="friday">{{ __('formyp.friday') }}</option>
+                        <option value="saturday">{{ __('formyp.saturday') }}</option>
+                        <option value="sunday">{{ __('formyp.sunday') }}</option>
+                    </select>
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label small">Open</label>
+                    <input type="time" name="open_time[]" class="form-control form-control-sm">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label small">Close</label>
+                    <input type="time" name="close_time[]" class="form-control form-control-sm">
+                </div>
+                <div class="col-md-2 text-center">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="is_24_hours[${workingHourIndex}]" value="1">
+                        <label class="form-check-label small">{{ __('formyp.24_hours') }}</label>
                     </div>
                 </div>
-        <br>
-        <br>
-        <div style="max-width: 900px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-            <h5 style="margin-bottom: 15px;">श्रेणी और सेवाएँ</h5>
-            <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
-            <div style="display: flex; gap: 20px;">
-                <div style="flex: 1;">
-                    <label for="state" class="form-label">वर्ग *</label>
-                    <select id="state" class="form-select" name="category">
-                        <option selected>श्रेणी चुनना</option>
-                        @foreach($categories as $Cate)
-                        <option value="{{ $Cate->id }}" 
-                            {{ (old('advertising_medium_id ', $listing->category_id) == $Cate->id) ? 'selected' : '' }}>
-                            {{ $Cate->name }}
-                        </option>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeRow(this)">
+                        <i class="bx bx-trash"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+            container.insertAdjacentHTML('beforeend', html);
+            workingHourIndex++;
+        }
+
+        function addSocialMedia() {
+            const container = document.getElementById('socialMediaContainer');
+            const html = `
+            <div class="row g-2 mb-3 align-items-end social-media-row animate__animated animate__fadeIn">
+                <div class="col-md-4">
+                    <label class="form-label small">{{ __('formyp.select_social_media') }}</label>
+                    <select name="socialId[]" class="form-select form-select-sm">
+                        @foreach ($social_media as $platform)
+                            <option value="{{ $platform->id }}">{{ $platform->name }}</option>
                         @endforeach
                     </select>
                 </div>
-            </div>
-        </div>
-        <br><br>
-        <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-            <h5 style="margin-bottom: 15px;">और जानकारी</h5>
-            <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
-            <div style="margin-top: 15px;">
-                <label for="description">विवरण</label>
-                <textarea id="description" name="description" rows="4" style="width: 100%;">{{ old('description',$listing->description) }}</textarea>
-            </div>
-        </div>
-            <br>
-            <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd; font-family: Arial, sans-serif;">
-                <h5 style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">काम करने के घंटे</h5>
-                <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
-            
-                <!-- Schedule Container -->
-                <div id="schedule-container">
-                    @if($listinghours->isNotEmpty())
-                        @foreach($listinghours as $hour)
-                            <div class="day-schedule">
-                                <select name="day[]" class="day-select">
-                                    <option value="">-- दिन चुनें --</option>
-                                    <option value="monday" {{ $hour->day == 'monday' ? 'selected' : '' }}>सोमवार</option>
-                                    <option value="tuesday" {{ $hour->day == 'tuesday' ? 'selected' : '' }}>मंगलवार</option>
-                                    <option value="wednesday" {{ $hour->day == 'wednesday' ? 'selected' : '' }}>बुधवार</option>
-                                    <option value="thursday" {{ $hour->day == 'thursday' ? 'selected' : '' }}>गुरुवार</option>
-                                    <option value="friday" {{ $hour->day == 'friday' ? 'selected' : '' }}>शुक्रवार</option>
-                                    <option value="saturday" {{ $hour->day == 'saturday' ? 'selected' : '' }}>शनिवार</option>
-                                    <option value="sunday" {{ $hour->day == 'sunday' ? 'selected' : '' }}>रविवार</option>
-                                </select>
-            
-                                <input type="time" name="open_time[]" class="time-input" value="{{ $hour->open_time }}">
-                                <label>to</label>
-                                <input type="time" name="close_time[]" class="time-input" value="{{ $hour->close_time }}">
-            
-                                {{-- <label>
-                                    <input type="checkbox" name="is_24_hours[]" class="is-24-hours" value="0" {{ $hour->is_24_hours ? 'checked' : '' }}> 24 घंटे
-                                </label> --}}
-            
-                                <label>
-                                    <input type="checkbox" class="add-2nd-slot" {{ $hour->open_time_2 ? 'checked' : '' }}> दूसरा स्लॉट जोड़ें
-                                </label>
-            
-                                <button type="button" class="remove-day-btn">&#x2716;</button>
-            
-                                <!-- Second Time Slot -->
-                                <div class="second-time-slot" style="display: {{ $hour->open_time_2 ? 'block' : 'none' }}; margin-top: 10px;">
-                                    <input type="time" name="open_time_2[]" class="time-input" value="{{ $hour->open_time_2 }}">
-                                    <label>to</label>
-                                    <input type="time" name="close_time_2[]" class="time-input" value="{{ $hour->close_time_2 }}">
-                                </div>
-                            </div>
-                        @endforeach
-                    @else
-                        <p>कोई व्यावसायिक घंटे सेट नहीं हैं।</p>
-                    @endif
+                <div class="col-md-6">
+                    <label class="form-label small">{{ __('formyp.enter_link_desc') }}</label>
+                    <input type="text" name="socialDescription[]" class="form-control form-control-sm" placeholder="https://...">
                 </div>
-            
-                <!-- Add New Day Button -->
-                <button type="button" id="add-day-btn">+ Add Day</button>
-            </div>            
-            
-            <br>
-            <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-                <h5 style="margin-bottom: 15px;">व्यवसाय/कंपनी का पता</h5>
-                <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
-            
-                <div style="margin-bottom: 10px;">
-                    <label for="business_address">व्यवसाय/कंपनी का पता :</label>
-                    <input type="text" id="business_address" name="business_address" placeholder="सड़क/गली का नाम दर्ज करें" style="width: 100%; padding: 8px;" value="{{ old('business_address', $listing->business_address ?? '') }}">
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeRow(this)">
+                        <i class="bx bx-trash"></i>
+                    </button>
                 </div>
-            
-            
-                <h5 style="margin-bottom: 15px;">संपर्क जानकारी</h5>
-                <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
-            
-                <div style="margin-bottom: 10px;">
-                    <label for="website">वेबसाइट:</label>
-                    <input type="url" id="website" name="website" placeholder="वेबसाइट का नाम दर्ज करें" style="width: 100%; padding: 8px;" value="{{ old('website', $listing->website ?? '') }}">
-                </div>
-            </div>      
-            <br>
-            <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-                <h5 style="margin-bottom: 15px;">सोशल मीडिया लिंक</h5>
-                <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
-            
-                <div id="social-media-container">
-                    @if(!empty($social_media_data) && count($social_media_data) > 0)
-                        @foreach($social_media_data as $data)
-                            <div class="social-media-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                                <select name="socialId[]" style="flex: 1; padding: 8px;">
-                                    <option value="">स्थान चुनें</option>
-                                    @foreach($social_media as $social)
-                                        <option value="{{ $social->id }}" 
-                                            @if(isset($data->social_id) && $data->social_id == $social->id) selected @endif>
-                                            {{ $social->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                <input type="text" name="socialDescription[]" value="{{ $data->description ?? '' }}" placeholder="अपना लिंक या विवरण दर्ज करें" style="flex: 2; padding: 8px;">
-                                <button type="button" class="removeSocialMedia" style="padding: 10px; background-color: red; color: white; border: none; cursor: pointer;">-</button>
-                            </div>
-                    @endforeach
-                    @else
-                        <div class="social-media-row" style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px;">
-                            <select name="socialId[]"  style="flex: 1; padding: 8px;">
-                                <option value="">स्थान चुनें</option>
-                                @foreach($social_media as $social)
-                                    <option value="{{ $social->id }}">{{ $social->name }}</option>
-                                @endforeach
-                            </select>
-                            <input type="text" name="socialDescription[]" placeholder="अपना लिंक या विवरण दर्ज करें" style="flex: 2; padding: 8px;">
-                            <button type="button" class="removeSocialMedia" style="padding: 10px; background-color: red; color: white; border: none; cursor: pointer;">-</button>
-                        </div>
-                    @endif
-                </div>
-        
-                <!-- Add Button -->
-                <button type="button" id="addSocialMedia" style="padding: 10px; background-color: green; color: white; border: none; cursor: pointer; margin-top: 10px;">+</button>
-            </div>
-            <br>
-            <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 0 5px rgba(0,0,0,0.1);">
-                <h5 style="margin-bottom: 15px;">मिडिया</h5>
-                <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
-                
-                <!-- Single Image Upload -->
-                <div style="border: 1px dashed #ddd; padding: 20px; text-align: center; color: #888; margin-bottom: 10px;">
-                    <input type="file" id="imageUpload" name="image" style="display: block; margin-top: 10px;" onchange="previewImage(event, 'previewImage')">
-            
-                    <!-- Show Old Image if Exists -->
-                    <img id="previewImage" 
-                        {{-- src="{{ $listing->business_img ? asset('storage/'.$listing->business_img) : '' }}"  --}}
-                        src="{{ Storage::url($listing->business_img ?? 'default.jpg') }}" 
-                        alt="Uploaded Image" 
-                        style="margin-top: 10px; max-width: 100px; border: 1px solid #ddd; {{ $listing->business_img ? '' : 'display: none;' }}">
-            
-                </div>
-            </div>
-            
-            <br>
-
-        <!-- Submit Button -->
-        <div class="text-center mt-4">
-            <button type="submit" class="btn btn-primary">Update Listing</button>
-        </div>
-    </form>
-</div>
-</div>
-
-<script>
-    // Toggle Tagline Field
-    function toggleTaglineField() {
-        const taglineField = document.getElementById('taglineField');
-        taglineField.style.display = taglineField.style.display === 'none' ? 'block' : 'none';
-    }
-
-    document.getElementById('add-day-btn').addEventListener('click', () => {
-    const container = document.getElementById('schedule-container');
-    const firstSchedule = container.querySelector('.day-schedule');
-
-    if (firstSchedule) {
-        // Clone an existing schedule
-        const newSchedule = firstSchedule.cloneNode(true);
-
-        // Reset values for cloned inputs
-        newSchedule.querySelectorAll('select, input').forEach(input => {
-            if (input.type === 'checkbox') {
-                input.checked = false;
-            } else {
-                input.value = '';
-                input.disabled = false;
-            }
-        });
-
-        // Hide second slot in the new schedule
-        newSchedule.querySelector('.second-time-slot').style.display = 'none';
-
-        // Append new schedule
-        container.appendChild(newSchedule);
-    } else {
-        // Create a new schedule if none exist
-        const newSchedule = document.createElement('div');
-        newSchedule.classList.add('day-schedule');
-
-        newSchedule.innerHTML = `
-            <select name="day[]" class="day-select">
-                <option value="">-- दिन चुनें --</option>
-                <option value="monday">सोमवार</option>
-                <option value="tuesday">मंगलवार</option>
-                <option value="wednesday">बुधवार</option>
-                <option value="thursday">गुरुवार</option>
-                <option value="friday">शुक्रवार</option>
-                <option value="saturday">शनिवार</option>
-                <option value="sunday">रविवार</option>
-            </select>
-            <input type="time" name="open_time[]" class="time-input">
-            <label>to</label>
-            <input type="time" name="close_time[]" class="time-input">
-         
-            <label>
-                <input type="checkbox" class="add-2nd-slot"> दूसरा स्लॉट जोड़ें
-            </label>
-            <button type="button" class="remove-day-btn">&#x2716;</button>
-            
-            <!-- Second Time Slot -->
-            <div class="second-time-slot" style="display: none; margin-top: 10px;">
-                <input type="time" name="open_time_2[]" class="time-input">
-                <label>to</label>
-                <input type="time" name="close_time_2[]" class="time-input">
             </div>
         `;
-
-        container.appendChild(newSchedule);
-    }
-});
-
-// Handle 24-hour checkbox toggle
-document.addEventListener('change', (e) => {
-    if (e.target.classList.contains('is-24-hours')) {
-        const parent = e.target.closest('.day-schedule');
-        parent.querySelectorAll('.time-input').forEach(input => {
-            input.disabled = e.target.checked;
-        });
-    }
-});
-
-// Show or hide the second time slot
-document.addEventListener('change', (e) => {
-    if (e.target.classList.contains('add-2nd-slot')) {
-        const parent = e.target.closest('.day-schedule');
-        const secondSlot = parent.querySelector('.second-time-slot');
-        secondSlot.style.display = e.target.checked ? 'block' : 'none';
-    }
-});
-
-// Remove a day schedule
-document.addEventListener('click', (e) => {
-    if (e.target.classList.contains('remove-day-btn')) {
-        e.target.closest('.day-schedule').remove();
-    }
-});
-document.addEventListener("DOMContentLoaded", function () {
-    document.getElementById("listingForm").addEventListener("submit", function (event) {
-        document.querySelectorAll('input[name="is_24_hours[]"]').forEach(checkbox => {
-            let hiddenInput = document.createElement("input");
-            hiddenInput.type = "hidden";
-            hiddenInput.name = checkbox.name; 
-            hiddenInput.value = checkbox.checked ? "yes" : "no";
-            this.appendChild(hiddenInput);
-            checkbox.remove(); 
-        });
-    });
-});
-
-
-// Collect and log schedules
-document.getElementById('submit-btn')?.addEventListener('click', () => {
-    const schedules = [];
-    document.querySelectorAll('.day-schedule').forEach(schedule => {
-        const day = schedule.querySelector('.day-select').value;
-        const openTime = schedule.querySelector('input[name="open_time[]"]').value;
-        const closeTime = schedule.querySelector('input[name="close_time[]"]').value;
-        const is24Hours = schedule.querySelector('.is-24-hours').checked;
-        let openTime2 = '', closeTime2 = '';
-        const secondSlot = schedule.querySelector('.second-time-slot');
-        if (secondSlot.style.display !== 'none') {
-            openTime2 = secondSlot.querySelector('input[name="open_time_2[]"]').value;
-            closeTime2 = secondSlot.querySelector('input[name="close_time_2[]"]').value;
+            container.insertAdjacentHTML('beforeend', html);
         }
 
-        schedules.push({
-            day,
-            openTime: is24Hours ? '24 Hours' : openTime,
-            closeTime: is24Hours ? '24 Hours' : closeTime,
-            is24Hours: is24Hours ? 1 : 0, // Set is_24_hours correctly // added the is24Hours to the object.
-            secondSlot: openTime2 && closeTime2 ? { openTime2, closeTime2 } : null,
+        // Initialize with one row if empty and no old input or existing data
+        document.addEventListener('DOMContentLoaded', function() {
+            if (document.getElementById('workingHoursContainer').children.length === 0) {
+                addWorkingHour();
+            }
+            if (document.getElementById('socialMediaContainer').children.length === 0) {
+                addSocialMedia();
+            }
         });
-    });
-
-    console.log(schedules);
-});
-
-    function previewImage(event, imgId) {
-        let reader = new FileReader();
-        reader.onload = function(){
-        let output = document.getElementById(imgId);
-        output.src = reader.result;
-        output.style.display = "block";
-      };
-    reader.readAsDataURL(event.target.files[0]);
-    }
-
-
-    document.addEventListener("DOMContentLoaded", function() {
-    // Add new social media row
-    document.getElementById("addSocialMedia").addEventListener("click", function() {
-        let container = document.getElementById("social-media-container");
-        console.log(container);
-        let newRow = document.createElement("div");
-        newRow.classList.add("social-media-row");
-        newRow.style.display = "flex";
-        newRow.style.alignItems = "center";
-        newRow.style.gap = "10px";
-        newRow.style.marginBottom = "10px";
-
-        let select = document.createElement("select");
-        select.name = "socialId[]";
-        // select.required = true;
-        select.style.flex = "1";
-        select.style.padding = "8px";
-
-        let defaultOption = document.createElement("option");
-        defaultOption.text = "स्थान चुनें";
-        defaultOption.value = "";
-        select.appendChild(defaultOption);
-
-        let socialMediaData = @json($social_media); // Convert Blade variable to JS array
-
-        socialMediaData.forEach(function(social) {
-            let option = document.createElement("option");
-            option.value = social.id;
-            option.text = social.name;
-            select.appendChild(option);
-        });
-
-        let input = document.createElement("input");
-        input.type = "text";
-        input.name = "socialDescription[]";
-        input.placeholder = "अपना लिंक या विवरण दर्ज करें";
-        input.style.flex = "2";
-        input.style.padding = "8px";
-
-        let removeButton = document.createElement("button");
-        removeButton.type = "button";
-        removeButton.textContent = "-";
-        removeButton.style.padding = "10px";
-        removeButton.style.backgroundColor = "red";
-        removeButton.style.color = "white";
-        removeButton.style.border = "none";
-        removeButton.style.cursor = "pointer";
-
-        removeButton.addEventListener("click", function() {
-            newRow.remove();
-        });
-
-        newRow.appendChild(select);
-        newRow.appendChild(input);
-        newRow.appendChild(removeButton);
-        container.appendChild(newRow);
-    });
-
-    // Attach event listener to remove existing social media rows
-    document.querySelectorAll(".removeSocialMedia").forEach(button => {
-        button.addEventListener("click", function() {
-            this.parentElement.remove();
-        });
-    });
-});
-
 </script>
 
-@endsection
+<style>
+    .animate__fadeIn {
+        animation: fadeIn 0.3s;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .form-label {
+        font-weight: 500;
+    }
+
+    .card {
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+</style>
+@endpush

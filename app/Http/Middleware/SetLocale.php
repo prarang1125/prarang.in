@@ -15,18 +15,27 @@ class SetLocale
      *
      * @param  \Closure(\Illuminate\Http\Request): (\Symfony\Component\HttpFoundation\Response)  $next
      */
-    public function handle($request, Closure $next)
+    public function handle(Request $request, Closure $next)
     {
-        // Get the locale from the session, defaulting to 'hi' (Hindi) if not set
-        $locale = Session::get('locale', 'hi'); // Default to Hindi if not set
+        if ($request->has('l')) {
+            $locale = $request->query('l');
 
-        // If the locale is invalid, set to 'hi'
-        if (!in_array($locale, ['en', 'hi'])) {
-            $locale = 'hi'; // Default to Hindi if the locale is not valid
+            // // Optional safety check
+            if (in_array($locale, ['en', 'hi', 'cz', 'de', 'fr', 'mr'])) {
+                Session::put('locale', $locale);
+            }
+
+            // Redirect to same URL WITHOUT `l`
+            App::setLocale(Session::get('locale', 'hi'));
+            // return redirect()->to(
+            //     $request->url() . '?' . http_build_query(
+            //         $request->except('l')
+            //     )
+            // );
         }
 
-        // Set the application's locale
-        App::setLocale($locale);
+        // Apply locale
+        App::setLocale(Session::get('locale', 'hi'));
 
         return $next($request);
     }
