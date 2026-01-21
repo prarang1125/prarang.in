@@ -33,6 +33,7 @@
         content="{{ $metaData['image'] ?? 'https://prarang.s3.amazonaws.com/posts-2017-24/og_home_image.png' }}">
     <meta name="google-site-verification" content="-DA48RRV_4JbpmDcYV7r8QBnMMtBXSzO4GmHj-gow2Q" />
     <!-- CSS Files -->
+    <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="{{ asset('assets/main/css/style.css') }}">
@@ -68,6 +69,14 @@
 
     body {
         padding-top: 0px !important;
+    }
+
+    /* Navbar Unknowndown menu link */
+    #navbarDropdownMenuLink {
+        background-color: #eceeee;
+        display: flex;
+        flex-direction: row;
+        font-weight: 600;
     }
 </style>
 
@@ -114,21 +123,22 @@
                         <li class="col-md col-sm no-padding">
                             <a href="{{ route('home') }}">Home</a>
                         </li>
+                        <li class="col-md col-sm no-padding dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Products
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <a class="dropdown-item" href="{{ route('content') }}">Content</a>
+                                <a class="dropdown-item" href="{{ route('semiotics') }}">Semiotics</a>
+                                <a class="dropdown-item" href="{{ route('analytics') }}">Analytics</a>
+                                <a class="dropdown-item" href="/ai/upmana">Artificial Intelligence</a>
+                            </div>
+                        </li>
                         <li class="col-md col-sm no-padding">
                             <a href="{{ route('market') }}">Market <span>Digital Divide</span></a>
                         </li>
-                        <li class="col-md col-sm no-padding">
-                            <a href="{{ route('content') }}">Content<span>City Hyperlocal</span></a>
-                        </li>
-                        <li class="col-md col-sm no-padding">
-                            <a href="{{ route('semiotics') }}">Semiotics<span>City Semiotics</span></a>
-                        </li>
-                        <li class="col-md col-sm no-padding">
-                            <a href="{{ route('analytics') }}">Analytics<span>India-World</span></a>
-                        </li>
-                        <li class="col-md col-sm no-padding">
-                            <a href="/ai/upmana">Artificial<span>Intelligence</span></a>
-                        </li>
+
                         <li class="col-md col-sm no-padding">
                             <a href="{{ route('partners') }}" rel="nofollow">Partners<span>Corp. &
                                     Govt.</span></a>
