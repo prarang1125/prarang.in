@@ -1,217 +1,523 @@
 @extends('yellowpages::layout.vcard.vcard')
+
 @section('title', __('formyp.add_your_listing'))
+
 @section('content')
-<div style="max-width: 800px; margin: 0 auto; padding: 20px;">
-    <h5 style="text-align: center;">{{ __('formyp.add_your_listing') }}</h5>
-    <p style="text-align: center;  margin-bottom: 20px;">{{ __('formyp.add_listing_details_sub') }}</p>
-</div>
-<div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-    <form action="{{ route('yp.listing.store') }}" method="POST" id="listingForm" enctype="multipart/form-data">
-        @csrf
 
-        <h5 style="margin-bottom: 15px;">{{ __('formyp.primary_listing_details') }}</h5>
-        <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
-        <div class="mb-3">
-            <label for="location" class="form-label">{{ __('formyp.location') }}</label>
-            <select id="location" class="form-select {{ $errors->has('location') ? 'is-invalid' : '' }}"
-                name="location">
-                <option selected disabled>{{ __('formyp.select_location') }}</option>
-                @foreach ($cities as $city)
-                <option value="{{ $city->id }}" {{ old('location', $user->city_id) == $city->id ? 'selected' : '' }}>
-                    {{ $city->name }}
-                </option>
-                @endforeach
-            </select>
-            @error('location')
-            <span class="text-danger">{{ $message }}</span>
-            @enderror
-        </div>
-        <div class="mb-3">
-            <label for="listingTitle" class="form-label">{{ __('formyp.listing_title') }}</label>
-            <input type="text" id="listingTitle" name="listingTitle"
-                class="form-control {{ $errors->has('listingTitle') ? 'is-invalid' : '' }}"
-                value="{{ old('listingTitle') }}">
-            @error('listingTitle')
-            <span class="text-danger">{{ $message }}</span>
-            @enderror
-        </div>
-        <div class="form-check mb-3">
-            <input class="form-check-input" type="checkbox" id="hasTagline"
-                onclick="document.getElementById('taglineField').style.display = this.checked ? 'block' : 'none'">
-            <label class="form-check-label" for="hasTagline">
-                {{ __('formyp.has_tagline') }}
-            </label>
-        </div>
-        <div class="mb-3" id="taglineField" style="display: none;">
-            <label for="tagline" class="form-label">{{ __('formyp.tagline') }}</label>
-            <input type="text" id="tagline" name="tagline" class="form-control"
-                placeholder="{{ __('formyp.enter_tagline') }}" value="{{ old('tagline') }}">
-        </div>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label for="businessName" class="form-label">{{ __('formyp.business_name') }}</label>
-                <input type="text" id="businessName" name="businessName"
-                    class="form-control {{ $errors->has('businessName') ? 'is-invalid' : '' }}"
-                    placeholder="{{ __('formyp.enter_business_name') }}" value="{{ old('businessName') }}">
-                @error('businessName')
-                <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="primaryPhone" class="form-label">{{ __('formyp.phone_number') }}</label>
-                <input type="text" id="primaryPhone" name="primaryPhone"
-                    class="form-control {{ $errors->has('primaryPhone') ? 'is-invalid' : '' }}"
-                    placeholder="{{ __('formyp.enter_primary_phone') }}"
-                    value="{{ old('primaryPhone', $user->phone) }}">
-                @error('primaryPhone')
-                <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="primaryContact" class="form-label">{{ __('formyp.contact_name') }}</label>
-                <input type="text" id="primaryContact" name="primaryContact"
-                    class="form-control {{ $errors->has('primaryContact') ? 'is-invalid' : '' }}"
-                    placeholder="{{ __('formyp.enter_primary_contact') }}"
-                    value="{{ old('primaryContact', $user->name) }}">
-                @error('primaryContact')
-                <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="primaryEmail" class="form-label">{{ __('formyp.email_label') }}</label>
-                <input type="text" id="primaryEmail" name="primaryEmail"
-                    class="form-control {{ $errors->has('primaryEmail') ? 'is-invalid' : '' }} "
-                    placeholder="{{ __('formyp.enter_primary_email') }}"
-                    value="{{ old('primaryEmail', $user->email) }}">
-                @error('primaryEmail')
-                <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="businessType" class="form-label">{{ __('formyp.business_type') }} *</label>
-                <select id="businessType" name="businessType"
-                    class="form-select {{ $errors->has('businessType') ? 'is-invalid' : '' }}">
-                    <option value="" disabled selected>{{ __('formyp.select_type') }}</option>
-                    @foreach ($company_legal_type as $Cl_type)
-                    <option value="{{ $Cl_type->id }}" {{ old('businessType')==$Cl_type->id ? 'selected' : '' }}>
-                        {{ $Cl_type->name }}
-                    </option>
-                    @endforeach
-                </select>
-                @error('businessType')
-                <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="employee_range" class="form-label">{{ __('formyp.employee_range') }} *</label>
-                <select id="employee_range" name="employees"
-                    class="form-select {{ $errors->has('employees') ? 'is-invalid' : '' }}">
-                    <option value="" disabled selected>{{ __('formyp.select_employee_count') }}</option>
-                    @foreach ($number_of_employees as $number_employee)
-                    <option value="{{ $number_employee->id }}" {{ old('employee_range')==$number_employee->id ?
-                        'selected' : '' }}>
-                        {{ $number_employee->range }}
-                    </option>
-                    @endforeach
-                </select>
-                @error('employees')
-                <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="turnover" class="form-label">{{ __('formyp.turnover') }}*</label>
-                <select id="turnover" name="turnover"
-                    class="form-select  {{ $errors->has('turnover') ? 'is-invalid' : '' }}">
-                    <option value="" disabled selected>{{ __('formyp.select_turnover') }}</option>
-                    @foreach ($monthly_turnovers as $turnovers)
-                    <option value="{{ $turnovers->id }}" {{ old('turnover')==$turnovers->id ? 'selected' : '' }}>
-                        {{ $turnovers->range }}
-                    </option>
-                    @endforeach
-                </select>
-                @error('turnover')
-                <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="advertising" class="form-label">{{ __('formyp.advertising') }}</label>
-                <select id="advertising" name="advertising"
-                    class="form-select  {{ $errors->has('advertising') ? 'is-invalid' : '' }}">
-                    <option value="" disabled selected>{{ __('formyp.select_advertising') }}</option>
-                    @foreach ($monthly_advertising_mediums as $advertising)
-                    <option value="{{ $advertising->id }}" {{ old('advertising')==$advertising->id ? 'selected' : '' }}>
-                        {{ $advertising->medium }}
-                    </option>
-                    @endforeach
-                </select>
-                @error('advertising')
-                <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-            <div class="col-md-6 mb-3">
-                <label for="advertising_price" class="form-label">{{ __('formyp.advertising_price') }}*</label>
-                <select id="advertising_price" name="advertising_price"
-                    class="form-select  {{ $errors->has('advertising_price') ? 'is-invalid' : '' }}">
-                    <option value="" disabled selected>{{ __('formyp.select_advertising_price') }}</option>
-                    @foreach ($monthly_advertising_prices as $advertising)
-                    <option value="{{ $advertising->id }}" {{ old('advertising_price')==$advertising->id ? 'selected' :
-                        '' }}>
-                        {{ $advertising->range }}
-                    </option>
-                    @endforeach
-                </select>
-                @error('advertising_price')
-                <span class="text-danger">{{ $message }}</span>
-                @enderror
-            </div>
-        </div>
+<style>
+    /* Card title */
+    .card .card-body .card-title {
+        font-weight: 700;
+        font-size: 24px;
+    }
 
-        <br>
-        <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-            <h5 style="margin-bottom: 15px;">{{ __('formyp.category_and_services') }}</h5>
-            <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
-            <div style="display: flex; gap: 20px;">
-                <div style="flex: 1;">
-                    <label for="category" class="form-label">{{ __('formyp.category') }} *</label>
-                    <select id="category" class="form-select  {{ $errors->has('category') ? 'is-invalid' : '' }}"
-                        name="category">
-                        <option value="" disabled selected>{{ __('formyp.select_category_opt') }}</option>
-                        @foreach ($categories as $category)
-                        <option value="{{ $category->id }}" {{ old('category', $vcard->category_id) == $category->id ?
-                            'selected' : '' }}>
-                            {{ $category->name }}
-                        </option>
-                        @endforeach
-                    </select>
-                    @error('category')
-                    <span class="text-danger">{{ $message }}</span>
-                    @enderror
+    /* Text uppercase */
+    #listingForm .text-uppercase {
+        padding-left: 4px;
+        padding-right: 8px;
+        padding-top: 10px;
+        padding-bottom: 8px;
+        font-weight: 700;
+    }
+</style>
+
+<div class="page-content">
+    <!-- Breadcrumb -->
+    <div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+        <div class="breadcrumb-title pe-3">{{ __('formyp.vcard_breadcrumb') }}</div>
+        <div class="ps-3">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb mb-0 p-0">
+                    <li class="breadcrumb-item"><a href="{{ route('vCard.dashboard') }}"><i
+                                class="bx bx-home-alt"></i></a>
+                    </li>
+                    <li class="breadcrumb-item active" aria-current="page">{{ __('formyp.add_your_listing') }}</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xl-9 mx-auto">
+            <div class="card border-top border-0 border-4 border-primary">
+                <div class="card-body p-5">
+                    <div class="card-title d-flex align-items-center">
+                        <div><i class="bx bxs-business me-1 font-22 text-primary"></i></div>
+                        <h5 class="mb-0 text-primary">{{ __('formyp.add_your_listing') }}</h5>
+                    </div>
+                    <p class="mb-4">{{ __('formyp.add_listing_details_sub') }}</p>
+                    <hr>
+
+                    <form action="{{ route('yp.listing.store') }}" method="POST" id="listingForm"
+                        enctype="multipart/form-data" class="row g-3">
+                        @csrf
+
+                        <!-- Section: Primary Details -->
+                        <div class="col-12">
+                            <h6 class="mb-0 text-uppercase">{{ __('formyp.primary_listing_details') }}</h6>
+                            <hr>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="location" class="form-label">{{ __('formyp.location') }} <span
+                                    class="text-danger">*</span></label>
+                            <select id="location" class="form-select @error('location') is-invalid @enderror"
+                                name="location">
+                                <option selected disabled>{{ __('formyp.select_location') }}</option>
+                                @foreach ($cities as $city)
+                                <option value="{{ $city->id }}" {{ old('location', $user->city_id) == $city->id ?
+                                    'selected' : '' }}>
+                                    {{ $city->name }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('location')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="listingTitle" class="form-label">{{ __('formyp.listing_title') }} <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control @error('listingTitle') is-invalid @enderror"
+                                id="listingTitle" name="listingTitle" value="{{ old('listingTitle') }}"
+                                placeholder="{{ __('formyp.enter_listing_title') }}">
+                            @error('listingTitle')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-12">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" id="toggleTagline"
+                                    onclick="toggleTaglineField()">
+                                <label class="form-check-label" for="toggleTagline">{{ __('formyp.has_tagline')
+                                    }}</label>
+                            </div>
+                        </div>
+
+                        <div class="col-md-12" id="taglineField" style="display: none;">
+                            <label for="tagline" class="form-label">{{ __('formyp.tagline') }}</label>
+                            <input type="text" class="form-control @error('tagline') is-invalid @enderror" id="tagline"
+                                name="tagline" value="{{ old('tagline') }}"
+                                placeholder="{{ __('formyp.enter_tagline') }}">
+                            @error('tagline')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="businessName" class="form-label">{{ __('formyp.business_name') }} <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control @error('businessName') is-invalid @enderror"
+                                id="businessName" name="businessName" value="{{ old('businessName') }}"
+                                placeholder="{{ __('formyp.enter_business_name') }}">
+                            @error('businessName')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="businessType" class="form-label">{{ __('formyp.business_type') }} <span
+                                    class="text-danger">*</span></label>
+                            <select id="businessType" class="form-select @error('businessType') is-invalid @enderror"
+                                name="businessType">
+                                <option selected disabled>{{ __('formyp.select_type') }}</option>
+                                @foreach ($company_legal_type as $type)
+                                <option value="{{ $type->id }}" {{ old('businessType')==$type->id ? 'selected' : '' }}>
+                                    {{ $type->name }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('businessType')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="employees" class="form-label">{{ __('formyp.employee_range') }} <span
+                                    class="text-danger">*</span></label>
+                            <select id="employees" class="form-select @error('employees') is-invalid @enderror"
+                                name="employees">
+                                <option selected disabled>{{ __('formyp.select_employee_count') }}</option>
+                                @foreach ($number_of_employees as $range)
+                                <option value="{{ $range->id }}" {{ old('employees')==$range->id ? 'selected' : '' }}>
+                                    {{ $range->name ?? $range->range }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('employees')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="turnover" class="form-label">{{ __('formyp.turnover') }} <span
+                                    class="text-danger">*</span></label>
+                            <select id="turnover" class="form-select @error('turnover') is-invalid @enderror"
+                                name="turnover">
+                                <option selected disabled>{{ __('formyp.select_turnover') }}</option>
+                                @foreach ($monthly_turnovers as $turnover)
+                                <option value="{{ $turnover->id }}" {{ old('turnover')==$turnover->id ? 'selected' : ''
+                                    }}>
+                                    {{ $turnover->name ?? $turnover->range }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('turnover')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="advertising" class="form-label">{{ __('formyp.advertising') }} <span
+                                    class="text-danger">*</span></label>
+                            <select id="advertising" class="form-select @error('advertising') is-invalid @enderror"
+                                name="advertising">
+                                <option selected disabled>{{ __('formyp.select_advertising') }}</option>
+                                @foreach ($monthly_advertising_mediums as $medium)
+                                <option value="{{ $medium->id }}" {{ old('advertising')==$medium->id ? 'selected' : ''
+                                    }}>
+                                    {{ $medium->name ?? $medium->medium }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('advertising')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="advertising_price" class="form-label">{{ __('formyp.ad_price_label') }} <span
+                                    class="text-danger">*</span></label>
+                            <select id="advertising_price"
+                                class="form-select @error('advertising_price') is-invalid @enderror"
+                                name="advertising_price">
+                                <option selected disabled>{{ __('formyp.select_ad_price') }}</option>
+                                @foreach ($monthly_advertising_prices as $price)
+                                <option value="{{ $price->id }}" {{ old('advertising_price')==$price->id ? 'selected' :
+                                    '' }}>
+                                    {{ $price->name ?? $price->range }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('advertising_price')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="category" class="form-label">{{ __('formyp.category') }} <span
+                                    class="text-danger">*</span></label>
+                            <select id="category" class="form-select @error('category') is-invalid @enderror"
+                                name="category">
+                                <option selected disabled>{{ __('formyp.select_category_opt') }}</option>
+                                @foreach ($categories as $cat)
+                                <option value="{{ $cat->id }}" {{ old('category')==$cat->id ? 'selected' : '' }}>
+                                    {{ $cat->name }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('category')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <!-- Section: Contact Details -->
+                        <div class="col-12 mt-4">
+                            <h6 class="mb-0 text-uppercase">{{ __('formyp.contact_info') }}</h6>
+                            <hr>
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="primaryContact" class="form-label">{{ __('formyp.primary_contact') }} <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control @error('primaryContact') is-invalid @enderror"
+                                id="primaryContact" name="primaryContact"
+                                value="{{ old('primaryContact', $user->name) }}"
+                                placeholder="{{ __('formyp.enter_primary_contact') }}">
+                            @error('primaryContact')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="primaryPhone" class="form-label">{{ __('formyp.primary_phone') }} <span
+                                    class="text-danger">*</span></label>
+                            <input type="text" class="form-control @error('primaryPhone') is-invalid @enderror"
+                                id="primaryPhone" name="primaryPhone" value="{{ old('primaryPhone', $user->phone) }}"
+                                placeholder="{{ __('formyp.enter_primary_phone') }}">
+                            @error('primaryPhone')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-4">
+                            <label for="primaryEmail" class="form-label">{{ __('formyp.primary_email') }} <span
+                                    class="text-danger">*</span></label>
+                            <input type="email" class="form-control @error('primaryEmail') is-invalid @enderror"
+                                id="primaryEmail" name="primaryEmail" value="{{ old('primaryEmail', $user->email) }}"
+                                placeholder="{{ __('formyp.enter_primary_email') }}">
+                            @error('primaryEmail')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="website" class="form-label">{{ __('formyp.website') }}</label>
+                            <input type="url" class="form-control @error('website') is-invalid @enderror" id="website"
+                                name="website" value="{{ old('website') }}"
+                                placeholder="{{ __('formyp.enter_website') }}">
+                            @error('website')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <!-- Section: Address Details -->
+                        <div class="col-12 mt-4">
+                            <h6 class="mb-0 text-uppercase">{{ __('formyp.address_details') }}</h6>
+                            <hr>
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="house_number" class="form-label">{{ __('formyp.house_number') }}</label>
+                            <input type="text" class="form-control @error('house_number') is-invalid @enderror"
+                                id="house_number" name="house_number" value="{{ old('house_number') }}"
+                                placeholder="{{ __('formyp.enter_house_no') }}">
+                            @error('house_number')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="street" class="form-label">{{ __('formyp.road_street') }}</label>
+                            <input type="text" class="form-control @error('street') is-invalid @enderror" id="street"
+                                name="street" value="{{ old('street') }}" placeholder="{{ __('formyp.road_street') }}">
+                            @error('street')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="area_name" class="form-label">{{ __('formyp.area_name_public') }}</label>
+                            <input type="text" class="form-control @error('area_name') is-invalid @enderror"
+                                id="area_name" name="area_name" value="{{ old('area_name') }}"
+                                placeholder="{{ __('formyp.enter_area_name') }}">
+                            @error('area_name')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="city_id" class="form-label">{{ __('yp.cities') }}</label>
+                            <select id="city_id" class="form-select @error('city_id') is-invalid @enderror"
+                                name="city_id">
+                                <option selected disabled>{{ __('formyp.select_city') }}</option>
+                                @foreach ($cities as $city)
+                                <option value="{{ $city->id }}" {{ old('city_id', $user->city_id) == $city->id ?
+                                    'selected' : '' }}>
+                                    {{ $city->name }}
+                                </option>
+                                @endforeach
+                            </select>
+                            @error('city_id')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-md-3">
+                            <label for="postal_code" class="form-label">{{ __('formyp.pincode') }}</label>
+                            <input type="text" class="form-control @error('postal_code') is-invalid @enderror"
+                                id="postal_code" name="postal_code" value="{{ old('postal_code') }}"
+                                placeholder="{{ __('formyp.enter_pincode') }}">
+                            @error('postal_code')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <!-- Section: Description -->
+                        <div class="col-12 mt-4">
+                            <h6 class="mb-0 text-uppercase">{{ __('formyp.more_info') }}</h6>
+                            <hr>
+                        </div>
+
+                        <div class="col-12">
+                            <label for="description" class="form-label">{{ __('formyp.description') }}</label>
+                            <textarea class="form-control @error('description') is-invalid @enderror" id="description"
+                                name="description" rows="4"
+                                placeholder="{{ __('formyp.enter_description') }}">{{ old('description') }}</textarea>
+                            @error('description')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <!-- Section: Working Hours -->
+                        <div class="col-12 mt-4">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h6 class="mb-0 text-uppercase">{{ __('formyp.working_hours') }}</h6>
+                                <button type="button" class="btn btn-sm btn-outline-primary" onclick="addWorkingHour()">
+                                    <i class="bx bx-plus"></i> {{ __('formyp.add_day') }}
+                                </button>
+                            </div>
+                            <hr>
+                        </div>
+
+                        <div class="col-12">
+                            <div id="workingHoursContainer">
+                                @if (old('day'))
+                                @foreach (old('day') as $index => $dayValue)
+                                <div class="row g-2 mb-3 align-items-end working-hour-row">
+                                    <div class="col-md-3">
+                                        <label class="form-label small">{{ __('formyp.select_day') }}</label>
+                                        <select name="day[]" class="form-select form-select-sm">
+                                            @foreach (['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',
+                                            'Saturday', 'Sunday'] as $day)
+                                            <option value="{{ strtolower($day) }}" {{ $dayValue==strtolower($day)
+                                                ? 'selected' : '' }}>
+                                                {{ __('formyp.' . strtolower($day)) }}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label small">Open</label>
+                                        <input type="time" name="open_time[]" class="form-control form-control-sm"
+                                            value="{{ old('open_time.' . $index) }}">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label class="form-label small">Close</label>
+                                        <input type="time" name="close_time[]" class="form-control form-control-sm"
+                                            value="{{ old('close_time.' . $index) }}">
+                                    </div>
+                                    <div class="col-md-2 text-center">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="checkbox"
+                                                name="is_24_hours[{{ $index }}]" value="1" {{ old('is_24_hours.' .
+                                                $index) ? 'checked' : '' }}>
+                                            <label class="form-check-label small" for="is_24_hours">{{
+                                                __('formyp.24_hours') }}</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="button" class="btn btn-sm btn-outline-danger"
+                                            onclick="removeRow(this)">
+                                            <i class="bx bx-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                @endforeach
+                                @endif
+                            </div>
+                        </div>
+
+                        <!-- Section: Social Media -->
+                        <div class="col-12 mt-4">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <h6 class="mb-0 text-uppercase">{{ __('formyp.social_media_links') }}</h6>
+                                <button type="button" class="btn btn-sm btn-outline-primary" onclick="addSocialMedia()">
+                                    <i class="bx bx-plus"></i> {{ __('formyp.add_new') }}
+                                </button>
+                            </div>
+                            <hr>
+                        </div>
+
+                        <div class="col-12">
+                            <div id="socialMediaContainer">
+                                @if (old('socialId'))
+                                @foreach (old('socialId') as $index => $socialId)
+                                <div class="row g-2 mb-3 align-items-end social-media-row">
+                                    <div class="col-md-4">
+                                        <label class="form-label small">{{ __('formyp.select_social_media') }}</label>
+                                        <select name="socialId[]" class="form-select form-select-sm">
+                                            @foreach ($social_media as $platform)
+                                            <option value="{{ $platform->id }}" {{ $socialId==$platform->id ? 'selected'
+                                                : '' }}>
+                                                {{ $platform->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label class="form-label small">{{ __('formyp.enter_link_desc') }}</label>
+                                        <input type="text" name="socialDescription[]"
+                                            class="form-control form-control-sm"
+                                            value="{{ old('socialDescription.' . $index) }}" placeholder="https://...">
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button type="button" class="btn btn-sm btn-outline-danger"
+                                            onclick="removeRow(this)">
+                                            <i class="bx bx-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                                @endforeach
+                                @endif
+                            </div>
+                        </div>
+
+                        <!-- Section: Media -->
+                        <div class="col-12 mt-4">
+                            <h6 class="mb-0 text-uppercase">{{ __('formyp.media') }}</h6>
+                            <hr>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="image" class="form-label">{{ __('formyp.cover_image') }}</label>
+                            <input type="file" class="form-control @error('image') is-invalid @enderror" id="image"
+                                name="image" accept="image/*">
+                            <div class="form-text text-muted">Max size: 200KB. Formats: jpeg, png, jpg, gif.</div>
+                            @error('image')
+                            <div class="invalid-feedback">{{ $message }}</div>
+                            @enderror
+                        </div>
+
+                        <div class="col-12 mt-4">
+                            <div class="form-check">
+                                <input class="form-check-input @error('agree') is-invalid @enderror" type="checkbox"
+                                    id="agree" name="agree" value="1" {{ old('agree') ? 'checked' : '' }}>
+                                <label class="form-check-label" for="agree">
+                                    {{ __('formyp.agree_terms') }}
+                                </label>
+                                @error('agree')
+                                <div class="invalid-feedback d-block">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="col-12 mt-5">
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary px-5">{{ __('formyp.submit_btn')
+                                    }}</button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-        <br><br>
-        <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-            <h5 style="margin-bottom: 15px;">{{ __('formyp.more_info') }}</h5>
-            <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
-            <div style="margin-top: 15px;">
-                <label for="description">{{ __('formyp.description') }}</label>
-                <textarea id="description" name="description" rows="4"
-                    style="width: 100%;">{{ old('description') }}</textarea>
-            </div>
-        </div>
-        <br>
-        <br>
+    </div>
+</div>
+@endsection
 
-        <div
-            style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd; font-family: Arial, sans-serif;">
-            <h5 style="margin-bottom: 15px; font-size: 18px; font-weight: bold;">{{ __('formyp.working_hours') }}</h5>
-            <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
+@push('scripts')
+<script>
+    function toggleTaglineField() {
+            const taglineField = document.getElementById('taglineField');
+            const checkbox = document.getElementById('toggleTagline');
+            taglineField.style.display = checkbox.checked ? 'block' : 'none';
+        }
 
-            <!-- Schedule Container -->
-            <div id="schedule-container">
-                <div class="day-schedule" style="display: flex; flex-wrap: wrap; gap: 10px; align-items: center;">
-                    <select name="day[]" class="day-select" style="flex: 1; min-width: 100px; padding: 5px;">
-                        <option value="">{{ __('formyp.select_day') }}</option>
+        function removeRow(btn) {
+            btn.closest('.row').remove();
+        }
+
+        let workingHourIndex = {{ old('day') ? count(old('day')) : 0 }};
+
+        function addWorkingHour() {
+            const container = document.getElementById('workingHoursContainer');
+            const html = `
+            <div class="row g-2 mb-3 align-items-end working-hour-row animate__animated animate__fadeIn">
+                <div class="col-md-3">
+                    <label class="form-label small">{{ __('formyp.select_day') }}</label>
+                    <select name="day[]" class="form-select form-select-sm">
                         <option value="monday">{{ __('formyp.monday') }}</option>
                         <option value="tuesday">{{ __('formyp.tuesday') }}</option>
                         <option value="wednesday">{{ __('formyp.wednesday') }}</option>
@@ -220,439 +526,92 @@
                         <option value="saturday">{{ __('formyp.saturday') }}</option>
                         <option value="sunday">{{ __('formyp.sunday') }}</option>
                     </select>
-
-                    <input type="time" name="open_time[]" class="time-input" style="flex: 1; padding: 5px;">
-                    <label>to</label>
-                    <input type="time" name="close_time[]" class="time-input" style="flex: 1; padding: 5px;">
-
-                    {{-- <label style="white-space: nowrap;">
-                        <input type="checkbox" name="is_24_hours[]" class="is-24-hours"> 24 घंटे
-                    </label> --}}
-                    <label style="white-space: nowrap;">
-                        <input type="checkbox" class="add-2nd-slot"> {{ __('formyp.add_2nd_slot') }}
-                    </label>
-                    <button type="button" class="remove-day-btn"
-                        style="background: red; color: white; border: none; padding: 5px 10px; cursor: pointer;">&#x2716;</button>
-
-                    <!-- Second Time Slot -->
-                    <div class="second-time-slot" style="display: none; margin-top: 10px; width: 100%;">
-                        <input type="time" name="open_time_2[]" class="time-input" style="flex: 1; padding: 5px;">
-                        <label>to</label>
-                        <input type="time" name="close_time_2[]" class="time-input" style="flex: 1; padding: 5px;">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label small">Open</label>
+                    <input type="time" name="open_time[]" class="form-control form-control-sm">
+                </div>
+                <div class="col-md-2">
+                    <label class="form-label small">Close</label>
+                    <input type="time" name="close_time[]" class="form-control form-control-sm">
+                </div>
+                <div class="col-md-2 text-center">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="checkbox" name="is_24_hours[${workingHourIndex}]" value="1">
+                        <label class="form-check-label small">{{ __('formyp.24_hours') }}</label>
                     </div>
                 </div>
-            </div>
-
-            <!-- Add New Day Button -->
-            <button type="button" id="add-day-btn">{{ __('formyp.add_day') }}</button>
-        </div>
-
-
-        <br>
-        <br>
-        <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-            <h5 style="margin-bottom: 15px;">{{ __('formyp.business_address') }}</h5>
-            <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
-
-            <div style="margin-bottom: 10px;">
-                <label for="street">{{ __('formyp.street') }}:</label>
-                <input type="text" id="street" name="street" placeholder="{{ __('formyp.enter_street') }}"
-                    style="width: 100%; padding: 8px; border: 1px solid {{ $errors->has('street') ? 'red' : '#ccc' }};"
-                    value="{{ old('street', $address->street ?? '') }}">
-
-                @if ($errors->has('street'))
-                <div style="color: red; font-size: 14px; margin-top: 5px;">
-                    {{ $errors->first('street') }}
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeRow(this)">
+                        <i class="bx bx-trash"></i>
+                    </button>
                 </div>
-                @endif
-            </div>
-
-            <div style="margin-bottom: 10px;">
-                <label for="area_name">{{ __('formyp.area') }}:</label>
-                <input type="text" id="area_name" name="area_name" placeholder="{{ __('formyp.enter_area') }}"
-                    style="width: 100%; padding: 8px; border: 1px solid {{ $errors->has('street') ? 'red' : '#ccc' }};"
-                    value="{{ old('area_name', $address->area_name ?? '') }}">
-                @if ($errors->has('area_name'))
-                <div style="color: red; font-size: 14px; margin-top: 5px;">
-                    {{ $errors->first('area_name') }}
-                </div>
-                @endif
-            </div>
-
-            <div style="margin-bottom: 10px;">
-                <label for="house_number">{{ __('formyp.house_no') }}:</label>
-                <input type="text" id="house_number" name="house_number" placeholder="{{ __('formyp.enter_house_no') }}"
-                    style="width: 100%; padding: 8px; border: 1px solid {{ $errors->has('street') ? 'red' : '#ccc' }};"
-                    value="{{ old('house_number', $address->house_number ?? '') }}">
-                @if ($errors->has('house_number'))
-                <div style="color: red; font-size: 14px; margin-top: 5px;">
-                    {{ $errors->first('house_number') }}
-                </div>
-                @endif
-            </div>
-
-            <div style="margin-bottom: 10px;">
-                <label for="city_id">{{ __('yp.cities') }}:</label>
-                <select id="city_id" name="city_id" style="width: 100%; padding: 8px;">
-                    <option selected disabled>{{ __('formyp.select_city') }}</option>
-                    @foreach ($cities as $city)
-                    <option value="{{ $city->id }}" {{ old('city_id', $address->city_id ?? '') == $city->id ? 'selected'
-                        : '' }}>
-                        {{ $city->name }}
-                    </option>
-                    @endforeach
-                </select>
-            </div>
-
-            <div style="margin-bottom: 10px;">
-                <label for="postal_code">{{ __('formyp.pincode') }}:</label>
-                <input type="text" id="postal_code" name="postal_code" placeholder="{{ __('formyp.enter_pincode') }}"
-                    style="width: 100%; padding: 8px;" value="{{ old('postal_code', $address->postal_code ?? '') }}">
-            </div>
-
-            <h5 style="margin-bottom: 15px;">{{ __('formyp.contact_info') }}</h5>
-            <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
-
-            <div style="margin-bottom: 10px;">
-                <label for="website">{{ __('formyp.website') }}</label>
-                <input type="url" id="website" name="website" placeholder="{{ __('formyp.enter_website') }}"
-                    style="width: 100%; padding: 8px;" value="{{ old('website', $user->website ?? '') }}">
-            </div>
-        </div>
-        <br>
-        <div
-            style="width: 100%; max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd; box-sizing: border-box;">
-            <h5 style="margin-bottom: 15px;">{{ __('formyp.social_media_links') }}</h5>
-            <div style="border-bottom: 2px solid #000; margin-bottom: 15px;"></div>
-
-            <div id="social-media-container">
-                @if (!empty($social_media_data) && count($social_media_data) > 0)
-                @foreach ($social_media_data as $data)
-                <div class="social-media-row"
-                    style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: nowrap; width: 100%; box-sizing: border-box;">
-                    <select name="socialId[]"
-                        style="flex: 1; min-width: 100px; padding: 8px; box-sizing: border-box; width: 100%;">
-                        <option value="">{{ __('formyp.select_location') }}</option>
-                        @foreach ($social_media as $social)
-                        <option value="{{ $social->id }}" @if (isset($data->social_id) && $data->social_id ==
-                            $social->id) selected @endif>
-                            {{ $social->name }}
-                        </option>
-                        @endforeach
-                    </select>
-                    <input type="text" name="socialDescription[]" value="{{ $data->description ?? '' }}"
-                        placeholder="अपना लिंक या विवरण दर्ज करें"
-                        style="flex: 2; min-width: 180px; padding: 8px; box-sizing: border-box; width: 100%;">
-                    <button type="button" class="removeSocialMedia"
-                        style="padding: 10px; background-color: red; color: white; border: none; cursor: pointer; flex-shrink: 0;">-</button>
-                </div>
-                @endforeach
-                @else
-                <div class="social-media-row"
-                    style="display: flex; align-items: center; gap: 10px; margin-bottom: 10px; flex-wrap: nowrap; width: 100%; box-sizing: border-box;">
-                    <select name="socialId[]"
-                        style="flex: 1; min-width: 100px; padding: 8px; box-sizing: border-box; width: 100%;">
-                        <option value="">{{ __('formyp.select_location') }}</option>
-                        @foreach ($social_media as $social)
-                        <option value="{{ $social->id }}">{{ $social->name }}</option>
-                        @endforeach
-                    </select>
-                    <input type="text" name="socialDescription[]" placeholder="अपना लिंक या विवरण दर्ज करें"
-                        style="flex: 2; min-width: 180px; padding: 8px; box-sizing: border-box; width: 100%;">
-                    <button type="button" class="removeSocialMedia"
-                        style="padding: 10px; background-color: red; color: white; border: none; cursor: pointer; flex-shrink: 0;">-</button>
-                </div>
-                @endif
-            </div>
-
-            <!-- Add Button -->
-            <button type="button" id="addSocialMedia"
-                style="padding: 10px; background-color: green; color: white; border: none; cursor: pointer; margin-top: 10px;">+</button>
-        </div>
-
-        <br>
-        <div
-            style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd; box-shadow: 0 0 5px rgba(0,0,0,0.1);">
-            <h5 style="margin-bottom: 15px;">{{ __('formyp.media') }}</h5>
-            <div style="border-bottom: 2px solid #000; margin-bottom: 15px; "></div>
-
-            <!-- Single Image Upload -->
-            <div
-                style="border: 1px dashed #ddd; padding: 20px; text-align: center; color: #888; margin-bottom: 10px; border: 1px solid {{ $errors->has('street') ? 'red' : '#ccc' }}">
-                <input type="file" id="imageUpload" name="image" style="display: block; margin-top: 10px; "
-                    onchange="previewImage(event, 'previewImage')">
-                <img id="previewImage" src="" alt="Uploaded Image"
-                    style="display: none; margin-top: 10px; max-width: 100px; border: 1px solid #ddd;">
-            </div>
-
-            @error('image')
-            <div style="color: red; font-size: 14px; margin-top: 5px;">
-                {{ $message }}
-            </div>
-            @enderror
-        </div>
-        <br>
-        <div style="max-width: 800px; margin: 0 auto; background: #fff; padding: 20px; border: 1px solid #ddd;">
-            <div style="margin-top: 15px; margin-bottom: 15px;">
-                <label>
-                    <input type="checkbox" name="agree" id="existingAccountCheckbox" style="margin-right: 5px;">{{
-                    __('formyp.agree_terms') }}
-                </label>
-            </div>
-            <button type="submit" id="submit-btn" class="btn btn-primary">{{ __('formyp.submit') }}</button>
-        </div>
-    </form>
-</div>
-@endsection
-@push('scripts')
-<script>
-    function toggleTaglineField() {
-            const taglineField = document.getElementById('taglineField');
-            taglineField.style.display = taglineField.style.display === 'none' ? 'block' : 'none';
-        }
-
-        document.getElementById('add-day-btn').addEventListener('click', () => {
-            const container = document.getElementById('schedule-container');
-            const firstSchedule = container.querySelector('.day-schedule');
-
-            if (firstSchedule) {
-                // Clone an existing schedule
-                const newSchedule = firstSchedule.cloneNode(true);
-
-                // Reset values for cloned inputs
-                newSchedule.querySelectorAll('select, input').forEach(input => {
-                    if (input.type === 'checkbox') {
-                        input.checked = false;
-                    } else {
-                        input.value = '';
-                        input.disabled = false;
-                    }
-                });
-
-                // Hide second slot in the new schedule
-                newSchedule.querySelector('.second-time-slot').style.display = 'none';
-
-                // Append new schedule
-                container.appendChild(newSchedule);
-            } else {
-                // Create a new schedule if none exist
-                const newSchedule = document.createElement('div');
-                newSchedule.classList.add('day-schedule');
-
-                newSchedule.innerHTML = `
-            <select name="day[]" class="day-select">
-                <option value="">{{ __('formyp.select_day') }}</option>
-                <option value="monday">{{ __('formyp.monday') }}</option>
-                <option value="tuesday">{{ __('formyp.tuesday') }}</option>
-                <option value="wednesday">{{ __('formyp.wednesday') }}</option>
-                <option value="thursday">{{ __('formyp.thursday') }}</option>
-                <option value="friday">{{ __('formyp.friday') }}</option>
-                <option value="saturday">{{ __('formyp.saturday') }}</option>
-                <option value="sunday">{{ __('formyp.sunday') }}</option>
-            </select>
-            <input type="time" name="open_time[]" class="time-input">
-            <label>to</label>
-            <input type="time" name="close_time[]" class="time-input">
-          
-            <label>
-                <input type="checkbox" class="add-2nd-slot"> {{ __('formyp.add_2nd_slot') }}
-            </label>
-            <button type="button" class="remove-day-btn">&#x2716;</button>
-            
-            <!-- Second Time Slot -->
-            <div class="second-time-slot" style="display: none; margin-top: 10px;">
-                <input type="time" name="open_time_2[]" class="time-input">
-                <label>to</label>
-                <input type="time" name="close_time_2[]" class="time-input">
             </div>
         `;
+            container.insertAdjacentHTML('beforeend', html);
+            workingHourIndex++;
+        }
 
-                container.appendChild(newSchedule);
+        function addSocialMedia() {
+            const container = document.getElementById('socialMediaContainer');
+            const html = `
+            <div class="row g-2 mb-3 align-items-end social-media-row animate__animated animate__fadeIn">
+                <div class="col-md-4">
+                    <label class="form-label small">{{ __('formyp.select_social_media') }}</label>
+                    <select name="socialId[]" class="form-select form-select-sm">
+                        @foreach ($social_media as $platform)
+                            <option value="{{ $platform->id }}">{{ $platform->name }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-6">
+                    <label class="form-label small">{{ __('formyp.enter_link_desc') }}</label>
+                    <input type="text" name="socialDescription[]" class="form-control form-control-sm" placeholder="https://...">
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-sm btn-outline-danger" onclick="removeRow(this)">
+                        <i class="bx bx-trash"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+            container.insertAdjacentHTML('beforeend', html);
+        }
+
+        // Initialize with one row if empty and no old input
+        document.addEventListener('DOMContentLoaded', function() {
+            if (document.getElementById('workingHoursContainer').children.length === 0) {
+                addWorkingHour();
             }
-        });
-
-        // document.addEventListener("DOMContentLoaded", function () {
-        //     document.getElementById("listingForm").addEventListener("submit", function (event) {
-        //         document.querySelectorAll('input[name="is_24_hours[]"]').forEach(checkbox => {
-        //             let hiddenInput = document.createElement("input");
-        //             hiddenInput.type = "hidden";
-        //             hiddenInput.name = checkbox.name; 
-        //             hiddenInput.value = checkbox.checked ? "yes" : "no";
-        //             this.appendChild(hiddenInput);
-        //             checkbox.remove(); 
-        //         });
-        //     });
-        // });
-
-
-        // Handle 24-hour checkbox toggle
-        document.addEventListener('change', (e) => {
-            if (e.target.classList.contains('is-24-hours')) {
-                const parent = e.target.closest('.day-schedule');
-                parent.querySelectorAll('.time-input').forEach(input => {
-                    input.disabled = e.target.checked;
-                });
+            if (document.getElementById('socialMediaContainer').children.length === 0) {
+                addSocialMedia();
             }
-        });
-
-        // Show or hide the second time slot
-        document.addEventListener('change', (e) => {
-            if (e.target.classList.contains('is-24-hours')) {
-                const parent = e.target.closest('.day-schedule');
-
-                // Disable or enable time inputs based on checkbox state
-                parent.querySelectorAll('.time-input').forEach(input => {
-                    input.disabled = e.target.checked;
-                    if (e.target.checked) input.value = ''; // Clear input when disabled
-                });
-            }
-
-        });
-
-        // Remove a day schedule
-        document.addEventListener('click', (e) => {
-            if (e.target.classList.contains('remove-day-btn')) {
-                e.target.closest('.day-schedule').remove();
-            }
-        });
-
-        // Collect and log schedules
-        document.getElementById('submit-btn')?.addEventListener('click', () => {
-            const schedules = [];
-            document.querySelectorAll('.day-schedule').forEach(schedule => {
-                const day = schedule.querySelector('.day-select').value;
-                const is24Hours = schedule.querySelector('.is-24-hours').checked; // true or false
-
-                // Get time values (only if 24-hour mode is NOT selected)
-                let openTime = schedule.querySelector('input[name="open_time[]"]').value;
-                let closeTime = schedule.querySelector('input[name="close_time[]"]').value;
-                let openTime2 = '',
-                    closeTime2 = '';
-
-                if (is24Hours) {
-                    openTime = "24 Hours";
-                    closeTime = "24 Hours";
-                } else {
-                    const secondSlot = schedule.querySelector('.second-time-slot');
-                    if (secondSlot.style.display !== 'none') {
-                        openTime2 = secondSlot.querySelector('input[name="open_time_2[]"]').value;
-                        closeTime2 = secondSlot.querySelector('input[name="close_time_2[]"]').value;
-                    }
-                }
-
-                schedules.push({
-                    day,
-                    openTime,
-                    closeTime,
-                    is24Hours: is24Hours ? "1" : "0", // Convert to string for clarity
-                    secondSlot: openTime2 && closeTime2 ? {
-                        openTime2,
-                        closeTime2
-                    } : null,
-                });
-            });
-
-            console.log(schedules); // Check output
-        });
-
-        document.addEventListener("DOMContentLoaded", function() {
-            let socialMediaData = {!! json_encode($social_media) !!};
-
-            document.getElementById("addSocialMedia").addEventListener("click", function() {
-                let container = document.getElementById("social-media-container");
-                let newRow = document.createElement("div");
-                newRow.classList.add("social-media-row");
-                newRow.style.display = "flex";
-                newRow.style.alignItems = "center";
-                newRow.style.gap = "10px";
-                newRow.style.marginBottom = "10px";
-                newRow.style.flexWrap = "nowrap";
-                newRow.style.width = "100%";
-                newRow.style.boxSizing = "border-box";
-
-                let select = document.createElement("select");
-                select.name = "socialId[]";
-                select.style.flex = "1";
-                select.style.minWidth = "100px";
-                select.style.padding = "8px";
-                select.style.boxSizing = "border-box";
-                select.style.width = "100%";
-
-                let defaultOption = document.createElement("option");
-                defaultOption.text = "{{ __('formyp.select_location') }}";
-                defaultOption.value = "";
-                select.appendChild(defaultOption);
-
-                socialMediaData.forEach(function(social) {
-                    let option = document.createElement("option");
-                    option.value = social.id;
-                    option.text = social.name;
-                    select.appendChild(option);
-                });
-
-                let input = document.createElement("input");
-                input.type = "text";
-                input.name = "socialDescription[]";
-                input.placeholder = "{{ __('formyp.enter_link_desc') }}";
-                input.style.flex = "2";
-                input.style.minWidth = "180px";
-                input.style.padding = "8px";
-                input.style.boxSizing = "border-box";
-                input.style.width = "100%";
-
-                let removeButton = document.createElement("button");
-                removeButton.type = "button";
-                removeButton.textContent = "-";
-                removeButton.style.padding = "10px";
-                removeButton.style.backgroundColor = "red";
-                removeButton.style.color = "white";
-                removeButton.style.border = "none";
-                removeButton.style.cursor = "pointer";
-                removeButton.style.flexShrink = "0";
-
-                removeButton.addEventListener("click", function() {
-                    newRow.remove();
-                });
-
-                newRow.appendChild(select);
-                newRow.appendChild(input);
-                newRow.appendChild(removeButton);
-                container.appendChild(newRow);
-            });
-
-            document.querySelectorAll(".removeSocialMedia").forEach(button => {
-                button.addEventListener("click", function() {
-                    this.parentElement.remove();
-                });
-            });
-        });
-
-        document.addEventListener("DOMContentLoaded", function() {
-            function previewImage(event, previewId) {
-                var input = event.target;
-                var preview = document.getElementById(previewId);
-
-                if (input.files && input.files[0]) {
-                    var reader = new FileReader();
-                    reader.onload = function(e) {
-                        preview.src = e.target.result;
-                        preview.style.display = "block";
-                    }
-                    reader.readAsDataURL(input.files[0]);
-                }
-            }
-
-            document.getElementById("imageUpload").addEventListener("change", function(event) {
-                previewImage(event, "previewImage");
-            });
-
-            document.getElementById("coverImage").addEventListener("change", function(event) {
-                previewImage(event, "coverPreview");
-            });
-
-            document.getElementById("logo").addEventListener("change", function(event) {
-                previewImage(event, "logoPreview");
-            });
         });
 </script>
+
+<style>
+    .animate__fadeIn {
+        animation: fadeIn 0.3s;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .form-label {
+        font-weight: 500;
+    }
+
+    .card {
+        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    }
+</style>
 @endpush

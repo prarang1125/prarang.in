@@ -94,6 +94,8 @@ return [
     'enter_area' => 'क्षेत्र का नाम दर्ज करें',
     'enter_house_no' => 'भवन संख्या दर्ज करें',
     'select_city' => 'शहर चुनें',
+    'country_city' => 'देश/शहर',
+    'select_country_city' => 'देश/शहर चुनें',
     'manage_vcard' => 'VCard प्रबंधित करें',
     'create_webpage_heading' => 'वेबपेज बनाएं',
     'webpage_info' => 'वेबपेज(Webpage) सूचना',

@@ -67,6 +67,7 @@ return [
     'enter_website' => 'Enter Website URL',
     'phone' => 'Phone:',
     'enter_phone' => 'Enter Phone Number',
+    'phone_email_label' => 'Phone/Email/Mobile',
     'whatsapp' => 'WhatsApp:',
     'enter_whatsapp' => 'Enter WhatsApp Number',
     'social_media_links' => 'Social Media Links',

@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class City extends Model
 {
@@ -23,6 +24,17 @@ class City extends Model
         'created_at',
         'updated_at'
     ];
+
+    protected static function booted()
+    {
+        static::addGlobalScope('only_country', function (Builder $builder) {
+            if (app()->getLocale() == 'en') {
+                $builder->where('is_country', true);
+            } else {
+                $builder->where('is_country', false);
+            }
+        });
+    }
     public function portal()
     {
         return $this->belongsTo(Portal::class, 'portal_id');

@@ -156,13 +156,20 @@ class BusinessListingController extends Controller
     public function listingUpdate(BusinessListingRequest $request, $id)
     {
         $validated = $request->validated();
+
         // Get listing
-        $listing = BusinessListing::where('id', $id)->first();
+        $listing = BusinessListing::findOrFail($id);
 
         // Handle image upload
-        $imagePath = $listing ? $listing->business_img : null;
+        $imagePath = $listing->business_img;
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('yellowpages/business');
+            $imagePath = $request->file('image')->store('yellowpages/business', 'public');
+        }
+
+        // Handle logo upload
+        $logoPath = $listing->logo;
+        if ($request->hasFile('logo')) {
+            $logoPath = $request->file('logo')->store('yellowpages/logos', 'public');
         }
 
         $data = [
@@ -180,63 +187,65 @@ class BusinessListingController extends Controller
             'website' => $validated['website'],
             'description' => $validated['description'] ?? null,
             'business_img' => $imagePath,
+            'logo' => $logoPath,
             'business_address' => $validated['business_address'],
         ];
 
-        // Update or create listing
-        if ($listing) {
-            $listing->update($data);
-        } else {
-            $listing = BusinessListing::create($data);
-        }
+        try {
+            DB::beginTransaction();
 
-        if ($listing) {
+            $listing->update($data);
+
             User::where('id', Auth::id())->update([
                 'email' => $validated['primaryEmail'],
                 'phone' => $validated['primaryPhone'],
                 'name' => $validated['primaryContact'],
             ]);
-        }
 
-        // Handle social media
-        if (!empty($validated['socialId'])) {
-            foreach ($validated['socialId'] as $index => $socialId) {
-                BusinessSocialMedia::updateOrCreate(
-                    [
-                        'listing_id' => $listing->id,
-                        'social_id' => $socialId,
-                    ],
-                    [
-                        'description' => $validated['socialDescription'][$index] ?? null,
-                    ]
-                );
+            // Handle social media
+            if (!empty($validated['socialId'])) {
+                // Delete removed social media? 
+                // Using updateOrCreate might leave old ones. 
+                // Better to sync or clear and re-add if appropriate.
+                // For now, let's stick to consistent logic:
+                BusinessSocialMedia::where('listing_id', $listing->id)->delete();
+                foreach ($validated['socialId'] as $index => $socialId) {
+                    if (!empty($socialId)) {
+                        BusinessSocialMedia::create([
+                            'listing_id' => $listing->id,
+                            'social_id' => $socialId,
+                            'description' => $validated['socialDescription'][$index] ?? null,
+                        ]);
+                    }
+                }
             }
-        }
 
-        // Handle business hours (only if day[] exists)
-        if (!empty($validated['day'])) {
-            BusinessHour::where('business_id', $listing->id)
-                ->whereNotIn('day', $validated['day'])
-                ->delete();
-            foreach ($validated['day'] as $index => $day) {
-                BusinessHour::updateOrCreate(
-                    [
-                        'business_id' => $listing->id,
-                        'day' => $day,
-                    ],
-                    [
-                        'open_time' => $validated['open_time'][$index] ?? null,
-                        'close_time' => $validated['close_time'][$index] ?? null,
-                        'open_time_2' => $validated['open_time_2'][$index] ?? null,
-                        'close_time_2' => $validated['close_time_2'][$index] ?? null,
-                        'is_24_hours' => isset($validated['is_24_hours'][$index]) ? 1 : 0,
-                        'add_2nd_time_slot' => isset($validated['add_2nd_time_slot'][$index]) ? 1 : 0,
-                    ]
-                );
+            // Handle business hours
+            if (!empty($validated['day'])) {
+                BusinessHour::where('business_id', $listing->id)->delete();
+                foreach ($validated['day'] as $index => $day) {
+                    if (!empty($day)) {
+                        BusinessHour::create([
+                            'business_id' => $listing->id,
+                            'day' => $day,
+                            'open_time' => $validated['open_time'][$index] ?? null,
+                            'close_time' => $validated['close_time'][$index] ?? null,
+                            'open_time_2' => $validated['open_time_2'][$index] ?? null,
+                            'close_time_2' => $validated['close_time_2'][$index] ?? null,
+                            'is_24_hours' => isset($validated['is_24_hours'][$index]) ? 1 : 0,
+                            'add_2nd_time_slot' => isset($validated['add_2nd_time_slot'][$index]) ? 1 : 0,
+                        ]);
+                    }
+                }
             }
-        }
 
-        return redirect()->route('vCard.business-listing')->with('success', __('yp.listing_updated_success'));
+            DB::commit();
+            return redirect()->route('vCard.business-listing')->with('success', __('yp.listing_updated_success'));
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Business Listing Update Error: ' . $e->getMessage());
+            return redirect()->back()->withInput()->withErrors(['error' => __('yp.generic_error')]);
+        }
     }
 
     ##------------------------- END ---------------------##

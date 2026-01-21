@@ -66,6 +66,7 @@ return [
     'country_city' => 'Country/City',
     'select_country_city' => 'Select Country/City',
     'phone_number' => 'Phone Number',
+    'phone_email_label' => 'Phone/Email/Mobile',
     'enter_phone_number' => 'Enter Phone Number',
     'enter_password' => 'Enter Password',
     'create_new_account' => 'Create new account? Register',

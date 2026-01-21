@@ -1,22 +1,23 @@
 <?php
 
 namespace App\Models;
+
 use Illuminate\Database\Eloquent\Model;
 
 class BusinessListing extends Model
 {
     protected $connection = 'yp';
-    protected $table = 'business_listings'; 
+    protected $table = 'business_listings';
 
     protected $fillable = [
         'user_id',
         'city_id',
         'address_id',
         'listing_title',
-        'tagline' ,
-        'business_name' ,
+        'tagline',
+        'business_name',
         'business_address',
-        'primary_phone' ,
+        'primary_phone',
         'secondary_phone',
         'primary_contact_name',
         'primary_contact_email',
@@ -35,7 +36,7 @@ class BusinessListing extends Model
         'notification_email',
         'user_name',
         'faq',
-        'answer' ,
+        'answer',
         'description',
         'tags_keywords',
         'social_id',
@@ -46,7 +47,8 @@ class BusinessListing extends Model
         'business_img',
         'email',
         'password',
-        'agree', 
+        'agree',
+        'locale_code',
 
     ];
 
@@ -67,29 +69,33 @@ class BusinessListing extends Model
         return $this->belongsTo(Category::class);
     }
     // In BusinessListing model
-public function city()
-{
-    return $this->belongsTo(City::class);
-}
-
-// In BusinessListing.php
-public function reviews()
-{
-    return $this->hasMany(Review::class, 'listing_id');
-}
-
-public function socialMedia()
-{
-    return $this->hasMany(BusinessSocialMedia::class, 'listing_id');
-}
-public function address()
-{
-    return $this->belongsTo(Address::class, 'address_id');
-}
-
-public function user()
+    public function city()
     {
-        return $this->belongsTo(User::class,foreignKey: 'user_id');
+        return $this->belongsTo(City::class)->where('locale_code', app()->getLocale());
     }
 
+    // In BusinessListing.php
+    public function reviews()
+    {
+        return $this->hasMany(Review::class, 'listing_id');
+    }
+
+    public function socialMedia()
+    {
+        return $this->hasMany(BusinessSocialMedia::class, 'listing_id');
+    }
+    public function address()
+    {
+        return $this->belongsTo(Address::class, 'address_id');
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, foreignKey: 'user_id');
+    }
+
+    public function products()
+    {
+        return $this->hasMany(BusinessProduct::class, 'business_listing_id');
+    }
 }

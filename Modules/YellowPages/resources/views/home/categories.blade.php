@@ -207,7 +207,7 @@ businesses, services') --}}
     <div class="container my-4">
         <h1 class="pt-3">
             @if (isset($city_name) && $city_name)
-                {{ $city_name }} {{ __('yp.businesses') }}
+                {{ $city->lable }}
             @elseif(isset($city) && $city)
                 {{ $city }} {{ __('yp.businesses') }}
             @elseif(isset($category) && $category)

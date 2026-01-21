@@ -429,6 +429,50 @@
             </div>
         </div>
     </section>
+
+    @php
+    $allProducts = collect();
+    if(isset($user->listings)) {
+    foreach($user->listings as $listing) {
+    $allProducts = $allProducts->concat($listing->products);
+    }
+    }
+    @endphp
+
+    @if($allProducts->isNotEmpty())
+    <section class="flex flex-col items-center justify-center p-4">
+        <div class="w-full max-w-xl bg-white border border-gray-200 rounded-lg shadow-lg p-6">
+            <h3 class="font-semibold text-gray-800 text-lg mb-4">{{ __('yp.products') }}</h3>
+            <div class="space-y-6">
+                @foreach($allProducts->take(10) as $product)
+                <div class="flex flex-col md:flex-row gap-4 border-b pb-4 last:border-b-0">
+                    <div class="w-full md:w-32 h-32 flex-shrink-0">
+                        <img src="{{ $product->image1 ? Storage::url($product->image1) : asset('assets/images/yplogo.jpg') }}"
+                            alt="{{ $product->product_name }}" class="w-full h-full object-cover rounded-lg">
+                    </div>
+                    <div class="flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-bold text-gray-800">{{ $product->product_name }}</h4>
+                            <p class="text-sm text-gray-600 mt-1">{{ Str::limit($product->description, 80) }}</p>
+                        </div>
+                        <div class="flex items-center justify-between mt-2">
+                            @if($product->price)
+                            <span class="font-bold text-blue-600">{{ $product->price }}</span>
+                            @endif
+                            @if($product->purchase_url)
+                            <a href="{{ $product->purchase_url }}" target="_blank"
+                                class="px-3 py-1 bg-yellow-500 text-black text-xs font-bold rounded hover:bg-yellow-600 transitioning">
+                                {{ __('yp.buy_now') ?? 'Buy Now' }}
+                            </a>
+                            @endif
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </section>
+    @endif
     @if ($vcard->is_active != 1)
     <p class="text-center text-red-500">{{ __('yp.process_of_approval') }}</p>
 

@@ -270,7 +270,7 @@ class CreateVCardController extends Controller
             ->orderBy('id', 'desc')
             ->with('dynamicFields')
             ->first();
-        $user = User::with('address')->find($vcard->user_id);
+        $user = User::with(['address', 'listings.products'])->find($vcard->user_id);
         $dynamicFields = DynamicFeild::where('is_active', 1)->get();
 
         // Fetch VCard data
@@ -297,7 +297,7 @@ class CreateVCardController extends Controller
             ->orderBy('id', 'desc')
             ->with('dynamicFields')
             ->first();
-        $user = User::with('address')->find($vcard->user_id);
+        $user = User::with(['address', 'listings.products'])->find($vcard->user_id);
         $dynamicFields = DynamicFeild::where('is_active', 1)->get();
 
         // Fetch VCard data
@@ -317,7 +317,7 @@ class CreateVCardController extends Controller
             ->with('dynamicFields')
             ->first();
 
-        $user = User::with('address')->find($vcard->user_id);
+        $user = User::with(['address', 'listings.products'])->find($vcard->user_id);
         $dynamicFields = DynamicFeild::where('is_active', 1)->get();
 
         $category = Category::where('id', $vcard->category_id)->first();
@@ -343,7 +343,7 @@ class CreateVCardController extends Controller
 
         $count = $vcard->increment('scan_count');
         return redirect()->route('vCard.view', ['slug' => $vcard->slug, 'city_arr' => $vcard->address->city->city_arr]);
-        $user = User::with('address')->find($vcard->user_id);
+        $user = User::with(['address', 'listings.products'])->find($vcard->user_id);
         if (!$user) {
             abort(404, __('yp.vcard_user_not_found'));
         }

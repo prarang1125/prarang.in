@@ -26,6 +26,7 @@ use Modules\YellowPages\Http\Controllers\VCard\VCardQRController;
 use Modules\YellowPages\Http\Controllers\VCard\CreateVCardController;
 use Modules\YellowPages\Http\Controllers\VCard\BusinessListingController;
 use Modules\YellowPages\Http\Controllers\VCard\listingReviewController;
+use Modules\YellowPages\Http\Controllers\VCard\ProductController;
 use Illuminate\Support\Facades\Auth;
 use App\Models\VCard;
 
@@ -95,6 +96,16 @@ Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
             Route::get('/user/ActivePlan', [PlanController::class, 'plan'])->name('vCard.plan');
             Route::get('/{city_arr}/{slug}/view', [CreateVCardController::class, 'userPreview'])->name('vCard.userPreview');
             Route::get('/{city_arr}/{slug}/print', [CreateVCardController::class, 'vcardPrint'])->name('vCard.vcardPrint');
+
+            // Product Routes
+            Route::prefix('user/products')->name('vCard.products.')->group(function () {
+                Route::get('/', [ProductController::class, 'index'])->name('index');
+                Route::get('/create', [ProductController::class, 'create'])->name('create');
+                Route::post('/store', [ProductController::class, 'store'])->name('store');
+                Route::get('/{id}/edit', [ProductController::class, 'edit'])->name('edit');
+                Route::put('/{id}/update', [ProductController::class, 'update'])->name('update');
+                Route::delete('/{id}/delete', [ProductController::class, 'destroy'])->name('destroy');
+            });
         });
         Route::get('/user/MembershipPlan', [PlanController::class, 'planDetails'])->name('vCard.planDetails');
         Route::post('plan/stripe-checkout', [PlanController::class, 'stripeCheckout'])->name('vcard.stripeCheckout');

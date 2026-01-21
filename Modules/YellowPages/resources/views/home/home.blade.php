@@ -196,7 +196,7 @@
                             @foreach ($categories as $category)
                                 <option value="{{ $category->slug }}"
                                     {{ request('category') == $category->slug ? 'selected' : '' }}>
-                                    {{ $category->name }}
+                                    {{ __('yp.' . $category->name) ?? $category->name }}
                                 </option>
                             @endforeach
                         </select>
@@ -352,7 +352,8 @@
                                     <p class="card-text text-dark mt-0">
                                         <span class="text-muted"><i class="bi bi-tag fw-bold"></i>
                                             {{ __('yp.category') }}:</span>
-                                        <span class="text-dark">{{ $listing->category->name ?? 'N/A' }}</span>
+                                        <span
+                                            class="text-dark">{{ __('yp.' . $listing->category->name) ?? ($listing->category->name ?? 'N/A') }}</span>
                                     </p>
 
                                     <!-- View Details Button -->
@@ -374,7 +375,7 @@
                                             @endif
                                         </div>
                                         <div class="col-6 text-end">
-                                            <a href="{{ route('yp.listing-details', ['city_slug' => $listing->city->name, 'listing_title' => str::slug($listing->listing_title), 'listing_id' => $listing->id]) }}"
+                                            <a href="{{ route('yp.listing-details', ['city_slug' => $listing->city->name ?? 'N/A', 'listing_title' => str::slug($listing->listing_title), 'listing_id' => $listing->id]) }}"
                                                 class="btn btn-primary text-white fw-bold w-100 rounded-pill">
                                                 {{ __('yp.view_details') }}<i class="bi bi-arrow-right"></i>
                                             </a>

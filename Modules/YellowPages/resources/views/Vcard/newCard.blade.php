@@ -254,6 +254,25 @@
         }
 
     }
+
+    /* Division */
+    .min-h-screen .md\:flex-row {
+        background-color: rgba(255, 255, 255, 0) !important;
+        border-style: none !important;
+    }
+
+    /* Transform */
+    .min-h-screen .md\:flex-row .transform {
+        background-color: rgba(255, 255, 255, 0) !important;
+    }
+
+    /* Division */
+    .space-y-2 .justify-center>div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
 </style>
 <div class="fixed inset-0 flex items-center justify-center min-h-screen bg-gray-100">
     <!-- Content Wrapper -->
@@ -299,7 +318,7 @@
                                     <div><i class="bx bxs-phone"></i></div>
                                     <div>
                                         <span class="text-muted mtdclass">{{ __('formyp.phone_number_label') }}:</span>
-                                        <span class="font-semibold text-gray-800"> +91 {{$vcard->phone}}</span>
+                                        <span class="font-semibold text-gray-800"> +91 {{ $vcard->phone }}</span>
                                     </div>
                                 </div>
                                 <div class="textsata">
@@ -326,10 +345,13 @@
                     </div>
                 </div>
                 <div>
-                    <a class="btn btn-primary"
-                        href="{{ route('vCard.createCard', ['slug' => $vcard->slug, 'city_arr' => $vcard->city_arr]) }}">अपनी
-                        तस्वीर
-                        और पता जोड़े | </a>
+
+                    <a class="btn btn-primary text-center"
+                        href="{{ route('vCard.createCard', ['slug' => $vcard->slug, 'city_arr' => $vcard->city_arr]) }}">{{
+                        __('yp.add_your_image_add') }}
+                    </a>
+                    <p class=""><small>{{ __('yp.compleate_process') }}</small></p>
+
                 </div>
             </section>
 
@@ -380,56 +402,56 @@
 
             <script>
                 document.addEventListener("DOMContentLoaded", function() {
-                    var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
+                        var myModal = new bootstrap.Modal(document.getElementById('staticBackdrop'));
 
-                    // Function to get a cookie value
-                    function getCookie(name) {
-                        let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
-                        return match ? match[2] : null;
-                    }
-
-                    // Function to set a cookie
-                    function setCookie(name, value, days) {
-                        let expires = "";
-                        if (days) {
-                            let date = new Date();
-                            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
-                            expires = "; expires=" + date.toUTCString();
+                        // Function to get a cookie value
+                        function getCookie(name) {
+                            let match = document.cookie.match(new RegExp('(^| )' + name + '=([^;]+)'));
+                            return match ? match[2] : null;
                         }
-                        document.cookie = name + "=" + value + "; path=/" + expires;
-                    }
 
-                    // Check if the modal has been shown before
-                    if (!getCookie("modalShowns")) {
-                        myModal.show(); // Show modal
+                        // Function to set a cookie
+                        function setCookie(name, value, days) {
+                            let expires = "";
+                            if (days) {
+                                let date = new Date();
+                                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                                expires = "; expires=" + date.toUTCString();
+                            }
+                            document.cookie = name + "=" + value + "; path=/" + expires;
+                        }
 
-                        // Set cookie so it doesn't show again
-                        setCookie("modalShown", "true", 1); // Expires in 1 day
-                    }
+                        // Check if the modal has been shown before
+                        if (!getCookie("modalShowns")) {
+                            myModal.show(); // Show modal
 
-                    // Copy to clipboard functionality
-                    var copyBtns = document.querySelectorAll('[id^="copyBtn"]');
+                            // Set cookie so it doesn't show again
+                            setCookie("modalShown", "true", 1); // Expires in 1 day
+                        }
 
-                    copyBtns.forEach(function(copyBtn) {
-                        copyBtn.addEventListener('click', function() {
-                            var textToCopy = this.getAttribute('data-clipboard-text');
-                            navigator.clipboard.writeText(textToCopy)
-                                .then(function() {
-                                    console.log('Copied to clipboard: ' + textToCopy);
-                                    {
+                        // Copy to clipboard functionality
+                        var copyBtns = document.querySelectorAll('[id^="copyBtn"]');
+
+                        copyBtns.forEach(function(copyBtn) {
+                            copyBtn.addEventListener('click', function() {
+                                var textToCopy = this.getAttribute('data-clipboard-text');
+                                navigator.clipboard.writeText(textToCopy)
+                                    .then(function() {
+                                        console.log('Copied to clipboard: ' + textToCopy);
                                         {
-                                            --alert('Copied to clipboard: ' + textToCopy);
-                                            --
+                                            {
+                                                --alert('Copied to clipboard: ' + textToCopy);
+                                                --
+                                            }
                                         }
-                                    }
-                                })
-                                .catch(function(err) {
-                                    console.error('Failed to copy: ', err);
-                                });
+                                    })
+                                    .catch(function(err) {
+                                        console.error('Failed to copy: ', err);
+                                    });
+                            });
                         });
-                    });
 
-                });
+                    });
             </script>
 
 
@@ -439,8 +461,9 @@
             <div class="modal" id="modal">
                 <div class="modal__content">
                     <span class="modal__close" onclick="closeModal()">&times;</span>
-                    <h1>🎉 बधाई हो! 🎉</h1>
-                    <p>आपका अपना वेबपेज खुल गया है। आप अपनी वेबसाइट को याद रखें या इसे याद रखने के लिए खुद को
-                        <strong>WhatsApp</strong> या <strong>SMS</strong> करें।</p>
+                    <h1>🎉 {{ __('yp.congratulations') }}! 🎉</h1>
+                    <p>{{ __('yp.webpage_open_msg') }}
+                        <strong>WhatsApp</strong> {{ __('yp.or') }} <strong>SMS</strong> {{ __('yp.share_action_msg') }}
+                    </p>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 @extends('yellowpages::layout.vcard.vcard')
 @section('title', 'Business Listing')
 
-{{-- @if(session('success'))
+{{-- @if (session('success'))
 <div class="alert alert-success">
     {{ session('success') }}
 </div>
@@ -31,12 +31,12 @@
     <div class="row">
         <div class="col-xl-9 mx-auto w-100">
             <!-- Success Message -->
-            @if(session('success'))
+            @if (session('success'))
             <div class="alert alert-success mt-3">
                 {{ session('success') }}
             </div>
             @endif
-            @if(session('errors_message'))
+            @if (session('errors_message'))
             <div class="alert alert-danger">
                 {{ session('errors_message') }}
             </div>
@@ -67,7 +67,7 @@
                             </thead>
                             <tbody>
                                 @php $index = 1; @endphp
-                                @foreach($Vcard_list as $vcard)
+                                @foreach ($Vcard_list as $vcard)
                                 <tr>
                                     <th scope="row" class="align-middle">{{ $index }}</th>
                                     <td class="align-middle">{{ $vcard->user->name }}</td>
@@ -78,7 +78,8 @@
 
                                     <td class="align-middle">{{ $vcard->color_code }}</td>
                                     <td class="align-middle">{{ $cities->get($vcard->city_id)->name ?? '' }}</td>
-                                    <td class="align-middle">{{ $categories->get($vcard->category_id)->name ?? '' }}
+                                    <td class="align-middle">
+                                        {{ $categories->get($vcard->category_id)->name ?? '' }}
                                     </td>
                                     <td class="align-middle">{{ $vcard->created_at }}</td>
                                     <td class="align-middle">
@@ -86,7 +87,7 @@
                                             class="btn btn-sm btn-primary"><i class="bx bx-edit"></i>{{ __('yp.edit')
                                             }}</a>
 
-                                        @if($cities->has($vcard->city_id))
+                                        @if ($cities->has($vcard->city_id))
                                         @php
                                         $user = auth()->user()->load('city');
                                         $cityArr = $user->city->city_arr;
@@ -95,7 +96,6 @@
                                             href="{{ route('vCard.userPreview', ['city_arr' => Str::slug($cityArr), 'slug' => Str::slug($vcard->slug)]) }}"
                                             class="btn btn-sm btn-primary"><i class="bx bx-show"></i>{{
                                             __('yp.view_vcard') }}</a>
-
                                         @endif
                                         <form action="{{ route('vCard.vcard-delete', $vcard->id) }}" method="POST"
                                             style="display:inline;">
@@ -110,8 +110,23 @@
                                 @php $index++; @endphp
                                 @endforeach
                             </tbody>
+
+
+
+
                         </table>
                     </div><!-- /.table-responsive -->
+
+                </div>
+
+            </div>
+            <div class="card mt-3">
+                <div class="card-body text-center p-4">
+                    <h5 class="card-title fw-bold mb-3">{{ __('yp.add_your_business_listing') }}</h5>
+                    <p class="card-text text-muted mb-4">{{ __('yp.get_business_online') }}</p>
+                    <a href="{{ route('vCard.business-listing-register') }}" class="btn btn-primary btn-lg px-5">
+                        <i class="bx bx-plus-circle me-1"></i> {{ __('yp.add_business_listing') }}
+                    </a>
                 </div>
             </div>
         </div>

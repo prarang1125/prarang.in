@@ -1,603 +1,402 @@
 @extends('yellowpages::layout.auth')
 
-@section('title', __('yp.register'))
+@section('title', __('yp.login'))
+
 @section('content')
-    <style>
-        /* Import Google Fonts */
-        @import url("//fonts.googleapis.com/css2?family=TimesNewRoman:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;600;700&display=swap');
 
-        /* Heading */
-        .card .sign-in-form h2 {
-            font-weight: 700;
-            font-family: 'TimesNewRoman', 'Times New Roman', Times, Baskerville, Georgia, serif;
-            font-size: 28px;
+    :root {
+        --primary-color: #ffc107;
+        --primary-dark: #ffb300;
+        --bg-gradient: linear-gradient(135deg, #ffc107 0%, #ff9800 100%);
+        --text-dark: #2d2d2d;
+    }
+
+    body {
+        font-family: 'Inter', sans-serif;
+        background-color: #ffffff;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 0;
+        overflow-x: hidden;
+    }
+
+    .auth-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: #ffffff;
+        z-index: -1;
+    }
+
+    .auth-bg::before {
+        content: '';
+        position: absolute;
+        width: 500px;
+        height: 500px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        top: -150px;
+        right: -100px;
+        animation: float 10s infinite ease-in-out;
+    }
+
+    .auth-bg::after {
+        content: '';
+        position: absolute;
+        width: 350px;
+        height: 350px;
+        background: rgba(0, 0, 0, 0.03);
+        border-radius: 50%;
+        bottom: -100px;
+        left: -50px;
+        animation: float 12s infinite ease-in-out reverse;
+    }
+
+    @keyframes float {
+
+        0%,
+        100% {
+            transform: translate(0, 0);
         }
 
-        /* Division */
-        .card .sign-in-form .mb-3 {
-            margin-bottom: 15px !important;
+        50% {
+            transform: translate(20px, 30px);
         }
+    }
 
-        #name {
-            margin-top: -5px;
-        }
+    .login-container {
+        width: 100%;
+        max-width: 1000px;
+        max-height: 80vh;
+        padding: 24px;
+        display: flex;
+        flex-direction: row;
+        background: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(25px);
+        -webkit-backdrop-filter: blur(25px);
+        border: 1px solid rgba(255, 193, 7, 0.2);
+        border-radius: 40px;
+        box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.1);
+        margin: 20px;
+        overflow: hidden;
+    }
 
-        /* Link */
-        .d-flex .card a {
-            color: #020202;
-            font-weight: 700;
-            text-decoration: none;
-            text-align: center;
-            padding-top: 6px;
-        }
+    .login-info {
+        flex: 1;
+        padding: 60px;
+        color: var(--text-dark);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        border-right: 1px solid rgba(0, 0, 0, 0.05);
+    }
 
-        /* Link (hover) */
-        .d-flex .card a:hover {
-            color: #f39c12;
-        }
+    .login-form-side {
+        flex: 1;
+        padding: 60px;
+        background: white;
+        border-radius: 30px;
+        box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.05);
+        overflow-y: auto;
+    }
 
-        /* Phone */
-        #phone {
-            margin-top: -5px;
-        }
+    .brand-logo {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        margin-bottom: 50px;
+    }
 
-        /* City */
-        #city {
-            margin-top: -3px;
-        }
+    .brand-logo img {
+        height: 55px;
+        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.08));
+    }
 
-        /* Form Division */
-        .d-flex .card form {
-            transform: translatex(0px) translatey(0px);
-        }
+    .brand-logo .divider {
+        width: 2px;
+        height: 45px;
+        background: rgba(0, 0, 0, 0.1);
+        border-radius: 2px;
+    }
 
-        /* Name */
-        #name {
-            padding-bottom: 0px;
-            margin-top: -6px !important;
-        }
+    .login-info h1 {
+        font-family: 'Outfit', sans-serif;
+        font-weight: 800;
+        font-size: 3rem;
+        margin-bottom: 25px;
+        line-height: 1.1;
+        color: #1a1a1a;
+    }
 
-        /* Division */
-        .row .col-sm-6 div .d-flex .card .sign-in-form .mb-3 {
-            margin-bottom: 7px !important;
-        }
+    .login-info p {
+        font-size: 1.25rem;
+        color: #444;
+        margin-bottom: 50px;
+        line-height: 1.6;
+    }
 
-        /* Name */
-        #name {
-            padding-bottom: 6px !important;
-        }
+    .login-form-side h2 {
+        font-family: 'Outfit', sans-serif;
+        font-weight: 700;
+        color: #1a1a1a;
+        margin-bottom: 12px;
+        font-size: 2rem;
+    }
 
-        /* Heading */
-        .card .sign-in-form h2 {
-            color: #020202 !important;
-        }
+    .login-form-side p {
+        color: #777;
+        margin-bottom: 40px;
+        font-size: 1rem;
+    }
 
-        .logo-sec {
-            display: flex;
-            flex-direction: row;
-            justify-content: center;
-            align-items: center;
-        }
+    .form-label {
+        font-weight: 700;
+        font-size: 0.8rem;
+        text-transform: uppercase;
+        letter-spacing: 1.5px;
+        color: #666;
+        margin-bottom: 12px;
+        display: block;
+    }
 
-        *,
-        :after,
-        :before {
-            box-sizing: border-box;
-        }
+    .input-group {
+        background: #fafafa;
+        border: 2px solid #f0f0f0;
+        border-radius: 18px;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        overflow: hidden;
+    }
 
-        img {
-            vertical-align: middle;
-        }
+    .input-group:focus-within {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 5px rgba(255, 193, 7, 0.2);
+        background: white;
+        transform: translateY(-2px);
+    }
 
-        p {
-            margin-top: 0;
-            margin-bottom: 1rem;
-        }
+    .input-group-text {
+        background: transparent;
+        border: none;
+        color: #aaa;
+        padding-left: 22px;
+    }
 
-        .pie {
-            border-left: 4px solid;
-            height: 50px;
-        }
+    .form-control,
+    .form-select {
+        border: none;
+        background: transparent !important;
+        padding: 16px 18px;
+        font-size: 1rem;
+        color: #333;
+        font-weight: 600;
+    }
 
-        .panel p {
-            font-size: 0.95rem;
-            padding: 0.7rem 0;
-        }
+    .form-control:focus,
+    .form-select:focus {
+        box-shadow: none;
+        outline: none;
+    }
 
+    .btn-submit {
+        background: var(--primary-color);
+        color: #1a1a1a;
+        border: none;
+        padding: 18px;
+        border-radius: 18px;
+        font-weight: 800;
+        font-size: 1.1rem;
+        margin-top: 30px;
+        width: 100%;
+        transition: all 0.3s;
+        box-shadow: 0 8px 25px -5px rgba(255, 193, 7, 0.4);
+        cursor: pointer;
+    }
 
-        /* These were inline style tags. Uses id+class to override almost everything */
-        #style-Kl3pw.style-Kl3pw {
-            width: 100px;
-            height: auto;
-        }
+    .btn-submit:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 15px 30px -8px rgba(255, 193, 7, 0.6);
+        background: var(--primary-dark);
+    }
 
-        #style-kRBjZ.style-kRBjZ {
-            width: 30%;
-            height: auto;
-        }
+    .register-link {
+        text-align: center;
+        margin-top: 35px;
+        color: #666;
+        font-weight: 600;
+        font-size: 0.95rem;
+    }
 
-        /* Ldiv */
-        .row .ldiv {
-            width: 750px;
-            min-height: 16px !important;
-            height: 56vh;
-        }
+    .register-link a {
+        color: #e67e22;
+        text-decoration: none;
+        font-weight: 800;
+        margin-left: 5px;
+        transition: all 0.2s;
+        box-shadow: 0 2px 0 transparent;
+    }
 
-        /* Col 6 */
-        .row .col-sm-6 {
-            display: flex;
+    .register-link a:hover {
+        color: #d35400;
+        box-shadow: 0 2px 0 #d35400;
+    }
+
+    .error-msg {
+        color: #dc3545;
+        font-size: 0.85rem;
+        margin-top: 8px;
+        font-weight: 700;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+    }
+
+    @media (max-width: 991px) {
+        .login-container {
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            transform: translatex(0px) translatey(0px);
+            max-width: 550px;
+            padding: 16px;
         }
 
-        /* Image */
-        .row .col-sm-6>div>img {
-            width: 60% !important;
-            display: inline-block;
-            transform: translatex(0px) translatey(0px) !important;
-        }
-
-        /* Ldiv */
-        .row .ldiv {
-            height: 51px !important;
-        }
-
-        /* Division */
-        .row .col-sm-6>div {
-            display: flex;
-            justify-content: center;
-        }
-
-
-        @media (max-width:576px) {
-
-            /* Logo sec */
-            .row .ldiv .logo-sec {
-                justify-content: center;
-                padding-top: 65px;
-            }
-
-            /* Logo sec */
-            .row .col-sm-6 .ldiv .logo-sec {
-                width: 100% !important;
-            }
-
-            /* Ldiv */
-            .row .col-sm-6 .ldiv {
-                width: 100% !important;
-            }
-
-            /* Image */
-            .row .col-sm-6>div>img {
-                display: none !important;
-            }
-
-            /* Flex */
-            .row .col-sm-6 div .d-flex {
-                min-height: 625px !important;
-                height: 625px;
-            }
-
-        }
-
-        /* Body */
-        body {
-                {
-                    {
-                    -- background-image: url("file:///C:/Users/vivek/Downloads/Fluid@1x-100.0s-1592px-830px%20(1).svg");
-                    --
-                }
-            }
-
-            background-size: cover;
-            background-attachment: fixed;
-            background-repeat: repeat-x;
-            background-position-y: 0%;
-            background-position-x: 100%;
-        }
-
-        /* Svg */
-        svg {
-            position: fixed;
-            transform: rotateY(180deg) rotateZ(9deg);
-        }
-
-        /* Svg */
-        svg {
-            top: -171px;
-            transform: rotateZ(-180deg) !important;
-            height: 975px !important;
-            width: 1373px !important;
-        }
-
-        @media (max-width:576px) {
-
-            /* Svg */
-            svg {
-                width: 898px !important;
-                height: 497px !important;
-                transform: rotateX(35deg) rotateY(-5deg) rotateZ(180deg) !important;
-            }
-
-        }
-
-        /* Button */
-        .card .sign-in-form .btn-primary {
-            margin-top: 7px;
-        }
-
-        /* Division */
-        .card .sign-in-form .mb-3 {
-                {
-                    {
-                    -- transform: translatex(0px) translatey(0px);
-                    --
-                }
-            }
-        }
-
-        /* Password */
-        #password {
-            margin-top: -6px;
-        }
-
-
-        /* Hero */
-        .row .hero-txt {
-            display: flex;
-            margin-top: 24px;
-            align-self: center;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        /* Paragraph */
-        .row .hero-txt p {
-            font-weight: 700;
-        }
-
-
-        /* Subtxth */
-        .row .hero-txt .subtxth {
-            margin-bottom: 5px;
-            margin-top: -13px;
-            font-weight: 500;
-        }
-
-        /* Paragraph */
-        .row .hero-txt p {
-            font-size: 17px;
-            line-height: 1.5em;
-        }
-
-        /* Hero */
-        .row .hero-txt {
-            margin-top: 32px !important;
-        }
-
-        /* Image */
-        .ldiv .logo-sec img {
-            padding-bottom: 9px;
-        }
-
-        /* Style */
-        #style-kRBjZ {
-            padding-top: 4px;
-        }
-
-        /* Paragraph */
-        .ldiv .logo-sec p {
-            min-height: 75px;
-        }
-
-        @media (max-width:576px) {
-
-            /* Hero */
-            .row .hero-txt {
-                margin-top: 57px !important;
-                padding-top: 9px;
-
-                    {
-                        {
-                        -- transform: translatex(0px) translatey(0px);
-                        --
-                    }
-                }
-
-                padding-left: 30px;
-                padding-right: 45px;
-            }
-
-            /* Subtxth */
-            .row .hero-txt .subtxth {
-                display: block;
-                white-space: pre-wrap;
-                text-align: center;
-            }
-
-            /* Flex */
-            .row .col-sm-6 div .d-flex {
-                    {
-                        {
-                        -- transform: translatex(0px) translatey(-59px);
-                        --
-                    }
-                }
-            }
-
-            /* Logo sec */
-            .row .ldiv .logo-sec {
-                padding-top: 78px !important;
-            }
-
-        }
-
-        @keyframes confetti-fall {
-            0% {
-                transform: translate(0, 0) rotate(0deg);
-                opacity: 1;
-            }
-
-            100% {
-                transform: translate(calc(200px * var(--dirX)), calc(-250px * var(--dirY))) rotate(720deg);
-                opacity: 0;
-            }
-        }
-
-
-
-        .modal {
+        .login-info {
             display: none;
-            position: fixed;
-            top: 5vh;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(77, 77, 77, 0.7);
-            border-radius: 10px;
-            width: 500px;
-            text-align: center;
-            z-index: 1000;
         }
 
-        .modal.show {
-            display: block;
+        .brand-logo {
+            justify-content: center;
+            margin-bottom: 30px;
         }
 
-        .modal__content {
-            background: #fff;
-            padding: 30px;
-            text-align: center;
-            border-radius: 10px;
-            position: relative;
-            overflow: hidden;
+        .login-info h1 {
+            font-size: 2.5rem;
         }
 
-        .modal__content h1 {
-            color: #4CAF50;
-            font-size: 24px;
+        .login-info p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
         }
 
-        .modal__close {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            font-size: 24px;
-            color: #333;
-            cursor: pointer;
+        .login-info .side-img {
+            max-width: 250px !important;
         }
 
-        .confetti {
-            position: absolute;
-            animation: confetti-fall 2.5s linear forwards;
+        .login-form-side {
+            padding: 40px 30px;
         }
+    }
 
-        .confetti.circle {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-        }
+    /* Login container */
+    .login-container {
+        background-color: rgba(255, 255, 255, 0.9);
+    }
 
-        .confetti.square {
-            width: 10px;
-            height: 10px;
-        }
+    /* Login info */
+    .login-container .login-info {
+        background-color: #f5e237;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+    }
 
-        .confetti.ribbon {
-            width: 16px;
-            height: 5px;
-            border-radius: 2px;
-        }
+    /* Login form side */
+    .login-container .login-form-side {
+        background-color: #f5f3f3;
+        border-top-left-radius: 0px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 20px;
+    }
+</style>
 
-        /* Card */
-        .row div .card {
-            box-shadow: 0px 16px 48px 26px rgba(0, 0, 0, 0.176) !important;
-            transform: translatex(0px) translatey(0px);
-        }
+<div class="auth-bg"></div>
 
-        /* Heading */
-        .card section h1 {
-            text-align: center;
-            font-weight: 700;
-            font-size: 38px;
-            color: #0d951f;
-            margin-bottom: 22px;
-        }
-
-        /* Paragraph */
-        .card section p {
-            font-weight: 600;
-        }
-
-        /* Paragraph */
-        .card section p {
-            text-align: center;
-            margin-bottom: 22px;
-        }
-
-        /* Heading */
-        .card section h1 {
-            margin-bottom: 0px !important;
-        }
-
-        g {
-            animation: floatAnimation 4s infinite ease-in-out alternate;
-        }
-
-        @keyframes floatAnimation {
-            0% {
-                transform: translateY(0);
-                opacity: 0.6;
-            }
-
-            100% {
-                transform: translateY(-20px);
-                opacity: 1;
-            }
-        }
-
-        path {
-            animation: pulseAnimation 2s infinite ease-in-out alternate;
-        }
-
-        @keyframes pulseAnimation {
-            0% {
-                transform: scale(1);
-                opacity: 0.8;
-            }
-
-            100% {
-                transform: scale(1.1);
-                opacity: 1;
-            }
-        }
-
-        /* Text center */
-        .card .sign-in-form h2.text-center {
-            font-size: 26px;
-            margin-bottom: 10px !important;
-        }
-    </style>
-
-
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1592 830" preserveAspectRatio="xMidYMid" width="1592" height="830"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        style="shape-rendering:auto;display:block;background-position-x:0%;background-position-y:0%;background-size:auto;background-origin:padding-box;background-clip:border-box;background:scroll rgba(0, 0, 0, 0) none  repeat;width:1592px;height:830px;;animation:none">
-        <g>
-            <g opacity="0.4" transform="matrix(100,0,0,100,1758.1326904296875,34.06471252441406)"
-                style="transform:matrix(100, 0, 0, 100, 1758.13, 34.0647);opacity:0.4;;animation:none">
-                <path stroke-width="0" fill="#fedd59"
-                    d="M8.795799999999998 0 C8.795799999999998 2.0695999999999994 11.340675510115574 4.157773824327724 10.305875510115575 5.950099999999998 S6.190226175672274 6.582586246607163 4.3979 7.617386246607163 S2.0696000000000003 11.900199999999998 7.286770919606665e-16 11.900199999999998 S-2.605573824327723 8.652186246607164 -4.397899999999997 7.617386246607165 S-9.271075510115573 7.742426175672276 -10.305875510115573 5.950100000000003 S-8.795799999999998 2.0696000000000003 -8.795799999999998 1.0771748315940288e-15 S-11.340675510115576 -4.157773824327721 -10.305875510115577 -5.9500999999999955 S-6.190226175672276 -6.5825862466071605 -4.397900000000003 -7.617386246607161 S-2.0696000000000017 -11.900199999999998 -2.1860312758819993e-15 -11.900199999999998 S2.6055738243277182 -8.652186246607165 4.397899999999993 -7.617386246607167 S9.27107551011557 -7.742426175672278 10.305875510115571 -5.950100000000004 S8.795799999999998 -2.0696000000000017 8.795799999999998 -2.1543496631880575e-15"
-                    transform="matrix(1,0,0,1,0,0)" style="fill:#FEDD59;transform:matrix(1, 0, 0, 1, 0, 0);;animation:none">
-                </path>
-            </g>
-            <g opacity="0.4" transform="matrix(100,0,0,100,1950.5592041015625,-42.122344970703125)"
-                style="transform:matrix(100, 0, 0, 100, 1950.56, -42.1223);opacity:0.4;;animation:none">
-                <path stroke-width="0" fill="#eecd49"
-                    d="M10.55496 0 C10.55496 2.4835199999999995 13.608810612138692 4.98932858919327 12.367050612138693 7.140119999999999 S7.42827141080673 7.899103495928597 5.277480000000001 9.140863495928597 S2.4835200000000004 14.28024 8.744125103527999e-16 14.28024 S-3.126688589193268 10.382623495928598 -5.277479999999997 9.140863495928599 S-11.125290612138688 9.290911410806732 -12.367050612138689 7.140120000000004 S-10.55496 2.483520000000001 -10.55496 1.2926097979128347e-15 S-13.608810612138694 -4.989328589193267 -12.367050612138694 -7.140119999999996 S-7.428271410806732 -7.899103495928594 -5.277480000000004 -9.140863495928595 S-2.483520000000002 -14.28024 -2.6232375310583993e-15 -14.28024 S3.126688589193263 -10.3826234959286 5.277479999999993 -9.140863495928603 S11.125290612138686 -9.290911410806734 12.367050612138687 -7.140120000000006 S10.55496 -2.483520000000002 10.55496 -2.5852195958256695e-15"
-                    transform="matrix(1,0,0,1,0,0)" style="fill:#FEDD59;transform:matrix(1, 0, 0, 1, 0, 0);;animation:none">
-                </path>
-            </g>
-            <g opacity="0.4" transform="matrix(100,0,0,100,2412.383056640625,-224.97128295898438)"
-                style="transform:matrix(100, 0, 0, 100, 2412.38, -224.971);opacity:0.4;;animation:none">
-                <path stroke-width="0" fill="#debd39"
-                    d="M14.776944 0 C14.776944 3.4769279999999996 19.052334856994168 6.9850600248705765 17.313870856994168 9.996167999999997 S10.399579975129422 11.058744894300037 7.388472000000002 12.797208894300038 S3.476928000000001 19.992335999999998 1.2241775144939199e-15 19.992335999999998 S-4.377364024870576 14.535672894300038 -7.388471999999997 12.79720889430004 S-15.575406856994164 13.007275975129426 -17.313870856994164 9.996168000000006 S-14.776944 3.4769280000000014 -14.776944 1.8096537170779687e-15 S-19.05233485699417 -6.985060024870573 -17.31387085699417 -9.996167999999994 S-10.399579975129425 -11.058744894300034 -7.388472000000006 -12.797208894300034 S-3.476928000000003 -19.992335999999998 -3.672532543481759e-15 -19.992335999999998 S4.377364024870569 -14.53567289430004 7.38847199999999 -12.797208894300043 S15.57540685699416 -13.007275975129428 17.31387085699416 -9.996168000000008 S14.776944 -3.476928000000003 14.776944 -3.6193074341559375e-15"
-                    transform="matrix(1,0,0,1,0,0)" style="fill:#FEDD59;transform:matrix(1, 0, 0, 1, 0, 0);;animation:none">
-                </path>
-            </g>
-            <g></g>
-        </g><!-- [ldio] generated by https://loading.io -->
-    </svg>
-
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="container ldiv d-flex justify-content-center align-items-center min-vh-100">
-                <div class="logo-sec snipcss-LUbH5">
-                    <img src="{{ asset('assets/images/yplogo.png') }}" alt="logo icon" id="style-Kl3pw" class="style-Kl3pw">
-                    <p class="pie"></p>
-                    <img src="{{ asset('assets/images/logo-bg.png') }}" alt="logo icon" id="style-kRBjZ"
-                        class="style-kRBjZ">
-                </div>
-
-            </div>
-            <div class="hero-txt">
-                <p>{{ __('yp.india_first_yellowpage') }}</p>
-                <p class="subtxth">{{ __('yp.get_business_online') }}</p>
-            </div>
-            <div>
-                <img src="{{ asset('assets/images/Mobile-login-rafiki.png') }}" alt="">
-            </div>
-
+<div class="login-container animate__animated animate__zoomIn">
+    <!-- Info Side -->
+    <div class="login-info">
+        <div class="brand-logo">
+            <img src="{{ asset('assets/images/yplogo.png') }}" alt="Yellow Pages">
+            <div class="divider"></div>
+            <img src="{{ asset('assets/images/logo-bg.png') }}" alt="Prarang">
         </div>
-        <div class="col-sm-6">
-            <div class="container d-flex justify-content-center align-items-center min-vh-100">
-                <div class="p-4 shadow-lg card" style="max-width: 400px; width: 100%;">
-
-                    <!-- Login Form -->
-                    <form action="{{ route('yp.authLogin') }}" method="POST" class="sign-in-form" autocomplete="off">
-                        @csrf
-                        <h2 class="mb-4 text-center">{{ __('yp.login') }}</h2>
-                        <div class="mb-3">
-                            <label for="cities"> {{ __('yp.country_city') }}</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
-                                <select name="city_id" id="cities"
-                                    class="form-control @error('cities') is-invalid @enderror" required>
-                                    <option value="">{{ __('yp.select_country_city') }}</option>
-                                    @foreach ($cities as $city)
-                                        <option value="{{ $city->id }}">{{ $city->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            @error('cities')
-                                <div class="text-danger small">{{ $message }}</div>
-                            @enderror
-                        </div>
-                        <!-- PhoneField -->
-                        <div class="mb-3">
-                            <label class="form-label">{{ __('yp.phone_number') }}</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="fas fa-phone"></i></span>
-                                <input type="tel" class="form-control @error('phone') is-invalid @enderror"
-                                    name="phone" placeholder="{{ __('yp.enter_phone_number') }}"
-                                    value="{{ old('phone') }}" required />
-                            </div>
-                            @error('phone')
-                                <div class="text-danger small">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <!-- Password Field -->
-                        <div class="mb-3">
-                            <label class="form-label">{{ __('yp.password') }}</label>
-                            <div class="input-group">
-                                <span class="input-group-text"><i class="fas fa-lock"></i></span>
-                                <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                    name="password" placeholder="{{ __('yp.enter_password') }}" required />
-                            </div>
-                            @error('password')
-                                <div class="text-danger small">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <!-- Submit Button -->
-                        <button type="submit" class="btn btn-primary w-100">{{ __('yp.login') }}</button>
-
-                        <!-- Register Link -->
-                        <div class="mt-3 text-center">
-                            <a href="{{ route('yp.newAccount') }}"
-                                class="text-center">{{ __('yp.create_new_account') }}</a>
-                        </div>
-
-                    </form>
-                </div>
-            </div>
-
-        </div>
-
+        <h1>{{ __('yp.india_first_yellowpage') }}</h1>
+        <p>{{ __('yp.get_business_online') }}</p>
+        <img src="{{ asset('assets/images/Mobile-login-rafiki.png') }}" class="side-img img-fluid"
+            style="max-width: 320px; margin-top: auto;" alt="">
     </div>
 
+    <!-- Form Side -->
+    <div class="login-form-side">
+        <h2>{{ __('yp.login') }}</h2>
+        <p>{{ __('yp.welcome_back') ?? 'Please enter your details to continue' }}</p>
 
+        @if($errors->has('error'))
+        <div class="alert alert-danger py-3 px-4 small border-0 mb-4 rounded-4"
+            style="background: rgba(220, 53, 69, 0.08); color: #dc3545; display: flex; align-items: center;">
+            <i class="fas fa-exclamation-circle me-3 fs-5"></i> {{ $errors->first('error') }}
+        </div>
+        @endif
+
+        <form action="{{ route('yp.authLogin') }}" method="POST" autocomplete="off">
+            @csrf
+
+            <!-- City/Country Selection -->
+            <div class="mb-4">
+                <label class="form-label">{{ __('yp.country_city') }}</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                    <select name="city_id" class="form-select @error('city_id') is-invalid @enderror" required>
+                        <option value="">{{ __('yp.select_country_city') }}</option>
+                        @foreach ($cities as $city)
+                        <option value="{{ $city->id }}" {{ old('city_id')==$city->id ? 'selected' : '' }}>{{ $city->name
+                            }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                @error('city_id')
+                <div class="error-msg"><i class="fas fa-info-circle"></i> {{ $message }}</div>
+                @enderror
+            </div>
+
+            <!-- Phone/Email Field -->
+            <div class="mb-4">
+                <label class="form-label">{{ __('yp.phone_email_label') }}</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-user"></i></span>
+                    <input type="text" class="form-control @error('phone') is-invalid @enderror" name="phone"
+                        placeholder="{{ __('yp.enter_phone_email') }}" value="{{ old('phone') }}" required />
+                </div>
+                @error('phone')
+                <div class="error-msg"><i class="fas fa-info-circle"></i> {{ $message }}</div>
+                @enderror
+            </div>
+
+            <!-- Password Field -->
+            <div class="mb-4">
+                <label class="form-label">{{ __('yp.password') }}</label>
+                <div class="input-group">
+                    <span class="input-group-text"><i class="fas fa-lock"></i></span>
+                    <input type="password" class="form-control @error('password') is-invalid @enderror" name="password"
+                        placeholder="{{ __('yp.enter_password') }}" required />
+                </div>
+                @error('password')
+                <div class="error-msg"><i class="fas fa-info-circle"></i> {{ $message }}</div>
+                @enderror
+            </div>
+
+            <button type="submit" class="btn-submit">
+                {{ __('yp.login') }}
+            </button>
+
+            <div class="register-link">
+                {{ __('yp.dont_have_account') ?? "Don't have an account yet?" }}
+                <a href="{{ route('yp.newAccount') }}">{{ __('yp.create_new_account') }}</a>
+            </div>
+        </form>
+    </div>
+</div>
 
 @endsection

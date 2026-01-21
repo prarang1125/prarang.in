@@ -255,7 +255,7 @@ function addField(label, fieldName, fieldType) {
             <div class="mb-3 d-flex align-items-center" id="${uniqueId}">
                 <div class="flex-grow-1">
                     <label for="${fieldName}" class="form-label">${label}</label>
-                    <input type="${inputType}" class="form-control" name="dynamic_data[]" placeholder="${label} दर्ज करें">
+                    <input type="${inputType}" class="form-control" name="dynamic_data[]" placeholder="${label} {{ __('yp.enter') }}">
                     <input type="hidden" name="dynamic_name[]" value="${label}">
                 </div>
                 <button type="button" class="btn btn-light ms-2" onclick="removeField('${uniqueId}')">X</button>

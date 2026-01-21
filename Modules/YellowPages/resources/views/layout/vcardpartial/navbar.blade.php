@@ -5,43 +5,52 @@
             <div class="top-menu ms-auto">
                 <ul class="navbar-nav align-items-center">
                     <li class="nav-item mobile-search-icon">
-                        <a class="nav-link" href="#">	<i class='bx bx-search'></i></a>
+                        <a class="nav-link" href="#"> <i class='bx bx-search'></i></a>
                     </li>
                 </ul>
             </div>
             <div class="user-box dropdown">
-                <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-user-circle" class="user-img" alt="user avatar" style="font-size: 30px; color: #333;"></i>
+                <a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#"
+                    role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user-circle" class="user-img" alt="user avatar"
+                        style="font-size: 30px; color: #333;"></i>
                     <div class="user-info ps-3">
                         @if (Auth::guard('web')->check())
-                            <p class="user-name mb-0" id="{{ Auth::guard('web')->user()->userId }}">{{ Auth::guard('web')->user()->firstName }} {{ Auth::guard('web')->user()->lastName }}</p>
-                            <p class="designattion mb-0"><strong>{{ $user->name ?? '' }}</strong> </p>
+                        <p class="user-name mb-0" id="{{ Auth::guard('web')->user()->userId }}">{{
+                            Auth::guard('web')->user()->firstName }} {{ Auth::guard('web')->user()->lastName }}</p>
+                        <p class="designattion mb-0"><strong>{{ $user->name ?? '' }}</strong> </p>
                         @elseif (Auth::check())
-                            <p class="user-name mb-0">{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</p>
-                            <p class="designattion mb-0">वेब उपयोगकर्ता प्रोफ़ाइल</p>
+                        <p class="user-name mb-0">{{ Auth::user()->firstName }} {{ Auth::user()->lastName }}</p>
+                        <p class="designattion mb-0">{{ __('yp.web_user_profile') }}</p>
                         @else
-                            <p class="user-name mb-0">अतिथि</p>
-                            <p class="designattion mb-0">अंदर प्रवेश की अनुमति नहीं है</p>
+                        <p class="user-name mb-0">{{ __('yp.guest') }}</p>
+                        <p class="designattion mb-0">{{ __('yp.access_not_allowed') }}</p>
                         @endif
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
                     @if (Auth::guard('web')->check())
-                        {{-- <li><a class="dropdown-item" href="{{ route('vCard.userEdit', ['id' => Auth::id()]) }}"><i class="bx bx-user"></i><span>प्रोफ़ाइल अपडेट करें</span></a></li> --}}
-                        <li><a class="dropdown-item" href="{{ route('vCard.passwordReset') }}"><i class='bx bx-home-circle'></i><span>पासवर्ड बदलें</span></a></li>
-                        <li>
-                            <div class="dropdown-divider mb-0"></div>
-                        </li>
-                        <li>
-                            <a class="dropdown-item" href="{{ route('vCard.logout') }}"><i class='bx bx-log-out-circle'></i><span>लॉग आउट</span><a>
-                        </li>
+                    {{-- <li><a class="dropdown-item" href="{{ route('vCard.userEdit', ['id' => Auth::id()]) }}"><i
+                                class="bx bx-user"></i><span>प्रोफ़ाइल अपडेट करें</span></a></li> --}}
+                    <li><a class="dropdown-item" href="{{ route('vCard.passwordReset') }}"><i
+                                class='bx bx-home-circle'></i><span>{{ __('yp.change_password') }}</span></a></li>
+                    <li>
+                        <div class="dropdown-divider mb-0"></div>
+                    </li>
+                    <li>
+                        <a class="dropdown-item" href="{{ route('vCard.logout') }}"><i
+                                class='bx bx-log-out-circle'></i><span>{{ __('yp.logout') }}</span></a>
+                    </li>
                     @elseif (Auth::check())
-                        {{-- <li><a class="dropdown-item" href="javascript:;"><i class="bx bx-user"></i><span>प्रोफ़ाइल</span></a></li> --}}
-                        {{-- <li><a class="dropdown-item" href="javascript:;"><i class='bx bx-home-circle'></i><span>डैशबोर्ड</span></a></li> --}}
-                        <li>
-                            <div class="dropdown-divider mb-0"></div>
-                        </li>
-                        <a class="dropdown-item" href="{{ route('vCard.logout') }}"><i class='bx bx-log-out-circle'></i><span>लॉग आउट<span></a>
+                    {{-- <li><a class="dropdown-item" href="javascript:;"><i
+                                class="bx bx-user"></i><span>प्रोफ़ाइल</span></a></li> --}}
+                    {{-- <li><a class="dropdown-item" href="javascript:;"><i
+                                class='bx bx-home-circle'></i><span>डैशबोर्ड</span></a></li> --}}
+                    <li>
+                        <div class="dropdown-divider mb-0"></div>
+                    </li>
+                    <a class="dropdown-item" href="{{ route('vCard.logout') }}"><i
+                            class='bx bx-log-out-circle'></i><span>{{ __('yp.logout') }}<span></a>
                     @endif
                 </ul>
             </div>

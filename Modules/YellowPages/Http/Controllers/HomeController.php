@@ -22,7 +22,12 @@ class HomeController extends Controller
             $categories = Category::where('is_active', 1)->get();
             $cities = City::where('is_active', 1)->get();
 
-            $listings = BusinessListing::with(['category', 'hours', 'reviews'])->where('is_active', 1)->get();
+            $listings = BusinessListing::with(['category', 'hours', 'reviews', 'city'])
+                ->where('is_active', 1)
+                ->whereHas('city', function ($query) {
+                    $query->where('locale_code', app()->getLocale());
+                })
+                ->get();
 
             $listings->each(function ($listing) use ($timezone) {
                 $listing->load('hours'); // Ensure hours are loaded

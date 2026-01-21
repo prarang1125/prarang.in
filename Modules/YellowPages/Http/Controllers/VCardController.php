@@ -74,6 +74,7 @@ class VCardController extends Controller
     public function createCard(Request $request)
     {
         $user = Auth::user();
+
         $existingVCard = VCard::where('user_id', $user->id)->first();
         if ($existingVCard) {
             return redirect()->route('vCard.dashboard');

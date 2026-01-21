@@ -28,30 +28,36 @@ class AuthModalController extends Controller
     {
         // Validate the input fields
         $request->validate([
-            'phone' => 'required|regex:/^(\+91)?\d{10}$/',
+            'phone' => 'required',
             'password' => 'required',
             'city_id' => 'required',
         ], [
             'phone.required' => __('yp.phone_required'),
-            'phone.regex' => __('yp.phone_regex'),
             'password.required' => __('yp.password_required'),
             'city_id.required' => __('yp.city_required'),
         ]);
-        // Remove '+91' from the beginning of the phone number if it exists
-        if (strpos($request->phone, '+91') === 0) {
-            $request->merge(['phone' => substr($request->phone, 3)]);
+
+        $loginValue = $request->phone;
+        $isEmail = filter_var($loginValue, FILTER_VALIDATE_EMAIL);
+
+        // Remove '+91' from the beginning of the phone number if it exists (only if not email)
+        if (!$isEmail && strpos($loginValue, '+91') === 0) {
+            $loginValue = substr($loginValue, 3);
         }
 
         try {
-            // Validate request input
-            $credentials = $request->only('city_id', 'phone', 'password');
-
-            // Check if user exists with given city and phone
-            $user = User::where('city_id', $credentials['city_id'])
-                ->where('phone', $credentials['phone'])
+            // Check if user exists with given city and phone/email
+            $user = User::where('city_id', $request->city_id)
+                ->where(function ($query) use ($loginValue, $isEmail) {
+                    if ($isEmail) {
+                        $query->where('email', $loginValue);
+                    } else {
+                        $query->where('phone', $loginValue);
+                    }
+                })
                 ->first();
 
-            if (!$user || !Hash::check($credentials['password'], $user->password)) {
+            if (!$user || !Hash::check($request->password, $user->password)) {
                 return redirect()->back()
                     ->withErrors(['error' => __('yp.invalid_credentials')])
                     ->withInput();

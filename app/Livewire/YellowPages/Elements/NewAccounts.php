@@ -18,8 +18,8 @@ class NewAccounts extends Component
 
     protected $rules = [
         'city'     => 'required',
-        'name'     => 'required|string|min:3|regex:/^[^@]+$/|max:30',
-        'phone'    => 'required|regex:/^(\+91)?\d{10}$/',
+        'name'     => 'required|string|min:3|regex:/^[^\s@]+$/|max:30',
+        'phone'    => 'required',
         'password' => 'required',
     ];
     protected function messages(): array
@@ -30,6 +30,7 @@ class NewAccounts extends Component
             'name.string'       => __('yp.name_string'),
             'name.min'          => __('yp.name_min'),
             'name.max'          => __('yp.name_max'),
+            'name.regex'        => __('yp.name_regex'),
             'phone.required'    => __('yp.phone_required'),
             'phone.regex'       => __('yp.phone_format_error'),
             'phone.unique'      => __('yp.phone_already_exists'),
@@ -54,9 +55,23 @@ class NewAccounts extends Component
     {
         $this->loading = true;
         $this->validate();
-        $this->phone = str_replace('+91', '', $this->phone);
-        if (User::where('phone', $this->phone)->where('city_id', $this->city)->exists()) {
-            $this->addError('phone', __('yp.phone_city_combination_exists'));
+        $loginValue = $this->phone;
+        $isEmail = filter_var($loginValue, FILTER_VALIDATE_EMAIL);
+
+        if (!$isEmail && strpos($loginValue, '+91') === 0) {
+            $loginValue = substr($loginValue, 3);
+        }
+
+        if (User::where('city_id', $this->city)
+            ->where(function ($query) use ($loginValue, $isEmail) {
+                if ($isEmail) {
+                    $query->where('email', $loginValue);
+                } else {
+                    $query->where('phone', $loginValue);
+                }
+            })->exists()
+        ) {
+            $this->addError('phone', $isEmail ? __('yp.email_already_exists') : __('yp.phone_city_combination_exists'));
             $this->loading = false;
             return;
         }
@@ -68,7 +83,8 @@ class NewAccounts extends Component
         } while (User::where('user_code', $userCode)->exists());
         $user = User::create([
             'name' => $this->name ?? '',
-            'phone' => $this->phone ?? '',
+            'phone' => !$isEmail ? $loginValue : null,
+            'email' => $isEmail ? $loginValue : null,
             'city_id' => $this->city,
             'password' => Hash::make($this->password),
             'role' => 2,

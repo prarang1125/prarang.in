@@ -140,6 +140,7 @@ return [
     'maharashtra' => 'Maharashtra',
     'manipur' => 'Manipur',
     'meghalaya' => 'Meghalaya',
+
     'mizoram' => 'Mizoram',
     'nagaland' => 'Nagaland',
     'odisha' => 'Odisha',
