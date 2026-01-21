@@ -23,7 +23,7 @@ class EditVcard extends Component
 
     public $color_code = '#E6C72D';
     public $profile, $category_id, $city_id, $name, $surname, $dob, $email, $phone;
-    public $house_number, $cityname, $road_street, $area_name, $pincode, $state;
+    public $house_number, $cityname, $road_street, $area_name, $pincode, $state, $countryfield;
     public $vcard, $address;
     public $photo;
     public $dynamicFields = [];
@@ -66,7 +66,7 @@ class EditVcard extends Component
             $this->area_name = $this->address->area_name;
             $this->pincode = $this->address->postal_code;
             $this->cityname = $this->address->city_name ?? '';
-            $this->state = $this->address->state ?? 'उत्तर प्रदेश (Uttar Pradesh)';
+            $this->state = $this->address->state ?? '';
         }
 
         // Initialize Dynamic Fields
@@ -222,7 +222,7 @@ class EditVcard extends Component
                         'postal_code' => $this->pincode,
                         'city_id' => $this->city_id,
                         'city_name' => $this->cityname,
-                        'country' => 'India',
+                        'country' => $this->countryfield,
                         'state' => $this->state,
                     ]
                 );

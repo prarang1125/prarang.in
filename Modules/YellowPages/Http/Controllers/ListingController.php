@@ -105,12 +105,26 @@ class ListingController extends Controller
     {
 
         try {
+
             $categories = Category::where('is_active', 1)->get();
             $cities = City::where('is_active', 1)->get();
-            $city = City::where(function ($query) use ($city_name) {
-                $query->where('slug', '=', $city_name)
-                    ->orWhere('name', 'LIKE', "%{$city_name}%");
-            })->first();
+            $tmp = 0;
+            try {
+                $city = City::where(function ($query) use ($city_name) {
+                    $query->where('slug', '=', $city_name)
+                        ->orWhere('name', 'LIKE', "%{$city_name}%");
+                })->first();
+            } catch (\Exception $e) {
+
+                if ($tmp >= 2) {
+                    Session::put('locale', 'en');
+                    app()->setLocale('en');
+                    return redirect()->current();
+                }
+                $tmp++;
+            }
+
+
             if (isset($city->locale_code)) {
 
                 Session::put('locale', $city->locale_code);
