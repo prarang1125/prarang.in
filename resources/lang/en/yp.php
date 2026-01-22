@@ -549,7 +549,7 @@ return [
     'access_not_allowed' => 'Access Denied',
     'change_password' => 'Change Password',
     'meerut_seo_desc' => 'Meerut\'s first Hindi Yellow Pages! Create your webpage here and print your business card!',
-    'products' => 'Products',
+    'products' => 'Products & Services',
     'add_product' => 'Add Product',
     'edit_product' => 'Edit Product',
     'product_name' => 'Product Name',
@@ -616,7 +616,7 @@ return [
     ],
 
     // Listing page translations
-    'buy_now' => 'Buy Now',
+    'buy_now' => 'View More',
     'get_directions' => 'Get Directions',
     'no_reviews_yet' => 'No reviews yet. Be the first to rate your experience!',
     'copied' => 'Link copied to clipboard!',
