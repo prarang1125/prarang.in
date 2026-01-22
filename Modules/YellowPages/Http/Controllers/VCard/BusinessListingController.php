@@ -163,13 +163,13 @@ class BusinessListingController extends Controller
         // Handle image upload
         $imagePath = $listing->business_img;
         if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('yellowpages/business', 'public');
+            $imagePath = $request->file('image')->store('yellowpages/business', 's3');
         }
 
         // Handle logo upload
         $logoPath = $listing->logo;
         if ($request->hasFile('logo')) {
-            $logoPath = $request->file('logo')->store('yellowpages/logos', 'public');
+            $logoPath = $request->file('logo')->store('yellowpages/logos', 's3');
         }
 
         $data = [

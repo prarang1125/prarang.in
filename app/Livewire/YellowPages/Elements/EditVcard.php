@@ -111,13 +111,13 @@ class EditVcard extends Component
             $oldImage = $this->user->profile;
 
             // Ensure directory exists
-            if (!Storage::disk('public')->exists('yellowpages/profiles')) {
-                Storage::disk('public')->makeDirectory('yellowpages/profiles');
+            if (!Storage::disk('s3')->exists('yellowpages/profiles')) {
+                Storage::disk('s3')->makeDirectory('yellowpages/profiles');
             }
 
             // Simplified storage: directly use Livewire's store method
             // We use store on public disk
-            $path = $this->photo->store('yellowpages/profiles', 'public');
+            $path = $this->photo->store('yellowpages/profiles', 's3');
 
             if (!$path) {
                 Log::error('Profile Upload Failure: store() returned null');
@@ -128,8 +128,8 @@ class EditVcard extends Component
             $this->user->update(['profile' => $path]);
 
             // Delete old image if it exists and is different
-            if ($oldImage && $oldImage !== $path && Storage::disk('public')->exists($oldImage)) {
-                Storage::disk('public')->delete($oldImage);
+            if ($oldImage && $oldImage !== $path && Storage::disk('s3')->exists($oldImage)) {
+                Storage::disk('s3')->delete($oldImage);
             }
 
             $this->profile = $path;
