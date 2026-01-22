@@ -107,95 +107,97 @@ class ListingController extends Controller
         try {
 
             $categories = Category::where('is_active', 1)->get();
-            $cities = City::where('is_active', 1)->get();
-            $tmp = 0;
-            try {
-                $city = City::where(function ($query) use ($city_name) {
-                    $query->where('slug', '=', $city_name)
-                        ->orWhere('name', 'LIKE', "%{$city_name}%");
-                })->first();
-            } catch (\Exception $e) {
+            $cities     = City::where('is_active', 1)->get();
 
-                if ($tmp >= 2) {
-                    Session::put('locale', 'en');
-                    app()->setLocale('en');
-                    return redirect()->current();
-                }
-                $tmp++;
-            }
+            // Find city
+            $city = City::where(function ($query) use ($city_name) {
+                $query->where('slug', $city_name)
+                    ->orWhere('name', 'LIKE', "%{$city_name}%");
+            })->first();
 
-
-            if (isset($city->locale_code)) {
-
-                Session::put('locale', $city->locale_code);
-                app()->setLocale($city->locale_code);
-            }
-
+            // Fallback via portal
             if (!$city) {
                 $portal = Portal::where('slug', $city_name)->first();
                 if ($portal) {
                     $city = $portal->city;
                 }
             }
+
+            // Final guard
             if (!$city) {
-                $city = City::where(function ($query) use ($city_name) {
-                    $query->where('slug', '=', $city_name)
-                        ->orWhere('name', 'LIKE', "%{$city_name}%");
-                })->first();
+                return redirect()->back();
             }
 
-            setcookie('register_city', $city->id, time() + 3600, '/');
-            $city_name = $city->name;
-            $portal = Portal::where('id', $city->portal_id)->first();
+            // Set locale
+            if ($city->locale_code) {
+                Session::put('locale', $city->locale_code);
+                app()->setLocale($city->locale_code);
+            }
 
+            // Cookie
+            setcookie('register_city', $city->id, time() + 3600, '/');
+
+            $city_name = $city->name;
+            $portal    = Portal::find($city->portal_id);
+
+            // Listings
             $listings = BusinessListing::with(['category', 'hours', 'city', 'address', 'user'])
                 ->where('is_active', 1)
-                ->whereHas('city', fn($q) => $q->where('city_id', $city->id))
+                ->whereHas('city', fn($q) => $q->where('id', $city->id))
                 ->get();
 
-            // Define the timezone
-            $timezone = 'Asia/Kolkata';
-            $currentDateTime = Carbon::now($timezone);
-            $currentTime = $currentDateTime->format('H:i:s');
-            $currentDay = strtolower($currentDateTime->format('l'));
 
-            // Process listings to determine open status
-            $listings->each(function ($listing) use ($timezone, $currentTime, $currentDay) {
+            $now        = Carbon::now();
+            $currentDay = strtolower($now->format('l'));
+            $currentTime = $now->format('H:i:s');
+
+            $listings->each(function ($listing) use ($currentDay, $currentTime) {
                 $listing->is_open = false;
 
-                if ($listing->hours) {
-                    foreach ($listing->hours as $hours) {
-                        if ($hours->is_24_hours) {
-                            $listing->is_open = true;
-                            break;
-                        }
+                if (!$listing->hours) {
+                    return;
+                }
 
-                        if (strtolower($hours->day) === $currentDay) {
-                            $openTime1 = $hours->open_time ? Carbon::parse($hours->open_time, $timezone) : null;
-                            $closeTime1 = $hours->close_time ? Carbon::parse($hours->close_time, $timezone) : null;
+                foreach ($listing->hours as $hours) {
 
-                            $isOpen1 = $openTime1 && $closeTime1 && $currentTime >= $openTime1->format('H:i:s') && $currentTime <= $closeTime1->format('H:i:s');
+                    if ($hours->is_24_hours) {
+                        $listing->is_open = true;
+                        break;
+                    }
 
-                            $isOpen2 = false;
-                            if ($hours->open_time2 && $hours->close_time2) {
-                                $openTime2 = Carbon::parse($hours->open_time2, $timezone);
-                                $closeTime2 = Carbon::parse($hours->close_time2, $timezone);
-                                $isOpen2 = $currentTime >= $openTime2->format('H:i:s') && $currentTime <= $closeTime2->format('H:i:s');
-                            }
+                    if (strtolower($hours->day) !== $currentDay) {
+                        continue;
+                    }
 
-                            if ($isOpen1 || $isOpen2) {
-                                $listing->is_open = true;
-                                break;
-                            }
-                        }
+                    $isOpen1 = $hours->open_time && $hours->close_time &&
+                        $currentTime >= $hours->open_time &&
+                        $currentTime <= $hours->close_time;
+
+                    $isOpen2 = $hours->open_time2 && $hours->close_time2 &&
+                        $currentTime >= $hours->open_time2 &&
+                        $currentTime <= $hours->close_time2;
+
+                    if ($isOpen1 || $isOpen2) {
+                        $listing->is_open = true;
+                        break;
                     }
                 }
             });
 
-            return view('yellowpages::home.categories', compact('listings', 'categories', 'cities', 'city', 'city_name', 'portal'));
-        } catch (\Exception $e) {
-            return $e;
-            return redirect()->back()->withErrors(['error' => __('yp.fetch_data_error')]);
+            return view(
+                'yellowpages::home.categories',
+                compact('listings', 'categories', 'cities', 'city', 'city_name', 'portal')
+            );
+        } catch (\Throwable $e) {
+
+            // Log::error('Yellowpages fetch failed', [
+            //     'error' => $e->getMessage(),
+            //     'trace' => $e->getTraceAsString()
+            // ]);
+
+            return redirect()->back()->withErrors([
+                'error' => __('yp.fetch_data_error')
+            ]);
         }
     }
     ##------------------------- END---------------------##
