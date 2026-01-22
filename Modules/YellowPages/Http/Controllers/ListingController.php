@@ -104,24 +104,23 @@ class ListingController extends Controller
     public function showByCity($city_name)
     {
 
+
+
+
         try {
 
             $categories = Category::where('is_active', 1)->get();
             $cities     = City::where('is_active', 1)->get();
 
             // Find city
-            $city = City::where(function ($query) use ($city_name) {
-                $query->where('slug', $city_name)
-                    ->orWhere('name', 'LIKE', "%{$city_name}%");
-            })->first();
+            $city = DB::connection('yp')
+                ->table('cities')
+                ->where(function ($query) use ($city_name) {
+                    $query->where('slug', $city_name)
+                        ->orWhere('name', 'LIKE', "%{$city_name}%");
+                })
+                ->first();
 
-            // Fallback via portal
-            if (!$city) {
-                $portal = Portal::where('slug', $city_name)->first();
-                if ($portal) {
-                    $city = $portal->city;
-                }
-            }
 
             // Final guard
             if (!$city) {
