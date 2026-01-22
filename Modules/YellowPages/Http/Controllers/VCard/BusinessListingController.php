@@ -153,11 +153,13 @@ class BusinessListingController extends Controller
     ##------------------------- END ---------------------##
     ##------------------------- Business Listing Upadte ---------------------##
 
-    public function listingUpdate(BusinessListingRequest $request, $id)
+    // public function listingUpdate(BusinessListingRequest $request, $id)
+    public function listingUpdate(Request $request, $id)
     {
-        $validated = $request->validated();
-
+        // dd($validated = $request->validated());
+        // dd($request->all());
         // Get listing
+        $validated = $request->all();
         $listing = BusinessListing::findOrFail($id);
 
         // Handle image upload
