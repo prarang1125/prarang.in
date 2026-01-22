@@ -204,8 +204,8 @@ class BusinessListingController extends Controller
 
             // Handle social media
             if (!empty($validated['socialId'])) {
-                // Delete removed social media? 
-                // Using updateOrCreate might leave old ones. 
+                // Delete removed social media?
+                // Using updateOrCreate might leave old ones.
                 // Better to sync or clear and re-add if appropriate.
                 // For now, let's stick to consistent logic:
                 BusinessSocialMedia::where('listing_id', $listing->id)->delete();
