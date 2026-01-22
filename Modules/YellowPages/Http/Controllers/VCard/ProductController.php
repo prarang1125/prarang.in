@@ -50,7 +50,7 @@ class ProductController extends Controller
                 $img = Image::read($image);
                 $img->cover(800, 800);
 
-                Storage::disk('public')->put($path, (string) $img->encode());
+                Storage::disk('s3')->put($path, (string) $img->encode());
                 $product->{"image$i"} = $path;
             }
         }
@@ -95,7 +95,7 @@ class ProductController extends Controller
             if ($request->hasFile("image$i")) {
                 // Delete old image if exists
                 if ($product->{"image$i"}) {
-                    Storage::disk('public')->delete($product->{"image$i"});
+                    Storage::disk('s3')->delete($product->{"image$i"});
                 }
 
                 $image = $request->file("image$i");
@@ -105,7 +105,7 @@ class ProductController extends Controller
                 $img = Image::read($image);
                 $img->cover(800, 800);
 
-                Storage::disk('public')->put($path, (string) $img->encode());
+                Storage::disk('s3')->put($path, (string) $img->encode());
                 $product->{"image$i"} = $path;
             }
         }
@@ -124,7 +124,7 @@ class ProductController extends Controller
 
         for ($i = 1; $i <= 3; $i++) {
             if ($product->{"image$i"}) {
-                Storage::disk('public')->delete($product->{"image$i"});
+                Storage::disk('s3')->delete($product->{"image$i"});
             }
         }
 

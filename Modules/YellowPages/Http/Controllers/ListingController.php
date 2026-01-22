@@ -297,14 +297,14 @@ class ListingController extends Controller
 
         // Handle image upload
         if ($request->hasFile('image')) {
-            $validated['image'] = $request->file('image')->store('yellowpages/business', 'public');
+            $validated['image'] = $request->file('image')->store('yellowpages/business', 's3');
         } else {
             $validated['image'] = null;
         }
 
         // Handle logo upload
         if ($request->hasFile('logo')) {
-            $validated['logo'] = $request->file('logo')->store('yellowpages/logos', 'public');
+            $validated['logo'] = $request->file('logo')->store('yellowpages/logos', 's3');
         } else {
             $validated['logo'] = null;
         }
