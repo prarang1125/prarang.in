@@ -469,6 +469,7 @@ class ListingController extends Controller
             // return view('yellowpages::home.listing', compact('listing', 'listingHours'));
 
         } catch (\Exception $e) {
+            dd($e->getMessage());
             return redirect()->back()->with('error', __('yp.listing_not_found'));
         }
     }
