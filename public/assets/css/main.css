@@ -3040,3 +3040,14 @@ section,
 .listing-hero .flex-wrap .text-light {
     color: #ffffff !important;
 }
+@media (min-width: 1200px) {
+    /* Heading */
+    .main .lh-lg h2 {
+        font-size: 20px;
+    }
+
+    /* Heading */
+    .main .lh-lg h3 {
+        font-size: 20px;
+    }
+}
