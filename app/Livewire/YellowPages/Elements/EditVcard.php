@@ -179,6 +179,7 @@ class EditVcard extends Component
             'pincode' => 'required|digits:6',
             'cityname' => 'required|regex:/^[A-Za-z0-9\x{0900}-\x{097F} ]+$/u|max:30',
             'state' => 'required|regex:/^[A-Za-z0-9\x{0900}-\x{097F}() ]+$/u|max:50',
+            'countryfield' => 'required',
         ];
     }
 

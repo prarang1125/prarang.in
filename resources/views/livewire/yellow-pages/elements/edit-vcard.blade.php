@@ -203,6 +203,9 @@
                                 <label class="form-label fw-bold small">{{ __('formyp.your_country') }}</label>
                                 <input type="text" value="{{ __('formyp.india') }}"
                                     wire:model.live="countryfield" class="form-control">
+                                @error('countryfield')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
                             <div class="col-md-6 text-start">
                                 <label class="form-label fw-bold small">{{ __('formyp.pincode') }} *</label>
