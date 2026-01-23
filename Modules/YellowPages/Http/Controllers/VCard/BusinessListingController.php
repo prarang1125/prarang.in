@@ -193,6 +193,7 @@ class BusinessListingController extends Controller
             'business_address' => $validated['business_address'],
         ];
 
+
         try {
             DB::beginTransaction();
 

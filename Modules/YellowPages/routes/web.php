@@ -84,7 +84,7 @@ Route::group(['prefix' => 'yp', 'middleware' => 'language'], function () {
             Route::post('/user/listing-delete/{id}', [BusinessListingController::class, 'listingDelete'])->name('vCard.listing-delete');
             Route::post('/user/Savelisting-delete/{id}', [BusinessListingController::class, 'SavelistingDelete'])->name('vCard.Savelisting-delete');
             Route::get('/user/listing-edit/{id}', [BusinessListingController::class, 'listingEdit'])->name('vCard.listing-edit');
-            Route::put('/user/listing-update/{id}', [BusinessListingController::class, 'listingUpdate'])->name('vCard.listing-update');
+            Route::any('/user/listing-update/{id}', [BusinessListingController::class, 'listingUpdate'])->name('vCard.listing-update');
 
             Route::get('user/rating', [listingReviewController::class, 'Rating'])->name('vCard.Rating');
 

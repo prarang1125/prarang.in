@@ -167,9 +167,9 @@
 
             <div class="widg">
                 @if (!empty($data->weather))
-                <div class="weather-widgetx">{!! $data->weather !!}</div>
+                    <div class="weather-widgetx">{!! $data->weather !!}</div>
                 @else
-                <p class="text-muted small mb-0">Weather data not available</p>
+                    <p class="text-muted small mb-0">Weather data not available</p>
                 @endif
             </div>
             <div class="border shadow p-2 mt-3 shadow bg-light rounded">
@@ -178,26 +178,26 @@
                     {{ $data->country_name }} Local Metrics
                 </h4>
                 @php
-                $decoded = json_decode($data->local_metrics, true);
-                // If still a string, decode again
-                $metrics = is_string($decoded) ? json_decode($decoded, true) : $decoded;
+                    $decoded = json_decode($data->local_metrics, true);
+                    // If still a string, decode again
+                    $metrics = is_string($decoded) ? json_decode($decoded, true) : $decoded;
                 @endphp
 
                 @if (is_array($metrics))
-                <table class="table table-bordered ">
+                    <table class="table table-bordered ">
 
-                    <tbody>
-                        @foreach ($metrics as $row)
-                        <tr>
-                            <td>{{ $row['key'] ?? '' }}</td>
-                            <td>{{ $row['value'] ?? '' }}</td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                        <tbody>
+                            @foreach ($metrics as $row)
+                                <tr>
+                                    <td>{{ $row['key'] ?? '' }}</td>
+                                    <td>{{ $row['value'] ?? '' }}</td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 @else
-                <p class="text-danger">Invalid JSON format in <code>local_metrics</code>.</p>
-                <pre>{{ $data->local_metrics }}</pre>
+                    <p class="text-danger">Invalid JSON format in <code>local_metrics</code>.</p>
+                    <pre>{{ $data->local_metrics }}</pre>
                 @endif
             </div>
 
@@ -215,13 +215,13 @@
 
                         <div class="rounded p-3 bg-light border text-center">
                             @if (!empty($data->news))
-                            <a href="{{ str_replace(' ', '"', $data->news) }}" target="_blank"
+                                <a href="{{ str_replace(' ', '"', $data->news) }}" target="_blank"
                                     class="fw-semibold text-decoration-none text-primary">
                                     <i class="fa fa-external-link me-1"></i>
                                     {{ $data->country_name ?? ' N/A' }} News </a>
-                                @else
+                            @else
                                 <p class="text-muted small mb-0">No news available</p>
-                                @endif
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -235,11 +235,11 @@
                     </h5>
 
                     @if (!empty($data->embassy_link))
-                    <a href="{{ $data->embassy_link }}" class="btn btn-primary w-100 fw-semibold" target="_blank">
-                        <i class="fa fa-external-link me-1"></i> Visit Embassy Website
-                    </a>
+                        <a href="{{ $data->embassy_link }}" class="btn btn-primary w-100 fw-semibold" target="_blank">
+                            <i class="fa fa-external-link me-1"></i> Visit Embassy Website
+                        </a>
                     @else
-                    <span class="text-danger small">Embassy link not available.</span>
+                        <span class="text-danger small">Embassy link not available.</span>
                     @endif
                 </div>
             </div>
@@ -259,26 +259,26 @@
                     <div class="widget__content">
                         @if (!empty($data->important_links) && is_array($data->important_links))
 
-                        @foreach ($data->important_links as $key => $links)
-                        <div class="">
-                            <h6 class="fw-bold text-primary text-capitalize">
-                                {{ str_replace('_', ' ', $key) }}
-                            </h6>
-                            <ul class="list-unstyled">
-                                @foreach ($links as $link)
-                                <li class="">
-                                    <a href="{{ $link['url'] }}" target="_blank"
-                                        class="text-muted text-decoration-none d-flex align-items-center rounded hover-shadow">
-                                        <i class="fa fa-external-link me-2 text-secondary"></i>
-                                        <span>{{ $link['name'] }}</span>
-                                    </a>
-                                </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                        @endforeach
+                            @foreach ($data->important_links as $key => $links)
+                                <div class="">
+                                    <h6 class="fw-bold text-primary text-capitalize">
+                                        {{ str_replace('_', ' ', $key) }}
+                                    </h6>
+                                    <ul class="list-unstyled">
+                                        @foreach ($links as $link)
+                                            <li class="">
+                                                <a href="{{ $link['url'] }}" target="_blank"
+                                                    class="text-muted text-decoration-none d-flex align-items-center rounded hover-shadow">
+                                                    <i class="fa fa-external-link me-2 text-secondary"></i>
+                                                    <span>{{ $link['name'] }}</span>
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endforeach
                         @else
-                        <p class="text-muted small mb-0">No important links available</p>
+                            <p class="text-muted small mb-0">No important links available</p>
                         @endif
                     </div>
                 </div>
@@ -301,9 +301,9 @@
                         <div class="absolute inset-0 flex flex-col items-center justify-center text-center z-10">
                             <h2 class="text-[36px] font-bold text-black drop-shadow-md">
                                 @if ($side == 'left')
-                                Czech Companies In India
+                                    Indian Companies In Czech Republic
                                 @else
-                                Indian Companies In Czech
+                                    Czech Republic Companies In India
                                 @endif
                             </h2>
                             <h4 class="text-sm font-semibold text-black mt-1 drop-shadow">

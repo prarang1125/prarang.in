@@ -3,6 +3,7 @@
 namespace Modules\YellowPages\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Symfony\Component\HttpFoundation\Request;
 
 class BusinessListingRequest extends FormRequest
 {
@@ -16,8 +17,9 @@ class BusinessListingRequest extends FormRequest
     {
         return true; // Allow all users to submit the form
     }
-    public function rules()
+    public function rules(Request $request)
     {
+
         return [
             'location' => 'required|numeric|exists:yp.cities,id',
             'listingTitle' => 'required|string|max:255',
