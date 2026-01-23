@@ -155,6 +155,10 @@ class BusinessListingController extends Controller
 
     public function listingUpdate(BusinessListingRequest $request, $id)
     {
+
+
+
+
         $validated = $request->validated();
 
         // Get listing
@@ -190,6 +194,7 @@ class BusinessListingController extends Controller
             'logo' => $logoPath,
             'business_address' => $validated['business_address'],
         ];
+
 
         try {
             DB::beginTransaction();

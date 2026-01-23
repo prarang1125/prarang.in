@@ -1,4 +1,10 @@
 <div>
+    <style>
+        /* Col 6 */
+        .row .col-sm-6 {
+            padding-top: 92px;
+        }
+    </style>
     {{-- Internal styling removed to favor parent wrapper styles --}}
     <div class="registration-container">
         @if (session()->has('success'))
