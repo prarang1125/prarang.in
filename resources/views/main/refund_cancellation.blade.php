@@ -27,7 +27,7 @@
         <h5>1.2 Cancellation of One-time Purchases:</h5>
         Customers who have made one-time purchases of district-specific data can request a cancellation within 24
         hours of the purchase.
-        To request a cancellation, customers must contact our customer support team at ask_me@prarang.in.
+        To request a cancellation, customers must contact our customer support team at query@prarang.in.
         Refunds for one-time purchases will be subject to the conditions outlined in the "Refund Policy" below.
         <br><br>
         <h3>2. Refund Policy:</h3>
@@ -53,8 +53,8 @@
         The refund amount will be credited to the original payment method used during the purchase.
         Contacting Customer Support:
         If you have any questions, concerns, or wish to request a cancellation or refund, please don't hesitate to
-        contact our customer support team at <a class="text-primary"
-            href="mailto:ask_me@prarang.in">ask_me@prarang.in</a>. We are available to
+        contact our customer support team at <a class="text-primary" href="mailto:query@prarang.in">query@prarang.in</a>.
+        We are available to
         assist you
         during our regular
         business hours.

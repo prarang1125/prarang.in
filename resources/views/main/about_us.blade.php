@@ -248,7 +248,8 @@
                                             leading to the eventual Daily Knowledge post. The daily post is tagged &amp;
                                             classified into the City:s knowledge repository of Culture &amp; Nature, a
                                             60 section store-house designed to support intelligent retrieval for the
-                                            future needs of Smarter Citizens.</p>
+                                            future needs of Smarter Citizens.
+                                        </p>
                                         <p>This 7 step Process has Step-4 in the middle, as the heart of the process We
                                             actually create the content of each Knowledge Post from 3 distinct
                                             components - Data, Images &amp; Text ( Books &amp; Digital) sources. The
@@ -338,7 +339,7 @@
                         <ul>
                             <li><b>Address :- </b> office #25, 11th floor, The i-Thum, A-40 Sector 62, Noida(U.P), India
                                 201309</li>
-                            <li><b>E-Mail Contact :-</b> ask_me@prarang.in </li>
+                            <li><b>E-Mail Contact :-</b> query@prarang.in </li>
                             <li><b>Phone Contact :-</b> +91-1204561284</li>
                         </ul>
                         <br>

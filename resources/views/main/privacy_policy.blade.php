@@ -168,7 +168,7 @@
         </p>
         <p><strong>#1125, The i-Thum, A 40, Sector 62, Noida (U.P.), India-201301</strong>
         </p>
-        <p><strong>Email: ask_me@prarang.in</strong>
+        <p><strong>Email: query@prarang.in</strong>
     </section>
 
 </x-layout.main.base>

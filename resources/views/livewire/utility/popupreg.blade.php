@@ -141,7 +141,7 @@
                                 <small class="text-danger">{{ $message }}</small>
                             @enderror
                             <p class="text-muted">If your country is not in the list, please write to us on <a
-                                    href="mailto:ask_me@prarang.in">ask_me@prarang.in</a></p>
+                                    href="mailto:query@prarang.in">query@prarang.in</a></p>
                         </div>
                         <div class="mb-3">
 

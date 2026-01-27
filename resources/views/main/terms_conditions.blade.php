@@ -697,7 +697,7 @@
             1125,11th floor, The i-Thum Tower A, A-40, Sector 62, Noida(U.P), India 201301
         </p>
         <p>
-            <strong>E-mail contact:</strong> ask_me@prarang.in
+            <strong>E-mail contact:</strong> query@prarang.in
         </p>
         <p>
             <strong>Phone contact:</strong> 01204561284

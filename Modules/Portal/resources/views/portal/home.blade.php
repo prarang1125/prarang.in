@@ -376,8 +376,8 @@
                         </p>
                         <p class="flex items-start gap-2 justify-center md:justify-start">
                             <span class="font-bold text-red-600">Email:</span>
-                            <a href="mailto:ask_me@prarang.in"
-                                class="hover:text-red-700 underline decoration-red-400">ask_me@prarang.in</a>
+                            <a href="mailto:query@prarang.in"
+                                class="hover:text-red-700 underline decoration-red-400">query@prarang.in</a>
                         </p>
                     </div>
                 </div>
