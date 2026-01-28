@@ -397,9 +397,21 @@
                             <div class="col-md-10">
                                 <div class="d-flex flex-wrap gap-2">
                                     @foreach ($portal as $zone => $states)
+                                        @if ($zone == 'Union Territories')
+                                            @continue
+                                        @endif
                                         <button class="zone btn btn-warning" data-bs-toggle="modal"
                                             data-bs-target="#zoneModal-{{ Str::slug($zone) }}">
                                             {{ $zone }} Zone
+                                        </button>
+                                    @endforeach
+                                    @foreach ($portal as $zone => $states)
+                                        @if ($zone != 'Union Territories')
+                                            @continue
+                                        @endif
+                                        <button class="zone btn btn-warning" data-bs-toggle="modal"
+                                            data-bs-target="#zoneModal-{{ Str::slug($zone) }}">
+                                            {{ $zone }}
                                         </button>
                                     @endforeach
                                 </div>
@@ -435,7 +447,9 @@
 
                             <!-- Modal Header -->
                             <div class="modal-header">
-                                <h5 class="modal-title">{{ $zone }} Zone </h5>
+                                <h5 class="modal-title">{{ $zone }}
+                                    {{ $zone != 'Union Territories' ? 'Zone' : '' }}
+                                </h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                             </div>
 
