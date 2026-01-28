@@ -300,6 +300,16 @@
         .container .container .container .modal-md .modal-content .modal-body .accordion-item .accordion-button {
             grid-template-columns: 70% 20fr 10fr !important;
         }
+
+        /* Font weight bold */
+        .px-0 .font-weight-bold {
+            text-align: center;
+        }
+
+        /* Flex wrap */
+        .px-0 .flex-wrap {
+            padding-left: 10px;
+        }
     </style>
     <section class="bs5-top-heading">
         <p class="">Content</p>
