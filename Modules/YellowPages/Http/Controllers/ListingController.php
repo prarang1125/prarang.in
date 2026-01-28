@@ -125,7 +125,7 @@ class ListingController extends Controller
             // Final guard
             if (!$city) {
                 $back = 'https://prarang.in/' . request()->query('p') ?? '/';
-                return redirect()->to($back)->with('back_error', 'Coming Soon');
+                return redirect()->to($back)->with('back_error', 'Yellow Pages - Coming Soon');
             }
 
             // Set locale

@@ -1,53 +1,54 @@
 <x-layout.portal.base :portal="$portal">
-    @if (session('back_error') || session('success') || session('error'))
-        <div class="toast toast-top toast-center z-[9999]" id="portal-toast">
-            @if (session('back_error'))
-                <div class="alert bg-yellow-400 text-black border-none shadow-2xl font-bold px-6 py-4 min-w-[300px]">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                    </svg>
-                    <span>{{ session('back_error') }}</span>
-                </div>
-            @endif
 
-            @if (session('success'))
-                <div class="alert bg-green-500 text-white border-none shadow-2xl font-bold px-6 py-4 min-w-[300px]">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span>{{ session('success') }}</span>
-                </div>
-            @endif
-
-            @if (session('error'))
-                <div class="alert bg-red-500 text-white border-none shadow-2xl font-bold px-6 py-4 min-w-[300px]">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
-                        viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                    <span>{{ session('error') }}</span>
-                </div>
-            @endif
-        </div>
-
-        <script>
-            setTimeout(() => {
-                const toast = document.getElementById('portal-toast');
-                if (toast) {
-                    toast.style.transition = 'all 0.5s ease';
-                    toast.style.opacity = '0';
-                    toast.style.transform = 'translateY(-20px)';
-                    setTimeout(() => toast.remove(), 500);
-                }
-            }, 5000);
-        </script>
-    @endif
     <section class="w-full px-4 py-8">
+        @if (session('back_error') || session('success') || session('error'))
+            <div class="toast toast-top toast-center z-[9999] " id="portal-toast">
+                @if (session('back_error'))
+                    <div class="alert bg-yellow-400 text-black border-none shadow-2xl font-bold px-6 py-4 min-w-[300px]">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <span>{{ session('back_error') }}</span>
+                    </div>
+                @endif
+
+                @if (session('success'))
+                    <div class="alert bg-green-500 text-white border-none shadow-2xl font-bold px-6 py-4 min-w-[300px]">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>{{ session('success') }}</span>
+                    </div>
+                @endif
+
+                @if (session('error'))
+                    <div class="alert bg-red-500 text-white border-none shadow-2xl font-bold px-6 py-4 min-w-[300px]">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>{{ session('error') }}</span>
+                    </div>
+                @endif
+            </div>
+
+            <script>
+                setTimeout(() => {
+                    const toast = document.getElementById('portal-toast');
+                    if (toast) {
+                        toast.style.transition = 'all 0.5s ease';
+                        toast.style.opacity = '0';
+                        toast.style.transform = 'translateY(-20px)';
+                        setTimeout(() => toast.remove(), 500);
+                    }
+                }, 5000);
+            </script>
+        @endif
         <div class="container mx-auto flex flex-col lg:flex-row gap-8">
             {{-- Left Sidebar --}}
             <div class="w-full lg:w-3/12 bg-white/10 rounded order-2 lg:order-1">
