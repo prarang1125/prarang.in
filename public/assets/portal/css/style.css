@@ -694,12 +694,3 @@ header .lg\:flex-row .flex-col:nth-child(4) {
 footer .font-medium {
     font-size: 14px;
 }
-
-/* Link (hover) */
-.w-full .overflow-hidden a:hover {
-    background-color: #fcfcfc;
-}
-/* Block (hover) */
-.cursor-pointer .block:hover {
-    background-color: #ffffff !important;
-}
