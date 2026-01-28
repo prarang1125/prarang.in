@@ -56,7 +56,8 @@
                 </div>
 
                 <div class="mt-6 px-4 bg-white p-3 rounded">
-                    @livewire('portal.books-links', ['books' => $portal->books, 'links' => $portal->links, 'cityName' => $portal->city_name, 'cityNameLocal' => $portal->city_name_local])
+                    @livewire('portal.books-links', ['books' => $portal->books, 'links' => $portal->links, 'cityName' =>
+                    $portal->city_name, 'cityNameLocal' => $portal->city_name_local])
                 </div>
             </div>
 
@@ -109,20 +110,19 @@
                 <div class="bg-white p-2 rounded">
                     <x-portal.posts-carousel :cityId="$cityCode" :cityCode="$cityCode" :locale="$locale" />
                     <!-- TOWNPRESS SITEMAP : begin -->
-                    <x-portal.tag-list :cityId="$cityCode" :cityCode="$cityCode" :citySlug="$portal->slug" :locale="$locale" />
+                    <x-portal.tag-list :cityId="$cityCode" :cityCode="$cityCode" :citySlug="$portal->slug"
+                        :locale="$locale" />
                 </div>
 
 
                 <div class="flex gap-6 mt-2 mb-3 text-black">
-                    <a target="_blank" href="https://hindi.prarang.in/{{ $portal->city_name }}"
-                        class="flex-1 text-center bg-blue-500 text-white font-bold py-3 rounded-lg
+                    <a target="_blank" href="https://hindi.prarang.in/{{ $portal->city_name }}" class="flex-1 text-center bg-blue-500 text-white font-bold py-3 rounded-lg
                hover:bg-blue-600 transition-colors duration-200">
                         {{ $portal->city_name_local }}
                         {{ $locale['ui']['statistics'] ?? 'Statistics' }}
                     </a>
 
-                    <a target="_blank" href="https://hindi.prarang.in/ai/{{ $portal->city_name }}"
-                        class="flex-1 text-center bg-blue-500 text-white font-bold py-3 rounded-lg
+                    <a target="_blank" href="https://hindi.prarang.in/ai/{{ $portal->city_name }}" class="flex-1 text-center bg-blue-500 text-white font-bold py-3 rounded-lg
                hover:bg-blue-600 transition-colors duration-200">
                         {{ $portal->city_name_local }} ए.आई. रिपोर्ट
                     </a>
@@ -247,7 +247,8 @@
                         </div>
                     </div>
                 </div>
-                <livewire:portal.internate-data :city_code="$portal->city_code" :city_id="$portal->city_id" :city_name="$portal->city_name_local" />
+                <livewire:portal.internate-data :city_code="$portal->city_code" :city_id="$portal->city_id"
+                    :city_name="$portal->city_name_local" />
                 <div class="flex justify-center items-center p-2 w-full ">
                     {!! $portal->weather_widget_code !!}
                 </div>
@@ -261,8 +262,7 @@
                 </div>
 
                 <!-- Modal Overlay -->
-                <div id="mapModal"
-                    class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-50">
+                <div id="mapModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-50">
                     <!-- Modal Box -->
                     <div class="bg-white w-full max-w-lg rounded-lg shadow-lg">
                         <!-- Header -->
@@ -283,46 +283,79 @@
                     </div>
                 </div>
 
-                <div class="mt-3">
+                @if (session('back_error') || session('success') || session('error'))
+                <div class="toast toast-top toast-end z-[9999]" id="portal-toast">
                     @if (session('back_error'))
-                        <div class="alert alert-warning shadow-lg">
-                            <div>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current flex-shrink-0 h-6 w-6"
-                                    viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M8.25 18.25L18.75 8.25L21.75 11.75L8.25 18.25Z" />
-                                </svg>
-                                <span>{{ session('back_error') }}</span>
-                            </div>
-                        </div>
-                        @php
-                            session()->forget('back_error');
-                        @endphp
+                    <div class="alert alert-warning shadow-lg border-l-4 border-warning">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <span>{{ session('back_error') }}</span>
+                    </div>
                     @endif
-                    <a href="https://prarang.in/yp/{{ $portal->slug }}?p={{ $portal->slug }}" target="_blank"
-                        class="relative block overflow-hidden rounded-lg group">
 
-                        <!-- IMAGE -->
-                        <img src="https://meerutrang.in/images/yellow-pages-row.png" alt="Login"
-                            class="w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
+                    @if (session('success'))
+                    <div class="alert alert-success shadow-lg border-l-4 border-success">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>{{ session('success') }}</span>
+                    </div>
+                    @endif
 
-                        <!-- OVERLAY -->
-                        <div class="absolute inset-0 "></div>
-
-                        <!-- TEXT ON IMAGE -->
-                        <div class="absolute inset-0 flex flex-col items-center justify-center text-center z-10">
-                            <h2 class="text-[36px] font-bold text-black drop-shadow-md">
-                                {{ $portal->city_name_local }} व्यवसाय
-                            </h2>
-                            <h4 class="text-sm font-semibold text-black mt-1 drop-shadow">
-                                हिंदी येलो पेज (Yellow Pages)
-                            </h4>
-                        </div>
-
-                    </a>
+                    @if (session('error'))
+                    <div class="alert alert-error shadow-lg border-l-4 border-error">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>{{ session('error') }}</span>
+                    </div>
+                    @endif
                 </div>
 
+                <script>
+                    setTimeout(() => {
+                            const toast = document.getElementById('portal-toast');
+                            if (toast) {
+                                toast.style.transition = 'all 0.5s ease';
+                                toast.style.opacity = '0';
+                                toast.style.transform = 'translateY(-20px)';
+                                setTimeout(() => toast.remove(), 500);
+                            }
+                        }, 5000);
+                </script>
+                @endif
+
+                <a href="https://prarang.in/yp/{{ $portal->slug }}?p={{ $portal->slug }}" target="_blank"
+                    class="relative block overflow-hidden rounded-lg group">
+
+                    <!-- IMAGE -->
+                    <img src="https://meerutrang.in/images/yellow-pages-row.png" alt="Login"
+                        class="w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
+
+                    <!-- OVERLAY -->
+                    <div class="absolute inset-0 "></div>
+
+                    <!-- TEXT ON IMAGE -->
+                    <div class="absolute inset-0 flex flex-col items-center justify-center text-center z-10">
+                        <h2 class="text-[36px] font-bold text-black drop-shadow-md">
+                            {{ $portal->city_name_local }} व्यवसाय
+                        </h2>
+                        <h4 class="text-sm font-semibold text-black mt-1 drop-shadow">
+                            हिंदी येलो पेज (Yellow Pages)
+                        </h4>
+                    </div>
+
+                </a>
             </div>
+
+        </div>
         </div>
     </section>
 
