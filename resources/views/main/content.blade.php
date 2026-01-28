@@ -475,7 +475,8 @@
                                                     aria-expanded="{{ $isFirst ? 'false' : 'false' }}">
                                                     {{ $state }}
                                                     <span class="city-count-badge">
-                                                        {{ count($statePortals) }} Cities
+                                                        {{ count($statePortals) }}
+                                                        {{ Str::plural('City', count($statePortals)) }}
                                                     </span>
                                                 </button>
                                             </h2>
