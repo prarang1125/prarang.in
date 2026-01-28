@@ -24,7 +24,7 @@
         }
 
         /* Link (hover) */
-        .w-full .overflow-hidden .blhover {
+        .w-full .overflow-hidden .blhover:hover {
             background-color: #0663d4;
             color: #ffffff;
             transition: 3ms;
