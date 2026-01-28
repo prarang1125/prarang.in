@@ -284,9 +284,10 @@
                 </div>
 
                 @if (session('back_error') || session('success') || session('error'))
-                <div class="toast toast-top toast-end z-[9999]" id="portal-toast">
+                <div class="toast toast-top toast-center z-[9999]" id="portal-toast">
                     @if (session('back_error'))
-                    <div class="alert alert-warning shadow-lg border-l-4 border-warning">
+                    <div
+                        class="alert bg-yellow-400 text-black border-none shadow-2xl font-bold px-6 py-4 min-w-[300px]">
                         <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -297,7 +298,7 @@
                     @endif
 
                     @if (session('success'))
-                    <div class="alert alert-success shadow-lg border-l-4 border-success">
+                    <div class="alert bg-green-500 text-white border-none shadow-2xl font-bold px-6 py-4 min-w-[300px]">
                         <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -308,7 +309,7 @@
                     @endif
 
                     @if (session('error'))
-                    <div class="alert alert-error shadow-lg border-l-4 border-error">
+                    <div class="alert bg-red-500 text-white border-none shadow-2xl font-bold px-6 py-4 min-w-[300px]">
                         <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
                             viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
