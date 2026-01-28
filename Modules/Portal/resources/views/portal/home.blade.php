@@ -298,27 +298,28 @@
                         @php
                             session()->forget('back_error');
                         @endphp
-                        <a href="https://prarang.in/yp/{{ $portal->slug }}?p={{ $portal->slug }}" target="_blank"
-                            class="relative block overflow-hidden rounded-lg group">
+                    @endif
+                    <a href="https://prarang.in/yp/{{ $portal->slug }}?p={{ $portal->slug }}" target="_blank"
+                        class="relative block overflow-hidden rounded-lg group">
 
-                            <!-- IMAGE -->
-                            <img src="https://meerutrang.in/images/yellow-pages-row.png" alt="Login"
-                                class="w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
+                        <!-- IMAGE -->
+                        <img src="https://meerutrang.in/images/yellow-pages-row.png" alt="Login"
+                            class="w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
 
-                            <!-- OVERLAY -->
-                            <div class="absolute inset-0 "></div>
+                        <!-- OVERLAY -->
+                        <div class="absolute inset-0 "></div>
 
-                            <!-- TEXT ON IMAGE -->
-                            <div class="absolute inset-0 flex flex-col items-center justify-center text-center z-10">
-                                <h2 class="text-[36px] font-bold text-black drop-shadow-md">
-                                    {{ $portal->city_name_local }} व्यवसाय
-                                </h2>
-                                <h4 class="text-sm font-semibold text-black mt-1 drop-shadow">
-                                    हिंदी येलो पेज (Yellow Pages)
-                                </h4>
-                            </div>
+                        <!-- TEXT ON IMAGE -->
+                        <div class="absolute inset-0 flex flex-col items-center justify-center text-center z-10">
+                            <h2 class="text-[36px] font-bold text-black drop-shadow-md">
+                                {{ $portal->city_name_local }} व्यवसाय
+                            </h2>
+                            <h4 class="text-sm font-semibold text-black mt-1 drop-shadow">
+                                हिंदी येलो पेज (Yellow Pages)
+                            </h4>
+                        </div>
 
-                        </a>
+                    </a>
                 </div>
 
             </div>
