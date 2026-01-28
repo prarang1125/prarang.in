@@ -91,9 +91,7 @@
                 <div class="mt-6 px-4 bg-white p-3 rounded">
                     <h3 class="text-xl font-bold text-black mb-2">
                         <i class="fa fa-newspaper-o"></i>
-                        {{-- {{ $portal->city_name }} NEWS/ {{ $portal->city_name_local }} --}}
-                        {{-- {{ $locale['ui']['news_section'] ?? 'समाचार' }} --}}{{ $portal->city_name_local }} के
-                        समाचार
+                        {{ $locale['ui']['news_section'] ?? 'समाचार' }}
                     </h3>
                     <x-portal.widgets.news :url="$portal->news_widget_code" />
                 </div>

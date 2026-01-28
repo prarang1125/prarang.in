@@ -18,8 +18,6 @@
             color: #0d6efd !important;
         }
 
-
-
         #style-gEUMW.style-gEUMW {
             text-align: center;
         }
@@ -309,6 +307,11 @@
         /* Flex wrap */
         .px-0 .flex-wrap {
             padding-left: 10px;
+        }
+
+        /* Button */
+        .px-0 .flex-wrap .btn-warning {
+            margin-left: 7px;
         }
     </style>
     <section class="bs5-top-heading">
