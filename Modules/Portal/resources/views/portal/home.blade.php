@@ -2,7 +2,8 @@
 
     <section class="w-full px-4 py-8">
         @if (session('back_error') || session('success') || session('error'))
-            <div class="toast toast-top toast-center z-[9999] " id="portal-toast">
+            <div class="toast toast-top toast-center z-[9999] p-3 m-5 flex justify-center items-center "
+                id="portal-toast">
                 @if (session('back_error'))
                     <div class="alert bg-yellow-400 text-black border-none shadow-2xl font-bold px-6 py-4 min-w-[300px]">
                         <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
