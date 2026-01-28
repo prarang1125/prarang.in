@@ -21,7 +21,8 @@
 
         }
     </style>
-    <img class="bs5-semiotics" src="{{ asset('assets/upmana.svg') }}" onclick="semiotic()" class="anime-svg" alt="India's 1st City Semiotics.">
+    <img class="bs5-semiotics" src="{{ asset('assets/upmana.svg') }}" onclick="semiotic()" class="anime-svg"
+        alt="India's 1st City Semiotics.">
     <section class="mt-5 bs5-shapes">
         <div class="d-none d-md-none d-lg-block d-xl-block">
             <img class="img-fluid" src="https://prarang.in/home-assets/image/home.png" alt="">
