@@ -59,7 +59,29 @@ class InternateData extends Component
 
             // Fetch from API
 
-            $filteredData = httpGet('/internate-data/cities', ['city_id' => $this->city_id])['data'];
+            $filteredData = httpGet('/internate-data/cities', ['city_id' => $this->city_id]);
+            $source = $filteredData['source'];
+            $aligned = [];
+            $map = [
+                'MSTR5' => 'city_population',
+                'INT1'  => 'internet_users',
+                'INT5'  => 'facebook_users',
+                'INT16' => 'linkedin_users',
+                'INT18' => 'twitter_users',
+                'INT19' => 'instagram_users',
+            ];
+            $data = $filteredData['data'];
+            foreach ($map as $code => $field) {
+                $sourceItem = $filteredData['source'][$code][0] ?? null;
+                $aligned[$field] = [
+                    'field' => $field,
+                    'value' => $data[$field] ?? null,
+                    'source' => is_array($sourceItem) ? $sourceItem : ['source' => 'N/A'],
+                ];
+            }
+
+            $filteredData = $aligned;
+
 
             // Cache for a while (e.g., 24 hours) as per React localStorage intent
             Cache::put($cacheKey, $filteredData, now()->addDay());
