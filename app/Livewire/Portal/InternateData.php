@@ -46,7 +46,7 @@ class InternateData extends Component
             $this->loading = true;
             $this->internateError = null;
 
-            $cacheKey = "internateData_{$this->city_id}_news";
+            $cacheKey = "internateData_{$this->city_id}_newsx";
 
             // Check cache first (equivalent to localStorage in React)
             $cachedData = Cache::get($cacheKey);
@@ -64,10 +64,10 @@ class InternateData extends Component
             $aligned = [];
             $map = [
                 'MSTR5' => 'city_population',
-                'INT1'  => 'internet_users',
-                'INT5'  => 'facebook_users',
-                'INT16' => 'linkedin_users',
-                'INT18' => 'twitter_users',
+                'INT5'  => 'internet_users',
+                'INT2'  => 'facebook_users',
+                'INT10' => 'linkedin_users',
+                'INT17' => 'twitter_users',
                 'INT19' => 'instagram_users',
             ];
             $data = $filteredData['data'];
