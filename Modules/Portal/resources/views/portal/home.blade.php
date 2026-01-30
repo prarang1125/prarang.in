@@ -2,43 +2,44 @@
 
     <section class="w-full px-4 py-8">
         @if (session('back_error') || session('success') || session('error'))
-        <div class="toast toast-top toast-center z-[9999] p-3 m-5 flex justify-center items-center " id="portal-toast">
-            @if (session('back_error'))
-            <div class="alert bg-yellow-400 text-black border-none shadow-2xl font-bold px-6 py-4 min-w-[300px]">
-                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                </svg>
-                <span>{{ session('back_error') }}</span>
-            </div>
-            @endif
+            <div class="toast toast-top toast-center z-[9999] p-3 m-5 flex justify-center items-center "
+                id="portal-toast">
+                @if (session('back_error'))
+                    <div class="alert bg-yellow-400 text-black border-none shadow-2xl font-bold px-6 py-4 min-w-[300px]">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                        </svg>
+                        <span>{{ session('back_error') }}</span>
+                    </div>
+                @endif
 
-            @if (session('success'))
-            <div class="alert bg-green-500 text-white border-none shadow-2xl font-bold px-6 py-4 min-w-[300px]">
-                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>{{ session('success') }}</span>
-            </div>
-            @endif
+                @if (session('success'))
+                    <div class="alert bg-green-500 text-white border-none shadow-2xl font-bold px-6 py-4 min-w-[300px]">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>{{ session('success') }}</span>
+                    </div>
+                @endif
 
-            @if (session('error'))
-            <div class="alert bg-red-500 text-white border-none shadow-2xl font-bold px-6 py-4 min-w-[300px]">
-                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
-                    viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
-                <span>{{ session('error') }}</span>
+                @if (session('error'))
+                    <div class="alert bg-red-500 text-white border-none shadow-2xl font-bold px-6 py-4 min-w-[300px]">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
+                            viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                        </svg>
+                        <span>{{ session('error') }}</span>
+                    </div>
+                @endif
             </div>
-            @endif
-        </div>
 
-        <script>
-            setTimeout(() => {
+            <script>
+                setTimeout(() => {
                     const toast = document.getElementById('portal-toast');
                     if (toast) {
                         toast.style.transition = 'all 0.5s ease';
@@ -47,7 +48,7 @@
                         setTimeout(() => toast.remove(), 500);
                     }
                 }, 5000);
-        </script>
+            </script>
         @endif
         <div class="container mx-auto flex flex-col lg:flex-row gap-8">
             {{-- Left Sidebar --}}
@@ -78,8 +79,8 @@
 
                         {{-- DISTRICT METRICS --}}
                         <li role="presentation">
-                            <a target="_blank" href="https://hindi.prarang.in/{{ $portal->city_name }}" role="menuitem"
-                                class="flex items-center px-4  text-white  transition group">
+                            <a target="_blank" href="https://hindi.prarang.in/{{ $portal->analytics_name }}"
+                                role="menuitem" class="flex items-center px-4  text-white  transition group">
                                 <span class="uppercase tracking-wide">
                                     {{ $locale['ui']['district_metrics'] ?? 'District Metrics' }}
                                 </span>
@@ -102,8 +103,7 @@
                 </div>
 
                 <div class="mt-6 px-4 bg-white p-3 rounded">
-                    @livewire('portal.books-links', ['books' => $portal->books, 'links' => $portal->links, 'cityName' =>
-                    $portal->city_name, 'cityNameLocal' => $portal->city_name_local])
+                    @livewire('portal.books-links', ['books' => $portal->books, 'links' => $portal->links, 'cityName' => $portal->city_name, 'cityNameLocal' => $portal->city_name_local])
                 </div>
             </div>
 
@@ -127,7 +127,8 @@
                     <ul role="menu" class="divide-y divide-white/10 text-white font-semibold text-base">
                         {{-- HOME --}}
                         <li role="presentation">
-                            <a target="_blank" href="{{ route('portal', ['portal' => $portal->slug]) }}" role="menuitem"
+                            <a target="_blank" href="{{ route('portal', ['portal' => $portal->slug]) }}"
+                                role="menuitem"
                                 class="block px-6 py-1 uppercase tracking-wide hover:bg-black/10 transition">
                                 {{ $locale['ui']['home'] ?? 'HOME' }}
                             </a>
@@ -144,7 +145,8 @@
 
                         {{-- DISTRICT METRICS --}}
                         <li role="presentation">
-                            <a target="_blank" href="https://hindi.prarang.in/{{ $portal->city_name }}" role="menuitem"
+                            <a target="_blank" href="https://hindi.prarang.in/{{ $portal->analytics_name }}"
+                                role="menuitem"
                                 class="block px-6 py-1 uppercase tracking-wide hover:bg-black/10 transition">
                                 {{ $locale['ui']['district_metrics'] ?? 'District Metrics' }}
                             </a>
@@ -156,19 +158,20 @@
                 <div class="bg-white p-2 rounded">
                     <x-portal.posts-carousel :cityId="$cityCode" :cityCode="$cityCode" :locale="$locale" />
                     <!-- TOWNPRESS SITEMAP : begin -->
-                    <x-portal.tag-list :cityId="$cityCode" :cityCode="$cityCode" :citySlug="$portal->slug"
-                        :locale="$locale" />
+                    <x-portal.tag-list :cityId="$cityCode" :cityCode="$cityCode" :citySlug="$portal->slug" :locale="$locale" />
                 </div>
 
 
                 <div class="flex gap-6 mt-2 mb-3 text-black">
-                    <a target="_blank" href="https://hindi.prarang.in/{{ $portal->city_name }}" class="flex-1 text-center bg-blue-500 text-white font-bold py-3 rounded-lg
+                    <a target="_blank" href="https://hindi.prarang.in/{{ $portal->analytics_name }}"
+                        class="flex-1 text-center bg-blue-500 text-white font-bold py-3 rounded-lg
                hover:bg-blue-600 transition-colors duration-200">
                         {{ $portal->city_name_local }}
                         {{ $locale['ui']['statistics'] ?? 'Statistics' }}
                     </a>
 
-                    <a target="_blank" href="https://hindi.prarang.in/ai/{{ $portal->city_name }}" class="flex-1 text-center bg-blue-500 text-white font-bold py-3 rounded-lg
+                    <a target="_blank" href="https://hindi.prarang.in/ai/{{ $portal->analytics_name }}"
+                        class="flex-1 text-center bg-blue-500 text-white font-bold py-3 rounded-lg
                hover:bg-blue-600 transition-colors duration-200">
                         {{ $portal->city_name_local }} ए.आई. रिपोर्ट
                     </a>
@@ -224,7 +227,8 @@
                         <div
                             class="group relative bg-green-600 p-8 shadow-xl hover:shadow-2xl transition-all duration-500  overflow-hidden">
                             <div class="absolute inset-0 opacity-30">
-                                <div class="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-3xl opacity-50">
+                                <div
+                                    class="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-3xl opacity-50">
                                 </div>
                                 <div
                                     class="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full blur-2xl opacity-50">
@@ -293,8 +297,7 @@
                         </div>
                     </div>
                 </div>
-                <livewire:portal.internate-data :city_code="$portal->city_code" :city_id="$portal->city_id"
-                    :city_name="$portal->city_name_local" />
+                <livewire:portal.internate-data :city_code="$portal->city_code" :city_id="$portal->city_id" :city_name="$portal->city_name_local" />
                 <div class="flex justify-center items-center p-2 w-full ">
                     {!! $portal->weather_widget_code !!}
                 </div>
@@ -308,7 +311,8 @@
                 </div>
 
                 <!-- Modal Overlay -->
-                <div id="mapModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-50">
+                <div id="mapModal"
+                    class="fixed inset-0 z-50 hidden items-center justify-center bg-black bg-opacity-50">
                     <!-- Modal Box -->
                     <div class="bg-white w-full max-w-lg rounded-lg shadow-lg">
                         <!-- Header -->
@@ -330,44 +334,46 @@
                 </div>
 
                 @if (session('back_error') || session('success') || session('error'))
-                <div class="toast toast-top toast-center z-[9999]" id="portal-toast">
-                    @if (session('back_error'))
-                    <div
-                        class="alert bg-yellow-400 text-black border-none shadow-2xl font-bold px-6 py-4 min-w-[300px]">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-                        </svg>
-                        <span>{{ session('back_error') }}</span>
-                    </div>
-                    @endif
+                    <div class="toast toast-top toast-center z-[9999]" id="portal-toast">
+                        @if (session('back_error'))
+                            <div
+                                class="alert bg-yellow-400 text-black border-none shadow-2xl font-bold px-6 py-4 min-w-[300px]">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6"
+                                    fill="none" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                                </svg>
+                                <span>{{ session('back_error') }}</span>
+                            </div>
+                        @endif
 
-                    @if (session('success'))
-                    <div class="alert bg-green-500 text-white border-none shadow-2xl font-bold px-6 py-4 min-w-[300px]">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span>{{ session('success') }}</span>
-                    </div>
-                    @endif
+                        @if (session('success'))
+                            <div
+                                class="alert bg-green-500 text-white border-none shadow-2xl font-bold px-6 py-4 min-w-[300px]">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6"
+                                    fill="none" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span>{{ session('success') }}</span>
+                            </div>
+                        @endif
 
-                    @if (session('error'))
-                    <div class="alert bg-red-500 text-white border-none shadow-2xl font-bold px-6 py-4 min-w-[300px]">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6" fill="none"
-                            viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                        </svg>
-                        <span>{{ session('error') }}</span>
+                        @if (session('error'))
+                            <div
+                                class="alert bg-red-500 text-white border-none shadow-2xl font-bold px-6 py-4 min-w-[300px]">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="stroke-current shrink-0 h-6 w-6"
+                                    fill="none" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                </svg>
+                                <span>{{ session('error') }}</span>
+                            </div>
+                        @endif
                     </div>
-                    @endif
-                </div>
 
-                <script>
-                    setTimeout(() => {
+                    <script>
+                        setTimeout(() => {
                             const toast = document.getElementById('portal-toast');
                             if (toast) {
                                 toast.style.transition = 'all 0.5s ease';
@@ -376,7 +382,7 @@
                                 setTimeout(() => toast.remove(), 500);
                             }
                         }, 5000);
-                </script>
+                    </script>
                 @endif
 
                 <a href="https://prarang.in/yp/{{ $portal->slug }}?p={{ $portal->slug }}" target="_blank"
