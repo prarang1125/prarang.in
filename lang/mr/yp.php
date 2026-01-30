@@ -128,7 +128,7 @@ return [
     'membership_plan' => 'Membership Plan',
     'view_plan' => 'View Plan',
     'duration' => 'Duration:',
-    'privacy_policy_title' => 'Prarang YellowPage',
+    'privacy_policy_title' => 'Prarang Yellowpage',
     'disclaimer' => 'Disclaimer:',
     'please_note' => 'Please Note:',
     'privacy_policy_content_1' => 'The "Prarang Yellowpage website" serves as a directory for local businesses to list their services and products. It is not a platform for direct sales or financial transactions. Prarang does not verify the content provided by users and is not responsible for the accuracy of business listings, products, services, or pricing.',

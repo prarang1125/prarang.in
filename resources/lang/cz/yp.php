@@ -125,7 +125,7 @@ return [
     'membership_plan' => 'Membership Plan',
     'view_plan' => 'View Plan',
     'duration' => 'Duration',
-    'privacy_policy_title' => 'Prarang YellowPage',
+    'privacy_policy_title' => 'Prarang Yellowpage',
     'disclaimer' => 'Disclaimer:',
     'please_note' => 'Please Note:',
     'privacy_policy_content_1' => 'The ',
