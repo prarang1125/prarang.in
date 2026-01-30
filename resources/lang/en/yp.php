@@ -319,7 +319,7 @@ return [
     'privacy_policy_title' => 'Prarang YellowPage',
     'disclaimer' => 'Disclaimer:',
     'please_note' => 'Please Note:',
-    'privacy_policy_content_1' => 'The "Prarang Yellowpage website" serves as a directory for local businesses to list their services and products. It is not a platform for direct sales or financial transactions. Prarang does not verify the content provided by users and is not responsible for the accuracy of business listings, products, services, or pricing.',
+    'privacy_policy_content_1' => 'The Prarang Yellowpage website serves as a directory for local businesses to list their services and products. It is not a platform for direct sales or financial transactions. Prarang does not verify the content provided by users and is not responsible for the accuracy of business listings, products, services, or pricing.',
     'privacy_policy_content_2' => 'Any interactions or transactions between users and businesses are solely between the two parties. Prarang does not manage or facilitate these transactions and cannot be held accountable for any disputes or issues that arise from them.',
     'privacy_policy_content_3' => 'Prarang encourages users to verify all information independently before engaging in transactions. The platform is not responsible for any damages, financial losses, or harm resulting from the use of the site.',
     'privacy_policy_content_4' => 'Prarang is not liable for any consequences resulting from transactions or interactions between users and businesses listed on the platform.',
