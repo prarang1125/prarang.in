@@ -90,7 +90,7 @@ class postController extends Controller
 
         $post = Chitti::where('chittiId', $postId)
             ->where('finalStatus', 'approved')
-            ->with(['tagMappings.tag', 'images', 'color'])
+            ->with(['tagMappings.tag', 'images', 'color', 'reposts'])
             ->firstOrFail();
 
         $ColorCode = $post->color->colorcode ?? '';
@@ -123,6 +123,7 @@ class postController extends Controller
 
         $post->tagId = $post->tagMappings->first()->tag->tagId;
 
+
         return view('portal.post-summary', [
             'post' => $post,
             'slug' => $slug,
@@ -135,6 +136,7 @@ class postController extends Controller
             'portal' => $portal,
             'platform' => $platform,
             'locale' => $locale
+
         ]);
     }
 
