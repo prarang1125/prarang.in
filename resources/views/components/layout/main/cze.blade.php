@@ -110,6 +110,37 @@
     <main class="container">
         {{ $slot }}
     </main>
+    <script>
+        document.addEventListener('change', function(e) {
+
+            // only checkbox
+            if (!e.target.classList.contains('form-check-input')) return;
+
+            // ❗ sirf CHECK hone par
+            if (!e.target.checked) return;
+
+            const accordionItem = e.target.closest('.accordion-item');
+            if (!accordionItem) return;
+
+            const collapseEl = accordionItem.querySelector('.accordion-collapse');
+            if (!collapseEl) return;
+
+            const instance =
+                bootstrap.Collapse.getInstance(collapseEl) ||
+                new bootstrap.Collapse(collapseEl, {
+                    toggle: false
+                });
+
+            instance.hide();
+        });
+
+        // prevent accidental toggle on click
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('form-check-input')) {
+                e.stopPropagation();
+            }
+        });
+    </script>
 
     @yield('script')
     <script src="{{ asset('assets/js/blog-m.js') }}"></script>

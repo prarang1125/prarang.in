@@ -22,7 +22,12 @@ class HomeController extends Controller
             $categories = Category::where('is_active', 1)->get();
             $cities = City::where('is_active', 1)->get();
 
-            $listings = BusinessListing::with(['category', 'hours', 'reviews'])->where('is_active', 1)->get();
+            $listings = BusinessListing::with(['category', 'hours', 'reviews', 'city'])
+                ->where('is_active', 1)
+                ->whereHas('city', function ($query) {
+                    $query->where('locale_code', app()->getLocale());
+                })
+                ->get();
 
             $listings->each(function ($listing) use ($timezone) {
                 $listing->load('hours'); // Ensure hours are loaded
@@ -75,7 +80,7 @@ class HomeController extends Controller
 
             return view('yellowpages::home.home', compact('categories', 'cities', 'topRatedListings'));
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while fetching data: ']);
+            return back()->withErrors(['error' => __('yp.fetch_data_error')]);
         }
     }
 
@@ -87,7 +92,7 @@ class HomeController extends Controller
         try {
             return view("yellowpages::home.listing_plan");
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while loading the listing plan page: ']);
+            return back()->withErrors(['error' => __('yp.listing_plan_error')]);
         }
     }
     ##------------------------- END ---------------------##
@@ -98,7 +103,7 @@ class HomeController extends Controller
         try {
             return view("yellowpages::home.bazzar_plan");
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while loading the bazaar plan page: ']);
+            return back()->withErrors(['error' => __('yp.bazaar_plan_error')]);
         }
     }
     ##------------------------- END ---------------------##
@@ -109,7 +114,7 @@ class HomeController extends Controller
         try {
             return view('yellowpages::home.add_listing');
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while loading the add listing page: ']);
+            return back()->withErrors(['error' => __('yp.add_listing_error')]);
         }
     }
     ##------------------------- END ---------------------##
@@ -123,7 +128,7 @@ class HomeController extends Controller
 
             return view('Home.homapage', compact('categories'));
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while fetching categories: ']);
+            return back()->withErrors(['error' => __('yp.fetch_categories_error')]);
         }
     }
     ##------------------------- END ---------------------##
@@ -138,7 +143,7 @@ class HomeController extends Controller
 
             return view('yellowpages::home.home', compact('categories', 'cities'));
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while fetching dropdown data: ']);
+            return back()->withErrors(['error' => __('yp.fetch_dropdown_error')]);
         }
     }
     ##------------------------- END ---------------------##
@@ -151,7 +156,7 @@ class HomeController extends Controller
 
             return view('yellowpages::home.plan', compact('plans'));
         } catch (\Exception $e) {
-            return back()->withErrors(['error' => 'An error occurred while fetching dropdown data: ']);
+            return back()->withErrors(['error' => __('yp.fetch_dropdown_error')]);
         }
     }
 

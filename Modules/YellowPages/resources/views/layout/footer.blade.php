@@ -3,26 +3,26 @@
         <div class="row">
             <!-- Business Section -->
             <div class="col-md-4">
-                <h5>व्यवसाय</h5>
+                <h5>{{ __('yp.businesses') }}</h5>
                 <ul class="list-unstyled">
                     <li style="font-size: 18px;"><a href="{{ route('yp.getLocationData') }}"
-                            class="text-decoration-none text-dark">अपना लिस्टिंग(listing) जोड़ें</a></li>
+                            class="text-decoration-none text-dark">{{ __('yp.add_listing') }}</a></li>
                     <li style="font-size: 18px;"><a href="{{ route('vCard.report') }}"
-                            class="text-decoration-none text-dark">सहायता</a></li>
+                            class="text-decoration-none text-dark">{{ __('yp.help') }}</a></li>
                     <li style="font-size: 18px;"><a href="{{ route('privacy-policy') }}"
-                            class="text-decoration-none text-dark">गोपनीयता नीति</a></li>
+                            class="text-decoration-none text-dark">{{ __('yp.privacy_policy') }}</a></li>
                 </ul>
             </div>
 
             <div class="col-md-4">
-                <h5>महत्वपूर्ण लिंक </h5>
+                <h5>{{ __('yp.important_links') }}</h5>
                 <ul class="list-unstyled">
                     <li style="font-size: 18px;"><a href="{{ route('yp.home') }}"
-                            class="text-decoration-none text-dark">होम(Home)</a></li>
+                            class="text-decoration-none text-dark">{{ __('yp.home') }}</a></li>
                     <li style="font-size: 18px;"><a href="{{ route('yp.login') }}"
-                            class="text-decoration-none text-dark">लॉगिन(Login) करें</a></li>
+                            class="text-decoration-none text-dark">{{ __('yp.login') }}</a></li>
                     <li style="font-size: 18px;"><a href="{{ route('yp.getLocationData') }}"
-                            class="text-decoration-none text-dark">व्यवसाय खोजें</a></li>
+                            class="text-decoration-none text-dark">{{ __('yp.search_businesses') }}</a></li>
                 </ul>
             </div>
             <style>
@@ -34,7 +34,7 @@
                 }
             </style>
             <div class="col-md-4">
-                <h5>सोशल मीडिया(Social Media)</h5>
+                <h5>{{ __('yp.social_media') }}</h5>
                 <div class="credits">
                     <a href="https://www.facebook.com/prarang.in" target="_blank" rel="noopener noreferrer"
                         aria-label="Facebook">
@@ -59,11 +59,10 @@
         <!-- Contact Section -->
         <div class="text-center">
             <p style="font-size: 15px;">
-                #1125, 11 वीं मंजिल, टावर-A, द आई-थम, ए-40 सेक्टर 62, नोएडा (यू.पी), भारत 201309 <br>
-                <small>#1125, 11th floor, Towor-A, The i-Thum, A-40 Sector 62, Noida(U.P), India 201309</small>
+                {{ __('yp.footer_address') }}
             </p>
             <p style="font-size: 15px;">
-                <strong class="sitename">टेलीफ़ोन: +91-01204561284 </strong>
+                <strong class="sitename">{{ __('yp.telephone') }}: +91-01204561284 </strong>
             </p>
         </div>
 </footer>

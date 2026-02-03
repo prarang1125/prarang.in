@@ -2,7 +2,12 @@
 
 @section('meta_title', isset($category->name) ? $category->name : $city->name ?? '')
 @section('meta_description', isset($category->description) ? $category->description : $city->name ?? '')
-{{-- @section('meta_keywords', isset($category->name) ? $category->name . ', businesses, services' : $city->name . ', businesses, services') --}}
+{{-- @section('meta_keywords',
+    isset($category->name)
+        ? $category->name . ', businesses, services'
+        : $city->name .
+            ',
+businesses, services') --}}
 @section('meta_og_title', isset($category->name) ? $category->name : $city->name ?? '')
 @section('meta_og_image', isset($category->categories_url) && $category->categories_url ?
     Storage::url($category->categories_url) : (isset($city->cities_url) && $city->cities_url ?
@@ -189,37 +194,30 @@
     <div class="text-white text-center py-5 ypcitytop"
         style="background: url('{{ Storage::url($city->cover ?? 'default.jpg') }}') center/cover no-repeat;">
         <div class="container d-flex justify-content-start">
-
-            <a target="_blank" href="{{ route('portal', ['portal' => $portal->slug]) }}" class="btn btn-primary text-white">
-                <i class="bi bi-tablet"></i> {{ $portal->city_name_local }} पोर्टल
-            </a>
+            @if (!$city->is_country)
+                <a target="_blank" href="{{ route('portal', ['portal' => $portal->slug]) }}"
+                    class="btn btn-primary text-white">
+                    <i class="bi bi-tablet"></i> {{ $portal->city_name_local }} {{ __('yp.portal') }}
+                </a>
+            @endif
         </div>
 
-        {{-- <h1 class="pt-3">
-            @if (isset($city_name) && $city_name)
-            {{$city_name}} व्यवसाय
-            @elseif(isset($city) && $city)
-            {{$city}} व्यवसाय
-            @elseif(isset($category) && $category)
-            {{$category->name}}
-            @endif
-
-        </h1> --}}
     </div>
 
     <div class="container my-4">
         <h1 class="pt-3">
             @if (isset($city_name) && $city_name)
-                {{ $city_name }} व्यवसाय
+                {{ $city->lable }}
             @elseif(isset($city) && $city)
-                {{ $city }} व्यवसाय
+                {{ $city }} {{ __('yp.businesses') }}
             @elseif(isset($category) && $category)
                 {{ $category->name }}
             @endif
 
         </h1>
         <!-- Listings Grid -->
-        <div class="row g-4 "> <!-- Centered Listings -->
+        <div class="row g-4 ">
+            <!-- Centered Listings -->
             @php
                 $isMobile = request()->userAgent() && str_contains(request()->userAgent(), 'Mobile');
             @endphp
@@ -239,18 +237,18 @@
                                     <div class="col-6">
                                         @if ($listing->is_open)
                                             <span class=""><span class="bi bi-check-circle-fill text-success"></span>
-                                                खुला (Open)</span>
+                                                {{ __('yp.open_now') }}</span>
                                         @else
-                                            <span class=""><span class="bi bi-x-circle-fill text-danger"></span> बंद
-                                                (Closed)</span>
+                                            <span class=""><span class="bi bi-x-circle-fill text-danger"></span>
+                                                {{ __('yp.closed_now') }}</span>
                                     </div>
                                     <div class="col-6">
                                         @if ($listing->next_open)
-                                            <strong class="text-dark"><i class="bi bi-calendar-week"></i> अगला
-                                                खुला:</strong>
+                                            <strong class="text-dark"><i class="bi bi-calendar-week"></i>
+                                                {{ __('yp.next_open') }}</strong>
                                             <span class="text-muted">{{ $listing->next_open->format('l, h:i A') }}</span>
                                         @else
-                                            <span class="text-muted">समय उपलब्ध नहीं है</span>
+                                            <span class="text-muted">{{ __('yp.time_unavailable') }}</span>
                                         @endif
             @endif
         </div>
@@ -260,7 +258,8 @@
         <!-- Address Section -->
         <p class="card-text text-dark mb-0">
         <div class="row">
-            <div class="col-1"> <span class="text-muted"><i class="bi bi-geo-alt fw-bold"></i> </span> </div>
+            <div class="col-1"> <span class="text-muted"><i class="bi bi-geo-alt fw-bold"></i> </span>
+            </div>
             <div class="col-11">
                 <span class="text-dark">
                     {{ $listing->business_address }}
@@ -274,7 +273,7 @@
     <!-- Contact & Owner Section -->
 
     <p class="card-text text-dark mt-0">
-        <span class="text-muted"><i class="bi bi-person-workspace fw-bold"></i> निर्माता (Owner):</span>
+        <span class="text-muted"><i class="bi bi-person-workspace fw-bold"></i> {{ __('yp.owner') }}:</span>
         <span class="text-dark">{{ $listing->user->name ?? 'N/A' }}</span>
     </p>
 
@@ -288,7 +287,7 @@
                 <a href="tel:{{ $listing->user->phone ?? 'N/A' }}"
                     class="btn btn-success text-white fw-bold w-100 rounded-pill">
                     <span class="text-muted"><i class="bi bi-phone text-white"></i></span>
-                    <span class="">फ़ोन करे</span>
+                    <span class="">{{ __('yp.call') }}</span>
                 </a>
             @else
                 <a href="javascript:void(0)" onclick="copyToClipboard(this,'{{ $listing->user->phone ?? 'N/A' }}')"
@@ -301,7 +300,7 @@
         <div class="col-6 text-end">
             <a href="{{ route('yp.listing-details', ['city_slug' => $listing->city->name, 'listing_title' => Str::slug($listing->listing_title), 'listing_id' => $listing->id]) }}"
                 class="btn btn-primary text-white  fw-bold w-100 rounded-pill ">
-                <span>जानकारी</span> देखे<i class="bi bi-arrow-right"></i>
+                {{ __('yp.view_details') }}<i class="bi bi-arrow-right"></i>
             </a>
         </div>
     </div>
@@ -326,7 +325,7 @@
             const childI = element.querySelector('i');
             const phinex = element.querySelector('.phinex');
             childI.className = 'bi bi-check2-circle text-white h6';
-            phinex.innerHTML = 'कॉपी किया';
+            phinex.innerHTML = '{{ __('yp.copied') }}';
 
             setTimeout(() => {
                 childI.className = 'bi bi-phone text-white';

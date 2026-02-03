@@ -1,5 +1,5 @@
 @extends('yellowpages::layout.vcard.vcard')
-@section('title', 'Dashboard')
+@section('title', __('yp.dashboard'))
 @section('content')
 <div class="page-content">
     <!-- Dynamic Card Section -->
@@ -15,7 +15,7 @@
                                 <i class="bx bx-scan fs-3 text-white"></i>
                             </div>
                         </div>
-                        <p class="mb-0 text-white">कुल स्कैन</p>
+                        <p class="mb-0 text-white">{{ __('yp.total_scans') }}</p>
                     </div>
                 </div>
             </a>
@@ -32,7 +32,7 @@
                                 <i class="bx bx-show fs-3 text-white"></i>
                             </div>
                         </div>
-                        <p class="mb-0 text-white">कुल उपयोगकर्ता दृश्य</p>
+                        <p class="mb-0 text-white">{{ __('yp.total_user_views') }}</p>
                     </div>
                 </div>
             </a>
@@ -44,12 +44,12 @@
                 <div class="card radius-10 bg-gradient-deepblue">
                     <div class="card-body">
                         <div class="d-flex align-items-center">
-                            <h5 class="mb-0 text-white">{{ $plan->name ?? 'कोई योजना सक्रिय नहीं' }}</h5>
+                            <h5 class="mb-0 text-white">{{ $plan->name ?? __('yp.no_plan_active') }}</h5>
                             <div class="ms-auto">
                                 <i class="bx bx-user fs-3 text-white"></i>
                             </div>
                         </div>
-                        <p class="mb-0 text-white">सदस्यता</p>
+                        <p class="mb-0 text-white">{{ __('yp.subscription') }}</p>
                     </div>
                 </div>
             </a>

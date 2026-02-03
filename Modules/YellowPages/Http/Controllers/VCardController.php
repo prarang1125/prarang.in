@@ -30,8 +30,8 @@ class VCardController extends Controller
         try {
             return view("yellowpages::home.Vcard");
         } catch (\Exception $e) {
-            Log::error('Error in index method: ' );
-            return redirect()->back()->withErrors(['error' => 'Unable to load the VCard page.']);
+            Log::error('Error in index method: ');
+            return redirect()->back()->withErrors(['error' => __('yp.vcard_load_error')]);
         }
     }
     ##------------------------- END ---------------------##
@@ -46,9 +46,9 @@ class VCardController extends Controller
 
             // Retrieve the most recent active purchase plan (is_active = 1) for the user
             $purchasePlan = UserPurchasePlan::where('user_id', $userId)
-                                            ->where('is_active', 1)
-                                            ->orderBy('created_at', 'desc')
-                                            ->first();  // First active plan, most recent
+                ->where('is_active', 1)
+                ->orderBy('created_at', 'desc')
+                ->first();  // First active plan, most recent
 
             $plan = $purchasePlan ? Plan::find($purchasePlan->plan_id) : null;  // Get the plan by plan_id
 
@@ -63,8 +63,8 @@ class VCardController extends Controller
             // Pass the data to the view
             return view('yellowpages::Vcard.dashboard', compact('totalscan', 'plan', 'viewcount'));
         } catch (\Exception $e) {
-            Log::error('Error in dashboard method: ' );
-            return redirect()->back()->withErrors(['error' => 'Unable to load the dashboard.']);
+            Log::error('Error in dashboard method: ');
+            return redirect()->back()->withErrors(['error' => __('yp.dashboard_load_error')]);
         }
     }
 
@@ -74,6 +74,7 @@ class VCardController extends Controller
     public function createCard(Request $request)
     {
         $user = Auth::user();
+
         $existingVCard = VCard::where('user_id', $user->id)->first();
         if ($existingVCard) {
             return redirect()->route('vCard.dashboard');
@@ -89,8 +90,8 @@ class VCardController extends Controller
             Auth::guard('web')->logout(); // Use the default Laravel authentication guard
             return redirect()->route('yp.login'); // Redirect to login page
         } catch (\Exception $e) {
-            Log::error('Error in logout method: ' );
-            return redirect()->back()->withErrors(['error' => 'Unable to logout.']);
+            Log::error('Error in logout method: ');
+            return redirect()->back()->withErrors(['error' => __('yp.logout_error')]);
         }
     }
 

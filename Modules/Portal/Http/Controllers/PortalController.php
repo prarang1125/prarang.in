@@ -6,15 +6,15 @@ use App\Http\Controllers\Controller;
 use App\Models\City;
 use App\Models\PortalLocaleizetion;
 use Illuminate\Database\Eloquent\Casts\Json;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Modules\Portal\Models\BiletralPortal;
 use Modules\Portal\Models\CountryPortal;
 use Modules\Portal\Models\Portal;
 
+
 class PortalController extends Controller
 {
-
-
     public function portal($portal)
     {
         $isCityPortal = Portal::where('slug', $portal)->exists();
@@ -43,6 +43,11 @@ class PortalController extends Controller
         $locale = $locale['json'] ?? [];
         $cityCode = $portal->city_code;
         $yellowPages = City::where('portal_id', $portal->id)->first();
+        $analyticsCities = Cache::remember('analytics_cities', 24 * 30 * 60, function () {
+            return collect(httpGet('cities')['data'])->pluck('city', 'id')->toArray();
+        });
+        $portal['analytics_name'] = $analyticsCities[$portal->city_id];
+
         return view('portal::portal.home', compact('cityCode', 'portal', 'yellowPages', 'locale', 'books', 'links'));
     }
 

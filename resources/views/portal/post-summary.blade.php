@@ -667,6 +667,17 @@
                             @endif
                         @endif
                     </div>
+                    <div class="text-end">
+                        <small class="text-end small">
+                            @if ($post->reposts->isNotEmpty())
+                                This post has also been shared on
+                                @foreach ($post->reposts as $repost)
+                                    <a target="_blank"
+                                        href="{{ route('post-summary', ['slug' => 'reposted-of-' . $post->chittiId, 'id' => $repost->chittiId, 'subTitle' => $repost->SubTitle]) }}">{{ \Carbon\Carbon::parse($repost->dateOfApprove)->format('d-m-Y') }}</a>
+                                @endforeach .
+                            @endif
+                        </small>
+                    </div>
                     @php
                         $chitti_id = $post['chittiId'];
                     @endphp

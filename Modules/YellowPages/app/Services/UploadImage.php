@@ -16,8 +16,8 @@ class UploadImage
                 $data['path'] = Storage::disk('s3')->putFileAs($folder, $image, $filename);
                 $data['url'] = Storage::disk('s3')->temporaryUrl($data['path'], now()->addMinutes(5));
             } else {
-                $data['path'] = $image->storeAs($folder, $filename, 'public');
-                $data['url'] = Storage::disk('public')->url($data['path']);
+                $data['path'] = $image->storeAs($folder, $filename, 's3');
+                $data['url'] = Storage::disk('s3')->url($data['path']);
             }
 
             return [

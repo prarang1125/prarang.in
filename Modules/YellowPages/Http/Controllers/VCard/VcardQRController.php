@@ -21,17 +21,17 @@ class VcardQRController extends Controller
             $vcard = VCard::where('user_id', $userId)->latest()->first();
 
             if (!$vcard) {
-                return redirect()->route('vCard.createCard')->with('message', 'No VCard found for this user. Please create a new one.');
+                return redirect()->route('vCard.createCard')->with('message', __('yp.no_vcard_found'));
             }
 
             $vcardId = $vcard->id;
 
             // Generate QR code
-            $qrCode = QrCode::size(200)->generate(route('vCard.scanView', ['id'=>$vcard->id,'slug' => $vcard->slug]));
+            $qrCode = QrCode::size(200)->generate(route('vCard.scanView', ['id' => $vcard->id, 'slug' => $vcard->slug]));
             return view('yellowpages::Vcard.QRvCard', compact('qrCode', 'vcardId'));
         } catch (\Exception $e) {
-            Log::error('Error generating QR code: ' );
-            return redirect()->back()->withErrors(['error' => 'Unable to generate QR code.']);
+            Log::error('Error generating QR code: ');
+            return redirect()->back()->withErrors(['error' => __('yp.qr_generation_error')]);
         }
     }
     ##------------------------- END ---------------------##
@@ -44,7 +44,7 @@ class VcardQRController extends Controller
             $vcard = VCard::where('user_id', $userId)->latest()->firstOrFail();
 
             // Generate QR code
-            $qrCode = QrCode::size(200)->generate(route('vCard.scanView', ['id'=>$vcard->id,'slug' => $vcard->slug]));
+            $qrCode = QrCode::size(200)->generate(route('vCard.scanView', ['id' => $vcard->id, 'slug' => $vcard->slug]));
 
             // Create a temporary file to store the QR code image
             $tempFile = tempnam(sys_get_temp_dir(), 'qr_');
@@ -52,15 +52,15 @@ class VcardQRController extends Controller
 
             return response()->download($tempFile, 'vcard_qr_code.png')->deleteFileAfterSend(true);
         } catch (\Exception $e) {
-            Log::error('Error downloading QR code: ' );
-            return redirect()->back()->withErrors(['error' => 'Unable to download QR code.']);
+            Log::error('Error downloading QR code: ');
+            return redirect()->back()->withErrors(['error' => __('yp.qr_download_error')]);
         }
     }
 
     ##------------------------- END ---------------------##
 
     ##------------------------- QR Scan ---------------------##
-    public function scanAndView($id, $slug ,$count = 1)
+    public function scanAndView($id, $slug, $count = 1)
     {
         try {
             $vcard = VCard::where('slug', $slug)->orWhere('id', $id)->first();
@@ -68,17 +68,16 @@ class VcardQRController extends Controller
             if ($vcard) {
 
                 UserPurchasePlan::where('user_id', $vcard->user_id)
-                ->increment('current_qr_scan' , 1);
+                    ->increment('current_qr_scan', 1);
             } else {
                 Log::error("vCard not found for QR Code: {$slug}");
-                abort(404, 'vCard not found');
+                abort(404, __('yp.vcard_not_found_abort'));
             }
 
             return view('yellowpages::Vcard.CardView', compact('vcard'));
-
         } catch (\Exception $e) {
-            Log::error('Error in scanAndView: ' );
-            return redirect()->back()->withErrors(['error' => 'Unable to view the vCard.']);
+            Log::error('Error in scanAndView: ');
+            return redirect()->back()->withErrors(['error' => __('yp.unable_to_view_vcard')]);
         }
     }
     ##------------------------- END ---------------------##

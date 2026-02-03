@@ -27,12 +27,24 @@ class Chitti extends Model
         return $this->hasOne(ChittiGeography::class, 'chittiId', 'chittiId');
     }
     public function color()
-{
-    return $this->belongsTo(Color::class, 'color_value', 'id');
-}
-    
+    {
+        return $this->belongsTo(Color::class, 'color_value', 'id');
+    }
 
-   
-
-
+    public function repost()
+    {
+        return $this->hasOne(
+            Chitti::class,
+            're_upload_chittid', // FK in child
+            'chittiid'           // PK in this row
+        );
+    }
+    public function reposts()
+    {
+        return $this->hasMany(
+            Chitti::class,
+            're_upload_chittid',
+            'chittiId'
+        )->where('finalStatus', 'approved');
+    }
 }

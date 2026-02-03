@@ -16,7 +16,7 @@
             @foreach ($group['items'] as $item)
                 <a target="_blank"
                     href="https://hindi.prarang.in/ai/{{ urlencode($type === 'india' ? $item['city_slug'] : $item['country_slug']) }}"
-                    class="p-2  border border-blue-500 rounded-pill ">
+                    class="p-2 blhover  border border-blue-500 rounded-pill ">
                     {{ $type === 'india' ? $item['city'] : $item['country'] }}
                 </a>
             @endforeach

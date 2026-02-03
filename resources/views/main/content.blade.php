@@ -18,8 +18,6 @@
             color: #0d6efd !important;
         }
 
-
-
         #style-gEUMW.style-gEUMW {
             text-align: center;
         }
@@ -126,163 +124,194 @@
             cursor: pointer;
         }
 
-        /* Modal body */
-        main .modal-xl .modal-body {
-            text-align: left;
+        /* --- India Portals Minimal Yellow Design --- */
+
+        /* Trigger Row Styles */
+        .portal-trigger-row {
+            background: #fff;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #dee2e6;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
         }
 
-        /* City */
-        .snipcss-wzUkN .live-cities .city-btn {
-            font-size: 14px;
-        }
-
-        /* Image */
-        .snipcss-wzUkN .img img {
-            text-align: center;
-            margin-top: 32px;
-        }
-
-        /* Image */
-        main .modal-xl .modal-dialog .modal-content .modal-body .snipcss-wzUkN .img img {
-            width: 100% !important;
-        }
-
-        /* Modal */
-        main .modal-xl {
-            background-color: rgba(255, 255, 0, 0.01) !important;
-        }
-
-        /* Modal header */
-        main .modal-header {
-            position: sticky;
-            top: 1px;
-            z-index: 10;
-            background: white;
-        }
-
-        /* Modal */
-        main .modal-xl {
-            top: -20px;
-            bottom: auto;
-        }
-
-        /* Top title */
-        .top-title {
-            margin-top: 0px !important;
-            margin-bottom: 20px !important;
+        .portal-label {
+            font-size: 13px;
+            color: #adb5bd;
             font-weight: 700;
+            margin-bottom: 12px;
+            display: block;
             text-transform: uppercase;
-            font-size: 28px;
+            letter-spacing: 1px;
         }
 
-        .reorganize {
+        /* Minimal Yellow Buttons (Zone Pills) */
+        .zone-pill {
+            border-radius: 50px;
+            padding: 8px 24px;
+            font-size: 13px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            border: 1px solid #ffc107;
+        }
+
+        .zone-pill:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Modal Minimal Styling */
+        .portal-modal .modal-content {
+            background: #fff !important;
+            border: none;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .portal-modal .modal-header {
+            background: #ffc107;
+            color: #000;
+            padding: 20px 30px;
+            border: none;
+        }
+
+        .portal-modal .modal-title {
+            font-weight: 700;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .portal-modal .btn-close {
+            filter: none;
+        }
+
+        /* Minimal Accordion */
+        .portal-accordion .accordion-item {
+            background: #fff;
+            border: 1px solid #eee;
+            margin-bottom: 8px;
+            border-radius: 10px !important;
+            overflow: hidden;
+        }
+
+        .portal-accordion .accordion-button {
+            background: #fdfdfd !important;
+            padding: 18px 25px;
+            font-weight: 600 !important;
+            color: #444 !important;
+            box-shadow: none !important;
+            border: none;
+        }
+
+        .portal-accordion .accordion-button:not(.collapsed) {
+            background: #fff !important;
+            color: #856404 !important;
+            border-bottom: 1px solid #fff3cd;
+        }
+
+        /* Simple City Grid */
+        .city-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 10px;
+            padding: 15px 5px;
+        }
+
+        .city-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 10px 15px;
             text-align: center;
+            font-size: 14px;
+            font-weight: 500;
+            color: #555;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 45px;
         }
 
-        /* City */
-        main .modal-xl .city-btn {
-            font-size: 15px !important;
+        .city-card:hover {
+            border-color: #ffc107;
+            background: #fffdf5;
+            color: #856404;
+            text-decoration: none;
         }
 
-        /* Live heading */
-        main .modal-xl h6.live-heading {
+        .city-card.has-external {
+
+            border: 2px solid #ffc107;
+            border-left: 10px solid #ffc107;
+
+        }
+
+        .city-count-badge {
+            font-size: 11px;
             font-weight: 600;
+            background: #eee;
+            color: #777;
+            padding: 3px 8px;
+            border-radius: 6px;
+            margin-left: auto;
         }
 
-        /* Text primary */
-        #TheseMT .modal-body .text-primary {
-            font-size: 18px;
+        .accordion-button:not(.collapsed) .city-count-badge {
+            background: #fff3cd;
+            color: #856404;
         }
-
-        #TheseMT .live-cities p {
-            font-weight: 600;
-        }
-
-        main .btn-warning {
-            border-top-left-radius: 0px;
-            border-top-right-radius: 0px;
-            border-bottom-left-radius: 0px;
-            border-bottom-right-radius: 0px;
-            padding-left: 0px;
-            padding-right: 0px;
-            padding-top: 0px;
-            padding-bottom: 0px;
-        }
-
-        /* Division */
-        #sidebar-right .widg .weather-widgetx>div {
-            padding-left: 0px !important;
-            padding-right: 0px !important;
-            padding-top: 0px !important;
-            padding-bottom: 0px !important;
-        }
-
-        /* Text center */
-        .container .row .text-center {
-            text-align: left !important;
-            padding-left: 32px;
+    </style>
+    <style>
+        /* Button */
+        .container .flex-wrap a.btn-warning {
+            font-size: 16px;
+            width: 200px;
         }
 
         /* Button */
-        .container .flex-wrap a {
-            padding-left: 10px;
-            padding-right: 10px;
-            width: 201px;
+        .px-0 .flex-wrap .btn-warning {
+            width: 200px !important;
         }
 
-        /* Row */
-        .container .align-items-center {
-            margin-bottom: 2px !important;
+        /* Span Tag */
+        .px-0 span {
+            margin-bottom: 4px;
         }
 
-        /* Button (hover) */
-        .container .flex-wrap a:hover {
-            font-weight: 500;
+        /* Accordion button */
+        .container .container .container .modal-md .modal-content .modal-body .accordion-item .accordion-button {
+            background-color: #f8fae9 !important;
+            /* transform: translatex(0px) translatey(0px) !important; */
         }
 
-        /* Row */
-        .container .align-items-center {
-            box-shadow: 0px 0px 3px 0.5px #ced3d8;
-            border-top-left-radius: 4px;
-            border-top-right-radius: 4px;
-            border-bottom-left-radius: 4px;
-            border-bottom-right-radius: 4px;
+        /* Accordion button */
+        .accordion-button {
+            display: grid;
         }
 
-        /* Row */
-        .container .container .container .align-items-center {
-            margin-bottom: 15px !important;
+        /* Accordion button */
+        .container .container .container .modal-md .modal-content .modal-body .accordion-item .accordion-button {
+            grid-template-columns: 70% 20fr 10fr !important;
+        }
+
+        /* Font weight bold */
+        .px-0 .font-weight-bold {
+            text-align: center;
         }
 
         /* Flex wrap */
-        .container .flex-wrap {
-            box-shadow: 0px 0px 4px -50px #212529;
+        .px-0 .flex-wrap {
+            padding-left: 10px;
         }
 
-        /* Heading */
-        .container .col-md-10 h6 {
-            margin-bottom: 0px;
-            padding-left: 7px;
-            color: #767a7e;
-            font-weight: 400;
-            font-size: 14px;
-        }
-
-        /* Row */
-        .container .align-items-center {
-            padding-top: 4px;
-            padding-bottom: 4px;
-        }
-
-        /* List */
-        .container .flex-wrap ul {
-            width: 255px;
-            left: -20px !important;
-        }
-
-        /* List */
-        .container .container .container .align-items-center .col-md-10 .flex-wrap .btn-group ul {
-            right: auto !important;
+        /* Button */
+        .px-0 .flex-wrap .btn-warning {
+            margin-left: 7px;
         }
     </style>
     <section class="bs5-top-heading">
@@ -326,7 +355,7 @@
         </div>
         <div class="container mt-4">
             <!-- Daily Posts -->
-            <div class="row align-items-center mb-3">
+            <div class="row align-items-center mb-3 portal-trigger-row shadow-sm">
                 <div class="col-md-2 text-md-right text-center">
                     <h6 class="mb-0 font-weight-bold">Daily Posts:</h6>
                 </div>
@@ -340,7 +369,7 @@
                 </div>
             </div>
             <!-- Business -->
-            <div class="row align-items-center mb-3">
+            <div class="row align-items-center mb-3 portal-trigger-row shadow-sm">
                 <div class="col-md-2 text-md-right text-center">
                     <h6 class="mb-0 font-weight-bold">Business:</h6>
                 </div>
@@ -357,54 +386,179 @@
                     </div>
                 </div>
             </div>
-            <!-- India Portals -->
-            @foreach ($portal as $key => $inPortalx)
-                <div class="row align-items-center mb-3">
-                    <div class="col-md-2 text-md-right text-center">
-                        <h6 class="mb-0 font-weight-bold">India Portals - {{ $key }}:</h6>
-                    </div>
-                    <div class="col-md-10">
-                        <h6>{{ $key }} Webs</h6>
-                        <div class="d-flex flex-wrap gap-2">
-                            @foreach ($inPortalx as $inPortal)
-                                @if ($inPortal->slug == 'meerut')
-                                    <div class="btn-group">
-                                        <a type="button" class="btn btn-sm btn-warning m-1" data-bs-toggle="dropdown"
-                                            aria-expanded="false">
-                                            {{ $inPortal->city_name }}
-                                        </a>
-                                        <ul class="dropdown-menu">
-                                            <li><a class="dropdown-item" href="/{{ $inPortal->slug }}">
-                                                    Meerut Portal</a></li>
 
-                                            <hr class="dropdown-divider">
-                                            <li><a class="dropdown-item" target="_blank"
-                                                    href="https://meerutrang.in">Meerut English
-                                                    Domain</a></li>
-                                            <li>
-                                                <hr class="dropdown-divider">
-                                            </li>
-                                            <li><a class="dropdown-item" target="_blank"
-                                                    href="https://xn--i1b6bza9ckb2n.xn--h2brj9c/">Meerut Devanagari
-                                                    Domain</a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                @else
-                                    <a href="/{{ $inPortal->slug }}" target="_blank" class="btn btn-sm btn-warning m-1">
-                                        {{ $inPortal->city_name }}
-                                    </a>
-                                @endif
-                            @endforeach
+            <div class="row mt-4">
+                <div class="col-12 px-0">
+                    <div class="portal-trigger-row shadow-sm">
+                        <span class="portal-label">INDIA PORTALS</span>
 
+                        <!-- Hindi Webs Section -->
+                        <div class="row align-items-center mb-4">
+                            <div class="col-md-2">
+                                <h6 class="mb-0 font-weight-bold">Hindi Webs</h6>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="d-flex flex-wrap gap-2">
+                                    @foreach ($portal as $zone => $states)
+                                        @if ($zone == 'Union Territories')
+                                            @continue
+                                        @endif
+                                        <button class="zone btn btn-warning" data-bs-toggle="modal"
+                                            data-bs-target="#zoneModal-{{ Str::slug($zone) }}">
+                                            {{ $zone }} Zone
+                                        </button>
+                                    @endforeach
+                                    @foreach ($portal as $zone => $states)
+                                        @if ($zone != 'Union Territories')
+                                            @continue
+                                        @endif
+                                        <button class="zone btn btn-warning" data-bs-toggle="modal"
+                                            data-bs-target="#zoneModal-{{ Str::slug($zone) }}">
+                                            {{ $zone }}
+                                        </button>
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
 
+                        <!-- Marathi Webs Section -->
+                        <div class="row align-items-center">
+                            <div class="col-md-2">
+                                <h6 class="mb-0 font-weight-bold">Marathi Webs</h6>
+                            </div>
+                            <div class="col-md-10">
+                                <div class="d-flex flex-wrap gap-2">
+                                    <a href="/pune" target="_blank" class=" btn btn-warning text-decoration-none">
+                                        Pune
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
+
+            @foreach ($portal as $zone => $states)
+                @php
+                    $zoneId = Str::slug($zone);
+                @endphp
+
+                <div class="modal fade portal-modal" id="zoneModal-{{ $zoneId }}" tabindex="-1">
+                    <div class="modal-dialog modal-md modal-dialog-scrollable ">
+                        <div class="modal-content">
+
+                            <!-- Modal Header -->
+                            <div class="modal-header">
+                                <h5 class="modal-title">{{ $zone }}
+                                    {{ $zone != 'Union Territories' ? 'Zone' : '' }}
+                                </h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                            </div>
+
+                            <!-- Modal Body -->
+                            <div class="modal-body p-4 bg-light">
+                                <div class="accordion portal-accordion" id="accordion-{{ $zoneId }}">
+
+                                    @foreach ($states as $state => $statePortals)
+                                        @php
+                                            $stateId = Str::slug($zone . '-' . $state);
+                                            $isFirst = $loop->first;
+                                        @endphp
+
+                                        <div class="accordion-item">
+                                            <h2 class="accordion-header" id="heading-{{ $stateId }}">
+                                                <button
+                                                    class="accordion-button {{ $isFirst ? 'collapsed' : 'collapsed' }}"
+                                                    data-bs-toggle="collapse"
+                                                    data-bs-target="#collapse-{{ $stateId }}"
+                                                    aria-expanded="{{ $isFirst ? 'false' : 'false' }}">
+                                                    {{ $state }}
+                                                    <span class="city-count-badge">
+                                                        {{ count($statePortals) }}
+                                                        {{ Str::plural('City', count($statePortals)) }}
+                                                    </span>
+                                                </button>
+                                            </h2>
+
+                                            <div id="collapse-{{ $stateId }}"
+                                                class="accordion-collapse collapse {{ $isFirst ? '' : '' }}"
+                                                data-bs-parent="#accordion-{{ $zoneId }}">
+
+                                                <div class="accordion-body">
+                                                    <div class="city-grid">
+
+                                                        @foreach ($statePortals as $portalItem)
+                                                            @if ($portalItem->is_ext_url)
+                                                                <div class="btn-group w-100">
+                                                                    <button
+                                                                        class="city-card btn w-100 has-external dropdown-toggle"
+                                                                        data-bs-toggle="dropdown"
+                                                                        aria-expanded="false">
+                                                                        {{ $portalItem->city_name }}
+                                                                    </button>
+
+                                                                    <ul
+                                                                        class="dropdown-menu shadow border-0 py-2 w-100">
+                                                                        <li>
+                                                                            <a class="dropdown-item py-2 px-3"
+                                                                                href="/{{ $portalItem->slug }}">
+                                                                                Main Portal
+                                                                            </a>
+                                                                        </li>
+                                                                        <li>
+                                                                            <hr class="dropdown-divider">
+                                                                        </li>
+
+                                                                        @php
+                                                                            $extUrls = is_string($portalItem->ext_urls)
+                                                                                ? json_decode(
+                                                                                    $portalItem->ext_urls,
+                                                                                    true,
+                                                                                )
+                                                                                : $portalItem->ext_urls;
+                                                                        @endphp
+
+                                                                        @if (is_array($extUrls))
+                                                                            @foreach ($extUrls as $extUrl)
+                                                                                <li>
+                                                                                    <a class="dropdown-item py-2 px-3"
+                                                                                        href="{{ $extUrl['url'] ?? '#' }}"
+                                                                                        target="_blank"
+                                                                                        rel="noopener">
+                                                                                        {{ $extUrl['title'] ?? 'Link' }}
+                                                                                    </a>
+                                                                                </li>
+                                                                            @endforeach
+                                                                        @endif
+                                                                    </ul>
+                                                                </div>
+                                                            @else
+                                                                <a href="/{{ $portalItem->slug }}" target="_blank"
+                                                                    class="city-card border {{ $portalItem->is_live ? 'border-warning border-2' : '' }}">
+                                                                    {{ $portalItem->city_name }}
+                                                                </a>
+                                                            @endif
+                                                        @endforeach
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                 </div>
             @endforeach
+
+
+
             <!-- Bilateral Portals -->
-            <div class="row align-items-center mb-3">
+            <div class="row align-items-center mb-3 portal-trigger-row shadow-sm">
                 <div class="col-md-2 text-md-right text-center">
                     <h6 class="mb-0 font-weight-bold">Country Portals:</h6>
                 </div>
@@ -414,15 +568,15 @@
                             India Czech Portal
                         </a>
                         {{-- @foreach ($biletrals as $bilateral)
-                            <a href="/{{ $bilateral->slug }}" target="_blank" class="btn btn-sm btn-warning m-1">
-                                {{ ucwords(str_replace('-', ' ', $bilateral->slug)) }}
-                            </a>
+                        <a href="/{{ $bilateral->slug }}" target="_blank" class="btn btn-sm btn-warning m-1">
+                            {{ ucwords(str_replace('-', ' ', $bilateral->slug)) }}
+                        </a>
                         @endforeach --}}
 
                     </div>
                 </div>
             </div>
-            <div class="row align-items-center mb-3">
+            <div class="row align-items-center mb-3 portal-trigger-row shadow-sm">
                 <div class="col-md-2 text-md-right text-center">
                     <h6 class="mb-0 font-weight-bold">World Portals:</h6>
                 </div>
@@ -459,7 +613,7 @@
 
     <div class="modal fade modal-xl" id="TheseMTw1" data-bs-backdrop="static" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="TheseMTw1Label" aria-hidden="true">
-        <div class="modal-dialog">
+        <div class="modal-dialog ">
             <div class="modal-content">
                 <div class="modal-header">
                     <!-- <h1 class="modal-title fs-5" id="TheseMTLabel">Modal title</h1> -->
@@ -659,7 +813,8 @@
                             &amp; easy updation in local languages.</p>
                         <h3 class="text-primary">City e-Cards<a href="/vCard/" target="_blank"
                                 contenteditable="false" id="style-o178n" class="style-o178n"><i
-                                    class="bi bi-arrow-up-right-square"></i></a></h3>
+                                    class="bi bi-arrow-up-right-square"></i></a>
+                        </h3>
                         <p>Free web-address to enable first step of digitization for informal sector workers &amp;
                             micro/small businesses with low literacy</p>
                         <div class="live-cities">

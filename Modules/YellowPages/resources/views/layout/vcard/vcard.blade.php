@@ -15,6 +15,3 @@
 
 </div>
 @include('yellowpages::layout.vcardpartial.script')
-
-
-

@@ -1,5 +1,5 @@
 @extends('yellowpages::layout.script')
-@section('title', __('messages.yellow_pages'))
+@section('title', __('yp.yellow_pages'))
 @section('content')
     @livewireStyles
     <style>
@@ -185,25 +185,25 @@
             <div class="row gy-5 justify-content-center">
                 <div class="col-lg-8 order-2 order-lg-1 d-flex flex-column justify-content-center mx-auto">
                     <h2>
-                        <span>{{ __('messages.explore_your_city') }}</span>
+                        <span>{{ __('yp.explore_your_city') }}</span>
                     </h2>
-                    <p>{{ __('messages.Let_uncover_the_best_Businesses') }}</p>
+                    <p>{{ __('yp.let_uncover_the_best_businesses') }}</p>
 
                     <div class="search-form d-flex justify-content-center mt-4">
                         <!-- Categories Dropdown -->
                         <select id="category" class="form-select" style="width: 300px; padding: 10px; margin-right: 10px;">
-                            <option value="">{{ __('messages.select_category') }}</option>
+                            <option value="">{{ __('yp.select_category') }}</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->slug }}"
                                     {{ request('category') == $category->slug ? 'selected' : '' }}>
-                                    {{ $category->name }}
+                                    {{ __('yp.' . $category->name) ?? $category->name }}
                                 </option>
                             @endforeach
                         </select>
 
                         <!-- Cities Dropdown -->
                         <select id="city" class="form-select" style="width: 200px; padding: 10px; margin-right: 10px;">
-                            <option value="">{{ __('messages.select_city') }}</option>
+                            <option value="">{{ __('yp.select_city') }}</option>
                             @foreach ($cities as $city)
                                 <option value="{{ $city->name }}" {{ request('city') == $city->name ? 'selected' : '' }}>
                                     {{ $city->name }}
@@ -220,7 +220,7 @@
                     <p class="text-danger citymsg"></p>
 
                     <div class="text-center lp-search-description" style="margin-top: 20px;">
-                        <p>{{ __('messages.Looking_for_a_service') }}</p>
+                        <p>{{ __('yp.looking_for_a_service') }}</p>
                         <img src="{{ asset('assets/images/banner-arrow.png') }}" alt="banner-arrow" class="banner-arrow"
                             style="margin-top: 10px;" />
                     </div>
@@ -244,7 +244,7 @@
                                 <h4 class="title m-0">
                                     <!-- Add the link to the listing page with the category ID -->
                                     <a href="{{ route('category.show', ['category_name' => $category->slug]) }}"
-                                        class="stretched-link text-decoration-none">{{ $category->name }}</a>
+                                        class="stretched-link text-decoration-none">{{ __('yp.' . $category->name) }}</a>
                                 </h4>
                             </div>
                         </div>
@@ -258,8 +258,8 @@
     <section id="services" class="services">
         <!-- Section Title -->
         <div class="container section-title" data-aos="fade-up">
-            <h2>{{ __('messages.Live_Cities') }}</h2>
-            <p>{{ __('messages.Find_the_Best_Services') }}</p>
+            <h2>{{ __('yp.live_cities') }}</h2>
+            <p>{{ __('yp.find_the_best_services') }}</p>
         </div><!-- End Section Title -->
 
         <div class="container">
@@ -285,8 +285,8 @@
 
     <section id="listings" class="listings section">
         <div class="container section-title" data-aos="fade-up" style="text-align: center; margin-bottom: 40px;">
-            <h2>{{ __('messages.Listings') }}</h2>
-            <p>{{ __('messages.Popular_Listings_In_Our_Directory') }}</p>
+            <h2>{{ __('yp.listings') }}</h2>
+            <p>{{ __('yp.popular_listings_in_our_directory') }}</p>
         </div>
 
         <div class="container" data-aos="fade-up" data-aos-delay="100">
@@ -312,23 +312,24 @@
                                             <div class="col-6">
                                                 @if ($listing->is_open === true)
                                                     <span class=""><span
-                                                            class="bi bi-check-circle-fill text-success"></span> खुला
-                                                        (Open)
+                                                            class="bi bi-check-circle-fill text-success"></span>
+                                                        {{ __('yp.open') }}
                                                     </span>
                                                 @else
                                                     <span class=""><span
-                                                            class="bi bi-x-circle-fill text-danger"></span> बंद
-                                                        (Closed)</span>
+                                                            class="bi bi-x-circle-fill text-danger"></span>
+                                                        {{ __('yp.closed') }}
+                                                    </span>
                                                 @endif
                                             </div>
                                             <div class="col-6">
                                                 @if ($listing->next_open)
-                                                    <strong class="text-dark"><i class="bi bi-calendar-week"></i> अगला
-                                                        खुला:</strong>
+                                                    <strong class="text-dark"><i class="bi bi-calendar-week"></i>
+                                                        {{ __('yp.next_open') }}</strong>
                                                     <span
                                                         class="text-muted">{{ $listing->next_open->format('l, h:i A') }}</span>
                                                 @else
-                                                    <span class="text-muted">समय उपलब्ध नहीं है</span>
+                                                    <span class="text-muted">{{ __('yp.time_unavailable') }}</span>
                                                 @endif
                                             </div>
                                         </div>
@@ -338,7 +339,8 @@
                                     <p class="card-text text-dark mb-0">
                                     <div class="row">
                                         <div class="col-1"><span class="text-muted"><i
-                                                    class="bi bi-geo-alt fw-bold"></i></span></div>
+                                                    class="bi bi-geo-alt fw-bold"></i></span>
+                                        </div>
                                         <div class="col-11">
                                             <span
                                                 class="text-dark">{{ $listing->business_address ?? 'No Address' }}</span>
@@ -348,8 +350,10 @@
 
                                     <!-- Category -->
                                     <p class="card-text text-dark mt-0">
-                                        <span class="text-muted"><i class="bi bi-tag fw-bold"></i> Category:</span>
-                                        <span class="text-dark">{{ $listing->category->name ?? 'N/A' }}</span>
+                                        <span class="text-muted"><i class="bi bi-tag fw-bold"></i>
+                                            {{ __('yp.category') }}:</span>
+                                        <span
+                                            class="text-dark">{{ __('yp.' . $listing->category->name) ?? ($listing->category->name ?? 'N/A') }}</span>
                                     </p>
 
                                     <!-- View Details Button -->
@@ -360,7 +364,7 @@
                                                 <a href="tel:{{ $listing->user->phone ?? 'N/A' }}"
                                                     class="btn btn-success text-white fw-bold w-100 rounded-pill">
                                                     <span class="text-muted"><i class="bi bi-phone text-white"></i></span>
-                                                    <span class="">फ़ोन करे</span>
+                                                    <span class="">{{ __('yp.call') }}</span>
                                                 </a>
                                             @else
                                                 <a href="javascript:void(0)"
@@ -371,9 +375,9 @@
                                             @endif
                                         </div>
                                         <div class="col-6 text-end">
-                                            <a href="{{ route('yp.listing-details', ['city_slug' => $listing->city->name, 'listing_title' => str::slug($listing->listing_title), 'listing_id' => $listing->id]) }}"
+                                            <a href="{{ route('yp.listing-details', ['city_slug' => $listing->city->name ?? 'N/A', 'listing_title' => str::slug($listing->listing_title), 'listing_id' => $listing->id]) }}"
                                                 class="btn btn-primary text-white fw-bold w-100 rounded-pill">
-                                                जानकारी देखे<i class="bi bi-arrow-right"></i>
+                                                {{ __('yp.view_details') }}<i class="bi bi-arrow-right"></i>
                                             </a>
                                         </div>
                                     </div>
@@ -400,7 +404,7 @@
                 const url = `{{ url('yp') }}/${category}/${city}`;
                 window.location.href = url;
             } else {
-                document.querySelector('.citymsg').textContent = "Please Select Category and City";
+                document.querySelector('.citymsg').textContent = "{{ __('yp.select_cat_city_error') }}";
             }
         });
 
