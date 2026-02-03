@@ -42,7 +42,7 @@ class Home extends Controller
                     return $zone->groupBy('state');
                 });
         });
-        dd($portal);
+        // dd($portal);
 
         return view('main.home');
     }
