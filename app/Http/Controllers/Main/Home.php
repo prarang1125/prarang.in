@@ -44,7 +44,7 @@ class Home extends Controller
         });
         // dd($portal);
 
-        return view('main.home');
+        return view('main.home', compact('portal'));
     }
 
 
@@ -161,7 +161,14 @@ class Home extends Controller
             $worldLanguageData = $languageData['data']['worldLanguageData'] ?? [];
             $indiaLanguageData = $languageData['data']['indiaLanguageData'] ?? [];
             $languageId = $languageData['data']['languageId'] ?? [];
-
+            // $indiaLanguageCol = [];
+            // foreach ($indiaLanguageData as $lcdata) {
+            //     $datax = collect($lcdata)->map(function ($data) {
+            //         return array_values($data->toArray());
+            //     });
+            //     array_push($indiaLanguageCol, $datax);
+            // }
+            // dd($indiaLanguageCol);
             // Return the data to a view
             return view('main.market', compact('metaData', 'scripts', 'total', 'languageCountry', 'worldLanguageData', 'indiaLanguageData', 'languageId'));
         } catch (Exception $e) {

@@ -24,6 +24,15 @@
             padding-top: 16px;
             padding-bottom: 28px;
         }
+
+        .flex-wrap div .w-full {
+            margin-top: 2px;
+        }
+
+        /* Heading */
+        .flex-wrap div h2 {
+            font-size: 16px;
+        }
     </style>
     <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-10 ">
         <!-- Header Section (Optional, keeping it simple as per current state) -->
@@ -115,7 +124,7 @@
                         <div class="flex flex-col justify-start items-start ps-5">
                             <span class="text-md font-black text-blue-600">Hindi</span>
                             <span class="text-md font-black text-blue-600">English</span>
-                            <span class="text-md font-black text-blue-600">Marathi</span>
+                            {{-- <span class="text-md font-black text-blue-600">Marathi</span> --}}
                         </div>
                     </div>
                 </div>
@@ -126,22 +135,41 @@
             </div>
 
             <!-- Country Webs Card -->
-            <div
-                class="group border-[2px] border-gray-200 rounded-[2.5rem] p-8 bg-gradient-to-br from-red-500 via-red-300 to-red-500 w-full sm:w-80 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                <h2 class="text-2xl font-black text-gray-800 tracking-tight text-center uppercase">
-                    Country Webs
-                </h2>
+            <div>
                 <div
-                    class="border-2 border-red-200 rounded-3xl p-10 mb-8 bg-white shadow-inner relative overflow-hidden group-hover:border-red-400 transition-colors">
-
+                    class="group border-[2px] border-gray-200 rounded-[2.5rem] p-8 bg-gradient-to-br from-red-500 via-red-300 to-red-500 w-full sm:w-80 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                    <h2 class="text-2xl font-black text-gray-800 tracking-tight text-center uppercase">
+                        Country Webs
+                    </h2>
                     <div
-                        class="flex justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
-                        <img src="{{ asset('assets/images/home/2.png') }}" alt="Country Icon"
-                            class="object-contain drop-shadow-md">
+                        class="border-2 border-red-200 rounded-3xl p-10 mb-8 bg-white shadow-inner relative overflow-hidden group-hover:border-red-400 transition-colors">
+                        <div
+                            class="flex justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                            <img src="{{ asset('assets/images/home/2.png') }}" alt="Country Icon"
+                                class="object-contain drop-shadow-md">
+                        </div>
                     </div>
-
                 </div>
-
+                <div class="flex w-full mt-6 text-center">
+                    <div class="flex-1 cursor-pointer group/stat px-2"
+                        onclick="openModal('City Webs - Total Portfolio', 'Our network covers 525 key cities across India, bridging the digital divide with localized knowledge.')">
+                        <span
+                            class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] block mb-1 group-hover/stat:text-blue-600 transition-colors">Total</span>
+                        <span class="text-base font-bold text-gray-800">India - 525</span>
+                    </div>
+                    <div class="w-px h-8 bg-gray-200 self-center"></div>
+                    <div class="flex-1 cursor-pointer group/stat px-2"
+                        onclick="openModal('City Webs - Live Portals', 'Currently, 298 specialized city portals are live and serving the community.')">
+                        <span
+                            class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] block mb-1 group-hover/stat:text-blue-600 transition-colors">Live
+                        </span>
+                        <div class="flex flex-col justify-start items-start ps-5">
+                            <span class="text-md font-black text-blue-600">Czech Rep.</span>
+                            <span class="text-md font-black text-blue-600">Nepal</span>
+                            {{-- <span class="text-md font-black text-blue-600">Marathi</span> --}}
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

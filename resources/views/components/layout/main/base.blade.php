@@ -38,124 +38,363 @@
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="{{ asset('assets/main/css/style.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ asset('css/ai-response.css') }}" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/typeit@8.7.1/dist/index.umd.js"></script>
 
     @livewireStyles
     @yield('css')
 </head>
 <style>
-    .navbar-nav .col-md a {
+    body {
+        font-family: 'Outfit', sans-serif;
+    }
+
+    /* Premium Navbar Styling */
+    .navbar {
+        background: #4a5568;
+        /* Slate gray solid background */
+        border-bottom: none;
+        padding: 0;
+        z-index: 1030;
+    }
+
+    .header-title {
+        color: #4a90e2;
+        font-size: 32px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .header-tagline {
+        color: #000;
+        font-size: 18px;
+        font-weight: 700;
+        margin-top: -5px;
+    }
+
+    .nav-link {
+        color: white !important;
+        font-weight: 500;
+        font-size: 16px;
+        padding: 10px 20px !important;
+        transition: all 0.3s ease;
+        display: flex;
         flex-direction: column;
-        height: 50px;
+        align-items: center;
+        justify-content: center;
     }
 
-    .navbar-nav a span {
-        margin-top: -4px;
-        font-size: 14px;
+    .nav-link:hover {
+        background: rgba(255, 255, 255, 0.1);
+        color: #fff !important;
     }
 
-    .container img {
-        bottom: auto !important;
+    .nav-link span {
+        font-size: 11px;
+        text-transform: capitalize;
+        letter-spacing: 0.5px;
+        font-weight: 400;
+        opacity: 0.9;
+        margin-top: -2px;
     }
 
-    @media (min-width:768px) {
-        .container img {
-            top: 147px;
+    /* Dropdown Enhancements */
+    .dropdown:hover>.dropdown-menu {
+        display: block;
+        margin-top: 0;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+    }
+
+    .dropdown-menu {
+        display: block;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        border: none;
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        border-radius: 12px;
+        padding: 12px 0;
+        border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .dropdown-item {
+        padding: 10px 24px;
+        font-weight: 500;
+        color: #4a4a4a;
+        transition: all 0.2s ease;
+    }
+
+    .dropdown-item:hover {
+        /* background-color: #f0f7ff; */
+        color: #007bff;
+        transform: translateX(5px);
+    }
+
+    .dropdown-toggle::after {
+        display: none;
+        /* Hide default chevron */
+    }
+
+    .dropdown-chevron {
+        font-size: 12px;
+        margin-left: 4px;
+        transition: transform 0.3s ease;
+    }
+
+    .nav-item.dropdown:hover .dropdown-chevron {
+        transform: rotate(180deg);
+    }
+
+    /* Logo Interactions */
+    .bs5-logo-image {
+        transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+
+    .bs5-logo:hover .bs5-logo-image {
+        transform: scale(1.08) rotate(-3deg);
+    }
+
+    /* Navbar Toggler */
+    .navbar-toggler {
+        border: none;
+        padding: 8px;
+        border-radius: 8px;
+        transition: background 0.3s ease;
+    }
+
+    .navbar-toggler:hover {
+        background: rgba(0, 0, 0, 0.05);
+    }
+
+    @media (max-width: 991.98px) {
+        .navbar-nav {
+            padding: 15px 0;
+        }
+
+        .nav-link {
+            align-items: flex-start;
+            padding: 12px 24px !important;
+        }
+
+        .nav-link::after {
+            left: 24px;
+            transform: none;
+        }
+
+        .dropdown-menu {
+            box-shadow: none;
+            padding-left: 20px;
+            opacity: 1;
+            visibility: visible;
+            transform: none;
+            display: none;
+            background: transparent;
+            border: none;
+        }
+
+        .dropdown:hover>.dropdown-menu {
+            display: none;
+        }
+
+        .dropdown.show>.dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-chevron {
+            position: absolute;
+            right: 24px;
+            top: 18px;
         }
     }
 
-    body {
-        padding-top: 0px !important;
+    /* Modal Premium Styling */
+    .modal-content {
+        background: rgba(255, 255, 255, 0.8) !important;
+        backdrop-filter: blur(25px) saturate(180%) !important;
+        -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+        border: 1px solid rgba(255, 255, 255, 0.3) !important;
+        box-shadow: 0 32px 64px -16px rgba(0, 0, 0, 0.25) !important;
     }
 
-    /* Navbar Unknowndown menu link */
-    #navbarDropdownMenuLink {
-        background-color: #eceeee;
+    .modal-backdrop {
+        background-color: rgba(0, 0, 0, 0.45) !important;
+        backdrop-filter: blur(6px) !important;
+    }
+
+    .btn-premium {
+        background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+        border: none;
+        color: white;
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+    }
+
+    .btn-premium:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 28px rgba(0, 123, 255, 0.4);
+        color: white;
+    }
+
+    @media (max-width: 768px) {
+        .header-title {
+            font-size: 24px;
+        }
+
+        .header-tagline {
+            font-size: 14px;
+        }
+    }
+
+    /* Body */
+    body {
+        padding-top: 0px;
+    }
+
+    /* Header */
+    #main-header header {
+        padding-top: 0px !important;
+        padding-bottom: 2px !important;
+
+    }
+
+    /* Navbar nav */
+    #navbarNav .navbar-nav {
+        transform: translatex(0px) translatey(0px);
+    }
+
+    /* Navbar nav */
+    #navbarNav {
+        background-color: #09a4dc;
+        min-height: 42px;
+    }
+
+    /* Navigation */
+    #main-header nav {
+        background-color: #ffffff;
+    }
+
+    /* Container */
+    #main-header .container-fluid .container {
         display: flex;
-        flex-direction: row;
-        font-weight: 600;
+        justify-content: center;
+        align-items: center;
+        transform: translatex(0px) translatey(0px);
+    }
+
+    /* Heading */
+    #main-header h1 {
+        width: 517px;
+    }
+
+    @media (max-width:991px) {
+
+        /* Link */
+        #main-header .text-end a {
+            display: flex;
+            justify-content: center;
+        }
+
+        /* Header */
+        #main-header header {
+            padding-top: 8px !important;
+        }
+
+    }
+
+    @media (max-width:576px) {
+
+        /* Image */
+        .navbar a img {
+            width: 77px;
+        }
+
+        /* Link */
+        #main-header .text-end a {
+            visibility: hidden;
+            height: 5px;
+        }
+
+        /* Container */
+        #main-header .navbar .container {
+            background-color: #31b1fb;
+            transform: translatex(0px) translatey(0px);
+        }
+
     }
 </style>
 
-<body>
+<body class="bg-light">
     {{-- @livewire('utility.share') --}}
-    <header class="container">
-        <div class="row">
-            <div class="order-1 col-sm-4 col-6 order-sm-1">
-                <div class="bs5-hcolor-box">
-                    <div class="bs5-color-1"></div>
-                    <div class="bs5-color-2"></div>
-                    <div class="bs5-color-3"></div>
-                </div>
-            </div>
-            <div class="order-3 col-sm-4 col-12 order-sm-2">
-                <div class="bs5-logo">
-                    <div>
-                        <p class="bs5-logo-title">Prarang</p>
-                        <p class="bs5-logo-tagline">Knowledge Webs</p>
+    <div id="main-header" class="">
+        <header class="bg-white container-fluid py-3">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-md-9 text-center">
+                        <h1 class="header-title mb-0">Prarang Knowledge Webs</h1>
+                        <p class="header-tagline mb-0">Bridging the Digital Divide – By City, By Language</p>
                     </div>
-                    <div>
-                        <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
-                            alt="Prarang">
+                    <div class="col-md-3 text-end">
+                        <a href="{{ route('home') }}" class="text-decoration-none">
+                            <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
+                                alt="Prarang" height="60">
+
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="order-2 col-sm-4 col-6 order-sm-3">
-                <div class="bs5-hcolor-box">
-                    <div class="bs5-color-4"></div>
-                    <div class="bs5-color-5"></div>
-                    <div class="bs5-color-6"></div>
-                </div>
-            </div>
-        </div>
-        <nav class="navbar navbar-expand-lg navbar-light bg-faded">
-            <div class="container-fluid">
-                <a class="text-center navbar-brand d-sm-block d-md-none d-lg-none" href="#"></a>
-                <a class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">Menu &nbsp;
-                    <span class="navbar-toggler-icon"></span>
+        </header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container">
+                <a class="navbar-brand d-lg-none" href="#">
+                    <img src="https://www.prarang.in/home-assets/image/logo.png" alt="Prarang" height="30">
                 </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="text-center nav navbar-nav col-md-12 col-sm-12 no-padding">
-                        <li class="col-md col-sm no-padding">
-                            <a href="{{ route('home') }}">Home</a>
+                    <ul class="navbar-nav w-100 justify-content-between">
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('market') }}">Digital Divide</a>
                         </li>
-                        <li class="col-md col-sm no-padding dropdown">
+                        <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Products
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Solutions
                             </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <a class="dropdown-item" href="{{ route('content') }}">Content</a>
-                                <a class="dropdown-item" href="{{ route('semiotics') }}">Semiotics</a>
-                                <a class="dropdown-item" href="{{ route('analytics') }}">Analytics</a>
-                                <a class="dropdown-item" href="/ai/upmana">Artificial Intelligence</a>
-                            </div>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="{{ route('content') }}">Content</a></li>
+                                <li><a class="dropdown-item" href="{{ route('semiotics') }}">Semiotics</a></li>
+                                <li><a class="dropdown-item" href="{{ route('analytics') }}">Analytics</a></li>
+                                <li><a class="dropdown-item" href="/ai/upmana">Artificial Intelligence</a></li>
+                            </ul>
                         </li>
-                        <li class="col-md col-sm no-padding">
-                            <a href="{{ route('market') }}">Market <span>Digital Divide</span></a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('partners') }}">Partners</a>
                         </li>
-
-                        <li class="col-md col-sm no-padding">
-                            <a href="{{ route('partners') }}" rel="nofollow">Partners<span>Corp. &
-                                    Govt.</span></a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('about-us') }}">About-Us</a>
                         </li>
-                        <li class="col-md col-sm no-padding">
-                            <a href="{{ route('about-us') }}" rel="nofollow">About Us</a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="javascript:void(0);" id="viveks-modal">Blogs</a>
                         </li>
-                        <li class="col-md col-sm no-padding">
-                            <a href="javascript:void(0);" id="viveks-modal" rel="nofollow">Blogs</a>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Knowledge</a>
                         </li>
-
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">Intelligence</a>
+                        </li>
                     </ul>
                 </div>
             </div>
         </nav>
-    </header>
+    </div>
     <main class="container">
         {{ $slot }}
         {{-- </main>
@@ -253,12 +492,52 @@
         integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous">
     </script>
 
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
-            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
-        </script>
-        <script src="{{ asset('js/ai-response.js') }}"></script>
-        {{-- <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+        integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous">
+    </script>
+    <script src="{{ asset('js/ai-response.js') }}"></script>
+    {{-- <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
 
+        <!-- Dynamic Generic Modal -->
+        <div class="modal fade" id="dynamicModal" tabindex="-1" aria-labelledby="dynamicModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0" style="border-radius: 28px;">
+                    <div class="modal-header border-0 p-4 pb-0">
+                        <h5 class="modal-title font-bold text-dark fs-3" id="dynamicModalLabel">Modal Title</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body p-4 pt-3">
+                        <p id="dynamicModalBody" class="text-secondary leading-relaxed fs-5"></p>
+                    </div>
+                    <div class="modal-footer border-0 p-4 pt-0 justify-content-start">
+                        <button type="button" class="btn btn-premium rounded-pill px-5 py-2 font-semibold fs-6"
+                            data-bs-dismiss="modal">Excellent</button>
+                        <button type="button" class="btn btn-link text-secondary text-decoration-none ms-auto"
+                            data-bs-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Dynamic Modal Function
+            function openModal(title, content) {
+                document.getElementById('dynamicModalLabel').innerText = title;
+                document.getElementById('dynamicModalBody').innerText = content;
+                const modal = new bootstrap.Modal(document.getElementById('dynamicModal'));
+                modal.show();
+            }
+
+            // Sticky Header & Scroll Effects
+            // Blogs Modal Listener (if needed)
+            document.getElementById('viveks-modal')?.addEventListener('click', function() {
+                openModal('Prarang Blogs',
+                    'Our blogs are coming soon! Stay tuned for deep insights into knowledge webs and community growth.'
+                );
+            });
+        </script>
         @livewireScripts
 </body>
 
