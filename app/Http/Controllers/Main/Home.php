@@ -176,4 +176,13 @@ class Home extends Controller
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+
+    public function cityWebs()
+    {
+        return view('main.citywebs');
+    }
+    public function countryWebs()
+    {
+        return view('main.countrywebs');
+    }
 }

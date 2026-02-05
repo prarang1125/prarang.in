@@ -38,6 +38,8 @@ Route::prefix('/')->group(function () {
     Route::get('/terms-conditions', [Home::class, 'termsConditions'])->name('terms-conditions');
 });
 
+Route::get('city-webs', [Home::class, 'cityWebs'])->name('home.city-webs');
+Route::get('country-webs/', [Home::class, 'countryWebs'])->name('home.country-webs');
 
 Route::get('/{city}/all-posts/{name?}/{forabour?}', [postController::class, 'getChittiData'])->name('posts.city');
 Route::get('/{slug}/posts/{id}/{subTitle?}', [PostController::class, 'post_summary'])->name('post-summary');
