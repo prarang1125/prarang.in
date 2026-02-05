@@ -455,8 +455,8 @@
                             <a class="nav-link" href="{{ route('market') }}">Digital Divide</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
-                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                                data-bs-toggle="dropdown" aria-expanded="false">
                                 Solutions
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
@@ -590,8 +590,7 @@
     {{-- <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
 
     <!-- Dynamic Generic Modal -->
-    <div class="modal fade" id="dynamicModal" tabindex="-1" aria-labelledby="dynamicModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="dynamicModal" tabindex="-1" aria-labelledby="dynamicModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0" style="border-radius: 28px;">
                 <div class="modal-header border-0 p-4 pb-0">
