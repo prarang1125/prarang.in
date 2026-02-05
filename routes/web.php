@@ -39,6 +39,9 @@ Route::prefix('/')->group(function () {
 });
 
 
+Route::get('/world-lang', [Home::class, 'World_lang'])->name('world.lang');
+
+
 Route::get('/{city}/all-posts/{name?}/{forabour?}', [postController::class, 'getChittiData'])->name('posts.city');
 Route::get('/{slug}/posts/{id}/{subTitle?}', [PostController::class, 'post_summary'])->name('post-summary');
 
