@@ -397,7 +397,7 @@
     </div>
     <main class="container">
         {{ $slot }}
-        {{-- </main>
+    </main>
     <footer>
         <div class="container-fluid">
             <br>
@@ -498,47 +498,46 @@
     <script src="{{ asset('js/ai-response.js') }}"></script>
     {{-- <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
 
-        <!-- Dynamic Generic Modal -->
-        <div class="modal fade" id="dynamicModal" tabindex="-1" aria-labelledby="dynamicModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content border-0" style="border-radius: 28px;">
-                    <div class="modal-header border-0 p-4 pb-0">
-                        <h5 class="modal-title font-bold text-dark fs-3" id="dynamicModalLabel">Modal Title</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body p-4 pt-3">
-                        <p id="dynamicModalBody" class="text-secondary leading-relaxed fs-5"></p>
-                    </div>
-                    <div class="modal-footer border-0 p-4 pt-0 justify-content-start">
-                        <button type="button" class="btn btn-premium rounded-pill px-5 py-2 font-semibold fs-6"
-                            data-bs-dismiss="modal">Excellent</button>
-                        <button type="button" class="btn btn-link text-secondary text-decoration-none ms-auto"
-                            data-bs-dismiss="modal">Close</button>
-                    </div>
+    <!-- Dynamic Generic Modal -->
+    <div class="modal fade" id="dynamicModal" tabindex="-1" aria-labelledby="dynamicModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content border-0" style="border-radius: 28px;">
+                <div class="modal-header border-0 p-4 pb-0">
+                    <h5 class="modal-title font-bold text-dark fs-3" id="dynamicModalLabel">Modal Title</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body p-4 pt-3">
+                    <p id="dynamicModalBody" class="text-secondary leading-relaxed fs-5"></p>
+                </div>
+                <div class="modal-footer border-0 p-4 pt-0 justify-content-start">
+                    <button type="button" class="btn btn-premium rounded-pill px-5 py-2 font-semibold fs-6"
+                        data-bs-dismiss="modal">Excellent</button>
+                    <button type="button" class="btn btn-link text-secondary text-decoration-none ms-auto"
+                        data-bs-dismiss="modal">Close</button>
                 </div>
             </div>
         </div>
+    </div>
 
-        <script>
-            // Dynamic Modal Function
-            function openModal(title, content) {
-                document.getElementById('dynamicModalLabel').innerText = title;
-                document.getElementById('dynamicModalBody').innerText = content;
-                const modal = new bootstrap.Modal(document.getElementById('dynamicModal'));
-                modal.show();
-            }
+    <script>
+        // Dynamic Modal Function
+        function openModal(title, content) {
+            document.getElementById('dynamicModalLabel').innerText = title;
+            document.getElementById('dynamicModalBody').innerText = content;
+            const modal = new bootstrap.Modal(document.getElementById('dynamicModal'));
+            modal.show();
+        }
 
-            // Sticky Header & Scroll Effects
-            // Blogs Modal Listener (if needed)
-            document.getElementById('viveks-modal')?.addEventListener('click', function() {
-                openModal('Prarang Blogs',
-                    'Our blogs are coming soon! Stay tuned for deep insights into knowledge webs and community growth.'
-                );
-            });
-        </script>
-        @livewireScripts
+        // Sticky Header & Scroll Effects
+        // Blogs Modal Listener (if needed)
+        document.getElementById('viveks-modal')?.addEventListener('click', function() {
+            openModal('Prarang Blogs',
+                'Our blogs are coming soon! Stay tuned for deep insights into knowledge webs and community growth.'
+            );
+        });
+    </script>
+    @livewireScripts
 </body>
 
 </html>
