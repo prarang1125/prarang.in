@@ -31,7 +31,7 @@ class PortalApiController extends Controller
         $portal = Portal::query()
             ->where('local_lang', $lang)
             ->leftJoin('vChittiGeography as chitti', 'chitti.Geography', '=', 'portals.city_code')
-            ->select('portals.id', 'portals.city_code', 'portals.city_name', 'portals.state', 'portals.zone', 'portals.list_order', 'portals.local_lang', 'portals.is_ext_url', 'portals.ext_urls', 'portals.slug')
+            ->select('portals.id', 'portals.city_name_local as locale_name', 'portals.city_code', 'portals.city_name', 'portals.state', 'portals.zone', 'portals.list_order', 'portals.local_lang', 'portals.is_ext_url', 'portals.ext_urls', 'portals.slug')
 
             ->selectRaw('COUNT(chitti.chittiid) > 0 as is_live')
             ->groupBy('portals.id')
