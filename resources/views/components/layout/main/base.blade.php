@@ -51,35 +51,18 @@
         font-family: 'Outfit', sans-serif;
     }
 
-    /* Premium Navbar Styling */
     .navbar {
-        background: #4a5568;
-        /* Slate gray solid background */
-        border-bottom: none;
+        background: #ffffff !important;
+        border-bottom: 1px solid #eee;
         padding: 0;
         z-index: 1030;
     }
 
-    .header-title {
-        color: #4a90e2;
-        font-size: 32px;
-        font-weight: 800;
-        letter-spacing: 1px;
-        text-transform: uppercase;
-    }
-
-    .header-tagline {
-        color: #000;
-        font-size: 18px;
-        font-weight: 700;
-        margin-top: -5px;
-    }
-
     .nav-link {
-        color: white !important;
+        color: #333 !important;
         font-weight: 500;
-        font-size: 16px;
-        padding: 10px 20px !important;
+        font-size: 15px;
+        padding: 12px 20px !important;
         transition: all 0.3s ease;
         display: flex;
         flex-direction: column;
@@ -88,17 +71,8 @@
     }
 
     .nav-link:hover {
-        background: rgba(255, 255, 255, 0.1);
-        color: #fff !important;
-    }
-
-    .nav-link span {
-        font-size: 11px;
-        text-transform: capitalize;
-        letter-spacing: 0.5px;
-        font-weight: 400;
-        opacity: 0.9;
-        margin-top: -2px;
+        background: rgba(0, 0, 0, 0.05);
+        color: #007bff !important;
     }
 
     /* Dropdown Enhancements */
@@ -256,109 +230,226 @@
         padding-top: 0px;
     }
 
+    /* Header Branding */
+    .header-title {
+        color: #4a90e2;
+        font-size: 32px;
+        font-weight: 800;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+    }
+
+    .header-tagline {
+        color: #333;
+        font-size: 18px;
+        font-weight: 700;
+        margin-top: -3px;
+    }
+
+    @media (max-width: 991.98px) {
+        #main-header .navbar .container {
+            background-color: #ffffff;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header-content .header-title {
+            font-size: 0.9rem !important;
+            margin-bottom: 0;
+            line-height: 1.1;
+            font-weight: 800;
+        }
+
+        .header-content .header-tagline {
+            font-size: 0.55rem !important;
+            margin-top: 1px !important;
+            color: #666;
+            font-weight: 600;
+        }
+
+        /* Mobile Menu Items Styling */
+        .navbar-nav {
+            padding: 1rem 0;
+        }
+
+        .nav-link {
+            align-items: flex-start !important;
+            justify-content: flex-start !important;
+            padding: 12px 15px !important;
+            border-bottom: 1px solid #f8f9fa;
+            font-size: 16px !important;
+        }
+
+        .nav-link:hover {
+            padding-left: 20px !important;
+            background: #f8f9fa;
+        }
+
+        .dropdown-menu {
+            border: none;
+            box-shadow: none;
+            padding-left: 15px;
+            background: #fafafa;
+        }
+    }
+
+    @media (max-width: 576px) {
+        .header-content .header-title {
+            font-size: 1rem !important;
+        }
+
+        .header-content .header-tagline {
+            font-size: 0.55rem !important;
+        }
+
+        .navbar-brand img {
+            height: 35px !important;
+        }
+    }
+</style>
+
+<style>
+    @media (max-width:576px) {
+
+        /* Container */
+        #main-header .navbar .container {
+            box-shadow: 0px 2px 0px -50px rgba(0, 0, 0, 0.1);
+            transform: translatex(0px) translatey(0px);
+        }
+
+        /* Heading */
+        #main-header .navbar .container .d-flex .text-center .header-content h1 {
+            font-size: 16px !important;
+        }
+
+        /* Paragraph */
+        #main-header .navbar .container .d-flex .text-center .header-content p {
+            font-size: 11px !important;
+        }
+
+    }
+
+    .d-flex .navbar-toggler span:active {
+        border-style: none;
+    }
+
+    /* Navbar nav */
+    #mainNavbarMenu .navbar-nav {
+        font-weight: 500;
+        color: #ffffff;
+        background-color: #206df3;
+    }
+
+    /* Nav link */
+    .navbar-nav .nav-item .nav-link {
+        color: #ffffff !important;
+    }
+
+    /* Row */
+    .d-lg-block .align-items-center {
+        justify-content: center;
+        flex-direction: row;
+        padding-left: 138px;
+    }
+
     /* Header */
     #main-header header {
         padding-top: 0px !important;
-        padding-bottom: 2px !important;
-
-    }
-
-    /* Navbar nav */
-    #navbarNav .navbar-nav {
-        transform: translatex(0px) translatey(0px);
-    }
-
-    /* Navbar nav */
-    #navbarNav {
-        background-color: #09a4dc;
-        min-height: 42px;
     }
 
     /* Navigation */
     #main-header nav {
-        background-color: #ffffff;
+        box-shadow: none !important;
     }
 
-    /* Container */
-    #main-header .container-fluid .container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        transform: translatex(0px) translatey(0px);
-    }
-
-    /* Heading */
-    #main-header h1 {
-        width: 517px;
+    /* Column 9/12 */
+    .d-lg-block .text-center {
+        width: 511px;
     }
 
     @media (max-width:991px) {
 
-        /* Link */
-        #main-header .text-end a {
-            display: flex;
-            justify-content: center;
-        }
-
-        /* Header */
-        #main-header header {
-            padding-top: 8px !important;
+        /* Container */
+        #main-header .navbar .container {
+            box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.1);
         }
 
     }
 
-    @media (max-width:576px) {
-
-        /* Image */
-        .navbar a img {
-            width: 77px;
-        }
-
-        /* Link */
-        #main-header .text-end a {
-            visibility: hidden;
-            height: 5px;
-        }
+    @media (max-width:767px) {
 
         /* Container */
         #main-header .navbar .container {
-            background-color: #31b1fb;
-            transform: translatex(0px) translatey(0px);
+            margin-left: 0px !important;
         }
 
+    }
+
+    /* Navbar nav */
+    #mainNavbarMenu .navbar-nav {
+        background-color: #eef1f1;
+
+    }
+
+    /* Nav link */
+    .navbar-nav .nav-item .nav-link {
+        color: #020202 !important;
+        height: 45px;
+    }
+
+    /* Navigation */
+    #main-header nav {
+        background-color: rgba(255, 255, 255, 0) !important;
     }
 </style>
 
 <body class="bg-light">
     {{-- @livewire('utility.share') --}}
     <div id="main-header" class="">
-        <header class="bg-white container-fluid py-3">
+        <header class="bg-white container-fluid py-3 d-none d-lg-block">
             <div class="container">
                 <div class="row align-items-center">
                     <div class="col-md-9 text-center">
-                        <h1 class="header-title mb-0">Prarang Knowledge Webs</h1>
+                        <h1 class="header-title mb-0 text-primary">Prarang Knowledge Webs</h1>
                         <p class="header-tagline mb-0">Bridging the Digital Divide – By City, By Language</p>
                     </div>
                     <div class="col-md-3 text-end">
                         <a href="{{ route('home') }}" class="text-decoration-none">
                             <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
                                 alt="Prarang" height="60">
-
                         </a>
                     </div>
                 </div>
             </div>
         </header>
-        <nav class="navbar navbar-expand-lg">
+        <nav class="navbar navbar-expand-lg bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand d-lg-none" href="#">
-                    <img src="https://www.prarang.in/home-assets/image/logo.png" alt="Prarang" height="30">
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Mobile Header Area (Toggler + Brand + Logo) -->
+                <div class="d-flex w-100 align-items-center justify-content-between d-lg-none py-2">
+                    <!-- Mobile Toggler -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#mainNavbarMenu" aria-controls="mainNavbarMenu" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <!-- Mobile Brand Content -->
+                    <div class="text-center px-2">
+                        <div class="header-content">
+                            <h1 class="header-title mb-0 text-primary">Prarang Knowledge Webs</h1>
+                            <p class="header-tagline mb-0">Bridging the Digital Divide – By City, By Language</p>
+                        </div>
+                    </div>
+
+                    <!-- Mobile Logo -->
+                    <a class="navbar-brand me-0" href="{{ route('home') }}">
+                        <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
+                            alt="Prarang" height="35" style="width: auto;">
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="mainNavbarMenu">
                     <ul class="navbar-nav w-100 justify-content-between">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('market') }}">Digital Divide</a>
@@ -531,11 +622,11 @@
 
         // Sticky Header & Scroll Effects
         // Blogs Modal Listener (if needed)
-        document.getElementById('viveks-modal')?.addEventListener('click', function() {
-            openModal('Prarang Blogs',
-                'Our blogs are coming soon! Stay tuned for deep insights into knowledge webs and community growth.'
-            );
-        });
+        // document.getElementById('viveks-modal')?.addEventListener('click', function() {
+        //     openModal('Prarang Blogs',
+        //         'Our blogs are coming soon! Stay tuned for deep insights into knowledge webs and community growth.'
+        //     );
+        // });
     </script>
     @livewireScripts
 </body>
