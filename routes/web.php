@@ -41,6 +41,11 @@ Route::prefix('/')->group(function () {
 Route::get('city-webs', [Home::class, 'cityWebs'])->name('home.city-webs');
 Route::get('country-webs/', [Home::class, 'countryWebs'])->name('home.country-webs');
 
+Route::get('lang-webs', [Home::class, 'langWebs'])->name('home.lang-webs');
+Route::get('/get-countries/{langId}', [Home::class, 'geCountrytByLanguage'])
+    ->name('countries.by.language');
+
+
 Route::get('/{city}/all-posts/{name?}/{forabour?}', [postController::class, 'getChittiData'])->name('posts.city');
 Route::get('/{slug}/posts/{id}/{subTitle?}', [PostController::class, 'post_summary'])->name('post-summary');
 

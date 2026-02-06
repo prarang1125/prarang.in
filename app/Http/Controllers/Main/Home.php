@@ -55,16 +55,36 @@ class Home extends Controller
         $portal = Portal::query()
             ->where('local_lang', 'hi')
             ->leftJoin('vChittiGeography as chitti', 'chitti.Geography', '=', 'portals.city_code')
-            ->select('portals.id', 'portals.city_code', 'portals.city_name', 'portals.state', 'portals.zone', 'portals.list_order', 'portals.local_lang', 'portals.is_ext_url', 'portals.ext_urls', 'portals.slug')
-
+            ->select(
+                'portals.id',
+                'portals.city_code',
+                'portals.city_name',
+                'portals.state',
+                'portals.zone',
+                'portals.list_order',
+                'portals.local_lang',
+                'portals.is_ext_url',
+                'portals.ext_urls',
+                'portals.slug'
+            )
             ->selectRaw('COUNT(chitti.chittiid) > 0 as is_live')
-            ->groupBy('portals.id')
+            ->groupBy(
+                'portals.id',
+                'portals.city_code',
+                'portals.city_name',
+                'portals.state',
+                'portals.zone',
+                'portals.list_order',
+                'portals.local_lang',
+                'portals.is_ext_url',
+                'portals.ext_urls',
+                'portals.slug'
+            )
             ->orderBy('portals.list_order', 'asc')
             ->get()
             ->groupBy('zone')
-            ->map(function ($zone) {
-                return $zone->groupBy('state');
-            });
+            ->map(fn($zone) => $zone->groupBy('state'));
+
 
 
         $biletrals = BiletralPortal::all();
@@ -177,12 +197,36 @@ class Home extends Controller
         }
     }
 
+
     public function cityWebs()
     {
         $popData = config('cityweb.popup');
         $popData = collect($popData)->groupBy('StateID')->toArray();
         return view('main.citywebs', compact('popData'));
     }
+
+
+    public function langWebs()
+    {
+        return view('main.langwebs', [
+            'divide' => config('lang_webs.digital_divide_languages'),
+            'balanced' => config('lang_webs.digitally_balanced_languages'),
+        ]);
+    }
+    public function geCountrytByLanguage($langId)
+    {
+        // dd($langId);
+        $countries = collect(config('count_lang.languages'))
+            ->where('language_id', $langId)
+            ->pluck('country')
+            ->values();
+
+        return response()->json($countries);
+    }
+
+
+
+
     public function countryWebs()
     {
         $data = config('countryweb.data');
