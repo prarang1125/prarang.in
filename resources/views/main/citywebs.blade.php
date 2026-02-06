@@ -229,6 +229,45 @@
             }
 
         }
+
+        /* Modal header */
+        .container .modal .modal-header {
+            display: grid;
+        }
+
+        /* Modal header */
+        .container .modal .modal-xl .modal-content .modal-header {
+            grid-template-columns: 89% 9% !important;
+            /* transform: translatex(0px) translatey(0px) !important; */
+        }
+
+        /* Modal title */
+        .container .modal .modal-title {
+            text-align: center;
+        }
+
+        /* Text white */
+        .modern-table thead .text-white {
+            position: sticky;
+            z-index: 1000 !important;
+        }
+
+        /* Text white */
+        .container .mt-3 .table-responsive .modern-table thead .bg-primary .text-white {
+            background-color: #3084dd !important;
+        }
+
+        /* Head Of Table */
+        .table-responsive .modern-table thead {
+            position: sticky;
+            top: 1px !important;
+            z-index: 1000 !important;
+        }
+
+        /* Modern table */
+        .container .mt-3 .modern-table {
+            overflow: scroll;
+        }
     </style>
     <p class="text-start mt-2">
         <a href="/" class="btn btn-dark btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
@@ -279,7 +318,7 @@
                             <td>{{ $data['English'] ?? '' }}</td>
                             <td>{{ $data['Other Scripts'] ?? '' }}</td>
                             <td>{{ $data['All 13 Scripts'] ?? '' }}</td>
-                            <td><a class="" data-bs-toggle="modal"
+                            <td><a class="text-primary cursor-pointer" data-bs-toggle="modal"
                                     data-bs-target="#modal-{{ $data['#'] ?? '' }}">
                                     {{ $data['No. of Cities'] ?? '' }}
                                 </a></td>
@@ -296,9 +335,10 @@
         <p class="fw-bold">
             Notes:
         </p>
-        <p> 1. Source : Census 2011 (Language Data, 2018)</p>
-        <p>2. 22 Official Languages are written in 13 Scripts</p>
-        <p> 3. Of the 121 Indian Languages with more than 10,000 speakers (Census 2011), there are 13 primary scripts.
+        <p class="p-0 m-0"> 1. Source : Census 2011 (Language Data, 2018)</p>
+        <p class="p-0 m-0">2. 22 Official Languages are written in 13 Scripts</p>
+        <p class="p-0 m-0"> 3. Of the 121 Indian Languages with more than 10,000 speakers (Census 2011), there are 13
+            primary scripts.
             Also
             there are 9 other minor scripts (totaling to approx. ~6.69% of Indian Population). It is noteworthy that
             Konkani is a multiscript language (3) and two languages – Santhali and Gondhi – do not have a script.</p>
@@ -313,7 +353,8 @@
             <div class="modal-dialog modal-dialog-scrollable modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="modal-{{ $key }}Label">{{ $key }}</h5>
+                        <h5 class="modal-title" id="modal-{{ $key }}Label">City Webs of {{ $state[$key] }}
+                        </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">

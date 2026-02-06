@@ -180,8 +180,10 @@ class Home extends Controller
     public function cityWebs()
     {
         $popData = config('cityweb.popup');
+        $state = collect(config('cityweb.data'))->pluck('state', '#')->toArray();
+
         $popData = collect($popData)->groupBy('StateID')->toArray();
-        return view('main.citywebs', compact('popData'));
+        return view('main.citywebs', compact('popData', 'state'));
     }
     public function countryWebs()
     {
