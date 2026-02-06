@@ -2,7 +2,7 @@
 
     <style>
         .table-wrapper {
-            max-height: 400px;
+            max-height: 600px;
             /* jitni height chahiye */
             overflow-y: auto;
             /* vertical scroll */
@@ -19,6 +19,14 @@
             /* header fixed rahe */
             top: 0;
 
+            z-index: 2;
+        }
+
+        .firsttable td {
+            position: sticky;
+            bottom: 0;
+            background-color: #fff;
+            font-weight: bold;
             z-index: 2;
         }
 
@@ -45,6 +53,10 @@
         .firstimg .rotate-left {
             transform: rotateY(180deg);
         }
+
+        #countryTableBody td {
+            border: none !important;
+        }
     </style>
 
     {{-- Back Button --}}
@@ -54,28 +66,40 @@
         </a>
     </p>
 
-    <div class="text-center container">
+    {{-- <div class="text-center container">
         <h2 style="display: flex; align-items: center; justify-content: center; gap: 15px;" class="firstimg">
             <img src="{{ asset('images/langlogo.png') }}" alt="Globe" class="rotate-left"
                 style="width: 50px; height: 50px;">
             <span style="font-weight: 700;">World - 178 Language Webs</span>
             <img src="{{ asset('images/langlogo.png') }}" alt="Globe" style="width: 50px; height: 50px;">
         </h2>
-    </div>
+    </div> --}}
 
-    <p>There are 195 Countries in the world, and each country selects its own Official language(s). For example, India
-        has 22 official languages recognized in its Constitution. These 22 languages primarily use 13 distinct scripts
-        and represent 3 of the 4 writing systems of the world.
-        Across the 195 Countries, there are 178 official languages in use. Of these, 148 languages do not have
-        sufficient content on the World Wide Web (Source: W3Tech & Wikipedia). This is the Worldwide Digital Divide.
-    </p>
+    <section class="flex flex-col justify-center items-center">
+        <h4 class=" flex  justify-center items-center text-center text-dark font-bold firstimg">
+            <img src="{{ asset('images/langlogo.png') }}" alt="Globe" class="rotate-left"
+                style="width: 50px; height: 50px;">
+            World - 178 Language Webs
+            <img src="{{ asset('images/langlogo.png') }}" alt="Globe" style="width: 50px; height: 50px;">
+        </h4>
+        <p>There are 195 Countries in the world, and each country selects its own Official language(s). For example,
+            India
+            has 22 official languages recognized in its Constitution. These 22 languages primarily use 13 distinct
+            scripts
+            and represent 3 of the 4 writing systems of the world.
+            Across the 195 Countries, there are 178 official languages in use. Of these, 148 languages do not have
+            sufficient content on the World Wide Web (Source: W3Tech & Wikipedia). This is the Worldwide Digital Divide.
+        </p>
+    </section>
+
 
     {{-- ================= DIGITAL DIVIDE ================= --}}
     <section class="text-center mt-3">
-        <h4 class="text-primary fw-bold">Digital Divide Languages</h4>
-        <small>
-            Languages with large speaking populations but limited digital presence
-        </small>
+        <h4 class="text-dark fw-bold" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+            <img src="{{ asset('images/langlogo2.png') }}" alt="Globe"
+                style="width: 35px; height: 35px; transform: scaleX(-1);">
+            Digital Divide Languages
+        </h4>
     </section>
 
     <section class="mt-3">
@@ -128,6 +152,12 @@
                     @endforeach
                 </tbody>
 
+                <tfoot class="firsttable">
+                    <tr>
+                        <td colspan="10" class="text-center bg-light">Total - 148 Languages</td>
+                    </tr>
+                </tfoot>
+
             </table>
 
         </div>
@@ -135,11 +165,12 @@
     </section>
 
     {{-- ================= BALANCED LANGUAGES ================= --}}
-    <section class="text-center mt-5">
-        <h4 class="text-success fw-bold">Digitally Balanced Languages</h4>
-        <small>
-            Languages with proportional digital representation
-        </small>
+    <section class="text-center mt-3">
+        <h4 class="text-dark fw-bold" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+            <img src="{{ asset('images/langlogo3.png') }}" alt="Globe"
+                style="width: 35px; height: 35px; transform: scaleX(-1);">
+            Digital Divide Languages
+        </h4>
     </section>
 
     <section class="mt-3">
@@ -190,6 +221,12 @@
                 @endforeach
             </tbody>
 
+
+            <tr>
+                <td colspan="10" class="text-center">Total - 30 Languages</td>
+            </tr>
+
+
         </table>
     </section>
 
@@ -197,14 +234,15 @@
     <section class="mt-4">
         <p class="small">
             <strong>Notes:</strong>
-            Scripts and languages are based on Census 2011. Internet penetration values
-            are estimated up to 2025 using TRAI data and growth projections.
+            UN Population Division Report (2024); Literacy - CIA World Factbook (2022); Internet Access - UN ICT
+            Data (2024); Social Media Platform Advertising Modules.
+
         </p>
     </section>
 
     {{-- ================= MODAL ================= --}}
     <div class="modal fade" id="countryModal" tabindex="-1">
-        <div class="modal-dialog modal-md">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
 
                 <div class="modal-header">
@@ -214,16 +252,10 @@
 
                 <div class="modal-body">
 
-                    <table class="table table-bordered table-sm text-center">
-                        <thead class="table-dark">
-                            <tr>
-                                <th>Sr</th>
-                                <th>Country Name</th>
-                            </tr>
-                        </thead>
+                    <table class="table table-sm">
                         <tbody id="countryTableBody">
                             <tr>
-                                <td colspan="2">Click on language</td>
+                                <td colspan="4" class="text-center">Click on language</td>
                             </tr>
                         </tbody>
                     </table>
@@ -273,7 +305,7 @@
                         if (data.length === 0) {
                             tbody.html(`
                         <tr>
-                            <td colspan="2" class="text-danger">
+                            <td colspan="4" class="text-danger text-center">
                                 No countries found
                             </td>
                         </tr>
@@ -281,19 +313,32 @@
                             return;
                         }
 
+                        // 4 countries per row
+                        let row = '';
                         $.each(data, function(index, country) {
-                            tbody.append(`
-                        <tr>
-                            <td>${index + 1}</td>
-                            <td>${country}</td>
-                        </tr>
-                    `);
+                            if (index % 4 === 0) {
+                                if (index > 0) {
+                                    tbody.append(`<tr>${row}</tr>`);
+                                }
+                                row = '';
+                            }
+                            row += `<td>${index + 1}. ${country}</td>`;
                         });
+
+                        // Add remaining cells if last row is incomplete
+                        let remaining = data.length % 4;
+                        if (remaining !== 0) {
+                            for (let i = remaining; i < 4; i++) {
+                                row += `<td></td>`;
+                            }
+                        }
+
+                        tbody.append(`<tr>${row}</tr>`);
                     },
                     error: function() {
                         tbody.html(`
                     <tr>
-                        <td colspan="2" class="text-danger">
+                        <td colspan="4" class="text-danger text-center">
                             Server error
                         </td>
                     </tr>
