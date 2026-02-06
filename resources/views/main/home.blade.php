@@ -102,8 +102,7 @@
                         </div>
                     </a>
                     <div class="w-px h-8 bg-gray-200 self-center"></div>
-                    <div class="flex-1 cursor-pointer group/stat px-2"
-                        onclick="openModal('City Webs - Live Portals', 'Currently, 298 specialized city portals are live and serving the community.')">
+                    <div class="flex-1 cursor-pointer group/stat px-2">
                         <span
                             class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] block mb-1 group-hover/stat:text-blue-600 transition-colors">Live
                         </span>
@@ -136,15 +135,15 @@
 
                 </div>
                 <div class="flex w-full mt-6 text-center">
-                    <div class="flex-1 cursor-pointer group/stat px-2"
-                        onclick="openModal('City Webs - Total Portfolio', 'Our network covers 525 key cities across India, bridging the digital divide with localized knowledge.')">
-                        <span
-                            class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] block mb-1 group-hover/stat:text-blue-600 transition-colors">Total</span>
-                        <span class="text-base font-bold text-gray-800">178</span>
-                    </div>
+                    <a class="no-underline " href="/lang-webs">
+                        <div class="flex-1 cursor-pointer group/stat px-2">
+                            <span
+                                class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] block mb-1 group-hover/stat:text-blue-600 transition-colors">Total</span>
+                            <span class="text-base font-bold text-gray-800">178</span>
+                        </div>
+                    </a>
                     <div class="w-px h-8 bg-gray-200 self-center"></div>
-                    <div class="flex-1 cursor-pointer group/stat px-2"
-                        onclick="openModal('City Webs - Live Portals', 'Currently, 298 specialized city portals are live and serving the community.')">
+                    <div class="flex-1 cursor-pointer group/stat px-2">
                         <span
                             class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] block mb-1 group-hover/stat:text-blue-600 transition-colors">Live
                         </span>
