@@ -41,6 +41,10 @@
             padding: 6px;
             text-align: center;
         }
+
+        .firstimg .rotate-left {
+            transform: rotateY(180deg);
+        }
     </style>
 
     {{-- Back Button --}}
@@ -50,10 +54,11 @@
         </a>
     </p>
 
-    <div class="text-center">
-        <h2 style="display: flex; align-items: center; justify-content: center; gap: 15px;">
-            <img src="{{ asset('images/langlogo.png') }}" alt="Globe" style="width: 50px; height: 50px;">
-            <span>World - 178 Language Webs</span>
+    <div class="text-center container">
+        <h2 style="display: flex; align-items: center; justify-content: center; gap: 15px;" class="firstimg">
+            <img src="{{ asset('images/langlogo.png') }}" alt="Globe" class="rotate-left"
+                style="width: 50px; height: 50px;">
+            <span style="font-weight: 700;">World - 178 Language Webs</span>
             <img src="{{ asset('images/langlogo.png') }}" alt="Globe" style="width: 50px; height: 50px;">
         </h2>
     </div>
