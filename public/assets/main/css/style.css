@@ -184,3 +184,27 @@ footer p {
 .mx-auto .flex-wrap .w-full {
     border-radius: 20px !important;
 }
+@media (max-width: 576px) {
+    /* Justify center */
+    .container .justify-center {
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: normal;
+    }
+
+    /* Heading */
+    .container .justify-center h4 {
+        text-align: center;
+        font-size: 16px;
+    }
+
+    /* Small Tag */
+    .container .justify-center small {
+        text-align: justify !important;
+    }
+
+    /* Paragraph */
+    .container section p {
+        text-align: justify;
+    }
+}
