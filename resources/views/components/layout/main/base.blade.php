@@ -75,40 +75,26 @@
         color: #007bff !important;
     }
 
-    /* Dropdown Enhancements - Desktop */
-    @media (min-width: 992px) {
-        .dropdown:hover>.dropdown-menu {
-            display: block;
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
+    /* Dropdown Enhancements */
+    .dropdown:hover>.dropdown-menu {
+        display: block;
+        margin-top: 0;
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
     }
 
     .dropdown-menu {
+        display: block;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(12px);
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         border: none;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        border-radius: 8px;
-        padding: 8px 0;
-        margin-top: 0;
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        min-width: 200px;
-    }
-
-    /* Desktop dropdown animation */
-    @media (min-width: 992px) {
-        .dropdown-menu {
-            display: block;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
-            pointer-events: none;
-        }
-
-        .dropdown:hover>.dropdown-menu {
-            pointer-events: auto;
-        }
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+        border-radius: 12px;
+        padding: 12px 0;
+        border: 1px solid rgba(0, 0, 0, 0.04);
     }
 
     .dropdown-item {
@@ -124,28 +110,19 @@
         transform: translateX(5px);
     }
 
-    /* Dropdown toggle icon */
     .dropdown-toggle::after {
-        content: "\f107";
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900;
-        border: none;
-        vertical-align: middle;
-        margin-left: 6px;
+        display: none;
+        /* Hide default chevron */
+    }
+
+    .dropdown-chevron {
         font-size: 12px;
-        transition: transform 0.2s ease;
+        margin-left: 4px;
+        transition: transform 0.3s ease;
     }
 
-    @media (min-width: 992px) {
-        .dropdown:hover>.dropdown-toggle::after {
-            transform: rotate(180deg);
-        }
-    }
-
-    @media (max-width: 991px) {
-        .dropdown.show>.dropdown-toggle::after {
-            transform: rotate(180deg);
-        }
+    .nav-item.dropdown:hover .dropdown-chevron {
+        transform: rotate(180deg);
     }
 
     /* Logo Interactions */
@@ -171,43 +148,28 @@
 
     @media (max-width: 991.98px) {
         .navbar-nav {
-            padding: 8px 0;
-            background: #ffffff;
+            padding: 15px 0;
         }
 
         .nav-link {
             align-items: flex-start;
-            padding: 14px 20px !important;
-            font-size: 15px !important;
-            border-bottom: 1px solid #f0f0f0;
-            transition: all 0.2s ease;
-            position: relative;
+            padding: 12px 24px !important;
         }
 
-        .nav-link:active {
-            background: #e3f2fd;
-            transform: scale(0.98);
-        }
-
-        .nav-item:last-child .nav-link {
-            border-bottom: none;
+        .nav-link::after {
+            left: 24px;
+            transform: none;
         }
 
         .dropdown-menu {
             box-shadow: none;
-            padding: 0;
-            margin: 0;
-            margin-left: 0;
-            background: #f8f9fa;
-            border-left: 3px solid #007bff;
-            border-radius: 0;
-            display: none;
+            padding-left: 20px;
             opacity: 1;
             visibility: visible;
             transform: none;
-            transition: none;
-            position: static;
-            float: none;
+            display: none;
+            background: transparent;
+            border: none;
         }
 
         .dropdown:hover>.dropdown-menu {
@@ -216,71 +178,13 @@
 
         .dropdown.show>.dropdown-menu {
             display: block;
-            animation: slideDownMobile 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        @keyframes slideDownMobile {
-            from {
-                opacity: 0;
-                max-height: 0;
-                transform: translateY(-5px);
-            }
-
-            to {
-                opacity: 1;
-                max-height: 800px;
-                transform: translateY(0);
-            }
-        }
-
-        .nav-item>.dropdown-toggle {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            width: 100%;
-            position: relative;
-        }
-
-        .nav-item>.dropdown-toggle::after {
+        .dropdown-chevron {
             position: absolute;
-            right: 20px;
+            right: 24px;
+            top: 18px;
         }
-
-        .dropdown-item.dropdown-toggle {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-weight: 500;
-        }
-
-        /* Active state for mobile dropdowns */
-        .dropdown.show>.dropdown-toggle {
-            background: #e3f2fd;
-            color: #0056b3 !important;
-        }
-
-        /* Touch feedback */
-        .dropdown-toggle:active,
-        .dropdown-item:active {
-            background: #d1e7fd;
-            transform: scale(0.98);
-        }
-    }
-    }
-    }
-
-    .nav-item>.dropdown-toggle {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        width: 100%;
-    }
-
-    .dropdown-item.dropdown-toggle {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
     }
 
     /* Modal Premium Styling */
@@ -498,150 +402,10 @@
     #main-header nav {
         background-color: rgba(255, 255, 255, 0) !important;
     }
-
-    @media (max-width:576px) {
-
-        /* Justify center */
-        .container .justify-center {
-            flex-direction: row;
-            justify-content: center;
-            margin-top: 9px !important;
-        }
-
-    }
-
-    /* List Item */
-
-
-    /* Nested Dropdown Styling */
-    .dropdown-menu .dropdown-toggle::after {
-        content: "\f105";
-        font-family: "Font Awesome 6 Free";
-        font-weight: 900;
-        border: none;
-        margin-left: auto;
-        font-size: 11px;
-    }
-
-    .dropdown-menu .dropdown {
-        position: relative;
-    }
-
-    /* Desktop: Show submenu on hover */
-    @media (min-width: 992px) {
-        .dropdown-menu .dropdown-menu {
-            position: absolute;
-            left: 100%;
-            top: -8px;
-            margin-left: 2px;
-            display: block;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateX(-10px);
-            transition: opacity 0.2s ease, transform 0.2s ease, visibility 0.2s;
-            pointer-events: none;
-            min-width: 200px;
-        }
-
-        .dropdown-menu .dropdown:hover>.dropdown-menu {
-            opacity: 1;
-            visibility: visible;
-            transform: translateX(0);
-            pointer-events: auto;
-        }
-
-        .dropdown-menu .dropdown-toggle::after {
-            margin-left: 8px;
-        }
-    }
-
-    /* Mobile: Show submenu on click with proper spacing */
-    @media (max-width: 991px) {
-        .dropdown-menu .dropdown-menu {
-            position: static;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease, opacity 0.2s ease;
-            margin-left: 0;
-            padding-left: 0;
-            border-left: 3px solid #0056b3;
-            background: #e9ecef;
-            display: block !important;
-            opacity: 0;
-            visibility: visible;
-            transform: none;
-        }
-
-        .dropdown-menu .dropdown.show>.dropdown-menu {
-            max-height: 600px;
-            padding-top: 6px;
-            padding-bottom: 6px;
-            opacity: 1;
-        }
-
-        .dropdown-menu .dropdown-toggle {
-            padding: 12px 20px !important;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: relative;
-            font-size: 14px;
-            font-weight: 500;
-            transition: all 0.2s ease;
-        }
-
-        .dropdown-menu .dropdown-toggle:active {
-            background: #d1e7fd;
-            transform: scale(0.98);
-        }
-
-        .dropdown-menu .dropdown-toggle::after {
-            transform: rotate(0deg);
-            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            font-size: 10px;
-        }
-
-        .dropdown-menu .dropdown.show>.dropdown-toggle {
-            background: #d6e9f7;
-            color: #0056b3;
-        }
-
-        .dropdown-menu .dropdown.show>.dropdown-toggle::after {
-            transform: rotate(90deg);
-        }
-
-        .dropdown-menu .dropdown-item {
-            padding: 11px 20px;
-            font-size: 14px;
-            transition: all 0.15s ease;
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
-        }
-
-        .dropdown-menu .dropdown-item:last-child {
-            border-bottom: none;
-        }
-
-        .dropdown-menu .dropdown-item:active {
-            background: #d1e7fd;
-            transform: translateX(3px);
-        }
-
-        /* Nested dropdown items styling */
-        .dropdown-menu .dropdown-menu .dropdown-item {
-            padding-left: 24px;
-            font-size: 13px;
-            background: #f8f9fa;
-        }
-    }
-
-    /* Nav link */
-    .navbar-nav .nav-item:nth-child(3) .nav-link {
-        flex-direction: row;
-    }
 </style>
 
 <body class="bg-light">
-
+    {{-- @livewire('utility.share') --}}
     <div id="main-header" class="">
         <header class="bg-white container-fluid py-3 d-none d-lg-block">
             <div class="container">
@@ -651,7 +415,7 @@
                         <p class="header-tagline mb-0">Bridging the Digital Divide – By City, By Language</p>
                     </div>
                     <div class="col-md-3 text-end">
-                        <a href="/" class="text-decoration-none">
+                        <a href="{{ route('home') }}" class="text-decoration-none">
                             <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
                                 alt="Prarang" height="60">
                         </a>
@@ -679,7 +443,7 @@
                     </div>
 
                     <!-- Mobile Logo -->
-                    <a class="navbar-brand me-0" href="/">
+                    <a class="navbar-brand me-0" href="{{ route('home') }}">
                         <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
                             alt="Prarang" height="35" style="width: auto;">
                     </a>
@@ -687,68 +451,35 @@
 
                 <div class="collapse navbar-collapse" id="mainNavbarMenu">
                     <ul class="navbar-nav w-100 justify-content-between">
-                        @if (url()->current() != '/')
-                            <li class="nav-item">
-                                <a class="nav-link" href="/">
-                                    Home
-                                </a>
-                            </li>
-                        @endif
                         <li class="nav-item">
-                            <a class="nav-link" href="/digital-divide">Digital Divide</a>
+                            <a class="nav-link" href="{{ route('market') }}">Digital Divide</a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink"
+                                role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Solutions
                             </a>
-                            <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/content">Content</a></li>
-                                <li class="dropdown">
-                                    <a class="dropdown-item dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
-                                        Analytics
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" target="_blank"
-                                                href="https://g2c.prarang.in/india">India Analytics</a></li>
-                                        <li><a class="dropdown-item" target="_blank"
-                                                href="https://g2c.prarang.in/world">World Analytics</a></li>
-                                        <li><a class="dropdown-item" href="/cirus">CIRUS</a></li>
-
-                                    </ul>
-                                </li>
-                                <li><a class="dropdown-item" href="/ai/upmana">A.I.</a></li>
-                                <li class="dropdown">
-                                    <a class="dropdown-item dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
-                                        Performance Metrics
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/semiotics">Semiotics</a></li>
-                                        <li><a class="dropdown-item" href="/partners">Partner Metrics
-                                            </a></li>
-                                    </ul>
-                                </li>
-
-
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                <li><a class="dropdown-item" href="{{ route('content') }}">Content</a></li>
+                                <li><a class="dropdown-item" href="{{ route('semiotics') }}">Semiotics</a></li>
+                                <li><a class="dropdown-item" href="{{ route('analytics') }}">Analytics</a></li>
+                                <li><a class="dropdown-item" href="/ai/upmana">Artificial Intelligence</a></li>
                             </ul>
                         </li>
-
                         <li class="nav-item">
-                            <a class="nav-link" href="/partners">Partners</a>
+                            <a class="nav-link" href="{{ route('partners') }}">Partners</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/about-us">About-Us</a>
+                            <a class="nav-link" href="{{ route('about-us') }}">About-Us</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="javascript:void(0);" id="viveks-modal">Blogs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/knowledge">Knowledge</a>
+                            <a class="nav-link" href="#">Knowledge</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/intelligence">Intelligence</a>
+                            <a class="nav-link" href="#">Intelligence</a>
                         </li>
                     </ul>
                 </div>
@@ -769,17 +500,17 @@
                         </a>
                     </div>
                     <div class="col-sm-3">
-                        <a href="/terms-conditions" class="">
+                        <a href="{{ route('terms-conditions') }}" class="">
                             Terms &amp; Conditions
                         </a>
                     </div>
                     <div class="col-sm-3">
-                        <a href="/refund-cancellation">
+                        <a href="{{ route('refund-cancellation') }}">
                             Cancellations and Refund
                         </a>
                     </div>
                     <div class="col-sm-3">
-                        <a href="/about-us">
+                        <a href="{{ route('about-us') }}">
                             About Us
                         </a>
                     </div>
@@ -843,117 +574,6 @@
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('form-check-input')) {
                 e.stopPropagation();
-            }
-        });
-
-        // Enhanced dropdown handling for mobile with touch optimization
-        document.addEventListener('DOMContentLoaded', function() {
-            let touchStartY = 0;
-            let isSwiping = false;
-
-            // Handle all dropdown toggles (both main and nested)
-            document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
-                // Touch start tracking
-                toggle.addEventListener('touchstart', function(e) {
-                    touchStartY = e.touches[0].clientY;
-                    isSwiping = false;
-                }, {
-                    passive: true
-                });
-
-                // Touch move detection
-                toggle.addEventListener('touchmove', function(e) {
-                    const touchY = e.touches[0].clientY;
-                    if (Math.abs(touchY - touchStartY) > 10) {
-                        isSwiping = true;
-                    }
-                }, {
-                    passive: true
-                });
-
-                // Click/Touch handler
-                toggle.addEventListener('click', function(e) {
-                    // Ignore if user was swiping
-                    if (isSwiping) {
-                        return;
-                    }
-
-                    // Only handle on mobile or if it's a nested dropdown
-                    if (window.innerWidth < 992 || this.closest('.dropdown-menu')) {
-                        e.preventDefault();
-                        e.stopPropagation();
-
-                        const parentDropdown = this.closest('.dropdown');
-                        if (parentDropdown) {
-                            const wasOpen = parentDropdown.classList.contains('show');
-
-                            // Close other dropdowns at the same level
-                            const siblings = parentDropdown.parentElement.querySelectorAll(
-                                ':scope > .dropdown');
-                            siblings.forEach(function(sibling) {
-                                if (sibling !== parentDropdown && sibling.classList
-                                    .contains('show')) {
-                                    sibling.classList.remove('show');
-                                }
-                            });
-
-                            // Toggle current dropdown
-                            if (wasOpen) {
-                                parentDropdown.classList.remove('show');
-                            } else {
-                                parentDropdown.classList.add('show');
-
-                                // Add haptic feedback on supported devices
-                                if (window.navigator && window.navigator.vibrate) {
-                                    window.navigator.vibrate(10);
-                                }
-                            }
-                        }
-                    }
-                });
-            });
-
-            // Close dropdowns when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.dropdown') && !e.target.closest('.navbar-toggler')) {
-                    document.querySelectorAll('.dropdown.show').forEach(function(dropdown) {
-                        dropdown.classList.remove('show');
-                    });
-                }
-            });
-
-            // Close mobile menu when clicking a non-dropdown link
-            document.querySelectorAll(
-                '.navbar-nav .nav-link:not(.dropdown-toggle), .dropdown-menu .dropdown-item:not(.dropdown-toggle)'
-            ).forEach(function(link) {
-                link.addEventListener('click', function(e) {
-                    // Don't close if it's a dropdown toggle
-                    if (this.classList.contains('dropdown-toggle')) {
-                        return;
-                    }
-
-                    const navbarCollapse = document.getElementById('mainNavbarMenu');
-                    if (navbarCollapse && window.innerWidth < 992) {
-                        // Small delay for better UX
-                        setTimeout(function() {
-                            const bsCollapse = bootstrap.Collapse.getInstance(
-                                navbarCollapse);
-                            if (bsCollapse) {
-                                bsCollapse.hide();
-                            }
-                        }, 150);
-                    }
-                });
-            });
-
-            // Close all dropdowns when navbar is collapsed
-            const navbarCollapse = document.getElementById('mainNavbarMenu');
-            if (navbarCollapse) {
-                navbarCollapse.addEventListener('hidden.bs.collapse', function() {
-                    document.querySelectorAll('.dropdown.show').forEach(function(dropdown) {
-                        dropdown.classList.remove('show');
-                    });
-                });
             }
         });
     </script>

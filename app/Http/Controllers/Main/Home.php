@@ -245,38 +245,41 @@ class Home extends Controller
 
     public function indiaCityWebs()
     {
-        $portal = Portal::query()
-            ->where('local_lang', 'hi')
-            ->leftJoin('vChittiGeography as chitti', 'chitti.Geography', '=', 'portals.city_code')
-            ->select(
-                'portals.id',
-                'portals.city_code',
-                'portals.city_name',
-                'portals.state',
-                'portals.zone',
-                'portals.list_order',
-                'portals.local_lang',
-                'portals.is_ext_url',
-                'portals.ext_urls',
-                'portals.slug'
-            )
-            ->selectRaw('COUNT(chitti.chittiid) > 0 as is_live')
-            ->groupBy(
-                'portals.id',
-                'portals.city_code',
-                'portals.city_name',
-                'portals.state',
-                'portals.zone',
-                'portals.list_order',
-                'portals.local_lang',
-                'portals.is_ext_url',
-                'portals.ext_urls',
-                'portals.slug'
-            )
-            ->orderBy('portals.list_order', 'asc')
-            ->get()
-            ->groupBy('zone')
-            ->map(fn($zone) => $zone->groupBy('state'));
+        $portal =
+            Cache::remember('portal', 30 * 60 * 60, function () {
+                return   Portal::query()
+                    ->where('local_lang', 'hi')
+                    ->leftJoin('vChittiGeography as chitti', 'chitti.Geography', '=', 'portals.city_code')
+                    ->select(
+                        'portals.id',
+                        'portals.city_code',
+                        'portals.city_name',
+                        'portals.state',
+                        'portals.zone',
+                        'portals.list_order',
+                        'portals.local_lang',
+                        'portals.is_ext_url',
+                        'portals.ext_urls',
+                        'portals.slug'
+                    )
+                    ->selectRaw('COUNT(chitti.chittiid) > 0 as is_live')
+                    ->groupBy(
+                        'portals.id',
+                        'portals.city_code',
+                        'portals.city_name',
+                        'portals.state',
+                        'portals.zone',
+                        'portals.list_order',
+                        'portals.local_lang',
+                        'portals.is_ext_url',
+                        'portals.ext_urls',
+                        'portals.slug'
+                    )
+                    ->orderBy('portals.list_order', 'asc')
+                    ->get()
+                    ->groupBy('zone')
+                    ->map(fn($zone) => $zone->groupBy('state'));
+            });
         return view('main.indiacitywebs', compact('portal'));
     }
 }

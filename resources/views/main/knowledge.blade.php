@@ -20,7 +20,7 @@
 
 
                 </p>
-                <p>" I have always imagined that paradise will be a kind of library." - Jorge Luis Borges
+                <p>"I have always imagined that paradise will be a kind of library." - Jorge Luis Borges
                     <br>
                     Can all the knowledge of the world be contained in one place if we could collect all the books ever
                     written, images ever printed & maps ever created, in one library ? Borges imagines just such a place
