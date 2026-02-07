@@ -30,6 +30,15 @@
             z-index: 2;
         }
 
+        .table-footer-total {
+            border: 1px solid #ccc;
+            border-top: 0;
+            padding: 6px;
+            text-align: center;
+            font-weight: bold;
+            background-color: #fff;
+        }
+
         .table-wrapper .table-striped thead .bg-warning .bg-warning {
             font-size: 14px;
             font-weight: 500;
@@ -139,7 +148,7 @@
                             <td>
 
 
-                                <a href="javascript:void(0)" class="open-country-modal"
+                                <a href="javascript:void(0)" style="text-decoration: none" class="open-country-modal"
                                     data-lang-id="{{ $row['language_id'] }}" data-bs-toggle="modal"
                                     data-bs-target="#countryModal">
                                     {{ $row['countries_count'] }}
@@ -152,15 +161,10 @@
                     @endforeach
                 </tbody>
 
-                <tfoot class="firsttable">
-                    <tr>
-                        <td colspan="10" class="text-center bg-light">Total - 148 Languages</td>
-                    </tr>
-                </tfoot>
-
             </table>
 
         </div>
+        <div class="table-footer-total">Total - 148 Languages</div>
 
     </section>
 
@@ -174,7 +178,8 @@
     </section>
 
     <section class="mt-3">
-        <table class="table table-striped table-sec table-sm">
+
+        <table class="table table-responsive table-striped table-sec table-sm">
 
 
 
@@ -209,7 +214,7 @@
 
 
                         <td>
-                            <a href="javascript:void(0)" class=" open-country-modal"
+                            <a href="javascript:void(0)" style="text-decoration: none" class=" open-country-modal"
                                 data-lang-id="{{ $row['language_id'] }}" data-bs-toggle="modal"
                                 data-bs-target="#countryModal">
                                 {{ $row['countries'] }}
@@ -223,11 +228,14 @@
 
 
             <tr>
-                <td colspan="10" class="text-center">Total - 30 Languages</td>
+                {{-- <td colspan="10" class="text-center">Total - 30 Languages</td> --}}
             </tr>
 
 
         </table>
+
+        <div class="table-footer-total">Total - 30 Languages</div>
+
     </section>
 
     {{-- ================= NOTES ================= --}}

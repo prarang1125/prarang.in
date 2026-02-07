@@ -340,7 +340,7 @@
                             <td>{{ $data['English'] ?? '' }}</td>
                             <td>{{ $data['Other Scripts'] ?? '' }}</td>
                             <td>{{ $data['All 13 Scripts'] ?? '' }}</td>
-                            <td><a class="text-primary cursor-pointer" data-bs-toggle="modal"
+                            <td><a class="text-primary cursor-pointer text-decoration-none" data-bs-toggle="modal"
                                     data-bs-target="#modal-{{ $data['#'] ?? '' }}">
                                     {{ $data['No. of Cities'] ?? '' }}
                                 </a></td>
@@ -457,18 +457,6 @@
                         @if (!isset($value) || !is_array($value))
                             <p class="text-muted text-center mt-3">No cities available for this state.</p>
                         @endif
-
-                        <div>
-                            <p class="p-0 m-0"> Dev Note :</p>
-                            <p class="small p-0 m-0">1. If <30K Literate Netizens are not available then only the>30K
-                                    Literate
-                                    Netizens are
-                                    needed
-                                    to be shown.</p>
-                            <p class="small p-0 m-0">2. For States like Goa – where KWs are 0 - Only show the <30K
-                                    Literate Netizens table </p>
-
-                        </div>
 
                     </div>
                 </div>

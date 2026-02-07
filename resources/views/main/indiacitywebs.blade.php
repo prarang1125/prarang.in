@@ -9,6 +9,7 @@
             border-collapse: collapse;
             border: 3px solid #0b2f6a;
             background: #ffffff;
+            min-height: 356px;
         }
 
         .matrix-table th,
@@ -16,6 +17,11 @@
             border: 2px solid #0b2f6a;
             padding: 10px 12px;
             vertical-align: middle;
+        }
+
+        .matrix-table th:nth-child(5),
+        .matrix-table td:nth-child(5) {
+            min-width: 220px;
         }
 
         .matrix-head {
@@ -425,10 +431,52 @@
                             </a>
                         </td>
                         <td class="text-center">
-                            <a href="/meerut/all-posts" target="_blank" class="matrix-pill matrix-pill-lite"
-                                style="text-decoration: none">
-                                Meerut
-                            </a>
+                            @php
+                                $meerutPortal = collect($portal)->flatten(2)->firstWhere('slug', 'meerut');
+                                $meerutPortal =
+                                    $meerutPortal ?: collect($portal)->flatten(2)->firstWhere('city_name', 'Meerut');
+                            @endphp
+                            @if ($meerutPortal && $meerutPortal->is_ext_url)
+                                @php
+                                    $dropdownId = 'portal-dropdown-meerut';
+                                    $extUrls = is_string($meerutPortal->ext_urls)
+                                        ? json_decode($meerutPortal->ext_urls, true)
+                                        : $meerutPortal->ext_urls;
+                                @endphp
+                                <div class="dropdown w-100">
+                                    <button type="button" class="matrix-pill matrix-pill-lite dropdown-toggle"
+                                        id="{{ $dropdownId }}" data-bs-toggle="dropdown" aria-expanded="false">
+                                        {{ $meerutPortal->city_name ?? 'Meerut' }}
+                                    </button>
+                                    <ul class="dropdown-menu shadow border-0 py-2 w-100"
+                                        aria-labelledby="{{ $dropdownId }}">
+                                        <li>
+                                            <a class="dropdown-item py-2 px-3" href="/{{ $meerutPortal->slug }}">
+                                                Main Portal
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
+                                        @if (is_array($extUrls))
+                                            @foreach ($extUrls as $extUrl)
+                                                <li>
+                                                    <a class="dropdown-item py-2 px-3"
+                                                        href="{{ $extUrl['url'] ?? '#' }}" target="_blank"
+                                                        rel="noopener">
+                                                        {{ $extUrl['title'] ?? 'Link' }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
+                                        @endif
+                                    </ul>
+                                </div>
+                            @else
+                                <a href="/meerut/all-posts" target="_blank" class="matrix-pill matrix-pill-lite"
+                                    style="text-decoration: none">
+                                    Meerut
+                                </a>
+                            @endif
 
                         </td>
                     </tr>
@@ -481,13 +529,21 @@
                                     $isFirst = $loop->first;
                                 @endphp
                                 <div class="accordion-item">
+                                    @php
+                                        $nonLiveCount = $statePortals->where('is_live', false)->count();
+                                    @endphp
                                     <h2 class="accordion-header" id="{{ $stateId }}">
                                         <button class="accordion-button collapsed" data-bs-toggle="collapse"
                                             data-bs-target="#collapse{{ $stateId }}"
                                             aria-expanded="{{ $isFirst ? 'true' : 'false' }}">
                                             {{ $state }}
-                                            <span class="zone-city-count">{{ count($statePortals) }}
-                                                {{ Str::plural('City', count($statePortals)) }}</span>
+                                            {{-- <span class="zone-city-count">{{ count($statePortals) }}
+                                                {{ Str::plural('City', count($statePortals)) }}</span> --}}
+                                            @if ($nonLiveCount > 0)
+                                                <span class="zone-city-count">
+                                                    {{ $nonLiveCount }} {{ Str::plural('City', $nonLiveCount) }}
+                                                </span>
+                                            @endif
                                         </button>
                                     </h2>
                                     <div id="collapse{{ $stateId }}" class="accordion-collapse collapse"
@@ -495,7 +551,7 @@
                                         <div class="accordion-body">
                                             <div class="zone-district-tabs">
                                                 @foreach ($statePortals as $portalItem)
-                                                    @if ($portalItem->is_ext_url)
+                                                    {{-- @if ($portalItem->is_ext_url)
                                                         @php
                                                             $dropdownId =
                                                                 'portal-dropdown-' .
@@ -544,6 +600,13 @@
                                                     @else
                                                         <a href="/{{ $portalItem->slug }}" target="_blank"
                                                             class="zone-district-tab {{ $portalItem->is_live ? 'border-warning border-2' : '' }}">
+                                                            {{ $portalItem->city_name }}
+                                                        </a>
+                                                    @endif --}}
+
+                                                    @if (!$portalItem->is_live)
+                                                        <a href="/{{ $portalItem->slug }}" target="_blank"
+                                                            class="zone-district-tab">
                                                             {{ $portalItem->city_name }}
                                                         </a>
                                                     @endif
