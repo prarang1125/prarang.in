@@ -1,115 +1,5 @@
 <x-layout.main.base>
-
     <style>
-        /* Partner */
-        main .be-partner {
-            display: flex;
-            justify-content: normal;
-            align-items: center;
-            flex-wrap: wrap;
-        }
-
-        /* Division */
-        main .be-partner div {
-            background-color: yellow;
-            border: 1px solid gray;
-            padding-left: 30px;
-            padding-right: 30px;
-            padding-top: 30px;
-            padding-bottom: 30px;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            border-bottom-left-radius: 10px;
-            border-bottom-right-radius: 10px;
-            margin-left: 58px;
-            margin-bottom: 20px;
-            margin-top: 10px;
-            font-weight: 600;
-        }
-
-        /* Column 6/12 */
-        main .col-md-6 {
-            font-size: 14px;
-        }
-
-        @media (max-width:950px) {
-
-            /* Division */
-            main .be-partner div {
-                display: none;
-            }
-
-        }
-
-        @media (max-width:1200px) {
-
-            /* Button */
-            main .d-md-block {
-                width: 200px;
-            }
-
-        }
-
-        /* Request tomeet */
-        #requestTomeet {
-            background-color: rgba(255, 255, 0, 0);
-        }
-
-        /* Label */
-        #meetingRequest .m-2 label {
-            font-size: 14px;
-            font-weight: 600;
-            margin-left: 9px;
-        }
-
-        /* Modal content */
-        #requestTomeet .modal-dialog .modal-content {
-            height: 94vh;
-            margin-top: -3px;
-        }
-
-        /* Request tomeet */
-        #requestTomeet {
-            margin-top: -12px;
-            height: 100vh;
-        }
-
-        /* Modal body */
-        main #requestTomeet .modal-dialog .modal-content .modal-body {
-            height: 472px !important;
-        }
-
-        /* Modal content */
-        #requestTomeet .modal-dialog .modal-content {
-            height: 499px !important;
-            transform: translatex(0px) translatey(0px);
-            margin-top: 0px !important;
-        }
-
-        /* Request tomeet */
-        #requestTomeet {
-            margin-top: 12px !important;
-        }
-
-        /* Mail success */
-        #mail-success {
-            text-align: center;
-            position: relative;
-            top: 16px;
-            left: -1px;
-        }
-
-        main .btn-warning {
-            border-top-left-radius: 0px;
-            border-top-right-radius: 0px;
-            border-bottom-left-radius: 0px;
-            border-bottom-right-radius: 0px;
-            padding-left: 0px;
-            padding-right: 0px;
-            padding-top: 0px;
-            padding-bottom: 0px;
-        }
-
         .mx-auto .table-header-title-wrap h2 {
             font-size: 35px;
         }
@@ -179,32 +69,6 @@
             background: #ffffff;
             color: #0b2f6a;
             border: 1px solid #0b2f6a;
-        }
-
-        .matrix-pill-block {
-            display: inline-block;
-            margin-top: 6px;
-        }
-
-        .pune-stack {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .city-meta {
-            font-size: 12px;
-            font-weight: 700;
-            color: #000000;
-            margin-bottom: 6px;
-        }
-
-        .city-subnote {
-            font-size: 12px;
-            font-weight: 700;
-            color: #000000;
-            margin-top: 6px;
-            line-height: 1.1;
         }
 
         .zone-modal .modal-content {
@@ -469,165 +333,33 @@
         .feature-modal #style-SB9YH.style-SB9YH {
             cursor: pointer;
         }
-
-        .language-tabs {
-            margin-top: 16px;
-            display: grid;
-            grid-template-columns: repeat(4, minmax(0, 1fr));
-            gap: 12px;
-        }
-
-        .coming-soon-divider {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            margin: 16px 0 8px;
-            color: #000000;
-            font-weight: 700;
-            font-size: 12px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .coming-soon-divider::before,
-        .coming-soon-divider::after {
-            content: '';
-            flex: 1 1 auto;
-            height: 1px;
-            background: #000000;
-        }
-
-        .language-tab {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #0b2f6a;
-            background: #ffffff;
-            padding: 8px 6px;
-            min-height: 64px;
-        }
-
-        .language-tab-title {
-            font-size: 20px;
-            font-weight: 700;
-            text-align: center;
-            line-height: 1.1;
-            font-family: 'Noto Sans', 'Segoe UI', Arial, sans-serif;
-        }
-
-        .language-tab-title.script {
-            font-family: 'Brush Script MT', 'Segoe Script', cursive;
-            font-weight: 600;
-            font-size: 22px;
-        }
-
-        .language-tab-subtitle {
-            margin-top: 2px;
-            font-size: 15px;
-            font-weight: 700;
-            text-align: center;
-            letter-spacing: 0.3px;
-        }
-
-        @media (max-width: 900px) {
-            .language-tabs {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-            }
-        }
-
-        @media (max-width: 520px) {
-            .language-tabs {
-                grid-template-columns: minmax(0, 1fr);
-            }
-        }
     </style>
-
-    <section class=" container mt-4">
-        <div class="row">
-            <div class="col-sm-8">
-                <p class="mb-3">Prarang is open to Partnership in select 901+ Indian Markets & 195 World Markets. Each
-                    Prarang Market is a unique Language Knowledge Web. Empowered with Prarang Content, Semiotics &
-                    Analytics, Development and Market Planners our Partners can now create impact with their brands &
-                    products.
-                </p>
-
-            </div>
-            <div class="col-sm-4">
-                <div class="rounded border p-2">
-                    <p class="text-center h4">Partner Benefits</p>
-                    <ul>
-
-                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#TheseMTw1">Product</a></li>
-                        <li>
-                            <a type="button" data-bs-toggle="modal" data-bs-target="#TheseMTi1">Advertising</a>
-                        </li>
-
-
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <style>
-        /* Button */
-        .container .cirs a {
-            padding-left: 57px;
-            padding-right: 56px;
-            position: relative;
-            left: -80px;
-            background-color: #0eb71d;
-            color: #ffffff;
-            transform: translatex(0px) translatey(0px);
-            font-weight: 600;
-            margin-bottom: 13px;
-            border-color: #27e320 !important;
-            padding-bottom: 3px;
-        }
-
-        /* Button (hover) */
-        .container .cirs a:hover {
-            background-color: #239d2e;
-        }
-    </style>
-
-    <section class="text-center my-5 flex gap-3">
-        <div class="border border-dark p-4 mx-auto">
-            <h2 class="mb-4 text-decoration-underline no-underline">Partnership Login</h2>
-            <div class="d-flex justify-content-center align-items-center gap-3 flex-wrap">
-                <!-- Business Login Button -->
-                <a class="btn btn-warning border border-dark px-4 py-2 fw-semibold" target="_blank"
-                    href="https://b2b.prarang.in/login" style="min-width: 180px;">
-                    Business Login
-                </a>
-
-                <!-- Govt & NGO Login Button -->
-                <a class="btn btn-warning border border-dark px-4 py-2 fw-semibold" target="_blank"
-                    href="https://b2b.prarang.in/login?lt=g2c" style="min-width: 180px;">
-                    Govt. & NGO Login
-                </a>
-
-
-
-            </div>
-
-        </div>
-        <div class="border border-dark p-4 mx-auto flex justify-center items-center">
-            <button class="btn btn-warning border border-dark px-4 py-2 fw-semibold" data-bs-toggle="modal"
-                data-bs-target="#requestTomeet" style="min-width: 220px;">
-                Create a New Partnership
-            </button>
-        </div>
-    </section>
-
 
     <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-10">
         <div class="table-header-title-wrap">
-            <h2 class="table-header-title">Prarang City Webs</h2>
+            <h2 class="table-header-title">City Webs</h2>
             <div class="table-header-subtitle">Local Language Content</div>
         </div>
+        <div class="table-header">
+            <div class="table-header-main">
+                <div class="table-header-left">
+                    <p class="table-header-text">
+                        Prarang delivers hyper-local, city-wise content in local languages. The content is
+                        picture-centric
+                        and supports city planning with updated, reliable data covering cities across India and beyond.
+                        It includes essential city information such as digital metrics, yellow pages, and e-cards, along
+                        with useful widgets like date, time, maps, weather, news, and city cyber-risk indicators.
+                    </p>
+                </div>
+            </div>
+            <div class="table-header-right">
+                <h4 style="text-decoration: underline">City Web Features</h4>
 
+                <a href="#" data-bs-toggle="modal" data-bs-target="#TheseMTw1">Posts</a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#TheseMTi1">Portals</a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#TheseMT">City Business</a>
+            </div>
+        </div>
         <div class="overflow-x-auto">
             <table class="matrix-table ">
                 <thead>
@@ -650,7 +382,7 @@
                     <tr>
                         <td class="text-center">
                             <div class="text-2xl font-black">हिन्दी</div>
-                            <div class="text-sm font-semibold">Hindi - 297 City Webs</div>
+                            <div class="text-sm font-semibold">Hindi - City Webs</div>
                         </td>
                         <td class="text-center">
                             <div class="text-sm font-bold">292 Knowledge Webs</div>
@@ -751,17 +483,14 @@
                     <tr>
                         <td class="text-center">
                             <div class="text-2xl font-black">मराठी</div>
-                            <div class="text-sm font-semibold">Marathi - 44 City Webs</div>
+                            <div class="text-sm font-semibold">Marathi - City Webs</div>
                         </td>
                         <td class="text-center">
-                            <div class="city-meta">44 Knowledge Webs</div>
-                            <div class="pune-stack">
-                                <a href="/pune" target="_blank" class="matrix-pill matrix-pill-lite"
-                                    style="text-decoration: none">
-                                    Pune
-                                </a>
-                                <span class="matrix-pill matrix-pill-outline matrix-pill-block">+33 Coming Soon</span>
-                            </div>
+
+                            <a href="/pune" target="_blank" class="matrix-pill matrix-pill-lite"
+                                style="text-decoration: none">
+                                Pune
+                            </a>
                         </td>
                         <td class="text-center">
                             <span class="matrix-pill matrix-pill-outline">Coming Soon</span>
@@ -775,53 +504,6 @@
                     </tr>
                 </tbody>
             </table>
-        </div>
-        <div class="coming-soon-divider"><span>Coming Soon</span></div>
-        <div class="language-tabs">
-            <div class="language-tab">
-                <div class="language-tab-title script">English</div>
-                <div class="language-tab-subtitle">English - 192 City Webs</div>
-            </div>
-            <div class="language-tab">
-                <div class="language-tab-title">తెలుగు</div>
-                <div class="language-tab-subtitle">Telugu - 67 City Webs</div>
-            </div>
-            <div class="language-tab">
-                <div class="language-tab-title">اردو</div>
-                <div class="language-tab-subtitle">Urdu - 51 City Webs</div>
-            </div>
-            <div class="language-tab">
-                <div class="language-tab-title">தமிழ்</div>
-                <div class="language-tab-subtitle">Tamil - 44 City Webs</div>
-            </div>
-            <div class="language-tab">
-                <div class="language-tab-title">ગુજરાતી</div>
-                <div class="language-tab-subtitle">Gujarati - 40 City Webs</div>
-            </div>
-            <div class="language-tab">
-                <div class="language-tab-title">বাংলা</div>
-                <div class="language-tab-subtitle">Bengali - 39 City Webs</div>
-            </div>
-            <div class="language-tab">
-                <div class="language-tab-title">ਗੁਰਮੁਖੀ</div>
-                <div class="language-tab-subtitle">Gurmukhi - 38 City Webs</div>
-            </div>
-            <div class="language-tab">
-                <div class="language-tab-title">ಕನ್ನಡ</div>
-                <div class="language-tab-subtitle">Kannada - 34 City Webs</div>
-            </div>
-            <div class="language-tab">
-                <div class="language-tab-title">ଓଡ଼ିଆ</div>
-                <div class="language-tab-subtitle">Odia - 21 City Webs</div>
-            </div>
-            <div class="language-tab">
-                <div class="language-tab-title">অসমীয়া</div>
-                <div class="language-tab-subtitle">Assamese - 15 City Webs</div>
-            </div>
-            <div class="language-tab">
-                <div class="language-tab-title">മലയാളം</div>
-                <div class="language-tab-subtitle">Malayalam - 19 City Webs</div>
-            </div>
         </div>
     </section>
 
@@ -1193,271 +875,5 @@
 
 
 
-    <!-- Partnership Benefits Section -->
-
-    <!-- Button trigger modal -->
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="requestTomeet" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="requestTomeetLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="requestTomeetLabel"> New Partnership Request Form</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-start">
-                    <form id="meetingRequest">
-                        <div class="m-2">
-                            <label for="meetingRequest-name">Name: </label>
-                            <input id="meetingRequest-name" type="text" class="form-control w-100"
-                                name='name'>
-                        </div>
-                        <div class="m-2">
-                            <label for="meetingRequest-phone">Phone No:</label>
-                            <input id="meetingRequest-phone" type="number" class="form-control w-100"
-                                name='phone'>
-                        </div>
-                        <div class="m-2">
-                            <label for="meetingRequest-email">Email</label>
-                            <input id="meetingRequest-email" type="email" class="form-control w-100"
-                                name='email'>
-                        </div>
-                        <div class="m-2 mt-4">
-                            <textarea name="desc" id="" class="form-control" rows="2" placeholder="Say Something....."></textarea>
-                        </div>
-                        <p class="text-danger ps-3" id="request-error"></p>
-                        <p class="text-end">
-
-                            <button type="submit" class="btn btn-warning"><i
-                                    class="fa fa-spinner fa-spin fa-fw d-none" id="loader"></i>Send</button>
-                        </p>
-                    </form>
-                    <div id="mail-success"></div>
-                </div>
-                <div class="modal-footer">
-
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal fade modal-xl" id="TheseMTw1" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="TheseMTw1Label" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <!-- <h1 class="modal-title fs-5" id="TheseMTLabel">Modal title</h1> -->
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                    <section class="container my-5">
-                        <div class="mb-4">
-                            <h4 class="fw-bold mb-3">Partnership Benefits</h4>
-                            <ul class="mb-4">
-                                <li>Select a city and campaign date to book your advertisement</li>
-                                <li>Upload creative assets (still or video)</li>
-                                <li>Receive performance metrics on Day 5 and Day 31</li>
-                                <li>View hyperlocal performance insights for each advertisement</li>
-                                <li>Access in-depth city-level audience metrics</li>
-                                <li>Explore Prarang City Analytics for planning, tracking, and optimization</li>
-                            </ul>
-
-                            <h5 class="fw-bold mb-3">Partnership Tiers -</h5>
-
-                            <!-- Audience & Reach Table -->
-                            <div class="table-responsive mb-4">
-                                <table class="table table-bordered">
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th>Audience & Reach</th>
-                                            <th class="text-center">City Lite</th>
-                                            <th class="text-center">City Plus</th>
-                                            <th class="text-center">City Prime</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Minimum City Subscriber Base</td>
-                                            <td class="text-center">300+</td>
-                                            <td class="text-center">300+</td>
-                                            <td class="text-center">10,000+</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Hyperlocal Reach per Post (within 7 days)</td>
-                                            <td class="text-center">3,000+</td>
-                                            <td class="text-center">3,000+</td>
-                                            <td class="text-center">3,000+</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Total Monthly Reach</td>
-                                            <td class="text-center">12,000+</td>
-                                            <td class="text-center">45,000+</td>
-                                            <td class="text-center">93,000+</td>
-                                        </tr>
-                                    </tbody>
-
-                                    <thead class="table-light">
-                                        <tr>
-                                            <th>Content & Publishing</th>
-                                            <th class="text-center">City Lite</th>
-                                            <th class="text-center">City Plus</th>
-                                            <th class="text-center">City Prime</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Posts per Month</td>
-                                            <td class="text-center">4</td>
-                                            <td class="text-center">15</td>
-                                            <td class="text-center">31</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Creative Formats Included</td>
-                                            <td class="text-center">3 Stills, 1 Video</td>
-                                            <td class="text-center">13 Stills, 2 Video</td>
-                                            <td class="text-center">27 Stills, 4 Videos</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Posting Frequency</td>
-                                            <td class="text-center">Weekly</td>
-                                            <td class="text-center">Alternate Day</td>
-                                            <td class="text-center">Daily</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </section>
-
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="modal fade modal-xl" id="TheseMTi1" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="TheseMTi1Label" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <!-- <h1 class="modal-title fs-5" id="TheseMTLabel">Modal title</h1> -->
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body text-left test-start">
-                    <section class="container mt-3">
-                        <p>
-                            The mobile internet provides a more targeted & cost-effective option vis-à-vis
-                            traditional forms of
-                            Advertising ( Newspapers, Outdoors, Radio/TV etc) . Yet, few hyperlocal digital
-                            solutions have emerged for
-                            advertisers thus far, as contextualized <span class="text-primary"> hyperlocal language
-                                content </span>
-                            continues to
-                            be scarce, in an English language driven internet. With Prarang <span class="text-primary">
-                                daily , local
-                                language city content</span> creation, we attempt to fill that gap. Alongside, it
-                            opens a <span class="text-primary"> new digital advertising </span> opportunity
-                            Additionally, with the daily benefit
-                            of unique
-                            City semiotic insights, a quantum leap in advertising is now possible. With the <span
-                                class="text-primary">
-                                City Semiotics </span> detailed input , you can get to even understand the different
-                            emotions,
-                            interests, shapes, colours, fonts – everything which attributes various meanings, to
-                            help you to construct
-                            an advertisement that best promotes what you want to say.
-
-                        </p>
-                        <div>
-                            <p>Prarang offers an exclusive Advertising opportunity for our City-Partners</p>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <ul>
-                                        <li>Zero Waste Advertisement</li>
-                                        <ul>
-                                            <li>Reach 20-70% (or more) of the internet-enabled population</li>
-                                            <li>Save on paper and plastic</li>
-                                            <li>Track competitive advertising across traditional media & industry
-                                            </li>
-                                        </ul>
-                                        <li>Daily & Monthly City/District Metrics</li>
-                                        <ul>
-                                            <li>Measure as you grow</li>
-                                            <li>Deep local data insights for sharper planning</li>
-                                        </ul>
-
-                                    </ul>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <ul>
-                                        <li>Make Your City Beautiful and Safe
-                                        </li>
-                                        <ul>
-                                            <li> No ugly billboards and hoardings</li>
-                                        </ul>
-                                        <li>City Event / Announcement</li>
-                                        <ul>
-                                            <li>Fastest Delivery across the city</li>
-                                        </ul>
-                                        <li>City Audience – Semiotic Insights</li>
-                                        <ul>
-                                            <li>Partner on deep engagement with local audiences</li>
-                                        </ul>
-                                    </ul>
-                                </div>
-
-                            </div>
-                        </div>
-
-                        <p class=""> Adscape - City Print & Outdoor Survey </p>
-
-
-                    </section>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        document.getElementById('meetingRequest').addEventListener('submit', function(event) {
-            event.preventDefault();
-
-            const loader = document.getElementById('loader');
-            loader.classList.remove('d-none');
-
-            const formData = new FormData(event.target);
-            const requestData = Object.fromEntries(formData.entries());
-
-            // Send POST request
-            fetch('https://b2b.prarang.in/api/request-to-metting', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'auth-token': 'eb146cdf0c53ca9d738b4f473ad1712f'
-                    },
-                    body: JSON.stringify(requestData),
-                })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.done) {
-                        loader.classList.add('d-none');
-                        // Hide form
-                        document.getElementById('meetingRequest').style.display = 'none';
-                        // Show success message
-                        document.getElementById('mail-success').textContent = 'Thanks for your request!';
-                    } else {
-                        document.getElementById('mail-success').textContent = 'Something went wrong!';
-                    }
-                })
-                .catch(error => {
-                    document.getElementById('request-error').innerHTML =
-                        "Something went wrong please check your input fields and try again.";
-                    loader.classList.add('d-none');
-                });
-        });
-    </script>
 
 </x-layout.main.base>

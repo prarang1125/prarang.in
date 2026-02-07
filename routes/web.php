@@ -27,7 +27,10 @@ Route::get('/display/images/{filename}', [DisplayPostImage::class, 'serveImage']
 
 Route::prefix('/')->group(function () {
     Route::get('/', [Home::class, 'index'])->name('home');
-    Route::get('/market', [Home::class, 'market'])->name('market');
+    Route::get('/digital-divide', [Home::class, 'market'])->name('market');
+    Route::view('/knowledge', 'main.knowledge');
+    Route::view('/intelligence', 'main.intelligence');
+    Route::view('/english-web', 'main.analytics');
     Route::get('/content', [Home::class, 'content'])->name('content');
     Route::get('/semiotics', [Home::class, 'semiotics'])->name('semiotics');
     Route::get('/analytics', [Home::class, 'analytics'])->name('analytics');
@@ -38,6 +41,14 @@ Route::prefix('/')->group(function () {
     Route::get('/terms-conditions', [Home::class, 'termsConditions'])->name('terms-conditions');
 });
 
+Route::get('city-webs', [Home::class, 'cityWebs'])->name('home.city-webs');
+Route::get('country-webs/', [Home::class, 'countryWebs'])->name('home.country-webs');
+
+Route::get('lang-webs', [Home::class, 'langWebs'])->name('home.lang-webs');
+Route::get('/get-countries/{langId}', [Home::class, 'geCountrytByLanguage'])
+    ->name('countries.by.language');
+
+Route::get('india-city-webs', [Home::class, 'indiaCityWebs'])->name('home.india-city-webs');
 
 Route::get('/{city}/all-posts/{name?}/{forabour?}', [postController::class, 'getChittiData'])->name('posts.city');
 Route::get('/{slug}/posts/{id}/{subTitle?}', [PostController::class, 'post_summary'])->name('post-summary');
