@@ -116,6 +116,7 @@
                                 class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] block mb-1 group-hover/stat:text-blue-600 transition-colors">
                                 Total</span>
                             <span class="text-base font-bold text-gray-800">India - 520</span>
+
                         </div>
                     </a>
                     <div class="w-px h-8 bg-gray-200 self-center"></div>
@@ -123,7 +124,9 @@
                         <span
                             class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] block mb-1 group-hover/stat:text-blue-600 transition-colors">Live
                         </span>
-                        <span class="text-2xl font-black text-blue-600">298</span>
+                        {{-- <span class="text-2xl font-black text-blue-600">298</span> --}}
+                        <a style="text-decoration: none" href="{{ route('home.india-city-webs') }}"> <span
+                                class="text-2xl font-black text-blue-600">298</span></a>
                     </div>
                 </div>
             </div>

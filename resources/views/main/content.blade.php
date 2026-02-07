@@ -87,9 +87,12 @@
         }
 
         .live-cities .city-btn {
-            background-color: yellow;
+            background-color: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 6px;
             text-decoration: none;
             text-align: center;
+            padding: 4px 6px;
         }
 
         a {
@@ -235,6 +238,7 @@
             align-items: center;
             justify-content: center;
             min-height: 45px;
+            cursor: pointer;
         }
 
         .city-card:hover {

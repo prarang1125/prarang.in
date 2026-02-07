@@ -28,21 +28,27 @@ class Home extends Controller
     public function index()
     {
 
-        $portal = Cache::remember('portal-list-' . Str::random(2), now()->addDays(31), function () {
-            return Portal::query()
-                // ->where('local_lang', 'hi')
-                ->leftJoin('vChittiGeography as chitti', 'chitti.Geography', '=', 'portals.city_code')
-                ->select('portals.id', 'portals.city_code', 'portals.city_name', 'portals.state', 'portals.zone', 'portals.list_order', 'portals.local_lang', 'portals.is_ext_url', 'portals.ext_urls', 'portals.slug')
-                ->selectRaw('COUNT(chitti.chittiid) > 0 as is_live')
-                ->groupBy('portals.id')
-                ->orderBy('portals.list_order', 'asc')
-                ->get()
-                ->groupBy('zone', 'local_lang')
-                ->map(function ($zone) {
-                    return $zone->groupBy('state');
-                });
-        });
+        // $portal = Cache::remember('portal-list-' . Str::random(2), now()->addDays(31), function () {
+        //     return Portal::query()
+        //         // ->where('local_lang', 'hi')
+        //         ->leftJoin('vChittiGeography as chitti', 'chitti.Geography', '=', 'portals.city_code')
+        //         ->select('portals.id', 'portals.city_code', 'portals.city_name', 'portals.state', 'portals.zone', 'portals.list_order', 'portals.local_lang', 'portals.is_ext_url', 'portals.ext_urls', 'portals.slug')
+        //         ->selectRaw('COUNT(chitti.chittiid) > 0 as is_live')
+        //         ->groupBy('portals.id')
+        //         ->orderBy('portals.list_order', 'asc')
+        //         ->get()
+        //         ->groupBy('zone', 'local_lang')
+        //         ->map(function ($zone) {
+        //             return $zone->groupBy('state');
+        //         });
+        // });
         // dd($portal);
+
+
+        $portal = [];
+
+
+
 
         return view('main.home', compact('portal'));
     }
@@ -234,5 +240,43 @@ class Home extends Controller
         $data = config('countryweb.data');
         $data = collect($data)->groupBy('cid')->toArray();
         return view('main.countrywebs', compact('data'));
+    }
+
+
+    public function indiaCityWebs()
+    {
+        $portal = Portal::query()
+            ->where('local_lang', 'hi')
+            ->leftJoin('vChittiGeography as chitti', 'chitti.Geography', '=', 'portals.city_code')
+            ->select(
+                'portals.id',
+                'portals.city_code',
+                'portals.city_name',
+                'portals.state',
+                'portals.zone',
+                'portals.list_order',
+                'portals.local_lang',
+                'portals.is_ext_url',
+                'portals.ext_urls',
+                'portals.slug'
+            )
+            ->selectRaw('COUNT(chitti.chittiid) > 0 as is_live')
+            ->groupBy(
+                'portals.id',
+                'portals.city_code',
+                'portals.city_name',
+                'portals.state',
+                'portals.zone',
+                'portals.list_order',
+                'portals.local_lang',
+                'portals.is_ext_url',
+                'portals.ext_urls',
+                'portals.slug'
+            )
+            ->orderBy('portals.list_order', 'asc')
+            ->get()
+            ->groupBy('zone')
+            ->map(fn($zone) => $zone->groupBy('state'));
+        return view('main.indiacitywebs', compact('portal'));
     }
 }
