@@ -271,10 +271,13 @@
             World - 195 Country Webs
             <img class="h-10 w-10" src="{{ asset('assets/images/home/2.png') }}" alt="">
         </h4>
-        <small class="">All 195 countries are grouped into seven major regions/continents. The table below
-            summarizes their combined demographic, literacy, internet access, and social media usage characteristics,
-            providing a comparative view of global digital reach and knowledge connectivity.</small>
     </section>
+
+    <small class="">All 195 countries are grouped into seven major regions/continents. The table below
+        summarizes their combined demographic, literacy, internet access, and social media usage characteristics,
+        providing a comparative view of global digital reach and knowledge connectivity.</small>
+
+
     <section class="mt-3">
         <div class="table-responsive">
             <table class="table table-sm table-striped table-hover table-bordered modern-table">
@@ -402,9 +405,12 @@
     </section>
     <section>
         <p class="small">
-            Notes: Population (2025) figures are based on the UN Population Division Report (2024). Literacy rates are
-            weighted averages derived from the CIA World Factbook (2022). Internet access data is sourced from UN ICT
-            Data (2024). Social media usage percentages (Facebook, Instagram, LinkedIn, and X) are based on respective
+            Notes: Population (2025) figures are based on the UN Population Division Report (2024). Literacy rates
+            are
+            weighted averages derived from the CIA World Factbook (2022). Internet access data is sourced from UN
+            ICT
+            Data (2024). Social media usage percentages (Facebook, Instagram, LinkedIn, and X) are based on
+            respective
             advertising modules as of December 2025.
         </p>
     </section>
