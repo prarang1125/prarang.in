@@ -45,6 +45,7 @@ Route::get('lang-webs', [Home::class, 'langWebs'])->name('home.lang-webs');
 Route::get('/get-countries/{langId}', [Home::class, 'geCountrytByLanguage'])
     ->name('countries.by.language');
 
+Route::get('india-city-webs', [Home::class, 'indiaCityWebs'])->name('home.india-city-webs');
 
 Route::get('/{city}/all-posts/{name?}/{forabour?}', [postController::class, 'getChittiData'])->name('posts.city');
 Route::get('/{slug}/posts/{id}/{subTitle?}', [PostController::class, 'post_summary'])->name('post-summary');
