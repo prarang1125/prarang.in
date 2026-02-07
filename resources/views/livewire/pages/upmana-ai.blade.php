@@ -2,6 +2,14 @@
     <link rel="stylesheet" href="{{ asset('assets/ai/css/aichat.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
     <script src="{{ asset('js/ai-response.js') }}"></script>
+    <style>
+        /* Items center */
+        .id-selector form div .space-y-4>.items-center {
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: normal;
+        }
+    </style>
     {{--
     <x-locale.font-style /> --}}
 

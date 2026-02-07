@@ -43,15 +43,18 @@
                 <a class="col-sm hh  text-center font-bold text-lg no-underline" href="https://prarang.ai"
                     target="_blank">
 
-                    Prarang Artificial Intelligence <img class="h-40 w-40"
-                        src="{{ asset('assets/images/home/Intelligence_Art1.jpg') }}" alt=""></a>
+                    Prarang Artificial Intelligence <img class="h-80 w-80"
+                        src="{{ asset('assets/images/home/Intelligence_Art1.jpg') }}" alt="">
+                    <small class="text-primary"> https://prarang.ai</small></a>
+
 
 
                 <a class="col-sm hh text-center font-bold text-lg no-underline" href="https://apratyaksh.com/"
                     target="_blank">
                     <img src="" alt="">
-                    Prarang Natural Intelligence <img class="h-40 w-40"
-                        src="{{ asset('assets/images/home/Intelligence_Nat1.jpg') }}" alt=""></a>
+                    Prarang Natural Intelligence <img class="h-80 w-80"
+                        src="{{ asset('assets/images/home/Intelligence_Nat1.jpg') }}" alt=""> <small
+                        class="text-primary"> https://apratyaksh.com</small></a>
             </div>
 
 
