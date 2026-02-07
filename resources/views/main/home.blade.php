@@ -170,7 +170,7 @@
                         <div class="flex flex-col justify-start items-start ps-5">
                             <a class="no-underline" href="https://humsabek.in" target="_blank"><span
                                     class="text-md font-black text-blue-600">Hindi</span></a>
-                            <a class="no-underline" href="/analytics" target="_blank"><span
+                            <a class="no-underline" href="/english-web" target="_blank"><span
                                     class="text-md font-black text-blue-600">English</span></a>
                             {{-- <span class="text-md font-black text-blue-600">Marathi</span> --}}
                         </div>
