@@ -688,11 +688,11 @@
                 <div class="collapse navbar-collapse" id="mainNavbarMenu">
                     <ul class="navbar-nav w-100 justify-content-between">
                         @if (url()->current() != '/')
-                            <li class="nav-item">
-                                <a class="nav-link" href="/">
-                                    Home
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">
+                                Home
+                            </a>
+                        </li>
                         @endif
                         <li class="nav-item">
                             <a class="nav-link" href="/digital-divide">Digital Divide</a>
@@ -755,7 +755,7 @@
             </div>
         </nav>
     </div>
-    <main class="container" style="min-height: 70vh !important;">
+    <main class="container mt-3" style="min-height: 70vh !important;">
         {{ $slot }}
     </main>
     <footer>
