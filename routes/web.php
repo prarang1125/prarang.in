@@ -27,7 +27,9 @@ Route::get('/display/images/{filename}', [DisplayPostImage::class, 'serveImage']
 
 Route::prefix('/')->group(function () {
     Route::get('/', [Home::class, 'index'])->name('home');
-    Route::get('/market', [Home::class, 'market'])->name('market');
+    Route::get('/digital-divide', [Home::class, 'market'])->name('market');
+    Route::view('/knowledge', 'main.knowledge');
+    Route::view('/intelligence', 'main.intelligence');
     Route::get('/content', [Home::class, 'content'])->name('content');
     Route::get('/semiotics', [Home::class, 'semiotics'])->name('semiotics');
     Route::get('/analytics', [Home::class, 'analytics'])->name('analytics');

@@ -68,6 +68,24 @@
         .flex-wrap a .text-base:hover {
             color: #2977e4;
         }
+
+        /* Flex wrap */
+        .container .mx-auto .flex-wrap {
+            align-items: normal;
+        }
+
+        /* Font black */
+        .flex-wrap .cursor-pointer .font-black {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        /* Justify start */
+        .flex-wrap div .justify-start {
+            justify-content: center;
+            align-items: center;
+            padding-left: 2px !important;
+        }
     </style>
     <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-10 ">
 
@@ -91,14 +109,13 @@
                         </div>
 
                     </div>
-
                 </div>
                 <div class="flex w-full mt-6 text-center">
                     <a href="/city-webs" class="no-underline">
                         <div class="flex-1 cursor-pointer group/stat px-2"> <span
                                 class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] block mb-1 group-hover/stat:text-blue-600 transition-colors">
                                 Total</span>
-                            <span class="text-base font-bold text-gray-800">India - 525</span>
+                            <span class="text-base font-bold text-gray-800">India - 520</span>
                         </div>
                     </a>
                     <div class="w-px h-8 bg-gray-200 self-center"></div>
@@ -148,8 +165,10 @@
                             class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] block mb-1 group-hover/stat:text-blue-600 transition-colors">Live
                         </span>
                         <div class="flex flex-col justify-start items-start ps-5">
-                            <span class="text-md font-black text-blue-600">Hindi</span>
-                            <span class="text-md font-black text-blue-600">English</span>
+                            <a class="no-underline" href="https://humsabek.in" target="_blank"><span
+                                    class="text-md font-black text-blue-600">Hindi</span></a>
+                            <a class="no-underline" href="/analytics" target="_blank"><span
+                                    class="text-md font-black text-blue-600">English</span></a>
                             {{-- <span class="text-md font-black text-blue-600">Marathi</span> --}}
                         </div>
                     </div>
@@ -190,9 +209,12 @@
                             class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] block mb-1 group-hover/stat:text-blue-600 transition-colors">Live
                         </span>
                         <div class="flex flex-col justify-start items-start ps-5">
-                            <span class="text-md font-black text-blue-600">Czech Rep.</span>
-                            <span class="text-md font-black text-blue-600">Nepal</span>
-                            {{-- <span class="text-md font-black text-blue-600">Marathi</span> --}}
+                            <a class="no-underline" href="https://indiaczech.com" target="_blank"><span
+                                    class="text-md font-black text-blue-600">Czech Rep.</span></a>
+                            <span
+                                onclick="setTimeout(() => {document.getElementById('nepal-click').innerHTML='Coming Soon'}, 1000)"
+                                class="text-md font-black text-blue-600" id="nepal-click">Nepal</span>
+
                         </div>
                     </div>
                 </div>
@@ -429,6 +451,7 @@
             initTooltip('countryWebsCard', 'countryTooltip');
         });
 
+        get
 
         const showImage = (image) => {
 
