@@ -66,6 +66,51 @@
         #countryTableBody td {
             border: none !important;
         }
+
+        #countryModal .modal-content {
+            border-radius: 10px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+        }
+
+        #countryModal .modal-header {
+            background: linear-gradient(135deg, #f8c146, #f9d776);
+            border-bottom: 0;
+        }
+
+        #countryModal .modal-title {
+            font-weight: 700;
+            letter-spacing: 0.2px;
+        }
+
+        #countryModal .modal-body {
+            background: #fffdf6;
+        }
+
+        #countryModal table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 6px;
+        }
+
+        #countryModal #countryTableBody td {
+            background: #ffffff;
+            padding: 8px 10px;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+        }
+
+        #countryModal #countryTableBody tr td:first-child {
+            margin-right: 6px;
+        }
+
+        #countryModal #countryTableBody tr td:empty {
+            background: transparent;
+            box-shadow: none;
+        }
+
+        /* #countryModal #countryTableBody tr:hover td:not(:empty) {
+            background: #fff3cd;
+        } */
     </style>
 
     {{-- Back Button --}}
@@ -250,7 +295,7 @@
 
     {{-- ================= MODAL ================= --}}
     <div class="modal fade" id="countryModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
 
                 <div class="modal-header">
@@ -263,7 +308,7 @@
                     <table class="table table-sm">
                         <tbody id="countryTableBody">
                             <tr>
-                                <td colspan="4" class="text-center">Click on language</td>
+                                <td colspan="2" class="text-center">Click on language</td>
                             </tr>
                         </tbody>
                     </table>
@@ -313,7 +358,7 @@
                         if (data.length === 0) {
                             tbody.html(`
                         <tr>
-                            <td colspan="4" class="text-danger text-center">
+                            <td colspan="2" class="text-danger text-center">
                                 No countries found
                             </td>
                         </tr>
@@ -321,10 +366,10 @@
                             return;
                         }
 
-                        // 4 countries per row
+                        // 2 countries per row
                         let row = '';
                         $.each(data, function(index, country) {
-                            if (index % 4 === 0) {
+                            if (index % 2 === 0) {
                                 if (index > 0) {
                                     tbody.append(`<tr>${row}</tr>`);
                                 }
@@ -334,9 +379,9 @@
                         });
 
                         // Add remaining cells if last row is incomplete
-                        let remaining = data.length % 4;
+                        let remaining = data.length % 2;
                         if (remaining !== 0) {
-                            for (let i = remaining; i < 4; i++) {
+                            for (let i = remaining; i < 2; i++) {
                                 row += `<td></td>`;
                             }
                         }
@@ -346,7 +391,7 @@
                     error: function() {
                         tbody.html(`
                     <tr>
-                        <td colspan="4" class="text-danger text-center">
+                        <td colspan="2" class="text-danger text-center">
                             Server error
                         </td>
                     </tr>
