@@ -542,7 +542,6 @@
             }
         }
     </style>
-
     <section class=" container mt-4">
         <div class="row">
             <div class="col-sm-8">
@@ -551,25 +550,20 @@
                     Analytics, Development and Market Planners our Partners can now create impact with their brands &
                     products.
                 </p>
-
             </div>
             <div class="col-sm-4">
                 <div class="rounded border p-2">
                     <p class="text-center h4">Partner Benefits</p>
                     <ul>
-
                         <li><a type="button" data-bs-toggle="modal" data-bs-target="#TheseMTw1">Product</a></li>
                         <li>
                             <a type="button" data-bs-toggle="modal" data-bs-target="#TheseMTi1">Advertising</a>
                         </li>
-
-
                     </ul>
                 </div>
             </div>
         </div>
     </section>
-
     <style>
         /* Button */
         .container .cirs a {
@@ -591,7 +585,6 @@
             background-color: #239d2e;
         }
     </style>
-
     <section class="text-center my-5 flex gap-3">
         <div class="border border-dark p-4 mx-auto">
             <h2 class="mb-4 text-decoration-underline no-underline">Partnership Login</h2>
@@ -601,15 +594,11 @@
                     href="https://b2b.prarang.in/login" style="min-width: 180px;">
                     Business Login
                 </a>
-
                 <!-- Govt & NGO Login Button -->
                 <a class="btn btn-warning border border-dark px-4 py-2 fw-semibold" target="_blank"
                     href="https://b2b.prarang.in/login?lt=g2c" style="min-width: 180px;">
                     Govt. & NGO Login
                 </a>
-
-
-
             </div>
 
         </div>
@@ -620,8 +609,6 @@
             </button>
         </div>
     </section>
-
-
     <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-10">
         <div class="table-header-title-wrap">
             <h2 class="table-header-title">Prarang City Webs</h2>
