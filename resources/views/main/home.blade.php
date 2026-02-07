@@ -53,12 +53,38 @@
             color: #ffffff;
         }
 
-
-
         /* Italic Tag */
         .flex-wrap .lg\:flex i {
             position: relative;
             top: -60px;
+        }
+
+        /* Cursor pointer (hover) */
+        .flex-wrap a .cursor-pointer:hover {
+            color: #00327f;
+        }
+
+        /* Text base (hover) */
+        .flex-wrap a .text-base:hover {
+            color: #2977e4;
+        }
+
+        /* Flex wrap */
+        .container .mx-auto .flex-wrap {
+            align-items: normal;
+        }
+
+        /* Font black */
+        .flex-wrap .cursor-pointer .font-black {
+            font-weight: 700;
+            font-size: 16px;
+        }
+
+        /* Justify start */
+        .flex-wrap div .justify-start {
+            justify-content: center;
+            align-items: center;
+            padding-left: 2px !important;
         }
     </style>
     <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-10 ">
@@ -76,26 +102,24 @@
                     <div id="cityWebsCard"
                         class="border-2 border-blue-200 rounded-3xl p-10 mb-8 bg-white shadow-inner relative overflow-hidden group-hover:border-blue-400 transition-colors">
 
-                        <div
+                        <div onclick="showImage('{{ asset('assets/images/home/city-portal.jpg') }}')"
                             class="flex justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
                             <img src="{{ asset('assets/images/home/3.png') }}" alt="City Icon"
                                 class=" object-contain drop-shadow-md">
                         </div>
 
                     </div>
-
                 </div>
                 <div class="flex w-full mt-6 text-center">
                     <a href="/city-webs" class="no-underline">
                         <div class="flex-1 cursor-pointer group/stat px-2"> <span
                                 class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] block mb-1 group-hover/stat:text-blue-600 transition-colors">
                                 Total</span>
-                            <span class="text-base font-bold text-gray-800">India - 525</span>
+                            <span class="text-base font-bold text-gray-800">India - 520</span>
                         </div>
                     </a>
                     <div class="w-px h-8 bg-gray-200 self-center"></div>
-                    <div class="flex-1 cursor-pointer group/stat px-2"
-                        onclick="openModal('City Webs - Live Portals', 'Currently, 298 specialized city portals are live and serving the community.')">
+                    <div class="flex-1 cursor-pointer group/stat px-2">
                         <span
                             class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] block mb-1 group-hover/stat:text-blue-600 transition-colors">Live
                         </span>
@@ -118,7 +142,7 @@
                     <div id="languageWebsCard"
                         class="border-2 border-yellow-200 rounded-3xl p-10 mb-8 bg-white shadow-inner relative overflow-hidden group-hover:border-yellow-400 transition-colors">
 
-                        <div
+                        <div onclick="showImage('{{ asset('assets/images/home/language-portal.jpg') }}')"
                             class="flex justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
                             <img src="{{ asset('assets/images/home/1.png') }}" alt="Language Icon"
                                 class=" object-contain drop-shadow-md">
@@ -128,21 +152,23 @@
 
                 </div>
                 <div class="flex w-full mt-6 text-center">
-                    <div class="flex-1 cursor-pointer group/stat px-2"
-                        onclick="openModal('City Webs - Total Portfolio', 'Our network covers 525 key cities across India, bridging the digital divide with localized knowledge.')">
-                        <span
-                            class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] block mb-1 group-hover/stat:text-blue-600 transition-colors">Total</span>
-                        <span class="text-base font-bold text-gray-800">178</span>
-                    </div>
+                    <a class="no-underline " href="/lang-webs">
+                        <div class="flex-1 cursor-pointer group/stat px-2">
+                            <span
+                                class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] block mb-1 group-hover/stat:text-blue-600 transition-colors">Total</span>
+                            <span class="text-base font-bold text-gray-800">178</span>
+                        </div>
+                    </a>
                     <div class="w-px h-8 bg-gray-200 self-center"></div>
-                    <div class="flex-1 cursor-pointer group/stat px-2"
-                        onclick="openModal('City Webs - Live Portals', 'Currently, 298 specialized city portals are live and serving the community.')">
+                    <div class="flex-1 cursor-pointer group/stat px-2">
                         <span
                             class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] block mb-1 group-hover/stat:text-blue-600 transition-colors">Live
                         </span>
                         <div class="flex flex-col justify-start items-start ps-5">
-                            <span class="text-md font-black text-blue-600">Hindi</span>
-                            <span class="text-md font-black text-blue-600">English</span>
+                            <a class="no-underline" href="https://humsabek.in" target="_blank"><span
+                                    class="text-md font-black text-blue-600">Hindi</span></a>
+                            <a class="no-underline" href="/analytics" target="_blank"><span
+                                    class="text-md font-black text-blue-600">English</span></a>
                             {{-- <span class="text-md font-black text-blue-600">Marathi</span> --}}
                         </div>
                     </div>
@@ -162,7 +188,7 @@
                     </h2>
                     <div id="countryWebsCard"
                         class="border-2 border-red-200 rounded-3xl p-10 mb-8 bg-white shadow-inner relative overflow-hidden group-hover:border-red-400 transition-colors">
-                        <div
+                        <div onclick="showImage('{{ asset('assets/images/home/country-portal.jpg') }}')"
                             class="flex justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
                             <img src="{{ asset('assets/images/home/2.png') }}" alt="Country Icon"
                                 class="object-contain drop-shadow-md">
@@ -183,9 +209,12 @@
                             class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] block mb-1 group-hover/stat:text-blue-600 transition-colors">Live
                         </span>
                         <div class="flex flex-col justify-start items-start ps-5">
-                            <span class="text-md font-black text-blue-600">Czech Rep.</span>
-                            <span class="text-md font-black text-blue-600">Nepal</span>
-                            {{-- <span class="text-md font-black text-blue-600">Marathi</span> --}}
+                            <a class="no-underline" href="https://indiaczech.com" target="_blank"><span
+                                    class="text-md font-black text-blue-600">Czech Rep.</span></a>
+                            <span
+                                onclick="setTimeout(() => {document.getElementById('nepal-click').innerHTML='Coming Soon'}, 1000)"
+                                class="text-md font-black text-blue-600" id="nepal-click">Nepal</span>
+
                         </div>
                     </div>
                 </div>
@@ -195,18 +224,18 @@
 
     <!-- Custom Tooltips -->
     <div id="cityTooltip" class="custom-tooltip tooltip-blue">
-        <h1>City Webs</h1>
-        <p>Localized knowledge portals for 525+ Indian cities</p>
+        <h1 class="text-center">City Portal</h1>
+        <img class="w-100 h-100 rounded" src="{{ asset('assets/images/home/city-portal.jpg') }}" alt="">
     </div>
 
     <div id="languageTooltip" class="custom-tooltip tooltip-yellow">
-        <h1>Language Webs</h1>
-        <p>Content in 178+ languages bridging the digital divide</p>
+        <h1 class="text-center">Language Portal</h1>
+        <img class="w-100 h-100 rounded" src="{{ asset('assets/images/home/language-portal.jpg') }}" alt="">
     </div>
 
     <div id="countryTooltip" class="custom-tooltip tooltip-red">
-        <h1>Country Webs</h1>
-        <p>Global reach across 195+ countries worldwide</p>
+        <h1 class="text-center">Country Portal</h1>
+        <img class="w-100 h-100 rounded" src="{{ asset('assets/images/home/country-portal.jpg') }}" alt="">
     </div>
 
     <style>
@@ -421,5 +450,13 @@
             initTooltip('languageWebsCard', 'languageTooltip');
             initTooltip('countryWebsCard', 'countryTooltip');
         });
+
+        get
+
+        const showImage = (image) => {
+
+            const url = new URL(image, window.location.origin);
+            window.open(url.toString(), '_blank');
+        }
     </script>
 </x-layout.main.base>

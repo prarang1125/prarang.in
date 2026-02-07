@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <!-- CSS Files -->
+        <link
+            href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css"
+            rel="stylesheet"
+        />
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+            crossorigin="anonymous"
+        />
+        <link rel="stylesheet" href="../assets/main/css/style.css" />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        />
+        <link href="../css/ai-response.css" rel="stylesheet" />
+        <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css"
+        />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+        <script src="https://cdn.jsdelivr.net/npm/typeit@8.7.1/dist/index.umd.js"></script>
+    </head>
+    <style>
+        body {
+            font-family: "Outfit", sans-serif;
+        }
+
+        .navbar {
+            background: #ffffff !important;
+            border-bottom: 1px solid #eee;
+            padding: 0;
+            z-index: 1030;
+        }
+
+        .nav-link {
+            color: #333 !important;
+            font-weight: 500;
+            font-size: 15px;
+            padding: 12px 20px !important;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .nav-link:hover {
+            background: rgba(0, 0, 0, 0.05);
+            color: #007bff !important;
+        }
+
+        /* Dropdown Enhancements */
+        .dropdown:hover > .dropdown-menu {
+            display: block;
+            margin-top: 0;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu {
+            display: block;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border: none;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+            border-radius: 12px;
+            padding: 12px 0;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+        }
+
+        .dropdown-item {
+            padding: 10px 24px;
+            font-weight: 500;
+            color: #4a4a4a;
+            transition: all 0.2s ease;
+        }
+
+        .dropdown-item:hover {
+            /* background-color: #f0f7ff; */
+            color: #007bff;
+            transform: translateX(5px);
+        }
+
+        .dropdown-toggle::after {
+            display: none;
+            /* Hide default chevron */
+        }
+
+        .dropdown-chevron {
+            font-size: 12px;
+            margin-left: 4px;
+            transition: transform 0.3s ease;
+        }
+
+        .nav-item.dropdown:hover .dropdown-chevron {
+            transform: rotate(180deg);
+        }
+
+        /* Logo Interactions */
+        .bs5-logo-image {
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .bs5-logo:hover .bs5-logo-image {
+            transform: scale(1.08) rotate(-3deg);
+        }
+
+        /* Navbar Toggler */
+        .navbar-toggler {
+            border: none;
+            padding: 8px;
+            border-radius: 8px;
+            transition: background 0.3s ease;
+        }
+
+        .navbar-toggler:hover {
+            background: rgba(0, 0, 0, 0.05);
+        }
+
+        @media (max-width: 991.98px) {
+            .navbar-nav {
+                padding: 15px 0;
+            }
+
+            .nav-link {
+                align-items: flex-start;
+                padding: 12px 24px !important;
+            }
+
+            .nav-link::after {
+                left: 24px;
+                transform: none;
+            }
+
+            .dropdown-menu {
+                box-shadow: none;
+                padding-left: 20px;
+                opacity: 1;
+                visibility: visible;
+                transform: none;
+                display: none;
+                background: transparent;
+                border: none;
+            }
+
+            .dropdown:hover > .dropdown-menu {
+                display: none;
+            }
+
+            .dropdown.show > .dropdown-menu {
+                display: block;
+            }
+
+            .dropdown-chevron {
+                position: absolute;
+                right: 24px;
+                top: 18px;
+            }
+        }
+
+        /* Modal Premium Styling */
+        .modal-content {
+            background: rgba(255, 255, 255, 0.8) !important;
+            backdrop-filter: blur(25px) saturate(180%) !important;
+            -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+            border: 1px solid rgba(255, 255, 255, 0.3) !important;
+            box-shadow: 0 32px 64px -16px rgba(0, 0, 0, 0.25) !important;
+        }
+
+        .modal-backdrop {
+            background-color: rgba(0, 0, 0, 0.45) !important;
+            backdrop-filter: blur(6px) !important;
+        }
+
+        .btn-premium {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            border: none;
+            color: white;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 123, 255, 0.3);
+        }
+
+        .btn-premium:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(0, 123, 255, 0.4);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .header-title {
+                font-size: 24px;
+            }
+
+            .header-tagline {
+                font-size: 14px;
+            }
+        }
+
+        /* Body */
+        body {
+            padding-top: 0px;
+        }
+
+        /* Header Branding */
+        .header-title {
+            color: #4a90e2;
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .header-tagline {
+            color: #333;
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: -3px;
+        }
+
+        @media (max-width: 991.98px) {
+            #main-header .navbar .container {
+                background-color: #ffffff;
+                padding-top: 5px;
+                padding-bottom: 5px;
+                box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .header-content .header-title {
+                font-size: 0.9rem !important;
+                margin-bottom: 0;
+                line-height: 1.1;
+                font-weight: 800;
+            }
+
+            .header-content .header-tagline {
+                font-size: 0.55rem !important;
+                margin-top: 1px !important;
+                color: #666;
+                font-weight: 600;
+            }
+
+            /* Mobile Menu Items Styling */
+            .navbar-nav {
+                padding: 1rem 0;
+            }
+
+            .nav-link {
+                align-items: flex-start !important;
+                justify-content: flex-start !important;
+                padding: 12px 15px !important;
+                border-bottom: 1px solid #f8f9fa;
+                font-size: 16px !important;
+            }
+
+            .nav-link:hover {
+                padding-left: 20px !important;
+                background: #f8f9fa;
+            }
+
+            .dropdown-menu {
+                border: none;
+                box-shadow: none;
+                padding-left: 15px;
+                background: #fafafa;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-content .header-title {
+                font-size: 1rem !important;
+            }
+
+            .header-content .header-tagline {
+                font-size: 0.55rem !important;
+            }
+
+            .navbar-brand img {
+                height: 35px !important;
+            }
+        }
+    </style>
+
+    <style>
+        @media (max-width: 576px) {
+            /* Container */
+            #main-header .navbar .container {
+                box-shadow: 0px 2px 0px -50px rgba(0, 0, 0, 0.1);
+                transform: translatex(0px) translatey(0px);
+            }
+
+            /* Heading */
+            #main-header
+                .navbar
+                .container
+                .d-flex
+                .text-center
+                .header-content
+                h1 {
+                font-size: 16px !important;
+            }
+
+            /* Paragraph */
+            #main-header
+                .navbar
+                .container
+                .d-flex
+                .text-center
+                .header-content
+                p {
+                font-size: 11px !important;
+            }
+        }
+
+        .d-flex .navbar-toggler span:active {
+            border-style: none;
+        }
+
+        /* Navbar nav */
+        #mainNavbarMenu .navbar-nav {
+            font-weight: 500;
+            color: #ffffff;
+            background-color: #206df3;
+        }
+
+        /* Nav link */
+        .navbar-nav .nav-item .nav-link {
+            color: #ffffff !important;
+        }
+
+        /* Row */
+        .d-lg-block .align-items-center {
+            justify-content: center;
+            flex-direction: row;
+            padding-left: 138px;
+        }
+
+        /* Header */
+        #main-header header {
+            padding-top: 0px !important;
+        }
+
+        /* Navigation */
+        #main-header nav {
+            box-shadow: none !important;
+        }
+
+        /* Column 9/12 */
+        .d-lg-block .text-center {
+            width: 511px;
+        }
+
+        @media (max-width: 991px) {
+            /* Container */
+            #main-header .navbar .container {
+                box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        @media (max-width: 767px) {
+            /* Container */
+            #main-header .navbar .container {
+                margin-left: 0px !important;
+            }
+        }
+
+        /* Navbar nav */
+        #mainNavbarMenu .navbar-nav {
+            background-color: #eef1f1;
+        }
+
+        /* Nav link */
+        .navbar-nav .nav-item .nav-link {
+            color: #020202 !important;
+            height: 45px;
+        }
+
+        /* Navigation */
+        #main-header nav {
+            background-color: rgba(255, 255, 255, 0) !important;
+        }
+    </style>
+
+    <body class="bg-light">
+        <div id="main-header" class="">
+            <header class="bg-white container-fluid py-3 d-none d-lg-block">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-md-9 text-center">
+                            <h1 class="header-title mb-0 text-primary">
+                                Prarang Knowledge Webs
+                            </h1>
+                            <p class="header-tagline mb-0">
+                                Bridging the Digital Divide – By City, By
+                                Language
+                            </p>
+                        </div>
+                        <div class="col-md-3 text-end">
+                            <a href="/home" class="text-decoration-none">
+                                <img
+                                    class="bs5-logo-image"
+                                    src="https://www.prarang.in/home-assets/image/logo.png"
+                                    alt="Prarang"
+                                    height="60"
+                                />
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+                <div class="container">
+                    <!-- Mobile Header Area (Toggler + Brand + Logo) -->
+                    <div
+                        class="d-flex w-100 align-items-center justify-content-between d-lg-none py-2"
+                    >
+                        <!-- Mobile Toggler -->
+                        <button
+                            class="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#mainNavbarMenu"
+                            aria-controls="mainNavbarMenu"
+                            aria-expanded="false"
+                            aria-label="Toggle navigation"
+                        >
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+
+                        <!-- Mobile Brand Content -->
+                        <div class="text-center px-2">
+                            <div class="header-content">
+                                <h1 class="header-title mb-0 text-primary">
+                                    Prarang Knowledge Webs
+                                </h1>
+                                <p class="header-tagline mb-0">
+                                    Bridging the Digital Divide – By City, By
+                                    Language
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Mobile Logo -->
+                        <a class="navbar-brand me-0" href="/home">
+                            <img
+                                class="bs5-logo-image"
+                                src="https://www.prarang.in/home-assets/image/logo.png"
+                                alt="Prarang"
+                                height="35"
+                                style="width: auto"
+                            />
+                        </a>
+                    </div>
+
+                    <div class="collapse navbar-collapse" id="mainNavbarMenu">
+                        <ul class="navbar-nav w-100 justify-content-between">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/market"
+                                    >Digital Divide</a
+                                >
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a
+                                    class="nav-link dropdown-toggle"
+                                    href="#"
+                                    id="navbarDropdownMenuLink"
+                                    role="button"
+                                    data-bs-toggle="dropdown"
+                                    aria-expanded="false"
+                                >
+                                    Solutions
+                                </a>
+                                <ul
+                                    class="dropdown-menu"
+                                    aria-labelledby="navbarDropdownMenuLink"
+                                >
+                                    <li>
+                                        <a class="dropdown-item" href="/content"
+                                            >Content</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            class="dropdown-item"
+                                            href="/semiotics"
+                                            >Semiotics</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            class="dropdown-item"
+                                            href="/analytics"
+                                            >Analytics</a
+                                        >
+                                    </li>
+                                    <li>
+                                        <a
+                                            class="dropdown-item"
+                                            href="/ai/upmana"
+                                            >Artificial Intelligence</a
+                                        >
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/partners"
+                                    >Partners</a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/about-us"
+                                    >About-Us</a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link"
+                                    href="javascript:void(0);"
+                                    id="viveks-modal"
+                                    >Blogs</a
+                                >
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Knowledge</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Intelligence</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <script>
+            document.addEventListener("change", function (e) {
+                // only checkbox
+                if (!e.target.classList.contains("form-check-input")) return;
+
+                // ❗ sirf CHECK hone par
+                if (!e.target.checked) return;
+
+                const accordionItem = e.target.closest(".accordion-item");
+                if (!accordionItem) return;
+
+                const collapseEl = accordionItem.querySelector(
+                    ".accordion-collapse",
+                );
+                if (!collapseEl) return;
+
+                const instance =
+                    bootstrap.Collapse.getInstance(collapseEl) ||
+                    new bootstrap.Collapse(collapseEl, {
+                        toggle: false,
+                    });
+
+                instance.hide();
+            });
+
+            // prevent accidental toggle on click
+            document.addEventListener("click", function (e) {
+                if (e.target.classList.contains("form-check-input")) {
+                    e.stopPropagation();
+                }
+            });
+        </script>
+        <script src="/assets/js/blog-m.js"></script>
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+            integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+            integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+"
+            crossorigin="anonymous"
+        ></script>
+        <script src="../js/ai-response.js"></script>
+
+        <!-- Dynamic Generic Modal -->
+        <div
+            class="modal fade"
+            id="dynamicModal"
+            tabindex="-1"
+            aria-labelledby="dynamicModalLabel"
+            aria-hidden="true"
+        >
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content border-0" style="border-radius: 28px">
+                    <div class="modal-header border-0 p-4 pb-0">
+                        <h5
+                            class="modal-title font-bold text-dark fs-3"
+                            id="dynamicModalLabel"
+                        >
+                            Modal Title
+                        </h5>
+                        <button
+                            type="button"
+                            class="btn-close"
+                            data-bs-dismiss="modal"
+                            aria-label="Close"
+                        ></button>
+                    </div>
+                    <div class="modal-body p-4 pt-3">
+                        <p
+                            id="dynamicModalBody"
+                            class="text-secondary leading-relaxed fs-5"
+                        ></p>
+                    </div>
+                    <div
+                        class="modal-footer border-0 p-4 pt-0 justify-content-start"
+                    >
+                        <button
+                            type="button"
+                            class="btn btn-premium rounded-pill px-5 py-2 font-semibold fs-6"
+                            data-bs-dismiss="modal"
+                        >
+                            Excellent
+                        </button>
+                        <button
+                            type="button"
+                            class="btn btn-link text-secondary text-decoration-none ms-auto"
+                            data-bs-dismiss="modal"
+                        >
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            // Dynamic Modal Function
+            function openModal(title, content) {
+                document.getElementById("dynamicModalLabel").innerText = title;
+                document.getElementById("dynamicModalBody").innerText = content;
+                const modal = new bootstrap.Modal(
+                    document.getElementById("dynamicModal"),
+                );
+                modal.show();
+            }
+        </script>
+    </body>
+</html>

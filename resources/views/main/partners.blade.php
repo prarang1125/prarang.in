@@ -110,21 +110,15 @@
             padding-bottom: 0px;
         }
     </style>
-    <section class="bs5-top-heading">
-        <p class=""> City Knowledge Web</p>
-        <p>Market Partners</p>
-    </section>
-    <section class=" container">
+
+    <section class=" container mt-4">
         <div class="row">
             <div class="col-sm-8">
-                <p class="mb-3">Prarang is now open to exclusive <span class="text-primary">– One City, One Language,
-                        One Partnership –</span> a select 923+ Indian Markets & 2428+ World Markets. Each<a
-                        target="_blank" href="https://www.prarang.in/market"> Prarang Market</a> is a unique City-Language
-                    Knowledge Web. Empowered with Prarang city <span class="text-primary">Content, Semiotics &
-                        Analytics</span>, our City Partners can now create a hyper-local impact with their brands &
-                    products towards the growth of the City through daily messaging & regular meetings with City
-                    citizens <span class="text-primary">(B2B2C)</span>, and also undertake meaningful & informed
-                    projects with local governments <span class="text-primary">(B2G2C)</span>.</p>
+                <p class="mb-3">Prarang is open to Partnership in select 901+ Indian Markets & 195 World Markets. Each
+                    Prarang Market is a unique Language Knowledge Web. Empowered with Prarang Content, Semiotics &
+                    Analytics, Development and Market Planners our Partners can now create impact with their brands &
+                    products.
+                </p>
 
             </div>
             <div class="col-sm-4">
@@ -165,69 +159,36 @@
             }
         </style>
 
-        <section class="text-center">
-            <div class="row">
-                <div class="col-sm-6">
-                    <div class="text-center mb-4">
-                        <a class="btn btn-lg btn-warning border border-danger w-50" target="_blank"
-                            href="https://b2b.prarang.in/login">Partnership (B2B) Login</a>
-                    </div>
-                </div>
-                <div class="col-sm-6">
-                    <div class="btn btn-warning d-none d-xl-block w-50 btn-lg" data-bs-toggle="modal"
-                        data-bs-target="#requestTomeet"> New Partnership Request</div>
-                </div>
-            </div>
-            <div class="cirs">
-                <a class="btn btn-lg btn-warning border border-danger" href="/cirus">CIRUS <br> Cyber
-                    Intelligence & Risk Unified System</a>
-            </div>
-            </div>
-            <p class="h5 text-start">Live City Knowledge Webs - Reach & Market Size :</h3>
-            <div class="row mb-2">
-                <div class="col-sm-2 text-center">
-                    <b>City Monthly Metrics</b>
-                </div>
-                <div class="col-sm-2 ">
-                    <a href="https://b2b.prarang.in/ads/YzQ=" target="_blank"
-                        class="btn btn-sm btn-warning w-75 ">Lucknow</a>
-                </div>
-                <div class="col-sm-2">
-                    <a href="https://b2b.prarang.in/ads/YzI=" target="_blank"
-                        class="btn btn-sm btn-warning w-75">Meerut</a>
-                </div>
-                <div class="col-sm-2">
-                    <a href="https://b2b.prarang.in/ads/YzM=" target="_blank"
-                        class="btn btn-sm btn-warning w-75">Rampur</a>
-                </div>
-                <div class="col-sm-2">
-                    <a href="https://b2b.prarang.in/ads/cjQ=" target="_blank"
-                        class="btn btn-sm btn-warning w-75">Jaunpur</a>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-2 text-center">
-                    <b>City Daily ( Day 5 & Day 31) Metrics</b>
-                </div>
-                <div class="col-sm-2 ">
-                    <a href="https://b2b.prarang.in/ads/content/YzQ=" target="_blank"
-                        class="btn btn-sm btn-warning w-75 ">Lucknow</a>
-                </div>
-                <div class="col-sm-2">
-                    <a href="https://b2b.prarang.in/ads/content/YzI=" target="_blank"
-                        class="btn btn-sm btn-warning w-75">Meerut</a>
-                </div>
-                <div class="col-sm-2">
-                    <a href="https://b2b.prarang.in/ads/content/YzM=" target="_blank"
-                        class="btn btn-sm btn-warning w-75">Rampur</a>
-                </div>
-                <div class="col-sm-2">
-                    <a href="https://b2b.prarang.in/ads/content/cjQ=" target="_blank"
-                        class="btn btn-sm btn-warning w-75">Jaunpur</a>
+        <section class="text-center my-5">
+            <div class="border border-dark p-4 mx-auto" style="max-width: 900px;">
+                <h2 class="mb-4 text-decoration-underline no-underline">Partnership Login</h2>
+                <div class="d-flex justify-content-center align-items-center gap-3 flex-wrap">
+                    <!-- Business Login Button -->
+                    <a class="btn btn-warning border border-dark px-4 py-2 fw-semibold" target="_blank"
+                        href="https://b2b.prarang.in/login" style="min-width: 180px;">
+                        Business Login
+                    </a>
+
+                    <!-- Govt & NGO Login Button -->
+                    <a class="btn btn-warning border border-dark px-4 py-2 fw-semibold" target="_blank"
+                        href="https://b2b.prarang.in/login?lt=g2c" style="min-width: 180px;">
+                        Govt. & NGO Login
+                    </a>
+
+                    <!-- Vertical Separator -->
+                    <div class="d-none d-md-block" style="width: 2px; height: 50px; background-color: #000;"></div>
+                    <span class="d-md-none fw-bold">Or</span>
+
+                    <!-- Create New Partnership Button -->
+                    <button class="btn btn-warning border border-dark px-4 py-2 fw-semibold" data-bs-toggle="modal"
+                        data-bs-target="#requestTomeet" style="min-width: 220px;">
+                        Create a New Partnership
+                    </button>
                 </div>
             </div>
         </section>
 
+        <!-- Partnership Benefits Section -->
 
         <!-- Button trigger modal -->
 
@@ -283,78 +244,89 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <!-- <h1 class="modal-title fs-5" id="TheseMTLabel">Modal title</h1> -->
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
 
-                        <div class="row">
-                            <div class="col-md-6">
-                                <p class="text-primary h6">Standard City Partner Product -</p>
-                                <ol>
-                                    <li><b>City Partner Exclusive Login Access </b>- 5 Employee/Biz Partner Ids - For
-                                        the duration of Partnership</li>
-                                    <li><b>City Subscribers & City Portal -</b> Live 10,000+ FB & Mobile App Subscribers
-                                        + City Portal with 60+ Posts</li>
-                                    <li><b> Exclusive Ad insert in Daily Post -</b> Prarang FB Page/Mobile App - Upto 27
-                                        Still & 4 Videos, Per Month</li>
-                                    <li><b> Sponsored Ad - </b> FB Page - Upto 27 Still & 4 Videos, Per Month</li>
-                                    <li><b> Exclusive Partnership on City Portal & Prarang.in - </b> Partnership Ad
-                                        Placement - For the duration of Partnership</li>
-                                    <li><b> Analytics -</b>
-                                        <ul>
-                                            <li>(a) City Digital Demographics </li>
-                                            <li>(b) Prarang Monthly Performance Analytics & Daily Post Analytics </li>
-                                            <li>(c) City Metrics & City Planners - Exclusive access to Updated
-                                                Socio-Economic & Culture-Nature metrics</li>
-                                        </ul>
-                                    </li>
-                                    <li> <b>Semiotics -</b>
-                                        <ul>
-                                            <li>(a) Exclusive daily insights on Readership - City Mood </li>
-                                            <li>(b) Exclusive daily insights on Readership - Culture-Nature, Work,
-                                                Education & Global-Local</li>
-                                        </ul>
-                                    </li>
-                                    <li><b> Impact -</b>
-                                        <ul>
-                                            <li>(a) Monthly Top 3 Readers</li>
-                                            <li>(b) Monthly Top 3 Posts</li>
-                                            <li>(c) Monthly City Subscriber FB Profile Clicks</li>
-                                        </ul>
-                                    </li>
-                                </ol>
-                            </div>
-                            <div class="col-md-6 ">
-                                <p class="text-primary h6">Add On Products (Optional) – Based on request for Activation
-                                    :</p>
-                                <ol>
-                                    <li> <b>City Subscriber Increase Request -</b>
-                                        <div class="be-partner">
-                                            <ul>
-                                                <li>(a) Meta - FB</li>
-                                                <li>(b) Meta - Instagram</li>
-                                                <li>(c) Meta - Whatsapp</li>
-                                                <li>(d) eMail</li>
-                                                <li>(e) Mobile App</li>
-                                                <li>(f) Microsoft - Linked-In</li>
-                                                <li>(g) X - Twitter</li>
-                                                <li>(h) Sharechat</li>
-                                                <li>(i) Daily Post</li>
-                                            </ul>
+                        <section class="container my-5">
+                            <div class="mb-4">
+                                <h4 class="fw-bold mb-3">Partnership Benefits</h4>
+                                <ul class="mb-4">
+                                    <li>Select a city and campaign date to book your advertisement</li>
+                                    <li>Upload creative assets (still or video)</li>
+                                    <li>Receive performance metrics on Day 5 and Day 31</li>
+                                    <li>View hyperlocal performance insights for each advertisement</li>
+                                    <li>Access in-depth city-level audience metrics</li>
+                                    <li>Explore Prarang City Analytics for planning, tracking, and optimization</li>
+                                </ul>
 
-                                    </li>
-                                    <li><b>Twin City Content Portal (Additional domain) -</b> For better Branding &
-                                        better SEO</li>
-                                    <li><b> Change request</b> for Monthly 27 Stills & 4 Video Ads for Daily Posts</li>
-                                    <li><b>Adscape City Print & Outdoor Survey - </b>/Year Activation</li>
-                                    <li><b>city Subscriber Meet/Presentation/Survey -</b> Month/Year ; Frequency</li>
-                                    <li><b>Content Usage -</b> Images & Text Usage Purchase request</li>
-                                    <li><b> Business Survey -</b> Yellow Pages & e-Cards Activation Project - Month/Year
-                                        ; Frequency</li>
-                                </ol>
+                                <h5 class="fw-bold mb-3">Partnership Tiers -</h5>
+
+                                <!-- Audience & Reach Table -->
+                                <div class="table-responsive mb-4">
+                                    <table class="table table-bordered">
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Audience & Reach</th>
+                                                <th class="text-center">City Lite</th>
+                                                <th class="text-center">City Plus</th>
+                                                <th class="text-center">City Prime</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Minimum City Subscriber Base</td>
+                                                <td class="text-center">300+</td>
+                                                <td class="text-center">300+</td>
+                                                <td class="text-center">10,000+</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Hyperlocal Reach per Post (within 7 days)</td>
+                                                <td class="text-center">3,000+</td>
+                                                <td class="text-center">3,000+</td>
+                                                <td class="text-center">3,000+</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Total Monthly Reach</td>
+                                                <td class="text-center">12,000+</td>
+                                                <td class="text-center">45,000+</td>
+                                                <td class="text-center">93,000+</td>
+                                            </tr>
+                                        </tbody>
+
+                                        <thead class="table-light">
+                                            <tr>
+                                                <th>Content & Publishing</th>
+                                                <th class="text-center">City Lite</th>
+                                                <th class="text-center">City Plus</th>
+                                                <th class="text-center">City Prime</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Posts per Month</td>
+                                                <td class="text-center">4</td>
+                                                <td class="text-center">15</td>
+                                                <td class="text-center">31</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Creative Formats Included</td>
+                                                <td class="text-center">3 Stills, 1 Video</td>
+                                                <td class="text-center">13 Stills, 2 Video</td>
+                                                <td class="text-center">27 Stills, 4 Videos</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Posting Frequency</td>
+                                                <td class="text-center">Weekly</td>
+                                                <td class="text-center">Alternate Day</td>
+                                                <td class="text-center">Daily</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
-                        </div>
+                        </section>
+
 
                     </div>
                 </div>

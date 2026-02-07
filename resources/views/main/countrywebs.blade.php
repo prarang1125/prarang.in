@@ -1,6 +1,5 @@
 <x-layout.main.base>
     <style>
-        /* Modern Table Styling */
         .modern-table {
             font-size: 13px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -43,7 +42,6 @@
             overflow-y: auto;
         }
 
-        /* PC - Fit in window */
         @media (min-width: 769px) {
             .table-responsive {
                 overflow-x: auto;
@@ -51,7 +49,6 @@
             }
         }
 
-        /* Mobile Optimizations with Sticky Region Column */
         @media (max-width: 768px) {
             .modern-table {
                 font-size: 11px;
@@ -180,6 +177,88 @@
                 border-radius: 0 0 4px 4px;
             }
         }
+
+        /* Link */
+        .modern-table tr a {
+            color: #0a5eb7;
+        }
+
+        /* Link (hover) */
+        .modern-table tr a:hover {
+            font-weight: 700;
+        }
+
+        /* Modal header */
+        .container .modal .modal-header {
+            display: grid;
+            align-content: center;
+            justify-content: center;
+        }
+
+        /* Modal header */
+        .container .modal .modal-xl .modal-content .modal-header {
+            /* transform: translatex(0px) translatey(0px) !important; */
+            grid-template-columns: 89fr 10fr !important;
+        }
+
+        /* Modal title */
+        .container .modal .modal-title {
+            text-align: center;
+        }
+    </style>
+    <style>
+        /* Th */
+        .container .modal th {
+            position: sticky;
+            top: -20px;
+        }
+
+        @media (max-width:576px) {
+
+            /* Table Data */
+            .container .modal tr td:nth-child(2) {
+                position: sticky;
+                left: -18px;
+            }
+
+
+        }
+
+        @media (max-width:576px) {
+
+            /* Table Data */
+
+
+            /* Modern table */
+            .container .mt-3 .modern-table {
+                overflow: scroll;
+            }
+
+            /* Body Of Table */
+            .table-responsive .modern-table tbody {
+                overflow: scroll;
+
+            }
+
+            /* Table Data */
+            .modern-table tr td:nth-child(2) {
+                position: sticky;
+                left: -15px !important;
+                z-index: 100 !important;
+
+            }
+
+            /* Table Data */
+            .container .mt-3 .table-responsive .modern-table tbody tr td {
+                left: 2px !important;
+            }
+
+            /* Table Row */
+            .modern-table tbody tr {
+                overflow: scroll;
+            }
+
+        }
     </style>
 
     <p class="text-start mt-2">
@@ -224,7 +303,8 @@
                         <td>6%</td>
                         <td>6%</td>
                         <td>1%</td>
-                        <td><a data-bs-toggle="modal" data-bs-target="#modal-1">54</a></td>
+                        <td><a class="text-primary cursor-pointer" data-bs-toggle="modal"
+                                data-bs-target="#modal-1">54</a></td>
                     </tr>
                     <tr>
                         <th>2</th>
@@ -236,7 +316,8 @@
                         <td>18%</td>
                         <td>7%</td>
                         <td>3%</td>
-                        <td><a data-bs-toggle="modal" data-bs-target="#modal-2">37</a></td>
+                        <td><a class="text-primary cursor-pointer" data-bs-toggle="modal"
+                                data-bs-target="#modal-2">37</a></td>
                     </tr>
                     <tr>
                         <th>3</th>
@@ -248,7 +329,8 @@
                         <td>34%</td>
                         <td>20%</td>
                         <td>7%</td>
-                        <td><a data-bs-toggle="modal" data-bs-target="#modal-3">21</a></td>
+                        <td><a class="text-primary cursor-pointer" data-bs-toggle="modal"
+                                data-bs-target="#modal-3">21</a></td>
                     </tr>
                     <tr>
                         <th>4</th>
@@ -260,7 +342,8 @@
                         <td>44%</td>
                         <td>44%</td>
                         <td>11%</td>
-                        <td><a data-bs-toggle="modal" data-bs-target="#modal-4">44</a></td>
+                        <td><a class="text-primary cursor-pointer" data-bs-toggle="modal"
+                                data-bs-target="#modal-4">44</a></td>
                     </tr>
                     <tr>
                         <th>5</th>
@@ -272,7 +355,8 @@
                         <td>51%</td>
                         <td>77%</td>
                         <td>20%</td>
-                        <td><a data-bs-toggle="modal" data-bs-target="#modal-5">2</a></td>
+                        <td><a class="text-primary cursor-pointer" data-bs-toggle="modal"
+                                data-bs-target="#modal-5">2</a></td>
                     </tr>
                     <tr>
                         <th>6</th>
@@ -284,7 +368,8 @@
                         <td>57%</td>
                         <td>39%</td>
                         <td>6%</td>
-                        <td><a data-bs-toggle="modal" data-bs-target="#modal-6">12</a></td>
+                        <td><a class="text-primary cursor-pointer" data-bs-toggle="modal"
+                                data-bs-target="#modal-6">12</a></td>
                     </tr>
                     <tr>
                         <th>7</th>
@@ -296,10 +381,12 @@
                         <td>43%</td>
                         <td>16%</td>
                         <td>6%</td>
-                        <td><a data-bs-toggle="modal" data-bs-target="#modal-7">25</a></td>
+                        <td><a class="text-primary cursor-pointer" data-bs-toggle="modal"
+                                data-bs-target="#modal-7">25</a></td>
                     </tr>
                     <tr>
-                        <th colspan="2">Total no of Knowledge Webs </th>
+                        <th></th>
+                        <th>Total no of Knowledge Webs </th>
                         <td>8191</td>
                         <td>84%</td>
                         <td>67%</td>
