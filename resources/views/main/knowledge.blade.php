@@ -10,9 +10,12 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <p>
+                <p class="text-center">
                     Information is not Knowledge. Knowledge is not Intelligence. Intelligence is not Wisdom.
-                    <br>
+
+                </p>
+                <p>
+
                     Information is structured & organized data & facts, which are useful. Understanding information and
                     related concepts creates Knowledge. Application of knowledge at the right time & place, is
                     Intelligence. A broad understanding based on experience & acquired knowledge, used for the

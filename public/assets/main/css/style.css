@@ -208,3 +208,13 @@ footer p {
         text-align: justify;
     }
 }
+@media (max-width: 576px) {
+    /* Paragraph */
+    .container .bs5-top-heading p {
+        text-align: center;
+    }
+}
+
+.bs5-top-heading p:nth-child(1) {
+    font-size: 24px;
+}

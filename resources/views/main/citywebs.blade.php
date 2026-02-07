@@ -269,6 +269,26 @@
             overflow: scroll;
         }
     </style>
+    <style>
+        /* Paragraph */
+        .container section p {
+            font-size: 13px;
+        }
+
+        /* Bold */
+        .container section .fw-bold {
+            margin-bottom: 3px;
+        }
+
+        @media (min-width:769px) {
+
+            /* Table Data */
+            .modern-table tr td {
+                font-size: 14px !important;
+            }
+
+        }
+    </style>
     <p class="text-start mt-2">
         <a href="/" class="btn btn-dark btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
     </p>
@@ -278,6 +298,8 @@
             India - 520 City Webs
             <img class="h-10 w-10" src="{{ asset('assets/images/home/3.png') }}" alt="">
         </h4>
+    </section>
+    <section>
         <p>India has 9,389 towns as per Census 2011. Of these, 7,933 are Statutory/Census Towns, 475 are Urban
             Agglomerations, and 985 are Outgrowths. Among them, 36 are State/UT capitals and 800+ are District capitals.
         </p>

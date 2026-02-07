@@ -110,7 +110,13 @@
             padding-bottom: 0px;
         }
     </style>
-
+    <style>
+        /* Heading */
+        .container .flex h2 {
+            font-size: 22px;
+            text-decoration: none !important;
+        }
+    </style>
     <section class=" container mt-4">
         <div class="row">
             <div class="col-sm-8">
@@ -159,8 +165,8 @@
             }
         </style>
 
-        <section class="text-center my-5">
-            <div class="border border-dark p-4 mx-auto" style="max-width: 900px;">
+        <section class="text-center my-5 flex gap-3">
+            <div class="border border-dark p-4 mx-auto">
                 <h2 class="mb-4 text-decoration-underline no-underline">Partnership Login</h2>
                 <div class="d-flex justify-content-center align-items-center gap-3 flex-wrap">
                     <!-- Business Login Button -->
@@ -175,16 +181,17 @@
                         Govt. & NGO Login
                     </a>
 
-                    <!-- Vertical Separator -->
-                    <div class="d-none d-md-block" style="width: 2px; height: 50px; background-color: #000;"></div>
-                    <span class="d-md-none fw-bold">Or</span>
+
 
                     <!-- Create New Partnership Button -->
-                    <button class="btn btn-warning border border-dark px-4 py-2 fw-semibold" data-bs-toggle="modal"
-                        data-bs-target="#requestTomeet" style="min-width: 220px;">
-                        Create a New Partnership
-                    </button>
+
                 </div>
+            </div>
+            <div class="border border-dark p-4 mx-auto flex justify-center items-center">
+                <button class="btn btn-warning border border-dark px-4 py-2 fw-semibold" data-bs-toggle="modal"
+                    data-bs-target="#requestTomeet" style="min-width: 220px;">
+                    Create a New Partnership
+                </button>
             </div>
         </section>
 

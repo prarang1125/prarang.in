@@ -30,6 +30,7 @@ Route::prefix('/')->group(function () {
     Route::get('/digital-divide', [Home::class, 'market'])->name('market');
     Route::view('/knowledge', 'main.knowledge');
     Route::view('/intelligence', 'main.intelligence');
+    Route::view('/english-web', 'main.analytics');
     Route::get('/content', [Home::class, 'content'])->name('content');
     Route::get('/semiotics', [Home::class, 'semiotics'])->name('semiotics');
     Route::get('/analytics', [Home::class, 'analytics'])->name('analytics');

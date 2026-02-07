@@ -1,91 +1,30 @@
 <x-layout.main.base>
-    <style>
-        main .top-title small {
-            font-size: 12px;
 
-        }
-
-        /* Text end */
-        .container .text-end {
-            margin-bottom: 0px;
-            position: relative;
-            top: -19px;
-            margin-right: 59px;
-        }
-
-        /* Top heading */
-        .container .bs5-top-heading {
-            height: 60px;
-        }
-
-        @media (max-width:576px) {
-
-            /* Text end */
-            .container .text-end {
-                top: -2px;
-                transform: translatex(0px) translatey(0px);
-                text-align: center !important;
-                margin-right: 0px;
-            }
-
-        }
-
-        /* Col 6 */
-        .container .col-sm-6 {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        /* Image */
-        .container a img {
-            width: 270px !important;
-            display: inline-block;
-
-                {
-                    {
-                    -- transform: translatex(0px) translatey(0px) !important;
-                    --
-                }
-            }
-        }
-
-        /* Img flud */
-        .container .col-sm-6:nth-child(2) .img-flud {
-            width: 571px !important;
-        }
-
-        /* Border */
-        .container .border {
-            border-color: #ffffff !important;
-        }
-
-        /* Button */
-        .container .col-sm-6:nth-child(1) .border:nth-child(1) .btn-primary {
-            width: 265px;
-        }
-    </style>
     <section class="bs5-top-heading">
-        <p class="">Analytics</p>
-        <p>Geographic Intelligence through Comparison</p>
+        <p class="">English Web</p>
+        {{-- <p>Geographic Intelligence through Comparison</p> --}}
     </section>
-    <p class="text-end">
+    {{-- <p class="text-end">
         <a href="https://g2c.prarang.in/login" class="btn btn-warning btn-sm">Partner Login</a>
-    </p>
+    </p> --}}
     <section class="container">
-        <p>Prarang's Geographic Intelligence is a comprehensive big data solution that provides valuable insights into
+        {{-- <p>Prarang's Geographic Intelligence is a comprehensive big data solution that provides valuable insights into
             various geographic regions in India and across the world. It is a powerful solution that provides businesses
             with the data they need to plan their global expansion, understand regional development disparities in
             India, select the best entry points for market expansion, and run successful advertising campaigns in local
             languages, tailored to specific regional preferences. With access to these crucial insights, companies &
             governments/NGOs can make data-driven decisions and thrive by going hyper-local in today's competitive
-            business market.</p>
+            business market.</p> --}}
         <style>
             /* Image */
             .container .container .row .col-sm-6 .border .p-2 a img {
                 width: 100% !important;
             }
         </style>
+        <section class="flex flex-col justify-center items-center my-5">
+            <p class="text-center">Please Checkout our new Prarang A.I.</p>
+            <a href="/ai/upmana" class="btn btn-primary "> Prarang A.I</a>
+        </section>
         <div class="row">
             <div class="col-sm-6">
 

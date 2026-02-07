@@ -260,6 +260,26 @@
 
         }
     </style>
+    <style>
+        /* Paragraph */
+        .container section p {
+            font-size: 13px;
+        }
+
+        /* Small */
+        .container .modal .small {
+            font-size: 12px;
+        }
+
+        @media (min-width:769px) {
+
+            /* Table Data */
+            .modern-table tr td {
+                font-size: 14px !important;
+            }
+
+        }
+    </style>
 
     <p class="text-start mt-2">
         <a href="/" class="btn btn-dark btn-sm"><i class="bi bi-arrow-left"></i> Back</a>

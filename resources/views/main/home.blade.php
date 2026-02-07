@@ -454,7 +454,7 @@
             initTooltip('countryWebsCard', 'countryTooltip');
         });
 
-        get
+
 
         const showImage = (image) => {
 
