@@ -324,7 +324,13 @@
                         <tr>
 
                             <td>{{ $data['#'] ?? '' }}</td>
-                            <td>{{ $data['state'] ?? '' }}</td>
+                            <td>
+                                <a class="text-primary cursor-pointer text-decoration-none" data-bs-toggle="modal"
+                                    data-bs-target="#modal-{{ $data['#'] ?? '' }}">
+                                    {{ $data['state'] ?? '' }}
+                                </a>
+
+                            </td>
                             <td>{{ $data['Assamese'] ?? '' }}</td>
                             <td>{{ $data['Bengali'] ?? '' }}</td>
                             <td>{{ $data['Devanagari'] ?? '' }}</td>

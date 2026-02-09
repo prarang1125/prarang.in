@@ -1,6 +1,23 @@
 <x-layout.main.base>
 
     <style>
+        .scroll-hint {
+            display: none;
+            text-align: center;
+            padding: 6px;
+            background: linear-gradient(90deg, transparent, #007bff, transparent);
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 600;
+            border-radius: 0 0 4px 4px;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-hint {
+                display: block;
+            }
+        }
+
         .table-wrapper {
             max-height: 600px;
             /* jitni height chahiye */
@@ -128,14 +145,16 @@
             <img src="{{ asset('images/langlogo.png') }}" alt="Globe" style="width: 50px; height: 50px;">
         </h2>
     </div> --}}
-
-    <section class="flex flex-col justify-center items-center">
+    <section>
         <h4 class=" flex  justify-center items-center text-center text-dark font-bold firstimg">
             <img src="{{ asset('images/langlogo.png') }}" alt="Globe" class="rotate-left"
                 style="width: 50px; height: 50px;">
             World - 178 Language Webs
             <img src="{{ asset('images/langlogo.png') }}" alt="Globe" style="width: 50px; height: 50px;">
         </h4>
+    </section>
+    <section class="flex flex-col justify-center items-center">
+
         <p>There are 195 Countries in the world, and each country selects its own Official language(s). For example,
             India
             has 22 official languages recognized in its Constitution. These 22 languages primarily use 13 distinct
@@ -182,7 +201,13 @@
                         <tr>
                             <td>{{ $index + 1 }}</td>
 
-                            <td>{{ $row['language'] }}</td>
+                            <td>
+                                <a href="javascript:void(0)" style="text-decoration: none" class="open-country-modal"
+                                    data-lang-id="{{ $row['language_id'] }}" data-bs-toggle="modal"
+                                    data-bs-target="#countryModal">
+                                    {{ $row['language'] }}
+                                </a>
+                            </td>
                             <td>{{ $row['spoken_family'] }}</td>
                             <td>{{ $row['population_2021'] }}</td>
                             <td>{{ $row['internet_content'] }}</td>
@@ -208,6 +233,7 @@
 
             </table>
 
+            <div class="scroll-hint">&larr; Scroll horizontally &rarr;</div>
         </div>
         <div class="table-footer-total">Total - 148 Languages</div>
 
@@ -224,62 +250,76 @@
 
     <section class="mt-3">
 
-        <table class="table table-responsive table-striped table-sec table-sm">
+        <div class="table-responsive">
+            <table class="table  table-striped table-sec table-sm">
 
 
 
-            <thead>
-                <tr class="bg-warning text-dark">
-                    <th class="bg-warning text-dark">Sr.</th>
-                    <th class="bg-warning text-dark">Language</th>
-                    <th class="bg-warning text-dark">Language Family (Spoken)</th>
-                    <th class="bg-warning text-dark">Population (2021)</th>
-                    <th class="bg-warning text-dark">Content on Internet (%)</th>
-                    <th class="bg-warning text-dark">Content on Wikipedia (%)</th>
-                    <th class="bg-warning text-dark">Scripts</th>
-                    <th class="bg-warning text-dark">Language Family (Writing)</th>
-                    <th class="bg-warning text-dark">Writing System</th>
-                    <th class="bg-warning text-dark">No. Of Countries</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                @foreach ($balanced as $index => $row)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
-
-                        <td>{{ $row['language'] }}</td>
-                        <td>{{ $row['family_spoken'] }}</td>
-                        <td>{{ $row['population_2021'] }}</td>
-                        <td>{{ $row['internet_content'] }}</td>
-                        <td>{{ $row['wikipedia_content'] }}</td>
-                        <td>{{ $row['script'] }}</td>
-                        <td>{{ $row['writing_family'] }}</td>
-                        <td>{{ $row['writing_system'] }}</td>
-
-
-                        <td>
-                            <a href="javascript:void(0)" style="text-decoration: none" class=" open-country-modal"
-                                data-lang-id="{{ $row['language_id'] }}" data-bs-toggle="modal"
-                                data-bs-target="#countryModal">
-                                {{ $row['countries'] }}
-                            </a>
-                        </td>
-
-
+                <thead>
+                    <tr class="bg-warning text-dark">
+                        <th class="bg-warning text-dark">Sr.</th>
+                        <th class="bg-warning text-dark">Language</th>
+                        <th class="bg-warning text-dark">Language Family (Spoken)</th>
+                        <th class="bg-warning text-dark">Population (2021)</th>
+                        <th class="bg-warning text-dark">Content on Internet (%)</th>
+                        <th class="bg-warning text-dark">Content on Wikipedia (%)</th>
+                        <th class="bg-warning text-dark">Scripts</th>
+                        <th class="bg-warning text-dark">Language Family (Writing)</th>
+                        <th class="bg-warning text-dark">Writing System</th>
+                        <th class="bg-warning text-dark">No. Of Countries</th>
                     </tr>
-                @endforeach
-            </tbody>
+                </thead>
+
+                <tbody>
+                    @foreach ($balanced as $index => $row)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+
+                            <td>
+                                <a href="javascript:void(0)" style="text-decoration: none" class=" open-country-modal"
+                                    data-lang-id="{{ $row['language_id'] }}" data-bs-toggle="modal"
+                                    data-bs-target="#countryModal">
+                                    {{ $row['language'] }}
+                                </a>
+
+                            </td>
+                            <td>{{ $row['family_spoken'] }}</td>
+                            <td>{{ $row['population_2021'] }}</td>
+                            <td>{{ $row['internet_content'] }}</td>
+                            <td>{{ $row['wikipedia_content'] }}</td>
+                            <td>{{ $row['script'] }}</td>
+                            <td>{{ $row['writing_family'] }}</td>
+                            <td>{{ $row['writing_system'] }}</td>
 
 
-            <tr>
-                {{-- <td colspan="10" class="text-center">Total - 30 Languages</td> --}}
-            </tr>
+                            <td>
+                                <a href="javascript:void(0)" style="text-decoration: none" class=" open-country-modal"
+                                    data-lang-id="{{ $row['language_id'] }}" data-bs-toggle="modal"
+                                    data-bs-target="#countryModal">
+                                    {{ $row['countries'] }}
+                                </a>
+                            </td>
 
 
-        </table>
+                        </tr>
+                    @endforeach
+                </tbody>
+
+
+                <tr>
+                    {{-- <td colspan="10" class="text-center">Total - 30 Languages</td> --}}
+                </tr>
+
+
+            </table>
+            <div class="scroll-hint">&larr; Scroll horizontally &rarr;</div>
+
+
+
+        </div>
 
         <div class="table-footer-total">Total - 30 Languages</div>
+
 
     </section>
 

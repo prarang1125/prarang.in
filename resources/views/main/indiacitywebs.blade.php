@@ -371,7 +371,7 @@
                         <th class="matrix-head">City Prime</th>
                     </tr>
                     <tr>
-                        <th class="matrix-subhead">Prarang Content Posts</th>
+                        <th class="matrix-subhead" style="min-width: 173px;">Prarang Content Posts</th>
                         <td class="text-center">Nil</td>
                         <td class="text-center">Weekly</td>
                         <td class="text-center">Alternate Day</td>
@@ -408,15 +408,15 @@
                         </td>
                         <td class="text-center">
                             <div class="flex flex-col gap-2 items-center">
-                                <a href="/lucknow/all-posts" target="_blank" class="matrix-pill matrix-pill-lite"
+                                <a href="/lucknow" target="_blank" class="matrix-pill matrix-pill-lite"
                                     style="text-decoration: none">
                                     Lucknow
                                 </a>
-                                <a href="/rampur/all-posts" target="_blank" class="matrix-pill matrix-pill-lite"
+                                <a href="/rampur" target="_blank" class="matrix-pill matrix-pill-lite"
                                     style="text-decoration: none">
                                     Rampur
                                 </a>
-                                <a href="/shahjahanpur/all-posts" target="_blank" class="matrix-pill matrix-pill-lite"
+                                <a href="/shahjahanpur" target="_blank" class="matrix-pill matrix-pill-lite"
                                     style="text-decoration: none">
                                     Shahjahanpur
                                 </a>
@@ -425,7 +425,7 @@
                         </td>
                         <td class="text-center">
 
-                            <a href="/jaunpur/all-posts" target="_blank" class="matrix-pill matrix-pill-lite"
+                            <a href="/jaunpur" target="_blank" class="matrix-pill matrix-pill-lite"
                                 style="text-decoration: none">
                                 Jaunpur
                             </a>
@@ -443,7 +443,7 @@
                                         ? json_decode($meerutPortal->ext_urls, true)
                                         : $meerutPortal->ext_urls;
                                 @endphp
-                                <div class="dropdown w-100">
+                                <div class="dropdown w-100" data-bs-auto-close="false">
                                     <button type="button" class="matrix-pill matrix-pill-lite dropdown-toggle"
                                         id="{{ $dropdownId }}" data-bs-toggle="dropdown" aria-expanded="false">
                                         {{ $meerutPortal->city_name ?? 'Meerut' }}
@@ -472,7 +472,7 @@
                                     </ul>
                                 </div>
                             @else
-                                <a href="/meerut/all-posts" target="_blank" class="matrix-pill matrix-pill-lite"
+                                <a href="/meerut" target="_blank" class="matrix-pill matrix-pill-lite"
                                     style="text-decoration: none">
                                     Meerut
                                 </a>
@@ -496,7 +496,7 @@
                             <span class="matrix-pill matrix-pill-outline">Coming Soon</span>
                         </td>
                         <td class="text-center">
-                            <span class="matrix-pill matrix-pill-outline">Coming Soon</span>
+                            <span class="matrix-pill matrix-pill-outline" style="min-width: 100px;">Coming Soon</span>
                         </td>
                         <td class="text-center">
                             <span class="matrix-pill matrix-pill-outline">Coming Soon</span>
@@ -870,6 +870,8 @@
             </div>
         </div>
     </div>
+
+
 
 
 
