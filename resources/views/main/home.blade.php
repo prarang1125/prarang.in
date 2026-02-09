@@ -87,6 +87,100 @@
             padding-left: 2px !important;
         }
     </style>
+    <style>
+        /* Hover */
+        .flex-wrap div:nth-child(5) .hover\:text-white {
+            color: #ffffff;
+        }
+
+        /* Hover (hover) */
+        .flex-wrap a .hover\:shadow-lg:hover {
+            color: #ffffff !important;
+        }
+
+
+
+        /* Image */
+        .flex-wrap .items-center img {
+            width: 20px;
+            min-height: 50px !important;
+            height: 50px !important;
+            margin-bottom: 0px !important;
+            position: relative;
+            top: -25px;
+            left: 30px;
+            right: 0px;
+        }
+
+        /* Hover */
+        .flex-wrap a .hover\:shadow-lg {
+            width: 145px;
+        }
+
+        /* Hover */
+        .flex-wrap a .hover\:shadow-xl {
+            width: 145px;
+        }
+
+        /* Span Tag (hover) */
+        .flex-wrap a span:hover {
+            color: #ffffff !important;
+        }
+
+        @media (max-width:576px) {
+
+            /* Hover */
+            .flex-wrap a .hover\:shadow-xl {
+                height: 49px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* Hover */
+            .w-full .items-center .flex-col a .hover\:shadow-lg {
+                height: 49px;
+            }
+
+            /* Hover */
+            .flex-wrap .cursor-pointer .hover\:shadow-lg {
+                height: 49px;
+            }
+
+            /* Justify center */
+            .flex-wrap a .justify-center {
+                position: relative;
+                top: -2px;
+            }
+
+            /* Text base */
+            .w-full .items-center .flex-col a .hover\:shadow-lg .text-base {
+                position: relative;
+                top: 2px;
+            }
+
+            /* Nepal click */
+            #nepal-click {
+                position: relative;
+                top: 2px;
+            }
+
+        }
+
+        /* Hover (hover) */
+        div:nth-child(3) a .hover\:text-white:hover {
+            color: #020202;
+        }
+
+        .flex-wrap a:nth-child(1) .hover\:text-white:hover {
+            color: #020202;
+        }
+
+        /* Hover (hover) */
+        .w-full .flex-col .hover\:text-white:hover {
+            color: #020202;
+        }
+    </style>
     <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-10 ">
 
 
@@ -114,16 +208,21 @@
                     <div class="flex flex-col items-center">
                         <span
                             class="text-[10px] text-center font-bold uppercase text-blue-700 tracking-[0.15em] block mb-2">
-                            Total
+                            Total India
                         </span>
                         <a href="/city-webs" class="no-underline">
                             <div
-                                class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl px-6 py-2.5 border border-blue-200 hover:from-blue-500 hover:to-blue-600 hover:border-blue-500 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
-                                <span
-                                    class="text-base font-black text-gray-800 hover:text-white transition-colors">India
-                                    - 520</span>
+                                class="bg-blue-400 rounded-xl px-6 py-2.5 border border-blue-200 hover:from-blue-500 hover:to-blue-600 hover:border-blue-500 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
+                                <div class="flex items-center justify-center gap-2">
+                                    <span class="text-base font-black text-white hover:text-white transition-colors">
+                                        520</span>
+
+                                </div>
                             </div>
                         </a>
+                        <div>
+                            <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
+                        </div>
                     </div>
                     <div class="flex flex-col items-center">
                         <span
@@ -136,6 +235,9 @@
                                 <span class="text-base font-black text-white">298</span>
                             </div>
                         </a>
+                        <div>
+                            <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -166,32 +268,38 @@
                     <div class="flex flex-col items-center">
                         <span
                             class="text-[10px] text-center font-bold uppercase text-yellow-900 tracking-[0.15em] block mb-2">
-                            Total
+                            World Total
                         </span>
                         <a href="/lang-webs" class="no-underline">
-                            <div
-                                class="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl px-6 py-2.5 border border-yellow-300 hover:from-yellow-400 hover:to-yellow-500 hover:border-yellow-500 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
-                                <span
-                                    class="text-base font-black text-gray-800 hover:text-white transition-colors">178</span>
+                            <div style="background: #FFFF00;"
+                                class=" rounded-xl px-6 py-2.5 border border-yellow-300 hover:from-yellow-400 hover:to-yellow-500 hover:border-yellow-500 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
+                                <div class="flex items-center justify-center gap-2">
+                                    <span
+                                        class="text-base font-black text-gray-800 hover:text-white transition-colors">178</span>
+
+                                </div>
                             </div>
                         </a>
+                        <div>
+                            <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
+                        </div>
                     </div>
                     <div class="flex flex-col items-center">
                         <span
                             class="text-[10px] text-center font-bold uppercase text-yellow-900 tracking-[0.15em] block mb-2">
                             Live
                         </span>
-                        <div class="flex gap-2">
+                        <div class="flex flex-col gap-2">
                             <a href="https://humsabek.in" target="_blank" class="no-underline">
-                                <div
-                                    class="bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-xl px-6 py-2.5 border border-yellow-500 hover:from-yellow-500 hover:to-yellow-600 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
+                                <div style="background: #FFFF00;"
+                                    class=" rounded-xl px-6 py-2.5 border border-yellow-500 hover:from-yellow-500 hover:to-yellow-600 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
                                     <span
                                         class="text-base font-black text-gray-800 hover:text-white transition-colors">Hindi</span>
                                 </div>
                             </a>
                             <a href="/english-web" target="_blank" class="no-underline">
-                                <div
-                                    class="bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-xl px-6 py-2.5 border border-yellow-500 hover:from-yellow-500 hover:to-yellow-600 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
+                                <div style="background: #FFFF00;"
+                                    class="rounded-xl px-6 py-2.5 border border-yellow-500 hover:from-yellow-500 hover:to-yellow-600 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
                                     <span
                                         class="text-base font-black text-gray-800 hover:text-white transition-colors">English</span>
                                 </div>
@@ -225,22 +333,30 @@
                     <div class="flex flex-col items-center">
                         <span
                             class="text-[10px] text-center font-bold uppercase text-rose-700 tracking-[0.15em] block mb-2">
-                            Total
+                            World Total
                         </span>
                         <a href="/country-webs" class="no-underline">
                             <div
                                 class="bg-gradient-to-br from-rose-50 to-rose-100 rounded-xl px-6 py-2.5 border border-rose-200 hover:from-rose-400 hover:to-rose-500 hover:border-rose-400 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
-                                <span
-                                    class="text-base font-black text-gray-800 hover:text-white transition-colors">195</span>
+                                <div class="flex items-center justify-center gap-2">
+                                    <span
+                                        class="text-base font-black text-gray-800 hover:text-white transition-colors">195</span>
+
+                                </div>
+
                             </div>
                         </a>
+
+                        <div>
+                            <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
+                        </div>
                     </div>
                     <div class="flex flex-col items-center">
                         <span
                             class="text-[10px] text-center font-bold uppercase text-rose-700 tracking-[0.15em] block mb-2">
                             Live
                         </span>
-                        <div class="flex gap-2">
+                        <div class="flex flex-col gap-2">
                             <a href="https://indiaczech.com" target="_blank" class="no-underline">
                                 <div
                                     class="bg-gradient-to-br from-rose-400 to-rose-500 rounded-xl px-6 py-2.5 border border-rose-500 hover:from-rose-500 hover:to-rose-600 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
