@@ -541,15 +541,17 @@
                             </tbody>
                         </table>
 
-                        <p class="small">
-                            Notes: Population (2025) figures are based on the UN Population Division Report (2024).
-                            Literacy rates are derived from the CIA World Factbook (2022). Internet access data is
-                            sourced from UN ICT Data (2024). Social media usage percentages (Facebook, Instagram,
-                            LinkedIn, and X) are based on respective advertising modules as of December 2025.
 
-                        </p>
                     </div>
                     <div class="scroll-hint">&larr; Scroll horizontally &rarr;</div>
+                    <p class="small" style="text-align: justify !important; padding: 0px 15px;">
+                        Notes: Population (2025) figures are based on the UN Population Division Report (2024).
+                        Literacy rates are derived from the CIA World Factbook (2022). Internet access data is
+                        sourced from UN ICT Data (2024). Social media usage percentages (Facebook, Instagram,
+                        LinkedIn, and X) are based on respective advertising modules as of December 2025.
+
+                    </p>
+
                 </div>
             </div>
         </div>
