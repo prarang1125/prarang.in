@@ -640,7 +640,7 @@
     }
 </style>
 
-<body class="bg-light" style="min-height: 100vh !important;">
+<body class="bg-light" style="min-height: 100vh !important;" style="background: #ffffff !important;">
 
     <div id="main-header" class="">
         <header class="bg-white container-fluid py-3 d-none d-lg-block">

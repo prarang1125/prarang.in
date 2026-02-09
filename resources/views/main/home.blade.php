@@ -208,7 +208,7 @@
                     <div class="flex flex-col items-center">
                         <span
                             class="text-[10px] text-center font-bold uppercase text-blue-700 tracking-[0.15em] block mb-2">
-                            Total India
+                            India Total
                         </span>
                         <a href="/city-webs" class="no-underline">
                             <div
