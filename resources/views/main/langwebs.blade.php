@@ -5,8 +5,8 @@
             display: none;
             text-align: center;
             padding: 6px;
-            background: linear-gradient(90deg, transparent, #007bff, transparent);
-            color: #ffffff;
+            background: linear-gradient(90deg, transparent, #ffff00, transparent);
+            color: #000000;
             font-size: 10px;
             font-weight: 600;
             border-radius: 0 0 4px 4px;
@@ -56,12 +56,12 @@
             background-color: #fff;
         }
 
-        .table-wrapper .table-striped thead .bg-warning .bg-warning {
+        .table-wrapper .table-striped thead .bg-war .bg-war {
             font-size: 14px;
             font-weight: 500;
         }
 
-        .table-sec thead .bg-warning .bg-warning {
+        .table-sec thead .bg-war .bg-war {
             font-size: 14px;
             font-weight: 500;
         }
@@ -128,6 +128,75 @@
         /* #countryModal #countryTableBody tr:hover td:not(:empty) {
             background: #fff3cd;
         } */
+        @media (max-width:576px) {
+
+            /* Table Data */
+
+            .container tr th:nth-child(2) {
+                z-index: 100;
+                position: sticky;
+                left: -5px;
+            }
+
+            .container .table-wrapper tr td:nth-child(2) {
+
+                position: sticky;
+                left: -5px;
+            }
+        }
+
+        @media (max-width:767px) {
+
+            /* Body Of Table */
+            .container .table-wrapper tbody {
+                overflow: scroll;
+                /* transform: translatex(0px) translatey(0px);
+            } */
+
+                /* Table Data */
+                .container .table-wrapper tr:nth-child(2) td:nth-child(2) {
+                    position: sticky;
+                    left: -10px;
+                }
+
+            }
+
+            @media (max-width:576px) {
+
+                /* Table Data */
+                .table-responsive .table-striped tbody tr td:nth-child(2) {
+                    position: sticky;
+                    left: -5px;
+                }
+
+                /* Body Of Table */
+                .container .mt-3 .table-responsive .table-striped tbody {
+                    height: 8vh !important;
+                }
+
+                /* Table responsive */
+                .container .mt-3 .table-responsive {
+                    min-height: 80vh;
+                    overflow: scroll;
+                    max-height: 80vh;
+                }
+
+            }
+
+            .bg-war {
+                background: #ffff00 !important;
+                color: black;
+            }
+
+            /* Text dark */
+            .table-wrapper .table-striped thead .text-dark .text-dark {
+                background-color: #ffff00;
+            }
+
+            /* Text dark */
+            .table-responsive .table-striped thead .text-dark .text-dark {
+                background-color: #ffff00;
+            }
     </style>
 
     {{-- Back Button --}}
@@ -181,17 +250,17 @@
 
 
                 <thead>
-                    <tr class="bg-warning text-dark">
-                        <th class="bg-warning text-dark">Sr.</th>
-                        <th class="bg-warning text-dark">Language</th>
-                        <th class="bg-warning text-dark">Language Family (Spoken)</th>
-                        <th class="bg-warning text-dark">Population (2021)</th>
-                        <th class="bg-warning text-dark">Content on Internet (%)</th>
-                        <th class="bg-warning text-dark">Content on Wikipedia (%)</th>
-                        <th class="bg-warning text-dark">Scripts</th>
-                        <th class="bg-warning text-dark">Language Family (Writing)</th>
-                        <th class="bg-warning text-dark">Writing System</th>
-                        <th class="bg-warning text-dark">No. Of Countries</th>
+                    <tr class="bg-war text-dark">
+                        <th class="bg-war text-dark">Sr.</th>
+                        <th class="bg-war text-dark">Language</th>
+                        <th class="bg-war text-dark">Language Family (Spoken)</th>
+                        <th class="bg-war text-dark">Population (2021)</th>
+                        <th class="bg-war text-dark">Content on Internet (%)</th>
+                        <th class="bg-war text-dark">Content on Wikipedia (%)</th>
+                        <th class="bg-war text-dark">Scripts</th>
+                        <th class="bg-war text-dark">Language Family (Writing)</th>
+                        <th class="bg-war text-dark">Writing System</th>
+                        <th class="bg-war text-dark">No. Of Countries</th>
                     </tr>
                 </thead>
 
@@ -233,9 +302,10 @@
 
             </table>
 
-            <div class="scroll-hint">&larr; Scroll horizontally &rarr;</div>
+
         </div>
         <div class="table-footer-total">Total - 148 Languages</div>
+        <div class="scroll-hint">&larr; Scroll horizontally &rarr;</div>
 
     </section>
 
@@ -256,17 +326,17 @@
 
 
                 <thead>
-                    <tr class="bg-warning text-dark">
-                        <th class="bg-warning text-dark">Sr.</th>
-                        <th class="bg-warning text-dark">Language</th>
-                        <th class="bg-warning text-dark">Language Family (Spoken)</th>
-                        <th class="bg-warning text-dark">Population (2021)</th>
-                        <th class="bg-warning text-dark">Content on Internet (%)</th>
-                        <th class="bg-warning text-dark">Content on Wikipedia (%)</th>
-                        <th class="bg-warning text-dark">Scripts</th>
-                        <th class="bg-warning text-dark">Language Family (Writing)</th>
-                        <th class="bg-warning text-dark">Writing System</th>
-                        <th class="bg-warning text-dark">No. Of Countries</th>
+                    <tr class="bg-war text-dark">
+                        <th class="bg-war text-dark">Sr.</th>
+                        <th class="bg-war text-dark">Language</th>
+                        <th class="bg-war text-dark">Language Family (Spoken)</th>
+                        <th class="bg-war text-dark">Population (2021)</th>
+                        <th class="bg-war text-dark">Content on Internet (%)</th>
+                        <th class="bg-war text-dark">Content on Wikipedia (%)</th>
+                        <th class="bg-war text-dark">Scripts</th>
+                        <th class="bg-war text-dark">Language Family (Writing)</th>
+                        <th class="bg-war text-dark">Writing System</th>
+                        <th class="bg-war text-dark">No. Of Countries</th>
                     </tr>
                 </thead>
 
@@ -312,13 +382,14 @@
 
 
             </table>
-            <div class="scroll-hint">&larr; Scroll horizontally &rarr;</div>
+
 
 
 
         </div>
 
         <div class="table-footer-total">Total - 30 Languages</div>
+        <div class="scroll-hint">&larr; Scroll horizontally &rarr;</div>
 
 
     </section>
