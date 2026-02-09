@@ -1,5 +1,22 @@
 <x-layout.main.base>
     <style>
+        .scroll-hint {
+            display: none;
+            text-align: center;
+            padding: 6px;
+            background: linear-gradient(90deg, transparent, #e74c3c, transparent);
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 600;
+            border-radius: 0 0 4px 4px;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-hint {
+                display: block;
+            }
+        }
+
         .modern-table {
             font-size: 13px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -136,12 +153,18 @@
         }
 
         .modal-body {
-            padding: 20px;
+            padding-top: 0px !important;
         }
 
         .modal-body table {
             width: 100%;
             font-size: 13px;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .modal-body table.table-bordered {
+            border: 0;
         }
 
         .modal-body table thead th {
@@ -152,6 +175,11 @@
             text-transform: uppercase;
             font-size: 11px;
             border: 1px solid #c0392b;
+            box-shadow: inset 0 -1px 0 #c0392b;
+        }
+
+        .modal-body table tbody tr:first-child td {
+            border-top: 0;
         }
 
         .modal-body table tbody td {
@@ -207,10 +235,45 @@
         }
     </style>
     <style>
-        /* Th */
-        .container .modal th {
+        /* Modal table header */
+        .container .modal thead th {
             position: sticky;
-            top: -20px;
+            top: 0;
+            z-index: 7;
+            background-color: #e74c3c;
+        }
+
+        /* Modal table: sticky first two columns for horizontal scroll */
+        .container .modal table th:first-child,
+        .container .modal table td:first-child {
+            position: sticky;
+            left: 0;
+            z-index: 6;
+            background-color: #fff;
+            min-width: 56px;
+            width: 56px;
+        }
+
+        .container .modal table th:nth-child(2),
+        .container .modal table td:nth-child(2) {
+            position: sticky;
+            left: 56px;
+            z-index: 5;
+            background-color: #fff;
+            min-width: 180px;
+            width: 180px;
+        }
+
+        .container .modal table thead th:first-child,
+        .container .modal table thead th:nth-child(2) {
+            background-color: #e74c3c;
+            color: #fff;
+            z-index: 8;
+        }
+
+        .container .modal table td:first-child,
+        .container .modal table td:nth-child(2) {
+            box-shadow: 2px 0 4px rgba(0, 0, 0, 0.08);
         }
 
         @media (max-width:576px) {
@@ -218,7 +281,9 @@
             /* Table Data */
             .container .modal tr td:nth-child(2) {
                 position: sticky;
-                left: -18px;
+                left: 56px;
+                z-index: 5;
+                background-color: #fff;
             }
 
 
@@ -318,7 +383,11 @@
                 <tbody>
                     <tr>
                         <th>1</th>
-                        <td>Africa</td>
+                        <td>
+                            <a class="text-primary cursor-pointer" data-bs-toggle="modal"
+                                data-bs-target="#modal-1">Africa</a>
+
+                        </td>
                         <td>1548</td>
                         <td>67%</td>
                         <td>38%</td>
@@ -331,7 +400,8 @@
                     </tr>
                     <tr>
                         <th>2</th>
-                        <td>Asia</td>
+                        <td> <a class="text-primary cursor-pointer" data-bs-toggle="modal"
+                                data-bs-target="#modal-2">Asia</a></td>
                         <td>4247</td>
                         <td>85%</td>
                         <td>68%</td>
@@ -344,7 +414,8 @@
                     </tr>
                     <tr>
                         <th>3</th>
-                        <td>Central America and the Caribbean</td>
+                        <td> <a class="text-primary cursor-pointer" data-bs-toggle="modal"
+                                data-bs-target="#modal-3">Central America and the Caribbean</a></td>
                         <td>225</td>
                         <td>91%</td>
                         <td>73%</td>
@@ -357,7 +428,8 @@
                     </tr>
                     <tr>
                         <th>4</th>
-                        <td>Europe</td>
+                        <td> <a class="text-primary cursor-pointer" data-bs-toggle="modal"
+                                data-bs-target="#modal-4">Europe</a></td>
                         <td>600</td>
                         <td>99%</td>
                         <td>90%</td>
@@ -370,7 +442,8 @@
                     </tr>
                     <tr>
                         <th>5</th>
-                        <td>North America</td>
+                        <td> <a class="text-primary cursor-pointer" data-bs-toggle="modal"
+                                data-bs-target="#modal-5">North America</a></td>
                         <td>387</td>
                         <td>87%</td>
                         <td>96%</td>
@@ -383,7 +456,8 @@
                     </tr>
                     <tr>
                         <th>6</th>
-                        <td>South America</td>
+                        <td> <a class="text-primary cursor-pointer" data-bs-toggle="modal"
+                                data-bs-target="#modal-6">South America</a></td>
                         <td>438</td>
                         <td>95%</td>
                         <td>80%</td>
@@ -396,7 +470,8 @@
                     </tr>
                     <tr>
                         <th>7</th>
-                        <td>South East Asia and Oceania</td>
+                        <td> <a class="text-primary cursor-pointer" data-bs-toggle="modal"
+                                data-bs-target="#modal-7">Oceania</a></td>
                         <td>746</td>
                         <td>94%</td>
                         <td>72%</td>
@@ -477,6 +552,7 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        <div class="scroll-hint">&larr; Scroll horizontally &rarr;</div>
                         <p class="small">
                             Notes: Population (2025) figures are based on the UN Population Division Report (2024).
                             Literacy rates are derived from the CIA World Factbook (2022). Internet access data is
