@@ -521,8 +521,8 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="scroll-hint">&larr; Scroll horizontally &rarr;</div>
         </div>
+        <div class="scroll-hint">&larr; Scroll horizontally &rarr;</div>
     </section>
 
     @foreach ($portal as $zone => $states)
