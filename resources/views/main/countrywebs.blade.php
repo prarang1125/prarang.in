@@ -54,7 +54,7 @@
         .table-responsive {
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            margin-bottom: 20px;
+            margin-bottom: 8px;
             max-height: calc(100vh - 250px);
             overflow-y: auto;
         }
@@ -106,7 +106,7 @@
 
             .modern-table thead th:nth-child(2),
             .modern-table tbody tr td:nth-child(1) {
-                left: 35px;
+                left: 0px;
                 box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
             }
 
@@ -193,7 +193,7 @@
 
         /* Scroll Indicator for Mobile */
         @media (max-width: 768px) {
-            .table-responsive::after {
+            .table-hori::after {
                 content: '← Scroll horizontally →';
                 display: block;
                 text-align: center;
@@ -243,35 +243,23 @@
             background-color: #e74c3c;
         }
 
-        /* Modal table: sticky first two columns for horizontal scroll */
-        .container .modal table th:first-child,
-        .container .modal table td:first-child {
-            position: sticky;
-            left: 0;
-            z-index: 6;
-            background-color: #fff;
-            min-width: 56px;
-            width: 56px;
-        }
-
+        /* Modal table: sticky only Country column for horizontal scroll */
         .container .modal table th:nth-child(2),
         .container .modal table td:nth-child(2) {
             position: sticky;
-            left: 56px;
-            z-index: 5;
+            left: 0;
+            z-index: 6;
             background-color: #fff;
             min-width: 180px;
             width: 180px;
         }
 
-        .container .modal table thead th:first-child,
         .container .modal table thead th:nth-child(2) {
             background-color: #e74c3c;
             color: #fff;
             z-index: 8;
         }
 
-        .container .modal table td:first-child,
         .container .modal table td:nth-child(2) {
             box-shadow: 2px 0 4px rgba(0, 0, 0, 0.08);
         }
@@ -281,8 +269,8 @@
             /* Table Data */
             .container .modal tr td:nth-child(2) {
                 position: sticky;
-                left: 56px;
-                z-index: 5;
+                left: 0;
+                z-index: 6;
                 background-color: #fff;
             }
 
@@ -308,7 +296,7 @@
             /* Table Data */
             .modern-table tr td:nth-child(2) {
                 position: sticky;
-                left: -15px !important;
+                left: 0px !important;
                 z-index: 100 !important;
 
             }
@@ -363,7 +351,7 @@
         providing a comparative view of global digital reach and knowledge connectivity.</small>
 
 
-    <section class="mt-3">
+    <section class="mt-3 table-hori">
         <div class="table-responsive">
             <table class="table table-sm table-striped table-hover table-bordered modern-table">
                 <thead>
@@ -552,7 +540,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="scroll-hint">&larr; Scroll horizontally &rarr;</div>
+
                         <p class="small">
                             Notes: Population (2025) figures are based on the UN Population Division Report (2024).
                             Literacy rates are derived from the CIA World Factbook (2022). Internet access data is
@@ -561,6 +549,7 @@
 
                         </p>
                     </div>
+                    <div class="scroll-hint">&larr; Scroll horizontally &rarr;</div>
                 </div>
             </div>
         </div>

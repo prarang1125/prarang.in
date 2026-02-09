@@ -1,6 +1,23 @@
 <x-layout.main.base>
 
     <style>
+        .scroll-hint {
+            display: none;
+            text-align: center;
+            padding: 6px;
+            background: linear-gradient(90deg, transparent, #007bff, transparent);
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 600;
+            border-radius: 0 0 4px 4px;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-hint {
+                display: block;
+            }
+        }
+
         /* Partner */
         main .be-partner {
             display: flex;
@@ -809,6 +826,8 @@
                 </tbody>
             </table>
         </div>
+        <div class="scroll-hint">&larr; Scroll horizontally &rarr;</div>
+
         <div class="coming-soon-divider"><span>Coming Soon</span></div>
         <div class="language-tabs">
             <div class="language-tab">

@@ -38,7 +38,7 @@
         .table-responsive {
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            margin-bottom: 20px;
+            margin-bottom: 8px;
             max-height: calc(100vh - 250px);
             overflow-y: auto;
         }
@@ -74,24 +74,22 @@
             }
 
             /* Sticky first two columns (# and State) on mobile */
-            .modern-table thead th:nth-child(1),
             .modern-table thead th:nth-child(2),
-            .modern-table tbody td:nth-child(1),
             .modern-table tbody td:nth-child(2) {
                 position: sticky;
                 background-color: white;
                 z-index: 5;
             }
 
-            .modern-table thead th:nth-child(1),
+            /* .modern-table thead th:nth-child(1),
             .modern-table tbody td:nth-child(1) {
                 left: 0;
                 box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
-            }
+            } */
 
             .modern-table thead th:nth-child(2),
             .modern-table tbody td:nth-child(2) {
-                left: 40px;
+                left: 0px;
                 box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
             }
 
@@ -158,7 +156,7 @@
 
         /* Scroll Indicator for Mobile */
         @media (max-width: 768px) {
-            .table-responsive::after {
+            .table-hori::after {
                 content: '← Scroll horizontally →';
                 display: block;
                 text-align: center;
@@ -309,7 +307,7 @@
             create 901 City Knowledge Webs.
         </p>
     </section>
-    <section class="mt-3">
+    <section class="mt-3 table-hori">
         <div class="table-responsive">
             <table class="table table-sm table-striped table-hover table-bordered modern-table">
                 <thead>
