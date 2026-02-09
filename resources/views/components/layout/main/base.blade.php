@@ -761,7 +761,7 @@
     <footer>
         <div class="container-fluid">
             <br>
-            <div class="container mt-3">
+            {{-- <div class="container mt-3">
                 <div class="footer-design row">
                     <div class="col-sm-3">
                         <a href="https://www.prarang.in/privacy-policy" class="">
@@ -784,7 +784,7 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> --}}
             <div class="container-fluid">
 
             </div>

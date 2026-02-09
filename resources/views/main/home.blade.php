@@ -110,23 +110,32 @@
 
                     </div>
                 </div>
-                <div class="flex w-full mt-6 text-center">
-                    <a href="/city-webs" class="no-underline">
-                        <div class="flex-1 cursor-pointer group/stat px-2"> <span
-                                class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] block mb-1 group-hover/stat:text-blue-600 transition-colors">
-                                Total</span>
-                            <span class="text-base font-bold text-gray-800">India - 520</span>
-
-                        </div>
-                    </a>
-                    <div class="w-px h-8 bg-gray-200 self-center"></div>
-                    <div class="flex-1 cursor-pointer group/stat px-2">
+                <div class="flex w-full mt-6 gap-3 justify-center">
+                    <div class="flex flex-col items-center">
                         <span
-                            class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] block mb-1 group-hover/stat:text-blue-600 transition-colors">Live
+                            class="text-[10px] text-center font-bold uppercase text-blue-700 tracking-[0.15em] block mb-2">
+                            Total
                         </span>
-                        {{-- <span class="text-2xl font-black text-blue-600">298</span> --}}
-                        <a style="text-decoration: none" href="{{ route('home.india-city-webs') }}"> <span
-                                class="text-2xl font-black text-blue-600">298</span></a>
+                        <a href="/city-webs" class="no-underline">
+                            <div
+                                class="bg-gradient-to-br from-blue-50 to-blue-100 rounded-xl px-6 py-2.5 border border-blue-200 hover:from-blue-500 hover:to-blue-600 hover:border-blue-500 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
+                                <span
+                                    class="text-base font-black text-gray-800 hover:text-white transition-colors">India
+                                    - 520</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <span
+                            class="text-[10px] text-center font-bold uppercase text-blue-700 tracking-[0.15em] block mb-2">
+                            Live
+                        </span>
+                        <a href="{{ route('home.india-city-webs') }}" class="no-underline">
+                            <div
+                                class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl px-6 py-2.5 border border-blue-600 hover:from-blue-600 hover:to-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 min-w-[120px] text-center">
+                                <span class="text-base font-black text-white">298</span>
+                            </div>
+                        </a>
                     </div>
                 </div>
             </div>
@@ -150,29 +159,43 @@
                             <img src="{{ asset('assets/images/home/1.png') }}" alt="Language Icon"
                                 class=" object-contain drop-shadow-md">
                         </div>
-
                     </div>
 
                 </div>
-                <div class="flex w-full mt-6 text-center">
-                    <a class="no-underline " href="/lang-webs">
-                        <div class="flex-1 cursor-pointer group/stat px-2">
-                            <span
-                                class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] block mb-1 group-hover/stat:text-blue-600 transition-colors">Total</span>
-                            <span class="text-base font-bold text-gray-800">178</span>
-                        </div>
-                    </a>
-                    <div class="w-px h-8 bg-gray-200 self-center"></div>
-                    <div class="flex-1 cursor-pointer group/stat px-2">
+                <div class="flex w-full mt-6 gap-3 justify-center">
+                    <div class="flex flex-col items-center">
                         <span
-                            class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] block mb-1 group-hover/stat:text-blue-600 transition-colors">Live
+                            class="text-[10px] text-center font-bold uppercase text-yellow-900 tracking-[0.15em] block mb-2">
+                            Total
                         </span>
-                        <div class="flex flex-col justify-start items-start ps-5">
-                            <a class="no-underline" href="https://humsabek.in" target="_blank"><span
-                                    class="text-md font-black text-blue-600">Hindi</span></a>
-                            <a class="no-underline" href="/english-web" target="_blank"><span
-                                    class="text-md font-black text-blue-600">English</span></a>
-                            {{-- <span class="text-md font-black text-blue-600">Marathi</span> --}}
+                        <a href="/lang-webs" class="no-underline">
+                            <div
+                                class="bg-gradient-to-br from-yellow-50 to-yellow-100 rounded-xl px-6 py-2.5 border border-yellow-300 hover:from-yellow-400 hover:to-yellow-500 hover:border-yellow-500 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
+                                <span
+                                    class="text-base font-black text-gray-800 hover:text-white transition-colors">178</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <span
+                            class="text-[10px] text-center font-bold uppercase text-yellow-900 tracking-[0.15em] block mb-2">
+                            Live
+                        </span>
+                        <div class="flex gap-2">
+                            <a href="https://humsabek.in" target="_blank" class="no-underline">
+                                <div
+                                    class="bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-xl px-6 py-2.5 border border-yellow-500 hover:from-yellow-500 hover:to-yellow-600 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
+                                    <span
+                                        class="text-base font-black text-gray-800 hover:text-white transition-colors">Hindi</span>
+                                </div>
+                            </a>
+                            <a href="/english-web" target="_blank" class="no-underline">
+                                <div
+                                    class="bg-gradient-to-br from-yellow-400 to-yellow-500 rounded-xl px-6 py-2.5 border border-yellow-500 hover:from-yellow-500 hover:to-yellow-600 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
+                                    <span
+                                        class="text-base font-black text-gray-800 hover:text-white transition-colors">English</span>
+                                </div>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -198,26 +221,43 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex w-full mt-6 text-center">
-                    <a href="/country-webs" class="no-underline">
-                        <div class="flex-1 cursor-pointer group/stat px-2">
-                            <span
-                                class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] block mb-1 group-hover/stat:text-blue-600 transition-colors">Total</span>
-                            <span class="text-base font-bold text-gray-800">195</span>
-                        </div>
-                    </a>
-                    <div class="w-px h-8 bg-gray-200 self-center"></div>
-                    <div class="flex-1 cursor-pointer group/stat px-2">
+                <div class="flex w-full mt-6 gap-3 justify-center">
+                    <div class="flex flex-col items-center">
                         <span
-                            class="text-[10px] font-black uppercase text-gray-400 tracking-[0.2em] block mb-1 group-hover/stat:text-blue-600 transition-colors">Live
+                            class="text-[10px] text-center font-bold uppercase text-rose-700 tracking-[0.15em] block mb-2">
+                            Total
                         </span>
-                        <div class="flex flex-col justify-start items-start ps-5">
-                            <a class="no-underline" href="https://indiaczech.com" target="_blank"><span
-                                    class="text-md font-black text-blue-600">Czech Rep.</span></a>
+                        <a href="/country-webs" class="no-underline">
+                            <div
+                                class="bg-gradient-to-br from-rose-50 to-rose-100 rounded-xl px-6 py-2.5 border border-rose-200 hover:from-rose-400 hover:to-rose-500 hover:border-rose-400 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
+                                <span
+                                    class="text-base font-black text-gray-800 hover:text-white transition-colors">195</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="flex flex-col items-center">
+                        <span
+                            class="text-[10px] text-center font-bold uppercase text-rose-700 tracking-[0.15em] block mb-2">
+                            Live
+                        </span>
+                        <div class="flex gap-2">
+                            <a href="https://indiaczech.com" target="_blank" class="no-underline">
+                                <div
+                                    class="bg-gradient-to-br from-rose-400 to-rose-500 rounded-xl px-6 py-2.5 border border-rose-500 hover:from-rose-500 hover:to-rose-600 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
+                                    <span
+                                        class="text-base font-black text-white hover:text-rose-50 transition-colors">Czech
+                                        Rep.</span>
+                                </div>
+                            </a>
                             <span
                                 onclick="setTimeout(() => {document.getElementById('nepal-click').innerHTML='Coming Soon'}, 1000)"
-                                class="text-md font-black text-blue-600" id="nepal-click">Nepal</span>
-
+                                class="cursor-pointer">
+                                <div
+                                    class="bg-gradient-to-br from-rose-400 to-rose-500 rounded-xl px-6 py-2.5 border border-rose-500 hover:from-rose-500 hover:to-rose-600 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
+                                    <span class="text-base font-black text-white hover:text-rose-50 transition-colors"
+                                        id="nepal-click">Nepal</span>
+                                </div>
+                            </span>
                         </div>
                     </div>
                 </div>
@@ -374,10 +414,13 @@
                 let isHovering = false;
                 let animationFrameId = null;
 
-                card.addEventListener('mouseenter', function() {
-                    isHovering = true;
-                    tooltip.classList.add('show');
-                });
+                const mediaQuery = window.matchMedia("(min-width: 768px)");
+                if (mediaQuery.matches) {
+                    card.addEventListener('mouseenter', function() {
+                        isHovering = true;
+                        tooltip.classList.add('show');
+                    });
+                }
 
                 card.addEventListener('mousemove', function(e) {
                     if (!isHovering) return;
