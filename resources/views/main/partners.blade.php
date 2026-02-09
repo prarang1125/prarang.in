@@ -566,6 +566,27 @@
             font-size: 28px;
             margin-bottom: 11px !important;
         }
+
+        @media (max-width:520px) {
+
+            /* Flex */
+            .container>.flex {
+                flex-direction: column;
+            }
+
+        }
+
+        /* Auto */
+        .container .mx-auto {
+            padding-left: 0px !important;
+            padding-right: 0px !important;
+        }
+
+        /* Flex */
+        .container>.flex {
+            margin-right: 15px;
+            margin-left: 15px;
+        }
     </style>
     <section class=" container mt-4">
         <div class="row">
