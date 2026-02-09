@@ -1,5 +1,22 @@
 <x-layout.main.base>
     <style>
+        .scroll-hint {
+            display: none;
+            text-align: center;
+            padding: 6px;
+            background: linear-gradient(90deg, transparent, #007bff, transparent);
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 600;
+            border-radius: 0 0 4px 4px;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-hint {
+                display: block;
+            }
+        }
+
         .mx-auto .table-header-title-wrap h2 {
             font-size: 35px;
         }
@@ -217,7 +234,7 @@
         }
 
         .table-header-left {
-            padding-right: 16px;
+            padding-right: 0px;
         }
 
         .table-header-title {
@@ -504,6 +521,7 @@
                     </tr>
                 </tbody>
             </table>
+            <div class="scroll-hint">&larr; Scroll horizontally &rarr;</div>
         </div>
     </section>
 
