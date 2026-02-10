@@ -731,7 +731,9 @@
                                                 href="https://g2c.prarang.in/india">India Analytics</a></li>
                                         <li><a class="dropdown-item" target="_blank"
                                                 href="https://g2c.prarang.in/world">World Analytics</a></li>
-                                        <li><a class="dropdown-item" href="#">Planners</a></li>
+                                        <li><a class="dropdown-item"
+                                                href="https://g2c.prarang.in/planners">Planners</a>
+                                        </li>
                                         <li><a class="dropdown-item" href="/cirus">Cyber Risk Analyser
                                             </a></li>
 
