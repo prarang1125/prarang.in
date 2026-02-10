@@ -86,7 +86,7 @@
                             contenteditable="false" id="style-WKIDT"> Lucknow , U.P</a>
                     </div>
                 </div>
-               
+
                 <div class="col-sm-2">
                     <div class="m-2">
                         <a href=" https://b2b.prarang.in/semiotic/YzI=" class="semiotic-btn style-JeodN"

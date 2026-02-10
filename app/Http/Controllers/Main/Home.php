@@ -319,4 +319,27 @@ class Home extends Controller
             });
         return view('main.indiacitywebs', compact('portal'));
     }
+
+
+    public function knowledgePosts()
+    {
+
+        return view('main.knowledge_posts');
+    }
+
+    public function businessApps()
+    {
+
+        return view('main.business_apps');
+    }
+
+    public function cityPortals()
+    {
+        return view('main.city_portals');
+    }
+
+    public function countryPortals()
+    {
+        return view('main.country_portals');
+    }
 }

@@ -50,6 +50,11 @@ Route::get('/get-countries/{langId}', [Home::class, 'geCountrytByLanguage'])
 
 Route::get('india-city-webs', [Home::class, 'indiaCityWebs'])->name('home.india-city-webs');
 
+Route::get('knowledge-posts', [Home::class, 'knowledgePosts'])->name('home.knowledge-posts');
+Route::get('business-apps', [Home::class, 'businessApps'])->name('home.business-apps');
+Route::get('city-portals', [Home::class, 'cityPortals'])->name('home.city-portals');
+Route::get('country-portals', [Home::class, 'countryPortals'])->name('home.country-portals');
+
 Route::get('/{city}/all-posts/{name?}/{forabour?}', [postController::class, 'getChittiData'])->name('posts.city');
 Route::get('/{slug}/posts/{id}/{subTitle?}', [PostController::class, 'post_summary'])->name('post-summary');
 

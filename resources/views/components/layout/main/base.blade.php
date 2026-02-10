@@ -703,7 +703,24 @@
                                 Solutions
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="/content">Content</a></li>
+                                <li class="dropdown">
+                                    <a class="dropdown-item dropdown-toggle" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
+                                        Content
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item"
+                                                href="{{ route('home.knowledge-posts') }}">Knowledge Posts
+                                            </a></li>
+                                        <li><a class="dropdown-item"
+                                                href="{{ route('home.business-apps') }}">Business
+                                                Apps
+                                            </a></li>
+
+
+                                    </ul>
+                                    {{-- <a class="dropdown-item" href="/content">Content</a> --}}
+                                </li>
                                 <li class="dropdown">
                                     <a class="dropdown-item dropdown-toggle" href="#" role="button"
                                         data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
@@ -714,11 +731,25 @@
                                                 href="https://g2c.prarang.in/india">India Analytics</a></li>
                                         <li><a class="dropdown-item" target="_blank"
                                                 href="https://g2c.prarang.in/world">World Analytics</a></li>
-                                        <li><a class="dropdown-item" href="/cirus">CIRUS</a></li>
+                                        <li><a class="dropdown-item" href="#">Planners</a></li>
+                                        <li><a class="dropdown-item" href="/cirus">Cyber Risk Analyser
+                                            </a></li>
 
                                     </ul>
                                 </li>
-                                <li><a class="dropdown-item" href="/ai/upmana">A.I.</a></li>
+                                <li class="dropdown">
+                                    <a class="dropdown-item dropdown-toggle" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
+                                        Artificial Intelligence
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" target="_blank" href="/ai/upmana">Comparative
+                                                A.I.
+                                            </a></li>
+
+                                    </ul>
+                                    {{-- <a class="dropdown-item" href="/ai/upmana">Artificial Intelligence</a> --}}
+                                </li>
                                 <li class="dropdown">
                                     <a class="dropdown-item dropdown-toggle" href="#" role="button"
                                         data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
@@ -727,6 +758,24 @@
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="/semiotics">Semiotics</a></li>
                                         <li><a class="dropdown-item" href="/partners">Partner Metrics
+                                            </a></li>
+                                    </ul>
+                                </li>
+
+                                <li class="dropdown">
+                                    <a class="dropdown-item dropdown-toggle" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
+                                        Portals
+
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item" href="{{ route('home.city-portals') }}">City
+                                                Portals
+                                            </a></li>
+                                        <li><a class="dropdown-item"
+                                                href="{{ route('home.country-portals') }}">Country
+                                                Portals
+
                                             </a></li>
                                     </ul>
                                 </li>
