@@ -182,8 +182,6 @@
         }
     </style>
     <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-10 ">
-
-
         <!-- Cards Section -->
         <div class="flex flex-wrap justify-center items-center gap-4 lg:gap-6">
             <div>
