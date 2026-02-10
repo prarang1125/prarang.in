@@ -215,9 +215,8 @@
         </h2>
     </div> --}}
     <section>
-        <h4 class=" flex  justify-center items-center text-center text-dark font-bold firstimg">
-            <img src="{{ asset('images/langlogo.png') }}" alt="Globe" class="rotate-left"
-                style="width: 50px; height: 50px;">
+        <h4 class=" flex  justify-center items-center text-center text-dark font-bold">
+            <img src="{{ asset('images/lang2.png') }}" alt="Globe" style="width: 56px;height: 44px;">
             World - 178 Language Webs
             <img src="{{ asset('images/langlogo.png') }}" alt="Globe" style="width: 50px; height: 50px;">
         </h4>
