@@ -350,8 +350,74 @@
         .feature-modal #style-SB9YH.style-SB9YH {
             cursor: pointer;
         }
-    </style>
 
+        .dropdown-m {
+            position: relative;
+        }
+
+        .dropdown-m .dropdown-menu {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+            background: #fff;
+            border-radius: 8px;
+        }
+
+        .dropdown-m.show .dropdown-menu {
+            display: block;
+        }
+    </style>
+    <style>
+        .dropdown-m {
+            position: relative;
+            width: 100%;
+        }
+
+        /* Button styling */
+        .dropdown-btn {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        /* Hide dropdown by default */
+        .dropdown-menu-custom {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: #fff;
+            display: none;
+            list-style: none;
+            margin: 5px 0 0 0;
+            padding: 0;
+            border-radius: 6px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            z-index: 999;
+        }
+
+        /* Show when button is focused */
+        .dropdown-m:focus-within .dropdown-menu-custom {
+            display: block;
+        }
+
+        /* Item styling */
+        .dropdown-menu-custom li a {
+            display: block;
+            padding: 10px 15px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .dropdown-menu-custom li a:hover {
+            background-color: #f5f5f5;
+        }
+
+        .matrix-bg tr .dropdown-btn {
+            width: 46% !important;
+        }
+    </style>
     <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-10">
         <div class="table-header-title-wrap">
             <h2 class="table-header-title">City Webs</h2>
@@ -460,21 +526,22 @@
                                         ? json_decode($meerutPortal->ext_urls, true)
                                         : $meerutPortal->ext_urls;
                                 @endphp
-                                <div class="dropdown w-100" data-bs-auto-close="false">
-                                    <button type="button" class="matrix-pill matrix-pill-lite dropdown-toggle"
-                                        id="{{ $dropdownId }}" data-bs-toggle="dropdown" aria-expanded="false">
+                                <div class="dropdown-m w-100">
+                                    <button type="button" class="matrix-pill matrix-pill-lite dropdown-btn">
                                         {{ $meerutPortal->city_name ?? 'Meerut' }}
                                     </button>
-                                    <ul class="dropdown-menu shadow border-0 py-2 w-100"
-                                        aria-labelledby="{{ $dropdownId }}">
+
+                                    <ul class="dropdown-menu-custom shadow border-0 py-2 w-100">
                                         <li>
                                             <a class="dropdown-item py-2 px-3" href="/{{ $meerutPortal->slug }}">
                                                 Main Portal
                                             </a>
                                         </li>
+
                                         <li>
-                                            <hr class="dropdown-divider">
+                                            <hr>
                                         </li>
+
                                         @if (is_array($extUrls))
                                             @foreach ($extUrls as $extUrl)
                                                 <li>
