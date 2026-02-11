@@ -8,7 +8,7 @@ app.use(express.json());
 // 🔑 Base OpenRouter API
 const OPENROUTER_API = 'https://openrouter.ai/api/v1/chat/completions';
 const headers = {
-    'Authorization': `Bearer ${process.env.OPENROUTER_API_KEY}`,
+    'Authorization': 'Bearer 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',
     'HTTP-Referer': 'https://prarang.in/', // optional
     'X-Title': 'Parallel LLM Service',
     'Content-Type': 'application/json',
@@ -108,3 +108,4 @@ app.get('/', (req, res) => {
 
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => console.log(`🚀 AI Service running on port ${PORT}`));
+
