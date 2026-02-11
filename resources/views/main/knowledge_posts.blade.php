@@ -31,7 +31,7 @@
         }
 
         .table-header-title {
-            font-size: 28px;
+            font-size: 20px;
             font-weight: 700;
             color: #2c4f92;
             margin: 0 0 2px 0;
@@ -168,6 +168,22 @@
         .tooltip-bubble.is-visible {
             display: block;
         }
+
+        .feature-modal ul {
+            padding-left: 0 !important;
+        }
+
+        @media (max-width: 575.98px) {
+            .table-header-title {
+                font-size: 32px !important;
+            }
+
+
+
+            .table-header-text {
+                font-size: 14px;
+            }
+        }
     </style>
 
     <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-1">
@@ -202,11 +218,12 @@
         <div class="city-tabs">
             <div class="city-tabs-label">India-Cities :</div>
             <div class="city-tabs-list">
-                <a class="city-tab" href="/lucknow" target="_blank">Lucknow</a>
-                <a class="city-tab" href="/meerut" target="_blank">Meerut</a>
-                <a class="city-tab" href="/rampur" target="_blank">Rampur</a>
-                <a class="city-tab" href="/jaunpur" target="_blank">Jaunpur</a>
-                <a class="city-tab" href="/shahjahanpur" target="_blank">Shahjahanpur</a>
+                <a class="city-tab" href="https://www.prarang.in/lucknow/all-posts" target="_blank">Lucknow</a>
+                <a class="city-tab" href="https://www.prarang.in/meerut/all-posts" target="_blank">Meerut</a>
+                <a class="city-tab" href="https://www.prarang.in/rampur/all-posts" target="_blank">Rampur</a>
+                <a class="city-tab" href="https://www.prarang.in/jaunpur/all-posts" target="_blank">Jaunpur</a>
+                <a class="city-tab" href="https://www.prarang.in/shahjahanpur/all-posts"
+                    target="_blank">Shahjahanpur</a>
 
             </div>
         </div>
@@ -214,7 +231,8 @@
         <div class="city-tabs">
             <div class="city-tabs-label">Country :</div>
             <div class="city-tabs-list">
-                <a class="city-tab" href="https://www.indiaczech.com/" target="_blank">India-Czech</a>
+                <a class="city-tab" href="https://www.indiaczech.com/india-czech-republic/all-posts"
+                    target="_blank">India-Czech</a>
                 {{-- <a class="city-tab" href="#" target="_blank">India-Nepal</a> --}}
                 <span class="tooltip-wrap">
                     <button type="button" class="btn btn-secondary city-tab" data-tooltip="Coming soon">
@@ -259,7 +277,7 @@
                                         <p id="style-Qy8gD" class="style-Qy8gD"> Daily connect with 20% population
                                         </p>
                                         <img src="{{ asset('assets/images/reach-gif.gif') }}" class="img-responsive">
-                                        <ul>
+                                        <ul style="padding-left: 0px !important">
                                             <li> Daily Picture-Centric Content Curation for Netizens of each City
                                                 (365
                                                 days/

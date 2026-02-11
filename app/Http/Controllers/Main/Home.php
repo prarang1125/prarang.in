@@ -238,7 +238,7 @@ class Home extends Controller
     public function cityWebs()
     {
         $popData = Cache::remember("cityweb-popup", 30 * 60 * 60, function () {
-            return collect(config('cityweb.popup'))->groupBy('StateID')->toArray();
+            return collect(config('cityweb.popup'))->sortBy('City')->groupBy('StateID')->toArray();
         });
 
         $state = Cache::remember("cityweb-state", 30 * 60 * 60, function () {

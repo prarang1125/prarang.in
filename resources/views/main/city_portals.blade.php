@@ -1,4 +1,4 @@
-<x-layout.main.base>
+<x-layout.main.base :resetMainMinHeight="true">
     <style>
         .parent-portal {
             max-width: 100%;

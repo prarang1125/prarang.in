@@ -313,7 +313,7 @@
         <h4 class="text-dark fw-bold" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
             <img src="{{ asset('images/langlogo3.png') }}" alt="Globe"
                 style="width: 35px; height: 35px; transform: scaleX(-1);">
-            Digital Divide Languages
+            Digital Balanced Languages
         </h4>
     </section>
 

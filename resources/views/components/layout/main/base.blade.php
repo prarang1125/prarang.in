@@ -731,8 +731,10 @@
                                                 href="https://g2c.prarang.in/india">India Analytics</a></li>
                                         <li><a class="dropdown-item" target="_blank"
                                                 href="https://g2c.prarang.in/world">World Analytics</a></li>
-                                        <li><a class="dropdown-item" href="#">Planners</a></li>
-                                        <li><a class="dropdown-item" href="/cirus">Cyber Risk Analyser
+                                        <li><a class="dropdown-item"
+                                                href="https://g2c.prarang.in/planners">Planners</a></li>
+                                        <li><a class="dropdown-item" href="https://www.prarang.in/cirus">Cyber Risk
+                                                Analyser
                                             </a></li>
 
                                     </ul>
@@ -804,7 +806,8 @@
             </div>
         </nav>
     </div>
-    <main class="container" style="min-height: 70vh !important;">
+    @props(['resetMainMinHeight' => false])
+    <main class="container" @if (!$resetMainMinHeight) style="min-height: 70vh !important;" @endif>
         {{ $slot }}
     </main>
     <footer>
