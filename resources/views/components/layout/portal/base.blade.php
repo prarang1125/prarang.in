@@ -76,7 +76,7 @@
                         <span class="font-bold" id="city-subscriber-count">0</span>
                     </div>
                     <div class="flex justify-between border-t border-gray-800">
-                        <span>मासिक {{ $portal->city_name_local ?? 'मेरठ' }} वेबपेज व्यू:</span>
+                        <span>{{ $portal->city_name_local ?? 'मेरठ' }} वेबपेज मासिक पहुँच:</span>
                         <span class="font-bold " id="city-monthly-count">0</span>
                     </div>
                     <div class="flex justify-between border-t border-gray-800 ">

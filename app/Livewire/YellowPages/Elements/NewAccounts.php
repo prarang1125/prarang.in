@@ -20,8 +20,9 @@ class NewAccounts extends Component
         'city'     => 'required',
         'name'     => 'required|string|min:3|regex:/^[^\s@]+$/|max:30',
         'phone'    => 'required',
-        'password' => 'required',
+        'password' => 'required|min:6',
     ];
+
     protected function messages(): array
     {
         return [
@@ -31,9 +32,7 @@ class NewAccounts extends Component
             'name.min'          => __('yp.name_min'),
             'name.max'          => __('yp.name_max'),
             'name.regex'        => __('yp.name_regex'),
-            'phone.required'    => __('yp.phone_required'),
-            'phone.regex'       => __('yp.phone_format_error'),
-            'phone.unique'      => __('yp.phone_already_exists'),
+            'phone.required'    => __('yp.phone_or_email_required'),
             'password.required' => __('yp.password_required'),
             'password.min'      => __('yp.password_min_length'),
         ];
@@ -55,13 +54,34 @@ class NewAccounts extends Component
     {
         $this->loading = true;
         $this->validate();
-        $loginValue = $this->phone;
+
+        $loginValue = trim($this->phone);
         $isEmail = filter_var($loginValue, FILTER_VALIDATE_EMAIL);
 
-        if (!$isEmail && strpos($loginValue, '+91') === 0) {
-            $loginValue = substr($loginValue, 3);
+        // Validate format based on input type
+        if ($isEmail) {
+            // Email validation is already done by filter_var
+        } else {
+            // Phone number validation
+            $phoneToValidate = $loginValue;
+
+            // Remove +91 prefix for validation
+            if (strpos($phoneToValidate, '+91') === 0) {
+                $phoneToValidate = substr($phoneToValidate, 3);
+            }
+
+            // Check if it's a valid 10-digit phone number
+            if (!preg_match('/^[0-9]{10}$/', $phoneToValidate)) {
+                $this->addError('phone', __('yp.phone_format_error'));
+                $this->loading = false;
+                return;
+            }
+
+            // Use the cleaned phone number
+            $loginValue = $phoneToValidate;
         }
 
+        // Check for duplicates
         if (User::where('city_id', $this->city)
             ->where(function ($query) use ($loginValue, $isEmail) {
                 if ($isEmail) {
@@ -75,12 +95,16 @@ class NewAccounts extends Component
             $this->loading = false;
             return;
         }
+
+        // Generate unique user code
         $count = 1;
         $baseUserCode = Str::slug($this->name) ?: 'user';
         do {
             $userCode = $baseUserCode . ($count > 1 ? "-$count" : '');
             $count++;
         } while (User::where('user_code', $userCode)->exists());
+
+        // Create user
         $user = User::create([
             'name' => $this->name ?? '',
             'phone' => !$isEmail ? $loginValue : null,
