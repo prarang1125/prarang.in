@@ -808,7 +808,8 @@
             </div>
         </nav>
     </div>
-    <main class="container" style="min-height: 70vh !important;">
+    @props(['resetMainMinHeight' => false])
+    <main class="container" @if (!$resetMainMinHeight) style="min-height: 70vh !important;" @endif>
         {{ $slot }}
     </main>
     <footer>

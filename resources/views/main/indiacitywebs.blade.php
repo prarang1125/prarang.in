@@ -435,13 +435,13 @@
                     </p>
                 </div>
             </div>
-            <div class="table-header-right">
+            {{-- <div class="table-header-right">
                 <h4 style="text-decoration: underline">City Web Features</h4>
 
                 <a href="#" data-bs-toggle="modal" data-bs-target="#TheseMTw1">Posts</a>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#TheseMTi1">Portals</a>
                 <a href="#" data-bs-toggle="modal" data-bs-target="#TheseMT">City Business</a>
-            </div>
+            </div> --}}
         </div>
         <div class="overflow-x-auto">
             <table class="matrix-table ">

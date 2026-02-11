@@ -219,14 +219,16 @@
         <div class="city-tabs">
             <div class="city-tabs-label">India-Cities :</div>
             <div class="city-tabs-list">
-                <a class="city-tab" href="/lucknow" target="_blank">Lucknow</a>
-                <a class="city-tab" href="/meerut" target="_blank">Meerut</a>
-                <a class="city-tab" href="/rampur" target="_blank">Rampur</a>
-                <a class="city-tab" href="/jaunpur" target="_blank">Jaunpur</a>
-                <a class="city-tab" href="/shahjahanpur" target="_blank">Shahjahanpur</a>
-                <a class="city-tab" href="/haridwar" target="_blank">Haridwar
+                <a class="city-tab" href="https://www.prarang.in/yp/lucknow?p=lucknow" target="_blank">Lucknow</a>
+                <a class="city-tab" href="https://www.prarang.in/yp/meerut?p=meerut" target="_blank">Meerut</a>
+                <a class="city-tab" href="https://www.prarang.in/yp/rampur?p=rampur" target="_blank">Rampur</a>
+                <a class="city-tab" href="https://www.prarang.in/yp/jaunpur?p=jaunpur" target="_blank">Jaunpur</a>
+                <a class="city-tab" href="https://www.prarang.in/yp/shahjahanpur?p=shahjahanpur"
+                    target="_blank">Shahjahanpur</a>
+                <a class="city-tab" href="https://www.prarang.in/yp/haridwar?p=haridwar" target="_blank">Haridwar
                 </a>
-                <a class="city-tab" href="/pithoragarh" target="_blank">Pithoragarh
+                <a class="city-tab" href="https://www.prarang.in/yp/pithoragarh?p=pithoragarh"
+                    target="_blank">Pithoragarh
                 </a>
             </div>
         </div>
@@ -234,7 +236,7 @@
         <div class="city-tabs">
             <div class="city-tabs-label">Country :</div>
             <div class="city-tabs-list">
-                <a class="city-tab" href="https://www.indiaczech.com/" target="_blank">India-Czech</a>
+                <a class="city-tab" href="https://www.prarang.in/yp/czech-republic" target="_blank">India-Czech</a>
                 {{-- <a class="city-tab" href="#" target="_blank">India-Nepal</a> --}}
                 <span class="tooltip-wrap">
                     <button type="button" class="btn btn-secondary city-tab" data-tooltip="Coming soon">
