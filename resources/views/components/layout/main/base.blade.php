@@ -697,6 +697,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/digital-divide">Digital Divide</a>
                         </li>
+
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
@@ -732,13 +733,14 @@
                                         <li><a class="dropdown-item" target="_blank"
                                                 href="https://g2c.prarang.in/world">World Analytics</a></li>
                                         <li><a class="dropdown-item"
-                                                href="https://g2c.prarang.in/planners">Planners</a></li>
-                                        <li><a class="dropdown-item" href="https://www.prarang.in/cirus">Cyber Risk
-                                                Analyser
+                                                href="https://g2c.prarang.in/planners">Planners</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="/cirus">Cyber Risk Analyser
                                             </a></li>
 
                                     </ul>
                                 </li>
+
                                 <li class="dropdown">
                                     <a class="dropdown-item dropdown-toggle" href="#" role="button"
                                         data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
@@ -895,117 +897,6 @@
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('form-check-input')) {
                 e.stopPropagation();
-            }
-        });
-
-        // Enhanced dropdown handling for mobile with touch optimization
-        document.addEventListener('DOMContentLoaded', function() {
-            let touchStartY = 0;
-            let isSwiping = false;
-
-            // Handle all dropdown toggles (both main and nested)
-            document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
-                // Touch start tracking
-                toggle.addEventListener('touchstart', function(e) {
-                    touchStartY = e.touches[0].clientY;
-                    isSwiping = false;
-                }, {
-                    passive: true
-                });
-
-                // Touch move detection
-                toggle.addEventListener('touchmove', function(e) {
-                    const touchY = e.touches[0].clientY;
-                    if (Math.abs(touchY - touchStartY) > 10) {
-                        isSwiping = true;
-                    }
-                }, {
-                    passive: true
-                });
-
-                // Click/Touch handler
-                toggle.addEventListener('click', function(e) {
-                    // Ignore if user was swiping
-                    if (isSwiping) {
-                        return;
-                    }
-
-                    // Only handle on mobile or if it's a nested dropdown
-                    if (window.innerWidth < 992 || this.closest('.dropdown-menu')) {
-                        e.preventDefault();
-                        e.stopPropagation();
-
-                        const parentDropdown = this.closest('.dropdown');
-                        if (parentDropdown) {
-                            const wasOpen = parentDropdown.classList.contains('show');
-
-                            // Close other dropdowns at the same level
-                            const siblings = parentDropdown.parentElement.querySelectorAll(
-                                ':scope > .dropdown');
-                            siblings.forEach(function(sibling) {
-                                if (sibling !== parentDropdown && sibling.classList
-                                    .contains('show')) {
-                                    sibling.classList.remove('show');
-                                }
-                            });
-
-                            // Toggle current dropdown
-                            if (wasOpen) {
-                                parentDropdown.classList.remove('show');
-                            } else {
-                                parentDropdown.classList.add('show');
-
-                                // Add haptic feedback on supported devices
-                                if (window.navigator && window.navigator.vibrate) {
-                                    window.navigator.vibrate(10);
-                                }
-                            }
-                        }
-                    }
-                });
-            });
-
-            // Close dropdowns when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.dropdown') && !e.target.closest('.navbar-toggler')) {
-                    document.querySelectorAll('.dropdown.show').forEach(function(dropdown) {
-                        dropdown.classList.remove('show');
-                    });
-                }
-            });
-
-            // Close mobile menu when clicking a non-dropdown link
-            document.querySelectorAll(
-                '.navbar-nav .nav-link:not(.dropdown-toggle), .dropdown-menu .dropdown-item:not(.dropdown-toggle)'
-            ).forEach(function(link) {
-                link.addEventListener('click', function(e) {
-                    // Don't close if it's a dropdown toggle
-                    if (this.classList.contains('dropdown-toggle')) {
-                        return;
-                    }
-
-                    const navbarCollapse = document.getElementById('mainNavbarMenu');
-                    if (navbarCollapse && window.innerWidth < 992) {
-                        // Small delay for better UX
-                        setTimeout(function() {
-                            const bsCollapse = bootstrap.Collapse.getInstance(
-                                navbarCollapse);
-                            if (bsCollapse) {
-                                bsCollapse.hide();
-                            }
-                        }, 150);
-                    }
-                });
-            });
-
-            // Close all dropdowns when navbar is collapsed
-            const navbarCollapse = document.getElementById('mainNavbarMenu');
-            if (navbarCollapse) {
-                navbarCollapse.addEventListener('hidden.bs.collapse', function() {
-                    document.querySelectorAll('.dropdown.show').forEach(function(dropdown) {
-                        dropdown.classList.remove('show');
-                    });
-                });
             }
         });
     </script>
