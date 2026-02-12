@@ -185,6 +185,7 @@
             line-height: 1.1;
             margin: 4px 4px 0 0;
             border: 1px solid #3b5f9a;
+            min-width: 112px;
         }
 
         .matrix-pill-lite {
@@ -1047,12 +1048,13 @@
             $moreThen30k = collect($more_then_30k)
                 ->flatten(1)
                 ->where('Langauge_ID', $language['id'])
-                ->sortBy('City')
+                ->sortBy(['State_ID', 'City'])
                 ->values();
+
             $lessThen30k = collect($less_then_30k)
                 ->flatten(1)
                 ->where('Langauge_ID', $language['id'])
-                ->sortBy('City')
+                ->sortBy(['State_ID', 'City'])
                 ->values();
         @endphp
         <div class="modal fade" id="LanguageModal-{{ $language['id'] }}" tabindex="-1" aria-hidden="true">
