@@ -162,7 +162,26 @@ class Home extends Controller
                 ->groupBy('zone')
                 ->map(fn($zone) => $zone->groupBy('state'));
         });
-        return view('main.partners', compact('portal'));
+
+
+        $state = collect(config('cityweb.data'))->pluck('state', '#')->toArray();
+        $more_then_30k = collect(config('cityweb.cities_more_than_30k'))->groupBy('State_ID')->toArray();
+        $less_then_30k = collect(config('cityweb.cities_less_than_30k'))->groupBy('State_ID')->toArray();
+        $countriesByLanguage = collect(config('count_lang.languages'))
+            ->groupBy('language_id')
+            ->map(function ($items) {
+                return $items->pluck('country')
+                    ->unique()
+                    ->sort()
+                    ->values();
+            })
+            ->toArray();
+
+
+
+
+
+        return view('main.partners', compact('portal', 'state', 'more_then_30k', 'less_then_30k', 'countriesByLanguage'));
     }
 
     public function privacyPolicy()

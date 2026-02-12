@@ -216,7 +216,7 @@
         </div>
 
         <div class="city-tabs">
-            <div class="city-tabs-label">India-Cities :</div>
+            <div class="city-tabs-label">India-Cities-Hindi :</div>
             <div class="city-tabs-list">
                 <a class="city-tab" href="https://www.prarang.in/lucknow/all-posts" target="_blank">Lucknow</a>
                 <a class="city-tab" href="https://www.prarang.in/meerut/all-posts" target="_blank">Meerut</a>
@@ -224,6 +224,15 @@
                 <a class="city-tab" href="https://www.prarang.in/jaunpur/all-posts" target="_blank">Jaunpur</a>
                 <a class="city-tab" href="https://www.prarang.in/shahjahanpur/all-posts"
                     target="_blank">Shahjahanpur</a>
+
+            </div>
+        </div>
+
+        <div class="city-tabs">
+            <div class="city-tabs-label">India-Cities-Marathi:</div>
+            <div class="city-tabs-list">
+                <a class="city-tab" href="https://www.prarang.in/pune/all-posts" target="_blank">Pune</a>
+
 
             </div>
         </div>

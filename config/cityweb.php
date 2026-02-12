@@ -7583,6 +7583,6841 @@ return [
             "StateID" => "34",
             "30k" => "0"
         ]
+    ],
+
+
+    'cities_more_than_30k' =>  [
+        [
+            "City" => "Adilabad",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Agar",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Agartala",
+            "Langauge_ID" => "13",
+            "State_ID" => "25",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Agartala",
+            "Langauge_ID" => "39",
+            "State_ID" => "25",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Agra",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Agra",
+            "Langauge_ID" => "39",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ahmedabad",
+            "Langauge_ID" => "60",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ahmedabad",
+            "Langauge_ID" => "94",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ahmedabad",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ahmedabad",
+            "Langauge_ID" => "39",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ahmednagar",
+            "Langauge_ID" => "60",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ahmednagar",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ahmednagar",
+            "Langauge_ID" => "39",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Aizawl",
+            "Langauge_ID" => "39",
+            "State_ID" => "17",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Ajmer",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ajmer",
+            "Langauge_ID" => "39",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Akbarpur (Ambedkar Nagar)",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Akbarpur (Kanpur Dehat)",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Akola",
+            "Langauge_ID" => "60",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Akola",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Akola",
+            "Langauge_ID" => "39",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Alappuzha",
+            "Langauge_ID" => "89",
+            "State_ID" => "12",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Alappuzha",
+            "Langauge_ID" => "39",
+            "State_ID" => "12",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Aligarh",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Aligarh",
+            "Langauge_ID" => "39",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Alipurduar",
+            "Langauge_ID" => "13",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Allahabad",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Allahabad",
+            "Langauge_ID" => "39",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Alwar",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Amalapuram",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ambala",
+            "Langauge_ID" => "60",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ambala",
+            "Langauge_ID" => "56",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ambala",
+            "Langauge_ID" => "39",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Amravati (Amravati)",
+            "Langauge_ID" => "60",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Amravati (Amravati)",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Amravati (Amravati)",
+            "Langauge_ID" => "39",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Amravati (Guntur)",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Amravati (Guntur)",
+            "Langauge_ID" => "39",
+            "State_ID" => "1",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Amreli",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Amritsar",
+            "Langauge_ID" => "60",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Amritsar",
+            "Langauge_ID" => "56",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Amritsar",
+            "Langauge_ID" => "39",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Amroha",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Amroha",
+            "Langauge_ID" => "167",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Anakapalli",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Anand",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Anand",
+            "Langauge_ID" => "39",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Anantapur",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Anantapur",
+            "Langauge_ID" => "39",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Anantapur",
+            "Langauge_ID" => "167",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Anantnag",
+            "Langauge_ID" => "60",
+            "State_ID" => "32",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Anantnag",
+            "Langauge_ID" => "39",
+            "State_ID" => "32",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Angul",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Araria",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Arrah",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Arwal",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Asansol",
+            "Langauge_ID" => "60",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Asansol",
+            "Langauge_ID" => "13",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Asansol",
+            "Langauge_ID" => "39",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ashoknagar",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Auraiya",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Aurangabad (Aurangabad)",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Aurangabad (Sambhajinagar)",
+            "Langauge_ID" => "60",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Aurangabad (Sambhajinagar)",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Aurangabad (Sambhajinagar)",
+            "Langauge_ID" => "39",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ayodhya",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Azamgarh",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bagalakote",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Baghpat",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Baharampur",
+            "Langauge_ID" => "13",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bahraich",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bahraich",
+            "Langauge_ID" => "167",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Baikunthpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Balaghat",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Balangir",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Balasore",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Balasore",
+            "Langauge_ID" => "39",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ballari",
+            "Langauge_ID" => "154",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ballari",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ballari",
+            "Langauge_ID" => "39",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ballia",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Baloda Bazar",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Balurghat",
+            "Langauge_ID" => "13",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bandipore",
+            "Langauge_ID" => "60",
+            "State_ID" => "32",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bandra (East)",
+            "Langauge_ID" => "60",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bandra (East)",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bandra (East)",
+            "Langauge_ID" => "39",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bandra (East)",
+            "Langauge_ID" => "167",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Banka",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bankura",
+            "Langauge_ID" => "13",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Banswara",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bapatla",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Baramulla",
+            "Langauge_ID" => "60",
+            "State_ID" => "32",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Baran",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Barasat",
+            "Langauge_ID" => "13",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bardhaman",
+            "Langauge_ID" => "60",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bardhaman",
+            "Langauge_ID" => "13",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bareilly",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bareilly",
+            "Langauge_ID" => "39",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bargarh",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Baripada",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Barmer",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Barnala",
+            "Langauge_ID" => "56",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Barnala",
+            "Langauge_ID" => "39",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Barpeta",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Barwani",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Basti",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bathinda",
+            "Langauge_ID" => "60",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bathinda",
+            "Langauge_ID" => "56",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bathinda",
+            "Langauge_ID" => "39",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Beed",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Beed",
+            "Langauge_ID" => "39",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Beed",
+            "Langauge_ID" => "167",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Begusarai",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Belgaum",
+            "Langauge_ID" => "94",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Belgaum",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Belgaum",
+            "Langauge_ID" => "39",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bengaluru",
+            "Langauge_ID" => "60",
+            "State_ID" => "11",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Bengaluru",
+            "Langauge_ID" => "154",
+            "State_ID" => "11",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Bengaluru",
+            "Langauge_ID" => "94",
+            "State_ID" => "11",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Bengaluru",
+            "Langauge_ID" => "152",
+            "State_ID" => "11",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Bengaluru",
+            "Langauge_ID" => "55",
+            "State_ID" => "11",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Bengaluru",
+            "Langauge_ID" => "13",
+            "State_ID" => "11",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Bengaluru",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Bengaluru",
+            "Langauge_ID" => "115",
+            "State_ID" => "11",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Bengaluru",
+            "Langauge_ID" => "89",
+            "State_ID" => "11",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Bengaluru",
+            "Langauge_ID" => "39",
+            "State_ID" => "11",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Bengaluru",
+            "Langauge_ID" => "167",
+            "State_ID" => "11",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Bettiah",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Betul",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bhabua",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bhadrak",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bhadrak",
+            "Langauge_ID" => "39",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bhadrak",
+            "Langauge_ID" => "167",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bhagalpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bhandara",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bharatpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bharuch",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bharuch",
+            "Langauge_ID" => "39",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bhavnagar",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bhavnagar",
+            "Langauge_ID" => "39",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bhawanipatna",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bhilwara",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bhimavaram",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bhind",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bhiwani",
+            "Langauge_ID" => "60",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bhiwani",
+            "Langauge_ID" => "39",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bhongir",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bhopal",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Bhopal",
+            "Langauge_ID" => "94",
+            "State_ID" => "13",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Bhopal",
+            "Langauge_ID" => "39",
+            "State_ID" => "13",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Bhubaneswar",
+            "Langauge_ID" => "60",
+            "State_ID" => "19",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Bhubaneswar",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Bhubaneswar",
+            "Langauge_ID" => "39",
+            "State_ID" => "19",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Bhuj",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bhupalpally",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bidar",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bidar",
+            "Langauge_ID" => "39",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bidar",
+            "Langauge_ID" => "167",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bihar Sharif",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bijapur (Vijayapura)",
+            "Langauge_ID" => "60",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bijapur (Vijayapura)",
+            "Langauge_ID" => "154",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bijnor",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bijnor",
+            "Langauge_ID" => "167",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bikaner",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bikaner",
+            "Langauge_ID" => "39",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bilaspur (Bilaspur CG)",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bilaspur (Bilaspur HP)",
+            "Langauge_ID" => "60",
+            "State_ID" => "9",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bilaspur (Bilaspur HP)",
+            "Langauge_ID" => "39",
+            "State_ID" => "9",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bokaro",
+            "Langauge_ID" => "60",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bongaigaon",
+            "Langauge_ID" => "13",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Botad",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Budaun",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Budaun",
+            "Langauge_ID" => "167",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bulandshahr",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Buldhana",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bundi",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Burhanpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Burhanpur",
+            "Langauge_ID" => "94",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Burhanpur",
+            "Langauge_ID" => "167",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Buxar",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Chaibasa",
+            "Langauge_ID" => "60",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Chamarajanagara",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Chandigarh",
+            "Langauge_ID" => "60",
+            "State_ID" => "30",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Chandigarh",
+            "Langauge_ID" => "56",
+            "State_ID" => "30",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Chandigarh",
+            "Langauge_ID" => "39",
+            "State_ID" => "30",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Charkhi Dadri",
+            "Langauge_ID" => "60",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Chatra",
+            "Langauge_ID" => "60",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Chengalpattu",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Chennai",
+            "Langauge_ID" => "60",
+            "State_ID" => "23",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Chennai",
+            "Langauge_ID" => "154",
+            "State_ID" => "23",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Chennai",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Chennai",
+            "Langauge_ID" => "55",
+            "State_ID" => "23",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Chennai",
+            "Langauge_ID" => "89",
+            "State_ID" => "23",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Chennai",
+            "Langauge_ID" => "39",
+            "State_ID" => "23",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Chhatarpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Chhindwara",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Chikkamagaluru",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Chinsurah",
+            "Langauge_ID" => "13",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Chitradurga",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Chitradurga",
+            "Langauge_ID" => "167",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Chittoor",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Chittoor",
+            "Langauge_ID" => "152",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Chittorgarh",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Churu",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Coimbatore",
+            "Langauge_ID" => "154",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Coimbatore",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Coimbatore",
+            "Langauge_ID" => "70",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Coimbatore",
+            "Langauge_ID" => "89",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Coimbatore",
+            "Langauge_ID" => "39",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Cooch Behar",
+            "Langauge_ID" => "13",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Cuddalore",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Cuddalore",
+            "Langauge_ID" => "39",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Cuttack",
+            "Langauge_ID" => "60",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Cuttack",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Cuttack",
+            "Langauge_ID" => "39",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Cuttack",
+            "Langauge_ID" => "167",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dahod",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Daltonganj",
+            "Langauge_ID" => "60",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Daman",
+            "Langauge_ID" => "55",
+            "State_ID" => "31",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Damoh",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Darbhanga",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Darjeeling",
+            "Langauge_ID" => "60",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Datia",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dausa",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Davangere",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Davangere",
+            "Langauge_ID" => "39",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dehradun",
+            "Langauge_ID" => "60",
+            "State_ID" => "27",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Dehradun",
+            "Langauge_ID" => "56",
+            "State_ID" => "27",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Dehradun",
+            "Langauge_ID" => "39",
+            "State_ID" => "27",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Dehradun",
+            "Langauge_ID" => "167",
+            "State_ID" => "27",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Delhi",
+            "Langauge_ID" => "60",
+            "State_ID" => "35",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Delhi",
+            "Langauge_ID" => "56",
+            "State_ID" => "35",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Delhi",
+            "Langauge_ID" => "39",
+            "State_ID" => "35",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Delhi",
+            "Langauge_ID" => "167",
+            "State_ID" => "35",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Deoghar",
+            "Langauge_ID" => "60",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Deoria",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dewas",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dhamtari",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dhanbad",
+            "Langauge_ID" => "60",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dhanbad",
+            "Langauge_ID" => "13",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dhanbad",
+            "Langauge_ID" => "39",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dhar",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dharashiv",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dharmanagar",
+            "Langauge_ID" => "13",
+            "State_ID" => "25",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dharmapuri",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dharwada",
+            "Langauge_ID" => "60",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dharwada",
+            "Langauge_ID" => "154",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dharwada",
+            "Langauge_ID" => "94",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dharwada",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dharwada",
+            "Langauge_ID" => "39",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dhenkanal",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dholpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dhule",
+            "Langauge_ID" => "60",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dhule",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dhule",
+            "Langauge_ID" => "39",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dibrugarh",
+            "Langauge_ID" => "60",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dibrugarh",
+            "Langauge_ID" => "13",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dibrugarh",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dimapur",
+            "Langauge_ID" => "60",
+            "State_ID" => "18",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dimapur",
+            "Langauge_ID" => "13",
+            "State_ID" => "18",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dimapur",
+            "Langauge_ID" => "39",
+            "State_ID" => "18",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dindigul",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dindigul",
+            "Langauge_ID" => "39",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dumka",
+            "Langauge_ID" => "60",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Durg",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Eluru",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Eluru",
+            "Langauge_ID" => "39",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "English Bazar",
+            "Langauge_ID" => "13",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Erode",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Erode",
+            "Langauge_ID" => "39",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Etah",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Etawah",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Faridabad",
+            "Langauge_ID" => "60",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Faridabad",
+            "Langauge_ID" => "56",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Faridabad",
+            "Langauge_ID" => "39",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Faridkot",
+            "Langauge_ID" => "56",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Faridkot",
+            "Langauge_ID" => "39",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Fatehabad",
+            "Langauge_ID" => "60",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Fatehgarh Sahib",
+            "Langauge_ID" => "56",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Fatehpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Fazilka",
+            "Langauge_ID" => "56",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Fazilka",
+            "Langauge_ID" => "39",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Firozabad",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Firozabad",
+            "Langauge_ID" => "39",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Firozabad",
+            "Langauge_ID" => "167",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Firozpur",
+            "Langauge_ID" => "56",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Firozpur",
+            "Langauge_ID" => "39",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gadag-Betageri",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gadag-Betageri",
+            "Langauge_ID" => "167",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gadchiroli",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gandhinagar",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Gandhinagar",
+            "Langauge_ID" => "39",
+            "State_ID" => "7",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Gangtok",
+            "Langauge_ID" => "60",
+            "State_ID" => "22",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Gangtok",
+            "Langauge_ID" => "39",
+            "State_ID" => "22",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Garhwa",
+            "Langauge_ID" => "60",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gauriganj",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gaya",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ghaziabad",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ghaziabad",
+            "Langauge_ID" => "39",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ghaziabad",
+            "Langauge_ID" => "167",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ghazipur",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Giridih",
+            "Langauge_ID" => "60",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Goalpara",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Godda",
+            "Langauge_ID" => "60",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Godhra",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gonda",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gondia",
+            "Langauge_ID" => "60",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gondia",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gopalganj",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gorakhpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gorakhpur",
+            "Langauge_ID" => "39",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gumla",
+            "Langauge_ID" => "60",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Guna",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Guntur",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Guntur",
+            "Langauge_ID" => "39",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gurdaspur",
+            "Langauge_ID" => "56",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gurdaspur",
+            "Langauge_ID" => "39",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gurugram",
+            "Langauge_ID" => "60",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gurugram",
+            "Langauge_ID" => "13",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gurugram",
+            "Langauge_ID" => "56",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gurugram",
+            "Langauge_ID" => "39",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Guwahati",
+            "Langauge_ID" => "60",
+            "State_ID" => "3",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Guwahati",
+            "Langauge_ID" => "13",
+            "State_ID" => "3",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Guwahati",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Guwahati",
+            "Langauge_ID" => "39",
+            "State_ID" => "3",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Gwalior",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gwalior",
+            "Langauge_ID" => "39",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hailakandi",
+            "Langauge_ID" => "13",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hajipur",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hanamkonda",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hanumangarh",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hanumangarh",
+            "Langauge_ID" => "56",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hapur",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hapur",
+            "Langauge_ID" => "39",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hapur",
+            "Langauge_ID" => "167",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Harda",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hardoi",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Haridwar",
+            "Langauge_ID" => "60",
+            "State_ID" => "27",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Haridwar",
+            "Langauge_ID" => "39",
+            "State_ID" => "27",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hassan",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hassan",
+            "Langauge_ID" => "167",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hathras",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Haveri",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hazaribag",
+            "Langauge_ID" => "60",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Himatnagar",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hingoli",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hisar",
+            "Langauge_ID" => "60",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hisar",
+            "Langauge_ID" => "39",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hoshangabad",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hoshiarpur",
+            "Langauge_ID" => "56",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hoshiarpur",
+            "Langauge_ID" => "39",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hospete",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hospete",
+            "Langauge_ID" => "39",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hospete",
+            "Langauge_ID" => "167",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Howrah",
+            "Langauge_ID" => "60",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Howrah",
+            "Langauge_ID" => "13",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Howrah",
+            "Langauge_ID" => "39",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hyderabad (Hyderabad)",
+            "Langauge_ID" => "60",
+            "State_ID" => "24",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Hyderabad (Hyderabad)",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Hyderabad (Hyderabad)",
+            "Langauge_ID" => "94",
+            "State_ID" => "24",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Hyderabad (Hyderabad)",
+            "Langauge_ID" => "152",
+            "State_ID" => "24",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Hyderabad (Hyderabad)",
+            "Langauge_ID" => "70",
+            "State_ID" => "24",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Hyderabad (Hyderabad)",
+            "Langauge_ID" => "39",
+            "State_ID" => "24",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Hyderabad (Ranga Reddy)",
+            "Langauge_ID" => "60",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hyderabad (Ranga Reddy)",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hyderabad (Ranga Reddy)",
+            "Langauge_ID" => "94",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hyderabad (Ranga Reddy)",
+            "Langauge_ID" => "152",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hyderabad (Ranga Reddy)",
+            "Langauge_ID" => "70",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hyderabad (Ranga Reddy)",
+            "Langauge_ID" => "39",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hyderabad (Ranga Reddy)",
+            "Langauge_ID" => "167",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Indore",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Indore",
+            "Langauge_ID" => "94",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Indore",
+            "Langauge_ID" => "55",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Indore",
+            "Langauge_ID" => "39",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Itanagar",
+            "Langauge_ID" => "13",
+            "State_ID" => "2",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Jabalpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jabalpur",
+            "Langauge_ID" => "39",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jabalpur",
+            "Langauge_ID" => "167",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jagdalpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jagtial",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jaipur",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Jaipur",
+            "Langauge_ID" => "39",
+            "State_ID" => "21",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Jaisalmer",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jalandhar",
+            "Langauge_ID" => "60",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jalandhar",
+            "Langauge_ID" => "56",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jalandhar",
+            "Langauge_ID" => "39",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jalgaon",
+            "Langauge_ID" => "60",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jalgaon",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jalgaon",
+            "Langauge_ID" => "39",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jalgaon",
+            "Langauge_ID" => "167",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jalna",
+            "Langauge_ID" => "60",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jalna",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jalna",
+            "Langauge_ID" => "39",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jalna",
+            "Langauge_ID" => "167",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jalore",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jalpaiguri",
+            "Langauge_ID" => "13",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jammu",
+            "Langauge_ID" => "60",
+            "State_ID" => "32",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Jammu",
+            "Langauge_ID" => "56",
+            "State_ID" => "32",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Jammu",
+            "Langauge_ID" => "39",
+            "State_ID" => "32",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Jamnagar",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jamnagar",
+            "Langauge_ID" => "39",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jamshedpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jamshedpur",
+            "Langauge_ID" => "13",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jamshedpur",
+            "Langauge_ID" => "56",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jamshedpur",
+            "Langauge_ID" => "115",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jamshedpur",
+            "Langauge_ID" => "39",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jamshedpur",
+            "Langauge_ID" => "167",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jamui",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jangaon",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Janjgir",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jaunpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jehanabad",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jhajjar",
+            "Langauge_ID" => "60",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jhalawar",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jhansi",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jhansi",
+            "Langauge_ID" => "39",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jhargram",
+            "Langauge_ID" => "13",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jharsuguda",
+            "Langauge_ID" => "60",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jharsuguda",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jhunjhunu",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jind",
+            "Langauge_ID" => "60",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jind",
+            "Langauge_ID" => "39",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jodhpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jodhpur",
+            "Langauge_ID" => "39",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jorhat",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Junagadh",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Junagadh",
+            "Langauge_ID" => "39",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kadapa",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kadapa",
+            "Langauge_ID" => "39",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kaithal",
+            "Langauge_ID" => "60",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kakching",
+            "Langauge_ID" => "7",
+            "State_ID" => "15",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kakinada",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kakinada",
+            "Langauge_ID" => "39",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kalaburagi",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kalaburagi",
+            "Langauge_ID" => "39",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kalimpong",
+            "Langauge_ID" => "60",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kamareddy",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kanchipuram",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kanchipuram",
+            "Langauge_ID" => "39",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kanker",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kannauj",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kannur",
+            "Langauge_ID" => "89",
+            "State_ID" => "12",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kapurthala",
+            "Langauge_ID" => "56",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kapurthala",
+            "Langauge_ID" => "39",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Karaikal",
+            "Langauge_ID" => "152",
+            "State_ID" => "36",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Karaikal",
+            "Langauge_ID" => "39",
+            "State_ID" => "36",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Karauli",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Karimganj",
+            "Langauge_ID" => "13",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Karimnagar",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Karimnagar",
+            "Langauge_ID" => "39",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Karimnagar",
+            "Langauge_ID" => "167",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Karnal",
+            "Langauge_ID" => "60",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Karnal",
+            "Langauge_ID" => "56",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Karnal",
+            "Langauge_ID" => "39",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Karur",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Karwi",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kasaragod",
+            "Langauge_ID" => "89",
+            "State_ID" => "12",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kasganj",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kathua",
+            "Langauge_ID" => "60",
+            "State_ID" => "32",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Katihar",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Katihar",
+            "Langauge_ID" => "167",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Katni",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kawardha",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kendrapara",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kendujhar",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Khagaria",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Khalilabad",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Khambhalia",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Khammam",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Khandwa",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Khargone",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Khordha",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kishanganj",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kishanganj",
+            "Langauge_ID" => "167",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kohima",
+            "Langauge_ID" => "60",
+            "State_ID" => "18",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Kohima",
+            "Langauge_ID" => "39",
+            "State_ID" => "18",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Kolar",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kolar",
+            "Langauge_ID" => "167",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kolhapur",
+            "Langauge_ID" => "60",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kolhapur",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kolhapur",
+            "Langauge_ID" => "39",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kolkata",
+            "Langauge_ID" => "60",
+            "State_ID" => "28",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Kolkata",
+            "Langauge_ID" => "13",
+            "State_ID" => "28",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Kolkata",
+            "Langauge_ID" => "39",
+            "State_ID" => "28",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Kollam",
+            "Langauge_ID" => "89",
+            "State_ID" => "12",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kollam",
+            "Langauge_ID" => "39",
+            "State_ID" => "12",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Koppala",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Korba",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kothagudem",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kottayam",
+            "Langauge_ID" => "89",
+            "State_ID" => "12",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kozhikode",
+            "Langauge_ID" => "89",
+            "State_ID" => "12",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kozhikode",
+            "Langauge_ID" => "39",
+            "State_ID" => "12",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Krishnagiri",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Krishnanagar",
+            "Langauge_ID" => "13",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kurnool",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kurnool",
+            "Langauge_ID" => "39",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kurukshetra",
+            "Langauge_ID" => "60",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kurukshetra",
+            "Langauge_ID" => "39",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Lakhimpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Lakhisarai",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Lalitpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Latur",
+            "Langauge_ID" => "60",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Latur",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Latur",
+            "Langauge_ID" => "39",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Latur",
+            "Langauge_ID" => "167",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Lohardaga",
+            "Langauge_ID" => "60",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Lucknow",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Lucknow",
+            "Langauge_ID" => "39",
+            "State_ID" => "26",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Ludhiana",
+            "Langauge_ID" => "60",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ludhiana",
+            "Langauge_ID" => "56",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ludhiana",
+            "Langauge_ID" => "39",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Lunavada",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Machilipatnam",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Machilipatnam",
+            "Langauge_ID" => "39",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Madhepura",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Madhubani",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Madurai",
+            "Langauge_ID" => "154",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Madurai",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Madurai",
+            "Langauge_ID" => "55",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Madurai",
+            "Langauge_ID" => "39",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mahasamund",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mahbubnagar",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mahbubnagar",
+            "Langauge_ID" => "167",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mahé",
+            "Langauge_ID" => "89",
+            "State_ID" => "36",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mahoba",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mainpuri",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Malappuram",
+            "Langauge_ID" => "89",
+            "State_ID" => "12",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Malappuram",
+            "Langauge_ID" => "39",
+            "State_ID" => "12",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Malerkotla",
+            "Langauge_ID" => "56",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Malerkotla",
+            "Langauge_ID" => "39",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mancherial",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mandla",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mandsaur",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mandya",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Manendragarh",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mangalore",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mangalore",
+            "Langauge_ID" => "89",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mangalore",
+            "Langauge_ID" => "39",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mansa",
+            "Langauge_ID" => "56",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mathura",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mathura",
+            "Langauge_ID" => "39",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mayiladuthurai",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Meerut",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Meerut",
+            "Langauge_ID" => "39",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mehsana",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mehsana",
+            "Langauge_ID" => "39",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Midnapore",
+            "Langauge_ID" => "13",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Modasa",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Moga",
+            "Langauge_ID" => "56",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Moga",
+            "Langauge_ID" => "39",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mohali",
+            "Langauge_ID" => "60",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mohali",
+            "Langauge_ID" => "56",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mohali",
+            "Langauge_ID" => "39",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mokokchung",
+            "Langauge_ID" => "39",
+            "State_ID" => "18",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Moradabad",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Moradabad",
+            "Langauge_ID" => "39",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Morbi",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Morbi",
+            "Langauge_ID" => "39",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Morena",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Motihari",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mumbai",
+            "Langauge_ID" => "60",
+            "State_ID" => "14",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Mumbai",
+            "Langauge_ID" => "154",
+            "State_ID" => "14",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Mumbai",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Mumbai",
+            "Langauge_ID" => "152",
+            "State_ID" => "14",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Mumbai",
+            "Langauge_ID" => "55",
+            "State_ID" => "14",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Mumbai",
+            "Langauge_ID" => "13",
+            "State_ID" => "14",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Mumbai",
+            "Langauge_ID" => "56",
+            "State_ID" => "14",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Mumbai",
+            "Langauge_ID" => "70",
+            "State_ID" => "14",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Mumbai",
+            "Langauge_ID" => "115",
+            "State_ID" => "14",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Mumbai",
+            "Langauge_ID" => "89",
+            "State_ID" => "14",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Mumbai",
+            "Langauge_ID" => "39",
+            "State_ID" => "14",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Mungeli",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Munger",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Munger",
+            "Langauge_ID" => "167",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Muzaffarnagar",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Muzaffarnagar",
+            "Langauge_ID" => "39",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Muzaffarpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Muzaffarpur",
+            "Langauge_ID" => "167",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mysore",
+            "Langauge_ID" => "154",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mysore",
+            "Langauge_ID" => "152",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mysore",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mysore",
+            "Langauge_ID" => "39",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nadiad",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nadiad",
+            "Langauge_ID" => "39",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nagaon",
+            "Langauge_ID" => "13",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nagaon",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nagapattinam",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nagaur",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nagercoil",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nagercoil",
+            "Langauge_ID" => "39",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nagpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nagpur",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nagpur",
+            "Langauge_ID" => "55",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nagpur",
+            "Langauge_ID" => "39",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nalgonda",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Namakkal",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nanded",
+            "Langauge_ID" => "60",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nanded",
+            "Langauge_ID" => "39",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nanded",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nandurbar",
+            "Langauge_ID" => "60",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nandurbar",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nandyal",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nandyal",
+            "Langauge_ID" => "167",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nandyal",
+            "Langauge_ID" => "39",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Narasaraopet",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Narnaul",
+            "Langauge_ID" => "60",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Narsinghpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nashik",
+            "Langauge_ID" => "55",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nashik",
+            "Langauge_ID" => "60",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nashik",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nashik",
+            "Langauge_ID" => "39",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nashik",
+            "Langauge_ID" => "167",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Navsari",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Navsari",
+            "Langauge_ID" => "39",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nawada",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Neemuch",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nellore",
+            "Langauge_ID" => "39",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nellore",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nirmal",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nizamabad",
+            "Langauge_ID" => "39",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nizamabad",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Noida",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Noida",
+            "Langauge_ID" => "39",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nongstoin",
+            "Langauge_ID" => "7",
+            "State_ID" => "16",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "North Lakhimpur",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ongole",
+            "Langauge_ID" => "39",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ongole",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ooty",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Orai",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Padrauna",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Painavu",
+            "Langauge_ID" => "89",
+            "State_ID" => "12",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Palakkad",
+            "Langauge_ID" => "89",
+            "State_ID" => "12",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Palakkad",
+            "Langauge_ID" => "39",
+            "State_ID" => "12",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Palanpur",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Palwal",
+            "Langauge_ID" => "39",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Palwal",
+            "Langauge_ID" => "60",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Panchkula",
+            "Langauge_ID" => "60",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Panchkula",
+            "Langauge_ID" => "39",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Panipat",
+            "Langauge_ID" => "39",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Panipat",
+            "Langauge_ID" => "60",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Panipat",
+            "Langauge_ID" => "56",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Panna",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Parbhani",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Parbhani",
+            "Langauge_ID" => "39",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Parbhani",
+            "Langauge_ID" => "60",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Parvathipuram",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pathanamthitta",
+            "Langauge_ID" => "89",
+            "State_ID" => "12",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pathankot",
+            "Langauge_ID" => "56",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pathankot",
+            "Langauge_ID" => "39",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Patiala",
+            "Langauge_ID" => "39",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Patiala",
+            "Langauge_ID" => "60",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Patiala",
+            "Langauge_ID" => "56",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Patna",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Patna",
+            "Langauge_ID" => "39",
+            "State_ID" => "4",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Perambalur",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pilibhit",
+            "Langauge_ID" => "167",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pilibhit",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pithoragarh",
+            "Langauge_ID" => "60",
+            "State_ID" => "27",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pondicherry",
+            "Langauge_ID" => "39",
+            "State_ID" => "36",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Pondicherry",
+            "Langauge_ID" => "152",
+            "State_ID" => "36",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Porbandar",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Port Blair",
+            "Langauge_ID" => "39",
+            "State_ID" => "29",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Port Blair",
+            "Langauge_ID" => "154",
+            "State_ID" => "29",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Port Blair",
+            "Langauge_ID" => "60",
+            "State_ID" => "29",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Pratapgarh (Pratapgarh RJ)",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pratapgarh (Pratapgarh UP)",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pudukkottai",
+            "Langauge_ID" => "39",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pudukkottai",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pune",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pune",
+            "Langauge_ID" => "152",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pune",
+            "Langauge_ID" => "55",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pune",
+            "Langauge_ID" => "70",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pune",
+            "Langauge_ID" => "60",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pune",
+            "Langauge_ID" => "39",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pune",
+            "Langauge_ID" => "154",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Puri",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Puri",
+            "Langauge_ID" => "39",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Purnia",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Purnia",
+            "Langauge_ID" => "167",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Purulia",
+            "Langauge_ID" => "13",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Puttaparthi",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Raebareli",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Raichuru",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Raichuru",
+            "Langauge_ID" => "39",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Raichuru",
+            "Langauge_ID" => "154",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Raichuru",
+            "Langauge_ID" => "167",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Raiganj",
+            "Langauge_ID" => "13",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Raigarh",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Raipur",
+            "Langauge_ID" => "94",
+            "State_ID" => "5",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Raipur",
+            "Langauge_ID" => "115",
+            "State_ID" => "5",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Raipur",
+            "Langauge_ID" => "39",
+            "State_ID" => "5",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Raipur",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Raisen",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rajamahendravaram",
+            "Langauge_ID" => "39",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rajamahendravaram",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rajkot",
+            "Langauge_ID" => "39",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rajkot",
+            "Langauge_ID" => "60",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rajkot",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rajnandgaon",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rajsamand",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ramanagara",
+            "Langauge_ID" => "167",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ramanagara",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ramanathapuram",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rampur",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rampur",
+            "Langauge_ID" => "167",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ranchi",
+            "Langauge_ID" => "39",
+            "State_ID" => "10",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Ranchi",
+            "Langauge_ID" => "13",
+            "State_ID" => "10",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Ranchi",
+            "Langauge_ID" => "60",
+            "State_ID" => "10",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Ranipet",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ratlam",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ratnagiri",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rayachoti",
+            "Langauge_ID" => "167",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rayachoti",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rewa",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rewari",
+            "Langauge_ID" => "39",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rewari",
+            "Langauge_ID" => "60",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Robertsganj",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rohtak",
+            "Langauge_ID" => "60",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rohtak",
+            "Langauge_ID" => "56",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rohtak",
+            "Langauge_ID" => "39",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rudrapur",
+            "Langauge_ID" => "60",
+            "State_ID" => "27",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rupnagar",
+            "Langauge_ID" => "56",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Saharanpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Saharanpur",
+            "Langauge_ID" => "39",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Saharsa",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Salem",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Salem",
+            "Langauge_ID" => "167",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Salem",
+            "Langauge_ID" => "39",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Salem",
+            "Langauge_ID" => "154",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Salem",
+            "Langauge_ID" => "70",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Samastipur",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sambalpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sambalpur",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sambalpur",
+            "Langauge_ID" => "39",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sambhal",
+            "Langauge_ID" => "167",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sambhal",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sangareddy",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sangli",
+            "Langauge_ID" => "39",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sangli",
+            "Langauge_ID" => "60",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sangli",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sangli",
+            "Langauge_ID" => "167",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sangrur",
+            "Langauge_ID" => "39",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sangrur",
+            "Langauge_ID" => "56",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sasaram",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sasaram",
+            "Langauge_ID" => "167",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Satara",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Satna",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sawai Madhopur",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sehore",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Seoni",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Shahdol",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Shahjahanpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Shajapur",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Shamli",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sheikhpura",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sheopur",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Shillong",
+            "Langauge_ID" => "7",
+            "State_ID" => "16",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Shillong",
+            "Langauge_ID" => "39",
+            "State_ID" => "16",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Shillong",
+            "Langauge_ID" => "13",
+            "State_ID" => "16",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Shillong",
+            "Langauge_ID" => "60",
+            "State_ID" => "16",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Shimla",
+            "Langauge_ID" => "60",
+            "State_ID" => "9",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Shivamogga",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Shivamogga",
+            "Langauge_ID" => "39",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Shivpuri",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sibsagar",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Siddipet",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sidhi",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sikar",
+            "Langauge_ID" => "167",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sikar",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Silvassa",
+            "Langauge_ID" => "39",
+            "State_ID" => "31",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Silvassa",
+            "Langauge_ID" => "60",
+            "State_ID" => "31",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Silvassa",
+            "Langauge_ID" => "55",
+            "State_ID" => "31",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Simdega",
+            "Langauge_ID" => "60",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sircilla",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sirohi",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sirsa",
+            "Langauge_ID" => "60",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sirsa",
+            "Langauge_ID" => "39",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sirsa",
+            "Langauge_ID" => "56",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sitamarhi",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sivaganga",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Siwan",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Solan",
+            "Langauge_ID" => "60",
+            "State_ID" => "9",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Solapur",
+            "Langauge_ID" => "154",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Solapur",
+            "Langauge_ID" => "39",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Solapur",
+            "Langauge_ID" => "60",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Solapur",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Solapur",
+            "Langauge_ID" => "70",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sonipat",
+            "Langauge_ID" => "39",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sonipat",
+            "Langauge_ID" => "60",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sri Ganganagar",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sri Ganganagar",
+            "Langauge_ID" => "56",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sri Muktsar Sahib",
+            "Langauge_ID" => "56",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sri Muktsar Sahib",
+            "Langauge_ID" => "39",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Srikakulam",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Srinagar",
+            "Langauge_ID" => "39",
+            "State_ID" => "32",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Srinagar",
+            "Langauge_ID" => "60",
+            "State_ID" => "32",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Supaul",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Surat",
+            "Langauge_ID" => "39",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Surat",
+            "Langauge_ID" => "60",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Surat",
+            "Langauge_ID" => "115",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Surat",
+            "Langauge_ID" => "94",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Surat",
+            "Langauge_ID" => "154",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Surat",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Surendranagar",
+            "Langauge_ID" => "39",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Surendranagar",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Suri",
+            "Langauge_ID" => "13",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Suryapet",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tamluk",
+            "Langauge_ID" => "13",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tamulpur",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tarn Taran Sahib",
+            "Langauge_ID" => "56",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tarn Taran Sahib",
+            "Langauge_ID" => "39",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tenkasi",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tezpur",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Thane",
+            "Langauge_ID" => "154",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Thane",
+            "Langauge_ID" => "89",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Thane",
+            "Langauge_ID" => "60",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Thane",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Thane",
+            "Langauge_ID" => "13",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Thane",
+            "Langauge_ID" => "39",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Thane",
+            "Langauge_ID" => "55",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Thane",
+            "Langauge_ID" => "70",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Thanjavur",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Thanjavur",
+            "Langauge_ID" => "39",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Theni",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Thiruvananthapuram",
+            "Langauge_ID" => "89",
+            "State_ID" => "12",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Thiruvananthapuram",
+            "Langauge_ID" => "39",
+            "State_ID" => "12",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Thiruvarur",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Thoothukudi",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Thoothukudi",
+            "Langauge_ID" => "39",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Thoubal",
+            "Langauge_ID" => "7",
+            "State_ID" => "15",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Thrissur",
+            "Langauge_ID" => "39",
+            "State_ID" => "12",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Thrissur",
+            "Langauge_ID" => "89",
+            "State_ID" => "12",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tikamgarh",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tinsukia",
+            "Langauge_ID" => "13",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tinsukia",
+            "Langauge_ID" => "60",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tiruchirappalli",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tiruchirappalli",
+            "Langauge_ID" => "39",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tirunelveli",
+            "Langauge_ID" => "39",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tirunelveli",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tirupati",
+            "Langauge_ID" => "39",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tirupati",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tiruppur",
+            "Langauge_ID" => "154",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tiruppur",
+            "Langauge_ID" => "39",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tiruppur",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tiruvallur",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tiruvannaamalai",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tiruvannaamalai",
+            "Langauge_ID" => "39",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tonk",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tonk",
+            "Langauge_ID" => "167",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tuensang",
+            "Langauge_ID" => "39",
+            "State_ID" => "18",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tumakuru",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tumakuru",
+            "Langauge_ID" => "167",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tumakuru",
+            "Langauge_ID" => "39",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tura",
+            "Langauge_ID" => "7",
+            "State_ID" => "16",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Udaipur (Gomati)",
+            "Langauge_ID" => "39",
+            "State_ID" => "25",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Udaipur (Gomati)",
+            "Langauge_ID" => "60",
+            "State_ID" => "25",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Udaipur (Udaipur RJ)",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Udhampur",
+            "Langauge_ID" => "60",
+            "State_ID" => "32",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Udupi",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ujjain",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ujjain",
+            "Langauge_ID" => "39",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Umaria",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Una",
+            "Langauge_ID" => "55",
+            "State_ID" => "9",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Unnao",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Vadodara",
+            "Langauge_ID" => "94",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Vadodara",
+            "Langauge_ID" => "60",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Vadodara",
+            "Langauge_ID" => "39",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Vadodara",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Valsad",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Varanasi",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Varanasi",
+            "Langauge_ID" => "39",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Vellore",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Vellore",
+            "Langauge_ID" => "39",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Vellore",
+            "Langauge_ID" => "167",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Veraval",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Vidisha",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Vijayawada",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Vijayawada",
+            "Langauge_ID" => "39",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Viluppuram",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Virudhunagar",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Visakhapatnam",
+            "Langauge_ID" => "60",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Visakhapatnam",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Visakhapatnam",
+            "Langauge_ID" => "39",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Visakhapatnam",
+            "Langauge_ID" => "167",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Vizianagaram",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Vizianagaram",
+            "Langauge_ID" => "39",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Waidhan",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Wanaparthy",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Warangal",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Warangal",
+            "Langauge_ID" => "39",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Wardha",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Washim",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Wokha",
+            "Langauge_ID" => "39",
+            "State_ID" => "18",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Yadgiri",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Yamunanagar",
+            "Langauge_ID" => "60",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Yamunanagar",
+            "Langauge_ID" => "56",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Yamunanagar",
+            "Langauge_ID" => "39",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Yanam",
+            "Langauge_ID" => "154",
+            "State_ID" => "36",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Yanam",
+            "Langauge_ID" => "39",
+            "State_ID" => "36",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Yavatmal",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ]
+    ],
+
+    'cities_less_than_30k' => [
+        [
+            "City" => "Aalo",
+            "Langauge_ID" => "39",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ahwa",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Alibag",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Alipore",
+            "Langauge_ID" => "13",
+            "State_ID" => "28",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Alirajpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Almora",
+            "Langauge_ID" => "39",
+            "State_ID" => "27",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ambassa",
+            "Langauge_ID" => "13",
+            "State_ID" => "25",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ambikapur",
+            "Langauge_ID" => "13",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Amingaon",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ampati",
+            "Langauge_ID" => "7",
+            "State_ID" => "16",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Anini",
+            "Langauge_ID" => "60",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Anuppur",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ariyalur",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Asifabad",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bageshwar",
+            "Langauge_ID" => "60",
+            "State_ID" => "27",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Baghmara",
+            "Langauge_ID" => "7",
+            "State_ID" => "16",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Balod",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Balrampur (Balrampur)",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Balrampur (Balrampur-Ramanujganj)",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Banda",
+            "Langauge_ID" => "94",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Barabanki",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Basar",
+            "Langauge_ID" => "39",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Belonia",
+            "Langauge_ID" => "13",
+            "State_ID" => "25",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bemetara",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bijapur (Bijapur)",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bishnupur",
+            "Langauge_ID" => "7",
+            "State_ID" => "15",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bishramganj",
+            "Langauge_ID" => "13",
+            "State_ID" => "25",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Biswanath Chariali",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Boleng",
+            "Langauge_ID" => "39",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Bomdila",
+            "Langauge_ID" => "39",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Boudh",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Budgam",
+            "Langauge_ID" => "60",
+            "State_ID" => "32",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Car Nicobar",
+            "Langauge_ID" => "39",
+            "State_ID" => "29",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Chamba",
+            "Langauge_ID" => "60",
+            "State_ID" => "9",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Champawat",
+            "Langauge_ID" => "60",
+            "State_ID" => "27",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Champhai",
+            "Langauge_ID" => "39",
+            "State_ID" => "17",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Chandauli",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Chandel",
+            "Langauge_ID" => "7",
+            "State_ID" => "15",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Chandrapur",
+            "Langauge_ID" => "60",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Changlang",
+            "Langauge_ID" => "39",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Chhapra",
+            "Langauge_ID" => "55",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Chhatrapur",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Chhota Udaipur",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Chikkaballapura",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Chümoukedima",
+            "Langauge_ID" => "39",
+            "State_ID" => "18",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Churachandpur",
+            "Langauge_ID" => "7",
+            "State_ID" => "15",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dantewada",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Daporijo",
+            "Langauge_ID" => "13",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Debagarh",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dharamshala",
+            "Langauge_ID" => "60",
+            "State_ID" => "9",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dhemaji",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dhubri",
+            "Langauge_ID" => "13",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dindori",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Diphu",
+            "Langauge_ID" => "13",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Diu",
+            "Langauge_ID" => "55",
+            "State_ID" => "31",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Doda",
+            "Langauge_ID" => "60",
+            "State_ID" => "32",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Dungarpur",
+            "Langauge_ID" => "55",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Fatehgarh",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gadwal",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ganderbal",
+            "Langauge_ID" => "60",
+            "State_ID" => "32",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Garamur",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gariaband",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gaurela",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Golaghat",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gopeshwar",
+            "Langauge_ID" => "60",
+            "State_ID" => "27",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gyalshing",
+            "Langauge_ID" => "60",
+            "State_ID" => "22",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Gyanpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Haflong",
+            "Langauge_ID" => "13",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hamirpur (Hamirpur HP)",
+            "Langauge_ID" => "60",
+            "State_ID" => "9",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hamirpur (Hamirpur UP)",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hamren",
+            "Langauge_ID" => "39",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hatsingimari",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hawai",
+            "Langauge_ID" => "39",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hnahthial",
+            "Langauge_ID" => "39",
+            "State_ID" => "17",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Hojai",
+            "Langauge_ID" => "13",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jagatsinghpur",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jamtara",
+            "Langauge_ID" => "60",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jashpur Nagar",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jhabua",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jiribam",
+            "Langauge_ID" => "7",
+            "State_ID" => "15",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Jowai",
+            "Langauge_ID" => "7",
+            "State_ID" => "16",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kailashahar",
+            "Langauge_ID" => "13",
+            "State_ID" => "25",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kajalgaon",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kakkanad",
+            "Langauge_ID" => "89",
+            "State_ID" => "12",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kallakurichi",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kalpetta",
+            "Langauge_ID" => "89",
+            "State_ID" => "12",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kamjong",
+            "Langauge_ID" => "7",
+            "State_ID" => "15",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kangpokpi",
+            "Langauge_ID" => "39",
+            "State_ID" => "15",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kanpur",
+            "Langauge_ID" => "13",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kargil",
+            "Langauge_ID" => "39",
+            "State_ID" => "33",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Karwar",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kavaratti",
+            "Langauge_ID" => "89",
+            "State_ID" => "34",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Keylong",
+            "Langauge_ID" => "60",
+            "State_ID" => "9",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Khairagarh",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Khawzawl",
+            "Langauge_ID" => "39",
+            "State_ID" => "17",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Khliehriat",
+            "Langauge_ID" => "7",
+            "State_ID" => "16",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Khonsa",
+            "Langauge_ID" => "60",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Khowai",
+            "Langauge_ID" => "13",
+            "State_ID" => "25",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Khunti",
+            "Langauge_ID" => "60",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kiphire",
+            "Langauge_ID" => "39",
+            "State_ID" => "18",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kishtwar",
+            "Langauge_ID" => "60",
+            "State_ID" => "32",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Koderma",
+            "Langauge_ID" => "60",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kokrajhar",
+            "Langauge_ID" => "13",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kolasib",
+            "Langauge_ID" => "39",
+            "State_ID" => "17",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Koloriang",
+            "Langauge_ID" => "13",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kondagaon",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Koraput",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kota",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kulgam",
+            "Langauge_ID" => "60",
+            "State_ID" => "32",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kullu",
+            "Langauge_ID" => "60",
+            "State_ID" => "9",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Kupwara",
+            "Langauge_ID" => "60",
+            "State_ID" => "32",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Lamphelpat",
+            "Langauge_ID" => "7",
+            "State_ID" => "15",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Latehar",
+            "Langauge_ID" => "60",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Lawngtlai",
+            "Langauge_ID" => "39",
+            "State_ID" => "17",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Leh",
+            "Langauge_ID" => "60",
+            "State_ID" => "33",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Lemmi",
+            "Langauge_ID" => "13",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Likabali",
+            "Langauge_ID" => "39",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Longding",
+            "Langauge_ID" => "60",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Longleng",
+            "Langauge_ID" => "39",
+            "State_ID" => "18",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Lunglei",
+            "Langauge_ID" => "39",
+            "State_ID" => "17",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Madikeri",
+            "Langauge_ID" => "70",
+            "State_ID" => "11",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mahabubabad",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Maharajganj",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mairang",
+            "Langauge_ID" => "7",
+            "State_ID" => "16",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Malkangiri",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mamit",
+            "Langauge_ID" => "39",
+            "State_ID" => "17",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mandi",
+            "Langauge_ID" => "60",
+            "State_ID" => "9",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mangaldoi",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mangan",
+            "Langauge_ID" => "60",
+            "State_ID" => "22",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Manjhanpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Margao",
+            "Langauge_ID" => "60",
+            "State_ID" => "6",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Marigaon",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mau",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mawkyrwat",
+            "Langauge_ID" => "7",
+            "State_ID" => "16",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mayabunder",
+            "Langauge_ID" => "39",
+            "State_ID" => "29",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Medak",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mirzapur",
+            "Langauge_ID" => "13",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mohla",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mon",
+            "Langauge_ID" => "39",
+            "State_ID" => "18",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mulugu",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Mushalpur",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nabarangpur",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nagarkurnool",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nahan",
+            "Langauge_ID" => "60",
+            "State_ID" => "9",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nainital",
+            "Langauge_ID" => "39",
+            "State_ID" => "27",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nalbari",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Namchi",
+            "Langauge_ID" => "60",
+            "State_ID" => "22",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Namsai",
+            "Langauge_ID" => "39",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Narayanpet",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Narayanpur",
+            "Langauge_ID" => "7",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Naugarh",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nawanshehr",
+            "Langauge_ID" => "56",
+            "State_ID" => "20",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nayagarh",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "New Tehri",
+            "Langauge_ID" => "60",
+            "State_ID" => "27",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Niuland",
+            "Langauge_ID" => "39",
+            "State_ID" => "18",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Niwari",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Noklak",
+            "Langauge_ID" => "39",
+            "State_ID" => "18",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Noney (Longmai)",
+            "Langauge_ID" => "7",
+            "State_ID" => "15",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nongpoh",
+            "Langauge_ID" => "7",
+            "State_ID" => "16",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nuapada",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Nuh",
+            "Langauge_ID" => "60",
+            "State_ID" => "8",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Oros",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Paderu",
+            "Langauge_ID" => "154",
+            "State_ID" => "1",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pakur",
+            "Langauge_ID" => "60",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pakyong",
+            "Langauge_ID" => "60",
+            "State_ID" => "22",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Palghar",
+            "Langauge_ID" => "94",
+            "State_ID" => "14",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pali",
+            "Langauge_ID" => "60",
+            "State_ID" => "21",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Palin",
+            "Langauge_ID" => "60",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Panaji",
+            "Langauge_ID" => "39",
+            "State_ID" => "6",
+            "State_Capital" => "Yes"
+        ],
+        [
+            "City" => "Panikoili",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Paralakhemundi",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pasighat",
+            "Langauge_ID" => "60",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Patan",
+            "Langauge_ID" => "60",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pathsala",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pauri",
+            "Langauge_ID" => "60",
+            "State_ID" => "27",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Peddapalli",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Peren",
+            "Langauge_ID" => "39",
+            "State_ID" => "18",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Phek",
+            "Langauge_ID" => "39",
+            "State_ID" => "18",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pherzawl",
+            "Langauge_ID" => "7",
+            "State_ID" => "15",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Phulbani",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Poonch",
+            "Langauge_ID" => "60",
+            "State_ID" => "32",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Porompat",
+            "Langauge_ID" => "7",
+            "State_ID" => "15",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Pulwama",
+            "Langauge_ID" => "60",
+            "State_ID" => "32",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Raga",
+            "Langauge_ID" => "39",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rajgarh",
+            "Langauge_ID" => "60",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rajouri",
+            "Langauge_ID" => "60",
+            "State_ID" => "32",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rajpipla",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ramban",
+            "Langauge_ID" => "60",
+            "State_ID" => "32",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ramgarh",
+            "Langauge_ID" => "60",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rayagada",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Reasi",
+            "Langauge_ID" => "60",
+            "State_ID" => "32",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Reckong Peo",
+            "Langauge_ID" => "56",
+            "State_ID" => "9",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Resubelpara",
+            "Langauge_ID" => "7",
+            "State_ID" => "16",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Roing",
+            "Langauge_ID" => "60",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Rudraprayag",
+            "Langauge_ID" => "60",
+            "State_ID" => "27",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sagar",
+            "Langauge_ID" => "70",
+            "State_ID" => "13",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sahebganj",
+            "Langauge_ID" => "60",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Saiha",
+            "Langauge_ID" => "39",
+            "State_ID" => "17",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Saitual",
+            "Langauge_ID" => "39",
+            "State_ID" => "17",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sakti",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Samba",
+            "Langauge_ID" => "60",
+            "State_ID" => "32",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sarangarh",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Senapati",
+            "Langauge_ID" => "7",
+            "State_ID" => "15",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Seppa",
+            "Langauge_ID" => "13",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Seraikela",
+            "Langauge_ID" => "115",
+            "State_ID" => "10",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Serchhip",
+            "Langauge_ID" => "39",
+            "State_ID" => "17",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Shamator",
+            "Langauge_ID" => "39",
+            "State_ID" => "18",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Shamirpet",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sheohar",
+            "Langauge_ID" => "60",
+            "State_ID" => "4",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Shopian",
+            "Langauge_ID" => "60",
+            "State_ID" => "32",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Shravasti",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Silchar",
+            "Langauge_ID" => "39",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sitapur",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sonari",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Soreng",
+            "Langauge_ID" => "60",
+            "State_ID" => "22",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Subarnapur",
+            "Langauge_ID" => "13",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sukma",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sultanpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "26",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Sundergarh",
+            "Langauge_ID" => "115",
+            "State_ID" => "19",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Surajpur",
+            "Langauge_ID" => "60",
+            "State_ID" => "5",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tamenglong",
+            "Langauge_ID" => "39",
+            "State_ID" => "15",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tawang",
+            "Langauge_ID" => "60",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tengnoupal",
+            "Langauge_ID" => "7",
+            "State_ID" => "15",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Teto",
+            "Langauge_ID" => "13",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tezu",
+            "Langauge_ID" => "60",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tirupattur",
+            "Langauge_ID" => "152",
+            "State_ID" => "23",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Tseminyü",
+            "Langauge_ID" => "39",
+            "State_ID" => "18",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Udalguri",
+            "Langauge_ID" => "7",
+            "State_ID" => "3",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ukhrul",
+            "Langauge_ID" => "39",
+            "State_ID" => "15",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Uttarkashi",
+            "Langauge_ID" => "60",
+            "State_ID" => "27",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Vikarabad",
+            "Langauge_ID" => "154",
+            "State_ID" => "24",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Vyara",
+            "Langauge_ID" => "55",
+            "State_ID" => "7",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Williamnagar",
+            "Langauge_ID" => "7",
+            "State_ID" => "16",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Yingkiong",
+            "Langauge_ID" => "39",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Yupia",
+            "Langauge_ID" => "60",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Ziro",
+            "Langauge_ID" => "13",
+            "State_ID" => "2",
+            "State_Capital" => "No"
+        ],
+        [
+            "City" => "Zunheboto",
+            "Langauge_ID" => "39",
+            "State_ID" => "18",
+            "State_Capital" => "No"
+        ]
     ]
 
 ];

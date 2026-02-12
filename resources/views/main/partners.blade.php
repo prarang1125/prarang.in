@@ -203,6 +203,96 @@
             margin-top: 6px;
         }
 
+        .table-container {
+            border: 1px solid #0b2f6a;
+            background: #ffffff;
+            padding: 8px 10px 10px;
+        }
+
+        .table-container h6 {
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .table-wrapper {
+            max-height: 320px;
+            overflow-y: auto;
+            border: 1px solid #0b2f6a;
+        }
+
+        .modal-city-table thead th {
+            background: #2c4f92;
+            color: #ffffff;
+            font-weight: 700;
+            text-align: center;
+            font-size: 12px;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .modal-city-table td {
+            font-size: 12px;
+        }
+
+        .country-table-wrapper {
+            max-height: 260px;
+            overflow-y: auto;
+            border: 1px solid #0b2f6a;
+            background: #ffffff;
+
+            margin: 0 auto;
+        }
+
+        .modal-country-table {
+            width: 100%;
+        }
+
+        .country-pill-badge {
+            display: inline-block;
+            background: #ffffff;
+            color: #000000;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            border: 1px solid #0b2f6a;
+        }
+
+        /* .country-pill-badge:hover {
+            background: #f4f8ff;
+            border-color: #2c4f92;
+        } */
+
+        .modal-country-table thead th {
+            background: #2c4f92;
+            color: #ffffff;
+            font-weight: 700;
+            text-align: center;
+            font-size: 12px;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .modal-country-table td {
+            font-size: 12px;
+        }
+
+        .matrix-language-button {
+            width: 100%;
+            background: transparent;
+            border: 0;
+            padding: 0;
+            text-align: center;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .matrix-language-button:focus {
+            outline: none;
+            box-shadow: none;
+        }
+
         .pune-stack {
             display: flex;
             flex-direction: column;
@@ -523,6 +613,7 @@
             background: #ffffff;
             padding: 8px 6px;
             min-height: 64px;
+            cursor: pointer;
         }
 
         .language-tab-title {
@@ -699,14 +790,17 @@
                 <tbody class="matrix-bg">
                     <tr>
                         <td class="text-center">
-                            <div class="text-2xl font-black">हिन्दी</div>
-                            <div class="text-sm font-semibold">Hindi - 297 City Webs</div>
+                            <button type="button" class="matrix-language-button" data-bs-toggle="modal"
+                                data-bs-target="#LanguageModal-60">
+                                <div class="text-2xl font-black">हिन्दी</div>
+                                <div class="text-sm font-semibold">Hindi - 297 City Webs</div>
+                            </button>
                         </td>
                         <td class="text-center">
                             <div class="text-sm font-bold">292 Knowledge Webs</div>
                             <div class="mt-2">
 
-                                @foreach ($portal as $zone => $state)
+                                @foreach ($portal as $zone => $zoneStates)
                                     @if ($zone == 'Union Territories')
                                         @continue
                                     @endif
@@ -714,7 +808,7 @@
                                         data-bs-target="#ZoneModal-{{ Str::slug($zone) }}">{{ $zone }} Zone
                                     </button>
                                 @endforeach
-                                @foreach ($portal as $zone => $state)
+                                @foreach ($portal as $zone => $zoneStates)
                                     @if ($zone != 'Union Territories')
                                         @continue
                                     @endif
@@ -800,8 +894,11 @@
                     </tr>
                     <tr>
                         <td class="text-center">
-                            <div class="text-2xl font-black">मराठी</div>
-                            <div class="text-sm font-semibold">Marathi - 44 City Webs</div>
+                            <button type="button" class="matrix-language-button" data-bs-toggle="modal"
+                                data-bs-target="#LanguageModal-94">
+                                <div class="text-2xl font-black">मराठी</div>
+                                <div class="text-sm font-semibold">Marathi - 44 City Webs</div>
+                            </button>
                         </td>
                         <td class="text-center">
                             <div class="city-meta">44 Knowledge Webs</div>
@@ -810,7 +907,7 @@
                                     style="text-decoration: none">
                                     Pune
                                 </a>
-                                <span class="matrix-pill matrix-pill-outline matrix-pill-block">+33 Coming Soon</span>
+                                <span class="matrix-pill matrix-pill-outline matrix-pill-block">+43 Coming Soon</span>
                             </div>
                         </td>
                         <td class="text-center">
@@ -830,52 +927,205 @@
 
         <div class="coming-soon-divider"><span>Coming Soon</span></div>
         <div class="language-tabs">
-            <div class="language-tab">
+            <button type="button" class="language-tab" data-bs-toggle="modal" data-bs-target="#LanguageModal-39">
                 <div class="language-tab-title script">English</div>
                 <div class="language-tab-subtitle">English - 192 City Webs</div>
-            </div>
-            <div class="language-tab">
+            </button>
+            <button type="button" class="language-tab" data-bs-toggle="modal" data-bs-target="#LanguageModal-154">
                 <div class="language-tab-title">తెలుగు</div>
                 <div class="language-tab-subtitle">Telugu - 67 City Webs</div>
-            </div>
-            <div class="language-tab">
+            </button>
+            <button type="button" class="language-tab" data-bs-toggle="modal" data-bs-target="#LanguageModal-167">
                 <div class="language-tab-title">اردو</div>
                 <div class="language-tab-subtitle">Urdu - 51 City Webs</div>
-            </div>
-            <div class="language-tab">
+            </button>
+            <button type="button" class="language-tab" data-bs-toggle="modal" data-bs-target="#LanguageModal-152">
                 <div class="language-tab-title">தமிழ்</div>
                 <div class="language-tab-subtitle">Tamil - 44 City Webs</div>
-            </div>
-            <div class="language-tab">
+            </button>
+            <button type="button" class="language-tab" data-bs-toggle="modal" data-bs-target="#LanguageModal-55">
                 <div class="language-tab-title">ગુજરાતી</div>
                 <div class="language-tab-subtitle">Gujarati - 40 City Webs</div>
-            </div>
-            <div class="language-tab">
+            </button>
+            <button type="button" class="language-tab" data-bs-toggle="modal" data-bs-target="#LanguageModal-13">
                 <div class="language-tab-title">বাংলা</div>
                 <div class="language-tab-subtitle">Bengali - 39 City Webs</div>
-            </div>
-            <div class="language-tab">
+            </button>
+            <button type="button" class="language-tab" data-bs-toggle="modal" data-bs-target="#LanguageModal-56">
                 <div class="language-tab-title">ਗੁਰਮੁਖੀ</div>
                 <div class="language-tab-subtitle">Gurmukhi - 38 City Webs</div>
-            </div>
-            <div class="language-tab">
+            </button>
+            <button type="button" class="language-tab" data-bs-toggle="modal" data-bs-target="#LanguageModal-70">
                 <div class="language-tab-title">ಕನ್ನಡ</div>
                 <div class="language-tab-subtitle">Kannada - 34 City Webs</div>
-            </div>
-            <div class="language-tab">
+            </button>
+            <button type="button" class="language-tab" data-bs-toggle="modal" data-bs-target="#LanguageModal-115">
                 <div class="language-tab-title">ଓଡ଼ିଆ</div>
                 <div class="language-tab-subtitle">Odia - 21 City Webs</div>
-            </div>
-            <div class="language-tab">
+            </button>
+            <button type="button" class="language-tab" data-bs-toggle="modal" data-bs-target="#LanguageModal-7">
                 <div class="language-tab-title">অসমীয়া</div>
                 <div class="language-tab-subtitle">Assamese - 15 City Webs</div>
-            </div>
-            <div class="language-tab">
+            </button>
+            <button type="button" class="language-tab" data-bs-toggle="modal" data-bs-target="#LanguageModal-89">
                 <div class="language-tab-title">മലയാളം</div>
                 <div class="language-tab-subtitle">Malayalam - 19 City Webs</div>
-            </div>
+            </button>
         </div>
     </section>
+
+    @php
+        $languageModals = [
+            ['id' => '39', 'title' => 'English'],
+            ['id' => '154', 'title' => 'Telugu'],
+            ['id' => '167', 'title' => 'Urdu'],
+            ['id' => '152', 'title' => 'Tamil'],
+            ['id' => '55', 'title' => 'Gujarati'],
+            ['id' => '13', 'title' => 'Bengali'],
+            ['id' => '56', 'title' => 'Gurmukhi'],
+            ['id' => '70', 'title' => 'Kannada'],
+            ['id' => '115', 'title' => 'Odia'],
+            ['id' => '7', 'title' => 'Assamese'],
+            ['id' => '89', 'title' => 'Malayalam'],
+            ['id' => '60', 'title' => 'Hindi'],
+            ['id' => '94', 'title' => 'Marathi'],
+        ];
+    @endphp
+    @foreach ($languageModals as $language)
+        @php
+            $moreThen30k = collect($more_then_30k)
+                ->flatten(1)
+                ->where('Langauge_ID', $language['id'])
+                ->sortBy('City')
+                ->values();
+            $lessThen30k = collect($less_then_30k)
+                ->flatten(1)
+                ->where('Langauge_ID', $language['id'])
+                ->sortBy('City')
+                ->values();
+        @endphp
+        <div class="modal fade" id="LanguageModal-{{ $language['id'] }}" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-scrollable modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header text-center">
+                        <h5 class="modal-title">{{ $language['title'] }} City Webs</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row g-3">
+                            @if ($moreThen30k->isNotEmpty())
+                                <div class="{{ $lessThen30k->isEmpty() ? 'col-12' : 'col-lg-6' }}">
+                                    <div class="table-container">
+                                        <h6 class="mb-3 text-dark fw-bold">
+                                            List of Cities with more than 30K Literate Netizens in
+                                            {{ $language['title'] }}.
+                                        </h6>
+                                        <div class="table-wrapper">
+                                            <table
+                                                class="table table-sm table-striped table-bordered table-hover modal-city-table">
+                                                <thead class="sticky-top">
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>District Capital</th>
+                                                        <th>State/UT</th>
+                                                        <th>State Capital</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @forelse ($moreThen30k as $item)
+                                                        <tr>
+                                                            <td>{{ $loop->iteration }}</td>
+                                                            <td>{{ $item['City'] ?? '' }}</td>
+                                                            <td>{{ $state[(string) ($item['State_ID'] ?? '')] }}
+                                                            </td>
+                                                            <td>{{ $item['State_Capital'] ?? '' }}</td>
+                                                        </tr>
+                                                    @empty
+                                                        <tr>
+                                                            <td colspan="4" class="text-center">No cities available
+                                                            </td>
+                                                        </tr>
+                                                    @endforelse
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+                            @if ($lessThen30k->isNotEmpty())
+                                <div class="{{ $moreThen30k->isEmpty() ? 'col-12' : 'col-lg-6' }}">
+                                    <div class="table-container">
+                                        <h6 class="mb-3 text-dark fw-bold">
+                                            List of Cities with less than 30K Literate Netizens in
+                                            {{ $language['title'] }}.
+                                        </h6>
+                                        <div class="table-wrapper">
+                                            <table
+                                                class="table table-sm table-striped table-bordered table-hover modal-city-table">
+                                                <thead class="sticky-top">
+                                                    <tr>
+                                                        <th>#</th>
+                                                        <th>District Capital</th>
+                                                        <th>State/UT</th>
+                                                        <th>State Capital</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    @forelse ($lessThen30k as $item)
+                                                        <tr>
+                                                            <td>{{ $loop->iteration }}</td>
+                                                            <td>{{ $item['City'] ?? '' }}</td>
+                                                            <td>{{ $state[(string) ($item['State_ID'] ?? '')] ?? ($state[(int) ($item['State_ID'] ?? 0)] ?? '') }}
+                                                            </td>
+                                                            <td>{{ $item['State_Capital'] ?? '' }}</td>
+                                                        </tr>
+                                                    @empty
+                                                        <tr>
+                                                            <td colspan="4" class="text-center">No cities available
+                                                            </td>
+                                                        </tr>
+                                                    @endforelse
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+
+                        </div>
+                        @php
+                            $countries = collect($countriesByLanguage[$language['id']] ?? [])
+                                ->filter(fn($c) => strtolower($c) !== 'india')
+                                ->values();
+                        @endphp
+
+                        @if ($countries->isNotEmpty())
+                            <div class="mt-4">
+                                <h6 class="mb-3 text-dark fw-bold text-center">
+                                    List of Countries with Literate Netizens in {{ $language['title'] }}.
+                                </h6>
+                                <div class="row">
+                                    @foreach ($countries as $index => $country)
+                                        <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-1">
+                                            <div class="country-pill-badge w-100 text-center">
+                                                {{ $index + 1 }}. {{ $country }}
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            </div>
+                        @endif
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+
+
+
 
     @foreach ($portal as $zone => $states)
         @php
@@ -1333,5 +1583,6 @@
                 });
         });
     </script>
+
 
 </x-layout.main.base>

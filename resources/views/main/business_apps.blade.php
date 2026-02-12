@@ -177,6 +177,71 @@
             max-height: 70vh;
             margin: 0 auto;
         }
+
+        .city-tab {
+            padding: 8px 15px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .dropdown-icon {
+            font-size: 12px;
+            display: inline-flex;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-icon.rotate {
+            transform: rotate(180deg);
+        }
+
+
+        /*
+        .dropbtn {
+            background-color: #3498DB;
+            color: white;
+            padding: 16px;
+            font-size: 16px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .dropbtn:hover,
+        .dropbtn:focus {
+            background-color: #2980B9;
+        } */
+
+        .dropdownss {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 160px;
+            overflow: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdownss a:hover {
+            background-color: #ddd;
+        }
+
+        .show {
+            display: block;
+        }
     </style>
 
     <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-1">
@@ -225,18 +290,27 @@
                 <a class="city-tab" href="https://www.prarang.in/yp/jaunpur?p=jaunpur" target="_blank">Jaunpur</a>
                 <a class="city-tab" href="https://www.prarang.in/yp/shahjahanpur?p=shahjahanpur"
                     target="_blank">Shahjahanpur</a>
-                <a class="city-tab" href="https://www.prarang.in/yp/haridwar?p=haridwar" target="_blank">Haridwar
-                </a>
-                <a class="city-tab" href="https://www.prarang.in/yp/pithoragarh?p=pithoragarh"
-                    target="_blank">Pithoragarh
-                </a>
             </div>
         </div>
 
         <div class="city-tabs">
             <div class="city-tabs-label">Country :</div>
             <div class="city-tabs-list">
-                <a class="city-tab" href="https://www.prarang.in/yp/czech-republic" target="_blank">India-Czech</a>
+                <div class="dropdownss">
+                    <button class="city-tab dropbtn">
+                        India-Czech
+                        <span id="dropdownIcon" class="dropdown-icon">
+                            <i class="bi bi-chevron-down"></i>
+                        </span>
+                    </button>
+
+                    <div id="myDropdown" class="dropdown-content">
+                        <a href="https://www.prarang.in/yp/czech-republic" target="_blank">Czech
+                        </a>
+                        <a href="https://www.prarang.in/yp/india" target="_blank"> India </a>
+                    </div>
+                </div>
+                {{-- <a class="city-tab" href="https://www.prarang.in/yp/czech-republic" target="_blank">India-Czech</a> --}}
                 {{-- <a class="city-tab" href="#" target="_blank">India-Nepal</a> --}}
                 <span class="tooltip-wrap">
                     <button type="button" class="btn btn-secondary city-tab" data-tooltip="Coming soon">
@@ -302,6 +376,36 @@
                 if (!wrap.contains(event.target)) {
                     bubble.classList.remove('is-visible');
                 }
+            });
+        });
+    </script>
+
+
+    <script>
+        // Dropdown functionality
+        const dropbtn = document.querySelector('.dropbtn');
+        const dropdownMenu = document.getElementById('myDropdown');
+        const dropdownIcon = document.getElementById('dropdownIcon');
+
+        dropbtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            dropdownMenu.classList.toggle('show');
+            dropdownIcon.classList.toggle('rotate');
+        });
+
+        // Close dropdown when clicking outside
+        window.addEventListener('click', function(event) {
+            if (!event.target.closest('.dropdownss')) {
+                dropdownMenu.classList.remove('show');
+                dropdownIcon.classList.remove('rotate');
+            }
+        });
+
+        // Close dropdown when clicking a link inside
+        document.querySelectorAll('#myDropdown a').forEach(link => {
+            link.addEventListener('click', function() {
+                dropdownMenu.classList.remove('show');
+                dropdownIcon.classList.remove('rotate');
             });
         });
     </script>
