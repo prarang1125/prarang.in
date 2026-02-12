@@ -87,9 +87,12 @@
         }
 
         .live-cities .city-btn {
-            background-color: yellow;
+            background-color: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 6px;
             text-decoration: none;
             text-align: center;
+            padding: 4px 6px;
         }
 
         a {
@@ -235,6 +238,7 @@
             align-items: center;
             justify-content: center;
             min-height: 45px;
+            cursor: pointer;
         }
 
         .city-card:hover {
@@ -490,7 +494,7 @@
 
                                                         @foreach ($statePortals as $portalItem)
                                                             @if ($portalItem->is_ext_url)
-                                                                <div class="btn-group w-100">
+                                                                <div class="btn-group w-100 dropdown">
                                                                     <button
                                                                         class="city-card btn w-100 has-external dropdown-toggle"
                                                                         data-bs-toggle="dropdown"
@@ -498,8 +502,8 @@
                                                                         {{ $portalItem->city_name }}
                                                                     </button>
 
-                                                                    <ul
-                                                                        class="dropdown-menu shadow border-0 py-2 w-100">
+                                                                    <ul class="dropdown-menu shadow border-0 py-2 w-100"
+                                                                        style="margin-top: 45px">
                                                                         <li>
                                                                             <a class="dropdown-item py-2 px-3"
                                                                                 href="/{{ $portalItem->slug }}">

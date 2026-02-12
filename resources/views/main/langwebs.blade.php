@@ -1,6 +1,23 @@
 <x-layout.main.base>
 
     <style>
+        .scroll-hint {
+            display: none;
+            text-align: center;
+            padding: 6px;
+            background: linear-gradient(90deg, transparent, #ffff00, transparent);
+            color: #000000;
+            font-size: 10px;
+            font-weight: 600;
+            border-radius: 0 0 4px 4px;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-hint {
+                display: block;
+            }
+        }
+
         .table-wrapper {
             max-height: 600px;
             /* jitni height chahiye */
@@ -30,12 +47,21 @@
             z-index: 2;
         }
 
-        .table-wrapper .table-striped thead .bg-warning .bg-warning {
+        .table-footer-total {
+            border: 1px solid #ccc;
+            border-top: 0;
+            padding: 6px;
+            text-align: center;
+            font-weight: bold;
+            background-color: #fff;
+        }
+
+        .table-wrapper .table-striped thead .bg-war .bg-war {
             font-size: 14px;
             font-weight: 500;
         }
 
-        .table-sec thead .bg-warning .bg-warning {
+        .table-sec thead .bg-war .bg-war {
             font-size: 14px;
             font-weight: 500;
         }
@@ -57,6 +83,120 @@
         #countryTableBody td {
             border: none !important;
         }
+
+        #countryModal .modal-content {
+            border-radius: 10px;
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+        }
+
+        #countryModal .modal-header {
+            background: linear-gradient(135deg, #f8c146, #f9d776);
+            border-bottom: 0;
+        }
+
+        #countryModal .modal-title {
+            font-weight: 700;
+            letter-spacing: 0.2px;
+        }
+
+        #countryModal .modal-body {
+            background: #fffdf6;
+        }
+
+        #countryModal table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0 6px;
+        }
+
+        #countryModal #countryTableBody td {
+            background: #ffffff;
+            padding: 8px 10px;
+            border-radius: 6px;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.06);
+        }
+
+        #countryModal #countryTableBody tr td:first-child {
+            margin-right: 6px;
+        }
+
+        #countryModal #countryTableBody tr td:empty {
+            background: transparent;
+            box-shadow: none;
+        }
+
+        /* #countryModal #countryTableBody tr:hover td:not(:empty) {
+            background: #fff3cd;
+        } */
+        @media (max-width:576px) {
+
+            /* Table Data */
+
+            .container tr th:nth-child(2) {
+                z-index: 100;
+                position: sticky;
+                left: -5px;
+            }
+
+            .container .table-wrapper tr td:nth-child(2) {
+
+                position: sticky;
+                left: -5px;
+            }
+        }
+
+        @media (max-width:767px) {
+
+            /* Body Of Table */
+            .container .table-wrapper tbody {
+                overflow: scroll;
+                /* transform: translatex(0px) translatey(0px);
+            } */
+
+                /* Table Data */
+                .container .table-wrapper tr:nth-child(2) td:nth-child(2) {
+                    position: sticky;
+                    left: -10px;
+                }
+
+            }
+
+            @media (max-width:576px) {
+
+                /* Table Data */
+                .table-responsive .table-striped tbody tr td:nth-child(2) {
+                    position: sticky;
+                    left: -5px;
+                }
+
+                /* Body Of Table */
+                .container .mt-3 .table-responsive .table-striped tbody {
+                    height: 8vh !important;
+                }
+
+                /* Table responsive */
+                .container .mt-3 .table-responsive {
+                    min-height: 80vh;
+                    overflow: scroll;
+                    max-height: 80vh;
+                }
+
+            }
+
+            .bg-war {
+                background: #ffff00 !important;
+                color: black;
+            }
+
+            /* Text dark */
+            .table-wrapper .table-striped thead .text-dark .text-dark {
+                background-color: #ffff00;
+            }
+
+            /* Text dark */
+            .table-responsive .table-striped thead .text-dark .text-dark {
+                background-color: #ffff00;
+            }
     </style>
 
     {{-- Back Button --}}
@@ -74,14 +214,15 @@
             <img src="{{ asset('images/langlogo.png') }}" alt="Globe" style="width: 50px; height: 50px;">
         </h2>
     </div> --}}
-
-    <section class="flex flex-col justify-center items-center">
-        <h4 class=" flex  justify-center items-center text-center text-dark font-bold firstimg">
-            <img src="{{ asset('images/langlogo.png') }}" alt="Globe" class="rotate-left"
-                style="width: 50px; height: 50px;">
+    <section>
+        <h4 class=" flex  justify-center items-center text-center text-dark font-bold">
+            <img src="{{ asset('images/lang2.png') }}" alt="Globe" style="width: 56px;height: 44px;">
             World - 178 Language Webs
             <img src="{{ asset('images/langlogo.png') }}" alt="Globe" style="width: 50px; height: 50px;">
         </h4>
+    </section>
+    <section class="flex flex-col justify-center items-center">
+
         <p>There are 195 Countries in the world, and each country selects its own Official language(s). For example,
             India
             has 22 official languages recognized in its Constitution. These 22 languages primarily use 13 distinct
@@ -108,17 +249,17 @@
 
 
                 <thead>
-                    <tr class="bg-warning text-dark">
-                        <th class="bg-warning text-dark">Sr.</th>
-                        <th class="bg-warning text-dark">Language</th>
-                        <th class="bg-warning text-dark">Language Family (Spoken)</th>
-                        <th class="bg-warning text-dark">Population (2021)</th>
-                        <th class="bg-warning text-dark">Content on Internet (%)</th>
-                        <th class="bg-warning text-dark">Content on Wikipedia (%)</th>
-                        <th class="bg-warning text-dark">Scripts</th>
-                        <th class="bg-warning text-dark">Language Family (Writing)</th>
-                        <th class="bg-warning text-dark">Writing System</th>
-                        <th class="bg-warning text-dark">No. Of Countries</th>
+                    <tr class="bg-war text-dark">
+                        <th class="bg-war text-dark">Sr.</th>
+                        <th class="bg-war text-dark">Language</th>
+                        <th class="bg-war text-dark">Language Family (Spoken)</th>
+                        <th class="bg-war text-dark">Population (2021)</th>
+                        <th class="bg-war text-dark">Content on Internet (%)</th>
+                        <th class="bg-war text-dark">Content on Wikipedia (%)</th>
+                        <th class="bg-war text-dark">Scripts</th>
+                        <th class="bg-war text-dark">Language Family (Writing)</th>
+                        <th class="bg-war text-dark">Writing System</th>
+                        <th class="bg-war text-dark">No. Of Countries</th>
                     </tr>
                 </thead>
 
@@ -128,7 +269,13 @@
                         <tr>
                             <td>{{ $index + 1 }}</td>
 
-                            <td>{{ $row['language'] }}</td>
+                            <td>
+                                <a href="javascript:void(0)" style="text-decoration: none" class="open-country-modal"
+                                    data-lang-id="{{ $row['language_id'] }}" data-bs-toggle="modal"
+                                    data-bs-target="#countryModal">
+                                    {{ $row['language'] }}
+                                </a>
+                            </td>
                             <td>{{ $row['spoken_family'] }}</td>
                             <td>{{ $row['population_2021'] }}</td>
                             <td>{{ $row['internet_content'] }}</td>
@@ -139,7 +286,7 @@
                             <td>
 
 
-                                <a href="javascript:void(0)" class="open-country-modal"
+                                <a href="javascript:void(0)" style="text-decoration: none" class="open-country-modal"
                                     data-lang-id="{{ $row['language_id'] }}" data-bs-toggle="modal"
                                     data-bs-target="#countryModal">
                                     {{ $row['countries_count'] }}
@@ -152,15 +299,12 @@
                     @endforeach
                 </tbody>
 
-                <tfoot class="firsttable">
-                    <tr>
-                        <td colspan="10" class="text-center bg-light">Total - 148 Languages</td>
-                    </tr>
-                </tfoot>
-
             </table>
 
+
         </div>
+        <div class="table-footer-total">Total - 148 Languages</div>
+        <div class="scroll-hint">&larr; Scroll horizontally &rarr;</div>
 
     </section>
 
@@ -169,65 +313,84 @@
         <h4 class="text-dark fw-bold" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
             <img src="{{ asset('images/langlogo3.png') }}" alt="Globe"
                 style="width: 35px; height: 35px; transform: scaleX(-1);">
-            Digital Divide Languages
+            Digital Balanced Languages
         </h4>
     </section>
 
     <section class="mt-3">
-        <table class="table table-striped table-sec table-sm">
+
+        <div class="table-responsive">
+            <table class="table  table-striped table-sec table-sm">
 
 
 
-            <thead>
-                <tr class="bg-warning text-dark">
-                    <th class="bg-warning text-dark">Sr.</th>
-                    <th class="bg-warning text-dark">Language</th>
-                    <th class="bg-warning text-dark">Language Family (Spoken)</th>
-                    <th class="bg-warning text-dark">Population (2021)</th>
-                    <th class="bg-warning text-dark">Content on Internet (%)</th>
-                    <th class="bg-warning text-dark">Content on Wikipedia (%)</th>
-                    <th class="bg-warning text-dark">Scripts</th>
-                    <th class="bg-warning text-dark">Language Family (Writing)</th>
-                    <th class="bg-warning text-dark">Writing System</th>
-                    <th class="bg-warning text-dark">No. Of Countries</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                @foreach ($balanced as $index => $row)
-                    <tr>
-                        <td>{{ $index + 1 }}</td>
-
-                        <td>{{ $row['language'] }}</td>
-                        <td>{{ $row['family_spoken'] }}</td>
-                        <td>{{ $row['population_2021'] }}</td>
-                        <td>{{ $row['internet_content'] }}</td>
-                        <td>{{ $row['wikipedia_content'] }}</td>
-                        <td>{{ $row['script'] }}</td>
-                        <td>{{ $row['writing_family'] }}</td>
-                        <td>{{ $row['writing_system'] }}</td>
-
-
-                        <td>
-                            <a href="javascript:void(0)" class=" open-country-modal"
-                                data-lang-id="{{ $row['language_id'] }}" data-bs-toggle="modal"
-                                data-bs-target="#countryModal">
-                                {{ $row['countries'] }}
-                            </a>
-                        </td>
-
-
+                <thead>
+                    <tr class="bg-war text-dark">
+                        <th class="bg-war text-dark">Sr.</th>
+                        <th class="bg-war text-dark">Language</th>
+                        <th class="bg-war text-dark">Language Family (Spoken)</th>
+                        <th class="bg-war text-dark">Population (2021)</th>
+                        <th class="bg-war text-dark">Content on Internet (%)</th>
+                        <th class="bg-war text-dark">Content on Wikipedia (%)</th>
+                        <th class="bg-war text-dark">Scripts</th>
+                        <th class="bg-war text-dark">Language Family (Writing)</th>
+                        <th class="bg-war text-dark">Writing System</th>
+                        <th class="bg-war text-dark">No. Of Countries</th>
                     </tr>
-                @endforeach
-            </tbody>
+                </thead>
+
+                <tbody>
+                    @foreach ($balanced as $index => $row)
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+
+                            <td>
+                                <a href="javascript:void(0)" style="text-decoration: none" class=" open-country-modal"
+                                    data-lang-id="{{ $row['language_id'] }}" data-bs-toggle="modal"
+                                    data-bs-target="#countryModal">
+                                    {{ $row['language'] }}
+                                </a>
+
+                            </td>
+                            <td>{{ $row['family_spoken'] }}</td>
+                            <td>{{ $row['population_2021'] }}</td>
+                            <td>{{ $row['internet_content'] }}</td>
+                            <td>{{ $row['wikipedia_content'] }}</td>
+                            <td>{{ $row['script'] }}</td>
+                            <td>{{ $row['writing_family'] }}</td>
+                            <td>{{ $row['writing_system'] }}</td>
 
 
-            <tr>
-                <td colspan="10" class="text-center">Total - 30 Languages</td>
-            </tr>
+                            <td>
+                                <a href="javascript:void(0)" style="text-decoration: none" class=" open-country-modal"
+                                    data-lang-id="{{ $row['language_id'] }}" data-bs-toggle="modal"
+                                    data-bs-target="#countryModal">
+                                    {{ $row['countries'] }}
+                                </a>
+                            </td>
 
 
-        </table>
+                        </tr>
+                    @endforeach
+                </tbody>
+
+
+                <tr>
+                    {{-- <td colspan="10" class="text-center">Total - 30 Languages</td> --}}
+                </tr>
+
+
+            </table>
+
+
+
+
+        </div>
+
+        <div class="table-footer-total">Total - 30 Languages</div>
+        <div class="scroll-hint">&larr; Scroll horizontally &rarr;</div>
+
+
     </section>
 
     {{-- ================= NOTES ================= --}}
@@ -242,7 +405,7 @@
 
     {{-- ================= MODAL ================= --}}
     <div class="modal fade" id="countryModal" tabindex="-1">
-        <div class="modal-dialog modal-lg">
+        <div class="modal-dialog modal-md">
             <div class="modal-content">
 
                 <div class="modal-header">
@@ -255,7 +418,7 @@
                     <table class="table table-sm">
                         <tbody id="countryTableBody">
                             <tr>
-                                <td colspan="4" class="text-center">Click on language</td>
+                                <td colspan="2" class="text-center">Click on language</td>
                             </tr>
                         </tbody>
                     </table>
@@ -305,7 +468,7 @@
                         if (data.length === 0) {
                             tbody.html(`
                         <tr>
-                            <td colspan="4" class="text-danger text-center">
+                            <td colspan="2" class="text-danger text-center">
                                 No countries found
                             </td>
                         </tr>
@@ -313,10 +476,10 @@
                             return;
                         }
 
-                        // 4 countries per row
+                        // 2 countries per row
                         let row = '';
                         $.each(data, function(index, country) {
-                            if (index % 4 === 0) {
+                            if (index % 2 === 0) {
                                 if (index > 0) {
                                     tbody.append(`<tr>${row}</tr>`);
                                 }
@@ -326,9 +489,9 @@
                         });
 
                         // Add remaining cells if last row is incomplete
-                        let remaining = data.length % 4;
+                        let remaining = data.length % 2;
                         if (remaining !== 0) {
-                            for (let i = remaining; i < 4; i++) {
+                            for (let i = remaining; i < 2; i++) {
                                 row += `<td></td>`;
                             }
                         }
@@ -338,7 +501,7 @@
                     error: function() {
                         tbody.html(`
                     <tr>
-                        <td colspan="4" class="text-danger text-center">
+                        <td colspan="2" class="text-danger text-center">
                             Server error
                         </td>
                     </tr>

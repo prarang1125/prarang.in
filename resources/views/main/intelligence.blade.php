@@ -1,6 +1,10 @@
 <x-layout.main.base>
 
-
+    <style>
+        .container p:nth-child(1) {
+            text-align: center;
+        }
+    </style>
     <section class="bs5-top-heading mt-2 mb-4 flex  gap-2 justify-center items-center">
         <img class="h-8 w-8" src="{{ asset('assets/images/home/Intelligence_Art1.jpg') }}" alt="">
         <div class="text-dark text-xl md:text-2xl font-bold uppercase">intelligence</div>
@@ -39,15 +43,18 @@
                 <a class="col-sm hh  text-center font-bold text-lg no-underline" href="https://prarang.ai"
                     target="_blank">
 
-                    Prarang Artificial Intelligence <img class="h-28 w-28"
-                        src="{{ asset('assets/images/home/Intelligence_Art1.jpg') }}" alt=""></a>
+                    Prarang Artificial Intelligence <img class="h-80 w-80"
+                        src="{{ asset('assets/images/home/Intelligence_Art1.jpg') }}" alt="">
+                    <small class="text-primary"> https://prarang.ai</small></a>
+
 
 
                 <a class="col-sm hh text-center font-bold text-lg no-underline" href="https://apratyaksh.com/"
                     target="_blank">
                     <img src="" alt="">
-                    Prarang Natural Intelligence <img class="h-28 w-28"
-                        src="{{ asset('assets/images/home/Intelligence_Nat1.jpg') }}" alt=""></a>
+                    Prarang Natural Intelligence <img class="h-80 w-80"
+                        src="{{ asset('assets/images/home/Intelligence_Nat1.jpg') }}" alt=""> <small
+                        class="text-primary"> https://apratyaksh.com</small></a>
             </div>
 
 

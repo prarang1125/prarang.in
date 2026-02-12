@@ -1,5 +1,22 @@
 <x-layout.main.base>
     <style>
+        .scroll-hint {
+            display: none;
+            text-align: center;
+            padding: 6px;
+            background: linear-gradient(90deg, transparent, #e74c3c, transparent);
+            color: #ffffff;
+            font-size: 10px;
+            font-weight: 600;
+            border-radius: 0 0 4px 4px;
+        }
+
+        @media (max-width: 768px) {
+            .scroll-hint {
+                display: block;
+            }
+        }
+
         .modern-table {
             font-size: 13px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -37,7 +54,7 @@
         .table-responsive {
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            margin-bottom: 20px;
+            margin-bottom: 8px;
             max-height: calc(100vh - 250px);
             overflow-y: auto;
         }
@@ -89,7 +106,7 @@
 
             .modern-table thead th:nth-child(2),
             .modern-table tbody tr td:nth-child(1) {
-                left: 35px;
+                left: 0px;
                 box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
             }
 
@@ -136,12 +153,18 @@
         }
 
         .modal-body {
-            padding: 20px;
+            padding-top: 0px !important;
         }
 
         .modal-body table {
             width: 100%;
             font-size: 13px;
+            border-collapse: separate;
+            border-spacing: 0;
+        }
+
+        .modal-body table.table-bordered {
+            border: 0;
         }
 
         .modal-body table thead th {
@@ -152,6 +175,11 @@
             text-transform: uppercase;
             font-size: 11px;
             border: 1px solid #c0392b;
+            box-shadow: inset 0 -1px 0 #c0392b;
+        }
+
+        .modal-body table tbody tr:first-child td {
+            border-top: 0;
         }
 
         .modal-body table tbody td {
@@ -165,7 +193,7 @@
 
         /* Scroll Indicator for Mobile */
         @media (max-width: 768px) {
-            .table-responsive::after {
+            .table-hori::after {
                 content: '← Scroll horizontally →';
                 display: block;
                 text-align: center;
@@ -207,10 +235,33 @@
         }
     </style>
     <style>
-        /* Th */
-        .container .modal th {
+        /* Modal table header */
+        .container .modal thead th {
             position: sticky;
-            top: -20px;
+            top: 0;
+            z-index: 7;
+            background-color: #e74c3c;
+        }
+
+        /* Modal table: sticky only Country column for horizontal scroll */
+        .container .modal table th:nth-child(2),
+        .container .modal table td:nth-child(2) {
+            position: sticky;
+            left: 0;
+            z-index: 6;
+            background-color: #fff;
+            min-width: 180px;
+            width: 180px;
+        }
+
+        .container .modal table thead th:nth-child(2) {
+            background-color: #e74c3c;
+            color: #fff;
+            z-index: 8;
+        }
+
+        .container .modal table td:nth-child(2) {
+            box-shadow: 2px 0 4px rgba(0, 0, 0, 0.08);
         }
 
         @media (max-width:576px) {
@@ -218,7 +269,9 @@
             /* Table Data */
             .container .modal tr td:nth-child(2) {
                 position: sticky;
-                left: -18px;
+                left: 0;
+                z-index: 6;
+                background-color: #fff;
             }
 
 
@@ -243,7 +296,7 @@
             /* Table Data */
             .modern-table tr td:nth-child(2) {
                 position: sticky;
-                left: -15px !important;
+                left: 0px !important;
                 z-index: 100 !important;
 
             }
@@ -260,6 +313,26 @@
 
         }
     </style>
+    <style>
+        /* Paragraph */
+        .container section p {
+            font-size: 13px;
+        }
+
+        /* Small */
+        .container .modal .small {
+            font-size: 12px;
+        }
+
+        @media (min-width:769px) {
+
+            /* Table Data */
+            .modern-table tr td {
+                font-size: 14px !important;
+            }
+
+        }
+    </style>
 
     <p class="text-start mt-2">
         <a href="/" class="btn btn-dark btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
@@ -271,11 +344,14 @@
             World - 195 Country Webs
             <img class="h-10 w-10" src="{{ asset('assets/images/home/2.png') }}" alt="">
         </h4>
-        <small class="">All 195 countries are grouped into seven major regions/continents. The table below
-            summarizes their combined demographic, literacy, internet access, and social media usage characteristics,
-            providing a comparative view of global digital reach and knowledge connectivity.</small>
     </section>
-    <section class="mt-3">
+
+    <small class="">All 195 countries are grouped into seven major regions/continents. The table below
+        summarizes their combined demographic, literacy, internet access, and social media usage characteristics,
+        providing a comparative view of global digital reach and knowledge connectivity.</small>
+
+
+    <section class="mt-3 table-hori">
         <div class="table-responsive">
             <table class="table table-sm table-striped table-hover table-bordered modern-table">
                 <thead>
@@ -295,7 +371,11 @@
                 <tbody>
                     <tr>
                         <th>1</th>
-                        <td>Africa</td>
+                        <td>
+                            <a class="text-primary cursor-pointer" data-bs-toggle="modal"
+                                data-bs-target="#modal-1">Africa</a>
+
+                        </td>
                         <td>1548</td>
                         <td>67%</td>
                         <td>38%</td>
@@ -308,7 +388,8 @@
                     </tr>
                     <tr>
                         <th>2</th>
-                        <td>Asia</td>
+                        <td> <a class="text-primary cursor-pointer" data-bs-toggle="modal"
+                                data-bs-target="#modal-2">Asia</a></td>
                         <td>4247</td>
                         <td>85%</td>
                         <td>68%</td>
@@ -321,7 +402,8 @@
                     </tr>
                     <tr>
                         <th>3</th>
-                        <td>Central America and the Caribbean</td>
+                        <td> <a class="text-primary cursor-pointer" data-bs-toggle="modal"
+                                data-bs-target="#modal-3">Central America and the Caribbean</a></td>
                         <td>225</td>
                         <td>91%</td>
                         <td>73%</td>
@@ -334,7 +416,8 @@
                     </tr>
                     <tr>
                         <th>4</th>
-                        <td>Europe</td>
+                        <td> <a class="text-primary cursor-pointer" data-bs-toggle="modal"
+                                data-bs-target="#modal-4">Europe</a></td>
                         <td>600</td>
                         <td>99%</td>
                         <td>90%</td>
@@ -347,7 +430,8 @@
                     </tr>
                     <tr>
                         <th>5</th>
-                        <td>North America</td>
+                        <td> <a class="text-primary cursor-pointer" data-bs-toggle="modal"
+                                data-bs-target="#modal-5">North America</a></td>
                         <td>387</td>
                         <td>87%</td>
                         <td>96%</td>
@@ -360,7 +444,8 @@
                     </tr>
                     <tr>
                         <th>6</th>
-                        <td>South America</td>
+                        <td> <a class="text-primary cursor-pointer" data-bs-toggle="modal"
+                                data-bs-target="#modal-6">South America</a></td>
                         <td>438</td>
                         <td>95%</td>
                         <td>80%</td>
@@ -373,7 +458,8 @@
                     </tr>
                     <tr>
                         <th>7</th>
-                        <td>South East Asia and Oceania</td>
+                        <td> <a class="text-primary cursor-pointer" data-bs-toggle="modal"
+                                data-bs-target="#modal-7">Oceania</a></td>
                         <td>746</td>
                         <td>94%</td>
                         <td>72%</td>
@@ -402,9 +488,12 @@
     </section>
     <section>
         <p class="small">
-            Notes: Population (2025) figures are based on the UN Population Division Report (2024). Literacy rates are
-            weighted averages derived from the CIA World Factbook (2022). Internet access data is sourced from UN ICT
-            Data (2024). Social media usage percentages (Facebook, Instagram, LinkedIn, and X) are based on respective
+            Notes: Population (2025) figures are based on the UN Population Division Report (2024). Literacy rates
+            are
+            weighted averages derived from the CIA World Factbook (2022). Internet access data is sourced from UN
+            ICT
+            Data (2024). Social media usage percentages (Facebook, Instagram, LinkedIn, and X) are based on
+            respective
             advertising modules as of December 2025.
         </p>
     </section>
@@ -451,14 +540,18 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <p class="small">
-                            Notes: Population (2025) figures are based on the UN Population Division Report (2024).
-                            Literacy rates are derived from the CIA World Factbook (2022). Internet access data is
-                            sourced from UN ICT Data (2024). Social media usage percentages (Facebook, Instagram,
-                            LinkedIn, and X) are based on respective advertising modules as of December 2025.
 
-                        </p>
+
                     </div>
+                    <div class="scroll-hint">&larr; Scroll horizontally &rarr;</div>
+                    <p class="small" style="text-align: justify !important; padding: 0px 15px;">
+                        Notes: Population (2025) figures are based on the UN Population Division Report (2024).
+                        Literacy rates are derived from the CIA World Factbook (2022). Internet access data is
+                        sourced from UN ICT Data (2024). Social media usage percentages (Facebook, Instagram,
+                        LinkedIn, and X) are based on respective advertising modules as of December 2025.
+
+                    </p>
+
                 </div>
             </div>
         </div>

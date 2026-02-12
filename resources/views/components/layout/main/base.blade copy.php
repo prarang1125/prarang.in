@@ -640,7 +640,7 @@
     }
 </style>
 
-<body class="bg-light" style="min-height: 100vh !important;" style="background: #ffffff !important;">
+<body class="bg-light" style="min-height: 100vh !important;">
 
     <div id="main-header" class="">
         <header class="bg-white container-fluid py-3 d-none d-lg-block">
@@ -688,40 +688,22 @@
                 <div class="collapse navbar-collapse" id="mainNavbarMenu">
                     <ul class="navbar-nav w-100 justify-content-between">
                         @if (url()->current() != '/')
-                            <li class="nav-item">
-                                <a class="nav-link" href="/">
-                                    Home
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">
+                                Home
+                            </a>
+                        </li>
                         @endif
                         <li class="nav-item">
                             <a class="nav-link" href="/digital-divide">Digital Divide</a>
                         </li>
-
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
                                 Solutions
                             </a>
                             <ul class="dropdown-menu">
-                                <li class="dropdown">
-                                    <a class="dropdown-item dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
-                                        Content
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item"
-                                                href="{{ route('home.knowledge-posts') }}">Knowledge Posts
-                                            </a></li>
-                                        <li><a class="dropdown-item"
-                                                href="{{ route('home.business-apps') }}">Business
-                                                Apps
-                                            </a></li>
-
-
-                                    </ul>
-                                    {{-- <a class="dropdown-item" href="/content">Content</a> --}}
-                                </li>
+                                <li><a class="dropdown-item" href="/content">Content</a></li>
                                 <li class="dropdown">
                                     <a class="dropdown-item dropdown-toggle" href="#" role="button"
                                         data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
@@ -732,28 +714,11 @@
                                                 href="https://g2c.prarang.in/india">India Analytics</a></li>
                                         <li><a class="dropdown-item" target="_blank"
                                                 href="https://g2c.prarang.in/world">World Analytics</a></li>
-                                        <li><a class="dropdown-item"
-                                                href="https://g2c.prarang.in/planners">Planners</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="/cirus">Cyber Risk Analyser
-                                            </a></li>
+                                        <li><a class="dropdown-item" href="/cirus">CIRUS</a></li>
 
                                     </ul>
                                 </li>
-
-                                <li class="dropdown">
-                                    <a class="dropdown-item dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
-                                        Artificial Intelligence
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" target="_blank" href="/ai/upmana">Comparative
-                                                A.I.
-                                            </a></li>
-
-                                    </ul>
-                                    {{-- <a class="dropdown-item" href="/ai/upmana">Artificial Intelligence</a> --}}
-                                </li>
+                                <li><a class="dropdown-item" href="/ai/upmana">A.I.</a></li>
                                 <li class="dropdown">
                                     <a class="dropdown-item dropdown-toggle" href="#" role="button"
                                         data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
@@ -766,24 +731,6 @@
                                     </ul>
                                 </li>
 
-                                <li class="dropdown">
-                                    <a class="dropdown-item dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
-                                        Portals
-
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{ route('home.city-portals') }}">City
-                                                Portals
-                                            </a></li>
-                                        <li><a class="dropdown-item"
-                                                href="{{ route('home.country-portals') }}">Country
-                                                Portals
-
-                                            </a></li>
-                                    </ul>
-                                </li>
-
 
                             </ul>
                         </li>
@@ -792,7 +739,7 @@
                             <a class="nav-link" href="/partners">Partners</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/about-us">About Us</a>
+                            <a class="nav-link" href="/about-us">About-Us</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="javascript:void(0);" id="viveks-modal">Blogs</a>
@@ -808,14 +755,13 @@
             </div>
         </nav>
     </div>
-    @props(['resetMainMinHeight' => false])
-    <main class="container" @if (!$resetMainMinHeight) style="min-height: 70vh !important;" @endif>
+    <main class="container mt-3" style="min-height: 70vh !important;">
         {{ $slot }}
     </main>
     <footer>
         <div class="container-fluid">
             <br>
-            {{-- <div class="container mt-3">
+            <div class="container mt-3">
                 <div class="footer-design row">
                     <div class="col-sm-3">
                         <a href="https://www.prarang.in/privacy-policy" class="">
@@ -838,7 +784,7 @@
                         </a>
                     </div>
                 </div>
-            </div> --}}
+            </div>
             <div class="container-fluid">
 
             </div>
@@ -897,6 +843,117 @@
         document.addEventListener('click', function(e) {
             if (e.target.classList.contains('form-check-input')) {
                 e.stopPropagation();
+            }
+        });
+
+        // Enhanced dropdown handling for mobile with touch optimization
+        document.addEventListener('DOMContentLoaded', function() {
+            let touchStartY = 0;
+            let isSwiping = false;
+
+            // Handle all dropdown toggles (both main and nested)
+            document.querySelectorAll('.dropdown-toggle').forEach(function(toggle) {
+                // Touch start tracking
+                toggle.addEventListener('touchstart', function(e) {
+                    touchStartY = e.touches[0].clientY;
+                    isSwiping = false;
+                }, {
+                    passive: true
+                });
+
+                // Touch move detection
+                toggle.addEventListener('touchmove', function(e) {
+                    const touchY = e.touches[0].clientY;
+                    if (Math.abs(touchY - touchStartY) > 10) {
+                        isSwiping = true;
+                    }
+                }, {
+                    passive: true
+                });
+
+                // Click/Touch handler
+                toggle.addEventListener('click', function(e) {
+                    // Ignore if user was swiping
+                    if (isSwiping) {
+                        return;
+                    }
+
+                    // Only handle on mobile or if it's a nested dropdown
+                    if (window.innerWidth < 992 || this.closest('.dropdown-menu')) {
+                        e.preventDefault();
+                        e.stopPropagation();
+
+                        const parentDropdown = this.closest('.dropdown');
+                        if (parentDropdown) {
+                            const wasOpen = parentDropdown.classList.contains('show');
+
+                            // Close other dropdowns at the same level
+                            const siblings = parentDropdown.parentElement.querySelectorAll(
+                                ':scope > .dropdown');
+                            siblings.forEach(function(sibling) {
+                                if (sibling !== parentDropdown && sibling.classList
+                                    .contains('show')) {
+                                    sibling.classList.remove('show');
+                                }
+                            });
+
+                            // Toggle current dropdown
+                            if (wasOpen) {
+                                parentDropdown.classList.remove('show');
+                            } else {
+                                parentDropdown.classList.add('show');
+
+                                // Add haptic feedback on supported devices
+                                if (window.navigator && window.navigator.vibrate) {
+                                    window.navigator.vibrate(10);
+                                }
+                            }
+                        }
+                    }
+                });
+            });
+
+            // Close dropdowns when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.dropdown') && !e.target.closest('.navbar-toggler')) {
+                    document.querySelectorAll('.dropdown.show').forEach(function(dropdown) {
+                        dropdown.classList.remove('show');
+                    });
+                }
+            });
+
+            // Close mobile menu when clicking a non-dropdown link
+            document.querySelectorAll(
+                '.navbar-nav .nav-link:not(.dropdown-toggle), .dropdown-menu .dropdown-item:not(.dropdown-toggle)'
+            ).forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    // Don't close if it's a dropdown toggle
+                    if (this.classList.contains('dropdown-toggle')) {
+                        return;
+                    }
+
+                    const navbarCollapse = document.getElementById('mainNavbarMenu');
+                    if (navbarCollapse && window.innerWidth < 992) {
+                        // Small delay for better UX
+                        setTimeout(function() {
+                            const bsCollapse = bootstrap.Collapse.getInstance(
+                                navbarCollapse);
+                            if (bsCollapse) {
+                                bsCollapse.hide();
+                            }
+                        }, 150);
+                    }
+                });
+            });
+
+            // Close all dropdowns when navbar is collapsed
+            const navbarCollapse = document.getElementById('mainNavbarMenu');
+            if (navbarCollapse) {
+                navbarCollapse.addEventListener('hidden.bs.collapse', function() {
+                    document.querySelectorAll('.dropdown.show').forEach(function(dropdown) {
+                        dropdown.classList.remove('show');
+                    });
+                });
             }
         });
     </script>

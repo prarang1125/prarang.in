@@ -30,6 +30,7 @@ Route::prefix('/')->group(function () {
     Route::get('/digital-divide', [Home::class, 'market'])->name('market');
     Route::view('/knowledge', 'main.knowledge');
     Route::view('/intelligence', 'main.intelligence');
+    Route::view('/english-web', 'main.analytics');
     Route::get('/content', [Home::class, 'content'])->name('content');
     Route::get('/semiotics', [Home::class, 'semiotics'])->name('semiotics');
     Route::get('/analytics', [Home::class, 'analytics'])->name('analytics');
@@ -47,6 +48,12 @@ Route::get('lang-webs', [Home::class, 'langWebs'])->name('home.lang-webs');
 Route::get('/get-countries/{langId}', [Home::class, 'geCountrytByLanguage'])
     ->name('countries.by.language');
 
+Route::get('india-city-webs', [Home::class, 'indiaCityWebs'])->name('home.india-city-webs');
+
+Route::get('knowledge-posts', [Home::class, 'knowledgePosts'])->name('home.knowledge-posts');
+Route::get('business-apps', [Home::class, 'businessApps'])->name('home.business-apps');
+Route::get('city-portals', [Home::class, 'cityPortals'])->name('home.city-portals');
+Route::get('country-portals', [Home::class, 'countryPortals'])->name('home.country-portals');
 
 Route::get('/{city}/all-posts/{name?}/{forabour?}', [postController::class, 'getChittiData'])->name('posts.city');
 Route::get('/{slug}/posts/{id}/{subTitle?}', [PostController::class, 'post_summary'])->name('post-summary');

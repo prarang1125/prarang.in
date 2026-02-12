@@ -38,7 +38,7 @@
         .table-responsive {
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            margin-bottom: 20px;
+            margin-bottom: 8px;
             max-height: calc(100vh - 250px);
             overflow-y: auto;
         }
@@ -74,24 +74,22 @@
             }
 
             /* Sticky first two columns (# and State) on mobile */
-            .modern-table thead th:nth-child(1),
             .modern-table thead th:nth-child(2),
-            .modern-table tbody td:nth-child(1),
             .modern-table tbody td:nth-child(2) {
                 position: sticky;
                 background-color: white;
                 z-index: 5;
             }
 
-            .modern-table thead th:nth-child(1),
+            /* .modern-table thead th:nth-child(1),
             .modern-table tbody td:nth-child(1) {
                 left: 0;
                 box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
-            }
+            } */
 
             .modern-table thead th:nth-child(2),
             .modern-table tbody td:nth-child(2) {
-                left: 40px;
+                left: 0px;
                 box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
             }
 
@@ -158,7 +156,7 @@
 
         /* Scroll Indicator for Mobile */
         @media (max-width: 768px) {
-            .table-responsive::after {
+            .table-hori::after {
                 content: '← Scroll horizontally →';
                 display: block;
                 text-align: center;
@@ -269,6 +267,26 @@
             overflow: scroll;
         }
     </style>
+    <style>
+        /* Paragraph */
+        .container section p {
+            font-size: 13px;
+        }
+
+        /* Bold */
+        .container section .fw-bold {
+            margin-bottom: 3px;
+        }
+
+        @media (min-width:769px) {
+
+            /* Table Data */
+            .modern-table tr td {
+                font-size: 14px !important;
+            }
+
+        }
+    </style>
     <p class="text-start mt-2">
         <a href="/" class="btn btn-dark btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
     </p>
@@ -278,6 +296,8 @@
             India - 520 City Webs
             <img class="h-10 w-10" src="{{ asset('assets/images/home/3.png') }}" alt="">
         </h4>
+    </section>
+    <section>
         <p>India has 9,389 towns as per Census 2011. Of these, 7,933 are Statutory/Census Towns, 475 are Urban
             Agglomerations, and 985 are Outgrowths. Among them, 36 are State/UT capitals and 800+ are District capitals.
         </p>
@@ -287,7 +307,7 @@
             create 901 City Knowledge Webs.
         </p>
     </section>
-    <section class="mt-3">
+    <section class="mt-3 table-hori">
         <div class="table-responsive">
             <table class="table table-sm table-striped table-hover table-bordered modern-table">
                 <thead>
@@ -302,7 +322,13 @@
                         <tr>
 
                             <td>{{ $data['#'] ?? '' }}</td>
-                            <td>{{ $data['state'] ?? '' }}</td>
+                            <td>
+                                <a class="text-primary cursor-pointer text-decoration-none" data-bs-toggle="modal"
+                                    data-bs-target="#modal-{{ $data['#'] ?? '' }}">
+                                    {{ $data['state'] ?? '' }}
+                                </a>
+
+                            </td>
                             <td>{{ $data['Assamese'] ?? '' }}</td>
                             <td>{{ $data['Bengali'] ?? '' }}</td>
                             <td>{{ $data['Devanagari'] ?? '' }}</td>
@@ -318,7 +344,7 @@
                             <td>{{ $data['English'] ?? '' }}</td>
                             <td>{{ $data['Other Scripts'] ?? '' }}</td>
                             <td>{{ $data['All 13 Scripts'] ?? '' }}</td>
-                            <td><a class="text-primary cursor-pointer" data-bs-toggle="modal"
+                            <td><a class="text-primary cursor-pointer text-decoration-none" data-bs-toggle="modal"
                                     data-bs-target="#modal-{{ $data['#'] ?? '' }}">
                                     {{ $data['No. of Cities'] ?? '' }}
                                 </a></td>
@@ -435,18 +461,6 @@
                         @if (!isset($value) || !is_array($value))
                             <p class="text-muted text-center mt-3">No cities available for this state.</p>
                         @endif
-
-                        <div>
-                            <p class="p-0 m-0"> Dev Note :</p>
-                            <p class="small p-0 m-0">1. If <30K Literate Netizens are not available then only the>30K
-                                    Literate
-                                    Netizens are
-                                    needed
-                                    to be shown.</p>
-                            <p class="small p-0 m-0">2. For States like Goa – where KWs are 0 - Only show the <30K
-                                    Literate Netizens table </p>
-
-                        </div>
 
                     </div>
                 </div>

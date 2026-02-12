@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Portal;
 use Illuminate\Http\Request;
 use App\Services\API\V1\Content\PortalService;
+use Illuminate\Support\Facades\Cache;
 
 class PortalApiController extends Controller
 {
@@ -28,19 +29,22 @@ class PortalApiController extends Controller
     }
     public function getPortals($lang)
     {
-        $portal = Portal::query()
-            ->where('local_lang', $lang)
-            ->leftJoin('vChittiGeography as chitti', 'chitti.Geography', '=', 'portals.city_code')
-            ->select('portals.id', 'portals.city_name_local as locale_name', 'portals.city_code', 'portals.city_name', 'portals.state', 'portals.zone', 'portals.list_order', 'portals.local_lang', 'portals.is_ext_url', 'portals.ext_urls', 'portals.slug')
+        $key = 'portal_' . $lang;
+        $portal = Cache::remember($key, now()->addDays(60), function () use ($lang) {
+            return Portal::query()
+                ->where('local_lang', $lang)
+                ->leftJoin('vChittiGeography as chitti', 'chitti.Geography', '=', 'portals.city_code')
+                ->select('portals.id', 'portals.city_name_local as locale_name', 'portals.city_code', 'portals.city_name', 'portals.state', 'portals.zone', 'portals.list_order', 'portals.local_lang', 'portals.is_ext_url', 'portals.ext_urls', 'portals.slug')
 
-            ->selectRaw('COUNT(chitti.chittiid) > 0 as is_live')
-            ->groupBy('portals.id')
-            ->orderBy('portals.list_order', 'asc')
-            ->get()
-            ->groupBy('zone')
-            ->map(function ($zone) {
-                return $zone->groupBy('state');
-            });
+                ->selectRaw('COUNT(chitti.chittiid) > 0 as is_live')
+                ->groupBy('portals.id')
+                ->orderBy('portals.list_order', 'asc')
+                ->get()
+                ->groupBy('zone')
+                ->map(function ($zone) {
+                    return $zone->groupBy('state');
+                });
+        });
         return response()->json([
             'status' => true,
             'errors' => [],

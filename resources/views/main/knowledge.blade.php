@@ -10,9 +10,12 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <p>
+                <p class="text-center">
                     Information is not Knowledge. Knowledge is not Intelligence. Intelligence is not Wisdom.
-                    <br>
+
+                </p>
+                <p>
+
                     Information is structured & organized data & facts, which are useful. Understanding information and
                     related concepts creates Knowledge. Application of knowledge at the right time & place, is
                     Intelligence. A broad understanding based on experience & acquired knowledge, used for the
@@ -20,7 +23,7 @@
 
 
                 </p>
-                <p>" I have always imagined that paradise will be a kind of library." - Jorge Luis Borges
+                <p>"I have always imagined that paradise will be a kind of library." - Jorge Luis Borges
                     <br>
                     Can all the knowledge of the world be contained in one place if we could collect all the books ever
                     written, images ever printed & maps ever created, in one library ? Borges imagines just such a place
