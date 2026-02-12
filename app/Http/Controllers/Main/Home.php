@@ -361,4 +361,10 @@ class Home extends Controller
     {
         return view('main.country_portals');
     }
+
+
+    public function partnersMetrics()
+    {
+        return view('main.partners_metrics');
+    }
 }

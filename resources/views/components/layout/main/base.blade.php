@@ -761,7 +761,7 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" href="/semiotics">Semiotics</a></li>
-                                        <li><a class="dropdown-item" href="/partners">Partner Metrics
+                                        <li><a class="dropdown-item" href="/partners-metrics">Partner Metrics
                                             </a></li>
                                     </ul>
                                 </li>

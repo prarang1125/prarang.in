@@ -40,7 +40,7 @@ Route::prefix('/')->group(function () {
     Route::get('/refund-cancellation', [Home::class, 'refundCancellation'])->name('refund-cancellation');
     Route::get('/terms-conditions', [Home::class, 'termsConditions'])->name('terms-conditions');
 });
-
+Route::get('partners-metrics', [Home::class, 'partnersMetrics'])->name('home.partners-metrics');
 Route::get('city-webs', [Home::class, 'cityWebs'])->name('home.city-webs');
 Route::get('country-webs/', [Home::class, 'countryWebs'])->name('home.country-webs');
 

@@ -351,70 +351,58 @@
             cursor: pointer;
         }
 
-        .dropdown-m {
+        .dropdownss {
             position: relative;
-        }
-
-        .dropdown-m .dropdown-menu {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            z-index: 1000;
-            background: #fff;
-            border-radius: 8px;
-        }
-
-        .dropdown-m.show .dropdown-menu {
-            display: block;
-        }
-    </style>
-    <style>
-        .dropdown-m {
-            position: relative;
+            display: inline-block;
             width: 100%;
         }
 
-        /* Button styling */
-        .dropdown-btn {
+        .dropbtn {
             width: 100%;
             cursor: pointer;
         }
 
-        /* Hide dropdown by default */
-        .dropdown-menu-custom {
+        .dropdown-content {
+            display: none;
             position: absolute;
             top: 100%;
             left: 0;
             width: 100%;
-            background: #fff;
-            display: none;
-            list-style: none;
-            margin: 5px 0 0 0;
-            padding: 0;
-            border-radius: 6px;
+            background-color: #ffffff;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
             z-index: 999;
+            border-radius: 6px;
+            padding: 6px 0;
         }
 
-        /* Show when button is focused */
-        .dropdown-m:focus-within .dropdown-menu-custom {
-            display: block;
-        }
-
-        /* Item styling */
-        .dropdown-menu-custom li a {
-            display: block;
+        .dropdown-content a {
+            color: #000000;
             padding: 10px 15px;
             text-decoration: none;
-            color: #333;
+            display: block;
         }
 
-        .dropdown-menu-custom li a:hover {
+        .dropdownss a:hover {
             background-color: #f5f5f5;
         }
 
-        .matrix-bg tr .dropdown-btn {
+        .show {
+            display: block;
+        }
+
+        .dropdown-icon {
+            font-size: 12px;
+            display: inline-flex;
+            align-items: center;
+            margin-left: 6px;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-icon.rotate {
+            transform: rotate(180deg);
+        }
+
+        .matrix-bg tr .dropbtn {
             width: 46% !important;
         }
     </style>
@@ -526,34 +514,26 @@
                                         ? json_decode($meerutPortal->ext_urls, true)
                                         : $meerutPortal->ext_urls;
                                 @endphp
-                                <div class="dropdown-m w-100">
-                                    <button type="button" class="matrix-pill matrix-pill-lite dropdown-btn">
+                                <div class="dropdownss w-100">
+                                    <button type="button" class="matrix-pill matrix-pill-lite dropbtn"
+                                        data-dropdown="meerut">
                                         {{ $meerutPortal->city_name ?? 'Meerut' }}
+                                        <span class="dropdown-icon" aria-hidden="true">
+                                            <i class="bi bi-chevron-down"></i>
+                                        </span>
                                     </button>
 
-                                    <ul class="dropdown-menu-custom shadow border-0 py-2 w-100">
-                                        <li>
-                                            <a class="dropdown-item py-2 px-3" href="/{{ $meerutPortal->slug }}">
-                                                Main Portal
-                                            </a>
-                                        </li>
-
-                                        <li>
-                                            <hr>
-                                        </li>
-
+                                    <div class="dropdown-content" data-dropdown-menu="meerut">
+                                        <a href="/{{ $meerutPortal->slug }}">Main Portal</a>
+                                        <hr style="margin: 0">
                                         @if (is_array($extUrls))
                                             @foreach ($extUrls as $extUrl)
-                                                <li>
-                                                    <a class="dropdown-item py-2 px-3"
-                                                        href="{{ $extUrl['url'] ?? '#' }}" target="_blank"
-                                                        rel="noopener">
-                                                        {{ $extUrl['title'] ?? 'Link' }}
-                                                    </a>
-                                                </li>
+                                                <a href="{{ $extUrl['url'] ?? '#' }}" target="_blank" rel="noopener">
+                                                    {{ $extUrl['title'] ?? 'Link' }}
+                                                </a>
                                             @endforeach
                                         @endif
-                                    </ul>
+                                    </div>
                                 </div>
                             @else
                                 <a href="/meerut" target="_blank" class="matrix-pill matrix-pill-lite"
@@ -963,4 +943,47 @@
 
 
 
+    <script>
+        document.querySelectorAll('.dropbtn').forEach((button) => {
+            const key = button.getAttribute('data-dropdown');
+            const menu = document.querySelector(`.dropdown-content[data-dropdown-menu="${key}"]`);
+            const icon = button.querySelector('.dropdown-icon');
+
+            if (!menu) {
+                return;
+            }
+
+            button.addEventListener('click', (event) => {
+                event.preventDefault();
+                menu.classList.toggle('show');
+                if (icon) {
+                    icon.classList.toggle('rotate');
+                }
+            });
+
+            menu.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', () => {
+                    menu.classList.remove('show');
+                    if (icon) {
+                        icon.classList.remove('rotate');
+                    }
+                });
+            });
+        });
+
+        window.addEventListener('click', (event) => {
+            document.querySelectorAll('.dropdownss').forEach((wrapper) => {
+                if (!wrapper.contains(event.target)) {
+                    const menu = wrapper.querySelector('.dropdown-content');
+                    const icon = wrapper.querySelector('.dropdown-icon');
+                    if (menu) {
+                        menu.classList.remove('show');
+                    }
+                    if (icon) {
+                        icon.classList.remove('rotate');
+                    }
+                }
+            });
+        });
+    </script>
 </x-layout.main.base>
