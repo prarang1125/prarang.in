@@ -522,8 +522,8 @@
                                 <h5 style="margin: 0 0 8px 0; color: #2c4f92; font-weight: 600;">United Nations Digital
                                     Divide</h5>
                                 <p style="font-size: 13px; color: #555; margin: 0 0 12px 0; line-height: 1.5;">
-                                    The United Nations has highlighted digital divide as a key focus area for
-                                    sustainable global development.
+                                    The United Nations has also highlighted digital divide as a focus area for global
+                                    development.
                                 </p>
                                 <a href="https://www.undp.org/digital/standards/2-bridge-digital-divide" target="_blank"
                                     style="display: inline-block; background: #3f69bd; color: #fff; text-decoration: none; padding: 8px 16px; border-radius: 4px; font-size: 12px; font-weight: 600; transition: all 0.3s ease; cursor: pointer;"
@@ -548,8 +548,8 @@
                                 <h5 style="margin: 0 0 8px 0; color: #2c4f92; font-weight: 600;">Prarang Language Webs
                                 </h5>
                                 <p style="font-size: 13px; color: #555; margin: 0 0 12px 0; line-height: 1.5;">
-                                    Prarang has quantified digital divide for all 178 languages across 195 countries
-                                    globally.
+                                    Prarang has quantified the worldwide digital divide for all 178 languages for all
+                                    195 countries.
                                 </p>
                                 <a href="https://www.prarang.in/lang-webs" target="_blank"
                                     style="display: inline-block; background: #3f69bd; color: #fff; text-decoration: none; padding: 8px 16px; border-radius: 4px; font-size: 12px; font-weight: 600; transition: all 0.3s ease; cursor: pointer;"
