@@ -121,7 +121,7 @@
 
         /* Modal content */
         main .modal .modal-content {
-            top: -30px;
+            top: -10px;
         }
 
         /* Table striped */
