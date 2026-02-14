@@ -441,7 +441,23 @@
             }
         }
     </style>
+    <style>
+        @media (max-width:576px) {
 
+            /* Modal body */
+            .container .modal .modal-body {
+                overflow: scroll;
+                padding-bottom: 9px;
+            }
+
+            /* Modal body */
+            .container .modal .modal-dialog .modal-content .modal-body {
+                height: 90vh !important;
+                /* transform: translatex(0px) translatey(0px) !important; */
+            }
+
+        }
+    </style>
     <section class="bs5-top-heading mt-2 mb-4 flex gap-2 justify-center items-center">
         <img class="h-8 w-8" src="{{ asset('assets/images/home/dd.png') }}" alt="">
         <div class=" text-xl md:text-2xl font-bold uppercase" style="color: #2c4f92">Digital Divide</div>
