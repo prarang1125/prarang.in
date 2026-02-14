@@ -219,18 +219,24 @@ class Home extends Controller
 
         try {
             // Fetch data from the first URL
-            $response1 = Http::withHeaders($headers)->get($url1);
-            if ($response1->status() !== 200) {
-                throw new Exception("Failed to fetch data from $url1: HTTP {$response1->status()}");
-            }
-            $data = $response1->json();  // Convert response to array
+            $cacheKey = "market_data_{$url1}";
+            $data = Cache::remember($cacheKey, now()->addDays(30), function () use ($url1, $headers) {
+                $response1 = Http::withHeaders($headers)->get($url1);
+                if ($response1->status() !== 200) {
+                    throw new Exception("Failed to fetch data from $url1: HTTP {$response1->status()}");
+                }
+                return $response1->json();  // Convert response to array
+            });
 
             // Fetch data from the second URL
-            $response2 = Http::withHeaders($headers)->get($url2);
-            if ($response2->status() !== 200) {
-                throw new Exception("Failed to fetch data from $url2: HTTP {$response2->status()}");
-            }
-            $languageData = $response2->json();  // Convert response to array
+            $cacheKey = "market_data_{$url2}";
+            $languageData = Cache::remember($cacheKey, now()->addDays(30), function () use ($url2, $headers) {
+                $response2 = Http::withHeaders($headers)->get($url2);
+                if ($response2->status() !== 200) {
+                    throw new Exception("Failed to fetch data from $url2: HTTP {$response2->status()}");
+                }
+                return $response2->json();  // Convert response to array
+            });
 
             // Process the metadata and data
             $metaData = [
@@ -246,7 +252,7 @@ class Home extends Controller
             $languageId = $languageData['data']['languageId'] ?? [];
 
             return view('main.market', compact('metaData', 'scripts', 'total', 'languageCountry', 'worldLanguageData', 'indiaLanguageData', 'languageId'));
-            return view('main.market');
+            // return view('main.market');
         } catch (Exception $e) {
             // Handle errors and display message
             return response()->json(['error' => $e->getMessage()], 500);

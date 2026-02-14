@@ -1012,7 +1012,7 @@
                         Just 23 Mother Tongue languages account for more than half the world’s population. These include
                         7 which are widely spoken in India.
                     </p>
-                    <img src="home-assets/image/lp4.jpg" class="img-fluid" alt="">
+                    <img src="{{ asset('assets/images/home/lp4.png') }}" class="img-fluid" alt="">
                     <!-- <p class="text-end h6"> Source: </p> -->
                 </div>
             </div>
@@ -1306,8 +1306,10 @@
         // Main function to fetch data and create table
         async function main() {
             try {
-                const jsonData = await fetchJSONL('https://www.prarang.in/home-assets/lang-data.jsonl');
+                const jsonData = await fetchJSONL('home-assets/lang-data.jsonl');
                 const table = createTable(jsonData, 'box23x');
+                // console.log(table);
+
                 // Set the table ID
                 // document.body.appendChild(table); // Append the table to the document body
             } catch (error) {
@@ -1317,7 +1319,7 @@
 
         async function mainx() {
             try {
-                const jsonData = await fetchJSONL('https://www.prarang.in/home-assets/lang-data-2.txt');
+                const jsonData = await fetchJSONL('home-assets/lang-data-2.txt');
                 const table = createTable(jsonData, 'box25x');
                 // Set the table ID
                 // document.body.appendChild(table); // Append the table to the document body
