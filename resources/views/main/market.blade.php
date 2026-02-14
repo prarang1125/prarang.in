@@ -447,7 +447,7 @@
             /* Modal body */
             .container .modal .modal-body {
                 overflow: scroll;
-                padding-bottom: 9px;
+
             }
 
             /* Modal body */
