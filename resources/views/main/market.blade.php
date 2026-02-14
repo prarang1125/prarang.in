@@ -1012,7 +1012,7 @@
                         Just 23 Mother Tongue languages account for more than half the world’s population. These include
                         7 which are widely spoken in India.
                     </p>
-                    <img src="https://i.ibb.co/gLpz7Bzd/Picture1-1.png" class="img-fluid" alt="">
+                    <img src="{{ asset('assets/images/home/lp4.png') }}" class="img-fluid" alt="">
                     <!-- <p class="text-end h6"> Source: </p> -->
                 </div>
             </div>
