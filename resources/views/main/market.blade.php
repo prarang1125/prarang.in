@@ -564,7 +564,7 @@
                                 <h5 style="margin: 0 0 8px 0; color: #2c4f92; font-weight: 600;">Prarang Language Webs
                                 </h5>
                                 <p style="font-size: 13px; color: #555; margin: 0 0 12px 0; line-height: 1.5;">
-                                    Prarang has quantified the worldwide digital divide for all 178 languages for all
+                                    Prarang has quantified the worldwide digital divide for all 178 languages for
                                     195 countries.
                                 </p>
                                 <a href="https://www.prarang.in/lang-webs" target="_blank"
