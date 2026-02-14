@@ -450,7 +450,7 @@
     <section class="container">
 
         <div class="row">
-            <div class="col-sm-8">
+            <div class="col-lg-8 mb-4">
                 <p>
                     The issues of accessibility of content, affordability & digital literacy still create a digital
                     divide in most parts of the world. As English readers with quick internet data access on multiple
@@ -474,7 +474,7 @@
 
             </div>
 
-            <div class="col-sm-4">
+            <div class="col-lg-4">
                 <div class="p-2 border rounded">
                     <p class="h4" style="color: #2c4f92; font-size: 19px">Prarang Analysis :</p>
                     <ul class="analysis-list">
