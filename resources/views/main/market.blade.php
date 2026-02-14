@@ -277,7 +277,7 @@
         .rounded ul a {
             font-size: 12px !important;
             font-weight: 600 !important;
-            color: #0d6efd !important;
+            color: #000 !important;
             text-decoration: none !important;
         }
 
@@ -285,6 +285,20 @@
             text-decoration: underline !important;
 
         }
+
+        /* Analysis list bullets/text */
+        .analysis-list {
+            list-style: disc;
+            list-style-position: outside;
+            padding-left: 20px;
+            margin-bottom: 0;
+        }
+
+
+
+
+
+
 
         /* Link */
         .table-main-lang tr a:hover {
@@ -404,17 +418,39 @@
             }
 
         }
+
+        /* Mobile responsive - full width cards */
+        @media (max-width: 768px) {
+            .row.mt-5 {
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                padding-left: 0 !important;
+                padding-right: 0 !important;
+            }
+
+            .row.mt-5>.col-md-6 {
+                padding-left: 12px !important;
+                padding-right: 12px !important;
+            }
+        }
+
+        /* Desktop responsive - remove right gap from second column */
+        @media (min-width: 769px) {
+            .row.mt-5>.col-md-6:last-child {
+                padding-right: 0 !important;
+            }
+        }
     </style>
 
     <section class="bs5-top-heading mt-2 mb-4 flex gap-2 justify-center items-center">
         <img class="h-8 w-8" src="{{ asset('assets/images/home/dd.png') }}" alt="">
-        <div class="text-dark text-xl md:text-2xl font-bold uppercase">Digital Divide</div>
+        <div class=" text-xl md:text-2xl font-bold uppercase" style="color: #2c4f92">Digital Divide</div>
         <img class="h-8 w-8" src="{{ asset('assets/images/home/dd.png') }}" alt="">
     </section>
     <section class="container">
 
         <div class="row">
-            <div class="col-sm-12">
+            <div class="col-sm-8">
                 <p>
                     The issues of accessibility of content, affordability & digital literacy still create a digital
                     divide in most parts of the world. As English readers with quick internet data access on multiple
@@ -424,52 +460,31 @@
                     all 800+ State/District Capitals of India), we have undertaken research on 3 factors of the
                     respective populations – Internet (including Social Media) reach, Language ( multilingualism) &
                     Literacy.</p>
-            </div>
 
-
-
-    </section>
-
-
-
-
-
-
-    <section class="bs5-top-heading">
-        <p class="">Market</p>
-        <p>Cities by Local Language</p>
-    </section>
-    <section class="container">
-
-        <div class="row">
-            <div class="col-sm-8">
-                <p>
-                    The birth of the internet & the world wide web (www) has created an unprecedented opportunity for
-                    people in varied geographies to connect, communicate & trade with each other. While this began with
-                    a vision of free & equitable information access to all netizens of the world, too much focus on
-                    commercialization of the internet ( besides a weak telecom & weak education infrastructure in some
-                    parts of the developing world) has also lead to creation of digital divisions, a new form of
-                    inequality.
-                </p>
-                <p>Prarang has focused on identifying large digital divides in the world through an analysis of
-                    Language, Literacy, Internet & Social-Media access. There are 195 countries in the world today &
-                    each country has declared their respective official languages, totaling to a cumulative 178 official
-                    languages. Multilingual demographic data for each Country/City has been collated & estimated by us.
-                    We have thus identified the largest pool of literate netizens in each of the 178 languages, in each
-                    of the largest Cities of all 195 countries as an opportunity - Market for Knowledge Webs :</p>
+                <div class="d-flex flex-column gap-2 align-items-start">
+                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#TheseMTw1"
+                        style="background: #3f69bd; color: #fff; min-width: 185px;">Digital Divide
+                        -
+                        World</button>
+                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#TheseMTi1"
+                        style="background: #3f69bd; color: #fff; min-width: 185px;">
+                        Digital Divide -
+                        India</button>
+                </div>
 
             </div>
+
             <div class="col-sm-4">
                 <div class="p-2 border rounded">
-                    <p class="text-center h4">Prarang Analysis :</p>
-                    <ul>
+                    <p class="h4" style="color: #2c4f92; font-size: 19px">Prarang Analysis :</p>
+                    <ul class="analysis-list">
 
-                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#TheseMTw1">Digital Divide -
+                        {{-- <li><a type="button" data-bs-toggle="modal" data-bs-target="#TheseMTw1">Digital Divide -
                                 World</a></li>
                         <li>
                             <a type="button" data-bs-toggle="modal" data-bs-target="#TheseMTi1"> Digital Divide -
                                 India</a>
-                        </li>
+                        </li> --}}
                         <li>
                             <a type="button" data-bs-toggle="modal" data-bs-target="#TheseMT">Indian Languages -
                                 Largest 121 Mother Tongues.</a>
@@ -492,115 +507,69 @@
                     </ul>
                 </div>
             </div>
-            <ul>
 
-                <li>
-
-                    <b>India -</b> <?php echo isset($total['india']) ? $total['india'] : 'N/A'; ?> Knowledge Webs in <b>District Capital Cities,</b> each with at
-                    least <b>30,000</b> literate netizens in one language (script).
-                </li>
-                <li><b>Rest of the World- </b> <b> <?php echo isset($total['world']) ? $total['world'] : 'N/A'; ?> </b> Knowledge Webs in <b>Large Cities</b>
-                    (>100,000 population) of 194 Countries, each with at least <b>100,000 </b> literate netizens in one
-                    official language (script), of the world.
-                </li>
-            </ul>
-
-
-            <div class="live-cities">
-                <div class="row">
-
-                    <div class="text-center col-sm-3">
-                        <h5>Geographies - Live: 4 India</h5>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="city-btn">
-                            <a class="btn btn-warning w-75 btn-sm" target="_blank"
-                                href="{{ route('portal', ['portal' => 'lucknow']) }}">Lucknow</a>
+            <div class="row mt-5 w-100">
+                <div class="col-12 col-md-6 mb-4">
+                    <div
+                        style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 24px; border-radius: 8px; border-left: 5px solid #3f69bd; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="display: flex; align-items: flex-start; gap: 12px;">
+                            <div
+                                style="min-width: 50px; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <img src="{{ asset('images/undplogo.png') }}" alt=""
+                                    style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                            </div>
+                            <div>
+                                <h5 style="margin: 0 0 8px 0; color: #2c4f92; font-weight: 600;">United Nations Digital
+                                    Divide</h5>
+                                <p style="font-size: 13px; color: #555; margin: 0 0 12px 0; line-height: 1.5;">
+                                    The United Nations has highlighted digital divide as a key focus area for
+                                    sustainable global development.
+                                </p>
+                                <a href="https://www.undp.org/digital/standards/2-bridge-digital-divide" target="_blank"
+                                    style="display: inline-block; background: #3f69bd; color: #fff; text-decoration: none; padding: 8px 16px; border-radius: 4px; font-size: 12px; font-weight: 600; transition: all 0.3s ease; cursor: pointer;"
+                                    onmouseover="this.style.background='#2d5399'; this.style.transform='translateY(-2px); this.style.boxShadow='0 4px 12px rgba(63, 105, 189, 0.3)';"
+                                    onmouseout="this.style.background='#3f69bd'; this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                                    Learn More →
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-2">
-                        <div class="city-btn">
-                            <a class="btn btn-warning w-75 btn-sm" target="_blank"
-                                href="{{ route('portal', ['portal' => 'meerut']) }}">Meerut</a>
+                </div>
+                <div class="col-12 col-md-6 mb-4">
+                    <div
+                        style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); padding: 24px; border-radius: 8px; border-left: 5px solid #3f69bd; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="display: flex; align-items: flex-start; gap: 12px;">
+                            <div
+                                style="min-width: 50px; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <img src="{{ asset('images/langlogo.png') }}" alt=""
+                                    style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                            </div>
+                            <div>
+                                <h5 style="margin: 0 0 8px 0; color: #2c4f92; font-weight: 600;">Prarang Language Webs
+                                </h5>
+                                <p style="font-size: 13px; color: #555; margin: 0 0 12px 0; line-height: 1.5;">
+                                    Prarang has quantified digital divide for all 178 languages across 195 countries
+                                    globally.
+                                </p>
+                                <a href="https://www.prarang.in/lang-webs" target="_blank"
+                                    style="display: inline-block; background: #3f69bd; color: #fff; text-decoration: none; padding: 8px 16px; border-radius: 4px; font-size: 12px; font-weight: 600; transition: all 0.3s ease; cursor: pointer;"
+                                    onmouseover="this.style.background='#2d5399'; this.style.transform='translateY(-2px); this.style.boxShadow='0 4px 12px rgba(63, 105, 189, 0.3)';"
+                                    onmouseout="this.style.background='#3f69bd'; this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                                    Learn More →
+                                </a>
+                            </div>
                         </div>
                     </div>
-                    <div class="col-sm-2">
-                        <div class="city-btn">
-                            <a class="btn btn-warning w-75 btn-sm" target="_blank"
-                                href="{{ route('portal', ['portal' => 'rampur']) }}">Rampur</a>
-                        </div>
-                    </div>
-                    <div class="col-sm-2">
-                        <div class="city-btn">
-                            <a class="btn btn-warning w-75 btn-sm" target="_blank"
-                                href="{{ route('portal', ['portal' => 'jaunpur']) }}">Jaunpur</a>
-                        </div>
-                    </div>
-
                 </div>
             </div>
-            <h4>Target Markets : India - <?php echo isset($total['india']) ? $total['india'] - 4 : 'N/A'; ?> & Rest of the World -<?php echo isset($total['world']) ? $total['world'] : 'N/A'; ?></h4>
-            <div class="table-main-lang">
-                <table border="1"
-                    class="table align-middle table-responsive table-striped table-bordered table-hover">
-                    <thead>
-                        <tr>
-                            <th>Sr.</th>
-                            <th>Languages</th>
-                            <th>Language Family (Spoken)</th>
-                            <th>Scripts</th>
-                            <th>Language Family (Writing)</th>
-                            <th>Writing System</th>
-                            <th>No. Of Countries</th>
-                            <th>India</th>
-                            <th>Rest of The World</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <?php $countx = 1; ?>
-                        <?php foreach ($scripts as $script) { ?>
-                        <tr>
-                            <td><?php echo $countx++; ?></td>
-                            <td><?php echo $script['language']; ?> Webs</td>
-                            <td><?php echo $script['spoken_language']; ?></td>
-                            <td><?php echo $script['scripts']; ?></td>
-                            <td><?php echo $script['writing_language']; ?></td>
-                            <td><?php echo $script['writing_system']; ?></td>
-                            <td class="text-center">
-                                <a class="text-primary" data-bs-toggle="modal" data-bs-target="#lc<?php echo $script['language_id']; ?>">
-                                    &nbsp;&nbsp; <?php echo $script['countries_count']; ?> &nbsp;&nbsp;
-                                </a>
-                            </td>
-                            <td>
-                                <?php if ($script['in_mt_lang'] == 0): ?>
-                                <?php echo $script['in_mt_lang']; ?> India
-                                <?php else: ?>
-                                <a type="button" data-bs-toggle="modal" data-bs-target="#in<?php echo $script['language_id']; ?>">
-                                    <?php echo $script['in_mt_lang']; ?> India
-                                </a>
-                                <?php endif; ?>
-                            </td>
-                            <td>
-                                <?php if ($script['rest_w_lang'] == 0 && $script['w_other_lang'] == 0): ?>
-                                <?php echo $script['rest_w_lang']; ?> World
-                                <?php else: ?>
-                                <a type="button" data-bs-toggle="modal" data-bs-target="#w<?php echo $script['language_id']; ?>">
-                                    <?php echo $script['rest_w_lang']; ?> World
-                                </a>
-                                <?php endif; ?>
-                            </td>
-                        </tr>
-                        <?php } ?>
-                        <tr class="border" border="1">
-                            <th></th>
-                            <th colspan="6" class="text-center">Total</th>
-                            <th><?php echo isset($total['india']) ? $total['india'] - 4 : 'N/A'; ?> India</th>
-                            <th><?php echo isset($total['world']) ? $total['world'] : 'N/A'; ?> World</th>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+
+
+
+
+
     </section>
+
+
 
     <?php foreach ($worldLanguageData as $nkey => $value) { ?>
     <div class="modal fade" id="w<?= $nkey ?>" tabindex="-1" aria-labelledby="w<?= $nkey ?>Label" aria-hidden="true">
