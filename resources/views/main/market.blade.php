@@ -426,14 +426,6 @@
                     Literacy.</p>
             </div>
 
-            <div class="flex flex-col">
-                <a class="font-bold text-lg no-underline" type="button" data-bs-toggle="modal"
-                    data-bs-target="#TheseMTw1">World Digital Divide</a>
-
-                <a class="font-bold text-lg no-underline" type="button" data-bs-toggle="modal"
-                    data-bs-target="#TheseMTi1">India Digital Divide</a>
-
-            </div>
 
 
     </section>
@@ -443,10 +435,363 @@
 
 
 
+    <section class="bs5-top-heading">
+        <p class="">Market</p>
+        <p>Cities by Local Language</p>
+    </section>
+    <section class="container">
+
+        <div class="row">
+            <div class="col-sm-8">
+                <p>
+                    The birth of the internet & the world wide web (www) has created an unprecedented opportunity for
+                    people in varied geographies to connect, communicate & trade with each other. While this began with
+                    a vision of free & equitable information access to all netizens of the world, too much focus on
+                    commercialization of the internet ( besides a weak telecom & weak education infrastructure in some
+                    parts of the developing world) has also lead to creation of digital divisions, a new form of
+                    inequality.
+                </p>
+                <p>Prarang has focused on identifying large digital divides in the world through an analysis of
+                    Language, Literacy, Internet & Social-Media access. There are 195 countries in the world today &
+                    each country has declared their respective official languages, totaling to a cumulative 178 official
+                    languages. Multilingual demographic data for each Country/City has been collated & estimated by us.
+                    We have thus identified the largest pool of literate netizens in each of the 178 languages, in each
+                    of the largest Cities of all 195 countries as an opportunity - Market for Knowledge Webs :</p>
+
+            </div>
+            <div class="col-sm-4">
+                <div class="p-2 border rounded">
+                    <p class="text-center h4">Prarang Analysis :</p>
+                    <ul>
+
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#TheseMTw1">Digital Divide -
+                                World</a></li>
+                        <li>
+                            <a type="button" data-bs-toggle="modal" data-bs-target="#TheseMTi1"> Digital Divide -
+                                India</a>
+                        </li>
+                        <li>
+                            <a type="button" data-bs-toggle="modal" data-bs-target="#TheseMT">Indian Languages -
+                                Largest 121 Mother Tongues.</a>
+                        </li>
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#TheseMT2"> Indian Languages -
+                                Unity of Script in Diversity of Languages.</a></li>
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#box23"> World Languages - 178
+                                Official Languages of 195 Countries </a></li>
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#TheseMT4"> World Languages -
+                                Largest 23 Mother Tongues </a></li>
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#TheseMT5">World Scripts - Scripts
+                                & Writing Language Families</a></li>
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#box25"> World Scripts - 4 Writing
+                                Systems</a></li>
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#box25l"> India-Big non District
+                                Capital Cities</a></li>
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#box25l2"> Multilingualism in
+                                India</a></li>
+
+                    </ul>
+                </div>
+            </div>
+            <ul>
+
+                <li>
+
+                    <b>India -</b> <?php echo isset($total['india']) ? $total['india'] : 'N/A'; ?> Knowledge Webs in <b>District Capital Cities,</b> each with at
+                    least <b>30,000</b> literate netizens in one language (script).
+                </li>
+                <li><b>Rest of the World- </b> <b> <?php echo isset($total['world']) ? $total['world'] : 'N/A'; ?> </b> Knowledge Webs in <b>Large Cities</b>
+                    (>100,000 population) of 194 Countries, each with at least <b>100,000 </b> literate netizens in one
+                    official language (script), of the world.
+                </li>
+            </ul>
 
 
-    <div class="modal fade modal-xl" id="TheseMTw1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="TheseMTw1Label" aria-hidden="true">
+            <div class="live-cities">
+                <div class="row">
+
+                    <div class="text-center col-sm-3">
+                        <h5>Geographies - Live: 4 India</h5>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="city-btn">
+                            <a class="btn btn-warning w-75 btn-sm" target="_blank"
+                                href="{{ route('portal', ['portal' => 'lucknow']) }}">Lucknow</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="city-btn">
+                            <a class="btn btn-warning w-75 btn-sm" target="_blank"
+                                href="{{ route('portal', ['portal' => 'meerut']) }}">Meerut</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="city-btn">
+                            <a class="btn btn-warning w-75 btn-sm" target="_blank"
+                                href="{{ route('portal', ['portal' => 'rampur']) }}">Rampur</a>
+                        </div>
+                    </div>
+                    <div class="col-sm-2">
+                        <div class="city-btn">
+                            <a class="btn btn-warning w-75 btn-sm" target="_blank"
+                                href="{{ route('portal', ['portal' => 'jaunpur']) }}">Jaunpur</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <h4>Target Markets : India - <?php echo isset($total['india']) ? $total['india'] - 4 : 'N/A'; ?> & Rest of the World -<?php echo isset($total['world']) ? $total['world'] : 'N/A'; ?></h4>
+            <div class="table-main-lang">
+                <table border="1"
+                    class="table align-middle table-responsive table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>Sr.</th>
+                            <th>Languages</th>
+                            <th>Language Family (Spoken)</th>
+                            <th>Scripts</th>
+                            <th>Language Family (Writing)</th>
+                            <th>Writing System</th>
+                            <th>No. Of Countries</th>
+                            <th>India</th>
+                            <th>Rest of The World</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php $countx = 1; ?>
+                        <?php foreach ($scripts as $script) { ?>
+                        <tr>
+                            <td><?php echo $countx++; ?></td>
+                            <td><?php echo $script['language']; ?> Webs</td>
+                            <td><?php echo $script['spoken_language']; ?></td>
+                            <td><?php echo $script['scripts']; ?></td>
+                            <td><?php echo $script['writing_language']; ?></td>
+                            <td><?php echo $script['writing_system']; ?></td>
+                            <td class="text-center">
+                                <a class="text-primary" data-bs-toggle="modal" data-bs-target="#lc<?php echo $script['language_id']; ?>">
+                                    &nbsp;&nbsp; <?php echo $script['countries_count']; ?> &nbsp;&nbsp;
+                                </a>
+                            </td>
+                            <td>
+                                <?php if ($script['in_mt_lang'] == 0): ?>
+                                <?php echo $script['in_mt_lang']; ?> India
+                                <?php else: ?>
+                                <a type="button" data-bs-toggle="modal" data-bs-target="#in<?php echo $script['language_id']; ?>">
+                                    <?php echo $script['in_mt_lang']; ?> India
+                                </a>
+                                <?php endif; ?>
+                            </td>
+                            <td>
+                                <?php if ($script['rest_w_lang'] == 0 && $script['w_other_lang'] == 0): ?>
+                                <?php echo $script['rest_w_lang']; ?> World
+                                <?php else: ?>
+                                <a type="button" data-bs-toggle="modal" data-bs-target="#w<?php echo $script['language_id']; ?>">
+                                    <?php echo $script['rest_w_lang']; ?> World
+                                </a>
+                                <?php endif; ?>
+                            </td>
+                        </tr>
+                        <?php } ?>
+                        <tr class="border" border="1">
+                            <th></th>
+                            <th colspan="6" class="text-center">Total</th>
+                            <th><?php echo isset($total['india']) ? $total['india'] - 4 : 'N/A'; ?> India</th>
+                            <th><?php echo isset($total['world']) ? $total['world'] : 'N/A'; ?> World</th>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    </section>
+
+    <?php foreach ($worldLanguageData as $nkey => $value) { ?>
+    <div class="modal fade" id="w<?= $nkey ?>" tabindex="-1" aria-labelledby="w<?= $nkey ?>Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="w<?= $nkey ?>Label"><?= $languageId[$nkey] ?> Web</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4><b>List of Cities with more than 100K <?= $languageId[$nkey] ?> Speakers.</b></h4>
+                    <div class="col-sm">
+                        <table class="table table-responsive table-bordered table-striped table-hover table-sm">
+                            <thead class="text-start bg-info">
+                                <tr class="world-tr">
+                                    <th>Sn</th>
+                                    <th>City</th>
+                                    <th>Country</th>
+                                    <th>Continents</th>
+                                    <th>Country Capital</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-light text-start">
+                                <?php
+                                    $count = 1;
+                                    foreach ($value as $city) {
+                                        if ($city['is_other'] == 0) { ?>
+                                <tr>
+                                    <td><?= $count++ ?></td>
+                                    <td><?= $city['city_name'] ?></td>
+                                    <td><?= $city['country'] ?></td>
+                                    <td><?= $city['continant'] ?></td>
+                                    <td>
+                                        <?php if ($city['is_capital']) { ?>
+                                        <b class="">Yes</b>
+                                        <?php } else { ?>
+                                        No
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                                <?php }
+                                    } ?>
+                            </tbody>
+                        </table>
+                        <?php if ($count == 1) { ?>
+                        <h6 class="p-2 border">No City or Country Capital with more than 100K Speakers.</h6>
+                        <?php } ?>
+                    </div>
+                    <br>
+                    <h4><b>List of Country Capitals with less than 100K <?= $languageId[$nkey] ?> Speakers.</b></h4>
+                    <div class="col-sm">
+                        <table class="table table-responsive table-bordered table-striped table-sm table-hover">
+                            <thead class="text-start bg-info">
+                                <tr class="bg-info">
+                                    <th>Sn</th>
+                                    <th>City</th>
+                                    <th>Country</th>
+                                    <th>Continents</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-light text-start">
+                                <?php
+                                    $count = 1;
+                                    foreach ($value as $city) {
+                                        if ($city['is_other'] == 1) { ?>
+                                <tr>
+                                    <td><?= $count++ ?></td>
+                                    <td><?= $city['city_name'] ?></td>
+                                    <td><?= $city['country'] ?></td>
+                                    <td><?= $city['continant'] ?></td>
+                                </tr>
+                                <?php }
+                                    } ?>
+                            </tbody>
+                        </table>
+                        <?php if ($count == 1) { ?>
+                        <h6 class="p-2 border">No other Country Capital.</h6>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
+
+    <?php foreach ($indiaLanguageData as $nkey => $value) { ?>
+    <div class="modal fade" id="in<?= $nkey ?>" tabindex="-1" aria-labelledby="in<?= $nkey ?>Label"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="in<?= $nkey ?>Label"><?= $languageId[$nkey] ?> Web</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4><b>List of District Capitals with more than 30K Literate <?= $languageId[$nkey] ?> speakers with
+                            Internet Access.</b></h4>
+                    <div class="col-sm">
+                        <table class="table table-responsive table-bordered table-striped table-hover table-sm">
+                            <thead class="text-start bg-info">
+                                <tr class="world-tr">
+                                    <th>Sn</th>
+                                    <th>District/DHQ</th>
+                                    <th>State/Ut</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-light text-start">
+                                <?php
+                                    $count = 1;
+                                    foreach ($value as $city) {
+                                        if ($city['is_other'] == 0) { ?>
+                                <tr>
+                                    <td><?= $count++ ?></td>
+                                    <td><?= $city['city_name'] ?></td>
+                                    <td><?= $city['state'] ?></td>
+                                </tr>
+                                <?php }
+                                    } ?>
+                            </tbody>
+                        </table>
+                        <?php if ($count == 1) { ?>
+                        <h6 class="p-2 border">No Records found.</h6>
+                        <?php } ?>
+                    </div>
+                    <br>
+                    <h4><b>List of District Capitals with less than 30K <?= $languageId[$nkey] ?> speakers.</b></h4>
+                    <div class="col-sm">
+                        <table class="table table-responsive table-bordered table-striped table-sm table-hover">
+                            <thead class="text-start bg-info">
+                                <tr class="bg-info">
+                                    <th>Sn</th>
+                                    <th>City</th>
+                                    <th>State</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-light text-start">
+                                <?php
+                                    $count = 1;
+                                    foreach ($value as $city) {
+                                        if ($city['is_other'] == 1) { ?>
+                                <tr>
+                                    <td><?= $count++ ?></td>
+                                    <td><?= $city['city_name'] ?></td>
+                                    <td><?= $city['state'] ?></td>
+                                </tr>
+                                <?php }
+                                    } ?>
+                            </tbody>
+                        </table>
+                        <?php if ($count == 1) { ?>
+                        <h6 class="p-2 border">No Records found.</h6>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
+
+    <?php foreach ($languageCountry as $lkey => $value) { ?>
+    <div class="modal country-modal fade" id="lc<?= $lkey ?>" tabindex="-1"
+        aria-labelledby="lc<?= $lkey ?>ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="lc<?= $lkey ?>ModalLabel"><?= $languageId[$lkey] ?> Speaking
+                        Countries</h1>
+                    <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-start">
+                    <div class="row">
+                        <?php
+                            $count = 1;
+                            foreach ($value as $cont) { ?>
+                        <div class="col-md-6">
+                            <small><?= $count++ ?>. <?= $cont['country'] ?></small>
+                        </div>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
+
+
+
+
+    <div class="modal fade modal-xl" id="TheseMTw1" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="TheseMTw1Label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -461,8 +806,8 @@
             </div>
         </div>
     </div>
-    <div class="modal fade modal-xl" id="TheseMTi1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="TheseMTi1Label" aria-hidden="true">
+    <div class="modal fade modal-xl" id="TheseMTi1" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="TheseMTi1Label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -480,8 +825,8 @@
 
 
 
-    <div class="modal fade modal-xl" id="TheseMT" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="TheseMTLabel" aria-hidden="true">
+    <div class="modal fade modal-xl" id="TheseMT" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="TheseMTLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -503,8 +848,8 @@
         </div>
     </div>
 
-    <div class="modal fade modal-xl" id="TheseMT2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="TheseMT2Label" aria-hidden="true">
+    <div class="modal fade modal-xl" id="TheseMT2" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="TheseMT2Label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1016,5 +1361,4 @@
         main();
         mainx();
     </script>
-
 </x-layout.main.base>

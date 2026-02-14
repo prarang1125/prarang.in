@@ -75,6 +75,7 @@
             line-height: 1.1;
             margin: 4px 4px 0 0;
             border: 1px solid #3b5f9a;
+            min-width: 112px;
         }
 
         .matrix-pill-lite {

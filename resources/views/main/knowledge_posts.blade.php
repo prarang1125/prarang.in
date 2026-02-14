@@ -126,6 +126,7 @@
             font-size: 16px;
             font-weight: 600;
             text-decoration: none;
+            min-width: 140px;
         }
 
         .city-tab:hover {

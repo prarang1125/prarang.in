@@ -125,6 +125,7 @@
             font-size: 16px;
             font-weight: 600;
             text-decoration: none;
+            min-width: 140px;
         }
 
         .city-tab:hover {
@@ -305,9 +306,9 @@
                     </button>
 
                     <div id="myDropdown" class="dropdown-content">
-                        <a href="https://www.prarang.in/yp/czech-republic" target="_blank">Czech
+                        <a href="https://www.prarang.in/yp/india" target="_blank">Czech
                         </a>
-                        <a href="https://www.prarang.in/yp/india" target="_blank"> India </a>
+                        <a href="https://www.prarang.in/yp/czech-republic" target="_blank"> India </a>
                     </div>
                 </div>
                 {{-- <a class="city-tab" href="https://www.prarang.in/yp/czech-republic" target="_blank">India-Czech</a> --}}
