@@ -246,7 +246,7 @@ class Home extends Controller
             $languageId = $languageData['data']['languageId'] ?? [];
 
             return view('main.market', compact('metaData', 'scripts', 'total', 'languageCountry', 'worldLanguageData', 'indiaLanguageData', 'languageId'));
-            return view('main.market');
+            // return view('main.market');
         } catch (Exception $e) {
             // Handle errors and display message
             return response()->json(['error' => $e->getMessage()], 500);

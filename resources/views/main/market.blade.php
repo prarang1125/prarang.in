@@ -1337,8 +1337,10 @@
         // Main function to fetch data and create table
         async function main() {
             try {
-                const jsonData = await fetchJSONL('https://www.prarang.in/home-assets/lang-data.jsonl');
+                const jsonData = await fetchJSONL('home-assets/lang-data.jsonl');
                 const table = createTable(jsonData, 'box23x');
+                // console.log(table);
+
                 // Set the table ID
                 // document.body.appendChild(table); // Append the table to the document body
             } catch (error) {
@@ -1348,7 +1350,7 @@
 
         async function mainx() {
             try {
-                const jsonData = await fetchJSONL('https://www.prarang.in/home-assets/lang-data-2.txt');
+                const jsonData = await fetchJSONL('home-assets/lang-data-2.txt');
                 const table = createTable(jsonData, 'box25x');
                 // Set the table ID
                 // document.body.appendChild(table); // Append the table to the document body
