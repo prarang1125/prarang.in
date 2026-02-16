@@ -507,6 +507,19 @@
                         </li>
                         <li><a type="button" data-bs-toggle="modal" data-bs-target="#TheseMT2"> Indian Languages -
                                 Unity of Script in Diversity of Languages.</a></li>
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#box25l"> India-Big non District
+                                Capital Cities</a></li>
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#box25l2"> Multilingualism in
+                                India</a></li>
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#newbox"> India Print
+                                Divide-Number of Cities with Hyperlocal Print Dailies
+                            </a>
+                        </li>
+                        <li style="list-style: none;  margin-bottom: 10px; padding-bottom: 8px; width: 100%;">
+                        </li>
+
+                        </li>
+
                         <li><a type="button" data-bs-toggle="modal" data-bs-target="#box23"> World Languages - 178
                                 Official Languages of 195 Countries </a></li>
                         <li><a type="button" data-bs-toggle="modal" data-bs-target="#TheseMT4"> World Languages -
@@ -515,10 +528,8 @@
                                 & Writing Language Families</a></li>
                         <li><a type="button" data-bs-toggle="modal" data-bs-target="#box25"> World Scripts - 4 Writing
                                 Systems</a></li>
-                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#box25l"> India-Big non District
-                                Capital Cities</a></li>
-                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#box25l2"> Multilingualism in
-                                India</a></li>
+
+
 
                     </ul>
                 </div>
@@ -538,8 +549,9 @@
                                 <h5 style="margin: 0 0 8px 0; color: #2c4f92; font-weight: 600;">United Nations Digital
                                     Divide</h5>
                                 <p style="font-size: 13px; color: #555; margin: 0 0 12px 0; line-height: 1.5;">
-                                    The United Nations has also highlighted digital divide as a focus area for global
+                                    The United Nations has also highlighted Digital Divide as a focus area for global
                                     development.
+
                                 </p>
                                 <a href="https://www.undp.org/digital/standards/2-bridge-digital-divide" target="_blank"
                                     style="display: inline-block; background: #3f69bd; color: #fff; text-decoration: none; padding: 8px 16px; border-radius: 4px; font-size: 12px; font-weight: 600; transition: all 0.3s ease; cursor: pointer;"
@@ -564,8 +576,9 @@
                                 <h5 style="margin: 0 0 8px 0; color: #2c4f92; font-weight: 600;">Prarang Language Webs
                                 </h5>
                                 <p style="font-size: 13px; color: #555; margin: 0 0 12px 0; line-height: 1.5;">
-                                    Prarang has quantified the worldwide digital divide for all 178 languages for
-                                    195 countries.
+                                    Prarang has quantified the worldwide Digital Divide across 178 official languages in
+                                    all 195 countries of the world.
+
                                 </p>
                                 <a href="https://www.prarang.in/lang-webs" target="_blank"
                                     style="display: inline-block; background: #3f69bd; color: #fff; text-decoration: none; padding: 8px 16px; border-radius: 4px; font-size: 12px; font-weight: 600; transition: all 0.3s ease; cursor: pointer;"
@@ -1029,6 +1042,35 @@
                         7 which are widely spoken in India.
                     </p>
                     <img src="{{ asset('assets/images/home/lp4.png') }}" class="img-fluid" alt="">
+                    <!-- <p class="text-end h6"> Source: </p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modal-xl" id="newbox" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="newboxLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- <h1 class="modal-title fs-5" id="TheseMT4Label">Modal title</h1> -->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Although there are over 800 cities/state capitals, and 9,389 cities overall, hyperlocal print
+                        dailies are available in only 240 cities.
+
+                    </p>
+                    <img src="{{ asset('images/citiesimage.png') }}" class="img-fluid" alt="">
+
+                    <p>
+                        <span style="color: #000">*</span> Language population is the aggregation of Mother Tongue
+                        population and
+                        Multilingual population
+
+
+                    </p>
                     <!-- <p class="text-end h6"> Source: </p> -->
                 </div>
             </div>
