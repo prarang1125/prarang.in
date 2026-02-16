@@ -197,6 +197,17 @@
             .table-responsive .table-striped thead .text-dark .text-dark {
                 background-color: #ffff00;
             }
+            /* Text dark */
+.table-wrapper .table-striped thead .text-dark .text-dark{
+ background-color:#f0f820;
+}
+
+/* Text dark */
+.table-responsive .table-striped thead .text-dark .text-dark{
+ background-color:#f0f820;
+}
+
+
     </style>
 
     {{-- Back Button --}}
