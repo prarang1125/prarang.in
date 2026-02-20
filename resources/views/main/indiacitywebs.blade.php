@@ -1,4 +1,10 @@
-<x-layout.main.base>
+@php
+    $metaData = [
+        'nav-heading' => 'City Webs',
+        'nav-sub-heading' => 'Local Language Content',
+    ];
+@endphp
+<x-layout.main.base :metaData="$metaData">
     <style>
         .scroll-hint {
             display: none;
@@ -408,10 +414,10 @@
         }
     </style>
     <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-10">
-        <div class="table-header-title-wrap">
+        {{-- <div class="table-header-title-wrap">
             <h2 class="table-header-title">City Webs</h2>
             <div class="table-header-subtitle">Local Language Content</div>
-        </div>
+        </div> --}}
         <div class="table-header">
             <div class="table-header-main">
                 <div class="table-header-left">

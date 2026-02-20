@@ -1,4 +1,14 @@
-<x-layout.main.base>
+@php
+    $metaData = [
+        'nav-heading' => view('components.nav-heading', [
+            'text' => 'World - 195 Country Webs',
+            'leftImg' => asset('assets/images/home/2.png'),
+            'rightImg' => asset('assets/images/home/2.png'),
+        ]),
+        'nav-sub-heading' => '',
+    ];
+@endphp
+<x-layout.main.base :metaData="$metaData">
     <style>
         .scroll-hint {
             display: none;
@@ -337,14 +347,14 @@
     <p class="text-start mt-2">
         <a href="/" class="btn btn-dark btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
     </p>
-    <section class="flex flex-col justify-center items-center">
+    {{-- <section class="flex flex-col justify-center items-center">
 
         <h4 class=" flex text-danger  justify-center items-center text-center text-primary font-bold">
             <img class="h-10 w-10" src="{{ asset('assets/images/home/2.png') }}" alt="">
             World - 195 Country Webs
             <img class="h-10 w-10" src="{{ asset('assets/images/home/2.png') }}" alt="">
         </h4>
-    </section>
+    </section> --}}
 
     <small class="">All 195 countries are grouped into seven major regions/continents. The table below
         summarizes their combined demographic, literacy, internet access, and social media usage characteristics,

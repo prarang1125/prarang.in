@@ -1,5 +1,6 @@
 @php
-    $metaData = ['nav-heading' => 'About us'];
+    $metaData = ['nav-heading' => 'About us', 'nav-sub-heading' => ''];
+
 @endphp
 <x-layout.main.base :metaData="$metaData">
     <style>

@@ -1,7 +1,7 @@
 @php
     $metaData = [
-        'title' => 'City Portals',
-        'subtitle' => 'Glocal For Hyperlocal',
+        'nav-heading' => 'City Portals',
+        'nav-sub-heading' => 'Glocal For Hyperlocal',
     ];
 @endphp
 <x-layout.main.base :resetMainMinHeight="true" :metaData="$metaData">

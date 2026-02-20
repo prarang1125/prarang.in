@@ -50,10 +50,10 @@
             @endif
         </div>
 
-        <p class="text-center main-title-heading locale-font {{ !empty($output) ? 'd-none' : '' }}"
+        {{-- <p class="text-center main-title-heading locale-font {{ !empty($output) ? 'd-none' : '' }}"
             style="color: #0000ff">
             {{ $lables['upamana_title'] }}
-        </p>
+        </p> --}}
 
         <div class="row locale-font">
             <div
@@ -151,9 +151,9 @@
 
                         <div class="row">
                             <div class="col-sm-8">
-                                <p class="text-center main-title-heading locale-font" style="color: #0000ff">
+                                {{-- <p class="text-center main-title-heading locale-font" style="color: #0000ff">
                                     {{ $lables['upamana_title'] }}
-                                </p>
+                                </p> --}}
 
                                 <div class="p-3 m-1 border rounded">
                                     <b>{{ $lables['prompt'] }}:</b> {{ $prompt }}

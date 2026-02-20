@@ -1,4 +1,14 @@
-<x-layout.main.base>
+@php
+    $metaData = [
+        'nav-heading' => view('components.nav-heading', [
+            'text' => ' India - 520 City Webs',
+            'leftImg' => asset('assets/images/home/3.png'),
+            'rightImg' => asset('assets/images/home/3.png'),
+        ]),
+        'nav-sub-heading' => '',
+    ];
+@endphp
+<x-layout.main.base :metaData="$metaData">
     <style>
         /* Modern Table Styling */
         .modern-table {
@@ -290,13 +300,13 @@
     <p class="text-start mt-2">
         <a href="/" class="btn btn-dark btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
     </p>
-    <section class="flex flex-col justify-center items-center">
+    {{-- <section class="flex flex-col justify-center items-center">
         <h4 class=" flex  justify-center items-center text-center text-primary font-bold">
             <img class="h-10 w-10" src="{{ asset('assets/images/home/3.png') }}" alt="">
             India - 520 City Webs
             <img class="h-10 w-10" src="{{ asset('assets/images/home/3.png') }}" alt="">
         </h4>
-    </section>
+    </section> --}}
     <section>
         <p>India has 9,389 towns as per Census 2011. Of these, 7,933 are Statutory/Census Towns, 475 are Urban
             Agglomerations, and 985 are Outgrowths. Among them, 36 are State/UT capitals and 800+ are District capitals.
