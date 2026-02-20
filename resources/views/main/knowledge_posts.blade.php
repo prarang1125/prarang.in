@@ -1,4 +1,10 @@
-<x-layout.main.base>
+@php
+    $metaData = [
+        'title' => 'Knowledge Posts',
+        'subtitle' => 'Glocal For Hyperlocal',
+    ];
+@endphp
+<x-layout.main.base :metaData="$metaData">
     <style>
         .mx-auto .table-header-title-wrap h2 {
             font-size: 35px;

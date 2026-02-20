@@ -1,4 +1,10 @@
-<x-layout.main.base :resetMainMinHeight="true">
+@php
+    $metaData = [
+        'title' => 'Partner Metrics',
+        'subtitle' => '',
+    ];
+@endphp
+<x-layout.main.base :resetMainMinHeight="true" :metaData="$metaData">
     <style>
         @import url("https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Source+Sans+3:wght@300;400;600;700&display=swap");
 

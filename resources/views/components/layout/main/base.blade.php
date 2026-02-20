@@ -639,21 +639,50 @@
 </style>
 
 <body class="bg-light" style="min-height: 100vh !important;" style="background: #ffffff !important;">
-
+    @php
+        $isHome = request()->routeIs('home');
+        $title = $metaData['title'] ?? 'Prarang Knowledge Webs';
+        $subtitle = $metaData['subtitle'] ?? 'Bridging the Digital Divide – By City, By Language';
+    @endphp
     <div id="main-header" class="">
         <header class="bg-white container-fluid py-3 d-none d-lg-block">
             <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-9 text-center">
-                        <h1 class="header-title mb-0 text-primary">Prarang Knowledge Webs</h1>
-                        <p class="header-tagline mb-0">Bridging the Digital Divide – By City, By Language</p>
-                    </div>
-                    <div class="col-md-3 text-end">
-                        <a href="/" class="text-decoration-none">
-                            <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
-                                alt="Prarang" height="60">
-                        </a>
-                    </div>
+                <div class="row {{ $isHome ? 'align-items-center' : '' }} ">
+                    @if ($isHome)
+                        <div class="col-md-9 text-center">
+                            <h1 class="header-title mb-0 text-primary">
+                                {!! $title !!}sss</h1>
+                            @if (!empty($subtitle))
+                                <p class="header-tagline mb-0">{{ $subtitle }}</p>
+                            @else
+                                <p class="header-tagline mb-0">Bridging the Digital Divide – By City, By Language</p>
+                            @endif
+                        </div>
+                        <div class="col-md-3 text-end">
+                            <a href="/" class="text-decoration-none">
+                                <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
+                                    alt="Prarang" height="60">
+                            </a>
+                        </div>
+                    @else
+                        <div class="col-md-3 ">
+                            <a href="/" class="text-decoration-none">
+                                <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
+                                    alt="Prarang" height="60">
+                            </a>
+                        </div>
+                        <div class="col-md-9 d-flex flex-column justify-content-center text-center"
+                            style="min-height:60px;">
+                            <h1 class="header-title mb-0 text-primary">
+                                {!! $title !!}sss</h1>
+                            @if (!empty($subtitle))
+                                <p class="header-tagline mb-0">{{ $subtitle }}</p>
+                            @endif
+                        </div>
+                    @endif
+
+
+
                 </div>
             </div>
         </header>
@@ -671,8 +700,18 @@
                     <!-- Mobile Brand Content -->
                     <div class="text-center px-2">
                         <div class="header-content">
-                            <h1 class="header-title mb-0 text-primary">Prarang Knowledge Webs</h1>
-                            <p class="header-tagline mb-0">Bridging the Digital Divide – By City, By Language</p>
+                            <h1 class="header-title mb-0 text-primary">
+                                {{ $metaData['title'] ?? 'Prarang Knowledge Webs' }}</h1>
+                            @if (isset($metaData['subtitle']) && !empty($metaData['subtitle']))
+                                <p class="header-tagline mb-0">{{ $metaData['subtitle'] }}
+                                </p>
+                            @else
+                                @if (!empty($subtitle))
+                                    <p class="header-tagline mb-0">Bridging the Digital Divide – By City, By Language
+                                @endif
+                                </p>
+                            @endif
+
                         </div>
                     </div>
 
@@ -681,6 +720,7 @@
                         <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
                             alt="Prarang" height="35" style="width: auto;">
                     </a>
+
                 </div>
 
                 <div class="collapse navbar-collapse" id="mainNavbarMenu">

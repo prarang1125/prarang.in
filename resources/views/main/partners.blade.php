@@ -1,4 +1,10 @@
-<x-layout.main.base>
+@php
+    $metaData = [
+        'title' => 'Prarang City Webs',
+        'subtitle' => 'Local Language Content',
+    ];
+@endphp
+<x-layout.main.base :metaData="$metaData">
 
     <style>
         .scroll-hint {

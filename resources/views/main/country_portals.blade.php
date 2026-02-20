@@ -1,4 +1,10 @@
-<x-layout.main.base :resetMainMinHeight="true">
+@php
+    $metaData = [
+        'title' => 'Country Portals',
+        'subtitle' => 'Glocal For Hyperlocal',
+    ];
+@endphp
+<x-layout.main.base :resetMainMinHeight="true" :metaData="$metaData">
     <style>
         .parent-portal {
             max-width: 100%;

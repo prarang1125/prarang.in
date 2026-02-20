@@ -16,6 +16,11 @@ class Base extends Component
      * @author Vivek Yadav <dev.vivek16@gmail.com>
      * @copyright 2025 Prarang <www.prarang.in>
      */
+    public $metaData;
+    public function __construct($metaData = [])
+    {
+        $this->metaData = $metaData;
+    }
 
     public function render(): View|Closure|string
     {

@@ -1,4 +1,10 @@
-<x-layout.main.base>
+@php
+    $metaData = [
+        'title' => 'Digital Divide',
+        'subtitle' => '',
+    ];
+@endphp
+<x-layout.main.base :metaData="$metaData">
     <style>
         /* Modal */
         main .modal {
@@ -210,7 +216,6 @@
 
         @media (max-width:1200px) {
 
-            /* Modal header */
             main .modal .modal-header {
                 padding-top: 32px;
                 padding-bottom: 7px;
@@ -404,6 +409,22 @@
             flex-direction: column;
         }
 
+        .newbox .modal-header {
+            padding-top: 13px !important;
+            padding-bottom: 4px !important;
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            text-align: center !important;
+        }
+
+        .newbox .modal-title {
+            flex: 1;
+            text-align: center !important;
+        }
+
+
         /* Modal header */
         .container .modal .modal-dialog .modal-content .modal-header {
             transform: translatex(0px) translatey(0px) !important;
@@ -512,7 +533,15 @@
                         <li><a type="button" data-bs-toggle="modal" data-bs-target="#box25l2"> Multilingualism in
                                 India</a></li>
                         <li><a type="button" data-bs-toggle="modal" data-bs-target="#newbox"> India Print
-                                Divide-Number of Cities with Hyperlocal Print Dailies
+                                Divide-Cities with Local Dailies
+                            </a>
+                        </li>
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#newbox1"> India Print Divide – Annual Print Estimates
+
+                            </a>
+                        </li>
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#newbox2"> India Digital Media Estimates
+
                             </a>
                         </li>
                         <li style="list-style: none;  margin-bottom: 10px; padding-bottom: 8px; width: 100%;">
@@ -1048,12 +1077,13 @@
         </div>
     </div>
 
-    <div class="modal fade modal-xl" id="newbox" data-bs-backdrop="static" data-bs-keyboard="false"
+    <div class="modal fade modal-xl newbox" id="newbox" data-bs-backdrop="static" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="newboxLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <!-- <h1 class="modal-title fs-5" id="TheseMT4Label">Modal title</h1> -->
+                    <h1 class="modal-title fs-5" id="newboxLabel">Indian Cities with Local Dailies
+</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
