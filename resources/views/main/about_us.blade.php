@@ -1,4 +1,7 @@
-<x-layout.main.base>
+@php
+    $metaData = ['nav-heading' => 'About us'];
+@endphp
+<x-layout.main.base :metaData="$metaData">
     <style>
         /* Accordion button */
         #accordionExample .accordion-item .accordion-button {
@@ -22,7 +25,6 @@
         }
     </style>
     <style>
-        /* Card body */
         #collapseTeam .mb-4 .card-body {
             display: flex;
             flex-direction: column;
@@ -30,12 +32,8 @@
             align-items: center;
         }
     </style>
-    <section class="bs5-top-heading mt-2">
-        <p class="">About us</p>
-        <!-- <p>Geographic Intelligence through Comparison</p> -->
-    </section>
-    <section class="mt-4">
 
+    <section class="mt-4">
         <div class="accordion" id="accordionExample">
             <div class="accordion-item">
                 <h2 class="accordion-header">
@@ -135,22 +133,22 @@
                         <h3>Our Team -</h3>
                         <div class="row">
                             @forelse($team as $member)
-                            <div class="col-md-3 mb-4">
-                                <div class="card text-center">
-                                    <div class="card-body">
-                                        <img src="{{ Storage::url($member['profile_image']) }}"
-                                            alt="{{ $member['display_name'] }}" class="profile-image mb-3">
-                                        <h5 class="card-title">{{ $member['display_name'] }}</h5>
-                                        <p class="card-text">{{ $member['role'] }}</p>
-                                        <a href="{{ $member['linkedin_link'] }}" target="_blank">
-                                            <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
-                                                alt="LinkedIn" class="linkedin-icon">
-                                        </a>
+                                <div class="col-md-3 mb-4">
+                                    <div class="card text-center">
+                                        <div class="card-body">
+                                            <img src="{{ Storage::url($member['profile_image']) }}"
+                                                alt="{{ $member['display_name'] }}" class="profile-image mb-3">
+                                            <h5 class="card-title">{{ $member['display_name'] }}</h5>
+                                            <p class="card-text">{{ $member['role'] }}</p>
+                                            <a href="{{ $member['linkedin_link'] }}" target="_blank">
+                                                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
+                                                    alt="LinkedIn" class="linkedin-icon">
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
                             @empty
-                            <p class="text-center">No team members found.</p>
+                                <p class="text-center">No team members found.</p>
                             @endforelse
                         </div>
                     </div>
@@ -164,7 +162,8 @@
                         Knowledge Web
                     </button>
                 </h2>
-                <div id="collapseKnowledgeWeb" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                <div id="collapseKnowledgeWeb" class="accordion-collapse collapse"
+                    data-bs-parent="#accordionExample">
                     <div class="accordion-body">
                         <style>
                             /* Example modal */
@@ -269,11 +268,14 @@
                                             src="https://prarang.in/images/Process_Chart_Prarang_1-2.jpg"
                                             alt="About US">
                                         <img class="img-fluid"
-                                            src="https://prarang.in/images/Process_Chart_Prarang_2.jpg" alt="About US">
+                                            src="https://prarang.in/images/Process_Chart_Prarang_2.jpg"
+                                            alt="About US">
                                         <img class="img-fluid"
-                                            src="https://prarang.in/images/Process_Chart_Prarang_3.jpg" alt="About US">
+                                            src="https://prarang.in/images/Process_Chart_Prarang_3.jpg"
+                                            alt="About US">
                                         <img class="img-fluid"
-                                            src="https://prarang.in/images/Process_Chart_Prarang_4.jpg" alt="About US">
+                                            src="https://prarang.in/images/Process_Chart_Prarang_4.jpg"
+                                            alt="About US">
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary"
@@ -388,7 +390,6 @@
                 </div>
             </div>
         </div>
-
     </section>
 
 </x-layout.main.base>

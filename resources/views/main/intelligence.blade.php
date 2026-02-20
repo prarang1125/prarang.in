@@ -1,15 +1,23 @@
-<x-layout.main.base>
+@php
+    $metaData['nav-heading'] = view('components.nav-heading', [
+        'text' => 'intelligence',
+        'leftImg' => asset('assets/images/home/Intelligence_Art1.jpg'),
+        'rightImg' => asset('assets/images/home/Intelligence_Nat1.jpg'),
+    ]);
+    $metaData['nav-sub-heading'] = '';
+@endphp
+<x-layout.main.base :metaData="$metaData">
 
     <style>
         .container p:nth-child(1) {
             text-align: center;
         }
     </style>
-    <section class="bs5-top-heading mt-2 mb-4 flex  gap-2 justify-center items-center">
+    {{-- <section class="bs5-top-heading mt-2 mb-4 flex  gap-2 justify-center items-center">
         <img class="h-8 w-8" src="{{ asset('assets/images/home/Intelligence_Art1.jpg') }}" alt="">
         <div class="text-dark text-xl md:text-2xl font-bold uppercase">intelligence</div>
         <img class="h-8 w-8" src="{{ asset('assets/images/home/Intelligence_Nat1.jpg') }}" alt="">
-    </section>
+    </section> --}}
     <section class="container">
 
         <div class="row">
@@ -40,8 +48,7 @@
             </style>
             <div class="row ">
 
-                <a class="col-sm hh  text-center font-bold text-lg no-underline" href="https://prarang.ai"
-                    target="_blank">
+                <a class="col-sm hh  text-center font-bold text-lg no-underline" href="https://prarang.ai" target="_blank">
 
                     Prarang Artificial Intelligence <img class="h-80 w-80"
                         src="{{ asset('assets/images/home/Intelligence_Art1.jpg') }}" alt="">

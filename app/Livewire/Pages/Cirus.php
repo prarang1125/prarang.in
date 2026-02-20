@@ -119,7 +119,11 @@ class Cirus extends Component
 
     public function render()
     {
-        return view('livewire.pages.cirus')->layout('components.layout.main.base');
+        $metaData = [
+            'nav-heading' => 'CIRUS',
+            'nav-sub-heading' => 'Cyber Intelligence & Risk Unified System'
+        ];
+        return view('livewire.pages.cirus')->layout('components.layout.main.base', compact('metaData'));
     }
 
     // Load districts under state

@@ -637,55 +637,100 @@
         flex-direction: row;
     }
 </style>
+<style>
+    #main-header .d-lg-block .header-home {
+        padding-left: 125px;
+    }
+</style>
 
 <body class="bg-light" style="min-height: 100vh !important;" style="background: #ffffff !important;">
     @php
-        $isHome = request()->routeIs('home');
-        $title = $metaData['title'] ?? 'Prarang Knowledge Webs';
-        $subtitle = $metaData['subtitle'] ?? 'Bridging the Digital Divide – By City, By Language';
+        $isHome = request()->url() === url('/');
+        $navHeading = $metaData['nav-heading'] ?? 'Prarang Knowledge Webs';
+        $navSubHeading = $metaData['nav-sub-heading'] ?? 'Bridging the Digital Divide – By City, By Language';
     @endphp
     <div id="main-header" class="">
-        <header class="bg-white container-fluid py-3 d-none d-lg-block">
-            <div class="container">
-                <div class="row {{ $isHome ? 'align-items-center' : '' }} ">
-                    @if ($isHome)
-                        <div class="col-md-9 text-center">
+        @if ($isHome)
+            <header class="bg-white container-fluid py-3 d-none d-lg-block">
+                <div class="container header-home">
+                    <div class="row justify-center items-center">
+                        <div class="col-md-9 text-center justify-center items-center">
                             <h1 class="header-title mb-0 text-primary">
-                                {!! $title !!}sss</h1>
-                            @if (!empty($subtitle))
-                                <p class="header-tagline mb-0">{{ $subtitle }}</p>
-                            @else
-                                <p class="header-tagline mb-0">Bridging the Digital Divide – By City, By Language</p>
-                            @endif
+                                Prarang Knowledge Webs</h1>
+                            <p class="header-tagline mb-0">Bridging the Digital Divide – By City, By Language</p>
                         </div>
                         <div class="col-md-3 text-end">
-                            <a href="/" class="text-decoration-none">
+                            <a href="/" class="text-decoration-none"2>
                                 <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
                                     alt="Prarang" height="60">
                             </a>
                         </div>
-                    @else
-                        <div class="col-md-3 ">
-                            <a href="/" class="text-decoration-none">
-                                <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
-                                    alt="Prarang" height="60">
-                            </a>
-                        </div>
-                        <div class="col-md-9 d-flex flex-column justify-content-center text-center"
-                            style="min-height:60px;">
-                            <h1 class="header-title mb-0 text-primary">
-                                {!! $title !!}sss</h1>
-                            @if (!empty($subtitle))
-                                <p class="header-tagline mb-0">{{ $subtitle }}</p>
-                            @endif
-                        </div>
-                    @endif
-
-
-
+                    </div>
                 </div>
-            </div>
-        </header>
+            </header>
+        @else
+            <style>
+                /* Header */
+                #main-header header {
+                    padding-bottom: 2px !important;
+                    height: 86px;
+                    padding-top: 1px !important;
+                    /* transform: translatex(0px) translatey(0px); */
+                }
+
+                /* Justify center */
+                .d-lg-block .justify-center {
+                    padding-top: 3px;
+                }
+
+                /* Col 8 */
+                .d-lg-block .col-sm-8 {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    height: 86px;
+                }
+            </style>
+            <header class="bg-white container-fluid py-3 d-none d-lg-block">
+                <div class="container header-none-home">
+                    <div class="row">
+                        <div class="col-2">
+                            <a href="/" class="text-decoration-none"2>
+                                <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
+                                    alt="Prarang" height="60">
+                            </a>
+                        </div>
+                        <div class="col-sm-8">
+                            <div class="flex justify-center items-center">
+                                <div class="col-md-9 text-center">
+                                    <h1 class="header-title mb-0 text-primary">
+                                        {!! $navHeading !!}</h1>
+                                    <p class="header-tagline mb-0">
+                                        {!! $navSubHeading !!}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-2"></div>
+                    </div>
+
+
+                    {{-- <div class="row justify-center items-center">
+                        <div class="col-md-9 text-center">
+                            <h1 class="header-title mb-0 text-primary">
+                                {{ $navHeading ?? 'Prarang Knowledge Webs' }}</h1>
+                            <p class="header-tagline mb-0">Bridging the Digital Divide – By City, By Language</p>
+                        </div>
+                        <div class="col-md-3 text-end">
+                            <a href="/" class="text-decoration-none"2>
+                                <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
+                                    alt="Prarang" height="60">
+                            </a>
+                        </div>
+                    </div> --}}
+                </div>
+            </header>
+        @endif
         <nav class="navbar navbar-expand-lg bg-white shadow-sm">
             <div class="container">
                 <!-- Mobile Header Area (Toggler + Brand + Logo) -->
@@ -701,17 +746,9 @@
                     <div class="text-center px-2">
                         <div class="header-content">
                             <h1 class="header-title mb-0 text-primary">
-                                {{ $metaData['title'] ?? 'Prarang Knowledge Webs' }}</h1>
-                            @if (isset($metaData['subtitle']) && !empty($metaData['subtitle']))
-                                <p class="header-tagline mb-0">{{ $metaData['subtitle'] }}
-                                </p>
-                            @else
-                                @if (!empty($subtitle))
-                                    <p class="header-tagline mb-0">Bridging the Digital Divide – By City, By Language
-                                @endif
-                                </p>
-                            @endif
-
+                                {{ $navHeading ?? 'Prarang Knowledge Webs' }}</h1>
+                            <p class="header-tagline mb-0">{{ $navSubHeading }}
+                            </p>
                         </div>
                     </div>
 
@@ -848,6 +885,7 @@
     </div>
     @props(['resetMainMinHeight' => false])
     <main class="container" @if (!$resetMainMinHeight) style="min-height: 70vh !important;" @endif>
+        <br>
         {{ $slot }}
     </main>
     <footer>

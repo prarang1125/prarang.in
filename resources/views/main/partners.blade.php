@@ -1,7 +1,7 @@
 @php
     $metaData = [
-        'title' => 'Prarang City Webs',
-        'subtitle' => 'Local Language Content',
+        'nav-heading' => 'Partners',
+        'nav-sub-heading' => 'Local Language Content',
     ];
 @endphp
 <x-layout.main.base :metaData="$metaData">
@@ -758,7 +758,7 @@
             margin-left: 15px;
         }
     </style>
-    <section class=" container mt-4">
+    <section class=" container">
         <div class="row">
             <div class="col-sm-8">
                 <p class="mb-3">Prarang is open to Partnership in select 901+ Indian Markets & 195 World Markets. Each
