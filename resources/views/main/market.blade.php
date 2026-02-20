@@ -1,7 +1,11 @@
 @php
     $metaData = [
-        'title' => 'Digital Divide',
-        'subtitle' => '',
+        'nav-heading' => view('components.nav-heading', [
+            'text' => 'Digital Divide',
+            'rightImg' => asset('assets/images/home/dd.png'),
+            'leftImg' => asset('assets/images/home/dd.png'),
+        ]),
+        'nav-sub-heading' => '',
     ];
 @endphp
 <x-layout.main.base :metaData="$metaData">
@@ -498,72 +502,12 @@
 
         }
     </style>
-     <style>
-                        .annual-print-header {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            gap: 16px;
-                            margin-bottom: 10px;
-                        }
-                        .annual-print-title {
-                            margin: 0;
-                            font-size: 24px;
-                            font-weight: 600;
-                            text-align: center;
-                            flex: 1;
-                        }
-                        .manuscript-btn {
-                            background: yellow;
-                            color: black;
-                            border: 2px solid #388e3c;
-                            font-weight: bold;
-                            padding: 4px 12px;
-                            border-radius: 2px;
-                            margin-left: 12px;
-                            position: relative;
-                            font-size: 12px;
-                            cursor: pointer;
-                        }
-                        @media (max-width: 1000px) {
-                            .annual-print-header {
-                                flex-direction: column;
-                                align-items: stretch;
-                                gap: 8px;
-                            }
-                            .manuscript-btn {
-                                margin-left: 0;
-                                width: 100%;
-                                max-width: 320px;
-                                align-self: center;
-                            }
-                        }
-                        .annual-notes {
-                            font-size: 13px;
-                            margin-top: 18px;
-                            margin-bottom: 0;
-                            color: #111;
-                        }
-                        .annual-notes strong {
-                            font-weight: 600;
-                        }
-                        .annual-notes ul {
-                            margin: 0 0 0 18px;
-                            padding: 0;
-                        }
-                        .annual-notes li {
-                            margin-bottom: 2px;
-                            line-height: 1.4;
-                            font-size: 10px;
-                        }
-                    </style>
     <section class="bs5-top-heading mt-2 mb-4 flex gap-2 justify-center items-center">
         <img class="h-8 w-8" src="{{ asset('assets/images/home/dd.png') }}" alt="">
         <div class=" text-xl md:text-2xl font-bold uppercase" style="color: #2c4f92">Digital Divide</div>
         <img class="h-8 w-8" src="{{ asset('assets/images/home/dd.png') }}" alt="">
     </section>
     <section class="container">
-
         <div class="row">
             <div class="col-lg-8 mb-4">
                 <p>
@@ -614,11 +558,13 @@
                                 Divide-Cities with Local Dailies
                             </a>
                         </li>
-                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#newbox1"> India Print Divide – Annual Print Estimates
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#newbox1"> India Print Divide –
+                                Annual Print Estimates
 
                             </a>
                         </li>
-                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#newbox2"> India Digital Media Estimates
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#newbox2"> India Digital Media
+                                Estimates
 
                             </a>
                         </li>
@@ -1160,7 +1106,8 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="newboxLabel">Indian Cities with Local Dailies</h1>
+                    <h1 class="modal-title fs-5" id="newboxLabel">Indian Cities with Local Dailies
+</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
