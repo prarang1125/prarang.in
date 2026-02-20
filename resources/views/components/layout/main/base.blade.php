@@ -670,6 +670,12 @@
             </header>
         @else
             <style>
+                /* Heading */
+                .d-lg-block .justify-center h1 {
+                    color: #0d6efd !important;
+                }
+
+
                 /* Header */
                 #main-header header {
                     padding-bottom: 2px !important;
@@ -677,6 +683,13 @@
                     padding-top: 1px !important;
                     /* transform: translatex(0px) translatey(0px); */
                 }
+
+                /* Font bold */
+                .col-sm-8 .header-title .font-bold {
+                    color: #0d6efd !important;
+                    font-size: 32px;
+                }
+
 
                 /* Justify center */
                 .d-lg-block .justify-center {

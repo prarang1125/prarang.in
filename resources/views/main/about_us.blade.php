@@ -392,5 +392,4 @@
             </div>
         </div>
     </section>
-
 </x-layout.main.base>
