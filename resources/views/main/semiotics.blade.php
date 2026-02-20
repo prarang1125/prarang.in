@@ -1,6 +1,6 @@
 @php
     $metaData = [
-        'nav-heading' => 'Semiotics',
+        'nav-heading' => 'Performance Metrics: Semiotics',
         'nav-sub-heading' => 'Cognitive Insights',
     ];
 @endphp

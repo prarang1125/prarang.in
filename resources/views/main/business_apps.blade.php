@@ -1,6 +1,6 @@
 @php
     $metaData = [
-        'nav-heading' => 'Business Apps',
+        'nav-heading' => 'Content: Business Apps',
         'nav-sub-heading' => 'Glocal For Hyperlocal',
     ];
 @endphp

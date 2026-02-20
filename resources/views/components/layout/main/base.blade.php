@@ -687,13 +687,17 @@
                 /* Font bold */
                 .col-sm-8 .header-title .font-bold {
                     color: #0d6efd !important;
-                    font-size: 32px;
+                    font-size: 24px;
                 }
 
 
                 /* Justify center */
                 .d-lg-block .justify-center {
                     padding-top: 3px;
+                }
+
+                .justify-center h1 {
+                    font-size: 24px;
                 }
 
                 /* Col 8 */
@@ -703,6 +707,10 @@
                     align-items: center;
                     height: 86px;
                 }
+
+                /* #main-header .container-fluid .container .row .col-sm-8 .justify-center .text-center h1 {
+                    width: 118% !important;
+                } */
             </style>
             <header class="bg-white container-fluid py-3 d-none d-lg-block">
                 <div class="container header-none-home">

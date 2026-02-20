@@ -1,6 +1,6 @@
 @php
     $metaData = [
-        'nav-heading' => 'City Portals',
+        'nav-heading' => 'Portal: City ',
         'nav-sub-heading' => 'Glocal For Hyperlocal',
     ];
 @endphp

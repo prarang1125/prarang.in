@@ -1,6 +1,6 @@
 @php
     $metaData = [
-        'nav-heading' => 'Partner Metrics',
+        'nav-heading' => 'Performance Metrics: Partner Metrics',
         'nav-sub-heading' => '',
     ];
 @endphp

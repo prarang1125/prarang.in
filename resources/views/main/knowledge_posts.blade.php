@@ -1,6 +1,6 @@
 @php
     $metaData = [
-        'nav-heading' => 'Knowledge Posts',
+        'nav-heading' => 'Content: Knowledge Posts',
         'nav-sub-heading' => 'Glocal For Hyperlocal',
     ];
 @endphp
