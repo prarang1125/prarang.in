@@ -1,7 +1,7 @@
 @php
     $metaData = [
-        'title' => 'Business Apps',
-        'subtitle' => 'Glocal For Hyperlocal',
+        'nav-heading' => 'Content: Business Apps',
+        'nav-sub-heading' => 'Glocal For Hyperlocal',
     ];
 @endphp
 <x-layout.main.base :metaData="$metaData">
@@ -252,13 +252,7 @@
     </style>
 
     <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-1">
-        <div class="table-header-title-wrap">
-            <h2 class="table-header-title">Business Apps
 
-            </h2>
-            <div class="table-header-subtitle">Glocal For Hyperlocal
-            </div>
-        </div>
         <div class="table-header">
             <div class="table-header-main">
                 <div class="table-header-left">

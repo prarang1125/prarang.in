@@ -1,4 +1,14 @@
-<x-layout.main.base>
+@php
+    $metaData = [
+        'nav-heading' => view('components.nav-heading', [
+            'text' => 'World - 178 Language Webs',
+            'leftImg' => asset('images/lang2.png'),
+            'rightImg' => asset('images/langlogo.png'),
+        ]),
+        'nav-sub-heading' => '',
+    ];
+@endphp
+<x-layout.main.base :metaData="$metaData">
 
     <style>
         .scroll-hint {
@@ -239,13 +249,13 @@
             <img src="{{ asset('images/langlogo.png') }}" alt="Globe" style="width: 50px; height: 50px;">
         </h2>
     </div> --}}
-    <section>
+    {{-- <section>
         <h4 class=" flex  justify-center items-center text-center text-dark font-bold">
             <img src="{{ asset('images/lang2.png') }}" alt="Globe" style="width: 56px;height: 44px;">
             World - 178 Language Webs
             <img src="{{ asset('images/langlogo.png') }}" alt="Globe" style="width: 50px; height: 50px;">
         </h4>
-    </section>
+    </section> --}}
     <section class="flex flex-col justify-center items-center">
 
         <p>There are 195 Countries in the world, and each country selects its own Official language(s). For example,

@@ -1,7 +1,7 @@
 @php
     $metaData = [
-        'title' => 'Partner Metrics',
-        'subtitle' => '',
+        'nav-heading' => 'Performance Metrics: Partner Metrics',
+        'nav-sub-heading' => '',
     ];
 @endphp
 <x-layout.main.base :resetMainMinHeight="true" :metaData="$metaData">
@@ -172,7 +172,7 @@
 
     <section class="pm-page">
         <div class="pm-wrap">
-            <h1 class="pm-title">Partner Metrics</h1>
+            {{-- <h1 class="pm-title">Partner Metrics</h1> --}}
             <p class="pm-subtitle">
                 A unified intelligence dashboard delivering cross-platform reach analytics, dynamic CTR insights,
                 and deep audience demography insights to power precision targeting and data-driven campaign strategy.

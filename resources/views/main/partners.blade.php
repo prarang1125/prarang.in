@@ -1,7 +1,7 @@
 @php
     $metaData = [
         'nav-heading' => 'Partners',
-        'nav-sub-heading' => 'Local Language Content',
+        'nav-sub-heading' => '',
     ];
 @endphp
 <x-layout.main.base :metaData="$metaData">

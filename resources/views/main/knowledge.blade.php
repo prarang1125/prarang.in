@@ -1,21 +1,15 @@
 @php
     $metaData = [
-        'title' => view('components.nav-heading', [
+        'nav-heading' => view('components.nav-heading', [
             'text' => 'Knowledge',
-            'rightImg' => 'https://sarganga.org/assets/img/concept-center.JPG',
             'leftImg' => 'https://sarganga.org/assets/img/concept-center.JPG',
+            'rightImg' => 'https://sarganga.org/assets/img/concept-center.JPG',
         ]),
-        'subtitle' => '',
+        'nav-sub-heading' => '',
     ];
 @endphp
 <x-layout.main.base :metaData="$metaData">
 
-
-    <section class="bs5-top-heading mt-2 mb-4 flex  gap-2 justify-center items-center">
-        <img class="h-8 w-8" src="https://sarganga.org/assets/img/concept-center.JPG" alt="">
-        <div class="text-dark text-xl md:text-2xl font-bold uppercase">Knowledge </div>
-        <img class="h-8 w-8" src="https://sarganga.org/assets/img/concept-center.JPG" alt="">
-    </section>
     <section class="container">
 
         <div class="row">

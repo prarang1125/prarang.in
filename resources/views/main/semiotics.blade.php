@@ -1,7 +1,7 @@
 @php
     $metaData = [
-        'title' => 'Semiotics',
-        'subtitle' => 'Cognitive Insights',
+        'nav-heading' => 'Performance Metrics: Semiotics',
+        'nav-sub-heading' => 'Cognitive Insights',
     ];
 @endphp
 <x-layout.main.base :metaData="$metaData">
@@ -194,12 +194,7 @@
     </style>
 
     <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-1">
-        <div class="table-header-title-wrap">
-            <h2 class="table-header-title">Semiotics
-            </h2>
-            <div class="table-header-subtitle">Cognitive Insights
-            </div>
-        </div>
+
         <div class="table-header">
             <div class="table-header-main">
                 <div class="table-header-left">

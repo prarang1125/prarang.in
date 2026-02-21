@@ -238,8 +238,8 @@ class UpmanaAi extends Component
     public function render()
     {
         $metaData = [
-            'nav-heading' => 'UPMANA',
-            'nav-sub-heading' => 'Knowledge By Comparison'
+            'nav-heading' => 'Artificial Intelligence: Comparative A.I.',
+            'nav-sub-heading' => ''
         ];
         return view('livewire.pages.upmana-ai')->layout('components.layout.main.base', compact('metaData'));
     }

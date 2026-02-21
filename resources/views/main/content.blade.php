@@ -1,4 +1,10 @@
-<x-layout.main.base>
+@php
+    $metaData = [
+        'nav-heading' => 'Content',
+        'nav-sub-heading' => 'Glocal for Hyperlocal',
+    ];
+@endphp
+<x-layout.main.base :metaData="$metaData">
     <style>
         /* Link */
         .rounded ul a {
@@ -318,10 +324,7 @@
             margin-left: 7px;
         }
     </style>
-    <section class="bs5-top-heading">
-        <p class="">Content</p>
-        <p>Glocal for Hyperlocal</p>
-    </section>
+
     <section class="container">
         <div class="row">
             <div class="col-sm-8">

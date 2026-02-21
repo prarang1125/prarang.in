@@ -1,7 +1,7 @@
 @php
     $metaData = [
-        'title' => 'Knowledge Posts',
-        'subtitle' => 'Glocal For Hyperlocal',
+        'nav-heading' => 'Content: Knowledge Posts',
+        'nav-sub-heading' => 'Glocal For Hyperlocal',
     ];
 @endphp
 <x-layout.main.base :metaData="$metaData">
@@ -194,12 +194,12 @@
     </style>
 
     <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-1">
-        <div class="table-header-title-wrap">
+        {{-- <div class="table-header-title-wrap">
             <h2 class="table-header-title">Knowledge Posts
             </h2>
             <div class="table-header-subtitle">Glocal For Hyperlocal
             </div>
-        </div>
+        </div> --}}
         <div class="table-header">
             <div class="table-header-main">
                 <div class="table-header-left">
