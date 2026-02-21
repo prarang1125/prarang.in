@@ -10,18 +10,19 @@
 @endphp
 <x-layout.main.base :metaData="$metaData">
     <style>
-                /* Remove padding and margin from modal-body for full-width image */
+        /* Remove padding and margin from modal-body for full-width image */
 
-                /* Make annualprint image fill modal width */
-                .modal-body img.imagechange {
-                    display: block;
-                    width: 100%;
-                    max-width: 100%;
-                    margin-left: 0 !important;
-                    margin-right: 0 !important;
-                    padding-left: 0 !important;
-                    padding-right: 0 !important;
-                }
+        /* Make annualprint image fill modal width */
+        .modal-body img.imagechange {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
         /* Modal */
         main .modal {
             background-color: rgba(255, 255, 255, 0);
@@ -502,65 +503,73 @@
 
         }
     </style>
-     <style>
-                        .annual-print-header {
-                            display: flex;
-                            align-items: center;
-                            justify-content: center;
-                            gap: 16px;
-                            margin-bottom: 10px;
-                        }
-                        .annual-print-title {
-                            margin: 0;
-                            font-size: 24px;
-                            font-weight: 600;
-                            text-align: center;
-                            flex: 1;
-                        }
-                        .manuscript-btn {
-                            background: yellow;
-                            color: black;
-                            border: 2px solid #388e3c;
-                            font-weight: bold;
-                            padding: 4px 12px;
-                            border-radius: 2px;
-                            margin-left: 12px;
-                            position: relative;
-                            font-size: 12px;
-                            cursor: pointer;
-                        }
-                        @media (max-width: 1000px) {
-                            .annual-print-header {
-                                flex-direction: column;
-                                align-items: stretch;
-                                gap: 8px;
-                            }
-                            .manuscript-btn {
-                                margin-left: 0;
-                                width: 100%;
-                                max-width: 320px;
-                                align-self: center;
-                            }
-                        }
-                        .annual-notes {
-                            font-size: 13px;
-                            margin-top: 18px;
-                            margin-bottom: 0;
-                            color: #111;
-                        }
-                        .annual-notes strong {
-                            font-weight: 600;
-                        }
-                        .annual-notes ul {
-                            margin: 0 0 0 18px;
-                            padding: 0;
-                        }
-                        .annual-notes li {
-                            margin-bottom: 2px;
-                            line-height: 1.4;
-                            font-size: 10px;
-                        }
-                    </style>
+    <style>
+        .annual-print-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 10px;
+        }
+
+        .annual-print-title {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+            flex: 1;
+        }
+
+        .manuscript-btn {
+            background: yellow;
+            color: black;
+            border: 2px solid #388e3c;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 2px;
+            margin-left: 12px;
+            position: relative;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1000px) {
+            .annual-print-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+            }
+
+            .manuscript-btn {
+                margin-left: 0;
+                width: 100%;
+                max-width: 320px;
+                align-self: center;
+            }
+        }
+
+        .annual-notes {
+            font-size: 13px;
+            margin-top: 18px;
+            margin-bottom: 0;
+            color: #111;
+        }
+
+        .annual-notes strong {
+            font-weight: 600;
+        }
+
+        .annual-notes ul {
+            margin: 0 0 0 18px;
+            padding: 0;
+        }
+
+        .annual-notes li {
+            margin-bottom: 2px;
+            line-height: 1.4;
+            font-size: 10px;
+        }
+    </style>
     <section class="container">
         <div class="row">
             <div class="col-lg-8 mb-4">
@@ -1184,7 +1193,7 @@
         </div>
     </div>
 
-     <div class="modal fade modal-xl newbox" id="newbox1" data-bs-backdrop="static" data-bs-keyboard="false"
+    <div class="modal fade modal-xl newbox" id="newbox1" data-bs-backdrop="static" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="newbox1Label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -1197,9 +1206,25 @@
                         <p class="annual-print-title">
                             Indian Annual Print Media Estimates
                         </p>
-                        <button type="button" data-bs-toggle="modal"  data-bs-target="#newbox11" class="manuscript-btn">
+                        <style>
+                            /* Button */
+                            .container .newbox a {
+                                background-color: #0f5be9;
+                                color: #ffffff;
+                                transition: background-color 0.3s ease;
+                            }
+
+                            /* Button (hover) */
+                            .container .newbox a:hover {
+                                background-color: #3f7ced;
+                                /* color: #2d2323; */
+                                text-decoration: none;
+                            }
+                        </style>
+                        <a type="button" data-bs-toggle="modal" data-bs-target="#newbox11"
+                            class="rounded no-underline shadow-lg  bg-indigo-600 hover:bg-slate-300 hover:text-white  manuscript-btn mx-2 my-2">
                             Indian Manuscript History
-                        </button>
+                        </a>
 
                     </div>
 
@@ -1209,9 +1234,12 @@
                         <span style="font-weight:600;">Notes :</span>
                         <ul style="list-style: disc;">
                             <li><strong>Population, Literacy %</strong> – Census 2011</li>
-                            <li><strong>Books / Year</strong> – 2004 Figures – "60 Years of Book Publishing in India." Federation of Indian Publishers, 2007</li>
-                            <li><strong>Periodicals, Circulation & Dailies</strong> – Press Registrar General of India – Press in India – Annual Report 2022-23</li>
-                            <li><strong>Circulation</strong> – Average number of copies sold and distributed for all Periodicals per publishing day.</li>
+                            <li><strong>Books / Year</strong> – 2004 Figures – "60 Years of Book Publishing in India."
+                                Federation of Indian Publishers, 2007</li>
+                            <li><strong>Periodicals, Circulation & Dailies</strong> – Press Registrar General of India –
+                                Press in India – Annual Report 2022-23</li>
+                            <li><strong>Circulation</strong> – Average number of copies sold and distributed for all
+                                Periodicals per publishing day.</li>
                         </ul>
                     </div>
                 </div>
@@ -1236,7 +1264,6 @@
 
                     </div>
                     <style>
-
                         .annual-print-title {
                             margin: 0;
                             font-size: 24px;
@@ -1244,18 +1271,19 @@
                             text-align: center;
 
                         }
-
                     </style>
                     <img src="{{ asset('images/ancient.png') }}" class="img-fluid imagechange" alt="">
 
                     <div class="annual-notes">
                         <span style="font-weight:600;">Notes :</span>
                         <ul style="list-style: disc;">
-                            <li><strong>Books / Year – 2004 Figures  %</strong> – "60 Years of Book Publishing in India." Federation of Indian Publishers, 2007
-</li>
+                            <li><strong>Books / Year – 2004 Figures %</strong> – "60 Years of Book Publishing in India."
+                                Federation of Indian Publishers, 2007
+                            </li>
                             <li><strong>Manuscripts</strong> – Refered to as (books) before printing began in India <br>
--Subhash C. Bishwas and M.K. Prajapati, Bibliography Survey of Indian Manuscript Catalogues, 1998
-</li>
+                                -Subhash C. Bishwas and M.K. Prajapati, Bibliography Survey of Indian Manuscript
+                                Catalogues, 1998
+                            </li>
 
                         </ul>
                     </div>
@@ -1264,7 +1292,7 @@
         </div>
     </div>
 
-     <div class="modal fade modal-xl newbox" id="newbox2" data-bs-backdrop="static" data-bs-keyboard="false"
+    <div class="modal fade modal-xl newbox" id="newbox2" data-bs-backdrop="static" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="newbox2Label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
@@ -1282,32 +1310,35 @@
                     <div class="annual-notes">
                         <span style="font-weight:600;">Notes :</span>
                         <ul style="list-style: disc;">
-                            <li><strong>All India Radio (AIR) Stations </strong> – Prasar Bharti – List of existing stations and transmitters
+                            <li><strong>All India Radio (AIR) Stations </strong> – Prasar Bharti – List of existing
+                                stations and transmitters
 
-</li>
+                            </li>
                             <li><strong>AIR</strong> – Total (Medium Wave+FM) National Coverage – 90%, Population – 98%
 
-</li>
+                            </li>
 
- <li><strong>*AIR Stations Estimated </strong> – based on each city’s respective Most Spoken Mother Tongue Language
+                            <li><strong>*AIR Stations Estimated </strong> – based on each city’s respective Most Spoken
+                                Mother Tongue Language
 
-</li>
-
-
- <li><strong>Population, Literacy % </strong> –  Figures sourced from Census 2011
+                            </li>
 
 
-</li>
+                            <li><strong>Population, Literacy % </strong> – Figures sourced from Census 2011
 
 
- <li><strong>TV Channels </strong> – List of Television Channels in India (Wikipedia)
+                            </li>
 
 
-</li>
+                            <li><strong>TV Channels </strong> – List of Television Channels in India (Wikipedia)
 
- <li><strong>Internet Users </strong> – Estimated based on Language Distribution of India and TRAI Data – Jul-Sept, 2025
 
-</li>
+                            </li>
+
+                            <li><strong>Internet Users </strong> – Estimated based on Language Distribution of India and
+                                TRAI Data – Jul-Sept, 2025
+
+                            </li>
 
                         </ul>
                     </div>
@@ -1571,33 +1602,33 @@
         </div>
     </div>
 
-<script>
-document.addEventListener('DOMContentLoaded', function() {
-    var btn = document.querySelector('#newbox1 .manuscript-btn');
-    if(btn) {
-        btn.removeAttribute('data-bs-toggle');
-        btn.removeAttribute('data-bs-target');
-        btn.onclick = function() {
-            var modal = new bootstrap.Modal(document.getElementById('newbox11'), {
-                backdrop: false,
-                focus: false
-            });
-            modal.show();
-        };
-    }
-    // Blur parent modal when child modal is open
-    var childModal = document.getElementById('newbox11');
-    var parentModalContent = document.querySelector('#newbox1 .modal-content');
-    if(childModal && parentModalContent) {
-        childModal.addEventListener('show.bs.modal', function() {
-            parentModalContent.classList.add('modal-blur');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var btn = document.querySelector('#newbox1 .manuscript-btn');
+            if (btn) {
+                btn.removeAttribute('data-bs-toggle');
+                btn.removeAttribute('data-bs-target');
+                btn.onclick = function() {
+                    var modal = new bootstrap.Modal(document.getElementById('newbox11'), {
+                        backdrop: false,
+                        focus: false
+                    });
+                    modal.show();
+                };
+            }
+            // Blur parent modal when child modal is open
+            var childModal = document.getElementById('newbox11');
+            var parentModalContent = document.querySelector('#newbox1 .modal-content');
+            if (childModal && parentModalContent) {
+                childModal.addEventListener('show.bs.modal', function() {
+                    parentModalContent.classList.add('modal-blur');
+                });
+                childModal.addEventListener('hidden.bs.modal', function() {
+                    parentModalContent.classList.remove('modal-blur');
+                });
+            }
         });
-        childModal.addEventListener('hidden.bs.modal', function() {
-            parentModalContent.classList.remove('modal-blur');
-        });
-    }
-});
-</script>
+    </script>
 
     <script>
         // Function to fetch the JSONL file
