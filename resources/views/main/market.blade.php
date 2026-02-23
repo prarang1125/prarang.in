@@ -91,7 +91,7 @@
             font-weight: 500;
         } */
 
-        @media (min-width:1201px) {
+        @media(min-width:1201px) {
 
             /* Heading */
             main h5 {
@@ -130,7 +130,7 @@
             font-weight: 600;
         }
 
-        @media (min-width:1201px) {
+        @media(min-width:1201px) {
 
             /* Th */
             main .modal th {
@@ -185,7 +185,7 @@
             top: -1px;
         }
 
-        @media (min-width:1201px) {
+        @media(min-width:1201px) {
 
             /* Table Data */
             .container .table-striped tbody tr td {
@@ -226,7 +226,7 @@
             font-size: 12px;
         }
 
-        @media (max-width:1200px) {
+        @media(max-width:1200px) {
 
             /* Table main lang */
             .table-main-lang {
@@ -237,12 +237,10 @@
 
         }
 
-        @media (max-width:1200px) {
-
-            main .modal .modal-header {
-                padding-top: 32px;
-                padding-bottom: 7px;
-            }
+        <blade media|%20(max-width%3A1200px)%20%7B>main .modal .modal-header {
+            padding-top: 32px;
+            padding-bottom: 7px;
+        }
 
         }
 
@@ -394,7 +392,7 @@
             z-index: 42;
         }
 
-        @media (max-width:576px) {
+        @media(max-width:576px) {
 
             /* City */
             .container .container .row .live-cities .row .col-sm-2 .city-btn {
@@ -454,7 +452,7 @@
             transform: translatex(0px) translatey(0px) !important;
         }
 
-        @media (min-width:1201px) {
+        @media(min-width:1201px) {
 
             /* Modal header */
             .container .modal .modal-header {
@@ -465,29 +463,27 @@
         }
 
         /* Mobile responsive - full width cards */
-        @media (max-width: 768px) {
-            .row.mt-5 {
-                margin-left: 0 !important;
-                margin-right: 0 !important;
-                padding-left: 0 !important;
-                padding-right: 0 !important;
-            }
+        <blade media|%20(max-width%3A%20768px)%20%7B>.row.mt-5 {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
 
-            .row.mt-5>.col-md-6 {
-                padding-left: 12px !important;
-                padding-right: 12px !important;
-            }
+        .row.mt-5>.col-md-6 {
+            padding-left: 12px !important;
+            padding-right: 12px !important;
+        }
         }
 
         /* Desktop responsive - remove right gap from second column */
-        @media (min-width: 769px) {
-            .row.mt-5>.col-md-6:last-child {
-                padding-right: 0 !important;
-            }
+        <blade media|%20(min-width%3A%20769px)%20%7B>.row.mt-5>.col-md-6:last-child {
+            padding-right: 0 !important;
+        }
         }
     </style>
     <style>
-        @media (max-width:576px) {
+        @media(max-width:576px) {
 
             /* Modal body */
             .container .modal .modal-body {
@@ -570,6 +566,72 @@
             font-size: 10px;
         }
     </style>
+    <style>
+        .annual-print-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 10px;
+        }
+
+        .annual-print-title {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+            flex: 1;
+        }
+
+        .manuscript-btn {
+            background: yellow;
+            color: black;
+            border: 2px solid #388e3c;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 2px;
+            margin-left: 12px;
+            position: relative;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1000px) {
+            .annual-print-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+            }
+
+            .manuscript-btn {
+                margin-left: 0;
+                max-width: 320px;
+                align-self: center;
+            }
+        }
+
+        .annual-notes {
+            font-size: 13px;
+            margin-top: 18px;
+            margin-bottom: 0;
+            color: #111;
+        }
+
+        .annual-notes strong {
+            font-weight: 600;
+        }
+
+        .annual-notes ul {
+            margin: 0 0 0 18px;
+            padding: 0;
+        }
+
+        .annual-notes li {
+            margin-bottom: 2px;
+            line-height: 1.4;
+            font-size: 10px;
+        }
+    </style>
     <section class="container">
         <div class="row">
             <div class="col-lg-8 mb-4">
@@ -598,7 +660,9 @@
 
             <div class="col-lg-4">
                 <div class="p-2 border rounded">
-                    <p class="h4" style="color: #2c4f92; font-size: 19px">Prarang Analysis :</p>
+                    <p class="h4" style="color: #2c4f92; font-size: 19px; text-align: center;">Prarang Language
+                        Analysis
+                    </p>
                     <ul class="analysis-list">
 
                         {{-- <li><a type="button" data-bs-toggle="modal" data-bs-target="#TheseMTw1">Digital Divide -
@@ -1085,16 +1149,22 @@
                     <p id="ember50" class="ember-view reader-content-blocks__paragraph text-start">
                         <a class="app-aware-link " target="_self"
                             href="https://indianexpress.com/article/india/more-than-19500-mother-tongues-spoken-in-india-census-5241056/"
-                            data-test-app-aware-link=""><!---->https://indianexpress.com/article/india/more-than-19500-mother-tongues-spoken-in-india-census-5241056/<!----></a>
+                            data-test-app-aware-link="">
+                            <!---->https://indianexpress.com/article/india/more-than-19500-mother-tongues-spoken-in-india-census-5241056/
+                            <!----></a>
                         <br>
 
                         <a class="app-aware-link " target="_self"
                             href="https://www.theintrepidguide.com/how-many-languages-are-there-in-the-world/"
-                            data-test-app-aware-link=""><!---->https://www.theintrepidguide.com/how-many-languages-are-there-in-the-world/<!----></a>
+                            data-test-app-aware-link="">
+                            <!---->https://www.theintrepidguide.com/how-many-languages-are-there-in-the-world/
+                            <!----></a>
                         <br>
                         <a class="app-aware-link " target="_self"
                             href="https://censusindia.gov.in/2011-prov-results/paper2/data_files/india2/1.%20data%20highlight.pdf"
-                            data-test-app-aware-link=""><!---->https://censusindia.gov.in/2011-prov-results/paper2/data_files/india2/1.%20data%20highlight.pdf<!----></a>
+                            data-test-app-aware-link="">
+                            <!---->https://censusindia.gov.in/2011-prov-results/paper2/data_files/india2/1.%20data%20highlight.pdf
+                            <!----></a>
                         <!---->
                     </p>
                     </p>
@@ -1152,7 +1222,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h3>23 spoken languages.</h3>
+                    <h3 style="text-align: center; font-weight: bold;">23 spoken languages.</h3>
                     <p>
                         Just 23 Mother Tongue languages account for more than half the world’s population. These include
                         7 which are widely spoken in India.
@@ -1206,29 +1276,16 @@
                         <p class="annual-print-title">
                             Indian Annual Print Media Estimates
                         </p>
-                        <style>
-                            /* Button */
-                            .container .newbox a {
-                                background-color: #0f5be9;
-                                color: #ffffff;
-                                transition: background-color 0.3s ease;
-                            }
-
-                            /* Button (hover) */
-                            .container .newbox a:hover {
-                                background-color: #3f7ced;
-                                /* color: #2d2323; */
-                                text-decoration: none;
-                            }
-                        </style>
-                        <a type="button" data-bs-toggle="modal" data-bs-target="#newbox11"
-                            class="rounded no-underline shadow-lg  bg-indigo-600 hover:bg-slate-300 hover:text-white  manuscript-btn mx-2 my-2">
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#newbox11"
+                            class="manuscript-btn">
                             Indian Manuscript History
-                        </a>
+                        </button>
 
                     </div>
 
-                    <img src="{{ asset('images/annualprint.png') }}" class="img-fluid imagechange" alt="">
+                    <img src="{{ asset('images/annualprint.png') }}" class="img-fluid imagechange" alt=""
+                        style="pointer-events:none; user-select:none;" oncontextmenu="return false;"
+                        ondragstart="return false;">
 
                     <div class="annual-notes">
                         <span style="font-weight:600;">Notes :</span>
@@ -1247,15 +1304,91 @@
         </div>
     </div>
 
+    <style>
+        /* Modal cards */
+        .info-card {
+            border: 1.5px solid #bfc9d1;
+            /* border-radius: 12px; */
+            /* box-shadow: 0 4px 18px rgba(44, 79, 146, 0.10),
+                0 1.5px 4px rgba(44, 79, 146, 0.08); */
+            background: #fff;
+            padding: 22px 18px 18px 18px;
+            height: 600px;
+            overflow-y: scroll;
+        }
 
-    <div class="modal fade modal-md newbox" id="newbox11" data-bs-backdrop="static" data-bs-keyboard="false"
+        /* .scrolltable {
+            height: 500px;
+            overflow-y: scroll;
+        } */
+
+        @media (max-width: 992px) {
+            .info-card {
+                height: auto;
+            }
+        }
+
+        /* Table styling */
+        .custom-table {
+            width: 100%;
+            border: 1px solid #222;
+            border-radius: 8px;
+            background: #fff;
+            font-size: 13px;
+            margin-bottom: 10px;
+            border-collapse: collapse;
+        }
+
+
+
+        .custom-table th,
+        .custom-table td {
+            padding: 8px;
+            border: 1px solid #222;
+        }
+
+        .custom-table thead th {
+            background: #3f69bd !important;
+            color: white;
+        }
+
+        /* .custom-table .modal th {
+            background: #3f69bd !important;
+            color: white;
+        } */
+
+        .custom-table th {
+            border: 1px solid #222;
+            text-align: center;
+        }
+
+        /* Title */
+        .annual-print-title {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Notes */
+        .annual-notes ul {
+            list-style: disc;
+        }
+
+        .annual-notes.no-bullet ul {
+            list-style: none;
+            padding-left: 0;
+        }
+    </style>
+    <div class="modal fade modal-xl newbox" id="newbox11" data-bs-backdrop="static" data-bs-keyboard="false"
         tabindex="-1" aria-labelledby="newbox11Label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
+
                 <div class="modal-header">
-                    <!-- <h1 class="modal-title fs-5" id="newbox1Label">Indian Cities with Local Dailies</h1> -->
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                 </div>
+
                 <div class="modal-body">
                     <div class="annual-print-header">
                         <p class="annual-print-title">
@@ -1289,7 +1422,468 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+
+                <!-- ===== CARD 1 ===== -->
+                <div class="col-lg-6 mb-4">
+                    <div class="info-card">
+                        <div class="annual-print-header">
+                            <p class="annual-print-title">
+                                Ancient India Manuscript Estimates
+
+                            </p>
+                        </div>
+                        <div class="scrolltable table-responsive">
+                            <table class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Language</th>
+                                        <th># Books / Year</th>
+                                        <th>%</th>
+                                        <th>Manuscripts *</th>
+                                        <th>%</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Hindi</td>
+                                        <td>22,119</td>
+                                        <td>27%</td>
+                                        <td>87,412</td>
+                                        <td>8.3%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>English</td>
+                                        <td>18,752</td>
+                                        <td>23%</td>
+                                        <td>-</td>
+                                        <td>0.0%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Bengali</td>
+                                        <td>5,538</td>
+                                        <td>7%</td>
+                                        <td>4,915</td>
+                                        <td>0.5%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Marathi</td>
+                                        <td>5,475</td>
+                                        <td>7%</td>
+                                        <td>6,552</td>
+                                        <td>0.6%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Telugu</td>
+                                        <td>3,428</td>
+                                        <td>4%</td>
+                                        <td>9,216</td>
+                                        <td>0.9%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>Tamil</td>
+                                        <td>7,525</td>
+                                        <td>9%</td>
+                                        <td>39,666</td>
+                                        <td>3.8%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>Urdu</td>
+                                        <td>2,172</td>
+                                        <td>3%</td>
+                                        <td>10,029</td>
+                                        <td>0.9%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>Gujarati</td>
+                                        <td>3,213</td>
+                                        <td>4%</td>
+                                        <td>16,121</td>
+                                        <td>1.5%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td>Kannada</td>
+                                        <td>1,998</td>
+                                        <td>2%</td>
+                                        <td>13,818</td>
+                                        <td>1.3%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td>Odia</td>
+                                        <td>763</td>
+                                        <td>1%</td>
+                                        <td>1,826</td>
+                                        <td>0.2%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>11</td>
+                                        <td>Gurumukhi</td>
+                                        <td>1,298</td>
+                                        <td>2%</td>
+                                        <td>4,107</td>
+                                        <td>0.4%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>12</td>
+                                        <td>Malayalam</td>
+                                        <td>3,358</td>
+                                        <td>4%</td>
+                                        <td>11,815</td>
+                                        <td>1.1%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>13</td>
+                                        <td>Assamese</td>
+                                        <td>1,285</td>
+                                        <td>2%</td>
+                                        <td>-</td>
+                                        <td>0.0%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>14</td>
+                                        <td>Sanskrit, Prakrit, Apabhramsa</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>8,29,653</td>
+                                        <td>78.5%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>15</td>
+                                        <td>Persian</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>14,722</td>
+                                        <td>1.4%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>16</td>
+                                        <td>Arabic</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>2,949</td>
+                                        <td>0.3%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>17</td>
+                                        <td>Pali</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>2,050</td>
+                                        <td>0.2%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>18</td>
+                                        <td>Tibetan</td>
+                                        <td>-</td>
+                                        <td>-</td>
+                                        <td>1,364</td>
+                                        <td>0.1%</td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td>Others</td>
+                                        <td>5,613</td>
+                                        <td>7%</td>
+                                        <td>892</td>
+                                        <td>0.1%</td>
+                                    </tr>
+
+                                    <tr style="background:#f5f7fa; font-weight:600;">
+                                        <td colspan="2" style="text-align: center;">Total</td>
+                                        <td>82,537</td>
+                                        <td>100%</td>
+                                        <td>10,57,107</td>
+                                        <td>100%</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+
+                        <div class="annual-notes mt-3">
+                            <span style="font-weight:600;">Notes :</span>
+                            <ul>
+                                <li><strong>Books / Year – 2004 Figures %</strong> – "60 Years of Book
+                                    Publishing in India." Federation of Indian Publishers, 2007
+                                </li>
+                                <li><strong>Manuscripts</strong> – Refered to as (books) before printing began
+                                    in India
+                                    – Subhash C. Bishwas and M.K. Prajapati, Bibliography Survey of Indian
+                                    Manuscript Catalogues, 1998
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== CARD 3 ===== -->
+                <div class="col-lg-6  mb-4">
+                    <div class="info-card">
+                        <div class="annual-print-header">
+                            <p class="annual-print-title">
+                                Sanskrit Manuscripts on Science in Kerala and Tamil Nadu
+
+                            </p>
+                        </div>
+                        <div class="scrolltable table-responsive">
+                            <table class="custom-table ">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Discipline</th>
+                                        <th>No. of Manuscripts</th>
+                                        <th>% of Total</th>
+                                        <th>No. of Texts</th>
+                                        <th>No. of Texts Edited so far</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Astrology</td>
+                                        <td>6,794</td>
+                                        <td>4.53</td>
+                                        <td>1,572</td>
+                                        <td>65</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Astronomy & Mathematics</td>
+                                        <td>2,919</td>
+                                        <td>1.95</td>
+                                        <td>934</td>
+                                        <td>100</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Medicine</td>
+                                        <td>1,286</td>
+                                        <td>0.86</td>
+                                        <td>586</td>
+                                        <td>28</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Architecture</td>
+                                        <td>599</td>
+                                        <td>0.4</td>
+                                        <td>200</td>
+                                        <td>10</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Musicology</td>
+                                        <td>326</td>
+                                        <td>0.22</td>
+                                        <td>82</td>
+                                        <td>9</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>Chemistry</td>
+                                        <td>166</td>
+                                        <td>0.11</td>
+                                        <td>61</td>
+                                        <td>13</td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>Veterinary Science</td>
+                                        <td>146</td>
+                                        <td>0.1</td>
+                                        <td>31</td>
+                                        <td>4</td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>Agriculture</td>
+                                        <td>8</td>
+                                        <td></td>
+                                        <td>7</td>
+                                        <td>0</td>
+                                    </tr>
+
+                                    <tr style="background:#f5f7fa; font-weight:600;">
+                                        <td></td>
+                                        <td>Total</td>
+                                        <td>12,244</td>
+                                        <td>8.16</td>
+                                        <td>3,473</td>
+                                        <td>229</td>
+                                    </tr>
+
+                                    <tr style="background:#f5f7fa; font-weight:600;">
+                                        <td colspan="2">Total Manuscripts Surveyed</td>
+                                        <td>1,50,000</td>
+                                        <td colspan="3"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+
+                        <div class="annual-notes no-bullet mt-3">
+                            <ul>
+                                <li>
+                                    <strong>Source</strong> :
+                                    K.V. Sarma, Science Texts in Sanskrit in the Manuscript Repositories of
+                                    Kerala and Tamil Nadu, Rashtriya Sanskrit Sansthan, New Delhi 2002, p.15
+
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ===== CARD 2 ===== -->
+                <div class="col-lg-6 mb-4 ms-auto">
+                    <div class="info-card">
+                        <div class="annual-print-header">
+                            <p class="annual-print-title">
+                                Subject-wise Distribution of Tamil Manuscripts
+
+                            </p>
+                        </div>
+
+                        <div class="scrolltable table-responsive">
+                            <table class="custom-table">
+                                <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>Subject/Discipline</th>
+                                        <th>Number of <br>Manuscripts</th>
+                                        <th>% of Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>Medicine</td>
+                                        <td>3,350</td>
+                                        <td>15.31%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>2</td>
+                                        <td>Astrology</td>
+                                        <td>1,250</td>
+                                        <td>5.71%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>3</td>
+                                        <td>Astronomy and Mathematics</td>
+                                        <td>120</td>
+                                        <td>0.55%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>4</td>
+                                        <td>Chemistry</td>
+                                        <td>120</td>
+                                        <td>0.55%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>5</td>
+                                        <td>Architecture</td>
+                                        <td>60</td>
+                                        <td>0.27%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>6</td>
+                                        <td>Veterinary Science</td>
+                                        <td>40</td>
+                                        <td>0.18%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>7</td>
+                                        <td>Grammar, Prosody, Lexicon</td>
+                                        <td>1,300</td>
+                                        <td>5.94%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>8</td>
+                                        <td>Music & Dance</td>
+                                        <td>220</td>
+                                        <td>1.01%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>9</td>
+                                        <td>Drama</td>
+                                        <td>210</td>
+                                        <td>0.96%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>10</td>
+                                        <td>Literature</td>
+                                        <td>6,100</td>
+                                        <td>27.89%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>11</td>
+                                        <td>Religion (Samayam)</td>
+                                        <td>6,700</td>
+                                        <td>30.63%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>12</td>
+                                        <td>Philosophy</td>
+                                        <td>1,725</td>
+                                        <td>7.89%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>13</td>
+                                        <td>Dharmasastra (Nitini)</td>
+                                        <td>400</td>
+                                        <td>1.83%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>14</td>
+                                        <td>Other Humanities and Social Sciences</td>
+                                        <td>280</td>
+                                        <td>1.28%</td>
+                                    </tr>
+                                    <tr style="background:#f5f7fa; font-weight:600;">
+
+                                        <td colspan="2" style="text-align: center;">Total</td>
+                                        <td>21,875</td>
+                                        <td>100</td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+
+                        </div>
+
+                        <div class="annual-notes no-bullet mt-3">
+                            <ul>
+                                <li><strong>Source</strong> : K. C. Subrahmanyam et al (Eds.), A Union Catalogue
+                                    of Tamil Manuscripts, Vol. V, Tanjore University, Thanjavur 1991, pp.
+                                    2148-2156
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
+
+            </div>
         </div>
+
+    </div>
+    </div>
     </div>
 
     <div class="modal fade modal-xl newbox" id="newbox2" data-bs-backdrop="static" data-bs-keyboard="false"
@@ -1358,89 +1952,89 @@
                 </div>
                 <div class="modal-body ">
                     <div class="p-3">
-                        <h5>17 Script Language Families.</h5>
-                        <p>The 178 Official Spoken Languages of the world can be categorized into 32 Scripts and 17
-                            Writing Language Families. Do note that "Writing Language Families" are distinct from "
-                            Writing Language Systems".</p>
-                        <hr>
-                        <table class="table table-sm text-start">
-                            <thead>
-                                <tr>
-                                    <th>Writing System</th>
-                                    <th>Language Family</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Abjad</td>
-                                    <td>Arabic</td>
-                                </tr>
-                                <tr>
-                                    <td>Abjad</td>
-                                    <td>Hebrew</td>
-                                </tr>
-                                <tr>
-                                    <td>Abjad</td>
-                                    <td>Tifinagh</td>
-                                </tr>
-                                <tr>
-                                    <td>Abugida</td>
-                                    <td>Canadian syllabic</td>
-                                </tr>
-                                <tr>
-                                    <td>Abugida</td>
-                                    <td>Ethiopic</td>
-                                </tr>
-                                <tr>
-                                    <td>Abugida</td>
-                                    <td>North Indic</td>
-                                </tr>
-                                <tr>
-                                    <td>Abugida</td>
-                                    <td>South Indic</td>
-                                </tr>
-                                <tr>
-                                    <td>Abugida</td>
-                                    <td>Thaana</td>
-                                </tr>
-                                <tr>
-                                    <td>Alphabetical</td>
-                                    <td>Armenian</td>
-                                </tr>
-                                <tr>
-                                    <td>Alphabetical</td>
-                                    <td>Cyrillic</td>
-                                </tr>
-                                <tr>
-                                    <td>Alphabetical</td>
-                                    <td>Georgian</td>
-                                </tr>
-                                <tr>
-                                    <td>Alphabetical</td>
-                                    <td>Greek</td>
-                                </tr>
-                                <tr>
-                                    <td>Alphabetical</td>
-                                    <td>Hangul</td>
-                                </tr>
-                                <tr>
-                                    <td>Alphabetical</td>
-                                    <td>Latin</td>
-                                </tr>
-                                <tr>
-                                    <td>Alphabetical</td>
-                                    <td>Mongolian</td>
-                                </tr>
-                                <tr>
-                                    <td>Logo_Syllabic</td>
-                                    <td>Hanzi [L]</td>
-                                </tr>
-                                <tr>
-                                    <td>Logo_Syllabic</td>
-                                    <td>Kana [S] / Kanji [L]</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <h3 style="text-align: center; font-weight: bold;">17 Script Language Families.</h5>
+                            <p>The 178 Official Spoken Languages of the world can be categorized into 32 Scripts and 17
+                                Writing Language Families. Do note that "Writing Language Families" are distinct from "
+                                Writing Language Systems".</p>
+                            <hr>
+                            <table class="table table-sm text-start">
+                                <thead>
+                                    <tr>
+                                        <th>Writing System</th>
+                                        <th>Language Family</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Abjad</td>
+                                        <td>Arabic</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Abjad</td>
+                                        <td>Hebrew</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Abjad</td>
+                                        <td>Tifinagh</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Abugida</td>
+                                        <td>Canadian syllabic</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Abugida</td>
+                                        <td>Ethiopic</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Abugida</td>
+                                        <td>North Indic</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Abugida</td>
+                                        <td>South Indic</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Abugida</td>
+                                        <td>Thaana</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alphabetical</td>
+                                        <td>Armenian</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alphabetical</td>
+                                        <td>Cyrillic</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alphabetical</td>
+                                        <td>Georgian</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alphabetical</td>
+                                        <td>Greek</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alphabetical</td>
+                                        <td>Hangul</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alphabetical</td>
+                                        <td>Latin</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alphabetical</td>
+                                        <td>Mongolian</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Logo_Syllabic</td>
+                                        <td>Hanzi [L]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Logo_Syllabic</td>
+                                        <td>Kana [S] / Kanji [L]</td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
                     </div>
                 </div>
