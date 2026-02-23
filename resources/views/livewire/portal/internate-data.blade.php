@@ -23,6 +23,32 @@
             text-align: right;
             font-size: 12px;
         }
+
+        /* Rounded */
+        .w-full .w-full .rounded-b-lg:nth-child(5) {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Button */
+        .w-full .w-full .btn-primary {
+            /* background-color: #0e22d6; */
+            border: 2px solid #0e22d6;
+            color: #0e22d6;
+            width: 235px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 17px;
+            transition: background-color 0.3s ease;
+        }
+
+        /* Button (hover) */
+        .w-full .w-full .btn-primary:hover {
+            background-color: #d4e2f1;
+        }
     </style>
 
     <div class="flex justify-center items-center mb-1">
@@ -131,6 +157,14 @@
         @else
             <div class="text-center text-gray-500 py-8">कोई डेटा उपलब्ध नहीं</div>
         @endif
+
+        <div class="mt-4 border-t-4 border-red-900 pt-4 bg-red-50/30 p-4 rounded-b-lg shadow-inner">
+            <a href="https://g2c.prarang.in/india/multilingualism/{{ $city_id }}" target="_blank"
+                class="btn btn-outline-red-700 hover:btn-red-900 btn btn-primary  font-bold px-4 py-2 rounded-full">
+                <i class="fa fa-shield-alt text-red-600 mr-2"></i>
+                <span class="arabic-numbers">{{ $cityName }}</span> &nbsp; की भाषा</a>
+            </a>
+        </div>
 
         {{-- CIRUS Data Section --}}
         @if ($cirusData)
