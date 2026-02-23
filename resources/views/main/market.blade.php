@@ -2174,7 +2174,7 @@
 
                         <div>
                             <h3 class="text-lg font-bold mb-1">
-                                • <a href="https://g2c.prarang.in/india/reacho-o-meter" target="_blank"
+                                • <a href="https://g2c.prarang.in/india/multilingualism/" target="_blank"
                                     class="text-blue-600 hover:underline">
                                     India - Citywise Linguistic Diversity -
                                 </a>
