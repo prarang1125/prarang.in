@@ -1,12 +1,12 @@
 @php
-$metaData = [
-'nav-heading' => view('components.nav-heading', [
-'text' => 'Digital Divide',
-'rightImg' => asset('assets/images/home/dd.png'),
-'leftImg' => asset('assets/images/home/dd.png'),
-]),
-'nav-sub-heading' => '',
-];
+    $metaData = [
+        'nav-heading' => view('components.nav-heading', [
+            'text' => 'Digital Divide',
+            'rightImg' => asset('assets/images/home/dd.png'),
+            'leftImg' => asset('assets/images/home/dd.png'),
+        ]),
+        'nav-sub-heading' => '',
+    ];
 @endphp
 <x-layout.main.base :metaData="$metaData">
     <style>
@@ -593,7 +593,8 @@ $metaData = [
 
             <div class="col-lg-4">
                 <div class="p-2 border rounded">
-                    <p class="h4" style="color: #2c4f92; font-size: 19px; text-align: center;">Prarang Language Analysis
+                    <p class="h4" style="color: #2c4f92; font-size: 19px; text-align: center;">Prarang Language
+                        Analysis
                     </p>
                     <ul class="analysis-list">
 
@@ -713,193 +714,195 @@ $metaData = [
 
 
     <?php foreach ($worldLanguageData as $nkey => $value) { ?>
-        <div class="modal fade" id="w<?= $nkey ?>" tabindex="-1" aria-labelledby="w<?= $nkey ?>Label" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="w<?= $nkey ?>Label"><?= $languageId[$nkey] ?> Web</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <h4><b>List of Cities with more than 100K <?= $languageId[$nkey] ?> Speakers.</b></h4>
-                        <div class="col-sm">
-                            <table class="table table-responsive table-bordered table-striped table-hover table-sm">
-                                <thead class="text-start bg-info">
-                                    <tr class="world-tr">
-                                        <th>Sn</th>
-                                        <th>City</th>
-                                        <th>Country</th>
-                                        <th>Continents</th>
-                                        <th>Country Capital</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-light text-start">
-                                    <?php
+    <div class="modal fade" id="w<?= $nkey ?>" tabindex="-1" aria-labelledby="w<?= $nkey ?>Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="w<?= $nkey ?>Label"><?= $languageId[$nkey] ?> Web</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4><b>List of Cities with more than 100K <?= $languageId[$nkey] ?> Speakers.</b></h4>
+                    <div class="col-sm">
+                        <table class="table table-responsive table-bordered table-striped table-hover table-sm">
+                            <thead class="text-start bg-info">
+                                <tr class="world-tr">
+                                    <th>Sn</th>
+                                    <th>City</th>
+                                    <th>Country</th>
+                                    <th>Continents</th>
+                                    <th>Country Capital</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-light text-start">
+                                <?php
                                     $count = 1;
                                     foreach ($value as $city) {
                                         if ($city['is_other'] == 0) { ?>
-                                            <tr>
-                                                <td><?= $count++ ?></td>
-                                                <td><?= $city['city_name'] ?></td>
-                                                <td><?= $city['country'] ?></td>
-                                                <td><?= $city['continant'] ?></td>
-                                                <td>
-                                                    <?php if ($city['is_capital']) { ?>
-                                                        <b class="">Yes</b>
-                                                    <?php } else { ?>
-                                                        No
-                                                    <?php } ?>
-                                                </td>
-                                            </tr>
-                                    <?php }
+                                <tr>
+                                    <td><?= $count++ ?></td>
+                                    <td><?= $city['city_name'] ?></td>
+                                    <td><?= $city['country'] ?></td>
+                                    <td><?= $city['continant'] ?></td>
+                                    <td>
+                                        <?php if ($city['is_capital']) { ?>
+                                        <b class="">Yes</b>
+                                        <?php } else { ?>
+                                        No
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                                <?php }
                                     } ?>
-                                </tbody>
-                            </table>
-                            <?php if ($count == 1) { ?>
-                                <h6 class="p-2 border">No City or Country Capital with more than 100K Speakers.</h6>
-                            <?php } ?>
-                        </div>
-                        <br>
-                        <h4><b>List of Country Capitals with less than 100K <?= $languageId[$nkey] ?> Speakers.</b></h4>
-                        <div class="col-sm">
-                            <table class="table table-responsive table-bordered table-striped table-sm table-hover">
-                                <thead class="text-start bg-info">
-                                    <tr class="bg-info">
-                                        <th>Sn</th>
-                                        <th>City</th>
-                                        <th>Country</th>
-                                        <th>Continents</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-light text-start">
-                                    <?php
+                            </tbody>
+                        </table>
+                        <?php if ($count == 1) { ?>
+                        <h6 class="p-2 border">No City or Country Capital with more than 100K Speakers.</h6>
+                        <?php } ?>
+                    </div>
+                    <br>
+                    <h4><b>List of Country Capitals with less than 100K <?= $languageId[$nkey] ?> Speakers.</b></h4>
+                    <div class="col-sm">
+                        <table class="table table-responsive table-bordered table-striped table-sm table-hover">
+                            <thead class="text-start bg-info">
+                                <tr class="bg-info">
+                                    <th>Sn</th>
+                                    <th>City</th>
+                                    <th>Country</th>
+                                    <th>Continents</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-light text-start">
+                                <?php
                                     $count = 1;
                                     foreach ($value as $city) {
                                         if ($city['is_other'] == 1) { ?>
-                                            <tr>
-                                                <td><?= $count++ ?></td>
-                                                <td><?= $city['city_name'] ?></td>
-                                                <td><?= $city['country'] ?></td>
-                                                <td><?= $city['continant'] ?></td>
-                                            </tr>
-                                    <?php }
+                                <tr>
+                                    <td><?= $count++ ?></td>
+                                    <td><?= $city['city_name'] ?></td>
+                                    <td><?= $city['country'] ?></td>
+                                    <td><?= $city['continant'] ?></td>
+                                </tr>
+                                <?php }
                                     } ?>
-                                </tbody>
-                            </table>
-                            <?php if ($count == 1) { ?>
-                                <h6 class="p-2 border">No other Country Capital.</h6>
-                            <?php } ?>
-                        </div>
+                            </tbody>
+                        </table>
+                        <?php if ($count == 1) { ?>
+                        <h6 class="p-2 border">No other Country Capital.</h6>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     <?php } ?>
 
     <?php foreach ($indiaLanguageData as $nkey => $value) { ?>
-        <div class="modal fade" id="in<?= $nkey ?>" tabindex="-1" aria-labelledby="in<?= $nkey ?>Label" aria-hidden="true">
-            <div class="modal-dialog modal-xl modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="in<?= $nkey ?>Label"><?= $languageId[$nkey] ?> Web</h1>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <h4><b>List of District Capitals with more than 30K Literate <?= $languageId[$nkey] ?> speakers with
-                                Internet Access.</b></h4>
-                        <div class="col-sm">
-                            <table class="table table-responsive table-bordered table-striped table-hover table-sm">
-                                <thead class="text-start bg-info">
-                                    <tr class="world-tr">
-                                        <th>Sn</th>
-                                        <th>District/DHQ</th>
-                                        <th>State/Ut</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-light text-start">
-                                    <?php
+    <div class="modal fade" id="in<?= $nkey ?>" tabindex="-1" aria-labelledby="in<?= $nkey ?>Label"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="in<?= $nkey ?>Label"><?= $languageId[$nkey] ?> Web</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4><b>List of District Capitals with more than 30K Literate <?= $languageId[$nkey] ?> speakers with
+                            Internet Access.</b></h4>
+                    <div class="col-sm">
+                        <table class="table table-responsive table-bordered table-striped table-hover table-sm">
+                            <thead class="text-start bg-info">
+                                <tr class="world-tr">
+                                    <th>Sn</th>
+                                    <th>District/DHQ</th>
+                                    <th>State/Ut</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-light text-start">
+                                <?php
                                     $count = 1;
                                     foreach ($value as $city) {
                                         if ($city['is_other'] == 0) { ?>
-                                            <tr>
-                                                <td><?= $count++ ?></td>
-                                                <td><?= $city['city_name'] ?></td>
-                                                <td><?= $city['state'] ?></td>
-                                            </tr>
-                                    <?php }
+                                <tr>
+                                    <td><?= $count++ ?></td>
+                                    <td><?= $city['city_name'] ?></td>
+                                    <td><?= $city['state'] ?></td>
+                                </tr>
+                                <?php }
                                     } ?>
-                                </tbody>
-                            </table>
-                            <?php if ($count == 1) { ?>
-                                <h6 class="p-2 border">No Records found.</h6>
-                            <?php } ?>
-                        </div>
-                        <br>
-                        <h4><b>List of District Capitals with less than 30K <?= $languageId[$nkey] ?> speakers.</b></h4>
-                        <div class="col-sm">
-                            <table class="table table-responsive table-bordered table-striped table-sm table-hover">
-                                <thead class="text-start bg-info">
-                                    <tr class="bg-info">
-                                        <th>Sn</th>
-                                        <th>City</th>
-                                        <th>State</th>
-                                    </tr>
-                                </thead>
-                                <tbody class="bg-light text-start">
-                                    <?php
+                            </tbody>
+                        </table>
+                        <?php if ($count == 1) { ?>
+                        <h6 class="p-2 border">No Records found.</h6>
+                        <?php } ?>
+                    </div>
+                    <br>
+                    <h4><b>List of District Capitals with less than 30K <?= $languageId[$nkey] ?> speakers.</b></h4>
+                    <div class="col-sm">
+                        <table class="table table-responsive table-bordered table-striped table-sm table-hover">
+                            <thead class="text-start bg-info">
+                                <tr class="bg-info">
+                                    <th>Sn</th>
+                                    <th>City</th>
+                                    <th>State</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-light text-start">
+                                <?php
                                     $count = 1;
                                     foreach ($value as $city) {
                                         if ($city['is_other'] == 1) { ?>
-                                            <tr>
-                                                <td><?= $count++ ?></td>
-                                                <td><?= $city['city_name'] ?></td>
-                                                <td><?= $city['state'] ?></td>
-                                            </tr>
-                                    <?php }
+                                <tr>
+                                    <td><?= $count++ ?></td>
+                                    <td><?= $city['city_name'] ?></td>
+                                    <td><?= $city['state'] ?></td>
+                                </tr>
+                                <?php }
                                     } ?>
-                                </tbody>
-                            </table>
-                            <?php if ($count == 1) { ?>
-                                <h6 class="p-2 border">No Records found.</h6>
-                            <?php } ?>
-                        </div>
+                            </tbody>
+                        </table>
+                        <?php if ($count == 1) { ?>
+                        <h6 class="p-2 border">No Records found.</h6>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     <?php } ?>
 
     <?php foreach ($languageCountry as $lkey => $value) { ?>
-        <div class="modal country-modal fade" id="lc<?= $lkey ?>" tabindex="-1" aria-labelledby="lc<?= $lkey ?>ModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="lc<?= $lkey ?>ModalLabel"><?= $languageId[$lkey] ?> Speaking
-                            Countries</h1>
-                        <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body text-start">
-                        <div class="row">
-                            <?php
+    <div class="modal country-modal fade" id="lc<?= $lkey ?>" tabindex="-1"
+        aria-labelledby="lc<?= $lkey ?>ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="lc<?= $lkey ?>ModalLabel"><?= $languageId[$lkey] ?> Speaking
+                        Countries</h1>
+                    <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-start">
+                    <div class="row">
+                        <?php
                             $count = 1;
                             foreach ($value as $cont) { ?>
-                                <div class="col-md-6">
-                                    <small><?= $count++ ?>. <?= $cont['country'] ?></small>
-                                </div>
-                            <?php } ?>
+                        <div class="col-md-6">
+                            <small><?= $count++ ?>. <?= $cont['country'] ?></small>
                         </div>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     <?php } ?>
 
 
 
 
-    <div class="modal fade modal-xl" id="TheseMTw1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="TheseMTw1Label" aria-hidden="true">
+    <div class="modal fade modal-xl" id="TheseMTw1" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="TheseMTw1Label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -907,14 +910,15 @@ $metaData = [
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <img src="https://www.prarang.in/meeting-data/pdfs/world-divine.JPG" class="img-fluid" alt="">
+                    <img src="https://www.prarang.in/meeting-data/pdfs/world-divine.JPG" class="img-fluid"
+                        alt="">
                     <!-- <p class="text-end h6"> Source: </p> -->
                 </div>
             </div>
         </div>
     </div>
-    <div class="modal fade modal-xl" id="TheseMTi1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="TheseMTi1Label" aria-hidden="true">
+    <div class="modal fade modal-xl" id="TheseMTi1" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="TheseMTi1Label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -922,7 +926,8 @@ $metaData = [
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <img src="https://www.prarang.in/meeting-data/pdfs/india-divine.JPG" class="img-fluid" alt="">
+                    <img src="https://www.prarang.in/meeting-data/pdfs/india-divine.JPG" class="img-fluid"
+                        alt="">
                     <!-- <p class="text-end h6"> Source: </p> -->
                 </div>
             </div>
@@ -931,8 +936,8 @@ $metaData = [
 
 
 
-    <div class="modal fade modal-xl" id="TheseMT" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="TheseMTLabel" aria-hidden="true">
+    <div class="modal fade modal-xl" id="TheseMT" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="TheseMTLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -954,8 +959,8 @@ $metaData = [
         </div>
     </div>
 
-    <div class="modal fade modal-xl" id="TheseMT2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="TheseMT2Label" aria-hidden="true">
+    <div class="modal fade modal-xl" id="TheseMT2" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="TheseMT2Label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1141,8 +1146,8 @@ $metaData = [
             </div>
         </div>
     </div>
-    <div class="modal fade modal-xl" id="TheseMT4" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="TheseMT4Label" aria-hidden="true">
+    <div class="modal fade modal-xl" id="TheseMT4" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="TheseMT4Label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1155,16 +1160,15 @@ $metaData = [
                         Just 23 Mother Tongue languages account for more than half the world’s population. These include
                         7 which are widely spoken in India.
                     </p>
-                    <img src="{{ asset('assets/images/home/lp4.png') }}" class="img-fluid"
-                        alt="">
+                    <img src="{{ asset('assets/images/home/lp4.png') }}" class="img-fluid" alt="">
                     <!-- <p class="text-end h6"> Source: </p> -->
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="modal fade modal-xl newbox" id="newbox" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="newboxLabel" aria-hidden="true">
+    <div class="modal fade modal-xl newbox" id="newbox" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="newboxLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1205,14 +1209,15 @@ $metaData = [
                         <p class="annual-print-title">
                             Indian Annual Print Media Estimates
                         </p>
-                        <button type="button" data-bs-toggle="modal" data-bs-target="#newbox11" class="manuscript-btn">
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#newbox11"
+                            class="manuscript-btn">
                             Indian Manuscript History
                         </button>
 
                     </div>
 
-                    <img src="{{ asset('images/annualprint.png') }}" class="img-fluid imagechange"
-                        alt="" style="pointer-events:none; user-select:none;" oncontextmenu="return false;"
+                    <img src="{{ asset('images/annualprint.png') }}" class="img-fluid imagechange" alt=""
+                        style="pointer-events:none; user-select:none;" oncontextmenu="return false;"
                         ondragstart="return false;">
 
                     <div class="annual-notes">
@@ -2070,7 +2075,7 @@ $metaData = [
 
                         <div>
                             <h3 class="text-lg font-bold mb-1">
-                                • <a href="https://g2c.prarang.in/india/reacho-o-meter" target="_blank"
+                                • <a href="https://g2c.prarang.in/india/multilingualism" target="_blank"
                                     class="text-blue-600 hover:underline">
                                     India - Citywise Linguistic Diversity -
                                 </a>
