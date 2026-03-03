@@ -4,6 +4,7 @@ $metaData = [
 'text' => $city_name . ' : Top Monthly Search Results',
 'leftImg' => '',
 'rightImg' => asset('images/trends.png'),
+'imageclass' => 'h-8 w-8 md:h-14 md:w-14'
 ]),
 'nav-sub-heading' => '',
 ];
