@@ -189,7 +189,7 @@
                 <div
                     class="group border-[2px] border-gray-200 rounded p-8 w-full sm:w-80 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
                     <h2 class="text-2xl font-black text-gray-800 tracking-tight text-center uppercase">
-                        City Webs
+                        City/Village Webs
                     </h2>
                     <div id="cityWebsCard"
                         class="border-2 border-blue-200 rounded-3xl p-10 mb-8 bg-white shadow-inner relative overflow-hidden group-hover:border-blue-400 transition-colors">
