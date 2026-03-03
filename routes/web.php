@@ -91,3 +91,6 @@ Route::get('/cirus/{type?}', App\Livewire\Pages\Cirus::class)->name('cirus.dashb
 
 // Route::get('/czech-republic-regional-comparison', CzeComparisonTool::class);
 Route::get('/czech-republic-{type}-comparison', CzeCountryComparison::class);
+
+
+Route::get('/search-trends/{city_id}/{city_name}',[PostController::class, 'searchTrends'])->name('search-trends');

@@ -160,4 +160,37 @@ class postController extends Controller
             ->where('vg.Geography', $portal->city_code)
             ->first();
     }
+
+
+
+public function searchTrends($city_id, $city_name)
+{
+    $trends = collect(config('search_trends.trends', []))
+        ->where('CityId', $city_id)
+        ->sortByDesc(function ($item) {
+            return Carbon::createFromFormat('M-Y', $item['Month_Year']);
+        })
+        ->groupBy('Month_Year')
+        ->map(function ($monthData) {
+            $english = $monthData
+                ->where('is_hindi', '0')
+                ->sortByDesc(function ($item) {
+                    return (int) $item['Popularity'];
+                })
+                ->values();
+            $hindi = $monthData
+                ->where('is_hindi', '1')
+                ->sortByDesc(function ($item) {
+                    return (int) $item['Popularity'];
+                })
+                ->values();
+            return [
+                'english' => $english,
+                'hindi'   => $hindi,
+            ];
+        });
+    // dd($trends);
+
+    return view('main.search_trends', compact('trends', 'city_id', 'city_name'));
+}
 }
