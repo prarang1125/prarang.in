@@ -165,7 +165,7 @@ class postController extends Controller
 
 public function searchTrends($city_id, $city_name)
 {
-    $categoryQueriesByMonth = DB::table('category_queries')
+    $categoryQueriesByMonth = DB::table('trends_category_queries')
         ->where('city_id', $city_id)
         ->orderByDesc('month_year')
         ->get()
