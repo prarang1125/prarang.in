@@ -15,6 +15,7 @@ $metaData = [
     <style>
         .month-card {
             border: 1px solid #b5c7e3;
+            border-radius: 0;
         }
 
         .month-header {
@@ -26,93 +27,134 @@ $metaData = [
             font-size: 18px;
         }
 
-        .trend-column {
-            border: 2px solid #4a6fb3;
-            padding: 15px;
-            border-radius: 6px;
-            background: #ffffff;
-        }
-
-        .trend-title {
+        .trend-table thead th {
+            background: #4a6fb3;
+            color: #fff;
             font-weight: 600;
-            margin-bottom: 15px;
-            color: #000;
-            text-align: center;
+            border-color: #3a5fa0;
         }
 
-        .trend-item {
-            border: 1px solid #4a6fb3;
-            border-radius: 10px;
-            padding: 10px;
-            text-align: center;
+        .trend-table td, .trend-table th {
+            padding: 7px 10px;
+            vertical-align: middle;
             font-size: 14px;
-            background: #f8f9fc;
-            color: #000;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            transition: transform 0.2s ease-in-out;
         }
 
-        /* .trend-item:hover {
-        transform: scale(1.05);
-        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-    } */
+        .trend-table tbody tr:hover {
+            background: #eef2fa;
+        }
+
+        .other-searches {
+            border: 1px solid #b5c7e3;
+            background: #f8f9fc;
+            padding: 12px 15px;
+            border-radius: 6px;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .other-searches .cat-label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .source-text {
+            font-size: 12px;
+            color: #000;
+        }
+
+        .note-text {
+            font-size: 12px;
+            color: #000;
+        }
     </style>
 
-    <div class="container mt-5">
+    <div class="container mt-4">
 
-        <p class="text-start mb-4">
-            The following are the most searched English and Hindi keywords for the city,
-            ranked by popularity each month. Discover what people in your city searched
-            for the most and explore the topics that captured local attention.
+        <p class="text-start mb-2">
+            Discover what people in our city searched for the most and explore the topics that captured local attention.
+            The following highlights the queries that generated the highest interest among citizens, based on Google search activity in both English and Hindi.
         </p>
+
+        <div class="d-flex justify-content-between align-items-start mb-3">
+            <p class="note-text mb-0">
+                <strong>Note:</strong> Popularity values represent relative interest within each language and should not be directly compared across the two languages.
+            </p>
+            <span class="source-text text-nowrap ms-3">Source : Google Trends</span>
+        </div>
 
         @foreach ($trends as $month => $data)
 
         <div class="card month-card mb-4">
 
             <div class="month-header">
-                {{ \Carbon\Carbon::createFromFormat('M-Y', $month)->format('F Y') }}
+                {{ \Carbon\Carbon::parse($month)->format('F Y') }}
             </div>
 
             <div class="card-body">
-                <div class="row">
+                <div class="row g-3">
 
-                    <!-- English Section -->
                     <!-- English Section -->
                     <div class="col-lg-6">
-                        <div class="trend-column">
-                            <div class="trend-title">English Searches</div>
-
-                            <div class="row">
-                                @foreach ($data['english'] as $item)
-                                <div class="col-md-6 mb-2">
-                                    <div class="trend-item">
-                                        {{ $item['Queries'] }}
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
+                        <table class="table table-bordered table-striped table-hover trend-table mb-0">
+                            <thead>
+                                <tr>
+                                    <th style="width:40px">#</th>
+                                    <th>English Search Topics</th>
+                                    <th style="width:100px" class="text-center">Popularity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($data['english'] as $index => $item)
+                                <tr>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $item->search_query }}</td>
+                                    <td class="text-center">{{ $item->popularity }}</td>
+                                </tr>
+                                @empty
+                                <tr><td colspan="3" class="text-center text-muted">No data</td></tr>
+                                @endforelse
+                            </tbody>
+                        </table>
                     </div>
 
                     <!-- Hindi Section -->
                     <div class="col-lg-6">
-                        <div class="trend-column">
-                            <div class="trend-title">हिंदी सर्च</div>
-
-                            <div class="row">
-                                @foreach ($data['hindi'] as $item)
-                                <div class="col-md-6 mb-2">
-                                    <div class="trend-item">
-                                        {{ $item['Queries'] }}
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
-                        </div>
+                        <table class="table table-bordered table-striped table-hover trend-table mb-0">
+                            <thead>
+                                <tr>
+                                    <th style="width:40px">#</th>
+                                    <th>Hindi Search Topics</th>
+                                    <th style="width:100px" class="text-center">Popularity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($data['hindi'] as $index => $item)
+                                <tr>
+                                    <td>{{ $index + 1 }}</td>
+                                    <td>{{ $item->search_query }}</td>
+                                    <td class="text-center">{{ $item->popularity }}</td>
+                                </tr>
+                                @empty
+                                <tr><td colspan="3" class="text-center text-muted">No Significant Searches</td></tr>
+                                @endforelse
+                            </tbody>
+                        </table>
                     </div>
 
                 </div>
+                @if(($data['category_queries'] ?? collect())->isNotEmpty())
+                <div class="other-searches mt-3">
+                    <div class="cat-label mb-1">Other Major Searches:</div>
+                    @foreach($data['category_queries'] as $categoryItem)
+                    <div>
+                        <span class="cat-label">{{ $categoryItem->category }} :</span>
+                        <span class="text-muted">{{ trim($categoryItem->queries) }}</span>
+                    </div>
+                    @endforeach
+                </div>
+                @endif
+
             </div>
 
         </div>
@@ -122,3 +164,4 @@ $metaData = [
     </div>
 
 </x-layout.main.base>
+
