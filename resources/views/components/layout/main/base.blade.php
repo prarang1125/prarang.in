@@ -506,6 +506,10 @@
             margin-top: 9px !important;
         }
 
+         .mobile-align-center {
+        align-items: center !important;
+    }
+
     }
 
     /* List Item */
