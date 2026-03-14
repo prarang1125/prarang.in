@@ -442,7 +442,7 @@ class Home extends Controller
     public function villageWebs()
     {
 
-        $villagedata = Cache::remember('village_webs.villagesd', 30 * 60 * 60, function () {
+        $villagedata = Cache::remember('village_webs.villagesd3', 30 * 60 * 60, function () {
             return  httpGet('v1/state-wise-language-rural')['data'];
         });
 
