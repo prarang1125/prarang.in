@@ -1,12 +1,12 @@
 @php
-    $metaData = [
-        'nav-heading' => view('components.nav-heading', [
-            'text' => ' India - Town Webs',
-            'leftImg' => asset('assets/images/home/Town-1.png'),
-            'rightImg' => asset('assets/images/home/Town-2.png'),
-        ]),
-        'nav-sub-heading' => '',
-    ];
+$metaData = [
+'nav-heading' => view('components.nav-heading', [
+'text' => ' India - Urban',
+'leftImg' => asset('assets/images/home/Town-1.png'),
+'rightImg' => asset('assets/images/home/Town-2.png'),
+]),
+'nav-sub-heading' => '',
+];
 @endphp
 <x-layout.main.base :metaData="$metaData">
     <style>
@@ -223,37 +223,6 @@
             z-index: 100;
         }
 
-        /* Heading */
-        .container .modal h6 {
-            border-style: none;
-            text-align: center;
-        }
-
-        @media (min-width:769px) {
-
-            /* Heading */
-            .container .modal h6 {
-                font-size: 16px;
-            }
-
-        }
-
-        /* Modal header */
-        .container .modal .modal-header {
-            display: grid;
-        }
-
-        /* Modal header */
-        .container .modal .modal-xl .modal-content .modal-header {
-            grid-template-columns: 89% 9% !important;
-            /* transform: translatex(0px) translatey(0px) !important; */
-        }
-
-        /* Modal title */
-        .container .modal .modal-title {
-            text-align: center;
-        }
-
         /* Text white */
         .modern-table thead .text-white {
             position: sticky;
@@ -276,11 +245,18 @@
         .container .mt-3 .modern-table {
             overflow: scroll;
         }
+
+        .table-wrapper {
+    max-height: 400px;
+    overflow-y: auto;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
     </style>
     <style>
         /* Paragraph */
         .container section p {
-            font-size: 13px;
+            font-size: 15px;
         }
 
         /* Bold */
@@ -308,13 +284,11 @@
         </h4>
     </section> --}}
     <section>
-        <p>India has 9,389 towns as per Census 2011. Of these, 7,933 are Statutory/Census Towns, 475 are Urban
-            Agglomerations, and 985 are Outgrowths. Among them, 36 are State/UT capitals and 800+ are District capitals.
+        <h3 style="text-align: center; text-shadow: 1px 1px 2px #5f605f;">India : Urban - 7,933 Cities</h4>
+        <p >India has 9,389 towns (Census 2011). Of these, 7933 are Statutory/Census Towns, 475 are Urban Agglomerations, and 985 are Outgrowths
         </p>
         <p>
-            Only 520 State/District capitals in India have a population base of 30,000 or more literate netizens in a
-            script. For effective digital communication with these netizens across India, there is an opportunity to
-            create 901 City Knowledge Webs.
+            India has 121 languages (which have more than 10,000 speakers in India). These 121 languages have 23 related scripts. For effective digital communication across the country, these can be grouped into 13 primary scripts. Do note that the India Census 2011 was unique in its focus on Multilingualism. For all 7933 Statutory/Census Towns, the primary tongue ( i.e. Mother Tongue) data for each of the 121 languages, was opened out for public use in 2018.
         </p>
     </section>
     <section class="mt-3 table-hori">
@@ -342,43 +316,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @php
-                    $counter = 1;
 
-                    $otherlanguage = [
-                    'Assamese',
-                    'Bengali',
-                    'Hindi',
-                    'Punjabi',
-                    'Kannada',
-                    'Malayalam',
-                    'Marathi',
-                    'Gujarati',
-                    'Odia',
-                    'Urdu',
-                    'Tamil',
-                    'Telugu',
-                    'English'
-                    ];
-                    @endphp
+                    @php $counter = 1; @endphp
 
-
-                    @foreach($datas as $row)
-
-                    @php
-
-                    $otherScript = 0;
-
-                    foreach($row as $key => $value){
-                    // dd($key,$value);
-
-                    if(!in_array($key,$otherlanguage) && !in_array($key,['state_name','state_or_ut'])){
-                      $otherScript += (int)$value;
-                    }
-
-                    }
-
-                    @endphp
+                    @foreach($tableData as $row)
 
                     <tr>
 
@@ -400,7 +341,16 @@
                         <td>{{ $row['Telugu'] ?? 0 }}</td>
                         <td>{{ $row['English'] ?? 0 }}</td>
 
-                        <td>{{ $otherScript }}</td>
+                        <td>
+
+
+
+                            <button type="button" class="btn text-primary" data-bs-toggle="modal"
+                                data-bs-target="#exampleModal-{{ Str::slug($row['state_name']) }}">
+                                {{ $row['other_script'] }}
+                            </button>
+
+                        </td>
 
                     </tr>
 
@@ -411,6 +361,82 @@
             </table>
         </div>
     </section>
+
+
+    @foreach($modalData as $state => $languages)
+
+    <div class="modal fade" id="exampleModal-{{ Str::slug($state) }}" tabindex="-1"
+        aria-labelledby="exampleModalLabel-{{ Str::slug($state) }}" aria-hidden="true">
+
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered ">
+
+            <div class="modal-content">
+
+                <div class="modal-header bg-primary text-white">
+
+                    <h5 class="modal-title" id="exampleModalLabel-{{ Str::slug($state) }}" style="font-size: 14px !important;" >
+                       {{ $state }}- Other Mother Tongue
+                    </h5>
+
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+
+                </div>
+
+                <div class="modal-body">
+
+                    <div class="table-wrapper">
+
+                        <table class="table table-sm table-striped table-bordered table-hover modal-city-table">
+
+                            <thead class="sticky-top">
+                                <tr>
+                                    <th>Language</th>
+                                    <th class="text-end">Count</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+
+                                @forelse($languages as $lang => $value)
+
+                                <tr>
+
+                                    <td>{{ $lang }}</td>
+
+                                    <td class="text-end">{{ number_format((int)$value) }}</td>
+
+                                </tr>
+
+                                @empty
+
+                                <tr>
+                                    <td colspan="2" class="text-center text-muted py-3">
+                                        No other language data available
+                                    </td>
+                                </tr>
+
+                                @endforelse
+
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer py-2">
+
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    @endforeach
+
     <section>
         <p class="fw-bold">
             Notes:
@@ -428,62 +454,121 @@
     </section>
 
     <style>
-        /* Modal Table Enhancements */
-        .table-wrapper {
-            max-height: 400px;
-            overflow-y: auto;
-            border-radius: 6px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        /* Modal table redesign */
+        .language-modal .modal-dialog {
+            max-width: 860px;
+        }
+
+        .language-modal .modal-content {
+            border-radius: 14px;
+            overflow: hidden;
+            background: #ffffff;
+        }
+
+        .language-modal .modal-header {
+            padding: 14px 18px;
+            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 55%, #084298 100%);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            border: 0;
+        }
+
+        .language-modal .modal-title {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            margin: 0;
+        }
+
+        .language-modal .modal-body {
+            padding: 0;
+            background: #f7faff;
+            overflow: hidden;
+        }
+
+        .language-modal .btn-close {
+            margin: 0;
+            opacity: 0.95;
+        }
+
+        .modal-table-wrap {
+            max-height: min(62vh, 520px);
+            overflow: auto;
+            border-top: 1px solid #d9e6ff;
         }
 
         .modal-city-table {
-            margin-bottom: 0;
+            width: 100%;
             font-size: 13px;
-        }
-
-        .modal-city-table thead {
-            position: sticky;
-            top: 0;
-            z-index: 10;
+            border-collapse: separate;
+            border-spacing: 0;
         }
 
         .modal-city-table thead th {
-            background-color: #007bff;
-            color: white;
-            font-weight: 600;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            padding: 11px 10px;
+            font-size: 10px;
+            letter-spacing: 0.7px;
             text-transform: uppercase;
-            font-size: 11px;
-            padding: 10px 8px;
-            border: 1px solid #0056b3;
+            color: #fff;
+            background: #007bff;
+            /* border-bottom: 1px solid #c7dbff; */
             white-space: nowrap;
         }
 
         .modal-city-table tbody td {
-            padding: 8px;
+            padding: 10px;
+            border-bottom: 1px solid #e7eefc;
+            color: #1f2937;
+            background: #ffffff;
             vertical-align: middle;
-            border: 1px solid #dee2e6;
         }
 
-        .modal-city-table tbody tr:hover {
-            background-color: rgba(0, 123, 255, 0.08);
+        .modal-city-table th:last-child,
+        .modal-city-table td:last-child {
+            min-width: 130px;
         }
 
-        .table-container h6 {
-            font-size: 14px;
-            padding: 8px 12px;
-            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-            border-radius: 6px;
-            border-left: 4px solid #007bff;
+        .modal-city-table tbody tr:nth-child(even) td {
+            background: #f9fbff;
         }
 
-        .table-container h6 i {
-            margin-right: 6px;
+        .modal-city-table tbody tr:hover td {
+            background: #edf4ff;
         }
 
-        /* Responsive adjustments */
+        .modal-city-table .state-cell {
+            font-weight: 600;
+            color: #0b4aa3;
+            white-space: nowrap;
+        }
+
+        .modal-city-table .population-cell {
+            font-weight: 700;
+            color: #123b7c;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .language-modal .modal-footer {
+            border-top: 1px solid #d9e6ff;
+            background: #f5f9ff;
+        }
+
         @media (max-width: 768px) {
-            .table-wrapper {
-                max-height: 300px;
+            .language-modal .modal-dialog {
+                margin: 0.6rem;
+            }
+
+            .language-modal .modal-title {
+                font-size: 14px;
+            }
+
+            .modal-table-wrap {
+                max-height: 55vh;
             }
 
             .modal-city-table {
@@ -492,15 +577,11 @@
 
             .modal-city-table thead th {
                 font-size: 9px;
-                padding: 6px 4px;
+                padding: 8px 6px;
             }
 
             .modal-city-table tbody td {
-                padding: 6px 4px;
-            }
-
-            .table-container h6 {
-                font-size: 12px;
+                padding: 7px 6px;
             }
         }
     </style>

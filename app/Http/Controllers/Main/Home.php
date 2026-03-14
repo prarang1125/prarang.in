@@ -375,13 +375,48 @@ class Home extends Controller
         return view('main.partners_metrics');
     }
 
-     public function townWebs()
-    {
-        $datas = httpGet('v1/state-wise-language')['data'];
-        // dd($datas);
+    public function townWebs()
+{
+    $datas = httpGet('v1/state-wise-language')['data'];
 
-        return view('main.townwebs', compact('datas'));
+
+    $mainLanguages = [
+        'Assamese','Bengali','Hindi','Punjabi','Kannada','Malayalam',
+        'Marathi','Gujarati','Odia','Urdu','Tamil','Telugu','English'
+    ];
+
+    $tableData = [];
+    $modalData = [];
+
+    foreach ($datas as $row) {
+
+        $otherScript = 0;
+        $otherLanguages = [];
+
+        foreach ($row as $key => $value) {
+
+            if (!in_array($key,$mainLanguages) && !in_array($key,['state_name','state_or_ut'])) {
+
+                $otherScript += (int)$value;
+
+                if((int)$value > 0){
+                    $otherLanguages[$key] = $value;
+                }
+            }
+        }
+
+        $row['other_script'] = $otherScript;
+
+        $tableData[] = $row;
+
+        $modalData[$row['state_name']] = $otherLanguages;
     }
+
+    // dd($tableData);
+    // dd($modalData);
+
+    return view('main.townwebs',compact('tableData','modalData'));
+}
 
         public function villageWebs()
         {
