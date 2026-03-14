@@ -339,23 +339,23 @@
                                 </a>
 
                             </td>
-                            <td>{{ $data['Assamese'] ?? '' }}</td>
-                            <td>{{ $data['Bengali'] ?? '' }}</td>
-                            <td>{{ $data['Devanagari'] ?? '' }}</td>
-                            <td>{{ $data['Gurumukhi'] ?? '' }}</td>
-                            <td>{{ $data['Kannada'] ?? '' }}</td>
-                            <td>{{ $data['Malayalam'] ?? '' }}</td>
-                            <td>{{ $data['Marathi'] ?? '' }}</td>
-                            <td>{{ $data['Gujarati'] ?? '' }}</td>
-                            <td>{{ $data['Odia'] ?? '' }}</td>
-                            <td>{{ $data['Urdu'] ?? '' }}</td>
-                            <td>{{ $data['Tamil'] ?? '' }}</td>
-                            <td>{{ $data['Telugu'] ?? '' }}</td>
-                            <td>{{ $data['English'] ?? '' }}</td>
-                            <td>{{ $data['Other Scripts'] ?? '' }}</td>
-                            <td>{{ $data['All 13 Scripts'] ?? '' }}</td>
-                            <td><a class="text-primary cursor-pointer text-decoration-none" data-bs-toggle="modal"
-                                    data-bs-target="#modal-{{ $data['#'] ?? '' }}">
+                            <td class="text-end">{{ $data['Assamese'] ?? '' }}</td>
+                            <td class="text-end">{{ $data['Bengali'] ?? '' }}</td>
+                            <td class="text-end">{{ $data['Devanagari'] ?? '' }}</td>
+                            <td class="text-end">{{ $data['Gurumukhi'] ?? '' }}</td>
+                            <td class="text-end">{{ $data['Kannada'] ?? '' }}</td>
+                            <td class="text-end">{{ $data['Malayalam'] ?? '' }}</td>
+                            <td class="text-end">{{ $data['Marathi'] ?? '' }}</td>
+                            <td class="text-end">{{ $data['Gujarati'] ?? '' }}</td>
+                            <td class="text-end">{{ $data['Odia'] ?? '' }}</td>
+                            <td class="text-end">{{ $data['Urdu'] ?? '' }}</td>
+                            <td class="text-end">{{ $data['Tamil'] ?? '' }}</td>
+                            <td class="text-end">{{ $data['Telugu'] ?? '' }}</td>
+                            <td class="text-end">{{ $data['English'] ?? '' }}</td>
+                            <td class="text-end">{{ $data['Other Scripts'] ?? '' }}</td>
+                            <td class="text-end">{{ $data['All 13 Scripts'] ?? '' }}</td>
+                            <td class="text-end"><a class="text-primary cursor-pointer text-decoration-none"
+                                    data-bs-toggle="modal" data-bs-target="#modal-{{ $data['#'] ?? '' }}">
                                     {{ $data['No. of Cities'] ?? '' }}
                                 </a></td>
                         </tr>
@@ -364,7 +364,7 @@
 
 
                         @foreach (config('cityweb.total') as $value)
-                            <td>{{ $value ?? '' }}</td>
+                            <td class="{{ $value == 'Total' ? '' : 'text-end' }}">{{ $value }}</td>
                         @endforeach
                     </tr>
 
@@ -379,11 +379,14 @@
         </p>
         <p class="p-0 m-0"> 1. Source : Census 2011 (Language Data, 2018)</p>
         <p class="p-0 m-0">2. 22 Official Languages are written in 13 Scripts</p>
-        <p class="p-0 m-0"> 3. Of the 121 Indian Languages with more than 10,000 speakers (Census 2011), there are 13
+        <p class="p-0 m-0"> 3. Of the 121 Indian Languages with more than 10,000 speakers
+            (Census 2011), there are 13
             primary scripts.
             Also
-            there are 9 other minor scripts (totaling to approx. ~6.69% of Indian Population). It is noteworthy that
-            Konkani is a multiscript language (3) and two languages – Santhali and Gondhi – do not have a script.</p>
+            there are 9 other minor scripts (totaling to approx. ~6.69% of Indian Population).
+            It is noteworthy that
+            Konkani is a multiscript language (3) and two languages – Santhali and Gondhi – do
+            not have a script.</p>
 
 
 
