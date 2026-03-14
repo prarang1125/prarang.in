@@ -462,6 +462,12 @@
         width: 511px;
     }
 
+    .d-lg-block .custom-header-width{
+        width: 818px !important;
+    }
+
+
+
     @media (max-width:991px) {
 
         /* Container */
@@ -652,13 +658,15 @@
         $isHome = request()->url() === url('/');
         $navHeading = $metaData['nav-heading'] ?? 'Prarang Knowledge Webs';
         $navSubHeading = $metaData['nav-sub-heading'] ?? 'Bridging the Digital Divide – By Location, By Language';
+        $headerClass = $metaData['headerClass'] ?? null;
+        // dd($headerClass);
     @endphp
     <div id="main-header" class="">
         @if ($isHome)
             <header class="bg-white container-fluid py-3 d-none d-lg-block">
                 <div class="container header-home">
                     <div class="row justify-center items-center">
-                        <div class="col-md-9 text-center justify-center items-center">
+                        <div class="col-md-9 text-center {{ $headerClass }} justify-center items-center">
                             <h1 class="header-title mb-0 text-primary">
                                 Prarang Knowledge Webs</h1>
                             <p class="header-tagline mb-0">Bridging the Digital Divide – By Location, By Language</p>
@@ -727,7 +735,7 @@
                         </div>
                         <div class="col-sm-8">
                             <div class="flex justify-center items-center">
-                                <div class="col-md-9 text-center">
+                                <div class="col-md-9 text-center {{ $headerClass }}">
                                     <h1 class="header-title mb-0 text-primary">
                                         {!! $navHeading !!}</h1>
                                     <p class="header-tagline mb-0">
