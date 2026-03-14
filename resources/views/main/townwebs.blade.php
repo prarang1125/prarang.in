@@ -359,7 +359,7 @@ $metaData = [
                                     }
                                 }
                             @endphp
-                            {{ $intSum }}
+                            {{ $intSum -$row['other_script'] }}
                         </td>
                     </tr>
                     @endforeach

@@ -371,6 +371,28 @@
 
 }
 
+/* Modal body */
+.container .modal .modal-body{
+ max-height:105px !important;
+}
+
+/* Modal body */
+.container .modal .modal-dialog .modal-content .modal-body{
+ height:153px !important;
+}
+
+/* Modal content */
+.container .modal .modal-dialog .modal-content{
+ height:191px !important;
+}
+
+/* Modal content */
+.container .modal .modal-content{
+ min-width:0px;
+ min-height:0px;
+ max-height:209px;
+}
+
 
 
     </style>
@@ -416,26 +438,28 @@
                 <thead class="head-forstic">
                     <tr class="bg-primary">
                         <th class="bg-primary text-white">No.</th>
-                        <th class="bg-primary text-white">States / Uts</th>
+                        <th class="bg-primary text-white">States/Uts</th>
                         @foreach ($languageColumns as $column)
-                            <th class="bg-primary text-white">{{ $column['label'] }}<br>(% Speakers)</th>
+                            <th class="bg-primary text-white">{{ $column['label'] }}</th>
                         @endforeach
                         <th class="bg-primary text-white">Other MT</th>
                         <th class="bg-primary text-white">No. of Gram<br>Panchayats</th>
-                        <th class="bg-primary text-white">No. of<br>Cities</th>
+                        <th class="bg-primary text-white">No. of<br>Vilages</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{-- @dd($villagedata) --}}
                     @forelse ($villagedata as $row)
                         <tr>
-                            <td>{{ $row['id'] ?? $loop->iteration }}</td>
+                            <td>{{  $loop->iteration }}</td>
                             <td>{{ $row['state_name'] ?? '-' }}</td>
                             @foreach ($languageColumns as $column)
                                 @if ($row[$column['key']] == 0)
                                     <td></td>
+                                @elseif ($row[$column['key']] < 1)
+                                    <td class="ps-2 text-muted" style="font-size: 11px !important">0%</td>
                                 @else
-                                    <td class="ps-2">{{ number_format((float) ($row[$column['key']] ?? 0), 2) }}%</td>
+                                    <td class="ps-2 text-semibold">{{ number_format((float) ($row[$column['key']] ?? 0), 1) }}%</td>
                                 @endif
                             @endforeach
                            <td>
@@ -444,7 +468,7 @@
                                 @else
                                 <a href="#" class="text-primary" data-bs-toggle="modal"
                                     data-bs-target="#otherMTModal{{ $loop->iteration }}">
-                                    {{  $row['Other_MT'] ?? 0}}%
+                                    {{  number_format((float) ($row['Other_MT'] ?? 0), 0) ?? $row['Other_MT'] ?? 0}}%
                                 </a>
                                 @endif
                             </td>
@@ -484,39 +508,8 @@
                     </div>
 
                     <div class="modal-body">
-                        <table
-                            class="table table-sm table-striped table-hover table-bordered modern-table modal-city-table">
-                            <thead>
-                                <tr>
-                                    <th>Language</th>
-                                    <th>Percentage of speakers</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @forelse ($row as $id => $value)
-                                    @if (
-                                        !in_array(
-                                            $id,
-                                            array_merge(['id', 'state_name', 'state_LGD_code'], array_column($languageColumns, 'key'), [
-                                                'Other_MT',
-                                                'No_of_Gram_Panchayats',
-                                                'No_of_Cities',
-                                            ])))
-                                        <tr>
-                                            <td>{{ str_replace('_', ' ', $id) }}</td>
-                                            <td>{{ number_format((int) ($value ?? 0)) }}%</td>
-                                        </tr>
-                                    @endif
-                                @empty
-                                    <tr>
-                                        <td colspan="2" class="text-center">No data available for
-                                            other mother tongues in this state.</td>
-                                    </tr>
-                                @endforelse
-                            </tbody>
-                        </table>
+                        {{ $row['text'] }}
                     </div>
-
                 </div>
             </div>
 
