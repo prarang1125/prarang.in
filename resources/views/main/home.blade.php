@@ -181,6 +181,12 @@
             color: #020202;
         }
     </style>
+    <style>
+        /* Division */
+        .flex-wrap div .w-full .items-center>div {
+            max-height: 18px;
+        }
+    </style>
     <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-10 ">
         <!-- Cards Section -->
         <div class="flex flex-wrap justify-center items-center gap-4 lg:gap-6">
@@ -221,6 +227,19 @@
                         <div>
                             <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
                         </div>
+                        <a href="/city-webs" class="no-underline">
+                            <div
+                                class="bg-blue-400 rounded-xl px-6 py-2.5 border border-blue-200 hover:from-blue-500 hover:to-blue-600 hover:border-blue-500 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
+                                <div class="flex items-center justify-center gap-2">
+                                    <span class="text-base font-black text-white hover:text-white transition-colors">
+                                        7461</span>
+
+                                </div>
+                            </div>
+                        </a>
+                        <div>
+                            <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
+                        </div>
                     </div>
                     <div class="flex flex-col items-center">
                         <span
@@ -231,6 +250,24 @@
                             <div
                                 class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl px-6 py-2.5 border border-blue-600 hover:from-blue-600 hover:to-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 min-w-[120px] text-center">
                                 <span class="text-base font-black text-white">298</span>
+                            </div>
+                        </a>
+                        <div>
+                            <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
+                        </div>
+                        <a href="{{ route('home.india-city-webs') }}" class="no-underline">
+                            <div
+                                class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl px-6 py-2.5 border border-blue-600 hover:from-blue-600 hover:to-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 min-w-[120px] text-center">
+                                <span class="text-base font-black text-white">1</span>
+                            </div>
+                        </a>
+                        <div>
+                            <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
+                        </div>
+                        <a href="{{ route('home.india-city-webs') }}" class="no-underline">
+                            <div
+                                class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl px-6 py-2.5 border border-blue-600 hover:from-blue-600 hover:to-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 min-w-[120px] text-center">
+                                <span class="text-base font-black text-white">1</span>
                             </div>
                         </a>
                         <div>

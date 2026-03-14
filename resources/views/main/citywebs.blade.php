@@ -360,7 +360,13 @@
                                 </a></td>
                         </tr>
                     @endforeach
+                    <tr>
 
+
+                        @foreach (config('cityweb.total') as $value)
+                            <td>{{ $value ?? '' }}</td>
+                        @endforeach
+                    </tr>
 
                 </tbody>
 

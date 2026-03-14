@@ -29,7 +29,7 @@ return [
         [
             "#" => "1",
             "state" => "Andhra Pradesh",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "1",
             "Gurumukhi" => "",
@@ -44,12 +44,12 @@ return [
             "English" => "16",
             "Other Scripts" => "",
             "All 13 Scripts" => "48",
-            "No. of Cities" => "26"
+            "No. of Cities" => "26/28"
         ],
         [
             "#" => "2",
             "state" => "Arunachal Pradesh",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "1",
             "Devanagari" => "",
             "Gurumukhi" => "",
@@ -64,12 +64,12 @@ return [
             "English" => "",
             "Other Scripts" => "",
             "All 13 Scripts" => "1",
-            "No. of Cities" => "1"
+            "No. of Cities" => "1/28"
         ],
         [
             "#" => "3",
             "state" => "Assam",
-            "Assamese " => "10",
+            "Assamese" => "10",
             "Bengali" => "7",
             "Devanagari" => "3",
             "Gurumukhi" => "",
@@ -84,12 +84,12 @@ return [
             "English" => "1",
             "Other Scripts" => "",
             "All 13 Scripts" => "21",
-            "No. of Cities" => "14"
+            "No. of Cities" => "14/35"
         ],
         [
             "#" => "4",
             "state" => "Bihar",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "36",
             "Gurumukhi" => "",
@@ -104,12 +104,12 @@ return [
             "English" => "1",
             "Other Scripts" => "",
             "All 13 Scripts" => "43",
-            "No. of Cities" => "36"
+            "No. of Cities" => "36/38"
         ],
         [
             "#" => "5",
             "state" => "Chattisgarh",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "16",
             "Gurumukhi" => "",
@@ -124,12 +124,12 @@ return [
             "English" => "1",
             "Other Scripts" => "",
             "All 13 Scripts" => "19",
-            "No. of Cities" => "16"
+            "No. of Cities" => "16/33"
         ],
         [
             "#" => "6",
             "state" => "Goa",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "",
             "Gurumukhi" => "",
@@ -144,12 +144,12 @@ return [
             "English" => "",
             "Other Scripts" => "",
             "All 13 Scripts" => "0",
-            "No. of Cities" => "0"
+            "No. of Cities" => "0/3"
         ],
         [
             "#" => "7",
             "state" => "Gujarat",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "4",
             "Gurumukhi" => "",
@@ -164,12 +164,12 @@ return [
             "English" => "15",
             "Other Scripts" => "",
             "All 13 Scripts" => "52",
-            "No. of Cities" => "28"
+            "No. of Cities" => "28/34"
         ],
         [
             "#" => "8",
             "state" => "Haryana",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "1",
             "Devanagari" => "21",
             "Gurumukhi" => "8",
@@ -184,12 +184,12 @@ return [
             "English" => "16",
             "Other Scripts" => "",
             "All 13 Scripts" => "46",
-            "No. of Cities" => "21"
+            "No. of Cities" => "21/23"
         ],
         [
             "#" => "9",
             "state" => "Himachal Pradesh",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "3",
             "Gurumukhi" => "",
@@ -204,12 +204,12 @@ return [
             "English" => "1",
             "Other Scripts" => "",
             "All 13 Scripts" => "5",
-            "No. of Cities" => "4"
+            "No. of Cities" => "4/12"
         ],
         [
             "#" => "10",
             "state" => "Jharkhand",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "3",
             "Devanagari" => "16",
             "Gurumukhi" => "1",
@@ -224,12 +224,12 @@ return [
             "English" => "3",
             "Other Scripts" => "",
             "All 13 Scripts" => "25",
-            "No. of Cities" => "16"
+            "No. of Cities" => "16/24"
         ],
         [
             "#" => "11",
             "state" => "Karnataka",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "1",
             "Devanagari" => "3",
             "Gurumukhi" => "",
@@ -244,12 +244,12 @@ return [
             "English" => "13",
             "Other Scripts" => "",
             "All 13 Scripts" => "68",
-            "No. of Cities" => "27"
+            "No. of Cities" => "27/31"
         ],
         [
             "#" => "12",
             "state" => "Kerala",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "",
             "Gurumukhi" => "",
@@ -264,12 +264,12 @@ return [
             "English" => "7",
             "Other Scripts" => "",
             "All 13 Scripts" => "19",
-            "No. of Cities" => "12"
+            "No. of Cities" => "12/14"
         ],
         [
             "#" => "13",
             "state" => "Madhya Pradesh",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "45",
             "Gurumukhi" => "",
@@ -284,12 +284,12 @@ return [
             "English" => "5",
             "Other Scripts" => "",
             "All 13 Scripts" => "56",
-            "No. of Cities" => "45"
+            "No. of Cities" => "45/55"
         ],
         [
             "#" => "14",
             "state" => "Maharashtra",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "2",
             "Devanagari" => "21",
             "Gurumukhi" => "1",
@@ -304,12 +304,12 @@ return [
             "English" => "20",
             "Other Scripts" => "",
             "All 13 Scripts" => "101",
-            "No. of Cities" => "32"
+            "No. of Cities" => "32/36"
         ],
         [
             "#" => "15",
             "state" => "Manipur",
-            "Assamese " => "2",
+            "Assamese" => "2",
             "Bengali" => "",
             "Devanagari" => "",
             "Gurumukhi" => "",
@@ -324,12 +324,12 @@ return [
             "English" => "",
             "Other Scripts" => "",
             "All 13 Scripts" => "2",
-            "No. of Cities" => "2"
+            "No. of Cities" => "2/16"
         ],
         [
             "#" => "16",
             "state" => "Meghalaya",
-            "Assamese " => "3",
+            "Assamese" => "3",
             "Bengali" => "1",
             "Devanagari" => "1",
             "Gurumukhi" => "",
@@ -344,12 +344,12 @@ return [
             "English" => "1",
             "Other Scripts" => "",
             "All 13 Scripts" => "6",
-            "No. of Cities" => "3"
+            "No. of Cities" => "3/12"
         ],
         [
             "#" => "17",
             "state" => "Mizoram",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "",
             "Gurumukhi" => "",
@@ -364,12 +364,12 @@ return [
             "English" => "1",
             "Other Scripts" => "",
             "All 13 Scripts" => "1",
-            "No. of Cities" => "1"
+            "No. of Cities" => "1/11"
         ],
         [
             "#" => "18",
             "state" => "Nagaland",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "1",
             "Devanagari" => "2",
             "Gurumukhi" => "",
@@ -384,12 +384,12 @@ return [
             "English" => "5",
             "Other Scripts" => "",
             "All 13 Scripts" => "8",
-            "No. of Cities" => "5"
+            "No. of Cities" => "5/17"
         ],
         [
             "#" => "19",
             "state" => "Odisha",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "4",
             "Gurumukhi" => "",
@@ -404,12 +404,12 @@ return [
             "English" => "6",
             "Other Scripts" => "",
             "All 13 Scripts" => "28",
-            "No. of Cities" => "16"
+            "No. of Cities" => "16/30"
         ],
         [
             "#" => "20",
             "state" => "Punjab",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "6",
             "Gurumukhi" => "22",
@@ -424,12 +424,12 @@ return [
             "English" => "19",
             "Other Scripts" => "",
             "All 13 Scripts" => "47",
-            "No. of Cities" => "22"
+            "No. of Cities" => "22/23"
         ],
         [
             "#" => "21",
             "state" => "Rajasthan",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "30",
             "Gurumukhi" => "2",
@@ -444,12 +444,12 @@ return [
             "English" => "4",
             "Other Scripts" => "",
             "All 13 Scripts" => "38",
-            "No. of Cities" => "30"
+            "No. of Cities" => "30/41"
         ],
         [
             "#" => "22",
             "state" => "Sikkim",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "1",
             "Gurumukhi" => "",
@@ -464,12 +464,12 @@ return [
             "English" => "1",
             "Other Scripts" => "",
             "All 13 Scripts" => "2",
-            "No. of Cities" => "1"
+            "No. of Cities" => "1/6"
         ],
         [
             "#" => "23",
             "state" => "Tamil Nadu",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "1",
             "Gurumukhi" => "",
@@ -484,12 +484,12 @@ return [
             "English" => "17",
             "Other Scripts" => "",
             "All 13 Scripts" => "66",
-            "No. of Cities" => "35"
+            "No. of Cities" => "35/38"
         ],
         [
             "#" => "24",
             "state" => "Telangana",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "2",
             "Gurumukhi" => "",
@@ -504,12 +504,12 @@ return [
             "English" => "5",
             "Other Scripts" => "",
             "All 13 Scripts" => "39",
-            "No. of Cities" => "23"
+            "No. of Cities" => "23/33"
         ],
         [
             "#" => "25",
             "state" => "Tripura",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "2",
             "Devanagari" => "1",
             "Gurumukhi" => "",
@@ -524,12 +524,12 @@ return [
             "English" => "2",
             "Other Scripts" => "",
             "All 13 Scripts" => "5",
-            "No. of Cities" => "3"
+            "No. of Cities" => "3/8"
         ],
         [
             "#" => "26",
             "state" => "Uttar Pradesh",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "59",
             "Gurumukhi" => "",
@@ -544,12 +544,12 @@ return [
             "English" => "17",
             "Other Scripts" => "",
             "All 13 Scripts" => "86",
-            "No. of Cities" => "59"
+            "No. of Cities" => "59/75"
         ],
         [
             "#" => "27",
             "state" => "Uttarakhand",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "4",
             "Gurumukhi" => "1",
@@ -564,12 +564,12 @@ return [
             "English" => "2",
             "Other Scripts" => "",
             "All 13 Scripts" => "8",
-            "No. of Cities" => "4"
+            "No. of Cities" => "4/13"
         ],
         [
             "#" => "28",
             "state" => "West Bengal",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "20",
             "Devanagari" => "6",
             "Gurumukhi" => "",
@@ -584,12 +584,12 @@ return [
             "English" => "3",
             "Other Scripts" => "",
             "All 13 Scripts" => "29",
-            "No. of Cities" => "22"
+            "No. of Cities" => "22/23"
         ],
         [
             "#" => "29",
             "state" => "Andaman and Nicobar",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "1",
             "Gurumukhi" => "",
@@ -604,12 +604,12 @@ return [
             "English" => "1",
             "Other Scripts" => "",
             "All 13 Scripts" => "3",
-            "No. of Cities" => "1"
+            "No. of Cities" => "1/3"
         ],
         [
             "#" => "30",
             "state" => "Chandigarh",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "1",
             "Gurumukhi" => "1",
@@ -624,12 +624,12 @@ return [
             "English" => "1",
             "Other Scripts" => "",
             "All 13 Scripts" => "3",
-            "No. of Cities" => "1"
+            "No. of Cities" => "1/1"
         ],
         [
             "#" => "31",
             "state" => "Dadra and Nagar Haveli and Daman and Diu",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "1",
             "Gurumukhi" => "",
@@ -644,12 +644,12 @@ return [
             "English" => "1",
             "Other Scripts" => "",
             "All 13 Scripts" => "4",
-            "No. of Cities" => "2"
+            "No. of Cities" => "2/3"
         ],
         [
             "#" => "32",
             "state" => "Jammu and Kashmir",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "7",
             "Gurumukhi" => "1",
@@ -664,12 +664,12 @@ return [
             "English" => "3",
             "Other Scripts" => "",
             "All 13 Scripts" => "11",
-            "No. of Cities" => "7"
+            "No. of Cities" => "7/20"
         ],
         [
             "#" => "33",
             "state" => "Ladakh",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "",
             "Gurumukhi" => "",
@@ -684,12 +684,12 @@ return [
             "English" => "",
             "Other Scripts" => "",
             "All 13 Scripts" => "0",
-            "No. of Cities" => "0"
+            "No. of Cities" => "0/2"
         ],
         [
             "#" => "34",
             "state" => "Lakshadweep",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "",
             "Gurumukhi" => "",
@@ -704,12 +704,12 @@ return [
             "English" => "",
             "Other Scripts" => "",
             "All 13 Scripts" => "0",
-            "No. of Cities" => "0"
+            "No. of Cities" => "0/1"
         ],
         [
             "#" => "35",
             "state" => "National Capital Territory of Delhi",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "1",
             "Gurumukhi" => "1",
@@ -724,12 +724,12 @@ return [
             "English" => "1",
             "Other Scripts" => "",
             "All 13 Scripts" => "4",
-            "No. of Cities" => "1"
+            "No. of Cities" => "1/11"
         ],
         [
             "#" => "36",
             "state" => "Puducherry",
-            "Assamese " => "",
+            "Assamese" => "",
             "Bengali" => "",
             "Devanagari" => "",
             "Gurumukhi" => "",
@@ -744,7 +744,7 @@ return [
             "English" => "3",
             "Other Scripts" => "",
             "All 13 Scripts" => "7",
-            "No. of Cities" => "4"
+            "No. of Cities" => "4/4"
         ]
 
     ],
@@ -766,7 +766,8 @@ return [
         67,
         192,
         901,
-        520
+        520,
+        "520/785"
     ],
 
     'popup' => [

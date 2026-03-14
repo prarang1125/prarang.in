@@ -269,7 +269,10 @@ class Home extends Controller
         $state = Cache::remember("cityweb-state", 30 * 60 * 60, function () {
             return collect(config('cityweb.data'))->pluck('state', '#')->toArray();
         });
-        return view('main.citywebs', compact('popData', 'state'));
+        $total = Cache::remember("cityweb-total", 30 * 60 * 60, function () {
+            return collect(config('cityweb.total'))->toArray();
+        });
+        return view('main.citywebs', compact('popData', 'state', 'total'));
     }
 
 
