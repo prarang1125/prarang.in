@@ -18,7 +18,7 @@
                 <div class="header-row">
                     <div class="header-content-col">
                         <h1 class="header-title">Prarang Knowledge Webs</h1>
-                        <p class="header-tagline">Bridging the Digital Divide – By City, By Language</p>
+                        <p class="header-tagline">Bridging the Digital Divide – By Location, By Language</p>
                     </div>
                     <div class="header-logo-col">
                         <a href="/" class="logo-link">
@@ -42,7 +42,7 @@
                     <!-- Mobile Brand Content -->
                     <div class="mobile-brand">
                         <h1 class="header-title">Prarang Knowledge Webs</h1>
-                        <p class="header-tagline">Bridging the Digital Divide – By City, By Language</p>
+                        <p class="header-tagline">Bridging the Digital Divide – By Location, By Language</p>
                     </div>
 
                     <!-- Mobile Logo -->

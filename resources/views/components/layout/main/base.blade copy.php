@@ -648,7 +648,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-9 text-center">
                         <h1 class="header-title mb-0 text-primary">Prarang Knowledge Webs</h1>
-                        <p class="header-tagline mb-0">Bridging the Digital Divide – By City, By Language</p>
+                        <p class="header-tagline mb-0">Bridging the Digital Divide – By Location, By Language</p>
                     </div>
                     <div class="col-md-3 text-end">
                         <a href="/" class="text-decoration-none">
@@ -674,7 +674,7 @@
                     <div class="text-center px-2">
                         <div class="header-content">
                             <h1 class="header-title mb-0 text-primary">Prarang Knowledge Webs</h1>
-                            <p class="header-tagline mb-0">Bridging the Digital Divide – By City, By Language</p>
+                            <p class="header-tagline mb-0">Bridging the Digital Divide – By Location, By Language</p>
                         </div>
                     </div>
 

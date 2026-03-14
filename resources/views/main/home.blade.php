@@ -186,6 +186,59 @@
         .flex-wrap div .w-full .items-center>div {
             max-height: 18px;
         }
+        /* Full */
+.flex-wrap div:nth-child(1) .w-full:nth-child(2){
+ display:grid;
+ grid-template-columns:70% 30%;
+}
+
+/* Full */
+.container .mx-auto .flex-wrap div:nth-child(1) .w-full:nth-child(2){
+ grid-template-columns:70% 30% !important;
+}
+
+/* Hover */
+.flex-wrap a .hover\:shadow-xl{
+ width:72px !important;
+}
+
+/* Items center */
+.flex-wrap div .w-full > .items-center{
+ transform:translatex(0px) translatey(0px);
+}
+
+/* Hover */
+.flex-wrap div:nth-child(1) .w-full .items-center a:nth-child(2) .hover\:shadow-lg{
+ min-width:215px !important;
+}
+
+/* Hover */
+.flex-wrap a .hover\:shadow-lg{
+ min-width:23px !important;
+ transform:translatex(0px) translatey(0px);
+}
+
+/* Hover */
+.flex-wrap a:nth-child(4) .hover\:shadow-lg{
+ min-width:215px !important;
+}
+
+/* Hover */
+.flex-wrap a:nth-child(6) .hover\:shadow-lg{
+ min-width:215px !important;
+}
+
+/* Image */
+.flex-wrap .items-center img{
+ left:6px !important;
+}
+
+/* Image */
+.container .mx-auto .flex-wrap div .w-full .items-center div img{
+ right:auto !important;
+}
+
+
     </style>
     <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-10 ">
         <!-- Cards Section -->
@@ -219,7 +272,7 @@
                                 class="bg-blue-400 rounded-xl px-6 py-2.5 border border-blue-200 hover:from-blue-500 hover:to-blue-600 hover:border-blue-500 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
                                 <div class="flex items-center justify-center gap-2">
                                     <span class="text-base font-black text-white hover:text-white transition-colors">
-                                        520</span>
+                                         India : Capitals - 785</span>
 
                                 </div>
                             </div>
@@ -227,12 +280,25 @@
                         <div>
                             <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
                         </div>
-                        <a href="/city-webs" class="no-underline">
+                        <a href="/town-webs" class="no-underline">
                             <div
                                 class="bg-blue-400 rounded-xl px-6 py-2.5 border border-blue-200 hover:from-blue-500 hover:to-blue-600 hover:border-blue-500 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
                                 <div class="flex items-center justify-center gap-2">
                                     <span class="text-base font-black text-white hover:text-white transition-colors">
-                                        7461</span>
+                                         India : Urban - 7933 </span>
+
+                                </div>
+                            </div>
+                        </a>
+                        <div>
+                            <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
+                        </div>
+                        <a href="/village-webs" class="no-underline">
+                            <div
+                                class="bg-blue-400 rounded-xl px-6 py-2.5 border border-blue-200 hover:from-blue-500 hover:to-blue-600 hover:border-blue-500 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
+                                <div class="flex items-center justify-center gap-2">
+                                    <span class="text-base font-black text-white hover:text-white transition-colors">
+                                         India : Rural - 693042 </span>
 
                                 </div>
                             </div>

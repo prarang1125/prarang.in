@@ -1,7 +1,7 @@
 @php
     $metaData = [
         'nav-heading' => view('components.nav-heading', [
-            'text' => ' India - 520 City Webs',
+            'text' => ' India - Capitals',
             'leftImg' => asset('assets/images/home/3.png'),
             'rightImg' => asset('assets/images/home/3.png'),
         ]),
@@ -296,25 +296,45 @@
             }
 
         }
+        /* Text start */
+.container .text-start{
+ position:absolute;
+ top:135px;
+}
+
+@media (max-width:576px){
+
+ /* Text start */
+ .container .text-start{
+  top:70px;
+ }
+
+ /* Heading */
+ .container h4{
+  margin-top:16px;
+ }
+
+ /* Button */
+ .container .text-start a{
+  position:relative;
+  top:8px;
+ }
+
+}
     </style>
     <p class="text-start mt-2">
         <a href="/" class="btn btn-dark btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
     </p>
-    {{-- <section class="flex flex-col justify-center items-center">
-        <h4 class=" flex  justify-center items-center text-center text-primary font-bold">
-            <img class="h-10 w-10" src="{{ asset('assets/images/home/3.png') }}" alt="">
-            India - 520 City Webs
-            <img class="h-10 w-10" src="{{ asset('assets/images/home/3.png') }}" alt="">
-        </h4>
-    </section> --}}
+        <div class="text-center">
+            <h4 class=" font-semibold">
+                India : Capitals - 785 State-UT/District Capital Cities
+            </h4>
+        </div>
     <section>
-        <p>India has 9,389 towns as per Census 2011. Of these, 7,933 are Statutory/Census Towns, 475 are Urban
-            Agglomerations, and 985 are Outgrowths. Among them, 36 are State/UT capitals and 800+ are District capitals.
+        <p>India is a union of 28 States & 8 UTs ( Union Territories) today (in 2026). Underlying the States & UTs are respective Districts. All Cities/Towns & Villages, and the land in between, are part of an administrative unit known as a District. Each District has one City/Town Capital. While the size of India has remained the same, India had 640 Districts in 2011 which have now increased to 785, at the end of 2025. Each of these 785 Districts have their respective District Capitals. Some of these are also Capitals of States/UTs.  Delhi, the capital city of the country, is a U.T. Also noteworthy - Bhubaneshwar ( capital of Odisha state, is not the District capital of Khordha district) & Amaravathi ( capital of Andhra Pradesh, is not the District capital of Guntur district).
         </p>
         <p>
-            Only 520 State/District capitals in India have a population base of 30,000 or more literate netizens in a
-            script. For effective digital communication with these netizens across India, there is an opportunity to
-            create 901 City Knowledge Webs.
+            Only 520 State/District capitals (out of 785) in India have a population base of 30,000 or more literate netizens in a language/script. For effective digital communication with these netizens across India, there is an opportunity to create 901 City Knowledge Webs.
         </p>
     </section>
     <section class="mt-3 table-hori">

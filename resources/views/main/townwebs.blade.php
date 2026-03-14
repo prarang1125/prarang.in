@@ -337,7 +337,8 @@
                         <th class="bg-primary text-white">Tamil</th>
                         <th class="bg-primary text-white">Telugu</th>
                         <th class="bg-primary text-white">English</th>
-                        <th class="bg-primary text-white">Other Mother Tongue</th>
+                        <th class="bg-primary text-white">Others</th>
+                           <th class="bg-primary text-white">No of Towns</th>
 
                     </tr>
                 </thead>
@@ -381,11 +382,8 @@
                     @endphp
 
                     <tr>
-
                         <td>{{ $counter++ }}</td>
-
                         <td>{{ ucwords(strtolower($row['state_name'])) }}</td>
-
                         <td>{{ $row['Assamese'] ?? 0 }}</td>
                         <td>{{ $row['Bengali'] ?? 0 }}</td>
                         <td>{{ $row['Hindi'] ?? 0 }}</td>
@@ -399,19 +397,26 @@
                         <td>{{ $row['Tamil'] ?? 0 }}</td>
                         <td>{{ $row['Telugu'] ?? 0 }}</td>
                         <td>{{ $row['English'] ?? 0 }}</td>
-
                         <td>{{ $otherScript }}</td>
-
+                        <td>
+                            @php
+                                $intSum = 0;
+                                foreach($row as $key => $value){
+                                    if (is_int($value) || filter_var($value, FILTER_VALIDATE_INT)) {
+                                        $intSum += (int) $value;
+                                    }
+                                }
+                            @endphp
+                            {{ $intSum }}
+                        </td>
                     </tr>
-
                     @endforeach
-
                 </tbody>
 
             </table>
         </div>
     </section>
-    <section>
+    {{-- <section>
         <p class="fw-bold">
             Notes:
         </p>
@@ -425,7 +430,7 @@
 
 
 
-    </section>
+    </section> --}}
 
     <style>
         /* Modal Table Enhancements */

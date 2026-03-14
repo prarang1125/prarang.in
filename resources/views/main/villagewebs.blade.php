@@ -1,7 +1,7 @@
 @php
     $metaData = [
         'nav-heading' => view('components.nav-heading', [
-            'text' => ' India - Village Webs',
+            'text' => 'India : Rural',
             'leftImg' => asset('assets/images/home/3.png'),
             'rightImg' => asset('assets/images/home/3.png'),
         ]),
@@ -320,22 +320,73 @@
         .container .modal .modal-dialog .modal-content {
             height: 90vh !important;
         }
+        /* Table Data */
+.table-responsive  td:nth-child(2){
+ position:sticky;
+ left:1px;
+}
+/* Text white */
+.head-forstic .text-white:nth-child(2){
+ left:1px;
+ z-index:1000;
+}
+.head-forstic .text-white:nth-child(3){
+ z-index:1;
+}
+
+/* Head forstic */
+.table-hori .table-striped .head-forstic{
+ z-index:64 !important;
+}
+
+/* Text white */
+.head-forstic .text-white:nth-child(2){
+ z-index:1000;
+ left:2px !important;
+}
+
+/* Text white */
+.head-forstic .text-white:not(:nth-child(2)){
+ z-index:174 !important;
+}
+/* Text white */
+.head-forstic .text-white:nth-child(2){
+ width:176px;
+}
+/* Text start */
+.container .text-start{
+ position:absolute;
+ top:130px;
+}
+
+@media (max-width:576px){
+
+ /* Button */
+ .container .text-start a{
+  position:relative;
+  top:-52px;
+ }
+
+}
+
+
+
     </style>
     <p class="text-start mt-2">
         <a href="/" class="btn btn-dark btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
     </p>
-    {{-- <section class="flex flex-col justify-center items-center">
-        <h4 class=" flex  justify-center items-center text-center text-primary font-bold">
-            <img class="h-10 w-10" src="{{ asset('assets/images/home/3.png') }}" alt="">
-            India - 520 City Webs
-            <img class="h-10 w-10" src="{{ asset('assets/images/home/3.png') }}" alt="">
+
+    <div class="text-center">
+        <h4 class=" font-semibold">
+               India : Rural - 693,042 Villages
         </h4>
-    </section> --}}
+    </div>
+
+
     <section>
-        <p>India's village ecosystem covers a very large share of the country's population and local governance network.
+        <p>India had 640,930 villages in 2011 (census) & this has now increased to 693,042 villages (Min of Panchayat Raj, 2026). Of these, 255,146 are Gram Panchayats .
         </p>
-        <p>The table below shows State and UT wise speaker percentages across villages, along with the number of Gram
-            Panchayats and cities available in the Village Webs dataset.</p>
+        <p>The Multilingualism data ( Census 2011) for Rural India was only released as an aggregated State/UT-Rural total for all 121 languages ( with more than 10,000 speakers in India). The Village level multilingualism data is not in the public domain though it can be estimated on the basis of respective village's proximity to the 7933 Statutory/Census towns.</p>
     </section>
     @php
         $languageColumns = [
@@ -386,12 +437,12 @@
                                 @endif
                             @endforeach
                            <td>
-                                @if(number_format((int) ($row['Other_MT']==0)))
+                                @if($row['Other_MT'] == 0)
 --
                                 @else
                                 <a href="#" class="text-primary" data-bs-toggle="modal"
                                     data-bs-target="#otherMTModal{{ $loop->iteration }}">
-                                    {{ number_format((int) ($row['Other_MT'] ?? 0)) }}%
+                                    {{  $row['Other_MT'] ?? 0}}%
                                 </a>
                                 @endif
                             </td>

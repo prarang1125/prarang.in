@@ -651,7 +651,7 @@
     @php
         $isHome = request()->url() === url('/');
         $navHeading = $metaData['nav-heading'] ?? 'Prarang Knowledge Webs';
-        $navSubHeading = $metaData['nav-sub-heading'] ?? 'Bridging the Digital Divide – By City, By Language';
+        $navSubHeading = $metaData['nav-sub-heading'] ?? 'Bridging the Digital Divide – By Location, By Language';
     @endphp
     <div id="main-header" class="">
         @if ($isHome)
@@ -661,7 +661,7 @@
                         <div class="col-md-9 text-center justify-center items-center">
                             <h1 class="header-title mb-0 text-primary">
                                 Prarang Knowledge Webs</h1>
-                            <p class="header-tagline mb-0">Bridging the Digital Divide – By City, By Language</p>
+                            <p class="header-tagline mb-0">Bridging the Digital Divide – By Location, By Language</p>
                         </div>
                         <div class="col-md-3 text-end">
                             <a href="/" class="text-decoration-none"2>
@@ -744,7 +744,7 @@
                         <div class="col-md-9 text-center">
                             <h1 class="header-title mb-0 text-primary">
                                 {{ $navHeading ?? 'Prarang Knowledge Webs' }}</h1>
-                            <p class="header-tagline mb-0">Bridging the Digital Divide – By City, By Language</p>
+                            <p class="header-tagline mb-0">Bridging the Digital Divide – By Location, By Language</p>
                         </div>
                         <div class="col-md-3 text-end">
                             <a href="/" class="text-decoration-none"2>
