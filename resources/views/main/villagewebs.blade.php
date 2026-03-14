@@ -520,7 +520,7 @@
 
         </div>
     @endforeach
-
+{{--
     <section>
         <p class="fw-bold">
             Notes:
@@ -533,7 +533,7 @@
 
 
 
-    </section>
+    </section> --}}
 
     <style>
         /* Modal Table Enhancements */

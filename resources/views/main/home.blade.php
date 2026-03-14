@@ -238,6 +238,26 @@
  right:auto !important;
 }
 
+/* Hover */
+.flex-wrap a .hover\:shadow-lg{
+ padding-right:12px;
+}
+/* Division */
+.mx-auto .flex-wrap .lg\:flex{
+ height:371px;
+}
+
+/* Italic Tag */
+.flex-wrap .lg\:flex i{
+ top:3px !important;
+}
+
+/* Italic Tag */
+.container .mx-auto .flex-wrap .lg\:flex i{
+ bottom:auto !important;
+}
+
+
 
     </style>
     <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-10 ">
@@ -321,7 +341,7 @@
                         <div>
                             <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
                         </div>
-                        <a href="{{ route('home.india-city-webs') }}" class="no-underline">
+                        {{-- <a href="{{ route('home.india-city-webs') }}" class="no-underline">
                             <div
                                 class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl px-6 py-2.5 border border-blue-600 hover:from-blue-600 hover:to-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 min-w-[120px] text-center">
                                 <span class="text-base font-black text-white">1</span>
@@ -338,7 +358,7 @@
                         </a>
                         <div>
                             <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
