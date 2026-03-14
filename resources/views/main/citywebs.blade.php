@@ -361,8 +361,6 @@
                         </tr>
                     @endforeach
                     <tr>
-
-
                         @foreach (config('cityweb.total') as $value)
                             <td class="{{ $value == 'Total' ? '' : 'text-end' }}">{{ $value }}</td>
                         @endforeach

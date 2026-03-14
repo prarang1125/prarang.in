@@ -378,7 +378,7 @@ class Home extends Controller
         return view('main.partners_metrics');
     }
 
-     public function townWebs()
+    public function townWebs()
     {
         $datas = httpGet('v1/state-wise-language')['data'];
         // dd($datas);
@@ -386,17 +386,17 @@ class Home extends Controller
         return view('main.townwebs', compact('datas'));
     }
 
-        public function villageWebs()
-        {
+    public function villageWebs()
+    {
 
-        $villagedata = Cache::remember('village_webs.villages', 30 * 60 * 60, function () {
-            return collect(config('village_webs.villages'))->toArray();
+        $villagedata = Cache::remember('village_webs.villagesd', 30 * 60 * 60, function () {
+            return  httpGet('v1/state-wise-language-rural')['data'];
         });
 
         // dd($villagedata);
 
 
 
-            return view('main.villagewebs', compact('villagedata'));
-        }
+        return view('main.villagewebs', compact('villagedata'));
+    }
 }

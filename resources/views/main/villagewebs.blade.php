@@ -299,6 +299,28 @@
 
         }
     </style>
+    <style>
+        /* Modal header */
+        .container .table-hori .table-responsive .modal .modal-dialog .modal-content .modal-header {
+            grid-template-columns: 90% 1fr !important;
+        }
+
+        /* Modal header */
+        .container .modal .modal-dialog .modal-content .modal-header {
+            grid-template-columns: 90% 1fr !important;
+        }
+
+        /* Modal dialog */
+        .container .modal .modal-dialog {
+            max-height: 15px;
+            min-height: 34px;
+        }
+
+        /* Modal content */
+        .container .modal .modal-dialog .modal-content {
+            height: 90vh !important;
+        }
+    </style>
     <p class="text-start mt-2">
         <a href="/" class="btn btn-dark btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
     </p>
@@ -310,56 +332,78 @@
         </h4>
     </section> --}}
     <section>
-        <p>India's village ecosystem covers a very large share of the country's population and local governance network.</p>
-        <p>The table below shows State and UT wise speaker percentages across villages, along with the number of Gram Panchayats and cities available in the Village Webs dataset.</p>
+        <p>India's village ecosystem covers a very large share of the country's population and local governance network.
+        </p>
+        <p>The table below shows State and UT wise speaker percentages across villages, along with the number of Gram
+            Panchayats and cities available in the Village Webs dataset.</p>
     </section>
     @php
         $languageColumns = [
-            ['key' => 'Assamese', 'label' => 'Assamese'],
-            ['key' => 'Bengali', 'label' => 'Bengali'],
-            ['key' => 'Hindi', 'label' => 'Hindi'],
-            ['key' => 'Punjabi', 'label' => 'Punjabi'],
-            ['key' => 'Kannada', 'label' => 'Kannada'],
-            ['key' => 'Malayalam', 'label' => 'Malayalam'],
-            ['key' => 'Marathi', 'label' => 'Marathi'],
-            ['key' => 'Gujarati', 'label' => 'Gujarati'],
-            ['key' => 'Odia', 'label' => 'Odia'],
-            ['key' => 'Urdu', 'label' => 'Urdu'],
-            ['key' => 'Tamil', 'label' => 'Tamil'],
-            ['key' => 'Telugu', 'label' => 'Telugu'],
-            ['key' => 'English', 'label' => 'English'],
-            ['key' => 'Other_MT', 'label' => 'Other MT'],
+            ['key' => 'ASSAMESE', 'label' => 'Assamese'],
+            ['key' => 'BENGALI', 'label' => 'Bengali'],
+            ['key' => 'HINDI', 'label' => 'Hindi'],
+            ['key' => 'PUNJABI', 'label' => 'Punjabi'],
+            ['key' => 'KANNADA', 'label' => 'Kannada'],
+            ['key' => 'MALAYALAM', 'label' => 'Malayalam'],
+            ['key' => 'MARATHI', 'label' => 'Marathi'],
+            ['key' => 'GUJARATI', 'label' => 'Gujarati'],
+            ['key' => 'ODIA', 'label' => 'Odia'],
+            ['key' => 'URDU', 'label' => 'Urdu'],
+            ['key' => 'TAMIL', 'label' => 'Tamil'],
+            ['key' => 'TELUGU', 'label' => 'Telugu'],
+            ['key' => 'ENGLISH', 'label' => 'English'],
+            // ['key' => 'Other_MT', 'label' => 'Other MT'],
+            // ['key' => 'No_of_Gram_Panchayats', 'label' => 'No. of Gram Panchayats'],
+            // ['key' => 'No_of_Cities', 'label' => 'No. of Cities'],
         ];
     @endphp
     <section class="mt-3 table-hori">
         <div class="table-responsive">
             <table class="table table-sm table-striped table-hover table-bordered modern-table">
-                <thead>
+                <thead class="head-forstic">
                     <tr class="bg-primary">
                         <th class="bg-primary text-white">No.</th>
                         <th class="bg-primary text-white">States / Uts</th>
                         @foreach ($languageColumns as $column)
                             <th class="bg-primary text-white">{{ $column['label'] }}<br>(% Speakers)</th>
                         @endforeach
+                        <th class="bg-primary text-white">Other MT</th>
                         <th class="bg-primary text-white">No. of Gram<br>Panchayats</th>
                         <th class="bg-primary text-white">No. of<br>Cities</th>
-
                     </tr>
                 </thead>
                 <tbody>
+                    {{-- @dd($villagedata) --}}
                     @forelse ($villagedata as $row)
                         <tr>
                             <td>{{ $row['id'] ?? $loop->iteration }}</td>
-                            <td>{{ $row['state_ut'] ?? '-' }}</td>
+                            <td>{{ $row['state_name'] ?? '-' }}</td>
                             @foreach ($languageColumns as $column)
-                                <td>{{ number_format((float) ($row[$column['key']] ?? 0), 2) }}</td>
+                                @if ($row[$column['key']] == 0)
+                                    <td></td>
+                                @else
+                                    <td class="ps-2">{{ number_format((float) ($row[$column['key']] ?? 0), 2) }}%</td>
+                                @endif
                             @endforeach
+                           <td>
+                                @if(number_format((int) ($row['Other_MT']==0)))
+--
+                                @else
+                                <a href="#" class="text-primary" data-bs-toggle="modal"
+                                    data-bs-target="#otherMTModal{{ $loop->iteration }}">
+                                    {{ number_format((int) ($row['Other_MT'] ?? 0)) }}%
+                                </a>
+                                @endif
+                            </td>
+
+
                             <td>{{ number_format((int) ($row['No_of_Gram_Panchayats'] ?? 0)) }}</td>
                             <td>{{ number_format((int) ($row['No_of_Cities'] ?? 0)) }}</td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="{{ count($languageColumns) + 4 }}" class="text-center">No village data available.</td>
+                            <td colspan="{{ count($languageColumns) + 4 }}" class="text-center">No village data
+                                available.</td>
                         </tr>
                     @endforelse
 
@@ -368,13 +412,73 @@
             </table>
         </div>
     </section>
+
+    @forelse ($villagedata as $row)
+        <!-- Modal -->
+        <div class="modal fade" id="otherMTModal{{ $loop->iteration }}" tabindex="-1"
+            aria-labelledby="otherMTModalLabel{{ $loop->iteration }}" aria-hidden="true">
+
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="otherMTModalLabel{{ $loop->iteration }}">
+                            {{ $row['state_name'] ?? '-' }} - Other Mother Tongues
+                        </h5>
+
+                        <button type="button" class="btn-close" data-bs-dismiss="modal">
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        <table
+                            class="table table-sm table-striped table-hover table-bordered modern-table modal-city-table">
+                            <thead>
+                                <tr>
+                                    <th>Language</th>
+                                    <th>Percentage of speakers</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @forelse ($row as $id => $value)
+                                    @if (
+                                        !in_array(
+                                            $id,
+                                            array_merge(['id', 'state_name', 'state_LGD_code'], array_column($languageColumns, 'key'), [
+                                                'Other_MT',
+                                                'No_of_Gram_Panchayats',
+                                                'No_of_Cities',
+                                            ])))
+                                        <tr>
+                                            <td>{{ str_replace('_', ' ', $id) }}</td>
+                                            <td>{{ number_format((int) ($value ?? 0)) }}%</td>
+                                        </tr>
+                                    @endif
+                                @empty
+                                    <tr>
+                                        <td colspan="2" class="text-center">No data available for
+                                            other mother tongues in this state.</td>
+                                    </tr>
+                                @endforelse
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    @endforeach
+
     <section>
         <p class="fw-bold">
             Notes:
         </p>
         <p class="p-0 m-0"> 1. Source : Census 2011 (Language Data, 2018)</p>
         <p class="p-0 m-0">2. Percentages represent the share of speakers in villages for each State or UT.</p>
-        <p class="p-0 m-0">3. Gram Panchayat and city counts are rendered directly from the Village Webs configuration data passed by the controller.</p>
+        <p class="p-0 m-0">3. Gram Panchayat and city counts are rendered directly from the Village Webs
+            configuration
+            data passed by the controller.</p>
 
 
 
