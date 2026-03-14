@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Hash;
 use Modules\Portal\Models\BiletralPortal;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rules\Can;
 
 class Home extends Controller
 {
@@ -373,4 +374,26 @@ class Home extends Controller
     {
         return view('main.partners_metrics');
     }
+
+     public function townWebs()
+    {
+        $datas = httpGet('v1/state-wise-language')['data'];
+        // dd($datas);
+
+        return view('main.townwebs', compact('datas'));
+    }
+
+        public function villageWebs()
+        {
+
+        $villagedata = Cache::remember('village_webs.villages', 30 * 60 * 60, function () {
+            return collect(config('village_webs.villages'))->toArray();
+        });
+
+        // dd($villagedata);
+
+
+
+            return view('main.villagewebs', compact('villagedata'));
+        }
 }

@@ -42,6 +42,8 @@ Route::prefix('/')->group(function () {
 });
 Route::get('partners-metrics', [Home::class, 'partnersMetrics'])->name('home.partners-metrics');
 Route::get('city-webs', [Home::class, 'cityWebs'])->name('home.city-webs');
+Route::get('town-webs', [Home::class, 'townWebs'])->name('home.town-webs');
+Route::get('village-webs', [Home::class, 'villageWebs'])->name('home.village-webs');
 Route::get('country-webs/', [Home::class, 'countryWebs'])->name('home.country-webs');
 
 Route::get('lang-webs', [Home::class, 'langWebs'])->name('home.lang-webs');
