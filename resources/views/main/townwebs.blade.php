@@ -1,7 +1,7 @@
 @php
 $metaData = [
 'nav-heading' => view('components.nav-heading', [
-'text' => ' India - Urban',
+'text' => 'India : Urban - 7,933 Cities',
 'leftImg' => asset('assets/images/home/Town-1.png'),
 'rightImg' => asset('assets/images/home/Town-2.png'),
 ]),
@@ -287,11 +287,9 @@ $metaData = [
 
 }
     </style>
-    <p class="text-start mt-2">
-        <a href="/" class="btn btn-dark btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
-    </p>
 
-    <div class="text-center"> <h4 class="text-semibold">India : Urban - 7,933 Cities</h4></div>
+
+
     <section>
 
         <p >India has 9,389 towns (Census 2011). Of these, 7933 are Statutory/Census Towns, 475 are Urban Agglomerations, and 985 are Outgrowths

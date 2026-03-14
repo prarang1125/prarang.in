@@ -1,11 +1,12 @@
 @php
     $metaData = [
         'nav-heading' => view('components.nav-heading', [
-            'text' => 'India : Rural',
+            'text' => 'India : Rural - 693,042 Villages',
             'leftImg' => asset('assets/images/home/3.png'),
             'rightImg' => asset('assets/images/home/3.png'),
         ]),
         'nav-sub-heading' => '',
+        'headerClass' => 'custom-header-width',
     ];
 @endphp
 <x-layout.main.base :metaData="$metaData">
@@ -372,7 +373,7 @@
 
 
     </style>
-    <p class="text-start mt-2">
+    {{-- <p class="text-start mt-2">
         <a href="/" class="btn btn-dark btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
     </p>
 
@@ -380,7 +381,7 @@
         <h4 class=" font-semibold">
                India : Rural - 693,042 Villages
         </h4>
-    </div>
+    </div> --}}
 
 
     <section>

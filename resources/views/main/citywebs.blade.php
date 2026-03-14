@@ -1,11 +1,13 @@
 @php
     $metaData = [
         'nav-heading' => view('components.nav-heading', [
-            'text' => ' India - Capitals',
+            'text' => 'India : Capitals - 785 State-UT/District Capital Cities',
+            'text_class'=>'text-sm',
             'leftImg' => asset('assets/images/home/3.png'),
             'rightImg' => asset('assets/images/home/3.png'),
         ]),
         'nav-sub-heading' => '',
+        'headerClass' => 'custom-header-width',
     ];
 @endphp
 <x-layout.main.base :metaData="$metaData">
@@ -322,14 +324,10 @@
 
 }
     </style>
-    <p class="text-start mt-2">
+    {{-- <p class="text-start mt-2">
         <a href="/" class="btn btn-dark btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
-    </p>
-        <div class="text-center">
-            <h4 class=" font-semibold">
-                India : Capitals - 785 State-UT/District Capital Cities
-            </h4>
-        </div>
+    </p> --}}
+
     <section>
         <p>India is a union of 28 States & 8 UTs ( Union Territories) today (in 2026). Underlying the States & UTs are respective Districts. All Cities/Towns & Villages, and the land in between, are part of an administrative unit known as a District. Each District has one City/Town Capital. While the size of India has remained the same, India had 640 Districts in 2011 which have now increased to 785, at the end of 2025. Each of these 785 Districts have their respective District Capitals. Some of these are also Capitals of States/UTs.  Delhi, the capital city of the country, is a U.T. Also noteworthy - Bhubaneshwar ( capital of Odisha state, is not the District capital of Khordha district) & Amaravathi ( capital of Andhra Pradesh, is not the District capital of Guntur district).
         </p>
