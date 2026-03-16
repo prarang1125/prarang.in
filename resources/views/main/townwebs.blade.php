@@ -2,8 +2,8 @@
 $metaData = [
 'nav-heading' => view('components.nav-heading', [
 'text' => 'India : Urban - 7,933 Cities',
-'leftImg' => asset('assets/images/home/Town-1.png'),
-'rightImg' => asset('assets/images/home/Town-2.png'),
+'leftImg' => asset('assets/images/home/town-1.png'),
+'rightImg' => asset('assets/images/home/town-2.png'),
 ]),
 'nav-sub-heading' => '',
 ];

@@ -20,7 +20,7 @@ return [
         "English",
         "Other Scripts",
         "All 13 Scripts",
-        "No. of Cities"
+        "Capitals"
     ],
 
 
@@ -44,7 +44,7 @@ return [
             "English" => "16",
             "Other Scripts" => "",
             "All 13 Scripts" => "48",
-            "No. of Cities" => "26/28"
+            "Capitals" => "26/28"
         ],
         [
             "#" => "2",
@@ -64,7 +64,7 @@ return [
             "English" => "",
             "Other Scripts" => "",
             "All 13 Scripts" => "1",
-            "No. of Cities" => "1/28"
+            "Capitals" => "1/28"
         ],
         [
             "#" => "3",
@@ -84,7 +84,7 @@ return [
             "English" => "1",
             "Other Scripts" => "",
             "All 13 Scripts" => "21",
-            "No. of Cities" => "14/35"
+            "Capitals" => "14/35"
         ],
         [
             "#" => "4",
@@ -104,7 +104,7 @@ return [
             "English" => "1",
             "Other Scripts" => "",
             "All 13 Scripts" => "43",
-            "No. of Cities" => "36/38"
+            "Capitals" => "36/38"
         ],
         [
             "#" => "5",
@@ -124,7 +124,7 @@ return [
             "English" => "1",
             "Other Scripts" => "",
             "All 13 Scripts" => "19",
-            "No. of Cities" => "16/33"
+            "Capitals" => "16/33"
         ],
         [
             "#" => "6",
@@ -144,7 +144,7 @@ return [
             "English" => "",
             "Other Scripts" => "",
             "All 13 Scripts" => "0",
-            "No. of Cities" => "0/3"
+            "Capitals" => "0/3"
         ],
         [
             "#" => "7",
@@ -164,7 +164,7 @@ return [
             "English" => "15",
             "Other Scripts" => "",
             "All 13 Scripts" => "52",
-            "No. of Cities" => "28/34"
+            "Capitals" => "28/34"
         ],
         [
             "#" => "8",
@@ -184,7 +184,7 @@ return [
             "English" => "16",
             "Other Scripts" => "",
             "All 13 Scripts" => "46",
-            "No. of Cities" => "21/23"
+            "Capitals" => "21/23"
         ],
         [
             "#" => "9",
@@ -204,7 +204,7 @@ return [
             "English" => "1",
             "Other Scripts" => "",
             "All 13 Scripts" => "5",
-            "No. of Cities" => "4/12"
+            "Capitals" => "4/12"
         ],
         [
             "#" => "10",
@@ -224,7 +224,7 @@ return [
             "English" => "3",
             "Other Scripts" => "",
             "All 13 Scripts" => "25",
-            "No. of Cities" => "16/24"
+            "Capitals" => "16/24"
         ],
         [
             "#" => "11",
@@ -244,7 +244,7 @@ return [
             "English" => "13",
             "Other Scripts" => "",
             "All 13 Scripts" => "68",
-            "No. of Cities" => "27/31"
+            "Capitals" => "27/31"
         ],
         [
             "#" => "12",
@@ -264,7 +264,7 @@ return [
             "English" => "7",
             "Other Scripts" => "",
             "All 13 Scripts" => "19",
-            "No. of Cities" => "12/14"
+            "Capitals" => "12/14"
         ],
         [
             "#" => "13",
@@ -284,7 +284,7 @@ return [
             "English" => "5",
             "Other Scripts" => "",
             "All 13 Scripts" => "56",
-            "No. of Cities" => "45/55"
+            "Capitals" => "45/55"
         ],
         [
             "#" => "14",
@@ -304,7 +304,7 @@ return [
             "English" => "20",
             "Other Scripts" => "",
             "All 13 Scripts" => "101",
-            "No. of Cities" => "32/36"
+            "Capitals" => "32/36"
         ],
         [
             "#" => "15",
@@ -324,7 +324,7 @@ return [
             "English" => "",
             "Other Scripts" => "",
             "All 13 Scripts" => "2",
-            "No. of Cities" => "2/16"
+            "Capitals" => "2/16"
         ],
         [
             "#" => "16",
@@ -344,7 +344,7 @@ return [
             "English" => "1",
             "Other Scripts" => "",
             "All 13 Scripts" => "6",
-            "No. of Cities" => "3/12"
+            "Capitals" => "3/12"
         ],
         [
             "#" => "17",
@@ -364,7 +364,7 @@ return [
             "English" => "1",
             "Other Scripts" => "",
             "All 13 Scripts" => "1",
-            "No. of Cities" => "1/11"
+            "Capitals" => "1/11"
         ],
         [
             "#" => "18",
@@ -384,7 +384,7 @@ return [
             "English" => "5",
             "Other Scripts" => "",
             "All 13 Scripts" => "8",
-            "No. of Cities" => "5/17"
+            "Capitals" => "5/17"
         ],
         [
             "#" => "19",
@@ -404,7 +404,7 @@ return [
             "English" => "6",
             "Other Scripts" => "",
             "All 13 Scripts" => "28",
-            "No. of Cities" => "16/30"
+            "Capitals" => "16/30"
         ],
         [
             "#" => "20",
@@ -424,7 +424,7 @@ return [
             "English" => "19",
             "Other Scripts" => "",
             "All 13 Scripts" => "47",
-            "No. of Cities" => "22/23"
+            "Capitals" => "22/23"
         ],
         [
             "#" => "21",
@@ -444,7 +444,7 @@ return [
             "English" => "4",
             "Other Scripts" => "",
             "All 13 Scripts" => "38",
-            "No. of Cities" => "30/41"
+            "Capitals" => "30/41"
         ],
         [
             "#" => "22",
@@ -464,7 +464,7 @@ return [
             "English" => "1",
             "Other Scripts" => "",
             "All 13 Scripts" => "2",
-            "No. of Cities" => "1/6"
+            "Capitals" => "1/6"
         ],
         [
             "#" => "23",
@@ -484,7 +484,7 @@ return [
             "English" => "17",
             "Other Scripts" => "",
             "All 13 Scripts" => "66",
-            "No. of Cities" => "35/38"
+            "Capitals" => "35/38"
         ],
         [
             "#" => "24",
@@ -504,7 +504,7 @@ return [
             "English" => "5",
             "Other Scripts" => "",
             "All 13 Scripts" => "39",
-            "No. of Cities" => "23/33"
+            "Capitals" => "23/33"
         ],
         [
             "#" => "25",
@@ -524,7 +524,7 @@ return [
             "English" => "2",
             "Other Scripts" => "",
             "All 13 Scripts" => "5",
-            "No. of Cities" => "3/8"
+            "Capitals" => "3/8"
         ],
         [
             "#" => "26",
@@ -544,7 +544,7 @@ return [
             "English" => "17",
             "Other Scripts" => "",
             "All 13 Scripts" => "86",
-            "No. of Cities" => "59/75"
+            "Capitals" => "59/75"
         ],
         [
             "#" => "27",
@@ -564,7 +564,7 @@ return [
             "English" => "2",
             "Other Scripts" => "",
             "All 13 Scripts" => "8",
-            "No. of Cities" => "4/13"
+            "Capitals" => "4/13"
         ],
         [
             "#" => "28",
@@ -584,7 +584,7 @@ return [
             "English" => "3",
             "Other Scripts" => "",
             "All 13 Scripts" => "29",
-            "No. of Cities" => "22/23"
+            "Capitals" => "22/23"
         ],
         [
             "#" => "29",
@@ -604,7 +604,7 @@ return [
             "English" => "1",
             "Other Scripts" => "",
             "All 13 Scripts" => "3",
-            "No. of Cities" => "1/3"
+            "Capitals" => "1/3"
         ],
         [
             "#" => "30",
@@ -624,7 +624,7 @@ return [
             "English" => "1",
             "Other Scripts" => "",
             "All 13 Scripts" => "3",
-            "No. of Cities" => "1/1"
+            "Capitals" => "1/1"
         ],
         [
             "#" => "31",
@@ -644,7 +644,7 @@ return [
             "English" => "1",
             "Other Scripts" => "",
             "All 13 Scripts" => "4",
-            "No. of Cities" => "2/3"
+            "Capitals" => "2/3"
         ],
         [
             "#" => "32",
@@ -664,7 +664,7 @@ return [
             "English" => "3",
             "Other Scripts" => "",
             "All 13 Scripts" => "11",
-            "No. of Cities" => "7/20"
+            "Capitals" => "7/20"
         ],
         [
             "#" => "33",
@@ -684,7 +684,7 @@ return [
             "English" => "",
             "Other Scripts" => "",
             "All 13 Scripts" => "0",
-            "No. of Cities" => "0/2"
+            "Capitals" => "0/2"
         ],
         [
             "#" => "34",
@@ -704,7 +704,7 @@ return [
             "English" => "",
             "Other Scripts" => "",
             "All 13 Scripts" => "0",
-            "No. of Cities" => "0/1"
+            "Capitals" => "0/1"
         ],
         [
             "#" => "35",
@@ -724,7 +724,7 @@ return [
             "English" => "1",
             "Other Scripts" => "",
             "All 13 Scripts" => "4",
-            "No. of Cities" => "1/11"
+            "Capitals" => "1/11"
         ],
         [
             "#" => "36",
@@ -744,7 +744,7 @@ return [
             "English" => "3",
             "Other Scripts" => "",
             "All 13 Scripts" => "7",
-            "No. of Cities" => "4/4"
+            "Capitals" => "4/4"
         ]
 
     ],
@@ -765,8 +765,8 @@ return [
         44,
         67,
         192,
+        "",
         901,
-        520,
         "520/785"
     ],
 
