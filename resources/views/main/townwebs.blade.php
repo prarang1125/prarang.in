@@ -301,7 +301,7 @@ $metaData = [
         <p >India has 9,389 towns (Census 2011). Of these, 7933 are Statutory/Census Towns, 475 are Urban Agglomerations, and 985 are Outgrowths
         </p>
         <p>
-            India has 121 languages (which have more than 10,000 speakers in India). These <b> 121 languages have 23 related scripts</b>. For effective digital communication across the country, these can be grouped into 13 primary scripts. Do note that the India Census 2011 was unique in its focus on Multilingualism. For all 7933 Statutory/Census Towns, the primary tongue ( i.e. Mother Tongue) data for each of the 121 languages, was opened out for public use in 2018.
+            India has 121 languages (which have more than 10,000 speakers in India). These <b> 121 languages have 23 related scripts</b>. For effective digital communication across the country, these can be grouped into <b> 13 main scripts</b>. Do note that the India Census 2011 was unique in its focus on Multilingualism. For all 7933 Statutory/Census Towns, the primary tongue ( i.e. Mother Tongue) data for each of the 121 languages, was opened out for public use in 2018.
         </p>
         <p>
 The Language % in the Table below shows the "Percentage of the State/UTs Total Cities which have <b> at least 100 or more Mother-Tongue speakers </b>( from the 121 Primary Indian Languages), of the respective language". This is Not the "Percent of the State/UT's Total Population who speak that Language". To see the Multilingualism i.e. "Percent of the State/UT's Population who speak a Second or Third language ( apart from their Mother Tongue)", please - <a href="https://g2c.prarang.in/script-language-data" target="_blank">Click here</a>
@@ -376,11 +376,12 @@ The Language % in the Table below shows the "Percentage of the State/UTs Total C
                         <td class="text-end">
                             {{ $intSum ? number_format($intSum) : 0 }}
                         </td>
-                        <td class="text-end">
-                           {{ number_format($row['scripts_count']) ?? 'N/A' }}
-                        </td>
+
                         <td class="text-end">
                             {{ number_format($row['main_script_count']) ?? 'N/A' }}
+                        </td>
+                         <td class="text-end">
+                           {{ number_format($row['scripts_count']) ?? 'N/A' }}
                         </td>
                     </tr>
                     @endforeach
