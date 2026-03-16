@@ -378,10 +378,10 @@ The Language % in the Table below shows the " Percentage of the State/UTs Total 
                             {{ $intSum ? number_format($intSum) : 0 }}
                         </td>
                         <td class="text-end">
-                           {{ $scripts[$row['state_code']] ?? 'N/A' }}
+                           {{ number_format($scripts[$row['state_code']]) ?? 'N/A' }}
                         </td>
                         <td class="text-end">
-                            {{ $mainScripts[$row['state_code']] ?? 'N/A' }}
+                            {{ number_format($mainScripts[$row['state_code']]) ?? 'N/A' }}
                         </td>
                     </tr>
                     @endforeach
