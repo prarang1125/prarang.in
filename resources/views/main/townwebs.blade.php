@@ -410,7 +410,7 @@ The Language % in the Table below shows the " Percentage of the State/UTs Total 
                 </div>
 
                 <div class="modal-body">
-                        <p>In this state there are more then # {{ 121-13 }} Out of 121 languages speakers. </p>
+                        <p>In this state, there are more than {{ 121-13 }} out of 121 languages  speakers. </p>
                     <div class="table-wrapper">
 
                         <table class="table table-sm table-striped table-bordered table-hover modal-city-table">

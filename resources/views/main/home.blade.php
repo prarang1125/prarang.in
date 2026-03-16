@@ -297,9 +297,9 @@
                                 </div>
                             </div>
                         </a>
-                        <div>
+                        {{-- <div>
                             <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
-                        </div>
+                        </div> --}}
                         <a href="/town-webs" class="no-underline">
                             <div
                                 class="bg-blue-400 rounded-xl px-6 py-2.5 border border-blue-200 hover:from-blue-500 hover:to-blue-600 hover:border-blue-500 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
@@ -310,9 +310,9 @@
                                 </div>
                             </div>
                         </a>
-                        <div>
+                        {{-- <div>
                             <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
-                        </div>
+                        </div> --}}
                         <a href="/village-webs" class="no-underline">
                             <div
                                 class="bg-blue-400 rounded-xl px-6 py-2.5 border border-blue-200 hover:from-blue-500 hover:to-blue-600 hover:border-blue-500 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
@@ -323,9 +323,9 @@
                                 </div>
                             </div>
                         </a>
-                        <div>
+                        {{-- <div>
                             <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="flex flex-col items-center">
                         <span
