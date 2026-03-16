@@ -328,7 +328,7 @@ The Language % in the Table below shows the **"Percentage of the State/UTs Total
                         <th class="bg-primary text-white">Telugu</th>
                         <th class="bg-primary text-white">English</th>
                         <th class="bg-primary text-white">Others</th>
-                           <th class="bg-primary text-white">  Language #</th>
+                           <th class="bg-primary text-white"> Language <br> (Cities #)</th>
                             <th class="bg-primary text-white">Scripts # </th>
                              <th class="bg-primary text-white"> Main Script #</th>
 
