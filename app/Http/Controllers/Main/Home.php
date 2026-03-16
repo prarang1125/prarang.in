@@ -387,7 +387,10 @@ class Home extends Controller
     // }
     public function townWebs()
     {
-        $datas = httpGet('v1/state-wise-language')['data'];
+        $data = httpGet('v1/state-wise-language')['data'];
+        $datas = $data['language'];
+        $scripts = $data['script'];
+        $mainScripts = $data['main_scripts'];
 
 
         $mainLanguages = [
@@ -413,19 +416,29 @@ class Home extends Controller
 
             $otherScript = 0;
             $otherLanguages = [];
+            $intSum = 0;
 
             foreach ($row as $key => $value) {
+                if (in_array($key, ['main_script_count', 'scripts_count', 'state_code', 'state_name', 'state_or_ut'])) {
+                    continue;
+                }
+                if (is_numeric($value) && filter_var($value, FILTER_VALIDATE_INT) !== false) {
+                    $intSum += (int) $value;
+                }
+            }
 
-                if (!in_array($key, $mainLanguages) && !in_array($key, ['state_name', 'state_or_ut'])) {
+
+            foreach ($row as $key => $value) {
+                if (!in_array($key, $mainLanguages) && !in_array($key, ['state_name', 'state_or_ut', 'state_code', 'main_script_count', 'scripts_count'])) {
 
                     $otherScript += (int)$value;
 
                     if ((int)$value > 0) {
-                        $otherLanguages[$key] = $value;
+                        $otherLanguages[$key] = $value / $intSum * 100;
                     }
                 }
             }
-
+            $sum[$row['state_code']] = $intSum;
             $row['other_script'] = $otherScript;
 
             $tableData[] = $row;
@@ -433,10 +446,9 @@ class Home extends Controller
             $modalData[$row['state_name']] = $otherLanguages;
         }
 
-        // dd($tableData);
-        // dd($modalData);
 
-        return view('main.townwebs', compact('tableData', 'modalData'));
+
+        return view('main.townwebs', compact('tableData', 'modalData', 'scripts', 'mainScripts'));
     }
 
     public function villageWebs()

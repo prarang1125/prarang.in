@@ -4,7 +4,7 @@
             'text' => 'India : Rural - 693,042 Villages',
             'text_class'=>'text-sm',
             'leftImg' => asset('assets/images/home/Villages-1.png'),
-            'rightImg' => asset('assets/images/home/Village-2.png'),
+            'rightImg' => asset('assets/images/home/Villages-1.png'),
         ]),
         'nav-sub-heading' => '',
         'headerClass' => 'custom-header-width',
@@ -411,6 +411,7 @@
         <p>India had 640,930 villages in 2011 (census) & this has now increased to 693,042 villages (Min of Panchayat Raj, 2026). Of these, 255,146 are Gram Panchayats .
         </p>
         <p>The Multilingualism data ( Census 2011) for Rural India was only released as an aggregated State/UT-Rural total for all 121 languages ( with more than 10,000 speakers in India). The Village level multilingualism data is not in the public domain though it can be estimated on the basis of respective village's proximity to the 7933 Statutory/Census towns.</p>
+        <p>The Language % in the Table below shows the " Percentage of the State/UT's Total Villages which have at least some respective Mother-Tongue speakers ( from the 121 Primary Indian Languages). Do note that the % here is NOT the " Percent of the State/UT's Total Rural Population who speak that Language". </p>
     </section>
     @php
         $languageColumns = [
@@ -443,8 +444,8 @@
                             <th class="bg-primary text-white">{{ $column['label'] }}</th>
                         @endforeach
                         <th class="bg-primary text-white">Other MT</th>
-                        <th class="bg-primary text-white">No. of Gram<br>Panchayats</th>
-                        <th class="bg-primary text-white">No. of<br>Vilages</th>
+                        <th class="bg-primary text-white">Villages  <br>(Language # )</th>
+                        <th class="bg-primary text-white">Gram<br>Panchayats ( #)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -459,7 +460,7 @@
                                 @elseif ($row[$column['key']] < 1)
                                     <td class="ps-2 text-muted" style="font-size: 11px !important">0%</td>
                                 @else
-                                    <td class="ps-2 text-semibold">{{ number_format((float) ($row[$column['key']] ?? 0), 1) }}%</td>
+                                    <td class="ps-2 text-semibold">{{ number_format((float) ($row[$column['key']] ?? 0), 0) }}%</td>
                                 @endif
                             @endforeach
                            <td>
@@ -474,8 +475,9 @@
                             </td>
 
 
-                            <td>{{ number_format((int) ($row['No_of_Gram_Panchayats'] ?? 0)) }}</td>
+
                             <td>{{ number_format((int) ($row['No_of_Cities'] ?? 0)) }}</td>
+                               <td>{{ number_format((int) ($row['No_of_Gram_Panchayats'] ?? 0)) }}</td>
                         </tr>
                     @empty
                         <tr>

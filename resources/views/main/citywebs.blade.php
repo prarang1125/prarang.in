@@ -370,11 +370,11 @@
                             <td class="text-end">{{ $data['Tamil'] ?? '' }}</td>
                             <td class="text-end">{{ $data['Telugu'] ?? '' }}</td>
                             <td class="text-end">{{ $data['English'] ?? '' }}</td>
-                            <td class="text-end">{{ $data['Other Scripts'] ?? '' }}</td>
+                        <td class="text-end">{{ $data['Other Scripts'] ?? '' }}</td>
                             <td class="text-end">{{ $data['All 13 Scripts'] ?? '' }}</td>
                             <td class="text-end"><a class="text-primary cursor-pointer text-decoration-none"
                                     data-bs-toggle="modal" data-bs-target="#modal-{{ $data['#'] ?? '' }}">
-                                    {{ $data['No. of Cities'] ?? '' }}
+                                    {{ $data['Capitals'] ?? '' }}
                                 </a></td>
                         </tr>
                     @endforeach

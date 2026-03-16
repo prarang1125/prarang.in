@@ -3,7 +3,7 @@ $metaData = [
 'nav-heading' => view('components.nav-heading', [
 'text' => 'India : Urban - 7,933 Cities',
 'leftImg' => asset('assets/images/home/town-1.png'),
-'rightImg' => asset('assets/images/home/town-2.png'),
+'rightImg' => asset('assets/images/home/town-1.png'),
 ]),
 'nav-sub-heading' => '',
 ];
@@ -286,6 +286,12 @@ $metaData = [
  }
 
 }
+/* Primary */
+.modern-table thead .bg-primary .bg-primary{
+ text-align:center;
+}
+
+
     </style>
 
 
@@ -296,6 +302,10 @@ $metaData = [
         </p>
         <p>
             India has 121 languages (which have more than 10,000 speakers in India). These 121 languages have 23 related scripts. For effective digital communication across the country, these can be grouped into 13 primary scripts. Do note that the India Census 2011 was unique in its focus on Multilingualism. For all 7933 Statutory/Census Towns, the primary tongue ( i.e. Mother Tongue) data for each of the 121 languages, was opened out for public use in 2018.
+        </p>
+        <p>
+
+The Language % in the Table below shows the " Percentage of the State/UTs Total Cities which have at least some Mother-Tongue speakers ( from the 121 Primary Indian Languages), of the respective language. This is Not the " Percent of the State/UT's Total Population who speak that Language". To see the Multilingualism i.e. " Percent of the State/UT's Population who speak a Second or Third language ( apart from their Mother Tongue)", please - <a href="https://g2c.prarang.in/script-language-data" target="_blank">Click here</a>
         </p>
     </section>
     <section class="mt-3 table-hori">
@@ -319,7 +329,9 @@ $metaData = [
                         <th class="bg-primary text-white">Telugu</th>
                         <th class="bg-primary text-white">English</th>
                         <th class="bg-primary text-white">Others</th>
-                           <th class="bg-primary text-white">No of Cities</th>
+                           <th class="bg-primary text-white">Cities <br>( Language #)</th>
+                            <th class="bg-primary text-white">Cities<br>(Scripts # )</th>
+                             <th class="bg-primary text-white">Cities <br>( Main Script #)</th>
 
                     </tr>
                 </thead>
@@ -327,47 +339,57 @@ $metaData = [
 
 
                     @foreach($tableData as $row)
-                    <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ ucwords(strtolower($row['state_name'])) }}</td>
-                        <td>{{ $row['Assamese'] ?? 0 }}</td>
-                        <td>{{ $row['Bengali'] ?? 0 }}</td>
-                        <td>{{ $row['Hindi'] ?? 0 }}</td>
-                        <td>{{ $row['Punjabi'] ?? 0 }}</td>
-                        <td>{{ $row['Kannada'] ?? 0 }}</td>
-                        <td>{{ $row['Malayalam'] ?? 0 }}</td>
-                        <td>{{ $row['Marathi'] ?? 0 }}</td>
-                        <td>{{ $row['Gujarati'] ?? 0 }}</td>
-                        <td>{{ $row['Odia'] ?? 0 }}</td>
-                        <td>{{ $row['Urdu'] ?? 0 }}</td>
-                        <td>{{ $row['Tamil'] ?? 0 }}</td>
-                        <td>{{ $row['Telugu'] ?? 0 }}</td>
-                        <td>{{ $row['English'] ?? 0 }}</td>
-                        <td>
-                            <a  class="text-primary cursor-pointer " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal-{{ Str::slug($row['state_name']) }}">
-                                {{ $row['other_script'] }}
-                            </a>
-
-                        </td>
-                        <td>
-                            @php
+                     @php
                                 $intSum = 0;
-                                foreach($row as $key => $value){
-                                    if (is_int($value) || filter_var($value, FILTER_VALIDATE_INT)) {
+                                foreach ($row as $key => $value) {
+                                    if (in_array($key, ['main_script_count', 'scripts_count', 'state_code', 'state_name', 'state_or_ut'])) {
+                                        continue;
+                                    }
+                                    if (is_numeric($value) && filter_var($value, FILTER_VALIDATE_INT) !== false) {
                                         $intSum += (int) $value;
                                     }
                                 }
+                                $intSum = $intSum-$row['other_script']
+                                // $totalData[$row['state_code']]=$intSum;
                             @endphp
-                            {{ $intSum -$row['other_script'] }}
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ ucwords(strtolower($row['state_name'])) }}</td>
+                        <td>{{ number_format(($row['Assamese']/$intSum)*100, 0) ?? 0 }}%</td>
+                        <td>{{ number_format(($row['Bengali']/$intSum)*100, 0) ?? 0 }}%</td>
+                        <td>{{ number_format(($row['Hindi']/$intSum)*100, 0) ?? 0 }}%</td>
+                        <td>{{ number_format(($row['Punjabi']/$intSum)*100, 0) ?? 0 }}%</td>
+                        <td>{{ number_format(($row['Kannada']/$intSum)*100, 0) ?? 0 }}%</td>
+                        <td>{{ number_format(($row['Malayalam']/$intSum)*100, 0) ?? 0 }}%</td>
+                        <td>{{ number_format(($row['Marathi']/$intSum)*100, 0) ?? 0 }}%</td>
+                        <td>{{ number_format(($row['Gujarati']/$intSum)*100, 0) ?? 0 }}%</td>
+                        <td>{{ number_format(($row['Odia']/$intSum)*100, 0) ?? 0 }}%</td>
+                        <td>{{ number_format(($row['Urdu']/$intSum)*100, 0) ?? 0 }}%</td>
+                        <td>{{ number_format(($row['Tamil']/$intSum)*100, 0) ?? 0 }}%</td>
+                        <td>{{ number_format(($row['Telugu']/$intSum)*100, 0) ?? 0 }}%</td>
+                        <td>{{ number_format(($row['English']/$intSum)*100, 0) ?? 0 }}%</td>
+                        <td>
+                            <a  class="text-primary cursor-pointer " data-bs-toggle="modal"
+                                data-bs-target="#exampleModal-{{ Str::slug($row['state_name']) }}">
+                                {{ number_format(($row['other_script']/$intSum)*100, 0) ?? 0 }}%
+                            </a>
+                        </td>
+                        <td>
+                            {{ $intSum ? number_format($intSum) : 0 }}
+                        </td>
+                        <td>
+                           {{ $scripts[$row['state_code']] ?? 'N/A' }}
+                        </td>
+                        <td>
+                            {{ $mainScripts[$row['state_code']] ?? 'N/A' }}
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
-
             </table>
         </div>
     </section>
+    {{-- @dd($totalData); --}}
  @foreach($modalData as $state => $languages)
 
     <div class="modal fade" id="exampleModal-{{ Str::slug($state) }}" tabindex="-1"
@@ -388,7 +410,7 @@ $metaData = [
                 </div>
 
                 <div class="modal-body">
-
+                        <p>In this state there are more then # {{ 121-13 }} Out of 121 languages speakers. </p>
                     <div class="table-wrapper">
 
                         <table class="table table-sm table-striped table-bordered table-hover modal-city-table">
@@ -408,7 +430,7 @@ $metaData = [
 
                                     <td>{{ $lang }}</td>
 
-                                    <td class="text-end">{{ number_format((int)$value) }}</td>
+                                    <td class="text-end">{{ number_format(($value), 0) ?? "0.00" }}%</td>
 
                                 </tr>
 
