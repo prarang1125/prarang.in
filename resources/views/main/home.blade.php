@@ -257,6 +257,11 @@
  bottom:auto !important;
 }
 
+/* Hover */
+.flex-wrap a .hover\:shadow-lg{
+ margin-bottom:9px;
+}
+
 
 
     </style>
