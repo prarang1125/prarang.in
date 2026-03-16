@@ -301,11 +301,10 @@ $metaData = [
         <p >India has 9,389 towns (Census 2011). Of these, 7933 are Statutory/Census Towns, 475 are Urban Agglomerations, and 985 are Outgrowths
         </p>
         <p>
-            India has 121 languages (which have more than 10,000 speakers in India). These 121 languages have 23 related scripts. For effective digital communication across the country, these can be grouped into 13 primary scripts. Do note that the India Census 2011 was unique in its focus on Multilingualism. For all 7933 Statutory/Census Towns, the primary tongue ( i.e. Mother Tongue) data for each of the 121 languages, was opened out for public use in 2018.
+            India has 121 languages (which have more than 10,000 speakers in India). These <b> 121 languages have 23 related scripts</b>. For effective digital communication across the country, these can be grouped into 13 primary scripts. Do note that the India Census 2011 was unique in its focus on Multilingualism. For all 7933 Statutory/Census Towns, the primary tongue ( i.e. Mother Tongue) data for each of the 121 languages, was opened out for public use in 2018.
         </p>
         <p>
-
-The Language % in the Table below shows the " Percentage of the State/UTs Total Cities which have at least some Mother-Tongue speakers ( from the 121 Primary Indian Languages), of the respective language. This is Not the " Percent of the State/UT's Total Population who speak that Language". To see the Multilingualism i.e. " Percent of the State/UT's Population who speak a Second or Third language ( apart from their Mother Tongue)", please - <a href="https://g2c.prarang.in/script-language-data" target="_blank">Click here</a>
+The Language % in the Table below shows the **"Percentage of the State/UTs Total Cities which have <b> at least 100 or more Mother-Tongue speakers </b>( from the 121 Primary Indian Languages), of the respective language"**. This is Not the **"Percent of the State/UT's Total Population who speak that Language"**. To see the Multilingualism i.e. **"Percent of the State/UT's Population who speak a Second or Third language ( apart from their Mother Tongue)"**, please - <a href="https://g2c.prarang.in/script-language-data" target="_blank">Click here</a>
         </p>
     </section>
     <section class="mt-3 table-hori">
@@ -329,9 +328,9 @@ The Language % in the Table below shows the " Percentage of the State/UTs Total 
                         <th class="bg-primary text-white">Telugu</th>
                         <th class="bg-primary text-white">English</th>
                         <th class="bg-primary text-white">Others</th>
-                           <th class="bg-primary text-white">Cities <br>( Language #)</th>
-                            <th class="bg-primary text-white">Cities<br>(Scripts # )</th>
-                             <th class="bg-primary text-white">Cities <br>( Main Script #)</th>
+                           <th class="bg-primary text-white">  Language #</th>
+                            <th class="bg-primary text-white">Scripts # </th>
+                             <th class="bg-primary text-white"> Main Script #</th>
 
                     </tr>
                 </thead>
@@ -378,10 +377,10 @@ The Language % in the Table below shows the " Percentage of the State/UTs Total 
                             {{ $intSum ? number_format($intSum) : 0 }}
                         </td>
                         <td class="text-end">
-                           {{ number_format($scripts[$row['state_code']]) ?? 'N/A' }}
+                           {{ number_format($row['scripts_count']) ?? 'N/A' }}
                         </td>
                         <td class="text-end">
-                            {{ number_format($mainScripts[$row['state_code']]) ?? 'N/A' }}
+                            {{ number_format($row['main_script_count']) ?? 'N/A' }}
                         </td>
                     </tr>
                     @endforeach
@@ -410,7 +409,7 @@ The Language % in the Table below shows the " Percentage of the State/UTs Total 
                 </div>
 
                 <div class="modal-body">
-                        <p>In this state, there are more than {{ 121-13 }} out of 121 languages  speakers. </p>
+                        <p>In this state, there are more than {{ count($languages)  }} out of 121 languages  speakers. </p>
                     <div class="table-wrapper">
 
                         <table class="table table-sm table-striped table-bordered table-hover modal-city-table">
