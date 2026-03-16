@@ -416,6 +416,7 @@ The Language % in the Table below shows the **"Percentage of the State/UTs Total
 
                             <thead class="sticky-top">
                                 <tr>
+                                    <th>#</th>
                                     <th>Language</th>
                                     <th class="text-end">No of Cities</th>
                                 </tr>
@@ -426,7 +427,7 @@ The Language % in the Table below shows the **"Percentage of the State/UTs Total
                                 @forelse($languages as $lang => $value)
 
                                 <tr>
-
+                                    <td>{{ $loop->iteration }}</td>
                                     <td>{{ $lang }}</td>
 
                                     <td class="text-end">{{ number_format(($value), 0) ?? "0.00" }}%</td>
