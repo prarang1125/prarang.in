@@ -418,7 +418,8 @@ The Language % in the Table below shows the **"Percentage of the State/UTs Total
                                 <tr>
                                     <th>#</th>
                                     <th>Language</th>
-                                    <th class="text-end">No of Cities</th>
+                                    <th class="text-end">Language
+(Cities %)</th>
                                 </tr>
                             </thead>
 
