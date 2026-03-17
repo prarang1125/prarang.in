@@ -376,12 +376,11 @@ The Language % in the Table below shows the "Percentage of the State/UTs Total C
                         <td class="text-end">
                             {{ $intSum ? number_format($intSum) : 0 }}
                         </td>
-
-                        <td class="text-end">
-                            {{ number_format($row['main_script_count']) ?? 'N/A' }}
-                        </td>
                          <td class="text-end">
                            {{ number_format($row['scripts_count']) ?? 'N/A' }}
+                        </td>
+                           <td class="text-end">
+                            {{ number_format($row['main_script_count']) ?? 'N/A' }}
                         </td>
                     </tr>
                     @endforeach
@@ -410,7 +409,7 @@ The Language % in the Table below shows the "Percentage of the State/UTs Total C
                 </div>
 
                 <div class="modal-body">
-                        <p>In this state, there are more than {{ count($languages)  }} out of 121 languages  speakers. </p>
+                        <p>In this state, there are more than {{ count($languages)+13  }} out of 121 languages  speakers. </p>
                     <div class="table-wrapper">
 
                         <table class="table table-sm table-striped table-bordered table-hover modal-city-table">
