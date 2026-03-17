@@ -407,9 +407,8 @@ The Language % in the Table below shows the "Percentage of the State/UTs Total C
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
 
                 </div>
-
                 <div class="modal-body">
-                        <p>In this state, there are more than {{ count($languages)+13  }} out of 121 languages  speakers. </p>
+                        <p>In this state, there are more than {{ count($languages) }} out of 121 languages  speakers. </p>
                     <div class="table-wrapper">
 
                         <table class="table table-sm table-striped table-bordered table-hover modal-city-table">
@@ -418,6 +417,7 @@ The Language % in the Table below shows the "Percentage of the State/UTs Total C
                                 <tr>
                                     <th>#</th>
                                     <th>Language</th>
+                                    <th>Script</th>
                                     <th class="text-end">Language
 (Cities %)</th>
                                 </tr>
@@ -430,8 +430,8 @@ The Language % in the Table below shows the "Percentage of the State/UTs Total C
                                 <tr>
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $lang }}</td>
-
-                                    <td class="text-end">{{ number_format(($value), 0) ?? "0.00" }}%</td>
+                                    <td>{{$value['script']?? "" }}</td>
+                                    <td class="text-end">{{ number_format(($value['value']), 0) ?? "0.00" }}%</td>
 
                                 </tr>
 

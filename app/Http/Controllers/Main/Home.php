@@ -432,9 +432,12 @@ class Home extends Controller
                 if (!in_array($key, $mainLanguages) && !in_array($key, ['state_name', 'state_or_ut', 'state_code', 'main_script_count', 'scripts_count'])) {
 
                     $otherScript += (int)$value;
+                }
+                if (!in_array($key, ['state_name', 'state_or_ut', 'state_code', 'main_script_count', 'scripts_count'])) {
 
                     if ((int)$value > 0) {
-                        $otherLanguages[$key] = $value / $intSum * 100;
+                        $otherLanguages[$key]['value'] = $value / $intSum * 100;
+                        $otherLanguages[$key]['script'] = $scripts[$key];
                     }
                 }
             }
