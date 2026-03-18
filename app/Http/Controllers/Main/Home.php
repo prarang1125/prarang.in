@@ -390,6 +390,8 @@ class Home extends Controller
         $data = httpGet('v1/state-wise-language')['data'];
         $datas = $data['language'];
         $scripts = $data['script'];
+        $stateTotal = $data['state_total'];
+
         $mainScripts = $data['main_scripts'];
 
 
@@ -416,16 +418,7 @@ class Home extends Controller
 
             $otherScript = 0;
             $otherLanguages = [];
-            $intSum = 0;
-
-            foreach ($row as $key => $value) {
-                if (in_array($key, ['main_script_count', 'scripts_count', 'state_code', 'state_name', 'state_or_ut'])) {
-                    continue;
-                }
-                if (is_numeric($value) && filter_var($value, FILTER_VALIDATE_INT) !== false) {
-                    $intSum += (int) $value;
-                }
-            }
+            $intSum = $stateTotal[$row['state_code']];
 
 
             foreach ($row as $key => $value) {
@@ -451,7 +444,7 @@ class Home extends Controller
 
 
 
-        return view('main.townwebs', compact('tableData', 'modalData', 'scripts', 'mainScripts'));
+        return view('main.townwebs', compact('tableData', 'modalData', 'scripts', 'mainScripts', 'stateTotal'));
     }
 
     public function villageWebs()

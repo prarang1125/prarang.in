@@ -338,19 +338,9 @@ The Language % in the Table below shows the "Percentage of the State/UTs Total C
 
 
                     @foreach($tableData as $row)
-                     @php
-                                $intSum = 0;
-                                foreach ($row as $key => $value) {
-                                    if (in_array($key, ['main_script_count', 'scripts_count', 'state_code', 'state_name', 'state_or_ut'])) {
-                                        continue;
-                                    }
-                                    if (is_numeric($value) && filter_var($value, FILTER_VALIDATE_INT) !== false) {
-                                        $intSum += (int) $value;
-                                    }
-                                }
-                                $intSum = $intSum-$row['other_script']
-                                // $totalData[$row['state_code']]=$intSum;
-                            @endphp
+                    @php
+                         $intSum = $stateTotal[$row['state_code']];
+                    @endphp
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ ucwords(strtolower($row['state_name'])) }}</td>
