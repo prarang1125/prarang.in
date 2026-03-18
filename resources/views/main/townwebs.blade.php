@@ -355,7 +355,7 @@ The Language % in the Table below shows the "Percentage of the State/UTs Total C
                         <td>{{ number_format(($row['Odia']/$intSum)*100, 0) ?? 0 }}%</td>
                         <td>{{ number_format(($row['Urdu']/$intSum)*100, 0) ?? 0 }}%</td>
                         <td>{{ number_format(($row['Tamil']/$intSum)*100, 0) ?? 0 }}%</td>
-                        <td>{{ number_format(($row['Telugu']/$intSum)*100, 0) ?? 0 }}%</td>
+                        <td>{{ number_format(($row['Telugu']/$intSum)*100, 0) ?? 0 }}% {{$row['Telugu']}}</td>
                         <td>{{ number_format(($row['English']/$intSum)*100, 0) ?? 0 }}%</td>
                         <td>
                             <a  class="text-primary cursor-pointer " data-bs-toggle="modal"
