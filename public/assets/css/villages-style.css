@@ -18,7 +18,7 @@
 
 /* Common UI */
 body {
-  background: linear-gradient(to right, var(--color-bg), var(--color-bg), var(--color-secondary));
+  background: linear-gradient(to right, #eef8ee, var(--color-bg), var(--color-secondary));
   color: var(--color-text);
   font-family: system-ui, sans-serif;
 }
@@ -46,3 +46,29 @@ body {
   background: var(--color-secondary);
   color: var(--color-primary);
 }
+
+
+
+
+/* villages search modal  */
+
+/* Division */
+#locationModal .overflow-hidden .p-8{
+ border-top-left-radius:9px;
+ border-top-right-radius:9px;
+ border-bottom-left-radius:9px;
+ border-bottom-right-radius:9px;
+}
+
+/* Overflow hidden */
+#locationModal .overflow-hidden{
+ border-style:solid;
+ border-width:2px;
+ border-color:#d3e8db;
+ border-top-left-radius:9px;
+ border-top-right-radius:9px;
+ border-bottom-left-radius:9px;
+ border-bottom-right-radius:9px;
+ box-shadow:0px 0px 33px 10px #cefcdc;
+}
+
