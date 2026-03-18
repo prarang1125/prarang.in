@@ -157,16 +157,18 @@
             <div class="text-center text-gray-500 py-8">कोई डेटा उपलब्ध नहीं</div>
         @endif
        @php
-         $cityname=request()->segment(1);
+         $allowedCities = ['lucknow', 'rampur', 'shahjahanpur', 'jaunpur', 'meerut'];
        @endphp
+       @if(in_array($citySlug, $allowedCities))
         <div class="mt-4 border-t-4 border-red-900 pt-4 bg-red-50/30 p-4 rounded-b-lg shadow-inner">
-            <a href="{{ route('search-trends', ['city_id' => $city_id, 'city_name' => $cityname]) }}" target="_blank"
+            <a href="{{ route('search-trends', ['city_id' => $city_id, 'city_name' => $citySlug]) }}" target="_blank"
                 class="btn btn-outline-red-700 hover:btn-red-900 btn btn-primary  font-bold px-4 py-2 rounded-full">
                 <i class="fa fa-shield-alt text-red-600 mr-2"></i>
                 <span class="arabic-numbers">{{ $cityName }}</span> &nbsp; के सर्च ट्रेंड्स
-</a>
             </a>
         </div>
+
+       @endif
 
         <div class="mt-4 border-t-4 border-red-900 pt-4 bg-red-50/30 p-4 rounded-b-lg shadow-inner">
             <a href="https://g2c.prarang.in/india/multilingualism/{{ $city_id }}" target="_blank"
