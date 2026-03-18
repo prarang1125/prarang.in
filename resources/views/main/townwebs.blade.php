@@ -406,7 +406,7 @@ The Language % in the Table below shows the "Percentage of the State/UTs Total C
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                        <p>In this state, {{ count($languages) }} out of 121 languages are spoken.</p>
+                        <p class="small">In this state, {{ count($languages) }} out of the 121 languages have at least 100 mother-tongue speakers.</p>
                     <div class="table-wrapper">
 
                         <table class="table table-sm table-striped table-bordered table-hover modal-city-table">

@@ -1,0 +1,48 @@
+/* ===== Village Theme ===== */
+
+:root {
+  --color-primary: #2d6a4f;     /* deep natural green */
+  --color-primary-light: #40916c;
+  --color-secondary: #b7e4c7;
+
+  --color-bg: #f6fff8;          /* very soft green bg */
+  --color-card: #ffffff;
+  --color-border: #d8f3dc;
+
+  --color-text: #1b4332;
+  --color-muted: #52796f;
+
+  --radius: 12px;
+  --transition: 0.25s ease;
+}
+
+/* Common UI */
+body {
+  background: linear-gradient(to right, var(--color-bg), var(--color-bg), var(--color-secondary));
+  color: var(--color-text);
+  font-family: system-ui, sans-serif;
+}
+
+.card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px;
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: var(--radius);
+}
+
+.badge {
+  background: var(--color-secondary);
+  color: var(--color-primary);
+}

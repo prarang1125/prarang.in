@@ -1,0 +1,48 @@
+/* ===== Town Theme ===== */
+
+:root {
+  --color-primary: #1e40af;     /* strong urban blue */
+  --color-primary-light: #3b82f6;
+  --color-secondary: #bfdbfe;
+
+  --color-bg: #f8fafc;          /* neutral light bg */
+  --color-card: #ffffff;
+  --color-border: #e2e8f0;
+
+  --color-text: #0f172a;
+  --color-muted: #64748b;
+
+  --radius: 12px;
+  --transition: 0.25s ease;
+}
+
+/* Common UI */
+body {
+  background: linear-gradient(to right, var(--color-bg), var(--color-bg), var(--color-secondary));
+  color: var(--color-text);
+  font-family: system-ui, sans-serif;
+}
+
+.card {
+  background: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 16px;
+  transition: var(--transition);
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+  padding: 10px 16px;
+  border-radius: var(--radius);
+}
+
+.badge {
+  background: var(--color-secondary);
+  color: var(--color-primary);
+}

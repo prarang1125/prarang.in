@@ -19,6 +19,8 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
+
+
 Route::get('/partner-api/get-chitti-data', [PartnerApi::class, 'getChittiByDateRange']);
 Route::get('/partner-api/get-top-3-posts/', [PartnerApi::class, 'getChittiData']);
 Route::get('/prapi/{url}', [ChittiList::class, 'getChittiData'])->name('api.posts.city');
@@ -96,3 +98,6 @@ Route::get('/czech-republic-{type}-comparison', CzeCountryComparison::class);
 
 
 Route::get('/search-trends/{city_id}/{city_name}', [PostController::class, 'searchTrends'])->name('search-trends');
+
+
+include __DIR__ . '/townvillaes.php';
