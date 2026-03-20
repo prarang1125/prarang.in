@@ -21,7 +21,7 @@ class AiPages extends Component
     {
         $response = httpGet('v1/cities', [
             'client' => 'analytics',
-            'locale' => 'hi',
+            'locale' => 'en',
         ]);
 
         $cities = $response['data']['cities'] ?? [];
@@ -53,19 +53,19 @@ class AiPages extends Component
     {
         $response = httpGet('v1/countries', [
             'client' => 'analytics',
-            'locale' => 'hi',
+            'locale' => 'en',
         ]);
 
         $countries = $response['data']['countries'] ?? [];
 
         $continentMap = [
-            1 => 'एशिया',
-            2 => 'अफ्रीका',
-            3 => 'उत्तरी अमेरिका',
-            4 => 'दक्षिणी अमेरिका',
-            5 => 'यूरोप',
-            6 => 'दक्षिण-पूर्व एशिया',
-            7 => 'मध्य अमेरिका',
+            1 => 'Asia',
+            2 => 'Africa',
+            3 => 'North America',
+            4 => 'South America',
+            5 => 'Europe',
+            6 => 'South-East Asia',
+            7 => 'Central America',
         ];
 
         $grouped = [];

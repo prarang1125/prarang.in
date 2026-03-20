@@ -123,7 +123,7 @@
                             <!-- Full width rows -->
                             <div class="analytics-row">
                                 <div class="analytics-box full-width"><a target="_blank"
-                                        href="https://g2c.prarang.in/{{ $code }}-cultures">Culture</a></div>
+                                        href="https://g2c.prarang.in/{{ $code }}-culture">Culture</a></div>
                             </div>
                             <div class="analytics-row">
                                 <div class="analytics-box full-width"><a target="_blank"
@@ -132,7 +132,7 @@
                             <!-- 7 column row -->
                             <div class="analytics-row">
                                 <div class="analytics-box"><a target="_blank"
-                                        href="https://g2c.prarang.in/{{ $code }}-healths">Health</a></div>
+                                    href="http://127.0.0.1:8002/{{ $code }}-healths">Health</a></div>
                                 <div class="analytics-box"><a target="_blank"
                                         href="https://g2c.prarang.in/{{ $code }}-wealths">Wealth</a></div>
                                 <div class="analytics-box"><a target="_blank"

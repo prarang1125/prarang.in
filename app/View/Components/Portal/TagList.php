@@ -2,12 +2,11 @@
 
 namespace App\View\Components\Portal;
 
-use App\Models\PortalLocaleizetion;
 use Closure;
 use Illuminate\Contracts\View\View;
-use Illuminate\View\Component;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
+use Illuminate\View\Component;
 
 class TagList extends Component
 {
