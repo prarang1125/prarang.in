@@ -23,7 +23,7 @@
             </a>
         </div>
         <div class="col-sm-4 pp">
-            <x-portal.ai-pages />
+            <x-portal.nep-ai-pages />
         </div>
 
         <div class="col-sm-4 pp">

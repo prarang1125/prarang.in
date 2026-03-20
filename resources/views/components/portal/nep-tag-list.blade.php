@@ -50,7 +50,7 @@
                             class="bg-white rounded-xl border border-gray-100 shadow-sm p-3 flex items-center gap-4 cursor-pointer hover:bg-gray-50 transition-colors">
                             <div
                                 class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0">
-                                <img src="{{ asset('assets/images/icons/culture/' . $t['icon']) }}"
+                                <img src="https://www.prarang.in/assets/images/icons/culture/{{ $t['icon'] }}"
                                     class="w-7 h-7 object-contain opacity-70">
                             </div>
                             <span
@@ -110,7 +110,7 @@
                             class="bg-white rounded-xl border border-gray-100 shadow-sm p-3 flex items-center gap-4 cursor-pointer hover:bg-gray-50 transition-colors">
                             <div
                                 class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center flex-shrink-0">
-                                <img src="{{ asset('assets/images/icons/nature/' . $t['icon']) }}"
+                                <img src="https://www.prarang.in/assets/images/icons/nature/{{ $t['icon'] }}"
                                     class="w-7 h-7 object-contain opacity-70">
                             </div>
                             <span
@@ -180,6 +180,21 @@
             </div>
         </div>
     @endforeach
+    <script>
+        function toggleImportantLinks(widgetId) {
+            const widget = document.getElementById(widgetId);
+            const content = widget.querySelector('.important-links-content');
+            const button = widget.querySelector('.toggle-links-btn');
+
+            if (content.classList.contains('expanded')) {
+                content.classList.remove('expanded');
+                button.innerText = 'Show More';
+            } else {
+                content.classList.add('expanded');
+                button.innerText = 'Show Less';
+            }
+        }
+    </script>
 
     <script>
         function openTagModal(id) {
