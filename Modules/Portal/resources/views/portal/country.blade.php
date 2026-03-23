@@ -403,11 +403,11 @@
                                 <div class="col-lg-3 col-md-6 text-center">
                                     <h5 class="footer-title">Connect With Us</h5>
                                     <div class="social-grid justify-content-center mt-3">
-                                        <a href="https://www.facebook.com/IndiaCzech/" target="_blank"
+                                        <a href="javascript:void(0)" onclick="showComingSoon(event)"
                                             class="social-btn" title="Facebook">
                                             <i class="fa fa-facebook"></i>
                                         </a>
-                                        <a href="https://x.com/IndiaCzech" target="_blank" class="social-btn"
+                                        <a href="javascript:void(0)" onclick="showComingSoon(event)" class="social-btn"
                                             title="X (Twitter)">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" viewBox="0 0 16 16"
@@ -416,7 +416,7 @@
                                                     d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
                                             </svg>
                                         </a>
-                                        <a href="https://www.linkedin.com/company/india-czech" target="_blank"
+                                        <a href="javascript:void(0)" onclick="showComingSoon(event)"
                                             class="social-btn" title="LinkedIn">
                                             <i class="fa fa-linkedin"></i>
                                         </a>

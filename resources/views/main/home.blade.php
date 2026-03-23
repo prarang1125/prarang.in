@@ -491,7 +491,14 @@
                                         Rep.</span>
                                 </div>
                             </a>
-                            <span
+                            <a href="https://prarang.in/india-nepal" target="_blank" class="no-underline">
+                                <div
+                                    class="bg-gradient-to-br from-rose-400 to-rose-500 rounded-xl px-6 py-2.5 border border-rose-500 hover:from-rose-500 hover:to-rose-600 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
+                                    <span
+                                        class="text-base font-black text-white hover:text-rose-50 transition-colors">India-Nepal</span>
+                                </div>
+                            </a>
+                            {{-- <span
                                 onclick="setTimeout(() => {document.getElementById('nepal-click').innerHTML='Coming Soon'}, 1000)"
                                 class="cursor-pointer">
                                 <div
@@ -499,7 +506,7 @@
                                     <span class="text-base font-black text-white hover:text-rose-50 transition-colors"
                                         id="nepal-click">Nepal</span>
                                 </div>
-                            </span>
+                            </span> --}}
                         </div>
                     </div>
                 </div>

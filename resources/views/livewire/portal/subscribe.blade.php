@@ -189,10 +189,31 @@
     width: 100%;
     text-decoration: none !important;
 }
+
+@media (min-width: 992px) {
+    .width-fix {
+        width: 665px !important;
+
+    }
+
+}
+
+     @media (max-width: 576px) {
+        .width-fix {
+            width: 400px !important;
+        }
+
+        #openModalx{
+            height: 93px !important;
+                margin-right: 32px;
+    margin-left: 45px;
+
+        }
+    }
     </style>
 
     @if (!$isSubscribed)
-    <div class="w-full" style="display: flex; justify-content: center; align-items: center; width: 665px !important; margin: 0 auto;">
+    <div class="w-full width-fix" style="display: flex; justify-content: center; align-items: center;  margin: 0 auto;">
         <div class="sub-trigger shadow-sm" id="openModalx" data-bs-toggle="modal" data-bs-target="#subscribeModal">
 
             {{-- WhatsApp Background Icon --}}
