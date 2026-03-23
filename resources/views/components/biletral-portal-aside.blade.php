@@ -731,7 +731,7 @@ $iconColors = [
                         $country = strtolower($data->country_name ?? '');
                     @endphp
 
-                    @if ($country == 'nepal' && $side == 'right')
+                    @if (($isNepalComparison ?? false) && $side == 'right')
                         <a href="https://www.indembkathmandu.gov.in/"
                         class="btn btn-primary w-100 fw-semibold"
                         target="_blank">
@@ -802,7 +802,7 @@ $iconColors = [
 
                         {{-- href="{{ $side == 'left' ? 'https://www.prarang.in/yp/india' : 'https://www.prarang.in/yp/czech-republic' }}" --}}
                         <a
-                        href="{{ $side == 'left' ? 'https://www.prarang.in/yp/india-nepal' : 'https://www.prarang.in/yp/india' }}"  target="_blank"
+                        href="{{ $side == 'left' ? 'https://www.prarang.in/yp/india-nepal' : 'https://www.prarang.in/yp/nepal' }}"  target="_blank"
                         class="relative block overflow-hidden group">
 
                         <!-- IMAGE -->
