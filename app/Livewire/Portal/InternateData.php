@@ -10,6 +10,7 @@ use Carbon\Carbon;
 class InternateData extends Component
 {
     public $cityName = '';
+    public $citySlug = '';
     public $city_id, $city_code;
     public $internateData = null;
     public $loading = true;
@@ -18,11 +19,12 @@ class InternateData extends Component
     public $cirusData = null;
     public $cityDatabaseId = null;
 
-    public function mount($city_code = null, $city_id = null, $city_name = null)
+    public function mount($city_code = null, $city_id = null, $city_name = null, $city_slug = null)
     {
         $this->city_id = $city_id;
         $this->city_code = $city_code;
         $this->cityName = $city_name;
+        $this->citySlug = $city_slug;
         $this->cityDatabaseId = $this->city_id;
 
         $this->fetchData();
