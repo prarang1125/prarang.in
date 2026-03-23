@@ -55,7 +55,7 @@
                                     <small>(Powered by Prarang’s Comparative A.I.)</small>
                                 @else
                                     <h2><img class="mx-2 cze-mapx"
-                                            src="{{ asset('images/nepal_flag.png') }}" style="width: 50px; height: 42px;"
+                                            src="{{ asset('images/nepal_flag.jpg') }}" style="width: 50px; height: 42px;"
                                             alt="">Country Comparison</h2>
                                     <p>Compare Nepal with other Countries</p>
                                     <small>(Powered by Prarang’s Comparative A.I.)</small>
@@ -185,15 +185,15 @@
                                     @if ($type === 'regional')
                                         <h2 class="flex justify-center items-center"><img class="mx-2"
                                                 src="https://g2c.prarang.in/storage/images/world/195Counties/IND__flag.jpg"
-                                                alt="">India-Czech Comparisons<img class="mx-2"
-                                                src="https://g2c.prarang.in/storage/images/world/195Counties/CZE__flag.jpg"
+                                                alt="">India-Nepal Comparisons<img class="mx-2"
+                                                src="{{ asset('images/nepal_flag.jpg') }}" style="width: 50px; height: 42px;"
                                                 alt="">
                                         </h2>
                                     @else
                                         <h2>
 
                                             <img class="mx-2 cze-mapx " style="width: 50px; height: 50px;"
-                                                src="https://g2c.prarang.in/storage/images/world/195Counties/NPL_MAP.jpg"
+                                                src="{{ asset('images/nepal_flag.jpg') }}"
                                                 alt="">Country Comparison
                                         </h2>
                                     @endif
@@ -1025,9 +1025,9 @@
             <div class="modal-body">
                 @if ($type === 'regional')
                     {{-- Regional Mode FAQs --}}
-                    <p>The India-Czech Comparison Tool helps users create knowledge by comparison. It enables clear
+                    <p>The India-Nepal Comparison Tool helps users create knowledge by comparison. It enables clear
                         and
-                        structured comparisons between the Regions of the Czech Republic and India’s Regions
+                        structured comparisons between the Regions of the Nepal and India’s Regions
                         (Districts),
                         offering practical insights into region-level metrics.
                     </p>
@@ -1132,7 +1132,7 @@
                                 aria-labelledby="faqHeadingThree" data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
                                     <ul>
-                                        <li>In the Czech Republic, The Czech Census - conducted at regular intervals
+                                        <li>In the Nepal, The Czech Census - conducted at regular intervals
                                             since 1869 - is organized at the regional (Kraj) level. The data has
                                             historically recognized 13 regions, with Prague counted as a separate
                                             region.</li>
@@ -1155,8 +1155,7 @@
                         The Country Comparison Tool helps users create
                         knowledge through comparison. It enables
                         clear
-                        and structured comparisons between the Czech
-                        Republic and other countries, offering
+                        and structured comparisons between the Nepal and other countries, offering
                         practical
                         insights into country-level metrics, relative
                         advantages, and differences across multiple
@@ -1219,7 +1218,7 @@
                                 data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
                                     The Tool enables users to compare the
-                                    Czech Republic with one to three
+                                    Nepal with one to three
                                     countries
                                     out
                                     of the 195 UN-recognized countries,
@@ -1246,8 +1245,7 @@
                                     <ol>
                                         <li><strong>Select the
                                                 countries</strong> you wish
-                                            to compare with the Czech
-                                            Republic. You may choose 1–3
+                                            to compare with the Nepal. You may choose 1–3
                                             countries.</li>
                                         <li><strong>Select any
                                                 metric</strong> from our

@@ -727,13 +727,27 @@ $iconColors = [
                         Embassy of {{ $data->country_name ?? 'N/A' }}
                     </h5>
 
-                    @if (!empty($data->embassy_link))
-                    <a href="{{ $data->embassy_link }}" class="btn btn-primary w-100 fw-semibold"
+                    @php
+                        $country = strtolower($data->country_name ?? '');
+                    @endphp
+
+                    @if ($country == 'nepal' && $side == 'right')
+                        <a href="https://www.indembkathmandu.gov.in/"
+                        class="btn btn-primary w-100 fw-semibold"
                         target="_blank">
-                        <i class="fa fa-external-link me-1"></i> Visit Embassy Website
-                    </a>
+                            <i class="fa fa-external-link me-1"></i> Visit Embassy Website
+                        </a>
+
+                    @elseif (!empty($data->embassy_link))
+                        {{-- Default case --}}
+                        <a href="{{ $data->embassy_link }}"
+                        class="btn btn-primary w-100 fw-semibold"
+                        target="_blank">
+                            <i class="fa fa-external-link me-1"></i> Visit Embassy Website
+                        </a>
+
                     @else
-                    <span class="text-danger small">Embassy link not available.</span>
+                        <span class="text-danger small">Embassy link not available.</span>
                     @endif
                 </div>
             </div>
@@ -788,7 +802,7 @@ $iconColors = [
 
                         {{-- href="{{ $side == 'left' ? 'https://www.prarang.in/yp/india' : 'https://www.prarang.in/yp/czech-republic' }}" --}}
                         <a
-                        href="javascript:void(0);"  onclick="showComingSoonToast()"
+                        href="{{ $side == 'left' ? 'https://www.prarang.in/yp/india-nepal' : 'https://www.prarang.in/yp/india' }}"  target="_blank"
                         class="relative block overflow-hidden group">
 
                         <!-- IMAGE -->
@@ -801,7 +815,7 @@ $iconColors = [
                             <h2 class="text-[24px] lg:text-[28px] font-bold text-dark mb-1"
                                 style="font-family: 'DM Sans', sans-serif; line-height: 1.2;">
                                 @if ($side == 'left')
-                                Nepal Companies In India
+                                Nepali Companies In India
                                 @else
                                 Indian Companies In Nepal
                                 @endif
