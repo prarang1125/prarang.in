@@ -577,39 +577,39 @@ $iconColors = [
                             <td class="text-start">
                                 English
                                 <span style="cursor:pointer;"
-                                    onmouseover="showToolTip('en-cz', 'Czech Census 2021 – English Mother Tongue Population\n*Czech Multilingualism data unavailable')">
+                                    onmouseover="showToolTip('en-cz', 'Nepal Stastical Year Book 2023 – English Mother Tongue population\n*Nepal Multilingualism data unavailable')">
                                     <i class="fa fa-info-circle" style="color: {{ $iconColors['en-cz'] }};"></i>
                                 </span>
                             </td>
-                            <td class="text-start" style="text-align: end !important;">30,478</td>
-                            <td class="text-start" style="text-align: end !important;">{{ getSuperScript(40) }}</td>
+                            <td class="text-start" style="text-align: end !important;">1,323</td>
+                            <td class="text-start" style="text-align: end !important;">{{ getSuperScript(55) }}</td>
                         </tr>
                         <tr>
                             <td class="text-start">
-                                Czech
+                                Nepali
                                 <span style="cursor:pointer;"
-                                    onmouseover="showToolTip('cz-cz', 'Czech Census 2021 – Czech Mother Tongue Population \n*Czech Multilingualism data unavailable')">
+                                    onmouseover="showToolTip('cz-cz', 'Nepal Stastical Year Book 2023 – Nepali Mother Tongue population\n*Nepal Multilingualism data unavailable')">
                                     <i class="fa fa-info-circle" style="color: {{ $iconColors['cz-cz'] }};"></i>
                                 </span>
                             </td>
-                            <td class="text-start" style="text-align: end !important;">92,13,987</td>
+                            <td class="text-start" style="text-align: end !important;">1,30,84,457</td>
                             <td class="text-start" style="text-align: end !important;">{{ getSuperScript(1) }}</td>
                         </tr>
                         <tr>
                             <td class="text-start">
-                                Slovak
+                                Urdu
                                 <span style="cursor:pointer;"
-                                    onmouseover="showToolTip('sk-cz', 'Czech Census 2021 – Slovak Mother Tongue Population \n*Czech Multilingualism data unavailable')">
+                                    onmouseover="showToolTip('sk-cz', 'Nepal Stastical Year Book 2023 – Urdu Mother Tongue population\n*Nepal Multilingualism data unavailable')">
                                     <i class="fa fa-info-circle" style="color: {{ $iconColors['sk-cz'] }};"></i>
                                 </span>
                             </td>
-                            <td class="text-start" style="text-align: end !important;">2,25,246</td>
-                            <td class="text-start" style="text-align: end !important;">{{ getSuperScript(2) }}</td>
+                            <td class="text-start" style="text-align: end !important;">4,13,785</td>
+                            <td class="text-start" style="text-align: end !important;">{{ getSuperScript(4) }}</td>
                         </tr>
                         <tr>
                             <td colspan="3" class="text-center p-2">
 
-                                <a href="https://g2c.prarang.in/czech-republic-langs" target="_blank">
+                                <a href="https://g2c.prarang.in/nepal-langs" target="_blank">
                                     <p class="text-end text-muted small mb-0">See More</p>
                                 </a>
 
@@ -649,7 +649,7 @@ $iconColors = [
                         @if (strtolower($data->country_name) == 'india')
                         74.40%
                         @elseif (strtolower($data->country_name) == 'nepal')
-                        74.40%
+                        67.90%
                         @else
                         N/A
                         @endif

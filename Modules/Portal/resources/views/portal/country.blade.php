@@ -373,80 +373,197 @@
                             </div>
                         </div>
                     </div>
-                    <style>
+                     <style>
                         #wrapper footer .row .col p {
                             margin-bottom: 5px !important;
                         }
                     </style>
 
-                    <footer class="p-4 ps-4 pe-4"
-                        style="background-color: #FFB1A3; margin-top:200px;  background-image: url('{{ Storage::url($main->footer_image) }}');">
-                        <div class="row g-2">
-                            <div class="col-sm">
-                                <h4 class="text-center h4">About Prarang</h4>
-                                <p>Prarang provides integrated digital solutions and unique insights to understand the
-                                    cities of India and the World. Through our composite methodology of traditional
-                                    research from rare books, maps and images, a Big database of India and World
-                                    Metrics, our own SLM Model based on Indian Linguistics, we provide in depth city -
-                                    hyperlocal knowledge, comprehensive knowledge by comparison between cities of the
-                                    world, through our content, analytics, and semiotics solutions, for governance &
-                                    corporate communication, while being localisation ready for any language/script.
-                                </p>
-                            </div>
-                            <div class="text-center col-sm">
-                                <h4 class="text-center h4">Follow Us</h4>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <a href="javascript:void(0)" onclick="showComingSoon(event)" target="_blank">
-                                            <i class="p-2 shadow fa fa-facebook rounded-circle fa-2x"></i> <span
-                                                class="h4">Facebook</span>
-                                        </a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a href="javascript:void(0)" onclick="showComingSoon(event)" target="_blank">
-                                            <img width="30"
-                                                src="https://images.freeimages.com/image/grids/9fe/x-twitter-light-grey-logo-5694251.png"><span
-                                                class="h4">
-                                                Twitter</span>
-                                        </a>
-                                    </div>
+                    <footer class="portal-footer">
+                        <div class="container py-5">
+                            <div class="row g-4">
+                                {{-- About Section --}}
+                                <div class="col-lg-5 col-md-6 pe-lg-5">
+                                    <h5 class="footer-title text-center">About Prarang</h5>
+                                    <p class="footer-text text-start text-white-50" style="width: 100%; font-size: 12px;">
+                                        Prarang provides integrated digital solutions and unique insights to understand
+                                        the
+                                        cities of India and the World. Through our composite methodology of traditional
+                                        research from rare books, maps and images, a Big database of India and World
+                                        Metrics, our own SLM Model based on Indian Linguistics, we provide in depth city
+                                        -
+                                        hyperlocal knowledge, comprehensive knowledge by comparison between cities of
+                                        the
+                                        world, through our content, analytics, and semiotics solutions, for governance &
+                                        corporate communication, while being localisation ready for any language/script.
+                                    </p>
                                 </div>
-                                <div class="row">
-                                    <div class="col-6">
-                                        <a href=" https://www.instagram.com/prarang_in/?hl=en" target="_blank">
-                                            <i class="p-2 shadow fa fa-instagram rounded-circle fa-2x"></i> <span
-                                                class="h4">Instagram</span>
-                                        </a>
-                                    </div>
-                                    <div class="col-6">
-                                        <a href="https://www.linkedin.com/company/indeur-prarang/" target="_blank">
-                                            <i class="p-2 shadow fa fa-linkedin rounded-circle fa-2x"></i> <span
-                                                class="h4">
-                                                LinkedIn</span>
 
+                                {{-- Social Connect --}}
+                                <div class="col-lg-3 col-md-6 text-center">
+                                    <h5 class="footer-title">Connect With Us</h5>
+                                    <div class="social-grid justify-content-center mt-3">
+                                        <a href="https://www.facebook.com/IndiaCzech/" target="_blank"
+                                            class="social-btn" title="Facebook">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                        <a href="https://x.com/IndiaCzech" target="_blank" class="social-btn"
+                                            title="X (Twitter)">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                fill="currentColor" viewBox="0 0 16 16"
+                                                style="display: inline-block; vertical-align: middle;">
+                                                <path
+                                                    d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
+                                            </svg>
+                                        </a>
+                                        <a href="https://www.linkedin.com/company/india-czech" target="_blank"
+                                            class="social-btn" title="LinkedIn">
+                                            <i class="fa fa-linkedin"></i>
                                         </a>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-sm ps-3">
-                                <h4 class="text-center h4"><i class="tp tp-eye"></i> Address</h4>
-                                <p class="text-center">Office #25, 11th Floor, The I-Thum, A40,</p>
-                                <p class="text-center">Sector 62, Noida (U.P), India 201309</p>
-                                <p class="text-center">Phone: 0120-4561284</p>
-                                <p class="text-center">Mail: <a href="mailto:query@prarangin">Query@prarang.in</a>
-                                </p>
+
+                                {{-- Address Section --}}
+                                <div class="col-lg-4 col-md-12">
+                                    <h5 class="footer-title text-center text-md-center text-lg-start">Contact Us</h5>
+                                    <ul
+                                        class="list-unstyled footer-text text-white-50 text-start text-md-center text-lg-start" style="width: 100%">
+                                        <li class="mb-2">
+                                            <i class="fa fa-map-marker me-2 text-primary"></i>
+                                            Office #25, 11th Floor, The I-Thum, A40, Sector 62<br>
+                                            Noida (U.P), India 201309
+                                        </li>
+                                        <li class="mb-2">
+                                            <i class="fa fa-phone me-2 text-primary"></i>
+                                            +91-1204561284
+                                        </li>
+                                        <li>
+                                            <i class="fa fa-envelope me-2 text-primary"></i>
+                                            <a href="mailto:ask_me@prarang.in"
+                                                class="text-white-50 text-decoration-none hover-white">
+                                                ask_me@prarang.in
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                        <div class="p-4">
-                            <p>© - {{ date('Y') }} All content on this website, such as text, graphics, logos,
-                                button
-                                icons,
-                                software, images
-                                and its selection, arrangement, presentation & overall design, is the property of
-                                Indoeuropeans
-                                India Pvt. Ltd. and protected by international copyright laws.</p>
+
+                        {{-- Bottom Copyright --}}
+                        <div class="footer-bottom">
+                            <div class="container text-center">
+                                <p class="mb-0 text-white-50 small">
+                                    © 2017 - {{ date('Y') }} Indoeuropeans India Pvt. Ltd. | All
+                                    rights reserved.
+                                </p>
+                                <p class="mb-0 text-white-50 x-small mt-1 opacity-50">
+                                    Content protected by international copyright laws.
+                                </p>
+                            </div>
                         </div>
                     </footer>
+
+                    <style>
+                        .portal-footer {
+                            background-color: #1a1a1a;
+                            background-image: linear-gradient(rgba(26, 26, 26, 0.60), rgba(26, 26, 26, 0.75)),
+                                url('{{ Storage::url($main->footer_image) }}');
+                            background-size: cover;
+                            background-position: center;
+                            background-attachment: fixed;
+                            color: #ffffff;
+                            margin-top: 100px;
+                            position: relative;
+                            z-index: 10;
+                        }
+
+                        .footer-title {
+                            font-size: 1.1rem;
+                            font-weight: 700;
+                            margin-bottom: 0 !important;
+                            position: relative;
+                            padding-bottom: 0.75rem;
+                            color: #ffffff;
+                        }
+
+
+
+                        .col-md-6.text-center .footer-title::after,
+                        .text-md-center .footer-title::after {
+                            left: 50%;
+                            transform: translateX(-50%);
+                        }
+
+                       @media (min-width: 992px) {
+                            .text-lg-start .footer-title::after {
+                                left: 0;
+                                transform: none;
+                            }
+                        }
+
+                        .footer-text {
+                            font-size: 0.95rem;
+                            line-height: 1.6;
+                            margin-bottom: 0;
+                        }
+
+                        .social-grid {
+                            display: flex;
+                            gap: 1rem;
+                            flex-wrap: wrap;
+                        }
+
+                        .social-btn {
+                            width: 45px;
+                            height: 45px;
+                            border-radius: 12px;
+                            background: rgba(255, 255, 255, 0.05);
+                            color: #ffffff;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            text-decoration: none;
+                            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+                            border: 1px solid rgba(255, 255, 255, 0.1);
+                            font-size: 1.1rem;
+                        }
+
+                        .social-btn:hover {
+                            background: #2563eb;
+                            color: #ffffff;
+                            transform: translateY(-5px);
+                            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.25);
+                            border-color: #2563eb;
+                        }
+
+                        .footer-bottom {
+                            background: #000000;
+                            padding: 1.5rem 0;
+                            border-top: 1px solid rgba(255, 255, 255, 0.05);
+                        }
+
+                        .hover-white:hover {
+                            color: #ffffff !important;
+                        }
+
+                        .x-small {
+                            font-size: 0.75rem;
+                        }
+
+                        @media (min-width: 768px) {
+    #wrapper #core .core__inner #columns .portal-footer .container .row .pe-lg-5 p {
+        width: 100% !important;
+    }
+}
+
+.portal-footer .pe-lg-5 p {
+    font-size: 12px;
+}
+
+.portal-footer .pe-lg-5 p {
+    text-align: justify !important;
+}
+                    </style>
 
                 </div>
                 <script>

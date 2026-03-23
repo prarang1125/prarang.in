@@ -258,7 +258,7 @@
                                 class="form-select @error('country') is-invalid @enderror">
                                 <option value="">Select your country</option>
                                 <option value="india">India</option>
-                                <option value="czech">Czech Republic</option>
+                                <option value="nepal">Nepal</option>
                                 <option value="afghanistan">Afghanistan</option>
                                 <option value="albania">Albania</option>
                                 <option value="algeria">Algeria</option>
