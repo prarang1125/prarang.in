@@ -408,7 +408,7 @@
                                             class="social-btn" title="Facebook">
                                             <i class="fa fa-facebook"></i>
                                         </a>
-                                        <a href="javascript:void(0)" onclick="showComingSoon(event)" class="social-btn"
+                                        <a href="https://www.linkedin.com/company/india-nepal/" target="_blank" class="social-btn"
                                             title="X (Twitter)">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" viewBox="0 0 16 16"

@@ -42,7 +42,7 @@
                 <div class="modal-body ai-modal-body p-4">
                     <div class="accordion" id="indiaAccordion">
                         @foreach ($indiaData as $group)
-                        @include('components.portal.partials.accordion', [
+                        @include('components.portal.partials.country_accordian', [
                         'group' => $group,
                         'type' => 'india',
                         ])
@@ -72,7 +72,7 @@
                     </p>
                     <div class="accordion" id="worldAccordion">
                         @foreach ($worldData as $group)
-                        @include('components.portal.partials.accordion', [
+                        @include('components.portal.partials.country_accordian', [
                         'group' => $group,
                         'type' => 'world',
                         ])
