@@ -1155,7 +1155,7 @@
                         The Country Comparison Tool helps users create
                         knowledge through comparison. It enables
                         clear
-                        and structured comparisons between the Nepal and other countries, offering
+                        and structured comparisons between Nepal and other countries, offering
                         practical
                         insights into country-level metrics, relative
                         advantages, and differences across multiple
@@ -1217,7 +1217,7 @@
                             <div id="collapseOne" class="accordion-collapse collapse " aria-labelledby="headingOne"
                                 data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
-                                    The Tool enables users to compare the
+                                    The Tool enables users to compare
                                     Nepal with one to three
                                     countries
                                     out
@@ -1245,7 +1245,7 @@
                                     <ol>
                                         <li><strong>Select the
                                                 countries</strong> you wish
-                                            to compare with the Nepal. You may choose 1–3
+                                            to compare with Nepal. You may choose 1–3
                                             countries.</li>
                                         <li><strong>Select any
                                                 metric</strong> from our

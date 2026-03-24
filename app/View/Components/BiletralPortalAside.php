@@ -17,11 +17,11 @@ class BiletralPortalAside extends Component
     public $isNepalComparison;
     public $internateData;
     public $cirusData;
-    public function __construct($data, $side = 'left', $isNepalComparison = false)
+    public function __construct($data, $side = 'left', $isNepalComparison = null)
     {
         $this->data = $data;
         $this->side = $side;
-        $this->isNepalComparison = (bool) $isNepalComparison;
+        $this->isNepalComparison = $isNepalComparison;
         $this->cirusData = Cache::remember('biletral-portal-aside-covid-data--' . $this->data->anlytics_code, now()->addDays(24), function () {
             return $this->loadCirusData()[$this->data->anlytics_code][0];
         });

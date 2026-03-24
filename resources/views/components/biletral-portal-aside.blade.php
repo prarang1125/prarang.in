@@ -728,10 +728,12 @@ $iconColors = [
                     </h5>
 
                     @php
-                        $country = strtolower($data->country_name ?? '');
+                        $country1 = strtolower($data->country_name ?? '');
+                        $country2 = strtolower($isNepalComparison->country_name ?? '');
+                        // dd($country1, $country2, $side);
                     @endphp
 
-                    @if (($isNepalComparison ?? false) && $side == 'right')
+                    @if (($country1 == 'nepal' || $country2 == 'nepal') && $side == 'right')
                         <a href="https://www.indembkathmandu.gov.in/"
                         class="btn btn-primary w-100 fw-semibold"
                         target="_blank">
@@ -799,10 +801,32 @@ $iconColors = [
             </div>
             <div class="border shadow-lg p-0 mt-4 bg-white rounded-lg overflow-hidden">
                 <div class="">
+                        @php
+                            $isNepal = ($country1 == 'nepal' || $country2 == 'nepal');
+
+                            if ($isNepal) {
+                                if ($side == 'left') {
+                                    $yellowPagesLink = 'https://www.prarang.in/yp/india-nepal';
+                                    $yellowPagesText = 'Nepali Companies In India';
+                                } else {
+                                    $yellowPagesLink = 'https://www.prarang.in/yp/nepal';
+                                    $yellowPagesText = 'Indian Companies In Nepal';
+                                }
+                            } else {
+                                if ($side == 'left') {
+                                    $yellowPagesLink = 'https://www.prarang.in/yp/india';
+                                    $yellowPagesText = 'Czech Republic Companies In India';
+                                } else {
+                                    $yellowPagesLink = 'https://www.prarang.in/yp/czech-republic';
+                                    $yellowPagesText = 'Indian Companies In Czech Republic';
+                                }
+                            }
+                        @endphp
+
 
                         {{-- href="{{ $side == 'left' ? 'https://www.prarang.in/yp/india' : 'https://www.prarang.in/yp/czech-republic' }}" --}}
                         <a
-                        href="{{ $side == 'left' ? 'https://www.prarang.in/yp/india-nepal' : 'https://www.prarang.in/yp/nepal' }}"  target="_blank"
+                        href="{{ $yellowPagesLink }}"  target="_blank"
                         class="relative block overflow-hidden group">
 
                         <!-- IMAGE -->
@@ -814,11 +838,7 @@ $iconColors = [
                         <div class="absolute inset-0 flex flex-col items-center justify-center text-center z-10 p-3">
                             <h2 class="text-[24px] lg:text-[28px] font-bold text-dark mb-1"
                                 style="font-family: 'DM Sans', sans-serif; line-height: 1.2;">
-                                @if ($side == 'left')
-                                Nepali Companies In India
-                                @else
-                                Indian Companies In Nepal
-                                @endif
+                                {{ $yellowPagesText }}
                             </h2>
                             <h4 class="text-xs uppercase tracking-widest font-bold text-muted">
                                 Yellow Pages

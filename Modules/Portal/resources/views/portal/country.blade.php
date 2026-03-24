@@ -364,13 +364,12 @@
                                     class="columns__sidebar columns__sidebar--left lsvr-grid__col lsvr-grid__col--span-3 lsvr-grid__col--pull-6 left-section">
                                     <!-- LEFT SIDEBAR : begin -->
                                     <x-biletral-portal-aside :data="$primary" side="left"
-                                        :isNepalComparison="strtolower($primary->country_name ?? '') == 'nepal' || strtolower($secondary->country_name ?? '') == 'nepal'" />
+                                        :isNepalComparison="$secondary" />
                                     <!-- LEFT SIDEBAR : end -->
                                 </div>
                                 <div
                                     class="columns__sidebar columns__sidebar--right lsvr-grid__col lsvr-grid__col--span-3 right-section">
-                                    <x-biletral-portal-aside :data="$secondary" side="right"
-                                        :isNepalComparison="strtolower($primary->country_name ?? '') == 'nepal' || strtolower($secondary->country_name ?? '') == 'nepal'" />
+                                    <x-biletral-portal-aside :data="$secondary" side="right" :isNepalComparison="$primary" />
                                 </div>
                             </div>
                         </div>
