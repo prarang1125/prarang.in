@@ -377,7 +377,7 @@
 </div>
 
 @foreach ($zone as $key => $z)
-@include('components.portal.partials.accordion', [
+@include('components.portal.partials.country_accordian', [
 'group' => $key,
 'type' => 'country',
 'state' => $z,

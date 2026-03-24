@@ -273,7 +273,7 @@
                                             <div class="comparison-links-new px-3 pb-2">
                                                 <a class="comparison-btn" target="_blank"
                                                     href="{{ url('/nepal-country-comparison') }}">
-                                                    <strong>Country Comparison :&nbsp;</strong> <span>Compare Czech
+                                                    <strong>Country Comparison :&nbsp;</strong> <span>Compare Nepal
                                                         with
                                                         Other
                                                         Countries</span>
@@ -363,12 +363,13 @@
                                 <div
                                     class="columns__sidebar columns__sidebar--left lsvr-grid__col lsvr-grid__col--span-3 lsvr-grid__col--pull-6 left-section">
                                     <!-- LEFT SIDEBAR : begin -->
-                                    <x-biletral-portal-aside :data="$primary" side="left" />
+                                    <x-biletral-portal-aside :data="$primary" side="left"
+                                        :isNepalComparison="$secondary" />
                                     <!-- LEFT SIDEBAR : end -->
                                 </div>
                                 <div
                                     class="columns__sidebar columns__sidebar--right lsvr-grid__col lsvr-grid__col--span-3 right-section">
-                                    <x-biletral-portal-aside :data="$secondary" side="right" />
+                                    <x-biletral-portal-aside :data="$secondary" side="right" :isNepalComparison="$primary" />
                                 </div>
                             </div>
                         </div>
@@ -407,7 +408,7 @@
                                             class="social-btn" title="Facebook">
                                             <i class="fa fa-facebook"></i>
                                         </a>
-                                        <a href="javascript:void(0)" onclick="showComingSoon(event)" class="social-btn"
+                                        <a href="https://www.linkedin.com/company/india-nepal/" target="_blank" class="social-btn"
                                             title="X (Twitter)">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" viewBox="0 0 16 16"
