@@ -23,9 +23,9 @@
 <body>
     <header class="py-6">
         <div class="max-w-10xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-1 lg:gap-8 items-center">
                 <!-- Search Trigger -->
-                <div class="lg:col-span-3 flex items-center gap-4">
+                <div class="lg:col-span-3 flex items-center gap-4 order-3 lg:order-1">
                     @livewire('utility.village-town-filter', ['type' => 'village'])
 
                     <div x-data="{ open: false }" @click.away="open = false" class="inline-block">
@@ -85,7 +85,7 @@
                 </div>
 
                 <!-- Main Branding -->
-                <div class="lg:col-span-6 flex flex-col items-center">
+                <div class="lg:col-span-6 flex flex-col items-center order-1 lg:order-2">
                     <div class="flex items-center mb-4 group cursor-default">
                         <div>
                             <img class="h-14 w-14 " src="https://www.prarang.in/assets/images/home/Villages-1.png"
@@ -108,7 +108,7 @@
                 </div>
 
                 <!-- Village Stats -->
-                <div class="lg:col-span-3">
+                <div class="lg:col-span-3 order-2 lg:order-3">
                     <div class="bg-white rounded-2xl py-2 px-4 border border-gray-100/80 shadow-sm">
                         <div class="grid grid-cols-2  gap-x-6">
                             <div>
