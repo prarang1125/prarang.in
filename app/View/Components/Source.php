@@ -1,20 +1,19 @@
 <?php
 
-namespace App\View\Components\Layout\Pages;
+namespace App\View\Components;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class Village extends Component
+class Source extends Component
 {
     /**
      * Create a new component instance.
      */
-    public $data;
-    public function __construct($metaData, $data)
+    public function __construct()
     {
-        $this->data = $data;
+        //
     }
 
     /**
@@ -22,6 +21,6 @@ class Village extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.layout.pages.village', ['data' => $this->data]);
+        return view('components.source');
     }
 }

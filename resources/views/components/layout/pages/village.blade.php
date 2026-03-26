@@ -6,67 +6,135 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Villages | Prarang</title>
+    <meta name="title" content="{{ $data['village']['Name'] ?? 'Village' }}  | {{ $data['district']['district_name'] ?? "" }} | {{ $data['state']['state_name'] ?? "" }} ">
+    <meta name="description" content="{{ strip_tags($data['slm']['village']['s1'] ?? '' ) }}">
+    <meta name="keywords" content="{{ $data['village']['Name'] ?? '' }}, {{ $data['district']['district_name'] ?? '' }}, {{ $data['state']['state_name'] ?? '' }}, Village, Rural, India, Culture, Nature, Demographics, Economy, History">
+    <meta property="og:title" content="{{ $data['village']['Name'] ?? 'Village' }}  | {{ $data['district']['district_name'] ?? "" }} | {{ $data['state']['state_name'] ?? "" }} ">
+    <meta property="og:description" content="{{ strip_tags($data['slm']['village']['s1'] ?? '' ) }}">
+    <meta property="og:image" content="{{ asset('assets/images/rural_states/') ."/". $data['state']['state_LGD_code'] . '.jpg' }}">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="{{ url()->current() }}">
     <link href="https://unpkg.com/tailwindcss@^2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/villages-style.css') }}">
 </head>
 
 <body>
-    <header class="py-3 bg-white/50 backdrop-blur-sm  top-0 z-40 border-b border-green-50">
+    <header class="py-6">
         <div class="max-w-10xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
                 <!-- Search Trigger -->
-                <div class="lg:col-span-3">
-                    <div class="inline-block">
-                        <label class="block text-[10px] font-bold text-green-700 uppercase tracking-[0.2em] mb-1.5 ml-1">India Villages</label>
-                        <div onclick="document.getElementById('locationModal').classList.remove('hidden')"
-                            class="flex items-center gap-3 px-4 py-2.5 bg-white border border-green-100 rounded-2xl shadow-sm cursor-pointer hover:bg-green-50 hover:border-green-200 hover:shadow-md transition-all duration-300 group min-w-[180px]">
-                            <div class="bg-green-100 p-1.5 rounded-lg group-hover:bg-green-600 transition-colors duration-300">
-                                <svg class="w-3.5 h-3.5 text-green-700 group-hover:text-white transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                <div class="lg:col-span-3 flex items-center gap-4">
+                    @livewire('utility.village-town-filter', ['type' => 'village'])
+
+                    <div x-data="{ open: false }" @click.away="open = false" class="inline-block">
+                        <button @click="open = !open"
+                            class="flex items-center gap-3 p-1 px-2 bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-xl hover:border-gray-300 transition-all duration-500 min-w-[160px] group/ai">
+
+                            <div
+                                class="flex items-center justify-center w-8 h-8 bg-indigo-50 rounded-xl group-hover/ai:bg-indigo-100 transition-all duration-500">
+                                <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor"
+                                    viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.364-6.364l-.707-.707M6.364 18.364l-.707.707M18.364 18.364l-.707.707M12 21v-1m0-5a3 3 0 110-6 3 3 0 010 6z" />
                                 </svg>
                             </div>
-                            <span class="text-sm text-green-800/70 font-semibold">Change Village</span>
+
+                            <div class="flex flex-col items-start text-left">
+                                <span class="text-[9px] text-indigo-600 font-black tracking-widest uppercase">Upmana
+                                </span>
+                                <span
+                                    class="text-[14px] text-gray-900 font-bold flex items-center gap-1.5 leading-tight">
+                                    A.I.
+                                    <svg class="w-3 h-3 text-gray-400 group-hover/ai:text-indigo-500 transition-colors"
+                                        :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor"
+                                        viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                                            d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </span>
+                            </div>
+                        </button>
+
+                        <div x-show="open" x-transition:enter="transition ease-out duration-200"
+                            x-transition:enter-start="opacity-0 translate-y-2 scale-95"
+                            x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+                            x-transition:leave="transition ease-in duration-150"
+                            x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+                            x-transition:leave-end="opacity-0 translate-y-2 scale-95"
+                            class="absolute z-50 mt-2 w-48 bg-white border border-gray-100 rounded-2xl shadow-2xl p-2 hidden"
+                            :class="{ 'hidden': !open }">
+
+                            <a href="https://www.prarang.in/ai/upmana/hi" target="_blank"
+                                class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-indigo-50 text-gray-700 hover:text-indigo-600 transition-all group/opt">
+                                <span
+                                    class="text-xs font-black tracking-widest text-indigo-200 group-hover/opt:text-indigo-400">HI</span>
+                                <span class="text-[13px] font-bold">Hindi</span>
+                            </a>
+                            <a href="https://www.prarang.in/ai/upmana" target="_blank"
+                                class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-indigo-50 text-gray-700 hover:text-indigo-600 transition-all group/opt">
+                                <span
+                                    class="text-xs font-black tracking-widest text-indigo-200 group-hover/opt:text-indigo-400">EN</span>
+                                <span class="text-[13px] font-bold">English</span>
+                            </a>
                         </div>
                     </div>
+
+
                 </div>
 
                 <!-- Main Branding -->
                 <div class="lg:col-span-6 flex flex-col items-center">
-                    <div class="flex items-center mb-3">
-                        <div class="relative">
-                            <div class="absolute inset-0  blur-xl opacity-30 animate-pulse"></div>
-                            <img class="h-14 w-14 relative z-10 drop-shadow-sm" src="https://www.prarang.in/assets/images/home/Villages-1.png" alt="Prarang Logo">
+                    <div class="flex items-center mb-4 group cursor-default">
+                        <div>
+                            <img class="h-14 w-14 " src="https://www.prarang.in/assets/images/home/Villages-1.png"
+                                alt="Village Icon">
                         </div>
-                        <h1 class="text-3xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-green-900 to-green-700 ml-4 tracking-tight">Ramnagar Village</h1>
+                        <div>
+                            <h1
+                                class="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 ml-6 tracking-tight">
+                                {{ $data['village']['Name'] ?? '' }} Village
+                            </h1>
+                        </div>
                     </div>
-                    <div class="relative px-6 py-2.5 rounded-full bg-gradient-to-r from-green-50 to-white border border-green-100/50 shadow-sm overflow-hidden group">
-                        <div class="absolute inset-0 bg-white/40 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000"></div>
-                        <p class="text-center text-sm font-medium text-green-800 italic relative z-10">
-                            "Capital of Panchalas - Ancient India Metropolis, now a serene Village."
+                    <div class="px-6 py-1.5 rounded-full bg-gray-50 border border-gray-100">
+                        <p class="text-center text-lg font-medium text-gray-500 tracking-wide">
+                            @if($data['village']['Town_Village']==129823)
+                            Capital of Panchalas – Ancient Indian Metropolis but now a village
+                            @endif
                         </p>
                     </div>
                 </div>
 
                 <!-- Village Stats -->
                 <div class="lg:col-span-3">
-                    <div class="bg-white rounded-2xl p-4 border border-green-50 shadow-sm">
-                        <div class="grid grid-cols-2 gap-y-3 gap-x-4">
-                            <div class="space-y-0.5">
-                                <span class="text-[9px] font-semibold text-green-600/60  tracking-widest">District</span>
-                                <p class="text-xs font-bold text-gray-800">Bareilly</p>
+                    <div class="bg-white rounded-2xl py-2 px-4 border border-gray-100/80 shadow-sm">
+                        <div class="grid grid-cols-2  gap-x-6">
+                            <div>
+                                <p class="text-xs font-medium text-gray-500 mb-0.5">District</p>
+                                <p class="text-sm font-bold text-gray-800">
+                                    {{ $data['district']['district_name'] ?? '-' }}</p>
                             </div>
-                            <div class="space-y-0.5">
-                                <span class="text-[9px] font-semibold text-green-600/60  tracking-widest">State</span>
-                                <p class="text-xs font-bold text-gray-800">Uttar Pradesh</p>
+                            <div>
+                                <p class="text-xs font-medium text-gray-500 mb-0.5">State</p>
+                                <p class="text-sm font-bold text-gray-800">
+                                    {{ $data['state']['state_name'] }}</p>
                             </div>
-                            <div class="space-y-0.5 border-t border-green-500 pt-2">
-                                <span class="text-[9px] font-semibold text-green-600/60  tracking-widest">Pop. (2026)</span>
-                                <p class="text-xs font-extrabold text-green-700">12,450</p>
+                            <div class="pt-1 border-t border-gray-50">
+                                <p class="text-xs font-medium text-gray-500 mb-0.5">Pop. 2026 (Est.)
+                                    <x-source
+                                        source="Projected population based on district-level growth rates applied to the village population." />
+                                </p>
+                                <p class="text-sm font-bold text-indigo-600">
+                                    {{ number_format($data['pop']['pop_2026'], 0) ?? '-' }} </p>
                             </div>
-                            <div class="space-y-0.5 border-t border-green-500 pt-2">
-                                <span class="text-[9px] font-semibold text-green-600/60  tracking-widest">Pop. (2011)</span>
-                                <p class="text-xs font-bold text-gray-500 line-through decoration-red-300">9,820</p>
+                            <div class="pt-1 border-t border-gray-50">
+                                <p class="text-xs font-medium text-gray-500 mb-0.5">Pop. 2011
+                                    <x-source
+                                        source="Population as recorded in the Census of India 2011 – Primary Census Abstract." />
+                                </p>
+                                <p class="text-sm font-bold text-gray-800">
+                                    {{ number_format($data['pop']['pop_2011'], 0) ?? '-' }}</p>
                             </div>
                         </div>
                     </div>
@@ -78,70 +146,87 @@
         {{ $slot }}
     </main>
 
-    <!-- Location Search Modal -->
-    <div id="locationModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
-        <div class="absolute inset-0 bg-green-900/60 backdrop-blur-md"
-            onclick="document.getElementById('locationModal').classList.add('hidden')"></div>
-        <div
-            class="relative w-full max-w-lg bg-white rounded-[32px] shadow-2xl overflow-hidden animate-in fade-in zoom-in duration-300">
-            <div class="p-8">
-                <div class="flex justify-between items-center mb-8">
-                    <div>
-                        <h2 class="text-2xl font-bold text-green-900">Select Village</h2>
-                        {{-- <p class="text-sm text-green-600 font-medium">Find your village from India's database</p>
-                        --}}
-                    </div>
-                    <button onclick="document.getElementById('locationModal').classList.add('hidden')"
-                        class="p-2 hover:bg-green-50 rounded-full transition-colors text-green-600">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                d="M6 18L18 6M6 6l12 12" />
-                        </svg>
-                    </button>
+    {{-- footer --}}
+    <footer class="mt-32 px-6 py-12 text-gray-800"
+        style="background-color: #fff; background-image: url(''); background-size: cover; background-position: center;">
+        <div class="container mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
+
+                <div class="space-y-4">
+                    <h4 class="text-xl font-bold border-b-2 border-red-500 pb-2 inline-block md:block">
+                        प्रारंग के बारे में
+                    </h4>
+                    <p class="text-sm leading-relaxed opacity-90">
+                        प्रारंग प्रदान करता है, देश-विदेश के शहरों को समझने हेतु संपूर्ण जानकारी। जिसमें शामिल है
+                        स्थानीय
+                        भाषा में शहर की प्रकृति-संस्कृति के नॉलेज वेब, शहर की व्यवसाय सूची के येलो पेज, शहर के मेट्रिक्स
+                        या आंकड़ों का विस्तृत विश्लेषण, तथा AI द्वारा संचालित शहरवासियों से प्राप्त विशिष्ट सांकेतिकता।
+                    </p>
                 </div>
+
 
                 <div class="space-y-6">
-                    <div>
-                        <label class="block text-[11px] font-bold text-green-700 uppercase tracking-widest mb-2 ml-1">1.
-                            Select State</label>
-                        <select
-                            class="w-full px-5 py-4 bg-green-50 border-2 border-transparent focus:border-green-500 focus:bg-white rounded-2xl outline-none text-green-900 font-semibold transition-all appearance-none cursor-pointer">
-                            <option value="">Choose State</option>
-                            <option>Uttar Pradesh</option>
-                            <option>Bihar</option>
-                            <option>Madhya Pradesh</option>
-                        </select>
-                    </div>
+                    <h4 class="text-xl font-bold border-b-2 border-red-500 pb-2 inline-block md:block text-center">
+                        Follow Us
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-xs mx-auto md:mx-0">
+                        <a href="https://www.facebook.com/prarang.in" target="_blank"
+                            class="flex items-center justify-center md:justify-start gap-3 p-3 bg-white/20 hover:bg-white/40 rounded-xl transition-all group backdrop-blur-sm border border-white/30 no-underline text-gray-800">
+                            <i class="fa fa-facebook text-xl group-hover:scale-110 transition-transform"></i>
+                            <span class="font-bold text-sm">Facebook</span>
+                        </a>
 
-                    <div>
-                        <label class="block text-[11px] font-bold text-green-700 uppercase tracking-widest mb-2 ml-1">2.
-                            Select District</label>
-                        <select
-                            class="w-full px-5 py-4 bg-green-50 border-2 border-transparent focus:border-green-500 focus:bg-white rounded-2xl outline-none text-green-900 font-semibold transition-all appearance-none cursor-pointer">
-                            <option value="">Choose District</option>
-                            <option>Lucknow</option>
-                            <option>Varanasi</option>
-                            <option>Prayagraj</option>
-                        </select>
+                        <a href="https://www.instagram.com/prarang_in/?hl=en" target="_blank"
+                            class="flex items-center justify-center md:justify-start gap-3 p-3 bg-white/20 hover:bg-white/40 rounded-xl transition-all group backdrop-blur-sm border border-white/30 no-underline text-gray-800">
+                            <i class="fa fa-instagram text-xl group-hover:scale-110 transition-transform"></i>
+                            <span class="font-bold text-sm">Instagram</span>
+                        </a>
+                        <a href="https://www.linkedin.com/company/indeur-prarang/" target="_blank"
+                            class="flex items-center justify-center md:justify-start gap-3 p-3 bg-white/20 hover:bg-white/40 rounded-xl transition-all group backdrop-blur-sm border border-white/30 no-underline text-gray-800">
+                            <i class="fa fa-linkedin text-xl group-hover:scale-110 transition-transform"></i>
+                            <span class="font-bold text-sm">LinkedIn</span>
+                        </a>
                     </div>
+                </div>
 
-                    <div>
-                        <label class="block text-[11px] font-bold text-green-700 uppercase tracking-widest mb-2 ml-1">3.
-                            Select Village</label>
-                        <select
-                            class="w-full px-5 py-4 bg-green-50 border-2 border-transparent focus:border-green-500 focus:bg-white rounded-2xl outline-none text-green-900 font-semibold transition-all appearance-none cursor-pointer">
-                            <option value="">Choose Village</option>
-                            <option>Ramnagar</option>
-                            <option>Chandauli</option>
-                            <option>Sarnath</option>
-                            <option>Other Village</option>
-                        </select>
+
+                <div class="space-y-4">
+                    <h4 class="text-xl font-bold border-b-2 border-red-500 pb-2 inline-block md:block">
+                        <i class="fa fa-map-marker me-2"></i> पता
+                    </h4>
+                    <div class="space-y-2 text-sm opacity-90">
+                        <p class="flex items-start gap-2 justify-center md:justify-start">
+                            <span class="font-bold text-red-600">Office:</span>
+                            ऑफिस #25, 11th फ्लोर, दा आई-थम, A40,
+                        </p>
+                        <p class="flex items-start gap-2 justify-center md:justify-start">
+                            <span class="font-bold text-red-600">Sector:</span>
+                            सेक्टर 62, नॉएडा (U.P), इंडिया 201309
+                        </p>
+                        <p class="flex items-start gap-2 justify-center md:justify-start">
+                            <span class="font-bold text-red-600">Phone:</span>
+                            फ़ोन: 0120-4561284
+                        </p>
+                        <p class="flex items-start gap-2 justify-center md:justify-start">
+                            <span class="font-bold text-red-600">Email:</span>
+                            <a href="mailto:query@prarang.in"
+                                class="hover:text-red-700 underline decoration-red-400">query@prarang.in</a>
+                        </p>
                     </div>
-
                 </div>
             </div>
+
+
+            <div class="mt-12 pt-8 border-t border-black/10 text-center">
+                <p class="text-sm font-medium opacity-80">
+                    © - 2026 सभी सामग्री इस वेबसाइट पर, जैसे पाठ, ग्राफिक्स, लोगो, बटन आइकन, सॉफ्टवेयर, चित्र और इसका
+                    चयन,
+                    व्यवस्था, प्रस्तुति और समग्र डिजाइन, Indoeuropeans India Pvt. Ltd. की संपत्ति है और अंतर्राष्ट्रीय
+                    कॉपीराइट कानूनों द्वारा संरक्षित है।
+                </p>
+            </div>
         </div>
-    </div>
+    </footer>
 
 </body>
 
