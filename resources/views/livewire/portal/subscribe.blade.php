@@ -119,8 +119,8 @@
             display: flex;
             justify-content: center;
             gap: 15px;
-            margin-top: 20px;
-            padding-top: 15px;
+            margin-top: 3px;
+            padding-top: 9px;
             border-top: 1px solid #f1f5f9;
         }
 
@@ -425,8 +425,8 @@
                             </span>
                         </button>
 
-                        <div class="text-center mt-4">
-                            <p class="mb-2 text-secondary fw-semibold small">Follow us on</p>
+                        <div class="text-center mt-2" style="height: 0px !important;">
+                            <p class="mb-2 text-secondary fw-semibold large">Follow us on</p>
                         </div>
                         <div class="social-brand-grid">
                             <a href="javascript:void(0)" onclick="showComingSoon(event)"
@@ -441,8 +441,7 @@
                                         d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
                                 </svg>
                             </a>
-                            <a href="javascript:void(0)" onclick="showComingSoon(event)"
-                                class="social-brand-btn bg-linkedin" title="LinkedIn">
+                            <a href="https://www.linkedin.com/company/india-nepal/" target="_blank" class="social-brand-btn bg-linkedin" title="LinkedIn">
                                 <i class="fa fa-linkedin"></i>
                             </a>
                         </div>

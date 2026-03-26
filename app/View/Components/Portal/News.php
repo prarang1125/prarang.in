@@ -25,8 +25,6 @@ class News extends Component
             $this->error = "No feed URL provided";
             return;
         }
-        $url = trim($url, '"');
-    $url = stripslashes($url);
 
         try {
             // dd($url);
