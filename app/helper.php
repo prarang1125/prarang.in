@@ -123,3 +123,31 @@ if (!function_exists('is_assoc')) {
         return array_keys($array) !== range(0, count($array) - 1);
     }
 }
+
+
+if (! function_exists('getSuperScript')) {
+    function getSuperScript($number)
+    {
+        $lastDigit = $number % 10;
+        $lastTwoDigits = $number % 100;
+        if ($lastTwoDigits >= 11 && $lastTwoDigits <= 13) {
+            $ordinal = 'th';
+        } else {
+            switch ($lastDigit) {
+                case 1:
+                    $ordinal = 'st';
+                    break;
+                case 2:
+                    $ordinal = 'nd';
+                    break;
+                case 3:
+                    $ordinal = 'rd';
+                    break;
+                default:
+                    $ordinal = 'th';
+                    break;
+            }
+        }
+        echo number_format($number, 0, '.', ',') . '<sup>' . $ordinal . '</sup>';
+    }
+}

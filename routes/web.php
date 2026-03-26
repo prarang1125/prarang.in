@@ -13,6 +13,7 @@ use App\Http\Controllers\ShortnerUrl;
 use App\Livewire\Pages\ComparisonApi;
 use App\Livewire\Pages\CzeComparisonTool;
 use App\Livewire\Pages\CzeCountryComparison;
+use App\Livewire\Pages\NepalCountryComparison;
 use App\Livewire\Pages\UpmanaAi;
 use App\View\Components\Layout\Main\Base;
 use Illuminate\Support\Facades\Route;
@@ -95,6 +96,7 @@ Route::get('/cirus/{type?}', App\Livewire\Pages\Cirus::class)->name('cirus.dashb
 
 // Route::get('/czech-republic-regional-comparison', CzeComparisonTool::class);
 Route::get('/czech-republic-{type}-comparison', CzeCountryComparison::class);
+Route::get('/nepal-{type}-comparison', NepalCountryComparison::class);
 
 
 Route::get('/search-trends/{city_id}/{city_name}', [PostController::class, 'searchTrends'])->name('search-trends');

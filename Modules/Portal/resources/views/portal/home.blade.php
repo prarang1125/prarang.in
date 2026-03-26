@@ -297,7 +297,7 @@
                         </div>
                     </div>
                 </div>
-                <livewire:portal.internate-data :city_code="$portal->city_code" :city_id="$portal->city_id" :city_name="$portal->city_name_local" />
+                <livewire:portal.internate-data :city_code="$portal->city_code" :city_id="$portal->city_id" :city_name="$portal->city_name_local" :city_slug="$portal->slug" />
                 <div class="flex justify-center items-center p-2 w-full ">
                     {!! $portal->weather_widget_code !!}
                 </div>

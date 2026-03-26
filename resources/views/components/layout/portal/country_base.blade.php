@@ -32,6 +32,15 @@
         id="lsvr-townpress-google-fonts-css" media="all" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     {!! $portal->header_scripts ?? '' !!}
+
+
+    <style>
+        body {
+    color: #565656;
+    background-color: #f2f2f2 !important;
+    font-family: "DM Sans", sans-serif !important;
+}
+    </style>
 </head>
 
 <body

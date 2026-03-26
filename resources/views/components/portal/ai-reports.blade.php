@@ -1,23 +1,41 @@
 @props(['primary', 'secondary', 'cities', 'zone'])
 
-<section class="p-2 pt-1 shadow bg-light mt-3">
-    <h5 class="p-0 m-0 text-center">AI Reports</h5>
+<style>
+    @media (max-width: 480px) {
+    #main .pp {
+        margin-bottom: 5px;
+    }
+}
+</style>
+
+<section class="mt-3" style="padding: 0 30px 0 30px ">
+    <h5 class="p-0 m-0 text-center">Encyclopedia - AI Reports (Latest Data Updated)</h5>
     <div class="row">
-        <div class="col-sm-6">
-            <a href="#" class="btn btn-primary btn-sm w-100 fw-semibold" data-bs-toggle="modal"
+        <div class="col-sm-4 pp">
+            {{-- <a href="#" class="btn btn-primary btn-sm w-100 fw-semibold" data-bs-toggle="modal"
                 data-bs-target="#czechRegionsModal">
                 <i class="fa fa-robot me-1"></i>
-                {{ $primary->country_name ?? 'Country' }} AI Report
+                {{ $primary->country_name ?? 'Country' }}
+            </a> --}}
+             <a href="https://g2c.prarang.in/ai/nepal" class="btn btn-primary btn-sm w-100 fw-semibold" target="_blank">
+                <i class="fa fa-robot me-1"></i>
+                {{ $primary->country_name ?? 'Country' }}
             </a>
         </div>
-        <div class="col-sm-6">
+        <div class="col-sm-4 pp">
+            <x-portal.nep-ai-pages />
+        </div>
+
+        <div class="col-sm-4 pp">
             <a href="#" class="btn btn-primary btn-sm w-100 fw-semibold" data-bs-toggle="modal"
                 data-bs-target="#indiaRegionsModal">
                 <i class="fa fa-robot me-1"></i>
-                {{ $secondary->country_name ?? 'Country' }} AI Report
+                {{ $secondary->country_name ?? 'Country' }}
             </a>
         </div>
     </div>
+    {{-- <p class="text-end text-small pt-1" style="font-size: 11px;">Latest Data Updated :
+        {{ \Carbon\Carbon::now()->subMonth()->format('F Y') }}</p> --}}
 </section>
 
 <!-- Czech Regions Modal -->
@@ -359,54 +377,12 @@
 </div>
 
 @foreach ($zone as $key => $z)
-<div class="modal fade text-dark" id="{{ str_replace(' ', '', $key) }}ZoneModal" tabindex="-1"
-    aria-labelledby="{{ str_replace(' ', '', $key) }}ZoneModalLabel" aria-hidden="true" data-backdrop="static"
-    data-bs-keyboard="false">
-    <div class="modal-dialog modal-dialog-scrollable">
-        <div class="modal-content">
-            <div class="modal-header bg-primary text-white">
-                <h5 class="modal-title" id="{{ str_replace(' ', '', $key) }}ZoneModalLabel">{{ $key }}
-                    Zone</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
-                    aria-label="Close"></button>
-            </div>
-            <div class="modal-body text-start" style="min-height:75vh">
-                <div class="accordion" id="accordion{{ str_replace(' ', '', $key) }}">
-
-                    @foreach ($z as $states)
-                    <div class="accordion-item">
-                        <h2 class="accordion-header" id="heading{{ $states['state_code'] }}">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                data-bs-target="#collapse{{ $states['state_code'] }}" aria-expanded="false"
-                                aria-controls="collapse{{ $states['state_code'] }}">
-                                {{ $states['state_ut'] }}
-                            </button>
-                        </h2>
-                        <div id="collapse{{ $states['state_code'] }}" class="accordion-collapse collapse"
-                            data-bs-parent="#accordion{{ str_replace(' ', '', $key) }}"
-                            aria-labelledby="heading{{ $states['state_code'] }}">
-                            <div class="accordion-body">
-                                <div class="row">
-                                    @foreach ($cities[$states['state_code']] as $city)
-                                    <div class="col-6"><a target="_blank"
-                                            href="https://g2c.prarang.in/ai/{{ $city['city'] }}">{{ $city['city'] }}</a>
-                                    </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-
-
-                </div>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-        </div>
-    </div>
-</div>
+@include('components.portal.partials.country_accordian', [
+'group' => $key,
+'type' => 'country',
+'state' => $z,
+'cities' => $cities,
+])
 @endforeach
 
 <script>
