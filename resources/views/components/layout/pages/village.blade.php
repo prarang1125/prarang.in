@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>{{ $data['village']['Name'] ?? 'Village' }}  | {{ $data['district']['district_name'] ?? "" }} | {{ $data['state']['state_name'] ?? "" }} </title>
     <meta name="title" content="{{ $data['village']['Name'] ?? 'Village' }}  | {{ $data['district']['district_name'] ?? "" }} | {{ $data['state']['state_name'] ?? "" }} ">
     <meta name="description" content="{{ strip_tags($data['slm']['village']['s1'] ?? '' ) }}">
     <meta name="keywords" content="{{ $data['village']['Name'] ?? '' }}, {{ $data['district']['district_name'] ?? '' }}, {{ $data['state']['state_name'] ?? '' }}, Village, Rural, India, Culture, Nature, Demographics, Economy, History">

@@ -282,11 +282,11 @@ $metaData[]="";
             <div class="divide-y divide-gray-50">
                 @php
                 $trends = [
-                ['label' => 'Village Users (Est.)', 'source'=>"Estimated number of rural internet users in the village, derived from the village’s proportion relative to the state. (Source: Telecom Regulatory Authority of India)", 'value' =>
+                ['label' => 'Village Users (Est.)', 'source'=>"Estimated number of rural internet users in the village, derived from the village’s proportion relative to the state. (Source: Telecom Regulatory Authority of India, September 2025)", 'value' =>
               $village['internet_users']['village_int_users']],
-                ['label' => 'District Users (Est.)', 'source'=>"Estimated number of rural internet users in the district, calculated using the district’s share of the state total. (Source: Telecom Regulatory Authority of India)", 'value' =>
+                ['label' => 'District Users (Est.)', 'source'=>"Estimated number of rural internet users in the district, calculated using the district’s share of the state total. (Source: Telecom Regulatory Authority of India, September 2025)", 'value' =>
               $village['internet_users']['district_int_users']],
-                ['label' => 'State Users', 'source'=>"Total number of rural internet users in the state. (Source: Telecom Regulatory Authority of India)", 'value' => $village['internet_users']['state_int']]
+                ['label' => 'State Users', 'source'=>"Total number of rural internet users in the state. (Source: Telecom Regulatory Authority of India, September 2025)", 'value' => $village['internet_users']['state_int']]
                 ];
                 @endphp
                 @foreach($trends as $trend)
