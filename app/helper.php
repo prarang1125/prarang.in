@@ -151,3 +151,22 @@ if (! function_exists('getSuperScript')) {
         echo number_format($number, 0, '.', ',') . '<sup>' . $ordinal . '</sup>';
     }
 }
+
+
+if (!function_exists('url_encoder')) {
+    function url_encoder($data)
+    {
+        // 1. Standard base64 encode
+        // 2. Replace + and / with - and _ to make it URL-safe
+        // 3. Trim the = padding from the end
+        return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+    }
+}
+
+if (!function_exists('url_decoder')) {
+    function url_decoder($data)
+    {
+        // PHP's base64_decode handles missing padding (=) automatically
+        return base64_decode(strtr($data, '-_', '+/'));
+    }
+}

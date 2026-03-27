@@ -186,84 +186,83 @@
         .flex-wrap div .w-full .items-center>div {
             max-height: 18px;
         }
+
         /* Full */
-.flex-wrap div:nth-child(1) .w-full:nth-child(2){
- display:grid;
- grid-template-columns:70% 30%;
-}
+        .flex-wrap div:nth-child(1) .w-full:nth-child(2) {
+            display: grid;
+            grid-template-columns: 70% 30%;
+        }
 
-/* Full */
-.container .mx-auto .flex-wrap div:nth-child(1) .w-full:nth-child(2){
- grid-template-columns:70% 30% !important;
-}
+        /* Full */
+        .container .mx-auto .flex-wrap div:nth-child(1) .w-full:nth-child(2) {
+            grid-template-columns: 70% 30% !important;
+        }
 
-/* Hover */
-.flex-wrap a .hover\:shadow-xl{
- width:72px !important;
-}
+        /* Hover */
+        .flex-wrap a .hover\:shadow-xl {
+            width: 72px !important;
+        }
 
-/* Items center */
-.flex-wrap div .w-full > .items-center{
- transform:translatex(0px) translatey(0px);
-}
+        /* Items center */
+        .flex-wrap div .w-full>.items-center {
+            transform: translatex(0px) translatey(0px);
+        }
 
-/* Hover */
-.flex-wrap div:nth-child(1) .w-full .items-center a:nth-child(2) .hover\:shadow-lg{
- min-width:215px !important;
-}
+        /* Hover */
+        .flex-wrap div:nth-child(1) .w-full .items-center a:nth-child(2) .hover\:shadow-lg {
+            min-width: 215px !important;
+        }
 
-/* Hover */
-.flex-wrap a .hover\:shadow-lg{
- min-width:23px !important;
- transform:translatex(0px) translatey(0px);
-}
+        /* Hover */
+        .flex-wrap a .hover\:shadow-lg {
+            min-width: 23px !important;
+            transform: translatex(0px) translatey(0px);
+        }
 
-/* Hover */
-.flex-wrap a:nth-child(4) .hover\:shadow-lg{
- min-width:215px !important;
-}
+        /* Hover */
+        .flex-wrap a:nth-child(4) .hover\:shadow-lg {
+            min-width: 215px !important;
+        }
 
-/* Hover */
-.flex-wrap a:nth-child(6) .hover\:shadow-lg{
- min-width:215px !important;
-}
+        /* Hover */
+        .flex-wrap a:nth-child(6) .hover\:shadow-lg {
+            min-width: 215px !important;
+        }
 
-/* Image */
-.flex-wrap .items-center img{
- left:6px !important;
-}
+        /* Image */
+        .flex-wrap .items-center img {
+            left: 6px !important;
+        }
 
-/* Image */
-.container .mx-auto .flex-wrap div .w-full .items-center div img{
- right:auto !important;
-}
+        /* Image */
+        .container .mx-auto .flex-wrap div .w-full .items-center div img {
+            right: auto !important;
+        }
 
-/* Hover */
-.flex-wrap a .hover\:shadow-lg{
- padding-right:12px;
-}
-/* Division */
-.mx-auto .flex-wrap .lg\:flex{
- height:371px;
-}
+        /* Hover */
+        .flex-wrap a .hover\:shadow-lg {
+            padding-right: 12px;
+        }
 
-/* Italic Tag */
-.flex-wrap .lg\:flex i{
- top:3px !important;
-}
+        /* Division */
+        .mx-auto .flex-wrap .lg\:flex {
+            height: 371px;
+        }
 
-/* Italic Tag */
-.container .mx-auto .flex-wrap .lg\:flex i{
- bottom:auto !important;
-}
+        /* Italic Tag */
+        .flex-wrap .lg\:flex i {
+            top: 3px !important;
+        }
 
-/* Hover */
-.flex-wrap a .hover\:shadow-lg{
- margin-bottom:9px;
-}
+        /* Italic Tag */
+        .container .mx-auto .flex-wrap .lg\:flex i {
+            bottom: auto !important;
+        }
 
-
-
+        /* Hover */
+        .flex-wrap a .hover\:shadow-lg {
+            margin-bottom: 9px;
+        }
     </style>
     <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-10 ">
         <!-- Cards Section -->
@@ -297,7 +296,7 @@
                                 class="bg-blue-400 rounded-xl px-6 py-2.5 border border-blue-200 hover:from-blue-500 hover:to-blue-600 hover:border-blue-500 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
                                 <div class="flex items-center justify-center gap-2">
                                     <span class="text-base font-black text-white hover:text-white transition-colors">
-                                         India : Capitals - 785</span>
+                                        India : Capitals - 785</span>
 
                                 </div>
                             </div>
@@ -310,7 +309,7 @@
                                 class="bg-blue-400 rounded-xl px-6 py-2.5 border border-blue-200 hover:from-blue-500 hover:to-blue-600 hover:border-blue-500 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
                                 <div class="flex items-center justify-center gap-2">
                                     <span class="text-base font-black text-white hover:text-white transition-colors">
-                                         India : Urban - 7933 </span>
+                                        India : Urban - 7933 </span>
 
                                 </div>
                             </div>
@@ -323,7 +322,7 @@
                                 class="bg-blue-400 rounded-xl px-6 py-2.5 border border-blue-200 hover:from-blue-500 hover:to-blue-600 hover:border-blue-500 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
                                 <div class="flex items-center justify-center gap-2">
                                     <span class="text-base font-black text-white hover:text-white transition-colors">
-                                         India : Rural - 693042 </span>
+                                        India : Rural - 693042 </span>
 
                                 </div>
                             </div>
@@ -346,15 +345,38 @@
                         <div>
                             <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
                         </div>
-                        {{-- <a target="_blank" href="/village/9-130-786-129823/ram-nagar" class="no-underline">
+                        <style>
+                            .flex-wrap a:nth-child(4) .hover\:shadow-xl {
+                                margin-top: 47px;
+                            }
+
+                            /* Hover */
+                            .flex-wrap a .hover\:shadow-xl {
+                                font-size: 14px;
+                            }
+
+                            /* Text base */
+                            .flex-wrap .hover\:shadow-xl .text-base {
+                                font-size: 14px;
+                                position: relative;
+                                left: -13px;
+                            }
+
+                            /* Text base */
+                            .flex-wrap a:nth-child(2) .hover\:shadow-xl .text-base {
+                                display: inline-block;
+                                width: 47px;
+                            }
+                        </style>
+                        <a target="_blank" href="/filter/village" class="no-underline">
                             <div
                                 class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl px-6 py-2.5 border border-blue-600 hover:from-blue-600 hover:to-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 min-w-[120px] text-center">
-                                <span class="text-base font-black text-white">1</span>
+                                <span class="text-base font-black text-white">681880</span>
                             </div>
                         </a>
                         <div>
                             <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
-                        </div> --}}
+                        </div>
                         {{-- <a href="{{ route('home.india-city-webs') }}" class="no-underline">
                             <div
                                 class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl px-6 py-2.5 border border-blue-600 hover:from-blue-600 hover:to-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 min-w-[120px] text-center">
@@ -488,7 +510,7 @@
                                     class="bg-gradient-to-br from-rose-400 to-rose-500 rounded-xl px-6 py-2.5 border border-rose-500 hover:from-rose-500 hover:to-rose-600 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
                                     <span
                                         class="text-base font-black text-white hover:text-rose-50 transition-colors">India-Czech
-                                        </span>
+                                    </span>
                                 </div>
                             </a>
                             <a href="https://prarang.in/india-nepal" target="_blank" class="no-underline">
@@ -499,11 +521,13 @@
                                 </div>
                             </a>
 
-                            {{-- <a href="javascript:void(0)" onclick="setTimeout(() => {document.getElementById('nepal-click').innerHTML='Coming Soon'}, 1000)"  class="no-underline">
+                            {{-- <a href="javascript:void(0)"
+                                onclick="setTimeout(() => {document.getElementById('nepal-click').innerHTML='Coming Soon'}, 1000)"
+                                class="no-underline">
                                 <div
                                     class="bg-gradient-to-br from-rose-400 to-rose-500 rounded-xl px-6 py-2.5 border border-rose-500 hover:from-rose-500 hover:to-rose-600 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
-                                    <span
-                                        class="text-base font-black text-white hover:text-rose-50 transition-colors" id="nepal-click">Nepal-Czech</span>
+                                    <span class="text-base font-black text-white hover:text-rose-50 transition-colors"
+                                        id="nepal-click">Nepal-Czech</span>
                                 </div>
                             </a> --}}
                             <span

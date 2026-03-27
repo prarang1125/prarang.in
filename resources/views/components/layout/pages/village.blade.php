@@ -6,13 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $data['village']['Name'] ?? 'Village' }}  | {{ $data['district']['district_name'] ?? "" }} | {{ $data['state']['state_name'] ?? "" }} </title>
-    <meta name="title" content="{{ $data['village']['Name'] ?? 'Village' }}  | {{ $data['district']['district_name'] ?? "" }} | {{ $data['state']['state_name'] ?? "" }} ">
+    <title>{{  $data['name'] ?? 'Village' }} | {{ $data['district']['district_name'] ?? "-" }} | {{
+        $data['state']['state_name'] ?? "-" }} </title>
+    <meta name="title"
+        content="{{  $data['name'] ?? 'Village' }}  | {{ $data['district']['district_name'] ?? "-" }} | {{ $data['state']['state_name'] ?? "-" }} ">
     <meta name="description" content="{{ strip_tags($data['slm']['village']['s1'] ?? '' ) }}">
-    <meta name="keywords" content="{{ $data['village']['Name'] ?? '' }}, {{ $data['district']['district_name'] ?? '' }}, {{ $data['state']['state_name'] ?? '' }}, Village, Rural, India, Culture, Nature, Demographics, Economy, History">
-    <meta property="og:title" content="{{ $data['village']['Name'] ?? 'Village' }}  | {{ $data['district']['district_name'] ?? "" }} | {{ $data['state']['state_name'] ?? "" }} ">
+    <meta name="keywords"
+        content="{{  $data['name'] ?? '' }}, {{ $data['district']['district_name'] ?? '' }}, {{ $data['state']['state_name'] ?? '' }}, Village, Rural, India, Culture, Nature, Demographics, Economy, History">
+    <meta property="og:title"
+        content="{{  $data['name'] ?? 'Village' }}  | {{ $data['district']['district_name'] ?? "-" }} | {{ $data['state']['state_name'] ?? "-" }} ">
     <meta property="og:description" content="{{ strip_tags($data['slm']['village']['s1'] ?? '' ) }}">
-    <meta property="og:image" content="{{ asset('assets/images/rural_states/') ."/". $data['state']['state_LGD_code'] . '.jpg' }}">
+    <meta property="og:image" content="{{ asset('assets/images/rural_states/' . ($data['state']['state_LGD_code'] ?? 'default') . '.jpg') }}">
     <meta property="og:type" content="article">
     <meta property="og:url" content="{{ url()->current() }}">
     <link href="https://unpkg.com/tailwindcss@^2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -94,13 +98,13 @@
                         <div>
                             <h1
                                 class="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 ml-6 tracking-tight">
-                                {{ $data['village']['Name'] ?? '' }} Village
+                                {{  $data['name'] ?? '-' }} Village
                             </h1>
                         </div>
                     </div>
                     <div class="px-6 py-1.5 rounded-full bg-gray-50 border border-gray-100">
                         <p class="text-center text-lg font-medium text-gray-500 tracking-wide">
-                            @if($data['village']['Town_Village']==129823)
+                            @if(($data['village']['Town_Village'] ?? null) == 129823)
                             Capital of Panchalas – Ancient Indian Metropolis but now a village
                             @endif
                         </p>
@@ -119,7 +123,7 @@
                             <div>
                                 <p class="text-xs font-medium text-gray-500 mb-0.5">State</p>
                                 <p class="text-sm font-bold text-gray-800">
-                                    {{ $data['state']['state_name'] }}</p>
+                                    {{ $data['state']['state_name'] ?? '-' }}</p>
                             </div>
                             <div class="pt-1 border-t border-gray-50">
                                 <p class="text-xs font-medium text-gray-500 mb-0.5">Pop. 2026 (Est.)
@@ -127,7 +131,7 @@
                                         source="Projected population based on district-level growth rates applied to the village population." />
                                 </p>
                                 <p class="text-sm font-bold text-indigo-600">
-                                    {{ number_format($data['pop']['pop_2026'], 0) ?? '-' }} </p>
+                                    {{ isset($data['pop']['pop_2026']) ? number_format($data['pop']['pop_2026'], 0) : '-' }} </p>
                             </div>
                             <div class="pt-1 border-t border-gray-50">
                                 <p class="text-xs font-medium text-gray-500 mb-0.5">Pop. 2011
@@ -135,7 +139,7 @@
                                         source="Population as recorded in the Census of India 2011 – Primary Census Abstract." />
                                 </p>
                                 <p class="text-sm font-bold text-gray-800">
-                                    {{ number_format($data['pop']['pop_2011'], 0) ?? '-' }}</p>
+                                    {{ isset($data['pop']['pop_2011']) ? number_format($data['pop']['pop_2011'], 0) : '-' }}</p>
                             </div>
                         </div>
                     </div>

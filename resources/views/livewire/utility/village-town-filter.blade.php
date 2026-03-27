@@ -483,7 +483,7 @@
                 <!-- Confirm Button Area -->
                 <div
                     class="mt-8 relative z-10 transition-all duration-300 {{ ($type === 'town' ? $town : $village) ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none' }}">
-                    <a href="/village/{{$state}}-{{$district}}{{ $subDistrict ? '-'.$subDistrict : '' }}-{{$village ?? $town}}/{{ $this->selectedSlug }}"
+                    <a href="/village/{{url_encoder($state."-".$district."-".$village ?? $town)}}/{{ $this->selectedSlug }}"
                         class="relative group/btn block w-full py-4 bg-gray-900 border-none rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-blue-100 active:scale-[0.98] text-center">
                         <div
                             class="absolute inset-0 bg-blue-600 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300">

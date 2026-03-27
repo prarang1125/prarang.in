@@ -10,7 +10,9 @@ class TownVillage extends Controller
     //TO Display the Selection Of State + Villages + Towns
     public function villages($id, $slug)
     {
-        $parts = explode('-', $id);
+
+
+        $parts = explode('-', url_decoder($id));
         if (count($parts) === 4) {
             list($state, $districts, $subDistrict, $village) = $parts;
         } else {
@@ -25,7 +27,7 @@ class TownVillage extends Controller
             'village_id' => $village
         ])['data'];
 
-
+        $village['name'] = $village['village']['Name'] ?? $village['gram_panchayat']['village_name_en'] ?? '-';
 
         return view('culturenature.townvillages.index', compact('village'));
     }
