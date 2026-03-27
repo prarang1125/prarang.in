@@ -263,6 +263,27 @@
         .flex-wrap a .hover\:shadow-lg {
             margin-bottom: 9px;
         }
+
+        /* Hover */
+        .flex-wrap a:nth-child(5) .hover\:shadow-xl {
+            position: relative;
+            top: 46px;
+        }
+
+        /* Image */
+        .flex-wrap .items-center img {
+            top: -25px;
+        }
+
+        /* Image */
+        .container .mx-auto .flex-wrap div .w-full .items-center div img {
+            bottom: auto !important;
+        }
+
+        /* Image */
+        .flex-wrap div:nth-child(6) img {
+            top: 25px;
+        }
     </style>
     <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-10 ">
         <!-- Cards Section -->
