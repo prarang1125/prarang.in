@@ -393,8 +393,8 @@
 
                         <div
                             class="w-full sm:w-auto transition-all duration-500 {{ ($type === 'town' ? $town : $village) ? 'opacity-100 scale-100' : 'opacity-40 grayscale pointer-events-none' }}">
-                            <a target="_blank" href="/village/{{url_encoder($state." -".$district."-".$village ??
-                                $town)}}/{{ $this->selectedSlug }}"
+                            <a target="_blank" href="https://prarang.in/village/{{url_encoder($state."
+                                -".$district."-".$village ?? $town)}}/{{ $this->selectedSlug }}"
                                 class="inline-flex items-center justify-center w-full sm:w-auto px-10 py-4 bg-blue-600
                                 text-white font-black text-sm tracking-[0.1em] uppercase rounded-2xl shadow-xl
                                 shadow-blue-200 hover:bg-blue-700 hover:shadow-blue-300 hover:-translate-y-1
