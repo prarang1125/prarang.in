@@ -411,7 +411,7 @@
                 <div class="p-8 md:p-12  border-t border-slate-100 mt-3">
                     <h3 class="text-xl font-black text-slate-800 mb-8 tracking-tight flex items-center gap-3">
                         <span class=""></span>
-                        Examples for Villages
+                        Example
                     </h3>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6  ">

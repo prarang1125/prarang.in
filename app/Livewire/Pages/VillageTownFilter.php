@@ -237,10 +237,12 @@ class VillageTownFilter extends Component
 
     public function render()
     {
-        $metaData = [
-            'nav-heading' => 'India Village',
-            'nav-sub-heading' => ' '
-        ];
+        $metaData['nav-heading'] = view('components.nav-heading', [
+            'text' => 'India Villages',
+            'leftImg' => "https://www.prarang.in/assets/images/home/Villages-1.png",
+            'rightImg' => "https://www.prarang.in/assets/images/home/Villages-1.png",
+        ]);
+        $metaData['nav-sub-heading'] = '';
         return view('livewire.pages.village-town-filter')->layout('components.layout.main.base', compact('metaData'));;
     }
 }
