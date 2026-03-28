@@ -43,6 +43,27 @@
             justify-content: flex-end;
         }
     </style>
+    <style>
+        /* Hover */
+.container .min-h-screen .shadow-lg .md\:p-12 div .border-t .grid .hover\:shadow-xl{
+ width:40% !important;
+}
+
+/* Hover */
+.shadow-lg div .hover\:shadow-xl{
+ padding-left:15px;
+ height:158px;
+ background-color:#f0efef !important;
+ box-shadow:0px 0px 10px 3px #dfe1e1;
+}
+
+/* Tracking tight */
+.shadow-lg div h3.tracking-tight{
+ margin-bottom:14px;
+}
+
+
+    </style>
     <div class="rounded shadow-lg">
 
         <!-- Main Filter Card -->
@@ -239,7 +260,7 @@
                                 </div>
                             </span>
                             <label class="text-sm font-bold text-slate-500 uppercase tracking-widest">Select
-                                Tehsil {{ count($subDistricts)!==0 ? "#".count($subDistricts) : ' ' }}</label>
+                                Block {{ count($subDistricts)!==0 ? "#".count($subDistricts) : ' ' }}</label>
                         </div>
 
                         <div class="relative">
@@ -251,7 +272,7 @@
                                     @php
                                     $sSubDistrict = collect($subDistricts)->where('id', $subDistrict)->first();
                                     echo $sSubDistrict ? (is_array($sSubDistrict) ? ($sSubDistrict['name'] ??
-                                    'Selected') : ($sSubDistrict->name ?? 'Selected')) : 'Choose a tehsil...';
+                                    'Selected') : ($sSubDistrict->name ?? 'Selected')) : 'Choose a block...';
                                     @endphp
                                 </span>
                                 <svg class="w-5 h-5 text-slate-400 group-hover:text-blue-500 transition-transform duration-300"
@@ -408,35 +429,59 @@
                         </div>
                     </div>
                 </div>
-                <div class="p-8 md:p-12  border-t border-slate-100 mt-3">
-                    <h3 class="text-xl font-black text-slate-800 mb-8 tracking-tight flex items-center gap-3">
-                        <span class=""></span>
-                        Example
-                    </h3>
+              <div class="p-8 md:p-12 border-t border-slate-100 mt-3">
+    <h3 class="text-xl font-black text-slate-800 mb-8 tracking-tight">
+        Example:-
+    </h3>
 
-                    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6  ">
-                        <!-- Example Card: Ram Nagar -->
-                        <div
-                            class="rounded-2xl bg-gray-200 p-8 border-2 border-transparent hover:border-blue-200 hover:bg-white transition-all duration-500 shadow-sm hover:shadow-2xl hover:shadow-blue-100/50 hover:-translate-y-2">
+    <div class="grid grid-cols-1 gap-6">
 
-                            <h4 class="text-2xl font-black text-slate-900 mb-2 tracking-tight">Ram Nagar</h4>
-                            <small>Bareilly, Uttar Pradesh </small>
+        <!-- Horizontal Card -->
+        <div class="group flex flex-col sm:flex-row items-center bg-white border border-slate-200
+                    rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500
+                    hover:-translate-y-1">
 
+            <!-- Image -->
+            <div class="w-full sm:w-1/3 overflow-hidden">
+                <img src="https://www.prarang.in/assets/images/home/Villages-1.png"
+                     alt="Ram Nagar"
+                     class="w-full h-52 sm:h-full object-cover group-hover:scale-105 transition duration-500">
+            </div>
 
-                            <div class="flex items-center justify-center mt-3">
-                                <a href="https://prarang.in/village/OSAtMTMwLTEyOTgyMw/ram-nagar" target="_blank"
-                                    class="inline-flex items-center gap-2.5 px-7 py-3 bg-white text-blue-600 font-bold text-sm rounded-2xl border border-blue-100 hover:bg-blue-600 hover:text-blue-700 hover:border-blue-600 transition-all duration-500 group/btn shadow-sm hover:shadow-lg hover:shadow-blue-200">
-                                    View
-                                    <svg class="w-5 h-5 group-hover/btn:translate-x-1 transition-transform duration-300"
-                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
-                                            d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                    </svg>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+            <!-- Content -->
+            <div class="w-full sm:w-2/3 p-6 flex flex-col justify-between">
+
+                <!-- Text -->
+                <div>
+                    <h4 class="text-2xl font-black text-slate-900 mb-2 tracking-tight group-hover:text-blue-600 transition">
+                        Ram Nagar
+                    </h4>
+
+                    <p class="text-slate-500 text-sm">
+                        Bareilly, Uttar Pradesh
+                    </p>
                 </div>
+
+                <!-- Button -->
+                <div class="mt-4">
+                    <a href="https://prarang.in/village/OSAtMTMwLTEyOTgyMw/ram-nagar"
+                       target="_blank"
+                       class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white
+                              font-semibold text-sm rounded-xl hover:bg-blue-700 transition">
+                        View
+                        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1"
+                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                        </svg>
+                    </a>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</div>
             </div>
         </div>
 

@@ -347,7 +347,7 @@
                         <div class="flex-grow" x-data="{ open: false, search: '' }">
                             <label
                                 class="block text-[10px] font-black text-[#56569d] mb-1.5 ml-0.5 tracking-wide uppercase">Select
-                                Sub-District (Tehsil)</label>
+                                Block</label>
                             <div class="relative">
                                 <button type="button" @click="if ({{ !$district ? 'false' : 'true' }}) open = !open"
                                     {{ !$district ? 'disabled' : '' }}
@@ -357,7 +357,7 @@
                                         $sSubDistrict = collect($subDistricts)->where('id', $subDistrict)->first();
                                         $subDistrictTitle = $sSubDistrict ? (is_array($sSubDistrict) ?
                                         ($sSubDistrict['name'] ?? 'Selected') : ($sSubDistrict->name ?? 'Selected')) :
-                                        'Select Sub-District (Tehsil)';
+                                        'Select Block...';
                                         @endphp
                                         {{ $subDistrictTitle }}
                                     </span>

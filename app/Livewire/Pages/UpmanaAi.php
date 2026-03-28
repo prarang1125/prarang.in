@@ -152,14 +152,18 @@ class UpmanaAi extends Component
             ->all();
 
         $topic = array_diff($this->activeMainChecks, $topic);
-        $newOutput = httpGet('/upamana/transformer', [
-            'ids' => $this->geography()['city'],
-            'fields' => $fields,
-            'prompt' => $this->prompt,
-            'topic' => $topic,
-            'locale' => app()->getLocale()
-        ])['data'];
-        // dd($newOutput);
+        try {
+            $newOutput = httpGet('/upamana/transformer', [
+                'ids' => $this->geography()['city'],
+                'fields' => $fields,
+                'prompt' => $this->prompt,
+                'topic' => $topic,
+                'locale' => app()->getLocale()
+            ])['data'];
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
+
         if ($newOutput == 400) {
             $this->messages['warning'][] = 'Please choose/Compare a different location or field.';
             return;
