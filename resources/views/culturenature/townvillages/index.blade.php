@@ -247,18 +247,24 @@ $metaData[] = '';
                 <img src="{{ asset('assets/images/rural_states/' . ($village['state']['state_LGD_code'] ?? 'default')) }}.jpg"
                     alt="Village Banner" class="w-full h-[400px] object-cover">
             </div>
-            @if (!$village['village_type']=='type_a')
-            <div class="bg-blue-100 font-[14px]  text-black px-4 py-3 rounded" role="alert"
+
+
+                @if ($village['village_type'] == 'type_b')
+                   <div class="bg-blue-100 font-[14px]  text-black px-4 py-3 rounded" role="alert"
                 style="font-size: 14px !important">
                 <span class="sr-only font-[14px]">Info</span>
-                @if ($village['village_type'] == 'type_b')
                 This is one of the 43331 unpopulated villages of India in 2011 Census.
+                 </div>
                 @elseif($village['village_type'] == 'type_c')
+                       <div class="bg-blue-100 font-[14px]  text-black px-4 py-3 rounded" role="alert"
+                style="font-size: 14px !important">
+                <span class="sr-only font-[14px]">Info</span>
                 New Village recognized by panchyat after 2011 Census. There are 40921 new villages in India in Janaury
                 2026.
+                       </div>
                 @endif
-            </div>
-            @endif
+
+            {{-- @endif --}}
             @if ($village['village_type']=='type_a')
             <!-- Village Description -->
             <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm transition-all hover:shadow-md">

@@ -393,8 +393,7 @@
 
                         <div
                             class="w-full sm:w-auto transition-all duration-500 {{ ($type === 'town' ? $town : $village) ? 'opacity-100 scale-100' : 'opacity-40 grayscale pointer-events-none' }}">
-                            <a target="_blank" href="https://prarang.in/village/{{url_encoder($state."
-                                -".$district."-".$village ?? $town)}}/{{ $this->selectedSlug }}"
+                            <a target="_blank" href="https://prarang.in/village/{{url_encoder($state."-".$district."-".$village ?? $town)}}/{{ $this->selectedSlug }}"
                                 class="inline-flex items-center justify-center w-full sm:w-auto px-10 py-4 bg-blue-600
                                 text-white font-black text-sm tracking-[0.1em] uppercase rounded-2xl shadow-xl
                                 shadow-blue-200 hover:bg-blue-700 hover:shadow-blue-300 hover:-translate-y-1
@@ -425,7 +424,7 @@
 
 
                             <div class="flex items-center justify-center mt-3">
-                                <a href="village/OSAtMTMwLTEyOTgyMw/ram-nagar" target="_blank"
+                                <a href="https://prarang.in/village/OSAtMTMwLTEyOTgyMw/ram-nagar" target="_blank"
                                     class="inline-flex items-center gap-2.5 px-7 py-3 bg-white text-blue-600 font-bold text-sm rounded-2xl border border-blue-100 hover:bg-blue-600 hover:text-blue-700 hover:border-blue-600 transition-all duration-500 group/btn shadow-sm hover:shadow-lg hover:shadow-blue-200">
                                     View
                                     <svg class="w-5 h-5 group-hover/btn:translate-x-1 transition-transform duration-300"
