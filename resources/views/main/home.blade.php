@@ -392,7 +392,7 @@
                         <a target="_blank" href="/filter/village" class="no-underline">
                             <div
                                 class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl px-6 py-2.5 border border-blue-600 hover:from-blue-600 hover:to-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 min-w-[120px] text-center">
-                                <span class="text-base font-black text-white">681880</span>
+                                <span class="text-base font-black text-white">636185</span>
                             </div>
                         </a>
                         <div>

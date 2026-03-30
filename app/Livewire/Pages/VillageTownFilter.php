@@ -47,7 +47,7 @@ class VillageTownFilter extends Component
 
     public function updatedType()
     {
-        $this->reset(['state', 'district', 'village', 'town', 'districts', 'villages', 'towns']);
+        $this->reset(['state', 'district', 'subDistrict', 'village', 'town', 'districts', 'subDistricts', 'villages', 'towns']);
         $this->loadStates();
     }
 
@@ -82,9 +82,14 @@ class VillageTownFilter extends Component
             $this->subDistrict = null;
             $this->village = null;
             $this->town = null;
-            $this->loadSubDistricts();
             $this->villages = [];
             $this->towns = [];
+
+            if ($this->type === 'town') {
+                $this->loadVillagesAndTowns();
+            } else {
+                $this->loadSubDistricts();
+            }
         } else {
             $this->reset(['subDistrict', 'village', 'town', 'subDistricts', 'villages', 'towns']);
         }
@@ -206,12 +211,18 @@ class VillageTownFilter extends Component
             return;
         }
 
+        if ($this->type === 'village' && !$this->subDistrict) {
+            $this->villages = [];
+            $this->towns = [];
+            return;
+        }
+
         try {
             $data = $this->getCachedFilterData([
                 'type' => $this->type,
                 'state_id' => $this->state,
                 'district_id' => $this->district,
-                'sub_district_id' => $this->subDistrict,
+                'sub_district_id' => $this->type === 'village' ? $this->subDistrict : null,
             ]);
 
             $villagesData = $data['villages'] ?? [];
@@ -255,7 +266,7 @@ class VillageTownFilter extends Component
         }
 
         if ($selected) {
-            $name = is_array($selected) ? ($selected['name'] ?? 'village') : ($selected->name ?? 'village');
+            $name = is_array($selected) ? ($selected['name'] ?? $this->type) : ($selected->name ?? $this->type);
             return Str::slug($name);
         }
 
@@ -265,8 +276,9 @@ class VillageTownFilter extends Component
 
     public function render()
     {
+        $heading = $this->type === 'town' ? 'India Towns' : 'India Villages';
         $metaData['nav-heading'] = view('components.nav-heading', [
-            'text' => 'India Villages',
+            'text' => $heading,
             'leftImg' => "https://www.prarang.in/assets/images/home/Villages-1.png",
             'rightImg' => "https://www.prarang.in/assets/images/home/Villages-1.png",
         ]);

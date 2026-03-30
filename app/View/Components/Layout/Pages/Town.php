@@ -11,16 +11,16 @@ class Town extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public $data;
+    public function __construct($metaData, $data)
     {
-        //
+        $this->data = $data;
     }
-
     /**
      * Get the view / contents that represent the component.
      */
     public function render(): View|Closure|string
     {
-        return view('components.layout.pages.town');
+        return view('components.layout.pages.town', ['data'=>$this->data]);
     }
 }

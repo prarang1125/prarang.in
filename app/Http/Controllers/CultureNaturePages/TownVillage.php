@@ -31,4 +31,30 @@ class TownVillage extends Controller
 
         return view('culturenature.townvillages.index', compact('village'));
     }
+
+    public function towns($id, $slug)
+    {
+        $parts = explode('-', url_decoder($id));
+        if (count($parts) === 4) {
+            list($state, $districts, $subDistrict, $town) = $parts;
+        } else {
+            list($state, $districts, $town) = $parts;
+            $subDistrict = null;
+        }
+
+
+         $town = httpGet('v1/pages/town', [
+            'state_id' => $state,
+            'district_id' => $districts,
+            'town_id' => $town
+        ])['data'];
+
+        $town['name'] = $town['town']['Name'] ?? $town['gram_panchayat']['village_name_en'] ?? '-';
+        $town['village_type']='type_a';
+        $village=$town;
+        return view('culturenature.townvillages.town', compact('town','village'));
+    }
+
+
+
 }

@@ -45,24 +45,22 @@
     </style>
     <style>
         /* Hover */
-.container .min-h-screen .shadow-lg .md\:p-12 div .border-t .grid .hover\:shadow-xl{
- width:40% !important;
-}
+        .container .min-h-screen .shadow-lg .md\:p-12 div .border-t .grid .hover\:shadow-xl {
+            width: 40% !important;
+        }
 
-/* Hover */
-.shadow-lg div .hover\:shadow-xl{
- padding-left:15px;
- height:158px;
- background-color:#f0efef !important;
- box-shadow:0px 0px 10px 3px #dfe1e1;
-}
+        /* Hover */
+        .shadow-lg div .hover\:shadow-xl {
+            padding-left: 15px;
+            height: 158px;
+            background-color: #f0efef !important;
+            box-shadow: 0px 0px 10px 3px #dfe1e1;
+        }
 
-/* Tracking tight */
-.shadow-lg div h3.tracking-tight{
- margin-bottom:14px;
-}
-
-
+        /* Tracking tight */
+        .shadow-lg div h3.tracking-tight {
+            margin-bottom: 14px;
+        }
     </style>
     <div class="rounded shadow-lg">
 
@@ -72,7 +70,7 @@
             <!-- Header Section -->
             <div class="mb-3">
                 <h2 class="text-xl md:text-xl font-black text-slate-800 tracking-tighter mb-2">
-                    Find <span class="text-blue-600">Villages</span>
+                    Find <span class="text-blue-600">{{ $type === 'town' ? 'Towns' : 'Villages' }}</span>
                 </h2>
 
             </div>
@@ -80,7 +78,8 @@
 
 
             <div class="">
-                <div class="grid grid-cols-1 md:grid-cols-4 gap-3 md:gap-3">
+                <div
+                    class="grid grid-cols-1 {{ $type === 'village' ? 'md:grid-cols-4' : 'md:grid-cols-3' }} gap-3 md:gap-3">
                     <!-- Step 1: State Selection -->
                     <div class="space-y-3" x-data="{ open: false, search: '' }">
                         <div class="flex items-center gap-3 mb-2">
@@ -234,6 +233,7 @@
                         </div>
                     </div>
 
+                    @if($type === 'village')
                     <!-- Step 3: Sub-District Selection -->
                     <div class="space-y-3" x-data="{ open: false, search: '' }">
                         <div class="flex items-center gap-3 mb-2">
@@ -316,13 +316,14 @@
                             </div>
                         </div>
                     </div>
+                    @endif
 
                     <!-- Step 4: Village/Town Selection -->
                     <div class="space-y-3" x-data="{ open: false, search: '' }">
                         <div class="flex items-center gap-3 mb-2">
                             <span
-                                class="flex items-center justify-center w-8 h-8 rounded-xl {{ ($type === 'town' ? $town : $village) ? 'bg-green-100 text-green-600' : ($subDistrict ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-300') }} font-bold text-sm transition-colors duration-300">
-                                <div wire:loading wire:target="subDistrict">
+                                class="flex items-center justify-center w-8 h-8 rounded-xl {{ ($type === 'town' ? $town : $village) ? 'bg-green-100 text-green-600' : ($type === 'town' ? ($district ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-300') : ($subDistrict ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-300')) }} font-bold text-sm transition-colors duration-300">
+                                <div wire:loading wire:target="{{ $type === 'town' ? 'district' : 'subDistrict' }}">
                                     <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
                                             stroke-width="4"></circle>
@@ -331,14 +332,15 @@
                                         </path>
                                     </svg>
                                 </div>
-                                <div wire:loading.remove wire:target="subDistrict">
+                                <div wire:loading.remove
+                                    wire:target="{{ $type === 'town' ? 'district' : 'subDistrict' }}">
                                     @if($type === 'town' ? $town : $village)
                                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
                                             d="M5 13l4 4L19 7" />
                                     </svg>
                                     @else
-                                    04
+                                    {{ $type === 'town' ? '03' : '04' }}
                                     @endif
                                 </div>
                             </span>
@@ -349,9 +351,12 @@
                         </div>
 
                         <div class="relative">
-                            <button type="button" @click="if({{ $subDistrict ? 'true' : 'false' }}) open = !open" {{
-                                !$subDistrict ? 'disabled' : '' }}
-                                class="w-full flex items-center justify-between px-5 py-2 bg-slate-50 border-2 {{ ($type === 'town' ? $town : $village) ? 'border-blue-200 bg-white' : ($subDistrict ? 'border-slate-100' : 'border-slate-50 opacity-50') }} rounded-2xl {{ $subDistrict ? 'hover:border-blue-400 hover:bg-white' : 'cursor-not-allowed' }} transition-all duration-300 group">
+                            @php
+                            $isStepActive = $type === 'town' ? $district : $subDistrict;
+                            @endphp
+                            <button type="button" @click="if({{ $isStepActive ? 'true' : 'false' }}) open = !open" {{
+                                !$isStepActive ? 'disabled' : '' }}
+                                class="w-full flex items-center justify-between px-5 py-2 bg-slate-50 border-2 {{ ($type === 'town' ? $town : $village) ? 'border-blue-200 bg-white' : ($isStepActive ? 'border-slate-100' : 'border-slate-50 opacity-50') }} rounded-2xl {{ $isStepActive ? 'hover:border-blue-400 hover:bg-white' : 'cursor-not-allowed' }} transition-all duration-300 group">
                                 <span
                                     class="text-[15px] font-bold {{ ($type === 'town' ? $town : $village) ? 'text-slate-900' : 'text-slate-400' }} truncate">
                                     @if($type === 'town')
@@ -399,7 +404,8 @@
                                         {{ $itemName }}
                                     </button>
                                     @empty
-                                    <div class="px-4 py-3 text-sm text-slate-400 font-medium">Select a tehsil first
+                                    <div class="px-4 py-3 text-sm text-slate-400 font-medium">Select a {{ $type ===
+                                        'town' ? 'district' : 'tehsil' }} first
                                     </div>
                                     @endforelse
                                 </div>
@@ -414,7 +420,8 @@
 
                         <div
                             class="w-full sm:w-auto transition-all duration-500 {{ ($type === 'town' ? $town : $village) ? 'opacity-100 scale-100' : 'opacity-40 grayscale pointer-events-none' }}">
-                            <a target="_blank" href="https://prarang.in/village/{{url_encoder($state."-".$district."-".$village ?? $town)}}/{{ $this->selectedSlug }}"
+                            <a target="_blank"
+                                href="https://prarang.in/{{ $type }}/{{ url_encoder($state . '-' . $district . '-' . ($type === 'town' ? $town : $village)) }}/{{ $this->selectedSlug }}"
                                 class="inline-flex items-center justify-center w-full sm:w-auto px-10 py-4 bg-blue-600
                                 text-white font-black text-sm tracking-[0.1em] uppercase rounded-2xl shadow-xl
                                 shadow-blue-200 hover:bg-blue-700 hover:shadow-blue-300 hover:-translate-y-1
@@ -429,59 +436,58 @@
                         </div>
                     </div>
                 </div>
-              <div class="p-8 md:p-12 border-t border-slate-100 mt-3">
-    <h3 class="text-xl font-black text-slate-800 mb-8 tracking-tight">
-        Example:-
-    </h3>
+                <div class="p-8 md:p-12 border-t border-slate-100 mt-3">
+                    <h3 class="text-xl font-black text-slate-800 mb-8 tracking-tight">
+                        Example:-
+                    </h3>
 
-    <div class="grid grid-cols-1 gap-6">
+                    <div class="grid grid-cols-1 gap-6">
 
-        <!-- Horizontal Card -->
-        <div class="group flex flex-col sm:flex-row items-center bg-white border border-slate-200
+                        <!-- Horizontal Card -->
+                        <div class="group flex flex-col sm:flex-row items-center bg-white border border-slate-200
                     rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500
                     hover:-translate-y-1">
 
-            <!-- Image -->
-            <div class="w-full sm:w-1/3 overflow-hidden">
-                <img src="https://www.prarang.in/assets/images/home/Villages-1.png"
-                     alt="Ram Nagar"
-                     class="w-full h-52 sm:h-full object-cover group-hover:scale-105 transition duration-500">
-            </div>
+                            <!-- Image -->
+                            <div class="w-full sm:w-1/3 overflow-hidden">
+                                <img src="https://www.prarang.in/assets/images/home/Villages-1.png" alt="Ram Nagar"
+                                    class="w-full h-52 sm:h-full object-cover group-hover:scale-105 transition duration-500">
+                            </div>
 
-            <!-- Content -->
-            <div class="w-full sm:w-2/3 p-6 flex flex-col justify-between">
+                            <!-- Content -->
+                            <div class="w-full sm:w-2/3 p-6 flex flex-col justify-between">
 
-                <!-- Text -->
-                <div>
-                    <h4 class="text-2xl font-black text-slate-900 mb-2 tracking-tight group-hover:text-blue-600 transition">
-                        Ram Nagar
-                    </h4>
+                                <!-- Text -->
+                                <div>
+                                    <h4
+                                        class="text-2xl font-black text-slate-900 mb-2 tracking-tight group-hover:text-blue-600 transition">
+                                        Ram Nagar
+                                    </h4>
 
-                    <p class="text-slate-500 text-sm">
-                        Bareilly, Uttar Pradesh
-                    </p>
-                </div>
+                                    <p class="text-slate-500 text-sm">
+                                        Bareilly, Uttar Pradesh
+                                    </p>
+                                </div>
 
-                <!-- Button -->
-                <div class="mt-4">
-                    <a href="https://prarang.in/village/OSAtMTMwLTEyOTgyMw/ram-nagar"
-                       target="_blank"
-                       class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white
+                                <!-- Button -->
+                                <div class="mt-4">
+                                    <a href="https://prarang.in/village/OSAtMTMwLTEyOTgyMw/ram-nagar" target="_blank"
+                                        class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white
                               font-semibold text-sm rounded-xl hover:bg-blue-700 transition">
-                        View
-                        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1"
-                             fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                  d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                        </svg>
-                    </a>
+                                        View
+                                        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none"
+                                            stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                        </svg>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
-
-            </div>
-        </div>
-
-    </div>
-</div>
             </div>
         </div>
 
