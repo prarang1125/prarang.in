@@ -127,9 +127,9 @@
                                     {{ $data['town']['State_UT_Name'] ?? '-' }}</p>
                             </div>
                             <div class="pt-1 border-t border-gray-50">
-                                <p class="text-xs font-medium text-gray-500 mb-0.5">Pop. 2026
+                                <p class="text-xs font-medium text-gray-500 mb-0.5">Pop. 2011
                                     <x-source
-                                        source="Projected population based on district-level growth rates applied to the village population." />
+                                        source="Population as recorded in the Census of India 2011 – Primary Census Abstract." />
                                 </p>
                                 <p class="text-sm font-bold text-indigo-600">
                                     {{ isset($data['town']['TOT_P']) ? number_format($data['pop']['pop26'], 0) :

@@ -286,8 +286,55 @@
         }
     </style>
     <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-10 ">
+        <style>
+            /* Image */
+            .mx-auto>div>img {
+                width: 230px;
+                position: absolute;
+                top: -222px;
+                left: -52px;
+            }
+
+            /* Division */
+            .container .mx-auto>div {
+                transform: translatex(0px) translatey(0px);
+            }
+
+            @media (max-width:1005px) {
+
+                /* Image */
+                .container .mx-auto>div>img {
+                    transform: translatex(-19px) translatey(170px) !important;
+                }
+
+            }
+
+            @media (max-width:576px) {
+
+                /* Auto */
+                .container .mx-auto {
+                    padding-top: 54px;
+                }
+
+                /* Image */
+                .mx-auto>div>img {
+                    top: -272px;
+                    left: 121px;
+                }
+
+                /* Image */
+                .container .mx-auto>div>img {
+                    transform: translatex(-46px) translatey(168px) !important;
+                }
+
+            }
+        </style>
+        <div class="cursor-pointer" onclick="window.location.href='https://www.prarang.in/knowledge'">
+            <img src="https://i.ibb.co/MkscXbdy/download-2.gif" alt="">
+        </div>
         <!-- Cards Section -->
         <div class="flex flex-wrap justify-center items-center gap-4 lg:gap-6">
+
             <div>
                 <!-- City Webs Card -->
                 <div

@@ -70,7 +70,7 @@
             <!-- Header Section -->
             <div class="mb-3">
                 <h2 class="text-xl md:text-xl font-black text-slate-800 tracking-tighter mb-2">
-                    Find <span class="text-blue-600">{{ $type === 'town' ? 'Towns' : 'Villages' }}</span>
+                    Find <span class="text-blue-600">{{ $type === 'town' ? 'City' : 'Villages' }}</span>
                 </h2>
 
             </div>
@@ -345,7 +345,8 @@
                                 </div>
                             </span>
                             <label class="text-sm font-bold text-slate-500 uppercase tracking-widest">Select {{
-                                ucfirst($type) }} {{ count($type === 'town' ? $towns : $villages)!==0 ?
+                                ucfirst($type=="town"?"City":"Villages") }} {{ count($type === 'town' ? $towns :
+                                $villages)!==0 ?
                                 "#".count($type === 'town' ? $towns : $villages) : ' '
                                 }}</label>
                         </div>
@@ -420,8 +421,8 @@
 
                         <div
                             class="w-full sm:w-auto transition-all duration-500 {{ ($type === 'town' ? $town : $village) ? 'opacity-100 scale-100' : 'opacity-40 grayscale pointer-events-none' }}">
-                            <a target="_blank"
-                                href="https://prarang.in/{{ $type }}/{{ url_encoder($state . '-' . $district . '-' . ($type === 'town' ? $town : $village)) }}/{{ $this->selectedSlug }}"
+                            <a target="_blank" href="{{ url("/") }}/{{ $type }}/{{ url_encoder($state . '-' . $district
+                                . '-' . ($type==='town' ? $town : $village)) }}/{{ $this->selectedSlug }}"
                                 class="inline-flex items-center justify-center w-full sm:w-auto px-10 py-4 bg-blue-600
                                 text-white font-black text-sm tracking-[0.1em] uppercase rounded-2xl shadow-xl
                                 shadow-blue-200 hover:bg-blue-700 hover:shadow-blue-300 hover:-translate-y-1
@@ -440,7 +441,53 @@
                     <h3 class="text-xl font-black text-slate-800 mb-8 tracking-tight">
                         Example:-
                     </h3>
+                    @if($type=="town")
+                    <div class="grid grid-cols-1 gap-6">
 
+                        <!-- Horizontal Card -->
+                        <div class="group flex flex-col sm:flex-row items-center bg-white border border-slate-200
+                    rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500
+                    hover:-translate-y-1">
+
+                            <!-- Image -->
+                            <div class="w-full sm:w-1/3 overflow-hidden">
+                                <img src="https://www.prarang.in/assets/images/home/town-1.png" alt="Ram Nagar"
+                                    class="w-full h-52 sm:h-full object-cover group-hover:scale-105 transition duration-500">
+                            </div>
+
+                            <!-- Content -->
+                            <div class="w-full sm:w-2/3 p-6 flex flex-col justify-between">
+
+                                <!-- Text -->
+                                <div>
+                                    <h4
+                                        class="text-2xl font-black text-slate-900 mb-2 tracking-tight group-hover:text-blue-600 transition">
+                                        Aonla (NPP)
+                                    </h4>
+
+                                    <p class="text-slate-500 text-sm">
+                                        Bareilly, Uttar Pradesh
+                                    </p>
+                                </div>
+
+                                <!-- Button -->
+                                <div class="mt-4">
+                                    <a href="https://prarang.in/town/OS02MjctODAwODYz/aonla-npp" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white
+                              font-semibold text-sm rounded-xl hover:bg-blue-700 transition">
+                                        View
+                                        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none"
+                                            stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                        </svg>
+                                    </a>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                    @else
                     <div class="grid grid-cols-1 gap-6">
 
                         <!-- Horizontal Card -->
@@ -487,6 +534,7 @@
                         </div>
 
                     </div>
+                    @endif
                 </div>
             </div>
         </div>

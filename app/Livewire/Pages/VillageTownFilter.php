@@ -25,7 +25,7 @@ class VillageTownFilter extends Component
 
     public function mount($type = 'village')
     {
-        $this->type = $type;
+        $this->type = $type=="cities"?"town":"village";
         if ($type == 'village') {
             $this->villageType = $this->loadVillageTypes();
         }
@@ -276,11 +276,12 @@ class VillageTownFilter extends Component
 
     public function render()
     {
-        $heading = $this->type === 'town' ? 'India Towns' : 'India Villages';
+        $heading = $this->type === 'town' ? 'India Cities' : 'India Villages';
+        $image=$this->type === 'town' ? "https://www.prarang.in/assets/images/home/town-1.png" : "https://www.prarang.in/assets/images/home/Villages-1.png";
         $metaData['nav-heading'] = view('components.nav-heading', [
             'text' => $heading,
-            'leftImg' => "https://www.prarang.in/assets/images/home/Villages-1.png",
-            'rightImg' => "https://www.prarang.in/assets/images/home/Villages-1.png",
+            'leftImg' => $image,
+            'rightImg' => $image,
         ]);
         $metaData['nav-sub-heading'] = '';
         return view('livewire.pages.village-town-filter')->layout('components.layout.main.base', compact('metaData'));;

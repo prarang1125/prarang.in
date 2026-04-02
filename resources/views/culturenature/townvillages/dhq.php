@@ -19,25 +19,31 @@ $metaData[] = '';
                     $logistics = [
                     [
                     'icon' => '🗺️',
-                    'label' => 'City Map',
-                    'link' => 'https://maps.app.goo.gl/bYQ19ERuKnej2JfD8',
+                    'label' => 'Village Map',
+                    'link' => 'https://maps.app.goo.gl/BX755J215dehzQgx7',
                     ],
                     [
                     'icon' => '🌦️',
                     'label' => 'Weather',
-                    'link' => 'https://www.accuweather.com/en/in/aonla/3111883/weather-forecast/3111883',
+                    'link' =>
+                    'https://weather.com/en-MU/weather/tenday/l/65a5001d22bf60f649bb3edd51abdb3f1c22222cb2278fc1c545da9006a044ae',
                     ],
                     [
                     'icon' => '🍴',
                     'label' => 'Restaurants / Dhabas',
                     'link' =>
-                    'https://www.justdial.com/Aonla/Restaurants/nct-10408936?filters=%5B%7B%22e%22%3A%22100%22%2C%22v%22%3A%5B%22Distance%22%5D%7D%5D&filtersApplied=%5B%7B%22mv%22%3A%2210000%22%2C%22v%22%3A%5B%22Distance%22%5D%7D%5D&checkin=1774483200&checkout=1774569600',
+                    'https://www.justdial.com/Bareilly/Restaurants-in-Ram-Nagar/nct-10408936?filters=%5B%7B%22e%22%3A%22100%22%2C%22v%22%3A%5B%22Distance%22%5D%7D%5D&filtersApplied=%5B%7B%22mv%22%3A%2210000%22%2C%22v%22%3A%5B%22Distance%22%5D%7D%5D',
+                    ],
+                    [
+                    'icon' => '🏙️',
+                    'label' => 'Nearest City',
+                    'value' => 'Aonla',
+                    'link' => 'https://aonla.com',
                     ],
                     [
                     'icon' => '🚌',
                     'label' => 'Bus Stop',
-                    'value' => 'Aonla Bus Stand',
-                    'link' => 'https://maps.app.goo.gl/rMqApyXskHZ5VSDD9',
+                    'link' => 'https://maps.app.goo.gl/rkvnhjKtmbcYtrDa9',
                     ],
                     [
                     'icon' => '🚆',
@@ -62,8 +68,8 @@ $metaData[] = '';
                     @foreach ($logistics as $index => $item)
                     <div class="border-b border-gray-50 last:border-0">
                         @if (!isset($item['value']))
-                        <a href="{{ ($town['town']['Town_Code'] ?? null) == 800863 ? $item['link'] ?? '#' : '#' }}" {{
-                            ($town['town']['Town_Code'] ?? null)==800863 ? 'target="_blank"' : '' }}
+                        <a href="{{ ($town['town']['Town_Code'] ?? null) == 800864 ? $item['link'] ?? '#' : '#' }}" {{
+                            ($town['town']['Town_Code'] ?? null)==800864 ? 'target="_blank"' : '' }}
                             class="w-full py-2.5 flex items-center gap-3 transition-colors hover:bg-gray-50/50 rounded-lg px-2 -mx-2">
                             <span class="text-base w-6 shrink-0">{{ $item['icon'] ?? '' }}</span>
                             <span class="text-sm font-bold text-gray-800">{{ $item['label'] ?? '-' }}</span>
@@ -84,7 +90,7 @@ $metaData[] = '';
                         </button>
 
                         <div x-show="active === {{ $index }}" x-collapse x-cloak class="ml-9 pb-2">
-                            @if (($town['town']['Town_Code'] ?? null) == 800863)
+                            @if (($town['town']['Town_Code'] ?? null) == 800864)
                             <a href="{{ $item['link'] ?? '#' }}" target="_blank"
                                 class="block text-xs font-semibold text-gray-600 hover:text-blue-700 transition-colors">
                                 • {{ $item['value'] ?? '-' }}
@@ -116,101 +122,86 @@ $metaData[] = '';
                     'icon' => '🏥',
                     'label' => 'Hospitals / Medical',
                     'items' => [
-                    ['name' => 'List of Hospitals', 'link' =>
-                    'https://www.justdial.com/Aonla/Hospitals/nct-10253670?filters=%5B%7B%22e%22%3A%22100%22%2C%22v%22%3A%5B%22Distance%22%5D%7D%5D&filtersApplied=%5B%7B%22mv%22%3A%2210000%22%2C%22v%22%3A%5B%22Distance%22%5D%7D%5D&checkin=1774483200&checkout=1774569600'],
+                    ['name' => 'Ram Nagar CHC', 'link' => 'https://maps.app.goo.gl/jd12CdUsMYd7yZ2T6'],
                     ],
                     ],
                     [
                     'icon' => '👮',
                     'label' => 'Police Stations',
                     'items' => [
-                    ['name' => 'Aonla Kotwali', 'link' => 'https://maps.app.goo.gl/EHxXWXj7ZZTuwDR88'],
+                    [
+                    'name' => 'Police Chowki Ram Nagar',
+                    'link' => 'https://maps.app.goo.gl/AYNepRCAVnWd9KNG8',
+                    ],
                     ],
                     ],
                     [
                     'icon' => '⛽',
                     'label' => 'Petrol Pumps',
                     'items' => [
-                    ['name' => 'Hindustan Petroleum Corporation Limited', 'link' =>
-                    'https://maps.app.goo.gl/NGwVuTadRpuA4Ado6'],
-                    ['name' => 'Hindustan Petroleum Corporation Limited, Bhuteshwar Chowk', 'link' =>
-                    'https://maps.app.goo.gl/m4gUJhvMj12UWZLd8'],
-                    ['name' => 'IndianOil', 'link' => 'https://maps.app.goo.gl/yeEfgcgNejN8za2z5'],
+                    ['name' => 'HPCL', 'link' => 'https://maps.app.goo.gl/RLcVexBtUs7Tk5Wy5'],
+                    ['name' => 'IndianOil', 'link' => 'https://maps.app.goo.gl/SiwTzw91itdcSUhg7'],
                     ],
                     ],
                     [
                     'icon' => '🏧',
                     'label' => 'ATMs',
                     'items' => [
-                    ['name' => 'SBI, Pucca Katra', 'link' => 'https://maps.app.goo.gl/LeQEPFtvTQVZJ4pm6'],
-                    ['name' => 'SBI, Sabji Mandi', 'link' => 'https://maps.app.goo.gl/nkdGEt1jss8LvMLR7'],
-                    ['name' => 'SBI, Bareilly Road', 'link' => 'https://maps.app.goo.gl/5cZzpT8kyGpNZqiA8'],
-                    ['name' => 'Punjab National Bank', 'link' => 'https://maps.app.goo.gl/QrkaPSP8QkkayZVo8'],
-                    ['name' => 'Axis Bank', 'link' => 'https://maps.app.goo.gl/gJsGsQ6b4dgkvmM98'],
-                    ['name' => 'HDFC Bank', 'link' => 'https://maps.app.goo.gl/cEijN4H7BpPtWDAL9'],
-                    ['name' => 'Union Bank', 'link' => 'https://maps.app.goo.gl/hgjU6xJpZzGm7adW7'],
-                    ['name' => 'Bank of Baroda', 'link' => 'https://maps.app.goo.gl/y5HT12BhNbTZaPyc8'],
+                    ['name' => 'SBI ATM', 'link' => 'https://www.mappls.com/UKP0K3'],
+                    ['name' => 'Punjab National Bank', 'link' => 'https://www.mappls.com/2ZWCU5'],
+                    ['name' => 'Bank of Baroda', 'link' => 'https://www.mappls.com/2ZVUN1'],
                     ],
                     ],
                     [
                     'icon' => '🏦',
                     'label' => 'Bank Branches',
                     'items' => [
-                    ['name' => 'SBI, Sirauli', 'link' => 'https://maps.app.goo.gl/2MaaUQpHw3wT3bLo6'],
-                    ['name' => 'Punjab National Bank', 'link' => 'https://maps.app.goo.gl/z6Qrgwc3qofZPptN6'],
-                    ['name' => 'Bank of Baroda', 'link' => 'https://maps.app.goo.gl/ngQTzzhn8DhciECY6'],
-                    ['name' => 'Union Bank', 'link' => 'https://maps.app.goo.gl/E39eJp12zAYEnNZv6'],
-                    ['name' => 'Axis Bank', 'link' => 'https://maps.app.goo.gl/7qB2HPCUFXh61CCWA'],
-                    ['name' => 'Uttar Pradesh Gramin Bank', 'link' => 'https://maps.app.goo.gl/fgfkh82z81vAXtqL6'],
-                    ['name' => 'District Cooperative Bank', 'link' => 'https://maps.app.goo.gl/HpK8QdmaJHET1kcF8'],
+                    [
+                    'name' => 'Union Bank of India',
+                    'link' => 'https://maps.app.goo.gl/ngFZ6KvVgdfMH3ZZ7',
+                    ],
+                    ['name' => 'Bank of Baroda', 'link' => 'https://maps.app.goo.gl/8hsRabHjr9mQb8nQ7'],
+                    [
+                    'name' => 'Punjab National Bank',
+                    'link' => 'https://maps.app.goo.gl/Erjw4bmk2fdYnhce8',
+                    ],
                     ],
                     ],
                     [
                     'icon' => '📮',
                     'label' => 'Post Offices',
                     'items' => [
-                    ['name' => 'List of Post Offices', 'link' => 'https://indiamapia.com/243301.html'],
+                    [
+                    'name' => 'Ram Nagar S.O.',
+                    'link' => 'https://pin-code.org/india/uttar-pradesh/bareilly/ram-nagar/',
+                    ],
                     ],
                     ],
                     [
                     'icon' => '🎓',
                     'label' => 'Schools / Colleges',
                     'items' => [
-                    ['name' => 'List of Schools', 'link' =>
-                    'https://schools.org.in/uttar-pradesh/bareilly/aonla/aonla'],
+                    [
+                    'name' => 'Jain Academy',
+                    'link' =>
+                    'https://stackschools.com/schools/09200106207/jain-academy-english-medium-school',
+                    ],
+                    [
+                    'name' => 'Ch.Kashiram Yadav Inter College',
+                    'link' =>
+                    'https://stackschools.com/schools/09200106206/ch-kashiram-yadav-inter-college',
+                    ],
                     ],
                     ],
                     [
                     'icon' => '🏢',
-                    'label' => 'Administrative Offices',
+                    'label' => 'Government Offices',
                     'items' => [
-                    ['name' => 'Sabhagar Tehsil', 'link' => 'https://maps.app.goo.gl/5UTSXsaL1EUS4fjw9'],
-                    ['name' => 'Nagar Palika', 'link' => 'https://maps.app.goo.gl/yAuEPcJivUD9A5B28'],
-                    ],
-                    ],
+                    ['name' => 'BDO Ramnagar', 'link' => 'https://maps.app.goo.gl/GNt6SzC1Grhvjvpu9'],
                     [
-                    'icon' => '🏢',
-                    'label' => 'Community Services',
-                    'items' => [
-                    ['name' => 'Block Education Office Aonla Nagar', 'link' =>
-                    'https://maps.app.goo.gl/Syp8wcJVhY5xh6Vt8'],
-                    ['name' => 'Gram Sachivalaya & Panchayat Bhawan', 'link' =>
-                    'https://maps.app.goo.gl/FcekdZ2bmpKTzD4o9'],
-                    ['name' => 'Common Service Centre', 'link' => 'https://maps.app.goo.gl/edjJHfcNCy4XnHvG6'],
+                    'name' => 'Kshetra Panchayat',
+                    'link' => 'https://maps.app.goo.gl/vYK6uY949xXiyi3P6',
                     ],
-                    ],
-                    [
-                    'icon' => '🏢',
-                    'label' => 'Tax Services',
-                    'items' => [
-                    ['name' => 'GST & Income Tax Office', 'link' => 'https://maps.app.goo.gl/hTJsdJmvxaFyypTw8'],
-                    ],
-                    ],
-                    [
-                    'icon' => '⚖️',
-                    'label' => 'Court',
-                    'items' => [
-                    ['name' => 'Munsif Court', 'link' => 'https://maps.app.goo.gl/dXFQhDVyjZ5viDWi9'],
                     ],
                     ],
                     ];
@@ -232,7 +223,7 @@ $metaData[] = '';
                         </button>
 
                         <div x-show="active === {{ $index }}" x-collapse x-cloak class="ml-9 pb-3 space-y-2">
-                            @if (($town['town']['Town_Code'] ?? null) == 800863)
+                            @if (($town['town']['Town_Code'] ?? null) == 800864)
                             @foreach ($group['items'] ?? [] as $item)
                             <a href="{{ $item['link'] ?? '#' }}" target="_blank"
                                 class="block text-xs font-semibold text-gray-600 hover:text-blue-700 transition-colors">
@@ -253,7 +244,7 @@ $metaData[] = '';
         <div class="lg:col-span-6 space-y-6  order-1 lg:order-2">
             <!-- Village Banner Image -->
             <div class="rounded-2xl overflow-hidden border border-gray-100 shadow-sm transition-all hover:shadow-md">
-                <img src="{{ asset('assets/images/urban_states/' . ($town['state']['state_LGD_code'] ?? 'default')) }}.jpg"
+                <img src="{{ asset('assets/images/rural_states/' . ($town['state']['state_LGD_code'] ?? 'default')) }}.jpg"
                     alt="Village Banner" class="w-full h-[400px] object-cover">
             </div>
 
@@ -280,16 +271,6 @@ $metaData[] = '';
                 <div class="space-y-2">
                     <p class="text-[14px] text-gray-700 leading-relaxed font-medium">
                         {!! $town['slm_lang']['p1'] ?? '-' !!}
-                    </p>
-                </div>
-                <div class="flex flex-col items-center mb-6">
-                    <h3 class="text-xl font-black text-gray-900 mb-1 ">Culture & Nature</h3>
-                    <div class="w-10 h-0.5 bg-blue-600 rounded-full"></div>
-                </div>
-
-                <div class="space-y-2">
-                    <p class="text-[14px] text-gray-700 leading-relaxed font-medium">
-                        {!! $town['cn-slm'] ?? '-' !!}
                     </p>
                 </div>
                 <!-- Sanskriti & Prakriti Dual Section -->
@@ -429,85 +410,6 @@ $metaData[] = '';
                 @endforeach
             </div>
         </div>
-        <!-- Languages Card -->
-        <div
-            class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
-            <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
-                <h3 class="text-base text-center font-bold text-blue-600">Languages</h3>
-            </div>
-
-            <div class="divide-y divide-gray-50">
-                @foreach($town['top5_languages'] ?? [] as $key => $lang)
-                <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
-                    <div class="flex items-center gap-2">
-                        <span class="text-[11px] font-black text-blue-400 w-4">0{{ $lang['rank'] ?? $loop->iteration
-                            }}</span>
-                        <span class="text-[13px] font-medium text-gray-500">{{ $lang['language'] ?? 'N/A' }}</span>
-                    </div>
-                    <span class="text-[13px] font-bold text-gray-800 tabular-nums">{{
-                        ($lang['spek'] ?? 0)}}%</span>
-                </div>
-                @endforeach
-            </div>
-        </div>
-        <!-- Literacy Card -->
-        <div
-            class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
-            <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
-                <h3 class="text-base text-center font-bold text-blue-600">Literacy</h3>
-            </div>
-
-            <div class="divide-y divide-gray-50">
-                <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
-                    <span class="text-[13px] font-medium text-gray-500">Literate</span>
-                    <span class="text-[13px] font-bold text-gray-800 tabular-nums">{{
-                        number_format($town['literacy']['literate'] ?? 0) }}</span>
-                </div>
-                <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
-                    <span class="text-[13px] font-medium text-gray-500">Illiterate</span>
-                    <span class="text-[13px] font-bold text-gray-800 tabular-nums">{{
-                        number_format($town['literacy']['illiterate'] ?? 0) }}</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Employment Trends Card -->
-        <div
-            class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
-            <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
-                <h3 class="text-base text-center font-bold text-blue-600">Employment Trends</h3>
-            </div>
-
-            <div class="divide-y divide-gray-50">
-                <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
-                    <span class="text-[13px] font-medium text-gray-500">Total Main Workers</span>
-                    <span class="text-[13px] font-bold text-gray-800 tabular-nums">{{
-                        number_format($town['emplyment']['total_main_workers'] ?? 0) }}</span>
-                </div>
-                <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
-                    <span class="text-[13px] font-medium text-gray-500">Cultivators</span>
-                    <span class="text-[13px] font-bold text-gray-800 tabular-nums">{{
-                        number_format($town['emplyment']['cultivators'] ?? 0) }}</span>
-                </div>
-                <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
-                    <span class="text-[13px] font-medium text-gray-500">Agricultural Labourers </span>
-                    <span class="text-[13px] font-bold text-gray-800 tabular-nums">{{
-                        number_format($town['emplyment']['agricultural_workers'] ?? 0) }}</span>
-                </div>
-                <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
-                    <span class="text-[13px] font-medium text-gray-500">Workers in Household Industries</span>
-                    <span class="text-[13px] font-bold text-gray-800 tabular-nums">{{
-                        number_format($town['emplyment']['household'] ?? 0) }}</span>
-                </div>
-                <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
-                    <span class="text-[13px] font-medium text-gray-500">Others</span>
-                    <span class="text-[13px] font-bold text-gray-800 tabular-nums">{{
-                        number_format($town['emplyment']['others'] ?? 0) }}</span>
-                </div>
-            </div>
-        </div>
-
-
         <!-- Analytics Section -->
         <div class="bg-white rounded-2xl p-2 px-8 border border-gray-100 shadow-sm transition-all hover:shadow-md">
             <div class="flex flex-col items-center mb-10">

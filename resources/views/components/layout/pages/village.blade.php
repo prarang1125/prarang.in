@@ -154,25 +154,24 @@
         {{ $slot }}
     </main>
 
-    {{-- footer --}}
     <footer class="mt-32 px-6 py-12 text-gray-800"
         style="background-color: #fff; background-image: url(''); background-size: cover; background-position: center;">
         <div class="container mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
-
+                <!-- About Section -->
                 <div class="space-y-4">
                     <h4 class="text-xl font-bold border-b-2 border-red-500 pb-2 inline-block md:block">
-                        प्रारंग के बारे में
+                        About Prarang
                     </h4>
                     <p class="text-sm leading-relaxed opacity-90">
-                        प्रारंग प्रदान करता है, देश-विदेश के शहरों को समझने हेतु संपूर्ण जानकारी। जिसमें शामिल है
-                        स्थानीय
-                        भाषा में शहर की प्रकृति-संस्कृति के नॉलेज वेब, शहर की व्यवसाय सूची के येलो पेज, शहर के मेट्रिक्स
-                        या आंकड़ों का विस्तृत विश्लेषण, तथा AI द्वारा संचालित शहरवासियों से प्राप्त विशिष्ट सांकेतिकता।
+                        Prarang provides comprehensive information for understanding cities both in India and abroad.
+                        This includes Knowledge Webs of a city's nature and culture in the local language, Yellow Pages
+                        for city business listings, detailed analysis of city metrics and statistics, and unique
+                        AI-powered insights derived from city residents.
                     </p>
                 </div>
 
-
+                <!-- Social Links -->
                 <div class="space-y-6">
                     <h4 class="text-xl font-bold border-b-2 border-red-500 pb-2 inline-block md:block text-center">
                         Follow Us
@@ -197,23 +196,23 @@
                     </div>
                 </div>
 
-
+                <!-- Contact Section -->
                 <div class="space-y-4">
                     <h4 class="text-xl font-bold border-b-2 border-red-500 pb-2 inline-block md:block">
-                        <i class="fa fa-map-marker me-2"></i> पता
+                        <i class="fa fa-map-marker me-2"></i> Address
                     </h4>
                     <div class="space-y-2 text-sm opacity-90">
                         <p class="flex items-start gap-2 justify-center md:justify-start">
                             <span class="font-bold text-red-600">Office:</span>
-                            ऑफिस #25, 11th फ्लोर, दा आई-थम, A40,
+                            Office #25, 11th Floor, The I-Thum, A40,
                         </p>
                         <p class="flex items-start gap-2 justify-center md:justify-start">
                             <span class="font-bold text-red-600">Sector:</span>
-                            सेक्टर 62, नॉएडा (U.P), इंडिया 201309
+                            Sector 62, Noida (U.P), India 201309
                         </p>
                         <p class="flex items-start gap-2 justify-center md:justify-start">
                             <span class="font-bold text-red-600">Phone:</span>
-                            फ़ोन: 0120-4561284
+                            0120-4561284
                         </p>
                         <p class="flex items-start gap-2 justify-center md:justify-start">
                             <span class="font-bold text-red-600">Email:</span>
@@ -224,13 +223,12 @@
                 </div>
             </div>
 
-
+            <!-- Copyright Section -->
             <div class="mt-12 pt-8 border-t border-black/10 text-center">
                 <p class="text-sm font-medium opacity-80">
-                    © - 2026 सभी सामग्री इस वेबसाइट पर, जैसे पाठ, ग्राफिक्स, लोगो, बटन आइकन, सॉफ्टवेयर, चित्र और इसका
-                    चयन,
-                    व्यवस्था, प्रस्तुति और समग्र डिजाइन, Indoeuropeans India Pvt. Ltd. की संपत्ति है और अंतर्राष्ट्रीय
-                    कॉपीराइट कानूनों द्वारा संरक्षित है।
+                    © - 2026 All content on this website, including text, graphics, logos, button icons, software,
+                    images, and their selection, arrangement, presentation, and overall design, is the property of
+                    Indoeuropeans India Pvt. Ltd. and is protected by international copyright laws.
                 </p>
             </div>
         </div>

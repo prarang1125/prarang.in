@@ -1,4 +1,5 @@
 /* ===== Town Theme ===== */
+@import url("//fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 
 :root {
   --color-primary: #1e40af;     /* strong urban blue */
@@ -15,14 +16,16 @@
   --radius: 12px;
   --transition: 0.25s ease;
 }
-@import url("//fonts.googleapis.com/css2?family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap");
 
 /* Common UI */
 body {
-  /* background: linear-gradient(to right, var(--color-bg), var(--color-bg), var(--color-secondary)); */
+  background-color: #f3f4f6;
+  background-image: radial-gradient(#d1d5db 0.5px, transparent 0.5px);
+  background-size: 24px 24px;   /* Subtle realistic texture */
   color: var(--color-text);
-  font-family: "DM Sans", sans-serif;
+  font-family:'DM Sans', sans-serif;
 }
+
 
 .card {
   background: var(--color-card);
@@ -41,11 +44,13 @@ body {
   color: #fff;
   padding: 10px 16px;
   border-radius: var(--radius);
+  font-weight: 600;
 }
 
 .badge {
   background: var(--color-secondary);
   color: var(--color-primary);
+  font-weight: 500;
 }
 
 
@@ -342,6 +347,19 @@ header .mx-auto .group\/ai{
  /* Tracking widest */
  .group\/ai .items-start .tracking-widest{
   font-size:12px;
+ }
+
+}
+/* Image */
+.items-center .items-center > .items-center div img{
+ width:83px;
+}
+
+@media (min-width:577px){
+
+ /* Image */
+ .items-center .items-center > .items-center div img{
+  height:80px !important;
  }
 
 }

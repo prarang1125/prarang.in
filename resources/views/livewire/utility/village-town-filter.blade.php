@@ -70,26 +70,25 @@
         #locationModal .modal-container {
             width: 740px;
         }
+
         /* Heading */
-.modal-container .relative h2{
- display:flex;
- justify-content:center;
- align-items:center;
-}
+        .modal-container .relative h2 {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
 
-/* Image */
-.modal-container .relative img{
- width:30px;
- height:30px !important;
- margin-right:5px;
-}
+        /* Image */
+        .modal-container .relative img {
+            width: 30px;
+            height: 30px !important;
+            margin-right: 5px;
+        }
 
-/* Rounded full */
-.modal-container .relative .rounded-full{
- visibility:hidden;
-}
-
-
+        /* Rounded full */
+        .modal-container .relative .rounded-full {
+            visibility: hidden;
+        }
     </style>
 
     <!-- Trigger Button -->
@@ -113,19 +112,19 @@
 
             <div class="relative flex flex-col items-start text-left">
                 <span class="text-[10px] text-blue-600 font-black tracking-widest mb-0.5 uppercase">India {{
-                    ucfirst($type) }}</span>
+                    $type === 'town' ? 'City' : 'Village' }}</span>
                 <span class="text-[15px] text-gray-900 font-black flex items-center gap-1.5 leading-tight">
                     @php
-                    $displayName = 'Find a ' . ucfirst($type);
+                    $displayName = 'Find a ' . ucfirst($type=="town"?"City":"Village");
                     if ($type === 'village' && $village) {
-                        $selectedItem = collect($villages)->where('id', $village)->first();
+                    $selectedItem = collect($villages)->where('id', $village)->first();
                     } elseif ($type === 'town' && $town) {
-                        $selectedItem = collect($towns)->where('id', $town)->first();
+                    $selectedItem = collect($towns)->where('id', $town)->first();
                     }
 
                     if (isset($selectedItem)) {
-                        $displayName = is_array($selectedItem) ? ($selectedItem['name'] ?? 'Selected') :
-                        ($selectedItem->name ?? 'Selected');
+                    $displayName = is_array($selectedItem) ? ($selectedItem['name'] ?? 'Selected') :
+                    ($selectedItem->name ?? 'Selected');
                     }
                     @endphp
                     {{ $displayName }}
@@ -155,7 +154,9 @@
                 <div class="flex justify-between items-center mb-8">
                     <div class="flex flex-col">
                         <h2 class="text-xl font-black text-gray-900 tracking-tight ">
-                            <img src="https://www.prarang.in/assets/images/home/Villages-1.png" class="h-6" alt="">Change Location</h2>
+                            <img src="https://www.prarang.in/assets/images/home/{{ $type=="
+                                town"?"town-1.png":"Villages-1.png" }}" class="h-6" alt="">Change Location
+                        </h2>
                         <div class="w-10 h-1 bg-blue-600 rounded-full mt-1"></div>
                     </div>
 
@@ -224,7 +225,8 @@
                                     <div class="max-h-36 overflow-y-auto custom-scrollbar space-y-0.5">
                                         @foreach($states as $item)
                                         @php $itemName = is_array($item) ? $item['name'] : $item->name; @endphp
-                                        <button type="button" wire:key="state-{{ is_array($item) ? $item['id'] : $item->id }}"
+                                        <button type="button"
+                                            wire:key="state-{{ is_array($item) ? $item['id'] : $item->id }}"
                                             x-show="'{{ strtolower($itemName) }}'.includes(search.toLowerCase())"
                                             @click="$wire.set('state', '{{ is_array($item) ? $item['id'] : $item->id }}'); open = false; search = ''"
                                             class="w-full text-left px-2.5 py-1.5 rounded-lg text-[12px] font-bold text-gray-700 hover:bg-blue-600 hover:text-white transition-all">
@@ -270,8 +272,8 @@
                                 class="block text-[10px] font-black text-[#56569d] mb-1.5 ml-0.5 tracking-wide uppercase">Select
                                 District</label>
                             <div class="relative">
-                                <button type="button" @click="if ({{ !$state ? 'false' : 'true' }}) open = !open"
-                                    {{ !$state ? 'disabled' : '' }}
+                                <button type="button" @click="if ({{ !$state ? 'false' : 'true' }}) open = !open" {{
+                                    !$state ? 'disabled' : '' }}
                                     class="w-full flex items-center justify-between pl-3 pr-8 py-2.5 text-[13px] font-black text-gray-900 {{ !$state ? 'bg-gray-50/30 cursor-not-allowed text-gray-400 border-[#d6d0d0] opacity-60' : 'bg-gray-50 border-[#4487fd] hover:bg-gray-100/50' }} border rounded-xl transition-all outline-none">
                                     <span class="truncate">
                                         @php
@@ -303,7 +305,8 @@
                                     <div class="max-h-36 overflow-y-auto custom-scrollbar space-y-0.5">
                                         @foreach($districts as $item)
                                         @php $itemName = is_array($item) ? $item['name'] : $item->name; @endphp
-                                        <button type="button" wire:key="district-{{ is_array($item) ? $item['id'] : $item->id }}"
+                                        <button type="button"
+                                            wire:key="district-{{ is_array($item) ? $item['id'] : $item->id }}"
                                             x-show="'{{ strtolower($itemName) }}'.includes(search.toLowerCase())"
                                             @click="$wire.set('district', '{{ is_array($item) ? $item['id'] : $item->id }}'); open = false; search = ''"
                                             class="w-full text-left px-2.5 py-1.5 rounded-lg text-[12px] font-bold text-gray-700 hover:bg-blue-600 hover:text-white transition-all">
@@ -316,6 +319,7 @@
                         </div>
                     </div>
 
+                    @if($type === 'village')
                     <!-- Step 3 (Tehsil/Sub-District) -->
                     <div class="flex gap-3 relative z-[70]">
                         <div class="flex flex-col items-center">
@@ -349,8 +353,8 @@
                                 class="block text-[10px] font-black text-[#56569d] mb-1.5 ml-0.5 tracking-wide uppercase">Select
                                 Block</label>
                             <div class="relative">
-                                <button type="button" @click="if ({{ !$district ? 'false' : 'true' }}) open = !open"
-                                    {{ !$district ? 'disabled' : '' }}
+                                <button type="button" @click="if ({{ !$district ? 'false' : 'true' }}) open = !open" {{
+                                    !$district ? 'disabled' : '' }}
                                     class="w-full flex items-center justify-between pl-3 pr-8 py-2.5 text-[13px] font-black text-gray-900 {{ !$district ? 'bg-gray-50/30 cursor-not-allowed text-gray-400 border-[#d6d0d0] opacity-60' : 'bg-gray-50 border-[#4487fd] hover:bg-gray-100/50' }} border rounded-xl transition-all outline-none">
                                     <span class="truncate">
                                         @php
@@ -383,7 +387,8 @@
                                     <div class="max-h-36 overflow-y-auto custom-scrollbar space-y-0.5">
                                         @foreach($subDistricts as $item)
                                         @php $itemName = is_array($item) ? $item['name'] : $item->name; @endphp
-                                        <button type="button" wire:key="subDistrict-{{ is_array($item) ? $item['id'] : $item->id }}"
+                                        <button type="button"
+                                            wire:key="subDistrict-{{ is_array($item) ? $item['id'] : $item->id }}"
                                             x-show="'{{ strtolower($itemName) }}'.includes(search.toLowerCase())"
                                             @click="$wire.set('subDistrict', '{{ is_array($item) ? $item['id'] : $item->id }}'); open = false; search = ''"
                                             class="w-full text-left px-2.5 py-1.5 rounded-lg text-[12px] font-bold text-gray-700 hover:bg-blue-600 hover:text-white transition-all">
@@ -395,13 +400,14 @@
                             </div>
                         </div>
                     </div>
+                    @endif
 
                     <!-- Step 4 (Village) -->
                     <div class="flex gap-3 relative z-[60]">
                         <div class="flex flex-col items-center">
                             <div
                                 class="w-7 h-7 border-2 {{ ($type === 'town' ? $town : $village) ? 'border-gray-900 bg-gray-900 text-white' : 'border-gray-100 text-gray-300 shadow-inner bg-gray-50/50' }} rounded-lg flex items-center justify-center font-black text-[10px] transition-all duration-300 relative z-10">
-                                <div wire:loading wire:target="subDistrict">
+                                <div wire:loading wire:target="{{ $type === 'town' ? 'district' : 'subDistrict' }}">
                                     <svg class="w-4 h-4 animate-spin text-blue-600" xmlns="http://www.w3.org/2000/svg"
                                         fill="none" viewBox="0 0 24 24">
                                         <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
@@ -411,14 +417,15 @@
                                         </path>
                                     </svg>
                                 </div>
-                                <div wire:loading.remove wire:target="subDistrict">
+                                <div wire:loading.remove
+                                    wire:target="{{ $type === 'town' ? 'district' : 'subDistrict' }}">
                                     @if($type === 'town' ? $town : $village)
                                     <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="4"
                                             d="M5 13l4 4L19 7"></path>
                                     </svg>
                                     @else
-                                    04
+                                    {{ $type === 'town' ? '03' : '04' }}
                                     @endif
                                 </div>
                             </div>
@@ -427,15 +434,17 @@
                         <div class="flex-grow" x-data="{ open: false, search: '' }">
                             <label
                                 class="block text-[10px] font-black text-[#56569d] mb-1.5 ml-0.5 tracking-wide uppercase">Select
-                                {{ ucfirst($type) }}</label>
+                                {{ ucfirst($type=="town"?"City":"Villages") }}</label>
                             <div class="relative">
-                                <button type="button" @click="if ({{ !$subDistrict ? 'false' : 'true' }}) open = !open"
-                                    {{ !$subDistrict ? 'disabled' : '' }}
-                                    class="w-full flex items-center justify-between pl-3 pr-8 py-2.5 text-[13px] font-black text-gray-900 {{ !$subDistrict ? 'bg-gray-50/30 cursor-not-allowed text-gray-400 border-[#d6d0d0] opacity-60' : 'bg-gray-50 border-[#4487fd] hover:bg-gray-100/50' }} border rounded-xl transition-all outline-none">
+                                @php $isStepActive = $type === 'town' ? $district : $subDistrict; @endphp
+                                <button type="button" @click="if ({{ !$isStepActive ? 'false' : 'true' }}) open = !open"
+                                    {{ !$isStepActive ? 'disabled' : '' }}
+                                    class="w-full flex items-center justify-between pl-3 pr-8 py-2.5 text-[13px] font-black text-gray-900 {{ !$isStepActive ? 'bg-gray-50/30 cursor-not-allowed text-gray-400 border-[#d6d0d0] opacity-60' : 'bg-gray-50 border-[#4487fd] hover:bg-gray-100/50' }} border rounded-xl transition-all outline-none">
                                     <span class="truncate">
                                         @if($type === 'town')
                                         {{ $town ? (collect($towns)->where('id', $town)->first()->name ??
-                                        (collect($towns)->where('id', $town)->first()['name'] ?? 'Selected')) : 'Select Town' }}
+                                        (collect($towns)->where('id', $town)->first()['name'] ?? 'Selected')) : 'Select
+                                        Town' }}
                                         @else
                                         {{ $village ? (collect($villages)->where('id', $village)->first()->name ??
                                         (collect($villages)->where('id', $village)->first()['name'] ?? 'Selected')) :
@@ -465,7 +474,8 @@
                                         @php $items = ($type === 'town' ? $towns : $villages); @endphp
                                         @foreach($items as $item)
                                         @php $itemName = is_array($item) ? $item['name'] : $item->name; @endphp
-                                        <button type="button" wire:key="{{ $type }}-{{ is_array($item) ? $item['id'] : $item->id }}"
+                                        <button type="button"
+                                            wire:key="{{ $type }}-{{ is_array($item) ? $item['id'] : $item->id }}"
                                             x-show="'{{ strtolower($itemName) }}'.includes(search.toLowerCase())"
                                             @click="$wire.set('{{ $type === 'town' ? 'town' : 'village' }}', '{{ is_array($item) ? $item['id'] : $item->id }}'); open = false; search = ''"
                                             class="w-full text-left px-2.5 py-1.5 rounded-lg text-[12px] font-bold text-gray-700 hover:bg-blue-600 hover:text-white transition-all">
@@ -483,8 +493,11 @@
                 <!-- Confirm Button Area -->
                 <div
                     class="mt-8 relative z-10 transition-all duration-300 {{ ($type === 'town' ? $town : $village) ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none' }}">
-                    <a href="/village/{{url_encoder($state."-".$district."-".$village ?? $town)}}/{{ $this->selectedSlug }}"
-                        class="relative group/btn block w-full py-4 bg-gray-900 border-none rounded-xl overflow-hidden transition-all duration-300 hover:shadow-2xl hover:shadow-blue-100 active:scale-[0.98] text-center">
+                    <a href="/{{$type}}/{{url_encoder($state." -".$district."-".(($type==='town' ? $town :
+                        $village)))}}/{{ $this->selectedSlug }}"
+                        class="relative group/btn block w-full py-4 bg-gray-900 border-none rounded-xl overflow-hidden
+                        transition-all duration-300 hover:shadow-2xl hover:shadow-blue-100 active:scale-[0.98]
+                        text-center">
                         <div
                             class="absolute inset-0 bg-blue-600 translate-y-full group-hover/btn:translate-y-0 transition-transform duration-300">
                         </div>
