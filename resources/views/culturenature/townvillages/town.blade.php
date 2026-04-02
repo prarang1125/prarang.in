@@ -68,8 +68,8 @@ $metaData[] = '';
                     @foreach ($logistics as $index => $item)
                     <div class="border-b border-gray-50 last:border-0">
                         @if (!isset($item['value']))
-                        <a href="{{ ($town['village']['Town_Village'] ?? null) == 129823 ? $item['link'] ?? '#' : '#' }}"
-                            {{ ($town['village']['Town_Village'] ?? null)==129823 ? 'target="_blank"' : '' }}
+                        <a href="{{ ($town['town']['Town_Code'] ?? null) == 800864 ? $item['link'] ?? '#' : '#' }}"
+                            {{ ($town['town']['Town_Code'] ?? null)==800864 ? 'target="_blank"' : '' }}
                             class="w-full py-2.5 flex items-center gap-3 transition-colors hover:bg-gray-50/50 rounded-lg px-2 -mx-2">
                             <span class="text-base w-6 shrink-0">{{ $item['icon'] ?? '' }}</span>
                             <span class="text-sm font-bold text-gray-800">{{ $item['label'] ?? '-' }}</span>
@@ -90,7 +90,7 @@ $metaData[] = '';
                         </button>
 
                         <div x-show="active === {{ $index }}" x-collapse x-cloak class="ml-9 pb-2">
-                            @if (($town['village']['Town_Village'] ?? null) == 129823)
+                            @if (($town['town']['Town_Code'] ?? null) == 800864)
                             <a href="{{ $item['link'] ?? '#' }}" target="_blank"
                                 class="block text-xs font-semibold text-gray-600 hover:text-blue-700 transition-colors">
                                 • {{ $item['value'] ?? '-' }}
@@ -223,7 +223,7 @@ $metaData[] = '';
                         </button>
 
                         <div x-show="active === {{ $index }}" x-collapse x-cloak class="ml-9 pb-3 space-y-2">
-                            @if (($town['village']['Town_Village'] ?? null) == 129823)
+                            @if (($town['town']['Town_Code'] ?? null) == 800864)
                             @foreach ($group['items'] ?? [] as $item)
                             <a href="{{ $item['link'] ?? '#' }}" target="_blank"
                                 class="block text-xs font-semibold text-gray-600 hover:text-blue-700 transition-colors">
@@ -249,45 +249,22 @@ $metaData[] = '';
             </div>
 
 
-            @if ($town['village_type'] == 'type_b')
-            <div class="bg-blue-100 font-[14px]  text-black px-4 py-3 rounded" role="alert"
-                style="font-size: 14px !important">
-                <span class="sr-only font-[14px]">Info</span>
-                This is one of the 43331 unpopulated villages of India in 2011 Census.
-            </div>
-            @elseif($town['village_type'] == 'type_c')
-            <div class="bg-blue-100 font-[14px]  text-black px-4 py-3 rounded" role="alert"
-                style="font-size: 14px !important">
-                <span class="sr-only font-[14px]">Info</span>
-                New Village recognized by panchyat after 2011 Census. There are 40921 new villages in India in Janaury
-                2026.
-            </div>
-            @endif
-
             {{-- @endif --}}
-            @if ($town['village_type']=='type_a')
+            @if (true)
             <!-- Village Description -->
             <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm transition-all hover:shadow-md">
                 <div class="space-y-1 text-justify">
                     <p class="text-[15px] text-gray-700 leading-relaxed font-medium">
-                        {!! $town['slm']['village']['s1'] ?? '-' !!}
-                    </p>
-                    <p class="text-[15px] text-gray-700 leading-relaxed font-medium">
                         {!! $town['slm']['district'] ?? '-' !!}
                     </p>
-                    @if (isset($town['slm']['village']['s2']))
-                    <p class="text-[15px] text-gray-700 leading-relaxed font-medium">
-                        {!! $town['slm']['village']['s2'] ?? '-' !!}
-                    </p>
-                    @endif
                 </div>
             </div>
             @endif
 
-            <!-- Village Speak Section -->
-            <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm transition-all hover:shadow-md">
+            {{-- Village Speak Section --}}
+           <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm transition-all hover:shadow-md">
                 <div class="flex flex-col items-center mb-6">
-                    <h3 class="text-xl font-black text-gray-900 mb-1 ">Village Speak</h3>
+                    <h3 class="text-xl font-black text-gray-900 mb-1 ">City Speak</h3>
                     <div class="w-10 h-0.5 bg-blue-600 rounded-full"></div>
                 </div>
 
@@ -373,12 +350,12 @@ $metaData[] = '';
                 @php
                 $details = [
                 [
-                'label' => 'Gram Panchayat',
-                'value' => $town['gram_panchayat']['local_body_name_en'] ?? '-',
+                'label' => 'District',
+                'value' => $town['town']['district'] ?? '-',
                 ],
                 [
-                'label' => 'Sub-District (Tehsil)',
-                'value' => $town['gram_panchayat']['subdistrict_name_en'] ?? '-',
+                'label' => 'State',
+                'value' => $town['town']['State_UT_Name'] ?? '-',
                 ],
                 ];
                 @endphp
@@ -402,11 +379,11 @@ $metaData[] = '';
                 @php
                 $trends = [
                 [
-                'label' => 'Village Users (Est.)',
-                'source' => "Estimated number of rural internet users in the village,
-                derived from the village’s proportion relative to the state. (Source: Telecom Regulatory Authority of
+                'label' => 'City Users (Est.)',
+                'source' => "Estimated number of rural internet users in the town,
+                derived from the town’s proportion relative to the state. (Source: Telecom Regulatory Authority of
                 India, September 2025)",
-                'value' => $town['internet_users']['village_int_users'] ?? '-',
+                'value' => $town['internet_users']['town_int_users'] ?? '-',
                 ],
                 [
                 'label' => 'District Users (Est.)',
@@ -438,7 +415,7 @@ $metaData[] = '';
             <div class="flex flex-col items-center mb-10">
 
                 <h3 class="text-base text-center font-bold text-blue-600">
-                    {{ $town['district']['district_name'] ?? '-' }}
+                    {{ $town['town']['district'] ?? '-' }}
                     Analytics</h3>
                 {{-- <div class="w-12 h-1 bg-purple-600 rounded-full"></div> --}}
             </div>
@@ -459,12 +436,12 @@ $metaData[] = '';
 
                     <div class="grid grid-cols-2 gap-3">
                         <a target="_blank"
-                            href="https://g2c.prarang.in/india/market-planner/states?city={{ $town['district']['dhq_code'] ?? '' }}"
+                            href="https://g2c.prarang.in/india/market-planner/states?city={{ $town['town']['dhq_code'] ?? '' }}"
                             class="flex items-center justify-center py-2.5 bg-white border border-slate-200 text-xs font-bold text-slate-700 rounded-xl hover:bg-indigo-600 hover:text-white hover:border-slate-900 transition-all shadow-sm">
                             Market
                         </a>
                         <a target="_blank"
-                            href="https://g2c.prarang.in/india/development-planners?city={{ $town['district']['dhq_code'] ?? '' }}"
+                            href="https://g2c.prarang.in/india/development-planners?city={{ $town['town']['dhq_code'] ?? '' }}"
                             class="flex items-center justify-center py-2.5 bg-white border border-slate-200 text-xs font-bold text-slate-700 rounded-xl hover:bg-indigo-600 hover:text-white hover:border-slate-900 transition-all shadow-sm">
                             Development
                         </a>
@@ -475,7 +452,7 @@ $metaData[] = '';
                 <div
                     class="p-2 bg-indigo-50/40 rounded-2xl border border-indigo-100/50 flex flex-col transition-all hover:bg-white hover:shadow-lg hover:shadow-indigo-100">
 
-                    <a target="_blank" href="https://g2c.prarang.in/ai/{{ $town['district']['city'] ?? ' ' }}">
+                    <a target="_blank" href="https://g2c.prarang.in/ai/{{ $town['dhq']['city'] ?? ' ' }}">
                         <img class="rounded-2xl" src="{{ asset('assets/images/12e.png') }}" alt="">
                     </a>
                 </div>
@@ -484,4 +461,4 @@ $metaData[] = '';
     </div>
     </div>
     </div>
-    </x-layout.pages.village>
+    </x-layout.pages.town>
