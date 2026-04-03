@@ -1,7 +1,7 @@
 @php
     $metaData = [
         'nav-heading' => view('components.nav-heading', [
-            'text' => 'India : Rural - 693,042 Villages',
+            'text' => 'India : Rural - 594,204 Villages',
             'text_class'=>'text-sm',
             'leftImg' => asset('assets/images/home/Villages-1.png'),
             'rightImg' => asset('assets/images/home/Villages-1.png'),
