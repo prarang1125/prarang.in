@@ -42,16 +42,18 @@ class TownVillage extends Controller
             $subDistrict = null;
         }
 
-         $town = httpGet('v1/pages/town', [
+         $towndata = httpGet('v1/pages/town', [
             'state_id' => $state,
             'district_id' => $districts,
             'town_id' => $town
         ])['data'];
-        if($town['is_dhq'] ){
-            return $this->dhq($town);
-        }else{
-            return $this->cities($town);
-        }
+
+        // if($town['is_dhq'] ){
+        //     return $this->dhq($towndata);
+        // }else{
+        //     return $this->cities($towndata);
+        // }
+          return $this->dhq($towndata);
 
     }
      public function cities($town)
@@ -64,8 +66,8 @@ class TownVillage extends Controller
 
     public function dhq($dhq)
     {
-        $dhq['name'] = $dhq['town']['Name'] ?? $dhq['gram_panchayat']['village_name_en'] ?? '-';
-        return view('culturenature.townvillages.dhq', compact('dhq','village'));
+        $dhq['name'] = $dhq['dhq']['city'];
+        return view('culturenature.townvillages.dhq', compact('dhq'));
     }
 
 

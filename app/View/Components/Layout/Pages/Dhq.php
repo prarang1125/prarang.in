@@ -11,9 +11,10 @@ class Dhq extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public $data;
+    public function __construct($data)
     {
-        //
+        $this->data = $data;
     }
 
     /**
@@ -21,6 +22,6 @@ class Dhq extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.layout.pages.dhq');
+        return view('components.layout.pages.dhq',['data'=>$this->data]);
     }
 }

@@ -3,7 +3,7 @@ $metaData[] = '';
 
 @endphp
 
-<x-layout.pages.town :metaData="$metaData" :data="$town">
+<x-layout.pages.dhq :data="$dhq">
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div class="lg:col-span-3  space-y-6 order-3 lg:order-1">
@@ -68,8 +68,8 @@ $metaData[] = '';
                     @foreach ($logistics as $index => $item)
                     <div class="border-b border-gray-50 last:border-0">
                         @if (!isset($item['value']))
-                        <a href="{{ ($town['town']['Town_Code'] ?? null) == 800864 ? $item['link'] ?? '#' : '#' }}" {{
-                            ($town['town']['Town_Code'] ?? null)==800864 ? 'target="_blank"' : '' }}
+                        <a href="{{ ($dhq['town']['Town_Code'] ?? null) == 800864 ? $item['link'] ?? '#' : '#' }}" {{
+                            ($dhq['town']['Town_Code'] ?? null)==800864 ? 'target="_blank"' : '' }}
                             class="w-full py-2.5 flex items-center gap-3 transition-colors hover:bg-gray-50/50 rounded-lg px-2 -mx-2">
                             <span class="text-base w-6 shrink-0">{{ $item['icon'] ?? '' }}</span>
                             <span class="text-sm font-bold text-gray-800">{{ $item['label'] ?? '-' }}</span>
@@ -90,7 +90,7 @@ $metaData[] = '';
                         </button>
 
                         <div x-show="active === {{ $index }}" x-collapse x-cloak class="ml-9 pb-2">
-                            @if (($town['town']['Town_Code'] ?? null) == 800864)
+                            @if (($dhq['town']['Town_Code'] ?? null) == 800864)
                             <a href="{{ $item['link'] ?? '#' }}" target="_blank"
                                 class="block text-xs font-semibold text-gray-600 hover:text-blue-700 transition-colors">
                                 • {{ $item['value'] ?? '-' }}
@@ -223,7 +223,7 @@ $metaData[] = '';
                         </button>
 
                         <div x-show="active === {{ $index }}" x-collapse x-cloak class="ml-9 pb-3 space-y-2">
-                            @if (($town['town']['Town_Code'] ?? null) == 800864)
+                            @if (($dhq['town']['Town_Code'] ?? null) == 800864)
                             @foreach ($group['items'] ?? [] as $item)
                             <a href="{{ $item['link'] ?? '#' }}" target="_blank"
                                 class="block text-xs font-semibold text-gray-600 hover:text-blue-700 transition-colors">
@@ -244,7 +244,7 @@ $metaData[] = '';
         <div class="lg:col-span-6 space-y-6  order-1 lg:order-2">
             <!-- Village Banner Image -->
             <div class="rounded-2xl overflow-hidden border border-gray-100 shadow-sm transition-all hover:shadow-md">
-                <img src="{{ asset('assets/images/rural_states/' . ($town['state']['state_LGD_code'] ?? 'default')) }}.jpg"
+                <img src="{{ asset('assets/images/urban_states/' . ($dhq['state']['state_LGD_code'] ?? 'default')) }}.jpg"
                     alt="Village Banner" class="w-full h-[400px] object-cover">
             </div>
 
@@ -255,7 +255,7 @@ $metaData[] = '';
             <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm transition-all hover:shadow-md">
                 <div class="space-y-1 text-justify">
                     <p class="text-[15px] text-gray-700 leading-relaxed font-medium">
-                        {!! $town['slm']['district'] ?? '-' !!}
+                        {!! $dhq['slm']['district'] ?? '-' !!}
                     </p>
                 </div>
             </div>
@@ -264,13 +264,23 @@ $metaData[] = '';
             {{-- Village Speak Section --}}
             <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm transition-all hover:shadow-md">
                 <div class="flex flex-col items-center mb-6">
-                    <h3 class="text-xl font-black text-gray-900 mb-1 ">City Speak</h3>
+                    <h3 class="text-xl font-black text-gray-900 mb-1 ">City Capital Speak</h3>
                     <div class="w-10 h-0.5 bg-blue-600 rounded-full"></div>
                 </div>
 
                 <div class="space-y-2">
                     <p class="text-[14px] text-gray-700 leading-relaxed font-medium">
-                        {!! $town['slm_lang']['p1'] ?? '-' !!}
+                        {!! $dhq['slm_lang']['p1'] ?? '-' !!}
+                    </p>
+                </div>
+                <div class="flex flex-col items-center mb-6">
+                    <h3 class="text-xl font-black text-gray-900 mb-1 ">Culture & Nature</h3>
+                    <div class="w-10 h-0.5 bg-blue-600 rounded-full"></div>
+                </div>
+
+                <div class="space-y-2">
+                    <p class="text-[14px] text-gray-700 leading-relaxed font-medium">
+                        {!! $dhq['cn-slm'] ?? '-' !!}
                     </p>
                 </div>
                 <!-- Sanskriti & Prakriti Dual Section -->
@@ -332,9 +342,111 @@ $metaData[] = '';
                     @endfor
                 </div>
             </div>
+
         </div>
+
+    </div>
+    <!-- City Action Buttons -->
+    <div class="flex gap-6 mt-6 mb-8 text-black">
+        <a target="_blank" href="#"
+            class="flex-1 text-center bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-700 transition-all duration-300">
+            {{ $dhq['dhq']['city'] ?? '' }} Statistics
+        </a>
+
+        <a target="_blank" href="https://g2c.prarang.in/ai/{{ $dhq['dhq']['city'] ?? '' }}"
+            class="flex-1 text-center bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-700 transition-all duration-300">
+            {{ $dhq['dhq']['city'] ?? '' }} A.I. Report
+        </a>
     </div>
 
+    <!-- Instruments Section -->
+    <div class="p-2 bg-white">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <!-- Business Instrument -->
+            <div
+                class="group relative bg-blue-600 shadow-xl hover:shadow-2xl transition-all duration-500  overflow-hidden">
+                <div class="absolute inset-0 opacity-30">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-3xl opacity-50"></div>
+                    <div class="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full blur-2xl opacity-50"></div>
+                </div>
+                <div class="relative z-10">
+                    <div class="flex items-center justify-center mb-6 text-center">
+                        <div>
+                            <h5 class="text-3xl md:text-4xl font-extrabold text-white mb-2 tracking-tight">Business
+                                Instrument</h5>
+                            <p class="text-blue-50 text-sm md:text-base font-medium">Find new opportunities for your
+                                business</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4 mb-6">
+                        <a href="https://g2c.prarang.in/india/market-planner/states?city={{ $dhq['town']['dhq_code'] ?? '-675' }}"
+                            target="_blank"
+                            class="block p-4 bg-white/20 backdrop-blur-sm rounded-xl hover:bg-white/30 transition-all duration-300 group/link border border-white/30 hover:border-white/50">
+                            <div class="flex items-center justify-between">
+                                <span
+                                    class="text-white font-bold text-base md:text-lg group-hover/link:translate-x-1 transition-transform">Find
+                                    New Opportunities in India</span>
+                                <span class="text-white/70 group-hover/link:text-white text-xl transition-all">→</span>
+                            </div>
+                            <small class="text-white/80 font-medium">(Select Cities)</small>
+                        </a>
+                        <a href="https://g2c.prarang.in/world/market-planner?country=63" target="_blank"
+                            class="block p-4 bg-white/20 backdrop-blur-sm rounded-xl hover:bg-white/30 transition-all duration-300 group/link border border-white/30 hover:border-white/50">
+                            <div class="flex items-center justify-between">
+                                <span
+                                    class="text-white font-bold text-base md:text-lg group-hover/link:translate-x-1 transition-transform">Find
+                                    New Opportunities in the World</span>
+                                <span class="text-white/70 group-hover/link:text-white text-xl transition-all">→</span>
+                            </div>
+                            <small class="text-white/80 font-medium">(Select Countries)</small>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Development Instrument -->
+            <div
+                class="group relative bg-green-600  shadow-xl hover:shadow-2xl transition-all duration-500  overflow-hidden">
+                <div class="absolute inset-0 opacity-30">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-3xl opacity-50"></div>
+                    <div class="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full blur-2xl opacity-50"></div>
+                </div>
+                <div class="relative z-10">
+                    <div class="flex items-center justify-center mb-6 text-center">
+                        <div>
+                            <h5 class="text-3xl md:text-4xl font-extrabold text-white mb-2 tracking-tight">
+                                Development Instrument</h5>
+                            <p class="text-green-50 text-sm md:text-base font-medium">Compare the progress of your
+                                city/country</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4 mb-6">
+                        <a href="https://g2c.prarang.in/india/development-planners?city={{ $dhq['town']['dhq_code'] ?? '-675' }}"
+                            target="_blank"
+                            class="block p-4 bg-white/20 backdrop-blur-sm rounded-xl hover:bg-white/30 transition-all duration-300 group/link border border-white/30 hover:border-white/50">
+                            <div class="flex items-center justify-between">
+                                <span
+                                    class="text-white font-bold text-base md:text-lg group-hover/link:translate-x-1 transition-transform">Compare
+                                    Development in India</span>
+                                <span class="text-white/70 group-hover/link:text-white text-xl transition-all">→</span>
+                            </div>
+                            <small class="text-white/80 font-medium">(Select Cities)</small>
+                        </a>
+                        <a href="https://g2c.prarang.in/world/development-planner?country=63" target="_blank"
+                            class="block p-4 bg-white/20 backdrop-blur-sm rounded-xl hover:bg-white/30 transition-all duration-300 group/link border border-white/30 hover:border-white/50">
+                            <div class="flex items-center justify-between">
+                                <span
+                                    class="text-white font-bold text-base md:text-lg group-hover/link:translate-x-1 transition-transform">Compare
+                                    Development in the World</span>
+                                <span class="text-white/70 group-hover/link:text-white text-xl transition-all">→</span>
+                            </div>
+                            <small class="text-white/80 font-medium">(Select Countries)</small>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     </div>
 
@@ -351,11 +463,11 @@ $metaData[] = '';
                 $details = [
                 [
                 'label' => 'District',
-                'value' => $town['town']['district'] ?? '-',
+                'value' => $dhq['town']['district'] ?? '-',
                 ],
                 [
                 'label' => 'State',
-                'value' => $town['town']['State_UT_Name'] ?? '-',
+                'value' => $dhq['town']['State_UT_Name'] ?? '-',
                 ],
                 ];
                 @endphp
@@ -367,7 +479,38 @@ $metaData[] = '';
                 @endforeach
             </div>
         </div> --}}
-
+        <div class="bg-white rounded-2xl py-2 px-4 border border-gray-100/80 shadow-sm">
+            <div class="grid grid-cols-2  gap-x-6">
+                <div>
+                    <p class="text-xs font-medium text-gray-500 mb-0.5">District</p>
+                    <p class="text-sm font-bold text-gray-800">
+                        {{ $dhq['town']['district'] ?? '-' }}</p>
+                </div>
+                <div>
+                    <p class="text-xs font-medium text-gray-500 mb-0.5">State</p>
+                    <p class="text-sm font-bold text-gray-800">
+                        {{ $dhq['town']['State_UT_Name'] ?? '-' }}</p>
+                </div>
+                <div class="pt-1 border-t border-gray-50">
+                    <p class="text-xs font-medium text-gray-500 mb-0.5">Pop. 2011
+                        <x-source
+                            source="Population as recorded in the Census of India 2011 – Primary Census Abstract." />
+                    </p>
+                    <p class="text-sm font-bold text-indigo-600">
+                        {{ isset($dhq['town']['TOT_P']) ? number_format($dhq['pop']['pop26'], 0) :
+                        '-' }} </p>
+                </div>
+                <div class="pt-1 border-t border-gray-50">
+                    <p class="text-xs font-medium text-gray-500 mb-0.5">Pop. 2011
+                        <x-source
+                            source="Population as recorded in the Census of India 2011 – Primary Census Abstract." />
+                    </p>
+                    <p class="text-sm font-bold text-gray-800">
+                        {{ isset($dhq['town']['TOT_P']) ? number_format($dhq['pop']['pop11'], 0) :
+                        '-' }}</p>
+                </div>
+            </div>
+        </div>
         <!-- Internet Trends Card -->
         <div
             class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
@@ -383,20 +526,20 @@ $metaData[] = '';
                 'source' => "Estimated number of rural internet users in the town,
                 derived from the town’s proportion relative to the state. (Source: Telecom Regulatory Authority of
                 India, September 2025)",
-                'value' => $town['internet_users']['town_int_users'] ?? '-',
+                'value' => $dhq['internet_users']['town_int_users'] ?? '-',
                 ],
                 [
                 'label' => 'District Users (Est.)',
                 'source' => "Estimated number of rural internet users in the
                 district, calculated using the district’s share of the state total. (Source: Telecom Regulatory
                 Authority of India, September 2025)",
-                'value' => $town['internet_users']['district_int_users'] ?? '-',
+                'value' => $dhq['internet_users']['district_int_users'] ?? '-',
                 ],
                 [
                 'label' => 'State Users',
                 'source' => "Total number of rural internet users in the state. (Source:
                 Telecom Regulatory Authority of India, September 2025)",
-                'value' => $town['internet_users']['state_int'] ?? '-',
+                'value' => $dhq['internet_users']['state_int'] ?? '-',
                 ],
                 ];
                 @endphp
@@ -410,55 +553,28 @@ $metaData[] = '';
                 @endforeach
             </div>
         </div>
-        <!-- Analytics Section -->
-        <div class="bg-white rounded-2xl p-2 px-8 border border-gray-100 shadow-sm transition-all hover:shadow-md">
-            <div class="flex flex-col items-center mb-10">
-
-                <h3 class="text-base text-center font-bold text-blue-600">
-                    {{ $town['town']['district'] ?? '-' }}
-                    Analytics</h3>
-                {{-- <div class="w-12 h-1 bg-purple-600 rounded-full"></div> --}}
+        <!-- Literacy Card -->
+        <div
+            class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
+            <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
+                <h3 class="text-base text-center font-bold text-blue-600">Literacy</h3>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-1 gap-8">
-                <!-- Compare District Card -->
-                <div
-                    class="group/card p-6 bg-slate-50 rounded-2xl border border-slate-100 transition-all hover:bg-white hover:shadow-lg hover:shadow-slate-100">
-                    <div class="flex items-center gap-3 mb-6">
-                        <div class="w-8 h-8 rounded-lg bg-white shadow-sm flex items-center justify-center">
-                            <svg class="w-4 h-4 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-                            </svg>
-                        </div>
-                        <h4 class="text-[13px] font-bold text-slate-600">Compare India District</h4>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-3">
-                        <a target="_blank"
-                            href="https://g2c.prarang.in/india/market-planner/states?city={{ $town['town']['dhq_code'] ?? '' }}"
-                            class="flex items-center justify-center py-2.5 bg-white border border-slate-200 text-xs font-bold text-slate-700 rounded-xl hover:bg-indigo-600 hover:text-white hover:border-slate-900 transition-all shadow-sm">
-                            Market
-                        </a>
-                        <a target="_blank"
-                            href="https://g2c.prarang.in/india/development-planners?city={{ $town['town']['dhq_code'] ?? '' }}"
-                            class="flex items-center justify-center py-2.5 bg-white border border-slate-200 text-xs font-bold text-slate-700 rounded-xl hover:bg-indigo-600 hover:text-white hover:border-slate-900 transition-all shadow-sm">
-                            Development
-                        </a>
-                    </div>
+            <div class="divide-y divide-gray-50">
+                <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
+                    <span class="text-[13px] font-medium text-gray-500">Literate</span>
+                    <span class="text-[13px] font-bold text-gray-800 tabular-nums">{{
+                        number_format($dhq['literacy']['literate'] ?? 0) }}</span>
                 </div>
-
-                <!-- District Summary Card -->
-                <div
-                    class="p-2 bg-indigo-50/40 rounded-2xl border border-indigo-100/50 flex flex-col transition-all hover:bg-white hover:shadow-lg hover:shadow-indigo-100">
-
-                    <a target="_blank" href="https://g2c.prarang.in/ai/{{ $town['dhq']['city'] ?? ' ' }}">
-                        <img class="rounded-2xl" src="{{ asset('assets/images/12e.png') }}" alt="">
-                    </a>
+                <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
+                    <span class="text-[13px] font-medium text-gray-500">Illiterate</span>
+                    <span class="text-[13px] font-bold text-gray-800 tabular-nums">{{
+                        number_format($dhq['literacy']['illiterate'] ?? 0) }}</span>
                 </div>
             </div>
         </div>
+
     </div>
     </div>
     </div>
-</x-layout.pages.town>
+    </x-layout.pages.town>
