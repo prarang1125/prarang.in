@@ -45,6 +45,7 @@ Route::get('partners-metrics', [Home::class, 'partnersMetrics'])->name('home.par
 Route::get('city-webs', [Home::class, 'cityWebs'])->name('home.city-webs');
 Route::get('town-webs', [Home::class, 'townWebs'])->name('home.town-webs');
 Route::get('village-webs', [Home::class, 'villageWebs'])->name('home.village-webs');
+Route::get('india-rural', [Home::class, 'indiaRural'])->name('home.india-rural');
 Route::get('country-webs/', [Home::class, 'countryWebs'])->name('home.country-webs');
 
 Route::get('lang-webs', [Home::class, 'langWebs'])->name('home.lang-webs');
