@@ -34,7 +34,6 @@ class postController extends Controller
 
         $chittiIds = ChittiGeography::where('Geography', $geography->geographycode)
             ->pluck('chittiId');
-
         $chittis = Chitti::whereIn('chittiId', $chittiIds)
             ->where('finalStatus', 'approved')
 
@@ -108,7 +107,7 @@ class postController extends Controller
         })
 
             ->where('chittiId', '!=', $postId)
-            ->whereRaw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y %h:%i %p') BETWEEN DATE_SUB(CURDATE(), INTERVAL 4 DAY) AND DATE_ADD(CURDATE(), INTERVAL 1 DAY)")
+            ->whereRaw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y %h:%i %p') BETWEEN DATE_SUB(CURDATE(), INTERVAL 60 DAY) AND DATE_ADD(CURDATE(), INTERVAL 1 DAY)")
             ->where('finalStatus', 'approved')
             ->whereRaw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y %h:%i %p') != STR_TO_DATE('" . $post->dateOfApprove . "', '%d-%m-%Y %h:%i %p')")
             //->orderBy('chittiId', 'desc')

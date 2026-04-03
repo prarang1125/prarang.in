@@ -336,21 +336,10 @@ The Language % in the Table below shows the "Percentage of the State/UTs Total C
                 </thead>
                 <tbody>
 
-
                     @foreach($tableData as $row)
-                     @php
-                                $intSum = 0;
-                                foreach ($row as $key => $value) {
-                                    if (in_array($key, ['main_script_count', 'scripts_count', 'state_code', 'state_name', 'state_or_ut'])) {
-                                        continue;
-                                    }
-                                    if (is_numeric($value) && filter_var($value, FILTER_VALIDATE_INT) !== false) {
-                                        $intSum += (int) $value;
-                                    }
-                                }
-                                $intSum = $intSum-$row['other_script']
-                                // $totalData[$row['state_code']]=$intSum;
-                            @endphp
+                    @php
+                         $intSum = $stateTotal[$row['state_code']];
+                    @endphp
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ ucwords(strtolower($row['state_name'])) }}</td>
@@ -365,7 +354,7 @@ The Language % in the Table below shows the "Percentage of the State/UTs Total C
                         <td>{{ number_format(($row['Odia']/$intSum)*100, 0) ?? 0 }}%</td>
                         <td>{{ number_format(($row['Urdu']/$intSum)*100, 0) ?? 0 }}%</td>
                         <td>{{ number_format(($row['Tamil']/$intSum)*100, 0) ?? 0 }}%</td>
-                        <td>{{ number_format(($row['Telugu']/$intSum)*100, 0) ?? 0 }}%</td>
+                        <td>{{ number_format(($row['Telugu']/$intSum)*100, 0) ?? 0 }}% </td>
                         <td>{{ number_format(($row['English']/$intSum)*100, 0) ?? 0 }}%</td>
                         <td>
                             <a  class="text-primary cursor-pointer " data-bs-toggle="modal"
@@ -406,7 +395,7 @@ The Language % in the Table below shows the "Percentage of the State/UTs Total C
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                        <p>In this state, {{ count($languages) }} out of 121 languages are spoken.</p>
+                        <p class="small">In this state, {{ count($languages) }} out of the 121 languages have at least 100 mother-tongue speakers.</p>
                     <div class="table-wrapper">
 
                         <table class="table table-sm table-striped table-bordered table-hover modal-city-table">
