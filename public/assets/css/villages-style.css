@@ -361,3 +361,20 @@ header .mx-auto .group\/ai{
  }
 
 }
+/* Overflow hidden */
+.backdrop-blur-sm .overflow-hidden{
+ max-height:90vh;
+ /* transform:translatex(0px) translatey(0px); */
+}
+
+/* Overflow auto */
+.backdrop-blur-sm .overflow-hidden .overflow-y-auto{
+ max-height:80vh;
+ overflow-y:scroll;
+}
+
+/* BackUnknown blur */
+.backdrop-blur-sm{
+ background-color:rgba(0,0,0,0.55);
+}
+

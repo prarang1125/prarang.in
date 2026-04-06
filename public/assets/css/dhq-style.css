@@ -508,3 +508,66 @@ header .mx-auto .shadow-lg{
  border-bottom-right-radius:9px;
 }
 
+/* BackUnknown blur */
+.backdrop-blur-sm{
+ background-color:rgba(203,194,194,0.7);
+
+}
+
+/* Overflow hidden */
+.backdrop-blur-sm .overflow-hidden{
+ max-height:90vh;
+
+}
+
+/* Overflow auto */
+.backdrop-blur-sm .overflow-hidden .overflow-y-auto{
+ max-height:80vh;
+ overflow-y:scroll;
+}
+
+/* Hover */
+.backdrop-blur-sm .justify-center .hover\:bg-black{
+ background-color:#000000;
+}
+
+.mx-auto .lg\:col-span-6 .items-center:nth-child(3){
+ margin-top:19px;
+}
+
+/* Link */
+.mx-auto .relative .space-y-4 a{
+ background-color:rgba(203,194,194,0);
+}
+/* Span Tag */
+.pointer-events-auto .overflow-hidden span{
+ background-color:rgba(31,29,29,0);
+}
+
+
+/* Realtime date */
+#realtime-date{
+ font-size:14px;
+ color:#ffffff;
+}
+
+/* Items baseline */
+header .mx-auto .items-baseline{
+ font-size:14px;
+}
+
+/* Span Tag */
+.group\/clock .items-center span{
+ padding-bottom:0px;
+}
+
+/* Items center */
+header .group\/clock .items-center{
+ font-size:15px;
+}
+
+/* Group/clock */
+header .mx-auto .group\/clock{
+ background-color:rgba(0,0,0,0.81);
+}
+

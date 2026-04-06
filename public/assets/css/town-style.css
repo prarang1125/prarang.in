@@ -348,13 +348,11 @@ header .mx-auto .group\/ai{
  .group\/ai .items-start .tracking-widest{
   font-size:12px;
  }
-
 }
 /* Image */
 .items-center .items-center > .items-center div img{
  width:83px;
 }
-
 @media (min-width:577px){
 
  /* Image */
@@ -363,3 +361,53 @@ header .mx-auto .group\/ai{
  }
 
 }
+/* Overflow auto */
+.backdrop-blur-sm .overflow-hidden .overflow-y-auto{
+ max-height:80vh;
+ padding-bottom:14px;
+}
+
+/* Overflow hidden */
+.backdrop-blur-sm .overflow-hidden{
+ max-height:90vh;
+ border-top-left-radius:9px;
+ border-top-right-radius:9px;
+ border-bottom-left-radius:9px;
+ border-bottom-right-radius:9px;
+}
+
+/* BackUnknown blur */
+.backdrop-blur-sm{
+ background-color:rgba(0,0,0,0.48);
+ border-top-left-radius:9px;
+ border-top-right-radius:9px;
+ border-bottom-left-radius:9px;
+ border-bottom-right-radius:9px;
+ /* transform:translatex(0px) translatey(0px); */
+}
+
+/* Hover */
+.backdrop-blur-sm .justify-center .hover\:bg-black{
+ background-color:#020202;
+}
+
+/* Items center */
+.mx-auto .grid .lg\:col-span-6 .hover\:shadow-md > .items-center{
+ margin-bottom:6px;
+}
+
+/* Items center */
+.mx-auto .lg\:col-span-6 .items-center:nth-child(3){
+ margin-top:17px;
+}
+/* Span Tag */
+.pointer-events-auto .overflow-hidden span{
+ background-color:rgba(31,29,29,0);
+}
+
+
+/* Hover */
+.backdrop-blur-sm:nth-child(5) > .hover\:shadow-lg:nth-child(2){
+ visibility:hidden;
+}
+

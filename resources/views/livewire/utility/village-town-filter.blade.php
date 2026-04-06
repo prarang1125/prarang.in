@@ -138,7 +138,7 @@
     </div>
 
     <!-- Modal -->
-    <div id="locationModal" class="fixed inset-0 z-[100] hidden flex items-center justify-center p-4 overflow-y-auto"
+    <div id="locationModal" class="fixed inset-0 z-[9999] hidden flex items-center justify-center p-4 overflow-y-auto"
         wire:ignore.self>
 
         <!-- Backdrop -->
@@ -493,8 +493,7 @@
                 <!-- Confirm Button Area -->
                 <div
                     class="mt-8 relative z-10 transition-all duration-300 {{ ($type === 'town' ? $town : $village) ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none' }}">
-                    <a href="/{{$type}}/{{url_encoder($state." -".$district."-".(($type==='town' ? $town :
-                        $village)))}}/{{ $this->selectedSlug }}"
+                    <a href="/{{$type==='town' ? 'city' : 'village'}}/{{url_encoder($state."-".$district."-".(($type==='town' ? $town : $village)))}}/{{ $this->selectedSlug }}"
                         class="relative group/btn block w-full py-4 bg-gray-900 border-none rounded-xl overflow-hidden
                         transition-all duration-300 hover:shadow-2xl hover:shadow-blue-100 active:scale-[0.98]
                         text-center">

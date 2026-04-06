@@ -421,7 +421,7 @@
 
                         <div
                             class="w-full sm:w-auto transition-all duration-500 {{ ($type === 'town' ? $town : $village) ? 'opacity-100 scale-100' : 'opacity-40 grayscale pointer-events-none' }}">
-                            <a target="_blank" href="{{ url("/") }}/{{ $type }}/{{ url_encoder($state . '-' . $district
+                            <a target="_blank" href="{{ url("/") }}/{{($type === 'town' ? "city" : "village")}}/{{ url_encoder($state . '-' . $district
                                 . '-' . ($type==='town' ? $town : $village)) }}/{{ $this->selectedSlug }}"
                                 class="inline-flex items-center justify-center w-full sm:w-auto px-10 py-4 bg-blue-600
                                 text-white font-black text-sm tracking-[0.1em] uppercase rounded-2xl shadow-xl
@@ -472,7 +472,7 @@
 
                                 <!-- Button -->
                                 <div class="mt-4">
-                                    <a href="https://prarang.in/town/OS02MjctODAwODYz/aonla-npp" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white
+                                    <a href="https://prarang.in/city/OS02MjctODAwODYz/aonla-npp" target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white
                               font-semibold text-sm rounded-xl hover:bg-blue-700 transition">
                                         View
                                         <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none"
