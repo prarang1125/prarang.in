@@ -69,24 +69,31 @@
 
 
         <div class="p-3 md:p-12 ">
+            @if($type === 'village')
             <div class="pb-4 text-center ">
                 <h2 class="text-xl md:text-xl  text-slate-800 tracking-tighter mb-2">
                     Explore <span class="font-black">594,204</span> Inhabited Villages across India
                 </h2>
-
+            @else
+            <div class="pb-4 text-center">
+                <h2 class="text-xl md:text-xl  text-slate-800 tracking-tighter mb-2">
+                    Explore <span class="font-black">7993+</span> Cities across India
+                </h2>
+            @endif
         </div>
-            <!-- Decorative Background Element -->
-            <!-- Header Section -->
+
             <div class="mb-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                 <h2 class="text-xl md:text-xl font-black text-slate-800 tracking-tighter mb-2">
                     Find <span class="text-blue-600">{{ $type === 'town' ? 'City' : 'Villages' }}</span>
                 </h2>
 
+                @if($type === 'village')
                 <a href="/village-webs" target="_blank"
     class="inline-flex w-fit self-start md:self-auto items-center gap-2 rounded-md no-underline border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-600 hover:bg-blue-600 hover:text-white hover:shadow-md">
     Village Language Distribution
 </a>
-
+    @else
+    @endif
             </div>
 
 
