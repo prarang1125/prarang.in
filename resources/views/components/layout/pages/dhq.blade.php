@@ -39,28 +39,34 @@
                     <!-- Grid Item 2: Clock -->
                     <!-- Premium Clock Component -->
                     <div class="flex justify-center">
-                        <div class="bg-gray-900 border border-gray-800 rounded-2xl p-2 px-4 shadow-xl w-full max-w-[180px] relative overflow-hidden group/clock transition-all duration-300 hover:border-blue-500/40">
+                        <div
+                            class="bg-gray-900 border border-gray-800 rounded-2xl p-2 px-4 shadow-xl w-full max-w-[180px] relative overflow-hidden group/clock transition-all duration-300 hover:border-blue-500/40">
                             <!-- Subtle Background Glow -->
                             <div class="absolute -top-4 -right-4 w-12 h-12 bg-blue-500/10 blur-2xl rounded-full"></div>
-                            
+
                             <div class="flex items-center gap-1.5 mb-1.5">
                                 <div class="relative">
                                     <div class="w-1.5 h-1.5 rounded-full bg-green-400"></div>
-                                    <div class="absolute inset-0 w-1.5 h-1.5 rounded-full bg-green-400 animate-ping opacity-75"></div>
+                                    <div
+                                        class="absolute inset-0 w-1.5 h-1.5 rounded-full bg-green-400 animate-ping opacity-75">
+                                    </div>
                                 </div>
                                 <span class="text-[9px] font-black uppercase tracking-[0.15em] text-gray-400">
                                     {{ $data['dhq']['city'] ?? 'Local' }} Time
                                 </span>
                             </div>
-                            
+
                             <div class="flex items-baseline gap-1">
-                                <div id="realtime-clock" class="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-300 tabular-nums">
+                                <div id="realtime-clock"
+                                    class="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-300 tabular-nums">
                                     00:00:00
                                 </div>
-                                <div id="realtime-ampm" class="text-[10px] font-black text-blue-500 uppercase mb-0.5">AM</div>
+                                <div id="realtime-ampm" class="text-[10px] font-black text-blue-500 uppercase mb-0.5">AM
+                                </div>
                             </div>
 
-                            <div id="realtime-date" class="text-[9px] mt-1 text-gray-500 font-bold uppercase tracking-wider leading-none">
+                            <div id="realtime-date"
+                                class="text-[9px] mt-1 text-gray-500 font-bold uppercase tracking-wider leading-none">
                                 Loading...
                             </div>
                         </div>
@@ -444,16 +450,16 @@
                 const ampm = hours >= 12 ? 'PM' : 'AM';
                 hours = hours % 12;
                 hours = hours ? hours : 12;
-                
+
                 const displayHours = String(hours).padStart(2, '0');
                 const strTime = `${displayHours}:${minutes}:${seconds}`;
                 const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
                 const strDate = now.toLocaleDateString('en-US', options);
-                
+
                 const clockEl = document.getElementById('realtime-clock');
                 const ampmEl = document.getElementById('realtime-ampm');
                 const dateEl = document.getElementById('realtime-date');
-                
+
                 if(clockEl) clockEl.textContent = strTime;
                 if(ampmEl) ampmEl.textContent = ampm;
                 if(dateEl) dateEl.textContent = strDate;

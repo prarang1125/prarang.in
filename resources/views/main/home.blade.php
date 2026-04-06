@@ -328,10 +328,11 @@
                 }
 
             }
+
         </style>
-        <div class="cursor-pointer" onclick="window.location.href='https://www.prarang.in/knowledge'">
+        {{-- <div class="cursor-pointer" onclick="window.location.href='https://www.prarang.in/knowledge'">
             <img src="https://i.ibb.co/MkscXbdy/download-2.gif" alt="">
-        </div>
+        </div> --}}
         <!-- Cards Section -->
         <div class="flex flex-wrap justify-center items-center gap-4 lg:gap-6">
 

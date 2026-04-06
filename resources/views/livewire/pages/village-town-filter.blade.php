@@ -95,9 +95,6 @@
     @else
     @endif
             </div>
-
-
-
             <div class="">
                 <div
                     class="grid grid-cols-1 {{ $type === 'village' ? 'md:grid-cols-4' : 'md:grid-cols-3' }} gap-3 md:gap-3">
