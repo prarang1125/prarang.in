@@ -385,12 +385,12 @@
                         <div>
                             {{-- <img src="{{ asset('assets/images/home/touch.gif') }}" alt=""> --}}
                         </div>
-                        <a href="/village-webs" class="no-underline">
+                        <a href="/india-rural" class="no-underline">
                             <div
                                 class="bg-blue-400 rounded-xl px-6 py-2.5 border border-blue-200 hover:from-blue-500 hover:to-blue-600 hover:border-blue-500 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
                                 <div class="flex items-center justify-center gap-2">
                                     <span class="text-base font-black text-white hover:text-white transition-colors">
-                                        India : Rural - 693042 </span>
+                                         India : Rural - 594,204 </span>
 
                                 </div>
                             </div>
@@ -439,7 +439,7 @@
                         <a target="_blank" href="/filter/village" class="no-underline">
                             <div
                                 class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl px-6 py-2.5 border border-blue-600 hover:from-blue-600 hover:to-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 min-w-[120px] text-center">
-                                <span class="text-base font-black text-white">636185</span>
+                                <span class="text-base font-black text-white">594,204</span>
                             </div>
                         </a>
                         <div>

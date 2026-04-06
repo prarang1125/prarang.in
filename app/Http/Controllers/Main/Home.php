@@ -10,6 +10,7 @@ use Exception;
 use Illuminate\Support\Facades\Hash;
 use Modules\Portal\Models\BiletralPortal;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 use Illuminate\Validation\Rules\Can;
 
@@ -455,9 +456,32 @@ class Home extends Controller
         });
 
         // dd($villagedata);
-
-
-
         return view('main.villagewebs', compact('villagedata'));
+    }
+
+
+     public function indiaRural()
+    {
+        try{
+            $missingvilage=Cache::remember('village_webs.missing_village', 30 * 60 * 60, function () {
+                return DB::table('missing_village')->get()->groupBy('state_code');
+            });
+
+            $newvillages=Cache::remember('village_webs.new_village', 30 * 60 * 60, function () {
+                return DB::table('new_villages')->get()->groupBy('state_code');
+            });
+
+            // dd($newvillages);
+
+            $stateSummaryRaw = Cache::remember('village_webs.state_summary', 30 * 60 * 60, function () {
+                return collect(config('state.stateWise'))->toArray();
+            });
+
+        }catch(Exception $e){
+            $e->getMessage();
+        }
+
+
+        return view('main.indiarural', compact('missingvilage','newvillages','stateSummaryRaw'));
     }
 }

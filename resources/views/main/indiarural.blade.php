@@ -1,0 +1,733 @@
+@php
+$metaData = [
+'nav-heading' => view('components.nav-heading', [
+'text' => 'India : Rural - 594,204 Villages',
+'text_class'=>'text-sm',
+'leftImg' => asset('assets/images/home/Villages-1.png'),
+'rightImg' => asset('assets/images/home/Villages-1.png'),
+]),
+'nav-sub-heading' => '',
+'headerClass' => 'custom-header-width',
+];
+@endphp
+<x-layout.main.base :metaData="$metaData">
+    <style>
+        /* Modern Table Styling */
+        .modern-table {
+            font-size: 13px;
+            min-width: max-content;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .modern-table thead {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .modern-table thead th {
+            font-weight: 600;
+            text-transform: none;
+            font-size: 14px;
+            letter-spacing: 0.5px;
+            padding: 8px 6px;
+            white-space: nowrap;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .modern-table tbody td {
+            padding: 6px 6px;
+            vertical-align: middle;
+            font-size: 13px;
+        }
+
+        /* Remove hover animation */
+        .modern-table tbody tr:hover {
+            background-color: rgba(0, 123, 255, 0.05);
+        }
+
+        .table-responsive {
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+            margin-bottom: 8px;
+            max-height: calc(100vh - 250px);
+            overflow-x: auto;
+            overflow-y: auto;
+        }
+
+        /* PC - Fit in window */
+        @media (min-width: 769px) {
+            .table-responsive {
+                overflow-x: auto;
+                overflow-y: auto;
+            }
+        }
+
+        /* Mobile Optimizations with Sticky State Column */
+        @media (max-width: 768px) {
+            .modern-table {
+                font-size: 11px;
+            }
+
+            .modern-table thead th {
+                font-size: 9px;
+                padding: 6px 3px;
+            }
+
+            .modern-table tbody td {
+                padding: 6px 3px;
+                font-size: 11px;
+            }
+
+            .table-responsive {
+                border-radius: 4px;
+                overflow-x: auto;
+                max-height: calc(100vh - 200px);
+            }
+
+            /* Sticky first two columns (# and State) on mobile */
+            .modern-table thead th:nth-child(2),
+            .modern-table tbody td:nth-child(2) {
+                position: sticky;
+                background-color: white;
+                z-index: 5;
+            }
+
+            /* .modern-table thead th:nth-child(1),
+            .modern-table tbody td:nth-child(1) {
+                left: 0;
+                box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+            } */
+
+            .modern-table thead th:nth-child(2),
+            .modern-table tbody td:nth-child(2) {
+                left: 0px;
+                box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+            }
+
+            .modern-table thead th:nth-child(1),
+            .modern-table thead th:nth-child(2) {
+                background-color: #007bff !important;
+            }
+        }
+
+        /* Button Styling */
+        .modern-table .btn-sm {
+            padding: 3px 10px;
+            font-size: 11px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .modern-table .btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 3px 6px rgba(0, 123, 255, 0.3);
+        }
+
+        /* Modal Enhancements */
+        .modal-content {
+            border-radius: 12px;
+            border: none;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+            color: white;
+            border-radius: 12px 12px 0 0;
+            padding: 16px 20px;
+        }
+
+        .modal-header .modal-title {
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .modal-header .btn-close {
+            filter: brightness(0) invert(1);
+        }
+
+
+
+        .modal-body .list-group-item {
+            border-left: 3px solid #007bff;
+            margin-bottom: 8px;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .modal-body .list-group-item:hover {
+            background-color: #f8f9fa;
+            transform: translateX(5px);
+            border-left-color: #0056b3;
+        }
+
+        /* Scroll Indicator for Mobile */
+        @media (max-width: 768px) {
+            .table-hori::after {
+                content: '← Scroll horizontally →';
+                display: block;
+                text-align: center;
+                padding: 6px;
+                background: linear-gradient(90deg, transparent, #007bff, transparent);
+                color: white;
+                font-size: 10px;
+                font-weight: 600;
+                border-radius: 0 0 4px 4px;
+            }
+        }
+
+        /* Modal body */
+        /* .container .modal .modal-xl .modal-content .modal-body {
+            height: 100vh !important;
+        } */
+
+        /* Modal body */
+        /* .container .modal .modal-body {
+            max-height: 100vh;
+        } */
+
+        /* Text white */
+        .modern-table thead tr {
+            position: sticky !important;
+            top: 1px;
+        }
+
+        /* Head Of Table */
+        .table-responsive .modern-table thead {
+            position: sticky;
+            z-index: 11;
+            top: -1px;
+        }
+
+        /* Primary */
+        .modern-table thead>.bg-primary {
+            position: sticky;
+            z-index: 138;
+        }
+
+        /* Enhanced Sticky Header for Main Table */
+        .table-responsive .modern-table thead th {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background-color: #007bff !important;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .table-responsive .modern-table thead tr {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        /* Heading */
+        .container .modal h6 {
+            border-style: none;
+            text-align: center;
+        }
+
+        @media (min-width:769px) {
+
+            /* Heading */
+            .container .modal h6 {
+                font-size: 16px;
+            }
+
+        }
+
+        /* Modal header */
+        .container .modal .modal-header {
+            display: grid;
+        }
+
+        /* Modal header */
+        .container .modal .modal-xl .modal-content .modal-header {
+            grid-template-columns: 89% 9% !important;
+            /* transform: translatex(0px) translatey(0px) !important; */
+        }
+
+        /* Modal title */
+        .container .modal .modal-title {
+            text-align: left;
+        }
+
+        /* Text white */
+        /* .modern-table thead .text-white {
+            position: sticky;
+            z-index: 1000 !important;
+        } */
+
+        /* Text white */
+        .container .mt-3 .table-responsive .modern-table thead .bg-primary .text-white {
+            background-color: #3084dd !important;
+        }
+
+        /* Head Of Table */
+        .table-responsive .modern-table thead {
+            position: sticky;
+            top: 0px !important;
+            z-index: 1000 !important;
+        }
+
+        /* Modern table */
+        .container .mt-3 .modern-table {
+            overflow: scroll;
+        }
+    </style>
+    <style>
+        /* Paragraph */
+        .container section p {
+            font-size: 13px;
+        }
+
+        /* Bold */
+        .container section .fw-bold {
+            margin-bottom: 3px;
+        }
+
+        @media (min-width:769px) {
+
+            /* Table Data */
+            .modern-table tr td {
+                font-size: 14px !important;
+            }
+
+        }
+    </style>
+    <style>
+        /* Modal header */
+        .container .table-hori .table-responsive .modal .modal-dialog .modal-content .modal-header {
+            grid-template-columns: 90% 1fr !important;
+        }
+
+        /* Modal header */
+        .container .modal .modal-dialog .modal-content .modal-header {
+            grid-template-columns: 90% 1fr !important;
+        }
+
+        /* Modal dialog */
+
+
+        /* Modal content */
+        /* .container .modal .modal-dialog .modal-content {
+            height: 90vh !important;
+        } */
+
+        /* Table Data */
+        .table-responsive td:nth-child(2) {
+            position: sticky;
+            left: 1px;
+        }
+
+        /* Text white */
+        .head-forstic .text-white:nth-child(2) {
+            left: 1px;
+            z-index: 1000;
+        }
+
+        .head-forstic .text-white:nth-child(3) {
+            z-index: 1;
+        }
+
+        /* Head forstic */
+        .table-hori .table-striped .head-forstic {
+            z-index: 64 !important;
+        }
+
+        /* Text white */
+        .head-forstic .text-white:nth-child(2) {
+            z-index: 1000;
+            left: 2px !important;
+        }
+
+        /* Text white */
+        .head-forstic .text-white:not(:nth-child(2)) {
+            z-index: 174 !important;
+        }
+
+        /* Text white */
+        /* .head-forstic .text-white:nth-child(2) {
+            width: 176px;
+        } */
+
+        /* Text start */
+        .container .text-start {
+            position: absolute;
+            top: 130px;
+        }
+
+        @media (max-width:576px) {
+
+            /* Button */
+            .container .text-start a {
+                position: relative;
+                top: -52px;
+            }
+
+        }
+
+        /* Modal body */
+        /* .container .modal .modal-body {
+            max-height: 105px !important;
+        } */
+
+        /* Modal body */
+        /* .container .modal .modal-dialog .modal-content .modal-body {
+            height: 153px !important;
+        } */
+
+        /* Modal content */
+        /* .container .modal .modal-dialog .modal-content {
+            height: 191px !important;
+        } */
+
+        /* Modal content */
+        /* .container .modal .modal-content {
+            min-width: 0px;
+            min-height: 0px;
+            max-height: 209px;
+        } */
+
+        .table-hori .table-responsive .modern-table tbody tr td:nth-child(n+3) {
+    text-align: right !important;
+}
+
+        .table-hori .table-responsive {
+            position: relative;
+        }
+
+        .table-hori .table-responsive .modern-table tfoot .india-total-row td {
+            position: sticky;
+            bottom: 0;
+            z-index: 120;
+            /* background: #dfe5ee !important; */
+            font-weight: 700;
+            border: 1px solid #dee2e6;
+            text-align: center !important;
+        }
+
+        .table-hori .table-responsive .modern-table tfoot .india-total-row td:nth-child(2) {
+            left: 1px;
+            z-index: 121;
+        }
+
+
+
+    </style>
+
+
+    <section>
+        <p>India had 640,932 villages in 2011 (Census) and this has now increased to 676,260 villages as per the Ministry of Panchayati Raj's Local Government Directory (LGD), March 2026. Of these, 594,204 villages were Inhabited as per Census 2011, while 41,981 villages were recorded with Zero Population. A further 40,075 villages have been added to the LGD after the Census was conducted and therefore have no corresponding Census 2011 record. Additionally, 3,402 villages that were recorded as Inhabited in Census 2011 are currently absent from the LGD database.
+        </p>
+        <p>The table below presents a State/UT-wise comparison of village counts between Census 2011 and the Min. of Panchayati Raj (March 2026).</p>
+    </section>
+
+
+
+    <section class="mt-3 table-hori">
+        <div class="table-responsive">
+            <table class="table table-sm table-striped table-hover table-bordered modern-table">
+                <thead class="head-forstic">
+
+                    <tr class="bg-primary">
+                            <th class="bg-primary text-white" rowspan="2">#</th>
+                            <th class="bg-primary text-white" rowspan="2" style="width: 100px;">State / UT</th>
+                            <th class="bg-primary text-white text-center" colspan="4">Census 2011</th>
+                            <th class="bg-primary text-white text-center" colspan="8">Panchayat Raj - March 2026</th>
+                    </tr>
+
+
+                    <tr class="bg-primary">
+                            <th class="bg-primary text-white text-center"># Villages</th>
+                            <th class="bg-primary text-white text-center">%</th>
+                            <th class="bg-primary text-white text-center"># Inhabited<br>Villages</th>
+                            <th class="bg-primary text-white text-center">%</th>
+                            <th class="bg-primary text-white text-center"># Villages</th>
+                            <th class="bg-primary text-white text-center">%</th>
+                            <th class="bg-primary text-white text-center"># Inhabited<br>Villages</th>
+                            <th class="bg-primary text-white text-center">%</th>
+                            <th class="bg-primary text-white text-center"># New<br>Villages</th>
+                            <th class="bg-primary text-white text-center">%</th>
+                            <th class="bg-primary text-white text-center"># Census 2011<br>Missing Villages</th>
+                            <th class="bg-primary text-white text-center">%</th>
+                        </tr>
+                </thead>
+                <tbody>
+                    @forelse ($stateSummaryRaw ?? [] as $row)
+                        <tr>
+                            <td>{{ $row['id'] ?? '-' }}</td>
+                            <td>{{ $row['state'] ?? '-' }}</td>
+                            <td>{{ number_format((int) ($row['census_2011_villages'] ?? 0)) }}</td>
+                            <td>{{ isset($row['census_2011_villages_pct']) ? number_format((float) $row['census_2011_villages_pct'], 1) : '-' }}</td>
+                            <td>{{ number_format((int) ($row['census_2011_inhabited'] ?? 0)) }}</td>
+                            <td>{{ isset($row['census_2011_inhabited_pct']) ? number_format((float) $row['census_2011_inhabited_pct'], 1) : '-' }}</td>
+                            <td>{{ (int) ($row['panchayat_2026_villages'] ?? 0) > 0 ? number_format((int) $row['panchayat_2026_villages']) : '-' }}</td>
+                            <td>{{ isset($row['panchayat_2026_villages_pct']) ? number_format((float) $row['panchayat_2026_villages_pct'], 1) : '-' }}</td>
+                            <td>{{ (int) ($row['panchayat_2026_inhabited'] ?? 0) > 0 ? number_format((int) $row['panchayat_2026_inhabited']) : '-' }}</td>
+                            <td>{{ isset($row['panchayat_2026_inhabited_pct']) ? number_format((float) $row['panchayat_2026_inhabited_pct'], 1) : '-' }}</td>
+                            <td>
+                                <a href="#" class="text-primary" data-bs-toggle="modal"
+                                    data-bs-target="#newvillage{{ $row['state_code'] }}">
+                                    {{ number_format((float) $row['new_villages']) ?? '_'}}
+                                </a>
+
+                            </td>
+                            <td>{{ isset($row['new_villages_pct']) ? number_format((float) $row['new_villages_pct'], 1) : '-' }}</td>
+                            <td>
+                                <a href="#" class="text-primary" data-bs-toggle="modal"
+                                    data-bs-target="#missingvillage{{ $row['state_code'] }}">
+                                    {{ number_format((float) $row['missing_villages']) ?? '_'}}
+                                </a>
+
+                            </td>
+                            <td>
+                                {{ isset($row['missing_villages_pct']) ? number_format((float) $row['missing_villages_pct'], 1) : '-' }}
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="14" class="text-center">No data available.</td>
+                        </tr>
+                    @endforelse
+
+                </tbody>
+
+                <tfoot>
+                    <tr class="india-total-row">
+
+                        <td colspan="2">INDIA - TOTAL</td>
+                        <td>6,40,932</td>
+                        <td>100</td>
+                        <td>5,97,606</td>
+                        <td>100</td>
+                        <td>6,76,260</td>
+                        <td>100</td>
+                        <td>5,94,204</td>
+                        <td>100</td>
+                        <td>40,075</td>
+                        <td>100</td>
+                        <td>3,402</td>
+                        <td>100</td>
+                    </tr>
+                </tfoot>
+
+            </table>
+        </div>
+    </section>
+
+
+
+    @foreach($newvillages as $stateCode => $villages)
+     @php
+        $firstVillage = $villages->first();
+    @endphp
+
+    <div class="modal fade" id="newvillage{{ $stateCode }}" tabindex="-1"
+        aria-labelledby="newvillage{{ $stateCode }}" aria-hidden="true">
+
+        <div class="modal-dialog  modal-dialog-centered ">
+
+            <div class="modal-content">
+
+                <div class="modal-header bg-primary text-white">
+
+                    <h5 class="modal-title">
+                        New Villages — Min. of Panchayati Raj, March 2026 <br> <span style="font-size: 18px">{{ $firstVillage->state_ut_name }}</span>
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                        <p style="font-size: 14px;">These villages are present in LGD but absent from Census 2011 — added after the census was conducted.
+</p>
+                    <div class="table-wrapper">
+
+                        <table class="table table-sm table-striped table-bordered table-hover modal-city-table">
+
+                            <thead class="sticky-top">
+                                <tr>
+                                    <th class=" text-white">#</th>
+                                    <th class="text-white">District</th>
+                                    <th class="text-white">Village</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach ($villages as $village)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+
+                                        <td>{{ $village->district }}</td>
+                                        <td>{{ $village->village }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer py-2">
+
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    @endforeach
+
+
+     @foreach($missingvilage  as $stateCode => $villages)
+     @php
+        $firstVillage = $villages->first();
+    @endphp
+
+    <div class="modal fade" id="missingvillage{{ $stateCode }}" tabindex="-1"
+        aria-labelledby="missingvillage{{ $stateCode }}" aria-hidden="true">
+
+        <div class="modal-dialog  modal-dialog-centered ">
+
+            <div class="modal-content">
+
+                <div class="modal-header bg-primary text-white">
+
+                    <h5 class="modal-title">
+                        Missing Villages — Min. of Panchayati Raj, March 2026 <br> <span style="font-size: 18px">{{ $firstVillage->state_ut_name }}</span>
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                        <p style="font-size: 14px;">These villages were recorded as Inhabited in Census 2011 but are currently absent from the Ministry of Panchayati Raj's Local Government Directory (March 2026).
+
+</p>
+                    <div class="table-wrapper">
+
+                        <table class="table table-sm table-striped table-bordered table-hover modal-city-table">
+
+                            <thead class="sticky-top">
+                                <tr>
+                                    <th class=" text-white">#</th>
+                                    <th class="text-white">District</th>
+                                    <th class="text-white">Village</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach ($villages as $village)
+                                    <tr>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $village->district }}</td>
+                                        <td>{{ $village->village }}</td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer py-2">
+
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    @endforeach
+
+
+
+
+
+
+
+    <style>
+        /* Modal Table Enhancements */
+        .table-wrapper {
+            max-height: 400px;
+            overflow-y: auto;
+            border-radius: 6px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-city-table {
+            margin-bottom: 0;
+            font-size: 13px;
+        }
+
+        .modal-city-table thead {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .modal-city-table thead th {
+            background-color: #007bff;
+            color: white;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 13px;
+            padding: 10px 8px;
+            border: 1px solid #0056b3;
+            white-space: nowrap;
+        }
+
+        .modal-city-table tbody td {
+            padding: 8px;
+            vertical-align: middle;
+            border: 1px solid #dee2e6;
+        }
+
+        .modal-city-table tbody tr:hover {
+            background-color: rgba(0, 123, 255, 0.08);
+        }
+
+        .table-container h6 {
+            font-size: 14px;
+            padding: 8px 12px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 6px;
+            border-left: 4px solid #007bff;
+        }
+
+        .table-container h6 i {
+            margin-right: 6px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .table-wrapper {
+                max-height: 300px;
+            }
+
+            .modal-city-table {
+                font-size: 11px;
+            }
+
+            .modal-city-table thead th {
+                font-size: 9px;
+                padding: 6px 4px;
+            }
+
+            .modal-city-table tbody td {
+                padding: 6px 4px;
+            }
+
+            .table-container h6 {
+                font-size: 12px;
+            }
+        }
+    </style>
+</x-layout.main.base>
