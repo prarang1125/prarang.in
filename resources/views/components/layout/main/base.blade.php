@@ -7,10 +7,12 @@
     <title>{{ $metaData['title'] ?? 'Prarang : Knowledge Webs' }}</title>
     <meta name="description" content="Knowledge webs for smarter citizenship, advertising, and governance.">
     <meta charset="utf-8">
-    {{-- <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport"> --}}
+    {{--
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport"> --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    {{-- <link rel="manifest" href="{{ asset('/site.webmanifest') }}"> --}}
+    {{--
+    <link rel="manifest" href="{{ asset('/site.webmanifest') }}"> --}}
     <!-- Open Graph Meta Tags -->
     <meta property="og:title" content="{{ $metaData['title'] ?? 'Prarang : Knowledge Webs' }}">
     <meta name="title" property="og:title" content="{{ $metaData['title'] ?? 'Prarang : Knowledge Webs' }}">
@@ -462,7 +464,7 @@
         width: 511px;
     }
 
-    .d-lg-block .custom-header-width{
+    .d-lg-block .custom-header-width {
         width: 818px !important;
     }
 
@@ -512,9 +514,9 @@
             margin-top: 9px !important;
         }
 
-         .mobile-align-center {
-        align-items: center !important;
-    }
+        .mobile-align-center {
+            align-items: center !important;
+        }
 
     }
 
@@ -651,118 +653,129 @@
     #main-header .d-lg-block .header-home {
         padding-left: 125px;
     }
+
+    /* Image */
+    .navbar-nav .nav-item img {
+        position: absolute;
+        top: -35px;
+        width: 7% !important;
+        height: 100% !important;
+        min-height: 122px;
+        transform: translatex(14px) translatey(-75px);
+        z-index: -1;
+    }
 </style>
 
 <body class="bg-light" style="min-height: 100vh !important;" style="background: #ffffff !important;">
     @php
-        $isHome = request()->url() === url('/');
-        $navHeading = $metaData['nav-heading'] ?? 'Prarang Knowledge Webs';
-        $navSubHeading = $metaData['nav-sub-heading'] ?? 'Bridging the Digital Divide – By Location, By Language';
-        $headerClass = $metaData['headerClass'] ?? null;
-        // dd($headerClass);
+    $isHome = request()->url() === url('/');
+    $navHeading = $metaData['nav-heading'] ?? 'Prarang Knowledge Webs';
+    $navSubHeading = $metaData['nav-sub-heading'] ?? 'Bridging the Digital Divide – By Location, By Language';
+    $headerClass = $metaData['headerClass'] ?? null;
+    // dd($headerClass);
     @endphp
     <div id="main-header" class="">
         @if ($isHome)
-            <header class="bg-white container-fluid py-3 d-none d-lg-block">
-                <div class="container header-home">
-                    <div class="row justify-center items-center">
-                        <div class="col-md-9 text-center {{ $headerClass }} justify-center items-center">
-                            <h1 class="header-title mb-0 text-primary">
-                                Prarang Knowledge Webs</h1>
-                            <p class="header-tagline mb-0">Bridging the Digital Divide – By Location, By Language</p>
-                        </div>
-                        <div class="col-md-3 text-end">
-                            <a href="/" class="text-decoration-none"2>
-                                <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
-                                    alt="Prarang" height="60">
-                            </a>
-                        </div>
+        <header class="bg-white container-fluid py-3 d-none d-lg-block">
+            <div class="container header-home">
+                <div class="row justify-center items-center">
+                    <div class="col-md-9 text-center {{ $headerClass }} justify-center items-center">
+                        <h1 class="header-title mb-0 text-primary">
+                            Prarang Knowledge Webs</h1>
+                        <p class="header-tagline mb-0">Bridging the Digital Divide – By Location, By Language</p>
+                    </div>
+                    <div class="col-md-3 text-end">
+                        <a href="/" class="text-decoration-none" 2>
+                            <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
+                                alt="Prarang" height="60">
+                        </a>
                     </div>
                 </div>
-            </header>
+            </div>
+        </header>
         @else
-            <style>
-                /* Heading */
-                .d-lg-block .justify-center h1 {
-                    color: #0d6efd !important;
-                }
+        <style>
+            /* Heading */
+            .d-lg-block .justify-center h1 {
+                color: #0d6efd !important;
+            }
 
 
-                /* Header */
-                #main-header header {
-                    padding-bottom: 2px !important;
-                    height: 86px;
-                    padding-top: 1px !important;
-                    /* transform: translatex(0px) translatey(0px); */
-                }
+            /* Header */
+            #main-header header {
+                padding-bottom: 2px !important;
+                height: 86px;
+                padding-top: 1px !important;
+                /* transform: translatex(0px) translatey(0px); */
+            }
 
-                /* Font bold */
-                .col-sm-8 .header-title .font-bold {
-                    color: #0d6efd !important;
-                    font-size: 24px;
-                }
+            /* Font bold */
+            .col-sm-8 .header-title .font-bold {
+                color: #0d6efd !important;
+                font-size: 24px;
+            }
 
 
-                /* Justify center */
-                .d-lg-block .justify-center {
-                    padding-top: 3px;
-                }
+            /* Justify center */
+            .d-lg-block .justify-center {
+                padding-top: 3px;
+            }
 
-                .justify-center h1 {
-                    font-size: 24px;
-                }
+            .justify-center h1 {
+                font-size: 24px;
+            }
 
-                /* Col 8 */
-                .d-lg-block .col-sm-8 {
-                    display: flex;
-                    justify-content: center;
-                    align-items: center;
-                    height: 86px;
-                }
+            /* Col 8 */
+            .d-lg-block .col-sm-8 {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 86px;
+            }
 
-                /* #main-header .container-fluid .container .row .col-sm-8 .justify-center .text-center h1 {
+            /* #main-header .container-fluid .container .row .col-sm-8 .justify-center .text-center h1 {
                     width: 118% !important;
                 } */
-            </style>
-            <header class="bg-white container-fluid py-3 d-none d-lg-block">
-                <div class="container header-none-home">
-                    <div class="row">
-                        <div class="col-2">
-                            <a href="/" class="text-decoration-none"2>
-                                <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
-                                    alt="Prarang" height="60">
-                            </a>
-                        </div>
-                        <div class="col-sm-8">
-                            <div class="flex justify-center items-center">
-                                <div class="col-md-9 text-center {{ $headerClass }}">
-                                    <h1 class="header-title mb-0 text-primary">
-                                        {!! $navHeading !!}</h1>
-                                    <p class="header-tagline mb-0">
-                                        {!! $navSubHeading !!}
-                                    </p>
-                                </div>
+        </style>
+        <header class="bg-white container-fluid py-3 d-none d-lg-block">
+            <div class="container header-none-home">
+                <div class="row">
+                    <div class="col-2">
+                        <a href="/" class="text-decoration-none" 2>
+                            <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
+                                alt="Prarang" height="60">
+                        </a>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="flex justify-center items-center">
+                            <div class="col-md-9 text-center {{ $headerClass }}">
+                                <h1 class="header-title mb-0 text-primary">
+                                    {!! $navHeading !!}</h1>
+                                <p class="header-tagline mb-0">
+                                    {!! $navSubHeading !!}
+                                </p>
                             </div>
                         </div>
-                        <div class="col-2"></div>
                     </div>
-
-
-                    {{-- <div class="row justify-center items-center">
-                        <div class="col-md-9 text-center">
-                            <h1 class="header-title mb-0 text-primary">
-                                {{ $navHeading ?? 'Prarang Knowledge Webs' }}</h1>
-                            <p class="header-tagline mb-0">Bridging the Digital Divide – By Location, By Language</p>
-                        </div>
-                        <div class="col-md-3 text-end">
-                            <a href="/" class="text-decoration-none"2>
-                                <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
-                                    alt="Prarang" height="60">
-                            </a>
-                        </div>
-                    </div> --}}
+                    <div class="col-2"></div>
                 </div>
-            </header>
+
+
+                {{-- <div class="row justify-center items-center">
+                    <div class="col-md-9 text-center">
+                        <h1 class="header-title mb-0 text-primary">
+                            {{ $navHeading ?? 'Prarang Knowledge Webs' }}</h1>
+                        <p class="header-tagline mb-0">Bridging the Digital Divide – By Location, By Language</p>
+                    </div>
+                    <div class="col-md-3 text-end">
+                        <a href="/" class="text-decoration-none" 2>
+                            <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
+                                alt="Prarang" height="60">
+                        </a>
+                    </div>
+                </div> --}}
+            </div>
+        </header>
         @endif
         <nav class="navbar navbar-expand-lg bg-white shadow-sm">
             <div class="container">
@@ -796,19 +809,19 @@
                 <div class="collapse navbar-collapse" id="mainNavbarMenu">
                     <ul class="navbar-nav w-100 justify-content-between">
                         @if (url()->current() != '/')
-                            <li class="nav-item">
-                                <a class="nav-link" href="/">
-                                    Home
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">
+                                Home
+                            </a>
+                        </li>
                         @endif
                         <li class="nav-item">
                             <a class="nav-link" href="/digital-divide">Digital Divide</a>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 Solutions
                             </a>
                             <ul class="dropdown-menu">
@@ -821,8 +834,7 @@
                                         <li><a class="dropdown-item"
                                                 href="{{ route('home.knowledge-posts') }}">Knowledge Posts
                                             </a></li>
-                                        <li><a class="dropdown-item"
-                                                href="{{ route('home.business-apps') }}">Business
+                                        <li><a class="dropdown-item" href="{{ route('home.business-apps') }}">Business
                                                 Apps
                                             </a></li>
 
@@ -840,8 +852,7 @@
                                                 href="https://g2c.prarang.in/india">India Analytics</a></li>
                                         <li><a class="dropdown-item" target="_blank"
                                                 href="https://g2c.prarang.in/world">World Analytics</a></li>
-                                        <li><a class="dropdown-item"
-                                                href="https://g2c.prarang.in/planners">Planners</a>
+                                        <li><a class="dropdown-item" href="https://g2c.prarang.in/planners">Planners</a>
                                         </li>
                                         <li><a class="dropdown-item" href="/cirus">Cyber Risk Analyser
                                             </a></li>
@@ -884,8 +895,7 @@
                                         <li><a class="dropdown-item" href="{{ route('home.city-portals') }}">City
                                                 Portals
                                             </a></li>
-                                        <li><a class="dropdown-item"
-                                                href="{{ route('home.country-portals') }}">Country
+                                        <li><a class="dropdown-item" href="{{ route('home.country-portals') }}">Country
                                                 Portals
 
                                             </a></li>
@@ -906,7 +916,16 @@
                             <a class="nav-link" href="javascript:void(0);" id="viveks-modal">Blogs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/knowledge">Knowledge</a>
+                            @if ($isHome)
+                            <a class="nav-link d-flex flex-column align-items-center justify-content-center py-1"
+                                href="/knowledge" style="height: auto !important;">
+                                <img src="https://i.ibb.co/LDgGCzVV/delhi-exhibition.png" alt="Exhibition"
+                                    style="height: 24px; width: auto;" class="mb-0">
+                                <span style="line-height: 1;">Knowledge</span>
+                            </a>
+                            @else
+                            <a class="nav-link text-center" href="/knowledge">Knowledge</a>
+                            @endif
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/intelligence">Intelligence</a>
@@ -1022,8 +1041,7 @@
     {{-- <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
 
     <!-- Dynamic Generic Modal -->
-    <div class="modal fade" id="dynamicModal" tabindex="-1" aria-labelledby="dynamicModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="dynamicModal" tabindex="-1" aria-labelledby="dynamicModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0" style="border-radius: 28px;">
                 <div class="modal-header border-0 p-4 pb-0">

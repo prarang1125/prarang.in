@@ -329,9 +329,9 @@
 
             }
         </style>
-        <div class="cursor-pointer" onclick="window.location.href='https://www.prarang.in/knowledge'">
+        {{-- <div class="cursor-pointer" onclick="window.location.href='https://www.prarang.in/knowledge'">
             <img src="https://i.ibb.co/MkscXbdy/download-2.gif" alt="">
-        </div>
+        </div> --}}
         <!-- Cards Section -->
         <div class="flex flex-wrap justify-center items-center gap-4 lg:gap-6">
 
@@ -390,7 +390,7 @@
                                 class="bg-blue-400 rounded-xl px-6 py-2.5 border border-blue-200 hover:from-blue-500 hover:to-blue-600 hover:border-blue-500 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
                                 <div class="flex items-center justify-center gap-2">
                                     <span class="text-base font-black text-white hover:text-white transition-colors">
-                                         India : Rural - 594,204 </span>
+                                        India : Rural - 594,204 </span>
 
                                 </div>
                             </div>

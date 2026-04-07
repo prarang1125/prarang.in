@@ -37,20 +37,37 @@
                     </div>
 
                     <!-- Grid Item 2: Clock -->
+                    <!-- Premium Clock Component -->
                     <div class="flex justify-center">
-                        <div class="bg-[#5c5c5c] rounded-lg p-1.5 px-3 text-white shadow-sm w-full max-w-[160px]">
-                            <div class="flex items-center gap-2 mb-0.5 opacity-90">
-                                <i class="fa fa-clock-o text-[10px]"></i>
-                                <span class="text-[10px] font-bold tracking-wide leading-none truncate">{{
-                                    $data['dhq']['city'] ?? 'Local' }} Time</span>
+                        <div
+                            class="bg-gray-900 border border-gray-800 rounded-2xl p-2 px-4 shadow-xl w-full max-w-[180px] relative overflow-hidden group/clock transition-all duration-300 hover:border-blue-500/40">
+                            <!-- Subtle Background Glow -->
+                            <div class="absolute -top-4 -right-4 w-12 h-12 bg-blue-500/10 blur-2xl rounded-full"></div>
+
+                            <div class="flex items-center gap-1.5 mb-1.5">
+                                <div class="relative">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-green-400"></div>
+                                    <div
+                                        class="absolute inset-0 w-1.5 h-1.5 rounded-full bg-green-400 animate-ping opacity-75">
+                                    </div>
+                                </div>
+                                <span class="text-[9px] font-black uppercase tracking-[0.15em] text-gray-400">
+                                    {{ $data['dhq']['city'] ?? 'Local' }} Time
+                                </span>
                             </div>
-                            <div id="realtime-clock"
-                                class="text-sm font-bold text-[#9dc3b9] leading-none mb-1 font-mono">
-                                00:00:00 AM
+
+                            <div class="flex items-baseline gap-1">
+                                <div id="realtime-clock"
+                                    class="text-xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-300 tabular-nums">
+                                    00:00:00
+                                </div>
+                                <div id="realtime-ampm" class="text-[10px] font-black text-blue-500 uppercase mb-0.5">AM
+                                </div>
                             </div>
+
                             <div id="realtime-date"
-                                class="text-[9px] opacity-80 font-medium font-sans text-center leading-none">
-                                Loading date...
+                                class="text-[9px] mt-1 text-gray-500 font-bold uppercase tracking-wider leading-none">
+                                Loading...
                             </div>
                         </div>
                     </div>
@@ -129,10 +146,12 @@
                             </h1>
                         </div>
                     </div>
-                    <div class="px-6 py-1.5 rounded-full bg-gray-50 border border-gray-100  bg-blue-700 ">
-                        <p class="text-center text-lg font-medium text-white cursor-pointer tracking-wide">
+                    <div
+                        class="px-6 py-1.5 rounded-full bg-blue-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
+                        <div id="subscribe-trigger"
+                            class="text-center text-lg font-medium text-white cursor-pointer tracking-wide">
                             Join now for a free subscription
-                        </p>
+                        </div>
                     </div>
                     {{-- <div class="px-6 py-1.5 rounded-full bg-gray-50 border border-gray-100">
                         <p class="text-center text-lg font-medium text-gray-500 tracking-wide">
@@ -150,8 +169,9 @@
                         <div
                             class="bg-black text-white p-2 px-3 rounded-lg border border-gray-700 text-[11px] shadow-lg">
                             <div class="flex justify-between items-center py-1">
-                                <span class="font-medium">{{ $data['dhq']['city'] ?? '-' }} Local Subscribers:</span>
-                                <span class="font-bold text-green-400" id="city-subscriber-count"></span>
+                                <span class="font-medium">{{ $data['dhq']['city'] ?? '-' }} Local
+                                    Subscribers:</span>
+                                <span class="font-bold text-green-400" id="city-subscriber-count">0</span>
                             </div>
                             <div class="flex justify-between items-center py-1 border-t border-gray-800">
                                 <span class="font-medium">{{ $data['dhq']['city'] ?? '-' }} Webpage Monthly
@@ -261,28 +281,192 @@
             </div>
         </div>
     </footer>
+    <!-- Subscription Modal -->
+    <!-- Subscription Modal -->
+    <div id="subscribeModal" class="fixed inset-0 z-[9999] hidden items-center justify-center p-4">
+        <!-- Backdrop -->
+        <div id="modalBackdrop" class="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"></div>
+
+        <!-- Modal Content -->
+        <div class="relative bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden transform transition-all scale-95 opacity-0 duration-300"
+            id="modalContainer">
+            <!-- Close Button -->
+            <button id="closeModal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors">
+                <i class="fa fa-times text-xl"></i>
+            </button>
+
+            <div class="p-8" id="formContent">
+                <div class="text-center mb-8">
+                    <div class="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
+                        <i class="fa fa-envelope text-2xl text-blue-600"></i>
+                    </div>
+                    <h2 class="text-2xl font-extrabold text-gray-900">Subscribe Now</h2>
+                    {{-- <p class="text-gray-500 mt-2 text-sm">Stay connected with {{ $data['dhq']['city'] ?? 'your
+                        city'
+                        }}'s latest cultural & nature updates.</p> --}}
+                </div>
+
+                <form id="subscriptionForm" class="space-y-4">
+                    <!-- City (Auto-filled) -->
+                    <div>
+                        <label
+                            class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1 px-1">City</label>
+                        <input type="text" name="city" value="{{ $data['dhq']['city'] ?? '' }}" readonly
+                            class="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-700 font-semibold focus:outline-none cursor-not-allowed">
+                    </div>
+
+                    <!-- Name -->
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1 px-1">Full
+                            Name</label>
+                        <input type="text" name="name" required placeholder="e.g. Vivek Yadav"
+                            class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none">
+                    </div>
+
+
+
+                    <!-- Mobile -->
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1 px-1">Mobile
+                            No.</label>
+                        <input type="tel" name="mobile" required placeholder="e.g. 7619876249"
+                            class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none">
+                    </div>
+                    <!-- Email -->
+                    <div>
+                        <label class="block text-xs font-bold text-gray-400 uppercase tracking-wider mb-1 px-1">Email
+                            (Optional)</label>
+                        <input type="email" name="email" placeholder="e.g. aa@aa.aa"
+                            class="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl text-gray-700 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all outline-none">
+                    </div>
+
+                    <button type="submit" id="submitBtn"
+                        class="w-full py-4 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg hover:shadow-blue-200 transition-all transform active:scale-95 flex items-center justify-center gap-2 mt-6">
+                        <span>Subscribe Now</span>
+                        <i class="fa fa-paper-plane"></i>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Success Message (Hidden by default) -->
+            <div class="hidden p-12 text-center" id="successContent">
+                <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <i class="fa fa-check text-4xl text-green-600"></i>
+                </div>
+                <h2 class="text-3xl font-black text-gray-900 mb-2">Thank You!</h2>
+                <p class="text-gray-600 text-lg">You have successfully subscribed to <span
+                        class="font-bold text-blue-600">{{ $data['dhq']['city'] ?? '' }}</span> updates.</p>
+                <button id="finishBtn"
+                    class="mt-8 px-8 py-3 bg-gray-900 text-white font-bold rounded-xl hover:bg-gray-800 transition-colors">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+
     <script>
-        function updateClock() {
-                            const now = new Date();
+        document.addEventListener('DOMContentLoaded', function() {
+            const modal = document.getElementById('subscribeModal');
+            const modalContainer = document.getElementById('modalContainer');
+            const trigger = document.getElementById('subscribe-trigger');
+            const closeBtn = document.getElementById('closeModal');
+            const backdrop = document.getElementById('modalBackdrop');
+            const form = document.getElementById('subscriptionForm');
+            const formContent = document.getElementById('formContent');
+            const successContent = document.getElementById('successContent');
+            const finishBtn = document.getElementById('finishBtn');
+            const submitBtn = document.getElementById('submitBtn');
 
-                            // Format Time: 08:02:46 AM
-                            let hours = now.getHours();
-                            const minutes = String(now.getMinutes()).padStart(2, '0');
-                            const seconds = String(now.getSeconds()).padStart(2, '0');
-                            const ampm = hours >= 12 ? 'PM' : 'AM';
-                            hours = hours % 12;
-                            hours = hours ? hours : 12; // the hour '0' should be '12'
-                            const strTime = `${String(hours).padStart(2, '0')}:${minutes}:${seconds} ${ampm}`;
+            function openModal() {
+                modal.classList.remove('hidden');
+                modal.classList.add('flex');
+                setTimeout(() => {
+                    modalContainer.classList.remove('scale-95', 'opacity-0');
+                    modalContainer.classList.add('scale-100', 'opacity-100');
+                }, 10);
+            }
 
-                            // Format Date: Friday, April 3, 2026
-                            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-                            const strDate = now.toLocaleDateString('en-US', options);
+            function closeModal() {
+                modalContainer.classList.remove('scale-100', 'opacity-100');
+                modalContainer.classList.add('scale-95', 'opacity-0');
+                setTimeout(() => {
+                    modal.classList.add('hidden');
+                    modal.classList.remove('flex');
+                    // Reset content for next time
+                    formContent.classList.remove('hidden');
+                    successContent.classList.add('hidden');
+                    form.reset();
+                }, 300);
+            }
 
-                            document.getElementById('realtime-clock').textContent = strTime;
-                            document.getElementById('realtime-date').textContent = strDate;
-                        }
-                        setInterval(updateClock, 1000);
-                        updateClock(); // initial call
+            trigger.addEventListener('click', openModal);
+            closeBtn.addEventListener('click', closeModal);
+            backdrop.addEventListener('click', closeModal);
+            finishBtn.addEventListener('click', closeModal);
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
+
+                // Show loading state
+                const originalBtnText = submitBtn.innerHTML;
+                submitBtn.disabled = true;
+                submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Submitting...';
+
+                fetch('/api/v1/subscribe', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => {
+                    if (response.ok) {
+                        formContent.classList.add('hidden');
+                        successContent.classList.remove('hidden');
+                    } else {
+                        throw new Error('Subscription failed');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+
+                })
+                .finally(() => {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = originalBtnText;
+                });
+            });
+
+            // Clock logic (existing)
+            function updateClock() {
+                const now = new Date();
+                let hours = now.getHours();
+                const minutes = String(now.getMinutes()).padStart(2, '0');
+                const seconds = String(now.getSeconds()).padStart(2, '0');
+                const ampm = hours >= 12 ? 'PM' : 'AM';
+                hours = hours % 12;
+                hours = hours ? hours : 12;
+
+                const displayHours = String(hours).padStart(2, '0');
+                const strTime = `${displayHours}:${minutes}:${seconds}`;
+                const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
+                const strDate = now.toLocaleDateString('en-US', options);
+
+                const clockEl = document.getElementById('realtime-clock');
+                const ampmEl = document.getElementById('realtime-ampm');
+                const dateEl = document.getElementById('realtime-date');
+
+                if(clockEl) clockEl.textContent = strTime;
+                if(ampmEl) ampmEl.textContent = ampm;
+                if(dateEl) dateEl.textContent = strDate;
+            }
+            setInterval(updateClock, 1000);
+            updateClock();
+        });
     </script>
 </body>
 
