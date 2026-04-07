@@ -471,17 +471,27 @@ class Home extends Controller
                 return DB::table('new_villages')->get()->groupBy('state_code');
             });
 
+
             // dd($newvillages);
 
-            $stateSummaryRaw = Cache::remember('village_webs.state_summary', 30 * 60 * 60, function () {
-                return collect(config('state.stateWise'))->toArray();
+            $repovillages = Cache::remember('village_webs.repo_village', 30 * 60 * 60, function () {
+                return DB::table('repo_village')->get()->groupBy('state_code');
             });
+
+            // dd($repovillages);
+
+             $stateSummaryRaw = Cache::remember('village_webs.state_summary', 30 * 60 * 60, function () {
+                   return collect(config('state.stateWise'))->toArray();
+
+            });
+
+            // dd($stateSummaryRaw);
 
         }catch(Exception $e){
             $e->getMessage();
         }
 
 
-        return view('main.indiarural', compact('missingvilage','newvillages','stateSummaryRaw'));
+        return view('main.indiarural', compact('missingvilage','newvillages','stateSummaryRaw','repovillages'));
     }
 }

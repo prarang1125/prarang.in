@@ -19,6 +19,8 @@ $metaData = [
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             overflow: hidden;
+            border-collapse: separate;
+            border-spacing: 0;
         }
 
         .modern-table thead {
@@ -189,38 +191,41 @@ $metaData = [
             max-height: 100vh;
         } */
 
-        /* Text white */
-        .modern-table thead tr {
-            position: sticky !important;
-            top: 1px;
+        /* Stable two-row sticky header without scroll artifacts */
+        .table-hori .modern-table thead {
+            position: static;
         }
 
-        /* Head Of Table */
-        .table-responsive .modern-table thead {
-            position: sticky;
-            z-index: 11;
-            top: -1px;
+        .table-hori .modern-table thead tr {
+            position: static;
         }
 
-        /* Primary */
-        .modern-table thead>.bg-primary {
+        .table-hori .modern-table thead th {
             position: sticky;
-            z-index: 138;
-        }
-
-        /* Enhanced Sticky Header for Main Table */
-        .table-responsive .modern-table thead th {
-            position: sticky;
-            top: 0;
-            z-index: 100;
             background-color: #007bff !important;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            box-shadow: none !important;
+            background-clip: padding-box;
         }
 
-        .table-responsive .modern-table thead tr {
-            position: sticky;
+        .table-hori .modern-table thead tr:first-child th {
             top: 0;
-            z-index: 100;
+            z-index: 210;
+            height: 40px;
+        }
+
+        .table-hori .modern-table thead tr:nth-child(2) th {
+            top: 40px;
+            z-index: 209;
+        }
+
+        @media (max-width: 768px) {
+            .table-hori .modern-table thead tr:first-child th {
+                height: 34px;
+            }
+
+            .table-hori .modern-table thead tr:nth-child(2) th {
+                top: 34px;
+            }
         }
 
         /* Heading */
@@ -392,8 +397,8 @@ $metaData = [
         } */
 
         .table-hori .table-responsive .modern-table tbody tr td:nth-child(n+3) {
-    text-align: right !important;
-}
+            text-align: right !important;
+        }
 
         .table-hori .table-responsive {
             position: relative;
@@ -410,19 +415,31 @@ $metaData = [
         }
 
         .table-hori .table-responsive .modern-table tfoot .india-total-row td:nth-child(2) {
-            left: 1px;
+            left: 0px;
             z-index: 121;
         }
 
+        .statewidth{
+            width: 243px  !important;
+        }
 
+         @media (max-width: 576px) {
+            .statewidth{
+                width: 100px !important;
+            }
+        }
 
     </style>
 
 
     <section>
-        <p>India had 640,932 villages in 2011 (Census) and this has now increased to 676,260 villages as per the Ministry of Panchayati Raj's Local Government Directory (LGD), March 2026. Of these, 594,204 villages were Inhabited as per Census 2011, while 41,981 villages were recorded with Zero Population. A further 40,075 villages have been added to the LGD after the Census was conducted and therefore have no corresponding Census 2011 record. Additionally, 3,402 villages that were recorded as Inhabited in Census 2011 are currently absent from the LGD database.
+        <p>India had a total of <b>640,932</b> villages in 2011 ( Census) including 43,326 which were uninhabited.
         </p>
-        <p>The table below presents a State/UT-wise comparison of village counts between Census 2011 and the Min. of Panchayati Raj (March 2026).</p>
+        <p>The Ministry of Panchayat Raj maintains an updated Indian Village database LGD ( Local Government Directory), with the latest Block/Tehsil, Sub-District, District & State mappings however this LGD does Not provide any estimates on Population, at any point of time including when they recognize a new village ( not in the Census 2011 list). </p>
+
+        <p>
+            We have deduplicated the India Village Census 2011 list of Villages to the LGD India Villages (as of 12 March, 2026). The Panchayati Raj LGD India village database has grown to <b>676,260</b>  villages. Of these <b>87.9% </b> match off to the Census, <b>5.9%</b> are New villages ( which didn't exist in 2011), <b>6.2%</b> appear to have been re-populated ( since census 2011). Also, we can identify <b>3,402</b> villages of Census 2011 which are Missing in the LGD - an anomaly which may indicate that these have since become uninhabited.
+        </p>
     </section>
 
 
@@ -433,64 +450,111 @@ $metaData = [
                 <thead class="head-forstic">
 
                     <tr class="bg-primary">
-                            <th class="bg-primary text-white" rowspan="2">#</th>
-                            <th class="bg-primary text-white" rowspan="2" style="width: 100px;">State / UT</th>
-                            <th class="bg-primary text-white text-center" colspan="4">Census 2011</th>
-                            <th class="bg-primary text-white text-center" colspan="8">Panchayat Raj - March 2026</th>
+                        <th class="bg-primary text-white" rowspan="2">#</th>
+                        <th class="bg-primary text-white text-center statewidth" rowspan="2" >State / UT</th>
+                        <th class="bg-primary text-white text-center" colspan="4" style="background: #2c4f92 !important">Census 2011</th>
+                        <th class="bg-primary text-white text-center" colspan="9">Panchayat Raj - March 2026</th>
                     </tr>
 
 
                     <tr class="bg-primary">
-                            <th class="bg-primary text-white text-center"># Villages</th>
-                            <th class="bg-primary text-white text-center">%</th>
-                            <th class="bg-primary text-white text-center"># Inhabited<br>Villages</th>
-                            <th class="bg-primary text-white text-center">%</th>
-                            <th class="bg-primary text-white text-center"># Villages</th>
-                            <th class="bg-primary text-white text-center">%</th>
-                            <th class="bg-primary text-white text-center"># Inhabited<br>Villages</th>
-                            <th class="bg-primary text-white text-center">%</th>
-                            <th class="bg-primary text-white text-center"># New<br>Villages</th>
-                            <th class="bg-primary text-white text-center">%</th>
-                            <th class="bg-primary text-white text-center"># Census 2011<br>Missing Villages</th>
-                            <th class="bg-primary text-white text-center">%</th>
-                        </tr>
+                        <th class="bg-primary text-white text-center" style="background: #2c4f92 !important"># Villages</th>
+                        <th class="bg-primary text-white text-center" style="background: #2c4f92 !important">%</th>
+                        <th class="bg-primary text-white text-center" style="background: #2c4f92 !important"># Inhabited</th>
+                        <th class="bg-primary text-white text-center" style="background: #2c4f92 !important">%</th>
+                        <th class="bg-primary text-white text-center"># Villages</th>
+                        <th class="bg-primary text-white text-center">%</th>
+                        <th class="bg-primary text-white text-center"># Inhabited<br>(Cen. 2011)</th>
+                        <th class="bg-primary text-white text-center">%</th>
+                        <th class="bg-primary text-white text-center"># Re-Pop.<br>(Cen. 2011)</th>
+                        <th class="bg-primary text-white text-center">%</th>
+                        <th class="bg-primary text-white text-center"># New<br>Villages</th>
+                        <th class="bg-primary text-white text-center">%</th>
+                        <th class="bg-primary text-white text-center"># Missing<br>(Cen. 2011)</th>
+                    </tr>
                 </thead>
                 <tbody>
                     @forelse ($stateSummaryRaw ?? [] as $row)
-                        <tr>
-                            <td>{{ $row['id'] ?? '-' }}</td>
-                            <td>{{ $row['state'] ?? '-' }}</td>
-                            <td>{{ number_format((int) ($row['census_2011_villages'] ?? 0)) }}</td>
-                            <td>{{ isset($row['census_2011_villages_pct']) ? number_format((float) $row['census_2011_villages_pct'], 1) : '-' }}</td>
-                            <td>{{ number_format((int) ($row['census_2011_inhabited'] ?? 0)) }}</td>
-                            <td>{{ isset($row['census_2011_inhabited_pct']) ? number_format((float) $row['census_2011_inhabited_pct'], 1) : '-' }}</td>
-                            <td>{{ (int) ($row['panchayat_2026_villages'] ?? 0) > 0 ? number_format((int) $row['panchayat_2026_villages']) : '-' }}</td>
-                            <td>{{ isset($row['panchayat_2026_villages_pct']) ? number_format((float) $row['panchayat_2026_villages_pct'], 1) : '-' }}</td>
-                            <td>{{ (int) ($row['panchayat_2026_inhabited'] ?? 0) > 0 ? number_format((int) $row['panchayat_2026_inhabited']) : '-' }}</td>
-                            <td>{{ isset($row['panchayat_2026_inhabited_pct']) ? number_format((float) $row['panchayat_2026_inhabited_pct'], 1) : '-' }}</td>
-                            <td>
-                                <a href="#" class="text-primary" data-bs-toggle="modal"
-                                    data-bs-target="#newvillage{{ $row['state_code'] }}">
-                                    {{ number_format((float) $row['new_villages']) ?? '_'}}
-                                </a>
+                    <tr>
+                        <td>{{ $row['id'] ?? '-' }}</td>
 
-                            </td>
-                            <td>{{ isset($row['new_villages_pct']) ? number_format((float) $row['new_villages_pct'], 1) : '-' }}</td>
-                            <td>
-                                <a href="#" class="text-primary" data-bs-toggle="modal"
-                                    data-bs-target="#missingvillage{{ $row['state_code'] }}">
-                                    {{ number_format((float) $row['missing_villages']) ?? '_'}}
-                                </a>
+                        <td>{{ $row['state'] ?? '-' }}</td>
 
-                            </td>
-                            <td>
-                                {{ isset($row['missing_villages_pct']) ? number_format((float) $row['missing_villages_pct'], 1) : '-' }}
-                            </td>
-                        </tr>
+                        <td>{{ number_format((int) ($row['census_2011_villages'] ?? 0)) }}</td>
+
+                        <td>{{ isset($row['census_2011_villages_pct']) ? number_format((float)
+                            $row['census_2011_villages_pct'], 1) : '-' }}</td>
+
+                        <td>{{ number_format((int) ($row['census_2011_inhabited'] ?? 0)) }}</td>
+
+                        <td>{{ isset($row['census_2011_inhabited_pct']) ? number_format((float)
+                            $row['census_2011_inhabited_pct'], 1) : '-' }}</td>
+
+                        <td>{{ (int) ($row['panchayat_2026_villages'] ?? 0) > 0 ? number_format((int)
+                            $row['panchayat_2026_villages']) : '-' }}</td>
+
+                        <td>{{ isset($row['panchayat_2026_villages_pct']) ? number_format((float)
+                            $row['panchayat_2026_villages_pct'], 1) : '-' }}</td>
+
+                        <td>{{ (int) ($row['panchayat_2026_inhabited'] ?? 0) > 0 ? number_format((int)
+                            $row['panchayat_2026_inhabited']) : '-' }}</td>
+
+                        <td>{{ isset($row['panchayat_2026_inhabited_pct']) ? number_format((float)
+                            $row['panchayat_2026_inhabited_pct'], 1) : '-' }}</td>
+
+                        <td>
+                            @if($row['repop_villages'] == null)
+
+                             -
+
+                            @else
+
+                            <a href="#" class="text-primary" data-bs-toggle="modal"
+                                data-bs-target="#repovillage{{ $row['state_code'] }}">
+                                {{ number_format((float) $row['repop_villages']) ?? '_'}}
+                            </a>
+                            @endif
+
+                        </td>
+
+                        <td>{{ isset($row['repop_villages_pct']) ? number_format((float) $row['repop_villages_pct'], 1)
+                            : '-' }}</td>
+
+                        <td>
+                            @if($row['new_villages'] == null)
+
+                             -
+
+                            @else
+                            <a href="#" class="text-primary" data-bs-toggle="modal"
+                                data-bs-target="#newvillage{{ $row['state_code'] }}">
+                                {{ number_format((float) $row['new_villages']) ?? '_'}}
+                            </a>
+                            @endif
+
+                        </td>
+
+                        <td>{{ isset($row['new_villages_pct']) ? number_format((float) $row['new_villages_pct'], 1) :
+                            '-' }}</td>
+
+                        <td>
+                            @if($row['missing_villages'] == null)
+
+                             -
+
+                            @else
+                            <a href="#" class="text-primary" data-bs-toggle="modal"
+                                data-bs-target="#missingvillage{{ $row['state_code'] }}">
+                                {{ number_format((float) $row['missing_villages']) ?? '_'}}
+                            </a>
+                            @endif
+
+                        </td>
+                    </tr>
                     @empty
-                        <tr>
-                            <td colspan="14" class="text-center">No data available.</td>
-                        </tr>
+                    <tr>
+                        <td colspan="15" class="text-center">No data available.</td>
+                    </tr>
                     @endforelse
 
                 </tbody>
@@ -500,17 +564,18 @@ $metaData = [
 
                         <td colspan="2">INDIA - TOTAL</td>
                         <td>6,40,932</td>
-                        <td>100</td>
+                        <td>100.0</td>
                         <td>5,97,606</td>
-                        <td>100</td>
+                        <td>93.2</td>
                         <td>6,76,260</td>
                         <td>100</td>
                         <td>5,94,204</td>
-                        <td>100</td>
+                        <td>87.9</td>
+                        <td>41,981</td>
+                        <td>6.2</td>
                         <td>40,075</td>
-                        <td>100</td>
+                        <td>5.9</td>
                         <td>3,402</td>
-                        <td>100</td>
                     </tr>
                 </tfoot>
 
@@ -519,14 +584,15 @@ $metaData = [
     </section>
 
 
+    {{-- repovillage model --}}
 
-    @foreach($newvillages as $stateCode => $villages)
-     @php
-        $firstVillage = $villages->first();
+    @foreach($repovillages as $stateCode => $villages)
+    @php
+    $firstVillage = $villages->first();
     @endphp
 
-    <div class="modal fade" id="newvillage{{ $stateCode }}" tabindex="-1"
-        aria-labelledby="newvillage{{ $stateCode }}" aria-hidden="true">
+    <div class="modal fade" id="repovillage{{ $stateCode }}" tabindex="-1" aria-labelledby="repovillage{{ $stateCode }}"
+        aria-hidden="true">
 
         <div class="modal-dialog  modal-dialog-centered ">
 
@@ -535,13 +601,15 @@ $metaData = [
                 <div class="modal-header bg-primary text-white">
 
                     <h5 class="modal-title">
-                        New Villages — Min. of Panchayati Raj, March 2026 <br> <span style="font-size: 18px">{{ $firstVillage->state_ut_name }}</span>
+                       Repopulated Villages — Min. of Panchayati Raj, March 2026 <br> <span style="font-size: 18px">{{
+                            $firstVillage->state_ut_name }}</span>
                     </h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                        <p style="font-size: 14px;">These villages are present in LGD but absent from Census 2011 — added after the census was conducted.
-</p>
+                    <p style="font-size: 14px;">These villages were uninhabited in Census 2011 but are present in Panchayati Raj Database.
+
+                    </p>
                     <div class="table-wrapper">
 
                         <table class="table table-sm table-striped table-bordered table-hover modal-city-table">
@@ -556,12 +624,12 @@ $metaData = [
 
                             <tbody>
                                 @foreach ($villages as $village)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
 
-                                        <td>{{ $village->district }}</td>
-                                        <td>{{ $village->village }}</td>
-                                    </tr>
+                                    <td>{{ $village->district }}</td>
+                                    <td>{{ $village->village }}</td>
+                                </tr>
                                 @endforeach
                             </tbody>
 
@@ -584,13 +652,14 @@ $metaData = [
     @endforeach
 
 
-     @foreach($missingvilage  as $stateCode => $villages)
-     @php
-        $firstVillage = $villages->first();
+
+    @foreach($newvillages as $stateCode => $villages)
+    @php
+    $firstVillage = $villages->first();
     @endphp
 
-    <div class="modal fade" id="missingvillage{{ $stateCode }}" tabindex="-1"
-        aria-labelledby="missingvillage{{ $stateCode }}" aria-hidden="true">
+    <div class="modal fade" id="newvillage{{ $stateCode }}" tabindex="-1" aria-labelledby="newvillage{{ $stateCode }}"
+        aria-hidden="true">
 
         <div class="modal-dialog  modal-dialog-centered ">
 
@@ -599,14 +668,15 @@ $metaData = [
                 <div class="modal-header bg-primary text-white">
 
                     <h5 class="modal-title">
-                        Missing Villages — Min. of Panchayati Raj, March 2026 <br> <span style="font-size: 18px">{{ $firstVillage->state_ut_name }}</span>
+                        New Villages — Min. of Panchayati Raj, March 2026  <br> <span style="font-size: 18px">{{
+                            $firstVillage->state_ut_name }}</span>
                     </h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                        <p style="font-size: 14px;">These villages were recorded as Inhabited in Census 2011 but are currently absent from the Ministry of Panchayati Raj's Local Government Directory (March 2026).
+                    <p style="font-size: 14px;">These villages are present in LGD but absent from Census 2011 — added after the census was conducted.
 
-</p>
+                    </p>
                     <div class="table-wrapper">
 
                         <table class="table table-sm table-striped table-bordered table-hover modal-city-table">
@@ -621,11 +691,77 @@ $metaData = [
 
                             <tbody>
                                 @foreach ($villages as $village)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $village->district }}</td>
-                                        <td>{{ $village->village }}</td>
-                                    </tr>
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+
+                                    <td>{{ $village->district }}</td>
+                                    <td>{{ $village->village }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+
+                        </table>
+
+                    </div>
+
+                </div>
+
+                <div class="modal-footer py-2">
+
+                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    @endforeach
+
+
+    @foreach($missingvilage as $stateCode => $villages)
+    @php
+    $firstVillage = $villages->first();
+    @endphp
+
+    <div class="modal fade" id="missingvillage{{ $stateCode }}" tabindex="-1"
+        aria-labelledby="missingvillage{{ $stateCode }}" aria-hidden="true">
+
+        <div class="modal-dialog  modal-dialog-centered ">
+
+            <div class="modal-content">
+
+                <div class="modal-header bg-primary text-white">
+
+                    <h5 class="modal-title">
+                        Missing Villages — Min. of Panchayati Raj, March 2026 <br> <span style="font-size: 18px">{{
+                            $firstVillage->state_ut_name }}</span>
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <p style="font-size: 14px;">These villages were recorded as Inhabited in Census 2011 but are currently absent from the Ministry of Panchayati Raj's Local Government Directory (March 2026).
+
+                    </p>
+                    <div class="table-wrapper">
+
+                        <table class="table table-sm table-striped table-bordered table-hover modal-city-table">
+
+                            <thead class="sticky-top">
+                                <tr>
+                                    <th class=" text-white">#</th>
+                                    <th class="text-white">District</th>
+                                    <th class="text-white">Village</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                @foreach ($villages as $village)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $village->district }}</td>
+                                    <td>{{ $village->village }}</td>
+                                </tr>
                                 @endforeach
                             </tbody>
 
