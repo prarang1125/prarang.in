@@ -440,7 +440,6 @@
                     submitBtn.innerHTML = originalBtnText;
                 });
             });
-
             // Clock logic (existing)
             function updateClock() {
                 const now = new Date();

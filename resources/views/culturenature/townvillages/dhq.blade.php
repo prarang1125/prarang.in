@@ -281,10 +281,7 @@ $metaData[] = '';
                         {!! $dhq['slm_lang']['p1'] ?? '-' !!}
                     </p>
                 </div>
-                <div class="flex flex-col items-center mb-6">
-                    <h3 class="text-xl font-black text-gray-900 mb-1 ">Culture & Nature</h3>
-                    <div class="w-10 h-0.5 bg-blue-600 rounded-full"></div>
-                </div>
+
 
                 <div class="space-y-2">
                     <p class="text-[14px] text-gray-700 leading-relaxed font-medium">

@@ -122,14 +122,12 @@ $metaData = [
                     <img src="{{ asset('assets/images/home/kn.png') }}" alt="">
                 </div>
             </div>
-
             <style>
                 /* Link */
                 .col-sm-12 div a {
                     display: flex;
                     justify-content: center;
                 }
-
 
                 /* Link */
                 .col-sm-12 .font-semibold a {
@@ -140,7 +138,6 @@ $metaData = [
                 .container .font-semibold {
                     color: #1267e7 !important;
                 }
-
 
                 /* Modal body */
                 .modal-lg .modal-body {
@@ -281,8 +278,6 @@ $metaData = [
                         font-size: 1rem;
                     }
                 }
-
-
             </style>
 
 
