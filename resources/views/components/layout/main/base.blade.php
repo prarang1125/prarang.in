@@ -653,18 +653,17 @@
     #main-header .d-lg-block .header-home {
         padding-left: 125px;
     }
+
     /* Image */
-.navbar-nav .nav-item img{
- position:absolute;
- top:-35px;
- width:7% !important;
- height:100% !important;
- min-height:122px;
- transform:translatex(14px) translatey(-75px);
- z-index:-1;
-}
-
-
+    .navbar-nav .nav-item img {
+        position: absolute;
+        top: -35px;
+        width: 7% !important;
+        height: 100% !important;
+        min-height: 122px;
+        transform: translatex(14px) translatey(-75px);
+        z-index: -1;
+    }
 </style>
 
 <body class="bg-light" style="min-height: 100vh !important;" style="background: #ffffff !important;">
@@ -917,10 +916,16 @@
                             <a class="nav-link" href="javascript:void(0);" id="viveks-modal">Blogs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link d-flex flex-column align-items-center justify-content-center py-1" href="/knowledge" style="height: auto !important;">
-                                <img src="https://i.ibb.co/LDgGCzVV/delhi-exhibition.png" alt="Exhibition" style="height: 24px; width: auto;" class="mb-0">
+                            @if ($isHome)
+                            <a class="nav-link d-flex flex-column align-items-center justify-content-center py-1"
+                                href="/knowledge" style="height: auto !important;">
+                                <img src="https://i.ibb.co/LDgGCzVV/delhi-exhibition.png" alt="Exhibition"
+                                    style="height: 24px; width: auto;" class="mb-0">
                                 <span style="line-height: 1;">Knowledge</span>
                             </a>
+                            @else
+                            <a class="nav-link text-center" href="/knowledge">Knowledge</a>
+                            @endif
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/intelligence">Intelligence</a>
