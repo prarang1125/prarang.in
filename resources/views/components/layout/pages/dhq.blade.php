@@ -433,7 +433,7 @@
                 })
                 .catch(error => {
                     console.error('Error:', error);
-                    alert('Something went wrong. Please try again.');
+
                 })
                 .finally(() => {
                     submitBtn.disabled = false;
