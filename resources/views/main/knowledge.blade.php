@@ -9,14 +9,35 @@ $metaData = [
 ];
 @endphp
 <x-layout.main.base :metaData="$metaData">
+    <style>
+        /* Column 6/12 */
+        .col-sm-12 .col-md-6 {
+            padding-left: 60px;
+            padding-right: 60px;
+        }
+
+        @media (min-width:577px) {
+
+            /* Benefit icon */
+            .col-sm-12 .knowledge-benefit-card .benefit-icon {
+                width: 170px;
+                height: 160px;
+            }
+
+            /* Heading */
+            .col-sm-12 .benefit-text h4 {
+                font-size: 35px;
+            }
+
+        }
+    </style>
 
     <section class="container">
 
         <div class="row">
             <div class="col-sm-12">
-                <p class="text-center">
+                <p class="text-center ">
                     Information is not Knowledge. Knowledge is not Intelligence. Intelligence is not Wisdom.
-
                 </p>
                 <p>
 
@@ -26,9 +47,46 @@ $metaData = [
                     betterment of self & society, is Wisdom.
 
 
+                <div class="row g-4 my-4">
+                    <div class="col-md-6">
+                        <a href="#" data-bs-toggle="modal" data-bs-target="#exhibitionModal"
+                            class="knowledge-benefit-card h-100">
+                            <div class="benefit-icon">
+                                <img src="https://sarganga.org/assets/main/images/logo.jpg" alt="Sarganga Logo">
+                            </div>
+                            <div class="benefit-text">
+                                <h4 class="mb-1">Delhi Exhibition 2026</h4>
+                                <p class="mb-0 text-muted small">View Details</p>
+                            </div>
+                            <div class="benefit-arrow">
+                                <i class="bi bi-arrow-right"></i>
+                            </div>
+
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        <a href="https://sarganga.org/" target="_blank" class="knowledge-benefit-card h-100">
+                            <div class="benefit-icon">
+                                <img src="https://sarganga.org/assets/main/images/logo.jpg" alt="Sarganga Logo">
+                            </div>
+                            <div class="benefit-text">
+                                <h4 class="mb-1">Saraswati by Ganga Museum</h4>
+                                <p class="mb-0 text-muted small">sarganga.org</p>
+                            </div>
+                            <div class="benefit-arrow">
+                                <i class="bi bi-arrow-right"></i>
+                            </div>
+
+                        </a>
+                    </div>
+                </div>
+
+
+
                 </p>
-                <p>"I have always imagined that paradise will be a kind of library." - Jorge Luis Borges
-                    <br>
+                <p style="" class="text-center small">"I have always imagined that paradise will be a kind of library."
+                    - Jorge Luis Borges</p>
+                <p style="font-size: 12px">
                     Can all the knowledge of the world be contained in one place if we could collect all the books ever
                     written, images ever printed & maps ever created, in one library ? Borges imagines just such a place
                     in his story " The Library of Babel, an endless library which contains not just all the books ever
@@ -37,7 +95,7 @@ $metaData = [
                     itself, writes books with just one letter of the alphabet. The absurdity of it makes clear that
                     Complete knowledge of the universe is impossible for man to collect or to curate:.
                 </p>
-                <p class="text-primary font-semibold">
+                <p class="font-semibold" style="font-size: 12px; color: #1267e7">
                     We aim to curate a Prarang Museum showcasing the Story of the Indian Civilization through the
                     evolution of its Cities & Towns, along its Rivers. Such a river civilization museum will be built to
                     show-case India:s Culture & Nature, on the outskirts of New Delhi, along the River Ganga. While this
@@ -47,16 +105,18 @@ $metaData = [
                     textiles, fossils, stones & other collectibles relating to Indian cities, which forms the core of
                     Prarang's daily knowledge posts.
                     <br> <br>
-                    <a href="https://sarganga.org" target="_blank">Library of World Knowledge on the Ganga River Bank
-                    </a>
+                    {{-- <a href="https://sarganga.org" target="_blank">Library of World Knowledge on the Ganga River
+                        Bank
+                    </a> --}}
 
+                    {{--
                 <div>
                     <div class="mt-4 ">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#exhibitionModal">
                             <img src="https://i.ibb.co/MkscXbdy/download-2.gif" alt="">
                         </a>
                     </div>
-                </div>
+                </div> --}}
 
                 <div class="text-center flex justify-center items-center">
                     <img src="{{ asset('assets/images/home/kn.png') }}" alt="">
@@ -119,7 +179,112 @@ $metaData = [
                     color: #303335 !important;
                     margin-bottom: 12px !important;
                 }
+
+                /* Premium Knowledge Cards Styling */
+                .knowledge-benefit-card {
+                    display: flex;
+                    align-items: center;
+                    background: #ffffff;
+                    border: 1px solid rgba(0, 0, 0, 0.05);
+                    border-radius: 16px;
+                    padding: 20px;
+                    text-decoration: none !important;
+                    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+                    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+                    position: relative;
+                    overflow: hidden;
+                    width: 100%;
+                }
+
+                .knowledge-benefit-card:hover {
+                    transform: translateY(-5px);
+                    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+                    border-color: rgba(18, 103, 231, 0.2);
+                }
+
+                .knowledge-benefit-card::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 4px;
+                    height: 100%;
+                    background: linear-gradient(180deg, #1267e7, #0043a8);
+                    opacity: 0;
+                    transition: opacity 0.3s;
+                }
+
+                .knowledge-benefit-card:hover::before {
+                    opacity: 1;
+                }
+
+                .benefit-icon {
+                    flex-shrink: 0;
+                    width: 90px;
+                    height: 90px;
+                    border-radius: 12px;
+                    overflow: hidden;
+                    margin-right: 20px;
+                    border: 2px solid #f8f9fa;
+                    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+                }
+
+
+                .benefit-icon img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+
+                .benefit-text {
+                    flex-grow: 1;
+                }
+
+                .benefit-text h4 {
+                    color: #1a1a1a;
+                    font-size: 1.1rem;
+                    font-weight: 700;
+                    margin: 0;
+                    letter-spacing: -0.2px;
+                }
+
+                .benefit-text p {
+                    color: #6c757d;
+                    font-weight: 500;
+                }
+
+                .benefit-arrow {
+                    color: #dee2e6;
+                    font-size: 1.2rem;
+                    transition: all 0.3s;
+                    margin-left: 10px;
+                }
+
+                .knowledge-benefit-card:hover .benefit-arrow {
+                    color: #1267e7;
+                    transform: translateX(5px);
+                }
+
+                /* Mobile adjustment */
+                @media (max-width: 576px) {
+                    .knowledge-benefit-card {
+                        padding: 15px;
+                    }
+
+                    .benefit-icon {
+                        width: 70px;
+                        height: 70px;
+                        margin-right: 15px;
+                    }
+
+                    .benefit-text h4 {
+                        font-size: 1rem;
+                    }
+                }
+
+
             </style>
+
 
             {{-- Exhibition Modal Trigger --}}
 
