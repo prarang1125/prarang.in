@@ -4,11 +4,26 @@ $metaData[] = '';
 @endphp
 
 <style>
-    [x-cloak] { display: none !important; }
-    .custom-scrollbar::-webkit-scrollbar { width: 6px; }
-    .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
-    .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 10px; }
-    .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    [x-cloak] {
+        display: none !important;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #cbd5e1;
+        border-radius: 10px;
+    }
+
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+        background: #94a3b8;
+    }
 </style>
 
 <x-layout.pages.dhq :data="$dhq">
@@ -271,14 +286,15 @@ $metaData[] = '';
 
             {{-- Village Speak Section --}}
             <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm transition-all hover:shadow-md">
-                <div class="flex flex-col items-center mb-6">
+                {{-- <div class="flex flex-col items-center mb-6">
                     <h3 class="text-xl font-black text-gray-900 mb-1 ">City Capital Speak</h3>
                     <div class="w-10 h-0.5 bg-blue-600 rounded-full"></div>
-                </div>
+                </div> --}}
 
                 <div class="space-y-2">
                     <p class="text-[14px] text-gray-700 leading-relaxed font-medium">
-                        {!! $dhq['slm_lang']['p1'] ?? '-' !!}
+                        {!! $dhq['slm_lang']['p1'] ?? '-' !!} for language brekup of {{ $town['name'] ?? '-' }} <a
+                            class="text-blue-600 hover:text-blue-800" href="#toLanguage">please see language box.</a>
                     </p>
                 </div>
 
@@ -371,7 +387,7 @@ $metaData[] = '';
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
             <!-- Business Instrument -->
             <div
-                class="group relative bg-blue-600 shadow-xl hover:shadow-2xl transition-all duration-500  overflow-hidden">
+                class="group relative bg-blue-400 shadow-xl hover:shadow-2xl transition-all duration-500  overflow-hidden">
                 <div class="absolute inset-0 opacity-30">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-3xl opacity-50"></div>
                     <div class="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full blur-2xl opacity-50"></div>
@@ -413,7 +429,7 @@ $metaData[] = '';
 
             <!-- Development Instrument -->
             <div
-                class="group relative bg-green-600  shadow-xl hover:shadow-2xl transition-all duration-500  overflow-hidden">
+                class="group relative bg-green-500  shadow-xl hover:shadow-2xl transition-all duration-500  overflow-hidden">
                 <div class="absolute inset-0 opacity-30">
                     <div class="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-3xl opacity-50"></div>
                     <div class="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full blur-2xl opacity-50"></div>
@@ -499,9 +515,8 @@ $metaData[] = '';
                         {{ $dhq['town']['State_UT_Name'] ?? '-' }}</p>
                 </div>
                 <div class="pt-1 border-t border-gray-50">
-                    <p class="text-xs font-medium text-gray-500 mb-0.5">Pop. 2026
-                        <x-source
-                            source="Population as recorded in the Census of India 2011 – Primary Census Abstract." />
+                    <p class="text-xs font-medium text-gray-500 mb-0.5">Pop. 2026 (Est.)
+                        <x-source source="Estimate - Population based on District Growth Rate - Census 2011" />
                     </p>
                     <p class="text-sm font-bold text-indigo-600">
                         {{ isset($dhq['town']['TOT_P']) ? number_format($dhq['pop']['pop26'], 0) :
@@ -509,8 +524,7 @@ $metaData[] = '';
                 </div>
                 <div class="pt-1 border-t border-gray-50">
                     <p class="text-xs font-medium text-gray-500 mb-0.5">Pop. 2011
-                        <x-source
-                            source="Population as recorded in the Census of India 2011 – Primary Census Abstract." />
+                        <x-source source="Population - Census 2011" />
                     </p>
                     <p class="text-sm font-bold text-gray-800">
                         {{ isset($dhq['town']['TOT_P']) ? number_format($dhq['pop']['pop11'], 0) :
@@ -518,96 +532,113 @@ $metaData[] = '';
                 </div>
             </div>
         </div>
-         <div x-data="{ openModal: false, modalType: '' }" class="">
-        <div class="grid grid-cols-2 gap-6">
-            <button @click="openModal = true; modalType = 'towns'"
-                class="flex items-center justify-center py-4 bg-white border border-slate-200 text-sm font-black text-slate-700 rounded-2xl hover:bg-blue-600 hover:text-white transition-all shadow-lg hover:shadow-blue-500/20">
-                Towns #{{ $otherVilTown['towns']['count'] ?? 0 }}
-            </button>
-            <button @click="openModal = true; modalType = 'villages'"
-                class="flex items-center justify-center py-4 bg-white border border-slate-200 text-sm font-black text-slate-700 rounded-2xl hover:bg-blue-600 hover:text-white transition-all shadow-lg hover:shadow-blue-500/20">
-                Villages #{{ $otherVilTown['villages']['count'] ?? 0 }}
-            </button>
-        </div>
+        <div x-data="{ openModal: false, modalType: '' }" class="">
+            <div class="grid grid-cols-2 gap-6">
+                <button @click="openModal = true; modalType = 'towns'"
+                    class="cursor-pointer bg-blue-600 text-white    flex items-center justify-center py-4  border border-slate-200 text-sm font-black text-slate-700 rounded-2xl hover:bg-blue-600 hover:text-white transition-all shadow-lg hover:shadow-blue-500/20">
+                    Towns #{{ $otherVilTown['towns']['count'] ?? 0 }}
+                </button>
+                <button @click="openModal = true; modalType = 'villages'"
+                    class="cursor-pointer bg-blue-600 text-white flex items-center justify-center py-4  border border-slate-200 text-sm font-black text-slate-700 rounded-2xl hover:bg-blue-600 hover:text-white transition-all shadow-lg hover:shadow-blue-500/20">
+                    Villages #{{ $otherVilTown['villages']['count'] ?? 0 }}
+                </button>
+            </div>
 
-        <!-- Premium Modal for Towns/Villages -->
-        <template x-teleport="body">
-            <div x-show="openModal" x-cloak
-                class="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm"
-                x-transition:enter="transition ease-out duration-300"
-                x-transition:enter-start="opacity-0"
-                x-transition:enter-end="opacity-100"
-                x-transition:leave="transition ease-in duration-200"
-                x-transition:leave-start="opacity-100"
-                x-transition:leave-end="opacity-0"
-                @click.self="openModal = false">
+            <!-- Premium Modal for Towns/Villages -->
+            <template x-teleport="body">
+                <div x-show="openModal" x-cloak
+                    class="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm"
+                    x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200"
+                    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                    @click.self="openModal = false">
 
-                <div class="bg-white rounded-[32px] w-full max-w-4xl h-[90vh] flex flex-col shadow-2xl overflow-hidden"
-                    x-show="openModal"
-                    x-transition:enter="transition ease-out duration-300"
-                    x-transition:enter-start="opacity-0 scale-95 translate-y-10"
-                    x-transition:enter-end="opacity-100 scale-100 translate-y-0">
+                    <div class="bg-white rounded-[32px] w-full max-w-4xl h-[90vh] flex flex-col shadow-2xl overflow-hidden"
+                        x-show="openModal" x-transition:enter="transition ease-out duration-300"
+                        x-transition:enter-start="opacity-0 scale-95 translate-y-10"
+                        x-transition:enter-end="opacity-100 scale-100 translate-y-0">
 
-                    <!-- Header -->
-                    <div class="px-8 py-6 bg-gradient-to-r from-slate-50 to-white border-b border-slate-100 flex items-center justify-between">
-                        <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-2xl flex items-center justify-center shadow-inner"
-                                :class="modalType === 'towns' ? 'bg-blue-50 text-blue-600' : 'bg-emerald-50 text-emerald-600'">
-                                <svg x-show="modalType === 'towns'" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                                </svg>
-                                <svg x-show="modalType === 'villages'" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                                </svg>
-                            </div>
-                            <div>
-                                <h3 class="text-2xl font-black text-slate-900 tracking-tight" x-text="modalType === 'towns' ? 'Towns' : 'Villages'"></h3>
-                                <p class="text-sm font-bold text-slate-400">Total Count: <span class="text-slate-900" x-text="modalType === 'towns' ? '{{ $otherVilTown['towns']['count'] ?? 0 }}' : '{{ $otherVilTown['villages']['count'] ?? 0 }}'"></span></p>
-                            </div>
-                        </div>
-                        <button @click="openModal = false" class="w-10 h-10 flex items-center justify-center bg-slate-100 hover:bg-slate-200 rounded-full transition-all text-slate-600">
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                            </svg>
-                        </button>
-                    </div>
-
-                    <!-- Content List -->
-                    <div class="flex-grow overflow-y-auto p-8 bg-slate-50/30 custom-scrollbar">
-                        <div x-show="modalType === 'towns'" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                            @foreach($otherVilTown['towns']['data'] ?? [] as $id => $name)
-                            <a href="/city/{{ url_encoder($dhq['state']['state_code']."-".$dhq['dhq']['DHQ_Code']."-".$id) }}/{{ Str::kebab($name) }}" class="block px-4 py-4 bg-white border border-slate-100 rounded-2xl hover:border-blue-200 hover:shadow-lg hover:shadow-blue-500/5 transition-all group hover:text-blue-600">
-                                <div class="flex items-center gap-3">
-                                    <span class="text-xs font-bold text-blue-400 italic">0{{ $loop->iteration }}</span>
-                                    <span class="text-[13px] font-bold text-slate-700 transition-colors">{{ $name }}</span>
+                        <!-- Header -->
+                        <div
+                            class="px-8 py-6 bg-gradient-to-r from-slate-50 to-white border-b border-slate-100 flex items-center justify-between">
+                            <div class="flex items-center gap-4">
+                                <div class="w-12 h-12 rounded-2xl flex items-center justify-center shadow-inner"
+                                    :class="modalType === 'towns' ? 'bg-blue-50 text-blue-600' : 'bg-emerald-50 text-emerald-600'">
+                                    <svg x-show="modalType === 'towns'" class="w-6 h-6" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                                    </svg>
+                                    <svg x-show="modalType === 'villages'" class="w-6 h-6" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                                    </svg>
                                 </div>
-                            </a>
-                            @endforeach
-                        </div>
-
-                        <div x-show="modalType === 'villages'" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                            @foreach($otherVilTown['villages']['data'] ?? [] as $id => $name)
-                               <a href="/village/{{ url_encoder($dhq['state']['state_code']."-".$dhq['dhq']['district_LGD_code']."-".$id) }}/{{ Str::kebab($name) }}" class="block px-4 py-4 bg-white border border-slate-100 rounded-2xl hover:border-blue-200 hover:shadow-lg hover:shadow-blue-500/5 transition-all group hover:text-blue-600">
-                                <div class="flex items-center gap-3">
-                                    <span class="text-xs font-bold text-blue-400 italic">0{{ $loop->iteration }}</span>
-                                    <span class="text-[13px] font-bold text-slate-700 transition-colors">{{ $name }}</span>
+                                <div>
+                                    <h3 class="text-2xl font-black text-slate-900 tracking-tight"
+                                        x-text="modalType === 'towns' ? 'Towns' : 'Villages'"></h3>
+                                    <p class="text-sm font-bold text-slate-400">Total Count: <span
+                                            class="text-slate-900"
+                                            x-text="modalType === 'towns' ? '{{ $otherVilTown['towns']['count'] ?? 0 }}' : '{{ $otherVilTown['villages']['count'] ?? 0 }}'"></span>
+                                    </p>
                                 </div>
-                            </a>
-                            @endforeach
+                            </div>
+                            <button @click="openModal = false"
+                                class="w-10 h-10 flex items-center justify-center bg-slate-100 hover:bg-slate-200 rounded-full transition-all text-slate-600">
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M6 18L18 6M6 6l12 12" />
+                                </svg>
+                            </button>
                         </div>
-                    </div>
 
-                    <!-- Footer -->
-                    <div class="px-8 py-5 bg-white border-t border-slate-100 flex justify-center">
-                        <button @click="openModal = false"
-                            class="px-10 py-3 bg-slate-900 text-white text-xs font-black rounded-2xl hover:bg-black hover:scale-105 transition-all shadow-xl shadow-slate-900/20">
-                            DONE
-                        </button>
+                        <!-- Content List -->
+                        <div class="flex-grow overflow-y-auto p-8 bg-slate-50/30 custom-scrollbar">
+                            <div x-show="modalType === 'towns'"
+                                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                                @foreach($otherVilTown['towns']['data'] ?? [] as $id => $name)
+                                <a href="/city/{{ url_encoder($dhq['state']['state_code']."
+                                    -".$dhq['dhq']['DHQ_Code']."-".$id) }}/{{ Str::kebab($name) }}"
+                                    class="block px-4 py-4 bg-white border border-slate-100 rounded-2xl hover:border-blue-200 hover:shadow-lg hover:shadow-blue-500/5 transition-all group hover:text-blue-600">
+                                    <div class="flex items-center gap-3">
+                                        <span class="text-xs font-bold text-blue-400 italic">0{{ $loop->iteration
+                                            }}</span>
+                                        <span class="text-[13px] font-bold text-slate-700 transition-colors">{{ $name
+                                            }}</span>
+                                    </div>
+                                </a>
+                                @endforeach
+                            </div>
+
+                            <div x-show="modalType === 'villages'"
+                                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                                @foreach($otherVilTown['villages']['data'] ?? [] as $id => $name)
+                                <a href="/village/{{ url_encoder($dhq['state']['state_code']."
+                                    -".$dhq['dhq']['district_LGD_code']."-".$id) }}/{{ Str::kebab($name) }}"
+                                    class="block px-4 py-4 bg-white border border-slate-100 rounded-2xl hover:border-blue-200 hover:shadow-lg hover:shadow-blue-500/5 transition-all group hover:text-blue-600">
+                                    <div class="flex items-center gap-3">
+                                        <span class="text-xs font-bold text-blue-400 italic">0{{ $loop->iteration
+                                            }}</span>
+                                        <span class="text-[13px] font-bold text-slate-700 transition-colors">{{ $name
+                                            }}</span>
+                                    </div>
+                                </a>
+                                @endforeach
+                            </div>
+                        </div>
+
+                        <!-- Footer -->
+                        <div class="px-8 py-5 bg-white border-t border-slate-100 flex justify-center">
+                            <button @click="openModal = false"
+                                class="px-10 py-3 bg-slate-900 text-white text-xs font-black rounded-2xl hover:bg-black hover:scale-105 transition-all shadow-xl shadow-slate-900/20">
+                                DONE
+                            </button>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </template>
-    </div>
+            </template>
+        </div>
         <!-- Internet Trends Card -->
         <div
             class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
@@ -618,49 +649,44 @@ $metaData[] = '';
             <div class="divide-y divide-gray-50">
                 @php
                 $trends = [
-                    //   [
-                    //     'label' => 'City Population (2025)',
-                    //     'source' => $intData['city_population']['source']['source'] ?? 'N/A',
-                    //     'value' => isset($intData['city_population']['value']) ? number_format($intData['city_population']['value'], 0) : '-',
-                    // ],
-                    // [
-                    //     'label' => 'Internet Users (Est.)',
-                    //     'source' => $intData['internet_users']['source']['source'] ?? 'N/A',
-                    //     'value' => isset($intData['internet_users']['value']) ? number_format($intData['internet_users']['value'], 0) : '-',
-                    // ],
-                    [
-                        'label' => 'Facebook Users',
-                        'source' => $intData['facebook_users']['source']['source'] ?? 'N/A',
-                        'value' => isset($intData['facebook_users']['value']) ? number_format($intData['facebook_users']['value'], 0) : '-',
-                    ],
-                    [
-                        'label' => 'LinkedIn Users',
-                        'source' => $intData['linkedin_users']['source']['source'] ?? 'N/A',
-                        'value' => isset($intData['linkedin_users']['value']) ? number_format($intData['linkedin_users']['value'], 0) : '-',
-                    ],
-                    [
-                        'label' => 'Twitter Users',
-                        'source' => $intData['twitter_users']['source']['source'] ?? 'N/A',
-                        'value' => isset($intData['twitter_users']['value']) ? number_format($intData['twitter_users']['value'], 0) : '-',
-                    ],
-                    [
-                        'label' => 'Instagram Users',
-                        'source' => $intData['instagram_users']['source']['source'] ?? 'N/A',
-                        'value' => isset($intData['instagram_users']['value']) ? number_format($intData['instagram_users']['value'], 0) : '-',
-                    ],
+
+                [
+                'label' => 'Facebook Users',
+                'source' => "FB Users – FB Ad Module - Dec 2025",
+                'value' => isset($intData['facebook_users']['value']) ?
+                number_format($intData['facebook_users']['value'], 0) : '-',
+                ],
+                [
+                'label' => 'LinkedIn Users',
+                'source' => "LinkedIn Users – LinkedIn Ad Module - Dec 2025",
+                'value' => isset($intData['linkedin_users']['value']) ?
+                number_format($intData['linkedin_users']['value'], 0) : '-',
+                ],
+                [
+                'label' => 'Twitter Users',
+                'source' => "Twitter Users – X Ad Module - Dec 2025",
+                'value' => isset($intData['twitter_users']['value']) ? number_format($intData['twitter_users']['value'],
+                0) : '-',
+                ],
+                [
+                'label' => 'Instagram Users',
+                'source' => "Instagram Users – FB Ad Module - Dec 2025",
+                'value' => isset($intData['instagram_users']['value']) ?
+                number_format($intData['instagram_users']['value'], 0) : '-',
+                ],
                 [
                 'label' => 'City Internet Users (Est.)',
-                'source' => "Estimated number of urban internet users in the city, derived from the city’s proportion relative to the state. (Source- Telecom Regulatory Authority of India, September 2025)",
+                'source' => "Estimate - Population ratio of State Urban Internet Users - TRAI QTR Report",
                 'value' => $dhq['internet_users']['town_int_users'] ?? '-',
                 ],
                 [
                 'label' => 'District Internet Users (Est.)',
-                'source' => "Estimated number of urban internet users in the district calculated using the districts share of the state total. (Source- Telecom Regulatory Authority of India, September 2025)",
+                'source' => "Estimate - District Urban + Rural Internet Users - TRAI QTR Report",
                 'value' => $dhq['internet_users']['district_int_users'] ?? '-',
                 ],
                 [
                 'label' => 'State Internet Users',
-                'source' => "Total number of urban internet users in the state. (Source- Telecom Regulatory Authority of India, September 2025)",
+                'source' => "Urban + Rural Internet Users - TRAI QTR Report",
                 'value' => $dhq['internet_users']['state_int'] ?? '-',
                 ],
                 ];
@@ -684,11 +710,11 @@ $metaData[] = '';
 
 
         </div>
-           <!-- Languages Card -->
-        <div
+        <!-- Languages Card -->
+        <div id="toLanguage"
             class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
             <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
-                <h3 class="text-base text-center font-bold text-blue-600">Languages</h3>
+                <h3 class="text-base text-center font-bold text-blue-600">Languages (2011)</h3>
             </div>
 
             <div class="divide-y divide-gray-50">
@@ -709,7 +735,7 @@ $metaData[] = '';
         <div
             class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
             <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
-                <h3 class="text-base text-center font-bold text-blue-600">Literacy</h3>
+                <h3 class="text-base text-center font-bold text-blue-600">Literacy (2011)</h3>
             </div>
 
             <div class="divide-y divide-gray-50">

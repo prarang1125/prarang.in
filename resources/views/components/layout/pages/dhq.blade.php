@@ -142,7 +142,7 @@
                         <div>
                             <h1
                                 class="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 ml-6 tracking-tight">
-                                {{ $data['dhq']['city'] ?? '-' }} City Capital
+                                {{ $data['dhq']['city'] ?? '-' }} District Capital
                             </h1>
                         </div>
                     </div>

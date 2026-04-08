@@ -6,14 +6,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $data['town']['town_name'] ?? 'City' }} | {{ $data['town']['district'] ?? "-" }} | {{
+    <title>{{ $data['town']['town_name'] ?? "Town" }} | {{ $data['town']['district'] ?? "-" }} | {{
         $data['town']['State_UT_Name'] ?? "-" }} </title>
-    <meta name="title" content="{{  $data['town']['town_name'] ?? 'City' }}  | {{ $data['town']['district'] ?? " -" }} |
+    <meta name="title" content="{{  $data['town']['town_name'] ?? " Town" }} | {{ $data['town']['district'] ?? " -" }} |
         {{ $data['town']['State_UT_Name'] ?? "-" }} ">
     <meta name=" description" content="{{ strip_tags($data['slm']['district'] ?? '' ) }}">
     <meta name="keywords"
         content="{{  $data['name'] ?? '' }}, {{ $data['district']['district_name'] ?? '' }}, {{ $data['state']['state_name'] ?? '' }}, Village, Rural, India, Culture, Nature, Demographics, Economy, History">
-    <meta property="og:title" content="{{  $data['town']['town_name'] ?? 'City' }}  | {{ $data['town']['district'] ?? "
+    <meta property="og:title" content="{{  $data['town']['town_name'] ?? " Town" }} | {{ $data['town']['district'] ?? "
         -" }} | {{ $data['town']['State_UT_Name'] ?? "-" }} ">
     <meta property=" og:description" content="{{ strip_tags($data['slm']['district'] ?? '' ) }}">
     <meta property="og:image"
@@ -99,7 +99,7 @@
                         <div>
                             <h1
                                 class="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 ml-6 tracking-tight">
-                                {{ $data['town']['town_name'] ?? '-' }} City
+                                {{ $data['town']['town_name'] ?? '-' }} Town
                             </h1>
                         </div>
                     </div>
@@ -127,9 +127,9 @@
                                     {{ $data['town']['State_UT_Name'] ?? '-' }}</p>
                             </div>
                             <div class="pt-1 border-t border-gray-50">
-                                <p class="text-xs font-medium text-gray-500 mb-0.5">Pop. 2026
+                                <p class="text-xs font-medium text-gray-500 mb-0.5">Pop. 2026 (Est.)
                                     <x-source
-                                        source="Projected population based on district-level growth rates applied to the village population." />
+                                        source="Estimate - Population based on District Growth Rate - Census 2011" />
                                 </p>
                                 <p class="text-sm font-bold text-indigo-600">
                                     {{ isset($data['town']['TOT_P']) ? number_format($data['pop']['pop26'], 0) :
@@ -137,8 +137,7 @@
                             </div>
                             <div class="pt-1 border-t border-gray-50">
                                 <p class="text-xs font-medium text-gray-500 mb-0.5">Pop. 2011
-                                    <x-source
-                                        source="Population as recorded in the Census of India 2011 – Primary Census Abstract." />
+                                    <x-source source="Population - Census 2011" />
                                 </p>
                                 <p class="text-sm font-bold text-gray-800">
                                     {{ isset($data['town']['TOT_P']) ? number_format($data['pop']['pop11'], 0) :

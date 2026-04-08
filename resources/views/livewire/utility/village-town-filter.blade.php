@@ -112,10 +112,10 @@
 
             <div class="relative flex flex-col items-start text-left">
                 <span class="text-[10px] text-blue-600 font-black tracking-widest mb-0.5 uppercase">India {{
-                    $type === 'town' ? 'City' : 'Village' }}</span>
+                    $type === 'town' ? 'Town' : 'Village' }}</span>
                 <span class="text-[15px] text-gray-900 font-black flex items-center gap-1.5 leading-tight">
                     @php
-                    $displayName = 'Find a ' . ucfirst($type=="town"?"City":"Village");
+                    $displayName = 'Find a ' . ucfirst($type=="town"?"Town":"Village");
                     if ($type === 'village' && $village) {
                     $selectedItem = collect($villages)->where('id', $village)->first();
                     } elseif ($type === 'town' && $town) {
@@ -493,7 +493,8 @@
                 <!-- Confirm Button Area -->
                 <div
                     class="mt-8 relative z-10 transition-all duration-300 {{ ($type === 'town' ? $town : $village) ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none' }}">
-                    <a href="/{{$type==='town' ? 'city' : 'village'}}/{{url_encoder($state."-".$district."-".(($type==='town' ? $town : $village)))}}/{{ $this->selectedSlug }}"
+                    <a href="/{{$type==='town' ? 'city' : 'village'}}/{{url_encoder($state."
+                        -".$district."-".(($type==='town' ? $town : $village)))}}/{{ $this->selectedSlug }}"
                         class="relative group/btn block w-full py-4 bg-gray-900 border-none rounded-xl overflow-hidden
                         transition-all duration-300 hover:shadow-2xl hover:shadow-blue-100 active:scale-[0.98]
                         text-center">

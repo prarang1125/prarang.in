@@ -30,8 +30,22 @@ $metaData[] = '';
         border-width: 2px;
         box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.1), 0 4px 6px -2px rgba(37, 99, 235, 0.05);
         scroll-margin-top: 100px;
+        animation: border-pulse 2s infinite;
     }
 
+    @keyframes border-pulse {
+        0% {
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.1), 0 4px 6px -2px rgba(37, 99, 235, 0.05), 0 0 0 0 rgba(37, 99, 235, 0.4);
+        }
+
+        70% {
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.1), 0 4px 6px -2px rgba(37, 99, 235, 0.05), 0 0 0 15px rgba(37, 99, 235, 0);
+        }
+
+        100% {
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.1), 0 4px 6px -2px rgba(37, 99, 235, 0.05), 0 0 0 0 rgba(37, 99, 235, 0);
+        }
+    }
 </style>
 
 <x-layout.pages.town :metaData="$metaData" :data="$town">
@@ -311,7 +325,7 @@ $metaData[] = '';
                 <div class="space-y-2">
                     <p class="text-[14px] text-gray-700 leading-relaxed font-medium">
                         {!! $town['slm_lang']['p1'] ?? '-' !!} for language brekup of {{ $town['name'] ?? '-' }} <a
-                            href="#toLanguage">please see language box.</a>
+                            class="text-blue-600 hover:text-blue-800" href="#toLanguage">please see language box.</a>
                     </p>
                 </div>
 
@@ -428,20 +442,17 @@ $metaData[] = '';
                 $trends = [
                 [
                 'label' => 'City Internet Users (Est.)',
-                'source' => "Estimated number of rural internet users in the town, derived from the town’s proportion
-                relative to the state. (Source Telecom Regulatory Authority of India, September 2025)",
+                'source' => "Estimate - Population ratio of State Urban Internet Users - TRAI QTR Report",
                 'value' => $town['internet_users']['town_int_users'] ?? '-',
                 ],
                 [
                 'label' => 'District Internet Users (Est.)',
-                'source' => "Estimated number of rural internet users in the district, calculated using the district’s
-                share of the state total. (Source: Telecom Regulatory Authority of India, September 2025)",
+                'source' => "Estimate - District Urban + Rural Internet Users - TRAI QTR Report",
                 'value' => $town['internet_users']['district_int_users'] ?? '-',
                 ],
                 [
                 'label' => 'State Internet Users',
-                'source' => "Total number of rural internet users in the state. (Source Telecom Regulatory Authority of
-                India, September 2025)",
+                'source' => "Urban + Rural Internet Users - TRAI QTR Report",
                 'value' => $town['internet_users']['state_int'] ?? '-',
                 ],
                 ];
@@ -461,7 +472,7 @@ $metaData[] = '';
         <div id="toLanguage"
             class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
             <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
-                <h3 class="text-base text-center font-bold text-blue-600">Languages</h3>
+                <h3 class="text-base text-center font-bold text-blue-600">Languages (2011)</h3>
             </div>
 
             <div class="divide-y divide-gray-50">
@@ -482,7 +493,7 @@ $metaData[] = '';
         <div
             class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
             <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
-                <h3 class="text-base text-center font-bold text-blue-600">Literacy</h3>
+                <h3 class="text-base text-center font-bold text-blue-600">Literacy (2011)</h3>
             </div>
 
             <div class="divide-y divide-gray-50">
@@ -548,11 +559,11 @@ $metaData[] = '';
             <div x-data="{ openModal: false, modalType: '' }" class="mb-6">
                 <div class="grid grid-cols-2 gap-3 mt-4">
                     <button @click="openModal = true; modalType = 'towns'"
-                        class="flex items-center justify-center py-2.5 bg-white border border-slate-200 text-xs font-bold text-slate-700 rounded-xl hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+                        class="flex items-center justify-center py-2.5 bg-blue-600 border border-slate-200 text-xs font-bold text-white rounded-xl hover:bg-blue-600 hover:text-white transition-all shadow-sm">
                         Towns #{{ $otherVilTown['towns']['count'] ?? 0 }}
                     </button>
                     <button @click="openModal = true; modalType = 'villages'"
-                        class="flex items-center justify-center py-2.5 bg-white border border-slate-200 text-xs font-bold text-slate-700 rounded-xl hover:bg-blue-600 hover:text-white transition-all shadow-sm">
+                        class="flex items-center justify-center py-2.5 bg-blue-600 border border-slate-200 text-xs font-bold text-white rounded-xl hover:bg-blue-600 hover:text-white transition-all shadow-sm">
                         Villages #{{ $otherVilTown['villages']['count'] ?? 0 }}
                     </button>
                 </div>
@@ -665,17 +676,18 @@ $metaData[] = '';
                         </div>
                         <h4 class="text-[13px] font-bold text-slate-600">Compare India District</h4>
                     </div>
-
-                    <a target="_blank"
-                        href="https://g2c.prarang.in/india/market-planner/states?city={{ $town['town']['dhq_code'] ?? '' }}"
-                        class="flex items-center justify-center py-2.5 bg-white border border-slate-200 text-xs font-bold text-slate-700 rounded-xl hover:bg-indigo-600 hover:text-white hover:border-slate-900 transition-all shadow-sm">
-                        Market
-                    </a>
-                    <a target="_blank"
-                        href="https://g2c.prarang.in/india/development-planners?city={{ $town['town']['dhq_code'] ?? '' }}"
-                        class="flex items-center justify-center py-2.5 bg-white border border-slate-200 text-xs font-bold text-slate-700 rounded-xl hover:bg-indigo-600 hover:text-white hover:border-slate-900 transition-all shadow-sm">
-                        Development
-                    </a>
+                    <div class="grid grid-cols-2 gap-3">
+                        <a target="_blank"
+                            href="https://g2c.prarang.in/india/market-planner/states?city={{ $town['town']['dhq_code'] ?? '' }}"
+                            class="border border-blue-600 flex items-center justify-center py-2.5 text-xs font-bold text-blue-600 rounded-xl hover:bg-blue-600 hover:text-white hover:border-slate-900 transition-all shadow-sm">
+                            Market
+                        </a>
+                        <a target="_blank"
+                            href="https://g2c.prarang.in/india/development-planners?city={{ $town['town']['dhq_code'] ?? '' }}"
+                            class="border border-blue-600 flex items-center justify-center py-2.5 text-xs font-bold text-blue-600 rounded-xl hover:bg-blue-600 hover:text-white hover:border-slate-900 transition-all shadow-sm">
+                            Development
+                        </a>
+                    </div>
                 </div>
             </div>
 
