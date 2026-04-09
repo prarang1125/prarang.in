@@ -717,7 +717,7 @@ $metaData[] = '';
         <div id="toLanguage"
             class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
             <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
-                <h3 class="text-base text-center font-bold text-blue-600">Languages (2011)</h3>
+                <h3 class="text-base text-center font-bold text-blue-600">Languages</h3>
             </div>
 
             <div class="divide-y divide-gray-50">

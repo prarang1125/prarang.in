@@ -144,12 +144,59 @@
                                 class="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 ml-6 tracking-tight">
                                 {{ $data['dhq']['city'] ?? '-' }}
                                 @switch($data['dhq']['MSTR24'])
+
+                                {{-- State & National Level --}}
+                                @case('NC')
+                                National Capital
+                                @break
+
                                 @case('SC')
                                 State Capital
                                 @break
+
+                                {{-- Districts & New Areas --}}
+                                {{-- @case('D')
                                 @case('DC')
                                 District Capital
+                                @break --}}
+
+                                {{-- @case('ND')
+                                State Capital
+                                @break --}}
+
+                                @case('ND/SC')
+                                State Capital
                                 @break
+
+                                {{-- Union Territories --}}
+                                {{-- @case('UT')
+                                Union Territory
+                                @break --}}
+
+                                @case('UT/SC')
+                                UT Capital
+                                @break
+                                @case('UT/SC/SC')
+                                UT Capital
+                                @break
+                                {{-- @case('UTs')
+                                Union Territory Capital
+                                @break --}}
+
+                                {{-- Cities & Headquarters --}}
+                                @case('CH')
+                                City Headquarters
+                                @break
+
+                                {{-- @case('MC')
+                                Municipal Corporation
+                                @break --}}
+
+                                {{-- @case('SD')
+                                Sub-District
+                                @break --}}
+
+                                {{-- Fallback --}}
                                 @default
                                 City
                                 @endswitch

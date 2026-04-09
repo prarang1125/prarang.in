@@ -112,7 +112,7 @@ $metaData = [
 
     /* Paragraph */
     .container .mx-auto p {
-        font-size: 12px;
+        font-size: 13px;
     }
 
     /* Modal Styling */
@@ -270,12 +270,12 @@ $metaData = [
             <table class="table table-sm table-striped table-hover table-bordered modern-table">
                 <thead class="sticky top-0">
                     <tr class="bg-primary">
-                        <th rowspan="2">#</th>
+                        <th rowspan="2" class="text-center text-white">#</th>
                         <th class="statewidth text-center" rowspan="2">State / UT Name</th>
                         <th colspan="2" class="text-center" style="background: #2c4f92 !important">Census 2011</th>
                         <th colspan="4" class="text-center">2026 Projections</th>
                         <th rowspan="2" class="text-center text-[11px] leading-tight">
-                            New Dist. Cap.<br>
+                            District Capital<br>
                             <span class="text-[9px] font-normal opacity-70">(not in Cen. 2011)</span>
                         </th>
                     </tr>
@@ -339,7 +339,7 @@ $metaData = [
                         <td class="text-center tabular-nums text-blue-600 font-bold">{{ $row[5] }}</td>
                         <td class="text-center tabular-nums text-blue-600 opacity-80">{{ $row[6] }}</td>
                         <td class="text-center tabular-nums font-black text-blue-700">{{ $row[7] }}</td>
-                        <td class="text-center tabular-nums font-bold text-blue-600 underline underline-offset-4 decoration-blue-100 italic cursor-pointer hover:text-blue-800 transition-colors"
+                        <td class="text-center tabular-nums font-bold text-blue-600  cursor-pointer hover:text-blue-800 transition-colors"
                             @click="openModal('{{ $row[0] }}', '{{ $row[1] }}')">
                             {{ $row[8] }}
                         </td>
@@ -385,7 +385,7 @@ $metaData = [
 
                     <template x-if="newTowns.length > 0">
                         <div>
-                            <span class="modal-section-title">New Town(s) not covered in Census 2011:</span>
+                            <span class="modal-section-title">City(s) not covered in Census 2011:</span>
                             <div class="town-list" x-text="newTowns.join(', ')"></div>
                         </div>
                     </template>
