@@ -278,7 +278,9 @@ $metaData[] = '';
             <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm transition-all hover:shadow-md">
                 <div class="space-y-1 text-justify">
                     <p class="text-[15px] text-gray-700 leading-relaxed font-medium">
+                        {!! $dhq['slm']['town']['s1'] ?? '' !!}
                         {!! $dhq['slm']['district'] ?? '-' !!}
+                        {!! $dhq['slm']['town']['s2'] ?? '' !!}
                     </p>
                 </div>
             </div>
@@ -293,8 +295,8 @@ $metaData[] = '';
 
                 <div class="space-y-2">
                     <p class="text-[14px] text-gray-700 leading-relaxed font-medium">
-                        {!! $dhq['slm_lang']['p1'] ?? '-' !!} for language brekup of {{ $town['name'] ?? '-' }} <a
-                            class="text-blue-600 hover:text-blue-800" href="#toLanguage">please see language box.</a>
+                        {!! $dhq['slm_lang']['p1'] ?? '-' !!} For detailed language breakup of {{ $town['name'] ?? '-'
+                        }} <a class="text-blue-600 hover:text-blue-800" href="#toLanguage">please see language box.</a>
                     </p>
                 </div>
 
@@ -426,7 +428,6 @@ $metaData[] = '';
                     </div>
                 </div>
             </div>
-
             <!-- Development Instrument -->
             <div
                 class="group relative bg-green-500  shadow-xl hover:shadow-2xl transition-all duration-500  overflow-hidden">
@@ -532,15 +533,17 @@ $metaData[] = '';
                 </div>
             </div>
         </div>
-        <div x-data="{ openModal: false, modalType: '' }" class="">
+        <div x-data="{ openModal: false, modalType: '' }"
+            class="shadow bg-white rounded-2xl py-3 px-2 border border-gray-100/80">
+
             <div class="grid grid-cols-2 gap-6">
                 <button @click="openModal = true; modalType = 'towns'"
                     class="cursor-pointer bg-blue-600 text-white    flex items-center justify-center py-4  border border-slate-200 text-sm font-black text-slate-700 rounded-2xl hover:bg-blue-600 hover:text-white transition-all shadow-lg hover:shadow-blue-500/20">
-                    Towns #{{ $otherVilTown['towns']['count'] ?? 0 }}
+                    District Towns #{{ $otherVilTown['towns']['count'] ?? 0 }}
                 </button>
                 <button @click="openModal = true; modalType = 'villages'"
                     class="cursor-pointer bg-blue-600 text-white flex items-center justify-center py-4  border border-slate-200 text-sm font-black text-slate-700 rounded-2xl hover:bg-blue-600 hover:text-white transition-all shadow-lg hover:shadow-blue-500/20">
-                    Villages #{{ $otherVilTown['villages']['count'] ?? 0 }}
+                    District Villages #{{ $otherVilTown['villages']['count'] ?? 0 }}
                 </button>
             </div>
 
@@ -730,6 +733,13 @@ $metaData[] = '';
                 </div>
                 @endforeach
             </div>
+            <p class="text-end px-4 py-2">
+                <a target="_blank"
+                    href="https://g2c.prarang.in/india/multilingualism/{{ $dhq['dhq']['DHQ_Code'] }}/{{ $dhq['town']['town_code'] }}"
+                    class="text-[12px] font-bold text-blue-600 hover:text-blue-800 transition-colors italic">
+                    see more >>
+                </a>
+            </p>
         </div>
         <!-- Literacy Card -->
         <div

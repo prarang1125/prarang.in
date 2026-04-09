@@ -309,7 +309,9 @@ $metaData[] = '';
             <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm transition-all hover:shadow-md">
                 <div class="space-y-1 text-justify">
                     <p class="text-[15px] text-gray-700 leading-relaxed font-medium">
+                        {!! $town['slm']['town']['s1'] ?? '' !!}
                         {!! $town['slm']['district'] ?? '-' !!}
+                        {!! $town['slm']['town']['s2'] ?? '' !!}
                     </p>
                 </div>
             </div>
@@ -324,8 +326,8 @@ $metaData[] = '';
 
                 <div class="space-y-2">
                     <p class="text-[14px] text-gray-700 leading-relaxed font-medium">
-                        {!! $town['slm_lang']['p1'] ?? '-' !!} for language brekup of {{ $town['name'] ?? '-' }} <a
-                            class="text-blue-600 hover:text-blue-800" href="#toLanguage">please see language box.</a>
+                        {!! $town['slm_lang']['p1'] ?? '-' !!} For detailed language breakup of {{ $town['name'] ?? '-'
+                        }} <a class="text-blue-600 hover:text-blue-800" href="#toLanguage">please see language box.</a>
                     </p>
                 </div>
 
@@ -487,7 +489,15 @@ $metaData[] = '';
                         ($lang['spek'] ?? 0)}}%</span>
                 </div>
                 @endforeach
+                <p class="text-end px-4 py-2">
+                    <a target="_blank"
+                        href="https://g2c.prarang.in/india/multilingualism/{{ $town['dhq']['DHQ_Code'] }}/{{ $town['town']['town_code'] }}"
+                        class="text-[12px] font-bold text-blue-600 hover:text-blue-800 transition-colors italic">
+                        see more >>
+                    </a>
+                </p>
             </div>
+
         </div>
         <!-- Literacy Card -->
         <div

@@ -8,580 +8,389 @@ $metaData = [
 'nav-sub-heading' => '',
 ];
 @endphp
-<x-layout.main.base :metaData="$metaData">
-    <style>
-        /* Modern Table Styling */
-        .modern-table {
-            font-size: 13px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
-            overflow: hidden;
-        }
+<style>
+    /* Modern Table Styling - Synchronized with India Rural */
+    .modern-table {
+        font-size: 13px;
+        min-width: max-content;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        border-radius: 8px;
+        overflow: hidden;
+        border-collapse: separate;
+        border-spacing: 0;
+    }
 
-        .modern-table thead {
-            position: sticky;
-            top: 0;
-            z-index: 10;
+    .modern-table thead th {
+        font-weight: 600;
+        text-transform: none;
+        font-size: 14px;
+        letter-spacing: 0.5px;
+        padding: 8px 6px;
+        white-space: nowrap;
+        border-bottom: 1px solid #dee2e6;
+    }
+
+    .modern-table tbody td {
+        padding: 6px 6px;
+        vertical-align: middle;
+        font-size: 13px;
+    }
+
+    .modern-table tbody tr:hover {
+        background-color: rgba(0, 123, 255, 0.05);
+    }
+
+    .modern-table {
+        border-radius: 8px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+        margin-bottom: 8px;
+        height: 80vh;
+        overflow-x: auto;
+        overflow-y: auto;
+        position: relative;
+    }
+
+    @media (max-width: 768px) {
+        .modern-table {
+            font-size: 11px;
         }
 
         .modern-table thead th {
-            font-weight: 600;
-            text-transform: uppercase;
-            font-size: 11px;
-            letter-spacing: 0.5px;
-            padding: 8px 6px;
-            white-space: nowrap;
-            border-bottom: 2px solid #dee2e6;
+            font-size: 9px;
+            padding: 6px 3px;
         }
 
         .modern-table tbody td {
-            padding: 6px 6px;
-            vertical-align: middle;
+            padding: 6px 3px;
+            font-size: 11px;
+        }
+
+        .modern-table thead th:nth-child(2),
+        .modern-table tbody td:nth-child(2) {
+            position: sticky;
+            background-color: white;
+            z-index: 5;
+            left: 0px;
+            box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .modern-table thead th:nth-child(1),
+        .modern-table thead th:nth-child(2) {
+            background-color: #007bff !important;
+        }
+    }
+
+    .modern-table {
+        height: 80vh;
+        overflow-y: auto;
+    }
+
+    .modern-table thead {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+    }
+
+    .modern-table tfoot {
+        position: sticky;
+        bottom: 0;
+        z-index: 100;
+        background-color: #f8f9fa;
+    }
+
+    .statewidth {
+        width: 243px !important;
+    }
+
+    @media (max-width: 576px) {
+        .statewidth {
+            width: 100px !important;
+        }
+    }
+
+
+
+    /* Paragraph */
+    .container .mx-auto p {
+        font-size: 12px;
+    }
+
+    /* Modal Styling */
+    .modal-overlay {
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        backdrop-filter: blur(2px);
+        z-index: 2000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1rem;
+    }
+
+    .custom-modal {
+        background: white;
+        width: 100%;
+        max-width: 500px;
+        border-radius: 4px;
+        overflow: hidden;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .modal-header-blue {
+        background: #5b9bd5;
+        color: white;
+        padding: 12px 20px;
+        text-align: center;
+        font-size: 24px;
+        font-weight: 500;
+    }
+
+    .modal-body {
+        padding: 20px;
+        font-size: 15px;
+        color: #333;
+    }
+
+    .modal-section-title {
+        text-decoration: underline;
+        font-weight: 700;
+        margin-bottom: 4px;
+        display: block;
+    }
+
+    .town-list {
+        margin-bottom: 20px;
+        line-height: 1.4;
+    }
+
+    .modern-table tfoot td {
+        position: sticky !important;
+        bottom: -1 !important;
+        z-index: 100 !important;
+        font-weight: 700;
+        background: #f8f9fa !important;
+        border-top: 2px solid #dee2e6;
+    }
+
+    .modern-table thead th {
+        position: sticky !important;
+        top: -1px !important;
+        background-color: #007bff !important;
+    }
+
+    .container .table-hori .table-responsive {
+        max-height: 80vh;
+    }
+
+    /* Modal body */
+    .table-hori .custom-modal .modal-body {
+        padding-left: 12px;
+        padding-right: 19px;
+        padding-top: 9px;
+    }
+
+    /* Statewidth */
+    .table-striped .statewidth {
+        color: #ffffff;
+    }
+
+    /* Text center */
+    .table-striped .bg-primary .text-center {
+        color: #ffffff;
+    }
+
+    @media (min-width:769px) {
+
+        /* Text center */
+        .table-striped .bg-primary .text-center {
             font-size: 13px;
         }
 
-        /* Remove hover animation */
-        .modern-table tbody tr:hover {
-            background-color: rgba(0, 123, 255, 0.05);
-        }
-
-        .table-responsive {
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-            margin-bottom: 8px;
-            max-height: calc(100vh - 250px);
-            overflow-y: auto;
-        }
-
-        /* PC - Fit in window */
-        @media (min-width: 769px) {
-            .table-responsive {
-                overflow-x: hidden;
-                overflow-y: auto;
-            }
-        }
-
-        /* Mobile Optimizations with Sticky State Column */
-        @media (max-width: 768px) {
-            .modern-table {
-                font-size: 11px;
-            }
-
-            .modern-table thead th {
-                font-size: 9px;
-                padding: 6px 3px;
-            }
-
-            .modern-table tbody td {
-                padding: 6px 3px;
-                font-size: 11px;
-            }
-
-            .table-responsive {
-                border-radius: 4px;
-                overflow-x: auto;
-                max-height: calc(100vh - 200px);
-            }
-
-            /* Sticky first two columns (# and State) on mobile */
-            .modern-table thead th:nth-child(2),
-            .modern-table tbody td:nth-child(2) {
-                position: sticky;
-                background-color: white;
-                z-index: 5;
-            }
-
-            /* .modern-table thead th:nth-child(1),
-            .modern-table tbody td:nth-child(1) {
-                left: 0;
-                box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
-            } */
-
-            .modern-table thead th:nth-child(2),
-            .modern-table tbody td:nth-child(2) {
-                left: 0px;
-                box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
-            }
-
-            .modern-table thead th:nth-child(1),
-            .modern-table thead th:nth-child(2) {
-                background-color: #007bff !important;
-            }
-        }
-
-        /* Button Styling */
-        .modern-table .btn-sm {
-            padding: 3px 10px;
-            font-size: 11px;
-            border-radius: 4px;
-            transition: all 0.2s ease;
-        }
-
-        .modern-table .btn-primary:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 3px 6px rgba(0, 123, 255, 0.3);
-        }
-
-        /* Modal Enhancements */
-        .modal-content {
-            border-radius: 12px;
-            border: none;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-        }
-
-        .modal-header {
-            background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
-            color: white;
-            border-radius: 12px 12px 0 0;
-            padding: 16px 20px;
-        }
-
-        .modal-header .modal-title {
-            font-weight: 600;
-            font-size: 18px;
-        }
-
-        .modal-header .btn-close {
-            filter: brightness(0) invert(1);
-        }
-
-        .modal-body {
-            padding: 20px;
-            max-height: 400px;
-            overflow-y: auto;
-        }
-
-        .modal-body .list-group-item {
-            border-left: 3px solid #007bff;
-            margin-bottom: 8px;
-            border-radius: 4px;
-            transition: all 0.2s ease;
-        }
-
-        .modal-body .list-group-item:hover {
-            background-color: #f8f9fa;
-            transform: translateX(5px);
-            border-left-color: #0056b3;
-        }
-
-        /* Scroll Indicator for Mobile */
-        @media (max-width: 768px) {
-            .table-hori::after {
-                content: '← Scroll horizontally →';
-                display: block;
-                text-align: center;
-                padding: 6px;
-                background: linear-gradient(90deg, transparent, #007bff, transparent);
-                color: white;
-                font-size: 10px;
-                font-weight: 600;
-                border-radius: 0 0 4px 4px;
-            }
-        }
-
-        /* Modal body */
-        .container .modal .modal-xl .modal-content .modal-body {
-            height: 100vh !important;
-        }
-
-        /* Modal body */
-        .container .modal .modal-body {
-            max-height: 100vh;
-        }
-
-        /* Text white */
-        .modern-table thead tr {
-            position: sticky !important;
-            top: 1px;
-        }
-
-        /* Head Of Table */
-        .table-responsive .modern-table thead {
-            position: sticky;
-            z-index: 11;
-            top: -1px;
-        }
-
-        /* Primary */
-        .modern-table thead>.bg-primary {
-            position: sticky;
-            z-index: 138;
-        }
-
-        /* Enhanced Sticky Header for Main Table */
-        .table-responsive .modern-table thead th {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            background-color: #007bff !important;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        .table-responsive .modern-table thead tr {
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        /* Text white */
-        .modern-table thead .text-white {
-            position: sticky;
-            z-index: 1000 !important;
-        }
-
-        /* Text white */
-        .container .mt-3 .table-responsive .modern-table thead .bg-primary .text-white {
-            background-color: #3084dd !important;
-        }
-
-        /* Head Of Table */
-        .table-responsive .modern-table thead {
-            position: sticky;
-            top: 1px !important;
-            z-index: 1000 !important;
-        }
-
-        /* Modern table */
-        .container .mt-3 .modern-table {
-            overflow: scroll;
-        }
-
-        .table-wrapper {
-    max-height: 400px;
-    overflow-y: auto;
-    border-radius: 6px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-}
-    </style>
-    <style>
-        /* Paragraph */
-        .container section p {
-            font-size: 15px;
-        }
-
-        /* Bold */
-        .container section .fw-bold {
-            margin-bottom: 3px;
-        }
-
-        @media (min-width:769px) {
-
-            /* Table Data */
-            .modern-table tr td {
-                font-size: 14px !important;
-            }
-
-        }
-        /* Text start */
-.container .text-start{
- position:absolute;
- top:125px;
-}
-
-@media (max-width:576px){
-
- /* Text start */
- .container .text-start{
-  top:78px;
- }
-
-}
-/* Primary */
-.modern-table thead .bg-primary .bg-primary{
- text-align:center;
-}
-
-
-    </style>
-
-
-
-    <section>
-
-        <p >India has 9,389 towns (Census 2011). Of these, 7933 are Statutory/Census Towns, 475 are Urban Agglomerations, and 985 are Outgrowths
-        </p>
-        <p>
-            India has 121 languages (which have more than 10,000 speakers in India). These <b> 121 languages have 23 related scripts</b>. For effective digital communication across the country, these can be grouped into <b> 13 main scripts</b>. Do note that the India Census 2011 was unique in its focus on Multilingualism. For all 7933 Statutory/Census Towns, the primary tongue ( i.e. Mother Tongue) data for each of the 121 languages, was opened out for public use in 2018.
-        </p>
-        <p>
-The Language % in the Table below shows the "Percentage of the State/UTs Total Cities which have <b> at least 100 or more Mother-Tongue speakers </b>( from the 121 Primary Indian Languages), of the respective language". This is Not the "Percent of the State/UT's Total Population who speak that Language". To see the Multilingualism i.e. "Percent of the State/UT's Population who speak a Second or Third language ( apart from their Mother Tongue)", please - <a href="https://g2c.prarang.in/script-language-data" target="_blank">Click here</a>
-        </p>
+    }
+</style>
+<x-layout.main.base :metaData="$metaData">
+    <section class="max-w-7xl mx-auto px-4 pt-8">
+        <div class="space-y-4 text-slate-700 leading-relaxed text-[14px]">
+            <p>
+                India had <b>7,933</b> cities (4,401 Statutory Towns & 3,892 Census Towns) across <b>640</b> Districts
+                in 2011. While India's country size remains the same, the total number of districts has increased to
+                <b>766+</b>.
+            </p>
+            <p>
+                Of these towns, <b>695</b> are District and State Capitals (2 State Capitals that are not District
+                Capitals – Bhubaneswar (Odisha) and Amaravati (Andhra Pradesh). However, <b>71</b> capitals were either
+                classified as villages or not covered as towns in the Census 2011, and hence are absent from the town
+                list.
+            </p>
+        </div>
     </section>
-    <section class="mt-3 table-hori">
+
+    <section class="mt-8 table-hori max-w-7xl mx-auto px-4 pb-12" x-data="{
+        isOpen: false,
+        selectedState: '',
+        villages: [],
+        newTowns: [],
+        townsData: {
+            '28': { villages: ['Paderu', 'Puttaparthi'], newTowns: ['Rajamahendravaram'] },
+            '12': { villages: ['Raga', 'Palin', 'Likabali', 'Teto'], newTowns: ['Lemmi', 'Yupia'] },
+            '18': { villages: ['Mushalpur', 'Kajalgaon', 'Garamur', 'Hatsingimari'], newTowns: ['Tamulpur'] },
+            '02': { villages: ['Reckong Peo', 'Keylong'], newTowns: [] },
+            '29': { villages: ['Dharwad'], newTowns: ['Bengaluru', 'Kalaburagi'] },
+            '27': { villages: ['Dharashiv'], newTowns: ['Bandra (East)', 'Oros'] },
+            '14': { villages: ['Noney (Longmai)', 'Pherzawl', 'Senapati', 'Tengnoupal'], newTowns: ['Chandel', 'Churachandpur', 'Lamphelpat', 'Kamjong', 'Kangpokpi'] },
+            '17': { villages: ['Mawkyrwat'], newTowns: ['Khliehriat', 'Mairang', 'Resubelpara', 'Ampati'] },
+            '13': { villages: ['Niuland', 'Noklak', 'Shamator'], newTowns: [] },
+            '07': { villages: ['Saket'], newTowns: ['Daryaganj', 'Preet Vihar', 'Connaught Place', 'Sadar Bazar', 'Seelampur', 'Nand Nagri', 'Defence Colony', 'Vasant Vihar', 'Rajouri Garden'] },
+            '21': { villages: ['Panikoili'], newTowns: ['Nuapada'] },
+            '11': { villages: ['Soreng', 'Gyalshing'], newTowns: ['Pakyong'] },
+            '33': { villages: ['Kanchipuram'], newTowns: [] },
+            '36': { villages: ['Shamirpet', 'Mulugu'], newTowns: ['Hanamkonda', 'Hyderabad'] },
+            '09': { villages: ['Gauriganj'], newTowns: ['Shravasti'] },
+            '35': { villages: ['Mayabunder'], newTowns: ['Car Nicobar'] },
+            '22': { villages: [], newTowns: ['Mohla'] },
+            '24': { villages: [], newTowns: ['Dahod', 'Mehsana'] },
+            '06': { villages: [], newTowns: ['Kurukshetra'] },
+            '32': { villages: [], newTowns: ['Painavu'] },
+            '23': { villages: [], newTowns: ['Waidhan'] },
+            '15': { villages: [], newTowns: ['Khawzawl'] },
+            '16': { villages: [], newTowns: ['Bishramganj'] }
+        },
+        openModal(id, name) {
+            const data = this.townsData[id];
+            if (data) {
+                this.selectedState = name;
+                this.villages = data.villages;
+                this.newTowns = data.newTowns;
+                this.isOpen = true;
+            }
+        }
+    }">
         <div class="table-responsive">
             <table class="table table-sm table-striped table-hover table-bordered modern-table">
-                <thead>
+                <thead class="sticky top-0">
                     <tr class="bg-primary">
-                        <th class="bg-primary text-white">#</th>
-                        <th class="bg-primary text-white">State</th>
-                        <th class="bg-primary text-white">Assamese</th>
-                        <th class="bg-primary text-white">Bengali</th>
-                        <th class="bg-primary text-white">Hindi</th>
-                        <th class="bg-primary text-white">Punjabi</th>
-                        <th class="bg-primary text-white">Kannada</th>
-                        <th class="bg-primary text-white">Malayalam</th>
-                        <th class="bg-primary text-white">Marathi</th>
-                        <th class="bg-primary text-white">Gujarati</th>
-                        <th class="bg-primary text-white">Odia</th>
-                        <th class="bg-primary text-white">Urdu</th>
-                        <th class="bg-primary text-white">Tamil</th>
-                        <th class="bg-primary text-white">Telugu</th>
-                        <th class="bg-primary text-white">English</th>
-                        <th class="bg-primary text-white">Others</th>
-                           <th class="bg-primary text-white"> Language <br> (Cities #)</th>
-                            <th class="bg-primary text-white">Scripts # </th>
-                             <th class="bg-primary text-white"> Main Script #</th>
-
+                        <th rowspan="2">#</th>
+                        <th class="statewidth text-center" rowspan="2">State / UT Name</th>
+                        <th colspan="2" class="text-center" style="background: #2c4f92 !important">Census 2011</th>
+                        <th colspan="4" class="text-center">2026 Projections</th>
+                        <th rowspan="2" class="text-center text-[11px] leading-tight">
+                            New Dist. Cap.<br>
+                            <span class="text-[9px] font-normal opacity-70">(not in Cen. 2011)</span>
+                        </th>
+                    </tr>
+                    <tr class="bg-primary text-[11px]">
+                        <th class="text-center" style="background: #2c4f92 !important">Districts</th>
+                        <th class="text-center" style="background: #2c4f92 !important">Cities</th>
+                        <th class="text-center">Districts</th>
+                        <th class="text-center">Dist. Capitals</th>
+                        <th class="text-center">Other Cities</th>
+                        <th class="text-center">Total</th>
                     </tr>
                 </thead>
-                <tbody>
-
-                    @foreach($tableData as $row)
+                <tbody class="text-slate-600">
                     @php
-                         $intSum = $stateTotal[$row['state_code']];
+                    $rows = [
+                    ['28', 'Andhra Pradesh', '23', '353', '26', '23', '173', '196', '3'],
+                    ['12', 'Arunachal Pradesh', '16', '27', '26', '20', '7', '27', '6'],
+                    ['18', 'Assam', '27', '214', '35', '30', '184', '214', '5'],
+                    ['10', 'Bihar', '38', '199', '38', '38', '163', '201', '-'],
+                    ['22', 'Chhattisgarh', '18', '182', '33', '32', '149', '181', '1'],
+                    ['30', 'Goa', '2', '70', '2', '2', '68', '70', '-'],
+                    ['24', 'Gujarat', '26', '348', '33', '31', '318', '349', '2'],
+                    ['06', 'Haryana', '21', '154', '22', '21', '134', '155', '1'],
+                    ['02', 'Himachal Pradesh', '12', '59', '12', '10', '51', '61', '2'],
+                    ['20', 'Jharkhand', '24', '228', '24', '24', '206', '230', '-'],
+                    ['29', 'Karnataka', '30', '347', '31', '28', '318', '346', '3'],
+                    ['32', 'Kerala', '14', '520', '14', '13', '507', '520', '1'],
+                    ['23', 'Madhya Pradesh', '50', '476', '52', '51', '425', '476', '1'],
+                    ['27', 'Maharashtra', '35', '534', '36', '33', '502', '535', '3'],
+                    ['14', 'Manipur', '9', '51', '16', '7', '44', '51', '9'],
+                    ['17', 'Meghalaya', '7', '22', '12', '7', '17', '24', '5'],
+                    ['15', 'Mizoram', '8', '23', '11', '10', '13', '23', '1'],
+                    ['13', 'Nagaland', '11', '26', '16', '13', '13', '26', '3'],
+                    ['21', 'Odisha', '30', '223', '30', '28', '195', '223', '2'],
+                    ['03', 'Punjab', '20', '217', '23', '23', '192', '215', '-'],
+                    ['08', 'Rajasthan', '33', '297', '33', '33', '265', '298', '-'],
+                    ['11', 'Sikkim', '4', '9', '6', '3', '6', '9', '3'],
+                    ['33', 'Tamil Nadu', '32', '1,097', '38', '37', '1,059', '1,096', '1'],
+                    ['36', 'Telangana', '-', '-', '33', '29', '128', '157', '4'],
+                    ['16', 'Tripura', '4', '42', '8', '7', '33', '40', '1'],
+                    ['05', 'Uttarakhand', '13', '115', '13', '13', '101', '114', '-'],
+                    ['09', 'Uttar Pradesh', '71', '915', '75', '73', '840', '913', '2'],
+                    ['19', 'West Bengal', '19', '909', '23', '23', '884', '907', '-'],
+                    ['35', 'UT - Andaman and Nicobar Islands', '3', '5', '3', '1', '4', '5', '2'],
+                    ['04', 'UT - Chandigarh', '1', '6', '1', '1', '7', '8', '-'],
+                    ['26', 'UT - Dadra and Nagar Haveli and Daman and Diu', '3', '14', '3', '3', '10', '13', '-'],
+                    ['01', 'UT - Jammu & Kashmir', '22', '122', '20', '20', '95', '115', '-'],
+                    ['37', 'UT - Ladakh', '-', '-', '2', '2', '3', '5', '-'],
+                    ['31', 'UT - Lakshadweep', '1', '6', '1', '1', '5', '6', '-'],
+                    ['07', 'UT - NCT of Delhi', '9', '113', '11', '1', '111', '112', '10'],
+                    ['34', 'UT - Puducherry', '4', '10', '4', '4', '8', '12', '-']
+                    ];
                     @endphp
+                    @foreach($rows as $index => $row)
                     <tr>
-                        <td>{{ $loop->iteration }}</td>
-                        <td>{{ ucwords(strtolower($row['state_name'])) }}</td>
-                        <td>{{ number_format(($row['Assamese']/$intSum)*100, 0) ?? 0 }}%</td>
-                        <td>{{ number_format(($row['Bengali']/$intSum)*100, 0) ?? 0 }}%</td>
-                        <td>{{ number_format(($row['Hindi']/$intSum)*100, 0) ?? 0 }}%</td>
-                        <td>{{ number_format(($row['Punjabi']/$intSum)*100, 0) ?? 0 }}%</td>
-                        <td>{{ number_format(($row['Kannada']/$intSum)*100, 0) ?? 0 }}%</td>
-                        <td>{{ number_format(($row['Malayalam']/$intSum)*100, 0) ?? 0 }}%</td>
-                        <td>{{ number_format(($row['Marathi']/$intSum)*100, 0) ?? 0 }}%</td>
-                        <td>{{ number_format(($row['Gujarati']/$intSum)*100, 0) ?? 0 }}%</td>
-                        <td>{{ number_format(($row['Odia']/$intSum)*100, 0) ?? 0 }}%</td>
-                        <td>{{ number_format(($row['Urdu']/$intSum)*100, 0) ?? 0 }}%</td>
-                        <td>{{ number_format(($row['Tamil']/$intSum)*100, 0) ?? 0 }}%</td>
-                        <td>{{ number_format(($row['Telugu']/$intSum)*100, 0) ?? 0 }}% </td>
-                        <td>{{ number_format(($row['English']/$intSum)*100, 0) ?? 0 }}%</td>
-                        <td>
-                            <a  class="text-primary cursor-pointer " data-bs-toggle="modal"
-                                data-bs-target="#exampleModal-{{ Str::slug($row['state_name']) }}">
-                                {{ number_format(($row['other_script']/$intSum)*100, 0) ?? 0 }}%
-                            </a>
-                        </td>
-                        <td class="text-end">
-                            {{ $intSum ? number_format($intSum) : 0 }}
-                        </td>
-                         <td class="text-end">
-                           {{ number_format($row['scripts_count']) ?? 'N/A' }}
-                        </td>
-                           <td class="text-end">
-                            {{ number_format($row['main_script_count']) ?? 'N/A' }}
+                        <td class="text-center text-slate-400">{{ $index + 1 }}</td>
+                        <td class="font-bold text-slate-800">{{ $row[1] }}</td>
+                        <td class="text-center tabular-nums">{{ $row[2] }}</td>
+                        <td class="text-center tabular-nums">{{ $row[3] }}</td>
+                        <td class="text-center tabular-nums font-semibold">{{ $row[4] }}</td>
+                        <td class="text-center tabular-nums text-blue-600 font-bold">{{ $row[5] }}</td>
+                        <td class="text-center tabular-nums text-blue-600 opacity-80">{{ $row[6] }}</td>
+                        <td class="text-center tabular-nums font-black text-blue-700">{{ $row[7] }}</td>
+                        <td class="text-center tabular-nums font-bold text-blue-600 underline underline-offset-4 decoration-blue-100 italic cursor-pointer hover:text-blue-800 transition-colors"
+                            @click="openModal('{{ $row[0] }}', '{{ $row[1] }}')">
+                            {{ $row[8] }}
                         </td>
                     </tr>
                     @endforeach
                 </tbody>
+                <tfoot class="sticky bottom-0 bg-white">
+                    <tr class="india-total-row text-slate-800">
+                        <td colspan="2" class="text-center uppercase tracking-widest text-slate-400 text-[11px]">India -
+                            Total</td>
+                        <td class="text-center">640</td>
+                        <td class="text-center">7,933</td>
+                        <td class="text-center">766</td>
+                        <td class="text-center text-blue-600">695</td>
+                        <td class="text-center text-blue-600">7,238</td>
+                        <td class="text-center text-blue-700">7,933</td>
+                        <td class="text-center text-blue-600">71</td>
+                    </tr>
+                </tfoot>
             </table>
         </div>
-    </section>
-    {{-- @dd($totalData); --}}
- @foreach($modalData as $state => $languages)
 
-    <div class="modal fade" id="exampleModal-{{ Str::slug($state) }}" tabindex="-1"
-        aria-labelledby="exampleModalLabel-{{ Str::slug($state) }}" aria-hidden="true">
-
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered ">
-
-            <div class="modal-content">
-
-                <div class="modal-header bg-primary text-white">
-
-                    <h5 class="modal-title" id="exampleModalLabel-{{ Str::slug($state) }}" style="font-size: 14px !important;" >
-                       {{ $state }} - Other Mother Tongue
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
+        <!-- Modal -->
+        <div x-show="isOpen" x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" class="modal-overlay"
+            @click.self="isOpen = false" style="display: none;">
+            <div class="custom-modal" x-show="isOpen" x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 transform scale-95"
+                x-transition:enter-end="opacity-100 transform scale-100"
+                x-transition:leave="transition ease-in duration-200"
+                x-transition:leave-start="opacity-100 transform scale-100"
+                x-transition:leave-end="opacity-0 transform scale-95">
+                <div class="modal-header-blue" x-text="selectedState"></div>
                 <div class="modal-body">
-                        <p class="small">In this state, {{ count($languages) }} out of the 121 languages have at least 100 mother-tongue speakers.</p>
-                    <div class="table-wrapper">
+                    <template x-if="villages.length > 0">
+                        <div>
+                            <span class="modal-section-title">District Capital(s) considered as Villages in Census 2011
+                                :</span>
+                            <div class="town-list" x-text="villages.join(', ')"></div>
+                        </div>
+                    </template>
 
-                        <table class="table table-sm table-striped table-bordered table-hover modal-city-table">
-
-                            <thead class="sticky-top">
-                                <tr>
-                                    <th>#</th>
-                                    <th>Language</th>
-                                    <th>Script</th>
-                                    <th class="text-end">Language
-(Cities %)</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-
-                                @forelse($languages as $lang => $value)
-
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $lang }}</td>
-                                    <td>{{$value['script']?? "" }}</td>
-                                    <td class="text-end">{{ number_format(($value['value']), 0) ?? "0.00" }}%</td>
-
-                                </tr>
-
-                                @empty
-
-                                <tr>
-                                    <td colspan="2" class="text-center text-muted py-3">
-                                        No other language data available
-                                    </td>
-                                </tr>
-
-                                @endforelse
-
-                            </tbody>
-
-                        </table>
-
-                    </div>
-
+                    <template x-if="newTowns.length > 0">
+                        <div>
+                            <span class="modal-section-title">New Town(s) not covered in Census 2011:</span>
+                            <div class="town-list" x-text="newTowns.join(', ')"></div>
+                        </div>
+                    </template>
                 </div>
-
-                <div class="modal-footer py-2">
-
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-
-                </div>
-
             </div>
         </div>
-    </div>
-
-    @endforeach
-
-    <style>
-        /* Modal table redesign */
-        .language-modal .modal-dialog {
-            max-width: 860px;
-        }
-
-        .language-modal .modal-content {
-            border-radius: 14px;
-            overflow: hidden;
-            background: #ffffff;
-        }
-
-        .language-modal .modal-header {
-            padding: 14px 18px;
-            background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 55%, #084298 100%);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 12px;
-            border: 0;
-        }
-
-        .language-modal .modal-title {
-            font-size: 16px;
-            font-weight: 700;
-            letter-spacing: 0.2px;
-            margin: 0;
-        }
-
-        .language-modal .modal-body {
-            padding: 0;
-            background: #f7faff;
-            overflow: hidden;
-        }
-
-        .language-modal .btn-close {
-            margin: 0;
-            opacity: 0.95;
-        }
-
-        .modal-table-wrap {
-            max-height: min(62vh, 520px);
-            overflow: auto;
-            border-top: 1px solid #d9e6ff;
-        }
-
-        .modal-city-table {
-            width: 100%;
-            font-size: 13px;
-            border-collapse: separate;
-            border-spacing: 0;
-        }
-
-        .modal-city-table thead th {
-            position: sticky;
-            top: 0;
-            z-index: 2;
-            padding: 11px 10px;
-            font-size: 10px;
-            letter-spacing: 0.7px;
-            text-transform: uppercase;
-            color: #fff;
-            background: #007bff;
-            /* border-bottom: 1px solid #c7dbff; */
-            white-space: nowrap;
-        }
-
-        .modal-city-table tbody td {
-            padding: 10px;
-            border-bottom: 1px solid #e7eefc;
-            color: #1f2937;
-            background: #ffffff;
-            vertical-align: middle;
-        }
-
-        .modal-city-table th:last-child,
-        .modal-city-table td:last-child {
-            min-width: 130px;
-        }
-
-        .modal-city-table tbody tr:nth-child(even) td {
-            background: #f9fbff;
-        }
-
-        .modal-city-table tbody tr:hover td {
-            background: #edf4ff;
-        }
-
-        .modal-city-table .state-cell {
-            font-weight: 600;
-            color: #0b4aa3;
-            white-space: nowrap;
-        }
-
-        .modal-city-table .population-cell {
-            font-weight: 700;
-            color: #123b7c;
-            font-variant-numeric: tabular-nums;
-        }
-
-        .language-modal .modal-footer {
-            border-top: 1px solid #d9e6ff;
-            background: #f5f9ff;
-        }
-
-        @media (max-width: 768px) {
-            .language-modal .modal-dialog {
-                margin: 0.6rem;
-            }
-
-            .language-modal .modal-title {
-                font-size: 14px;
-            }
-
-            .modal-table-wrap {
-                max-height: 55vh;
-            }
-
-            .modal-city-table {
-                font-size: 11px;
-            }
-
-            .modal-city-table thead th {
-                font-size: 9px;
-                padding: 8px 6px;
-            }
-
-            .modal-city-table tbody td {
-                padding: 7px 6px;
-            }
-        }
-    </style>
+    </section>
 </x-layout.main.base>

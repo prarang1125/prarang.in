@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\CultureNaturePages;
 
 use App\Http\Controllers\Controller;
+use App\Models\Portal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
 
@@ -65,7 +66,6 @@ class TownVillage extends Controller
     }
     public function cities($town)
     {
-
         $town['name'] = $town['town']['Name'] ?? $town['gram_panchayat']['village_name_en'] ?? '-';
         $otherVilTown = httpGet('v1/pages/get-village-town-dhq', [
             'district_id' => $town['dhq']['district_LGD_code'],
@@ -85,6 +85,12 @@ class TownVillage extends Controller
             'request_for' => 'town-village'
         ])['data'];
 
+        $portal=Portal::where('city_id',$dhq['dhq']['DHQ_Code'])->where('local_lang','hi')->first();
+            if($portal){
+                $dhq['portal']=$portal;
+            }else{
+                $dhq['portal']=null;
+            }
         $intData = $this->fetchInternateData($dhq['dhq']['DHQ_Code']);
         return view('culturenature.townvillages.dhq', compact('dhq', 'otherVilTown', 'intData'));
     }

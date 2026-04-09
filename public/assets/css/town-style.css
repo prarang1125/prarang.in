@@ -411,3 +411,15 @@ header .mx-auto .group\/ai{
  visibility:hidden;
 }
 
+/* Paragraph */
+#toLanguage .divide-y p{
+ display:inline-block;
+ /* transform:translatex(0px) translatey(0px) !important; */
+ text-align:right;
+}
+
+/* Paragraph */
+.mx-auto .grid .lg\:col-span-3 #toLanguage .divide-y p{
+ width:100% !important;
+}
+

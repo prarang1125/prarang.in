@@ -386,7 +386,7 @@ class Home extends Controller
 
     //     return view('main.townwebs', compact('datas'));
     // }
-    public function townWebs()
+    public function townWebsIn()
     {
         $data = httpGet('v1/state-wise-language')['data'];
         $datas = $data['language'];
@@ -445,7 +445,10 @@ class Home extends Controller
 
 
 
-        return view('main.townwebs', compact('tableData', 'modalData', 'scripts', 'mainScripts', 'stateTotal'));
+        return view('main.townwebsin', compact('tableData', 'modalData', 'scripts', 'mainScripts', 'stateTotal'));
+    }
+    public function townWebs(){
+           return view('main.townwebs');
     }
 
     public function villageWebs()

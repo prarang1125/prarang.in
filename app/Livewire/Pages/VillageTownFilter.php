@@ -22,6 +22,7 @@ class VillageTownFilter extends Component
     public $town = null;
 
     public $villageType = [];
+    public $sub_filter = 'all';
 
     public function mount($type = 'village')
     {
@@ -47,7 +48,7 @@ class VillageTownFilter extends Component
 
     public function updatedType()
     {
-        $this->reset(['state', 'district', 'subDistrict', 'village', 'town', 'districts', 'subDistricts', 'villages', 'towns']);
+        $this->reset(['state', 'district', 'subDistrict', 'village', 'town', 'districts', 'subDistricts', 'villages', 'towns', 'sub_filter']);
         $this->loadStates();
     }
 
@@ -106,9 +107,17 @@ class VillageTownFilter extends Component
         }
     }
 
+    public function updatedSubFilter()
+    {
+        if ($this->type === 'town' && $this->district) {
+            $this->town = null;
+            $this->loadVillagesAndTowns();
+        }
+    }
+
     protected function getCachedFilterData(array $params)
     {
-        $cacheKey = 'village_town_filter_' . md5(json_encode($params));
+        $cacheKey = $this->type . '_filter_' . md5(json_encode($params));
 
         return cache()->remember($cacheKey, now()->addDays(1), function () use ($params) {
             $response = httpGet('v1/pages/filter-state-district-villages-towns', $params);
@@ -218,12 +227,19 @@ class VillageTownFilter extends Component
         }
 
         try {
-            $data = $this->getCachedFilterData([
+            $params = [
                 'type' => $this->type,
                 'state_id' => $this->state,
                 'district_id' => $this->district,
                 'sub_district_id' => $this->type === 'village' ? $this->subDistrict : null,
-            ]);
+            ];
+
+            if ($this->type === 'town') {
+
+                $params['sub_filter'] = $this->sub_filter;
+            }
+
+            $data = $this->getCachedFilterData($params);
 
             $villagesData = $data['villages'] ?? [];
             $townsData = $data['towns'] ?? [];

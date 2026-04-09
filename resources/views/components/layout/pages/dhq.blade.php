@@ -142,7 +142,17 @@
                         <div>
                             <h1
                                 class="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 ml-6 tracking-tight">
-                                {{ $data['dhq']['city'] ?? '-' }} District Capital
+                                {{ $data['dhq']['city'] ?? '-' }}
+                                @switch($data['dhq']['MSTR24'])
+                                @case('SC')
+                                State Capital
+                                @break
+                                @case('DC')
+                                District Capital
+                                @break
+                                @default
+                                City
+                                @endswitch
                             </h1>
                         </div>
                     </div>
@@ -440,6 +450,52 @@
                     submitBtn.innerHTML = originalBtnText;
                 });
             });
+
+            // ---- Stats Fetching Logic ----
+            const citySubscriberPlaceHolder = document.getElementById('city-subscriber-count');
+            const cityMonthlyPlaceHolder = document.getElementById('city-monthly-count');
+            const cityDailyPlaceHolder = document.getElementById('city-daily-count');
+            const cityCode = @json($data['portal']['city_code']??'');
+            if (cityCode) {
+                // ---- Subscribers Count ----
+                fetch(`https://b2b.prarang.in/api/readers?city_code=${cityCode}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data && data.data && data.data.reader_info) {
+                            const totalSubscribers =
+                                Number(data.data.reader_info.a1 || 0) +
+                                Number(data.data.reader_info.a2 || 0) +
+                                Number(data.data.reader_info.a3 || 0);
+
+                            animateCounter(citySubscriberPlaceHolder, totalSubscribers, 1500);
+                            animateCounter(cityMonthlyPlaceHolder, Number(data.data.reader_info.c1 || 0), 1200);
+                        }
+                    })
+                    .catch(error => console.error('Error fetching portal stats:', error));
+
+                // ---- Daily Viewership ----
+                const params = new URLSearchParams({
+                    client: "prarang",
+                    language: "hi",
+                    location: cityCode,
+                    per_page: 10
+                });
+
+                fetch(`https://www.prarang.in/api/v1/daily-posts/list?${params.toString()}`, {
+                        method: "GET",
+                        headers: { "Accept": "application/json" }
+                    })
+                    .then(response => {
+                        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                        return response.json();
+                    })
+                    .then(data => {
+                        const dailyViews = Number(data.data.viewership || 0);
+                        animateCounter(cityDailyPlaceHolder, dailyViews, 1200);
+                    })
+                    .catch(error => console.error("Error fetching daily posts:", error));
+            }
+
             // Clock logic (existing)
             function updateClock() {
                 const now = new Date();
@@ -463,6 +519,26 @@
                 if(ampmEl) ampmEl.textContent = ampm;
                 if(dateEl) dateEl.textContent = strDate;
             }
+
+            function animateCounter(element, target, duration = 1200) {
+                if (!element) return;
+                let start = 0;
+                const startTime = performance.now();
+
+                function update(currentTime) {
+                    const elapsed = currentTime - startTime;
+                    const progress = Math.min(elapsed / duration, 1);
+                    const value = Math.floor(progress * target);
+                    element.textContent = value.toLocaleString('en-IN');
+
+                    if (progress < 1) {
+                        requestAnimationFrame(update);
+                    }
+                }
+
+                requestAnimationFrame(update);
+            }
+
             setInterval(updateClock, 1000);
             updateClock();
         });

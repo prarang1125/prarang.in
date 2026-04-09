@@ -399,6 +399,22 @@
                             {{-- <img src="{{ asset('assets/images/home/touch.gif') }}" alt=""> --}}
                         </div>
                     </div>
+                    <style>
+                        .flex-wrap a .hover\:shadow-xl {
+                            display: flex;
+                            justify-content: center;
+                        }
+
+                        /* Text base */
+                        .flex-wrap .hover\:shadow-xl .text-base {
+                            font-weight: 500;
+                        }
+
+                        /* Hover */
+                        .flex-wrap a .hover\:shadow-lg {
+                            margin-top: 6px;
+                        }
+                    </style>
                     <div class="flex flex-col items-center">
                         <span
                             class="text-[10px] text-center font-bold uppercase text-blue-700 tracking-[0.15em] block mb-2">
@@ -413,29 +429,16 @@
                         <div>
                             <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
                         </div>
-                        <style>
-                            .flex-wrap a:nth-child(4) .hover\:shadow-xl {
-                                margin-top: 47px;
-                            }
+                        <a target="_blank" href="/filter/cities" class="no-underline">
+                            <div
+                                class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl px-6 py-2.5 border border-blue-600 hover:from-blue-600 hover:to-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 min-w-[120px] text-center">
+                                <span class="text-base font-black text-white">7933</span>
+                            </div>
+                        </a>
+                        <div>
+                            <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
+                        </div>
 
-                            /* Hover */
-                            .flex-wrap a .hover\:shadow-xl {
-                                font-size: 14px;
-                            }
-
-                            /* Text base */
-                            .flex-wrap .hover\:shadow-xl .text-base {
-                                font-size: 14px;
-                                position: relative;
-                                left: -13px;
-                            }
-
-                            /* Text base */
-                            .flex-wrap a:nth-child(2) .hover\:shadow-xl .text-base {
-                                display: inline-block;
-                                width: 47px;
-                            }
-                        </style>
                         <a target="_blank" href="/filter/village" class="no-underline">
                             <div
                                 class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl px-6 py-2.5 border border-blue-600 hover:from-blue-600 hover:to-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 min-w-[120px] text-center">

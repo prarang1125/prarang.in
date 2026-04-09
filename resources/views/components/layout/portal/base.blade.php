@@ -55,7 +55,8 @@
             <!-- Title Box -->
 
             <div class="flex-grow flex items-center justify-center">
-                @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-1', 'slug' => $portal->slug, 'portal' => $portal, 'locale' => $portal->local_lang])
+                @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-1', 'slug' => $portal->slug, 'portal' =>
+                $portal, 'locale' => $portal->local_lang])
 
                 {{-- <div class="bg-blue-600 text-white px-8 py-4 rounded-sm shadow-md text-center max-w-2xl">
                     <h2
