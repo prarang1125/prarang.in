@@ -111,7 +111,7 @@
                     @else
                     <a href="/town-webs-in" target="_blank"
                         class="inline-flex w-fit self-start md:self-auto items-center gap-2 rounded-md no-underline border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-600 hover:bg-blue-600 hover:text-white hover:shadow-md">
-                        Town Language Distribution
+                        City Language Distribution
                     </a>
                     @endif
                 </div>
@@ -134,7 +134,7 @@
                                 <input type="radio" wire:model.live="sub_filter" value="only_sc"
                                     class="w-4 h-4 text-blue-600 focus:ring-blue-500 border-slate-300">
                                 <span
-                                    class="text-sm font-bold {{ $sub_filter === 'only_sc' ? 'text-blue-700' : 'text-slate-500' }}">State
+                                    class="text-sm font-bold {{ $sub_filter === 'only_sc' ? 'text-blue-700' : 'text-slate-500' }}">State/UT
                                     Capital</span>
                             </label>
                             <label
@@ -524,54 +524,59 @@
                     </div>
                     <div class="p-8 md:p-12 border-t border-slate-100 mt-3">
                         <h3 class="text-xl font-black text-slate-800 mb-8 tracking-tight">
-                            Example:-
+                            {{ $type=="town"? 'Explore':'Example' }} :-
                         </h3>
                         @if($type=="town")
-                        <div class="grid grid-cols-1 gap-6">
+                        @php
+                        $liveCities=[
+                        ['title' => 'Lucknow', 'slug'=>'lucknow'],
+                        // meerut
+                        ['title' => 'Meerut', 'slug'=>'meerut'],
+                        ['title' => 'Rampur', 'slug'=>'rampur'],
+                        // jaunpur
+                        ['title' => 'Jaunpur', 'slug'=>'jaunpur'],
+                        // shahjahanpur
+                        ['title' => 'Shahjahanpur', 'slug'=>'shahjahanpur'],
+                        // pune
+                        ['title' => 'Pune', 'slug'=>'pune'],
+                        ];
+                        @endphp
 
-                            <!-- Horizontal Card -->
-                            <div class="group flex flex-col sm:flex-row items-center bg-white border border-slate-200
-                    rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500
-                    hover:-translate-y-1">
-
-                                <!-- Image -->
-                                <div class="w-full sm:w-1/3 overflow-hidden">
-                                    <img src="https://www.prarang.in/assets/images/home/town-1.png" alt="Ram Nagar"
-                                        class="w-full h-52 sm:h-full object-cover group-hover:scale-105 transition duration-500">
+                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                            @foreach($liveCities as $key => $value)
+                            <!-- City Card -->
+                            <div
+                                class="group flex flex-col items-center text-center bg-white border border-slate-200 p-5 rounded-3xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
+                                <!-- Image Section -->
+                                <div
+                                    class="w-20 h-20 rounded-full overflow-hidden mb-4 border-4 border-slate-50 shadow-sm group-hover:border-blue-100 transition-colors duration-500">
+                                    <img src="https://www.prarang.in/assets/images/home/town-1.png"
+                                        alt="{{ $value['title'] }}"
+                                        class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
                                 </div>
 
-                                <!-- Content -->
-                                <div class="w-full sm:w-2/3 p-6 flex flex-col justify-between">
+                                <!-- Content Section -->
+                                <div class="flex flex-col items-center">
+                                    <h4
+                                        class="text-lg font-black text-slate-900 mb-1 group-hover:text-blue-600 transition">
+                                        {{ $value['title'] }}
+                                    </h4>
+                                    <p class="text-slate-400 text-[11px] font-bold uppercase tracking-wider mb-4">Uttar
+                                        Pradesh</p>
 
-                                    <!-- Text -->
-                                    <div>
-                                        <h4
-                                            class="text-2xl font-black text-slate-900 mb-2 tracking-tight group-hover:text-blue-600 transition">
-                                            Aonla (NPP)
-                                        </h4>
-
-                                        <p class="text-slate-500 text-sm">
-                                            Bareilly, Uttar Pradesh
-                                        </p>
-                                    </div>
-
-                                    <!-- Button -->
-                                    <div class="mt-4">
-                                        <a href="https://prarang.in/city/OS02MjctODAwODYz/aonla-npp" target="_blank"
-                                            class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white
-                              font-semibold text-sm rounded-xl hover:bg-blue-700 transition">
-                                            View
-                                            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1"
-                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                            </svg>
-                                        </a>
-                                    </div>
-
+                                    <!-- Action -->
+                                    <a href="https://prarang.in/{{ $value['slug']  }}" target="_blank"
+                                        class="inline-flex items-center justify-center gap-2 px-6 py-2 bg-blue-600 text-white font-bold text-xs rounded-xl hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-200 transition-all duration-300">
+                                        Explore
+                                        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none"
+                                            stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                        </svg>
+                                    </a>
                                 </div>
                             </div>
-
+                            @endforeach
                         </div>
                         @else
                         <div class="grid grid-cols-1 gap-6">
@@ -584,7 +589,7 @@
                                 <!-- Image -->
                                 <div class="w-full sm:w-1/3 overflow-hidden">
                                     <img src="https://www.prarang.in/assets/images/home/Villages-1.png" alt="Ram Nagar"
-                                        class="w-full h-52 sm:h-full object-cover group-hover:scale-105 transition duration-500">
+                                        class="w-full h-22 sm:h-full object-cover group-hover:scale-105 transition duration-500">
                                 </div>
 
                                 <!-- Content -->
