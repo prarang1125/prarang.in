@@ -26,7 +26,7 @@ class VillageTownFilter extends Component
 
     public function mount($type = 'village')
     {
-        $this->type = $type=="cities"?"town":"village";
+        $this->type = $type == "cities" ? "town" : "village";
         if ($type == 'village') {
             $this->villageType = $this->loadVillageTypes();
         }
@@ -68,10 +68,10 @@ class VillageTownFilter extends Component
             $this->subDistrict = null;
             $this->village = null;
             $this->town = null;
-            $this->loadDistricts();
             $this->subDistricts = [];
             $this->villages = [];
             $this->towns = [];
+            $this->loadDistricts();
         } else {
             $this->reset(['district', 'subDistrict', 'village', 'town', 'districts', 'subDistricts', 'villages', 'towns']);
         }
@@ -109,9 +109,9 @@ class VillageTownFilter extends Component
 
     public function updatedSubFilter()
     {
-        if ($this->type === 'town' && $this->district) {
-            $this->town = null;
-            $this->loadVillagesAndTowns();
+        if ($this->type === 'town') {
+            $this->reset(['district', 'subDistrict', 'village', 'town', 'districts', 'subDistricts', 'villages', 'towns']);
+            $this->loadDistricts();
         }
     }
 
@@ -167,14 +167,23 @@ class VillageTownFilter extends Component
             $districtsData = $this->getCachedFilterData([
                 'type' => $this->type,
                 'state_id' => $this->state,
+                'sub_filter' => $this->sub_filter,
             ])['districts'] ?? [];
 
             $this->districts = collect($districtsData)->map(function ($name, $id) {
                 return (object)['id' => (string)$id, 'name' => $name];
             })->sortBy('name')->values()->toArray();
 
-            if (!$this->district && !empty($this->districts)) {
-                // $this->district = $this->districts[0]->id ?? null;
+            // Auto-select if only one district
+            if (!$this->district && count($this->districts) === 1) {
+                $this->district = $this->districts[0]->id ?? null;
+                if ($this->district) {
+                    if ($this->type === 'town') {
+                        $this->loadVillagesAndTowns();
+                    } else {
+                        $this->loadSubDistricts();
+                    }
+                }
             }
         } catch (\Exception $e) {
             $this->districts = [];
@@ -263,8 +272,9 @@ class VillageTownFilter extends Component
                 // $this->village = $this->villages[0]->id ?? null;
             }
 
-            if ($this->type === 'town' && !$this->town && !empty($this->towns)) {
-                // $this->town = $this->towns[0]->id ?? null;
+            // Auto-select if only one town
+            if ($this->type === 'town' && !$this->town && count($this->towns) === 1) {
+                $this->town = $this->towns[0]->id ?? null;
             }
         } catch (\Exception $e) {
             $this->villages = [];
@@ -293,7 +303,7 @@ class VillageTownFilter extends Component
     public function render()
     {
         $heading = $this->type === 'town' ? 'India Cities' : 'India Villages';
-        $image=$this->type === 'town' ? "https://www.prarang.in/assets/images/home/town-1.png" : "https://www.prarang.in/assets/images/home/Villages-1.png";
+        $image = $this->type === 'town' ? "https://www.prarang.in/assets/images/home/town-1.png" : "https://www.prarang.in/assets/images/home/Villages-1.png";
         $metaData['nav-heading'] = view('components.nav-heading', [
             'text' => $heading,
             'leftImg' => $image,
