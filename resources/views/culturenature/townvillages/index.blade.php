@@ -426,7 +426,7 @@ $metaData[] = '';
                 $trends = [
                 [
                 'label' => 'Village Internet Users (Est.)',
-                'source' => "Estimate - Population ratio of State Urban Internet Users - TRAI QTR Report",
+                'source' => "Estimate - Population ratio of State Rural Internet Users - TRAI QTR Report",
                 'value' => $village['internet_users']['village_int_users'] ?? '-',
                 ],
                 [
