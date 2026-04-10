@@ -169,6 +169,49 @@
                     </button>
                 </div>
 
+                @if($type === 'town')
+                <!-- Filter By Type -->
+                <div class="mb-6 p-3 bg-gray-50/50 rounded-xl border border-gray-200">
+                    <div class="flex flex-col sm:flex-row sm:items-center gap-3">
+                        <label
+                            class="text-[10px] font-black text-gray-500 uppercase tracking-[0.15em] whitespace-nowrap">Filter
+                            By Type:</label>
+                        <div class="flex flex-wrap gap-2">
+                            <label
+                                class="relative flex items-center gap-2 px-3 py-1.5 rounded-lg cursor-pointer transition-all duration-300 {{ $sub_filter === 'all' ? 'bg-white border-blue-600 shadow-sm border-2' : 'hover:bg-white/80 border-gray-200 border bg-white/40' }}">
+                                <input type="radio" wire:model.live="sub_filter" value="all"
+                                    class="w-3.5 h-3.5 text-blue-600 focus:ring-blue-500 border-gray-300">
+                                <span
+                                    class="text-[12px] font-bold {{ $sub_filter === 'all' ? 'text-blue-700' : 'text-gray-500' }}">All</span>
+                            </label>
+                            <label
+                                class="relative flex items-center gap-2 px-3 py-1.5 rounded-lg cursor-pointer transition-all duration-300 {{ $sub_filter === 'only_sc' ? 'bg-white border-blue-600 shadow-sm border-2' : 'hover:bg-white/80 border-gray-200 border bg-white/40' }}">
+                                <input type="radio" wire:model.live="sub_filter" value="only_sc"
+                                    class="w-3.5 h-3.5 text-blue-600 focus:ring-blue-500 border-gray-300">
+                                <span
+                                    class="text-[12px] font-bold {{ $sub_filter === 'only_sc' ? 'text-blue-700' : 'text-gray-500' }}">State/UT
+                                    Capital</span>
+                            </label>
+                            <label
+                                class="relative flex items-center gap-2 px-3 py-1.5 rounded-lg cursor-pointer transition-all duration-300 {{ $sub_filter === 'only_dhq' ? 'bg-white border-blue-600 shadow-sm border-2' : 'hover:bg-white/80 border-gray-200 border bg-white/40' }}">
+                                <input type="radio" wire:model.live="sub_filter" value="only_dhq"
+                                    class="w-3.5 h-3.5 text-blue-600 focus:ring-blue-500 border-gray-300">
+                                <span
+                                    class="text-[12px] font-bold {{ $sub_filter === 'only_dhq' ? 'text-blue-700' : 'text-gray-500' }}">District
+                                    Capital</span>
+                            </label>
+                            <label
+                                class="relative flex items-center gap-2 px-3 py-1.5 rounded-lg cursor-pointer transition-all duration-300 {{ $sub_filter === 'non_dhq' ? 'bg-white border-blue-600 shadow-sm border-2' : 'hover:bg-white/80 border-gray-200 border bg-white/40' }}">
+                                <input type="radio" wire:model.live="sub_filter" value="non_dhq"
+                                    class="w-3.5 h-3.5 text-blue-600 focus:ring-blue-500 border-gray-300">
+                                <span
+                                    class="text-[12px] font-bold {{ $sub_filter === 'non_dhq' ? 'text-blue-700' : 'text-gray-500' }}">Others</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                @endif
+
                 <!-- 2x2 Grid Layout -->
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-7 relative z-20">
 
