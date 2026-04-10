@@ -129,7 +129,7 @@
                             <div class="pt-1 border-t border-gray-50">
                                 <p class="text-xs font-medium text-gray-500 mb-0.5">Pop. 2026 (Est.)
                                     <x-source
-                                        source="Projected population based on district-level growth rates applied to the village population." />
+                                        source="Estimate - Population based on District Growth Rate - Census 2011." />
                                 </p>
                                 <p class="text-sm font-bold text-indigo-600">
                                     {{ isset($data['pop']['pop_2026']) ? number_format($data['pop']['pop_2026'], 0) :
@@ -137,8 +137,7 @@
                             </div>
                             <div class="pt-1 border-t border-gray-50">
                                 <p class="text-xs font-medium text-gray-500 mb-0.5">Pop. 2011
-                                    <x-source
-                                        source="Population as recorded in the Census of India 2011 – Primary Census Abstract." />
+                                    <x-source source="Population - Census 2011." />
                                 </p>
                                 <p class="text-sm font-bold text-gray-800">
                                     {{ isset($data['pop']['pop_2011']) ? number_format($data['pop']['pop_2011'], 0) :
