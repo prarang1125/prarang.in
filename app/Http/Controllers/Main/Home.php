@@ -268,9 +268,10 @@ class Home extends Controller
             return collect(config('cityweb.popup'))->sortBy('City')->groupBy('StateID')->toArray();
         });
 
-        $state = Cache::remember("cityweb-state", 30 * 60 * 60, function () {
-            return collect(config('cityweb.data'))->pluck('state', '#')->toArray();
+        $state = Cache::remember("cityweb-stateswxs", 30 * 60 * 60, function () {
+            return collect(config('cityweb.data'))->pluck('state', 'id')->toArray();
         });
+
         $total = Cache::remember("cityweb-total", 30 * 60 * 60, function () {
             return collect(config('cityweb.total'))->toArray();
         });
@@ -447,8 +448,9 @@ class Home extends Controller
 
         return view('main.townwebsin', compact('tableData', 'modalData', 'scripts', 'mainScripts', 'stateTotal'));
     }
-    public function townWebs(){
-           return view('main.townwebs');
+    public function townWebs()
+    {
+        return view('main.townwebs');
     }
 
     public function villageWebs()
@@ -463,14 +465,14 @@ class Home extends Controller
     }
 
 
-     public function indiaRural()
+    public function indiaRural()
     {
-        try{
-            $missingvilage=Cache::remember('village_webs.missing_village', 30 * 60 * 60, function () {
+        try {
+            $missingvilage = Cache::remember('village_webs.missing_village', 30 * 60 * 60, function () {
                 return DB::table('missing_village')->get()->groupBy('state_code');
             });
 
-            $newvillages=Cache::remember('village_webs.new_village', 30 * 60 * 60, function () {
+            $newvillages = Cache::remember('village_webs.new_village', 30 * 60 * 60, function () {
                 return DB::table('new_villages')->get()->groupBy('state_code');
             });
 
@@ -483,18 +485,17 @@ class Home extends Controller
 
             // dd($repovillages);
 
-             $stateSummaryRaw = Cache::remember('village_webs.state_summary', 30 * 60 * 60, function () {
-                   return collect(config('state.stateWise'))->toArray();
-
+            $stateSummaryRaw = Cache::remember('village_webs.state_summary', 30 * 60 * 60, function () {
+                return collect(config('state.stateWise'))->toArray();
             });
 
             // dd($stateSummaryRaw);
 
-        }catch(Exception $e){
+        } catch (Exception $e) {
             $e->getMessage();
         }
 
 
-        return view('main.indiarural', compact('missingvilage','newvillages','stateSummaryRaw','repovillages'));
+        return view('main.indiarural', compact('missingvilage', 'newvillages', 'stateSummaryRaw', 'repovillages'));
     }
 }

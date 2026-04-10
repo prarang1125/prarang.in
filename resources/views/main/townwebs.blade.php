@@ -208,6 +208,17 @@ $metaData = [
         }
 
     }
+
+    /* Tabular nums */
+    .text-slate-600 tr .tabular-nums {
+        font-weight: 400;
+    }
+
+    /* Cursor pointer */
+    .text-slate-600 tr .cursor-pointer {
+        font-weight: 600;
+        color: #0876ec;
+    }
 </style>
 <x-layout.main.base :metaData="$metaData">
     <section class="max-w-7xl mx-auto px-4 pt-8">
@@ -219,7 +230,8 @@ $metaData = [
             </p>
             <p>
                 Of these towns, <b>695</b> are District and State Capitals (2 State Capitals that are not District
-                Capitals – Bhubaneswar (Odisha) and Amaravati (Andhra Pradesh). However, <b>71</b> capitals were either
+                Capitals – Bhubaneswar (Odisha) and Amaravati (Andhra Pradesh). However, <b>72</b> new capitals were
+                either
                 classified as villages or not covered as towns in the Census 2011, and hence are absent from the town
                 list.
             </p>
@@ -232,7 +244,7 @@ $metaData = [
         villages: [],
         newTowns: [],
         townsData: {
-            '28': { villages: ['Paderu', 'Puttaparthi'], newTowns: ['Rajamahendravaram'] },
+            {{-- '28': { villages: ['Paderu', 'Puttaparthi'], newTowns: ['Rajamahendravaram','Amaravati'] },
             '12': { villages: ['Raga', 'Palin', 'Likabali', 'Teto'], newTowns: ['Lemmi', 'Yupia'] },
             '18': { villages: ['Mushalpur', 'Kajalgaon', 'Garamur', 'Hatsingimari'], newTowns: ['Tamulpur'] },
             '02': { villages: ['Reckong Peo', 'Keylong'], newTowns: [] },
@@ -254,7 +266,52 @@ $metaData = [
             '32': { villages: [], newTowns: ['Painavu'] },
             '23': { villages: [], newTowns: ['Waidhan'] },
             '15': { villages: [], newTowns: ['Khawzawl'] },
-            '16': { villages: [], newTowns: ['Bishramganj'] }
+            '16': { villages: [], newTowns: ['Bishramganj'] } --}}
+            '28': { villages: ['Paderu (Alluri Sitharama Raju)', 'Puttaparthi (Sri Sathya Sai)'], newTowns: ['Rajamahendravaram (East Godavari)','Amaravati (Guntur)'] },
+
+'12': { villages: ['Raga (Kamle)', 'Palin (Kra Daadi)', 'Likabali (Lower Siang)', 'Teto (Shi Yomi)'], newTowns: ['Lemmi (Pakke-Kessang)', 'Yupia (Papum Pare)'] },
+
+'18': { villages: ['Mushalpur (Baksa)', 'Kajalgaon (Chirang)', 'Garamur (Majuli)', 'Hatsingimari (South Salmara-Mankachar)'], newTowns: ['Tamulpur (Tamulpur)'] },
+
+'02': { villages: ['Reckong Peo (Kinnaur)', 'Keylong (Lahaul and Spiti)'], newTowns: [] },
+
+'29': { villages: ['Dharwad (Dharwad)'], newTowns: ['Bengaluru (Bengaluru Urban)', 'Kalaburagi (Kalaburagi)'] },
+
+'27': { villages: ['Dharashiv (Dharashiv)'], newTowns: ['Bandra (East) (Mumbai Suburban)', 'Oros (Sindhudurg)'] },
+
+'14': { villages: ['Noney (Longmai) (Noney)', 'Pherzawl (Pherzawl)', 'Senapati (Senapati)', 'Tengnoupal (Tengnoupal)'], newTowns: ['Chandel (Chandel)', 'Churachandpur (Churachandpur)', 'Lamphelpat (Imphal West)', 'Kamjong (Kamjong)', 'Kangpokpi (Kangpokpi)'] },
+
+'17': { villages: ['Mawkyrwat (South West Khasi Hills)'], newTowns: ['Khliehriat (East Jaintia Hills)', 'Mairang (Eastern West Khasi Hills)', 'Resubelpara (North Garo Hills)', 'Ampati (South West Garo Hills)'] },
+
+'13': { villages: ['Niuland (Niuland)', 'Noklak (Noklak)', 'Shamator (Shamator)'], newTowns: [] },
+
+'07': { villages: ['Saket (South Delhi)'], newTowns: ['Daryaganj (Central Delhi)', 'Preet Vihar (East Delhi)', 'Connaught Place (New Delhi)', 'Sadar Bazar (North Delhi)', 'Seelampur (North East Delhi)', 'Nand Nagri (North East Delhi)', 'Defence Colony (South East Delhi)', 'Vasant Vihar (South West Delhi)', 'Rajouri Garden (West Delhi)'] },
+
+'21': { villages: ['Panikoili (Jajpur)'], newTowns: ['Nuapada (Nuapada)'] },
+
+'11': { villages: ['Soreng (Soreng)', 'Gyalshing (Gyalshing)'], newTowns: ['Pakyong (Pakyong)'] },
+
+'33': { villages: ['Kanchipuram (Kanchipuram)'], newTowns: [] },
+
+'36': { villages: ['Shamirpet (Medchal–Malkajgiri)', 'Mulugu (Mulugu)'], newTowns: ['Hanamkonda (Hanamkonda)', 'Hyderabad (Hyderabad)'] },
+
+'09': { villages: ['Gauriganj (Amethi)'], newTowns: ['Shravasti (Shravasti)'] },
+
+'35': { villages: ['Mayabunder (North and Middle Andaman)'], newTowns: ['Car Nicobar (Nicobar)'] },
+
+'22': { villages: [], newTowns: ['Mohla (Mohla-Manpur-Ambagarh Chowki)'] },
+
+'24': { villages: [], newTowns: ['Dahod (Dahod)', 'Mehsana (Mehsana)'] },
+
+'06': { villages: [], newTowns: ['Kurukshetra (Kurukshetra)'] },
+
+'32': { villages: [], newTowns: ['Painavu (Idukki)'] },
+
+'23': { villages: [], newTowns: ['Waidhan (Singrauli)'] },
+
+'15': { villages: [], newTowns: ['Khawzawl (Khawzawl)'] },
+
+'16': { villages: [], newTowns: ['Bishramganj (Sepahijala)'] }
         },
         openModal(id, name) {
             const data = this.townsData[id];
@@ -273,9 +330,9 @@ $metaData = [
                         <th rowspan="2" class="text-center text-white">#</th>
                         <th class="statewidth text-center" rowspan="2">State / UT Name</th>
                         <th colspan="2" class="text-center" style="background: #2c4f92 !important">Census 2011</th>
-                        <th colspan="4" class="text-center">2026 Projections</th>
+                        <th colspan="4" class="text-center">2026</th>
                         <th rowspan="2" class="text-center text-[11px] leading-tight">
-                            District Capital<br>
+                            Capital(s)<br>
                             <span class="text-[9px] font-normal opacity-70">(not in Cen. 2011)</span>
                         </th>
                     </tr>
@@ -291,7 +348,7 @@ $metaData = [
                 <tbody class="text-slate-600">
                     @php
                     $rows = [
-                    ['28', 'Andhra Pradesh', '23', '353', '26', '23', '173', '196', '3'],
+                    ['28', 'Andhra Pradesh', '23', '353', '26', '23', '173', '196', '4'],
                     ['12', 'Arunachal Pradesh', '16', '27', '26', '20', '7', '27', '6'],
                     ['18', 'Assam', '27', '214', '35', '30', '184', '214', '5'],
                     ['10', 'Bihar', '38', '199', '38', '38', '163', '201', '-'],
@@ -356,7 +413,7 @@ $metaData = [
                         <td class="text-center text-blue-600">695</td>
                         <td class="text-center text-blue-600">7,238</td>
                         <td class="text-center text-blue-700">7,933</td>
-                        <td class="text-center text-blue-600">71</td>
+                        <td class="text-center text-blue-600">72</td>
                     </tr>
                 </tfoot>
             </table>
@@ -377,7 +434,7 @@ $metaData = [
                 <div class="modal-body">
                     <template x-if="villages.length > 0">
                         <div>
-                            <span class="modal-section-title">District Capital(s) considered as Villages in Census 2011
+                            <span class="modal-section-title">Capital(s) considered as Villages in Census 2011
                                 :</span>
                             <div class="town-list" x-text="villages.join(', ')"></div>
                         </div>
@@ -385,7 +442,7 @@ $metaData = [
 
                     <template x-if="newTowns.length > 0">
                         <div>
-                            <span class="modal-section-title">City(s) not covered in Census 2011:</span>
+                            <span class="modal-section-title">Capital(s) not covered in Census 2011:</span>
                             <div class="town-list" x-text="newTowns.join(', ')"></div>
                         </div>
                     </template>

@@ -328,11 +328,76 @@
                 }
 
             }
+
+
+
+            /* Table Data */
+            .container .mx-auto .flex-wrap div .border .justify-center .border-separate tbody tr .py-1 {
+                width: 100% !important;
+            }
+
+            /* Link */
+            .flex-wrap .py-1 a {
+                width: 299px;
+                border-top-left-radius: 6px;
+                border-top-right-radius: 6px;
+                border-bottom-left-radius: 6px;
+                border-bottom-right-radius: 6px;
+                text-decoration: none;
+            }
+
+            /* Border */
+            .flex-wrap div .border {
+                padding-right: 0px !important;
+                padding-left: 1px !important;
+            }
+
+            /* Link */
+            .flex-wrap .px-2 a {
+                margin-left: 0px;
+                width: 140px;
+                text-decoration: none;
+            }
+
+            /* Heading */
+            .flex-wrap .country-s h5 {
+                color: #020202 !important;
+            }
+
+            /* City */
+            .flex-wrap div .city-s {
+                padding-right: 0px !important;
+                padding-left: 0px !important;
+            }
+
+            /* Division */
+            .flex-wrap div .mt-2 {
+                padding-left: 0px !important;
+                padding-right: 0px !important;
+            }
+
+            /* Link */
+            .city-s .px-2 a {
+                border-top-left-radius: 6px;
+                border-top-right-radius: 6px;
+                border-bottom-left-radius: 6px;
+                border-bottom-right-radius: 6px;
+            }
+
+            /* Link */
+            .flex-wrap .mt-2 .px-2 a {
+                border-top-left-radius: 6px;
+                border-top-right-radius: 6px;
+                border-bottom-left-radius: 6px;
+                border-bottom-right-radius: 6px;
+            }
+
+            /* Link */
+            .city-s .py-1 a {
+                width: 150px !important;
+            }
         </style>
-        {{-- <div class="cursor-pointer" onclick="window.location.href='https://www.prarang.in/knowledge'">
-            <img src="https://i.ibb.co/MkscXbdy/download-2.gif" alt="">
-        </div> --}}
-        <!-- Cards Section -->
+
         <div class="flex flex-wrap justify-center items-center gap-4 lg:gap-6">
 
             <div>
@@ -353,116 +418,67 @@
 
                     </div>
                 </div>
-                <div class="flex w-full mt-6 gap-3 justify-center">
-                    <div class="flex flex-col items-center">
-                        <span
-                            class="text-[10px] text-center font-bold uppercase text-blue-700 tracking-[0.15em] block mb-2">
-                            India Total
-                        </span>
-                        <a href="/city-webs" class="no-underline">
-                            <div
-                                class="bg-blue-400 rounded-xl px-6 py-2.5 border border-blue-200 hover:from-blue-500 hover:to-blue-600 hover:border-blue-500 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
-                                <div class="flex items-center justify-center gap-2">
-                                    <span class="text-base font-black text-white hover:text-white transition-colors">
-                                        India : Capitals - 785</span>
+                <div class="city-s my-2 p-4 rounded-2xl">
 
-                                </div>
-                            </div>
-                        </a>
-                        <div>
-                            {{-- <img src="{{ asset('assets/images/home/touch.gif') }}" alt=""> --}}
-                        </div>
-                        <a href="/town-webs" class="no-underline">
-                            <div
-                                class="bg-blue-400 rounded-xl px-6 py-2.5 border border-blue-200 hover:from-blue-500 hover:to-blue-600 hover:border-blue-500 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
-                                <div class="flex items-center justify-center gap-2">
-                                    <span class="text-base font-black text-white hover:text-white transition-colors">
-                                        India : Urban - 7933 </span>
+                    <h5 class="text-lg font-black text-gray-800 tracking-tight text-center uppercase mb-1">
+                        National Knowledge Grid
+                    </h5>
 
-                                </div>
-                            </div>
-                        </a>
-                        <div>
-                            {{-- <img src="{{ asset('assets/images/home/touch.gif') }}" alt=""> --}}
-                        </div>
-                        <a href="/india-rural" class="no-underline">
-                            <div
-                                class="bg-blue-400 rounded-xl px-6 py-2.5 border border-blue-200 hover:from-blue-500 hover:to-blue-600 hover:border-blue-500 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
-                                <div class="flex items-center justify-center gap-2">
-                                    <span class="text-base font-black text-white hover:text-white transition-colors">
-                                        India : Rural - 594,204 </span>
+                    <div class="mt-3 flex justify-center">
+                        <table class="text-center border-separate border-spacing-y-3">
 
-                                </div>
-                            </div>
-                        </a>
-                        <div>
-                            {{-- <img src="{{ asset('assets/images/home/touch.gif') }}" alt=""> --}}
-                        </div>
+                            <tr>
+                                <td class="px-2">
+                                    <a href="/town-webs"
+                                        class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+                                        style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
+                                        India: Urban
+                                    </a>
+                                </td>
+                                <td class="px-2">
+                                    <a href="/filter/cities"
+                                        class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+                                        style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
+                                        7,933
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2" class="py-1">
+                                    <a href="/city-webs"
+                                        class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+                                        style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
+                                        India: District
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="px-2">
+                                    <a href="/india-rural"
+                                        class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+                                        style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
+                                        India: Rural
+                                    </a>
+                                </td>
+                                <td class="px-2">
+                                    <a href="/filter/village"
+                                        class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+                                        style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
+                                        594,204
+                                    </a>
+                                </td>
+                            </tr>
+
+                        </table>
                     </div>
-                    <style>
-                        .flex-wrap a .hover\:shadow-xl {
-                            display: flex;
-                            justify-content: center;
-                        }
 
-                        /* Text base */
-                        .flex-wrap .hover\:shadow-xl .text-base {
-                            font-weight: 500;
-                        }
-
-                        /* Hover */
-                        .flex-wrap a .hover\:shadow-lg {
-                            margin-top: 6px;
-                        }
-                    </style>
-                    <div class="flex flex-col items-center">
-                        <span
-                            class="text-[10px] text-center font-bold uppercase text-blue-700 tracking-[0.15em] block mb-2">
-                            Live
-                        </span>
-                        <a href="{{ route('home.india-city-webs') }}" class="no-underline">
-                            <div
-                                class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl px-6 py-2.5 border border-blue-600 hover:from-blue-600 hover:to-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 min-w-[120px] text-center">
-                                <span class="text-base font-black text-white">298</span>
-                            </div>
-                        </a>
-                        <div>
-                            <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
-                        </div>
-                        <a target="_blank" href="/filter/cities" class="no-underline">
-                            <div
-                                class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl px-6 py-2.5 border border-blue-600 hover:from-blue-600 hover:to-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 min-w-[120px] text-center">
-                                <span class="text-base font-black text-white">7933</span>
-                            </div>
-                        </a>
-                        <div>
-                            <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
-                        </div>
-
-                        <a target="_blank" href="/filter/village" class="no-underline">
-                            <div
-                                class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl px-6 py-2.5 border border-blue-600 hover:from-blue-600 hover:to-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 min-w-[120px] text-center">
-                                <span class="text-base font-black text-white">594,204</span>
-                            </div>
-                        </a>
-                        <div>
-                            <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
-                        </div>
-                        {{-- <a href="{{ route('home.india-city-webs') }}" class="no-underline">
-                            <div
-                                class="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl px-6 py-2.5 border border-blue-600 hover:from-blue-600 hover:to-blue-700 hover:shadow-xl hover:scale-105 transition-all duration-300 min-w-[120px] text-center">
-                                <span class="text-base font-black text-white">1</span>
-                            </div>
-                        </a>
-                        <div>
-                            <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
-                        </div> --}}
-                    </div>
                 </div>
             </div>
             <!-- Arrow -->
-            <div class="hidden lg:flex items-center justify-center text-4xl text-dark ">
-                <i class="bi bi-arrow-right-circle-fill"></i>
+            <div class=" hidden lg:flex items-center justify-center text-4xl text-dark ">
+                <i class=" bi bi-arrow-right-circle-fill"></i>
             </div>
 
             <!-- Language Webs Card -->
@@ -483,48 +499,46 @@
                     </div>
 
                 </div>
-                <div class="flex w-full mt-6 gap-3 justify-center">
-                    <div class="flex flex-col items-center">
-                        <span
-                            class="text-[10px] text-center font-bold uppercase text-yellow-900 tracking-[0.15em] block mb-2">
-                            World Total
-                        </span>
-                        <a href="/lang-webs" class="no-underline">
-                            <div style="background: #FFFF00;"
-                                class=" rounded-xl px-6 py-2.5 border border-yellow-300 hover:from-yellow-400 hover:to-yellow-500 hover:border-yellow-500 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
-                                <div class="flex items-center justify-center gap-2">
-                                    <span
-                                        class="text-base font-black text-gray-800 hover:text-white transition-colors">178</span>
+                <div class="language-s p-4 mt-2 rounded-2xl">
 
-                                </div>
-                            </div>
-                        </a>
-                        <div>
-                            <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
-                        </div>
+                    <h5 class="text-lg font-black text-gray-800 tracking-tight text-center uppercase mb-1">
+                        Language Knowledge Grid
+                    </h5>
+
+                    <div class="mt-3 flex justify-center">
+                        <table class="text-center border-separate border-spacing-y-3">
+
+                            <tr>
+                                <td colspan="2" class="py-1">
+
+                                    <a href="/lang-webs"
+                                        class="inline-block p-2 text-gray-900 font-semibold rounded-sm  shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 "
+                                        style="background: #FFFF00;">
+                                        World Total : 178
+                                    </a>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="px-2">
+                                    <a href="https://humsabek.in/"
+                                        class="inline-block p-2 text-gray-900 font-semibold  rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+                                        style="background: #FFFF00;">
+                                        Hindi
+                                    </a>
+                                </td>
+                                <td class="px-2">
+                                    <a href="/english-web"
+                                        class="inline-block p-2 text-gray-900 font-semibold  rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+                                        style="background:  #FFFF00">
+                                        English
+                                    </a>
+                                </td>
+                            </tr>
+
+                        </table>
                     </div>
-                    <div class="flex flex-col items-center">
-                        <span
-                            class="text-[10px] text-center font-bold uppercase text-yellow-900 tracking-[0.15em] block mb-2">
-                            Live
-                        </span>
-                        <div class="flex flex-col gap-2">
-                            <a href="https://humsabek.in" target="_blank" class="no-underline">
-                                <div style="background: #FFFF00;"
-                                    class=" rounded-xl px-6 py-2.5 border border-yellow-500 hover:from-yellow-500 hover:to-yellow-600 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
-                                    <span
-                                        class="text-base font-black text-gray-800 hover:text-white transition-colors">Hindi</span>
-                                </div>
-                            </a>
-                            <a href="/english-web" target="_blank" class="no-underline">
-                                <div style="background: #FFFF00;"
-                                    class="rounded-xl px-6 py-2.5 border border-yellow-500 hover:from-yellow-500 hover:to-yellow-600 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
-                                    <span
-                                        class="text-base font-black text-gray-800 hover:text-white transition-colors">English</span>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
+
                 </div>
             </div>
             <!-- Arrow -->
@@ -548,70 +562,44 @@
                         </div>
                     </div>
                 </div>
-                <div class="flex w-full mt-6 gap-3 justify-center">
-                    <div class="flex flex-col items-center">
-                        <span
-                            class="text-[10px] text-center font-bold uppercase text-rose-700 tracking-[0.15em] block mb-2">
-                            World Total
-                        </span>
-                        <a href="/country-webs" class="no-underline">
-                            <div
-                                class="bg-gradient-to-br from-rose-50 to-rose-100 rounded-xl px-6 py-2.5 border border-rose-200 hover:from-rose-400 hover:to-rose-500 hover:border-rose-400 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
-                                <div class="flex items-center justify-center gap-2">
-                                    <span
-                                        class="text-base font-black text-gray-800 hover:text-white transition-colors">195</span>
+                <div class="country-s p-4 mt-2 rounded-2xl">
 
-                                </div>
+                    <h5 class="text-lg font-black text-gray-800 tracking-tight text-center uppercase mb-1">
+                        International Knowledge Grid
+                    </h5>
 
-                            </div>
-                        </a>
+                    <div class="mt-3 flex justify-center">
+                        <table class="text-center border-separate border-spacing-y-3">
+                            <tr>
+                                <td colspan="2" class="py-1">
+                                    <a href="/country-webs"
+                                        class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+                                        style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
+                                        World Total : 195
 
-                        <div>
-                            <img src="{{ asset('assets/images/home/touch.gif') }}" alt="">
-                        </div>
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="px-2">
+                                    <a href="https://indiaczech.com/"
+                                        class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+                                        style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
+                                        India - Czech
+                                    </a>
+                                </td>
+                                <td class="px-2">
+                                    <a href="/india-nepal"
+                                        class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
+                                        style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
+                                        India - Nepal
+                                    </a>
+                                </td>
+                            </tr>
+
+                        </table>
                     </div>
-                    <div class="flex flex-col items-center">
-                        <span
-                            class="text-[10px] text-center font-bold uppercase text-rose-700 tracking-[0.15em] block mb-2">
-                            Live
-                        </span>
-                        <div class="flex flex-col gap-2">
-                            <a href="https://indiaczech.com" target="_blank" class="no-underline">
-                                <div
-                                    class="bg-gradient-to-br from-rose-400 to-rose-500 rounded-xl px-6 py-2.5 border border-rose-500 hover:from-rose-500 hover:to-rose-600 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
-                                    <span
-                                        class="text-base font-black text-white hover:text-rose-50 transition-colors">India-Czech
-                                    </span>
-                                </div>
-                            </a>
-                            <a href="https://prarang.in/india-nepal" target="_blank" class="no-underline">
-                                <div
-                                    class="bg-gradient-to-br from-rose-400 to-rose-500 rounded-xl px-6 py-2.5 border border-rose-500 hover:from-rose-500 hover:to-rose-600 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
-                                    <span
-                                        class="text-base font-black text-white hover:text-rose-50 transition-colors">India-Nepal</span>
-                                </div>
-                            </a>
 
-                            {{-- <a href="javascript:void(0)"
-                                onclick="setTimeout(() => {document.getElementById('nepal-click').innerHTML='Coming Soon'}, 1000)"
-                                class="no-underline">
-                                <div
-                                    class="bg-gradient-to-br from-rose-400 to-rose-500 rounded-xl px-6 py-2.5 border border-rose-500 hover:from-rose-500 hover:to-rose-600 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
-                                    <span class="text-base font-black text-white hover:text-rose-50 transition-colors"
-                                        id="nepal-click">Nepal-Czech</span>
-                                </div>
-                            </a> --}}
-                            <span
-                                onclick="setTimeout(() => {document.getElementById('nepal-click').innerHTML='Coming Soon'}, 1000)"
-                                class="cursor-pointer">
-                                <div
-                                    class="bg-gradient-to-br from-rose-400 to-rose-500 rounded-xl px-6 py-2.5 border border-rose-500 hover:from-rose-500 hover:to-rose-600 hover:shadow-lg transition-all duration-300 min-w-[120px] text-center">
-                                    <span class="text-base font-black text-white hover:text-rose-50 transition-colors"
-                                        id="nepal-click">Nepal-Czech</span>
-                                </div>
-                            </span>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>

@@ -1,14 +1,14 @@
 @php
-    $metaData = [
-        'nav-heading' => view('components.nav-heading', [
-            'text' => 'India : Capitals - 785 State-UT/District Capital Cities',
-            'text_class'=>'text-sm',
-            'leftImg' => asset('assets/images/home/3.png'),
-            'rightImg' => asset('assets/images/home/3.png'),
-        ]),
-        'nav-sub-heading' => '',
-        'headerClass' => 'custom-header-width',
-    ];
+$metaData = [
+'nav-heading' => view('components.nav-heading', [
+'text' => 'India : Districts - 766',
+'text_class'=>'text-sm',
+'leftImg' => asset('assets/images/home/3.png'),
+'rightImg' => asset('assets/images/home/3.png'),
+]),
+'nav-sub-heading' => '',
+'headerClass' => 'custom-header-width',
+];
 @endphp
 <x-layout.main.base :metaData="$metaData">
     <style>
@@ -298,89 +298,133 @@
             }
 
         }
+
         /* Text start */
-.container .text-start{
- position:absolute;
- top:135px;
-}
+        .container .text-start {
+            position: absolute;
+            top: 135px;
+        }
 
-@media (max-width:576px){
+        @media (max-width:576px) {
 
- /* Text start */
- .container .text-start{
-  top:70px;
- }
+            /* Text start */
+            .container .text-start {
+                top: 70px;
+            }
 
- /* Heading */
- .container h4{
-  margin-top:16px;
- }
+            /* Heading */
+            .container h4 {
+                margin-top: 16px;
+            }
 
- /* Button */
- .container .text-start a{
-  position:relative;
-  top:8px;
- }
+            /* Button */
+            .container .text-start a {
+                position: relative;
+                top: 8px;
+            }
 
-}
+        }
+
+        @media (min-width:769px) {
+
+            /* Table responsive */
+            .container .table-hori .table-responsive {
+                overflow: scroll;
+            }
+
+        }
+
+        /* Th */
+        .modern-table tr th {
+            text-align: center;
+            color: #ffffff;
+        }
+
+        /* Text white */
+        .container .table-hori .table-responsive .modern-table thead .bg-primary .text-white {
+            width: 0px !important;
+        }
+
+        /* Text white */
+        .modern-table thead .text-white {
+            /* transform: translatex(0px) translatey(0px); */
+            min-width: 0px;
+            max-width: 70px;
+            max-height: 204px;
+            min-height: 341px;
+            white-space: break-spaces;
+        }
+
+        @media (min-width:769px) {
+
+            /* Text white */
+            .modern-table thead .text-white {
+                font-size: 10px;
+            }
+
+        }
     </style>
     {{-- <p class="text-start mt-2">
         <a href="/" class="btn btn-dark btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
     </p> --}}
 
     <section>
-        <p>India is a union of 28 States & 8 UTs ( Union Territories) today (in 2026). Underlying the States & UTs are respective Districts. All Cities/Towns & Villages, and the land in between, are part of an administrative unit known as a District. Each District has one City/Town Capital. While the size of India has remained the same, India had 640 Districts in 2011 which have now increased to 785, at the end of 2025. Each of these 785 Districts have their respective District Capitals. Some of these are also Capitals of States/UTs.  Delhi, the capital city of the country, is a U.T. Also noteworthy - Bhubaneshwar ( capital of Odisha state, is not the District capital of Khordha district) & Amaravathi ( capital of Andhra Pradesh, is not the District capital of Guntur district).
+        <p>India had <b> 640</b> Districts in 2011, which have now increased to <b>766</b> at the end of 2025. All
+            Cities & Villages
+            are part of these Districts. Each of these 766 Districts has its respective District Capital. Delhi, the
+            capital city of the country, is a U.T. Also, noteworthy - Bhubaneshwar (capital of Odisha state, is not the
+            District capital of Khordha district) & Amaravathi (capital of Andhra Pradesh, is not the District capital
+            of Guntur district).
         </p>
         <p>
-            Only 520 State/District capitals (out of 785) in India have a population base of 30,000 or more literate netizens in a language/script. For effective digital communication with these netizens across India, there is an opportunity to create 901 City Knowledge Webs.
+            We have categorized all the 766 Districts on the basis of their most spoken language and its associated
+            script (out of 13 primary scripts). Do note that only 520 State/District Capitals of them (out of 768) in
+            India have a population base of 30,000 or more literate netizens in a single language (script).
         </p>
     </section>
     <section class="mt-3 table-hori">
         <div class="table-responsive">
             <table class="table table-sm table-striped table-hover table-bordered modern-table">
                 <thead>
+                    <tr>
+                        <th colspan="4"></th>
+                        <th colspan="14">Scripts (# Languages)</th>
+                        <th colspan="2"></th>
+
+                    </tr>
                     <tr class="bg-primary">
+                        <th class="bg-primary text-white">#</th>
+                        <th class="bg-primary text-white">State / UT Name</th>
                         @foreach (config('cityweb.header') as $header)
-                            <th class="bg-primary text-white">{{ $header }}</th>
+                        <th class="bg-primary text-white">{{ $header }}</th>
                         @endforeach
+                        <th class="bg-primary text-white">Cap. >30K Lit. Netizens</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (config('cityweb.data') as $data)
-                        <tr>
+                    <tr>
 
-                            <td>{{ $data['#'] ?? '' }}</td>
-                            <td>
-                                <a class="text-primary cursor-pointer text-decoration-none" data-bs-toggle="modal"
-                                    data-bs-target="#modal-{{ $data['#'] ?? '' }}">
-                                    {{ $data['state'] ?? '' }}
-                                </a>
+                        <td>{{ $data['id'] ?? '' }}</td>
+                        <td>
+                            <a class="text-primary cursor-pointer text-decoration-none" data-bs-toggle="modal"
+                                data-bs-target="#modal-{{ $data['id'] ?? '' }}">
+                                {{ $data['state'] ?? '' }}
+                            </a>
 
-                            </td>
-                            <td class="text-end">{{ $data['Assamese'] ?? '' }}</td>
-                            <td class="text-end">{{ $data['Bengali'] ?? '' }}</td>
-                            <td class="text-end">{{ $data['Devanagari'] ?? '' }}</td>
-                            <td class="text-end">{{ $data['Gurumukhi'] ?? '' }}</td>
-                            <td class="text-end">{{ $data['Kannada'] ?? '' }}</td>
-                            <td class="text-end">{{ $data['Malayalam'] ?? '' }}</td>
-                            <td class="text-end">{{ $data['Marathi'] ?? '' }}</td>
-                            <td class="text-end">{{ $data['Gujarati'] ?? '' }}</td>
-                            <td class="text-end">{{ $data['Odia'] ?? '' }}</td>
-                            <td class="text-end">{{ $data['Urdu'] ?? '' }}</td>
-                            <td class="text-end">{{ $data['Tamil'] ?? '' }}</td>
-                            <td class="text-end">{{ $data['Telugu'] ?? '' }}</td>
-                            <td class="text-end">{{ $data['English'] ?? '' }}</td>
-                        <td class="text-end">{{ $data['Other Scripts'] ?? '' }}</td>
-                            <td class="text-end">{{ $data['All 13 Scripts'] ?? '' }}</td>
-                            <td class="text-end"><a class="text-primary cursor-pointer text-decoration-none"
-                                    data-bs-toggle="modal" data-bs-target="#modal-{{ $data['#'] ?? '' }}">
-                                    {{ $data['Capitals'] ?? '' }}
-                                </a></td>
-                        </tr>
+                        </td>
+                        @foreach (config('cityweb.header') as $hkey=> $header)
+                        <td class="text-end">{{ $data[$hkey] ?? '' }}</td>
+                        @endforeach
+                        <td class="text-end"><a class="text-primary cursor-pointer text-decoration-none"
+                                data-bs-toggle="modal" data-bs-target="#modal-{{ $data['id'] ?? '' }}">
+                                {{ $data['c_30_n'] ?? '' }}
+                            </a></td>
+                    </tr>
                     @endforeach
                     <tr>
                         @foreach (config('cityweb.total') as $value)
-                            <td class="{{ $value == 'Total' ? '' : 'text-end' }}">{{ $value }}</td>
+                        <td class="{{ $value == 'Total' ? '' : 'text-end' }}">{{ $value }}</td>
                         @endforeach
                     </tr>
 
@@ -393,114 +437,109 @@
         <p class="fw-bold">
             Notes:
         </p>
-        <p class="p-0 m-0"> 1. Source : Census 2011 (Language Data, 2018)</p>
-        <p class="p-0 m-0">2. 22 Official Languages are written in 13 Scripts</p>
-        <p class="p-0 m-0"> 3. Of the 121 Indian Languages with more than 10,000 speakers
-            (Census 2011), there are 13
-            primary scripts.
-            Also
-            there are 9 other minor scripts (totaling to approx. ~6.69% of Indian Population).
-            It is noteworthy that
-            Konkani is a multiscript language (3) and two languages – Santhali and Gondhi – do
-            not have a script.</p>
+        <p class="p-0 m-0"> 1. Source : Census 2011 (Language Data – C-16, 2018)</p>
+        <p class="p-0 m-0">2. 22 Official Languages are written in 13 Scripts.</p>
+        <p class="p-0 m-0"> 3. Of the 121 Indian Languages with more than 10,000 speakers (Census 2011), there are 13
+            primary scripts. Also there are 9 other minor scripts (totaling to approx. ~6.69% of Indian Population). It
+            is noteworthy that Konkani is a multiscript language (3) and Gondhi does not have a script.
+        </p>
 
 
 
     </section>
 
     @foreach ($popData as $key => $value)
-        <div class="modal fade" id="modal-{{ $key }}" tabindex="-1"
-            aria-labelledby="modal-{{ $key }}Label" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modal-{{ $key }}Label">City Webs of {{ $state[$key] }}
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row g-3">
-                            <div class="col-md-6">
-                                <div class="table-container">
-                                    <h6 class="mb-3 text-primary fw-bold">
-                                        List of Cities with more than 30K Literate Netizens in any one Script /
-                                        Language.
+    <div class="modal fade" id="modal-{{ $key }}" tabindex="-1" aria-labelledby="modal-{{ $key }}Label"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-{{ $key }}Label">Capitals of {{ $state[$key] }}
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <div class="table-container">
+                                <h6 class="mb-3 text-primary fw-bold">
+                                    List of Capitals with more than 30K Literate Netizens in any one Script /
+                                    Language.
 
-                                    </h6>
-                                    <div class="table-wrapper">
-                                        <table
-                                            class="table table-sm table-striped table-bordered table-hover modal-city-table">
-                                            <thead class="sticky-top">
-                                                <tr>
-                                                    <th>Sr.</th>
-                                                    <th>City</th>
-                                                    <th>Language/Script</th>
-                                                    <th>State Capital</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @php $counter = 1; @endphp
-                                                @foreach ($value as $item)
-                                                    @if ($item['30k'] == '0')
-                                                        @continue
-                                                    @endif
-                                                    <tr>
-                                                        <td>{{ $counter++ }}</td>
-                                                        <td>{{ $item['City'] }}</td>
-                                                        <td>{{ $item['script'] }}</td>
-                                                        <td>{{ $item['sc'] }}</td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="table-container">
-                                    <h6 class="mb-3 text-secondary fw-bold">
-                                        List of Cities with less than 30K Literate Netizens in any one Script /
-                                        Language.
-
-                                    </h6>
-                                    <div class="table-wrapper">
-                                        <table
-                                            class="table table-sm table-striped table-bordered table-hover modal-city-table">
-                                            <thead class="sticky-top">
-                                                <tr>
-                                                    <th>Sr.</th>
-                                                    <th>City</th>
-                                                    <th>Language/Script</th>
-                                                    <th>State Capital</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                @php $counter = 1; @endphp
-                                                @foreach ($value as $items)
-                                                    @if ($items['30k'] == '1')
-                                                        @continue
-                                                    @endif
-                                                    <tr>
-                                                        <td>{{ $counter++ }}</td>
-                                                        <td>{{ $items['City'] }}</td>
-                                                        <td>{{ $items['script'] }}</td>
-                                                        <td>{{ $items['sc'] }}</td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
+                                </h6>
+                                <div class="table-wrapper">
+                                    <table
+                                        class="table table-sm table-striped table-bordered table-hover modal-city-table">
+                                        <thead class="sticky-top">
+                                            <tr>
+                                                <th>Sr.</th>
+                                                <th>Capital</th>
+                                                <th>Language/Script</th>
+                                                <th>State Capital</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php $counter = 1; @endphp
+                                            @foreach ($value as $item)
+                                            @if ($item['30k'] == '0')
+                                            @continue
+                                            @endif
+                                            <tr>
+                                                <td>{{ $counter++ }}</td>
+                                                <td>{{ $item['City'] }}</td>
+                                                <td>{{ $item['script'] }}</td>
+                                                <td>{{ $item['sc'] }}</td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
-                        @if (!isset($value) || !is_array($value))
-                            <p class="text-muted text-center mt-3">No cities available for this state.</p>
-                        @endif
+                        <div class="col-md-6">
+                            <div class="table-container">
+                                <h6 class="mb-3 text-secondary fw-bold">
+                                    List of Capitals with less than 30K Literate Netizens in any Script / Language
 
+                                </h6>
+                                <div class="table-wrapper">
+                                    <table
+                                        class="table table-sm table-striped table-bordered table-hover modal-city-table">
+                                        <thead class="sticky-top">
+                                            <tr>
+                                                <th>Sr.</th>
+                                                <th>Capital</th>
+                                                <th>Language/Script</th>
+                                                <th>State Capital</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @php $counter = 1; @endphp
+                                            @foreach ($value as $items)
+                                            @if ($items['30k'] == '1')
+                                            @continue
+                                            @endif
+                                            <tr>
+                                                <td>{{ $counter++ }}</td>
+                                                <td>{{ $items['City'] }}</td>
+                                                <td>{{ $items['script'] }}</td>
+                                                <td>{{ $items['sc'] }}</td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                     </div>
+                    @if (!isset($value) || !is_array($value))
+                    <p class="text-muted text-center mt-3">No cities available for this state.</p>
+                    @endif
+
                 </div>
             </div>
         </div>
+    </div>
     @endforeach
 
     <style>
