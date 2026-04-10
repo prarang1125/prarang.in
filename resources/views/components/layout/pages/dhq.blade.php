@@ -155,10 +155,10 @@
                                 @break
 
                                 {{-- Districts & New Areas --}}
-                                {{-- @case('D')
+                                {{-- @case('D')--}}
                                 @case('DC')
                                 District Capital
-                                @break --}}
+                                @break
 
                                 {{-- @case('ND')
                                 State Capital
