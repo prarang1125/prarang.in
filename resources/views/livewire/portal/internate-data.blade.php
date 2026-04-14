@@ -211,7 +211,7 @@
     </div>
     @if(in_array($citySlug, $allowedCities) && $citySlug != 'shahjahanpur')
     <div class="mt-4 border-t-4 border-red-900 pt-4 bg-red-50/30 p-4 rounded-b-lg shadow-inner">
-        <a href="https://b2b.prarang.in/semiotic/{{ base64_decode($city_code) }}" target="_blank"
+        <a href="https://b2b.prarang.in/semiotic/{{ base64_encode($city_code) }}" target="_blank"
             class="btn btn-outline-red-700 hover:btn-red-900 btn btn-primary  font-bold px-4 py-2 rounded-full">
 
             <span class="arabic-numbers">{{ $cityName }}&nbsp; की सांकेतिकता <span class="text-mute">(Semiotics)</span>
