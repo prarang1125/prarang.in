@@ -21,6 +21,7 @@ class InternateData extends Component
 
     public function mount($city_code = null, $city_id = null, $city_name = null, $city_slug = null)
     {
+
         $this->city_id = $city_id;
         $this->city_code = $city_code;
         $this->cityName = $city_name;

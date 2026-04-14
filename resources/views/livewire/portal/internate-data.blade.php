@@ -48,6 +48,39 @@
         .w-full .w-full .btn-primary:hover {
             background-color: #d4e2f1;
         }
+
+        /* Rounded */
+        .w-full .w-full .rounded-b-lg {
+            padding-left: 27px;
+            padding-top: 9px;
+            padding-bottom: 12px;
+            margin-top: 7px;
+            margin-bottom: -10px;
+        }
+
+        /* Rounded */
+        .w-full .w-full .rounded-b-lg:nth-child(5) {
+            padding-left: 14px;
+        }
+
+        /* Justify between */
+        .w-full .space-y-3 .justify-between {
+            margin-bottom: 5px;
+        }
+
+        /* Arabic numbers */
+        .w-full .w-full .arabic-numbers {
+            text-align: center;
+            position: relative;
+            top: 2px;
+        }
+
+        /* Span Tag */
+        .w-full .arabic-numbers span {
+            font-size: 15px;
+            position: relative;
+            top: -3px;
+        }
     </style>
 
     <div class="flex justify-center items-center mb-1">
@@ -176,6 +209,16 @@
             <span class="arabic-numbers">{{ $cityName }}</span> &nbsp; की भाषा</a>
         </a>
     </div>
+    @if(in_array($citySlug, $allowedCities) && $citySlug != 'shahjahanpur')
+    <div class="mt-4 border-t-4 border-red-900 pt-4 bg-red-50/30 p-4 rounded-b-lg shadow-inner">
+        <a href="https://b2b.prarang.in/semiotic/{{ base64_decode($city_code) }}" target="_blank"
+            class="btn btn-outline-red-700 hover:btn-red-900 btn btn-primary  font-bold px-4 py-2 rounded-full">
+
+            <span class="arabic-numbers">{{ $cityName }}&nbsp; की सांकेतिकता <span class="text-mute">(Semiotics)</span>
+        </a>
+    </div>
+
+    @endif
     <div class="mt-4 border-t-4 border-red-900 pt-4 bg-red-50/30 p-4 rounded-b-lg shadow-inner">
         <a href="https://www.prarang.in/archives/{{ $citySlug }}" target="_blank"
             class="btn btn-outline-red-700 hover:btn-red-900 btn btn-primary  font-bold px-4 py-2 rounded-full">
