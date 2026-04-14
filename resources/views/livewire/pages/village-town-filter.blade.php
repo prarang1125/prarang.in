@@ -537,13 +537,13 @@
                         ['title' => 'Shahjahanpur', 'slug'=>'shahjahanpur'],
 
                         ]],
-                        ['type'=>'h_r_webs','lable'=>"Hindi Webs: Ready to Interactions ", 'data'=>[
+                        ['type'=>'h_r_webs','lable'=>"Hindi Webs: Ready for Interactions ", 'data'=>[
 
                         ['title' => 'Haridwar', 'slug'=>'haridwar'],
                         ['title' => 'Pithoragarh', 'slug'=>'pithoragarh'],
                         // ['title' => 'Pune', 'slug'=>'pune-hi'],
                         ]],
-                        ['type'=>'m_r_webs','lable'=>"Marathi Webs: Ready to Interactions ", 'data'=>[
+                        ['type'=>'m_r_webs','lable'=>"Marathi Webs: Ready for Interactions ", 'data'=>[
 
                         ['title' => 'Pune', 'slug'=>'pune'],
                         ]],
