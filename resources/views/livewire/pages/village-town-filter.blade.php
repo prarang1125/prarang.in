@@ -524,56 +524,65 @@
                     </div>
                     <div class="p-8 md:p-12 border-t border-slate-100 mt-3">
                         <h3 class="text-xl font-black text-slate-800 mb-8 tracking-tight">
-                            {{ $type=="town"? 'Explore':'Example' }} :-
+                            {{ $type=="town"? 'Live City Interactions':'Example' }} :-
                         </h3>
                         @if($type=="town")
                         @php
                         $liveCities=[
+                        ['type'=>'h_webs','lable'=>"Hindi Webs", 'data'=>[
                         ['title' => 'Lucknow', 'slug'=>'lucknow'],
-                        // meerut
                         ['title' => 'Meerut', 'slug'=>'meerut'],
                         ['title' => 'Rampur', 'slug'=>'rampur'],
-                        // jaunpur
                         ['title' => 'Jaunpur', 'slug'=>'jaunpur'],
-                        // shahjahanpur
                         ['title' => 'Shahjahanpur', 'slug'=>'shahjahanpur'],
-                        // pune
+
+                        ]],
+                        ['type'=>'h_r_webs','lable'=>"Hindi Webs: Ready to Interactions ", 'data'=>[
+
+                        ['title' => 'Haridwar', 'slug'=>'haridwar'],
+                        ['title' => 'Pithoragarh', 'slug'=>'pithoragarh'],
+                        ['title' => 'Pune', 'slug'=>'pune-hi'],
+                        ]],
+                        ['type'=>'m_r_webs','lable'=>"Marathi Webs: Ready to Interactions ", 'data'=>[
+
                         ['title' => 'Pune', 'slug'=>'pune'],
+                        ]],
                         ];
                         @endphp
 
-                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
-                            @foreach($liveCities as $key => $value)
-                            <!-- City Card -->
-                            <div
-                                class="group flex flex-col items-center text-center bg-white border border-slate-200 p-5 rounded-3xl hover:shadow-2xl transition-all duration-500 hover:-translate-y-1">
-                                <!-- Image Section -->
-                                <div
-                                    class="w-20 h-20 rounded-full overflow-hidden mb-4 border-4 border-slate-50 shadow-sm group-hover:border-blue-100 transition-colors duration-500">
-                                    <img src="https://www.prarang.in/assets/images/home/town-1.png"
-                                        alt="{{ $value['title'] }}"
-                                        class="w-full h-full object-cover group-hover:scale-110 transition duration-700">
-                                </div>
+                        <div class="space-y-6">
+                            @foreach($liveCities as $group)
+                            <div>
+                                <!-- Group Label - Plain Black Bold -->
+                                <h4 class="text-sm font-black text-slate-900 uppercase tracking-wide mb-3">
+                                    {{ $group['lable'] }}
+                                </h4>
 
-                                <!-- Content Section -->
-                                <div class="flex flex-col items-center">
-                                    <h4
-                                        class="text-lg font-black text-slate-900 mb-1 group-hover:text-blue-600 transition">
-                                        {{ $value['title'] }}
-                                    </h4>
-                                    <p class="text-slate-400 text-[11px] font-bold uppercase tracking-wider mb-4">Uttar
-                                        Pradesh</p>
-
-                                    <!-- Action -->
-                                    <a href="https://prarang.in/{{ $value['slug']  }}" target="_blank"
-                                        class="inline-flex items-center justify-center gap-2 px-6 py-2 bg-blue-600 text-white font-bold text-xs rounded-xl hover:bg-blue-700 hover:shadow-lg hover:shadow-blue-200 transition-all duration-300">
-                                        Explore
-                                        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none"
-                                            stroke="currentColor" viewBox="0 0 24 24">
+                                <!-- Horizontally Spread Cards -->
+                                <div class="flex flex-wrap gap-3">
+                                    @foreach($group['data'] as $city)
+                                    <a href="https://prarang.in/{{ $city['slug'] }}" target="_blank"
+                                        class="group flex items-center gap-3 bg-white border border-slate-200 px-4 py-3 rounded-2xl hover:shadow-lg hover:border-blue-300 transition-all duration-300 no-underline cursor-pointer">
+                                        <!-- Image -->
+                                        <div
+                                            class="w-10 h-10 rounded-full overflow-hidden border-2 border-slate-100 group-hover:border-blue-200 transition-colors duration-300 flex-shrink-0">
+                                            <img src="https://www.prarang.in/assets/images/home/town-1.png"
+                                                alt="{{ $city['title'] }}"
+                                                class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                                        </div>
+                                        <!-- Name -->
+                                        <span
+                                            class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors whitespace-nowrap">
+                                            {{ $city['title'] }}
+                                        </span>
+                                        <!-- Arrow -->
+                                        <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0"
+                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                                d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                                d="M9 5l7 7-7 7" />
                                         </svg>
                                     </a>
+                                    @endforeach
                                 </div>
                             </div>
                             @endforeach

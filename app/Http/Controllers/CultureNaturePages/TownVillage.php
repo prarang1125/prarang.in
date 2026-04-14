@@ -6,10 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\Portal;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
 
 class TownVillage extends Controller
 {
     //TO Display the Selection Of State + Villages + Towns
+    public $cityDatabaseId;
     public function villages($id, $slug)
     {
 
@@ -85,14 +87,17 @@ class TownVillage extends Controller
             'request_for' => 'town-village'
         ])['data'];
 
-        $portal=Portal::where('city_id',$dhq['dhq']['DHQ_Code'])->where('local_lang','hi')->first();
-            if($portal){
-                $dhq['portal']=$portal;
-            }else{
-                $dhq['portal']=null;
-            }
+        $portal = Portal::where('city_id', $dhq['dhq']['DHQ_Code'])->where('local_lang', 'hi')->first();
+        if ($portal) {
+            $dhq['portal'] = $portal;
+        } else {
+            $dhq['portal'] = null;
+        }
         $intData = $this->fetchInternateData($dhq['dhq']['DHQ_Code']);
-        return view('culturenature.townvillages.dhq', compact('dhq', 'otherVilTown', 'intData'));
+        $this->cityDatabaseId = $dhq['dhq']['DHQ_Code'];
+        $cirusData = $this->fetchCirusData();
+
+        return view('culturenature.townvillages.dhq', compact('dhq', 'otherVilTown', 'intData', 'cirusData'));
     }
 
     public function fetchInternateData($city_id)
@@ -136,6 +141,35 @@ class TownVillage extends Controller
             return $filteredData;
         } catch (\Exception $e) {
             $internateError = $e->getMessage();
+        }
+    }
+    public function fetchCirusData()
+    {
+        try {
+            $cacheKey = "cirusData_{$this->cityDatabaseId}-1";
+            $cachedData = Cache::get($cacheKey);
+
+            if ($cachedData) {
+                return $cachedData;
+            }
+
+            $response = Http::withHeaders(['accept' => 'application/json'])
+                ->get('https://api.apratyaksh.org/api/v1/cirus/dhq');
+
+            if ($response->successful()) {
+                $result = $response->json();
+                if ($result['success'] && isset($result['data'])) {
+                    // Filter for the specific city database ID (string comparison as per React)
+                    $filtered = collect($result['data'])->firstWhere('id', (string)$this->cityDatabaseId);
+                    // dd($filtered);
+                    if ($filtered) {
+                        Cache::put($cacheKey, $filtered, now()->addDay());
+                        return $filtered;
+                    }
+                }
+            }
+        } catch (\Exception $e) {
+            // Silently fail for CIRUS as it's secondary
         }
     }
 }

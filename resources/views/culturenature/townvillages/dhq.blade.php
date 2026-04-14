@@ -24,6 +24,19 @@ $metaData[] = '';
     .custom-scrollbar::-webkit-scrollbar-thumb:hover {
         background: #94a3b8;
     }
+
+    /* Paragraph */
+    .mx-auto .divide-y p {
+        text-align: right;
+        margin-top: -12px;
+        margin-bottom: 15px;
+        margin-right: 8px;
+    }
+
+    /* Hover */
+    .shadow .grid .hover\:text-white {
+        font-size: 13px;
+    }
 </style>
 
 <x-layout.pages.dhq :data="$dhq">
@@ -692,9 +705,13 @@ $metaData[] = '';
                 'source' => "Urban + Rural Internet Users - TRAI QTR Report",
                 'value' => $dhq['internet_users']['state_int'] ?? '-',
                 ],
+                [
+                'label' => 'City Cyber Risk Index',
+                'source' => "",
+                'value' => $cirusData['risk_index'] ?? '-',
+                ],
                 ];
                 @endphp
-
 
 
 
@@ -706,6 +723,9 @@ $metaData[] = '';
                     <span class="text-[13px] font-bold text-gray-800 tabular-nums">{{ $trend['value'] }}</span>
                 </div>
                 @endforeach
+                <p class="text-end">
+                    <a href="https://www.prarang.in/cirus" class="text-blue-600 text-xs">See More >> </a>
+                </p>
 
             </div>
 
