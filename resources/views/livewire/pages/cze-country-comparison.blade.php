@@ -374,7 +374,8 @@
             <div class="@if ($output) col-sm-4  @else col-lg-3 d-none @endif">
                 @if($output)
                 <section class="id-selector">
-                    <x-action-buttons :backUrl="$backUrl" :currentUrl="$currentUrl" />
+                    {{--
+                    <x-action-buttons :backUrl="$backUrl" :currentUrl="$currentUrl" /> --}}
                     <p>{{ $lables['compare_response'] }}</p>
                     <form action="{{ route('ai.generate.response') }}" method="POST" target="_blank">
                         @csrf
