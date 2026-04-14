@@ -541,7 +541,7 @@
 
                         ['title' => 'Haridwar', 'slug'=>'haridwar'],
                         ['title' => 'Pithoragarh', 'slug'=>'pithoragarh'],
-                        ['title' => 'Pune', 'slug'=>'pune-hi'],
+                        // ['title' => 'Pune', 'slug'=>'pune-hi'],
                         ]],
                         ['type'=>'m_r_webs','lable'=>"Marathi Webs: Ready to Interactions ", 'data'=>[
 
