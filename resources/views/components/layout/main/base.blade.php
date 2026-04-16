@@ -4,8 +4,8 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>{{ $metaData['title'] ?? 'Prarang : Knowledge Webs' }}</title>
-    <meta name="description" content="Knowledge webs for smarter citizenship, advertising, and governance.">
+    <title>{{ $metaData['title'] ?? 'Prarang ' }}</title>
+    <meta name="description" content="Knowledge Webs: Bridging the Digital Divide – By Location, By Language.">
     <meta charset="utf-8">
     {{--
     <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport"> --}}
@@ -14,21 +14,21 @@
     {{--
     <link rel="manifest" href="{{ asset('/site.webmanifest') }}"> --}}
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="{{ $metaData['title'] ?? 'Prarang : Knowledge Webs' }}">
-    <meta name="title" property="og:title" content="{{ $metaData['title'] ?? 'Prarang : Knowledge Webs' }}">
+    <meta property="og:title" content="{{ $metaData['title'] ?? 'Prarang ' }}">
+    <meta name="title" property="og:title" content="{{ $metaData['title'] ?? 'Prarang ' }}">
     <meta name="image" property="og:image"
         content="{{ $metaData['image'] ?? 'https://prarang.s3.amazonaws.com/posts-2017-24/og_home_image.png' }}">
     <meta name="description" property="og:description"
-        content="{{ $metaData['description'] ?? 'Knowledge webs for smarter citizenship, advertising, and governance.' }}">
+        content="{{ $metaData['description'] ?? 'Knowledge webs: Bridging the Digital Divide – By Location, By Language' }}">
     <meta property="og:url" content="https://prarang.in">
     <meta property="og:type" content="website">
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="Prarang">
-    <meta name="twitter:title" content="{{ $metaData['title'] ?? 'Prarang : Knowledge Webs' }}">
+    <meta name="twitter:title" content="{{ $metaData['title'] ?? 'Prarang ' }}">
     <meta name="twitter:description"
-        content="{{ $metaData['description'] ?? 'Knowledge webs for smarter citizenship, advertising, and governance.' }}">
+        content="{{ $metaData['description'] ?? 'Knowledge webs: Bridging the Digital Divide – By Location, By Language' }}">
     <meta name="twitter:image"
         content="{{ $metaData['image'] ?? 'https://prarang.s3.amazonaws.com/posts-2017-24/og_home_image.png' }}">
     <meta name="google-site-verification" content="-DA48RRV_4JbpmDcYV7r8QBnMMtBXSzO4GmHj-gow2Q" />
