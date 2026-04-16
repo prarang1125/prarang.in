@@ -163,6 +163,45 @@
             font-size: 26px;
             white-space: break-spaces;
         }
+        @media (max-width:575px){
+
+ /* Flex */
+ #collapseAndhraPradesh .accordion-body .d-flex{
+  height:0px;
+  margin-top:9px;
+ }
+
+ /* Shadow */
+ .container div #categoryModal .modal-dialog .modal-content .modal-body #categoryTabsContent .shadow{
+  height:100% !important;
+ }
+
+ /* Rounded */
+ .container div #toprint .row .position-relative .pr-ai-section .row .col-sm-12 #outChat #dfggsgzrf p.rounded{
+  height:100% !important;
+ }
+
+ /* Border info */
+ .container div #toprint .row .position-relative .pr-ai-section .row .col-sm-12 #outChat #dfggsgzrf .border-info{
+  height:100% !important;
+ }
+
+ /* Row */
+ #toprint > .row{
+  flex-direction:column;
+ }
+
+ /* Col 12 */
+ .pr-ai-section .col-sm-12{
+  width:100%;
+ }
+
+ /* Row */
+ .container div #toprint > .row{
+  width:160% !important;
+ }
+
+}
     </style>
 
     <div class="comparison-tool-container mt-2">
