@@ -7,14 +7,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>{{ $data['town']['town_name'] ?? 'City' }} | {{ $data['town']['district'] ?? "-" }} | {{
-        $data['town']['State_UT_Name'] ?? "-" }} </title>
+        $data['state']['state_name'] ?? "-" }} </title>
     <meta name="title" content="{{  $data['town']['town_name'] ?? 'City' }}  | {{ $data['town']['district'] ?? " -" }} |
-        {{ $data['town']['State_UT_Name'] ?? "-" }} ">
+        {{ $data['state']['state_name'] ?? "-" }} ">
     <meta name=" description" content="{{ strip_tags($data['slm']['district'] ?? '' ) }}">
     <meta name="keywords"
         content="{{  $data['name'] ?? '' }}, {{ $data['district']['district_name'] ?? '' }}, {{ $data['state']['state_name'] ?? '' }}, Village, Rural, India, Culture, Nature, Demographics, Economy, History">
     <meta property="og:title" content="{{  $data['town']['town_name'] ?? 'City' }}  | {{ $data['town']['district'] ?? "
-        -" }} | {{ $data['town']['State_UT_Name'] ?? "-" }} ">
+        -" }} | {{ $data['state']['state_name'] ?? "-" }} ">
     <meta property=" og:description" content="{{ strip_tags($data['slm']['district'] ?? '' ) }}">
     <meta property="og:image"
         content="{{ asset('assets/images/rural_states/' . ($data['state']['state_LGD_code'] ?? 'default') . '.jpg') }}">

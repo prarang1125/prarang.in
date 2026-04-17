@@ -283,7 +283,15 @@ $metaData[] = '';
                 <img src="{{ asset('assets/images/urban_states/' . ($dhq['state']['state_LGD_code'] ?? 'default')) }}.jpg"
                     alt="Village Banner" class="w-full h-[400px] object-cover">
             </div>
-
+              @if($town['town']['note']!=null and $town['town']['note']!='')
+             <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm transition-all hover:shadow-md">
+                <div class="space-y-1 text-justify">
+                    <p class="text-[15px] text-gray-700 leading-relaxed font-medium">
+                        {!! $town['town']['note']!!}
+                    </p>
+                </div>
+            </div>
+            @endif
 
             {{-- @endif --}}
             @if (true)
@@ -526,7 +534,7 @@ $metaData[] = '';
                 <div>
                     <p class="text-xs font-medium text-gray-500 mb-0.5">State</p>
                     <p class="text-sm font-bold text-gray-800">
-                        {{ $dhq['town']['State_UT_Name'] ?? '-' }}</p>
+                        {{ $dhq['state']['state_name'] ?? '-' }}</p>
                 </div>
                 <div class="pt-1 border-t border-gray-50">
                     <p class="text-xs font-medium text-gray-500 mb-0.5">Pop. 2026 (Est.)

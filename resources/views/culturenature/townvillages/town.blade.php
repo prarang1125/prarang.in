@@ -301,7 +301,15 @@ $metaData[] = '';
                 <img src="{{ asset('assets/images/urban_states/' . ($town['state']['state_LGD_code'] ?? 'default')) }}.jpg"
                     alt="Village Banner" class="w-full h-[400px] object-cover">
             </div>
-
+            @if($town['town']['note']!=null and $town['town']['note']!='')
+             <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm transition-all hover:shadow-md">
+                <div class="space-y-1 text-justify">
+                    <p class="text-[15px] text-gray-700 leading-relaxed font-medium">
+                        {!! $town['town']['note']!!}
+                    </p>
+                </div>
+            </div>
+            @endif
 
             {{-- @endif --}}
             @if (true)

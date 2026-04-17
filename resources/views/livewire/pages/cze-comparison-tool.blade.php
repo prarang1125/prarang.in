@@ -157,6 +157,7 @@
         /* Heading */
         .img-click a h3 {
             width: 339px;
+
             display: flex;
             justify-content: center;
             align-items: center;
