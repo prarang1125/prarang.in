@@ -375,6 +375,14 @@ $metaData = [
     .modern-table .header-blue:nth-child(1) .border-white:nth-child(2) {
         width: 178px !important;
     }
+
+    /* Auto */
+    .container .mx-auto {
+        padding-top: 0px;
+        padding-left: 0px !important;
+        margin-left: 0px !important;
+        padding-right: 0px !important;
+    }
 </style>
 
 <x-layout.main.base :metaData="$metaData">
