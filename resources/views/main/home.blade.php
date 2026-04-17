@@ -396,6 +396,29 @@
             .city-s .py-1 a {
                 width: 150px !important;
             }
+
+            /* Link */
+            .city-s .px-2 a {
+                display: flex;
+                flex-direction: column;
+                height: 45px;
+                padding-top: 6px !important;
+            }
+
+            /* Span Tag */
+            .city-s tr span {
+                font-size: 11px;
+            }
+
+            /* Span Tag */
+            .flex-wrap tr:nth-child(1) span:nth-child(2) {
+                font-size: 14px;
+            }
+
+            /* Span Tag */
+            .flex-wrap tr:nth-child(3) span:nth-child(2) {
+                font-size: 14px;
+            }
         </style>
 
         <div class="flex flex-wrap justify-center items-center gap-4 lg:gap-6">
@@ -439,7 +462,8 @@
                                     <a href="/filter/cities"
                                         class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
                                         style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
-                                        7,933
+                                        <span>Cities</span>
+                                        <span>6,329</span>
                                     </a>
                                 </td>
                             </tr>
@@ -466,7 +490,8 @@
                                     <a href="/filter/village"
                                         class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
                                         style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
-                                        594,204
+                                        <span>Villages</span>
+                                        <span>594,204</span>
                                     </a>
                                 </td>
                             </tr>

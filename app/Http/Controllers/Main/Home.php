@@ -450,7 +450,17 @@ class Home extends Controller
     }
     public function townWebs()
     {
-        return view('main.townwebs');
+
+        $newVIllages = Cache::remember('village_webs.new_village', 30 * 60 * 60, function () {
+            return collect(config('data.town.newvillage'))->groupBy('State_Code');
+        });
+        $MPC = Cache::remember('village_webs.mpc', 30 * 60 * 60, function () {
+            return collect(config('data.town.mpc'))->groupBy('State_Code');
+        });
+        $smartCities = Cache::remember('village_webs.smart_cities', 30 * 60 * 60, function () {
+            return collect(config('data.town.smartcity'))->groupBy('State_Code');
+        });
+        return view('main.townwebs', compact('newVIllages', 'MPC', 'smartCities'));
     }
 
     public function villageWebs()
