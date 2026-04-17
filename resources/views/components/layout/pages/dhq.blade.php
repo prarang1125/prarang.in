@@ -52,7 +52,7 @@
                                     </div>
                                 </div>
                                 <span class="text-[9px] font-black uppercase tracking-[0.15em] text-gray-400">
-                                    {{ $data['dhq']['city'] ?? 'Local' }} Time
+                                    {{ $data['dhq']['city_name'] ?? 'Local' }} Time
                                 </span>
                             </div>
 
@@ -142,7 +142,7 @@
                         <div>
                             <h1
                                 class="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 ml-6 tracking-tight">
-                                {{ $data['dhq']['city'] ?? '-' }}
+                                {{ $data['dhq']['city_name'] ?? '-' }}
                                 @switch($data['dhq']['MSTR24'])
 
                                 {{-- State & National Level --}}
@@ -226,17 +226,17 @@
                         <div
                             class="bg-black text-white p-2 px-3 rounded-lg border border-gray-700 text-[11px] shadow-lg">
                             <div class="flex justify-between items-center py-1">
-                                <span class="font-medium">{{ $data['dhq']['city'] ?? '-' }} Local
+                                <span class="font-medium">{{ $data['dhq']['city_name'] ?? '-' }} Local
                                     Subscribers:</span>
                                 <span class="font-bold text-green-400" id="city-subscriber-count">0</span>
                             </div>
                             <div class="flex justify-between items-center py-1 border-t border-gray-800">
-                                <span class="font-medium">{{ $data['dhq']['city'] ?? '-' }} Webpage Monthly
+                                <span class="font-medium">{{ $data['dhq']['city_name'] ?? '-' }} Webpage Monthly
                                     Reach:</span>
                                 <span class="font-bold text-blue-400" id="city-monthly-count">0</span>
                             </div>
                             <div class="flex justify-between items-center py-1 border-t border-gray-800">
-                                <span class="font-medium">Today's {{ $data['dhq']['city'] ?? '-' }} Readers:</span>
+                                <span class="font-medium">Today's {{ $data['dhq']['city_name'] ?? '-' }} Readers:</span>
                                 <span class="font-bold text-amber-400" id="city-daily-count">0</span>
                             </div>
                         </div>
