@@ -108,6 +108,22 @@ $metaData = [
     }
 
     .bg-highlight {
+        background-color: #b5c9f3 !important;
+    }
+
+    .bg-highlight-1 {
+        background-color: #e5e9f1 !important;
+    }
+
+    .bg-highlight-2 {
+        background-color: #d7e3fb !important;
+    }
+
+    .bg-highlight-3 {
+        background-color: #d9e1f2 !important;
+    }
+
+    .bg-highlight-4 {
         background-color: #d9e1f2 !important;
     }
 
@@ -383,6 +399,41 @@ $metaData = [
         margin-left: 0px !important;
         padding-right: 0px !important;
     }
+
+    .text-slate-600 tr .tabular-nums:nth-child(11) {
+        font-weight: 400;
+    }
+
+    /* Highlight */
+    .modern-table .bg-white .bg-highlight:nth-child(11) {
+        font-weight: 400;
+    }
+
+    /* Text center */
+    .modern-table .bg-white .text-center:nth-child(10) {
+        font-weight: 700;
+    }
+
+    /* Modal header */
+    #modalHeader {
+        text-align: left;
+        font-size: 13px;
+    }
+
+    /* Span Tag */
+    #modalHeader span {
+        font-size: 16px;
+    }
+
+    /* List Item */
+    .container .list-disc li {
+        font-size: 12px;
+    }
+
+    /* Bold Tag */
+    .container .leading-relaxed b {
+        font-size: 12px;
+    }
 </style>
 
 <x-layout.main.base :metaData="$metaData">
@@ -442,16 +493,16 @@ $metaData = [
                 <tr>
                     <td class="text-center text-black font-semibold">{{ $index + 1 }}</td>
                     <td class="font-bold text-black">{{ $row['name'] }}</td>
-                    <td class="text-center tabular-nums text-black">{{ $row['r1'] }}</td>
-                    <td class="text-center tabular-nums text-black">{{ $row['r2'] }}</td>
+                    <td class="text-center tabular-nums text-black bg-highlight-1">{{ $row['r1'] }}</td>
+                    <td class="text-center tabular-nums text-black bg-highlight-2">{{ $row['r2'] }}</td>
                     <td class="text-center tabular-nums text-black">{{ $row['r3'] }}</td>
                     <td class="text-center tabular-nums text-black bg-highlight font-semibold">{{ $row['r4'] }}</td>
-                    <td class="text-center tabular-nums text-black">{{ $row['r5'] }}</td>
+                    <td class="text-center tabular-nums text-black bg-highlight-3">{{ $row['r5'] }}</td>
                     <td class="text-center tabular-nums text-black">{{ $row['r6'] }}</td>
                     <td class="text-center tabular-nums text-black bg-highlight font-semibold">{{ $row['r7'] }}</td>
                     <td class="text-center tabular-nums text-black">{{ $row['r8'] }}</td>
-                    <td class="text-center tabular-nums text-black">{{ $row['r9'] }}</td>
-                    <td class="text-center tabular-nums text-black bg-highlight font-semibold">{{ $row['r10'] }}</td>
+                    <td class="text-center tabular-nums text-black bg-highlight">{{ $row['r9'] }}</td>
+                    <td class="text-center tabular-nums text-black font-light">{{ $row['r10'] }}</td>
                     <td class="text-center tabular-nums text-black">{{ $row['r11'] }}</td>
                     <td class="text-center tabular-nums font-bold text-black {{ $row['r12'] !== '-' ? 'cursor-pointer' : '' }}"
                         @if($row['r12'] !=='-' )
@@ -491,6 +542,15 @@ $metaData = [
 
         </table>
     </div>
+    <div class="text-[12px] text-slate-600 leading-relaxed">
+        <b>Note:</b>
+        <ul class="list-disc">
+            <li class="text-[12px]">Dadra & Nagar Haveli and Daman & Diu were separate UTs in 2011 and have been
+                combined here for
+                consistency.</li>
+            <li>2 additional cities were estimated for 2026 – Waidhan and Hanamkonda.</li>
+        </ul>
+    </div>
 
 
     </section>
@@ -524,7 +584,7 @@ $metaData = [
             let data = [];
 
             if (type === 'newvillage') {
-                title = `New Capitals from Census 2011 Villages<br>${stateName}`;
+                title = `New Capitals from Census 2011 Villages<br><span>${stateName}</span>`;
                 data = newVillages[stateCode] || [];
                 content = `
                     <p class="mb-3 text-[14px]">These District and State Capitals were not in Census 2011 Town Lists</p>
@@ -549,7 +609,7 @@ $metaData = [
                     </table>
                 `;
             } else if (type === 'mpc') {
-                title = `Municipal Corporations<br>${stateName}`;
+                title = `Municipal Corporations<br><span>${stateName}</span>`;
                 data = mpcData[stateCode] || [];
 
                 // Group by district to avoid duplicate district rows
@@ -588,7 +648,7 @@ $metaData = [
                     </table>
                 `;
             } else if (type === 'smartcity') {
-                title = `Cities Under Smart Cities Mission<br>${stateName}`;
+                title = `Cities Under Smart Cities Mission<br><span>${stateName}</span>`;
                 data = smartCities[stateCode] || [];
                 content = `
                     <table class="table table-sm table-bordered">
