@@ -306,7 +306,6 @@
                 .container .mx-auto>div>img {
                     transform: translatex(-19px) translatey(170px) !important;
                 }
-
             }
 
             @media (max-width:576px) {
@@ -647,6 +646,13 @@
     </div>
 
     <style>
+        /* Link */
+        .city-s .px-2 a {
+            justify-content: center;
+            align-items: center;
+        }
+
+
         .custom-tooltip {
             position: fixed;
             display: none;
