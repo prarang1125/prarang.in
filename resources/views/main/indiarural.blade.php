@@ -412,7 +412,8 @@ $metaData = [
 
     <section>
         <p>India had a total of <b>640,932</b> villages
-            in 2011 ( Census) including 43,326 which were uninhabited. These effectively reduce to 594,204 inhabited
+            in 2011 ( Census) including 43,326 which were uninhabited. These effectively reduce to <b>594,204</b>
+            inhabited
             villages in 2026.
         </p>
         <p>The Ministry of Panchayat Raj maintains an updated Indian Village database LGD ( Local Government Directory),
