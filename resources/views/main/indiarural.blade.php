@@ -432,7 +432,9 @@ $metaData = [
 
 
     <section>
-        <p>India had a total of <b>640,932</b> villages in 2011 ( Census) including 43,326 which were uninhabited.
+        <p>India had a total of 640,932 villages in 2011 (Census) including 43,326 which were uninhabited. These
+            effectively reduce to 594,204 inhabited villages in 2026. <br>India had a total of <b>640,932</b> villages
+            in 2011 ( Census) including 43,326 which were uninhabited.
         </p>
         <p>The Ministry of Panchayat Raj maintains an updated Indian Village database LGD ( Local Government Directory),
             with the latest Block/Tehsil, Sub-District, District & State mappings however this LGD does Not provide any
@@ -514,12 +516,12 @@ $metaData = [
 
                         <td>
                             @if(($row['repop_villages'] ?? null) == null)
-                                -
+                            -
                             @else
-                                <a href="javascript:void(0)" class="text-primary village-detail-trigger"
-                                    data-state-code="{{ $row['state_code'] }}" data-type="repo">
-                                    {{ number_format((float) $row['repop_villages']) }}
-                                </a>
+                            <a href="javascript:void(0)" class="text-primary village-detail-trigger"
+                                data-state-code="{{ $row['state_code'] }}" data-type="repo">
+                                {{ number_format((float) $row['repop_villages']) }}
+                            </a>
                             @endif
                         </td>
 
@@ -528,12 +530,12 @@ $metaData = [
 
                         <td>
                             @if(($row['new_villages'] ?? null) == null)
-                                -
+                            -
                             @else
-                                <a href="javascript:void(0)" class="text-primary village-detail-trigger"
-                                    data-state-code="{{ $row['state_code'] }}" data-type="new">
-                                    {{ number_format((float) $row['new_villages']) }}
-                                </a>
+                            <a href="javascript:void(0)" class="text-primary village-detail-trigger"
+                                data-state-code="{{ $row['state_code'] }}" data-type="new">
+                                {{ number_format((float) $row['new_villages']) }}
+                            </a>
                             @endif
                         </td>
 
@@ -542,12 +544,12 @@ $metaData = [
 
                         <td>
                             @if(($row['missing_villages'] ?? null) == null)
-                                -
+                            -
                             @else
-                                <a href="javascript:void(0)" class="text-primary village-detail-trigger"
-                                    data-state-code="{{ $row['state_code'] }}" data-type="missing">
-                                    {{ number_format((float) $row['missing_villages']) }}
-                                </a>
+                            <a href="javascript:void(0)" class="text-primary village-detail-trigger"
+                                data-state-code="{{ $row['state_code'] }}" data-type="missing">
+                                {{ number_format((float) $row['missing_villages']) }}
+                            </a>
                             @endif
                         </td>
                     </tr>
@@ -629,7 +631,7 @@ $metaData = [
                 trigger.addEventListener('click', function() {
                     const stateCode = this.getAttribute('data-state-code');
                     const type = this.getAttribute('data-type');
-                    
+
                     // Show loading state or clear previous data
                     modalBody.innerHTML = '<tr><td colspan="3" class="text-center">Loading...</td></tr>';
                     modalTitle.innerText = 'Loading...';
@@ -646,7 +648,7 @@ $metaData = [
 
                             modalTitle.innerHTML = `${data.title} <br> <span style="font-size: 18px">${data.state_name}</span>`;
                             modalDescription.innerText = data.description;
-                            
+
                             let rows = '';
                             data.villages.forEach((village, index) => {
                                 rows += `

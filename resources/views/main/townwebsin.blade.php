@@ -1,7 +1,7 @@
 @php
 $metaData = [
 'nav-heading' => view('components.nav-heading', [
-'text' => 'India : Urban - 7,933 Cities',
+'text' => 'India : Urban - 6,329 Cities',
 'leftImg' => asset('assets/images/home/town-1.png'),
 'rightImg' => asset('assets/images/home/town-1.png'),
 ]),

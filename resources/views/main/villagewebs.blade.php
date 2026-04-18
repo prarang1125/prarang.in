@@ -1,14 +1,14 @@
 @php
-    $metaData = [
-        'nav-heading' => view('components.nav-heading', [
-            'text' => 'India : Rural - 594,204 Villages',
-            'text_class'=>'text-sm',
-            'leftImg' => asset('assets/images/home/Villages-1.png'),
-            'rightImg' => asset('assets/images/home/Villages-1.png'),
-        ]),
-        'nav-sub-heading' => '',
-        'headerClass' => 'custom-header-width',
-    ];
+$metaData = [
+'nav-heading' => view('components.nav-heading', [
+'text' => 'India : Rural - 594,204 Villages',
+'text_class'=>'text-sm',
+'leftImg' => asset('assets/images/home/Villages-1.png'),
+'rightImg' => asset('assets/images/home/Villages-1.png'),
+]),
+'nav-sub-heading' => '',
+'headerClass' => 'custom-header-width',
+];
 @endphp
 <x-layout.main.base :metaData="$metaData">
     <style>
@@ -322,79 +322,81 @@
         .container .modal .modal-dialog .modal-content {
             height: 90vh !important;
         }
+
         /* Table Data */
-.table-responsive  td:nth-child(2){
- position:sticky;
- left:1px;
-}
-/* Text white */
-.head-forstic .text-white:nth-child(2){
- left:1px;
- z-index:1000;
-}
-.head-forstic .text-white:nth-child(3){
- z-index:1;
-}
+        .table-responsive td:nth-child(2) {
+            position: sticky;
+            left: 1px;
+        }
 
-/* Head forstic */
-.table-hori .table-striped .head-forstic{
- z-index:64 !important;
-}
+        /* Text white */
+        .head-forstic .text-white:nth-child(2) {
+            left: 1px;
+            z-index: 1000;
+        }
 
-/* Text white */
-.head-forstic .text-white:nth-child(2){
- z-index:1000;
- left:2px !important;
-}
+        .head-forstic .text-white:nth-child(3) {
+            z-index: 1;
+        }
 
-/* Text white */
-.head-forstic .text-white:not(:nth-child(2)){
- z-index:174 !important;
-}
-/* Text white */
-.head-forstic .text-white:nth-child(2){
- width:176px;
-}
-/* Text start */
-.container .text-start{
- position:absolute;
- top:130px;
-}
+        /* Head forstic */
+        .table-hori .table-striped .head-forstic {
+            z-index: 64 !important;
+        }
 
-@media (max-width:576px){
+        /* Text white */
+        .head-forstic .text-white:nth-child(2) {
+            z-index: 1000;
+            left: 2px !important;
+        }
 
- /* Button */
- .container .text-start a{
-  position:relative;
-  top:-52px;
- }
+        /* Text white */
+        .head-forstic .text-white:not(:nth-child(2)) {
+            z-index: 174 !important;
+        }
 
-}
+        /* Text white */
+        .head-forstic .text-white:nth-child(2) {
+            width: 176px;
+        }
 
-/* Modal body */
-.container .modal .modal-body{
- max-height:105px !important;
-}
+        /* Text start */
+        .container .text-start {
+            position: absolute;
+            top: 130px;
+        }
 
-/* Modal body */
-.container .modal .modal-dialog .modal-content .modal-body{
- height:153px !important;
-}
+        @media (max-width:576px) {
 
-/* Modal content */
-.container .modal .modal-dialog .modal-content{
- height:191px !important;
-}
+            /* Button */
+            .container .text-start a {
+                position: relative;
+                top: -52px;
+            }
 
-/* Modal content */
-.container .modal .modal-content{
- min-width:0px;
- min-height:0px;
- max-height:209px;
-}
+        }
 
+        /* Modal body */
+        .container .modal .modal-body {
+            max-height: 105px !important;
+        }
 
+        /* Modal body */
+        .container .modal .modal-dialog .modal-content .modal-body {
+            height: 153px !important;
+        }
 
+        /* Modal content */
+        .container .modal .modal-dialog .modal-content {
+            height: 191px !important;
+        }
+
+        /* Modal content */
+        .container .modal .modal-content {
+            min-width: 0px;
+            min-height: 0px;
+            max-height: 209px;
+        }
     </style>
     {{-- <p class="text-start mt-2">
         <a href="/" class="btn btn-dark btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
@@ -402,38 +404,45 @@
 
     <div class="text-center">
         <h4 class=" font-semibold">
-               India : Rural - 693,042 Villages
+            India : Rural - 693,042 Villages
         </h4>
     </div> --}}
 
 
     <section>
-        <p>India had 640,932 villages in 2011 (Census) and this has now increased to 676,260 villages (Min. of Panchayati Raj, March 2026). Of these, 594,204 villages were inhabited as per Census 2011, and 255,146 are Gram Panchayats.
+        <p>India had 640,932 villages in 2011 (Census) and this has now increased to 676,260 villages (Min. of
+            Panchayati Raj, March 2026). Of these, 594,204 villages were inhabited as per Census 2011, and 255,146 are
+            Gram Panchayats.
         </p>
-        <p>The Multilingualism data (Census 2011) for Rural India was only released as an aggregated State/UT-Rural total for all 121 languages (with more than 10,000 speakers in India). The village-level multilingualism data is not in the public domain, though it can be estimated on the basis of each village's proximity to the 7,933 Statutory/Census towns.
-</p>
-        <p>The Language % in the table below shows the percentage of a State/UT's inhabited villages (594,204) which have at least some respective Mother Tongue speakers from the 121 primary Indian languages. Note that the % here is NOT the percentage of the State/UT's total rural population who speak that language.
- </p>
+        <p>The Multilingualism data (Census 2011) for Rural India was only released as an aggregated State/UT-Rural
+            total for all 121 languages (with more than 10,000 speakers in India). The village-level multilingualism
+            data is not in the public domain, though it can be estimated on the basis of each village's proximity to the
+            7,933 Statutory/Census towns.
+        </p>
+        <p>The Language % in the table below shows the percentage of a State/UT's inhabited villages (594,204) which
+            have at least some respective Mother Tongue speakers from the 121 primary Indian languages. Note that the %
+            here is NOT the percentage of the State/UT's total rural population who speak that language.
+        </p>
     </section>
     @php
-        $languageColumns = [
-            ['key' => 'ASSAMESE', 'label' => 'Assamese'],
-            ['key' => 'BENGALI', 'label' => 'Bengali'],
-            ['key' => 'HINDI', 'label' => 'Hindi'],
-            ['key' => 'PUNJABI', 'label' => 'Punjabi'],
-            ['key' => 'KANNADA', 'label' => 'Kannada'],
-            ['key' => 'MALAYALAM', 'label' => 'Malayalam'],
-            ['key' => 'MARATHI', 'label' => 'Marathi'],
-            ['key' => 'GUJARATI', 'label' => 'Gujarati'],
-            ['key' => 'ODIA', 'label' => 'Odia'],
-            ['key' => 'URDU', 'label' => 'Urdu'],
-            ['key' => 'TAMIL', 'label' => 'Tamil'],
-            ['key' => 'TELUGU', 'label' => 'Telugu'],
-            ['key' => 'ENGLISH', 'label' => 'English'],
-            // ['key' => 'Other_MT', 'label' => 'Other MT'],
-            // ['key' => 'No_of_Gram_Panchayats', 'label' => 'No. of Gram Panchayats'],
-            // ['key' => 'No_of_Cities', 'label' => 'No. of Cities'],
-        ];
+    $languageColumns = [
+    ['key' => 'ASSAMESE', 'label' => 'Assamese'],
+    ['key' => 'BENGALI', 'label' => 'Bengali'],
+    ['key' => 'HINDI', 'label' => 'Hindi'],
+    ['key' => 'PUNJABI', 'label' => 'Punjabi'],
+    ['key' => 'KANNADA', 'label' => 'Kannada'],
+    ['key' => 'MALAYALAM', 'label' => 'Malayalam'],
+    ['key' => 'MARATHI', 'label' => 'Marathi'],
+    ['key' => 'GUJARATI', 'label' => 'Gujarati'],
+    ['key' => 'ODIA', 'label' => 'Odia'],
+    ['key' => 'URDU', 'label' => 'Urdu'],
+    ['key' => 'TAMIL', 'label' => 'Tamil'],
+    ['key' => 'TELUGU', 'label' => 'Telugu'],
+    ['key' => 'ENGLISH', 'label' => 'English'],
+    // ['key' => 'Other_MT', 'label' => 'Other MT'],
+    // ['key' => 'No_of_Gram_Panchayats', 'label' => 'No. of Gram Panchayats'],
+    // ['key' => 'No_of_Cities', 'label' => 'No. of Cities'],
+    ];
     @endphp
     <section class="mt-3 table-hori">
         <div class="table-responsive">
@@ -443,35 +452,36 @@
                         <th class="bg-primary text-white">No.</th>
                         <th class="bg-primary text-white">States/Uts</th>
                         @foreach ($languageColumns as $column)
-                            <th class="bg-primary text-white">{{ $column['label'] }}</th>
+                        <th class="bg-primary text-white">{{ $column['label'] }}</th>
                         @endforeach
                         <th class="bg-primary text-white">Other MT</th>
-                        <th class="bg-primary text-white">Villages  <br>(Language # )</th>
+                        <th class="bg-primary text-white">Villages <br>(Language # )</th>
                         <th class="bg-primary text-white">Gram<br>Panchayats ( #)</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{-- @dd($villagedata) --}}
                     @forelse ($villagedata as $row)
-                        <tr>
-                            <td>{{  $loop->iteration }}</td>
-                            <td>{{ $row['state_name'] ?? '-' }}</td>
-                            @foreach ($languageColumns as $column)
-                                @if ($row[$column['key']] == 0)
-                                    <td></td>
-                                @elseif ($row[$column['key']] < 1)
-                                    <td class="ps-2 text-muted" style="font-size: 11px !important">0%</td>
-                                @else
-                                    <td class="ps-2 text-semibold">{{ number_format((float) ($row[$column['key']] ?? 0), 0) }}%</td>
-                                @endif
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $row['state_name'] ?? '-' }}</td>
+                        @foreach ($languageColumns as $column)
+                        @if ($row[$column['key']] == 0)
+                        <td></td>
+                        @elseif ($row[$column['key']] < 1) <td class="ps-2 text-muted"
+                            style="font-size: 11px !important">0%</td>
+                            @else
+                            <td class="ps-2 text-semibold">{{ number_format((float) ($row[$column['key']] ?? 0), 0) }}%
+                            </td>
+                            @endif
                             @endforeach
-                           <td>
+                            <td>
                                 @if($row['Other_MT'] == 0)
---
+                                --
                                 @else
                                 <a href="#" class="text-primary" data-bs-toggle="modal"
                                     data-bs-target="#otherMTModal{{ $loop->iteration }}">
-                                    {{  number_format((float) ($row['Other_MT'] ?? 0), 0) ?? $row['Other_MT'] ?? 0}}%
+                                    {{ number_format((float) ($row['Other_MT'] ?? 0), 0) ?? $row['Other_MT'] ?? 0}}%
                                 </a>
                                 @endif
                             </td>
@@ -479,13 +489,13 @@
 
 
                             <td>{{ number_format((int) ($row['No_of_Cities'] ?? 0)) }}</td>
-                               <td>{{ number_format((int) ($row['No_of_Gram_Panchayats'] ?? 0)) }}</td>
-                        </tr>
+                            <td>{{ number_format((int) ($row['No_of_Gram_Panchayats'] ?? 0)) }}</td>
+                    </tr>
                     @empty
-                        <tr>
-                            <td colspan="{{ count($languageColumns) + 4 }}" class="text-center">No village data
-                                available.</td>
-                        </tr>
+                    <tr>
+                        <td colspan="{{ count($languageColumns) + 4 }}" class="text-center">No village data
+                            available.</td>
+                    </tr>
                     @endforelse
 
                 </tbody>
@@ -495,31 +505,31 @@
     </section>
 
     @forelse ($villagedata as $row)
-        <!-- Modal -->
-        <div class="modal fade" id="otherMTModal{{ $loop->iteration }}" tabindex="-1"
-            aria-labelledby="otherMTModalLabel{{ $loop->iteration }}" aria-hidden="true">
+    <!-- Modal -->
+    <div class="modal fade" id="otherMTModal{{ $loop->iteration }}" tabindex="-1"
+        aria-labelledby="otherMTModalLabel{{ $loop->iteration }}" aria-hidden="true">
 
-            <div class="modal-dialog">
-                <div class="modal-content">
+        <div class="modal-dialog">
+            <div class="modal-content">
 
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="otherMTModalLabel{{ $loop->iteration }}">
-                            {{ $row['state_name'] ?? '-' }} - Other Mother Tongues
-                        </h5>
+                <div class="modal-header">
+                    <h5 class="modal-title" id="otherMTModalLabel{{ $loop->iteration }}">
+                        {{ $row['state_name'] ?? '-' }} - Other Mother Tongues
+                    </h5>
 
-                        <button type="button" class="btn-close" data-bs-dismiss="modal">
-                        </button>
-                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal">
+                    </button>
+                </div>
 
-                    <div class="modal-body">
-                        {{ $row['text'] }}
-                    </div>
+                <div class="modal-body">
+                    {{ $row['text'] }}
                 </div>
             </div>
-
         </div>
+
+    </div>
     @endforeach
-{{--
+    {{--
     <section>
         <p class="fw-bold">
             Notes:

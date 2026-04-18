@@ -1,7 +1,7 @@
 @php
 $metaData = [
 'nav-heading' => view('components.nav-heading', [
-'text' => 'India : Urban Cities',
+'text' => 'India : Urban - 6,329 Cities',
 'leftImg' => asset('assets/images/home/town-1.png'),
 'rightImg' => asset('assets/images/home/town-1.png'),
 ]),
@@ -109,6 +109,10 @@ $metaData = [
 
     .bg-highlight {
         background-color: #6f95e5 !important;
+    }
+
+    .bg-highlight-y {
+        background-color: rgba(255, 255, 0, 0.5) !important;
     }
 
     .bg-highlight-1 {
@@ -440,26 +444,35 @@ $metaData = [
     <section class="max-w-7xl mx-auto px-4 pt-8">
         <div class="space-y-4 text-slate-700 leading-relaxed text-[14px]">
             <p>
-                India had <b>7,933</b> cities (4,401 Statutory Towns & 3,892 Census Towns) across <b>640</b> Districts
-                in 2011. Of
-                these, <b>298</b> were officially recognized as Urban Agglomerations of 2011, which were made from
-                aggregating
-                <b>1,947</b> cities. While India's country size remains the same, the total number of districts has
-                increased
-                to <b>766+</b>. Of the 766 District Capitals - (a) Cities - <b>468</b>, (b) Urban Agglomerations -
-                <b>240</b>,
-                (c)
-                Villages
-                (2011) - <b>43</b>, which totals to <b>751</b>.
-                <a href="javascript:void(0)" id="viewRemaining">Click here</a> to view the remaining 15 district
-                capitals.
-            </p>
-            <p>
+                While the Census 2011 cities/towns totaled to 7,933 (4,401 statutory towns and 3,892 census towns).
+                These can effectively be summarized as 6,329 since 1,947 cities were actually part of 298
+                Urban-Agglomerations (UAs).
+                <br>
+                Now in 2026, with new states increasing to 28 (and 8 UTs) and the districts increasing from 640 in 2011
+                to 766 in 2026, the 6,329 cities now include 301 Urban Agglomerations (UAs) and even 44 Villages which
+                are currently District Capitals or State Capitals (Amravati (Andhra Pradesh)) of some of the new 128+
+                districts created after 2011.
+                <br> <br>
+                Each of the 766 Districts and 28 States & 8 UTs have a Capital. There are 2 State Capitals - Amravati
+                (Andhra Pradesh) & Bhubaneswar (Odisha) - which are not district capitals. Also, Chandigarh is unique as
+                a capital of two states (Punjab & Haryana) and one UT (Chandigarh itself).
+                <br> <br>
+                We thus have 768 State and/or District capital Cities in India in 2026. Of these, <b>766</b> District
+                Capitals,
+                <b>240</b>are UAs, <b>468</b> are Cities, <b>43</b> which were Villages in 2011 and <b>2</b> State
+                Capitals, <b>1</b>
+                Village
+                - Amravati
+                (Andhra Pradesh) and <b>1</b> City - Bhubaneswar (Odisha). But there are 15 District Capitals ( <a
+                    href="javascript:void(0)" id="viewRemaining">Click here</a> )
+                which effectively merge into another UA near it. Thus the focus Capitals (State/District) in India
+                are
+                not 768 but 753.
+                <br> <br>
                 As of 2026, there are 278 Municipal Corporations declared by the State Governments and 100 Smart Cities
                 under the Smart Cities Mission.
             </p>
-            <p>Please note that 2 State Capitals are not District Capitals - Bhubaneswar (Odisha) and Amaravati (Andhra
-                Pradesh). They are both included in Smart City, but only Bhubaneswar has a Municipal Corporation.</p>
+
         </div>
     </section>
 
@@ -537,13 +550,13 @@ $metaData = [
                     <td class="text-center">298</td>
                     <td class="text-center bg-highlight">1,947</td>
                     <td class="text-center">766</td>
-                    <td class="text-center">468</td>
+                    <td class="text-center">469</td>
                     <td class="text-center bg-highlight">1,951</td>
-                    <td class="text-center">5,516</td>
+                    <td class="text-center">5,515</td>
                     <td class="text-center">7,935</td>
                     <td class="text-center bg-highlight">240</td>
                     <td class="text-center">61</td>
-                    <td class="text-center">43</td>
+                    <td class="text-center">44</td>
                     <td class="text-center">278</td>
                     <td class="text-center">100</td>
                 </tr>
@@ -558,8 +571,12 @@ $metaData = [
                 combined here for
                 consistency.</li>
             <li>Two new District Capital Cities (which did not exist as either a city or a village in Census 2011) have
-                been created in the 2026 list above by splitting the population and area of Warangal City (Telangana)
-                and Singrauli City (Madhya Pradesh), as per Census 2011. The new District Capitals thus carved out are
+                been created in the 2026 list <span class="bg-highlight-y px-1 rounded-sm">(above)</span> by
+                splitting the population and area of
+                Warangal City
+                (Telangana)
+                and Singrauli City (Madhya Pradesh), <span class="bg-highlight-y px-1 rounded-sm">in Census
+                    2011.</span> The new District Capitals thus carved out are
                 Hanamkonda (in Telangana) and Waidhan (in Madhya Pradesh).</li>
         </ul>
     </div>
