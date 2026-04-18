@@ -18,7 +18,7 @@ return [
       "r9" => "197",
       "r10" => "17",
       "r11" => "8",
-      "r12" => "3",
+      "r12" => "2",
       "r13" => "17",
       "r14" => "4"
     ],
@@ -354,9 +354,9 @@ return [
       "r3" => "7",
       "r4" => "14",
       "r5" => "30",
-      "r6" => "23",
+      "r6" => "22",
       "r7" => "14",
-      "r8" => "186",
+      "r8" => "187",
       "r9" => "223",
       "r10" => "6",
       "r11" => "1",
@@ -536,7 +536,7 @@ return [
       "r14" => "-"
     ],
     [
-      "id" => "29",
+      "id" => "1",
       "code" => "35",
       "name" => "UT - Andaman and Nicobar Islands",
       "r1" => "3",
@@ -555,7 +555,7 @@ return [
       "r14" => "1"
     ],
     [
-      "id" => "30",
+      "id" => "2",
       "code" => "4",
       "name" => "UT - Chandigarh",
       "r1" => "1",
@@ -574,7 +574,7 @@ return [
       "r14" => "1"
     ],
     [
-      "id" => "31",
+      "id" => "3",
       "code" => "38",
       "name" => "UT - Dadra and Nagar Haveli and Daman and Diu",
       "r1" => "3",
@@ -593,7 +593,7 @@ return [
       "r14" => "2"
     ],
     [
-      "id" => "32",
+      "id" => "4",
       "code" => "1",
       "name" => "UT - Jammu & Kashmir",
       "r1" => "22",
@@ -612,7 +612,7 @@ return [
       "r14" => "1"
     ],
     [
-      "id" => "33",
+      "id" => "5",
       "code" => "37",
       "name" => "UT - Ladakh",
       "r1" => "-",
@@ -631,7 +631,7 @@ return [
       "r14" => "-"
     ],
     [
-      "id" => "34",
+      "id" => "6",
       "code" => "31",
       "name" => "UT - Lakshadweep",
       "r1" => "1",
@@ -650,7 +650,7 @@ return [
       "r14" => "1"
     ],
     [
-      "id" => "35",
+      "id" => "7",
       "code" => "7",
       "name" => "UT - NCT of Delhi",
       "r1" => "9",
@@ -669,7 +669,7 @@ return [
       "r14" => "1"
     ],
     [
-      "id" => "36",
+      "id" => "8",
       "code" => "34",
       "name" => "UT - Puducherry",
       "r1" => "4",
@@ -6328,6 +6328,174 @@ return [
       "District_LGD" => "187",
       "District_Name" => "Varanasi",
       "Smart_City" => "Varanasi"
+    ]
+  ],
+
+  '15_dist_data' => [
+    [
+      "sr" => "1",
+      "State / UT Name" => "National Capital Territory of Delhi",
+      "District Name" => "Central",
+      "District Capital" => "Daryaganj",
+      "Urban Agglomeration" => "Delhi UA",
+      "State / UT" => "UT",
+      "DHQ Code" => "754",
+      "District LGD Code" => "77",
+      "State LGD Code" => "7"
+    ],
+    [
+      "sr" => "2",
+      "State / UT Name" => "National Capital Territory of Delhi",
+      "District Name" => "East",
+      "District Capital" => "Preet Vihar",
+      "Urban Agglomeration" => "Delhi UA",
+      "State / UT" => "UT",
+      "DHQ Code" => "755",
+      "District LGD Code" => "78",
+      "State LGD Code" => "7"
+    ],
+    [
+      "sr" => "3",
+      "State / UT Name" => "National Capital Territory of Delhi",
+      "District Name" => "North",
+      "District Capital" => "Sadar Bazaar",
+      "Urban Agglomeration" => "Delhi UA",
+      "State / UT" => "UT",
+      "DHQ Code" => "757",
+      "District LGD Code" => "80",
+      "State LGD Code" => "7"
+    ],
+    [
+      "sr" => "4",
+      "State / UT Name" => "National Capital Territory of Delhi",
+      "District Name" => "North East",
+      "District Capital" => "Seelampur",
+      "Urban Agglomeration" => "Delhi UA",
+      "State / UT" => "UT",
+      "DHQ Code" => "758",
+      "District LGD Code" => "81",
+      "State LGD Code" => "7"
+    ],
+    [
+      "sr" => "5",
+      "State / UT Name" => "National Capital Territory of Delhi",
+      "District Name" => "North West",
+      "District Capital" => "Kanjhawala",
+      "Urban Agglomeration" => "Delhi UA",
+      "State / UT" => "UT",
+      "DHQ Code" => "759",
+      "District LGD Code" => "82",
+      "State LGD Code" => "7"
+    ],
+    [
+      "sr" => "6",
+      "State / UT Name" => "National Capital Territory of Delhi",
+      "District Name" => "Shahdara",
+      "District Capital" => "Nand Nagri",
+      "Urban Agglomeration" => "Delhi UA",
+      "State / UT" => "UT",
+      "DHQ Code" => "760",
+      "District LGD Code" => "671",
+      "State LGD Code" => "7"
+    ],
+    [
+      "sr" => "7",
+      "State / UT Name" => "National Capital Territory of Delhi",
+      "District Name" => "South",
+      "District Capital" => "Saket",
+      "Urban Agglomeration" => "Delhi UA",
+      "State / UT" => "UT",
+      "DHQ Code" => "761",
+      "District LGD Code" => "83",
+      "State LGD Code" => "7"
+    ],
+    [
+      "sr" => "8",
+      "State / UT Name" => "National Capital Territory of Delhi",
+      "District Name" => "South East",
+      "District Capital" => "Defence Colony",
+      "Urban Agglomeration" => "Delhi UA",
+      "State / UT" => "UT",
+      "DHQ Code" => "762",
+      "District LGD Code" => "670",
+      "State LGD Code" => "7"
+    ],
+    [
+      "sr" => "9",
+      "State / UT Name" => "National Capital Territory of Delhi",
+      "District Name" => "South West",
+      "District Capital" => "Vasant Vihar",
+      "Urban Agglomeration" => "Delhi UA",
+      "State / UT" => "UT",
+      "DHQ Code" => "763",
+      "District LGD Code" => "84",
+      "State LGD Code" => "7"
+    ],
+    [
+      "sr" => "10",
+      "State / UT Name" => "National Capital Territory of Delhi",
+      "District Name" => "West",
+      "District Capital" => "Rajouri Garden",
+      "Urban Agglomeration" => "Delhi UA",
+      "State / UT" => "UT",
+      "DHQ Code" => "764",
+      "District LGD Code" => "85",
+      "State LGD Code" => "7"
+    ],
+    [
+      "sr" => "11",
+      "State / UT Name" => "Karnataka",
+      "District Name" => "Bengaluru Rural",
+      "District Capital" => "Bengaluru (Bengaluru Rural)",
+      "Urban Agglomeration" => "Bruhat Bangalore UA",
+      "State / UT" => "State",
+      "DHQ Code" => "256",
+      "District LGD Code" => "526",
+      "State LGD Code" => "29"
+    ],
+    [
+      "sr" => "12",
+      "State / UT Name" => "Maharashtra",
+      "District Name" => "Mumbai Suburban",
+      "District Capital" => "Bandra (East)",
+      "Urban Agglomeration" => "Greater Mumbai UA",
+      "State / UT" => "State",
+      "DHQ Code" => "367",
+      "District LGD Code" => "483",
+      "State LGD Code" => "27"
+    ],
+    [
+      "sr" => "13",
+      "State / UT Name" => "Manipur",
+      "District Name" => "Imphal East",
+      "District Capital" => "Porompat",
+      "Urban Agglomeration" => "Imphal UA",
+      "State / UT" => "State",
+      "DHQ Code" => "389",
+      "District LGD Code" => "255",
+      "State LGD Code" => "14"
+    ],
+    [
+      "sr" => "14",
+      "State / UT Name" => "Manipur",
+      "District Name" => "Thoubal",
+      "District Capital" => "Thoubal",
+      "Urban Agglomeration" => "Imphal UA",
+      "State / UT" => "State",
+      "DHQ Code" => "400",
+      "District LGD Code" => "259",
+      "State LGD Code" => "14"
+    ],
+    [
+      "sr" => "15",
+      "State / UT Name" => "Telangana",
+      "District Name" => "Ranga Reddy",
+      "District Capital" => "Hyderabad (Ranga Reddy)",
+      "Urban Agglomeration" => "Hyderabad UA",
+      "State / UT" => "State",
+      "DHQ Code" => "597",
+      "District LGD Code" => "518",
+      "State LGD Code" => "36"
     ]
   ]
 

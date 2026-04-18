@@ -103,20 +103,20 @@ $metaData = [
     }
 
     .header-blue {
-        background-color: #4472c4 !important;
+        background-color: #6794e2 !important;
         color: white !important;
     }
 
     .bg-highlight {
-        background-color: #b5c9f3 !important;
+        background-color: #6f95e5 !important;
     }
 
     .bg-highlight-1 {
-        background-color: #e5e9f1 !important;
+        background-color: #cad4e8 !important;
     }
 
     .bg-highlight-2 {
-        background-color: #d7e3fb !important;
+        background-color: #acc2ee !important;
     }
 
     .bg-highlight-3 {
@@ -441,16 +441,25 @@ $metaData = [
         <div class="space-y-4 text-slate-700 leading-relaxed text-[14px]">
             <p>
                 India had <b>7,933</b> cities (4,401 Statutory Towns & 3,892 Census Towns) across <b>640</b> Districts
-                in 2011. While India's country size remains the same, the total number of districts has increased to
-                <b>766+</b>.
+                in 2011. Of
+                these, <b>298</b> were officially recognized as Urban Agglomerations of 2011, which were made from
+                aggregating
+                <b>1,947</b> cities. While India's country size remains the same, the total number of districts has
+                increased
+                to <b>766+</b>. Of the 766 District Capitals - (a) Cities - <b>468</b>, (b) Urban Agglomerations -
+                <b>240</b>,
+                (c)
+                Villages
+                (2011) - <b>43</b>, which totals to <b>751</b>.
+                <a href="javascript:void(0)" id="viewRemaining">Click here</a> to view the remaining 15 district
+                capitals.
             </p>
             <p>
-                Of these towns, <b>709</b> are District and State Capitals (2 State Capitals that are not District
-                Capitals – Bhubaneswar (Odisha) and Amaravati (Andhra Pradesh). However, <b>100</b> new capitals were
-                either
-                classified as villages or not covered as towns in the Census 2011, and hence are absent from the town
-                list.
+                As of 2026, there are 278 Municipal Corporations declared by the State Governments and 100 Smart Cities
+                under the Smart Cities Mission.
             </p>
+            <p>Please note that 2 State Capitals are not District Capitals - Bhubaneswar (Odisha) and Amaravati (Andhra
+                Pradesh). They are both included in Smart City, but don't have a Municipal Corporation. </p>
         </div>
     </section>
 
@@ -501,7 +510,7 @@ $metaData = [
                     <td class="text-center tabular-nums text-black">{{ $row['r6'] }}</td>
                     <td class="text-center tabular-nums text-black bg-highlight font-semibold">{{ $row['r7'] }}</td>
                     <td class="text-center tabular-nums text-black">{{ $row['r8'] }}</td>
-                    <td class="text-center tabular-nums text-black bg-highlight">{{ $row['r9'] }}</td>
+                    <td class="text-center tabular-nums text-black bg-highlight-2">{{ $row['r9'] }}</td>
                     <td class="text-center tabular-nums text-black font-light">{{ $row['r10'] }}</td>
                     <td class="text-center tabular-nums text-black">{{ $row['r11'] }}</td>
                     <td class="text-center tabular-nums font-bold text-black {{ $row['r12'] !== '-' ? 'cursor-pointer' : '' }}"
@@ -528,13 +537,13 @@ $metaData = [
                     <td class="text-center">298</td>
                     <td class="text-center bg-highlight">1,947</td>
                     <td class="text-center">766</td>
-                    <td class="text-center">469</td>
+                    <td class="text-center">468</td>
                     <td class="text-center bg-highlight">1,951</td>
-                    <td class="text-center">5,514</td>
+                    <td class="text-center">5,516</td>
                     <td class="text-center">7,935</td>
                     <td class="text-center bg-highlight">240</td>
                     <td class="text-center">61</td>
-                    <td class="text-center">44</td>
+                    <td class="text-center">43</td>
                     <td class="text-center">278</td>
                     <td class="text-center">100</td>
                 </tr>
@@ -548,7 +557,8 @@ $metaData = [
             <li class="text-[12px]">Dadra & Nagar Haveli and Daman & Diu were separate UTs in 2011 and have been
                 combined here for
                 consistency.</li>
-            <li>2 additional cities were estimated for 2026 – Waidhan and Hanamkonda.</li>
+            <li>Two additional cities were carved out for the 2026 estimates: Waidhan (from Siliguri) and Hanamkonda
+                (from Warangal).</li>
         </ul>
     </div>
 
@@ -557,7 +567,7 @@ $metaData = [
 
     <!-- Modal -->
     <div id="townModal" class="modal-overlay" style="display: none;" onclick="closeModal(event)">
-        <div class="custom-modal" onclick="event.stopPropagation()">
+        <div class="custom-modal !max-w-xl" onclick="event.stopPropagation()">
             <div class="modal-header-blue">
                 <span class="close-modal-btn" onclick="closeModal()">&times;</span>
                 <div id="modalHeader">
@@ -577,6 +587,7 @@ $metaData = [
         const newVillages = @json($newVIllages);
         const mpcData = @json($MPC);
         const smartCities = @json($smartCities);
+        const dist15Data = @json(config('data.town.15_dist_data'));
 
         function showTownModal(type, stateCode, stateName) {
             let title = '';
@@ -671,12 +682,45 @@ $metaData = [
                         </tbody>
                     </table>
                 `;
+            } else if (type === 'remainingDistricts') {
+                title = `Remaining 15 District Capitals`;
+                content = `
+                    <p class="mb-3 text-[14px]">These 15 District Capitals are part of larger Urban Agglomerations (UAs) and were already counted as UA Capitals.</p>
+                    <div class="overflow-x-auto">
+                        <table class="table table-sm table-bordered text-[12px]">
+                            <thead class="bg-[#2563eb] text-white">
+                                <tr>
+                                    <th class="text-center">#</th>
+                                    <th>State / UT</th>
+                                    <th>District Name</th>
+                                    <th>District Capital</th>
+                                    <th>Urban Agglomeration</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${dist15Data.map((item, index) => `
+                                    <tr>
+                                        <td class="text-center">${index + 1}</td>
+                                        <td>${item['State / UT Name']}</td>
+                                        <td>${item['District Name']}</td>
+                                        <td>${item['District Capital']}</td>
+                                        <td>${item['Urban Agglomeration']}</td>
+                                    </tr>
+                                `).join('')}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
             }
 
             document.getElementById('modalHeader').innerHTML = title;
             document.getElementById('modalContent').innerHTML = content;
             document.getElementById('townModal').style.display = 'flex';
         }
+
+        document.getElementById('viewRemaining').addEventListener('click', function() {
+            showTownModal('remainingDistricts');
+        });
 
         function closeModal(event) {
             document.getElementById('townModal').style.display = 'none';
