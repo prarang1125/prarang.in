@@ -419,26 +419,33 @@ $metaData = [
             z-index: 121;
         }
 
-        .statewidth{
-            width: 243px  !important;
+        .statewidth {
+            width: 243px !important;
         }
 
-         @media (max-width: 576px) {
-            .statewidth{
+        @media (max-width: 576px) {
+            .statewidth {
                 width: 100px !important;
             }
         }
-
     </style>
 
 
     <section>
         <p>India had a total of <b>640,932</b> villages in 2011 ( Census) including 43,326 which were uninhabited.
         </p>
-        <p>The Ministry of Panchayat Raj maintains an updated Indian Village database LGD ( Local Government Directory), with the latest Block/Tehsil, Sub-District, District & State mappings however this LGD does Not provide any estimates on Population, at any point of time including when they recognize a new village ( not in the Census 2011 list). </p>
+        <p>The Ministry of Panchayat Raj maintains an updated Indian Village database LGD ( Local Government Directory),
+            with the latest Block/Tehsil, Sub-District, District & State mappings however this LGD does Not provide any
+            estimates on Population, at any point of time including when they recognize a new village ( not in the
+            Census 2011 list). </p>
 
         <p>
-            We have deduplicated the India Village Census 2011 list of Villages to the LGD India Villages (as of 12 March, 2026). The Panchayati Raj LGD India village database has grown to <b>676,260</b>  villages. Of these <b>87.9% </b> match off to the Census, <b>5.9%</b> are New villages ( which didn't exist in 2011), <b>6.2%</b> appear to have been re-populated ( since census 2011). Also, we can identify <b>3,402</b> villages of Census 2011 which are Missing in the LGD - an anomaly which may indicate that these have since become uninhabited.
+            We have deduplicated the India Village Census 2011 list of Villages to the LGD India Villages (as of 12
+            March, 2026). The Panchayati Raj LGD India village database has grown to <b>676,260</b> villages. Of these
+            <b>87.9% </b> match off to the Census, <b>5.9%</b> are New villages ( which didn't exist in 2011),
+            <b>6.2%</b> appear to have been re-populated ( since census 2011). Also, we can identify <b>3,402</b>
+            villages of Census 2011 which are Missing in the LGD - an anomaly which may indicate that these have since
+            become uninhabited.
         </p>
     </section>
 
@@ -451,16 +458,19 @@ $metaData = [
 
                     <tr class="bg-primary">
                         <th class="bg-primary text-white" rowspan="2">#</th>
-                        <th class="bg-primary text-white text-center statewidth" rowspan="2" >State / UT</th>
-                        <th class="bg-primary text-white text-center" colspan="4" style="background: #2c4f92 !important">Census 2011</th>
+                        <th class="bg-primary text-white text-center statewidth" rowspan="2">State / UT</th>
+                        <th class="bg-primary text-white text-center" colspan="4"
+                            style="background: #2c4f92 !important">Census 2011</th>
                         <th class="bg-primary text-white text-center" colspan="9">Panchayat Raj - March 2026</th>
                     </tr>
 
 
                     <tr class="bg-primary">
-                        <th class="bg-primary text-white text-center" style="background: #2c4f92 !important"># Villages</th>
+                        <th class="bg-primary text-white text-center" style="background: #2c4f92 !important"># Villages
+                        </th>
                         <th class="bg-primary text-white text-center" style="background: #2c4f92 !important">%</th>
-                        <th class="bg-primary text-white text-center" style="background: #2c4f92 !important"># Inhabited</th>
+                        <th class="bg-primary text-white text-center" style="background: #2c4f92 !important"># Inhabited
+                        </th>
                         <th class="bg-primary text-white text-center" style="background: #2c4f92 !important">%</th>
                         <th class="bg-primary text-white text-center"># Villages</th>
                         <th class="bg-primary text-white text-center">%</th>
@@ -505,7 +515,7 @@ $metaData = [
                         <td>
                             @if($row['repop_villages'] == null)
 
-                             -
+                            -
 
                             @else
 
@@ -523,7 +533,7 @@ $metaData = [
                         <td>
                             @if($row['new_villages'] == null)
 
-                             -
+                            -
 
                             @else
                             <a href="#" class="text-primary" data-bs-toggle="modal"
@@ -540,7 +550,7 @@ $metaData = [
                         <td>
                             @if($row['missing_villages'] == null)
 
-                             -
+                            -
 
                             @else
                             <a href="#" class="text-primary" data-bs-toggle="modal"
@@ -601,13 +611,14 @@ $metaData = [
                 <div class="modal-header bg-primary text-white">
 
                     <h5 class="modal-title">
-                       Repopulated Villages — Min. of Panchayati Raj, March 2026 <br> <span style="font-size: 18px">{{
+                        Repopulated Villages — Min. of Panchayati Raj, March 2026 <br> <span style="font-size: 18px">{{
                             $firstVillage->state_ut_name }}</span>
                     </h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <p style="font-size: 14px;">These villages were uninhabited in Census 2011 but are present in Panchayati Raj Database.
+                    <p style="font-size: 14px;">These villages were uninhabited in Census 2011 but are present in
+                        Panchayati Raj Database.
 
                     </p>
                     <div class="table-wrapper">
@@ -668,13 +679,14 @@ $metaData = [
                 <div class="modal-header bg-primary text-white">
 
                     <h5 class="modal-title">
-                        New Villages — Min. of Panchayati Raj, March 2026  <br> <span style="font-size: 18px">{{
+                        New Villages — Min. of Panchayati Raj, March 2026 <br> <span style="font-size: 18px">{{
                             $firstVillage->state_ut_name }}</span>
                     </h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <p style="font-size: 14px;">These villages are present in LGD but absent from Census 2011 — added after the census was conducted.
+                    <p style="font-size: 14px;">These villages are present in LGD but absent from Census 2011 — added
+                        after the census was conducted.
 
                     </p>
                     <div class="table-wrapper">
@@ -740,7 +752,8 @@ $metaData = [
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <p style="font-size: 14px;">These villages were recorded as Inhabited in Census 2011 but are currently absent from the Ministry of Panchayati Raj's Local Government Directory (March 2026).
+                    <p style="font-size: 14px;">These villages were recorded as Inhabited in Census 2011 but are
+                        currently absent from the Ministry of Panchayati Raj's Local Government Directory (March 2026).
 
                     </p>
                     <div class="table-wrapper">

@@ -451,7 +451,7 @@ class Home extends Controller
     public function townWebs()
     {
 
-        $newVIllages = Cache::remember('village_webs.new_village', 30 * 60 * 60, function () {
+        $newVIllages = Cache::remember('village_webs.new_town_villages', 30 * 60 * 60, function () {
             return collect(config('data.town.newvillage'))->groupBy('State_Code');
         });
         $MPC = Cache::remember('village_webs.mpc', 30 * 60 * 60, function () {
@@ -492,6 +492,7 @@ class Home extends Controller
             $repovillages = Cache::remember('village_webs.repo_village', 30 * 60 * 60, function () {
                 return DB::table('repo_village')->get()->groupBy('state_code');
             });
+
 
             // dd($repovillages);
 
