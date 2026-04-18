@@ -459,7 +459,7 @@ $metaData = [
                 under the Smart Cities Mission.
             </p>
             <p>Please note that 2 State Capitals are not District Capitals - Bhubaneswar (Odisha) and Amaravati (Andhra
-                Pradesh). They are both included in Smart City, but don't have a Municipal Corporation. </p>
+                Pradesh). They are both included in Smart City, but only Bhubaneswar has a Municipal Corporation.</p>
         </div>
     </section>
 
@@ -557,8 +557,10 @@ $metaData = [
             <li class="text-[12px]">Dadra & Nagar Haveli and Daman & Diu were separate UTs in 2011 and have been
                 combined here for
                 consistency.</li>
-            <li>Two additional cities were carved out for the 2026 estimates: Waidhan (from Siliguri) and Hanamkonda
-                (from Warangal).</li>
+            <li>Two new District Capital Cities (which did not exist as either a city or a village in Census 2011) have
+                been created in the 2026 list above by splitting the population and area of Warangal City (Telangana)
+                and Singrauli City (Madhya Pradesh), as per Census 2011. The new District Capitals thus carved out are
+                Hanamkonda (in Telangana) and Waidhan (in Madhya Pradesh).</li>
         </ul>
     </div>
 

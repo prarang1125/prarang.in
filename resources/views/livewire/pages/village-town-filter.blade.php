@@ -93,7 +93,7 @@
                 @else
                 <div class="pb-4 text-center">
                     <h2 class="text-xl md:text-xl  text-slate-800 tracking-tighter mb-2">
-                        Explore <span class="font-black">7993+</span> Cities across India
+                        Explore <span class="font-black">6,329</span> Cities across India
                     </h2>
                     @endif
                 </div>

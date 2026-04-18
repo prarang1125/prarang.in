@@ -652,7 +652,6 @@
             align-items: center;
         }
 
-
         .custom-tooltip {
             position: fixed;
             display: none;
