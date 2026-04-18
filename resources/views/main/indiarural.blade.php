@@ -513,52 +513,42 @@ $metaData = [
                             $row['panchayat_2026_inhabited_pct'], 1) : '-' }}</td>
 
                         <td>
-                            @if($row['repop_villages'] == null)
-
-                            -
-
+                            @if(($row['repop_villages'] ?? null) == null)
+                                -
                             @else
-
-                            <a href="#" class="text-primary" data-bs-toggle="modal"
-                                data-bs-target="#repovillage{{ $row['state_code'] }}">
-                                {{ number_format((float) $row['repop_villages']) ?? '_'}}
-                            </a>
+                                <a href="javascript:void(0)" class="text-primary village-detail-trigger"
+                                    data-state-code="{{ $row['state_code'] }}" data-type="repo">
+                                    {{ number_format((float) $row['repop_villages']) }}
+                                </a>
                             @endif
-
                         </td>
 
                         <td>{{ isset($row['repop_villages_pct']) ? number_format((float) $row['repop_villages_pct'], 1)
                             : '-' }}</td>
 
                         <td>
-                            @if($row['new_villages'] == null)
-
-                            -
-
+                            @if(($row['new_villages'] ?? null) == null)
+                                -
                             @else
-                            <a href="#" class="text-primary" data-bs-toggle="modal"
-                                data-bs-target="#newvillage{{ $row['state_code'] }}">
-                                {{ number_format((float) $row['new_villages']) ?? '_'}}
-                            </a>
+                                <a href="javascript:void(0)" class="text-primary village-detail-trigger"
+                                    data-state-code="{{ $row['state_code'] }}" data-type="new">
+                                    {{ number_format((float) $row['new_villages']) }}
+                                </a>
                             @endif
-
                         </td>
 
                         <td>{{ isset($row['new_villages_pct']) ? number_format((float) $row['new_villages_pct'], 1) :
                             '-' }}</td>
 
                         <td>
-                            @if($row['missing_villages'] == null)
-
-                            -
-
+                            @if(($row['missing_villages'] ?? null) == null)
+                                -
                             @else
-                            <a href="#" class="text-primary" data-bs-toggle="modal"
-                                data-bs-target="#missingvillage{{ $row['state_code'] }}">
-                                {{ number_format((float) $row['missing_villages']) ?? '_'}}
-                            </a>
+                                <a href="javascript:void(0)" class="text-primary village-detail-trigger"
+                                    data-state-code="{{ $row['state_code'] }}" data-type="missing">
+                                    {{ number_format((float) $row['missing_villages']) }}
+                                </a>
                             @endif
-
                         </td>
                     </tr>
                     @empty
@@ -594,207 +584,89 @@ $metaData = [
     </section>
 
 
-    {{-- repovillage model --}}
-
-    @foreach($repovillages as $stateCode => $villages)
-    @php
-    $firstVillage = $villages->first();
-    @endphp
-
-    <div class="modal fade" id="repovillage{{ $stateCode }}" tabindex="-1" aria-labelledby="repovillage{{ $stateCode }}"
-        aria-hidden="true">
-
-        <div class="modal-dialog  modal-dialog-centered ">
-
+    {{-- Generic Village Detail Modal --}}
+    <div class="modal fade" id="villageDetailModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
-
                 <div class="modal-header bg-primary text-white">
-
-                    <h5 class="modal-title">
-                        Repopulated Villages — Min. of Panchayati Raj, March 2026 <br> <span style="font-size: 18px">{{
-                            $firstVillage->state_ut_name }}</span>
+                    <h5 class="modal-title" id="villageModalTitle">
+                        Village Details
                     </h5>
                     <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
-                    <p style="font-size: 14px;">These villages were uninhabited in Census 2011 but are present in
-                        Panchayati Raj Database.
-
-                    </p>
+                    <p id="villageModalDescription" style="font-size: 14px;"></p>
                     <div class="table-wrapper">
-
                         <table class="table table-sm table-striped table-bordered table-hover modal-city-table">
-
                             <thead class="sticky-top">
                                 <tr>
-                                    <th class=" text-white">#</th>
+                                    <th class="text-white">#</th>
                                     <th class="text-white">District</th>
                                     <th class="text-white">Village</th>
                                 </tr>
                             </thead>
-
-                            <tbody>
-                                @foreach ($villages as $village)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-
-                                    <td>{{ $village->district }}</td>
-                                    <td>{{ $village->village }}</td>
-                                </tr>
-                                @endforeach
+                            <tbody id="villageModalBody">
+                                <!-- Data will be loaded here -->
                             </tbody>
-
                         </table>
-
                     </div>
-
                 </div>
-
                 <div class="modal-footer py-2">
-
                     <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-
                 </div>
-
             </div>
         </div>
     </div>
 
-    @endforeach
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const villageModal = new bootstrap.Modal(document.getElementById('villageDetailModal'));
+            const modalTitle = document.getElementById('villageModalTitle');
+            const modalDescription = document.getElementById('villageModalDescription');
+            const modalBody = document.getElementById('villageModalBody');
 
+            document.querySelectorAll('.village-detail-trigger').forEach(trigger => {
+                trigger.addEventListener('click', function() {
+                    const stateCode = this.getAttribute('data-state-code');
+                    const type = this.getAttribute('data-type');
+                    
+                    // Show loading state or clear previous data
+                    modalBody.innerHTML = '<tr><td colspan="3" class="text-center">Loading...</td></tr>';
+                    modalTitle.innerText = 'Loading...';
+                    modalDescription.innerText = '';
+                    villageModal.show();
 
+                    fetch(`/get-village-details/${stateCode}/${type}`)
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.error) {
+                                modalBody.innerHTML = `<tr><td colspan="3" class="text-center text-danger">${data.error}</td></tr>`;
+                                return;
+                            }
 
-    @foreach($newvillages as $stateCode => $villages)
-    @php
-    $firstVillage = $villages->first();
-    @endphp
-
-    <div class="modal fade" id="newvillage{{ $stateCode }}" tabindex="-1" aria-labelledby="newvillage{{ $stateCode }}"
-        aria-hidden="true">
-
-        <div class="modal-dialog  modal-dialog-centered ">
-
-            <div class="modal-content">
-
-                <div class="modal-header bg-primary text-white">
-
-                    <h5 class="modal-title">
-                        New Villages — Min. of Panchayati Raj, March 2026 <br> <span style="font-size: 18px">{{
-                            $firstVillage->state_ut_name }}</span>
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <p style="font-size: 14px;">These villages are present in LGD but absent from Census 2011 — added
-                        after the census was conducted.
-
-                    </p>
-                    <div class="table-wrapper">
-
-                        <table class="table table-sm table-striped table-bordered table-hover modal-city-table">
-
-                            <thead class="sticky-top">
-                                <tr>
-                                    <th class=" text-white">#</th>
-                                    <th class="text-white">District</th>
-                                    <th class="text-white">Village</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                @foreach ($villages as $village)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-
-                                    <td>{{ $village->district }}</td>
-                                    <td>{{ $village->village }}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-
-                        </table>
-
-                    </div>
-
-                </div>
-
-                <div class="modal-footer py-2">
-
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    @endforeach
-
-
-    @foreach($missingvilage as $stateCode => $villages)
-    @php
-    $firstVillage = $villages->first();
-    @endphp
-
-    <div class="modal fade" id="missingvillage{{ $stateCode }}" tabindex="-1"
-        aria-labelledby="missingvillage{{ $stateCode }}" aria-hidden="true">
-
-        <div class="modal-dialog  modal-dialog-centered ">
-
-            <div class="modal-content">
-
-                <div class="modal-header bg-primary text-white">
-
-                    <h5 class="modal-title">
-                        Missing Villages — Min. of Panchayati Raj, March 2026 <br> <span style="font-size: 18px">{{
-                            $firstVillage->state_ut_name }}</span>
-                    </h5>
-                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
-                </div>
-                <div class="modal-body">
-                    <p style="font-size: 14px;">These villages were recorded as Inhabited in Census 2011 but are
-                        currently absent from the Ministry of Panchayati Raj's Local Government Directory (March 2026).
-
-                    </p>
-                    <div class="table-wrapper">
-
-                        <table class="table table-sm table-striped table-bordered table-hover modal-city-table">
-
-                            <thead class="sticky-top">
-                                <tr>
-                                    <th class=" text-white">#</th>
-                                    <th class="text-white">District</th>
-                                    <th class="text-white">Village</th>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                @foreach ($villages as $village)
-                                <tr>
-                                    <td>{{ $loop->iteration }}</td>
-                                    <td>{{ $village->district }}</td>
-                                    <td>{{ $village->village }}</td>
-                                </tr>
-                                @endforeach
-                            </tbody>
-
-                        </table>
-
-                    </div>
-
-                </div>
-
-                <div class="modal-footer py-2">
-
-                    <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal">Close</button>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    @endforeach
+                            modalTitle.innerHTML = `${data.title} <br> <span style="font-size: 18px">${data.state_name}</span>`;
+                            modalDescription.innerText = data.description;
+                            
+                            let rows = '';
+                            data.villages.forEach((village, index) => {
+                                rows += `
+                                    <tr>
+                                        <td>${index + 1}</td>
+                                        <td>${village.district}</td>
+                                        <td>${village.village}</td>
+                                    </tr>
+                                `;
+                            });
+                            modalBody.innerHTML = rows;
+                        })
+                        .catch(error => {
+                            console.error('Error fetching village details:', error);
+                            modalBody.innerHTML = '<tr><td colspan="3" class="text-center text-danger">Failed to load data.</td></tr>';
+                        });
+                });
+            });
+        });
+    </script>
 
 
 

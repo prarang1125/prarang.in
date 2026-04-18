@@ -478,24 +478,6 @@ class Home extends Controller
     public function indiaRural()
     {
         try {
-            $missingvilage = Cache::remember('village_webs.missing_village', 30 * 60 * 60, function () {
-                return DB::table('missing_village')->get()->groupBy('state_code');
-            });
-
-            $newvillages = Cache::remember('village_webs.new_village', 30 * 60 * 60, function () {
-                return DB::table('new_villages')->get()->groupBy('state_code');
-            });
-
-
-            // dd($newvillages);
-
-            $repovillages = Cache::remember('village_webs.repo_village', 30 * 60 * 60, function () {
-                return DB::table('repo_village')->get()->groupBy('state_code');
-            });
-
-
-            // dd($repovillages);
-
             $stateSummaryRaw = Cache::remember('village_webs.state_summary', 30 * 60 * 60, function () {
                 return collect(config('state.stateWise'))->toArray();
             });
@@ -507,6 +489,45 @@ class Home extends Controller
         }
 
 
-        return view('main.indiarural', compact('missingvilage', 'newvillages', 'stateSummaryRaw', 'repovillages'));
+        return view('main.indiarural', compact('stateSummaryRaw'));
+    }
+
+    public function getVillageDetails($stateCode, $type)
+    {
+        $table = match ($type) {
+            'repo' => 'repo_village',
+            'new' => 'new_villages',
+            'missing' => 'missing_village',
+            default => null,
+        };
+
+        if (!$table) {
+            return response()->json(['error' => 'Invalid type'], 400);
+        }
+
+        $villages = DB::table($table)->where('state_code', $stateCode)->get();
+
+        if ($villages->isEmpty()) {
+            return response()->json(['error' => 'No data found'], 404);
+        }
+
+        $title = match ($type) {
+            'repo' => 'Repopulated Villages — Min. of Panchayati Raj, March 2026',
+            'new' => 'New Villages — Min. of Panchayati Raj, March 2026',
+            'missing' => 'Missing Villages — Min. of Panchayati Raj, March 2026',
+        };
+
+        $description = match ($type) {
+            'repo' => 'These villages were uninhabited in Census 2011 but are present in Panchayati Raj Database.',
+            'new' => 'These villages are present in LGD but absent from Census 2011 — added after the census was conducted.',
+            'missing' => 'These villages were recorded as Inhabited in Census 2011 but are currently absent from the Ministry of Panchayati Raj\'s Local Government Directory (March 2026).',
+        };
+
+        return response()->json([
+            'title' => $title,
+            'state_name' => $villages->first()->state_ut_name,
+            'description' => $description,
+            'villages' => $villages
+        ]);
     }
 }

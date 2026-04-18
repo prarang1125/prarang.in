@@ -56,6 +56,7 @@ Route::get('/get-countries/{langId}', [Home::class, 'geCountrytByLanguage'])
     ->name('countries.by.language');
 
 Route::get('india-city-webs', [Home::class, 'indiaCityWebs'])->name('home.india-city-webs');
+Route::get('/get-village-details/{stateCode}/{type}', [Home::class, 'getVillageDetails'])->name('village.details');
 
 Route::get('knowledge-posts', [Home::class, 'knowledgePosts'])->name('home.knowledge-posts');
 Route::get('business-apps', [Home::class, 'businessApps'])->name('home.business-apps');
