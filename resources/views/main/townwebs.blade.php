@@ -111,9 +111,7 @@ $metaData = [
         background-color: #6f95e5 !important;
     }
 
-    .bg-highlight-y {
-        background-color: rgba(255, 255, 0, 0.5) !important;
-    }
+
 
     .bg-highlight-1 {
         background-color: #cad4e8 !important;
@@ -447,19 +445,18 @@ $metaData = [
                 While the Census 2011 cities/towns totaled to 7,933 (4,401 statutory towns and 3,892 census towns).
                 These can effectively be summarized as 6,329 since 1,947 cities were actually part of 298
                 Urban-Agglomerations (UAs).
-                <br>
-                Now in 2026, with new states increasing to 28 (and 8 UTs) and the districts increasing from 640 in 2011
-                to 766 in 2026, the 6,329 cities now include 301 Urban Agglomerations (UAs) and even 44 Villages which
-                are currently District Capitals or State Capitals (Amravati (Andhra Pradesh)) of some of the new 128+
-                districts created after 2011.
-                <br> <br>
+                <br> <br> Now in 2026, with new states increasing to 28 (and 8 UTs) and the districts increasing from
+                640
+                in 2011 to 766 in 2026, the 6,329 cities now include 301 Urban Agglomerations (UAs) and even 44
+                Villages which are currently District Capitals or State Capitals (Amravati (Andhra Pradesh)) of some
+                of the new 128+ districts created after 2011. <br> <br>
                 Each of the 766 Districts and 28 States & 8 UTs have a Capital. There are 2 State Capitals - Amravati
                 (Andhra Pradesh) & Bhubaneswar (Odisha) - which are not district capitals. Also, Chandigarh is unique as
                 a capital of two states (Punjab & Haryana) and one UT (Chandigarh itself).
                 <br> <br>
                 We thus have 768 State and/or District capital Cities in India in 2026. Of these, <b>766</b> District
                 Capitals,
-                <b>240</b>are UAs, <b>468</b> are Cities, <b>43</b> which were Villages in 2011 and <b>2</b> State
+                <b>240</b> are UAs, <b>468</b> are Cities, <b>43</b> which were Villages in 2011 and <b>2</b> State
                 Capitals, <b>1</b>
                 Village
                 - Amravati

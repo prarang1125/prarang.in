@@ -97,12 +97,6 @@ $metaData = [
                 z-index: 5;
             }
 
-            /* .modern-table thead th:nth-child(1),
-            .modern-table tbody td:nth-child(1) {
-                left: 0;
-                box-shadow: 2px 0 4px rgba(0, 0, 0, 0.1);
-            } */
-
             .modern-table thead th:nth-child(2),
             .modern-table tbody td:nth-child(2) {
                 left: 0px;
@@ -181,17 +175,7 @@ $metaData = [
             }
         }
 
-        /* Modal body */
-        /* .container .modal .modal-xl .modal-content .modal-body {
-            height: 100vh !important;
-        } */
 
-        /* Modal body */
-        /* .container .modal .modal-body {
-            max-height: 100vh;
-        } */
-
-        /* Stable two-row sticky header without scroll artifacts */
         .table-hori .modern-table thead {
             position: static;
         }
@@ -259,11 +243,6 @@ $metaData = [
             text-align: left;
         }
 
-        /* Text white */
-        /* .modern-table thead .text-white {
-            position: sticky;
-            z-index: 1000 !important;
-        } */
 
         /* Text white */
         .container .mt-3 .table-responsive .modern-table thead .bg-primary .text-white {
@@ -432,8 +411,7 @@ $metaData = [
 
 
     <section>
-        <p>India had a total of 640,932 villages in 2011 (Census) including 43,326 which were uninhabited. These
-            effectively reduce to 594,204 inhabited villages in 2026. <br>India had a total of <b>640,932</b> villages
+        <p>These effectively reduce to 594,204 inhabited villages in 2026. India had a total of <b>640,932</b> villages
             in 2011 ( Census) including 43,326 which were uninhabited.
         </p>
         <p>The Ministry of Panchayat Raj maintains an updated Indian Village database LGD ( Local Government Directory),
