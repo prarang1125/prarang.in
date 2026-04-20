@@ -442,9 +442,11 @@ $metaData = [
     <section class="max-w-7xl mx-auto px-4 pt-8">
         <div class="space-y-4 text-slate-700 leading-relaxed text-[14px]">
             <p>
-                While the Census 2011 cities/towns totaled to 7,933 (4,401 statutory towns and 3,892 census towns).
-                These can effectively be summarized as 6,329 since 1,947 cities were actually part of 298
-                Urban-Agglomerations (UAs).
+                <span class="font-semibold">While the Census 2011 cities/towns totaled to 7,933 (4,401 statutory
+                    towns and 3,892 census
+                    towns).
+                    These can effectively be summarized as 6,329 since 1,947 cities were actually part of 298
+                    Urban-Agglomerations (UAs). </span>
                 <br> <br> Now in 2026, with new states increasing to 28 (and 8 UTs) and the districts increasing from
                 640
                 in 2011 to 766 in 2026, the 6,329 cities now include 301 Urban Agglomerations (UAs) and even 44
@@ -469,7 +471,12 @@ $metaData = [
                 As of 2026, there are 278 Municipal Corporations declared by the State Governments and 100 Smart Cities
                 under the Smart Cities Mission.
             </p>
-
+            <div class="flex justify-end items-end mb-2">
+                <a href="/town-webs-in" target="_blank"
+                    class="inline-flex w-fit self-start md:self-auto items-center gap-2 rounded-md no-underline border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-600 hover:bg-blue-600 hover:text-white hover:shadow-md">
+                    City Language Distribution
+                </a>
+            </div>
         </div>
     </section>
 

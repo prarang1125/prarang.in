@@ -429,6 +429,12 @@ $metaData = [
             villages of Census 2011 which are Missing in the LGD - an anomaly which may indicate that these have since
             become uninhabited.
         </p>
+        <div class="flex justify-end items-end mb-2">
+            <a href="/village-webs" target="_blank"
+                class="inline-flex w-fit self-start md:self-auto items-center gap-2 rounded-md no-underline border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-semibold text-blue-700 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:border-blue-600 hover:bg-blue-600 hover:text-white hover:shadow-md">
+                Village Language Distribution
+            </a>
+        </div>
     </section>
 
 

@@ -423,6 +423,7 @@ $metaData = [
             have at least some respective Mother Tongue speakers from the 121 primary Indian languages. Note that the %
             here is NOT the percentage of the State/UT's total rural population who speak that language.
         </p>
+
     </section>
     @php
     $languageColumns = [

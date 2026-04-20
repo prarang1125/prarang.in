@@ -37,6 +37,30 @@ $metaData[] = '';
     .shadow .grid .hover\:text-white {
         font-size: 13px;
     }
+
+    /* Cursor help */
+    .mx-auto tr .cursor-help {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Font medium */
+    .mx-auto tr .font-medium {
+        display: flex;
+    }
+
+    /* Cursor help */
+    .mx-auto tr .cursor-help {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Font medium */
+    .mx-auto tr .font-medium {
+        display: flex;
+    }
 </style>
 
 <x-layout.pages.dhq :data="$dhq">
@@ -283,8 +307,8 @@ $metaData[] = '';
                 <img src="{{ asset('assets/images/urban_states/' . ($dhq['state']['state_LGD_code'] ?? 'default')) }}.jpg"
                     alt="Village Banner" class="w-full h-[400px] object-cover">
             </div>
-              @if($dhq['town']['note']!=null and $dhq['town']['note']!='')
-             <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm transition-all hover:shadow-md">
+            @if($dhq['town']['note']!=null and $dhq['town']['note']!='')
+            <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm transition-all hover:shadow-md">
                 <div class="space-y-1 text-justify">
                     <p class="text-[15px] text-gray-700 leading-relaxed font-medium">
                         {!! $dhq['town']['note']!!}
@@ -524,35 +548,41 @@ $metaData[] = '';
                 @endforeach
             </div>
         </div> --}}
-        <div class="bg-white rounded-2xl py-2 px-4 border border-gray-100/80 shadow-sm">
-            <div class="grid grid-cols-2  gap-x-6">
-                <div>
-                    <p class="text-xs font-medium text-gray-500 mb-0.5">District</p>
-                    <p class="text-sm font-bold text-gray-800">
-                        {{ $dhq['town']['district'] ?? '-' }}</p>
-                </div>
-                <div>
-                    <p class="text-xs font-medium text-gray-500 mb-0.5">State</p>
-                    <p class="text-sm font-bold text-gray-800">
-                        {{ $dhq['state']['state_name'] ?? '-' }}</p>
-                </div>
-                <div class="pt-1 border-t border-gray-50">
-                    <p class="text-xs font-medium text-gray-500 mb-0.5">Pop. 2026 (Est.)
-                        <x-source source="Estimate - Population based on District Growth Rate - Census 2011" />
-                    </p>
-                    <p class="text-sm font-bold text-indigo-600">
-                        {{ isset($dhq['town']['TOT_P']) ? number_format($dhq['pop']['pop26'], 0) :
-                        '-' }} </p>
-                </div>
-                <div class="pt-1 border-t border-gray-50">
-                    <p class="text-xs font-medium text-gray-500 mb-0.5">Pop. 2011
-                        <x-source source="Population - Census 2011" />
-                    </p>
-                    <p class="text-sm font-bold text-gray-800">
-                        {{ isset($dhq['town']['TOT_P']) ? number_format($dhq['pop']['pop11'], 0) :
-                        '-' }}</p>
-                </div>
-            </div>
+        <div class="bg-white rounded-2xl p-4 border border-gray-100/80 shadow-sm">
+            <table class="w-full border-collapse">
+                <tbody class="text-[13px]">
+                    <tr>
+                        <td class="py-1 text-gray-500 font-medium">State</td>
+                        <td class="py-1 text-gray-800 font-bold text-right">
+                            {{ $dhq['state']['state_name'] ?? '-' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-1 text-gray-500 font-medium">District</td>
+                        <td class="py-1 text-gray-800 font-bold text-right">
+                            {{ $dhq['town']['district'] ?? '-' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-1 text-gray-500 font-medium whitespace-nowrap">
+                            Pop. 2011
+                            <x-source source="Population - Census 2011" />
+                        </td>
+                        <td class="py-1 text-gray-800 font-bold text-right tabular-nums">
+                            {{ isset($dhq['town']['TOT_P']) ? number_format($dhq['pop']['pop11'], 0) : '-' }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="py-1 text-gray-500 font-medium whitespace-nowrap">
+                            Pop. 2026 (Est.)
+                            <x-source source="Estimate - Population based on District Growth Rate - Census 2011" />
+                        </td>
+                        <td class="py-1 text-indigo-600 font-bold text-right tabular-nums">
+                            {{ isset($dhq['town']['TOT_P']) ? number_format($dhq['pop']['pop26'], 0) : '-' }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
         <div x-data="{ openModal: false, modalType: '' }"
             class="shadow bg-white rounded-2xl py-3 px-2 border border-gray-100/80">

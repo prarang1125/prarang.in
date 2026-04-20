@@ -418,6 +418,51 @@
             .flex-wrap tr:nth-child(3) span:nth-child(2) {
                 font-size: 14px;
             }
+
+            /* Justify items center */
+            .city-s tr .justify-items-center {
+                justify-content: center;
+                height: 15px;
+                padding-left: 0px;
+                padding-top: 1px;
+            }
+
+            /* Image */
+            .city-s .justify-items-center img {
+                max-width: 100px;
+                height: 20px;
+                top: 0px !important;
+            }
+
+            /* Image */
+            .city-s .justify-center .border-separate tbody tr td .justify-items-center img {
+                min-height: 0px !important;
+                left: 0px !important;
+            }
+
+            /* Image */
+            .container .mx-auto .flex-wrap div .city-s .justify-center .border-separate tbody tr td .justify-items-center img {
+                height: 20px !important;
+            }
+
+            /* Link */
+            .flex-wrap div .city-s .justify-center .border-separate tbody tr .py-1 a {
+                width: 140px !important;
+            }
+
+            /* Link */
+            .city-s .py-1 a {
+                height: 45px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* Table Data */
+            .city-s tr .py-1 {
+                padding-left: 8px;
+                padding-right: 8px;
+            }
         </style>
 
         <div class="flex flex-wrap justify-center items-center gap-4 lg:gap-6">
@@ -457,6 +502,8 @@
                                         India: Urban
                                     </a>
                                 </td>
+                                <td> <img class="w-7 h-5" src="{{ asset('assets/images/home/ar.png') }}" alt="Arrow">
+                                </td>
                                 <td class="px-2">
                                     <a href="/webs/filter/cities"
                                         class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
@@ -466,15 +513,37 @@
                                     </a>
                                 </td>
                             </tr>
+                            <tr>
+                                <td>
+                                    <div class="flex justify-items-center items-center h-10">
+                                        <img class="w-6 h-5" style="transform: rotate(90deg);"
+                                            src="{{ asset('assets/images/home/d_arrow.png') }}" alt="Arrow">
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+
 
                             <tr>
-                                <td colspan="2" class="py-1">
+                                <td class="py-1">
                                     <a href="/city-webs"
                                         class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
                                         style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
                                         India: District
                                     </a>
                                 </td>
+
+                            </tr>
+                            <tr>
+                                <td>
+                                    <div class="flex justify-items-center items-center h-10">
+                                        <img class="w-6 h-5" style="transform: rotate(90deg);"
+                                            src="{{ asset('assets/images/home/d_arrow.png') }}" alt="Arrow">
+                                    </div>
+                                </td>
+                                <td></td>
+                                <td></td>
                             </tr>
 
                             <tr>
@@ -484,6 +553,8 @@
                                         style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
                                         India: Rural
                                     </a>
+                                </td>
+                                <td> <img class="w-7 h-5" src="{{ asset('assets/images/home/ar.png') }}" alt="Arrow">
                                 </td>
                                 <td class="px-2">
                                     <a href="/webs/filter/village"

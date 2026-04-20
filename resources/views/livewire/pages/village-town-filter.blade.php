@@ -79,7 +79,23 @@
         }
     </style>
     <div class="rounded shadow-lg">
+        <style>
+            /* Shadow */
+            .container .min-h-screen .shadow-lg {
+                box-shadow: 0px 16px 48px -50px rgba(0, 0, 0, 0.176) !important;
+            }
 
+            /* Border */
+            .shadow-lg div .border-t:nth-child(3) {
+                border-top-width: 2px;
+                border-top-color: #1973db;
+            }
+
+            /* Heading */
+            .shadow-lg div h3 {
+                margin-top: 16px;
+            }
+        </style>
         <!-- Main Filter Card -->
 
 
@@ -98,7 +114,7 @@
                     @endif
                 </div>
 
-                <div class="mb-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+                {{-- <div class="mb-3 flex flex-col md:flex-row md:items-center md:justify-between gap-3">
                     <h2 class="text-xl md:text-xl font-black text-slate-800 tracking-tighter mb-2">
                         Find <span class="text-blue-600">{{ $type === 'town' ? 'City' : 'Villages' }}</span>
                     </h2>
@@ -114,7 +130,7 @@
                         City Language Distribution
                     </a>
                     @endif
-                </div>
+                </div> --}}
                 @if($type === 'town')
                 <div class="mb-6 p-4 bg-slate-50/50 rounded-2xl border border-slate-200">
                     <div class="flex flex-col sm:flex-row sm:items-center gap-4">
