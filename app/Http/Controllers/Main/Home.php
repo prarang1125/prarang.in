@@ -168,6 +168,7 @@ class Home extends Controller
 
         $state = collect(config('cityweb.data'))->pluck('state', '#')->toArray();
         $more_then_30k = collect(config('cityweb.cities_more_than_30k'))->groupBy('State_ID')->toArray();
+
         $less_then_30k = collect(config('cityweb.cities_less_than_30k'))->groupBy('State_ID')->toArray();
         $countriesByLanguage = collect(config('count_lang.languages'))
             ->groupBy('language_id')

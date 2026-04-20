@@ -1,8 +1,8 @@
 @php
-    $metaData = [
-        'nav-heading' => 'Partners',
-        'nav-sub-heading' => '',
-    ];
+$metaData = [
+'nav-heading' => 'Partners',
+'nav-sub-heading' => '',
+];
 @endphp
 <x-layout.main.base :metaData="$metaData">
 
@@ -867,20 +867,20 @@
                             <div class="mt-2">
 
                                 @foreach ($portal as $zone => $zoneStates)
-                                    @if ($zone == 'Union Territories')
-                                        @continue
-                                    @endif
-                                    <button type="button" class="matrix-pill" data-bs-toggle="modal"
-                                        data-bs-target="#ZoneModal-{{ Str::slug($zone) }}">{{ $zone }} Zone
-                                    </button>
+                                @if ($zone == 'Union Territories')
+                                @continue
+                                @endif
+                                <button type="button" class="matrix-pill" data-bs-toggle="modal"
+                                    data-bs-target="#ZoneModal-{{ Str::slug($zone) }}">{{ $zone }} Zone
+                                </button>
                                 @endforeach
                                 @foreach ($portal as $zone => $zoneStates)
-                                    @if ($zone != 'Union Territories')
-                                        @continue
-                                    @endif
-                                    <button type="button" class="matrix-pill" data-bs-toggle="modal"
-                                        data-bs-target="#ZoneModal-{{ Str::slug($zone) }}">{{ $zone }}
-                                    </button>
+                                @if ($zone != 'Union Territories')
+                                @continue
+                                @endif
+                                <button type="button" class="matrix-pill" data-bs-toggle="modal"
+                                    data-bs-target="#ZoneModal-{{ Str::slug($zone) }}">{{ $zone }}
+                                </button>
                                 @endforeach
                             </div>
                         </td>
@@ -910,42 +910,42 @@
                         </td>
                         <td class="text-center">
                             @php
-                                $meerutPortal = collect($portal)->flatten(2)->firstWhere('slug', 'meerut');
-                                $meerutPortal =
-                                    $meerutPortal ?: collect($portal)->flatten(2)->firstWhere('city_name', 'Meerut');
+                            $meerutPortal = collect($portal)->flatten(2)->firstWhere('slug', 'meerut');
+                            $meerutPortal =
+                            $meerutPortal ?: collect($portal)->flatten(2)->firstWhere('city_name', 'Meerut');
                             @endphp
                             @if ($meerutPortal && $meerutPortal->is_ext_url)
-                                @php
-                                    $dropdownId = 'portal-dropdown-meerut';
-                                    $extUrls = is_string($meerutPortal->ext_urls)
-                                        ? json_decode($meerutPortal->ext_urls, true)
-                                        : $meerutPortal->ext_urls;
-                                @endphp
-                                <div class="dropdownss w-100">
-                                    <button type="button" class="matrix-pill matrix-pill-lite dropbtn"
-                                        data-dropdown="meerut">
-                                        {{ $meerutPortal->city_name ?? 'Meerut' }}
-                                        <span class="dropdown-icon" aria-hidden="true">
-                                            <i class="bi bi-chevron-down"></i>
-                                        </span>
-                                    </button>
-                                    <div class="dropdown-content" data-dropdown-menu="meerut">
-                                        <a href="/{{ $meerutPortal->slug }}">Main Portal</a>
-                                        <hr style="margin: 0">
-                                        @if (is_array($extUrls))
-                                            @foreach ($extUrls as $extUrl)
-                                                <a href="{{ $extUrl['url'] ?? '#' }}" target="_blank" rel="noopener">
-                                                    {{ $extUrl['title'] ?? 'Link' }}
-                                                </a>
-                                            @endforeach
-                                        @endif
-                                    </div>
+                            @php
+                            $dropdownId = 'portal-dropdown-meerut';
+                            $extUrls = is_string($meerutPortal->ext_urls)
+                            ? json_decode($meerutPortal->ext_urls, true)
+                            : $meerutPortal->ext_urls;
+                            @endphp
+                            <div class="dropdownss w-100">
+                                <button type="button" class="matrix-pill matrix-pill-lite dropbtn"
+                                    data-dropdown="meerut">
+                                    {{ $meerutPortal->city_name ?? 'Meerut' }}
+                                    <span class="dropdown-icon" aria-hidden="true">
+                                        <i class="bi bi-chevron-down"></i>
+                                    </span>
+                                </button>
+                                <div class="dropdown-content" data-dropdown-menu="meerut">
+                                    <a href="/{{ $meerutPortal->slug }}">Main Portal</a>
+                                    <hr style="margin: 0">
+                                    @if (is_array($extUrls))
+                                    @foreach ($extUrls as $extUrl)
+                                    <a href="{{ $extUrl['url'] ?? '#' }}" target="_blank" rel="noopener">
+                                        {{ $extUrl['title'] ?? 'Link' }}
+                                    </a>
+                                    @endforeach
+                                    @endif
                                 </div>
+                            </div>
                             @else
-                                <a href="/meerut/all-posts" target="_blank" class="matrix-pill matrix-pill-lite"
-                                    style="text-decoration: none">
-                                    Meerut
-                                </a>
+                            <a href="/meerut/all-posts" target="_blank" class="matrix-pill matrix-pill-lite"
+                                style="text-decoration: none">
+                                Meerut
+                            </a>
                             @endif
 
                         </td>
@@ -1033,204 +1033,204 @@
     </section>
 
     @php
-        $languageModals = [
-            ['id' => '39', 'title' => 'English'],
-            ['id' => '154', 'title' => 'Telugu'],
-            ['id' => '167', 'title' => 'Urdu'],
-            ['id' => '152', 'title' => 'Tamil'],
-            ['id' => '55', 'title' => 'Gujarati'],
-            ['id' => '13', 'title' => 'Bengali'],
-            ['id' => '56', 'title' => 'Gurmukhi'],
-            ['id' => '70', 'title' => 'Kannada'],
-            ['id' => '115', 'title' => 'Odia'],
-            ['id' => '7', 'title' => 'Assamese'],
-            ['id' => '89', 'title' => 'Malayalam'],
-            ['id' => '60', 'title' => 'Hindi'],
-            ['id' => '94', 'title' => 'Marathi'],
-        ];
+    $languageModals = [
+    ['id' => '39', 'title' => 'English'],
+    ['id' => '154', 'title' => 'Telugu'],
+    ['id' => '167', 'title' => 'Urdu'],
+    ['id' => '152', 'title' => 'Tamil'],
+    ['id' => '55', 'title' => 'Gujarati'],
+    ['id' => '13', 'title' => 'Bengali'],
+    ['id' => '56', 'title' => 'Gurmukhi'],
+    ['id' => '70', 'title' => 'Kannada'],
+    ['id' => '115', 'title' => 'Odia'],
+    ['id' => '7', 'title' => 'Assamese'],
+    ['id' => '89', 'title' => 'Malayalam'],
+    ['id' => '60', 'title' => 'Hindi'],
+    ['id' => '94', 'title' => 'Marathi'],
+    ];
     @endphp
     @foreach ($languageModals as $language)
-        @php
-            $moreThen30k = collect($more_then_30k)
-                ->flatten(1)
-                ->where('Langauge_ID', $language['id'])
-                ->sortBy(['State_ID', 'City'])
-                ->values();
+    @php
+    $moreThen30k = collect($more_then_30k)
+    ->flatten(1)
+    ->where('Langauge_ID', $language['id'])
+    ->sortBy(['State_ID', 'City'])
+    ->values();
 
-            $lessThen30k = collect($less_then_30k)
-                ->flatten(1)
-                ->where('Langauge_ID', $language['id'])
-                ->sortBy(['State_ID', 'City'])
-                ->values();
-        @endphp
-        <div class="modal fade" id="LanguageModal-{{ $language['id'] }}" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header text-center">
-                        <h5 class="modal-title">{{ $language['title'] }} City Webs</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <div class="row g-3">
-                            @if ($moreThen30k->isNotEmpty())
-                                <div class="{{ $lessThen30k->isEmpty() ? 'col-12' : 'col-lg-6' }}">
-                                    <div class="table-container">
-                                        <h6 class="mb-3 text-dark fw-bold">
-                                            List of Cities with more than 30K Literate Netizens in
-                                            {{ $language['title'] }}.
-                                        </h6>
-                                        <div class="table-wrapper">
-                                            <table
-                                                class="table table-sm table-striped table-bordered table-hover modal-city-table">
-                                                <thead class="sticky-top">
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>District Capital</th>
-                                                        <th>State/UT</th>
-                                                        <th>State Capital</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @forelse ($moreThen30k as $item)
-                                                        <tr>
-                                                            <td>{{ $loop->iteration }}</td>
-                                                            <td>{{ $item['City'] ?? '' }}</td>
-                                                            <td>{{ $state[(string) ($item['State_ID'] ?? '')] }}
-                                                            </td>
-                                                            <td>{{ $item['State_Capital'] ?? '' }}</td>
-                                                        </tr>
-                                                    @empty
-                                                        <tr>
-                                                            <td colspan="4" class="text-center">No cities available
-                                                            </td>
-                                                        </tr>
-                                                    @endforelse
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-
-                            @if ($lessThen30k->isNotEmpty())
-                                <div class="{{ $moreThen30k->isEmpty() ? 'col-12' : 'col-lg-6' }}">
-                                    <div class="table-container">
-                                        <h6 class="mb-3 text-dark fw-bold">
-                                            List of Cities with less than 30K Literate Netizens in
-                                            {{ $language['title'] }}.
-                                        </h6>
-                                        <div class="table-wrapper">
-                                            <table
-                                                class="table table-sm table-striped table-bordered table-hover modal-city-table">
-                                                <thead class="sticky-top">
-                                                    <tr>
-                                                        <th>#</th>
-                                                        <th>District Capital</th>
-                                                        <th>State/UT</th>
-                                                        <th>State Capital</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    @forelse ($lessThen30k as $item)
-                                                        <tr>
-                                                            <td>{{ $loop->iteration }}</td>
-                                                            <td>{{ $item['City'] ?? '' }}</td>
-                                                            <td>{{ $state[(string) ($item['State_ID'] ?? '')] ?? ($state[(int) ($item['State_ID'] ?? 0)] ?? '') }}
-                                                            </td>
-                                                            <td>{{ $item['State_Capital'] ?? '' }}</td>
-                                                        </tr>
-                                                    @empty
-                                                        <tr>
-                                                            <td colspan="4" class="text-center">No cities available
-                                                            </td>
-                                                        </tr>
-                                                    @endforelse
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                    </div>
-                                </div>
-                            @endif
-
-                        </div>
-                        @php
-                            $countries = collect($countriesByLanguage[$language['id']] ?? [])
-                                ->filter(fn($c) => strtolower($c) !== 'india')
-                                ->values();
-                        @endphp
-
-                        @if ($countries->isNotEmpty())
-                            <div class="mt-4">
-                                <h6 class="mb-3 text-dark fw-bold text-center">
-                                    List of Countries with Literate Netizens in {{ $language['title'] }}.
+    $lessThen30k = collect($less_then_30k)
+    ->flatten(1)
+    ->where('Langauge_ID', $language['id'])
+    ->sortBy(['State_ID', 'City'])
+    ->values();
+    @endphp
+    <div class="modal fade" id="LanguageModal-{{ $language['id'] }}" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h5 class="modal-title">{{ $language['title'] }} City Webs</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3">
+                        @if ($moreThen30k->isNotEmpty())
+                        <div class="{{ $lessThen30k->isEmpty() ? 'col-12' : 'col-lg-6' }}">
+                            <div class="table-container">
+                                <h6 class="mb-3 text-dark fw-bold">
+                                    List of Cities with more than 30K Literate Netizens in
+                                    {{ $language['title'] }}.
                                 </h6>
-                                <div class="row">
-                                    @foreach ($countries as $index => $country)
-                                        <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-1">
-                                            <div class="country-pill-badge w-100 text-center">
-                                                {{ $index + 1 }}. {{ $country }}
-                                            </div>
-                                        </div>
-                                    @endforeach
+                                <div class="table-wrapper">
+                                    <table
+                                        class="table table-sm table-striped table-bordered table-hover modal-city-table">
+                                        <thead class="sticky-top">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>District Capital</th>
+                                                <th>State/UT</th>
+                                                <th>State Capital</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($moreThen30k as $item)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item['City'] ?? '' }}</td>
+                                                <td>{{ $state[(string) ($item['State_ID'])]?? "" }}
+                                                </td>
+                                                <td>{{ $item['State_Capital'] ?? '' }}</td>
+                                            </tr>
+                                            @empty
+                                            <tr>
+                                                <td colspan="4" class="text-center">No cities available
+                                                </td>
+                                            </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
+                        </div>
+                        @endif
+
+                        @if ($lessThen30k->isNotEmpty())
+                        <div class="{{ $moreThen30k->isEmpty() ? 'col-12' : 'col-lg-6' }}">
+                            <div class="table-container">
+                                <h6 class="mb-3 text-dark fw-bold">
+                                    List of Cities with less than 30K Literate Netizens in
+                                    {{ $language['title'] }}.
+                                </h6>
+                                <div class="table-wrapper">
+                                    <table
+                                        class="table table-sm table-striped table-bordered table-hover modal-city-table">
+                                        <thead class="sticky-top">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>District Capital</th>
+                                                <th>State/UT</th>
+                                                <th>State Capital</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($lessThen30k as $item)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item['City'] ?? '' }}</td>
+                                                <td>{{ $state[(string) ($item['State_ID'] ?? '')] ?? ($state[(int)
+                                                    ($item['State_ID'] ?? 0)] ?? '') }}
+                                                </td>
+                                                <td>{{ $item['State_Capital'] ?? '' }}</td>
+                                            </tr>
+                                            @empty
+                                            <tr>
+                                                <td colspan="4" class="text-center">No cities available
+                                                </td>
+                                            </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
                         @endif
 
                     </div>
+                    @php
+                    $countries = collect($countriesByLanguage[$language['id']] ?? [])
+                    ->filter(fn($c) => strtolower($c) !== 'india')
+                    ->values();
+                    @endphp
+
+                    @if ($countries->isNotEmpty())
+                    <div class="mt-4">
+                        <h6 class="mb-3 text-dark fw-bold text-center">
+                            List of Countries with Literate Netizens in {{ $language['title'] }}.
+                        </h6>
+                        <div class="row">
+                            @foreach ($countries as $index => $country)
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-1">
+                                <div class="country-pill-badge w-100 text-center">
+                                    {{ $index + 1 }}. {{ $country }}
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    @endif
+
                 </div>
             </div>
         </div>
+    </div>
     @endforeach
 
 
 
 
     @foreach ($portal as $zone => $states)
-        @php
-            $zoneId = Str::slug($zone);
-        @endphp
-        <div class="modal fade zone-modal" id="ZoneModal-{{ $zoneId }}" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-md modal-dialog-scrollable">
-                <div class="modal-content ">
-                    <div class="modal-header">
-                        <h5 class="modal-title">{{ $zone }}
-                            {{ $zone != 'Union Territories' ? 'Zone' : '' }}
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body p-2">
+    @php
+    $zoneId = Str::slug($zone);
+    @endphp
+    <div class="modal fade zone-modal" id="ZoneModal-{{ $zoneId }}" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-scrollable">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ $zone }}
+                        {{ $zone != 'Union Territories' ? 'Zone' : '' }}
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-2">
 
-                        <div class="accordion zone-accordion" id="ZoneAccordion-{{ $zoneId }}">
-                            @foreach ($states as $state => $statePortals)
-                                @php
-                                    $stateId = Str::slug($zone . '-' . $state);
-                                    $isFirst = $loop->first;
-                                @endphp
-                                <div class="accordion-item">
-                                    @php
-                                        $nonLiveCount = $statePortals->where('is_live', false)->count();
-                                    @endphp
-                                    <h2 class="accordion-header" id="{{ $stateId }}">
-                                        <button class="accordion-button collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#collapse{{ $stateId }}"
-                                            aria-expanded="{{ $isFirst ? 'true' : 'false' }}">
-                                            {{ $state }}
-                                            {{-- <span class="zone-city-count">{{ count($statePortals) }}
+                    <div class="accordion zone-accordion" id="ZoneAccordion-{{ $zoneId }}">
+                        @foreach ($states as $state => $statePortals)
+                        @php
+                        $stateId = Str::slug($zone . '-' . $state);
+                        $isFirst = $loop->first;
+                        @endphp
+                        <div class="accordion-item">
+                            @php
+                            $nonLiveCount = $statePortals->where('is_live', false)->count();
+                            @endphp
+                            <h2 class="accordion-header" id="{{ $stateId }}">
+                                <button class="accordion-button collapsed" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse{{ $stateId }}"
+                                    aria-expanded="{{ $isFirst ? 'true' : 'false' }}">
+                                    {{ $state }}
+                                    {{-- <span class="zone-city-count">{{ count($statePortals) }}
                                         {{ Str::plural('City', count($statePortals)) }}</span> --}}
-                                            @if ($nonLiveCount > 0)
-                                                <span class="zone-city-count">
-                                                    {{ $nonLiveCount }} {{ Str::plural('City', $nonLiveCount) }}
-                                                </span>
-                                            @endif
-                                        </button>
-                                    </h2>
-                                    <div id="collapse{{ $stateId }}" class="accordion-collapse collapse"
-                                        data-bs-parent="#ZoneAccordion-{{ $zoneId }}">
-                                        <div class="accordion-body">
-                                            <div class="zone-district-tabs">
-                                                @foreach ($statePortals as $portalItem)
-                                                    {{-- @if ($portalItem->is_ext_url)
+                                    @if ($nonLiveCount > 0)
+                                    <span class="zone-city-count">
+                                        {{ $nonLiveCount }} {{ Str::plural('City', $nonLiveCount) }}
+                                    </span>
+                                    @endif
+                                </button>
+                            </h2>
+                            <div id="collapse{{ $stateId }}" class="accordion-collapse collapse"
+                                data-bs-parent="#ZoneAccordion-{{ $zoneId }}">
+                                <div class="accordion-body">
+                                    <div class="zone-district-tabs">
+                                        @foreach ($statePortals as $portalItem)
+                                        {{-- @if ($portalItem->is_ext_url)
                                         @php
                                         $dropdownId =
                                         'portal-dropdown-' .
@@ -1281,24 +1281,23 @@
                                         </a>
                                         @endif --}}
 
-                                                    @if (!$portalItem->is_live)
-                                                        <a href="/{{ $portalItem->slug }}" target="_blank"
-                                                            class="zone-district-tab">
-                                                            {{ $portalItem->city_name }}
-                                                        </a>
-                                                    @endif
-                                                @endforeach
-                                            </div>
-                                        </div>
+                                        @if (!$portalItem->is_live)
+                                        <a href="/{{ $portalItem->slug }}" target="_blank" class="zone-district-tab">
+                                            {{ $portalItem->city_name }}
+                                        </a>
+                                        @endif
+                                        @endforeach
                                     </div>
                                 </div>
-                            @endforeach
-
+                            </div>
                         </div>
+                        @endforeach
+
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     @endforeach
 
 
@@ -1321,9 +1320,8 @@
                         <p>Free browsing of City retail, businesses, government offices &amp; entrepreneurs. Integrated
                             city employment listing &amp; related product/services listing. Secure password controlled
                             &amp; easy updation in local languages.</p>
-                        <h3 class="text-primary">City e-Cards<a href="/vCard/" target="_blank"
-                                contenteditable="false" id="style-o178n" class="style-o178n"><i
-                                    class="bi bi-arrow-up-right-square"></i></a>
+                        <h3 class="text-primary">City e-Cards<a href="/vCard/" target="_blank" contenteditable="false"
+                                id="style-o178n" class="style-o178n"><i class="bi bi-arrow-up-right-square"></i></a>
                         </h3>
                         <p>Free web-address to enable first step of digitization for informal sector workers &amp;
                             micro/small businesses with low literacy</p>
@@ -1334,8 +1332,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="city-btn">
-                                        <a target="_blank"
-                                            href="{{ route('city.show', ['city_name' => 'lucknow']) }}"
+                                        <a target="_blank" href="{{ route('city.show', ['city_name' => 'lucknow']) }}"
                                             contenteditable="false" id="style-9wwWF" class="style-9wwWF">Lucknow,
                                             U.P</a>
                                     </div>
@@ -1356,8 +1353,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="city-btn">
-                                        <a target="_blank"
-                                            href="{{ route('city.show', ['city_name' => 'jaunpur']) }}"
+                                        <a target="_blank" href="{{ route('city.show', ['city_name' => 'jaunpur']) }}"
                                             contenteditable="false" id="style-twSAO" class="style-twSAO">Jaunpur,
                                             U.P</a>
                                     </div>
@@ -1365,8 +1361,7 @@
                             </div>
                         </div>
                         <div class="img">
-                            <img src="https://b2c.prarang.in/assets/image/meerut-y.png" alt=""
-                                width="100%">
+                            <img src="https://b2c.prarang.in/assets/image/meerut-y.png" alt="" width="100%">
                         </div>
                     </section>
                 </div>
@@ -1396,27 +1391,25 @@
                     <form id="meetingRequest">
                         <div class="m-2">
                             <label for="meetingRequest-name">Name: </label>
-                            <input id="meetingRequest-name" type="text" class="form-control w-100"
-                                name='name'>
+                            <input id="meetingRequest-name" type="text" class="form-control w-100" name='name'>
                         </div>
                         <div class="m-2">
                             <label for="meetingRequest-phone">Phone No:</label>
-                            <input id="meetingRequest-phone" type="number" class="form-control w-100"
-                                name='phone'>
+                            <input id="meetingRequest-phone" type="number" class="form-control w-100" name='phone'>
                         </div>
                         <div class="m-2">
                             <label for="meetingRequest-email">Email</label>
-                            <input id="meetingRequest-email" type="email" class="form-control w-100"
-                                name='email'>
+                            <input id="meetingRequest-email" type="email" class="form-control w-100" name='email'>
                         </div>
                         <div class="m-2 mt-4">
-                            <textarea name="desc" id="" class="form-control" rows="2" placeholder="Say Something....."></textarea>
+                            <textarea name="desc" id="" class="form-control" rows="2"
+                                placeholder="Say Something....."></textarea>
                         </div>
                         <p class="text-danger ps-3" id="request-error"></p>
                         <p class="text-end">
 
-                            <button type="submit" class="btn btn-warning"><i
-                                    class="fa fa-spinner fa-spin fa-fw d-none" id="loader"></i>Send</button>
+                            <button type="submit" class="btn btn-warning"><i class="fa fa-spinner fa-spin fa-fw d-none"
+                                    id="loader"></i>Send</button>
                         </p>
                     </form>
                     <div id="mail-success"></div>
@@ -1428,8 +1421,8 @@
         </div>
     </div>
 
-    <div class="modal fade modal-xl" id="TheseMTw1" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="TheseMTw1Label" aria-hidden="true">
+    <div class="modal fade modal-xl" id="TheseMTw1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="TheseMTw1Label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1520,8 +1513,8 @@
             </div>
         </div>
     </div>
-    <div class="modal fade modal-xl" id="TheseMTi1" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="TheseMTi1Label" aria-hidden="true">
+    <div class="modal fade modal-xl" id="TheseMTi1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="TheseMTi1Label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
