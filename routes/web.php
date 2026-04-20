@@ -96,7 +96,7 @@ Route::get('/00-{query?}', [ShortnerUrl::class, 'index'])->name('shortner-url');
 
 
 Route::get('/cirus/{type?}', App\Livewire\Pages\Cirus::class)->name('cirus.dashboard');
-Route::get('/filter/{type?}', App\Livewire\Pages\VillageTownFilter::class);
+Route::get('/webs/filter/{type?}', App\Livewire\Pages\VillageTownFilter::class);
 // Route::get('/czech-republic-regional-comparison', CzeComparisonTool::class);
 Route::get('/czech-republic-{type}-comparison', CzeCountryComparison::class);
 Route::get('/nepal-{type}-comparison', NepalCountryComparison::class);
