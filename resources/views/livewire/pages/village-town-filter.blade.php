@@ -531,7 +531,16 @@
                         $liveCities=[
                         ['type'=>'h_webs','lable'=>"Hindi Webs", 'data'=>[
                         ['title' => 'Lucknow', 'slug'=>'lucknow'],
-                        ['title' => 'Meerut', 'slug'=>'meerut'],
+                        [
+                        'title' => 'Meerut',
+                        'slug'=>'meerut',
+                        'links' => [
+                        ['label' => 'Main Portal', 'url' => 'https://prarang.in/meerut'],
+                        ['label' => 'English Domain', 'url' => 'https://meerutrang.in'],
+                        ['label' => 'Hindi Domain', 'url' => 'https://मेरठरंग.भारत/'],
+
+                        ]
+                        ],
                         ['title' => 'Rampur', 'slug'=>'rampur'],
                         ['title' => 'Jaunpur', 'slug'=>'jaunpur'],
                         ['title' => 'Shahjahanpur', 'slug'=>'shahjahanpur'],
@@ -561,7 +570,48 @@
                                 <!-- Horizontally Spread Cards -->
                                 <div class="flex flex-wrap gap-3">
                                     @foreach($group['data'] as $city)
-                                    <a href="https://prarang.in/{{ $city['slug'] }}" target="_blank"
+                                    @php
+                                    $links = $city['links'] ?? [['label' => $city['title'], 'url' =>
+                                    "https://prarang.in/{$city['slug']}"]];
+                                    $hasMultipleLinks = count($links) > 1;
+                                    @endphp
+
+                                    @if($hasMultipleLinks)
+                                    <div x-data="{ open: false }" class="relative">
+                                        <button @click="open = !open"
+                                            class="group flex items-center gap-3 bg-white border border-slate-200 px-4 py-3 rounded-2xl hover:shadow-lg hover:border-blue-300 transition-all duration-300 no-underline cursor-pointer">
+                                            <!-- Image -->
+                                            <div
+                                                class="w-10 h-10 rounded-full overflow-hidden border-2 border-slate-100 group-hover:border-blue-200 transition-colors duration-300 flex-shrink-0">
+                                                <img src="https://www.prarang.in/assets/images/home/town-1.png"
+                                                    alt="{{ $city['title'] }}"
+                                                    class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                                            </div>
+                                            <!-- Name -->
+                                            <span
+                                                class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors whitespace-nowrap">
+                                                {{ $city['title'] }}
+                                            </span>
+                                            <!-- Chevron -->
+                                            <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-600 transition-all duration-300 flex-shrink-0"
+                                                :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor"
+                                                viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                    d="M19 9l-7 7-7-7" />
+                                            </svg>
+                                        </button>
+                                        <div x-show="open" @click.away="open = false" x-cloak x-transition
+                                            class="absolute left-0 mt-2 w-48 bg-white border border-slate-100 rounded-2xl shadow-2xl p-2 z-[100]">
+                                            @foreach($links as $link)
+                                            <a href="{{ $link['url'] }}" target="_blank"
+                                                class="block w-full text-left px-4 py-2.5 rounded-xl text-[13px] font-bold text-slate-700 hover:bg-blue-600 hover:text-white transition-all duration-200 no-underline">
+                                                {{ $link['label'] }}
+                                            </a>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    @else
+                                    <a href="{{ $links[0]['url'] }}" target="_blank"
                                         class="group flex items-center gap-3 bg-white border border-slate-200 px-4 py-3 rounded-2xl hover:shadow-lg hover:border-blue-300 transition-all duration-300 no-underline cursor-pointer">
                                         <!-- Image -->
                                         <div
@@ -582,6 +632,7 @@
                                                 d="M9 5l7 7-7 7" />
                                         </svg>
                                     </a>
+                                    @endif
                                     @endforeach
                                 </div>
                             </div>
