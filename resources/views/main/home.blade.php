@@ -458,7 +458,7 @@
                                     </a>
                                 </td>
                                 <td class="px-2">
-                                    <a href="//webs/filter/cities"
+                                    <a href="/webs/filter/cities"
                                         class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
                                         style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
                                         <span>Cities</span>
@@ -486,7 +486,7 @@
                                     </a>
                                 </td>
                                 <td class="px-2">
-                                    <a href="//webs/filter/village"
+                                    <a href="/webs/filter/village"
                                         class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
                                         style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
                                         <span>Villages</span>
