@@ -161,9 +161,10 @@
                                     class="text-sm font-bold {{ $sub_filter === 'only_dhq' ? 'text-blue-700' : 'text-slate-500' }}">District
                                     Capital</span>
                             </label>
+
                             <label
-                                class="relative flex items-center gap-3 px-5 py-2 rounded-xl cursor-pointer transition-all duration-300 {{ $sub_filter === 'non_dhq' ? 'bg-white border-blue-600 shadow-sm border-2' : 'hover:bg-white/80 border-slate-200 border bg-white/40' }}">
-                                <input type="radio" wire:model.live="sub_filter" value="non_dhq"
+                                class="relative flex items-center gap-3 px-5 py-2 rounded-xl cursor-pointer transition-all duration-300 {{ $sub_filter === 'is_cs' ? 'bg-white border-blue-600 shadow-sm border-2' : 'hover:bg-white/80 border-slate-200 border bg-white/40' }}">
+                                <input type="radio" wire:model.live="sub_filter" value="is_cs"
                                     class="w-4 h-4 text-blue-600 focus:ring-blue-500 border-slate-300">
                                 <span
                                     class="text-sm font-bold {{ $sub_filter === 'non_dhq' ? 'text-blue-700' : 'text-slate-500' }}">Others</span>
@@ -418,6 +419,45 @@
 
                         <!-- Step 4: Village/Town Selection -->
                         <div class="space-y-3" x-data="{ open: false, search: '' }">
+                            @if($type === 'town' ? $district : $subDistrict)
+                            <style>
+                                /* Division */
+                                .grid .space-y-3 .mb-4 {
+                                    margin-bottom: 1px !important;
+                                }
+
+                                /* Space 3 */
+                                .shadow-lg div .space-y-3:nth-child(3) {
+                                    transform: translatex(0px) translatey(-72px);
+                                }
+
+                                /* Select */
+                                .grid .mb-4 select {
+                                    padding-top: 8px !important;
+                                    padding-bottom: 10px !important;
+                                    margin-bottom: 1px;
+                                }
+                            </style>
+                            <div class="mb-4" wire:loading.class="opacity-50 pointer-events-none">
+                                <div class="relative">
+                                    <select wire:model.live="sub_town_filter"
+                                        class="w-full pl-4 pr-10 py-3 bg-slate-50 border-2 border-slate-100 rounded-2xl text-[13px] font-bold text-slate-700 outline-none focus:border-blue-400 focus:bg-white transition-all appearance-none cursor-pointer group">
+                                        <option value="all">Filter in Cities/Towns (All)</option>
+                                        <option value="is_ua">Urban Agglomeration (UA)</option>
+                                        <option value="is_mcp">Municipal Corporation (MCP)</option>
+                                        <option value="is_smc">Smart City (SMC)</option>
+                                    </select>
+                                    <div
+                                        class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
+                                        <svg class="w-5 h-5 transition-transform group-focus:rotate-180" fill="none"
+                                            stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
                             <div class="flex items-center gap-3 mb-2">
                                 <span
                                     class="flex items-center justify-center w-8 h-8 rounded-xl {{ ($type === 'town' ? $town : $village) ? 'bg-green-100 text-green-600' : ($type === 'town' ? ($district ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-300') : ($subDistrict ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-300')) }} font-bold text-sm transition-colors duration-300">
@@ -448,6 +488,8 @@
                                     "#".count($type === 'town' ? $towns : $villages) : ' '
                                     }}</label>
                             </div>
+
+
 
                             <div class="relative">
                                 @php

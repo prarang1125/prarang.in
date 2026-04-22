@@ -299,9 +299,197 @@ $metaData[] = '';
                     @endforeach
                 </div>
             </div>
+            <div class="bg-white rounded-2xl border border-green-200 shadow-sm overflow-hidden mb-6">
+                <div class="px-5 py-4 text-center">
+                    <h3 class="text-base text-center font-bold text-blue-600">Useful Links</h3>
+                </div>
+
+                <div class="px-6 pb-6 space-y-2" x-data="{ active: null }">
+                    @php
+                    $linksGroups = [];
+                    $corpData = $dhq['extanded']['corporations'] ?? [];
+
+                    // Municipal Corporation
+                    if (!empty($corpData['mcp']) && is_array($corpData['mcp'])) {
+                    $mcpItems = [];
+                    foreach ($corpData['mcp'] as $mcp) {
+                    $mcpItems[] = [
+                    'name' => $mcp['name'] ?? 'Municipal Corporation',
+                    'link' => $mcp['url'] ?? '#'
+                    ];
+                    }
+                    $linksGroups[] = [
+                    'icon' => '🏛️',
+                    'label' => 'Municipal Corporation',
+                    'items' => $mcpItems
+                    ];
+                    }
+
+                    // Smart City
+                    if (!empty($corpData['smc'])) {
+                    $smcItems = [];
+                    if (isset($corpData['smc']['name'])) {
+                    // Single object
+                    $smcItems[] = [
+                    'name' => $corpData['smc']['name'],
+                    'link' => $corpData['smc']['url'] ?? '#'
+                    ];
+                    } elseif (is_array($corpData['smc'])) {
+                    // Array of objects
+                    foreach ($corpData['smc'] as $smc) {
+                    $smcItems[] = [
+                    'name' => $smc['name'] ?? 'Smart City',
+                    'link' => $smc['url'] ?? '#'
+                    ];
+                    }
+                    }
+
+                    if (!empty($smcItems)) {
+                    $linksGroups[] = [
+                    'icon' => '🏙️',
+                    'label' => 'Smart City',
+                    'items' => $smcItems
+                    ];
+                    }
+                    }
+                    @endphp
+
+                    @foreach ($linksGroups as $index => $group)
+                    <div class="border-b border-gray-50 last:border-0 text-left">
+                        <button @click="active = active === {{ $index }} ? null : {{ $index }}"
+                            class="w-full py-3 flex items-center justify-between group transition-colors hover:bg-gray-50/50 rounded-lg px-2 -mx-2">
+                            <div class="flex items-center gap-3">
+                                <span class="text-base w-6 shrink-0">{{ $group['icon'] }}</span>
+                                <span class="text-sm font-bold text-gray-800">{{ $group['label'] }}</span>
+                            </div>
+                            <svg class="w-4 h-4 text-gray-400 transition-transform duration-300"
+                                :class="active === {{ $index }} ? 'rotate-180 text-blue-600' : ''" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+
+                        <div x-show="active === {{ $index }}" x-collapse x-cloak class="ml-9 pb-3 space-y-2">
+                            @foreach ($group['items'] ?? [] as $item)
+                            <a href="{{ $item['link'] ?? '#' }}" target="_blank"
+                                class="block text-xs font-semibold text-gray-600 hover:text-blue-700 transition-colors">
+                                • {{ $item['name'] ?? '-' }}
+                            </a>
+                            @endforeach
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+            </div>
         </div>
 
         <div class="lg:col-span-6 space-y-6  order-1 lg:order-2">
+            @if($dhq['ua_data'] != null)
+            <div x-data="{ openUA: false }" class="mb-6">
+                @php
+                $uaArr = is_array($dhq['ua_data']) ? $dhq['ua_data'] : [];
+                $uaCount = count($uaArr);
+                $uaDisplay = array_slice($uaArr, 0, 3);
+                @endphp
+
+                <p class="text-center text-sm font-bold text-gray-700 leading-relaxed shadow rounded p-2 bg-white">
+                    Urban Agglomeration (UA) comprising of
+                    <span class="text-blue-600">
+                        @foreach($uaDisplay as $index => $item)
+                        @if($uaCount > 3)
+                        {{ $item['name'] ?? '' }}{{ $index < 2 ? ',' : '' }} @else {{ $item['name'] ?? '' }}{{
+                            ($index==$uaCount - 2) ? ' and' : ($index < $uaCount - 2 ? ',' : '' ) }} @endif @endforeach
+                            </span>
+                            @if($uaCount > 3)
+                            <button @click="openUA = true" class="text-blue-900 hover:text-blue-400">
+                                <span>+{{ $uaCount - 3 }} more</span>
+                            </button>
+                            @endif
+                </p>
+
+                <!-- UA Modal Table -->
+                <template x-teleport="body">
+                    <div x-show="openUA" x-cloak
+                        class="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-md"
+                        x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
+                        x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200"
+                        x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                        @click.self="openUA = false">
+
+                        <div class="bg-white rounded-[32px] w-full max-w-lg max-h-[80vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200"
+                            x-show="openUA" x-transition:enter="transition ease-out duration-300"
+                            x-transition:enter-start="opacity-0 scale-95 translate-y-10"
+                            x-transition:enter-end="opacity-100 scale-100 translate-y-0">
+
+                            <!-- Modal Header -->
+                            <div
+                                class="px-8 py-6 bg-slate-50 border-b border-slate-100 flex items-center justify-between relative">
+                                <div>
+                                    <h5 class="text-xl font-black text-slate-900 tracking-tight">Urban Agglomeration
+                                    </h5>
+                                    {{-- <p
+                                        class="text-[11px] font-bold text-blue-500 mt-0.5 uppercase tracking-widest">
+                                        {{ $uaCount }} entities found
+                                    </p> --}}
+                                </div>
+                                <button @click="openUA = false"
+                                    class="w-8 h-8 flex items-center justify-center bg-white border border-slate-200 hover:bg-slate-50 rounded-full transition-all text-slate-400 hover:text-slate-900 shadow-sm">
+                                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                            d="M6 18L18 6M6 6l12 12" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <!-- Modal Table Content -->
+                            <div class="flex-grow overflow-y-auto p-6 custom-scrollbar bg-white">
+                                <div class="overflow-hidden border border-slate-100 rounded-2xl">
+                                    <table class="w-full text-left border-collapse">
+                                        <thead>
+                                            <tr class="bg-slate-50/50">
+                                                <th
+                                                    class="py-3 px-4 text-[9px] font-black text-slate-400  tracking-widest border-b border-slate-100 w-16">
+                                                    #</th>
+                                                <th
+                                                    class="py-3 px-4 text-[9px] font-black text-slate-400  tracking-widest border-b border-slate-100">
+                                                    Town</th>
+                                                <th
+                                                    class="py-3 px-4 text-[9px] font-black text-slate-400  tracking-widest border-b border-slate-100">
+                                                    Population</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-slate-50">
+                                            @foreach($uaArr as $index => $item)
+                                            <tr class="hover:bg-blue-50/30 transition-colors group">
+                                                <td
+                                                    class="py-2.5 px-4 text-[10px] font-bold text-slate-400 tracking-tight">
+                                                    {{ $loop->iteration }}</td>
+                                                <td
+                                                    class="py-2.5 px-4 text-xs font-bold text-slate-700 group-hover:text-blue-600 transition-colors">
+                                                    {{ $item['name'] ?? 'N/A' }}</td>
+                                                <td
+                                                    class="py-2.5 px-4 text-xs font-bold text-slate-700 group-hover:text-blue-600 transition-colors">
+                                                    {{ number_format($item['TOT_P'] ?? 'N/A') }}</td>
+                                            </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <!-- Modal Footer -->
+                            <div class="px-8 py-5 bg-slate-50 border-t border-slate-100 flex justify-center">
+                                <button @click="openUA = false"
+                                    class="px-10 py-2.5 bg-slate-900 text-white text-[10px] font-bold rounded-xl hover:bg-black transition-all shadow-lg tracking-widest uppercase">
+                                    Close
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+            @endif
             <!-- Village Banner Image -->
             <div class="rounded-2xl overflow-hidden border border-gray-100 shadow-sm transition-all hover:shadow-md">
                 <img src="{{ asset('assets/images/urban_states/' . ($dhq['state']['state_LGD_code'] ?? 'default')) }}.jpg"

@@ -487,9 +487,14 @@
                 </div>
                 <div class="city-s my-2 p-4 rounded-2xl">
 
-                    <h5 class="text-lg font-black text-gray-800 tracking-tight text-center uppercase mb-1">
+                    <h5
+                        class="text-lg font-black text-gray-800 tracking-tight text-center uppercase mb-1 border-b-2 border-b-rose-100">
                         National Knowledge Grid
                     </h5>
+
+                    <h6 class="text-lg font-black text-gray-800 tracking-tight text-center uppercase mb-1">
+                        India
+                    </h6>
 
                     <div class="mt-3 flex justify-center">
                         <table class="text-center border-separate border-spacing-y-3">
@@ -568,7 +573,6 @@
 
                         </table>
                     </div>
-
                 </div>
             </div>
             <!-- Arrow -->
@@ -596,7 +600,8 @@
                 </div>
                 <div class="language-s p-4 mt-2 rounded-2xl">
 
-                    <h5 class="text-lg font-black text-gray-800 tracking-tight text-center uppercase mb-1">
+                    <h5
+                        class="text-lg font-black text-gray-800 tracking-tight text-center uppercase mb-1 border-b-2 border-b-rose-100">
                         Language Knowledge Grid
                     </h5>
 
@@ -659,7 +664,8 @@
                 </div>
                 <div class="country-s p-4 mt-2 rounded-2xl">
 
-                    <h5 class="text-lg font-black text-gray-800 tracking-tight text-center uppercase mb-1">
+                    <h5
+                        class="text-lg font-black text-gray-800 tracking-tight text-center uppercase mb-1 border-b-2 border-b-rose-100">
                         International Knowledge Grid
                     </h5>
 

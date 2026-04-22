@@ -423,3 +423,9 @@ header .mx-auto .group\/ai{
  width:100% !important;
 }
 
+/* Span Tag */
+header .group\/item span{
+ font-size:10px;
+ color:#ffffff;
+}
+

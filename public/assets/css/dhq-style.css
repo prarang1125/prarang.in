@@ -605,3 +605,84 @@ header .mx-auto .group\/clock{
  width:100% !important;
 }
 
+/* Uppercase */
+header .group\/item .uppercase{
+ font-size:10px;
+ color:#ffffff;
+}
+
+/* Span Tag */
+.group\/clock .items-center span{
+ font-size:12px;
+}
+
+/* Realtime clock */
+#realtime-clock{
+ font-size:12px;
+}
+
+/* Realtime date */
+#realtime-date{
+ font-size:10px;
+}
+
+/* Group/clock */
+header .mx-auto .items-center .items-center .justify-center .group\/clock{
+ width:75% !important;
+}
+
+/* Hover */
+.backdrop-blur-md .justify-center .hover\:bg-black{
+ background-color:#000000;
+}
+
+/* Overflow auto */
+.backdrop-blur-md .overflow-hidden .overflow-y-auto{
+ max-height:483px;
+}
+
+/* BackUnknown blur */
+.backdrop-blur-md{
+ background-color:rgba(0,0,0,0.29);
+ transform:translatex(0px) translatey(0px);
+}
+
+/* Overflow hidden */
+.backdrop-blur-md > .overflow-hidden{
+ border-top-left-radius:12px;
+ border-top-right-radius:12px;
+ border-bottom-left-radius:12px;
+ border-bottom-right-radius:12px;
+}
+
+/* Tracking widest */
+.backdrop-blur-md thead .tracking-widest{
+ font-size:14px;
+}
+
+/* Justify between */
+.backdrop-blur-md .overflow-hidden .justify-between{
+ padding-top:9px;
+ padding-bottom:11px;
+}
+
+/* Column 5/12 */
+header .mx-auto > .items-center > .items-center{
+ justify-content:flex-start;
+ align-items:center;
+}
+
+header .mx-auto .items-center > .items-center > .items-center{
+ margin-left:36px;
+}
+
+/* Hover */
+header .mx-auto .items-center .items-center .hover\:shadow-xl{
+ width:100% !important;
+}
+
+/* Subscribe trigger */
+#subscribe-trigger{
+ background-color:rgba(31,29,29,0);
+}
+

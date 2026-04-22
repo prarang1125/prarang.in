@@ -23,6 +23,8 @@ class VillageTownFilter extends Component
 
     public $villageType = [];
     public $sub_filter = 'all';
+    public $sub_town_filter = 'all';
+
 
     public function mount($type = 'village')
     {
@@ -48,7 +50,7 @@ class VillageTownFilter extends Component
 
     public function updatedType()
     {
-        $this->reset(['state', 'district', 'subDistrict', 'village', 'town', 'districts', 'subDistricts', 'villages', 'towns', 'sub_filter']);
+        $this->reset(['state', 'district', 'subDistrict', 'village', 'town', 'districts', 'subDistricts', 'villages', 'towns', 'sub_filter', 'sub_town_filter']);
         $this->loadStates();
     }
 
@@ -115,9 +117,15 @@ class VillageTownFilter extends Component
         }
     }
 
+    public function updatedSubTownFilter()
+    {
+        $this->reset(['village', 'town', 'villages', 'towns']);
+        $this->loadVillagesAndTowns();
+    }
+
     protected function getCachedFilterData(array $params)
     {
-        $cacheKey = $this->type . '_filter_' . md5(json_encode($params));
+        $cacheKey = $this->type . '_filter_' . $this->sub_town_filter . '_' . md5(json_encode($params));
 
         return cache()->remember($cacheKey, now()->addDays(1), function () use ($params) {
             $response = httpGet('v1/pages/filter-state-district-villages-towns', $params);
@@ -168,6 +176,7 @@ class VillageTownFilter extends Component
                 'type' => $this->type,
                 'state_id' => $this->state,
                 'sub_filter' => $this->sub_filter,
+                'sub_town_filter' => $this->sub_town_filter,
             ])['districts'] ?? [];
 
             $this->districts = collect($districtsData)->map(function ($name, $id) {
@@ -202,6 +211,7 @@ class VillageTownFilter extends Component
                 'type' => $this->type,
                 'state_id' => $this->state,
                 'district_id' => $this->district,
+                'sub_town_filter' => $this->sub_town_filter,
             ])['sub_districts'] ?? [];
 
             $transformer = function ($data) {
@@ -241,6 +251,7 @@ class VillageTownFilter extends Component
                 'state_id' => $this->state,
                 'district_id' => $this->district,
                 'sub_district_id' => $this->type === 'village' ? $this->subDistrict : null,
+                'sub_town_filter' => $this->sub_town_filter,
             ];
 
             if ($this->type === 'town') {

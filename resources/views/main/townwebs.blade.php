@@ -442,33 +442,32 @@ $metaData = [
     <section class="max-w-7xl mx-auto px-4 pt-8">
         <div class="space-y-4 text-slate-700 leading-relaxed text-[14px]">
             <p>
-                <span class="font-semibold">While the Census 2011 cities/towns totaled to 7,933 (4,401 statutory
-                    towns and 3,892 census
-                    towns).
-                    These can effectively be summarized as 6,329 since 1,947 cities were actually part of 298
-                    Urban-Agglomerations (UAs). </span>
-                <br> <br> Now in 2026, with new states increasing to 28 (and 8 UTs) and the districts increasing from
-                640
-                in 2011 to 766 in 2026, the 6,329 cities now include 301 Urban Agglomerations (UAs) and even 44
-                Villages which are currently District Capitals or State Capitals (Amravati (Andhra Pradesh)) of some
-                of the new 128+ districts created after 2011. <br> <br>
-                Each of the 766 Districts and 28 States & 8 UTs have a Capital. There are 2 State Capitals - Amravati
-                (Andhra Pradesh) & Bhubaneswar (Odisha) - which are not district capitals. Also, Chandigarh is unique as
-                a capital of two states (Punjab & Haryana) and one UT (Chandigarh itself).
-                <br> <br>
-                We thus have 768 State and/or District capital Cities in India in 2026. Of these, <b>766</b> District
-                Capitals,
-                <b>240</b> are UAs, <b>468</b> are Cities, <b>43</b> which were Villages in 2011 and <b>2</b> State
-                Capitals, <b>1</b>
-                Village
-                - Amravati
-                (Andhra Pradesh) and <b>1</b> City - Bhubaneswar (Odisha). But there are 15 District Capitals ( <a
-                    href="javascript:void(0)" id="viewRemaining">Click here</a> )
-                which effectively merge into another UA near it. Thus the focus Capitals (State/District) in India
-                are
-                not 768 but 753.
-                <br> <br>
-                As of 2026, there are 278 Municipal Corporations declared by the State Governments and 100 Smart Cities
+                <span class="font-semibold">While the Census 2011 cities/towns totaled <b>7,933</b> (4,041 statutory
+                    towns and
+                    3,892 census towns), these can effectively be summarized as 6,284, since 1,947 cities were actually
+                    part of <b>298</b> Urban-Agglomerations (UAs). We make no distinction between the word “Cities” and
+                    the
+                    word “Towns”. Our focus is to make a distinction between Capital Cities (State/District) and
+                    Non-Capitals (Other cities).
+                </span>
+                <br> <br>As of 2026, India comprises 28 states (and 8 UTs) and districts increasing from 640 in 2011 to
+                766 in 2026, 44 villages have become District or State Capitals (including Amaravati (Andhra Pradesh)),
+                and Hanamkonda has emerged as a separate city after 2011—raising the total from 6,284 to <b>6,329</b>
+                cities.
+                These now comprise 301 Urban Agglomerations (UAs).
+
+                <br><br>Each of the 766 districts and 28 states & 8 UTs has a Capital. There are 2 State
+                Capitals—Amaravati (Andhra Pradesh) & Bhubaneswar (Odisha)—which are not district capitals. Also,
+                Chandigarh is unique as the capital of two states (Punjab & Haryana) and one UT (Chandigarh itself).
+                <br><br>
+                We thus have 768 State and/or District capital Cities in India in 2026. Of these, 766 are district
+                capitals; 240 are Urban Agglomerations (UAs), 468 are cities, and 43 were villages in 2011, while the
+                remaining two are state capitals—1 Village - Amaravati (Andhra Pradesh) and 1 City - Bhubaneswar
+                (Odisha). However, 15 District Capitals  ( <a href="javascript:void(0)" id="viewRemaining">Click
+                    here</a> ) effectively merge into nearby UAs, bringing the
+                focus capitals (State/District) to <b>753</b> instead of 768.
+                <br><br>
+                Currently, there are 278 Municipal Corporations declared by the State Governments and 100 Smart Cities
                 under the Smart Cities Mission.
             </p>
             <div class="flex justify-end items-end mb-2">

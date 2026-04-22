@@ -86,7 +86,43 @@
                         </div>
                     </div>
 
-
+                    <div>
+                        <div class="flex flex-col gap-1 py-2 bg-black rounded-lg">
+                            @if(isset($data['extanded']['type']) && is_array($data['extanded']['type']))
+                            @foreach ($data['extanded']['type'] as $item)
+                            @if(is_array($item))
+                            @foreach($item as $key => $label)
+                            <div class="flex items-center gap-2 group/item px-2">
+                                <div class="relative flex items-center justify-center">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                                    <div
+                                        class="absolute inset-0 w-1.5 h-1.5 rounded-full bg-green-500 animate-ping opacity-20">
+                                    </div>
+                                </div>
+                                <span
+                                    class="text-[9px] font-black uppercase tracking-[0.15em] text-slate-400 group-hover/item:text-green-400 transition-colors duration-300">
+                                    {{ $label }}
+                                </span>
+                            </div>
+                            @endforeach
+                            @else
+                            <div class="flex items-center gap-2 group/item px-2">
+                                <div class="relative flex items-center justify-center">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                                    <div
+                                        class="absolute inset-0 w-1.5 h-1.5 rounded-full bg-green-500 animate-ping opacity-20">
+                                    </div>
+                                </div>
+                                <span
+                                    class="text-[7px] font-black uppercase tracking-[0.15em] text-slate-400 group-hover/item:text-green-400 transition-colors duration-300">
+                                    {{ $item }}
+                                </span>
+                            </div>
+                            @endif
+                            @endforeach
+                            @endif
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Main Branding -->

@@ -30,7 +30,7 @@
         <div class="max-w-10xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-1 lg:gap-8 items-center">
                 <!-- Search Trigger -->
-                <div class="lg:col-span-3 grid grid-cols-2 gap-4 order-3 lg:order-1 items-center">
+                <div class="lg:col-span-4 grid grid-cols-3 gap-4 order-3 lg:order-1 items-center">
                     <!-- Grid Item 1: Logo -->
                     <div class="logo-en-dark flex justify-center">
                         <img src="https://i.ibb.co/TDKtQQrd/prarang-logo-dark.png" alt="Prarang Logo" class="max-h-16">
@@ -69,6 +69,43 @@
                                 class="text-[9px] mt-1 text-gray-500 font-bold uppercase tracking-wider leading-none">
                                 Loading...
                             </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="flex flex-col gap-1 py-2 bg-black rounded-lg">
+                            @if(isset($data['extanded']['type']) && is_array($data['extanded']['type']))
+                            @foreach ($data['extanded']['type'] as $item)
+                            @if(is_array($item))
+                            @foreach($item as $key => $label)
+                            <div class="flex items-center gap-2 group/item px-2">
+                                <div class="relative flex items-center justify-center">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                                    <div
+                                        class="absolute inset-0 w-1.5 h-1.5 rounded-full bg-green-500 animate-ping opacity-20">
+                                    </div>
+                                </div>
+                                <span
+                                    class="text-[9px] font-black uppercase tracking-[0.15em] text-slate-400 group-hover/item:text-green-400 transition-colors duration-300">
+                                    {{ $label }}
+                                </span>
+                            </div>
+                            @endforeach
+                            @else
+                            <div class="flex items-center gap-2 group/item px-2">
+                                <div class="relative flex items-center justify-center">
+                                    <div class="w-1.5 h-1.5 rounded-full bg-green-500"></div>
+                                    <div
+                                        class="absolute inset-0 w-1.5 h-1.5 rounded-full bg-green-500 animate-ping opacity-20">
+                                    </div>
+                                </div>
+                                <span
+                                    class="text-[7px] font-black uppercase tracking-[0.15em] text-slate-400 group-hover/item:text-green-400 transition-colors duration-300">
+                                    {{ $item }}
+                                </span>
+                            </div>
+                            @endif
+                            @endforeach
+                            @endif
                         </div>
                     </div>
 
@@ -132,9 +169,11 @@
                     </div>
                 </div>
 
+
                 <!-- Main Branding -->
-                <div class="lg:col-span-6 flex flex-col items-center order-1 lg:order-2">
+                <div class="lg:col-span-5 flex flex-col items-center order-1 lg:order-3">
                     <div class="flex items-center mb-4 group cursor-default">
+
                         <div>
                             <img class="h-20 w-20" src="https://www.prarang.in/assets/images/home/town-1.png"
                                 alt="Village Icon">
@@ -220,7 +259,7 @@
                 </div>
 
                 <!-- Village Stats -->
-                <div class="lg:col-span-3 order-2 lg:order-3">
+                <div class="lg:col-span-3 order-2 lg:order-4">
                     <div class="flex flex-col gap-2 w-full md:w-72 ml-auto">
                         <!-- Stats -->
                         <div
@@ -236,7 +275,8 @@
                                 <span class="font-bold text-blue-400" id="city-monthly-count">0</span>
                             </div>
                             <div class="flex justify-between items-center py-1 border-t border-gray-800">
-                                <span class="font-medium">Today's {{ $data['dhq']['Town_Name'] ?? '-' }} Readers:</span>
+                                <span class="font-medium">Today's {{ $data['dhq']['Town_Name'] ?? '-' }}
+                                    Readers:</span>
                                 <span class="font-bold text-amber-400" id="city-daily-count">0</span>
                             </div>
                         </div>
