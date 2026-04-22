@@ -419,7 +419,8 @@
 
                         <!-- Step 4: Village/Town Selection -->
                         <div class="space-y-3" x-data="{ open: false, search: '' }">
-                            @if($type === 'town' ? $district : $subDistrict)
+                            @if($type === 'town')
+
                             <style>
                                 /* Division */
                                 .grid .space-y-3 .mb-4 {
@@ -438,6 +439,7 @@
                                     margin-bottom: 1px;
                                 }
                             </style>
+
                             <div class="mb-4" wire:loading.class="opacity-50 pointer-events-none">
                                 <div class="relative">
                                     <select wire:model.live="sub_town_filter"
