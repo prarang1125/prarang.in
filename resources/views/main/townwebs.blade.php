@@ -107,25 +107,25 @@ $metaData = [
         color: white !important;
     }
 
-    .bg-highlight {
+    .] {
         background-color: #6f95e5 !important;
     }
 
 
 
-    .bg-highlight-1 {
+    .] {
         background-color: #cad4e8 !important;
     }
 
-    .bg-highlight-2 {
+    .] {
         background-color: #acc2ee !important;
     }
 
-    .bg-highlight-3 {
+    .] {
         background-color: #d9e1f2 !important;
     }
 
-    .bg-highlight-4 {
+    .]-4 {
         background-color: #d9e1f2 !important;
     }
 
@@ -336,17 +336,17 @@ $metaData = [
     }
 
     /* Highlight */
-    .modern-table .bg-highlight:nth-child(5) {
+    .modern-table .]:nth-child(5) {
         font-weight: 700;
     }
 
     /* Highlight */
-    .modern-table .bg-highlight:nth-child(8) {
+    .modern-table .]:nth-child(8) {
         font-weight: 400;
     }
 
     /* Highlight */
-    .modern-table .bg-highlight:nth-child(11) {
+    .modern-table .]:nth-child(11) {
         font-weight: 700;
     }
 
@@ -407,7 +407,7 @@ $metaData = [
     }
 
     /* Highlight */
-    .modern-table .bg-white .bg-highlight:nth-child(11) {
+    .modern-table .bg-white .]:nth-child(11) {
         font-weight: 400;
     }
 
@@ -435,6 +435,18 @@ $metaData = [
     /* Bold Tag */
     .container .leading-relaxed b {
         font-size: 12px;
+    }
+
+    .h1_bg {
+        background-color: #b7c2eb !important;
+    }
+
+    .h2_bg {
+        background-color: #83c9f8 !important;
+    }
+
+    .h3_bg {
+        background-color: #4395e6 !important;
     }
 </style>
 
@@ -495,20 +507,19 @@ $metaData = [
                     <th rowspan="2" class="text-center align-middle border-white">UAs</th>
                     <th rowspan="2" class="text-center align-middle border-white">UA Cities</th>
                     <th rowspan="2" class="text-center align-middle border-white">Districts</th>
-                    <th colspan="4" class="text-center border-white">Cities</th>
-                    <th colspan="2" class="text-center border-white">Urban Agglomeration</th>
-                    <th rowspan="2" class="text-center align-middle border-white">New Capitals <br>from Census<br> 2011
-                        Villages</th>
+                    <th colspan="4" class="text-center border-white">Capitals</th>
+                    <th colspan="2" class="text-center border-white">Cities</th>
+                    <th rowspan="2" class="text-center align-middle border-white">Total Cities</th>
                     <th rowspan="2" class="text-center align-middle border-white">M. Corp.</th>
                     <th rowspan="2" class="text-center align-middle border-white">Smart <br> Cities</th>
                 </tr>
                 <tr class="header-blue text-[11px]">
-                    <th class="text-center border-white">Capitals</th>
-                    <th class="text-center border-white">UA Cities</th>
-                    <th class="text-center border-white">Others</th>
+                    <th class="text-center border-white">Cities</th>
+                    <th class="text-center border-white">UAs</th>
+                    <th class="text-center border-white">New (2011 villages)</th>
                     <th class="text-center border-white">Total</th>
-                    <th class="text-center border-white">UA Capitals</th>
-                    <th class="text-center border-white">UA Others</th>
+                    <th class="text-center border-white">UAs</th>
+                    <th class="text-center border-white">Other Cities</th>
                 </tr>
             </thead>
 
@@ -518,21 +529,22 @@ $metaData = [
                 <tr>
                     <td class="text-center text-black font-semibold">{{ $index + 1 }}</td>
                     <td class="font-bold text-black">{{ $row['name'] }}</td>
-                    <td class="text-center tabular-nums text-black bg-highlight-1">{{ $row['r1'] }}</td>
-                    <td class="text-center tabular-nums text-black bg-highlight-2">{{ $row['r2'] }}</td>
-                    <td class="text-center tabular-nums text-black">{{ $row['r3'] }}</td>
-                    <td class="text-center tabular-nums text-black bg-highlight font-semibold">{{ $row['r4'] }}</td>
-                    <td class="text-center tabular-nums text-black bg-highlight-3">{{ $row['r5'] }}</td>
+                    <td class="text-center tabular-nums text-black h1_bg">{{ $row['r1'] }}</td>
+                    <td class="text-center tabular-nums text-black h2_bg">{{ $row['r2'] }}</td>
+                    <td class="text-center tabular-nums text-black h3_bg">{{ $row['r3'] }}</td>
+                    <td class="text-center tabular-nums text-black font-semibold">{{ $row['r4'] }}</td>
+                    <td class="text-center tabular-nums text-black h1_bg ">{{ $row['r5'] }}</td>
                     <td class="text-center tabular-nums text-black">{{ $row['r6'] }}</td>
-                    <td class="text-center tabular-nums text-black bg-highlight font-semibold">{{ $row['r7'] }}</td>
-                    <td class="text-center tabular-nums text-black">{{ $row['r8'] }}</td>
-                    <td class="text-center tabular-nums text-black bg-highlight-2">{{ $row['r9'] }}</td>
-                    <td class="text-center tabular-nums text-black font-light">{{ $row['r10'] }}</td>
-                    <td class="text-center tabular-nums text-black">{{ $row['r11'] }}</td>
-                    <td class="text-center tabular-nums font-bold text-black {{ $row['r12'] !== '-' ? 'cursor-pointer' : '' }}"
-                        @if($row['r12'] !=='-' )
+                    <td class="text-center tabular-nums text-black  h3_bg">{{ $row['r7'] }}</td>
+                    <td class="text-center tabular-nums font-bold text-black {{ $row['r8'] !== '-' ? 'cursor-pointer' : '' }}"
+                        @if($row['r8'] !=='-' )
                         onclick="showTownModal('newvillage', '{{ $row['code'] }}', '{{ $row['name'] }}')" @endif>{{
-                        $row['r12'] }}</td>
+                        $row['r8'] }}</td>
+
+                    <td class="text-center tabular-nums text-black ">{{ $row['r9'] }}</td>
+                    <td class="text-center tabular-nums text-black font-light h3_bg">{{ $row['r10'] }}</td>
+                    <td class="text-center tabular-nums text-black">{{ $row['r11'] }}</td>
+                    <td class="text-center tabular-nums text-black h2_bg">{{ $row['r12'] }}</td>
                     <td class="text-center tabular-nums font-bold text-black {{ $row['r13'] !== '-' ? 'cursor-pointer' : '' }}"
                         @if($row['r13'] !=='-' )
                         onclick="showTownModal('mpc', '{{ $row['code'] }}', '{{ $row['name'] }}')" @endif>{{ $row['r13']
@@ -548,20 +560,20 @@ $metaData = [
             <tfoot class="sticky bottom-0 bg-white">
                 <tr class="india-total-row text-black">
                     <td colspan="2" class="text-center font-bold">INDIA TOTAL</td>
-                    <td class="text-center">640</td>
-                    <td class="text-center">7,933</td>
-                    <td class="text-center">298</td>
-                    <td class="text-center bg-highlight">1,947</td>
-                    <td class="text-center">766</td>
-                    <td class="text-center">469</td>
-                    <td class="text-center bg-highlight">1,951</td>
-                    <td class="text-center">5,515</td>
-                    <td class="text-center">7,935</td>
-                    <td class="text-center bg-highlight">240</td>
-                    <td class="text-center">61</td>
-                    <td class="text-center">44</td>
-                    <td class="text-center">278</td>
-                    <td class="text-center">100</td>
+                    <td class="text-center tabular-nums h1_bg ">640</td>
+                    <td class="text-center tabular-nums h2_bg font-bold">7,933</td>
+                    <td class="text-center tabular-nums h3_bg">298</td>
+                    <td class="text-center tabular-nums font-semibold">1,947</td>
+                    <td class="text-center tabular-nums h1_bg">766</td>
+                    <td class="text-center tabular-nums">469</td>
+                    <td class="text-center tabular-nums h3_bg">240</td>
+                    <td class="text-center tabular-nums">44</td>
+                    <td class="text-center tabular-nums font-bold">753</td>
+                    <td class="text-center tabular-nums h2_bg">61</td>
+                    <td class="text-center tabular-nums">5,515</td>
+                    <td class="text-center tabular-nums h2_bg font-bold">6,329</td>
+                    <td class="text-center tabular-nums">278</td>
+                    <td class="text-center tabular-nums">100</td>
                 </tr>
             </tfoot>
 
@@ -574,11 +586,11 @@ $metaData = [
                 combined here for
                 consistency.</li>
             <li>Two new District Capital Cities (which did not exist as either a city or a village in Census 2011) have
-                been created in the 2026 list <span class="bg-highlight-y px-1 rounded-sm">(above)</span> by
+                been created in the 2026 list <span class="]-y px-1 rounded-sm">(above)</span> by
                 splitting the population and area of
                 Warangal City
                 (Telangana)
-                and Singrauli City (Madhya Pradesh), <span class="bg-highlight-y px-1 rounded-sm">in Census
+                and Singrauli City (Madhya Pradesh), <span class="]-y px-1 rounded-sm">in Census
                     2011.</span> The new District Capitals thus carved out are
                 Hanamkonda (in Telangana) and Waidhan (in Madhya Pradesh).</li>
         </ul>
