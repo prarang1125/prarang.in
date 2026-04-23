@@ -150,34 +150,34 @@
 
                 <!-- Village Stats -->
                 <div class="lg:col-span-3 order-2 lg:order-3">
-                    <div class="bg-white rounded-2xl py-2 px-4 border border-gray-100/80 shadow-sm">
-                        <div class="grid grid-cols-2  gap-x-6">
-                            <div>
-                                <p class="text-xs font-medium text-gray-500 mb-0.5">District</p>
-                                <p class="text-sm font-bold text-gray-800">
-                                    {{ $data['town']['district'] ?? '-' }}</p>
+                    <div class="bg-white rounded-2xl py-3 px-4 border border-gray-100/80 shadow-sm">
+                        <div class="flex flex-col gap-2">
+                            <div class="flex justify-between items-center text-[11px]">
+                                <span class="font-medium text-gray-500">State:</span>
+                                <span class="font-bold text-gray-800">{{ $data['state']['state_name'] ?? '-' }}</span>
                             </div>
-                            <div>
-                                <p class="text-xs font-medium text-gray-500 mb-0.5">State</p>
-                                <p class="text-sm font-bold text-gray-800">
-                                    {{ $data['state']['state_name'] ?? '-' }}</p>
+                            <div class="flex justify-between items-center text-[11px]">
+                                <span class="font-medium text-gray-500">District:</span>
+                                <span class="font-bold text-gray-800">{{ $data['town']['district'] ?? '-' }}</span>
                             </div>
-                            <div class="pt-1 border-t border-gray-50">
-                                <p class="text-xs font-medium text-gray-500 mb-0.5">Pop. 2026 (Est.)
+                            <div class="flex justify-between items-center text-[11px] pt-1.5 border-t border-gray-50">
+                                <span class="font-medium text-gray-500 flex items-center gap-1">
+                                    Pop. 2011:
+                                    <x-source source="Population - Census 2011" />
+                                </span>
+                                <span class="font-bold text-gray-800">
+                                    {{ isset($data['town']['TOT_P']) ? number_format($data['pop']['pop11'], 0) : '-' }}
+                                </span>
+                            </div>
+                            <div class="flex justify-between items-center text-[11px] pt-1.5 border-t border-gray-50">
+                                <span class="font-medium text-gray-500 flex items-center gap-1">
+                                    Pop. 2026 (Est.):
                                     <x-source
                                         source="Estimate - Population based on District Growth Rate - Census 2011" />
-                                </p>
-                                <p class="text-sm font-bold text-indigo-600">
-                                    {{ isset($data['town']['TOT_P']) ? number_format($data['pop']['pop26'], 0) :
-                                    '-' }} </p>
-                            </div>
-                            <div class="pt-1 border-t border-gray-50">
-                                <p class="text-xs font-medium text-gray-500 mb-0.5">Pop. 2011
-                                    <x-source source="Population - Census 2011" />
-                                </p>
-                                <p class="text-sm font-bold text-gray-800">
-                                    {{ isset($data['town']['TOT_P']) ? number_format($data['pop']['pop11'], 0) :
-                                    '-' }}</p>
+                                </span>
+                                <span class="font-bold text-indigo-600">
+                                    {{ isset($data['town']['TOT_P']) ? number_format($data['pop']['pop26'], 0) : '-' }}
+                                </span>
                             </div>
                         </div>
                     </div>

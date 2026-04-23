@@ -419,20 +419,16 @@
 
                         <!-- Step 4: Village/Town Selection -->
                         <div class="space-y-3" x-data="{ open: false, search: '' }">
-                            @if($type === 'town')
-
+                            @if($type === 'town' && $district)
                             <style>
-                                /* Division */
                                 .grid .space-y-3 .mb-4 {
                                     margin-bottom: 1px !important;
                                 }
 
-                                /* Space 3 */
                                 .shadow-lg div .space-y-3:nth-child(3) {
                                     transform: translatex(0px) translatey(-72px);
                                 }
 
-                                /* Select */
                                 .grid .mb-4 select {
                                     padding-top: 8px !important;
                                     padding-bottom: 10px !important;
@@ -559,11 +555,11 @@
                     </div>
 
                     <!-- Confirm Button Section -->
+                    @if($type === 'town' ? $town : $village)
                     <div class="mt-12 pt-8 border-t border-slate-100">
                         <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
 
-                            <div
-                                class="w-full sm:w-auto transition-all duration-500 {{ ($type === 'town' ? $town : $village) ? 'opacity-100 scale-100' : 'opacity-40 grayscale pointer-events-none' }}">
+                            <div class="w-full sm:w-auto transition-all duration-500 opacity-100 scale-100">
                                 <a target="_blank" href="{{ url("/") }}/{{($type==='town' ? "city" : "village" )}}/{{
                                     url_encoder($state . '-' . $district . '-' . ($type==='town' ? $town : $village))
                                     }}/{{ $this->selectedSlug }}"
@@ -582,6 +578,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                     <div class="p-8 md:p-12 border-t border-slate-100 mt-3">
                         <h3 class="text-xl font-black text-slate-800 mb-8 tracking-tight">
                             {{ $type=="town"? 'Live City Interactions':'Example' }} :-

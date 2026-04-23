@@ -301,7 +301,7 @@ $metaData[] = '';
             </div>
             <div class="bg-white rounded-2xl border border-green-200 shadow-sm overflow-hidden mb-6">
                 <div class="px-5 py-4 text-center">
-                    <h3 class="text-base text-center font-bold text-blue-600">Useful Links</h3>
+                    <h3 class="text-base text-center font-bold text-blue-600">Useful web Links</h3>
                 </div>
 
                 <div class="px-6 pb-6 space-y-2" x-data="{ active: null }">
@@ -354,7 +354,7 @@ $metaData[] = '';
                     }
                     @endphp
 
-                    @foreach ($linksGroups as $index => $group)
+                    @forelse ($linksGroups as $index => $group)
                     <div class="border-b border-gray-50 last:border-0 text-left">
                         <button @click="active = active === {{ $index }} ? null : {{ $index }}"
                             class="w-full py-3 flex items-center justify-between group transition-colors hover:bg-gray-50/50 rounded-lg px-2 -mx-2">
@@ -379,7 +379,10 @@ $metaData[] = '';
                             @endforeach
                         </div>
                     </div>
-                    @endforeach
+                    @empty
+                    <p class="text-center text-sm font-bold text-gray-700 leading-relaxed shadow rounded p-2 bg-white">
+                        No Useful web Links found</p>
+                    @endforelse
                 </div>
             </div>
         </div>
@@ -495,15 +498,6 @@ $metaData[] = '';
                 <img src="{{ asset('assets/images/urban_states/' . ($dhq['state']['state_LGD_code'] ?? 'default')) }}.jpg"
                     alt="Village Banner" class="w-full h-[400px] object-cover">
             </div>
-            @if($dhq['town']['note']!=null and $dhq['town']['note']!='')
-            <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm transition-all hover:shadow-md">
-                <div class="space-y-1 text-justify">
-                    <p class="text-[15px] text-gray-700 leading-relaxed font-medium">
-                        {!! $dhq['town']['note']!!}
-                    </p>
-                </div>
-            </div>
-            @endif
 
             {{-- @endif --}}
             @if (true)

@@ -686,3 +686,27 @@ header .mx-auto .items-center .items-center .hover\:shadow-xl{
  background-color:rgba(31,29,29,0);
 }
 
+/* Subscribe trigger */
+#subscribe-trigger{
+ background-color:#1f1d1d;
+ padding-top:3px;
+ padding-bottom:3px;
+}
+
+/* Tracking widest */
+.hover\:shadow-xl .items-start .tracking-widest{
+ font-size:12px !important;
+ width:116%;
+ position:relative;
+ left:-6px;
+ top:1px;
+}
+
+/* Leading tight */
+.hover\:shadow-xl .items-start .leading-tight{
+ font-size:11px !important;
+ width:125%;
+ position:relative;
+ left:-5px;
+}
+

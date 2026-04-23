@@ -116,26 +116,26 @@
                         </div>
                     </div>
 
-                    <!-- Grid Item 4: Upmana AI -->
-                    <div class="flex justify-center relative" x-data="{ open: false }" @click.away="open = false">
+                    <div x-data="{ open: false }" @click.away="open = false" class="inline-block">
                         <button @click="open = !open"
-                            class="flex items-center gap-2 p-1.5 px-3 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md hover:border-gray-300 transition-all duration-300 w-full group/ai">
+                            class="flex items-center gap-3 p-1 px-2 bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-xl hover:border-gray-300 transition-all duration-500 min-w-[160px] group/ai">
 
                             <div
-                                class="flex items-center justify-center w-7 h-7 bg-indigo-50 rounded-lg group-hover/ai:bg-indigo-100 transition-all duration-300 flex-shrink-0">
-                                <svg class="w-3.5 h-3.5 text-indigo-600" fill="none" stroke="currentColor"
+                                class="flex items-center justify-center w-8 h-8 bg-indigo-50 rounded-xl group-hover/ai:bg-indigo-100 transition-all duration-500">
+                                <svg class="w-4 h-4 text-indigo-600" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.364-6.364l-.707-.707M6.364 18.364l-.707.707M18.364 18.364l-.707.707M12 21v-1m0-5a3 3 0 110-6 3 3 0 010 6z" />
                                 </svg>
                             </div>
 
-                            <div class="flex flex-col items-start text-left overflow-hidden">
+                            <div class="flex flex-col items-start text-left">
+                                <span class="text-[9px] text-indigo-600 font-black tracking-widest uppercase">Upmana
+                                </span>
                                 <span
-                                    class="text-[8px] text-indigo-600 font-black tracking-widest uppercase truncate">Upmana</span>
-                                <span class="text-[12px] text-gray-900 font-bold flex items-center gap-1 leading-tight">
+                                    class="text-[14px] text-gray-900 font-bold flex items-center gap-1.5 leading-tight">
                                     A.I.
-                                    <svg class="w-2.5 h-2.5 text-gray-400 group-hover/ai:text-indigo-500 transition-colors"
+                                    <svg class="w-3 h-3 text-gray-400 group-hover/ai:text-indigo-500 transition-colors"
                                         :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor"
                                         viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
@@ -145,25 +145,26 @@
                             </div>
                         </button>
 
-                        <div x-show="open" x-cloak x-transition:enter="transition ease-out duration-200"
+                        <div x-show="open" x-transition:enter="transition ease-out duration-200"
                             x-transition:enter-start="opacity-0 translate-y-2 scale-95"
                             x-transition:enter-end="opacity-100 translate-y-0 scale-100"
                             x-transition:leave="transition ease-in duration-150"
                             x-transition:leave-start="opacity-100 translate-y-0 scale-100"
                             x-transition:leave-end="opacity-0 translate-y-2 scale-95"
-                            class="absolute z-50 top-full mt-2 left-0 right-0 bg-white border border-gray-100 rounded-xl shadow-xl p-1.5">
+                            class="absolute  mt-2 w-48 bg-white border border-gray-100 rounded-2xl shadow-2xl p-2 hidden"
+                            :class="{ 'hidden': !open }">
 
                             <a href="https://www.prarang.in/ai/upmana/hi" target="_blank"
-                                class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-indigo-50 text-gray-700 hover:text-indigo-600 transition-all group/opt">
+                                class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-indigo-50 text-gray-700 hover:text-indigo-600 transition-all group/opt">
                                 <span
-                                    class="text-[10px] font-black tracking-widest text-indigo-200 group-hover/opt:text-indigo-400">HI</span>
-                                <span class="text-[11px] font-bold">Hindi</span>
+                                    class="text-xs font-black tracking-widest text-indigo-200 group-hover/opt:text-indigo-400">HI</span>
+                                <span class="text-[13px] font-bold">Hindi</span>
                             </a>
                             <a href="https://www.prarang.in/ai/upmana" target="_blank"
-                                class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-indigo-50 text-gray-700 hover:text-indigo-600 transition-all group/opt">
+                                class="flex items-center gap-3 px-4 py-3 rounded-xl hover:bg-indigo-50 text-gray-700 hover:text-indigo-600 transition-all group/opt">
                                 <span
-                                    class="text-[10px] font-black tracking-widest text-indigo-200 group-hover/opt:text-indigo-400">EN</span>
-                                <span class="text-[11px] font-bold">English</span>
+                                    class="text-xs font-black tracking-widest text-indigo-200 group-hover/opt:text-indigo-400">EN</span>
+                                <span class="text-[13px] font-bold">English</span>
                             </a>
                         </div>
                     </div>
@@ -242,13 +243,10 @@
                             </h1>
                         </div>
                     </div>
-                    <div
-                        class="px-6 py-1.5 rounded-full bg-blue-700 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                        <div id="subscribe-trigger"
-                            class="text-center text-lg font-medium text-white cursor-pointer tracking-wide">
-                            Join now for a free subscription
-                        </div>
-                    </div>
+                    <button id="subscribe-trigger"
+                        class="block w-full text-center text-lg font-medium text-white cursor-pointer border-2 border-slate-800 shadow-lg rounded-full ">
+                        Join now for a free subscription
+                    </button>
                     {{-- <div class="px-6 py-1.5 rounded-full bg-gray-50 border border-gray-100">
                         <p class="text-center text-lg font-medium text-gray-500 tracking-wide">
                             @if(($data['town']['Town_Code'] ?? null) == 800864)

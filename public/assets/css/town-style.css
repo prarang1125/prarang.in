@@ -429,3 +429,26 @@ header .group\/item span{
  color:#ffffff;
 }
 
+/* Justify between */
+header .flex-col .justify-between{
+ padding-top:0px;
+ height:14px;
+}
+
+@media (max-width:576px){
+
+ /* Column 4/12 */
+ header .mx-auto > .items-center > .items-center{
+  grid-template-rows:28.54fr 30.52fr !important;
+  grid-template-columns:auto auto auto !important;
+ }
+
+}
+@media (max-width:576px){
+
+ /* Column 4/12 */
+ header .mx-auto > .items-center > .items-center{
+  grid-template-columns:auto auto auto !important;
+ }
+
+}
