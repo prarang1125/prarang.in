@@ -662,7 +662,7 @@
                     <div class="mt-8 pt-8 border-t border-slate-100">
                         <div class="mb-4">
                             <h4 class="text-sm font-black text-slate-800 tracking-tight uppercase tracking-widest">
-                                New Filter: Categorized City Selection:</h4>
+                                Categorized City Selection:</h4>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
                             <!-- State Selector -->
