@@ -252,6 +252,89 @@
             }
 
         }
+
+
+
+        /* Division */
+        .min-h-screen .md\:p-12 {
+            position: relative;
+            top: -20px;
+            /* transform: translatex(0px) translatey(0px); */
+        }
+
+        /* Border */
+        .md\:p-12 div .border-t {
+            margin-top: 50px !important;
+            border-width: 0px;
+            border-top-width: 3px;
+        }
+
+        /* Span Tag */
+        .border-t .tracking-tighter span {
+            font-size: 16px;
+        }
+
+        /* Link */
+        .justify-end .transition-all a {
+            padding-top: 16px !important;
+            padding-bottom: 17px !important;
+        }
+
+        /* Heading */
+        .md\:p-12 div h3 {
+            text-align: center;
+        }
+
+        /* Border */
+        .md\:p-12 div .border-t {
+            border-bottom-width: 2px !important;
+            padding-bottom: 38px !important;
+        }
+
+        /* Border */
+        .container .min-h-screen .shadow-lg .md\:p-12 div .border-t {
+            padding-top: 30px !important;
+        }
+
+        /* Tracking wider */
+        .md\:p-12 .space-y-3:nth-child(1) .tracking-wider {
+            padding-left: 9px;
+        }
+
+        /* Relative */
+        .border-t .grid .space-y-3>.relative {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Span Tag */
+        .border-t .grid span {
+            font-weight: 500;
+            font-size: 13px !important;
+            text-transform: capitalize;
+            padding-top: 2px;
+        }
+
+        @media (max-width:576px) {
+
+            /* Relative */
+            .border-t .grid .space-y-3>.relative {
+                align-items: flex-start;
+            }
+
+            /* Span Tag */
+            .border-t .grid span {
+                padding-left: 13px;
+            }
+
+        }
+
+        /* Heading */
+        .md\:p-12 div h3 {
+            color: #414952;
+            font-weight: 500;
+        }
     </style>
     <div class="rounded shadow-lg">
         <style>
@@ -279,12 +362,12 @@
             @if($type === 'village')
             <div class="pb-4 text-center ">
                 <h2 class="text-xl md:text-xl  text-slate-800 tracking-tighter mb-2">
-                    Explore <span class="font-black">594,204</span> Inhabited Villages across India
+                    Explore All <span class="font-black">594,204</span> Inhabited Villages of India
                 </h2>
                 @else
                 <div class="pb-4 text-center">
                     <h2 class="text-xl md:text-xl  text-slate-800 tracking-tighter mb-2">
-                        Explore <span class="font-black">6,329</span> Cities across India
+                        Explore All <span class="font-black">6,329</span> Cities of India
                     </h2>
                     @endif
                 </div>
@@ -308,7 +391,7 @@
                 </div> --}}
 
                 <div class="">
-                    <h4> Filter City:</h4>
+                    {{-- <h4> Filter City:</h4> --}}
                     <div
                         class="grid grid-cols-1 {{ $type === 'village' ? 'md:grid-cols-4' : 'md:grid-cols-3' }} gap-3 md:gap-3">
                         <!-- Step 1: State Selection -->
@@ -684,14 +767,17 @@
 
                     @if($type === 'town')
                     <div class="mt-8 pt-8 border-t border-slate-100">
-                        <div class="mb-4">
-                            <h4 class="text-sm font-black text-slate-800 tracking-tight uppercase tracking-widest">
-                                Categorized City Selection:</h4>
+                        <div class="pb-4 text-center">
+                            <h2 class="text-xl md:text-xl  text-slate-800 tracking-tighter mb-2">
+                                Explore 755 State/District Capital Cities of India
+                                <br>
+                                <span class="text-gray-500">Select One (out of 5) Categories</span>
+                            </h2>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
                             <!-- State Selector -->
                             <div class="space-y-3" x-data="{ open: false, search: '' }">
-                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">01. Select
+                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">Select
                                     State</label>
                                 <div class="relative">
                                     <button type="button" @click="open = !open"
@@ -735,8 +821,8 @@
 
                             <!-- SC -->
                             <div class="space-y-3" x-data="{ open: false, search: '' }">
-                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">02. State
-                                    Capital {{ count($sc) ? '# '.count($sc) : '' }}</label>
+                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">01. State
+                                    Capital </label>
                                 <div class="relative">
                                     <button type="button" @click="if({{ $cat_state ? 'true' : 'false' }}) open = !open"
                                         {{ !$cat_state ? 'disabled' : '' }}
@@ -753,6 +839,9 @@
                                                 d="M19 9l-7 7-7-7" />
                                         </svg>
                                     </button>
+                                    <span>
+                                        {{ count($sc) ? 'Total : '.count($sc) : '' }}
+                                    </span>
                                     <div x-show="open" @click.away="open = false" x-cloak x-transition
                                         class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-2xl p-3 overflow-hidden">
                                         <div class="relative mb-2">
@@ -779,8 +868,8 @@
                             </div>
                             <!-- DHQ -->
                             <div class="space-y-3" x-data="{ open: false, search: '' }">
-                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">03.
-                                    District Capital (DHQ) {{ count($dhq) ? '# '.count($dhq) : '' }}</label>
+                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">02.
+                                    District Capital (DHQ) </label>
                                 <div class="relative">
                                     <button type="button" @click="if({{ $cat_state ? 'true' : 'false' }}) open = !open"
                                         {{ !$cat_state ? 'disabled' : '' }}
@@ -797,6 +886,9 @@
                                                 d="M19 9l-7 7-7-7" />
                                         </svg>
                                     </button>
+                                    <span>
+                                        {{ count($dhq) ? 'Total : '.count($dhq) : '' }}
+                                    </span>
                                     <div x-show="open" @click.away="open = false" x-cloak x-transition
                                         class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-2xl p-3 overflow-hidden">
                                         <div class="relative mb-2">
@@ -823,8 +915,8 @@
                             </div>
                             <!-- UA -->
                             <div class="space-y-3" x-data="{ open: false, search: '' }">
-                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">04. Urban
-                                    Agglomeration {{ count($ua) ? '# '.count($ua) : '' }}</label>
+                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">03. Urban
+                                    Agglomeration </label>
                                 <div class="relative">
                                     <button type="button" @click="if({{ $cat_state ? 'true' : 'false' }}) open = !open"
                                         {{ !$cat_state ? 'disabled' : '' }}
@@ -841,6 +933,9 @@
                                                 d="M19 9l-7 7-7-7" />
                                         </svg>
                                     </button>
+                                    <span>
+                                        {{ count($ua) ? 'Total : '.count($ua) : '' }}
+                                    </span>
                                     <div x-show="open" @click.away="open = false" x-cloak x-transition
                                         class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-2xl p-3 overflow-hidden">
                                         <div class="relative mb-2">
@@ -867,8 +962,8 @@
                             </div>
                             <!-- MCP -->
                             <div class="space-y-3" x-data="{ open: false, search: '' }">
-                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">05.
-                                    Municipal Corporation {{ count($mcp) ? '# '.count($mcp) : '' }}</label>
+                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">04.
+                                    Municipal Corporation </label>
                                 <div class="relative">
                                     <button type="button" @click="if({{ $cat_state ? 'true' : 'false' }}) open = !open"
                                         {{ !$cat_state ? 'disabled' : '' }}
@@ -885,6 +980,9 @@
                                                 d="M19 9l-7 7-7-7" />
                                         </svg>
                                     </button>
+                                    <span>
+                                        {{ count($mcp) ? 'Total : '.count($mcp) : '' }}
+                                    </span>
                                     <div x-show="open" @click.away="open = false" x-cloak x-transition
                                         class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-2xl p-3 overflow-hidden">
                                         <div class="relative mb-2">
@@ -911,8 +1009,8 @@
                             </div>
                             <!-- SMC -->
                             <div class="space-y-3" x-data="{ open: false, search: '' }">
-                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">06. Smart
-                                    Cities {{ count($smc) ? '# '.count($smc) : '' }}</label>
+                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">05. Smart
+                                    Cities </label>
                                 <div class="relative">
                                     <button type="button" @click="if({{ $cat_state ? 'true' : 'false' }}) open = !open"
                                         {{ !$cat_state ? 'disabled' : '' }}
@@ -929,6 +1027,9 @@
                                                 d="M19 9l-7 7-7-7" />
                                         </svg>
                                     </button>
+                                    <span>
+                                        {{ count($smc) ? 'Total : '.count($smc) : '' }}
+                                    </span>
                                     <div x-show="open" @click.away="open = false" x-cloak x-transition
                                         class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-2xl p-3 overflow-hidden">
                                         <div class="relative mb-2">
@@ -978,7 +1079,7 @@
                     </div>
                     @endif
                     <h3 class="text-xl font-black text-slate-800 mb-8 tracking-tight">
-                        {{ $type=="town"? 'Live City Interactions':'Example' }} :-
+                        {{ $type=="town"? 'Live City Interactions':'Example' }}
                     </h3>
                     @if($type=="town")
                     @php
