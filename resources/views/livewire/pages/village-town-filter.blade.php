@@ -243,6 +243,15 @@
             }
 
         }
+
+        @media (max-width:576px) {
+
+            /* Hover */
+            .border-t .grid .hover\:text-white {
+                font-size: 12px;
+            }
+
+        }
     </style>
     <div class="rounded shadow-lg">
         <style>
