@@ -228,6 +228,21 @@
             }
 
         }
+
+        @media (max-width:576px) {
+
+            /* Tracking wider */
+            .md\:p-12 .grid .tracking-wider {
+                margin-top: 21px !important;
+                color: #587087;
+            }
+
+            /* Tracking widest */
+            .md\:p-12 .grid .tracking-widest {
+                color: #697986;
+            }
+
+        }
     </style>
     <div class="rounded shadow-lg">
         <style>
