@@ -22,8 +22,21 @@ class VillageTownFilter extends Component
     public $town = null;
 
     public $villageType = [];
-    public $sub_filter = 'all';
-    public $sub_town_filter = 'all';
+
+    // Categorized Cities (New Filter)
+    public $sc = [];
+    public $dhq = [];
+    public $ua = [];
+    public $mcp = [];
+    public $smc = [];
+
+    public $selected_sc = null;
+    public $selected_dhq = null;
+    public $selected_ua = null;
+    public $selected_mcp = null;
+    public $selected_smc = null;
+
+    public $cat_state = null;
 
 
     public function mount($type = 'village')
@@ -50,7 +63,7 @@ class VillageTownFilter extends Component
 
     public function updatedType()
     {
-        $this->reset(['state', 'district', 'subDistrict', 'village', 'town', 'districts', 'subDistricts', 'villages', 'towns', 'sub_filter', 'sub_town_filter']);
+        $this->reset(['state', 'cat_state', 'district', 'subDistrict', 'village', 'town', 'districts', 'subDistricts', 'villages', 'towns', 'selected_sc', 'selected_dhq', 'selected_ua', 'selected_mcp', 'selected_smc', 'sc', 'dhq', 'ua', 'mcp', 'smc']);
         $this->loadStates();
     }
 
@@ -66,16 +79,13 @@ class VillageTownFilter extends Component
     public function updatedState($value)
     {
         if ($value) {
-            $this->district = null;
-            $this->subDistrict = null;
-            $this->village = null;
-            $this->town = null;
-            $this->subDistricts = [];
-            $this->villages = [];
-            $this->towns = [];
+            $this->reset(['district', 'subDistrict', 'village', 'town', 'selected_sc', 'selected_dhq', 'selected_ua', 'selected_mcp', 'selected_smc', 'subDistricts', 'villages', 'towns', 'sc', 'dhq', 'ua', 'mcp', 'smc']);
             $this->loadDistricts();
+            if ($this->type === 'town') {
+                $this->loadAllTypeOfCities();
+            }
         } else {
-            $this->reset(['district', 'subDistrict', 'village', 'town', 'districts', 'subDistricts', 'villages', 'towns']);
+            $this->reset(['district', 'subDistrict', 'village', 'town', 'selected_sc', 'selected_dhq', 'selected_ua', 'selected_mcp', 'selected_smc', 'districts', 'subDistricts', 'villages', 'towns', 'sc', 'dhq', 'ua', 'mcp', 'smc']);
         }
     }
 
@@ -109,23 +119,132 @@ class VillageTownFilter extends Component
         }
     }
 
-    public function updatedSubFilter()
+    public function updatedSelectedSc($value)
     {
-        if ($this->type === 'town') {
-            $this->reset(['district', 'subDistrict', 'village', 'town', 'districts', 'subDistricts', 'villages', 'towns']);
-            $this->loadDistricts();
+        if ($value) {
+            $this->reset(['town', 'selected_dhq', 'selected_ua', 'selected_mcp', 'selected_smc', 'district', 'subDistrict', 'village', 'villages', 'towns']);
+            if (str_contains($value, '-')) {
+                $parts = explode('-', $value);
+                $this->district = $parts[0];
+                $this->town = $parts[1];
+            } else {
+                $this->town = $value;
+                $item = collect($this->sc)->where('id', (string)$value)->first();
+                if ($item && isset($item->district_id)) $this->district = $item->district_id;
+            }
         }
     }
 
-    public function updatedSubTownFilter()
+    public function updatedSelectedDhq($value)
     {
-        $this->reset(['village', 'town', 'villages', 'towns']);
-        $this->loadVillagesAndTowns();
+        if ($value) {
+            $this->reset(['town', 'selected_sc', 'selected_ua', 'selected_mcp', 'selected_smc', 'district', 'subDistrict', 'village', 'villages', 'towns']);
+            if (str_contains($value, '-')) {
+                $parts = explode('-', $value);
+                $this->district = $parts[0];
+                $this->town = $parts[1];
+            } else {
+                $this->town = $value;
+                $item = collect($this->dhq)->where('id', (string)$value)->first();
+                if ($item && isset($item->district_id)) $this->district = $item->district_id;
+            }
+        }
+    }
+
+    public function updatedSelectedUa($value)
+    {
+        if ($value) {
+            $this->reset(['town', 'selected_sc', 'selected_dhq', 'selected_mcp', 'selected_smc', 'district', 'subDistrict', 'village', 'villages', 'towns']);
+            if (str_contains($value, '-')) {
+                $parts = explode('-', $value);
+                $this->district = $parts[0];
+                $this->town = $parts[1];
+            } else {
+                $this->town = $value;
+                $item = collect($this->ua)->where('id', (string)$value)->first();
+                if ($item && isset($item->district_id)) $this->district = $item->district_id;
+            }
+        }
+    }
+
+    public function updatedSelectedMcp($value)
+    {
+        if ($value) {
+            $this->reset(['town', 'selected_sc', 'selected_dhq', 'selected_ua', 'selected_smc', 'district', 'subDistrict', 'village', 'villages', 'towns']);
+            if (str_contains($value, '-')) {
+                $parts = explode('-', $value);
+                $this->district = $parts[0];
+                $this->town = $parts[1];
+            } else {
+                $this->town = $value;
+                $item = collect($this->mcp)->where('id', (string)$value)->first();
+                if ($item && isset($item->district_id)) $this->district = $item->district_id;
+            }
+        }
+    }
+
+    public function updatedSelectedSmc($value)
+    {
+        if ($value) {
+            $this->reset(['town', 'selected_sc', 'selected_dhq', 'selected_ua', 'selected_mcp', 'district', 'subDistrict', 'village', 'villages', 'towns']);
+            if (str_contains($value, '-')) {
+                $parts = explode('-', $value);
+                $this->district = $parts[0];
+                $this->town = $parts[1];
+            } else {
+                $this->town = $value;
+                $item = collect($this->smc)->where('id', (string)$value)->first();
+                if ($item && isset($item->district_id)) $this->district = $item->district_id;
+            }
+        }
+    }
+
+    public function updatedCatState($value)
+    {
+        if ($value) {
+            $this->reset(['state', 'district', 'subDistrict', 'village', 'town', 'selected_sc', 'selected_dhq', 'selected_ua', 'selected_mcp', 'selected_smc', 'subDistricts', 'villages', 'towns', 'sc', 'dhq', 'ua', 'mcp', 'smc']);
+            $this->state = $value;
+            $this->cat_state = $value;
+            $this->loadDistricts();
+            $this->loadAllTypeOfCities();
+        } else {
+            $this->reset(['state', 'cat_state', 'district', 'subDistrict', 'village', 'town', 'selected_sc', 'selected_dhq', 'selected_ua', 'selected_mcp', 'selected_smc', 'districts', 'subDistricts', 'villages', 'towns', 'sc', 'dhq', 'ua', 'mcp', 'smc']);
+        }
+    }
+
+    public function loadAllTypeOfCities()
+    {
+        $state_id = $this->cat_state ?: $this->state;
+        if (!$state_id) return;
+
+        try {
+            $response = httpGet('v1/pages/town-filter-by-type', ['state_id' => $state_id]);
+            $data = $response['data'] ?? [];
+
+            $transformer = function ($data) {
+                if (is_array($data) && !isset($data[0])) {
+                    return collect($data)->map(function ($name, $id) {
+                        return (object)['id' => (string)$id, 'name' => $name];
+                    })->sortBy('name')->values()->toArray();
+                }
+                return collect($data)->map(function ($item) {
+                    return (object)$item;
+                })->sortBy('name')->values()->toArray();
+            };
+
+            $this->sc = $transformer($data['sc'] ?? []);
+            $this->dhq = $transformer($data['dc'] ?? []);
+            $this->ua = $transformer($data['ua'] ?? []);
+            $this->mcp = $transformer($data['mcp'] ?? []);
+            $this->smc = $transformer($data['smc'] ?? []);
+        } catch (\Exception $e) {
+            $this->reset(['sc', 'dhq', 'ua', 'mcp', 'smc']);
+        }
     }
 
     protected function getCachedFilterData(array $params)
     {
-        $cacheKey = $this->type . '_filter_' . $this->sub_town_filter . '_' . md5(json_encode($params));
+        $cacheKey = $this->type . '_filter_' . md5(json_encode($params));
 
         return cache()->remember($cacheKey, now()->addDays(1), function () use ($params) {
             $response = httpGet('v1/pages/filter-state-district-villages-towns', $params);
@@ -175,8 +294,6 @@ class VillageTownFilter extends Component
             $districtsData = $this->getCachedFilterData([
                 'type' => $this->type,
                 'state_id' => $this->state,
-                'sub_filter' => $this->sub_filter,
-                'sub_town_filter' => $this->sub_town_filter,
             ])['districts'] ?? [];
 
             $this->districts = collect($districtsData)->map(function ($name, $id) {
@@ -211,7 +328,6 @@ class VillageTownFilter extends Component
                 'type' => $this->type,
                 'state_id' => $this->state,
                 'district_id' => $this->district,
-                'sub_town_filter' => $this->sub_town_filter,
             ])['sub_districts'] ?? [];
 
             $transformer = function ($data) {
@@ -251,13 +367,7 @@ class VillageTownFilter extends Component
                 'state_id' => $this->state,
                 'district_id' => $this->district,
                 'sub_district_id' => $this->type === 'village' ? $this->subDistrict : null,
-                'sub_town_filter' => $this->sub_town_filter,
             ];
-
-            if ($this->type === 'town') {
-
-                $params['sub_filter'] = $this->sub_filter;
-            }
 
             $data = $this->getCachedFilterData($params);
 
@@ -298,8 +408,20 @@ class VillageTownFilter extends Component
         $selected = null;
         if ($this->type === 'village' && $this->village) {
             $selected = collect($this->villages)->where('id', (string)$this->village)->first();
-        } elseif ($this->type === 'town' && $this->town) {
-            $selected = collect($this->towns)->where('id', (string)$this->town)->first();
+        } elseif ($this->type === 'town') {
+            if ($this->town) {
+                $selected = collect($this->towns)->where('id', (string)$this->town)->first();
+            } elseif ($this->selected_sc) {
+                $selected = collect($this->sc)->where('id', (string)$this->selected_sc)->first();
+            } elseif ($this->selected_dhq) {
+                $selected = collect($this->dhq)->where('id', (string)$this->selected_dhq)->first();
+            } elseif ($this->selected_ua) {
+                $selected = collect($this->ua)->where('id', (string)$this->selected_ua)->first();
+            } elseif ($this->selected_mcp) {
+                $selected = collect($this->mcp)->where('id', (string)$this->selected_mcp)->first();
+            } elseif ($this->selected_smc) {
+                $selected = collect($this->smc)->where('id', (string)$this->selected_smc)->first();
+            }
         }
 
         if ($selected) {

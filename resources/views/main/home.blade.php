@@ -285,6 +285,59 @@
             top: 25px;
         }
     </style>
+    <style>
+        /* Table Data */
+        .city-s tr td {
+            min-height: 30px;
+        }
+
+        @media (max-width:576px) {
+
+            /* Table Data */
+            .city-s tr .px-2 {
+                max-width: 98px;
+                transform: translatex(0px) translatey(0px);
+                min-width: 0px;
+                padding-right: 0px !important;
+            }
+
+            /* Link */
+            .city-s .px-2 a {
+                width: 110px !important;
+            }
+
+            /* Table Data */
+            .city-s tr td {
+                position: relative;
+                left: -30px;
+                min-width: 38px !important;
+                margin-left: 0px;
+            }
+
+            /* Table Data */
+            .container .mx-auto .flex-wrap div .city-s .justify-center .border-separate tbody tr .px-2 {
+                width: 0px !important;
+            }
+
+            /* Border separate */
+            .city-s .justify-center .border-separate {
+                position: relative;
+                left: 12px;
+                /* transform: translatex(0px) translatey(0px); */
+            }
+
+            /* Link */
+            .container .mx-auto .flex-wrap div .city-s .justify-center .border-separate tbody tr .py-1 a {
+                width: 108px !important;
+            }
+
+            /* Table Data */
+            .container .mx-auto .flex-wrap div .city-s .justify-center .border-separate tbody tr td {
+                width: 38px !important;
+            }
+
+        }
+    </style>
     <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-10 ">
         <style>
             /* Image */

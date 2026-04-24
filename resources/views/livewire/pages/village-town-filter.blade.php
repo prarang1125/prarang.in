@@ -77,6 +77,44 @@
             padding-left: 7px !important;
             padding-right: 18px !important;
         }
+
+        [x-cloak] {
+            display: none !important;
+        }
+
+        .custom-scrollbar-premium::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        .custom-scrollbar-premium::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .custom-scrollbar-premium::-webkit-scrollbar-thumb {
+            background: #e2e8f0;
+            border-radius: 10px;
+        }
+
+        .custom-scrollbar-premium::-webkit-scrollbar-thumb:hover {
+            background: #cbd5e1;
+        }
+
+        /* Label */
+        .md\:p-12 .space-y-2 label {
+            font-size: 12px;
+            height: 5px;
+            min-height: 36px;
+            display: flex;
+            justify-content: normal;
+            align-items: center;
+        }
+
+        /* Tracking wider */
+        .md\:p-12 .grid .tracking-wider {
+            min-height: 36px;
+            display: flex;
+            align-items: center;
+        }
     </style>
     <div class="rounded shadow-lg">
         <style>
@@ -131,49 +169,9 @@
                     </a>
                     @endif
                 </div> --}}
-                @if($type === 'town')
-                <div class="mb-6 p-4 bg-slate-50/50 rounded-2xl border border-slate-200">
-                    <div class="flex flex-col sm:flex-row sm:items-center gap-4">
-                        <label
-                            class="text-xs font-black text-slate-500 uppercase tracking-[0.2em] whitespace-nowrap">Filter
-                            By Type:</label>
-                        <div class="flex flex-wrap gap-3">
-                            <label
-                                class="relative flex items-center gap-3 px-5 py-2 rounded-xl cursor-pointer transition-all duration-300 {{ $sub_filter === 'all' ? 'bg-white border-blue-600 shadow-sm border-2' : 'hover:bg-white/80 border-slate-200 border bg-white/40' }}">
-                                <input type="radio" wire:model.live="sub_filter" value="all"
-                                    class="w-4 h-4 text-blue-600 focus:ring-blue-500 border-slate-300">
-                                <span
-                                    class="text-sm font-bold {{ $sub_filter === 'all' ? 'text-blue-700' : 'text-slate-500' }}">All</span>
-                            </label>
-                            <label
-                                class="relative flex items-center gap-3 px-5 py-2 rounded-xl cursor-pointer transition-all duration-300 {{ $sub_filter === 'only_sc' ? 'bg-white border-blue-600 shadow-sm border-2' : 'hover:bg-white/80 border-slate-200 border bg-white/40' }}">
-                                <input type="radio" wire:model.live="sub_filter" value="only_sc"
-                                    class="w-4 h-4 text-blue-600 focus:ring-blue-500 border-slate-300">
-                                <span
-                                    class="text-sm font-bold {{ $sub_filter === 'only_sc' ? 'text-blue-700' : 'text-slate-500' }}">State/UT
-                                    Capital</span>
-                            </label>
-                            <label
-                                class="relative flex items-center gap-3 px-5 py-2 rounded-xl cursor-pointer transition-all duration-300 {{ $sub_filter === 'only_dhq' ? 'bg-white border-blue-600 shadow-sm border-2' : 'hover:bg-white/80 border-slate-200 border bg-white/40' }}">
-                                <input type="radio" wire:model.live="sub_filter" value="only_dhq"
-                                    class="w-4 h-4 text-blue-600 focus:ring-blue-500 border-slate-300">
-                                <span
-                                    class="text-sm font-bold {{ $sub_filter === 'only_dhq' ? 'text-blue-700' : 'text-slate-500' }}">District
-                                    Capital</span>
-                            </label>
 
-                            <label
-                                class="relative flex items-center gap-3 px-5 py-2 rounded-xl cursor-pointer transition-all duration-300 {{ $sub_filter === 'is_cs' ? 'bg-white border-blue-600 shadow-sm border-2' : 'hover:bg-white/80 border-slate-200 border bg-white/40' }}">
-                                <input type="radio" wire:model.live="sub_filter" value="is_cs"
-                                    class="w-4 h-4 text-blue-600 focus:ring-blue-500 border-slate-300">
-                                <span
-                                    class="text-sm font-bold {{ $sub_filter === 'non_dhq' ? 'text-blue-700' : 'text-slate-500' }}">Others</span>
-                            </label>
-                        </div>
-                    </div>
-                </div>
-                @endif
                 <div class="">
+                    <h4> Filter City:</h4>
                     <div
                         class="grid grid-cols-1 {{ $type === 'village' ? 'md:grid-cols-4' : 'md:grid-cols-3' }} gap-3 md:gap-3">
                         <!-- Step 1: State Selection -->
@@ -419,43 +417,7 @@
 
                         <!-- Step 4: Village/Town Selection -->
                         <div class="space-y-3" x-data="{ open: false, search: '' }">
-                            @if($type === 'town' && $district)
-                            <style>
-                                .grid .space-y-3 .mb-4 {
-                                    margin-bottom: 1px !important;
-                                }
 
-                                .shadow-lg div .space-y-3:nth-child(3) {
-                                    transform: translatex(0px) translatey(-72px);
-                                }
-
-                                .grid .mb-4 select {
-                                    padding-top: 8px !important;
-                                    padding-bottom: 10px !important;
-                                    margin-bottom: 1px;
-                                }
-                            </style>
-
-                            <div class="mb-4" wire:loading.class="opacity-50 pointer-events-none">
-                                <div class="relative">
-                                    <select wire:model.live="sub_town_filter"
-                                        class="w-full pl-4 pr-10 py-3 bg-slate-50 border-2 border-slate-100 rounded-2xl text-[13px] font-bold text-slate-700 outline-none focus:border-blue-400 focus:bg-white transition-all appearance-none cursor-pointer group">
-                                        <option value="all">Filter in Cities/Towns (All)</option>
-                                        <option value="is_ua">Urban Agglomeration (UA)</option>
-                                        <option value="is_mcp">Municipal Corporation (MCP)</option>
-                                        <option value="is_smc">Smart City (SMC)</option>
-                                    </select>
-                                    <div
-                                        class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-400">
-                                        <svg class="w-5 h-5 transition-transform group-focus:rotate-180" fill="none"
-                                            stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                                d="M19 9l-7 7-7-7" />
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            @endif
                             <div class="flex items-center gap-3 mb-2">
                                 <span
                                     class="flex items-center justify-center w-8 h-8 rounded-xl {{ ($type === 'town' ? $town : $village) ? 'bg-green-100 text-green-600' : ($type === 'town' ? ($district ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-300') : ($subDistrict ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-300')) }} font-bold text-sm transition-colors duration-300">
@@ -555,7 +517,8 @@
                     </div>
 
                     <!-- Confirm Button Section -->
-                    @if($type === 'town' ? $town : $village)
+                    @if(($type === 'town' ? $town : $village) && !($selected_sc || $selected_dhq || $selected_ua ||
+                    $selected_mcp || $selected_smc))
                     <div class="mt-12 pt-8 border-t border-slate-100">
                         <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
 
@@ -579,96 +542,360 @@
                         </div>
                     </div>
                     @endif
-                    <div class="p-8 md:p-12 border-t border-slate-100 mt-3">
-                        <h3 class="text-xl font-black text-slate-800 mb-8 tracking-tight">
-                            {{ $type=="town"? 'Live City Interactions':'Example' }} :-
-                        </h3>
-                        @if($type=="town")
-                        @php
-                        $liveCities=[
-                        ['type'=>'h_webs','lable'=>"Hindi Webs", 'data'=>[
-                        ['title' => 'Lucknow', 'slug'=>'lucknow'],
-                        [
-                        'title' => 'Meerut',
-                        'slug'=>'meerut',
-                        'links' => [
-                        ['label' => 'Main Portal', 'url' => 'https://prarang.in/meerut'],
-                        ['label' => 'English Domain', 'url' => 'https://meerutrang.in'],
-                        ['label' => 'Hindi Domain', 'url' => 'https://मेरठरंग.भारत/'],
 
-                        ]
-                        ],
-                        ['title' => 'Rampur', 'slug'=>'rampur'],
-                        ['title' => 'Jaunpur', 'slug'=>'jaunpur'],
-                        ['title' => 'Shahjahanpur', 'slug'=>'shahjahanpur'],
 
-                        ]],
-                        ['type'=>'h_r_webs','lable'=>"Hindi Webs: Ready for Interactions ", 'data'=>[
 
-                        ['title' => 'Haridwar', 'slug'=>'haridwar'],
-                        ['title' => 'Pithoragarh', 'slug'=>'pithoragarh'],
-                        // ['title' => 'Pune', 'slug'=>'pune-hi'],
-                        ]],
-                        ['type'=>'m_r_webs','lable'=>"Marathi Webs: Ready for Interactions ", 'data'=>[
-
-                        ['title' => 'Pune', 'slug'=>'pune'],
-                        ]],
-                        ];
-                        @endphp
-
-                        <div class="space-y-6">
-                            @foreach($liveCities as $group)
-                            <div>
-                                <!-- Group Label - Plain Black Bold -->
-                                <h4 class="text-sm font-black text-slate-900 uppercase tracking-wide mb-3">
-                                    {{ $group['lable'] }}
-                                </h4>
-
-                                <!-- Horizontally Spread Cards -->
-                                <div class="flex flex-wrap gap-3">
-                                    @foreach($group['data'] as $city)
-                                    @php
-                                    $links = $city['links'] ?? [['label' => $city['title'], 'url' =>
-                                    "https://prarang.in/{$city['slug']}"]];
-                                    $hasMultipleLinks = count($links) > 1;
-                                    @endphp
-
-                                    @if($hasMultipleLinks)
-                                    <div x-data="{ open: false }" class="relative">
-                                        <button @click="open = !open"
-                                            class="group flex items-center gap-3 bg-white border border-slate-200 px-4 py-3 rounded-2xl hover:shadow-lg hover:border-blue-300 transition-all duration-300 no-underline cursor-pointer">
-                                            <!-- Image -->
-                                            <div
-                                                class="w-10 h-10 rounded-full overflow-hidden border-2 border-slate-100 group-hover:border-blue-200 transition-colors duration-300 flex-shrink-0">
-                                                <img src="https://www.prarang.in/assets/images/home/town-1.png"
-                                                    alt="{{ $city['title'] }}"
-                                                    class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
-                                            </div>
-                                            <!-- Name -->
-                                            <span
-                                                class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors whitespace-nowrap">
-                                                {{ $city['title'] }}
-                                            </span>
-                                            <!-- Chevron -->
-                                            <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-600 transition-all duration-300 flex-shrink-0"
-                                                :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
+                    @if($type === 'town')
+                    <div class="mt-8 pt-8 border-t border-slate-100">
+                        <div class="mb-4">
+                            <h4 class="text-sm font-black text-slate-800 tracking-tight uppercase tracking-widest">
+                                New Filter: Categorized City Selection:</h4>
+                        </div>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">
+                            <!-- State Selector -->
+                            <div class="space-y-3" x-data="{ open: false, search: '' }">
+                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">01. Select
+                                    State</label>
+                                <div class="relative">
+                                    <button type="button" @click="open = !open"
+                                        class="w-full flex items-center justify-between px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl hover:border-blue-400 transition-all duration-300 group">
+                                        <span
+                                            class="text-xs font-bold {{ $cat_state ? 'text-slate-900' : 'text-slate-400' }} truncate">
+                                            {{ $cat_state ? (collect($states)->where('id', $cat_state)->first()->name ??
+                                            'Selected') : 'Choose State...' }}
+                                        </span>
+                                        <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-500 transition-transform duration-300"
+                                            :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </button>
+                                    <div x-show="open" @click.away="open = false" x-cloak x-transition
+                                        class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-2xl p-3 overflow-hidden">
+                                        <div class="relative mb-2">
+                                            <input type="text" x-model="search" placeholder="Search..."
+                                                class="w-full pl-8 pr-3 py-1.5 bg-slate-50 border-none rounded-lg text-xs font-semibold outline-none focus:ring-1 focus:ring-blue-100">
+                                            <svg class="absolute left-2.5 top-2 w-3.5 h-3.5 text-slate-400" fill="none"
+                                                stroke="currentColor" viewBox="0 0 24 24">
                                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                                    d="M19 9l-7 7-7-7" />
+                                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                             </svg>
-                                        </button>
-                                        <div x-show="open" @click.away="open = false" x-cloak x-transition
-                                            class="absolute left-0 mt-2 w-48 bg-white border border-slate-100 rounded-2xl shadow-2xl p-2 z-[100]">
-                                            @foreach($links as $link)
-                                            <a href="{{ $link['url'] }}" target="_blank"
-                                                class="block w-full text-left px-4 py-2.5 rounded-xl text-[13px] font-bold text-slate-700 hover:bg-blue-600 hover:text-white transition-all duration-200 no-underline">
-                                                {{ $link['label'] }}
-                                            </a>
+                                        </div>
+                                        <div class="max-h-40 overflow-y-auto custom-scrollbar-premium">
+                                            @foreach($states as $item)
+                                            <button type="button"
+                                                x-show="'{{ strtolower($item->name) }}'.includes(search.toLowerCase())"
+                                                @click="$wire.set('cat_state', '{{ $item->id }}'); open = false; search = ''"
+                                                class="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-700 hover:bg-blue-600 hover:text-white transition-all">
+                                                {{ $item->name }}
+                                            </button>
                                             @endforeach
                                         </div>
                                     </div>
-                                    @else
-                                    <a href="{{ $links[0]['url'] }}" target="_blank"
+                                </div>
+                            </div>
+
+                            <!-- SC -->
+                            <div class="space-y-3" x-data="{ open: false, search: '' }">
+                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">02. State
+                                    Capital {{ count($sc) ? '# '.count($sc) : '' }}</label>
+                                <div class="relative">
+                                    <button type="button" @click="if({{ $cat_state ? 'true' : 'false' }}) open = !open"
+                                        {{ !$cat_state ? 'disabled' : '' }}
+                                        class="w-full flex items-center justify-between px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl {{ $cat_state ? 'hover:border-blue-400' : 'opacity-50 cursor-not-allowed' }} transition-all duration-300 group">
+                                        <span
+                                            class="text-xs font-bold {{ $selected_sc ? 'text-slate-900' : 'text-slate-400' }} truncate">
+                                            {{ $selected_sc ? (collect($sc)->where('id', $selected_sc)->first()->name ??
+                                            'Selected') : 'Choose...' }}
+                                        </span>
+                                        <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-500 transition-transform duration-300"
+                                            :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </button>
+                                    <div x-show="open" @click.away="open = false" x-cloak x-transition
+                                        class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-2xl p-3 overflow-hidden">
+                                        <div class="relative mb-2">
+                                            <input type="text" x-model="search" placeholder="Search..."
+                                                class="w-full pl-8 pr-3 py-1.5 bg-slate-50 border-none rounded-lg text-xs font-semibold outline-none focus:ring-1 focus:ring-blue-100">
+                                            <svg class="absolute left-2.5 top-2 w-3.5 h-3.5 text-slate-400" fill="none"
+                                                stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                            </svg>
+                                        </div>
+                                        <div class="max-h-40 overflow-y-auto custom-scrollbar-premium">
+                                            @foreach($sc as $item)
+                                            <button type="button"
+                                                x-show="'{{ strtolower($item->name) }}'.includes(search.toLowerCase())"
+                                                @click="$wire.set('selected_sc', '{{ $item->id }}'); open = false; search = ''"
+                                                class="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-700 hover:bg-blue-600 hover:text-white transition-all">
+                                                {{ $item->name }}
+                                            </button>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- DHQ -->
+                            <div class="space-y-3" x-data="{ open: false, search: '' }">
+                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">03.
+                                    District Capital (DHQ) {{ count($dhq) ? '# '.count($dhq) : '' }}</label>
+                                <div class="relative">
+                                    <button type="button" @click="if({{ $cat_state ? 'true' : 'false' }}) open = !open"
+                                        {{ !$cat_state ? 'disabled' : '' }}
+                                        class="w-full flex items-center justify-between px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl {{ $cat_state ? 'hover:border-blue-400' : 'opacity-50 cursor-not-allowed' }} transition-all duration-300 group">
+                                        <span
+                                            class="text-xs font-bold {{ $selected_dhq ? 'text-slate-900' : 'text-slate-400' }} truncate">
+                                            {{ $selected_dhq ? (collect($dhq)->where('id', $selected_dhq)->first()->name
+                                            ?? 'Selected') : 'Choose...' }}
+                                        </span>
+                                        <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-500 transition-transform duration-300"
+                                            :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </button>
+                                    <div x-show="open" @click.away="open = false" x-cloak x-transition
+                                        class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-2xl p-3 overflow-hidden">
+                                        <div class="relative mb-2">
+                                            <input type="text" x-model="search" placeholder="Search..."
+                                                class="w-full pl-8 pr-3 py-1.5 bg-slate-50 border-none rounded-lg text-xs font-semibold outline-none focus:ring-1 focus:ring-blue-100">
+                                            <svg class="absolute left-2.5 top-2 w-3.5 h-3.5 text-slate-400" fill="none"
+                                                stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                            </svg>
+                                        </div>
+                                        <div class="max-h-40 overflow-y-auto custom-scrollbar-premium">
+                                            @foreach($dhq as $item)
+                                            <button type="button"
+                                                x-show="'{{ strtolower($item->name) }}'.includes(search.toLowerCase())"
+                                                @click="$wire.set('selected_dhq', '{{ $item->id }}'); open = false; search = ''"
+                                                class="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-700 hover:bg-blue-600 hover:text-white transition-all">
+                                                {{ $item->name }}
+                                            </button>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- UA -->
+                            <div class="space-y-3" x-data="{ open: false, search: '' }">
+                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">04. Urban
+                                    Agglomeration {{ count($ua) ? '# '.count($ua) : '' }}</label>
+                                <div class="relative">
+                                    <button type="button" @click="if({{ $cat_state ? 'true' : 'false' }}) open = !open"
+                                        {{ !$cat_state ? 'disabled' : '' }}
+                                        class="w-full flex items-center justify-between px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl {{ $cat_state ? 'hover:border-blue-400' : 'opacity-50 cursor-not-allowed' }} transition-all duration-300 group">
+                                        <span
+                                            class="text-xs font-bold {{ $selected_ua ? 'text-slate-900' : 'text-slate-400' }} truncate">
+                                            {{ $selected_ua ? (collect($ua)->where('id', $selected_ua)->first()->name ??
+                                            'Selected') : 'Choose...' }}
+                                        </span>
+                                        <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-500 transition-transform duration-300"
+                                            :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </button>
+                                    <div x-show="open" @click.away="open = false" x-cloak x-transition
+                                        class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-2xl p-3 overflow-hidden">
+                                        <div class="relative mb-2">
+                                            <input type="text" x-model="search" placeholder="Search..."
+                                                class="w-full pl-8 pr-3 py-1.5 bg-slate-50 border-none rounded-lg text-xs font-semibold outline-none focus:ring-1 focus:ring-blue-100">
+                                            <svg class="absolute left-2.5 top-2 w-3.5 h-3.5 text-slate-400" fill="none"
+                                                stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                            </svg>
+                                        </div>
+                                        <div class="max-h-40 overflow-y-auto custom-scrollbar-premium">
+                                            @foreach($ua as $item)
+                                            <button type="button"
+                                                x-show="'{{ strtolower($item->name) }}'.includes(search.toLowerCase())"
+                                                @click="$wire.set('selected_ua', '{{ $item->id }}'); open = false; search = ''"
+                                                class="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-700 hover:bg-blue-600 hover:text-white transition-all">
+                                                {{ $item->name }}
+                                            </button>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- MCP -->
+                            <div class="space-y-3" x-data="{ open: false, search: '' }">
+                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">05.
+                                    Municipal Corporation {{ count($mcp) ? '# '.count($mcp) : '' }}</label>
+                                <div class="relative">
+                                    <button type="button" @click="if({{ $cat_state ? 'true' : 'false' }}) open = !open"
+                                        {{ !$cat_state ? 'disabled' : '' }}
+                                        class="w-full flex items-center justify-between px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl {{ $cat_state ? 'hover:border-blue-400' : 'opacity-50 cursor-not-allowed' }} transition-all duration-300 group">
+                                        <span
+                                            class="text-xs font-bold {{ $selected_mcp ? 'text-slate-900' : 'text-slate-400' }} truncate">
+                                            {{ $selected_mcp ? (collect($mcp)->where('id', $selected_mcp)->first()->name
+                                            ?? 'Selected') : 'Choose...' }}
+                                        </span>
+                                        <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-500 transition-transform duration-300"
+                                            :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </button>
+                                    <div x-show="open" @click.away="open = false" x-cloak x-transition
+                                        class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-2xl p-3 overflow-hidden">
+                                        <div class="relative mb-2">
+                                            <input type="text" x-model="search" placeholder="Search..."
+                                                class="w-full pl-8 pr-3 py-1.5 bg-slate-50 border-none rounded-lg text-xs font-semibold outline-none focus:ring-1 focus:ring-blue-100">
+                                            <svg class="absolute left-2.5 top-2 w-3.5 h-3.5 text-slate-400" fill="none"
+                                                stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                            </svg>
+                                        </div>
+                                        <div class="max-h-40 overflow-y-auto custom-scrollbar-premium">
+                                            @foreach($mcp as $item)
+                                            <button type="button"
+                                                x-show="'{{ strtolower($item->name) }}'.includes(search.toLowerCase())"
+                                                @click="$wire.set('selected_mcp', '{{ $item->id }}'); open = false; search = ''"
+                                                class="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-700 hover:bg-blue-600 hover:text-white transition-all">
+                                                {{ $item->name }}
+                                            </button>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- SMC -->
+                            <div class="space-y-3" x-data="{ open: false, search: '' }">
+                                <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">06. Smart
+                                    Cities {{ count($smc) ? '# '.count($smc) : '' }}</label>
+                                <div class="relative">
+                                    <button type="button" @click="if({{ $cat_state ? 'true' : 'false' }}) open = !open"
+                                        {{ !$cat_state ? 'disabled' : '' }}
+                                        class="w-full flex items-center justify-between px-3 py-2 bg-slate-50 border border-slate-200 rounded-xl {{ $cat_state ? 'hover:border-blue-400' : 'opacity-50 cursor-not-allowed' }} transition-all duration-300 group">
+                                        <span
+                                            class="text-xs font-bold {{ $selected_smc ? 'text-slate-900' : 'text-slate-400' }} truncate">
+                                            {{ $selected_smc ? (collect($smc)->where('id', $selected_smc)->first()->name
+                                            ?? 'Selected') : 'Choose...' }}
+                                        </span>
+                                        <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-500 transition-transform duration-300"
+                                            :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                d="M19 9l-7 7-7-7" />
+                                        </svg>
+                                    </button>
+                                    <div x-show="open" @click.away="open = false" x-cloak x-transition
+                                        class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-2xl p-3 overflow-hidden">
+                                        <div class="relative mb-2">
+                                            <input type="text" x-model="search" placeholder="Search..."
+                                                class="w-full pl-8 pr-3 py-1.5 bg-slate-50 border-none rounded-lg text-xs font-semibold outline-none focus:ring-1 focus:ring-blue-100">
+                                            <svg class="absolute left-2.5 top-2 w-3.5 h-3.5 text-slate-400" fill="none"
+                                                stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                            </svg>
+                                        </div>
+                                        <div class="max-h-40 overflow-y-auto custom-scrollbar-premium">
+                                            @foreach($smc as $item)
+                                            <button type="button"
+                                                x-show="'{{ strtolower($item->name) }}'.includes(search.toLowerCase())"
+                                                @click="$wire.set('selected_smc', '{{ $item->id }}'); open = false; search = ''"
+                                                class="w-full text-left px-3 py-2 rounded-lg text-xs font-bold text-slate-700 hover:bg-blue-600 hover:text-white transition-all">
+                                                {{ $item->name }}
+                                            </button>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        @if($selected_sc || $selected_dhq || $selected_ua || $selected_mcp || $selected_smc)
+                        <div class="mt-8 flex justify-end">
+                            <div class="w-full sm:w-auto transition-all duration-500 opacity-100 scale-100">
+                                <a target="_blank" href="{{ url("/") }}/city/{{ url_encoder($state . '-' . $district
+                                    . '-' . $town) }}/{{ $this->selectedSlug }}"
+                                    class="inline-flex items-center justify-center w-full sm:w-auto px-10 py-4
+                                    bg-blue-600
+                                    text-white font-black text-sm tracking-[0.1em] uppercase rounded-2xl shadow-xl
+                                    shadow-blue-200 hover:bg-blue-700 hover:shadow-blue-300 hover:-translate-y-1
+                                    active:scale-95 transition-all duration-300 gap-3 group">
+                                    Confirm Selection
+                                    <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform" fill="none"
+                                        stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                                            d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                        @endif
+                    </div>
+                    @endif
+                    <h3 class="text-xl font-black text-slate-800 mb-8 tracking-tight">
+                        {{ $type=="town"? 'Live City Interactions':'Example' }} :-
+                    </h3>
+                    @if($type=="town")
+                    @php
+                    $liveCities=[
+                    ['type'=>'h_webs','lable'=>"Hindi Webs", 'data'=>[
+                    ['title' => 'Lucknow', 'slug'=>'lucknow'],
+                    [
+                    'title' => 'Meerut',
+                    'slug'=>'meerut',
+                    'links' => [
+                    ['label' => 'Main Portal', 'url' => 'https://prarang.in/meerut'],
+                    ['label' => 'English Domain', 'url' => 'https://meerutrang.in'],
+                    ['label' => 'Hindi Domain', 'url' => 'https://मेरठरंग.भारत/'],
+
+                    ]
+                    ],
+                    ['title' => 'Rampur', 'slug'=>'rampur'],
+                    ['title' => 'Jaunpur', 'slug'=>'jaunpur'],
+                    ['title' => 'Shahjahanpur', 'slug'=>'shahjahanpur'],
+
+                    ]],
+                    ['type'=>'h_r_webs','lable'=>"Hindi Webs: Ready for Interactions ", 'data'=>[
+
+                    ['title' => 'Haridwar', 'slug'=>'haridwar'],
+                    ['title' => 'Pithoragarh', 'slug'=>'pithoragarh'],
+                    // ['title' => 'Pune', 'slug'=>'pune-hi'],
+                    ]],
+                    ['type'=>'m_r_webs','lable'=>"Marathi Webs: Ready for Interactions ", 'data'=>[
+
+                    ['title' => 'Pune', 'slug'=>'pune'],
+                    ]],
+                    ];
+                    @endphp
+
+                    <div class="space-y-6">
+                        @foreach($liveCities as $group)
+                        <div>
+                            <!-- Group Label - Plain Black Bold -->
+                            <h4 class="text-sm font-black text-slate-900 uppercase tracking-wide mb-3">
+                                {{ $group['lable'] }}
+                            </h4>
+
+                            <!-- Horizontally Spread Cards -->
+                            <div class="flex flex-wrap gap-3">
+                                @foreach($group['data'] as $city)
+                                @php
+                                $links = $city['links'] ?? [['label' => $city['title'], 'url' =>
+                                "https://prarang.in/{$city['slug']}"]];
+                                $hasMultipleLinks = count($links) > 1;
+                                @endphp
+
+                                @if($hasMultipleLinks)
+                                <div x-data="{ open: false }" class="relative">
+                                    <button @click="open = !open"
                                         class="group flex items-center gap-3 bg-white border border-slate-200 px-4 py-3 rounded-2xl hover:shadow-lg hover:border-blue-300 transition-all duration-300 no-underline cursor-pointer">
                                         <!-- Image -->
                                         <div
@@ -682,95 +909,106 @@
                                             class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors whitespace-nowrap">
                                             {{ $city['title'] }}
                                         </span>
-                                        <!-- Arrow -->
-                                        <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0"
-                                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <!-- Chevron -->
+                                        <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-600 transition-all duration-300 flex-shrink-0"
+                                            :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor"
+                                            viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                                d="M9 5l7 7-7 7" />
+                                                d="M19 9l-7 7-7-7" />
                                         </svg>
-                                    </a>
-                                    @endif
-                                    @endforeach
+                                    </button>
+                                    <div x-show="open" @click.away="open = false" x-cloak x-transition
+                                        class="absolute left-0 mt-2 w-48 bg-white border border-slate-100 rounded-2xl shadow-2xl p-2 z-[100]">
+                                        @foreach($links as $link)
+                                        <a href="{{ $link['url'] }}" target="_blank"
+                                            class="block w-full text-left px-4 py-2.5 rounded-xl text-[13px] font-bold text-slate-700 hover:bg-blue-600 hover:text-white transition-all duration-200 no-underline">
+                                            {{ $link['label'] }}
+                                        </a>
+                                        @endforeach
+                                    </div>
                                 </div>
+                                @else
+                                <a href="{{ $links[0]['url'] }}" target="_blank"
+                                    class="group flex items-center gap-3 bg-white border border-slate-200 px-4 py-3 rounded-2xl hover:shadow-lg hover:border-blue-300 transition-all duration-300 no-underline cursor-pointer">
+                                    <!-- Image -->
+                                    <div
+                                        class="w-10 h-10 rounded-full overflow-hidden border-2 border-slate-100 group-hover:border-blue-200 transition-colors duration-300 flex-shrink-0">
+                                        <img src="https://www.prarang.in/assets/images/home/town-1.png"
+                                            alt="{{ $city['title'] }}"
+                                            class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                                    </div>
+                                    <!-- Name -->
+                                    <span
+                                        class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors whitespace-nowrap">
+                                        {{ $city['title'] }}
+                                    </span>
+                                    <!-- Arrow -->
+                                    <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0"
+                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                            d="M9 5l7 7-7 7" />
+                                    </svg>
+                                </a>
+                                @endif
+                                @endforeach
                             </div>
-                            @endforeach
                         </div>
-                        @else
-                        <div class="grid grid-cols-1 gap-6">
+                        @endforeach
+                    </div>
+                    @else
+                    <div class="grid grid-cols-1 gap-6">
 
-                            <!-- Horizontal Card -->
-                            <div class="group flex flex-col sm:flex-row items-center bg-white border border-slate-200
+                        <!-- Horizontal Card -->
+                        <div class="group flex flex-col sm:flex-row items-center bg-white border border-slate-200
                     rounded-2xl overflow-hidden hover:shadow-xl transition-all duration-500
                     hover:-translate-y-1">
 
-                                <!-- Image -->
-                                <div class="w-full sm:w-1/3 overflow-hidden">
-                                    <img src="https://www.prarang.in/assets/images/home/Villages-1.png" alt="Ram Nagar"
-                                        class="w-full h-22 sm:h-full object-cover group-hover:scale-105 transition duration-500">
-                                </div>
-
-                                <!-- Content -->
-                                <div class="w-full sm:w-2/3 p-6 flex flex-col justify-between">
-
-                                    <!-- Text -->
-                                    <div>
-                                        <h4
-                                            class="text-2xl font-black text-slate-900 mb-2 tracking-tight group-hover:text-blue-600 transition">
-                                            Ram Nagar
-                                        </h4>
-
-                                        <p class="text-slate-500 text-sm">
-                                            Bareilly, Uttar Pradesh
-                                        </p>
-                                    </div>
-
-                                    <!-- Button -->
-                                    <div class="mt-4">
-                                        <a href="https://prarang.in/village/OSAtMTMwLTEyOTgyMw/ram-nagar"
-                                            target="_blank" class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white
-                              font-semibold text-sm rounded-xl hover:bg-blue-700 transition">
-                                            View
-                                            <svg class="w-4 h-4 transition-transform group-hover:translate-x-1"
-                                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                    d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                                            </svg>
-                                        </a>
-                                    </div>
-
-                                </div>
+                            <!-- Image -->
+                            <div class="w-full sm:w-1/3 overflow-hidden">
+                                <img src="https://www.prarang.in/assets/images/home/Villages-1.png" alt="Ram Nagar"
+                                    class="w-full h-22 sm:h-full object-cover group-hover:scale-105 transition duration-500">
                             </div>
 
+                            <!-- Content -->
+                            <div class="w-full sm:w-2/3 p-6 flex flex-col justify-between">
+
+                                <!-- Text -->
+                                <div>
+                                    <h4
+                                        class="text-2xl font-black text-slate-900 mb-2 tracking-tight group-hover:text-blue-600 transition">
+                                        Ram Nagar
+                                    </h4>
+
+                                    <p class="text-slate-500 text-sm">
+                                        Bareilly, Uttar Pradesh
+                                    </p>
+                                </div>
+
+                                <!-- Button -->
+                                <div class="mt-4">
+                                    <a href="https://prarang.in/village/OSAtMTMwLTEyOTgyMw/ram-nagar" target="_blank"
+                                        class="inline-flex items-center gap-2 px-5 py-2.5 bg-blue-600 text-white
+                              font-semibold text-sm rounded-xl hover:bg-blue-700 transition">
+                                        View
+                                        <svg class="w-4 h-4 transition-transform group-hover:translate-x-1" fill="none"
+                                            stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                                        </svg>
+                                    </a>
+                                </div>
+
+                            </div>
                         </div>
-                        @endif
+
                     </div>
+                    @endif
                 </div>
             </div>
-
         </div>
-        <!-- Examples Section -->
 
-
-        <style>
-            [x-cloak] {
-                display: none !important;
-            }
-
-            .custom-scrollbar-premium::-webkit-scrollbar {
-                width: 5px;
-            }
-
-            .custom-scrollbar-premium::-webkit-scrollbar-track {
-                background: transparent;
-            }
-
-            .custom-scrollbar-premium::-webkit-scrollbar-thumb {
-                background: #e2e8f0;
-                border-radius: 10px;
-            }
-
-            .custom-scrollbar-premium::-webkit-scrollbar-thumb:hover {
-                background: #cbd5e1;
-            }
-        </style>
     </div>
+    <!-- Examples Section -->
+
+
+</div>
