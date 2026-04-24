@@ -115,6 +115,119 @@
             display: flex;
             align-items: center;
         }
+
+        /* Justify between */
+        .border-t .grid .justify-between {
+            padding-top: 10px !important;
+            padding-bottom: 10px !important;
+            height: 47px;
+        }
+
+        /* Tracking wider */
+        .md\:p-12 .grid .tracking-wider {
+            font-weight: 700;
+        }
+
+        /* Heading */
+        .md\:p-12 .mb-4 h4 {
+            font-size: 15px;
+        }
+
+        /* Heading */
+        .md\:p-12>div>h4 {
+            font-size: 16px;
+            font-weight: 700;
+        }
+
+        /* Border */
+        .md\:p-12 div .border-t {
+            border-color: #e2dddd !important;
+            padding-top: 38px !important;
+            padding-bottom: 48px;
+            border-bottom-width: 3px;
+        }
+
+        /* Heading */
+        .md\:p-12 div h3 {
+            margin-top: 29px !important;
+            border-style: none;
+            border-color: #e2dddd;
+            border-width: 1px;
+            border-top-width: 3px;
+            border-top-color: #efeff0;
+        }
+
+        /* Font bold */
+        .border-t .justify-between .font-bold {
+            font-size: 15px;
+        }
+
+        @media (max-width:576px) {
+
+            /* Justify center */
+            .md\:p-12 div .justify-center {
+                align-items: center;
+            }
+
+            /* Items center */
+            .md\:p-12 div .grid .space-y-3>.items-center {
+                /* transform: translatex(0px) translatey(0px); */
+            }
+
+            /* Grid */
+            .md\:p-12 div .border-t .grid {
+                row-gap: 0px !important;
+            }
+
+            /* Tracking wider */
+            .md\:p-12 .grid .tracking-wider {
+                min-height: 3px !important;
+                margin-top: 9px;
+            }
+
+        }
+
+        @media (max-width:576px) {
+
+            /* Justify between */
+            .border-t .grid .justify-between {
+                height: 40px !important;
+            }
+
+            /* Hover */
+            .md\:p-12 div .hover\:bg-white {
+                height: 40px;
+            }
+
+            /* Flex wrap */
+            .space-y-6 div .flex-wrap {
+                display: grid;
+            }
+
+            /* Flex wrap */
+            .container .min-h-screen .shadow-lg .md\:p-12 div .space-y-6 div .flex-wrap {
+                grid-template-columns: auto 1fr !important;
+            }
+
+            /* Hover */
+            .space-y-6 div a.hover\:shadow-lg {
+                padding-right: 3px !important;
+                padding-left: 9px !important;
+                width: 135px;
+                flex-direction: column;
+                padding-top: 4px !important;
+                padding-bottom: 9px !important;
+            }
+
+            /* Hover */
+            .space-y-6 .relative .hover\:shadow-lg {
+                flex-direction: column;
+                width: 91%;
+                padding-top: 7px !important;
+                padding-bottom: 9px !important;
+            }
+
+        }
     </style>
     <div class="rounded shadow-lg">
         <style>
