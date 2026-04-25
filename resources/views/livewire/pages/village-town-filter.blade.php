@@ -335,6 +335,41 @@
             color: #414952;
             font-weight: 500;
         }
+
+        /* Font extrabold */
+        .border-t .tracking-tighter .font-extrabold {
+            font-size: 20px;
+        }
+
+        /* Span Tag */
+        .md\:p-12 span span {
+            font-weight: 600;
+        }
+
+        /* Span Tag */
+        .md\:p-12 .space-y-3:nth-child(2) span:nth-child(2) {
+            color: #2589ed;
+            font-weight: 600;
+        }
+
+        /* Span Tag */
+        .md\:p-12 .space-y-3:nth-child(3) span:nth-child(2) {
+            color: #127ce7;
+            font-weight: 600;
+        }
+
+        /* Span Tag */
+        .md\:p-12 .space-y-3:nth-child(4) span:nth-child(2) {
+            color: #0d7cec;
+        }
+
+        .md\:p-12 .space-y-3:nth-child(5) span:nth-child(2) {
+            color: #1282f1;
+        }
+
+        .md\:p-12 .space-y-3:nth-child(6) span:nth-child(2) {
+            color: #2189f2;
+        }
     </style>
     <div class="rounded shadow-lg">
         <style>
@@ -362,12 +397,14 @@
             @if($type === 'village')
             <div class="pb-4 text-center ">
                 <h2 class="text-xl md:text-xl  text-slate-800 tracking-tighter mb-2">
-                    Explore All <span class="font-black">594,204</span> Inhabited Villages of India
+                    Explore All <span class="text-blue-700 font-extrabold text-[20px] md:text-[22px]">594,204</span>
+                    Inhabited Villages of India
                 </h2>
                 @else
                 <div class="pb-4 text-center">
                     <h2 class="text-xl md:text-xl  text-slate-800 tracking-tighter mb-2">
-                        Explore All <span class="font-black">6,329</span> Cities of India
+                        Explore All <span class="text-blue-700 font-extrabold text-[20px] md:text-[22px]">6,329</span>
+                        Cities of India
                     </h2>
                     @endif
                 </div>
@@ -769,9 +806,12 @@
                     <div class="mt-8 pt-8 border-t border-slate-100">
                         <div class="pb-4 text-center">
                             <h2 class="text-xl md:text-xl  text-slate-800 tracking-tighter mb-2">
-                                Explore 755 State/District Capital Cities of India
+                                Explore <span class="text-blue-700 font-extrabold text-[20px] md:text-[22px]">755</span>
+                                State/District Capital Cities
+                                of India
                                 <br>
-                                <span class="text-gray-500">Select One (out of 5) Categories</span>
+                                <span class="text-gray-500">Select <span class="text-blue-600">One</span> (out of 5)
+                                    Categories</span>
                             </h2>
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-4">

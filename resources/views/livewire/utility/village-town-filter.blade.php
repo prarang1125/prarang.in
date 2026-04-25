@@ -93,7 +93,7 @@
 
     <!-- Trigger Button -->
     <div class="inline-block group">
-        <button type="button" @click="document.getElementById('locationModal').classList.remove('hidden')"
+        <button type="button" @click="window.location.href='/webs/filter/{{$type =='town'?'cities':'villages'}}'"
             class="flex items-center gap-4 py-4 px-6 bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-xl hover:border-gray-300 transition-all duration-500 min-w-[260px] relative overflow-hidden group/btn">
 
             <div
