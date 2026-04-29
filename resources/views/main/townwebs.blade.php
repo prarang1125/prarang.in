@@ -1,7 +1,7 @@
 @php
 $metaData = [
 'nav-heading' => view('components.nav-heading', [
-'text' => 'India : Urban - 6,329 Cities',
+'text' => 'India : Urban - 6,331 Cities',
 'leftImg' => asset('assets/images/home/town-1.png'),
 'rightImg' => asset('assets/images/home/town-1.png'),
 ]),
@@ -454,33 +454,16 @@ $metaData = [
     <section class="max-w-7xl mx-auto px-4 pt-8">
         <div class="space-y-4 text-slate-700 leading-relaxed text-[14px]">
             <p>
-                <span class="font-semibold">While the Census 2011 cities/towns totaled <b>7,933</b> (4,041 statutory
-                    towns and
-                    3,892 census towns), these can effectively be summarized as 6,284, since 1,947 cities were actually
-                    part of <b>298</b> Urban-Agglomerations (UAs). We make no distinction between the word “Cities” and
-                    the
-                    word “Towns”. Our focus is to make a distinction between Capital Cities (State/District) and
-                    Non-Capitals (Other cities).
+                <span class="font-semibold">While the Census 2011 cities/towns totaled 7,933 (4,041 statutory towns and 3,892 census towns), these can effectively be summarized as 6,284, since 1,947 cities were actually part of 298 Urban-Agglomerations (UAs). We make no distinction between the word “Cities” and the word “Towns”. Our focus is to make a  distinction between Capital Cities (State/District) and Non-Capitals (Other cities).
                 </span>
-                <br> <br>As of 2026, India comprises 28 states (and 8 UTs) and districts increasing from 640 in 2011 to
-                766 in 2026, 44 villages have become District or State Capitals (including Amaravati (Andhra Pradesh)),
-                and Hanamkonda has emerged as a separate city after 2011—raising the total from 6,284 to <b>6,329</b>
-                cities.
-                These now comprise 301 Urban Agglomerations (UAs).
+                <br> <br>As of 2026, India comprises 28 states (and 8 UTs) and districts increasing from 640 in 2011 to 766 in 2026, 44 villages have become District or State Capitals (including Amaravati (Andhra Pradesh)), and Hyderabad (Rangareddy District), Porompat (Imphal East District), and Thoubal (Thoubal District) were part of Urban Agglomerations in 2011 — raising the total from 6,284 to <b>6331</b> cities. These now comprise 301 Urban Agglomerations (UAs).
 
-                <br><br>Each of the 766 districts and 28 states & 8 UTs has a Capital. There are 2 State
-                Capitals—Amaravati (Andhra Pradesh) & Bhubaneswar (Odisha)—which are not district capitals. Also,
-                Chandigarh is unique as the capital of two states (Punjab & Haryana) and one UT (Chandigarh itself).
+                <br><br>Each of the 766 districts and 28 states & 8 UTs has a Capital. There are 2 State Capitals—Amaravati (Andhra Pradesh) & Bhubaneswar (Odisha)—which are not district capitals. Also, Chandigarh is unique as the capital of two states (Punjab & Haryana) and one UT (Chandigarh itself).
                 <br><br>
-                We thus have 768 State and/or District capital Cities in India in 2026. Of these, 766 are district
-                capitals; 240 are Urban Agglomerations (UAs), 468 are cities, and 43 were villages in 2011, while the
-                remaining two are state capitals—1 Village - Amaravati (Andhra Pradesh) and 1 City - Bhubaneswar
-                (Odisha). However, 15 District Capitals  ( <a href="javascript:void(0)" id="viewRemaining">Click
-                    here</a> ) effectively merge into nearby UAs, bringing the
-                focus capitals (State/District) to <b>753</b> instead of 768.
+                We thus have 768 State and/or District capital Cities in India in 2026. Of these, 240 are Urban Agglomerations (UAs), 472 are cities, and 44 were villages in 2011. However, 12 District Capitals ( <a href="javascript:void(0)" id="viewRemaining">Click
+                    here</a> )effectively merge into nearby UAs, bringing the focus capitals (State/District) to <b>756</b> instead of 768.
                 <br><br>
-                Currently, there are 278 Municipal Corporations declared by the State Governments and 100 Smart Cities
-                under the Smart Cities Mission.
+                Currently, there are 278 Municipal Corporations declared by the State Governments and 100 Smart Cities under the Smart Cities Mission.
             </p>
             <div class="flex justify-end items-end mb-2">
                 <a href="/town-webs-in" target="_blank"
@@ -565,13 +548,13 @@ $metaData = [
                     <td class="text-center tabular-nums h3_bg">298</td>
                     <td class="text-center tabular-nums font-semibold">1,947</td>
                     <td class="text-center tabular-nums h1_bg">766</td>
-                    <td class="text-center tabular-nums">469</td>
-                    <td class="text-center tabular-nums h3_bg">240</td>
+                    <td class="text-center tabular-nums"> 472</td>
+                    <td class="text-center tabular-nums h3_bg"> 240</td>
                     <td class="text-center tabular-nums">44</td>
-                    <td class="text-center tabular-nums font-bold">753</td>
-                    <td class="text-center tabular-nums h2_bg">61</td>
-                    <td class="text-center tabular-nums">5,515</td>
-                    <td class="text-center tabular-nums h2_bg font-bold">6,329</td>
+                    <td class="text-center tabular-nums font-bold"> 756</td>
+                    <td class="text-center tabular-nums h2_bg"> 61</td>
+                    <td class="text-center tabular-nums"> 5,514</td>
+                    <td class="text-center tabular-nums h2_bg font-bold">6,331</td>
                     <td class="text-center tabular-nums">278</td>
                     <td class="text-center tabular-nums">100</td>
                 </tr>
@@ -593,6 +576,8 @@ $metaData = [
                 and Singrauli City (Madhya Pradesh), <span class="]-y px-1 rounded-sm">in Census
                     2011.</span> The new District Capitals thus carved out are
                 Hanamkonda (in Telangana) and Waidhan (in Madhya Pradesh).</li>
+            <li>Hyderabad UA has been divided into two parts - Hyderabad UA and Hyderabad (Rangareddy)</li>
+            <li>Imphal UA has been divided into Imphal UA , Porompat and Thoubal.</li>
         </ul>
     </div>
 

@@ -397,13 +397,13 @@
             @if($type === 'village')
             <div class="pb-4 text-center ">
                 <h2 class="text-xl md:text-xl  text-slate-800 tracking-tighter mb-2">
-                    Explore All <span class="text-blue-700 font-extrabold text-[20px] md:text-[22px]">594,204</span>
+                    Explore All <span class="text-blue-700 font-extrabold text-[20px] md:text-[22px]">592,765</span>
                     Inhabited Villages of India
                 </h2>
                 @else
                 <div class="pb-4 text-center">
                     <h2 class="text-xl md:text-xl  text-slate-800 tracking-tighter mb-2">
-                        Explore All <span class="text-blue-700 font-extrabold text-[20px] md:text-[22px]">6,329</span>
+                        Explore All <span class="text-blue-700 font-extrabold text-[20px] md:text-[22px]">6,331</span>
                         Cities of India
                     </h2>
                     @endif

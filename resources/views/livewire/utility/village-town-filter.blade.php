@@ -96,10 +96,10 @@
         <button type="button" @click="window.location.href='/webs/filter/{{$type =='town'?'cities':'villages'}}'"
             class="flex items-center gap-4 py-4 px-6 bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-xl hover:border-gray-300 transition-all duration-500 min-w-[260px] relative overflow-hidden group/btn">
 
+
             <div
                 class="absolute inset-0 bg-gradient-to-br from-blue-50/20 to-transparent opacity-0 group-hover/btn:opacity-100 transition-opacity duration-700">
             </div>
-
             <div
                 class="relative flex items-center justify-center w-10 h-10 bg-blue-50 rounded-xl group-hover:bg-blue-100 transition-all duration-500">
                 <svg class="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">

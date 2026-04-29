@@ -567,7 +567,7 @@
                                         class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
                                         style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
                                         <span>Cities</span>
-                                        <span>6,329</span>
+                                        <span>6,331</span>
                                     </a>
                                 </td>
                             </tr>
@@ -619,7 +619,7 @@
                                         class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
                                         style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
                                         <span>Villages</span>
-                                        <span>594,204</span>
+                                        <span>592,765</span>
                                     </a>
                                 </td>
                             </tr>

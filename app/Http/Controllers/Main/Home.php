@@ -479,12 +479,11 @@ class Home extends Controller
     public function indiaRural()
     {
         try {
-            $stateSummaryRaw = Cache::remember('village_webs.state_summary', 30 * 60 * 60, function () {
+            $stateSummaryRaw = Cache::remember('village_webs.state_summasrsyssj', 30 * 60 * 60, function () {
                 return collect(config('state.stateWise'))->toArray();
             });
 
             // dd($stateSummaryRaw);
-
         } catch (Exception $e) {
             $e->getMessage();
         }
@@ -495,10 +494,33 @@ class Home extends Controller
 
     public function getVillageDetails($stateCode, $type)
     {
+        if ($type === "removed") {
+            $stateName = collect(config('state.stateWise'))
+                ->firstWhere('state_code', $stateCode)['state'] ?? '';
+            $data = collect(config('state.removed-villages'))
+                ->where('state_code', $stateCode)
+                ->map(function ($item) {
+                    return [
+                        'district' => $item['district'] ?? '',
+                        'village'  => $item['village'] ?? '',
+                    ];
+                })
+                ->values()
+                ->toArray();
+
+            return response()->json([
+                'title' => 'Removed to District / City Capitals',
+                'state_name' => $stateName,
+                'description' => 'List of villages that have been removed District / City Capitals.',
+                'villages' => $data
+            ]);
+        }
+
         $table = match ($type) {
             'repo' => 'repo_village',
             'new' => 'new_villages',
             'missing' => 'missing_village',
+
             default => null,
         };
 

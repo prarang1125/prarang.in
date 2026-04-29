@@ -1,7 +1,7 @@
 @php
 $metaData = [
 'nav-heading' => view('components.nav-heading', [
-'text' => 'India : Rural - 594,204 Villages',
+'text' => 'India : Rural - 592,765 Villages',
 'text_class'=>'text-sm',
 'leftImg' => asset('assets/images/home/Villages-1.png'),
 'rightImg' => asset('assets/images/home/Villages-1.png'),
@@ -54,9 +54,9 @@ $metaData = [
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
             margin-bottom: 8px;
-            max-height: calc(100vh - 250px);
+            max-height: calc(85vh);
             overflow-x: auto;
-            overflow-y: auto;
+            /* overflow-y: auto; */
         }
 
         /* PC - Fit in window */
@@ -86,7 +86,7 @@ $metaData = [
             .table-responsive {
                 border-radius: 4px;
                 overflow-x: auto;
-                max-height: calc(100vh - 200px);
+                max-height: calc(85vh);
             }
 
             /* Sticky first two columns (# and State) on mobile */
@@ -407,27 +407,37 @@ $metaData = [
                 width: 100px !important;
             }
         }
+
+/* Text center */
+.container .table-hori .table-responsive .modern-table .head-forstic .bg-primary .text-center:nth-child(15){
+ width:0px !important;
+}
+
+/* Text center */
+.head-forstic .text-center:nth-child(15){
+ max-height:0px;
+}
+
+@media (min-width:769px){
+
+ /* Text center */
+ .head-forstic .text-center{
+  font-size:13px;
+ }
+
+}
     </style>
 
 
     <section>
-        <p>India had a total of <b>640,932</b> villages
-            in 2011 ( Census) including 43,326 which were uninhabited. These effectively reduce to <b>594,204</b>
-            inhabited
-            villages in 2026.
+        <p>IIndia had a total of <b>640,932</b> villages in 2011 ( Census) including 43,326 which were uninhabited. These effectively reduce to <b>592,765</b> inhabited villages in 2026.
+
         </p>
-        <p>The Ministry of Panchayat Raj maintains an updated Indian Village database LGD ( Local Government Directory),
-            with the latest Block/Tehsil, Sub-District, District & State mappings however this LGD does Not provide any
-            estimates on Population, at any point of time including when they recognize a new village ( not in the
-            Census 2011 list). </p>
+        <p>The Ministry of Panchayat Raj maintains an updated Indian Village database LGD ( Local Government Directory), with the latest Block/Tehsil, Sub-District, District & State mappings however this LGD does Not provide any estimates on Population, at any point of time including when they recognize a new village ( not in the Census 2011 list). </p>
 
         <p>
-            We have deduplicated the India Village Census 2011 list of Villages to the LGD India Villages (as of 12
-            March, 2026). The Panchayati Raj LGD India village database has grown to <b>676,260</b> villages. Of these
-            <b>87.9% </b> match off to the Census, <b>5.9%</b> are New villages ( which didn't exist in 2011),
-            <b>6.2%</b> appear to have been re-populated ( since census 2011). Also, we can identify <b>3,402</b>
-            villages of Census 2011 which are Missing in the LGD - an anomaly which may indicate that these have since
-            become uninhabited.
+           We have deduplicated the India Village Census 2011 list of Villages to the LGD India Villages (as of 12 March, 2026). The Panchayati Raj LGD India village database has grown to <b>676,260</b> villages. Of these, <b>592,765</b> match to the Census, <b>40,075</b> are new villages (which did not exist in 2011), and <b>41,981</b> appear to have been re-populated (since Census 2011). In addition, <b>1,439</b> villages have been aggregated to form 44 DHQs post Census 2011. Also, we can identify <b>3,402</b> villages from Census 2011 that are missing in the LGD—an anomaly which may indicate that these have since become uninhabited.
+
         </p>
         <div class="flex justify-end items-end mb-2">
             <a href="/village-webs" target="_blank"
@@ -449,9 +459,8 @@ $metaData = [
                         <th class="bg-primary text-white text-center statewidth" rowspan="2">State / UT</th>
                         <th class="bg-primary text-white text-center" colspan="4"
                             style="background: #2c4f92 !important">Census 2011</th>
-                        <th class="bg-primary text-white text-center" colspan="9">Panchayat Raj - March 2026</th>
+                        <th class="bg-primary text-white text-center" colspan="11">Panchayat Raj - March 2026</th>
                     </tr>
-
 
                     <tr class="bg-primary">
                         <th class="bg-primary text-white text-center" style="background: #2c4f92 !important"># Villages
@@ -462,8 +471,11 @@ $metaData = [
                         <th class="bg-primary text-white text-center" style="background: #2c4f92 !important">%</th>
                         <th class="bg-primary text-white text-center"># Villages</th>
                         <th class="bg-primary text-white text-center">%</th>
-                        <th class="bg-primary text-white text-center"># Inhabited<br>(Cen. 2011)</th>
+                           <th class="bg-primary text-white text-center"># Inhabited<br>(Cen. 2011)</th>
                         <th class="bg-primary text-white text-center">%</th>
+                        <th class="bg-primary text-white text-center">2011 <br># Removed  to <br> District / City <br>Capitals</th>
+                        <th class="bg-primary text-white text-center">%</th>
+
                         <th class="bg-primary text-white text-center"># Re-Pop.<br>(Cen. 2011)</th>
                         <th class="bg-primary text-white text-center">%</th>
                         <th class="bg-primary text-white text-center"># New<br>Villages</th>
@@ -491,17 +503,27 @@ $metaData = [
                         <td>{{ (int) ($row['panchayat_2026_villages'] ?? 0) > 0 ? number_format((int)
                             $row['panchayat_2026_villages']) : '-' }}</td>
 
-                        <td>{{ isset($row['panchayat_2026_villages_pct']) ? number_format((float)
-                            $row['panchayat_2026_villages_pct'], 1) : '-' }}</td>
 
                         <td>{{ (int) ($row['panchayat_2026_inhabited'] ?? 0) > 0 ? number_format((int)
                             $row['panchayat_2026_inhabited']) : '-' }}</td>
 
                         <td>{{ isset($row['panchayat_2026_inhabited_pct']) ? number_format((float)
                             $row['panchayat_2026_inhabited_pct'], 1) : '-' }}</td>
+                             <td>{{ isset($row['panchayat_2026_villages_pct']) ? number_format((float)
+                            $row['panchayat_2026_villages_pct'], 1) : '-' }}</td>
+                              <td>
+                                 @if($row['2011_removed']=="-")
+                                -
+                            @else <a href="javascript:void(0)" class="text-primary village-detail-trigger"
+                                data-state-code="{{ $row['state_code'] }}" data-type="removed">
+                              {{ isset($row['2011_removed']) ?  $row['2011_removed'] : '' }}
+                            </a>
+                        @endif</td>
+                         <td>{{ (int) ($row['2011_removed_pre'] ?? 0) > 0 ? number_format((int)
+                            $row['2011_removed_pre']) : '-' }}</td>
 
                         <td>
-                            @if(($row['repop_villages'] ?? null) == null)
+                            @if(($row['repop_villages'] == "-"))
                             -
                             @else
                             <a href="javascript:void(0)" class="text-primary village-detail-trigger"
@@ -515,7 +537,7 @@ $metaData = [
                             : '-' }}</td>
 
                         <td>
-                            @if(($row['new_villages'] ?? null) == null)
+                            @if(($row['new_villages'] == "-"))
                             -
                             @else
                             <a href="javascript:void(0)" class="text-primary village-detail-trigger"
@@ -529,7 +551,7 @@ $metaData = [
                             '-' }}</td>
 
                         <td>
-                            @if(($row['missing_villages'] ?? null) == null)
+                            @if(($row['missing_villages'] == "-"))
                             -
                             @else
                             <a href="javascript:void(0)" class="text-primary village-detail-trigger"
@@ -551,15 +573,18 @@ $metaData = [
                     <tr class="india-total-row">
 
                         <td colspan="2">INDIA - TOTAL</td>
-                        <td>6,40,932</td>
+                        <td> 6,40,932</td>
                         <td>100.0</td>
-                        <td>5,97,606</td>
+                        <td> 5,97,606</td>
                         <td>93.2</td>
-                        <td>6,76,260</td>
+                        <td>  6,76,260  </td>
                         <td>100</td>
-                        <td>5,94,204</td>
+
+                        <td> 5,92,765 </td>
                         <td>87.9</td>
-                        <td>41,981</td>
+                           <td>  1,439 </td>
+                           <td>0.2</td>
+                        <td> 41,981 </td>
                         <td>6.2</td>
                         <td>40,075</td>
                         <td>5.9</td>
@@ -605,7 +630,6 @@ $metaData = [
             </div>
         </div>
     </div>
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             const villageModal = new bootstrap.Modal(document.getElementById('villageDetailModal'));
