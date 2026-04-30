@@ -874,7 +874,7 @@
                                                 href="https://g2c.prarang.in/planners/market">Market
                                                 Planner</a>
                                         </li>
-                                        <li><a class="dropdown-item" href="https://g2c.prarang.in/planners">Cyber Risk
+                                        <li><a class="dropdown-item" href="https://www.prarang.in/cirus">Cyber Risk
                                                 Analyser
                                             </a></li>
                                         <li><a class="dropdown-item"
