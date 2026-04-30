@@ -102,67 +102,66 @@
         <nav id="navmenu" class="navmenu">
             <ul>
                 {{-- <li class="dropdown" id="categories-menu">
-                    <a href="#">{{ strtoupper(app()->getLocale()) }}<i
-                            class="bx bx-chevron-down dropdown-icon"></i></a>
+                    <a href="#">{{ strtoupper(app()->getLocale()) }}<i class="bx bx-chevron-down dropdown-icon"></i></a>
                     <ul class="dropdown-menu">
                         @foreach (['en', 'hi', 'mr', 'cz'] as $language)
-                            <li><a href="{{ url()->current() . '?l=' . $language }}">{{ strtoupper($language) }}</a>
-                            </li>
+                        <li><a href="{{ url()->current() . '?l=' . $language }}">{{ strtoupper($language) }}</a>
+                        </li>
                         @endforeach
                     </ul>
                 </li> --}}
                 @if (app()->getLocale() == 'en')
-                    <li class="dropdown" id="categories-menu">
-                        <a href="#">{{ __('yp.countries') }}<i class="bx bx-chevron-down dropdown-icon"></i></a>
-                        <ul class="dropdown-menu">
-                            @foreach (get_cities() as $city)
-                                @if ($city->is_country)
-                                    <li><a href="{{ route('city.show', $city->slug) }}">{{ $city->name }}</a>
-                                    </li>
-                                @endif
-                            @endforeach
-                        </ul>
-                    </li>
+                <li class="dropdown" id="categories-menu">
+                    <a href="#">{{ __('yp.countries') }}<i class="bx bx-chevron-down dropdown-icon"></i></a>
+                    <ul class="dropdown-menu">
+                        @foreach (get_cities() as $city)
+                        @if ($city->is_country)
+                        <li><a href="{{ route('city.show', $city->slug) }}">{{ $city->name }}</a>
+                        </li>
+                        @endif
+                        @endforeach
+                    </ul>
+                </li>
                 @else
-                    <li class="dropdown" id="categories-menu">
-                        <a href="#">{{ __('yp.cities') }}<i class="bx bx-chevron-down dropdown-icon"></i></a>
-                        <ul class="dropdown-menu">
-                            @foreach (get_cities() as $city)
-                                @if (!$city->is_country)
-                                    <li><a href="{{ route('city.show', $city->slug) }}">{{ $city->name }}</a>
-                                    </li>
-                                @endif
-                            @endforeach
-                        </ul>
-                    </li>
+                <li class="dropdown" id="categories-menu">
+                    <a href="#">{{ __('yp.cities') }}<i class="bx bx-chevron-down dropdown-icon"></i></a>
+                    <ul class="dropdown-menu">
+                        @foreach (get_cities() as $city)
+                        @if (!$city->is_country)
+                        <li><a href="{{ route('city.show', $city->slug) }}">{{ $city->name }}</a>
+                        </li>
+                        @endif
+                        @endforeach
+                    </ul>
+                </li>
                 @endif
                 {{-- <li><a href="{{ route('yp.plan') }}">योजना</a></li> --}}
                 <li><a href="{{ route('yp.vcard') }}">{{ __('yp.create_webpage') }}</a></li>
 
                 @if (Auth::check())
-                    <li class="dropdown">
-                        <a href="#"><i class="fas fa-user-circle"></i></a>
-                        <ul class="dropdown-menu">
-                            <li><a href="{{ route('vCard.dashboard') }}">{{ __('yp.dashboard') }}</a></li>
-                            {{-- <li><a href="{{ route('yp.getLocationData') }}">सूची जोड़ें</a></li> --}}
-                            <li>
-                                <a href="{{ route('vCard.logout') }}"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    {{ __('yp.logout') }}
-                                </a>
-                            </li>
-                        </ul>
-                    </li>
-                    <form id="logout-form" action="{{ route('yp.logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
+                <li class="dropdown">
+                    <a href="#"><i class="fas fa-user-circle"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('vCard.dashboard') }}">{{ __('yp.dashboard') }}</a></li>
+                        {{-- <li><a href="{{ route('yp.getLocationData') }}">सूची जोड़ें</a></li> --}}
+                        <li>
+                            <a href="{{ route('vCard.logout') }}"
+                                onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                {{ __('yp.logout') }}
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <form id="logout-form" action="{{ route('yp.logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
                 @else
-                    <li class="login-button">
-                        <a href="{{ route('yp.login') }}" class="btn-login-icon">
-                            <i class="bx bx-log-in"></i>
-                            <span class="highlight-text">{{ __('yp.login') }}</span>
-                        </a>
-                    </li>
+                <li class="login-button">
+                    <a href="{{ route('yp.login') }}" class="btn-login-icon">
+                        <i class="bx bx-log-in"></i>
+                        <span class="highlight-text">{{ __('yp.login') }}</span>
+                    </a>
+                </li>
                 @endif
             </ul>
         </nav>

@@ -509,9 +509,9 @@ class Home extends Controller
                 ->toArray();
 
             return response()->json([
-                'title' => 'Removed to District / City Capitals',
+                'title' => 'Villages Aggregated to Form DHQs',
                 'state_name' => $stateName,
-                'description' => 'List of villages that have been removed District / City Capitals.',
+                'description' => 'List of Villages from Census 2011 aggregated to form District Headquarters.',
                 'villages' => $data
             ]);
         }

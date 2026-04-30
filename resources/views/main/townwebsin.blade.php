@@ -293,27 +293,28 @@ $metaData = [
       text-align: center;
     }
   </style>
-
-
-
   <section>
-
-    <p>India has 9,389 towns (Census 2011). Of these, 7933 are Statutory/Census Towns, 475 are Urban Agglomerations, and
-      985 are Outgrowths
+    <p>India's Census 2011 recorded <b>7,933 Statutory and Census Towns.</b> Accounting for UAs — where multiple towns
+      are
+      counted as one city — these consolidate to <b>6,331</b> Cities, comprising 5,986 cities, 301 UAs, and 44 villages
+      that
+      have since become District or State Capitals.
     </p>
     <p>
-      India has 121 languages (which have more than 10,000 speakers in India). These <b> 121 languages have 23 related
-        scripts</b>. For effective digital communication across the country, these can be grouped into <b> 13 main
-        scripts</b>. Do note that the India Census 2011 was unique in its focus on Multilingualism. For all 7933
-      Statutory/Census Towns, the primary tongue ( i.e. Mother Tongue) data for each of the 121 languages, was opened
-      out for public use in 2018.
+      India has 121 languages (which have more than 10,000 speakers in India). These 121 languages have 23 related
+      scripts. For effective digital communication across the country, these can be grouped into 13 main scripts. Do
+      note that the India Census 2011 was unique in its focus on Multilingualism. For all 7,933 Statutory/Census Towns,
+      States and Districts (Rural + Urban), the primary tongue (i.e. Mother Tongue) data for each of the 121 languages,
+      was opened out for public use in 2018. Since the 44 villages-turned-capitals were not part of the 7,933 towns,
+      their Mother Tongue data is not available in the Census; their language distribution has therefore been estimated
+      based on their respective district's language profile.
     </p>
     <p>
-      The Language % in the Table below shows the "Percentage of the State/UTs Total Cities which have <b> at least 100
-        or more Mother-Tongue speakers </b>( from the 121 Primary Indian Languages), of the respective language". This
-      is Not the "Percent of the State/UT's Total Population who speak that Language". To see the Multilingualism i.e.
-      "Percent of the State/UT's Population who speak a Second or Third language ( apart from their Mother Tongue)",
-      please - <a href="https://g2c.prarang.in/script-language-data" target="_blank">Click here</a>
+      The Language % in the Table below shows the "Percentage of the State/UT's 6,331 Cities which have at least 100 or
+      more Mother-Tongue speakers (from the 121 Primary Indian Languages), of the respective language". This is Not the
+      "Percent of the State/UT's Total Population who speak that Language". To see the Multilingualism i.e. "Percent of
+      the State/UT's Population who speak a Second or Third language (apart from their Mother Tongue)", please - <a
+        href="https://g2c.prarang.in/script-language-data" target="_blank">Click here</a>
     </p>
   </section>
   <section class="mt-3 table-hori">
