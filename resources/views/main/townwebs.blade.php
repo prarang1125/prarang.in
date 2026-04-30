@@ -448,22 +448,42 @@ $metaData = [
     .h3_bg {
         background-color: #4395e6 !important;
     }
+
+    /* Link */
+    .mx-auto .justify-end a {
+        background-color: #2179ed;
+        color: #ffffff;
+    }
 </style>
 
 <x-layout.main.base :metaData="$metaData">
     <section class="max-w-7xl mx-auto px-4 pt-8">
         <div class="space-y-4 text-slate-700 leading-relaxed text-[14px]">
             <p>
-                <span class="font-semibold">While the Census 2011 cities/towns totaled 7,933 (4,041 statutory towns and 3,892 census towns), these can effectively be summarized as 6,284, since 1,947 cities were actually part of 298 Urban-Agglomerations (UAs). We make no distinction between the word “Cities” and the word “Towns”. Our focus is to make a  distinction between Capital Cities (State/District) and Non-Capitals (Other cities).
+                <span class="font-semibold">While the Census 2011 cities/towns totaled 7,933 (4,041 statutory towns and
+                    3,892 census towns), these can effectively be summarized as 6,284, since 1,947 cities were actually
+                    part of 298 Urban-Agglomerations (UAs). We make no distinction between the word “Cities” and the
+                    word “Towns”. Our focus is to make a distinction between Capital Cities (State/District) and
+                    Non-Capitals (Other cities).
                 </span>
-                <br> <br>As of 2026, India comprises 28 states (and 8 UTs) and districts increasing from 640 in 2011 to 766 in 2026, 44 villages have become District or State Capitals (including Amaravati (Andhra Pradesh)), and Hyderabad (Rangareddy District), Porompat (Imphal East District), and Thoubal (Thoubal District) were part of Urban Agglomerations in 2011 — raising the total from 6,284 to <b>6331</b> cities. These now comprise 301 Urban Agglomerations (UAs).
+                <br> <br>As of 2026, India comprises 28 states (and 8 UTs) and districts increasing from 640 in 2011 to
+                766 in 2026, 44 villages have become District or State Capitals (including Amaravati (Andhra Pradesh)),
+                and Hyderabad (Rangareddy District), Porompat (Imphal East District), and Thoubal (Thoubal District)
+                were part of Urban Agglomerations in 2011 — raising the total from 6,284 to <b>6331</b> cities. These
+                now comprise 301 Urban Agglomerations (UAs).
 
-                <br><br>Each of the 766 districts and 28 states & 8 UTs has a Capital. There are 2 State Capitals—Amaravati (Andhra Pradesh) & Bhubaneswar (Odisha)—which are not district capitals. Also, Chandigarh is unique as the capital of two states (Punjab & Haryana) and one UT (Chandigarh itself).
+                <br><br>Each of the 766 districts and 28 states & 8 UTs has a Capital. There are 2 State
+                Capitals—Amaravati (Andhra Pradesh) & Bhubaneswar (Odisha)—which are not district capitals. Also,
+                Chandigarh is unique as the capital of two states (Punjab & Haryana) and one UT (Chandigarh itself).
                 <br><br>
-                We thus have 768 State and/or District capital Cities in India in 2026. Of these, 240 are Urban Agglomerations (UAs), 472 are cities, and 44 were villages in 2011. However, 12 District Capitals ( <a href="javascript:void(0)" id="viewRemaining">Click
-                    here</a> )effectively merge into nearby UAs, bringing the focus capitals (State/District) to <b>756</b> instead of 768.
+                We thus have 768 State and/or District capital Cities in India in 2026. Of these, 240 are Urban
+                Agglomerations (UAs), 472 are cities, and 44 were villages in 2011. However, 12 District Capitals ( <a
+                    href="javascript:void(0)" id="viewRemaining">Click
+                    here</a> )effectively merge into nearby UAs, bringing the focus capitals (State/District) to
+                <b>756</b> instead of 768.
                 <br><br>
-                Currently, there are 278 Municipal Corporations declared by the State Governments and 100 Smart Cities under the Smart Cities Mission.
+                Currently, there are 278 Municipal Corporations declared by the State Governments and 100 Smart Cities
+                under the Smart Cities Mission.
             </p>
             <div class="flex justify-end items-end mb-2">
                 <a href="/town-webs-in" target="_blank"
