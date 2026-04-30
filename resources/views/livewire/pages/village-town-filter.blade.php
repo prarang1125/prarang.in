@@ -806,7 +806,7 @@
                     <div class="mt-8 pt-8 border-t border-slate-100">
                         <div class="pb-4 text-center">
                             <h2 class="text-xl md:text-xl  text-slate-800 tracking-tighter mb-2">
-                                Explore <span class="text-blue-700 font-extrabold text-[20px] md:text-[22px]">755</span>
+                                Explore <span class="text-blue-700 font-extrabold text-[20px] md:text-[22px]">756</span>
                                 State/District Capital Cities
                                 of India
                                 <br>
