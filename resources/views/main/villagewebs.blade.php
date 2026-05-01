@@ -398,16 +398,6 @@ $metaData = [
             max-height: 209px;
         }
     </style>
-    {{-- <p class="text-start mt-2">
-        <a href="/" class="btn btn-dark btn-sm"><i class="bi bi-arrow-left"></i> Back</a>
-    </p>
-
-    <div class="text-center">
-        <h4 class=" font-semibold">
-            India : Rural - 693,042 Villages
-        </h4>
-    </div> --}}
-
 
     <section>
         <p>India had 640,932 villages in 2011 (Census) and this has now increased to 676,260 villages (Min. of

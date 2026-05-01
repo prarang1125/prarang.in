@@ -644,7 +644,7 @@ $metaData[] = '';
                 [
                 'label' => 'City Internet Users (Est.)',
                 'source' => "Estimate - Population ratio of State Urban Internet Users - TRAI QTR Report",
-                'value' => $town['internet_users']['town_int_users'] ?? '-',
+                'value' => $town['internet_users']['datax'] ?? '-',
                 ],
                 [
                 'label' => 'District Internet Users (Est.)',
