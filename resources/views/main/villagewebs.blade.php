@@ -411,15 +411,16 @@ $metaData = [
 
     <section>
         <p>India had 640,932 villages in 2011 (Census) and this has now increased to 676,260 villages (Min. of
-            Panchayati Raj, March 2026). Of these, 594,204 villages were inhabited as per Census 2011, and 255,146 are
-            Gram Panchayats.
-        </p>
+            Panchayati Raj, March 2026). Of these, 592,765 villages were inhabited as per Census 2011, and 255,146 are
+            Gram Panchayats. </p>
         <p>The Multilingualism data (Census 2011) for Rural India was only released as an aggregated State/UT-Rural
             total for all 121 languages (with more than 10,000 speakers in India). The village-level multilingualism
             data is not in the public domain, though it can be estimated on the basis of each village's proximity to the
             7,933 Statutory/Census towns.
+
+
         </p>
-        <p>The Language % in the table below shows the percentage of a State/UT's inhabited villages (594,204) which
+        <p>The Language % in the table below shows the percentage of a State/UT's inhabited villages (592,765) which
             have at least some respective Mother Tongue speakers from the 121 primary Indian languages. Note that the %
             here is NOT the percentage of the State/UT's total rural population who speak that language.
         </p>

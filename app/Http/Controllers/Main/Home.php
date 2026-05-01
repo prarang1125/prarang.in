@@ -479,7 +479,7 @@ class Home extends Controller
     public function indiaRural()
     {
         try {
-            $stateSummaryRaw = Cache::remember('village_webs.state_summasrsyssj', 30 * 60 * 60, function () {
+            $stateSummaryRaw = Cache::remember('village_webs.state_sum', 30 * 60 * 60, function () {
                 return collect(config('state.stateWise'))->toArray();
             });
 

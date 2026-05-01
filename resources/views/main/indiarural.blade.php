@@ -507,27 +507,26 @@ $metaData = [
 
                         <td>{{ $row['state'] ?? '-' }}</td>
 
-                        <td>{{ number_format((int) ($row['census_2011_villages'] ?? 0)) }}</td>
+                        <td>{{ ($row['census_2011_villages'] ?? 0)}}</td>
 
                         <td>{{ isset($row['census_2011_villages_pct']) ? number_format((float)
                             $row['census_2011_villages_pct'], 1) : '-' }}</td>
-
-                        <td>{{ number_format((int) ($row['census_2011_inhabited'] ?? 0)) }}</td>
+                        <td>{{ ($row['census_2011_inhabited'] ?? 0)}}</td>
 
                         <td>{{ isset($row['census_2011_inhabited_pct']) ? number_format((float)
                             $row['census_2011_inhabited_pct'], 1) : '-' }}</td>
 
-                        <td>{{ (int) ($row['panchayat_2026_villages'] ?? 0) > 0 ? number_format((int)
-                            $row['panchayat_2026_villages']) : '-' }}</td>
+                        <td>{{ ($row['panchayat_2026_villages'] ?? 0) > 0 ?
+                            $row['panchayat_2026_villages'] : '-' }}</td>
+                        <td>{{ isset($row['panchayat_2026_villages_pct']) ? number_format((float)
+                            $row['panchayat_2026_villages_pct'], 1) : '-' }}</td>
 
-
-                        <td>{{ (int) ($row['panchayat_2026_inhabited'] ?? 0) > 0 ? number_format((int)
-                            $row['panchayat_2026_inhabited']) : '-' }}</td>
+                        <td>{{ ($row['panchayat_2026_inhabited'] ?? 0) > 0 ?
+                            $row['panchayat_2026_inhabited'] : '-' }}</td>
 
                         <td>{{ isset($row['panchayat_2026_inhabited_pct']) ? number_format((float)
                             $row['panchayat_2026_inhabited_pct'], 1) : '-' }}</td>
-                        <td>{{ isset($row['panchayat_2026_villages_pct']) ? number_format((float)
-                            $row['panchayat_2026_villages_pct'], 1) : '-' }}</td>
+
                         <td>
                             @if($row['2011_removed']=="-")
                             -
