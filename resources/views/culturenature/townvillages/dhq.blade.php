@@ -913,7 +913,8 @@ $metaData[] = '';
                 [
                 'label' => 'City Internet Users (Est.)',
                 'source' => "Estimate - Population ratio of State Urban Internet Users - TRAI QTR Report",
-                'value' => $dhq['internet_users']['datax'] ?? '-',
+                'value' => isset($intData['internet_users']['value']) ?
+                number_format($intData['internet_users']['value'], 0) : '-',
                 ],
                 [
                 'label' => 'District Internet Users (Est.)',
