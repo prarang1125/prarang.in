@@ -3,6 +3,7 @@
 use App\Http\Controllers\DisplayPostImage;
 use App\Http\Controllers\LandingPages;
 use App\Http\Controllers\Main\Home;
+use App\Http\Controllers\Main\Partners;
 use App\Http\Controllers\Main\PostArchives;
 use App\Http\Controllers\Main\postController;
 use App\Http\Controllers\AI\AIController;
@@ -14,6 +15,7 @@ use App\Livewire\Pages\ComparisonApi;
 use App\Livewire\Pages\CzeComparisonTool;
 use App\Livewire\Pages\CzeCountryComparison;
 use App\Livewire\Pages\NepalCountryComparison;
+use App\Livewire\Pages\Partners\IndiaCity;
 use App\Livewire\Pages\UpmanaAi;
 use App\View\Components\Layout\Main\Base;
 use Illuminate\Support\Facades\Route;
@@ -38,11 +40,19 @@ Route::prefix('/')->group(function () {
     Route::get('/semiotics', [Home::class, 'semiotics'])->name('semiotics');
     Route::get('/analytics', [Home::class, 'analytics'])->name('analytics');
     Route::get('/about-us', [Home::class, 'aboutUs'])->name('about-us');
-    Route::get('/partners', [Home::class, 'partners'])->name('partners');
+    // Route::get('/partners', [Home::class, 'partners'])->name('partners');
     Route::get('/privacy-policy', [Home::class, 'privacyPolicy'])->name('privacy-policy');
     Route::get('/refund-cancellation', [Home::class, 'refundCancellation'])->name('refund-cancellation');
     Route::get('/terms-conditions', [Home::class, 'termsConditions'])->name('terms-conditions');
 });
+
+// Partners
+Route::prefix('partners')->group(function () {
+    Route::get('/', [Partners::class, 'partners'])->name('partners');
+    Route::get('/india-city', IndiaCity::class)->name('partners.india-city');
+});
+
+
 Route::get('partners-metrics', [Home::class, 'partnersMetrics'])->name('home.partners-metrics');
 Route::get('city-webs', [Home::class, 'cityWebs'])->name('home.city-webs');
 Route::get('town-webs', [Home::class, 'townWebs'])->name('home.town-webs');

@@ -518,10 +518,7 @@ $metaData[] = '';
 
             {{-- Village Speak Section --}}
             <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm transition-all hover:shadow-md">
-                {{-- <div class="flex flex-col items-center mb-6">
-                    <h3 class="text-xl font-black text-gray-900 mb-1 ">City Speak</h3>
-                    <div class="w-10 h-0.5 bg-blue-600 rounded-full"></div>
-                </div> --}}
+
 
                 <div class="space-y-2">
                     <p class="text-[14px] text-gray-700 leading-relaxed font-medium">
@@ -529,8 +526,6 @@ $metaData[] = '';
                         }} <a class="text-blue-600 hover:text-blue-800" href="#toLanguage">please see language box.</a>
                     </p>
                 </div>
-
-
                 <div class="space-y-2">
                     <p class="text-[14px] text-gray-700 leading-relaxed font-medium">
                         {!! $town['cn-slm'] ?? '-' !!}
@@ -541,14 +536,12 @@ $metaData[] = '';
                     <!-- Sanskriti (Culture) -->
                     <div class="flex flex-col items-center">
                         <h4 class="text-lg font-bold text-gray-900 mb-1">संस्कृति</h4>
-
                         <!-- Sanskriti Color Bar -->
                         <div class="flex w-full h-9  overflow-hidden mb-1 max-w-[320px] shadow-sm">
                             <div class="flex-1" style="background-color: #ff0000;"></div>
                             <div class="flex-1" style="background-color: #f7f601;"></div>
                             <div class="flex-1" style="background-color: #0000ff;"></div>
                         </div>
-
                         <!-- Card Entries -->
                         <div class="w-full space-y-2">
                             @for ($i = 1; $i <= 2; $i++) <div class="flex gap-4 group/entry cursor-default">
@@ -597,41 +590,9 @@ $metaData[] = '';
             </div>
         </div>
     </div>
-
-
     </div>
 
     <div class="lg:col-span-3 space-y-6  order-2 lg:order-3">
-        <!-- Location Card -->
-        {{-- <div
-            class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
-            <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
-                <h3 class="text-base text-center font-bold text-blue-600">Location</h3>
-            </div>
-
-            <div class="divide-y divide-gray-50">
-                @php
-                $details = [
-                [
-                'label' => 'District',
-                'value' => $town['town']['district'] ?? '-',
-                ],
-                [
-                'label' => 'State',
-                'value' => $town['town']['State_UT_Name'] ?? '-',
-                ],
-                ];
-                @endphp
-                @foreach ($details as $detail)
-                <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
-                    <span class="text-[13px] font-medium text-gray-500">{{ $detail['label'] }}</span>
-                    <span class="text-[13px] font-bold text-gray-800 tracking-tight">{{ $detail['value'] }}</span>
-                </div>
-                @endforeach
-            </div>
-        </div> --}}
-
-        <!-- Internet Trends Card -->
         <div
             class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
             <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
