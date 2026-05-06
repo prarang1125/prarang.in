@@ -119,6 +119,47 @@
         .show-social .social-col {
             display: table-cell !important;
         }
+
+        /* Source tooltip */
+        .src-tooltip {
+            position: relative;
+            display: inline-block;
+            vertical-align: middle;
+        }
+
+        .src-tooltip .src-tooltip-box {
+            display: none;
+            position: absolute;
+            bottom: calc(100% + 6px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1f2937;
+            color: #fff;
+            font-size: 11px;
+            font-weight: 400;
+            white-space: normal;
+            max-width: 400px;
+            padding: 5px 8px;
+            border-radius: 4px;
+            z-index: 9999;
+            pointer-events: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+            line-height: 1.4;
+        }
+
+        .src-tooltip .src-tooltip-box::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 5px solid transparent;
+            border-top-color: #1f2937;
+        }
+
+        .src-tooltip:hover .src-tooltip-box {
+            display: block;
+        }
     </style>
     <style>
         /* Transition all */
@@ -407,98 +448,121 @@
                         <th class="px-2 py-1 text-xs border text-center">City Name</th>
                         <th class="px-2 py-1 text-xs border text-center">State</th>
                         <th class="px-2 py-1 text-xs border text-center">
-                            Population 2011 
-                            <div class="group relative inline-block ml-0.5 align-text-bottom">
-                                <svg class="w-3.5 h-3.5 text-gray-400 hover:text-blue-500 cursor-help" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:block w-max bg-gray-800 text-white text-[11px] font-normal rounded py-1 px-2 shadow-lg z-50 whitespace-nowrap">
-                                    Source: Population - Census
-                                    <div class="absolute top-full left-1/2 -translate-x-1/2 border-[4px] border-transparent border-t-gray-800"></div>
-                                </div>
-                            </div>
+                            Population 2011
+                            <span class="src-tooltip">
+                                <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="src-tooltip-box">Population - Census 2011</span>
+                            </span>
                             <br> (in '000)
                         </th>
                         <th class="px-2 py-1 text-xs border text-center">
-                            Population 2026 
-                            <div class="group relative inline-block ml-0.5 align-text-bottom">
-                                <svg class="w-3.5 h-3.5 text-gray-400 hover:text-blue-500 cursor-help" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:block w-max bg-gray-800 text-white text-[11px] font-normal rounded py-1 px-2 shadow-lg z-50 whitespace-nowrap">
-                                    Source: Estimate - Population
-                                    <div class="absolute top-full left-1/2 -translate-x-1/2 border-[4px] border-transparent border-t-gray-800"></div>
-                                </div>
-                            </div>
+                            Population 2026
+                            <span class="src-tooltip">
+                                <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="src-tooltip-box">Estimate - Population based on District Growth Rate -
+                                    Census 2011</span>
+                            </span>
                             <br> (in '000)
                         </th>
                         <th class="px-2 py-1 text-xs border text-center">
                             Literacy (%)
-                            <div class="group relative inline-block ml-0.5 align-text-bottom">
-                                <svg class="w-3.5 h-3.5 text-gray-400 hover:text-blue-500 cursor-help" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:block w-max bg-gray-800 text-white text-[11px] font-normal rounded py-1 px-2 shadow-lg z-50 whitespace-nowrap">
-                                    Source: The Literacy Rate
-                                    <div class="absolute top-full left-1/2 -translate-x-1/2 border-[4px] border-transparent border-t-gray-800"></div>
-                                </div>
-                            </div>
+                            <span class="src-tooltip">
+                                <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="src-tooltip-box">The Literacy Rate, amongst the people who use a particular
+                                    Script for their Mother Tongue Language.</span>
+                            </span>
                         </th>
                         <th class="px-2 py-1 text-xs border text-center">
-                            Internet Users 
-                            <div class="group relative inline-block ml-0.5 align-text-bottom">
-                                <svg class="w-3.5 h-3.5 text-gray-400 hover:text-blue-500 cursor-help" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:block w-max bg-gray-800 text-white text-[11px] font-normal rounded py-1 px-2 shadow-lg z-50 whitespace-nowrap">
-                                    Source: Estimate - Population
-                                    <div class="absolute top-full left-1/2 -translate-x-1/2 border-[4px] border-transparent border-t-gray-800"></div>
-                                </div>
-                            </div>
+                            Internet Users
+                            <span class="src-tooltip">
+                                <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="src-tooltip-box">Estimate - Population ratio of State Urban Internet Users
+                                    - TRAI QTR Report</span>
+                            </span>
                             <br> (in '000)
                         </th>
                         <th class="px-2 py-1 text-xs border text-center">
                             Facebook Users (%)
-                            <div class="group relative inline-block ml-0.5 align-text-bottom">
-                                <svg class="w-3.5 h-3.5 text-gray-400 hover:text-blue-500 cursor-help" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:block w-max bg-gray-800 text-white text-[11px] font-normal rounded py-1 px-2 shadow-lg z-50 whitespace-nowrap">
-                                    Source: Percentage of Internet Surfers
-                                    <div class="absolute top-full left-1/2 -translate-x-1/2 border-[4px] border-transparent border-t-gray-800"></div>
-                                </div>
-                            </div>
+                            <span class="src-tooltip">
+                                <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="src-tooltip-box">Percentage of Internet Subscribers using Facebook.</span>
+                            </span>
                         </th>
                         <th class="px-2 py-1 text-xs border text-center">
                             Instagram Users (%)
-                            <div class="group relative inline-block ml-0.5 align-text-bottom">
-                                <svg class="w-3.5 h-3.5 text-gray-400 hover:text-blue-500 cursor-help" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:block w-max bg-gray-800 text-white text-[11px] font-normal rounded py-1 px-2 shadow-lg z-50 whitespace-nowrap">
-                                    Source: Percentage of Internet Surfers
-                                    <div class="absolute top-full left-1/2 -translate-x-1/2 border-[4px] border-transparent border-t-gray-800"></div>
-                                </div>
-                            </div>
+                            <span class="src-tooltip">
+                                <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="src-tooltip-box">Percentage of Internet Subscribers using Instagram.</span>
+                            </span>
                         </th>
                         <th class="px-2 py-1 text-xs border text-center">
                             LinkedIn Users (%)
-                            <div class="group relative inline-block ml-0.5 align-text-bottom">
-                                <svg class="w-3.5 h-3.5 text-gray-400 hover:text-blue-500 cursor-help" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:block w-max bg-gray-800 text-white text-[11px] font-normal rounded py-1 px-2 shadow-lg z-50 whitespace-nowrap">
-                                    Source: Percentage of Internet Surfers
-                                    <div class="absolute top-full left-1/2 -translate-x-1/2 border-[4px] border-transparent border-t-gray-800"></div>
-                                </div>
-                            </div>
+                            <span class="src-tooltip">
+                                <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="src-tooltip-box">Percentage of Internet Subscribers using LinkedIn.</span>
+                            </span>
                         </th>
                         <th class="px-2 py-1 text-xs border text-center">
                             X (Twitter) Users (%)
-                            <div class="group relative inline-block ml-0.5 align-text-bottom">
-                                <svg class="w-3.5 h-3.5 text-gray-400 hover:text-blue-500 cursor-help" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:block w-max bg-gray-800 text-white text-[11px] font-normal rounded py-1 px-2 shadow-lg z-50 whitespace-nowrap">
-                                    Source: Percentage of Internet Surfers
-                                    <div class="absolute top-full left-1/2 -translate-x-1/2 border-[4px] border-transparent border-t-gray-800"></div>
-                                </div>
-                            </div>
+                            <span class="src-tooltip">
+                                <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="src-tooltip-box">Percentage of Internet Subscribers using X
+                                    (Twitter).</span>
+                            </span>
                         </th>
                         <th class="px-2 py-1 text-xs border text-center hover:text-blue-600 hover:font-bold cursor-pointer"
                             onclick="window.open('/cirus','_blank')">
                             Cyber Risk Index
-                            <div class="group relative inline-block ml-0.5 align-text-bottom">
-                                <svg class="w-3.5 h-3.5 text-gray-400 hover:text-blue-500 cursor-help" fill="currentColor" viewBox="0 0 20 20"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
-                                <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-1.5 hidden group-hover:block w-max bg-gray-800 text-white text-[11px] font-normal rounded py-1 px-2 shadow-lg z-50 whitespace-nowrap">
-                                    Source: Cyber Risk Score - rank
-                                    <div class="absolute top-full left-1/2 -translate-x-1/2 border-[4px] border-transparent border-t-gray-800"></div>
-                                </div>
-                            </div>
+                            <span class="src-tooltip">
+                                <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="src-tooltip-box">Cyber Risk Score - ranked across 756+ State/District
+                                    Capitals on 12 metrics, standardised 0-10 scale</span>
+                            </span>
                         </th>
                         <th class="px-2 py-1 text-xs border text-center">Top 3 Languages</th>
 
@@ -631,15 +695,42 @@
                         </th>
                         <th rowspan="2" class="px-2 py-2 border text-center align-middle font-bold text-gray-800">
                             Population (2026)<br>('000)
-                            <svg class="w-3.5 h-3.5 inline-block ml-0.5 mb-0.5 text-gray-400 hover:text-blue-500 cursor-help" fill="currentColor" viewBox="0 0 20 20" title="Source: Estimate - Population"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                            <span class="src-tooltip">
+                                <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="src-tooltip-box">Estimate - Population based on District Growth Rate -
+                                    Census 2011</span>
+                            </span>
                         </th>
                         <th rowspan="2" class="px-2 py-2 border text-center align-middle font-bold text-gray-800">
                             Literacy (%)
-                            <svg class="w-3.5 h-3.5 inline-block ml-0.5 mb-0.5 text-gray-400 hover:text-blue-500 cursor-help" fill="currentColor" viewBox="0 0 20 20" title="Source: The Literacy Rate"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                            <span class="src-tooltip">
+                                <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="src-tooltip-box">The Literacy Rate, amongst the people who use a particular
+                                    Script for their Mother Tongue Language.</span>
+                            </span>
                         </th>
                         <th rowspan="2" class="px-2 py-2 border text-center align-middle font-bold text-gray-800">
                             Internet Users<br>('000)
-                            <svg class="w-3.5 h-3.5 inline-block ml-0.5 mb-0.5 text-gray-400 hover:text-blue-500 cursor-help" fill="currentColor" viewBox="0 0 20 20" title="Source: Estimate - Population"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                            <span class="src-tooltip">
+                                <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="src-tooltip-box">Estimate - Population ratio of State Urban Internet Users
+                                    - TRAI QTR Report</span>
+                            </span>
                             <br>
                             {{-- <button @click="showSocial = !showSocial"
                                 class="mt-1 text-[10px] font-semibold px-2 py-0.5 rounded border transition-colors"
@@ -650,22 +741,55 @@
                         <th rowspan="2"
                             class="social-col px-2 py-2 border text-center align-middle font-bold text-gray-800 bg-blue-50">
                             FB (%)
-                            <svg class="w-3.5 h-3.5 inline-block ml-0.5 mb-0.5 text-gray-400 hover:text-blue-500 cursor-help" fill="currentColor" viewBox="0 0 20 20" title="Source: Percentage of Internet Surfers"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                            <span class="src-tooltip">
+                                <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="src-tooltip-box">Percentage of Internet Subscribers using Facebook.</span>
+                            </span>
                         </th>
                         <th rowspan="2"
                             class="social-col px-2 py-2 border text-center align-middle font-bold text-gray-800 bg-blue-50">
                             Instagram (%)
-                            <svg class="w-3.5 h-3.5 inline-block ml-0.5 mb-0.5 text-gray-400 hover:text-blue-500 cursor-help" fill="currentColor" viewBox="0 0 20 20" title="Source: Percentage of Internet Surfers"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                            <span class="src-tooltip">
+                                <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="src-tooltip-box">Percentage of Internet Subscribers using Instagram.</span>
+                            </span>
                         </th>
                         <th rowspan="2"
                             class="social-col px-2 py-2 border text-center align-middle font-bold text-gray-800 bg-blue-50">
                             LinkedIn (%)
-                            <svg class="w-3.5 h-3.5 inline-block ml-0.5 mb-0.5 text-gray-400 hover:text-blue-500 cursor-help" fill="currentColor" viewBox="0 0 20 20" title="Source: Percentage of Internet Surfers"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                            <span class="src-tooltip">
+                                <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="src-tooltip-box">Percentage of Internet Subscribers using LinkedIn.</span>
+                            </span>
                         </th>
                         <th rowspan="2"
                             class="social-col px-2 py-2 border text-center align-middle font-bold text-gray-800 bg-blue-50">
                             X (Twitter) (%)
-                            <svg class="w-3.5 h-3.5 inline-block ml-0.5 mb-0.5 text-gray-400 hover:text-blue-500 cursor-help" fill="currentColor" viewBox="0 0 20 20" title="Source: Percentage of Internet Surfers"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                            <span class="src-tooltip">
+                                <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="src-tooltip-box">Percentage of Internet Subscribers using X
+                                    (Twitter).</span>
+                            </span>
                         </th>
                         <th rowspan="2" class="px-2 py-2 border text-center align-middle font-bold text-gray-800">
                             Selected Language
