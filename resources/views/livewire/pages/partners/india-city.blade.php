@@ -1,4 +1,5 @@
-<div>
+<div x-data="{ step: @entangle('step') }"
+    x-init="$watch('step', value => window.scrollTo({top: 100, behavior: 'smooth'}))">
     <style>
         .grid .w-full a {
             text-decoration: none;
@@ -164,6 +165,107 @@
         }
     </style>
     <style>
+        .inclusions-table {
+            width: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            border: 1px solid #e5e7eb;
+        }
+
+        .inclusions-table thead tr {
+            background: #f9fafb;
+        }
+
+        .inclusions-table th {
+            padding: 10px 12px;
+            text-align: left;
+            font-size: 13px;
+            font-weight: 600;
+            color: #374151;
+            border: 1px solid #e5e7eb;
+        }
+
+        .inclusions-table th:first-child {
+            width: 40%;
+        }
+
+        .inclusions-table th.featured {
+            color: #1d4ed8;
+            background: #eff6ff;
+        }
+
+        .inclusions-table td {
+            padding: 8px 12px;
+            font-size: 13px;
+            color: #4b5563;
+            border: 1px solid #e5e7eb;
+            vertical-align: middle;
+        }
+
+        .inclusions-table td:first-child {
+            color: #1f2937;
+            font-weight: 500;
+        }
+
+        /* Striped rows */
+        .inclusions-table tbody tr:nth-child(even) {
+            background-color: #fcfcfd;
+        }
+
+        .inclusions-table tr:hover td {
+            background-color: #f3f4f6;
+        }
+
+        .inclusions-table .section-row td {
+            background: #f3f4f6;
+            font-weight: 700;
+            color: #111827;
+            text-transform: uppercase;
+            font-size: 11px;
+            letter-spacing: 0.025em;
+        }
+
+        .plan-badge {
+            display: inline-block;
+            font-size: 10px;
+            font-weight: 500;
+            background: #e0f2fe;
+            color: #0369a1;
+            padding: 2px 8px;
+            border-radius: 20px;
+            margin-left: 6px;
+            vertical-align: middle;
+        }
+
+        .yes {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            background: #dcfce7;
+            color: #166534;
+            border-radius: 50%;
+            font-size: 12px;
+        }
+
+        .no {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 22px;
+            height: 22px;
+            background: #f3f4f6;
+            color: #9ca3af;
+            border-radius: 50%;
+            font-size: 14px;
+        }
+
+        .featured-col {
+            background: rgba(29, 78, 216, 0.02) !important;
+        }
+    </style>
+    <style>
         /* Transition all */
         .container div .transition-all {
             max-width: 221px !important;
@@ -173,6 +275,35 @@
         .overflow-hidden tbody .font-bold {
             font-weight: 400;
         }
+
+        /* Font medium */
+        .overflow-x-auto tbody .font-medium {
+            text-align: center;
+        }
+
+        /* Flex col */
+        .overflow-x-auto tbody .flex-col {
+            justify-content: flex-start;
+            align-items: flex-start;
+        }
+
+        /* Font medium */
+        .overflow-x-auto .w-fit .font-medium {
+            text-align: left;
+            padding-left: 8px;
+        }
+
+        /* Paragraph */
+        .border-b .justify-start p {
+            text-align: left;
+            /* transform: translatex(0px) translatey(0px); */
+            margin-bottom: 7px;
+        }
+
+        /* Font medium */
+        /* .container div .font-medium {
+            visibility: hidden;
+        } */
     </style>
     <section class="mb-3">
 
@@ -696,14 +827,17 @@
 
                 </div>
             </div>
-            {{-- <button type="button" data-bs-toggle="modal" data-bs-target="#TheseMTw1"
-                class="text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-1.5 border border-blue-200">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                Compare Plans
-            </button> --}}
+            <div class="flex justify-end items-end mb-2">
+                <button type="button" data-bs-toggle="modal" data-bs-target="#TheseMTw1"
+                    class="text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-1.5 border border-blue-200">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Compare Plans
+                </button>
+            </div>
+
 
             <table class="w-full text-sm text-left text-gray-700 border-collapse border border-gray-300"
                 x-data="{ showSocial: false }" :class="showSocial ? 'show-social' : ''">
@@ -1056,88 +1190,101 @@
             <div class="modal-dialog modal-xl modal-dialog-centered">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="TheseMTw1Label">Plan Comparison</h1>
+                        <h1 class="modal-title fs-5" id="TheseMTw1Label">Plan Inclusions & Deliverables</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <section class="container my-4">
-                            <div class="mb-4">
-                                <h4 class="fw-bold mb-3">Partnership Benefits</h4>
-                                <ul class="mb-4">
-                                    <li>Select a city and campaign date to book your advertisement</li>
-                                    <li>Upload creative assets (still or video)</li>
-                                    <li>Receive performance metrics on Day 5 and Day 31</li>
-                                    <li>View hyperlocal performance insights for each advertisement</li>
-                                    <li>Access in-depth city-level audience metrics</li>
-                                    <li>Explore Prarang City Analytics for planning, tracking, and optimization</li>
-                                </ul>
+                        <div class="mt-8 pt-6 border-t border-gray-200">
 
-                                <h5 class="fw-bold mb-3">Partnership Tiers -</h5>
+                            <div class="overflow-hidden border border-gray-200 rounded-lg">
+                                <table class="inclusions-table">
+                                    <thead>
+                                        <tr>
+                                            <th>Feature</th>
+                                            <th>City Lite</th>
+                                            <th class="">City Plus </th>
+                                            <th>City Prime</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="section-row">
+                                            <td colspan="4">Reach & base</td>
+                                        </tr>
 
-                                <!-- Audience & Reach Table -->
-                                <div class="table-responsive mb-4">
-                                    <table class="table table-bordered">
-                                        <thead class="table-Lite">
-                                            <tr>
-                                                <th class="text-center">Audience &amp; Reach</th>
-                                                <th class="text-center">City Lite</th>
-                                                <th class="text-center">City Plus</th>
-                                                <th class="text-center">City Prime</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Minimum City Subscriber Base</td>
-                                                <td class="text-center">300+</td>
-                                                <td class="text-center">300+</td>
-                                                <td class="text-center">10,000+</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Hyperlocal Reach per Post (within 7 days)</td>
-                                                <td class="text-center">3,000+</td>
-                                                <td class="text-center">3,000+</td>
-                                                <td class="text-center">3,000+</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Total Monthly Reach</td>
-                                                <td class="text-center">12,000+</td>
-                                                <td class="text-center">45,000+</td>
-                                                <td class="text-center">93,000+</td>
-                                            </tr>
-                                        </tbody>
+                                        <tr>
+                                            <td>Min. city subscriber base</td>
+                                            <td>300+</td>
+                                            <td class="featured-col">300+</td>
+                                            <td>10,000+</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Hyperlocal reach per post (7 days)</td>
+                                            <td>3,000+</td>
+                                            <td class="featured-col">3,000+</td>
+                                            <td>3,000+</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total monthly reach</td>
+                                            <td>12,000+</td>
+                                            <td class="featured-col">45,000+</td>
+                                            <td>93,000+</td>
+                                        </tr>
 
-                                        <thead class="table-Lite">
-                                            <tr>
-                                                <th class="text-center">Content &amp; Publishing</th>
-                                                <th class="text-center">City Lite</th>
-                                                <th class="text-center">City Plus</th>
-                                                <th class="text-center">City Prime</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Posts per Month</td>
-                                                <td class="text-center">4</td>
-                                                <td class="text-center">15</td>
-                                                <td class="text-center">31</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Creative Formats Included</td>
-                                                <td class="text-center">3 Stills, 1 Video</td>
-                                                <td class="text-center">13 Stills, 2 Video</td>
-                                                <td class="text-center">27 Stills, 4 Videos</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Monthly Posting Frequency</td>
-                                                <td class="text-center">Weekly</td>
-                                                <td class="text-center">Alternate Day</td>
-                                                <td class="text-center">Daily</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
+                                        <tr class="section-row">
+                                            <td colspan="4">Content & posting</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Posts per month</td>
+                                            <td>4</td>
+                                            <td class="featured-col">15</td>
+                                            <td>31</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Monthly posting frequency</td>
+                                            <td>Weekly</td>
+                                            <td class="featured-col">Alternate day</td>
+                                            <td>Daily</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Creative formats included</td>
+                                            <td>3 stills, 1 video</td>
+                                            <td class="featured-col">13 stills, 2 videos</td>
+                                            <td>27 stills, 4 videos</td>
+                                        </tr>
+
+                                        <tr class="section-row">
+                                            <td colspan="4">Advanced features</td>
+                                        </tr>
+
+                                        <tr>
+                                            <td>Monthly topic discussion</td>
+                                            <td><span class="no">–</span></td>
+                                            <td class="featured-col"><span class="no">–</span></td>
+                                            <td><span class="yes">✓</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>City analytics data</td>
+                                            <td><span class="no">–</span></td>
+                                            <td class="featured-col"><span class="no">–</span></td>
+                                            <td><span class="yes">✓</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Boost posts – collaboration</td>
+                                            <td><span class="no">–</span></td>
+                                            <td class="featured-col"><span class="no">–</span></td>
+                                            <td><span class="yes">✓</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Subscriber meet / research / focus group / product testing</td>
+                                            <td><span class="no">–</span></td>
+                                            <td class="featured-col"><span class="no">–</span></td>
+                                            <td><span class="yes">✓</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
-                        </section>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1252,66 +1399,89 @@
             <div class="mt-8 pt-6 border-t border-gray-200">
                 <h4 class="font-bold text-gray-800 mb-4 text-lg">Plan Inclusions & Deliverables</h4>
                 <div class="overflow-hidden border border-gray-200 rounded-lg">
-                    <table class="w-full text-xs text-left border-collapse">
-                        <thead class="bg-gray-50">
+                    <table class="inclusions-table">
+                        <thead>
                             <tr>
-                                <th class="px-3 py-2 font-bold text-gray-800 border-r border-b text-center">Category
-                                </th>
-                                <th class="px-3 py-2 font-bold text-gray-800 border-r border-b text-center">Feature</th>
-                                <th class="px-3 py-2 font-bold text-gray-800 border-r border-b text-center">City Lite
-                                </th>
-                                <th class="px-3 py-2 font-bold text-gray-800 border-r border-b text-center">City Plus
-                                </th>
-                                <th class="px-3 py-2 font-bold text-gray-800 border-b text-center">City Prime</th>
+                                <th>Feature</th>
+                                <th>City Lite</th>
+                                <th class="">City Plus </th>
+                                <th>City Prime</th>
                             </tr>
                         </thead>
-                        <tbody class="text-gray-700">
-                            <!-- Audience & Reach -->
-                            <tr>
-                                <td rowspan="3"
-                                    class="px-3 py-2 border-r border-b font-semibold bg-gray-50 align-middle">Audience &
-                                    Reach</td>
-                                <td class="px-3 py-2 border-r border-b font-medium">Minimum City Subscriber Base</td>
-                                <td class="px-3 py-2 border-r border-b text-center">300+</td>
-                                <td class="px-3 py-2 border-r border-b text-center">300+</td>
-                                <td class="px-3 py-2 border-b text-center text-gray-900">10,000+</td>
-                            </tr>
-                            <tr>
-                                <td class="px-3 py-2 border-r border-b font-medium">Hyperlocal Reach per Post (7 days)
-                                </td>
-                                <td class="px-3 py-2 border-r border-b text-center">3,000+</td>
-                                <td class="px-3 py-2 border-r border-b text-center">3,000+</td>
-                                <td class="px-3 py-2 border-b text-center">3,000+</td>
-                            </tr>
-                            <tr>
-                                <td class="px-3 py-2 border-r border-b font-medium">Total Monthly Reach</td>
-                                <td class="px-3 py-2 border-r border-b text-center">12,000+</td>
-                                <td class="px-3 py-2 border-r border-b text-center">45,000+</td>
-                                <td class="px-3 py-2 border-b text-center text-gray-900">93,000+</td>
+                        <tbody>
+                            <tr class="section-row">
+                                <td colspan="4">Reach & base</td>
                             </tr>
 
-                            <!-- Content & Publishing -->
                             <tr>
-                                <td rowspan="3"
-                                    class="px-3 py-2 border-r border-b font-semibold bg-gray-50 align-middle">Content &
-                                    Publishing</td>
-                                <td class="px-3 py-2 border-r border-b font-medium">Posts per Month</td>
-                                <td class="px-3 py-2 border-r border-b text-center">4</td>
-                                <td class="px-3 py-2 border-r border-b text-center">15</td>
-                                <td class="px-3 py-2 border-b text-center text-gray-900">31</td>
+                                <td>Min. city subscriber base</td>
+                                <td>300+</td>
+                                <td class="featured-col">300+</td>
+                                <td>10,000+</td>
                             </tr>
                             <tr>
-                                <td class="px-3 py-2 border-r border-b font-medium">Creative Formats Included</td>
-                                <td class="px-3 py-2 border-r border-b text-center">3 Stills, 1 Video</td>
-                                <td class="px-3 py-2 border-r border-b text-center">13 Stills, 2 Video</td>
-                                <td class="px-3 py-2 border-b text-center text-gray-900">27 Stills, 4 Videos
-                                </td>
+                                <td>Hyperlocal reach per post (7 days)</td>
+                                <td>3,000+</td>
+                                <td class="featured-col">3,000+</td>
+                                <td>3,000+</td>
                             </tr>
                             <tr>
-                                <td class="px-3 py-2 border-r font-medium">Monthly Posting Frequency</td>
-                                <td class="px-3 py-2 border-r text-center">Weekly</td>
-                                <td class="px-3 py-2 border-r text-center">Alternate Day</td>
-                                <td class="px-3 py-2 text-center  text-gray-900">Daily</td>
+                                <td>Total monthly reach</td>
+                                <td>12,000+</td>
+                                <td class="featured-col">45,000+</td>
+                                <td>93,000+</td>
+                            </tr>
+
+                            <tr class="section-row">
+                                <td colspan="4">Content & posting</td>
+                            </tr>
+
+                            <tr>
+                                <td>Posts per month</td>
+                                <td>4</td>
+                                <td class="featured-col">15</td>
+                                <td>31</td>
+                            </tr>
+                            <tr>
+                                <td>Monthly posting frequency</td>
+                                <td>Weekly</td>
+                                <td class="featured-col">Alternate day</td>
+                                <td>Daily</td>
+                            </tr>
+                            <tr>
+                                <td>Creative formats included</td>
+                                <td>3 stills, 1 video</td>
+                                <td class="featured-col">13 stills, 2 videos</td>
+                                <td>27 stills, 4 videos</td>
+                            </tr>
+
+                            <tr class="section-row">
+                                <td colspan="4">Advanced features</td>
+                            </tr>
+
+                            <tr>
+                                <td>Monthly topic discussion</td>
+                                <td><span class="no">–</span></td>
+                                <td class="featured-col"><span class="no">–</span></td>
+                                <td><span class="yes">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td>City analytics data</td>
+                                <td><span class="no">–</span></td>
+                                <td class="featured-col"><span class="no">–</span></td>
+                                <td><span class="yes">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td>Boost posts – collaboration</td>
+                                <td><span class="no">–</span></td>
+                                <td class="featured-col"><span class="no">–</span></td>
+                                <td><span class="yes">✓</span></td>
+                            </tr>
+                            <tr>
+                                <td>Subscriber meet / research / focus group / product testing</td>
+                                <td><span class="no">–</span></td>
+                                <td class="featured-col"><span class="no">–</span></td>
+                                <td><span class="yes">✓</span></td>
                             </tr>
                         </tbody>
                     </table>
@@ -1412,6 +1582,7 @@
     @if($step == 5)
     <section class="mb-12 flex flex-col items-center">
         <div class="bg-white max-w-2xl w-full mx-auto border border-gray-200 p-6 sm:p-8 rounded-lg shadow-sm">
+            @if(!$isSubmitted)
             <!-- Form Header -->
             <div class="mb-6 pb-4 border-b border-gray-200 text-center">
                 <h2 class="text-2xl font-bold text-gray-800 mb-2">3. Prarang Indian Cities Enrolment</h2>
@@ -1425,6 +1596,7 @@
 
                 </div>
             </div>
+            @endif
 
             <div>
                 @if($isSubmitted)
@@ -1437,12 +1609,12 @@
                         </svg>
                     </div>
                     <h3 class="text-xl font-bold text-gray-800 mb-2">Submission Successful!</h3>
-                    <p class="text-gray-600 text-sm mb-6">Thank you for your interest. Our partnership team will review
-                        your application and contact you within 24 hours.</p>
-                    <button wire:click="$set('step', 4)"
+                    <p class="text-gray-600 text-sm mb-6">Thank you for your interest. Our sales team will shortly
+                        connect with you.</p>
+                    {{-- <button
                         class="px-6 py-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-medium rounded transition-colors text-sm border border-gray-300">
-                        Back
-                    </button>
+
+                    </button> --}}
                 </div>
                 @else
                 <form wire:submit.prevent="sendEnrolment" class="space-y-4">
