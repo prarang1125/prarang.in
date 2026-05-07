@@ -30,9 +30,9 @@
                     clearTimeout(this.timeout);
                     const tooltip = document.getElementById('prarangGlobalTooltip');
                     if (!tooltip) return;
-                    
+
                     tooltip.innerText = text;
-                    
+
                     // Positioning logic
                     tooltip.style.visibility = 'hidden';
                     tooltip.classList.remove('hidden');
@@ -62,7 +62,7 @@
 
                     tooltip.style.top = top + 'px';
                     tooltip.style.left = left + 'px';
-                    
+
                     // Animate in
                     requestAnimationFrame(() => {
                         tooltip.style.opacity = '1';
@@ -72,10 +72,10 @@
                 hide() {
                     const tooltip = document.getElementById('prarangGlobalTooltip');
                     if (!tooltip) return;
-                    
+
                     tooltip.style.opacity = '0';
                     tooltip.style.transform = 'translateX(-50%) scale(0.95)';
-                    
+
                     this.timeout = setTimeout(() => {
                         if (tooltip.style.opacity === '0') {
                             tooltip.classList.add('hidden');

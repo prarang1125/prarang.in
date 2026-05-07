@@ -138,8 +138,10 @@
             font-size: 11px;
             font-weight: 400;
             white-space: normal;
-            max-width: 400px;
-            padding: 5px 8px;
+            min-width: 200px;
+            max-width: 200px;
+            width: max-content;
+            padding: 7px 12px;
             border-radius: 4px;
             z-index: 9999;
             pointer-events: none;
@@ -152,7 +154,7 @@
             position: absolute;
             top: 100%;
             left: 50%;
-            transform: translateX(-50%);
+            /* transform: translateX(-50%); */
             border: 5px solid transparent;
             border-top-color: #1f2937;
         }
@@ -165,6 +167,11 @@
         /* Transition all */
         .container div .transition-all {
             max-width: 221px !important;
+        }
+
+        /* Font bold */
+        .overflow-hidden tbody .font-bold {
+            font-weight: 400;
         }
     </style>
     <section class="mb-3">
@@ -204,7 +211,7 @@
             </div>
 
             <div
-                class="flex-shrink-0 flex flex-col justify-center {{ $step >= 3 ? 'text-yellow-500' : 'text-blue-400' }}">
+                class="flex-shrink-0 flex flex-col justify-center {{ $step >= 4 ? 'text-yellow-500' : 'text-blue-400' }}">
                 <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
@@ -213,9 +220,9 @@
 
             <!-- Step 3 -->
             <div
-                class="flex-1 flex flex-col justify-center items-center py-4 px-2 rounded-xl transition-all duration-300 h-full {{ $step >= 3 ? 'font-bold text-gray-800 bg-white border-2 border-yellow-500 shadow-md' : 'font-semibold text-gray-600 bg-white border-2 border-blue-400 hover:border-yellow-400 hover:shadow-md' }}">
+                class="flex-1 flex flex-col justify-center items-center py-4 px-2 rounded-xl transition-all duration-300 h-full {{ $step >= 5 ? 'font-bold text-gray-800 bg-white border-2 border-yellow-500 shadow-md' : 'font-semibold text-gray-600 bg-white border-2 border-blue-400 hover:border-yellow-400 hover:shadow-md' }}">
                 <div
-                    class="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold mb-2 sm:mb-3 shadow-sm text-sm sm:text-base border {{ $step >= 3 ? 'bg-yellow-100 text-yellow-600 border-yellow-300' : 'bg-blue-50 text-blue-500 border-blue-200' }}">
+                    class="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold mb-2 sm:mb-3 shadow-sm text-sm sm:text-base border {{ $step >= 5 ? 'bg-yellow-100 text-yellow-600 border-yellow-300' : 'bg-blue-50 text-blue-500 border-blue-200' }}">
                     3</div>
                 <div class="text-xs sm:text-sm text-center leading-tight">
                     <span class="block">Enroll</span>
@@ -223,7 +230,7 @@
             </div>
 
             <div
-                class="flex-shrink-0 flex flex-col justify-center {{ $step >= 4 ? 'text-yellow-500' : 'text-blue-400' }}">
+                class="flex-shrink-0 flex flex-col justify-center {{ $step > 5 ? 'text-yellow-500' : 'text-blue-400' }}">
                 <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
@@ -232,9 +239,9 @@
 
             <!-- Step 4 -->
             <div
-                class="flex-1 flex flex-col justify-center items-center py-4 px-2 rounded-xl transition-all duration-300 h-full {{ $step >= 4 ? 'font-bold text-gray-800 bg-white border-2 border-yellow-500 shadow-md' : 'font-semibold text-gray-600 bg-white border-2 border-blue-400 hover:border-yellow-400 hover:shadow-md' }}">
+                class="flex-1 flex flex-col justify-center items-center py-4 px-2 rounded-xl transition-all duration-300 h-full {{ $step >= 5 ? 'font-bold text-gray-800 bg-white border-2 border-yellow-500 shadow-md' : 'font-semibold text-gray-600 bg-white border-2 border-blue-400 hover:border-yellow-400 hover:shadow-md' }}">
                 <div
-                    class="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold mb-2 sm:mb-3 shadow-sm text-sm sm:text-base border {{ $step >= 4 ? 'bg-yellow-100 text-yellow-600 border-yellow-300' : 'bg-blue-50 text-blue-500 border-blue-200' }}">
+                    class="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold mb-2 sm:mb-3 shadow-sm text-sm sm:text-base border {{ $step > 5 ? 'bg-yellow-100 text-yellow-600 border-yellow-300' : 'bg-blue-50 text-blue-500 border-blue-200' }}">
                     4</div>
                 <div class="text-xs sm:text-sm text-center leading-tight">
                     <span class="block">Act</span>
@@ -483,8 +490,8 @@
                                         d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                <span class="src-tooltip-box">The Literacy Rate, amongst the people who use a particular
-                                    Script for their Mother Tongue Language.</span>
+                                <span class="src-tooltip-box">This refers to the percentage of people in a district who
+                                    can read and write with understanding in any Language (Script) - Census 2011</span>
                             </span>
                         </th>
                         <th class="px-2 py-1 text-xs border text-center">
@@ -510,7 +517,8 @@
                                         d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                <span class="src-tooltip-box">Percentage of Internet Subscribers using Facebook.</span>
+                                <span class="src-tooltip-box">Percentage of Internet Users using Facebook - TRAI QTR
+                                    Report, FB Ad Module</span>
                             </span>
                         </th>
                         <th class="px-2 py-1 text-xs border text-center">
@@ -522,7 +530,8 @@
                                         d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                <span class="src-tooltip-box">Percentage of Internet Subscribers using Instagram.</span>
+                                <span class="src-tooltip-box">Percentage of Internet Users using Instagram - TRAI QTR
+                                    Report, Instagram Ad Module</span>
                             </span>
                         </th>
                         <th class="px-2 py-1 text-xs border text-center">
@@ -534,7 +543,8 @@
                                         d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                <span class="src-tooltip-box">Percentage of Internet Subscribers using LinkedIn.</span>
+                                <span class="src-tooltip-box">Percentage of Internet Users using LinkedIn - TRAI QTR
+                                    Report, LinkedIn Ad Module</span>
                             </span>
                         </th>
                         <th class="px-2 py-1 text-xs border text-center">
@@ -546,8 +556,8 @@
                                         d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                <span class="src-tooltip-box">Percentage of Internet Subscribers using X
-                                    (Twitter).</span>
+                                <span class="src-tooltip-box">Percentage of Internet Users using X - TRAI QTR Report, X
+                                    Ad Module</span>
                             </span>
                         </th>
                         <th class="px-2 py-1 text-xs border text-center hover:text-blue-600 hover:font-bold cursor-pointer"
@@ -564,7 +574,19 @@
                                     Capitals on 12 metrics, standardised 0-10 scale</span>
                             </span>
                         </th>
-                        <th class="px-2 py-1 text-xs border text-center">Top 3 Languages</th>
+                        <th class="px-2 py-1 text-xs border text-center">
+                            Top 3 Languages <br>
+                            <span class="src-tooltip">
+                                <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="src-tooltip-box">Top 3 Languages by Script, Census 2011 (121 languages
+                                    clubbed into 13 scripts; English includes multilingual speakers)</span>
+                            </span>
+                        </th>
 
                     </tr>
                 </thead>
@@ -715,8 +737,8 @@
                                         d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                <span class="src-tooltip-box">The Literacy Rate, amongst the people who use a particular
-                                    Script for their Mother Tongue Language.</span>
+                                <span class="src-tooltip-box">This refers to the percentage of people in a district who
+                                    can read and write with understanding in any Language (Script) - Census 2011</span>
                             </span>
                         </th>
                         <th rowspan="2" class="px-2 py-2 border text-center align-middle font-bold text-gray-800">
@@ -748,7 +770,8 @@
                                         d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                <span class="src-tooltip-box">Percentage of Internet Subscribers using Facebook.</span>
+                                <span class="src-tooltip-box">Percentage of Internet Users using Facebook - TRAI QTR
+                                    Report, FB Ad Module</span>
                             </span>
                         </th>
                         <th rowspan="2"
@@ -761,7 +784,8 @@
                                         d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                <span class="src-tooltip-box">Percentage of Internet Subscribers using Instagram.</span>
+                                <span class="src-tooltip-box">Percentage of Internet Users using Instagram - TRAI QTR
+                                    Report, Instagram Ad Module</span>
                             </span>
                         </th>
                         <th rowspan="2"
@@ -774,7 +798,8 @@
                                         d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                <span class="src-tooltip-box">Percentage of Internet Subscribers using LinkedIn.</span>
+                                <span class="src-tooltip-box">Percentage of Internet Users using LinkedIn - TRAI QTR
+                                    Report, LinkedIn Ad Module</span>
                             </span>
                         </th>
                         <th rowspan="2"
@@ -787,12 +812,22 @@
                                         d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
                                         clip-rule="evenodd"></path>
                                 </svg>
-                                <span class="src-tooltip-box">Percentage of Internet Subscribers using X
-                                    (Twitter).</span>
+                                <span class="src-tooltip-box">Percentage of Internet Users using X - TRAI QTR Report, X
+                                    Ad Module</span>
                             </span>
                         </th>
                         <th rowspan="2" class="px-2 py-2 border text-center align-middle font-bold text-gray-800">
                             Selected Language
+                            <span class="src-tooltip">
+                                <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
+                                    viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd"
+                                        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                        clip-rule="evenodd"></path>
+                                </svg>
+                                <span class="src-tooltip-box">Top 3 Languages by Script, Census 2011 (121 languages
+                                    clubbed into 13 scripts; English includes multilingual speakers)</span>
+                            </span>
                         </th>
                         <th colspan="3" class="px-2 py-2 border text-center font-bold text-gray-800 bg-gray-100">Monthly
                             Charges</th>
@@ -1239,7 +1274,7 @@
                                 <td class="px-3 py-2 border-r border-b font-medium">Minimum City Subscriber Base</td>
                                 <td class="px-3 py-2 border-r border-b text-center">300+</td>
                                 <td class="px-3 py-2 border-r border-b text-center">300+</td>
-                                <td class="px-3 py-2 border-b text-center font-bold text-gray-900">10,000+</td>
+                                <td class="px-3 py-2 border-b text-center text-gray-900">10,000+</td>
                             </tr>
                             <tr>
                                 <td class="px-3 py-2 border-r border-b font-medium">Hyperlocal Reach per Post (7 days)
@@ -1252,7 +1287,7 @@
                                 <td class="px-3 py-2 border-r border-b font-medium">Total Monthly Reach</td>
                                 <td class="px-3 py-2 border-r border-b text-center">12,000+</td>
                                 <td class="px-3 py-2 border-r border-b text-center">45,000+</td>
-                                <td class="px-3 py-2 border-b text-center font-bold text-gray-900">93,000+</td>
+                                <td class="px-3 py-2 border-b text-center text-gray-900">93,000+</td>
                             </tr>
 
                             <!-- Content & Publishing -->
@@ -1263,20 +1298,20 @@
                                 <td class="px-3 py-2 border-r border-b font-medium">Posts per Month</td>
                                 <td class="px-3 py-2 border-r border-b text-center">4</td>
                                 <td class="px-3 py-2 border-r border-b text-center">15</td>
-                                <td class="px-3 py-2 border-b text-center font-bold text-gray-900">31</td>
+                                <td class="px-3 py-2 border-b text-center text-gray-900">31</td>
                             </tr>
                             <tr>
                                 <td class="px-3 py-2 border-r border-b font-medium">Creative Formats Included</td>
                                 <td class="px-3 py-2 border-r border-b text-center">3 Stills, 1 Video</td>
                                 <td class="px-3 py-2 border-r border-b text-center">13 Stills, 2 Video</td>
-                                <td class="px-3 py-2 border-b text-center font-bold text-gray-900">27 Stills, 4 Videos
+                                <td class="px-3 py-2 border-b text-center text-gray-900">27 Stills, 4 Videos
                                 </td>
                             </tr>
                             <tr>
                                 <td class="px-3 py-2 border-r font-medium">Monthly Posting Frequency</td>
                                 <td class="px-3 py-2 border-r text-center">Weekly</td>
                                 <td class="px-3 py-2 border-r text-center">Alternate Day</td>
-                                <td class="px-3 py-2 text-center font-bold text-gray-900">Daily</td>
+                                <td class="px-3 py-2 text-center  text-gray-900">Daily</td>
                             </tr>
                         </tbody>
                     </table>
@@ -1359,6 +1394,19 @@
                 display: block !important;
             }
         }
+
+        /* Paragraph */
+        .border-b .justify-start p {
+            text-align: left;
+            /* transform: translatex(0px) translatey(0px); */
+            margin-bottom: 13px;
+            margin-top: 3px;
+        }
+
+        /* Bold Tag */
+        .justify-start p b {
+            margin-bottom: 16px;
+        }
     </style>
     @endif
     @if($step == 5)
@@ -1367,11 +1415,13 @@
             <!-- Form Header -->
             <div class="mb-6 pb-4 border-b border-gray-200 text-center">
                 <h2 class="text-2xl font-bold text-gray-800 mb-2">3. Prarang Indian Cities Enrolment</h2>
-                <div class="mt-2 rounded shadow p-2 text-sm border border-gray-400 bg-gray-50">
-                    <b>Your message:</b> We are interested in enrolling for a digital marketing plan as
-                    estimated below. Please revert to us with your
-                    final pricing.
-                    <br>Thanks<br>
+                <div
+                    class="mt-2 flex justify-start items-start flex-col rounded shadow p-2 text-sm border border-gray-400 bg-gray-50">
+                    <p><b>Your message:</b> <br><br> We are interested in enrolling for a digital marketing plan as
+                        estimated below. Please revert to us with your
+                        final pricing.
+                        <br>Thanks<br>
+                    </p>
 
                 </div>
             </div>
