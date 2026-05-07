@@ -1150,6 +1150,14 @@
                         <td class="px-2 py-2 border text-center text-sm text-blue-700">₹{{ number_format($primeTotal) }}
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="5"></td>
+                        <td class="text-center">
+                            {{ number_format($totalInternetUsersper,0) }}%
+                            <br>
+                            <span class="text-xs">(% of Population 2026)</span>
+                        </td>
+                    </tr>
                 </tfoot>
             </table>
             <div class="mt-4 flex justify-between border-t pt-4">
