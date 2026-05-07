@@ -273,10 +273,7 @@ class IndiaCity extends Component
         try {
             \Illuminate\Support\Facades\Mail::to($this->email)
                 ->cc([
-                    'ask_me@prarang.in',
-                ])
-                ->bcc([
-                    'vivek.k@prarang.in',
+                    'sales@prarang.in',
                 ])
                 ->send(new \App\Mail\PartnerEnrolmentMail($enrolmentData));
 
