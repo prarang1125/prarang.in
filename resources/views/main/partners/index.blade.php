@@ -26,11 +26,11 @@ $metaData = [
         <div class="flex w-full gap-4 ">
           <a href="{{ route('partners.india-city') }}"
             class="relative overflow-hidden block w-full text-center py-2 px-6 rounded-xl font-semibold text-gray-800 bg-yellow-400 hover:bg-yellow-500 shadow-[0_4px_14px_0_rgba(250,204,21,0.39)] hover:shadow-[0_6px_20px_rgba(250,204,21,0.23)] hover:-translate-y-0.5 transition-all duration-300">
-            India - City
+            India Cities
           </a>
           <a href="javascript:void(0)" @click="showModal = true"
             class="relative overflow-hidden block w-full text-center py-2 px-6 rounded-xl font-semibold text-gray-800 bg-yellow-400 hover:bg-yellow-500 shadow-[0_4px_14px_0_rgba(250,204,21,0.39)] hover:shadow-[0_6px_20px_rgba(250,204,21,0.23)] hover:-translate-y-0.5 transition-all duration-300">
-            World Bilateral
+            World Bilateral Countries
           </a>
         </div>
       </div>

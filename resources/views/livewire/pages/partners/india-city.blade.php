@@ -1,4 +1,4 @@
-<div x-data="{ step: @entangle('step') }"
+<div x-data="{ step: @entangle('step'), showProcessingModal: false }"
     x-init="$watch('step', value => window.scrollTo({top: 100, behavior: 'smooth'}))">
     <style>
         .grid .w-full a {
@@ -311,9 +311,9 @@
             class="flex flex-row w-full justify-center items-stretch gap-2 sm:gap-3 px-4 max-w-5xl mx-auto print:hidden">
             <!-- Step 1 -->
             <div
-                class="flex-1 flex flex-col justify-center items-center py-4 px-2 rounded-xl transition-all duration-300 h-full {{ $step >= 1 ? 'font-bold text-gray-800 bg-white border-2 border-yellow-500 shadow-md' : 'font-semibold text-gray-600 bg-white border-2 border-blue-400 hover:border-yellow-400 hover:shadow-md' }}">
+                class="flex-1 flex flex-col justify-center items-center py-4 px-2 rounded-xl transition-all duration-300 h-full {{ $step >= 1 ? 'font-bold text-gray-800 bg-white border-2 border-red-500 shadow-md' : 'font-semibold text-gray-600 bg-white border-2 border-red-400 hover:border-red-400 hover:shadow-md' }}">
                 <div
-                    class="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold mb-2 sm:mb-3 shadow-sm text-sm sm:text-base border {{ $step >= 1  ? 'bg-yellow-100 text-yellow-600 border-yellow-300' : 'bg-blue-50 text-blue-500 border-blue-200' }}">
+                    class="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold mb-2 sm:mb-3 shadow-sm text-sm sm:text-base border bg-red-100 text-red-600 border-red-300">
                     1</div>
                 <div class="text-xs sm:text-sm text-center leading-tight">
                     <span class="block">Digital Marketing</span>
@@ -321,8 +321,7 @@
                 </div>
             </div>
 
-            <div
-                class="flex-shrink-0 flex flex-col justify-center {{ $step >= 1 ? 'text-yellow-500' : 'text-blue-400' }}">
+            <div class="flex-shrink-0 flex flex-col justify-center text-red-500">
                 <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
@@ -331,9 +330,9 @@
 
             <!-- Step 2 -->
             <div
-                class="flex-1 flex flex-col justify-center items-center py-4 px-2 rounded-xl transition-all duration-300 h-full {{ $step >= 4 ? 'font-bold text-gray-800 bg-white border-2 border-yellow-500 shadow-md' : 'font-semibold text-gray-600 bg-white border-2 border-blue-400 hover:border-yellow-400 hover:shadow-md' }}">
+                class="flex-1 flex flex-col justify-center items-center py-4 px-2 rounded-xl transition-all duration-300 h-fullfont-bold text-gray-800 bg-white border-2 border-yellow-300 shadow-md font-bold">
                 <div
-                    class="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold mb-2 sm:mb-3 shadow-sm text-sm sm:text-base border {{ $step >= 4 ? 'bg-yellow-100 text-yellow-600 border-yellow-300' : 'bg-blue-50 text-blue-500 border-blue-200' }}">
+                    class="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold mb-2 bg-yellow-100 text-yellow-600 border-yellow-300 sm:mb-3 shadow-sm text-sm sm:text-base border">
                     2</div>
                 <div class="text-xs sm:text-sm text-center leading-tight">
                     <span class="block">Digital Marketing</span>
@@ -341,8 +340,7 @@
                 </div>
             </div>
 
-            <div
-                class="flex-shrink-0 flex flex-col justify-center {{ $step >= 4 ? 'text-yellow-500' : 'text-blue-400' }}">
+            <div class="flex-shrink-0 flex flex-col justify-center text-yellow-300">
                 <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
@@ -351,17 +349,16 @@
 
             <!-- Step 3 -->
             <div
-                class="flex-1 flex flex-col justify-center items-center py-4 px-2 rounded-xl transition-all duration-300 h-full {{ $step >= 5 ? 'font-bold text-gray-800 bg-white border-2 border-yellow-500 shadow-md' : 'font-semibold text-gray-600 bg-white border-2 border-blue-400 hover:border-yellow-400 hover:shadow-md' }}">
+                class="flex-1 flex flex-col justify-center items-center py-4 px-2 rounded-xl transition-all duration-300 h-full {{ $step >= 5 ? 'font-bold text-gray-800 bg-white border-2 border-blue-500 shadow-md' : 'font-semibold text-gray-600 bg-white border-2 border-blue-400 hover:border-blue-400 hover:shadow-md' }}">
                 <div
-                    class="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold mb-2 sm:mb-3 shadow-sm text-sm sm:text-base border {{ $step >= 5 ? 'bg-yellow-100 text-yellow-600 border-yellow-300' : 'bg-blue-50 text-blue-500 border-blue-200' }}">
+                    class="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold mb-2 sm:mb-3 shadow-sm text-sm sm:text-base border {{ $step >= 5 ? 'bg-blue-100 text-blue-600 border-blue-300' : 'bg-blue-50 text-blue-500 border-blue-200' }}">
                     3</div>
                 <div class="text-xs sm:text-sm text-center leading-tight">
                     <span class="block">Enroll</span>
                 </div>
             </div>
 
-            <div
-                class="flex-shrink-0 flex flex-col justify-center {{ $step > 5 ? 'text-yellow-500' : 'text-blue-400' }}">
+            <div class="flex-shrink-0 flex flex-col justify-center {{ $step > 5 ? 'text-bue-500' : 'text-blue-400' }}">
                 <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
                     xmlns="http://www.w3.org/2000/svg">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"></path>
@@ -370,9 +367,9 @@
 
             <!-- Step 4 -->
             <div
-                class="flex-1 flex flex-col justify-center items-center py-4 px-2 rounded-xl transition-all duration-300 h-full {{ $step >= 5 ? 'font-bold text-gray-800 bg-white border-2 border-yellow-500 shadow-md' : 'font-semibold text-gray-600 bg-white border-2 border-blue-400 hover:border-yellow-400 hover:shadow-md' }}">
+                class="flex-1 flex flex-col justify-center items-center py-4 px-2 rounded-xl transition-all duration-300 h-full {{ $step >= 5 ? 'font-bold text-gray-800 bg-white border-2 border-green-500 shadow-md' : 'font-semibold text-gray-600 bg-white border-2 border-green-400 hover:border-green-400 hover:shadow-md' }}">
                 <div
-                    class="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold mb-2 sm:mb-3 shadow-sm text-sm sm:text-base border {{ $step > 5 ? 'bg-yellow-100 text-yellow-600 border-yellow-300' : 'bg-blue-50 text-blue-500 border-blue-200' }}">
+                    class="w-8 h-8 sm:w-10 sm:h-10 rounded-full flex items-center justify-center font-bold mb-2 sm:mb-3 shadow-sm text-sm sm:text-base border {{ $step > 5 ? 'bg-green-100 text-green-600 border-green-300' : 'bg-green-50 text-green-500 border-green-200' }}">
                     4</div>
                 <div class="text-xs sm:text-sm text-center leading-tight">
                     <span class="block">Act</span>
@@ -387,6 +384,7 @@
             <p class="text-center text-gray-800 text-sm mb-1 font-bold mt-1">Four Steps to go Live.</p>
         </div> --}}
     </section>
+
     @if($step == 1)
     <section class="mb-8">
         <!-- CTA Block Component -->
@@ -395,7 +393,12 @@
             <!-- Header with Confirm Button -->
             <div class="flex justify-center items-center shrink-0 mb-3 border-b border-gray-100 pb-3">
                 <div class="flex flex-col justify-center items-center">
-                    <h4 class="font-semibold text-xl text-gray-800 mb-2">1 (A). Digital Marketing Planner</h4>
+                    <h4 class="font-semibold text-xl text-gray-800 mb-2 p-1  border-b-2 text-red-600 border-red-600">
+                        1
+                        (A).
+                        Digital
+                        Marketing
+                        Planner</h4>
                     <h6 class="font-normal text-sm">Select Capitals (Country/State/District)</h6>
                     <span class="text-black font-semibold text-sm">Cities > 30,000 Netizens (Literate, Web-Enabled in
                         One
@@ -574,7 +577,9 @@
         <div class="bg-white rounded-2xl p-4 shadow-lg max-w-full mx-auto overflow-x-auto">
             <div class="flex justify-center items-center shrink-0 mb-3 border-b border-gray-100 pb-3">
                 <div class="flex flex-col justify-center items-center">
-                    <h4 class="font-semibold text-xl text-gray-800 mb-2">1 (B). Digital Marketing Planner</h4>
+                    <h4 class="font-semibold text-xl text-gray-800 mb-2 p-1 text-red-600 border-b-2 border-red-600">
+                        1 (B).
+                        Digital Marketing Planner</h4>
                     <h6 class="font-normal text-sm">Select at least 1 Language (Script) for each City.</h6>
 
                 </div>
@@ -691,7 +696,7 @@
                                     Ad Module</span>
                             </span>
                         </th>
-                        <th class="px-2 py-1 text-xs border text-center hover:text-blue-600 hover:font-bold cursor-pointer"
+                        <th class="px-2 py-1 text-xs border text-center hover:text-blue-800 hover:font-bold cursor-pointer text-blue-600"
                             onclick="window.open('/cirus','_blank')">
                             Cyber Risk Index
                             <span class="src-tooltip">
@@ -706,7 +711,7 @@
                             </span>
                         </th>
                         <th class="px-2 py-1 text-xs border text-center">
-                            Top 3 Languages <br>
+                            Top 3 Languages &nbsp;<span class="text-blue-600"><a href="#language-star">*</a></span><br>
                             <span class="src-tooltip">
                                 <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
                                     viewBox="0 0 20 20">
@@ -779,6 +784,10 @@
                     @endforeach
                 </tbody>
             </table>
+            <div id="language-star" class="flex flec-col justify-end items-end mt-1 text-xs">
+                <p>* Only Mother Tongue is considered for all languages except for English, where multilingual netizens
+                    (2<sup>nd</sup> + 3<sup>rd</sup> known language) have also been included. </p>
+            </div>
             <div class="mt-4 flex justify-between border-t pt-4">
                 <button wire:click="changeStep('back')" wire:loading.attr="disabled" wire:target="changeStep"
                     class="bg-blue-600 hover:bg-blue-700 transition-colors px-6 py-2 rounded-lg text-white font-medium shadow-sm flex flex-col items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed">
@@ -795,22 +804,34 @@
 
                     </span>
                 </button>
-                <button wire:click="confirmLanguageSelection" wire:loading.attr="disabled"
-                    wire:target="confirmLanguageSelection"
-                    class="bg-blue-600 hover:bg-blue-700 transition-colors px-6 py-2 rounded-lg text-white font-medium shadow-sm flex flex-col items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed">
-                    <span wire:loading.remove wire:target="confirmLanguageSelection">Confirm</span>
-                    <span wire:loading wire:target="confirmLanguageSelection" class="flex items-center gap-2">
-                        <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
-                            </circle>
-                            <path class="opacity-75" fill="currentColor"
-                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                <div class="flex gap-4">
+                    <button wire:click="createShareLink" wire:loading.attr="disabled"
+                        class="bg-white border border-blue-600 text-blue-600 hover:bg-blue-500 transition-colors px-6 py-2 rounded-lg font-medium shadow-sm flex items-center justify-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z">
                             </path>
                         </svg>
+                        <span>Share</span>
+                    </button>
+                    <button wire:click="confirmLanguageSelection" wire:loading.attr="disabled"
+                        wire:target="confirmLanguageSelection"
+                        class="bg-blue-600 hover:bg-blue-700 transition-colors px-6 py-2 rounded-lg text-white font-medium shadow-sm flex flex-col items-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed">
+                        <span wire:loading.remove wire:target="confirmLanguageSelection">Confirm</span>
+                        <span wire:loading wire:target="confirmLanguageSelection" class="flex items-center gap-2">
+                            <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4">
+                                </circle>
+                                <path class="opacity-75" fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                </path>
+                            </svg>
 
-                    </span>
-                </button>
+                        </span>
+                    </button>
+                </div>
             </div>
         </div>
     </section>
@@ -822,7 +843,9 @@
         <div class="bg-white rounded-2xl p-4 shadow-lg max-w-full mx-auto overflow-x-auto">
             <div class="flex justify-center items-center shrink-0 mb-3 border-b border-gray-100 pb-3">
                 <div class="flex flex-col justify-center items-center">
-                    <h4 class="font-semibold text-xl text-gray-800 mb-2">1 (C). Digital Marketing Planner</h4>
+                    <h4 class="font-semibold text-xl text-gray-800 mb-2 p-1 text-red-600 border-b-2 border-red-600">1
+                        (C).
+                        Digital Marketing Planner</h4>
                     <h6 class="font-normal text-sm">Pick just one plan for each city - language combination.</h6>
 
                 </div>
@@ -1175,21 +1198,61 @@
                         </svg>
                     </span>
                 </button>
-                <button wire:click="confirmPlanSelection" wire:loading.attr="disabled"
-                    wire:target="confirmPlanSelection"
-                    class="bg-blue-600 hover:bg-blue-700 transition-colors px-6 py-2 rounded-lg text-white font-medium shadow-sm flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed">
-                    <span wire:loading.remove wire:target="confirmPlanSelection">Confirm Plan</span>
-                    <span wire:loading wire:target="confirmPlanSelection" class="flex items-center gap-2">
-                        <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
-                            viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4">
-                            </circle>
-                            <path class="opacity-75" fill="currentColor"
-                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                <div class="flex gap-4">
+                    <button wire:click="createShareLink" wire:loading.attr="disabled"
+                        class="bg-white border border-blue-600 text-blue-600 hover:bg-blue-500 transition-colors px-6 py-2 rounded-lg font-medium shadow-sm flex items-center justify-center gap-2">
+                        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z">
                             </path>
                         </svg>
-                    </span>
-                </button>
+                        <span>Share</span>
+                    </button>
+                    <!-- Confirm Plan Button -->
+                    <button type="button" @click="showProcessingModal = true"
+                        class="bg-blue-600 hover:bg-blue-700 transition-colors px-6 py-2 rounded-lg text-white font-medium shadow-sm flex items-center justify-center gap-2">
+                        <span>Confirm Plan</span>
+                    </button>
+                </div>
+                <!-- Processing Modal -->
+                <div x-show="showProcessingModal" x-cloak
+                    class="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
+                    x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95"
+                    x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-200"
+                    x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
+
+                    <div class="bg-white p-8 rounded-2xl shadow-2xl flex flex-col items-center max-w-sm w-full mx-4"
+                        @click.outside="showProcessingModal = false">
+                        <!-- Title -->
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2 text-center">Please Note</h3>
+
+                        <!-- Message -->
+                        <p class="text-lg text-gray-600 text-center leading-relaxed mb-6">
+                            Except for <span class="font-medium text-gray-800">English</span> and
+                            <span class="font-medium text-gray-800">Hindi</span>, Prarang requires you to select a
+                            minimum of <span class="font-medium text-gray-800">5 cities</span> to enroll for any
+                            other
+                            language.
+                        </p>
+                        <style>
+                            [x-cloak] {
+                                display: none !important;
+                            }
+                        </style>
+                        <!-- Buttons -->
+                        <div class="flex gap-3 w-full">
+                            <button type="button" @click="showProcessingModal = false"
+                                class="flex-1 px-4 py-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50 transition-colors text-sm font-medium">
+                                Cancel
+                            </button>
+                            <button type="button" @click="showProcessingModal = false; $wire.confirmPlanSelection()"
+                                class="flex-1 px-4 py-2 rounded-lg bg-blue-600 hover:bg-blue-700 text-white transition-colors text-sm font-medium">
+                                Proceed
+                            </button>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
         <!-- Plan Details Modal (Bootstrap 5) -->
@@ -1310,7 +1373,9 @@
                 class="mb-4 pb-2 border-b border-gray-200 text-center relative flex justify-center items-center min-h-[40px]">
                 <img src="https://www.prarang.in/home-assets/image/logo.png"
                     class="print-logo absolute left-0 h-10 object-contain" style="display: none;" alt="Prarang">
-                <h4 class="font-bold text-lg text-gray-800">2. Digital Marketing Budget Estimation</h4>
+                <h4 class="font-bold text-lg text-yellow-600 p-1 border-b-2 border-yellow-400">2. Digital
+                    Marketing Budget
+                    Estimation</h4>
             </div>
 
             <div class="mb-2">
@@ -1326,7 +1391,7 @@
                             <th
                                 class="px-2 py-1.5 font-semibold text-gray-700 border-r border-gray-300 text-center w-1/4">
                                 Selected Plan</th>
-                            <th class="px-2 py-1.5 font-semibold text-gray-700 text-center w-1/4">Monthly Investment
+                            <th class="px-2 py-1.5 font-semibold text-gray-700 text-center w-1/4">Monthly Budget Est.
                             </th>
                         </tr>
                     </thead>
@@ -1532,8 +1597,17 @@
                     </svg>
                     Print / Save
                 </button>
+                <button wire:click="createShareLink" wire:loading.attr="disabled"
+                    class="bg-white border border-blue-600 text-blue-600 hover:bg-blue-500 transition-colors px-6 py-2 rounded-lg font-medium shadow-sm flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z">
+                        </path>
+                    </svg>
+                    <span>Share</span>
+                </button>
                 <button wire:click="goToStepFive"
-                    class="bg-yellow-500 hover:bg-yellow-600 transition-colors px-6 py-2 rounded-lg text-white font-bold shadow-sm flex items-center justify-center gap-2">
+                    class="bg-blue-600 hover:bg-blue-700 transition-colors px-6 py-2 rounded-lg text-white font-bold shadow-sm flex items-center justify-center gap-2">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
                     </svg>
@@ -1593,12 +1667,14 @@
             @if(!$isSubmitted)
             <!-- Form Header -->
             <div class="mb-6 pb-4 border-b border-gray-200 text-center">
-                <h2 class="text-2xl font-bold text-gray-800 mb-2">3. Prarang Indian Cities Enrolment</h2>
+                <h2 class="text-xl font-bold text-blue-800 mb-2 p-1 border-b-2 border-blue-600">3. Prarang
+                    Indian
+                    Cities Enrolment</h2>
                 <div
                     class="mt-2 flex justify-start items-start flex-col rounded shadow p-2 text-sm border border-gray-400 bg-gray-50">
-                    <p><b>Your message:</b> <br><br> We are interested in enrolling for a digital marketing plan as
-                        estimated below. Please revert to us with your
-                        final pricing.
+                    <p><b>Your message to — Prarang Sales:</b> <br><br> We are interested in enrolling in a digital
+                        marketing plan as estimated below. Please connect and revert to us with pricing for the chosen
+                        cities and languages below.
                         <br>Thanks<br>
                     </p>
 
@@ -1677,7 +1753,7 @@
                             Back
                         </button>
                         <button type="submit" wire:loading.attr="disabled"
-                            class="px-6 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded shadow-sm text-sm transition-colors flex items-center gap-2 disabled:opacity-70">
+                            class="px-6 py-2 bg-green-600 hover:bg-green-700 text-white font-medium rounded shadow-sm text-sm transition-colors flex items-center gap-2 disabled:opacity-70">
                             <span wire:loading.remove wire:target="sendEnrolment">Act</span>
                             <span wire:loading wire:target="sendEnrolment" class="flex items-center gap-2">
                                 <svg class="animate-spin h-4 w-4 text-white" fill="none" viewBox="0 0 24 24">
@@ -1687,7 +1763,7 @@
                                         d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
                                     </path>
                                 </svg>
-                                Processing...
+
                             </span>
                         </button>
                     </div>
@@ -1697,6 +1773,56 @@
         </div>
     </section>
     @endif
+
+
+
+    <!-- Share Modal -->
+    <div x-show="$wire.shareUrl" x-cloak
+        class="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-50 backdrop-blur-sm"
+        x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0 scale-95"
+        x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in duration-200"
+        x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+        style="display: none;">
+        <div class="bg-white p-8 rounded-2xl shadow-2xl flex flex-col items-center max-w-md w-full mx-4"
+            x-data="{ copied: false }" @click.away="$wire.set('shareUrl', null)">
+            <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mb-4">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z">
+                    </path>
+                </svg>
+            </div>
+            <h3 class="text-xl font-bold text-gray-800 mb-2">Share your Plan</h3>
+            <p class="text-gray-500 text-center text-sm mb-6">Copy the link below to share this planner configuration
+                with others.</p>
+
+            <div class="w-full flex items-center gap-2 bg-gray-50 p-3 rounded-xl border border-gray-200 mb-6">
+                <input type="text" readonly x-bind:value="$wire.shareUrl" x-ref="shareInput"
+                    class="bg-transparent border-none focus:ring-0 text-sm flex-1 text-gray-600 font-medium">
+                <button @click="
+                        $refs.shareInput.select();
+                        document.execCommand('copy');
+                        copied = true;
+                        setTimeout(() => copied = false, 2000);
+                    " :class="copied ? 'bg-green-600' : 'bg-blue-600'"
+                    class="text-white px-4 py-2 rounded-lg text-sm font-bold transition-all active:scale-95 min-w-[80px]">
+                    <span>Copy</span>
+                    <span x-show="copied">Copied!</span>
+                </button>
+            </div>
+
+            <button @click="$wire.set('shareUrl', null)"
+                class="text-gray-400 hover:text-gray-600 text-sm font-medium transition-colors">
+                Close
+            </button>
+        </div>
+    </div>
+
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+    </style>
 
     <style>
         /* Scroll containers — 3x wider min-width */

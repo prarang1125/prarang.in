@@ -49,7 +49,7 @@ Route::prefix('/')->group(function () {
 // Partners
 Route::prefix('partners')->group(function () {
     Route::get('/', [Partners::class, 'partners'])->name('partners');
-    Route::get('/india-city', IndiaCity::class)->name('partners.india-city');
+    Route::get('/india-city/{hashId?}', IndiaCity::class)->name('partners.india-city');
 });
 
 

@@ -135,6 +135,15 @@
                     <td class="label">Date:</td>
                     <td class="value">{{ $data['date'] }}</td>
                 </tr>
+                <tr>
+                    <td class="label">Link to View:</td>
+                    <td class="value">
+                        <a href="{{ $data['shareUrl'] }}"
+                            style="color: #2563eb; font-weight: bold; text-decoration: none;">
+                            Digital Marketing Budget Link
+                        </a>
+                    </td>
+                </tr>
             </table>
 
             <div class="section-title" style="margin-top: 30px;">Selected Budget Plan</div>
@@ -167,6 +176,7 @@
                     </tr>
                 </tfoot>
             </table>
+
         </div>
         <div class="footer">
             &copy; {{ date('Y') }} Prarang. All rights reserved.<br>

@@ -28,13 +28,54 @@ class IndiaCity extends Component
     public $company_name;
     public $website;
     public $isSubmitted = false;
-    public function mount()
+    public $shareUrl = null;
+    public $hashId = null;
+
+    public function mount($hashId = null)
     {
+        $this->hashId = $hashId;
         $this->loadStates();
         $this->fetchCirusData();
-        if (!empty($this->states)) {
+
+        if ($this->hashId) {
+            $record = \Illuminate\Support\Facades\DB::table('partner-plan-ref')
+                ->where('hash_id', $this->hashId)
+                ->first();
+
+            if ($record) {
+                $data = json_decode($record->data, true);
+                $this->selectedCities = $data['selectedCities'] ?? [];
+                $this->selectedLanguages = $data['selectedLanguages'] ?? [];
+                $this->selectedPlans = $data['selectedPlans'] ?? [];
+                $this->cityData = $data['cityData'] ?? [];
+                $this->sourceData = $data['sourceData'] ?? [];
+                $this->step = $record->step ?? 2;
+            }
+        } elseif (!empty($this->states)) {
             $this->selectState($this->states[0]->id, $this->states[0]->name);
         }
+    }
+
+    public function createShareLink()
+    {
+        $hashId = \Illuminate\Support\Str::random(8);
+        $data = [
+            'selectedCities' => $this->selectedCities,
+            'selectedLanguages' => $this->selectedLanguages,
+            'selectedPlans' => $this->selectedPlans,
+            'cityData' => $this->cityData,
+            'sourceData' => $this->sourceData,
+        ];
+
+        \Illuminate\Support\Facades\DB::table('partner-plan-ref')->insert([
+            'hash_id' => $hashId,
+            'data' => json_encode($data),
+            'step' => $this->step,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        $this->shareUrl = url('/partners/india-city/' . $hashId);
     }
 
     public function selectState($stateId, $stateName)
@@ -197,6 +238,26 @@ class IndiaCity extends Component
             }
         }
 
+        // Generate share link for Step 3 configuration
+        $hashId = \Illuminate\Support\Str::random(8);
+        $dataToSave = [
+            'selectedCities' => $this->selectedCities,
+            'selectedLanguages' => $this->selectedLanguages,
+            'selectedPlans' => $this->selectedPlans,
+            'cityData' => $this->cityData,
+            'sourceData' => $this->sourceData,
+        ];
+
+        \Illuminate\Support\Facades\DB::table('partner-plan-ref')->insert([
+            'hash_id' => $hashId,
+            'data' => json_encode($dataToSave),
+            'step' => 3,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        $shareUrl = url('/partners/india-city/' . $hashId);
+
         $enrolmentData = [
             'name' => $this->name,
             'mobile' => $this->mobile,
@@ -206,6 +267,7 @@ class IndiaCity extends Component
             'planData' => $planData,
             'totalPrice' => $totalPrice,
             'date' => date('d M, Y'),
+            'shareUrl' => $shareUrl,
         ];
 
         try {
