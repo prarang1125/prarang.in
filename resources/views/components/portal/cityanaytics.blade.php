@@ -1,9 +1,15 @@
 @props(['title', 'code'])
 
-<div class="analytics-content" style="cursor: pointer"> <a data-bs-toggle="modal" data-bs-target="#cityAnalyticsModal{{ $code }}">
+<div class="analytics-content" style="cursor: pointer">
+    @if($code == 'india')
+    <a data-bs-toggle="modal" data-bs-target="#cityAnalyticsModal{{ $code }}">
         <img src="https://www.prarang.in/matric-.JPG" class="img-fluid rounded shadow-sm mb-3 border">
     </a>
-
+    @else
+    <a href="https://g2c.prarang.in/{{$code}}?data" target="_blank">
+        <img src="https://www.prarang.in/matric-.JPG" class="img-fluid rounded shadow-sm mb-3 border">
+    </a>
+    @endif
 </div>
 
 <!-- City Analytics Modal -->
@@ -75,93 +81,93 @@
                 <div class="text-center">
                     <strong class="text-primary fs-5">{{ $title }} Data by Ranks</strong>
                     @if ($code == 'india')
-                        <div class="analytics-grid">
-                            <!-- Full width rows -->
-                            <div class="analytics-row">
-                                <div class="analytics-box full-width"><a target="_blank"
-                                        href="https://g2c.prarang.in/india/culture">Culture</a></div>
+                    <div class="analytics-grid">
+                        <!-- Full width rows -->
+                        <div class="analytics-row">
+                            <div class="analytics-box full-width"><a target="_blank"
+                                    href="https://g2c.prarang.in/india/culture">Culture</a></div>
+                        </div>
+                        <div class="analytics-row">
+                            <div class="analytics-box full-width"><a target="_blank"
+                                    href="https://g2c.prarang.in/india/nature">Nature</a></div>
+                        </div>
+                        <!-- 7 column row -->
+                        <div class="analytics-row">
+                            <div class="analytics-box"><a target="_blank"
+                                    href="https://g2c.prarang.in/india/health">Health</a></div>
+                            <div class="analytics-box"><a target="_blank"
+                                    href="https://g2c.prarang.in/india/wealth">Wealth</a></div>
+                            <div class="analytics-box"><a target="_blank"
+                                    href="https://g2c.prarang.in/india/edus">Education</a>
                             </div>
-                            <div class="analytics-row">
-                                <div class="analytics-box full-width"><a target="_blank"
-                                        href="https://g2c.prarang.in/india/nature">Nature</a></div>
-                            </div>
-                            <!-- 7 column row -->
-                            <div class="analytics-row">
-                                <div class="analytics-box"><a target="_blank"
-                                        href="https://g2c.prarang.in/india/health">Health</a></div>
-                                <div class="analytics-box"><a target="_blank"
-                                        href="https://g2c.prarang.in/india/wealth">Wealth</a></div>
-                                <div class="analytics-box"><a target="_blank"
-                                        href="https://g2c.prarang.in/india/edus">Education</a>
-                                </div>
-                                <div class="analytics-box"><a target="_blank"
-                                        href="https://g2c.prarang.in/india/works">Work</a></div>
-                                <div class="analytics-box"><a target="_blank"
-                                        href="https://g2c.prarang.in/india/medias">Media</a></div>
-                                <div class="analytics-box"><a target="_blank"
-                                        href="https://g2c.prarang.in/india/urbs">Urbanization</a></div>
-                                <div class="analytics-box"><a target="_blank"
-                                        href="https://g2c.prarang.in/india/govs">Governance</a>
-                                </div>
-                            </div>
-                            <!-- Full width rows -->
-                            <div class="analytics-row">
-                                <div class="analytics-box full-width"><a target="_blank"
-                                        href="https://g2c.prarang.in/india/ints">Internet</a></div>
-                            </div>
-                            <div class="analytics-row">
-                                <div class="analytics-box full-width"><a target="_blank"
-                                        href="https://g2c.prarang.in/india/langs">Languages</a></div>
-                            </div>
-                            <div class="analytics-row">
-                                <div class="analytics-box full-width"><a target="_blank"
-                                        href="https://g2c.prarang.in/india/demos">Demography</a></div>
+                            <div class="analytics-box"><a target="_blank"
+                                    href="https://g2c.prarang.in/india/works">Work</a></div>
+                            <div class="analytics-box"><a target="_blank"
+                                    href="https://g2c.prarang.in/india/medias">Media</a></div>
+                            <div class="analytics-box"><a target="_blank"
+                                    href="https://g2c.prarang.in/india/urbs">Urbanization</a></div>
+                            <div class="analytics-box"><a target="_blank"
+                                    href="https://g2c.prarang.in/india/govs">Governance</a>
                             </div>
                         </div>
+                        <!-- Full width rows -->
+                        <div class="analytics-row">
+                            <div class="analytics-box full-width"><a target="_blank"
+                                    href="https://g2c.prarang.in/india/ints">Internet</a></div>
+                        </div>
+                        <div class="analytics-row">
+                            <div class="analytics-box full-width"><a target="_blank"
+                                    href="https://g2c.prarang.in/india/langs">Languages</a></div>
+                        </div>
+                        <div class="analytics-row">
+                            <div class="analytics-box full-width"><a target="_blank"
+                                    href="https://g2c.prarang.in/india/demos">Demography</a></div>
+                        </div>
+                    </div>
                     @else
-                        <div class="analytics-grid">
-                            <!-- Full width rows -->
-                            <div class="analytics-row">
-                                <div class="analytics-box full-width"><a target="_blank"
-                                        href="https://g2c.prarang.in/{{ $code }}-culture">Culture</a></div>
-                            </div>
-                            <div class="analytics-row">
-                                <div class="analytics-box full-width"><a target="_blank"
-                                        href="https://g2c.prarang.in/{{ $code }}-natures">Nature</a></div>
-                            </div>
-                            <!-- 7 column row -->
-                            <div class="analytics-row">
-                                <div class="analytics-box"><a target="_blank"
+                    <div class="analytics-grid">
+                        <!-- Full width rows -->
+                        <div class="analytics-row">
+                            <div class="analytics-box full-width"><a target="_blank"
+                                    href="https://g2c.prarang.in/{{ $code }}-culture">Culture</a></div>
+                        </div>
+                        <div class="analytics-row">
+                            <div class="analytics-box full-width"><a target="_blank"
+                                    href="https://g2c.prarang.in/{{ $code }}-natures">Nature</a></div>
+                        </div>
+                        <!-- 7 column row -->
+                        <div class="analytics-row">
+                            <div class="analytics-box"><a target="_blank"
                                     href="https://g2c.prarang.in/{{ $code }}-healths">Health</a></div>
-                                <div class="analytics-box"><a target="_blank"
-                                        href="https://g2c.prarang.in/{{ $code }}-wealths">Wealth</a></div>
-                                <div class="analytics-box"><a target="_blank"
-                                        href="https://g2c.prarang.in/{{ $code }}-edus">Education</a>
-                                </div>
-                                <div class="analytics-box"><a target="_blank"
-                                        href="https://g2c.prarang.in/{{ $code }}-works">Work</a></div>
-                                <div class="analytics-box"><a target="_blank"
-                                        href="https://g2c.prarang.in/{{ $code }}-medias">Media</a></div>
-                                <div class="analytics-box"><a target="_blank"
-                                        href="https://g2c.prarang.in/{{ $code }}-urbs">Urbanization</a></div>
-                                <div class="analytics-box"><a target="_blank"
-                                        href="https://g2c.prarang.in/{{ $code }}-govs">Governance</a>
-                                </div>
+                            <div class="analytics-box"><a target="_blank"
+                                    href="https://g2c.prarang.in/{{ $code }}-wealths">Wealth</a></div>
+                            <div class="analytics-box"><a target="_blank"
+                                    href="https://g2c.prarang.in/{{ $code }}-edus">Education</a>
                             </div>
-                            <!-- Full width rows -->
-                            <div class="analytics-row">
-                                <div class="analytics-box full-width"><a target="_blank"
-                                        href="https://g2c.prarang.in/{{ $code }}-ints">Internet</a></div>
-                            </div>
-                            <div class="analytics-row">
-                                <div class="analytics-box full-width"><a target="_blank"
-                                        href="https://g2c.prarang.in/{{ $code }}-langs">Languages</a></div>
-                            </div>
-                            <div class="analytics-row">
-                                <div class="analytics-box full-width"><a target="_blank"
-                                        href="https://g2c.prarang.in/{{ $code }}-demos">Demography</a></div>
+                            <div class="analytics-box"><a target="_blank"
+                                    href="https://g2c.prarang.in/{{ $code }}-works">Work</a></div>
+                            <div class="analytics-box"><a target="_blank"
+                                    href="https://g2c.prarang.in/{{ $code }}-medias">Media</a></div>
+                            <div class="analytics-box"><a target="_blank"
+                                    href="https://g2c.prarang.in/{{ $code }}-urbs">Urbanization</a></div>
+                            <div class="analytics-box"><a target="_blank"
+                                    href="https://g2c.prarang.in/{{ $code }}-govs">Governance</a>
                             </div>
                         </div>
+                        <!-- Full width rows -->
+                        <div class="analytics-row">
+                            <div class="analytics-box full-width"><a target="_blank"
+                                    href="https://g2c.prarang.in/{{ $code }}-ints">Internet</a></div>
+                        </div>
+                        <div class="analytics-row">
+                            <div class="analytics-box full-width"><a target="_blank"
+                                    href="https://g2c.prarang.in/{{ $code }}-langs">Languages</a></div>
+                        </div>
+                        <div class="analytics-row">
+                            <div class="analytics-box full-width"><a target="_blank"
+                                    href="https://g2c.prarang.in/{{ $code }}-demos">Demography</a></div>
+                        </div>
+                    </div>
                     @endif
                 </div>
             </div>

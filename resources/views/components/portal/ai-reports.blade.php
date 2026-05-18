@@ -2,36 +2,48 @@
 
 <style>
     @media (max-width: 480px) {
-    #main .pp {
-        margin-bottom: 5px;
+        #main .pp {
+            margin-bottom: 5px;
+        }
     }
-}
 </style>
 
 <section class="mt-3" style="padding: 0 30px 0 30px ">
     <h5 class="p-0 m-0 text-center">Encyclopedia - AI Reports (Latest Data Updated)</h5>
     <div class="row">
         <div class="col-sm-4 pp">
-            {{-- <a href="#" class="btn btn-primary btn-sm w-100 fw-semibold" data-bs-toggle="modal"
-                data-bs-target="#czechRegionsModal">
-                <i class="fa fa-robot me-1"></i>
-                {{ $primary->country_name ?? 'Country' }}
-            </a> --}}
-             <a href="https://g2c.prarang.in/ai/nepal" class="btn btn-primary btn-sm w-100 fw-semibold" target="_blank">
+            @if ($primary->analytics_slug != 'india')
+            <a href="https://g2c.prarang.in/ai/{{ $primary->analytics_slug }}"
+                class="btn btn-primary btn-sm w-100 fw-semibold" target="_blank">
                 <i class="fa fa-robot me-1"></i>
                 {{ $primary->country_name ?? 'Country' }}
             </a>
+            @else
+            <a href="#" class="btn btn-primary btn-sm w-100 fw-semibold" data-bs-toggle="modal"
+                data-bs-target="#indiaRegionsModal">
+                <i class="fa fa-robot me-1"></i>
+                {{ $primary->country_name ?? 'Country' }}
+            </a>
+            @endif
         </div>
         <div class="col-sm-4 pp">
             <x-portal.nep-ai-pages />
         </div>
 
         <div class="col-sm-4 pp">
+            @if ($secondary->analytics_slug != 'india')
+            <a href="https://g2c.prarang.in/ai/{{ $secondary->analytics_slug }}"
+                class="btn btn-primary btn-sm w-100 fw-semibold" target="_blank">
+                <i class="fa fa-robot me-1"></i>
+                {{ $secondary->country_name ?? 'Country' }}
+            </a>
+            @else
             <a href="#" class="btn btn-primary btn-sm w-100 fw-semibold" data-bs-toggle="modal"
                 data-bs-target="#indiaRegionsModal">
                 <i class="fa fa-robot me-1"></i>
                 {{ $secondary->country_name ?? 'Country' }}
             </a>
+            @endif
         </div>
     </div>
     {{-- <p class="text-end text-small pt-1" style="font-size: 11px;">Latest Data Updated :

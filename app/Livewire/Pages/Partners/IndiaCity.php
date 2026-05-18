@@ -256,6 +256,7 @@ class IndiaCity extends Component
             'updated_at' => now(),
         ]);
 
+
         $shareUrl = url('/partners/india-city/' . $hashId);
 
         $enrolmentData = [

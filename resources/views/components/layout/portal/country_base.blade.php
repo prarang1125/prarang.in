@@ -7,17 +7,17 @@
     <meta property="og:locale" content="en_IN" />
     <meta name="robots" content="index, follow" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="{{ $portal->city_name ?? 'Prarang' }} Portal | Prarang" />
+    <meta property="og:site_name" content="{{ $portal->title ?? 'Prarang' }} Portal | Prarang" />
 
     <!-- Open Graph Tags -->
-    <meta property="og:title" content="{{ $portal->city_name ?? 'Default Title' }} Portal | Prarang" />
+    <meta property="og:title" content="{{ $portal->title ?? 'Default Title' }} Portal | Prarang" />
     <meta property="og:image" content="{{ asset('assets/images/portal_meta_image.webp') }}" />
     <meta property="og:image:width" content="600" />
     <meta property="og:image:height" content="315" />
     <meta property="og:url" content="{{ url()->current() }}" />
-    <meta property="og:description" content="{{ $portal->city_slogan ?? '' }}" />
+    <meta property="og:description" content="{{ $portal->title ?? '' }}" />
 
-    <title>{{ $portal->city_name ?? '' }} Portal | Prarang</title>
+    <title>{{ $portal->title ?? '' }} Portal | Prarang</title>
     <!-- UI/UX and Tailwind -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Stylesheets -->
@@ -36,10 +36,10 @@
 
     <style>
         body {
-    color: #565656;
-    background-color: #f2f2f2 !important;
-    font-family: "DM Sans", sans-serif !important;
-}
+            color: #565656;
+            background-color: #f2f2f2 !important;
+            font-family: "DM Sans", sans-serif !important;
+        }
     </style>
 </head>
 

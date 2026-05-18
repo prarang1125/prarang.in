@@ -34,7 +34,8 @@ class PostsCarousel extends Component
 
     private function getPosts($city)
     {
-
+        // dd($city);
+        // return [];
         return DB::connection('main')->table('chittitagmapping as ct')
             ->join('chitti as ch', 'ct.chittiId', '=', 'ch.chittiId')
             ->join('vChittiGeography as vCg', 'ch.chittiId', '=', 'vCg.chittiId')

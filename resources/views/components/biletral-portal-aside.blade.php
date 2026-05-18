@@ -367,17 +367,61 @@ $iconColors = [
             transition: max-height 0.4s ease;
         }
 
-        .metricsdata table tbody td{
-                padding: 0 5px !important;
+        .metricsdata table tbody td {
+            padding: 0 5px !important;
         }
 
-         /* Important Links Scrollbar */
-         .important-links-content::-webkit-scrollbar {
+        /* Important Links Scrollbar */
+        .important-links-content::-webkit-scrollbar {
             width: 6px;
+        }
+
+        /* Modal header */
+        #yellowPagesModal_left .modal-dialog .modal-header {
+            padding-bottom: 2px !important;
+            display: grid;
+            grid-template-columns: 90% 10%;
+        }
+
+        /* Modal header */
+        #core .lsvr-container .lsvr-grid .left-section .container-fluid #sidebar-left .sidebar-left__inner .overflow-hidden div #yellowPagesModal_left .modal-dialog .modal-content .modal-header {
+            grid-template-columns: 90% 10% !important;
+        }
+
+        #yellowPagesModal_left .modal-dialog h4 {
+            text-align: center;
         }
     </style>
     <aside id="sidebar-{{ $side }}" class="mt-3">
         <div class="sidebar-{{ $side }}__inner">
+            <!-- Exchange Widget -->
+            <div class="exchange-widget p-3 shadow bg-white  border mb-4">
+
+                <h3 class="font-bold text-[16px] mb-1 text-center text-black fw-bold">
+                    <i class="fa fa-exchange me-2"></i>
+                    Currency exchange
+                </h3>
+
+                <div class="d-flex flex-column gap-1 ">
+                    @foreach ($exchange as $item)
+                    @php
+                    $parts = explode(' = ', $item);
+                    $from = $parts[0] ?? '';
+                    $to = $parts[1] ?? '';
+                    @endphp
+                    <div class="d-flex align-items-center justify-content-between px-3 py-2 rounded-3 bg-[#F5F4ED]">
+                        <span style="font-size: 13px; font-weight: 500;">{{ $from }}</span>
+                        <i class="text-success fa  fa-exchange " style="font-size: 12px;"></i>
+                        <span style="font-size: 13px; font-weight: 500;">{{ $to }}</span>
+                    </div>
+                    @endforeach
+                    <div class="text-end m-0">
+                        <a href="https://www.xe.com/currencycharts/?from={{ $side=="left"?$main->primary_currency:$main->secondary_currency }}&to={{ $side=="left"?$main->secondary_currency:$main->primary_currency }}" target="_blank" class="text-xs text-blue-900 hover:text-blue-800">
+                            <img class="inline-block h-4 w-4" src="https://www.xe.com/favicon-32x32.png" alt=""> Corporation Inc <i class="fa fa-external-link"></i></a>
+                    </div>
+                </div>
+
+            </div>
 
             <!-- Time Widget -->
             <div class="widget lsvr-townpress-weather-widget lsvr-townpress-weather-widget--has-background shadow-sm mb-4 border rounded"
@@ -415,7 +459,8 @@ $iconColors = [
                         <thead class="table-light">
                             <tr>
                                 <th class="text-muted fw-semibold" style="width: 50%;"></th>
-                                <th class="text-muted fw-semibold text-end" style="width: 30%; white-space: nowrap;">People </th>
+                                <th class="text-muted fw-semibold text-end" style="width: 30%; white-space: nowrap;">
+                                    People </th>
                                 <th class="text-muted fw-semibold text-end" style="width: 20%;">World Rank</th>
                             </tr>
                         </thead>
@@ -463,8 +508,7 @@ $iconColors = [
 
                             <tr>
                                 <td>
-                                    <span class="me-2"
-                                        style="display:inline-block; width:18px; text-align:center;">
+                                    <span class="me-2" style="display:inline-block; width:18px; text-align:center;">
                                         <i class="fa {{ $icon }}" style="color: {{ $color }};"></i>
                                     </span>
                                     <span class="text-dark">{{ $name }}</span>
@@ -485,175 +529,112 @@ $iconColors = [
                                     {{ getSuperScript($intData['rank']) ?? '' }}
                                 </td>
                             </tr>
+
                             @endforeach
 
-                            <tr>
-                                <td>
-                                    <span class="me-2" style="display:inline-block; width:18px; text-align:center;">
-                                        <i class="fa fa-shield" style="color: red;"></i>
-                                    </span>
-                                    <span class="text-dark">Cyber Crime Index</span>
-                                    <span>
-
-                                    </span>
-                                </td>
 
 
-
-
-                                {{-- Rank First --}}
-                                <td class="text-end text-muted fw-semibold">
-                                    {{ $cirusData['risk_index'] ?? '' }}
-                                </td>
-                                {{-- Value After --}}
-                                <td class="text-end fw-semibold text-dark">
-                                    {{ getSuperScript($cirusData['cyber_risk_rank']) }}
-                                </td>
-                            </tr>
                         </tbody>
                     </table>
-                    <a href="https://www.prarang.in/cirus/world" target="_blank">
-                        <p class="text-end text-muted small mb-0" style=" font-size: 12px;">See More</p>
-                    </a>
                 </div>
+            </div>
 
-                <h6 class="ps-2 text-center text-dark mt-3 mb-3" style="font-weight:700; letter-spacing:0.5px;">
+            <!-- Cyber Crime Index Widget -->
+            <div class="p-2 shadow bg-white rounded border mb-3">
+                <h6 class="text-center text-dark mb-2" style="font-weight: 700; font-size: 13px;">
+                    <i class="fa fa-shield me-1" style="color: #e74c3c;"></i>
+                    Cyber Crime Index
+                </h6>
+
+                <div class="d-flex align-items-center justify-content-around py-1 px-2 rounded bg-[#F5F4ED]"
+                    style="font-size: 11px;">
+                    <div class="text-center">
+                        <span class="text-muted">Index:</span>
+                        <span class="fw-bold text-dark ms-1">{{ $cirusData['risk_index'] ?? '-' }}</span>
+                    </div>
+                    <div class="vr mx-2" style="height: 15px; opacity: 0.1;"></div>
+                    <div class="text-center">
+                        <span class="text-muted">Rank:</span>
+                        <span class="fw-bold text-danger ms-1">{{ getSuperScript($cirusData['cyber_risk_rank'])
+                            }}</span>
+                    </div>
+                    <div class="ms-2">
+                        <a href="https://www.prarang.in/cirus/world" target="_blank" class="text-primary">
+                            <i class="fa fa-external-link" style="font-size: 10px;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Language Section -->
+            <div class="p-3 shadow bg-white rounded border mb-4">
+                <h6 class="ps-2 text-center text-dark mt-2 mb-3" style="font-weight:700; letter-spacing:0.5px;">
                     <i class="fa fa-language me-2"></i>
                     {{ $data->country_name }} Language
                 </h6>
                 <table class="table table-bordered align-middle mb-0 language-data-table"
                     style="background:transparent; font-size:0.78rem;">
                     <tbody>
+                        @if($language && isset($language['languages']))
                         <tr>
-                            <td class="text-start fw-bold">Language</td>
-                            <td class="text-start fw-bold">Speakers</td>
-                            <td class="text-start fw-bold">Rank</td>
+                            <td class="text-dark">Language</td>
+                            <td>Speakers</td>
+                            <td class="text-end">World Rank</td>
                         </tr>
-                        @if (strtolower($data->country_name) == 'india')
+                        @if(isset($language['english']['value']) && $language['english']['value'] > 0)
+                        <td>{{ $language['english']['name'] ?? '' }} <span style="cursor:pointer;"
+                                onmouseover="showToolTip('lit-src', '{{$language['english']['source']}}')">
+                                <i class="fa fa-info-circle" style="color: #fd7e14;"></i>
+                            </span>
+                        </td>
+                        <td class="text-end">{{ $language['english']['value'] ?? '-' }}
+                        </td>
+                        <td class="text-end">{{ getSuperScript($language['english']['rank']) ?? '' }}
+                        </td>
+                        @endif
+                        @foreach ($language['languages'] as $row)
                         <tr>
-                            <td class="text-start">
-                                English
-                                <span style="cursor:pointer;"
-                                    onmouseover="showToolTip('en-in', 'India Census 2011 – Aggregated English Population (Mother Tongue + Multilingual Population)')">
-                                    <i class="fa fa-info-circle" style="color: {{ $iconColors['en-in'] }};"></i>
-                                </span>
+                            <td>{{ $row['name'] ?? '' }} <span style="cursor:pointer;"
+                                    onmouseover="showToolTip('lit-src', '{{$row['source']}}')">
+                                    <i class="fa fa-info-circle" style="color: #fd7e14;"></i>
+                                </span></td>
+                            <td class="text-end">{{ $row['value'] ?? '-' }}
                             </td>
-                            <td class="text-start" style="text-align: end !important;">12,84,86,592</td>
-                            <td class="text-start" style="text-align: end !important;">{{ getSuperScript(4) }}</td>
-                        </tr>
-                        <tr>
-                            <td class="text-start">
-                                Hindi
-                                <span style="cursor:pointer;"
-                                    onmouseover="showToolTip('hi-in', 'India Census 2011 – Aggregated Hindi Population (Mother Tongue + Multilingual Population)')">
-                                    <i class="fa fa-info-circle" style="color: {{ $iconColors['hi-in'] }};"></i>
-                                </span>
+                            <td class="text-end">{{ getSuperScript($row['rank']) ?? '' }}
                             </td>
-                            <td class="text-start" style="text-align: end !important;">69,45,94,173</td>
-                            <td class="text-start" style="text-align: end !important;">{{ getSuperScript(1) }}</td>
-                        </tr>
-                        <tr>
-                            <td class="text-start">
-                                Bengali
-                                <span style="cursor:pointer;"
-                                    onmouseover="showToolTip('bn-in', 'India Census 2011 – Aggregated Bengali Population (Mother Tongue + Multilingual Population)')">
-                                    <i class="fa fa-info-circle" style="color: {{ $iconColors['bn-in'] }};"></i>
-                                </span>
-                            </td>
-                            <td class="text-start" style="text-align: end !important;">10,74,08,642</td>
-                            <td class="text-start" style="text-align: end !important;">{{ getSuperScript(2) }}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" class="text-center p-2">
 
-                                <a href="https://g2c.prarang.in/india/multilingualism" target="_blank">
-                                    <p class="text-end text-muted small mb-0">See More</p>
-                                </a>
-
-                            </td>
                         </tr>
-                        @elseif (strtolower($data->country_name) == 'nepal')
+                        @endforeach
+                        @else
                         <tr>
-                            <td class="text-start">
-                                English
-                                <span style="cursor:pointer;"
-                                    onmouseover="showToolTip('en-cz', 'Nepal Stastical Year Book 2023 – English Mother Tongue population\n*Nepal Multilingualism data unavailable')">
-                                    <i class="fa fa-info-circle" style="color: {{ $iconColors['en-cz'] }};"></i>
-                                </span>
-                            </td>
-                            <td class="text-start" style="text-align: end !important;">1,323</td>
-                            <td class="text-start" style="text-align: end !important;">{{ getSuperScript(55) }}</td>
-                        </tr>
-                        <tr>
-                            <td class="text-start">
-                                Nepali
-                                <span style="cursor:pointer;"
-                                    onmouseover="showToolTip('cz-cz', 'Nepal Stastical Year Book 2023 – Nepali Mother Tongue population\n*Nepal Multilingualism data unavailable')">
-                                    <i class="fa fa-info-circle" style="color: {{ $iconColors['cz-cz'] }};"></i>
-                                </span>
-                            </td>
-                            <td class="text-start" style="text-align: end !important;">1,30,84,457</td>
-                            <td class="text-start" style="text-align: end !important;">{{ getSuperScript(1) }}</td>
-                        </tr>
-                        <tr>
-                            <td class="text-start">
-                                Urdu
-                                <span style="cursor:pointer;"
-                                    onmouseover="showToolTip('sk-cz', 'Nepal Stastical Year Book 2023 – Urdu Mother Tongue population\n*Nepal Multilingualism data unavailable')">
-                                    <i class="fa fa-info-circle" style="color: {{ $iconColors['sk-cz'] }};"></i>
-                                </span>
-                            </td>
-                            <td class="text-start" style="text-align: end !important;">4,13,785</td>
-                            <td class="text-start" style="text-align: end !important;">{{ getSuperScript(4) }}</td>
-                        </tr>
-                        <tr>
-                            <td colspan="3" class="text-center p-2">
-
-                                <a href="https://g2c.prarang.in/nepal-langs" target="_blank">
-                                    <p class="text-end text-muted small mb-0">See More</p>
-                                </a>
-
-                            </td>
+                            <td colspan="2" class="text-center">No language data available</td>
                         </tr>
                         @endif
-
                     </tbody>
+
                 </table>
                 <div class="mt-3 text-center" style="font-size:12px;">
                     <span class="fw-bold">
-                        @if (strtolower($data->country_name) == 'india')
-                        India Literacy Rate:
-                        @elseif (strtolower($data->country_name) == 'nepal')
-                        Nepal Literacy Rate:
-                        @else
-                        N/A
-                        @endif
+                        {{ $data->country_name }} Literacy Rate
 
 
-                        @php
-                        $litSource = '';
-                        if (strtolower($data->country_name) == 'india') {
-                        $countname=strtolower($data->country_name);
-                        $litSource = 'World FactBook CIA, 2022 – % of Literate Population';
-                        } elseif (strtolower($data->country_name) == 'nepal') {
-                        $litSource = 'World FactBook CIA, 2022 – % of Literate Population';
-                        } else {
-                        $litSource = 'Source not available';
-                        }
-                        @endphp
-                        <span style="cursor:pointer;" onmouseover="showToolTip('lit-src', '{{ $litSource }}')">
-                            <i class="fa fa-info-circle" style="color: {{ $iconColors['lit-src'] }};"></i>
-                        </span>
+
+                        <span style="cursor:pointer;"
+                            onmouseover="showToolTip('lit-src', 'World FactBook CIA, 2022 – % of Literate Population')">
+                            <i class="fa fa-info-circle" style="color: #fd7e14;"></i>
+                        </span>: {{ $language['literacy'] ?? 0 }}%
                     </span>
                     <span class="fw-bold ms-2">
-                        @if (strtolower($data->country_name) == 'india')
-                        74.40%
-                        @elseif (strtolower($data->country_name) == 'nepal')
-                        67.90%
-                        @else
-                        N/A
-                        @endif
+
                     </span>
+                </div>
+                <div class="mt-1 pt-1 border-t text-center" style="font-size:12px;">
+                    <a class="text-md font-semibold text-blue-500 hover:text-blue-800 hover:font-bold"
+                        href="https://g2c.prarang.in/world/communication-planner/q/{{ $data->anlytics_code }}"
+                        target="_blank">World
+                        Communication
+                        Planner</a>
                 </div>
             </div>
             <!-- Weather Widget -->
@@ -666,36 +647,178 @@ $iconColors = [
                 @endif
             </div>
             <div class="border shadow p-2 mt-3 shadow bg-light rounded metricsdata">
-                <h4 class=" ps-2 text-center  text-dark h5">
+                <h4 class="ps-2 text-center  text-dark fw-bold">
                     <i class="fa fa-analysis-o me-2"></i>
                     {{ $data->country_name }} Metrics
                 </h4>
                 @php
-                $decoded = json_decode($data->local_metrics, true);
-                // If still a string, decode again
-                $metrics = is_string($decoded) ? json_decode($decoded, true) : $decoded;
+
+                $source = (array) $memo['source'] ?? [];
+                $memo = (array) $memo['memo'] ?? [];
+
+                // Government types
+                $govTypes = [
+                'WMEMO1' => 'Communist State',
+                'WMEMO2' => 'Monarchy',
+                'WMEMO3' => 'Democracy',
+                'WMEMO4' => 'Republic',
+                ];
+
+                // Religion types
+                $religions = [
+                'WMEMO5' => 'Islamic',
+                'WMEMO6' => 'Jewish',
+                'WMEMO7' => 'Christian',
+                'WMEMO8' => 'Hindu',
+                'WMEMO9' => 'Buddhist',
+                ];
+
+                // World Wars
+                $wars = [
+                'WMEMO10' => 'WW1',
+                'WMEMO11' => 'WW2',
+                ];
+
+                // Active governments (value == 1)
+                $activeGov = array_keys(array_filter($govTypes, fn($k) => !empty($memo[$k]) && $memo[$k] == 1,
+                ARRAY_FILTER_USE_KEY));
+                $activeGovNames = array_map(fn($k) => $govTypes[$k], $activeGov);
+
+                // Active religions
+                $activeRel = array_keys(array_filter($religions, fn($k) => !empty($memo[$k]) && $memo[$k] == 1,
+                ARRAY_FILTER_USE_KEY));
+                $activeRelNames = array_map(fn($k) => $religions[$k], $activeRel);
+
+                // Active wars
+                $activeWars = array_keys(array_filter($wars, fn($k) => !empty($memo[$k]) && $memo[$k] == 1,
+                ARRAY_FILTER_USE_KEY));
+                $activeWarNames = array_map(fn($k) => $wars[$k], $activeWars);
                 @endphp
 
-                @if (is_array($metrics))
-                <table class="table table-bordered ">
+                <div class="">
+                    <div class="overflow-hidden rounded-2xl p-1 ">
+                        <table
+                            class="w-full text-sm border-collapse border border-gray-600 [&_tr:nth-child(even)]:bg-gray-300/30">
 
-                    <tbody>
-                        @foreach ($metrics as $row)
-                        <tr>
-                            <td>{{ $row['key'] ?? '' }}</td>
-                            <td>{{ $row['value'] ?? '' }}
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
-                @else
-                <p class="text-danger">Invalid JSON format in <code>local_metrics</code>.</p>
-                <pre>{{ $data->local_metrics }}</pre>
-                @endif
+                            <tbody class="divide-y divide-gray-100">
+
+                                {{-- Government --}}
+                                <tr class="bg-gray-50">
+                                    <td colspan="2"
+                                        class="px-5 py-2 text-xs font-semibold uppercase tracking-wider text-gray-400">
+                                        🏛 Government Type
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-5 py-3 text-gray-600">Government Type</td>
+                                    <td class="px-5 py-3">
+                                        @forelse($activeGovNames as $name)
+                                        <span
+                                            class="inline-block bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full mr-1">
+                                            {{ $name }}
+                                        </span>
+                                        @empty
+                                        <span class="text-gray-400 italic">—</span>
+                                        @endforelse
+                                    </td>
+                                </tr>
+
+                                {{-- Religion --}}
+                                <tr class="bg-gray-50">
+                                    <td colspan="2"
+                                        class="px-5 py-2 text-xs font-semibold uppercase tracking-wider text-gray-400">
+                                        🕌 Religion
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-5 py-3 text-gray-600">State Religion</td>
+                                    <td class="px-5 py-3">
+                                        @forelse($activeRelNames as $name)
+                                        <span
+                                            class="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full mr-1">
+                                            {{ $name }}
+                                        </span>
+                                        @empty
+                                        <span class="text-gray-400 italic">No official state religion</span>
+                                        @endforelse
+                                    </td>
+                                </tr>
+
+                                {{-- Geography --}}
+                                <tr class="bg-gray-50">
+                                    <td colspan="2"
+                                        class="px-5 py-2 text-xs font-semibold uppercase tracking-wider text-gray-400">
+                                        📍 Geography
+                                    </td>
+                                </tr>
+                                @foreach([
+                                ['label' => 'Capital', 'key' => 'WMEMO14'],
+                                ['label' => 'Highest Point', 'key' => 'WMEMO15'],
+                                ['label' => 'Max Elevation (m)', 'key' => 'WMEMO16'],
+                                ['label' => 'Lowest Point', 'key' => 'WMEMO17'],
+                                ['label' => 'Min Elevation (m)', 'key' => 'WMEMO18'],
+                                ['label' => 'No. of Time Zones', 'key' => 'WMEMO20'],
+                                // ['label' => 'Cities with 100,000+ pop (2023)', 'key' => 'WMEMO21'],
+                                ] as $row)
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-5 py-3 text-gray-600">{{ $row['label'] }}</td>
+                                    <td class="px-5 py-3 text-gray-800 font-medium">
+                                        {{ $memo[$row['key']] ?? '—' }}
+                                    </td>
+                                </tr>
+                                @endforeach
+
+                                {{-- Economy --}}
+                                <tr class="bg-gray-50">
+                                    <td colspan="2"
+                                        class="px-5 py-2 text-xs font-semibold uppercase tracking-wider text-gray-400">
+                                        💱 Economy
+                                    </td>
+                                </tr>
+                                @foreach([
+                                ['label' => 'Currency', 'key' => 'WMEMO12'],
+                                ['label' => 'Currency ISO', 'key' => 'WMEMO13'],
+                                ['label' => 'Dialing Code', 'key' => 'WMEMO19'],
+                                ['label' => '% of World Population', 'key' => 'WMEMO24', 'suffix' => '%'],
+                                ] as $row)
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-5 py-3 text-gray-600">{{ $row['label'] }}</td>
+                                    <td class="px-5 py-3 text-gray-800 font-medium">
+                                        {{ isset($memo[$row['key']]) && $memo[$row['key']] !== ''
+                                        ? $memo[$row['key']] . ($row['suffix'] ?? '')
+                                        : '—' }}
+                                    </td>
+                                </tr>
+                                @endforeach
+
+                                {{-- World Wars --}}
+                                <tr class="bg-gray-50">
+                                    <td colspan="2"
+                                        class="px-5 py-2 text-xs font-semibold uppercase tracking-wider text-gray-400">
+                                        ⚔️ World Wars
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-5 py-3 text-gray-600">Participated In</td>
+                                    <td class="px-5 py-3">
+                                        @forelse($activeWarNames as $war)
+                                        <span
+                                            class="inline-block bg-red-100 text-red-800 text-xs font-medium px-3 py-1 rounded-full mr-1">
+                                            {{ $war }}
+                                        </span>
+                                        @empty
+                                        <span class="text-gray-400 italic">—</span>
+                                        @endforelse
+                                    </td>
+                                </tr>
+
+
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-
-
 
             <!-- News Widget -->
             <div class="widget lsvr-townpress-news-widget lsvr-townpress-news-widget--has-background shadow-sm mb-4 border rounded"
@@ -720,39 +843,34 @@ $iconColors = [
                 }
             </style>
             <!-- Embassy Section -->
+            @php
+            if($side == "left"){
+            $embassy_link=$main->primary_embassy_link;
+            }else {
+            $embassy_link=$main->secondary_embassy_link;
+            }
+            @endphp
+
             <div class="card shadow-sm mb-4 border-0 rounded" id="{{ $side }}-embassy-card">
                 <div class="card-body text-center">
                     <h5 class="card-title mb-3 fw-bold text-dark ">
                         <i class="fa fa-building-o me-2"></i>
                         Embassy of {{ $data->country_name ?? 'N/A' }}
                     </h5>
-
-                    @php
-                        $country1 = strtolower($data->country_name ?? '');
-                        $country2 = strtolower($isNepalComparison->country_name ?? '');
-                        // dd($country1, $country2, $side);
-                    @endphp
-
-                    @if (($country1 == 'nepal' || $country2 == 'nepal') && $side == 'right')
-                        <a href="https://www.indembkathmandu.gov.in/"
-                        class="btn btn-primary w-100 fw-semibold"
-                        target="_blank">
-                            <i class="fa fa-external-link me-1"></i> Visit Embassy Website
-                        </a>
-
-                    @elseif (!empty($data->embassy_link))
-                        {{-- Default case --}}
-                        <a href="{{ $data->embassy_link }}"
-                        class="btn btn-primary w-100 fw-semibold"
-                        target="_blank">
-                            <i class="fa fa-external-link me-1"></i> Visit Embassy Website
-                        </a>
-
+                    @if ($embassy_link)
+                    <a href="{{ $embassy_link }}" target="_blank" class="btn btn-primary w-100 fw-semibold">
+                        <i class="fa fa-external-link me-1"></i> Visit Embassy Website
+                    </a>
                     @else
-                        <span class="text-danger small">Embassy link not available.</span>
+                    <button disabled class="btn btn-primary w-100 fw-semibold">
+                        <i class="fa fa-external-link me-1"></i> Visit Embassy Website
+                    </button>
+                    <span class="text-danger text-[10px] p-0 m-0">Embassy link not available</span>
                     @endif
+
                 </div>
             </div>
+
             <!-- Analytics Widget -->
             {{-- place here --}}
 
@@ -799,37 +917,22 @@ $iconColors = [
                     </button>
                 </div>
             </div>
+
+
             <div class="border shadow-lg p-0 mt-4 bg-white rounded-lg overflow-hidden">
                 <div class="">
-                        @php
-                            $isNepal = ($country1 == 'nepal' || $country2 == 'nepal');
 
-                            if ($isNepal) {
-                                if ($side == 'left') {
-                                    $yellowPagesLink = 'https://www.prarang.in/yp/india-nepal';
-                                    $yellowPagesText = 'Nepali Companies In India';
-                                } else {
-                                    $yellowPagesLink = 'https://www.prarang.in/yp/nepal';
-                                    $yellowPagesText = 'Indian Companies In Nepal';
-                                }
-                            } else {
-                                if ($side == 'left') {
-                                    $yellowPagesLink = 'https://www.prarang.in/yp/india';
-                                    $yellowPagesText = 'Czech Republic Companies In India';
-                                } else {
-                                    $yellowPagesLink = 'https://www.prarang.in/yp/czech-republic';
-                                    $yellowPagesText = 'Indian Companies In Czech Republic';
-                                }
-                            }
-                        @endphp
+                    @php
+                    if($side=='left')
+                    $ypData= explode("|",$main->primary_yp) ?? [];
+                    elseif($side=='right')
+                    $ypData= explode("|",$main->secondary_yp) ?? [];
+                    @endphp
+
+                    @if(isset($ypData) && count($ypData)> 1)
+                    <a href="{{ $ypData[1] }}" target="_blank" class="relative block overflow-hidden group">
 
 
-                        {{-- href="{{ $side == 'left' ? 'https://www.prarang.in/yp/india' : 'https://www.prarang.in/yp/czech-republic' }}" --}}
-                        <a
-                        href="{{ $yellowPagesLink }}"  target="_blank"
-                        class="relative block overflow-hidden group">
-
-                        <!-- IMAGE -->
                         <img src="https://meerutrang.in/images/yellow-pages-row.png" alt="Yellow Pages"
                             class="w-full object-cover transition-transform duration-500 group-hover:scale-110"
                             style="height: 180px;" />
@@ -838,19 +941,75 @@ $iconColors = [
                         <div class="absolute inset-0 flex flex-col items-center justify-center text-center z-10 p-3">
                             <h2 class="text-[24px] lg:text-[28px] font-bold text-dark mb-1"
                                 style="font-family: 'DM Sans', sans-serif; line-height: 1.2;">
-                                {{ $yellowPagesText }}
+                                {{
+                                $ypData[0] ?? "" }}
+                                <br>
                             </h2>
                             <h4 class="text-xs uppercase tracking-widest font-bold text-muted">
                                 Yellow Pages
                             </h4>
-
-                            {{-- <div
-                                class="mt-3 px-3 py-1 bg-dark/10 backdrop-blur-sm rounded-full text-[10px] text-dark font-bold border border-dark/20 uppercase tracking-tighter">
-                                Coming Soon
-                            </div> --}}
                         </div>
-
                     </a>
+                    @else
+                    <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#yellowPagesModal_{{ $side }}"
+                        class="relative block overflow-hidden group">
+
+
+                        <img src="https://meerutrang.in/images/yellow-pages-row.png" alt="Yellow Pages"
+                            class="w-full object-cover transition-transform duration-500 group-hover:scale-110"
+                            style="height: 180px;" />
+
+                        <!-- TEXT ON IMAGE -->
+                        <div class="absolute inset-0 flex flex-col items-center justify-center text-center z-10 p-3">
+                            <h2 class="text-[24px] lg:text-[28px] font-bold text-dark mb-1"
+                                style="font-family: 'DM Sans', sans-serif; line-height: 1.2;">
+                                {{ $ypData[0] ?? "" }}
+                                <br>
+                            </h2>
+                            <h4 class="text-xs uppercase tracking-widest font-bold text-muted">
+                                Yellow Pages
+                            </h4>
+                        </div>
+                    </a>
+
+                    <!-- Yellow Pages Modal -->
+                    <div class="modal fade" id="yellowPagesModal_{{ $side }}" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered rounded-xl">
+                            <div class="modal-content border-0 shadow rounded-xl">
+                                <div class="modal-header border-0 pb-0">
+                                    <h4 class="fw-bold">Yellow Pages</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body text-justify px-4 p-2  pb-4 border-t mt-1">
+                                    {{-- <div class="mb-4 text-warning">
+                                        <i class="fa fa-book fa-3x"></i>
+                                    </div> --}}
+                                    {{-- <h4 class="fw-bold mb-3">Yellow Pages</h4> --}}
+                                    <p class="text-muted mb-4">
+                                        Free listing of products and services of {{ $ypData[0] ?? "" }}.
+                                        <br>
+                                        Thank you for
+                                        your interest. However, the registration has not yet been activated. We await a
+                                        business facilitation partner.
+                                    </p>
+                                    <div class="flex justify-between items-center gap-3">
+                                        <a href="https://www.prarang.in/partners" target="_blank"
+                                            class="btn btn-warning fw-bold px-4 rounded-pill shadow-sm text-xs">
+                                            Prarang Country Partnerships
+                                        </a>
+                                        <a href="https://www.prarang.in/yp/czech-republic" target="_blank"
+                                            class="btn btn-warning fw-bold px-4 rounded-pill shadow-sm text-xs">
+                                            Example - Czech Republic companies in India
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+
+
                 </div>
             </div>
 

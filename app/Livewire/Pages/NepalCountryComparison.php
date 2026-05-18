@@ -44,11 +44,12 @@ class NepalCountryComparison extends Component
     public $czeFields = [];
     public $insCities = [];
     public $share;
+    public $country1, $country2, $code1, $code2;
 
 
     // Constants for regional comparison
-    public const MAX_INDIA_CITIES = 3;
-    public const MAX_CZE_REGIONS = 3;
+    public const MAX_INDIA_CITIES = 5;
+    public const MAX_CZE_REGIONS = 5;
     public const CZECH_REGIONS = [
         1 => 'Prague and Central Bohemia',
         2 => 'South Bohemia',
@@ -65,9 +66,13 @@ class NepalCountryComparison extends Component
         13 => 'Moravia Silesia',
     ];
 
-    public function mount(Request $request, $type, SentenceService $sentenceService, $lang = null)
+    public function mount(Request $request, $country1, $country2, $type, $code1, $code2, SentenceService $sentenceService, $lang = null)
     {
-
+        $this->country1 = $country1;
+        $this->country2 = $country2;
+        $this->type = $type;
+        $this->code1 = $code1;
+        $this->code2 = $code2;
         $this->type = $type;
         if ($lang) {
             session()->put('locale', $lang);
@@ -112,7 +117,10 @@ class NepalCountryComparison extends Component
             $this->handleShareLink($this->share);
         } else {
             if ($this->type === 'country') {
-                $this->cities[] = json_encode(['name' => 'Nepal', 'real_name' => 'Nepal']);
+                $city1 = ['name' => $this->country1, 'real_name' => $this->country1];
+                $city2 = ['name' => $this->country2, 'real_name' => $this->country2];
+                $this->cities[] = json_encode($city1);
+                $this->cities[] = json_encode($city2);
             }
         }
     }

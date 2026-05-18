@@ -2,107 +2,108 @@
 
     <style>
         #main>.bg-light {
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
-#main>.bg-light {
-    padding-bottom: 6px !important;
-    padding-top: 4px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        #main>.bg-light {
+            padding-bottom: 6px !important;
+            padding-top: 4px;
 
 
 
-}
+        }
 
-#main .bg-light h3 {
-    padding-top: 3px;
-}
+        #main .bg-light h3 {
+            padding-top: 3px;
+        }
 
-#main .comparison-links-new {
-    margin-bottom: 6px;
-}
+        #main .comparison-links-new {
+            margin-bottom: 6px;
+        }
 
-#main .comparison-links-new {
-    display: flex;
-    flex-direction: column;
-}
+        #main .comparison-links-new {
+            display: flex;
+            flex-direction: column;
+        }
 
-#main .comparison-links-new a {
-    text-align: center;
-    background-color: #137df5;
-    color: #ffffff;
-    padding-left: 0px;
-    padding-right: 7px;
-    padding-bottom: 7px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
+        #main .comparison-links-new a {
+            text-align: center;
+            background-color: #137df5;
+            color: #ffffff;
+            padding-left: 0px;
+            padding-right: 7px;
+            padding-bottom: 7px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
 
-#main .btn-primary {
-    padding-top: 5px;
-    padding-bottom: 5px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-}
+        #main .btn-primary {
+            padding-top: 5px;
+            padding-bottom: 5px;
+            border-top-left-radius: 5px;
+            border-top-right-radius: 5px;
+            border-bottom-left-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
 
-.btn-primary {
-    font-size: 14px;
-    font-weight: 600;
-    padding: 0.75rem;
-    border-radius: 0.5rem;
-}
-.planner-btns {
-    margin-bottom: 3px;
-    margin-left: 16px;
-    margin-right: 16px;
-    margin-top: 3px;
-}
+        .btn-primary {
+            font-size: 14px;
+            font-weight: 600;
+            padding: 0.75rem;
+            border-radius: 0.5rem;
+        }
 
-.important-links-content {
-    max-height: 250px;
-    overflow: hidden;
-    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
-}
+        .planner-btns {
+            margin-bottom: 3px;
+            margin-left: 16px;
+            margin-right: 16px;
+            margin-top: 3px;
+        }
 
-@media (max-width: 992px) {
-    #columns .lsvr-grid {
-        display: flex;
-        flex-direction: column;
-    }
+        .important-links-content {
+            max-height: 250px;
+            overflow: hidden;
+            transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+        }
 
-    #columns .lsvr-grid > .lsvr-grid__col {
-        width: 100% !important;
-        max-width: 100% !important;
-        float: none !important;
-        margin-left: 0 !important;
-        margin-right: 0 !important;
-        left: auto !important;
-        right: auto !important;
-    }
+        @media (max-width: 992px) {
+            #columns .lsvr-grid {
+                display: flex;
+                flex-direction: column;
+            }
 
-    #columns .left-section {
-        order: 1;
-    }
+            #columns .lsvr-grid>.lsvr-grid__col {
+                width: 100% !important;
+                max-width: 100% !important;
+                float: none !important;
+                margin-left: 0 !important;
+                margin-right: 0 !important;
+                left: auto !important;
+                right: auto !important;
+            }
 
-    #columns .right-section {
-        order: 2;
-    }
+            #columns .left-section {
+                order: 1;
+            }
 
-    #columns .middle-section {
-        order: 3;
-        margin-top: 16px !important;
-    }
-}
+            #columns .right-section {
+                order: 2;
+            }
 
-.modal-backdrop.show {
-    opacity: 0.8 !important;
-}
+            #columns .middle-section {
+                order: 3;
+                margin-top: 16px !important;
+            }
+        }
 
+        .modal-backdrop.show {
+            opacity: 0.8 !important;
+        }
     </style>
 
     <div id="wrapper">
@@ -127,7 +128,7 @@
                         {{-- <a
                             class="flex items-center gap-2 px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition-all shadow-md group"
                             href="{{ url($main->slug) }}/all-posts">
-                        <span class="text-sm font-bold">All Posts</span>
+                            <span class="text-sm font-bold">All Posts</span>
                         </a> --}}
                     </div>
                 </div>
@@ -160,10 +161,12 @@
                     <div class="flex gap-2 w-full lg:w-auto" style="width: 286px">
                         <a target="_blank" href="https://b2b.prarang.in/login?lt=partner"
                             class="flex-1 text-center bg-amber-400 hover:bg-amber-500 text-black text-xs font-bold rounded shadow hover:shadow-md transition-all"
-                            style="display:flex; align-items:center; justify-content:center; min-height:56px; line-height:1.2; text-decoration:none; height: 48px !important;">Business Login</a>
+                            style="display:flex; align-items:center; justify-content:center; min-height:56px; line-height:1.2; text-decoration:none; height: 48px !important;">Business
+                            Login</a>
                         <a target="_blank" href="https://b2b.prarang.in/login?lt=g2c"
                             class="flex-1 text-center bg-amber-400 hover:bg-amber-500 text-black text-xs font-bold rounded shadow hover:shadow-md transition-all"
-                            style="display:flex; align-items:center; justify-content:center; min-height:56px; line-height:1.2; text-decoration:none; height: 48px !important;">Govt./NGO Login</a>
+                            style="display:flex; align-items:center; justify-content:center; min-height:56px; line-height:1.2; text-decoration:none; height: 48px !important;">Govt./NGO
+                            Login</a>
                     </div>
                 </div>
             </div>
@@ -186,14 +189,14 @@
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="countrySelect"
                                         id="countryPrimary" value="primary">
-                                    <label class="form-check-label"
-                                        for="countryPrimary">{{ $primary->country_name ?? 'Primary Country' }}</label>
+                                    <label class="form-check-label" for="countryPrimary">{{ $primary->country_name ??
+                                        'Primary Country' }}</label>
                                 </div>
                                 <div class="form-check form-check-inline">
                                     <input class="form-check-input" type="radio" name="countrySelect"
                                         id="countrySecondary" value="secondary">
-                                    <label class="form-check-label"
-                                        for="countrySecondary">{{ $secondary->country_name ?? 'Secondary Country' }}</label>
+                                    <label class="form-check-label" for="countrySecondary">{{ $secondary->country_name
+                                        ?? 'Secondary Country' }}</label>
                                 </div>
                             </div>
                         </div>
@@ -260,8 +263,9 @@
                                                         cityCode="{{ $main->content_country_code ?? 'CON24' }}"
                                                         :locale="$locale" />
                                                     <!-- TOWNPRESS SITEMAP : begin -->
-                                                    <x-portal.nep-tag-list :cityId="$main->content_country_code" :cityCode="$main->content_country_code"
-                                                        :citySlug="$main->slug" :locale="$locale" />
+                                                    <x-portal.nep-tag-list :cityId="$main->content_country_code"
+                                                        :cityCode="$main->content_country_code" :citySlug="$main->slug"
+                                                        :locale="$locale" />
                                                 </div>
                                                 <!-- CATEGORY CONTENT : end -->
                                             </div>
@@ -315,8 +319,9 @@
 
                                         </div>
 
-                                        {{-- <x-portal.ai-reports :primary="$primary" :secondary="$secondary" :cities="$indianCities"
-                                            :zone="$stateZones" /> --}}
+                                        {{--
+                                        <x-portal.ai-reports :primary="$primary" :secondary="$secondary"
+                                            :cities="$indianCities" :zone="$stateZones" /> --}}
                                         <section class="mt-3">
 
                                             <div class="row">
@@ -330,7 +335,8 @@
                                                                 {{ $primary->country_name ?? 'N/A' }} Data Analytics
                                                             </h3>
                                                             <div class="widget__content text-center">
-                                                                <x-portal.cityanaytics :title="$primary->country_name ?? 'N/A'"
+                                                                <x-portal.cityanaytics
+                                                                    :title="$primary->country_name ?? 'N/A'"
                                                                     :code="$primary->analytics_slug ?? 'country'" />
                                                             </div>
                                                         </div>
@@ -347,7 +353,8 @@
                                                             </h3>
                                                             <div class="widget__content text-center">
 
-                                                                <x-portal.cityanaytics :title="$secondary->country_name ?? 'N/A'"
+                                                                <x-portal.cityanaytics
+                                                                    :title="$secondary->country_name ?? 'N/A'"
                                                                     :code="$secondary->analytics_slug ?? 'country'" />
 
                                                             </div>
@@ -369,12 +376,13 @@
                                 </div>
                                 <div
                                     class="columns__sidebar columns__sidebar--right lsvr-grid__col lsvr-grid__col--span-3 right-section">
-                                    <x-biletral-portal-aside :data="$secondary" side="right" :isNepalComparison="$primary" />
+                                    <x-biletral-portal-aside :data="$secondary" side="right"
+                                        :isNepalComparison="$primary" />
                                 </div>
                             </div>
                         </div>
                     </div>
-                     <style>
+                    <style>
                         #wrapper footer .row .col p {
                             margin-bottom: 5px !important;
                         }
@@ -386,7 +394,8 @@
                                 {{-- About Section --}}
                                 <div class="col-lg-5 col-md-6 pe-lg-5">
                                     <h5 class="footer-title text-center">About Prarang</h5>
-                                    <p class="footer-text text-start text-white-50" style="width: 100%; font-size: 12px;">
+                                    <p class="footer-text text-start text-white-50"
+                                        style="width: 100%; font-size: 12px;">
                                         Prarang provides integrated digital solutions and unique insights to understand
                                         the
                                         cities of India and the World. Through our composite methodology of traditional
@@ -404,11 +413,12 @@
                                 <div class="col-lg-3 col-md-6 text-center">
                                     <h5 class="footer-title">Connect With Us</h5>
                                     <div class="social-grid justify-content-center mt-3">
-                                        <a href="javascript:void(0)" onclick="showComingSoon(event)"
-                                            class="social-btn" title="Facebook">
+                                        <a href="javascript:void(0)" onclick="showComingSoon(event)" class="social-btn"
+                                            title="Facebook">
                                             <i class="fa fa-facebook"></i>
                                         </a>
-                                        <a href="https://www.linkedin.com/company/india-nepal/" href="javascript:void(0)" onclick="showComingSoon(event)" class="social-btn"
+                                        <a href="https://www.linkedin.com/company/india-nepal/"
+                                            href="javascript:void(0)" onclick="showComingSoon(event)" class="social-btn"
                                             title="X (Twitter)">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                 fill="currentColor" viewBox="0 0 16 16"
@@ -427,8 +437,8 @@
                                 {{-- Address Section --}}
                                 <div class="col-lg-4 col-md-12">
                                     <h5 class="footer-title text-center text-md-center text-lg-start">Contact Us</h5>
-                                    <ul
-                                        class="list-unstyled footer-text text-white-50 text-start text-md-center text-lg-start" style="width: 100%">
+                                    <ul class="list-unstyled footer-text text-white-50 text-start text-md-center text-lg-start"
+                                        style="width: 100%">
                                         <li class="mb-2">
                                             <i class="fa fa-map-marker me-2 text-primary"></i>
                                             Office #25, 11th Floor, The I-Thum, A40, Sector 62<br>
@@ -468,7 +478,7 @@
                         .portal-footer {
                             background-color: #1a1a1a;
                             background-image: linear-gradient(rgba(26, 26, 26, 0.60), rgba(26, 26, 26, 0.75)),
-                                url('{{ Storage::url($main->footer_image) }}');
+                            url('{{ Storage::url($main->footer_image) }}');
                             background-size: cover;
                             background-position: center;
                             background-attachment: fixed;
@@ -495,7 +505,7 @@
                             transform: translateX(-50%);
                         }
 
-                       @media (min-width: 992px) {
+                        @media (min-width: 992px) {
                             .text-lg-start .footer-title::after {
                                 left: 0;
                                 transform: none;
@@ -552,18 +562,18 @@
                         }
 
                         @media (min-width: 768px) {
-    #wrapper #core .core__inner #columns .portal-footer .container .row .pe-lg-5 p {
-        width: 100% !important;
-    }
-}
+                            #wrapper #core .core__inner #columns .portal-footer .container .row .pe-lg-5 p {
+                                width: 100% !important;
+                            }
+                        }
 
-.portal-footer .pe-lg-5 p {
-    font-size: 12px;
-}
+                        .portal-footer .pe-lg-5 p {
+                            font-size: 12px;
+                        }
 
-.portal-footer .pe-lg-5 p {
-    text-align: justify !important;
-}
+                        .portal-footer .pe-lg-5 p {
+                            text-align: justify !important;
+                        }
                     </style>
 
                 </div>
@@ -617,7 +627,8 @@
                     });
                 </script>
 
-                <script id="jquery-core-js" src="https://preview.lsvr.sk/townpress/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"
+                <script id="jquery-core-js"
+                    src="https://preview.lsvr.sk/townpress/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"
                     type="text/javascript"></script>
 
 
@@ -626,7 +637,8 @@
                     src="https://preview.lsvr.sk/townpress/wp-content/themes/townpress/assets/js/townpress-scripts.min.js?ver=3.8.8"
                     type="text/javascript"></script>
                 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
-                    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+                    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+                    crossorigin="anonymous">
                 </script>
                 {!! $portal['footer_scripts'] ?? '' !!}
 
