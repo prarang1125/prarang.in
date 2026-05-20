@@ -1,76 +1,5 @@
 <x-layout.portal.country_base :portal="$main">
-  <style>
-    /* Tracking wider */
-    .max-w-md .mb-4 h3.tracking-wider {
-      color: #020202 !important;
-    }
 
-    /* Font semibold */
-    .max-w-md .px-4 .grid .font-semibold {
-      color: #ffffff !important;
-    }
-
-    /* Justify center */
-    .max-w-md .cursor-pointer .justify-center {
-      background-size: contain !important;
-      padding-top: 23px !important;
-      padding-bottom: 6px !important;
-      height: 105px;
-    }
-
-    /* Font semibold */
-    .max-w-md .cursor-pointer .justify-center .font-semibold {
-      position: relative;
-      top: -31px;
-      padding-top: 1px !important;
-      color: #935600;
-    }
-
-    .max-w-md .embassy-card a {
-      min-height: 115px;
-    }
-
-    /* Universal Tooltip Styles */
-    .universal-tooltip {
-      position: fixed;
-      background-color: rgba(0, 0, 0, 0.9);
-      color: #ffffff;
-      padding: 12px 10px;
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: 500;
-      white-space: normal;
-      max-width: 250px;
-      word-wrap: break-word;
-      pointer-events: none;
-      /* Make click-through so it doesn't block interactions */
-      z-index: 10000;
-      transform: translateX(-50%) translateY(-10px);
-      opacity: 0;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(4px);
-      text-align: center;
-      line-height: 1.4;
-    }
-
-    .universal-tooltip::after {
-      content: '';
-      position: absolute;
-      top: 100%;
-      left: 50%;
-      transform: translateX(-50%);
-      border-left: 6px solid transparent;
-      border-right: 6px solid transparent;
-      border-top: 6px solid rgba(0, 0, 0, 0.9);
-    }
-
-    .universal-tooltip.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-  </style>
   <link rel="stylesheet" href="https://indiaczech.com/assets/css/mobile.css">
   <main class="max-w-md mx-auto px-3 pb-10">
 
@@ -852,7 +781,78 @@
       font-size: 0.75rem;
     }
   </style>
+  <style>
+    /* Tracking wider */
+    .max-w-md .mb-4 h3.tracking-wider {
+      color: #020202 !important;
+    }
 
+    /* Font semibold */
+    .max-w-md .px-4 .grid .font-semibold {
+      color: #ffffff !important;
+    }
+
+    /* Justify center */
+    .max-w-md .cursor-pointer .justify-center {
+      background-size: contain !important;
+      padding-top: 23px !important;
+      padding-bottom: 6px !important;
+      height: 105px;
+    }
+
+    /* Font semibold */
+    .max-w-md .cursor-pointer .justify-center .font-semibold {
+      position: relative;
+      top: -31px;
+      padding-top: 1px !important;
+      color: #935600;
+    }
+
+    .max-w-md .embassy-card a {
+      min-height: 115px;
+    }
+
+    /* Universal Tooltip Styles */
+    .universal-tooltip {
+      position: fixed;
+      background-color: rgba(0, 0, 0, 0.9);
+      color: #ffffff;
+      padding: 12px 10px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 500;
+      white-space: normal;
+      max-width: 250px;
+      word-wrap: break-word;
+      pointer-events: none;
+      /* Make click-through so it doesn't block interactions */
+      z-index: 10000;
+      transform: translateX(-50%) translateY(-10px);
+      opacity: 0;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(4px);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .universal-tooltip::after {
+      content: '';
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-top: 6px solid rgba(0, 0, 0, 0.9);
+    }
+
+    .universal-tooltip.show {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  </style>
   {{-- ===== TIME UPDATE SCRIPT ===== --}}
   <script>
     document.addEventListener('DOMContentLoaded', function() {

@@ -65,7 +65,7 @@ class PortalController extends Controller
 
         $primary = $main->primaryCountry;
         $secondary = $main->secondaryCountry;
-
+        // dd($secondary, $primary);
         $pageSlm = httpGet('/country-pages-slm', ['country_id' => $secondary->anlytics_code])['data'] ?? [];
         // Cache::remember('country-pages-slmx-' . $secondary->anlytics_code, 24 * 60 * 60, function () use ($secondary) {
         //     return httpGet('/country-pages-slm', ['country_id' => $secondary->anlytics_code])['data'] ?? [];
@@ -159,7 +159,7 @@ class PortalController extends Controller
 
         return $isMobile
             ? 'portal::portal.country_mobile'
-            // : 'portal::portal.country_new';
-            : 'portal::portal.country_mobile';
+            : 'portal::portal.country_new';
+        // : 'portal::portal.country_mobile';
     }
 }
