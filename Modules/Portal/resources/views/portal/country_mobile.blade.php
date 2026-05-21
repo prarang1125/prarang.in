@@ -51,7 +51,7 @@
             </div>
           </x-slot>
           <x-slot name="button">
-            <button
+            <div
               class="w-full py-3 px-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors text-center relative overflow-hidden group">
               <div class="absolute top-0 right-0 p-1 opacity-20 group-hover:opacity-40 transition-opacity">
                 {{-- <img src="https://g2c.prarang.in/storage/images/world/195Counties/CZE__flag.jpg" class="w-8 h-auto"
@@ -61,7 +61,7 @@
               <div id="mobile-cze-time" class="text-sm font-mono font-bold text-blue-600">Loading...
               </div>
               <div id="mobile-cze-date" class="text-[10px] text-gray-500 mt-0.5">—</div>
-            </button>
+            </div>
           </x-slot>
           <div class="text-center py-6">
             <div class="mb-4 flex justify-center">
@@ -86,7 +86,7 @@
             </div>
           </x-slot>
           <x-slot name="button">
-            <button
+            <div
               class="w-full py-3 px-3 bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-lg transition-colors text-center relative overflow-hidden group">
               <div class="absolute top-0 right-0 p-1 opacity-20 group-hover:opacity-40 transition-opacity">
                 {{-- <img src="https://g2c.prarang.in/storage/images/world/195Counties/IND__flag.jpg" class="w-8 h-auto"
@@ -96,7 +96,7 @@
               <div id="mobile-ind-time" class="text-sm font-mono font-bold text-orange-600">Loading...
               </div>
               <div id="mobile-ind-date" class="text-[10px] text-gray-500 mt-0.5">—</div>
-            </button>
+            </div>
           </x-slot>
           <div class="text-center py-6">
             <div class="mb-4 flex justify-center">
@@ -209,6 +209,7 @@
     @else
     <section class="mb-4">
       <x-portal.connection-box :main="$main" :primary="$primary" :secondary="$secondary" :locale="$locale" />
+    </section>
       @endif
       {{-- ===== 8. INDO-CZECH COMPARATIVE AI ===== --}}
       <section class="mb-4">
@@ -271,12 +272,12 @@
                 </div>
               </x-slot>
               <x-slot name="button">
-                <button
+                <div
                   class="w-full py-3 px-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors text-sm font-semibold text-blue-800">
                   {{ $primary->country_name }}
                   {{-- <img src="https://g2c.prarang.in/storage/images/world/195Counties/CZE__flag.jpg"
                     class="w-5 h-3 object-cover rounded-sm" alt="CZ"> {{ $primary->country_name }} --}}
-                </button>
+                </div>
               </x-slot>
 
               <x-biletral-portal-aside.internet-data :data="$primary" />
@@ -291,12 +292,12 @@
                 </div>
               </x-slot>
               <x-slot name="button">
-                <button
+                <div
                   class="w-full py-3 px-3 bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-lg transition-colors text-sm font-semibold text-orange-800">
                   {{ $secondary->country_name }}
                   {{-- <img src="https://g2c.prarang.in/storage/images/world/195Counties/IND__flag.jpg"
                     class="w-5 h-3 object-cover rounded-sm" alt="IN"> --}}
-                </button>
+                </div>
               </x-slot>
 
               <x-biletral-portal-aside.internet-data :data="$secondary" />
@@ -323,12 +324,12 @@
                 </div>
               </x-slot>
               <x-slot name="button">
-                <button
+                <div
                   class="w-full py-3 px-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors text-sm font-semibold text-blue-800">
                   {{ $primary->country_name }}
                   {{-- <img src="https://g2c.prarang.in/storage/images/world/195Counties/CZE__flag.jpg"
                     class="w-5 h-3 object-cover rounded-sm" alt="CZ"> CZE --}}
-                </button>
+                </div>
               </x-slot>
 
 
@@ -344,10 +345,10 @@
                 </div>
               </x-slot>
               <x-slot name="button">
-                <button
+                <div
                   class="w-full py-3 px-3 bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-lg transition-colors text-sm font-semibold text-orange-800">
                   {{ $secondary->country_name }}
-                </button>
+                </div>
               </x-slot>
 
               <x-biletral-portal-aside.language-data :data="$secondary" />
@@ -376,12 +377,12 @@
                 </div>
               </x-slot>
               <x-slot name="button">
-                <button
+                <div
                   class="w-full py-3 px-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors text-sm font-semibold text-blue-800">
                   {{-- <img src="https://g2c.prarang.in/storage/images/world/195Counties/CZE__flag.jpg"
                     class="w-5 h-3 object-cover rounded-sm" alt="CZ"> --}}
                   {{ $primary->country_name }}
-                </button>
+                </div>
               </x-slot>
               <x-biletral-portal-aside.metrics-data :data="$primary" />
             </x-ui.modal>
@@ -395,12 +396,12 @@
                 </div>
               </x-slot>
               <x-slot name="button">
-                <button
+                <div
                   class="w-full py-3 px-3 bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-lg transition-colors text-sm font-semibold text-orange-800">
                   {{-- <img src="https://g2c.prarang.in/storage/images/world/195Counties/IND__flag.jpg"
                     class="w-5 h-3 object-cover rounded-sm" alt="IN"> --}}
                   {{ $secondary->country_name }}
-                </button>
+                </div>
               </x-slot>
               <x-biletral-portal-aside.metrics-data :data="$secondary" />
             </x-ui.modal>
@@ -446,6 +447,7 @@
             </div>
           </div>
         </div>
+        </section>
         {{-- ===== 7. DATA ANALYTICS ===== --}}
         <section class="mb-4">
           <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
@@ -458,10 +460,10 @@
               <x-ui.modal id="analytics-cze-modal">
                 <x-slot name="title">{{ $primary->country_name ?? 'CZE' }} Analytics</x-slot>
                 <x-slot name="button">
-                  <button
+                  <div
                     class="w-full py-3 px-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors text-sm font-semibold text-blue-800">
                     {{ $primary->country_name }}
-                  </button>
+                  </div>
                 </x-slot>
                 <x-biletral-portal-aside.analytics-data :data="$primary" side="left" />
               </x-ui.modal>
@@ -469,10 +471,10 @@
               <x-ui.modal id="analytics-ind-modal">
                 <x-slot name="title">{{ $secondary->country_name ?? 'India' }} Analytics</x-slot>
                 <x-slot name="button">
-                  <button
+                  <div
                     class="w-full py-3 px-3 bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-lg transition-colors text-sm font-semibold text-orange-800">
                     {{ $secondary->country_name }}
-                  </button>
+                  </div>
                 </x-slot>
                 <x-biletral-portal-aside.analytics-data :data="$secondary" side="right" />
               </x-ui.modal>
@@ -539,10 +541,10 @@
               <x-ui.modal id="news-cze-modal">
                 <x-slot name="title">{{ $primary->country_name ?? 'CZE' }} News</x-slot>
                 <x-slot name="button">
-                  <button
+                  <div
                     class="w-full py-3 px-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors text-sm font-semibold text-blue-800">
                     {{ $primary->country_name }}
-                  </button>
+                  </div>
                 </x-slot>
                 <x-portal.news :url="$primary->news" side="left" />
               </x-ui.modal>
@@ -550,10 +552,10 @@
               <x-ui.modal id="news-ind-modal">
                 <x-slot name="title">{{ $secondary->country_name ?? 'India' }} News</x-slot>
                 <x-slot name="button">
-                  <button
+                  <div
                     class="w-full py-3 px-3 bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-lg transition-colors text-sm font-semibold text-orange-800">
                     {{ $secondary->country_name }}
-                  </button>
+                  </div>
                 </x-slot>
                 <x-portal.news :url="$secondary->news" side="right" />
               </x-ui.modal>
@@ -588,10 +590,10 @@
               <x-ui.modal id="links-cze-modal">
                 <x-slot name="title">{{ $primary->country_name ?? 'CZE' }} Links</x-slot>
                 <x-slot name="button">
-                  <button
+                  <div
                     class="w-full py-3 px-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors text-sm font-semibold text-blue-800">
                     {{ $primary->country_name }}
-                  </button>
+                  </div>
                 </x-slot>
                 <x-biletral-portal-aside.important-links :data="$primary" side="left" />
               </x-ui.modal>
@@ -599,10 +601,10 @@
               <x-ui.modal id="links-ind-modal">
                 <x-slot name="title">{{ $secondary->country_name ?? 'India' }} Links</x-slot>
                 <x-slot name="button">
-                  <button
+                  <div
                     class="w-full py-3 px-3 bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-lg transition-colors text-sm font-semibold text-orange-800">
                     {{ $secondary->country_name }}
-                  </button>
+                  </div>
                 </x-slot>
                 <x-biletral-portal-aside.important-links :data="$secondary" side="right" />
               </x-ui.modal>

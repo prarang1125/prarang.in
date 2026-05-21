@@ -10,11 +10,11 @@
         <x-ui.modal id="yellow-pages-{{ $side }}-modal">
             <x-slot name="title">Yellow Pages</x-slot>
             <x-slot name="button">
-                <button class="w-full flex flex-col items-center justify-center py-4 px-3 bg-yellow-50 hover:bg-yellow-100 border border-yellow-200 rounded-lg transition-colors text-center gap-1.5 shadow-sm"
+                <div class="w-full flex flex-col items-center justify-center py-4 px-3 bg-yellow-50 hover:bg-yellow-100 border border-yellow-200 rounded-lg transition-colors text-center gap-1.5 shadow-sm"
                     style="background-image: url('https://meerutrang.in/images/yellow-pages-row.png'); background-repeat: no-repeat; background-size: cover;">
                     <div class="text-[11px] font-bold text-yellow-900 leading-tight uppercase tracking-tight">{{ $ypData[0] ?? 'Yellow Pages' }}</div>
                     <div class="text-[9px] text-yellow-700/70 font-semibold">Yellow Pages</div>
-                </button>
+                </div>
             </x-slot>
             <div class="p-2">
                  <p class="text-sm text-gray-600 mb-6 text-center">

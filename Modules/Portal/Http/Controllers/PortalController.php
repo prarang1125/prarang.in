@@ -159,7 +159,7 @@ class PortalController extends Controller
 
         return $isMobile
             ? 'portal::portal.country_mobile'
-            : 'portal::portal.country_new';
-        // : 'portal::portal.country_mobile';
+            // : 'portal::portal.country_new';
+            : 'portal::portal.country_mobile';
     }
 }
