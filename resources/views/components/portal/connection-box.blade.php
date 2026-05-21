@@ -5,15 +5,15 @@
             font-size: 16px !important;
         }
     </style>
-    <div class="flex justify-center items-stretch gap-6 my-4">
+    <div class="flex justify-center items-stretch gap-4 my-4">
 
         <!-- Box 1 -->
         <div
-            class="text-center w-1/2 bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden pt-6 flex flex-col justify-between">
-            <h2 class="text-xl font-extrabold text-slate-800 mb-6">Connections</h2>
+            class="text-center w-1/3 bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden pt-6 flex flex-col justify-center items-center">
+            <h2 class="text-lg font-extrabold text-slate-800 mb-6">Connections</h2>
 
             <button data-bs-toggle="modal" data-bs-target="#socialMediaPostsModal"
-                class="btn btn-primary mx-4 mb-4 mt-auto fw-bold py-2 px-4 shadow-sm" style="border-radius: 8px;">
+                class="btn btn-primary mx-4 mb-4  fw-bold py-2 px-4 shadow-sm" style="border-radius: 8px;">
                 Social Media Posts
             </button>
 
@@ -48,8 +48,16 @@
 
         <!-- Box 2 -->
         <div
-            class="text-justify w-1/2 bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden p-2 flex flex-col justify-between">
+            class="text-justify w-2/3 bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden p-2 flex flex-col justify-between">
+                 <h2 class="text-lg font-extrabold text-slate-800 text-center">Shared History</h2>
+
             {{ $main->connections ?? ""}}
+            <div class="flex justify-end">
+                <a href="{{ $main->connection_link }}"
+                    class="text-sm fw-semibold py-1 px-1 text-blue-600 hover:text-blue-700" target="_blank">
+                    See More
+                </a>
+            </div>
         </div>
 
     </div>

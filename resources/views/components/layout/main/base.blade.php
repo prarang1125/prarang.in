@@ -942,17 +942,9 @@
                             <a class="nav-link" href="javascript:void(0);" id="viveks-modal">Blogs</a>
                         </li>
                         <li class="nav-item">
-                            @if ($isHome)
-                            <a class="nav-link d-flex flex-column align-items-center justify-content-center py-1"
-                                href="/knowledge" style="height: auto !important;">
-                                <img src="https://i.ibb.co/LDgGCzVV/delhi-exhibition.png" alt="Exhibition"
-                                    style="height: 24px; width: auto;" class="mb-0">
-                                <span style="line-height: 1;">Knowledge</span>
-                            </a>
-                            @else
+
                             <a class="nav-link text-center" href="/knowledge">Knowledge</a>
-                            @endif
-                        </li>
+                                                  </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/intelligence">Intelligence</a>
                         </li>

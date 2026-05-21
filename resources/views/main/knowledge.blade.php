@@ -48,7 +48,8 @@ $metaData = [
 
 
                 <div class="row g-4 my-4">
-                    <div class="col-md-6">
+                    <div class="col-md-3"></div>
+                    {{-- <div class="col-md-6">
                         <a href="#" data-bs-toggle="modal" data-bs-target="#exhibitionModal"
                             class="knowledge-benefit-card h-100">
                             <div class="benefit-icon">
@@ -63,7 +64,7 @@ $metaData = [
                             </div>
 
                         </a>
-                    </div>
+                    </div> --}}
                     <div class="col-md-6">
                         <a href="https://sarganga.org/" target="_blank" class="knowledge-benefit-card h-100">
                             <div class="benefit-icon">
@@ -79,6 +80,7 @@ $metaData = [
 
                         </a>
                     </div>
+                    <div class="col-md-3"></div>
                 </div>
 
 
