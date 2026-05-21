@@ -200,9 +200,8 @@
         <!-- HEADER : end -->
         <div class="header-background header-background--singled" style="display: none;">
             <div class="header-background__image header-background__image--default"
-    style="background-image: url('{{ !empty($main->header_image) ? Storage::url($main->header_image) : asset('images/default.jpg') }}');">
-</div>
-
+                style="background-image: url('{{ !empty($main->header_image) ? Storage::url($main->header_image) : asset('images/default.jpg') }}');">
+            </div>
         </div>
 
         <!-- CORE : begin -->
@@ -221,10 +220,11 @@
                                             <div class="post-207 page type-page status-publish hentry">
                                                 <div class=" my-3 rounded shadow">
                                                     <img class="rounded shadow"
-                                                        src="{{ !empty($main->header_image) ? Storage::url($main->header_image) : asset('images/default.jpg') }}" alt="">
+                                                        src="{{ !empty($main->header_image) ? Storage::url($main->header_image) : asset('images/default.jpg') }}"
+                                                        alt="">
                                                 </div>
                                                 <div
-                                                    class="page__content rounded-lg shadow bg-light p-3 text-sm text-justify">
+                                                    class="page__content rounded-lg shadow bg-light p-3 text-sm text-justify mb-3">
                                                     <p>
                                                         @foreach ($pageSlm['sentences'] as $sentence)
                                                             {!! $sentence !!}
@@ -261,7 +261,7 @@
                                                             '/' .
                                                             $secondary->country_name .
                                                             "
-                                                                              /country-comparison/" .
+                                                                                                                                  /country-comparison/" .
                                                             $secondary->anlytics_code .
                                                             '/' .
                                                             $primary->anlytics_code,

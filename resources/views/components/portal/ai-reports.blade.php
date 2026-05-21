@@ -26,9 +26,9 @@
             </a>
             @endif
         </div>
-        <div class="col-sm-4 pp">
+        {{-- <div class="col-sm-4 pp">
             <x-portal.nep-ai-pages />
-        </div>
+        </div> --}}
 
         <div class="col-sm-4 pp">
             @if ($secondary->analytics_slug != 'india')

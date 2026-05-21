@@ -652,42 +652,14 @@ $iconColors = [
                     {{ $data->country_name }} Metrics
                 </h4>
                 @php
-
                 $source = (array) $memo['source'] ?? [];
                 $memo = (array) $memo['memo'] ?? [];
-
-                // Government types
-                $govTypes = [
-                'WMEMO1' => 'Communist State',
-                'WMEMO2' => 'Monarchy',
-                'WMEMO3' => 'Democracy',
-                'WMEMO4' => 'Republic',
-                ];
-
-                // Religion types
-                $religions = [
-                'WMEMO5' => 'Islamic',
-                'WMEMO6' => 'Jewish',
-                'WMEMO7' => 'Christian',
-                'WMEMO8' => 'Hindu',
-                'WMEMO9' => 'Buddhist',
-                ];
 
                 // World Wars
                 $wars = [
                 'WMEMO10' => 'WW1',
                 'WMEMO11' => 'WW2',
                 ];
-
-                // Active governments (value == 1)
-                $activeGov = array_keys(array_filter($govTypes, fn($k) => !empty($memo[$k]) && $memo[$k] == 1,
-                ARRAY_FILTER_USE_KEY));
-                $activeGovNames = array_map(fn($k) => $govTypes[$k], $activeGov);
-
-                // Active religions
-                $activeRel = array_keys(array_filter($religions, fn($k) => !empty($memo[$k]) && $memo[$k] == 1,
-                ARRAY_FILTER_USE_KEY));
-                $activeRelNames = array_map(fn($k) => $religions[$k], $activeRel);
 
                 // Active wars
                 $activeWars = array_keys(array_filter($wars, fn($k) => !empty($memo[$k]) && $memo[$k] == 1,
@@ -702,63 +674,16 @@ $iconColors = [
 
                             <tbody class="divide-y divide-gray-100">
 
-                                {{-- Government --}}
+                                {{-- Location --}}
                                 <tr class="bg-gray-50">
                                     <td colspan="2"
                                         class="px-5 py-2 text-xs font-semibold uppercase tracking-wider text-gray-400">
-                                        🏛 Government Type
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-gray-50 transition">
-                                    <td class="px-5 py-3 text-gray-600">Government Type</td>
-                                    <td class="px-5 py-3">
-                                        @forelse($activeGovNames as $name)
-                                        <span
-                                            class="inline-block bg-green-100 text-green-800 text-xs font-medium px-3 py-1 rounded-full mr-1">
-                                            {{ $name }}
-                                        </span>
-                                        @empty
-                                        <span class="text-gray-400 italic">—</span>
-                                        @endforelse
-                                    </td>
-                                </tr>
-
-                                {{-- Religion --}}
-                                <tr class="bg-gray-50">
-                                    <td colspan="2"
-                                        class="px-5 py-2 text-xs font-semibold uppercase tracking-wider text-gray-400">
-                                        🕌 Religion
-                                    </td>
-                                </tr>
-                                <tr class="hover:bg-gray-50 transition">
-                                    <td class="px-5 py-3 text-gray-600">State Religion</td>
-                                    <td class="px-5 py-3">
-                                        @forelse($activeRelNames as $name)
-                                        <span
-                                            class="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full mr-1">
-                                            {{ $name }}
-                                        </span>
-                                        @empty
-                                        <span class="text-gray-400 italic">No official state religion</span>
-                                        @endforelse
-                                    </td>
-                                </tr>
-
-                                {{-- Geography --}}
-                                <tr class="bg-gray-50">
-                                    <td colspan="2"
-                                        class="px-5 py-2 text-xs font-semibold uppercase tracking-wider text-gray-400">
-                                        📍 Geography
+                                        📍 Location
                                     </td>
                                 </tr>
                                 @foreach([
-                                ['label' => 'Capital', 'key' => 'WMEMO14'],
-                                ['label' => 'Highest Point', 'key' => 'WMEMO15'],
-                                ['label' => 'Max Elevation (m)', 'key' => 'WMEMO16'],
-                                ['label' => 'Lowest Point', 'key' => 'WMEMO17'],
-                                ['label' => 'Min Elevation (m)', 'key' => 'WMEMO18'],
-                                ['label' => 'No. of Time Zones', 'key' => 'WMEMO20'],
-                                // ['label' => 'Cities with 100,000+ pop (2023)', 'key' => 'WMEMO21'],
+                                ['label' => 'Country Capital', 'key' => 'WMEMO14'],
+                                ['label' => 'Area (sq km)', 'key' => 'WMEMO22'],
                                 ] as $row)
                                 <tr class="hover:bg-gray-50 transition">
                                     <td class="px-5 py-3 text-gray-600">{{ $row['label'] }}</td>
@@ -768,28 +693,88 @@ $iconColors = [
                                 </tr>
                                 @endforeach
 
-                                {{-- Economy --}}
+                                {{-- Terrain --}}
                                 <tr class="bg-gray-50">
                                     <td colspan="2"
                                         class="px-5 py-2 text-xs font-semibold uppercase tracking-wider text-gray-400">
-                                        💱 Economy
+                                        ⛰️ Terrain
                                     </td>
                                 </tr>
                                 @foreach([
-                                ['label' => 'Currency', 'key' => 'WMEMO12'],
-                                ['label' => 'Currency ISO', 'key' => 'WMEMO13'],
-                                ['label' => 'Dialing Code', 'key' => 'WMEMO19'],
-                                ['label' => '% of World Population', 'key' => 'WMEMO24', 'suffix' => '%'],
+                                ['label' => 'Highest Point', 'key' => 'WMEMO15'],
+                                ['label' => 'Maximum Elevation', 'key' => 'WMEMO16'],
+                                ['label' => 'Lowest Point', 'key' => 'WMEMO17'],
+                                ['label' => 'Minimum Elevation', 'key' => 'WMEMO18'],
                                 ] as $row)
                                 <tr class="hover:bg-gray-50 transition">
                                     <td class="px-5 py-3 text-gray-600">{{ $row['label'] }}</td>
                                     <td class="px-5 py-3 text-gray-800 font-medium">
-                                        {{ isset($memo[$row['key']]) && $memo[$row['key']] !== ''
-                                        ? $memo[$row['key']] . ($row['suffix'] ?? '')
-                                        : '—' }}
+                                        {{ $memo[$row['key']] ?? '—' }}
                                     </td>
                                 </tr>
                                 @endforeach
+
+                                {{-- Demographics --}}
+                                <tr class="bg-gray-50">
+                                    <td colspan="2"
+                                        class="px-5 py-2 text-xs font-semibold uppercase tracking-wider text-gray-400">
+                                        👥 Demographics
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-5 py-3 text-gray-600">% of World Population</td>
+                                    <td class="px-5 py-3 text-gray-800 font-medium">
+                                        {{ isset($memo['WMEMO24']) && $memo['WMEMO24'] !== ''
+                                        ? $memo['WMEMO24'] . '%'
+                                        : '—' }}
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-5 py-3 text-gray-600">Population Density</td>
+                                    <td class="px-5 py-3 text-gray-800 font-medium">
+                                        {{ $memo['WDEM9'] ?? '—' }}
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-5 py-3 text-gray-600">Sex Ratio</td>
+                                    <td class="px-5 py-3 text-gray-800 font-medium">
+                                        @if(isset($memo['WDEM10']) && is_numeric($memo['WDEM10']))
+                                            {{ round((float)$memo['WDEM10'] * 1000) }} female / 1000 male
+                                        @else
+                                            —
+                                        @endif
+                                    </td>
+                                </tr>
+
+                                {{-- Logistics --}}
+                                <tr class="bg-gray-50">
+                                    <td colspan="2"
+                                        class="px-5 py-2 text-xs font-semibold uppercase tracking-wider text-gray-400">
+                                        🚚 Logistics
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-5 py-3 text-gray-600">No. of Time Zones</td>
+                                    <td class="px-5 py-3 text-gray-800 font-medium">
+                                        {{ $memo['WMEMO20'] ?? '—' }}
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-5 py-3 text-gray-600">Dialing Code</td>
+                                    <td class="px-5 py-3 text-gray-800 font-medium">
+                                        {{ $memo['WMEMO19'] ?? '—' }}
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-5 py-3 text-gray-600">Currency</td>
+                                    <td class="px-5 py-3 text-gray-800 font-medium">
+                                        @if(isset($memo['WMEMO12']) || isset($memo['WMEMO13']))
+                                            {{ trim(($memo['WMEMO12'] ?? '') . (isset($memo['WMEMO13']) && $memo['WMEMO13'] ? ' (' . $memo['WMEMO13'] . ')' : '')) }}
+                                        @else
+                                            —
+                                        @endif
+                                    </td>
+                                </tr>
 
                                 {{-- World Wars --}}
                                 <tr class="bg-gray-50">
@@ -811,8 +796,6 @@ $iconColors = [
                                         @endforelse
                                     </td>
                                 </tr>
-
-
 
                             </tbody>
                         </table>
