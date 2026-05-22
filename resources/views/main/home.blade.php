@@ -1,343 +1,5 @@
 <x-layout.main.base>
-    <style>
-        /* Overflow hidden */
-        .flex-wrap .w-full .overflow-hidden {
-            padding-top: 10px;
-            padding-bottom: 4px;
-            padding-right: 0px;
-            padding-left: 0px;
-            /* transform: translatex(0px) translatey(0px); */
-            height: 266px;
-            margin-bottom: 19px;
-        }
 
-        /* Image */
-        .flex-wrap .w-full img {
-            padding-bottom: 6px;
-            min-height: 258px;
-            height: 258px;
-            margin-bottom: 20px;
-        }
-
-        /* Full */
-        .mx-auto .flex-wrap .w-full {
-            padding-top: 16px;
-            padding-bottom: 28px;
-        }
-
-        .flex-wrap div .w-full {
-            margin-top: 2px;
-        }
-
-        /* Heading */
-        .flex-wrap div h2 {
-            font-size: 16px;
-        }
-
-        /* Transition all */
-        .flex-wrap div:nth-child(1) .transition-all {
-            background-color: #255eed;
-        }
-
-        /* Tracking tight */
-        .flex-wrap div:nth-child(1) .transition-all .tracking-tight {
-            color: #ffffff;
-        }
-
-        /* Transition all */
-        .flex-wrap div:nth-child(5) .transition-all {
-            background-color: #e10e0e;
-        }
-
-        .flex-wrap div:nth-child(5) .tracking-tight {
-            color: #ffffff;
-        }
-
-        /* Italic Tag */
-        .flex-wrap .lg\:flex i {
-            position: relative;
-            top: -60px;
-        }
-
-        /* Cursor pointer (hover) */
-        .flex-wrap a .cursor-pointer:hover {
-            color: #00327f;
-        }
-
-        /* Text base (hover) */
-        .flex-wrap a .text-base:hover {
-            color: #2977e4;
-        }
-
-        /* Flex wrap */
-        .container .mx-auto .flex-wrap {
-            align-items: normal;
-        }
-
-        /* Font black */
-        .flex-wrap .cursor-pointer .font-black {
-            font-weight: 700;
-            font-size: 16px;
-        }
-
-        /* Justify start */
-        .flex-wrap div .justify-start {
-            justify-content: center;
-            align-items: center;
-            padding-left: 2px !important;
-        }
-    </style>
-    <style>
-        /* Hover */
-        .flex-wrap div:nth-child(5) .hover\:text-white {
-            color: #ffffff;
-        }
-
-        /* Hover (hover) */
-        .flex-wrap a .hover\:shadow-lg:hover {
-            color: #ffffff !important;
-        }
-
-
-
-        /* Image */
-        .flex-wrap .items-center img {
-            width: 20px;
-            min-height: 50px !important;
-            height: 50px !important;
-            margin-bottom: 0px !important;
-            position: relative;
-            top: -25px;
-            left: 30px;
-            right: 0px;
-        }
-
-        /* Hover */
-        .flex-wrap a .hover\:shadow-lg {
-            width: 145px;
-        }
-
-        /* Hover */
-        .flex-wrap a .hover\:shadow-xl {
-            width: 145px;
-        }
-
-        /* Span Tag (hover) */
-        .flex-wrap a span:hover {
-            color: #ffffff !important;
-        }
-
-        @media (max-width:576px) {
-
-            /* Hover */
-            .flex-wrap a .hover\:shadow-xl {
-                height: 49px;
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-
-            /* Hover */
-            .w-full .items-center .flex-col a .hover\:shadow-lg {
-                height: 49px;
-            }
-
-            /* Hover */
-            .flex-wrap .cursor-pointer .hover\:shadow-lg {
-                height: 49px;
-            }
-
-            /* Justify center */
-            .flex-wrap a .justify-center {
-                position: relative;
-                top: -2px;
-            }
-
-            /* Text base */
-            .w-full .items-center .flex-col a .hover\:shadow-lg .text-base {
-                position: relative;
-                top: 2px;
-            }
-
-            /* Nepal click */
-            #nepal-click {
-                position: relative;
-                top: 2px;
-            }
-
-        }
-
-        /* Hover (hover) */
-        div:nth-child(3) a .hover\:text-white:hover {
-            color: #020202;
-        }
-
-        .flex-wrap a:nth-child(1) .hover\:text-white:hover {
-            color: #020202;
-        }
-
-        /* Hover (hover) */
-        .w-full .flex-col .hover\:text-white:hover {
-            color: #020202;
-        }
-    </style>
-    <style>
-        /* Division */
-        .flex-wrap div .w-full .items-center>div {
-            max-height: 18px;
-        }
-
-        /* Full */
-        .flex-wrap div:nth-child(1) .w-full:nth-child(2) {
-            display: grid;
-            grid-template-columns: 70% 30%;
-        }
-
-        /* Full */
-        .container .mx-auto .flex-wrap div:nth-child(1) .w-full:nth-child(2) {
-            grid-template-columns: 70% 30% !important;
-        }
-
-        /* Hover */
-        .flex-wrap a .hover\:shadow-xl {
-            width: 72px !important;
-        }
-
-        /* Items center */
-        .flex-wrap div .w-full>.items-center {
-            transform: translatex(0px) translatey(0px);
-        }
-
-        /* Hover */
-        .flex-wrap div:nth-child(1) .w-full .items-center a:nth-child(2) .hover\:shadow-lg {
-            min-width: 215px !important;
-        }
-
-        /* Hover */
-        .flex-wrap a .hover\:shadow-lg {
-            min-width: 23px !important;
-            transform: translatex(0px) translatey(0px);
-        }
-
-        /* Hover */
-        .flex-wrap a:nth-child(4) .hover\:shadow-lg {
-            min-width: 215px !important;
-        }
-
-        /* Hover */
-        .flex-wrap a:nth-child(6) .hover\:shadow-lg {
-            min-width: 215px !important;
-        }
-
-        /* Image */
-        .flex-wrap .items-center img {
-            left: 6px !important;
-        }
-
-        /* Image */
-        .container .mx-auto .flex-wrap div .w-full .items-center div img {
-            right: auto !important;
-        }
-
-        /* Hover */
-        .flex-wrap a .hover\:shadow-lg {
-            padding-right: 12px;
-        }
-
-        /* Division */
-        .mx-auto .flex-wrap .lg\:flex {
-            height: 371px;
-        }
-
-        /* Italic Tag */
-        .flex-wrap .lg\:flex i {
-            top: 3px !important;
-        }
-
-        /* Italic Tag */
-        .container .mx-auto .flex-wrap .lg\:flex i {
-            bottom: auto !important;
-        }
-
-        /* Hover */
-        .flex-wrap a .hover\:shadow-lg {
-            margin-bottom: 9px;
-        }
-
-        /* Hover */
-        .flex-wrap a:nth-child(5) .hover\:shadow-xl {
-            position: relative;
-            top: 46px;
-        }
-
-        /* Image */
-        .flex-wrap .items-center img {
-            top: -25px;
-        }
-
-        /* Image */
-        .container .mx-auto .flex-wrap div .w-full .items-center div img {
-            bottom: auto !important;
-        }
-
-        /* Image */
-        .flex-wrap div:nth-child(6) img {
-            top: 25px;
-        }
-    </style>
-    <style>
-        /* Table Data */
-        .city-s tr td {
-            min-height: 30px;
-        }
-
-        @media (max-width:576px) {
-
-            /* Table Data */
-            .city-s tr .px-2 {
-                max-width: 98px;
-                transform: translatex(0px) translatey(0px);
-                min-width: 0px;
-                padding-right: 0px !important;
-            }
-
-            /* Link */
-            .city-s .px-2 a {
-                width: 110px !important;
-            }
-
-            /* Table Data */
-            .city-s tr td {
-                position: relative;
-                left: -30px;
-                min-width: 38px !important;
-                margin-left: 0px;
-            }
-
-            /* Table Data */
-            .container .mx-auto .flex-wrap div .city-s .justify-center .border-separate tbody tr .px-2 {
-                width: 0px !important;
-            }
-
-            /* Border separate */
-            .city-s .justify-center .border-separate {
-                position: relative;
-                left: 12px;
-                /* transform: translatex(0px) translatey(0px); */
-            }
-
-            /* Link */
-            .container .mx-auto .flex-wrap div .city-s .justify-center .border-separate tbody tr .py-1 a {
-                width: 108px !important;
-            }
-
-            /* Table Data */
-            .container .mx-auto .flex-wrap div .city-s .justify-center .border-separate tbody tr td {
-                width: 38px !important;
-            }
-
-        }
-    </style>
     <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-10 ">
         <style>
             /* Image */
@@ -517,11 +179,230 @@
                 padding-right: 8px;
             }
         </style>
+        <style>
+            /* Full */
+            .desktop-grid .box .w-full {
+                padding-top: 10px;
+                padding-bottom: 1px;
+            }
 
-        <div class="flex flex-wrap justify-center items-center gap-4 lg:gap-6">
+            /* Tracking tight */
+            .desktop-grid .box .tracking-tight {
+                font-size: 20px;
+            }
 
-            <div>
-                <!-- City Webs Card -->
+            /* City webs card */
+            #cityWebsCard {
+                padding-top: 8px;
+                padding-bottom: 9px;
+            }
+
+            /* Country webs card */
+            #countryWebsCard {
+                padding-top: 7px;
+                padding-bottom: 11px;
+            }
+
+            /* Language webs card */
+            #languageWebsCard {
+                padding-top: 9px;
+                padding-bottom: 6px;
+            }
+
+            /* Auto */
+            .container .mx-auto {
+                margin-top: 1px;
+            }
+        </style>
+        <style>
+            /* Justify center */
+            .desktop-grid .box a.justify-center {
+                font-size: 22px;
+                padding-left: 20px;
+                padding-right: 20px;
+                padding-top: 20px;
+                padding-bottom: 20px;
+                border-color: #3e3737;
+                border-width: 2px;
+                min-height: 165px;
+            }
+
+            /* Justify center */
+            .desktop-grid .box a.justify-center {
+                text-align: center;
+                text-decoration: none;
+                border-top-left-radius: 12px;
+                border-top-right-radius: 12px;
+                border-bottom-left-radius: 12px;
+                border-bottom-right-radius: 12px;
+            }
+
+            /* Box */
+            .container .desktop-grid .box:nth-child(11) {
+                padding-right: 22px;
+                padding-left: 22px;
+                /* transform:translatex(0px) translatey(0px); */
+                height: 165px;
+            }
+
+            /* Justify center */
+            .desktop-grid .box:nth-child(11) .justify-center:nth-child(3) {
+                max-width: 213px;
+            }
+
+            .desktop-grid .box:nth-child(8) .bi {
+                margin-left: 35px;
+            }
+
+            /* Box */
+            .container .desktop-grid .box:nth-child(13) {
+                padding-left: 27px;
+                padding-right: 0px;
+                height: 165px;
+            }
+
+            /* Box */
+            .container .desktop-grid .box:nth-child(12) {
+                height: 165px;
+            }
+
+            /* Desktop grid */
+            .container .mx-auto .desktop-grid {
+                height: 532px;
+            }
+
+            /* Transition all */
+            .desktop-grid .box .transition-all {
+                height: 279px;
+            }
+
+            /* Link */
+            .desktop-grid .box a {
+                padding-bottom: 2px !important;
+                padding-top: 5px !important;
+                padding-left: 8px !important;
+                padding-right: 5px !important;
+            }
+
+            /* Box */
+            .mx-auto .desktop-grid .box {
+                padding-left: 4px !important;
+                /* transform:translatex(0px) translatey(0px); */
+            }
+
+            /* Justify between */
+            .desktop-grid .box:nth-child(13) .justify-between:nth-child(3) {
+                max-width: 123px;
+            }
+
+            /* Transition all */
+            .desktop-grid .box .transition-all {
+                background-color: rgba(0, 0, 0, 0) !important;
+                border-top-left-radius: 20px !important;
+                border-top-right-radius: 20px !important;
+                border-bottom-left-radius: 20px !important;
+                border-bottom-right-radius: 20px !important;
+            }
+
+            /* Transition all */
+            .desktop-grid .box:nth-child(1) .transition-all {
+                background-color: blue !important;
+                color: #ffffff;
+            }
+
+            /* Heading */
+            .desktop-grid .box h2 {
+                transform: translatex(0px) translatey(0px);
+            }
+
+            /* Tracking tight */
+            .desktop-grid .box:nth-child(1) .tracking-tight {
+                color: #ffffff;
+            }
+
+            /* Transition all */
+            .desktop-grid .box:nth-child(3) .transition-all {
+                background-color: yellow !important;
+            }
+
+            /* Transition all */
+            .desktop-grid .box:nth-child(5) .transition-all {
+                background-color: #f33434 !important;
+                /* transform:translatex(0px) translatey(0px); */
+            }
+
+            /* Tracking tight */
+            .desktop-grid .box:nth-child(5) .tracking-tight {
+                color: #ffffff;
+            }
+
+            /* Justify between */
+            .desktop-grid .box .justify-between:nth-child(5) {
+                width: 306px;
+            }
+
+            /* Box */
+            .mx-auto .desktop-grid .box {
+                padding-right: 0px !important;
+            }
+
+            /* Justify between */
+            .container .mx-auto .desktop-grid .box:nth-child(11) .justify-center .justify-between:nth-child(3) {
+                width: 27% !important;
+            }
+
+            /* Italic Tag */
+            .desktop-grid .box>.justify-center>.bi {
+                margin-left: 0px !important;
+            }
+
+            /* Link (hover) */
+            .desktop-grid .box a:hover {
+                /* border-width:4px !important; */
+                border-right-color: red;
+                border-bottom-color: black;
+                border-left-color: blue;
+                border-top-color: gray;
+                border-top-width: 2px !important;
+                /* font-weight: 700 !important; */
+                color: blue !important;
+
+                transition: border-width 0.2s ease, border-color 0.2s ease;
+            }
+
+            /* Full */
+            .desktop-grid .box:nth-child(14) .w-full {
+                /* transform:translatex(0px) translatey(0px); */
+                padding-top: 0px;
+                padding-bottom: 4px;
+            }
+
+            /* Full */
+            .desktop-grid .box:nth-child(16) .w-full {
+                padding-top: 0px;
+                padding-bottom: 5px;
+            }
+
+            /* Link */
+            .desktop-grid .w-full a {
+                text-decoration: none;
+            }
+
+            /* Link (hover) */
+            .desktop-grid .w-full a:hover {
+                color: #ebedee !important;
+            }
+
+            /* Justify between */
+            .desktop-grid .box .justify-between:nth-child(5) {
+                margin-right: 23px;
+            }
+        </style>
+
+        <!-- DESKTOP -->
+        <div class="desktop-grid">
+
+            <div class="box rounded b1">
                 <div
                     class="group border-[2px] border-gray-200 rounded p-8 w-full sm:w-80 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
                     <h2 class="text-2xl font-black text-gray-800 tracking-tight text-center uppercase">
@@ -538,103 +419,34 @@
 
                     </div>
                 </div>
-                <div class="city-s my-2 p-4 rounded-2xl">
-
-                    <h5
-                        class="text-lg font-black text-gray-800 tracking-tight text-center uppercase mb-1 border-b-2 border-b-rose-100">
-                        National Knowledge Grid
-                    </h5>
-
-                    <h6 class="text-lg font-black text-gray-800 tracking-tight text-center uppercase mb-1">
-                        India
-                    </h6>
-
-                    <div class="mt-3 flex justify-center">
-                        <table class="text-center border-separate border-spacing-y-3">
-
-                            <tr>
-                                <td class="px-2">
-                                    <a href="/town-webs"
-                                        class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
-                                        style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
-                                        India: Urban
-                                    </a>
-                                </td>
-                                <td> <img class="w-7 h-5" src="{{ asset('assets/images/home/ar.png') }}" alt="Arrow">
-                                </td>
-                                <td class="px-2">
-                                    <a href="/webs/filter/cities"
-                                        class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
-                                        style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
-                                        <span>Cities</span>
-                                        <span>6,331</span>
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="flex justify-items-center items-center h-10">
-                                        <img class="w-6 h-5" style="transform: rotate(90deg);"
-                                            src="{{ asset('assets/images/home/d_arrow.png') }}" alt="Arrow">
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-
-
-                            <tr>
-                                <td class="py-1">
-                                    <a href="/city-webs"
-                                        class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
-                                        style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
-                                        India: District
-                                    </a>
-                                </td>
-
-                            </tr>
-                            <tr>
-                                <td>
-                                    <div class="flex justify-items-center items-center h-10">
-                                        <img class="w-6 h-5" style="transform: rotate(90deg);"
-                                            src="{{ asset('assets/images/home/d_arrow.png') }}" alt="Arrow">
-                                    </div>
-                                </td>
-                                <td></td>
-                                <td></td>
-                            </tr>
-
-                            <tr>
-                                <td class="px-2">
-                                    <a href="/india-rural"
-                                        class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
-                                        style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
-                                        India: Rural
-                                    </a>
-                                </td>
-                                <td> <img class="w-7 h-5" src="{{ asset('assets/images/home/ar.png') }}" alt="Arrow">
-                                </td>
-                                <td class="px-2">
-                                    <a href="/webs/filter/village"
-                                        class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
-                                        style="background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);">
-                                        <span>Villages</span>
-                                        <span>592,765</span>
-                                    </a>
-                                </td>
-                            </tr>
-
-                        </table>
+            </div>
+            <div class="box b2">
+                <div class=" hidden lg:flex items-center justify-center text-4xl text-dark ">
+                    <i class=" bi bi-arrow-right-circle-fill"></i>
+                </div>
+            </div>
+            <div class="box rounded  b3">
+                <div
+                    class="group border-[2px] border-gray-200 rounded-[2.5rem] p-8 w-full sm:w-80 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                    <h2 class="text-2xl font-black text-gray-800 tracking-tight text-center uppercase">
+                        Country Webs
+                    </h2>
+                    <div id="countryWebsCard"
+                        class="border-2 border-red-200 rounded-3xl p-10 mb-8 bg-white shadow-inner relative overflow-hidden group-hover:border-red-400 transition-colors">
+                        <div onclick="showImage('{{ asset('assets/images/home/country-portal.jpg') }}')"
+                            class="flex justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                            <img src="{{ asset('assets/images/home/2.png') }}" alt="Country Icon"
+                                class="object-contain drop-shadow-md">
+                        </div>
                     </div>
                 </div>
             </div>
-            <!-- Arrow -->
-            <div class=" hidden lg:flex items-center justify-center text-4xl text-dark ">
-                <i class=" bi bi-arrow-right-circle-fill"></i>
+            <div class="box b4">
+                <div class=" hidden lg:flex items-center justify-center text-4xl text-dark ">
+                    <i class=" bi bi-arrow-left-circle-fill"></i>
+                </div>
             </div>
-
-            <!-- Language Webs Card -->
-            <div>
+            <div class="box b5">
                 <div style="background: #FFFF00;"
                     class="group border-[2px] border-gray-200 rounded-[2.5rem] p-8 w-full sm:w-80 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
                     <h2 class="text-2xl font-black text-gray-800 tracking-tight text-center uppercase">
@@ -651,112 +463,114 @@
                     </div>
 
                 </div>
-                <div class="language-s p-4 mt-2 rounded-2xl">
-
-                    <h5
-                        class="text-lg font-black text-gray-800 tracking-tight text-center uppercase mb-1 border-b-2 border-b-rose-100">
-                        Language Knowledge Grid
-                    </h5>
-
-                    <div class="mt-3 flex justify-center">
-                        <table class="text-center border-separate border-spacing-y-3">
-
-                            <tr>
-                                <td colspan="2" class="py-1">
-
-                                    <a href="/lang-webs"
-                                        class="inline-block p-2 text-gray-900 font-semibold rounded-sm  shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300 "
-                                        style="background: #FFFF00;">
-                                        World Total : 178
-                                    </a>
-                                </td>
-                            </tr>
-
-                            <tr>
-                                <td class="px-2">
-                                    <a href="https://humsabek.in/"
-                                        class="inline-block p-2 text-gray-900 font-semibold  rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
-                                        style="background: #FFFF00;">
-                                        Hindi
-                                    </a>
-                                </td>
-                                <td class="px-2">
-                                    <a href="/english-web"
-                                        class="inline-block p-2 text-gray-900 font-semibold  rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
-                                        style="background:  #FFFF00">
-                                        English
-                                    </a>
-                                </td>
-                            </tr>
-
-                        </table>
-                    </div>
-
+            </div>
+            <div class="box b6"></div>
+            <div class="box b7"></div>
+            <div class="box  b8">
+                <div class=" hidden lg:flex items-center justify-center text-4xl text-dark ">
+                    <i class=" bi bi-arrow-down-circle-fill"></i>
                 </div>
             </div>
-            <!-- Arrow -->
-            <div class="hidden lg:flex items-center justify-center text-4xl text-dark">
-                <i class="bi bi-arrow-left-circle-fill"></i>
-            </div>
-
-            <!-- Country Webs Card -->
-            <div>
-                <div
-                    class="group border-[2px] border-gray-200 rounded-[2.5rem] p-8 w-full sm:w-80 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
-                    <h2 class="text-2xl font-black text-gray-800 tracking-tight text-center uppercase">
-                        Country Webs
-                    </h2>
-                    <div id="countryWebsCard"
-                        class="border-2 border-red-200 rounded-3xl p-10 mb-8 bg-white shadow-inner relative overflow-hidden group-hover:border-red-400 transition-colors">
-                        <div onclick="showImage('{{ asset('assets/images/home/country-portal.jpg') }}')"
-                            class="flex justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
-                            <img src="{{ asset('assets/images/home/2.png') }}" alt="Country Icon"
-                                class="object-contain drop-shadow-md">
+            <div class="box b9"></div>
+            <div class="box b10"></div>
+            <div class="box  b11">
+                <div class="flex gap-4  items-center justify-center">
+                    <a href=""
+                        class="hidden lg:flex items-center justify-center  text-4xl text-dark flex-col  justify-between">
+                        <div class="flex items-center justify-center gap-2">
+                            <div class="w-6 h-6 rounded-full bg-blue-600"></div>
+                            <div class="w-6 h-6 rounded-full bg-yellow-400"></div>
+                            <div class="w-6 h-6 rounded-full bg-red-600"></div>
                         </div>
+                        Others<br> <br>
+                    </a>
+                    <div class="hidden lg:flex items-center justify-center text-xl text-dark">
+                        <i class="bi bi-plus-circle-fill"></i>
                     </div>
+                    <a href=""
+                        class="hidden lg:flex items-center justify-center flex-col justify-between text-4xl text-dark">
+                        <div class="flex items-center justify-center gap-4">
+                            <div class="w-6 h-6 rounded-full bg-blue-600"></div>
+                            <div class="w-6 h-6 rounded-full bg-yellow-400"></div>
+                            <div class="w-6 h-6 rounded-full bg-red-600"></div>
+                        </div>
+                        Nepal <br> Knowladge Webs <br><br>
+                    </a>
+                    <div class="hidden lg:flex items-center justify-center text-xl text-dark">
+                        <i class="bi bi-plus-circle-fill"></i>
+                    </div>
+                    <a href="/india-knowladge-webs"
+                        class="hidden lg:flex items-center justify-center flex-col justify-between text-4xl text-dark">
+                        <div class="flex items-center justify-center gap-4">
+                            <div class="w-6 h-6 rounded-full bg-blue-600"></div>
+                            <div class="w-6 h-6 rounded-full bg-yellow-400"></div>
+                            <div class="w-6 h-6 rounded-full bg-red-600"></div>
+                        </div>
+                        India <br> Knowladge Webs <br> <br>
+                    </a>
                 </div>
-                <div class="country-s p-4 mt-2 rounded-2xl">
+            </div>
+            <div class="box b12"></div>
+            <div class="box b13">
+                <div class="flex gap-4  items-center justify-center">
 
-                    <h5
-                        class="text-lg font-black text-gray-800 tracking-tight text-center uppercase mb-1 border-b-2 border-b-rose-100">
-                        International Knowledge Grid
-                    </h5>
 
-                    <div class="mt-3 flex justify-center">
-                        <table class="text-center border-separate border-spacing-y-3">
-                            <tr>
-                                <td colspan="2" class="py-1">
-                                    <a href="/country-webs"
-                                        class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
-                                        style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
-                                        World Total : 195
-
-                                    </a>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="px-2">
-                                    <a href="https://indiaczech.com/"
-                                        class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
-                                        style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
-                                        India - Czech
-                                    </a>
-                                </td>
-                                <td class="px-2">
-                                    <a href="/india-nepal"
-                                        class="inline-block p-2 text-white font-semibold rounded-sm shadow-md hover:shadow-lg hover:scale-105 transition-all duration-300"
-                                        style="background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);">
-                                        India - Nepal
-                                    </a>
-                                </td>
-                            </tr>
-
-                        </table>
+                    <a href="https://indiaczech.com" target="_blank"
+                        class="hidden lg:flex flex-col items-center justify-center justify-between text-4xl text-dark">
+                        <div class="flex items-center justify-center gap-3">
+                            <div class="w-6 h-6 rounded-full bg-blue-600"></div>
+                            <div class="w-6 h-6 rounded-full bg-yellow-400"></div>
+                            <div class="w-6 h-6 rounded-full bg-red-600"></div>
+                        </div>
+                        Czech Knowladge Webs
+                    </a>
+                    <div class="hidden lg:flex items-center justify-center text-xl text-dark">
+                        <i class="bi bi-plus-circle-fill"></i>
                     </div>
-
+                    <a href=""
+                        class="hidden lg:flex  flex-col items-center justify-center justify-between text-4xl text-dark">
+                        <div class="flex items-center justify-center gap-2">
+                            <div class="w-6 h-6 rounded-full bg-blue-600"></div>
+                            <div class="w-6 h-6 rounded-full bg-yellow-400"></div>
+                            <div class="w-6 h-6 rounded-full bg-red-600"></div>
+                        </div>
+                        Others<br> <br>
+                    </a>
+                </div>
+            </div>
+            <div class="box b14">
+                <div class="flex gap-4  items-center justify-center  bg-blue-600 w-full">
+                    <a href="/lang-webs?q=digital-divide-languages" class="text-light">Digital Divide 148</a>
+                </div>
+            </div>
+            <div class="box b15"></div>
+            <div class="box b16">
+                <div class="flex gap-4  items-center justify-center bg-blue-600 w-full">
+                    <a href="/lang-webs?q=digital-balance-languages" class="text-light">Digital Balance 30</a>
                 </div>
             </div>
         </div>
+
+        <!-- MOBILE -->
+        <div class="mobile-grid">
+            <div class="box rounded m1">1</div>
+            <div class="box m2">2</div>
+            <div class="box rounded yellow m3">3</div>
+            <div class="box yellow m8">8</div>
+            <div class="box yellow m11">11</div>
+            <div class="box rounded m5">5</div>
+            <div class="box m4">4</div>
+            <div class="box m6">6</div>
+            <div class="box m7">7</div>
+            <div class="box m10">10</div>
+            <div class="box m9">9</div>
+            <div class="box m13">13</div>
+            <div class="box m12">12</div>
+            <div class="box m14">14</div>
+            <div class="box m15">15</div>
+        </div>
+
+
     </section>
 
     <!-- Custom Tooltips -->
@@ -774,6 +588,211 @@
         <h1 class="text-center">Country Portal</h1>
         <img class="w-100 h-100 rounded" src="{{ asset('assets/images/home/country-portal.jpg') }}" alt="">
     </div>
+
+    <style>
+        .box {
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+        }
+
+        .yellow {
+            background: #FFE500;
+        }
+
+        .rounded {
+            border-radius: 20px;
+        }
+
+        /* ── DESKTOP GRID ── */
+        /* 5 columns: equal big | thin | equal big | thin | equal big */
+        /* 4 rows:    big | thin | medium | thin */
+        .desktop-grid {
+            display: grid;
+            gap: 6px;
+            width: 100%;
+            height: calc(100vh - 20px);
+            grid-template-columns: 1fr 36px 1fr 36px 1fr;
+            grid-template-rows: 2fr 44px 1.5fr 44px;
+        }
+
+        .b1 {
+            grid-column: 1;
+            grid-row: 1;
+        }
+
+        .b2 {
+            grid-column: 2;
+            grid-row: 1;
+        }
+
+        .b3 {
+            grid-column: 3;
+            grid-row: 1;
+        }
+
+        .b4 {
+            grid-column: 4;
+            grid-row: 1;
+        }
+
+        .b5 {
+            grid-column: 5;
+            grid-row: 1;
+        }
+
+        .b6 {
+            grid-column: 1;
+            grid-row: 2;
+        }
+
+        .b7 {
+            grid-column: 2;
+            grid-row: 2;
+        }
+
+        .b8 {
+            grid-column: 3;
+            grid-row: 2;
+        }
+
+        .b9 {
+            grid-column: 4;
+            grid-row: 2;
+        }
+
+        .b10 {
+            grid-column: 5;
+            grid-row: 2;
+        }
+
+        .b11 {
+            grid-column: 1 / 4;
+            grid-row: 3;
+        }
+
+        .b12 {
+            grid-column: 4;
+            grid-row: 3;
+        }
+
+        .b13 {
+            grid-column: 5;
+            grid-row: 3;
+        }
+
+        .b14 {
+            grid-column: 1 / 4;
+            grid-row: 4;
+        }
+
+        .b15 {
+            grid-column: 4;
+            grid-row: 4;
+        }
+
+        .b16 {
+            grid-column: 5;
+            grid-row: 4;
+        }
+
+        /* ── MOBILE GRID ── */
+        .mobile-grid {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .desktop-grid {
+                display: none;
+            }
+
+            .mobile-grid {
+                display: grid;
+                gap: 5px;
+                width: 100%;
+                height: calc(100vh - 20px);
+                grid-template-columns: 1fr 36px;
+                grid-template-rows: 2fr 44px 2fr 44px 1.5fr 44px 2fr 1.5fr 44px;
+            }
+
+            .m1 {
+                grid-column: 1;
+                grid-row: 1;
+            }
+
+            .m2 {
+                grid-column: 2;
+                grid-row: 1;
+            }
+
+            .m3 {
+                grid-column: 1 / 3;
+                grid-row: 2;
+            }
+
+            .m8 {
+                grid-column: 1 / 3;
+                grid-row: 3;
+            }
+
+            .m11 {
+                grid-column: 1 / 3;
+                grid-row: 4;
+            }
+
+            .m5 {
+                grid-column: 1;
+                grid-row: 5;
+            }
+
+            .m4 {
+                grid-column: 2;
+                grid-row: 5;
+            }
+
+            .m6 {
+                grid-column: 1;
+                grid-row: 6;
+            }
+
+            .m7 {
+                grid-column: 2;
+                grid-row: 6;
+            }
+
+            .m10 {
+                grid-column: 1;
+                grid-row: 7;
+            }
+
+            .m9 {
+                grid-column: 2;
+                grid-row: 7;
+            }
+
+            .m13 {
+                grid-column: 1;
+                grid-row: 8;
+            }
+
+            .m12 {
+                grid-column: 2;
+                grid-row: 8;
+            }
+
+            .m14 {
+                grid-column: 1;
+                grid-row: 9;
+            }
+
+            .m15 {
+                grid-column: 2;
+                grid-row: 9;
+            }
+        }
+    </style>
 
     <style>
         /* Link */
