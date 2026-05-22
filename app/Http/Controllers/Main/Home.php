@@ -553,4 +553,8 @@ class Home extends Controller
             'villages' => $villages
         ]);
     }
+
+    public function indiaKnowledgeWebs(){
+        return view('main.india_knowledge_webs');
+    }
 }
