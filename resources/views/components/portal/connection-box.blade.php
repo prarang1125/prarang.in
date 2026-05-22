@@ -5,8 +5,7 @@
             font-size: 16px !important;
         }
     </style>
-    <div class="flex justify-center items-stretch gap-4 my-4">
-
+   <div class="flex flex-col sm:flex-row justify-center items-stretch gap-4 my-4">
         <!-- Box 1 -->
         <div
             class="text-center w-1/3 bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden pt-6 flex flex-col justify-center items-center">

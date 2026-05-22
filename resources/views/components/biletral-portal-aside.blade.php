@@ -648,8 +648,8 @@ $iconColors = [
             </div>
             <div class="border shadow p-2 mt-3 shadow bg-light rounded metricsdata">
                 <h4 class="ps-2 text-center  text-dark fw-bold">
-                    <i class="fa fa-analysis-o me-2"></i>
-                    {{ $data->country_name }} Metrics
+                    <i class="fa fa-info-circle me-2"></i>
+                    {{ $data->country_name }} Info
                 </h4>
                 @php
                 $source = (array) $memo['source'] ?? [];
@@ -865,7 +865,7 @@ $iconColors = [
                 <h5 class="card-title mb-3 fw-bold text-dark text-center">
                     <i class="fa fa-link me-2"></i>Important Links
                 </h5>
-                <div class="widget__content important-links-content collapsed" id="{{ $side }}-links-widget">
+             <div id="{{ $side }}-links-widget" style="overflow: hidden; max-height: 41px; transition: max-height 0.3s ease;">
                     @if (!empty($data->important_links) && is_array($data->important_links))
 
                     @foreach ($data->important_links as $key => $links)
@@ -893,12 +893,16 @@ $iconColors = [
                 </div>
 
                 <!-- Toggle Button -->
-                <div class="text-center mt-2">
-                    <button type="button" class="btn-link  h3 toggle-links-btn"
-                        onclick="toggleImportantLinks(this, '{{ $side }}-links-widget')">
-                        <i class="fa fa-angle-double-down me-1"></i>
-                    </button>
-                </div>
+               <!-- Toggle Button — id add kiya, tabhi dikhe jab scrollHeight > 241 ho -->
+<div class="text-center mt-2">
+    <button type="button"
+        id="{{ $side }}-links-toggle-btn"
+        class="btn-link h3 toggle-links-btn"
+        aria-expanded="false"
+        onclick="toggleImportantLinks(this, '{{ $side }}-links-widget')">
+        <i class="fa fa-angle-double-down me-1"></i>
+    </button>
+</div>
             </div>
 
 
@@ -1108,35 +1112,43 @@ $iconColors = [
             }, 3000);
         }
 
-        function toggleImportantLinks(btn, id) {
-            const container = document.getElementById(id);
-            if (!container) return;
+    {{-- JS --}}
+function toggleImportantLinks(btn, id) {
+    const container = document.getElementById(id);
+    if (!container) return;
 
-            const collapsedHeight = 241;
-            if (container.classList.contains('expanded')) {
-                container.classList.remove('expanded');
-                container.style.maxHeight = collapsedHeight + 'px';
-                btn.setAttribute('aria-expanded', 'false');
-                btn.innerHTML = ' <i class="fa fa-angle-double-down me-1"></i>';
-            } else {
-                container.classList.add('expanded');
-                container.style.maxHeight = container.scrollHeight + 'px';
-                btn.setAttribute('aria-expanded', 'true');
-                btn.innerHTML = ' <i class="fa fa-angle-double-up me-1"></i>';
-            }
+    const collapsedHeight = 100;
+    if (container.classList.contains('expanded')) {
+        container.classList.remove('expanded');
+        container.style.maxHeight = collapsedHeight + 'px';
+        btn.setAttribute('aria-expanded', 'false');
+        btn.innerHTML = '<i class="fa fa-angle-double-down me-1"></i>';
+    } else {
+        container.classList.add('expanded');
+        container.style.maxHeight = container.scrollHeight + 'px';
+        btn.setAttribute('aria-expanded', 'true');
+        btn.innerHTML = '<i class="fa fa-angle-double-up me-1"></i>';
+    }
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const linksContainer = document.getElementById('{{ $side }}-links-widget');
+    const toggleBtn = document.getElementById('{{ $side }}-links-toggle-btn');
+    if (!linksContainer || !toggleBtn) return;
+
+    linksContainer.style.maxHeight = '100px';
+    linksContainer.style.overflow = 'hidden';
+
+    // ✅ Button tabhi dikhe jab content bada ho
+    if (linksContainer.scrollHeight <= 100) {
+        toggleBtn.style.display = 'none';
+    }
+
+    window.addEventListener('resize', function () {
+        if (linksContainer.classList.contains('expanded')) {
+            linksContainer.style.maxHeight = linksContainer.scrollHeight + 'px';
         }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const linksContainer = document.getElementById('{{ $side }}-links-widget');
-            if (!linksContainer) return;
-
-            linksContainer.style.maxHeight = '241px';
-
-            window.addEventListener('resize', function() {
-                if (linksContainer.classList.contains('expanded')) {
-                    linksContainer.style.maxHeight = linksContainer.scrollHeight + 'px';
-                }
-            });
-        });
+    });
+});
     </script>
 </div>

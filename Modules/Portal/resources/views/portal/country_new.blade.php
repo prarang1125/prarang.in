@@ -143,11 +143,11 @@
                     <div class="flex flex-col gap-2">
                         <div class="flex items-center bg-gray-100 p-1 rounded-full border">
                             <button id="primary-language"
-                                class="px-4 py-1 rounded-full text-xs font-bold bg-blue-600 text-white shadow-sm">{{ strtoupper(substr($primary->country_name ?? '', 0, 2)) }}
+                                class="px-4 py-1 rounded-full text-xs font-bold bg-blue-600 text-white shadow-sm">{{ strtoupper(substr($primary->locale_lang ?? '', 0, 2)) }}
                             </button>
                             <button id="secondary-language"
-                                onclick="showComingSoonToast('{{ $secondary->country_name }} Language Content - Coming Soon.')"
-                                class="px-4 py-1 rounded-full text-xs font-bold text-gray-500 hover:bg-gray-200 transition-colors">{{ strtoupper(substr($secondary->country_name ?? '', 0, 2)) }}</button>
+                                onclick="showComingSoonToast('{{ $secondary->locale_lang }} Language Content - Coming Soon.')"
+                                class="px-4 py-1 rounded-full text-xs font-bold text-gray-500 hover:bg-gray-200 transition-colors">{{ strtoupper(substr($secondary->locale_lang ?? '', 0, 2)) }}</button>
                         </div>
 
                     </div>
