@@ -311,9 +311,9 @@
             }
 
             /* Heading */
-            .desktop-grid .box h2 {
+            /* .desktop-grid .box h2 {
                 transform: translatex(0px) translatey(0px);
-            }
+            } */
 
             /* Tracking tight */
             .desktop-grid .box:nth-child(1) .tracking-tight {
