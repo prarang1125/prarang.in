@@ -24,98 +24,123 @@ $isIndia = strtolower($data->country_name) === 'india';
 $flagUrl = "";
 @endphp
 
-<div class="internate-data-list">
+<div class="p-3 bg-white rounded">
+                <div class="d-flex justify-content-end mb-3">
+                    <span class="text-dark fw-normal" style="font-size: 0.9rem;">Last Update :
+                        {{ \Carbon\Carbon::now()->subMonth()->format('F Y') }}</span>
+                </div>
+                <div class="internate-data-list">
+                    <table class="table table-sm table-hover table-striped align-middle mb-0"
+                        style="font-size: 0.82rem;">
+                        <style>
+                            /* Table Data */
+                            table .table-striped td {
+                                padding-top: 2px;
+                                padding-bottom: 2px;
+                            }
+                        </style>
+                        <thead class="table-light">
+                            <tr>
+                                <th class="text-muted fw-semibold" style="width: 50%;"></th>
+                                <th class="text-muted fw-semibold text-end" style="width: 30%; white-space: nowrap;">
+                                    People </th>
+                                <th class="text-muted fw-semibold text-end" style="width: 20%;">World Rank</th>
+                            </tr>
+                        </thead>
 
-    <div class="flex items-end justify-end mb-3 bg-gray-50 p-3 rounded-lg">
-        {{-- <div class="flex items-center gap-3">
-            <img src="{{ $flagUrl }}" class="w-8 h-5 object-cover rounded shadow-sm border border-gray-200" alt="Flag">
-            <span class="font-bold text-gray-800">{{ $data->country_name }}</span>
-        </div> --}}
-        <span class="text-[10px] text-gray-500 italic">Last Updated:
-            {{ \Carbon\Carbon::now()->subMonth()->format('M Y') }}</span>
-    </div>
-    <table class="w-full text-sm border-collapse border border-gray-200 rounded-lg overflow-hidden">
-        <thead class="bg-gray-100/50">
-            <tr>
-                <th class="text-left py-2 px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Source</th>
-                <th class="text-right py-2 px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider">People
-                </th>
-                <th class="text-right py-2 px-3 text-[10px] font-bold text-gray-400 uppercase tracking-wider">Rank</th>
-            </tr>
-        </thead>
-        <tbody class="divide-y divide-gray-100">
-            @foreach ($internateData as $key => $intData)
-            @php
-            $name = $intData['name'];
-            $replacements = [
-            'जनसंख्या' => 'Population',
-            'इंटरनेट उपयोगकर्ता' => 'Internet Users',
-            'फेसबुक उपयोगकर्ता' => 'Facebook Users',
-            'लिंक्डइन उपयोगकर्ता' => 'LinkedIn Users',
-            'ट्विटर उपयोगकर्ता' => 'X (Twitter) Users',
-            'इन्स्टाग्राम उपयोगकर्ता' => 'Instagram Users',
-            'उपयोगकर्ता' => 'Users',
-            ];
-            $name = str_replace(array_keys($replacements), array_values($replacements), $name);
+                        <tbody>
+                            @foreach ($internateData as $key => $intData)
+                            @php
+                            $name = $intData['name'];
 
-            $icon = 'fa-globe';
-            $color = '#3498db';
-            if (Str::contains($name, ['Population'])) {
-            $icon = 'fa-users';
-            $color = '#8e44ad';
-            } elseif (Str::contains($name, ['Facebook'])) {
-            $icon = 'fa-facebook-square';
-            $color = '#3b5998';
-            } elseif (Str::contains($name, ['LinkedIn'])) {
-            $icon = 'fa-linkedin-square';
-            $color = '#0077b5';
-            } elseif (Str::contains($name, ['Twitter', 'X'])) {
-            $icon = 'fa-twitter';
-            $color = '#000000';
-            } elseif (Str::contains($name, ['Instagram'])) {
-            $icon = 'fa-instagram';
-            $color = '#e1306c';
-            }
-            @endphp
-            <tr class="hover:bg-gray-50/50 transition-colors">
-                <td class="py-2.5 px-3 flex items-center gap-2">
-                    <i class="fa {{ $icon }} w-4 text-center" style="color: {{ $color }};"></i>
-                    <span class="text-gray-700 font-medium">{{ $name }}</span>
-                    <span>
-                        <i onmouseover="showToolTip(event, '{{ $key }}','{{ $intData['source'] }}')"
-                            class="fa fa-info-circle" style="color: {{ $color }};"></i>
-                    </span>
-                </td>
-                <td class="py-2.5 px-3 text-right font-semibold text-gray-900">
-                    {{ number_format($intData['value']) }}
-                </td>
-                <td class="py-2.5 px-3 text-right text-gray-500 font-medium whitespace-nowrap">
-                    {{ getSuperScript($intData['rank']) }}
-                </td>
-            </tr>
-            @endforeach
+                            $replacements = [
+                            'जनसंख्या' => 'Population',
+                            'इंटरनेट उपयोगकर्ता' => 'Internet Users',
+                            'फेसबुक उपयोगकर्ता' => 'Facebook Users',
+                            'लिंक्डइन उपयोगकर्ता' => 'LinkedIn Users',
+                            'ट्विटर उपयोगकर्ता' => 'X (Twitter) Users',
+                            'इन्स्टाग्राम उपयोगकर्ता' => 'Instagram Users',
+                            'उपयोगकर्ता' => 'Users',
+                            ];
 
-            @if ($cirusData)
-            <tr class="border-t-2 border-orange-200 bg-orange-50/20">
-                <td class="py-3 px-3 flex items-center gap-2">
-                    <i class="fa fa-shield w-4 text-center text-red-600"></i>
-                    <span class="text-gray-900 font-bold text-xs">Cyber Crime Index</span>
-                </td>
-                <td class="py-3 px-3 text-right font-bold text-orange-700">
-                    {{ $cirusData['risk_index'] ?? '-' }}
-                </td>
-                <td class="py-3 px-3 text-right font-bold text-gray-900">
-                    {{ getSuperScript($cirusData['cyber_risk_rank'] ?? 0) }}
-                </td>
-            </tr>
-            @endif
-        </tbody>
-    </table>
+                            $name = str_replace(array_keys($replacements), array_values($replacements), $name);
 
-    <div class="mt-4 text-end">
-        <a href="https://www.prarang.in/cirus/world" target="_blank"
-            class="inline-block px-4 py-2 bg-gray-100 hover:bg-gray-200 rounded-full text-[10px] font-bold text-gray-600 transition-colors uppercase tracking-widest">
-            see more &rarr;
-        </a>
-    </div>
+                            $icon = 'fa-globe';
+                            $color = '#3498db';
+
+                            if (Str::contains($name, ['Population'])) {
+                            $icon = 'fa-users';
+                            $color = '#8e44ad';
+                            } elseif (Str::contains($name, ['Internet'])) {
+                            $icon = 'fa-globe';
+                            $color = '#3498db';
+                            } elseif (Str::contains($name, ['Facebook'])) {
+                            $icon = 'fa-facebook-square';
+                            $color = '#3b5998';
+                            } elseif (Str::contains($name, ['LinkedIn'])) {
+                            $icon = 'fa-linkedin-square';
+                            $color = '#0077b5';
+                            } elseif (Str::contains($name, ['Twitter', 'X'])) {
+                            $icon = 'fa-twitter';
+                            $color = '#000000';
+                            } elseif (Str::contains($name, ['Instagram'])) {
+                            $icon = 'fa-instagram';
+                            $color = '#e1306c';
+                            }
+                            @endphp
+
+                            <tr>
+                                <td>
+                                    <span class="me-2" style="display:inline-block; width:18px; text-align:center;">
+                                        <i class="fa {{ $icon }}" style="color: {{ $color }};"></i>
+                                    </span>
+                                    <span class="text-dark">{{ $name }}</span>
+                                    <span>
+                                        <i onmouseover="showToolTip('{{ $key }}','{{ $intData['source'] }}')"
+                                            class="fa fa-info-circle" style="color: {{ $color }};"></i>
+                                    </span>
+                                </td>
+
+                                {{-- Value After --}}
+                                <td class="text-end fw-semibold text-dark">
+                                    {{ number_format($intData['value']) ?? '-' }}
+                                </td>
+                                {{-- Rank First --}}
+                                <td class="text-end text-muted fw-semibold">
+                                    {{ getSuperScript($intData['rank']) ?? '' }}
+                                </td>
+                            </tr>
+
+                            @endforeach
+
+                        </tbody>
+                    </table>
+                </div>
+
+            <!-- Cyber Crime Index Widget -->
+            <div class="p-2 bg-white rounded border mt-4 mb-3">
+                <h6 class="text-center text-dark mb-2" style="font-weight: 700; font-size: 13px;">
+                    <i class="fa fa-shield me-1" style="color: #e74c3c;"></i>
+                    Cyber Crime Index
+                </h6>
+
+                <div class="d-flex align-items-center justify-content-around py-1 px-2 rounded bg-[#F5F4ED]"
+                    style="font-size: 11px;">
+                    <div class="text-center">
+                        <span class="text-muted">Index:</span>
+                        <span class="fw-bold text-dark ms-1">{{ $cirusData['risk_index'] ?? '-' }}</span>
+                    </div>
+                    <div class="vr mx-2" style="height: 15px; opacity: 0.1;"></div>
+                    <div class="text-center">
+                        <span class="text-muted">Rank:</span>
+                        <span class="fw-bold text-danger ms-1">{{ getSuperScript($cirusData['cyber_risk_rank'] ?? '')
+                            }}</span>
+                    </div>
+                    <div class="ms-2">
+                        <a href="https://www.prarang.in/cirus/world" target="_blank" class="text-primary">
+                            <i class="fa fa-external-link" style="font-size: 10px;"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
 </div>

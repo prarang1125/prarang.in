@@ -1,6 +1,20 @@
 <x-layout.portal.country_base :portal="$main">
 
   <link rel="stylesheet" href="https://indiaczech.com/assets/css/mobile.css">
+
+<style>
+    /* Primary language */
+#primary-language{
+ color:#ffffff !important;
+}
+
+/* Secondary language */
+#secondary-language{
+ color:#020202 !important;
+}
+
+
+</style>
   <main class="max-w-md mx-auto px-3 pb-10">
 
     {{-- ===== HEADER: Logo + Language Toggle ===== --}}
@@ -10,10 +24,13 @@
           <img src="https://i.ibb.co/TDKtQQrd/prarang-logo-dark.png" alt="Prarang Logo" class="h-[90px] w-auto">
           <div class="flex flex-col gap-2">
             <div class="flex items-center bg-gray-100 p-1 rounded-full border">
-              <button class="px-4 py-1 rounded-full text-xs font-bold bg-black text-white shadow-sm">EN</button>
-              <button onclick="showComingSoonToast('Czech Language Content - Coming Soon.')"
-                class="px-4 py-1 rounded-full text-xs font-bold text-gray-500 hover:bg-gray-200 transition-colors">HI</button>
-            </div>
+                            <button id="primary-language"
+                                class="px-4 py-1 rounded-full text-xs font-bold bg-blue-600 text-white shadow-sm">{{ strtoupper(substr($primary->locale_lang ?? '', 0, 2)) }}
+                            </button>
+                            <button id="secondary-language"
+                                onclick="showComingSoonToast(' Coming Soon.')"
+                                class="px-4 py-1 rounded-full text-xs font-bold text-gray-500 hover:bg-gray-200 transition-colors">{{ strtoupper(substr($secondary->locale_lang ?? '', 0, 2)) }}</button>
+                        </div>
           </div>
         </div>
 
@@ -408,6 +425,104 @@
           </div>
         </div>
       </section>
+
+      {{-- ===== 5.5. CURRENCY EXCHANGE ===== --}}
+      <section class="mb-4">
+        <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+          <div class="px-4 py-3 border-b border-gray-100">
+            <h2 class="text-base font-semibold text-gray-900 text-center">
+              <i class="fa fa-exchange mr-1.5 text-green-600"></i> Currency Exchange
+            </h2>
+          </div>
+          <div class="px-4 py-3 grid grid-cols-2 gap-3">
+            @php
+                $rates = \Illuminate\Support\Facades\Cache::remember('exchange-rates-usd', now()->addHours(12), function () {
+                    return \Illuminate\Support\Facades\Http::get('https://v6.exchangerate-api.com/v6/e1d88a31b3bf6bb1e7a3f27f/latest/USD')->json('conversion_rates') ?? [];
+                });
+                
+                $primaryCurrency = strtoupper($main->primary_currency);
+                $secondaryCurrency = strtoupper($main->secondary_currency);
+                
+                $exchangeCze = [];
+                $exchangeInd = [];
+                
+                if (isset($rates[$primaryCurrency]) && isset($rates[$secondaryCurrency])) {
+                    $fromRate = $rates[$primaryCurrency];
+                    $toRate   = $rates[$secondaryCurrency];
+                    
+                    $exchangeCze = [
+                        "1 {$primaryCurrency} = " . round($toRate / $fromRate, 2) . " {$secondaryCurrency}",
+                        "1 USD = " . round($toRate, 2) . " {$secondaryCurrency}",
+                    ];
+                    
+                    $exchangeInd = [
+                        "1 {$secondaryCurrency} = " . round($fromRate / $toRate, 2) . " {$primaryCurrency}",
+                        "1 USD = " . round($fromRate, 2) . " {$primaryCurrency}",
+                    ];
+                }
+            @endphp
+            <x-ui.modal id="exchange-cze-modal">
+              <x-slot name="title">{{ $primary->country_name ?? 'CZE' }} Exchange</x-slot>
+              <x-slot name="button">
+                <div
+                  class="w-full py-3 px-3 bg-blue-50 hover:bg-blue-100 border border-blue-200 rounded-lg transition-colors text-sm font-semibold text-blue-800 text-center">
+                  {{ $primary->country_name }}
+                </div>
+              </x-slot>
+              <div class="p-3 bg-white rounded">
+                <div class="d-flex flex-column gap-1">
+                    @foreach ($exchangeCze as $item)
+                    @php
+                    $parts = explode(' = ', $item);
+                    $from = $parts[0] ?? '';
+                    $to = $parts[1] ?? '';
+                    @endphp
+                    <div class="d-flex align-items-center justify-content-between px-3 py-2 rounded-3 bg-[#F5F4ED]">
+                        <span style="font-size: 13px; font-weight: 500;">{{ $from }}</span>
+                        <i class="text-success fa fa-exchange" style="font-size: 12px;"></i>
+                        <span style="font-size: 13px; font-weight: 500;">{{ $to }}</span>
+                    </div>
+                    @endforeach
+                    <div class="text-end m-0 mt-2">
+                        <a href="https://www.xe.com/currencycharts/?from={{ $main->primary_currency }}&to={{ $main->secondary_currency }}" target="_blank" class="text-xs text-blue-900 hover:text-blue-800">
+                            <img class="inline-block h-4 w-4" src="https://www.xe.com/favicon-32x32.png" alt=""> Corporation Inc <i class="fa fa-external-link"></i></a>
+                    </div>
+                </div>
+              </div>
+            </x-ui.modal>
+
+            <x-ui.modal id="exchange-ind-modal">
+              <x-slot name="title">{{ $secondary->country_name ?? 'India' }} Exchange</x-slot>
+              <x-slot name="button">
+                <div
+                  class="w-full py-3 px-3 bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-lg transition-colors text-sm font-semibold text-orange-800 text-center">
+                  {{ $secondary->country_name }}
+                </div>
+              </x-slot>
+              <div class="p-3 bg-white rounded">
+                <div class="d-flex flex-column gap-1">
+                    @foreach ($exchangeInd as $item)
+                    @php
+                    $parts = explode(' = ', $item);
+                    $from = $parts[0] ?? '';
+                    $to = $parts[1] ?? '';
+                    @endphp
+                    <div class="d-flex align-items-center justify-content-between px-3 py-2 rounded-3 bg-[#F5F4ED]">
+                        <span style="font-size: 13px; font-weight: 500;">{{ $from }}</span>
+                        <i class="text-success fa fa-exchange" style="font-size: 12px;"></i>
+                        <span style="font-size: 13px; font-weight: 500;">{{ $to }}</span>
+                    </div>
+                    @endforeach
+                    <div class="text-end m-0 mt-2">
+                        <a href="https://www.xe.com/currencycharts/?from={{ $main->secondary_currency }}&to={{ $main->primary_currency }}" target="_blank" class="text-xs text-blue-900 hover:text-blue-800">
+                            <img class="inline-block h-4 w-4" src="https://www.xe.com/favicon-32x32.png" alt=""> Corporation Inc <i class="fa fa-external-link"></i></a>
+                    </div>
+                </div>
+              </div>
+            </x-ui.modal>
+          </div>
+        </div>
+      </section>
       {{-- ===== 11. PLANNERS & TOOLS ===== --}}
       <section class="mb-4">
         <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
@@ -617,7 +732,7 @@
     #wrapper footer .row .col p {
       margin-bottom: 5px !important;
     }
-  </style>
+  </sty>
 
   <footer class="portal-footer">
     <div class="container py-5">
@@ -995,4 +1110,10 @@
         }
   </script>
 
+        <script id="jquery-core-js" src="https://preview.lsvr.sk/townpress/wp-includes/js/jquery/jquery.min.js?ver=3.7.1"
+            type="text/javascript"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
+        </script>
+        {!! $portal['footer_scripts'] ?? '' !!}
 </x-layout.portal.country_base>
