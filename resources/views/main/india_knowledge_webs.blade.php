@@ -5,9 +5,38 @@ $metaData = [
 ];
 @endphp
 
+
+<style>
+    .shadowbox {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        background: #3f69bd;
+        transition: all 0.3s ease;
+        padding: 10px;
+        text-decoration: none;
+        color: #fff;
+
+
+    }
+
+    .shadowbox:hover {
+        box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 40px 0 rgba(0, 0, 0, 0.19);
+        transform: translateY(-5px);
+        color: black;
+        text-decoration: underline;
+    }
+
+    .hoverbox {
+        text-decoration: none
+    }
+
+    .hoverbox:hover {
+        color: black text-decoration: underline
+    }
+</style>
+
 <x-layout.main.base :metaData="$metaData">
 
-    <section class="py-10" x-data="{ showModal: false }">
+    <section class="py-10 bg-gray-50/30" x-data="{ showModal: false }">
 
         <!-- Heading -->
         <div class="text-center mb-6">
@@ -20,71 +49,64 @@ $metaData = [
         <div class="flex justify-center">
             <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-6 w-full max-w-2xl">
 
-                <div
-                    class="bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-2xl p-6 text-center shadow-lg hover:scale-105 transition">
+                <a href="webs/filter/villages"
+                    class="text-decoration-none block bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-2xl p-6 text-center shadow-lg hover:scale-105 transition">
+
                     <h4 class="font-semibold uppercase text-sm">Villages</h4>
                     <h3 class="text-3xl font-bold mt-1">592,765</h3>
-                </div>
+                </a>
 
-                <div
-                    class="bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-2xl p-6 text-center shadow-lg hover:scale-105 transition">
+                <a href="webs/filter/cities"
+                    class="text-decoration-none block bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-2xl p-6 text-center shadow-lg hover:scale-105 transition">
+
                     <h4 class="font-semibold uppercase text-sm">Cities</h4>
                     <h3 class="text-3xl font-bold mt-1">6,331</h3>
-                </div>
+                </a>
 
-                <div
-                    class="bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-2xl p-6 text-center shadow-lg hover:scale-105 transition">
+                <a href="/country-webs-filter"
+                    class="text-decoration-none block bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-2xl p-6 text-center shadow-lg hover:scale-105 transition">
+
                     <h4 class="font-semibold uppercase text-sm">World-Bilateral</h4>
                     <h3 class="text-3xl font-bold mt-1">195</h3>
-                </div>
+                </a>
 
             </div>
         </div>
+
+        @php
+        $language=[
+        ['name'=>'Tamil','slug'=>'tamil'],
+        ['name'=>'English','slug'=>'english'],
+        ['name'=>'Bengali','slug'=>'bengali'],
+        ['name'=>'Marathi','slug'=>'marathi'],
+        ['name'=>'Telugu','slug'=>'telugu'],
+        ['name'=>'Gujarati','slug'=>'gujarati'],
+        ['name'=>'Kannada','slug'=>'kannada'],
+        ['name'=>'Odia','slug'=>'odisha'],
+        ['name'=>'Malayalam','slug'=>'malayalam'],
+        ['name'=>'Punjabi','slug'=>'punjabi'],
+        ['name'=>'Assamese','slug'=>'assamese'],
+        ['name'=>'Urdu','slug'=>'urdu'],
+        ]
+        @endphp
 
         <!-- LANGUAGE BOXES -->
         <div class="flex justify-center mt-10">
             <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-4 w-full">
 
-                <!-- ✅ Hindi (Link) -->
-                <a href="#"
-                    class="no-underline relative overflow-hidden block w-full text-center py-2 px-6 rounded-xl font-semibold text-gray-800 bg-yellow-400 hover:bg-yellow-500 shadow-[0_4px_14px_0_rgba(250,204,21,0.39)] hover:shadow-[0_6px_20px_rgba(250,204,21,0.23)] hover:-translate-y-0.5 transition-all duration-300">
+                <a href="https://humsabek.in/" target="_blank"
+                    class="flex items-center justify-center whitespace-nowrap text-center py-2 px-4 h-12 rounded-xl font-semibold text-gray-800 bg-yellow-400 hover:bg-yellow-500 shadow-[0_4px_14px_0_rgba(250,204,21,0.39)] hover:shadow-[0_6px_20px_rgba(250,204,21,0.23)] hover:-translate-y-0.5 transition-all duration-300">
                     Hindi Webs
                 </a>
-                <a href="javascript:void(0)" @click="showModal = true"
-                    class="no-underline relative overflow-hidden block w-full text-center py-2 px-6 rounded-xl font-semibold text-gray-800 bg-yellow-400 hover:bg-yellow-500 shadow-[0_4px_14px_0_rgba(250,204,21,0.39)] hover:shadow-[0_6px_20px_rgba(250,204,21,0.23)] hover:-translate-y-0.5 transition-all duration-300">
-                    Tamil Webs
-                </a>
 
+                @foreach($language as $key => $value)
 
                 <a href="javascript:void(0)" @click="showModal = true"
-                    class="no-underline relative overflow-hidden block w-full text-center py-2 px-6 rounded-xl font-semibold text-gray-800 bg-yellow-400 hover:bg-yellow-500 shadow-[0_4px_14px_0_rgba(250,204,21,0.39)] hover:shadow-[0_6px_20px_rgba(250,204,21,0.23)] hover:-translate-y-0.5 transition-all duration-300">
-                    Tamil Webs
+                    class="flex items-center justify-center whitespace-nowrap text-center py-2 px-4 h-12 rounded-xl font-semibold text-gray-800 bg-yellow-400 hover:bg-yellow-500 shadow-[0_4px_14px_0_rgba(250,204,21,0.39)] hover:shadow-[0_6px_20px_rgba(250,204,21,0.23)] hover:-translate-y-0.5 transition-all duration-300">
+                    {{ $value['name'] }} Webs
                 </a>
 
-
-
-                <a href="javascript:void(0)" @click="showModal = true"
-                    class="no-underline relative overflow-hidden block w-full text-center py-2 px-6 rounded-xl font-semibold text-gray-800 bg-yellow-400 hover:bg-yellow-500 shadow-[0_4px_14px_0_rgba(250,204,21,0.39)] hover:shadow-[0_6px_20px_rgba(250,204,21,0.23)] hover:-translate-y-0.5 transition-all duration-300">
-                    Tamil Webs
-                </a>
-
-
-                <a href="javascript:void(0)" @click="showModal = true"
-                    class="no-underline relative overflow-hidden block w-full text-center py-2 px-6 rounded-xl font-semibold text-gray-800 bg-yellow-400 hover:bg-yellow-500 shadow-[0_4px_14px_0_rgba(250,204,21,0.39)] hover:shadow-[0_6px_20px_rgba(250,204,21,0.23)] hover:-translate-y-0.5 transition-all duration-300">
-                    Tamil Webs
-                </a>
-
-
-                <a href="javascript:void(0)" @click="showModal = true"
-                    class="no-underline relative overflow-hidden block w-full text-center py-2 px-6 rounded-xl font-semibold text-gray-800 bg-yellow-400 hover:bg-yellow-500 shadow-[0_4px_14px_0_rgba(250,204,21,0.39)] hover:shadow-[0_6px_20px_rgba(250,204,21,0.23)] hover:-translate-y-0.5 transition-all duration-300">
-                    Tamil Webs
-                </a>
-
-
-                <a href="javascript:void(0)" @click="showModal = true"
-                    class="no-underline relative overflow-hidden block w-full text-center py-2 px-6 rounded-xl font-semibold text-gray-800 bg-yellow-400 hover:bg-yellow-500 shadow-[0_4px_14px_0_rgba(250,204,21,0.39)] hover:shadow-[0_6px_20px_rgba(250,204,21,0.23)] hover:-translate-y-0.5 transition-all duration-300">
-                    Tamil Webs
-                </a>
+                @endforeach
 
             </div>
         </div>
@@ -115,50 +137,76 @@ $metaData = [
             </div>
         </div>
 
-    </section>
 
-
-    <section class="py-10"">
 
         <!-- Heading -->
-        <div class="text-center mb-6">
+        <div class=" text-center mb-6 mt-5">
             <h1 class="text-2xl md:text-3xl font-bold text-gray-800">
                 Understanding India: Analytics
             </h1>
         </div>
 
-        <!-- TOP 3 BOXES -->
-        <div class="flex justify-center">
-            <div class="grid grid-cols-1 sm:grid-cols-2 sm:grid-cols-3 xl:grid-cols-4 gap-6 w-full">
+        <div class="flex justify-center px-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 w-full max-w-5xl">
 
-                <div
-                    class="bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-2xl p-6 text-center shadow-lg hover:scale-105 transition">
-                    <h4 class="font-semibold uppercase text-sm">Villages</h4>
-                    <h3 class="text-3xl font-bold mt-1">592,765</h3>
-                </div>
+                <a href="/india-rural"
+                    class="flex flex-col items-center justify-center text-center shadowbox group rounded-2xl border border-emerald-100 min-h-[140px] sm:min-h-[160px]">
 
-                <div
-                    class="bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-2xl p-6 text-center shadow-lg hover:scale-105 transition">
-                    <h4 class="font-semibold uppercase text-sm">Cities</h4>
-                    <h3 class="text-3xl font-bold mt-1">6,331</h3>
-                </div>
+                    <h4
+                        class="text-xs sm:text-sm font-bold uppercase tracking-[0.2em] sm:tracking-[0.24em] text-emerald-700">
+                        Rural
+                    </h4>
+                    <div class="mt-2 sm:mt-3 h-px w-12 sm:w-16 bg-emerald-200/80"></div>
+                </a>
 
-                <div
-                    class="bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-2xl p-6 text-center shadow-lg hover:scale-105 transition">
-                    <h4 class="font-semibold uppercase text-sm">World-Bilateral</h4>
-                    <h3 class="text-3xl font-bold mt-1">195</h3>
-                </div>
+                <a href="/town-webs"
+                    class="flex flex-col items-center justify-center text-center shadowbox group rounded-2xl border border-sky-100 min-h-[140px] sm:min-h-[160px]">
 
-                <div
-                    class="bg-gradient-to-r from-blue-500 to-blue-700 text-white rounded-2xl p-6 text-center shadow-lg hover:scale-105 transition">
-                    <h4 class="font-semibold uppercase text-sm">World-Bilateral</h4>
-                    <h3 class="text-3xl font-bold mt-1">195</h3>
-                </div>
+                    <h4
+                        class="text-xs sm:text-sm font-bold uppercase tracking-[0.2em] sm:tracking-[0.24em] text-sky-700">
+                        Urban
+                    </h4>
+                    <div class="mt-2 sm:mt-3 h-px w-12 sm:w-16 bg-sky-200/80"></div>
+                </a>
 
+                <a href="/city-webs"
+                    class="flex flex-col items-center justify-center text-center shadowbox group rounded-2xl border border-amber-100 min-h-[140px] sm:min-h-[160px]">
+
+                    <h4
+                        class="text-xs sm:text-sm font-bold uppercase tracking-[0.2em] sm:tracking-[0.24em] text-amber-700">
+                        Districts
+                    </h4>
+                    <div class="mt-2 sm:mt-3 h-px w-12 sm:w-16 bg-amber-200/80"></div>
+                </a>
+
+                <div"
+                    class="flex flex-col items-center justify-center flex-wrap text-center shadowbox group rounded-2xl border border-violet-100 min-h-[140px] sm:min-h-[160px] px-3">
+
+                    <h4
+                        class="text-xs sm:text-sm font-bold uppercase tracking-[0.2em] sm:tracking-[0.24em] text-violet-700 mb-2 sm:mb-3">
+                        Language Distribution
+                    </h4>
+
+                    <div class="flex justify-center gap-2 flex-wrap">
+
+                        <a href="/town-webs-in"
+                            class="hoverbox rounded-full bg-white px-3 sm:px-4 py-1 text-sm sm:text-base font-semibold text-slate-700 shadow-md ring-1 ring-slate-200 hover:bg-slate-50 hover:shadow-lg transition">
+                            Cities
+                        </a>
+
+                        <a href="/village-webs"
+                            class="hoverbox rounded-full bg-white px-3 sm:px-4 py-1 text-sm sm:text-base font-semibold text-slate-700 shadow-md ring-1 ring-slate-200 hover:bg-slate-50 hover:shadow-lg transition">
+                            Villages
+                        </a>
+
+                    </div>
             </div>
+
+        </div>
         </div>
 
-
     </section>
+
+
 
 </x-layout.main.base>
