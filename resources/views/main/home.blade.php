@@ -1,6 +1,6 @@
 <x-layout.main.base>
 
-    <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-10 ">
+    <section class="px-5 max-w-7xl mx-auto bg-gray-50/30 rounded-3xl my-10 " x-data="{ showOthersModal: false }">
         <style>
             /* Image */
             .mx-auto>div>img {
@@ -475,7 +475,8 @@
             <div class="box b10"></div>
             <div class="box  b11">
                 <div class="flex gap-4  items-center justify-center">
-                    <a href=""
+                    <a href="javascript:void(0)"
+   @click="showOthersModal = true"
                         class="hidden lg:flex items-center justify-center  text-4xl text-dark flex-col  justify-between">
                         <div class="flex items-center justify-center gap-2">
                             <div class="w-6 h-6 rounded-full bg-blue-600"></div>
@@ -499,7 +500,7 @@
                     <div class="hidden lg:flex items-center justify-center text-xl text-dark">
                         <i class="bi bi-plus-circle-fill"></i>
                     </div>
-                    <a href="/india-knowladge-webs"
+                    <a href="/india-knowledge-webs"
                         class="hidden lg:flex items-center justify-center flex-col justify-between text-4xl text-dark">
                         <div class="flex items-center justify-center gap-4">
                             <div class="w-6 h-6 rounded-full bg-blue-600"></div>
@@ -527,7 +528,8 @@
                     <div class="hidden lg:flex items-center justify-center text-xl text-dark">
                         <i class="bi bi-plus-circle-fill"></i>
                     </div>
-                    <a href=""
+                    <a href="javascript:void(0)"
+   @click="showOthersModal = true"
                         class="hidden lg:flex  flex-col items-center justify-center justify-between text-4xl text-dark">
                         <div class="flex items-center justify-center gap-2">
                             <div class="w-6 h-6 rounded-full bg-blue-600"></div>
@@ -551,6 +553,7 @@
             </div>
         </div>
 
+
         <!-- MOBILE -->
         <div class="mobile-grid">
             <div class="box rounded m1">1</div>
@@ -571,7 +574,47 @@
         </div>
 
 
+         <!-- Others Coming Soon Modal -->
+<div x-show="showOthersModal"
+     x-transition:enter="transition ease-out duration-300"
+     x-transition:enter-start="opacity-0 scale-95"
+     x-transition:enter-end="opacity-100 scale-100"
+     x-transition:leave="transition ease-in duration-200"
+     x-transition:leave-start="opacity-100 scale-100"
+     x-transition:leave-end="opacity-0 scale-95"
+     class="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-gray-900/40 backdrop-blur-sm"
+     @click.self="showOthersModal = false"
+     x-cloak>
+
+    <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-sm w-full text-center border border-gray-100">
+
+        <div class="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 border border-blue-100">
+            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                      d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+            </svg>
+        </div>
+
+        <h3 class="text-xl font-bold text-gray-900 mb-2">
+            Coming Soon 🚀
+        </h3>
+
+        <p class="text-gray-500 mb-6">
+            Country stack to be Activated
+        </p>
+
+        <button @click="showOthersModal = false"
+                class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg transition-all active:scale-95">
+            Close
+        </button>
+
+    </div>
+</div>
+
+
     </section>
+
+
 
     <!-- Custom Tooltips -->
     <div id="cityTooltip" class="custom-tooltip tooltip-blue">
