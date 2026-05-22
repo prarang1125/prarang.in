@@ -588,6 +588,11 @@
                         Digital Divide -
                         India</button>
                 </div>
+                 <div class="d-flex flex-column gap-2 align-items-start">
+                    <a href="/lang-webs?q=digital-divide-languages" class="text-light">Digital Divide 148</a>
+                      <a href="/lang-webs?q=digital-balance-languages" class="text-light">Digital Balance 30</a>
+                </div>
+
 
             </div>
 

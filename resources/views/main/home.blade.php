@@ -397,10 +397,23 @@
             .desktop-grid .box .justify-between:nth-child(5) {
                 margin-right: 23px;
             }
+            /* Rounded full */
+.desktop-grid .rounded-full:nth-child(2){
+ background-color:yellow !important;
+}
+
+/* Justify between */
+.desktop-grid .box .justify-between{
+ line-height:1.2em;
+ /* transform:translatex(0px) translatey(0px); */
+ padding-bottom:32px !important;
+}
+
+
         </style>
 
         <!-- DESKTOP -->
-        <div class="desktop-grid">
+        <div class="desktop-grid ">
 
             <div class="box rounded b1">
                 <div
@@ -551,24 +564,6 @@
             </div>
         </div>
 
-        <!-- MOBILE -->
-        <div class="mobile-grid">
-            <div class="box rounded m1">1</div>
-            <div class="box m2">2</div>
-            <div class="box rounded yellow m3">3</div>
-            <div class="box yellow m8">8</div>
-            <div class="box yellow m11">11</div>
-            <div class="box rounded m5">5</div>
-            <div class="box m4">4</div>
-            <div class="box m6">6</div>
-            <div class="box m7">7</div>
-            <div class="box m10">10</div>
-            <div class="box m9">9</div>
-            <div class="box m13">13</div>
-            <div class="box m12">12</div>
-            <div class="box m14">14</div>
-            <div class="box m15">15</div>
-        </div>
 
 
     </section>
@@ -704,9 +699,9 @@
         }
 
         @media (max-width: 600px) {
-            .desktop-grid {
+            /* .desktop-grid {
                 display: none;
-            }
+            } */
 
             .mobile-grid {
                 display: grid;
