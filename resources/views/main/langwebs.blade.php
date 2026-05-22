@@ -268,6 +268,7 @@
         </p>
     </section>
 
+@if(request()->query('q')=='digital-divide-languages')
 
     {{-- ================= DIGITAL DIVIDE ================= --}}
     <section class="text-center mt-3">
@@ -342,7 +343,7 @@
         <div class="scroll-hint">&larr; Scroll horizontally &rarr;</div>
 
     </section>
-
+@else
     {{-- ================= BALANCED LANGUAGES ================= --}}
     <section class="text-center mt-3">
         <h4 class="text-dark fw-bold" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
@@ -427,7 +428,7 @@
 
 
     </section>
-
+@endif
     {{-- ================= NOTES ================= --}}
     <section class="mt-4">
         <p class="small">
