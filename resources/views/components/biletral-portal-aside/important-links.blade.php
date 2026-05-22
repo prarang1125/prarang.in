@@ -1,6 +1,6 @@
 <div class="important-links-list space-y-4">
-    @if (!empty($data->important_link) && is_array($data->important_link))
-        @foreach ($data->important_link as $key => $links)
+    @if (!empty($data->important_links) && is_array($data->important_links))
+        @foreach ($data->important_links as $key => $links)
             <div class="link-group">
                 <h4 class="font-bold text-xs {{ $side === 'left' ? 'text-blue-700 border-blue-100' : 'text-orange-700 border-orange-100' }} uppercase tracking-wider mb-2 border-b pb-1">
                     {{ str_replace('_', ' ', $key) }}

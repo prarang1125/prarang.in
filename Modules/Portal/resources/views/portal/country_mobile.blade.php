@@ -439,22 +439,22 @@
                 $rates = \Illuminate\Support\Facades\Cache::remember('exchange-rates-usd', now()->addHours(12), function () {
                     return \Illuminate\Support\Facades\Http::get('https://v6.exchangerate-api.com/v6/e1d88a31b3bf6bb1e7a3f27f/latest/USD')->json('conversion_rates') ?? [];
                 });
-                
+
                 $primaryCurrency = strtoupper($main->primary_currency);
                 $secondaryCurrency = strtoupper($main->secondary_currency);
-                
+
                 $exchangeCze = [];
                 $exchangeInd = [];
-                
+
                 if (isset($rates[$primaryCurrency]) && isset($rates[$secondaryCurrency])) {
                     $fromRate = $rates[$primaryCurrency];
                     $toRate   = $rates[$secondaryCurrency];
-                    
+
                     $exchangeCze = [
                         "1 {$primaryCurrency} = " . round($toRate / $fromRate, 2) . " {$secondaryCurrency}",
                         "1 USD = " . round($toRate, 2) . " {$secondaryCurrency}",
                     ];
-                    
+
                     $exchangeInd = [
                         "1 {$secondaryCurrency} = " . round($fromRate / $toRate, 2) . " {$primaryCurrency}",
                         "1 USD = " . round($fromRate, 2) . " {$primaryCurrency}",
