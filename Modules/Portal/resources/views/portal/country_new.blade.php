@@ -298,9 +298,11 @@
                                                     </div>
                                                 </div>
 
-
+                                                @php
+                                                    $isActive=$main->is_active
+                                                @endphp
                                                 <x-portal.ai-reports :primary="$primary" :secondary="$secondary"
-                                                    :cities="$indianCities" :zone="$stateZones" />
+                                                    :cities="$indianCities" :zone="$stateZones" :isActive="$isActive" />
                                             </div>
 
                                         </div>
@@ -339,7 +341,7 @@
                                                             <div class="widget__content text-center">
 
                                                                 <x-portal.cityanaytics :title="$secondary->country_name ?? 'N/A'"
-                                                                    :code="$secondary->analytics_slug ?? 'country'" />
+                                                                    :code="$secondary->analytics_slug ?? 'country'" :isActive="$main->is_analytics_active" />
 
                                                             </div>
                                                         </div>

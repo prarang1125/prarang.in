@@ -1,8 +1,12 @@
-@props(['title', 'code'])
+@props(['title', 'code','isActive' => false])
 
 <div class="analytics-content" style="cursor: pointer">
     @if($code == 'india')
     <a data-bs-toggle="modal" data-bs-target="#cityAnalyticsModal{{ $code }}">
+        <img src="https://www.prarang.in/matric-.JPG" class="img-fluid rounded shadow-sm mb-3 border">
+    </a>
+    @elseif($isActive)
+     <a data-bs-toggle="modal" data-bs-target="#cityAnalyticsModal{{ $code }}">
         <img src="https://www.prarang.in/matric-.JPG" class="img-fluid rounded shadow-sm mb-3 border">
     </a>
     @else
