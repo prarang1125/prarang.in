@@ -293,7 +293,7 @@ $language = [
 
                             <div class="icon-circle">
                                 <img loading="lazy" src="{{ asset('assets/images/World.png') }}" alt="World Bilateral"
-                                    style="border: 1px solid orangered; border-radius: 50%;">
+                                    style="">
                             </div>
                             <div class="hoverbox">
                                 <div class="card-title-small" style="color: rgb(29 78 215);">
@@ -301,7 +301,7 @@ $language = [
                                 </div>
 
                                 <div class="card-number">
-                                    195
+                                    194
                                 </div>
                             </div>
 
