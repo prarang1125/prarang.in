@@ -532,11 +532,14 @@
                     margin-top: 12px;
                 }
 
-            }
+            }/* Justify between */
+.desktop-grid .box .justify-between:nth-child(6){
+ box-shadow:0px 0px 3px 2px #abd1f6;
+}
+
         </style>
         <!-- DESKTOP -->
         <div class="desktop-grid ">
-
             <div class="box rounded b1">
                 <div
                     class="group border-[2px] border-gray-200 rounded p-8 w-full sm:w-80 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">

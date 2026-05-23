@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Pages;
 
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
@@ -53,9 +54,11 @@ class CountryFilter extends Component
             //     'country_data' => $country,
             // ]);
 
-            $countryPortal = DB::table('country_portals as cp')
-                ->join('byletral_portals as bp', 'bp.secondary_country_id', '=', 'cp.id')
-                ->where('bp.primary_country_id', 4)->pluck('bp.slug', 'cp.anlytics_code')->unique()->toArray();
+            $countryPortal = Cache::remember('country_filter-portal', 24 * 60 * 60 * 20, function () {
+                return DB::table('country_portals as cp')
+                    ->join('byletral_portals as bp', 'bp.secondary_country_id', '=', 'cp.id')
+                    ->where('bp.primary_country_id', 4)->pluck('bp.slug', 'cp.anlytics_code')->unique()->toArray();
+            });
             $this->selectedIs  = $countryPortal[$value];
         }
     }
@@ -77,6 +80,8 @@ class CountryFilter extends Component
 
     private function loadCountries(): array
     {
-        return httpGet('/get-country', ['group_by' => true])['data']['country'] ?? [];
+        return Cache::remember('country_filter', 24 * 60 * 60 * 20, function () {
+            return httpGet('/get-country', ['group_by' => true, 'where_not_in' => '63'])['data']['country'] ?? [];
+        });
     }
 }
