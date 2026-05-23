@@ -1,22 +1,27 @@
 @php
 $metaData = [
-    'nav-heading' => 'INDIA KNOWLEDGE WEBS',
-    'nav-sub-heading' => '',
+'nav-heading' => view('components.nav-heading', [
+'text' => 'India Knowledge Webs',
+'leftImg' => 'https://sarganga.org/assets/img/concept-center.JPG',
+'rightImg' => 'https://sarganga.org/assets/img/concept-center.JPG',
+]),
+'nav-sub-heading' => '',
 ];
 
+
+
 $language = [
-    ['name'=>'Tamil','slug'=>'tamil'],
-    ['name'=>'English','slug'=>'english'],
-    ['name'=>'Bengali','slug'=>'bengali'],
-    ['name'=>'Marathi','slug'=>'marathi'],
-    ['name'=>'Telugu','slug'=>'telugu'],
-    ['name'=>'Gujarati','slug'=>'gujarati'],
-    ['name'=>'Kannada','slug'=>'kannada'],
-    ['name'=>'Odia','slug'=>'odisha'],
-    ['name'=>'Malayalam','slug'=>'malayalam'],
-    ['name'=>'Punjabi','slug'=>'punjabi'],
-    ['name'=>'Assamese','slug'=>'assamese'],
-    ['name'=>'Urdu','slug'=>'urdu'],
+['name'=>'Bengali','slug'=>'bengali'],
+['name'=>'Marathi','slug'=>'marathi'],
+['name'=>'Telugu','slug'=>'telugu'],
+['name'=>'Tamil','slug'=>'tamil'],
+['name'=>'Urdu','slug'=>'urdu'],
+['name'=>'Gujarati','slug'=>'gujarati'],
+['name'=>'Kannada','slug'=>'kannada'],
+['name'=>'Odia','slug'=>'odisha'],
+['name'=>'Malayalam','slug'=>'malayalam'],
+['name'=>'Grumukhi','slug'=>'grumukhi'],
+['name'=>'Assamese','slug'=>'assamese'],
 ];
 @endphp
 
@@ -29,7 +34,7 @@ $language = [
     .custom-card {
         position: relative;
         border-radius: 20px;
-        padding: 30px 20px;
+        padding: 20px 20px;
         text-align: center;
         background: #ffffff;
         overflow: hidden;
@@ -104,13 +109,13 @@ $language = [
         min-width: 180px;
         border-radius: 12px;
         overflow: hidden;
-        box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
         z-index: 99;
     }
 
     .dropdown-content a {
         color: #222;
-        padding: 12px 14px;
+        padding: 5px 10px;
         text-decoration: none;
         display: block;
         transition: background .2s ease;
@@ -132,7 +137,7 @@ $language = [
         color: #0d6efd;
         /* box-shadow: 0 4px 14px rgba(0,0,0,0.08);
         transition: transform .2s ease, box-shadow .2s ease; */
-        font-size: 22px;
+        font-size: 19px;
         text-decoration: underline
     }
 
@@ -141,244 +146,303 @@ $language = [
         box-shadow: 0 8px 20px rgba(0,0,0,0.12);
     } */
 
-    .blue{
+    .blue {
         background: #0d6efd;
     }
 
-    .yellow{
+    .yellow {
         background: yellow;
     }
 
-    .red{
+    .red {
         background: rgb(220 38 38);
+    }
+
+    .hoverbox {
+        display: inline-block;
+        padding: 12px 16px;
+        margin-bottom: 5px;
+        border-radius: 10px;
+        transition: all 0.3s ease;
+    }
+
+    /* Hover effect */
+    .hoverbox:hover {
+        background: rgba(0, 0, 0, 0.06);
+        /* halka black */
+        /* box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12); */
+    }
+
+    .anchorshadow:hover {
+        background: rgba(0, 0, 0, 0.06);
+        border-radius: 10px;
+        transition: all 0.3s ease;
+
+    }
+
+
+    @media (max-width: 576px) {
+       .anchorshadow{
+        font-size: 14px;
+       }
+       .gapsm{
+        gap: 1rem !important;
+       }
     }
 </style>
 
 <x-layout.main.base :metaData="$metaData">
 
-<section class="py-8 bg-gray-50" x-data="{ showModal: false }">
+    <section class=" bg-gray-50" x-data="{ showModal: false }">
 
-    <!-- Heading -->
-    <div class="text-center mb-8">
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-800">
-            Enter India Knowledge Webs
-        </h1>
-    </div>
+        <!-- TOP CARDS -->
+        <div class="container top-card-section">
+            <div class="row justify-content-center g-4">
 
-    <!-- TOP CARDS -->
-    <div class="container top-card-section">
-        <div class="row justify-content-center g-4">
+                <!-- Villages -->
+                <div class="col-md-6 col-lg-4">
+                    <a href="{{ url('webs/filter/villages') }}" class="text-decoration-none">
+                        <div class="custom-card">
 
-            <!-- Villages -->
-            <div class="col-md-6 col-lg-4">
-                <a href="{{ url('webs/filter/villages') }}" class="text-decoration-none">
-                    <div class="custom-card">
+                            <div class="flex items-center justify-center gap-0" style="margin-bottom: 6px">
+                                <div class="w-full h-6  bg-blue-600"></div>
+                                <div class="w-full h-6  " style="background: yellow"></div>
+                                <div class="w-full h-6  " style="background: red"></div>
 
-                        <div class="flex items-center justify-center gap-5 mb-3">
-                            <div class="w-8 h-8 rounded-full blue"></div>
-                            <div class="w-8 h-8 rounded-full yellow"></div>
-                            <div class="w-8 h-8 rounded-full red"></div>
+                            </div>
+
+                            <div class="icon-circle">
+                                <img loading="lazy" src="{{ asset('assets/images/Villages1.png') }}" alt="Villages">
+                            </div>
+
+                            <div class="hoverbox">
+
+                                <div class="card-title-small" style="color: rgb(29 78 215);">
+                                    Villages
+                                </div>
+
+                                <div class="card-number">
+                                    592,765
+                                </div>
+
+                            </div>
+
+
+
+                            <div class="flex items-center justify-center gap-0">
+                                <div class="w-full  h-6 " style="background: #fef08a"></div>
+                                <div class="w-full  h-6 " style="background: #bef264"></div>
+                                <div class="w-full  h-6 " style="background: #22c55e"></div>
+
+                            </div>
+
                         </div>
+                    </a>
+                </div>
 
-                        <div class="icon-circle" >
-                            <img loading="lazy"
-                                 src="{{ asset('assets/images/Villages1.png') }}"
-                                 alt="Villages">
+                <!-- Cities -->
+                <div class="col-md-6 col-lg-4">
+                    <a href="{{ url('webs/filter/cities') }}" class="text-decoration-none">
+                        <div class="custom-card">
+
+                            <div class="flex items-center justify-center gap-0" style="margin-bottom: 6px">
+                                <div class="w-full h-6  bg-blue-600"></div>
+                                <div class="w-full h-6  " style="background: yellow"></div>
+                                <div class="w-full h-6  " style="background: red"></div>
+
+                            </div>
+
+                            <div class="icon-circle">
+                                <img loading="lazy" src="{{ asset('assets/images/town1.png') }}" alt="Cities">
+                            </div>
+                            <div class="hoverbox">
+                                <div class="card-title-small" style="color: rgb(29 78 215);">
+                                    Cities
+                                </div>
+
+                                <div class="card-number">
+                                    6,331
+                                </div>
+                            </div>
+
+
+                            <div class="flex items-center justify-center gap-0">
+                                <div class="w-full  h-6 " style="background: #fef08a"></div>
+                                <div class="w-full  h-6 " style="background: #bef264"></div>
+                                <div class="w-full  h-6 " style="background: #22c55e"></div>
+
+                            </div>
+
                         </div>
+                    </a>
+                </div>
 
-                        <div class="card-title-small text-success">
-                            Villages
+                <!-- World -->
+                <div class="col-md-6 col-lg-4">
+                    <a href="{{ url('/country-webs-filter') }}" class="text-decoration-none">
+                        <div class="custom-card">
+
+
+
+                            <div class="flex items-center justify-center gap-0" style="margin-bottom: 6px">
+                                <div class="w-full h-6  bg-blue-600"></div>
+                                <div class="w-full h-6  " style="background: yellow"></div>
+                                <div class="w-full h-6  " style="background: red"></div>
+
+                            </div>
+
+                            <div class="icon-circle">
+                                <img loading="lazy" src="{{ asset('assets/images/World.png') }}" alt="World Bilateral"
+                                    style="border: 1px solid orangered; border-radius: 50%;">
+                            </div>
+                            <div class="hoverbox">
+                                <div class="card-title-small" style="color: rgb(29 78 215);">
+                                    World-Bilateral
+                                </div>
+
+                                <div class="card-number">
+                                    195
+                                </div>
+                            </div>
+
+
+
+                            <div class="flex items-center justify-center gap-0">
+                                <div class="w-full  h-6 " style="background: #fef08a"></div>
+                                <div class="w-full  h-6 " style="background: #bef264"></div>
+                                <div class="w-full  h-6 " style="background: #22c55e"></div>
+
+                            </div>
+
                         </div>
+                    </a>
+                </div>
 
-                        <div class="card-number">
-                            592,765
-                        </div>
-
-                    </div>
-                </a>
             </div>
-
-            <!-- Cities -->
-            <div class="col-md-6 col-lg-4">
-                <a href="{{ url('webs/filter/cities') }}" class="text-decoration-none">
-                    <div class="custom-card">
-
-                        <div class="flex items-center justify-center gap-5 mb-3">
-                            <div class="w-8 h-8 rounded-full blue"></div>
-                            <div class="w-8 h-8 rounded-full yellow"></div>
-                            <div class="w-8 h-8 rounded-full red"></div>
-                        </div>
-
-                        <div class="icon-circle" >
-                            <img loading="lazy"
-                                 src="{{ asset('assets/images/town1.png') }}"
-                                 alt="Cities">
-                        </div>
-
-                        <div class="card-title-small text-primary">
-                            Cities
-                        </div>
-
-                        <div class="card-number">
-                            6,331
-                        </div>
-
-                    </div>
-                </a>
-            </div>
-
-            <!-- World -->
-            <div class="col-md-6 col-lg-4">
-                <a href="{{ url('/country-webs-filter') }}" class="text-decoration-none">
-                    <div class="custom-card">
-                        <div class="flex items-center justify-center gap-5 mb-3">
-                            <div class="w-8 h-8 rounded-full blue"></div>
-                            <div class="w-8 h-8 rounded-full yellow"></div>
-                            <div class="w-8 h-8 rounded-full red"></div>
-                        </div>
-
-                        <div class="icon-circle" >
-                            <img loading="lazy"
-                                 src="{{ asset('assets/images/World.png') }}"
-                                 alt="World Bilateral" style="border: 1px solid orangered; border-radius: 50%;">
-                        </div>
-
-                        <div class="card-title-small text-warning">
-                            World-Bilateral
-                        </div>
-
-                        <div class="card-number">
-                            195
-                        </div>
-
-                    </div>
-                </a>
-            </div>
-
-        </div>
-    </div>
-
-    <!-- LANGUAGE BUTTONS -->
-    <div class="flex justify-center mt-4 px-3">
-    <div class="w-full max-w-6xl bg-white rounded-2xl shadow-lg p-4 flex flex-col md:flex-row gap-4">
-
-        <!-- LEFT: Hindi (Highlighted) -->
-        <a href="https://humsabek.in/" target="_blank"
-            class="flex flex-col justify-center items-center md:w-1/4 bg-yellow-400 hover:bg-yellow-500 rounded-xl px-4 py-3 shadow-md transition hover:-translate-y-1 text-decoration-none">
-
-            <span class="font-bold text-gray-900">Hindi Webs</span>
-
-            <!-- LIVE badge -->
-            <span class="mt-1 text-[10px] bg-green-600 text-white px-2 py-[2px] rounded-full font-semibold">
-                LIVE
-            </span>
-        </a>
-
-        <!-- RIGHT: Other Languages -->
-        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 w-full">
-
-            @foreach($language as $value)
-            <a href="javascript:void(0)" @click="showModal = true"
-                class="flex items-center justify-center text-center text-decoration-none py-2 px-3 rounded-lg font-semibold text-sm text-gray-800  hover:bg-yellow-400 shadow-sm transition hover:-translate-y-0.5">
-                {{ $value['name'] }} Webs
-            </a>
-            @endforeach
-
         </div>
 
-    </div>
-</div>
+        <!-- LANGUAGE BUTTONS -->
+        <div class="flex justify-center mt-4 px-3">
+            <div class="w-full max-w-6xl bg-white rounded-2xl shadow-lg p-4 flex flex-col md:flex-row gap-4">
 
-    <!-- Modal -->
-    <div x-show="showModal"
-         x-transition
-         class="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
-         @click.self="showModal = false">
+                <!-- LEFT: Hindi (Highlighted) -->
+                <a href="https://humsabek.in/" target="_blank"
+                    class="flex flex-col items-center md:w-1/4 rounded-xl px-4 py-3 shadow-md transition hover:-translate-y-1 text-decoration-none">
 
-        <div class="bg-white rounded-2xl p-6 w-80 text-center shadow-xl">
+                    <span class="font-bold text-gray-900 text-sm text-center">
+                        Hindi Webs
+                    </span>
 
-            <h3 class="text-xl font-bold mb-2">
-                Coming Soon
-            </h3>
+                    <!-- LIVE badge -->
+                    <span
+                        class="mt-1 md:mt-2 text-[10px] bg-green-600 text-white px-2 py-[2px] rounded-full font-semibold">
+                        LIVE
+                    </span>
+                </a>
 
-            <p class="text-gray-500 mb-4">
-                India Stack Language Localization
-            </p>
+                <!-- RIGHT: Other Languages -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 w-full">
 
-            <button @click="showModal = false"
+                    @foreach($language as $value)
+                    <a href="javascript:void(0)" @click="showModal = true"
+                        class="flex items-center justify-center text-center text-decoration-none py-2 px-3 rounded-lg  text-sm text-gray-800   shadow-sm transition hover:-translate-y-0.5">
+                        {{ $value['name'] }} Webs
+                    </a>
+                    @endforeach
+
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div x-show="showModal" x-transition class="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
+            @click.self="showModal = false">
+
+            <div class="bg-white rounded-2xl p-6 w-80 text-center shadow-xl">
+
+                <h3 class="text-xl font-bold mb-2">
+                    Coming Soon
+                </h3>
+
+                <p class="text-gray-500 mb-4">
+                    India Stack Language Localization
+                </p>
+
+                <button @click="showModal = false"
                     class="w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                Close
-            </button>
+                    Close
+                </button>
 
+            </div>
         </div>
-    </div>
 
-    <!-- Analytics Heading -->
-    <div class="text-center mb-6 mt-12">
-        <h1 class="text-2xl md:text-3xl font-bold text-gray-800">
-            Understanding India: Analytics
-        </h1>
-    </div>
+        <!-- Analytics Heading -->
+        <div class="text-center mb-6 mt-12">
+            <h1 class="text-xl md:text-2xl font-bold text-gray-800">
+                Understanding India: Analytics
+            </h1>
+        </div>
 
-    <!-- ANALYTICS -->
-    <div class="flex justify-center px-4">
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 w-full max-w-5xl">
+        <!-- ANALYTICS -->
+        <div class="flex justify-center px-4">
+            <div class="flex flex-wrap justify-center gapsm items-center gap-5 sm:gap-3 w-full max-w-5xl">
 
-            <a href="{{ url('/india-rural') }}" class="analytics-card ">
+                <a href="{{ url('/india-rural') }}" class="analytics-card anchorshadow flex-1 min-w-[140px] sm:min-w-[180px] lg:min-w-0 lg:flex-[1_1_22%] max-w-[240px]">
 
                     Rural
 
-            </a>
+                </a>
 
-            <a href="{{ url('/town-webs') }}" class="analytics-card ">
+                <a href="{{ url('/town-webs') }}" class="analytics-card anchorshadow flex-1 min-w-[140px] sm:min-w-[180px] lg:min-w-0 lg:flex-[1_1_22%] max-w-[240px]">
 
                     Urban
 
-            </a>
+                </a>
 
-            <a href="{{ url('/city-webs') }}" class="analytics-card ">
+                <a href="{{ url('/city-webs') }}" class="analytics-card anchorshadow flex-1 min-w-[140px] sm:min-w-[180px] lg:min-w-0 lg:flex-[1_1_22%] max-w-[240px]">
 
                     Districts
 
-            </a>
+                </a>
 
-            <div class="analytics-card">
+                <div class="flex-1 min-w-[140px] sm:min-w-[180px] lg:min-w-0 lg:flex-[1_1_22%] max-w-[240px]">
 
-                <div class="dropdownss">
+                    <div class="dropdownss w-full">
 
-                    <button type="button" class="city-tab dropbtn whitespace-nowrap analytics-card">
+                        <button type="button" class="city-tab dropbtn whitespace-nowrap analytics-card anchorshadow w-full">
 
-                        Language Distribution
+                            Language Distribution
 
-                        <span id="dropdownIcon" class="dropdown-icon">
-                            <i class="bi bi-chevron-down"></i>
-                        </span>
+                            <span id="dropdownIcon" class="dropdown-icon">
+                                <i class="bi bi-chevron-down"></i>
+                            </span>
 
-                    </button>
+                        </button>
 
-                    <div id="myDropdown" class="dropdown-content">
+                        <div id="myDropdown" class="dropdown-content">
 
-                        <a href="https://www.prarang.in/yp/india" target="_blank">
-                            Cities
-                        </a>
+                            <a href="/town-webs-in" target="_blank">
+                                Cities
+                            </a>
 
-                        <a href="https://www.prarang.in/yp/czech-republic" target="_blank">
-                            Villages
-                        </a>
+                            <a href="/village-webs" target="_blank">
+                                Villages
+                            </a>
+
+                        </div>
 
                     </div>
 
                 </div>
 
             </div>
-
         </div>
-    </div>
 
-</section>
+    </section>
 
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
 
         const dropbtn = document.querySelector('.dropbtn');
         const dropdownMenu = document.getElementById('myDropdown');
@@ -409,6 +473,6 @@ $language = [
         }
 
     });
-</script>
+    </script>
 
 </x-layout.main.base>
