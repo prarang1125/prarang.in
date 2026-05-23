@@ -430,7 +430,110 @@
                 border-bottom-right-radius: 4px;
             }
         </style>
+        <style>
+            /* Items center */
+            .desktop-grid .justify-between .items-center {
+                min-height: 65px;
+                max-height: 267px;
+                justify-content: center;
+            }
 
+            .desktop-grid .justify-between:nth-child(6) .justify-center {
+                width: 306px;
+            }
+
+
+
+            /* Justify between */
+            .desktop-grid .box:nth-child(11) .justify-between:nth-child(3) {
+                margin-right: 14px;
+            }
+
+            /* Box */
+            .container .mx-auto .box:nth-child(11) {
+                background-color: #efefef;
+            }
+
+            .container .mx-auto .box:nth-child(13) {
+                background-color: #efefef;
+
+            }
+
+            /* Group */
+            .container .mx-auto .desktop-grid .box .group {
+                width: 100% !important;
+            }
+
+            /* Country webs card */
+            #countryWebsCard {
+                height: 215px;
+            }
+
+            /* Image */
+            #countryWebsCard .transition-transform img {
+                width: 179px;
+            }
+
+            /* City webs card */
+            #cityWebsCard {
+                height: 215px;
+                /* transform:translatex(0px) translatey(0px); */
+            }
+
+            /* Image */
+            #cityWebsCard .transition-transform img {
+                width: 80%;
+                margin-top: 7px;
+            }
+
+            /* Language webs card */
+            #languageWebsCard {
+                height: 215px;
+                /* transform:translatex(0px) translatey(0px); */
+            }
+
+            /* Image */
+            #languageWebsCard .transition-transform img {
+                width: 160px;
+                margin-top: 6px;
+            }
+
+            /* Justify between */
+            .container .mx-auto .desktop-grid .box .justify-center .justify-between {
+                padding-bottom: 16px !important;
+            }
+
+            /* Justify between */
+            .desktop-grid .box .justify-between {
+                margin-bottom: 13px;
+            }
+
+            /* Justify between */
+            .desktop-grid .box .justify-between:nth-child(6) {
+                border-style: solid;
+                border-width: 1px;
+                border-color: #4e9eed;
+            }
+
+            /* Box */
+            .container .mx-auto .box:nth-child(11) {
+                height: 180px !important;
+            }
+
+            /* Box */
+            .container .mx-auto .box:nth-child(13) {
+                height: 180px !important;
+            }
+
+            @media (min-width:577px) {
+
+                /* Justify between */
+                .desktop-grid .box .justify-between {
+                    margin-top: 12px;
+                }
+
+            }
+        </style>
         <!-- DESKTOP -->
         <div class="desktop-grid ">
 
@@ -505,56 +608,96 @@
             </div>
             <div class="box b9"></div>
             <div class="box b10"></div>
-            <div class="box  b11">
+            <div class="box  b11 rounded-xl">
                 <div class="flex gap-4  items-center justify-center">
                     <a href="javascript:void(0)" @click="showOthersModal = true"
                         class="hidden lg:flex items-center justify-center  text-4xl text-dark flex-col  justify-between">
                         <div class="flex items-center justify-center gap-2">
                             <div class="w-6 h-6 rounded-full bg-blue-600"></div>
-                            <div class="w-6 h-6 rounded-full bg-yellow-400"></div>
-                            <div class="w-6 h-6 rounded-full bg-red-600"></div>
+                            <div class="w-6 h-6 rounded-full" style="background: yellow"></div>
+                            <div class="w-6 h-6 rounded-full " style="background: red"></div>
                         </div>
-                        Others<br> <br>
+                        <div
+                            class="flex flex-col items-center w-full rounded bg-gray-200  text-blue-700 p-2  hover:bg-gray-300 transition-colors hover:border-blue-400 hover:border-2">
+                            <span class="text-2xl font-semibold">Others</span>
+                            {{-- <span class="text-sm font-semibold"><br></span> --}}
+                        </div>
+
                     </a>
                     <div class="hidden lg:flex items-center justify-center text-xl text-dark">
                         <i class="bi bi-plus-circle-fill"></i>
                     </div>
                     <a href="/india-nepal"
-                        class="hidden lg:flex items-center justify-center flex-col justify-between text-4xl text-dark">
-                        <div class="flex items-center justify-center gap-4">
-                            <div class="w-6 h-6 rounded-full bg-blue-600"></div>
-                            <div class="w-6 h-6 rounded-full bg-yellow-400"></div>
-                            <div class="w-6 h-6 rounded-full bg-red-600"></div>
+                        class="flex  items-center justify-center flex-col justify-between text-4xl text-dark">
+                        <div class="flex items-center justify-center gap-3">
+                            <div class="w-6 h-6 rounded-full  bg-blue-600"></div>
+                            <div class="w-6 h-6 rounded-full" style="background: yellow"></div>
+                            <div class="w-6 h-6 rounded-full " style="background: red"></div>
                         </div>
-                        Nepal <br> Knowladge Webs <br><br>
+                        <div
+                            class="flex flex-col items-center w-full rounded bg-gray-200  text-blue-700 p-2  hover:bg-gray-300 transition-colors hover:border-blue-400 hover:border-2">
+                            <span class="text-2xl font-semibold">Nepal</span>
+                            <span class="text-sm font-semibold">Knowledge Webs</span>
+                        </div>
                     </a>
                     <div class="hidden lg:flex items-center justify-center text-xl text-dark">
                         <i class="bi bi-plus-circle-fill"></i>
                     </div>
+                    <style>
+                        /* Justify between */
+                        .desktop-grid .box .justify-between {
+                            border-style: none;
+                        }
+
+                        /* Justify between */
+                        .desktop-grid .box .justify-between:nth-child(6) {
+                            min-width: 320px;
+                            margin-right: 8px;
+                        }
+
+                        /* Division */
+                        .desktop-grid .box .w-24 {
+                            width: 102px;
+                        }
+                    </style>
                     <a href="/india-knowledge-webs"
                         class="hidden lg:flex items-center justify-center flex-col justify-between text-4xl text-dark">
-                        <div class="flex items-center justify-center gap-4">
-                            <div class="w-6 h-6 rounded-full bg-blue-600"></div>
-                            <div class="w-6 h-6 rounded-full bg-yellow-400"></div>
-                            <div class="w-6 h-6 rounded-full bg-red-600"></div>
+                        <div class="flex items-center justify-center gap-0">
+                            <div class="w-24 h-10  bg-blue-600"></div>
+                            <div class="w-24 h-10  " style="background: yellow"></div>
+                            <div class="w-24 h-10  " style="background: red"></div>
+                            <div class="w-24 h-10 " style="background: #fef08a"></div>
+                            <div class="w-24 h-10 " style="background: #bef264"></div>
+                            <div class="w-24 h-10 " style="background: #22c55e"></div>
+
                         </div>
-                        India <br> Knowladge Webs <br> <br>
+                        <div
+                            class="flex flex-col items-center w-full rounded bg-gray-200  text-blue-700 p-2 hover:bg-gray-300 transition-colors hover:border-blue-400 hover:border-2">
+                            <span class="text-4xl font-semibold">India</span>
+                            <span class="text-sm font-semibold">Knowledge Webs</span>
+                        </div>
+
                     </a>
                 </div>
             </div>
             <div class="box b12"></div>
-            <div class="box b13">
+            <div class="box b13 rounded">
                 <div class="flex gap-4  items-center justify-center">
 
 
                     <a href="https://indiaczech.com" target="_blank"
-                        class="hidden lg:flex flex-col items-center justify-center justify-between text-4xl text-dark">
+                        class="hidden lg:flex flex-col items-center justify-center justify-between text-4xl text-dark ">
                         <div class="flex items-center justify-center gap-3">
                             <div class="w-6 h-6 rounded-full bg-blue-600"></div>
-                            <div class="w-6 h-6 rounded-full bg-yellow-400"></div>
-                            <div class="w-6 h-6 rounded-full bg-red-600"></div>
+                            <div class="w-6 h-6 rounded-full" style="background: yellow"></div>
+                            <div class="w-6 h-6 rounded-full" style="background: red"></div>
                         </div>
-                        Czech Knowladge Webs
+
+                        <div
+                            class="flex flex-col items-center w-full rounded bg-gray-200  text-blue-700 p-2  hover:bg-gray-300 transition-colors hover:border-blue-400 hover:border-2">
+                            <span class="text-2xl font-semibold">Czech</span>
+                            <span class="text-sm font-semibold">Knowledge Webs</span>
+                        </div>
                     </a>
                     <div class="hidden lg:flex items-center justify-center text-xl text-dark">
                         <i class="bi bi-plus-circle-fill"></i>
@@ -563,10 +706,14 @@
                         class="hidden lg:flex  flex-col items-center justify-center justify-between text-4xl text-dark">
                         <div class="flex items-center justify-center gap-2">
                             <div class="w-6 h-6 rounded-full bg-blue-600"></div>
-                            <div class="w-6 h-6 rounded-full bg-yellow-400"></div>
-                            <div class="w-6 h-6 rounded-full bg-red-600"></div>
+                            <div class="w-6 h-6 rounded-full" style="background: yellow"></div>
+                            <div class="w-6 h-6 rounded-full" style="background: red"></div>
                         </div>
-                        Others<br> <br>
+                        <div
+                            class="flex flex-col items-center w-full rounded bg-gray-200  text-blue-700 p-2  hover:bg-gray-300 transition-colors hover:border-blue-400 hover:border-2">
+                            <span class="text-2xl font-semibold">Others</span>
+                            {{-- <span class="text-sm font-semibold">Knowledge Webs</span> --}}
+                        </div>
                     </a>
                 </div>
             </div>
@@ -583,7 +730,589 @@
             </div>
         </div>
 
+        <section class="lg:hidden">
+            <style>
+                @media (max-width:576px) {
 
+                    /* Division */
+                    .mx-auto section>div {
+                        display: grid;
+                    }
+
+                    /* Tracking tight */
+                    .mx-auto section .tracking-tight {
+                        font-size: 12px;
+                        line-height: 1.1em;
+                    }
+
+                    /* Transition all */
+                    .mx-auto section .transition-all {
+                        padding-left: 6px;
+                        padding-right: 7px;
+                        height: 158px;
+                        /* transform:translatex(0px) translatey(0px); */
+                    }
+
+                    /* City webs card */
+                    #cityWebsCard {
+                        /* transform:translatex(0px) translatey(0px); */
+                    }
+
+                    /* Division */
+                    .container .mx-auto section>div {
+                        grid-template-columns: 33.94fr 7fr 33.02fr 7fr 33.02fr !important;
+                    }
+
+                }
+
+                @media (max-width:576px) {
+
+                    /* City webs card */
+                    #cityWebsCard {
+
+                        height: 88px !important;
+                    }
+
+                    /* Country webs card */
+                    #countryWebsCard {
+                        height: 88px !important;
+                    }
+
+                    /* Language webs card */
+                    #languageWebsCard {
+                        height: 97px !important;
+                    }
+
+                    /* Transition all */
+                    .mx-auto section .transition-all {
+                        padding-top: 23px;
+                        background-color: #2566ab !important;
+                        border-top-left-radius: 4px !important;
+                        border-top-right-radius: 1px !important;
+                        border-bottom-left-radius: 4px !important;
+                        border-bottom-right-radius: 4px !important;
+                    }
+
+                    /* Transition all */
+                    .mx-auto section div .box:nth-child(1) .transition-all {
+                        background-color: blue !important;
+                    }
+
+                    /* Tracking tight */
+                    .mx-auto section div .box:nth-child(1) .transition-all .tracking-tight {
+                        color: #ffffff;
+                    }
+
+                    /* Transition all */
+                    .mx-auto section div .box:nth-child(3) .transition-all {
+                        background-color: yellow !important;
+                        transform: translatex(0px) translatey(0px);
+                    }
+
+                    /* Tracking tight */
+                    .mx-auto section div .box:nth-child(5) .transition-all .tracking-tight {
+                        color: #ffffff;
+                    }
+
+                    /* Image */
+                    .container .mx-auto section div .box .transition-all #cityWebsCard .transition-transform img {
+                        width: 525px !important;
+                    }
+
+                    /* Image */
+                    .container .mx-auto section div .box .transition-all #countryWebsCard .transition-transform img {
+
+                        width: 366px !important;
+                    }
+
+                    /* Auto */
+                    .container .mx-auto {
+                        padding-top: 3px !important;
+                        margin-bottom: 13px;
+                    }
+
+                }
+
+                @media (max-width:576px) {
+
+                    /* City webs card */
+                    #cityWebsCard {
+                        padding-left: 0px;
+                        padding-right: 0px;
+                        padding-top: 0px !important;
+                        padding-bottom: 0px !important;
+                        height: 90px !important;
+                    }
+
+                    /* Image */
+                    .container .mx-auto section div .box .transition-all #cityWebsCard .transition-transform img {
+                        width: 47px !important;
+                    }
+
+                    /* Object contain */
+                    #cityWebsCard .transition-transform .object-contain {
+                        height: 56px;
+                    }
+
+                    /* Country webs card */
+                    #countryWebsCard {
+                        transform: translatex(0px) translatey(0px);
+                        padding-left: 0px;
+                        padding-right: 0px;
+                        padding-top: 0px !important;
+                        padding-bottom: 0px !important;
+                    }
+
+                    /* Object contain */
+                    #countryWebsCard .transition-transform .object-contain {
+                        height: 67px;
+                    }
+
+                    /* Tracking tight */
+                    .mx-auto section div .box:nth-child(3) .transition-all .tracking-tight {
+                        margin-bottom: 23px;
+                    }
+
+                    /* Language webs card */
+                    #languageWebsCard {
+                        padding-left: 0px;
+                        padding-right: 0px;
+                        padding-top: 0px !important;
+                        padding-bottom: 0px !important;
+                        /* transform:translatex(0px) translatey(0px); */
+                        height: 74px !important;
+                    }
+
+                    /* Object contain */
+                    #languageWebsCard .transition-transform .object-contain {
+                        height: 70px;
+                        position: relative;
+                        top: 0px;
+                        margin-top: 0px;
+                    }
+
+                    /* Transition all */
+                    .mx-auto section .transition-all {
+                        height: 157px !important;
+                    }
+
+                }
+            </style>
+            <style>
+                @media (max-width:576px) {
+
+                    /* Justify center */
+                    .container .mx-auto section .justify-center:nth-child(3) {
+
+                        display: flex !important;
+                    }
+
+                }
+
+                @media (max-width:576px) {
+
+                    /* Justify center */
+                    .mx-auto section .justify-center {
+                        display: flex !important;
+                    }
+
+                }
+
+                @media (max-width:576px) {
+
+                    /* Justify center */
+                    #india-czech-nepal>.justify-center {
+                        flex-direction: column;
+                    }
+
+                    /* Link */
+                    #india-czech-nepal .justify-center a {
+                        flex-direction: column;
+                    }
+
+                    /* Justify center */
+                    #india-czech-nepal .justify-between .justify-center {
+                        margin-bottom: 7px;
+                    }
+
+                    /* Font semibold */
+                    #india-czech-nepal .items-center .font-semibold {
+                        text-decoration: none;
+                    }
+
+                }
+
+                @media (max-width:576px) {
+
+                    /* Justify center */
+                    #india-czech-nepal>.justify-center {
+                        flex-direction: column;
+                        background-color: #efefef;
+                        padding-left: 15px;
+                        padding-right: 15px;
+                        padding-top: 15px;
+                        padding-bottom: 15px;
+                        border-top-left-radius: 8px;
+                        border-top-right-radius: 8px;
+                        border-bottom-left-radius: 8px;
+                        border-bottom-right-radius: 8px;
+                    }
+
+                    /* Link */
+                    #india-czech-nepal .justify-center a {
+                        flex-direction: column;
+                    }
+
+                    /* Justify center */
+                    #india-czech-nepal .justify-between .justify-center {
+                        margin-bottom: 7px;
+                    }
+
+                    /* Font semibold */
+                    #india-czech-nepal .items-center .font-semibold {
+                        text-decoration: none;
+                    }
+
+                }
+                @media (max-width:576px){
+
+ /* Tracking tight */
+ .lg\:hidden div .tracking-tight{
+  margin-bottom:12px !important;
+ }
+
+ /* Tracking tight */
+ .lg\:hidden .box:nth-child(5) .tracking-tight{
+  margin-bottom:19px !important;
+ }
+
+ /* Language webs card */
+ #languageWebsCard{
+  height:77px !important;
+  /* transform:translatex(0px) translatey(0px); */
+ }
+
+ /* Object contain */
+ #languageWebsCard .transition-transform .object-contain{
+  height:56px !important;
+ }
+
+ /* Transition all */
+ .lg\:hidden div .transition-all{
+  padding-bottom:19px;
+ }
+
+ /* Object contain */
+ #countryWebsCard .transition-transform .object-contain{
+  padding-bottom:5px;
+ }
+
+}
+            </style>
+            <div>
+                <div class="box rounded b1">
+                    <div
+                        class="group border-[2px] border-gray-200 rounded p-8 w-full sm:w-80 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                        <h2 class="text-2xl font-black text-gray-800 tracking-tight text-center uppercase">
+                            City/Village Webs
+                        </h2>
+                        <div id="cityWebsCard"
+                            class="border-2 border-blue-200 rounded-3xl p-10 mb-8 bg-white shadow-inner relative overflow-hidden group-hover:border-blue-400 transition-colors">
+
+                            <div onclick="showImage('{{ asset('assets/images/home/city-portal.jpg') }}')"
+                                class="flex justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                                <img src="{{ asset('assets/images/home/3.png') }}" alt="City Icon"
+                                    class=" object-contain drop-shadow-md">
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="box b2">
+                    <div class="  lg:flex items-center justify-center text-lg text-dark ">
+                        <i class=" bi bi-arrow-right-circle-fill"></i>
+                    </div>
+                </div>
+                <div class="box rounded  b3">
+                    <div
+                        class="group border-[2px] border-gray-200 rounded-[2.5rem] p-8 w-full sm:w-80 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                        <h2 class="text-2xl font-black text-gray-800 tracking-tight text-center uppercase">
+                            Country Webs
+                        </h2>
+                        <div id="countryWebsCard"
+                            class="border-2 border-red-200 rounded-3xl p-10 mb-8 bg-white shadow-inner relative overflow-hidden group-hover:border-red-400 transition-colors">
+                            <div onclick="showImage('{{ asset('assets/images/home/country-portal.jpg') }}')"
+                                class="flex justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                                <img src="{{ asset('assets/images/home/2.png') }}" alt="Country Icon"
+                                    class="object-contain drop-shadow-md">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="box b4">
+                    <div class="  lg:flex items-center justify-center text-lg text-dark ">
+                        <i class=" bi bi-arrow-left-circle-fill"></i>
+                    </div>
+                </div>
+                <div class="box b5">
+                    <div style="background: #FFFF00;"
+                        class="group border-[2px] border-gray-200 rounded-[2.5rem] p-8 w-full sm:w-80 shadow-lg hover:shadow-2xl hover:-translate-y-2 transition-all duration-300">
+                        <h2 class="text-2xl font-black text-gray-800 tracking-tight text-center uppercase">
+                            Language Webs
+                        </h2>
+                        <div id="languageWebsCard"
+                            class="border-2 border-yellow-200 rounded-3xl p-10 mb-8 bg-white shadow-inner relative overflow-hidden group-hover:border-yellow-400 transition-colors">
+
+                            <div onclick="showImage('{{ asset('assets/images/home/language-portal.jpg') }}')"
+                                class="flex justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
+                                <img src="{{ asset('assets/images/home/1.png') }}" alt="Language Icon"
+                                    class=" object-contain drop-shadow-md">
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="flex items-center justify-center text-xl text-dark ">
+                <i class=" bi bi-arrow-down-circle-fill"></i>
+            </div>
+            <section id="india-czech-nepal">
+                <div class="flex flex-col gap-1 items-center justify-center">
+                    <style>
+                        /* Justify between */
+                        .desktop-grid .box .justify-between {
+                            border-style: none;
+                        }
+
+                        /* Justify between */
+                        .desktop-grid .box .justify-between:nth-child(6) {
+                            min-width: 320px;
+                            margin-right: 8px;
+                        }
+
+                        /* Division */
+                        .desktop-grid .box .w-24 {
+                            width: 102px;
+                        }
+
+                        @media (max-width:576px) {
+
+                            /* Link */
+                            #india-czech-nepal .justify-center a {
+                                padding-left: 10px;
+                                padding-right: 10px;
+                                padding-top: 10px;
+                                padding-bottom: 10px;
+                            }
+
+                            /* Justify between */
+                            .container section .justify-between:nth-child(2) {
+                                border-style: solid;
+                                border-color: #74c1f5;
+                                border-width: 1px;
+                                border-top-left-radius: 8px;
+                                border-top-right-radius: 8px;
+                                border-bottom-left-radius: 8px;
+                                border-bottom-right-radius: 8px;
+                            }
+
+                        }
+
+                        @media (max-width:576px) {
+
+                            /* Box */
+                            #india-czech-nepal .box {
+                                grid-template-columns: 82.93fr !important;
+                            }
+
+                            /* Justify center */
+                            #india-czech-nepal .box .justify-center {
+                                border-top-left-radius: 8px;
+                                border-top-right-radius: 8px;
+                                border-bottom-left-radius: 8px;
+                                border-bottom-right-radius: 8px;
+                            }
+
+                        }
+                    </style>
+                    <a href="/india-knowledge-webs"
+                        class="hidden lg:flex items-center justify-center flex-col justify-between text-4xl text-dark">
+                        <div class="flex items-center justify-center gap-0">
+                            <div class="w-24 h-10  bg-blue-600"></div>
+                            <div class="w-24 h-10  " style="background: yellow"></div>
+                            <div class="w-24 h-10  " style="background: red"></div>
+                            <div class="w-24 h-10 " style="background: #fef08a"></div>
+                            <div class="w-24 h-10 " style="background: #bef264"></div>
+                            <div class="w-24 h-10 " style="background: #22c55e"></div>
+
+                        </div>
+                        <div
+                            class="flex flex-col items-center w-full rounded bg-gray-200  text-blue-700 p-2 hover:bg-gray-300 transition-colors hover:border-blue-400 hover:border-2">
+                            <span class="text-4xl font-semibold">India</span>
+                            <span class="text-sm font-semibold">Knowledge Webs</span>
+                        </div>
+
+                    </a>
+
+                    <div class="hidden lg:flex items-center justify-center text-xl text-dark">
+                        <i class="bi bi-plus-circle-fill"></i>
+                    </div>
+                    <a href="/india-nepal"
+                        class="flex  items-center justify-center flex-col justify-between text-4xl text-dark">
+                        <div class="flex items-center justify-center gap-3">
+                            <div class="w-6 h-6 rounded-full  bg-blue-600"></div>
+                            <div class="w-6 h-6 rounded-full" style="background: yellow"></div>
+                            <div class="w-6 h-6 rounded-full " style="background: red"></div>
+                        </div>
+                        <div
+                            class="flex flex-col items-center w-full rounded bg-gray-200  text-blue-700 p-2  hover:bg-gray-300 transition-colors hover:border-blue-400 hover:border-2">
+                            <span class="text-2xl font-semibold">Nepal</span>
+                            <span class="text-sm font-semibold">Knowledge Webs</span>
+                        </div>
+                    </a>
+                    <div class="hidden lg:flex items-center justify-center text-xl text-dark">
+                        <i class="bi bi-plus-circle-fill"></i>
+                    </div>
+                    <a href="javascript:void(0)" @click="showOthersModal = true"
+                        class="hidden lg:flex items-center justify-center  text-4xl text-dark flex-col  justify-between">
+                        <div class="flex items-center justify-center gap-2">
+                            <div class="w-6 h-6 rounded-full bg-blue-600"></div>
+                            <div class="w-6 h-6 rounded-full" style="background: yellow"></div>
+                            <div class="w-6 h-6 rounded-full " style="background: red"></div>
+                        </div>
+                        <div
+                            class="flex flex-col items-center w-full rounded bg-gray-200  text-blue-700 p-2  hover:bg-gray-300 transition-colors hover:border-blue-400 hover:border-2">
+                            <span class="text-2xl font-semibold">Others</span>
+                            {{-- <span class="text-sm font-semibold"><br></span> --}}
+                        </div>
+
+                    </a>
+
+                </div>
+                <div class="box b14">
+                    <div class="flex gap-4  items-center justify-center  bg-blue-600 w-full">
+                        <a href="/lang-webs?q=digital-divide-languages" class="text-light">Digital Divide 148</a>
+                    </div>
+                </div>
+            </section>
+            <section id="india-czech-nepal">
+                <div class="flex flex-col gap-1 items-center justify-center">
+                    <style>
+                        /* Justify between */
+                        .desktop-grid .box .justify-between {
+                            border-style: none;
+                        }
+
+                        /* Justify between */
+                        .desktop-grid .box .justify-between:nth-child(6) {
+                            min-width: 320px;
+                            margin-right: 8px;
+                        }
+
+                        /* Division */
+                        .desktop-grid .box .w-24 {
+                            width: 102px;
+                        }
+
+                        @media (max-width:576px) {
+
+                            /* Link */
+                            #india-czech-nepal .justify-center a {
+                                padding-left: 10px;
+                                padding-right: 10px;
+                                padding-top: 10px;
+                                padding-bottom: 10px;
+                            }
+
+                            /* Justify between */
+                            .container section .justify-between:nth-child(2) {
+                                border-style: solid;
+                                border-color: #74c1f5;
+                                border-width: 1px;
+                                border-top-left-radius: 8px;
+                                border-top-right-radius: 8px;
+                                border-bottom-left-radius: 8px;
+                                border-bottom-right-radius: 8px;
+                            }
+
+                        }
+
+                        @media (max-width:576px) {
+
+                            /* Box */
+                            #india-czech-nepal .box {
+                                grid-template-columns: 82.93fr !important;
+                            }
+
+                            /* Justify center */
+                            #india-czech-nepal .box .justify-center {
+                                border-top-left-radius: 8px;
+                                border-top-right-radius: 8px;
+                                border-bottom-left-radius: 8px;
+                                border-bottom-right-radius: 8px;
+                            }
+
+                        }
+
+                        @media (max-width:576px) {
+
+                            /* Justify between */
+                            .container #india-czech-nepal:nth-child(6) .justify-between:nth-child(2) {
+                                border-style: none;
+                            }
+
+                            /* Justify center */
+                            #india-czech-nepal .box .justify-center {
+                                margin-bottom: 12px;
+                            }
+
+                            /* Items center */
+                            #india-czech-nepal .justify-between .items-center {
+                                text-decoration: none;
+                            }
+
+                        }
+                    </style>
+
+                    <a href="/india-czech-republic"
+                        class="flex  items-center justify-center flex-col justify-between text-4xl text-dark">
+                        <div class="flex items-center justify-center gap-3">
+                            <div class="w-6 h-6 rounded-full  bg-blue-600"></div>
+                            <div class="w-6 h-6 rounded-full" style="background: yellow"></div>
+                            <div class="w-6 h-6 rounded-full " style="background: red"></div>
+                        </div>
+                        <div
+                            class="flex flex-col items-center w-full rounded bg-gray-200  text-blue-700 p-2  hover:bg-gray-300 transition-colors hover:border-blue-400 hover:border-2">
+                            <span class="text-2xl font-semibold">Czech</span>
+                            <span class="text-sm font-semibold">Knowledge Webs</span>
+                        </div>
+                    </a>
+                    <div class="hidden lg:flex items-center justify-center text-xl text-dark">
+                        <i class="bi bi-plus-circle-fill"></i>
+                    </div>
+                    <a href="javascript:void(0)" @click="showOthersModal = true"
+                        class="hidden lg:flex items-center justify-center  text-4xl text-dark flex-col  justify-between">
+                        <div class="flex items-center justify-center gap-2">
+                            <div class="w-6 h-6 rounded-full bg-blue-600"></div>
+                            <div class="w-6 h-6 rounded-full" style="background: yellow"></div>
+                            <div class="w-6 h-6 rounded-full " style="background: red"></div>
+                        </div>
+                        <div
+                            class="flex flex-col items-center w-full rounded bg-gray-200  text-blue-700 p-2  hover:bg-gray-300 transition-colors hover:border-blue-400 hover:border-2">
+                            <span class="text-2xl font-semibold">Others</span>
+                            {{-- <span class="text-sm font-semibold"><br></span> --}}
+                        </div>
+
+                    </a>
+
+                </div>
+                <div class="box b14">
+                    <div class="flex gap-4  items-center justify-center  bg-blue-600 w-full">
+                        <a href="/lang-webs?q=digital-balance-languages" class="text-light">Digital Balance 30</a>
+                    </div>
+                </div>
+            </section>
+        </section>
 
 
 
@@ -749,18 +1478,11 @@
         }
 
         @media (max-width: 600px) {
-            /* .desktop-grid {
+            .desktop-grid {
                 display: none;
-            } */
-
-            .mobile-grid {
-                display: grid;
-                gap: 5px;
-                width: 100%;
-                height: calc(100vh - 20px);
-                grid-template-columns: 1fr 36px;
-                grid-template-rows: 2fr 44px 2fr 44px 1.5fr 44px 2fr 1.5fr 44px;
             }
+
+
 
             .m1 {
                 grid-column: 1;

@@ -3,7 +3,7 @@
 
     {{-- ── Header ── --}}
     <h2 class="text-xl md:text-xl text-slate-800 tracking-tighter mb-2">
-        Explore All
+        Explore India's Connection with
         <span class="text-blue-700 font-extrabold text-[20px] md:text-[22px]">
             {{ collect($data)->flatten(1)->count() }}
         </span>
@@ -210,12 +210,7 @@
         <div class="mt-12 pt-8 border-t border-slate-100">
             <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
                 <div class="text-sm text-slate-500 font-medium">
-                    <span class="font-bold text-slate-800">{{ $selectedContinent }}</span>
-                    &rsaquo;
-                    <span class="font-bold text-blue-600">
-                        {{ collect($filteredCountries)->firstWhere('id', $selectedCountryId)['Country'] ?? '' }}
-                    </span>
-                    <span class="ml-2 text-xs text-slate-400">(ID: {{ $selectedCountryId }})</span>
+
                 </div>
 
                 <div class="w-full sm:w-auto transition-all duration-500 opacity-100 scale-100">
