@@ -66,7 +66,7 @@ class CountryFilter extends Component
     public function render()
     {
         $heading = 'World Countries';
-        $image = '';
+        $image = asset('assets/images/World.png');
         $metaData['nav-heading'] = view('components.nav-heading', [
             'text'     => $heading,
             'leftImg'  => $image,
