@@ -34,7 +34,7 @@
                                 </a>
                                 <a href="https://www.indiaczech.com/india-czech-republic/all-posts" target="_blank"
                                     class="btn text-white text-sm px-3 py-1 shadow-sm bg-blue-500 hover:bg-blue-600 hover:text-white">
-                                    Example- {{ $primary->country_name }} {{ $secondary->country_name }} Connections
+                                    Example- India - Czech Republic Connections
                                 </a>
                             </div>
                         </div>
