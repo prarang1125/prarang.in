@@ -92,10 +92,10 @@ class BiletralPortalAside extends Component
 
         return [
             "1 {$from} = " . round($conversion, 2) . " {$to}",
-            // "1 USD = " . round($fromRate, 2) . " {$from}",
+            "1 USD = " . round($fromRate, 2) . " {$from}",
 
 
-            "1 USD = " . round($toRate, 2) . " {$to}",
+            // "1 USD = " . round($toRate, 2) . " {$to}",
         ];
     }
     public function render(): View|Closure|string

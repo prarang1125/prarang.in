@@ -2371,3 +2371,132 @@ body {
 #header .header__content-inner {
     padding-top: 2px;
 }
+
+
+
+/* 25-05-2026 */
+/* Text end */
+#sidebar-left .bg-white:nth-child(5) tr:nth-child(1) .text-end{
+ margin-left:0px;
+ width:44px !important;
+}
+
+/* Table Data */
+#sidebar-left .bg-white:nth-child(5) tr:nth-child(1) td:nth-child(2){
+ margin-left:0px;
+ width:80px;
+}
+#sidebar-right .bg-white:nth-child(5) tr:nth-child(1) .text-end{
+ margin-left:0px;
+ width:44px !important;
+}
+
+/* Table Data */
+#sidebar-right .bg-white:nth-child(5) tr:nth-child(1) td:nth-child(2){
+ margin-left:0px;
+ width:80px;
+}
+
+
+/* Table Data */
+#core .lsvr-container .lsvr-grid .left-section .container-fluid #sidebar-left .sidebar-left__inner .metricsdata div .overflow-hidden .text-sm .divide-y .transition:nth-child(2) .px-5:nth-child(1){
+ height:42px !important;
+}
+
+/* Table Data */
+#sidebar-right .metricsdata div .overflow-hidden .text-sm .divide-y .transition:nth-child(2) .px-5:nth-child(1){
+ height:42px !important;
+}
+
+/* Table Data */
+#sidebar-right .transition:nth-child(2) .px-5:nth-child(1){
+ height:42px;
+}
+
+/* Table Data */
+#sidebar-left .transition:nth-child(5) .px-5:nth-child(1){
+ height:42px;
+}
+
+/* Table Data */
+#sidebar-right .metricsdata div .overflow-hidden .text-sm .divide-y .transition:nth-child(5) .px-5:nth-child(1){
+ height:42px !important;
+}
+
+/* Table Data */
+#sidebar-right .transition:nth-child(5) .px-5:nth-child(1){
+ height:42px;
+}
+
+/* Table Data */
+#sidebar-left .metricsdata div .overflow-hidden .text-sm .divide-y .transition:nth-child(7) .px-5:nth-child(1){
+ height:42px !important;
+}
+
+/* Table Data */
+#sidebar-left .transition:nth-child(7) .px-5:nth-child(1){
+ height:42px;
+}
+
+/* Table Data */
+#sidebar-right .transition:nth-child(7) .px-5:nth-child(1){
+ height:42px;
+}
+
+/* Container openweathermap widget */
+#container-openweathermap-widget-in{
+ display:flex;
+ justify-content:center;
+ min-height:270px;
+ align-items:center;
+}
+
+/* Container openweathermap widget 12 */
+#container-openweathermap-widget-12{
+ height:270px;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+}
+
+/* Metricsdata */
+#sidebar-right .metricsdata{
+ margin-top:33px !important;
+}
+
+/* Font medium */
+#sidebar-left .text-sm .font-medium{
+ text-transform:capitalize;
+}
+
+/* Font medium */
+#sidebar-right div .font-medium{
+ text-transform:capitalize;
+}
+
+/* Widget */
+#right-news-widget{
+ height:450px;
+ position:relative;
+ top:4px;
+}
+
+/* Widget */
+#right-news-widget{
+ height:450px;
+ position:relative;
+ top:4px;
+ margin-bottom:35px !important;
+}
+
+/* Widget */
+#sidebar-right .widget:nth-child(11){
+ min-height:200px;
+}
+
+/* Text end */
+.hentry .text-sm .text-end{
+ margin-top:10px;
+ font-size:12px;
+}
+
