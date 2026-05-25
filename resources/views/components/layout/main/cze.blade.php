@@ -95,14 +95,14 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
+                {{-- <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="https://www.prarang.in/india-nepal">India-Nepal
                             Portal</a>
                         </a>
                     </li>
 
-                </ul>
+                </ul> --}}
             </div>
         </div>
     </nav>

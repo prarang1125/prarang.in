@@ -230,6 +230,7 @@
                                                             {!! $sentence !!}
                                                         @endforeach
                                                     </p>
+                                                    <p class="text-end"><strong>Source:</strong> India Tourism Data Compendium. Ministry of Tourism, Government of India.</p>
                                                 </div>
                                                 @if ($main->is_active)
                                                     <!-- CATEGORY CONTENT : begin -->
@@ -271,7 +272,7 @@
                                                     <div class="flex flex-col">
                                                         <h4 class="text-center fw-bold">Development Planners</h4>
                                                         <a class="planner-btns btn btn-primary" target="_blank"
-                                                            href="https://g2c.prarang.in/world/development-planner?country={{ $primary->anlytics_code }}"
+                                                            href="https://g2c.prarang.in/world/development-planner?country={{ $primary->anlytics_code }}-{{ $secondary->anlytics_code }}"
                                                             target="_blank">World
                                                         </a>
                                                         <a class="planner-btns btn btn-primary" target="_blank"
@@ -283,7 +284,7 @@
 
                                                         <h4 class="text-center fw-bold">Market Planners</h4>
                                                         <a class="planner-btns btn btn-primary " target="_blank"
-                                                            href="https://g2c.prarang.in/world/market-planner?country={{ $primary->anlytics_code }}">World
+                                                            href="https://g2c.prarang.in/world/market-planner?country={{ $primary->anlytics_code }}-{{ $secondary->anlytics_code }}">World
                                                         </a>
                                                         <a class="planner-btns btn btn-primary" target="_blank"
                                                             href="https://g2c.prarang.in/india/market-planner/states">India</a>
