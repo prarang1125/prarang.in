@@ -1,4 +1,5 @@
 <div class="important-links-list space-y-4">
+
     @if (!empty($data->important_links) && is_array($data->important_links))
         @foreach ($data->important_links as $key => $links)
             <div class="link-group">

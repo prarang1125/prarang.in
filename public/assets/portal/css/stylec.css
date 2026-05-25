@@ -2526,3 +2526,8 @@ body {
 .sidebar-right__inner div .justify-center{
  padding-top:3px !important;
 }
+/* Table Data */
+#sidebar-right .transition:nth-child(14) .py-3:nth-child(1){
+ height:42px;
+}
+

@@ -12,6 +12,114 @@
         #secondary-language {
             color: #020202 !important;
         }
+
+        @media (max-width:480px) {
+
+            /* Text cenetr */
+            .pb-3 .pp .text-cenetr {
+                height: 50px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* Button */
+            .pb-3 .pp .btn-primary {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            /* Table Data */
+            #metrics-cze-modal .transition .px-5 {
+                padding-top: 2px !important;
+                padding-bottom: 3px !important;
+                padding-right: 2px !important;
+                padding-left: 9px !important;
+            }
+
+            /* Tracking wider */
+            #metrics-cze-modal tr .tracking-wider {
+                padding-left: 6px !important;
+                padding-right: 10px !important;
+            }
+
+            /* Tracking wider */
+            #metrics-ind-modal tr .tracking-wider {
+                padding-left: 5px !important;
+            }
+
+            /* Table Data */
+            #metrics-ind-modal .transition .px-5 {
+                padding-left: 7px !important;
+                padding-top: 4px !important;
+                padding-bottom: 0px !important;
+                padding-right: 8px !important;
+            }
+
+            /* Font bold */
+            #analytics-cze-modal .items-center .font-bold {
+                border-style: none;
+                color: #ffffff !important;
+            }
+
+            /* Justify center */
+            #analytics-cze-modal .analytics-grid .justify-center {
+                padding-top: 2px !important;
+                height: 38px;
+                color: #ffffff;
+                background-color: #116dc9 !important;
+            }
+
+            /* Rounded */
+            .max-w-md .mb-4 .overflow-hidden>.grid>.rounded-xl {
+                min-height: 243px;
+            }
+
+            /* Division */
+            #container-openweathermap-widget-in .widget-left--compact .widget-left-menu__links--compact {
+                visibility: hidden;
+                min-height: 12px;
+                height: 12px;
+            }
+
+            /* Division */
+            #container-openweathermap-widget-12 .widget-left--compact .widget-left-menu__links--compact {
+                visibility: hidden;
+                min-height: 0px;
+                height: 0px;
+            }
+
+            /* Container openweathermap widget 12 */
+            #container-openweathermap-widget-12 {
+                box-shadow: 0px 0px 0px -50px #565656;
+            }
+
+            /* Widget left  compact */
+            #container-openweathermap-widget-12 .widget-left--compact {
+                width: 377px;
+            }
+
+            /* Widget left  compact */
+            #container-openweathermap-widget-in .widget-left--compact {
+                width: 381px;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                height: 235px;
+            }
+
+        }
+    </style>
+    <style>
+        @media (max-width:480px){
+
+ /* Overflow hidden */
+ .max-w-md .mb-4:nth-child(12) .overflow-hidden{
+  height:117px !important;
+ }
+
+}
     </style>
     <main class="max-w-md mx-auto px-3 pb-10">
 
@@ -130,82 +238,70 @@
             </div>
         </section>
         {{-- ===== 5.5. CURRENCY EXCHANGE ===== --}}
-<section class="mb-4">
-    <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
-        <div class="px-4 py-3 border-b border-gray-100">
-            <h2 class="text-base font-semibold text-gray-900 text-center">
-                <i class="fa fa-exchange mr-1.5 text-green-600"></i> Currency Exchange
-            </h2>
-        </div>
-        <div class="px-4 py-3 grid grid-cols-2 gap-3">
-            @php
-                $rates = \Illuminate\Support\Facades\Cache::remember(
-                    'exchange-rates-usd',
-                    now()->addHours(12),
-                    function () {
-                        return \Illuminate\Support\Facades\Http::get(
-                            'https://v6.exchangerate-api.com/v6/e1d88a31b3bf6bb1e7a3f27f/latest/USD',
-                        )->json('conversion_rates') ?? [];
-                    },
-                );
+        <section class="mb-4">
+            <div class="bg-white rounded-xl border border-gray-200 shadow-sm overflow-hidden">
+                <div class="px-4 py-3 border-b border-gray-100">
+                    <h2 class="text-base font-semibold text-gray-900 text-center">
+                        <i class="fa fa-exchange mr-1.5 text-green-600"></i> Currency Exchange
+                    </h2>
+                </div>
+                <div class="px-4 py-3 grid grid-cols-2 gap-3">
+                    @php
+                        $rates = \Illuminate\Support\Facades\Cache::remember(
+                            'exchange-rates-usd',
+                            now()->addHours(12),
+                            function () {
+                                return \Illuminate\Support\Facades\Http::get(
+                                    'https://v6.exchangerate-api.com/v6/e1d88a31b3bf6bb1e7a3f27f/latest/USD',
+                                )->json('conversion_rates') ?? [];
+                            },
+                        );
 
-                $primaryCurrency = strtoupper($main->primary_currency);
-                $secondaryCurrency = strtoupper($main->secondary_currency);
+                        $primaryCurrency = strtoupper($main->primary_currency);
+                        $secondaryCurrency = strtoupper($main->secondary_currency);
 
-                $exchangeCze = [];
-                $exchangeInd = [];
+                        $exchangeCze = [];
+                        $exchangeInd = [];
 
-                if (isset($rates[$primaryCurrency]) && isset($rates[$secondaryCurrency])) {
-                    $fromRate = $rates[$primaryCurrency];
-                    $toRate = $rates[$secondaryCurrency];
+                        if (isset($rates[$primaryCurrency]) && isset($rates[$secondaryCurrency])) {
+                            $fromRate = $rates[$primaryCurrency];
+                            $toRate = $rates[$secondaryCurrency];
 
-                    $exchangeCze = [
-                        "1 {$primaryCurrency}" => round($toRate / $fromRate, 2) . " {$secondaryCurrency}",
-                        "1 USD"               => round($toRate, 2) . " {$secondaryCurrency}",
-                    ];
+                            $exchangeCze = [
+                                "1 {$primaryCurrency}" => round($toRate / $fromRate, 2) . " {$secondaryCurrency}",
+                                '1 USD' => round($toRate, 2) . " {$secondaryCurrency}",
+                            ];
 
-                    $exchangeInd = [
-                        "1 {$secondaryCurrency}" => round($fromRate / $toRate, 4) . " {$primaryCurrency}",
-                        "1 USD"                  => round($fromRate, 2) . " {$primaryCurrency}",
-                    ];
-                }
-            @endphp
+                            $exchangeInd = [
+                                "1 {$secondaryCurrency}" => round($fromRate / $toRate, 4) . " {$primaryCurrency}",
+                                '1 USD' => round($fromRate, 2) . " {$primaryCurrency}",
+                            ];
+                        }
+                    @endphp
 
-            {{-- Primary Country Currency Card --}}
-            <div class="w-full py-3 px-3 bg-blue-50 border border-blue-200 rounded-lg text-center">
-                <div class="text-xs font-bold text-blue-800 mb-1">{{ $primary->country_name }}</div>
-                @foreach ($exchangeCze as $from => $to)
-                    <div class="text-[11px] font-mono text-blue-600 leading-snug">
-                        {{ $from }} = <span class="font-bold">{{ $to }}</span>
+                    {{-- Primary Country Currency Card --}}
+                    <div class="w-full py-3 px-3 bg-blue-50 border border-blue-200 rounded-lg text-center">
+                        @foreach ($exchangeCze as $from => $to)
+                            <div class="text-[11px] font-mono text-blue-600 leading-snug">
+                                {{ $from }} = <span class="font-bold">{{ $to }}</span>
+                            </div>
+                        @endforeach
+
                     </div>
-                @endforeach
-                <div class="mt-1.5">
-                    <a href="https://www.xe.com/currencycharts/?from={{ $main->primary_currency }}&to={{ $main->secondary_currency }}"
-                        target="_blank" class="text-[10px] text-blue-400 hover:text-blue-600">
-                        xe.com <i class="fa fa-external-link" style="font-size:9px;"></i>
-                    </a>
+
+                    {{-- Secondary Country Currency Card --}}
+                    <div class="w-full py-3 px-3 bg-orange-50 border border-orange-200 rounded-lg text-center">
+                        @foreach ($exchangeInd as $from => $to)
+                            <div class="text-[11px] font-mono text-orange-600 leading-snug">
+                                {{ $from }} = <span class="font-bold">{{ $to }}</span>
+                            </div>
+                        @endforeach
+
+                    </div>
+
                 </div>
             </div>
-
-            {{-- Secondary Country Currency Card --}}
-            <div class="w-full py-3 px-3 bg-orange-50 border border-orange-200 rounded-lg text-center">
-                <div class="text-xs font-bold text-orange-800 mb-1">{{ $secondary->country_name }}</div>
-                @foreach ($exchangeInd as $from => $to)
-                    <div class="text-[11px] font-mono text-orange-600 leading-snug">
-                        {{ $from }} = <span class="font-bold">{{ $to }}</span>
-                    </div>
-                @endforeach
-                <div class="mt-1.5">
-                    <a href="https://www.xe.com/currencycharts/?from={{ $main->secondary_currency }}&to={{ $main->primary_currency }}"
-                        target="_blank" class="text-[10px] text-orange-400 hover:text-orange-600">
-                        xe.com <i class="fa fa-external-link" style="font-size:9px;"></i>
-                    </a>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</section>
+        </section>
 
 
         {{-- ===== HERO IMAGE + LOGIN ===== --}}
@@ -241,7 +337,8 @@
                         @foreach ($pageSlm['sentences'] as $sentence)
                             {!! $sentence !!}
                         @endforeach
-                    </p>
+                    </p><br>
+                     <p class="text-sm"><strong>Source:</strong> India Tourism Data Compendium. Ministry of Tourism, Government of India.</p>
                 </div>
             </section>
         @endif
@@ -525,7 +622,8 @@
                     {{-- Development Planners --}}
                     <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Development Planners</h3>
                     <div class="grid grid-cols-2 gap-2 mb-4">
-                        <a href="https://g2c.prarang.in/world/development-planner?country={{ $primary->anlytics_code }}-{{ $secondary->anlytics_code }}" target="_blank"
+                        <a href="https://g2c.prarang.in/world/development-planner?country={{ $primary->anlytics_code }}-{{ $secondary->anlytics_code }}"
+                            target="_blank"
                             class="block py-2.5 px-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg transition-colors text-center text-xs font-semibold">
                             🌍 World
                         </a>
@@ -539,7 +637,8 @@
                     {{-- Market Planners --}}
                     <h3 class="text-xs font-bold text-gray-500 uppercase tracking-wider mb-2">Market Planners</h3>
                     <div class="grid grid-cols-2 gap-2">
-                        <a href="https://g2c.prarang.in/world/market-planner?country={{ $primary->anlytics_code }}-{{ $secondary->anlytics_code }}" target="_blank"
+                        <a href="https://g2c.prarang.in/world/market-planner?country={{ $primary->anlytics_code }}-{{ $secondary->anlytics_code }}"
+                            target="_blank"
                             class="block py-2.5 px-3 bg-emerald-700 hover:bg-emerald-600 text-white rounded-lg transition-colors text-center text-xs font-semibold">
                             🌍 World
                         </a>
@@ -573,16 +672,8 @@
                         <x-biletral-portal-aside.analytics-data :data="$primary" side="left" />
                     </x-ui.modal>
 
-                    <x-ui.modal id="analytics-ind-modal">
-                        <x-slot name="title">{{ $secondary->country_name ?? 'India' }} Analytics</x-slot>
-                        <x-slot name="button">
-                            <div
-                                class="w-full py-3 px-3 bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-lg transition-colors text-sm font-semibold text-orange-800">
-                                {{ $secondary->country_name }}
-                            </div>
-                        </x-slot>
-                        <x-biletral-portal-aside.analytics-data :data="$secondary" side="right" />
-                    </x-ui.modal>
+                     <a href="https://g2c.prarang.in/{{ $secondary->analytics_slug }}" target="_blank" class="w-full py-2 text-center px-3 bg-orange-50 hover:bg-orange-100 border border-orange-200 rounded-lg transition-colors text-sm font-semibold text-orange-800">
+                                {{ $secondary->country_name }}</a>
                 </div>
             </div>
         </section>
@@ -611,7 +702,7 @@
                         <i class="fa fa-cloud mr-1.5 text-cyan-600"></i> Weather
                     </h2>
                 </div>
-                <div class="px-4 py-3 grid grid-cols-2 gap-3">
+                <div class="px-4 py-3 grid grid-cols-1 gap-3">
                     <div class="p-3 bg-blue-50/30 rounded-xl border border-blue-50">
                         @if (!empty($primary->weather))
                             <div class="weather-content scale-90 origin-top">
