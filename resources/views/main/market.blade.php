@@ -565,6 +565,26 @@
             font-size: 10px;
         }
     </style>
+    <style>
+        /* Link */
+.container .flex-column a{
+ background-color:#134de1;
+ padding-left:5px;
+ padding-right:5px;
+ padding-top:5px;
+ padding-bottom:5px;
+ margin-top:9px;
+ width:185px;
+ text-align:center;
+ text-decoration:none;
+ border-top-left-radius:6px;
+ border-top-right-radius:6px;
+ border-bottom-left-radius:6px;
+ border-bottom-right-radius:6px;
+}
+
+
+    </style>
     <section class="container">
         <div class="row">
             <div class="col-lg-8 mb-4">

@@ -255,20 +255,13 @@
                                             <h3 class="text-center h5 fw-bold ">Knowledge By Comparison A.I.</h3>
                                             <div class="comparison-links-new px-3 pb-2">
                                                 <a class="comparison-btn" target="_blank"
-                                                    href="{{ url(
-                                                        '/' .
-                                                            $primary->country_name .
-                                                            '/' .
-                                                            $secondary->country_name .
-                                                            "
-                                                                                                                                  /country-comparison/" .
-                                                            $secondary->anlytics_code .
-                                                            '/' .
-                                                            $primary->anlytics_code,
-                                                    ) }}">
-                                                    <strong>Country Comparison :&nbsp;</strong> <span>Compare
-                                                        {{ $secondary->country_name }} and {{ $primary->country_name }}
-                                                        with Other Countries</span>
+                                                    href="{{ url('/' . $primary->country_name . '/' . $secondary->country_name . '/country-comparison/' . $secondary->anlytics_code . '/' . $primary->anlytics_code) }}">
+                                                    <strong>Country Comparison :&nbsp;</strong>
+                                                    <span>
+                                                        Compare {{ $secondary->country_name }} and
+                                                        {{ $primary->country_name }}
+                                                        with Other Countries
+                                                    </span>
                                                 </a>
 
                                             </div>
@@ -299,7 +292,7 @@
                                                 </div>
 
                                                 @php
-                                                    $isActive=$main->is_active
+                                                    $isActive = $main->is_active;
                                                 @endphp
                                                 <x-portal.ai-reports :primary="$primary" :secondary="$secondary"
                                                     :cities="$indianCities" :zone="$stateZones" :isActive="$isActive" />
