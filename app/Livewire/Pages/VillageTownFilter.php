@@ -124,7 +124,7 @@ class VillageTownFilter extends Component
             if ($this->type === 'town') {
                 // Load towns at state level (no district required)
                 $this->loadVillagesAndTowns();
-                $this->loadAllTypeOfCities();
+                // $this->loadAllTypeOfCities();
             }
         } else {
             $this->reset([
@@ -343,6 +343,7 @@ class VillageTownFilter extends Component
 
     public function updatedCatState($value)
     {
+
         if ($value) {
             $this->reset([
                 'state',
@@ -364,7 +365,7 @@ class VillageTownFilter extends Component
                 'mcp',
                 'smc'
             ]);
-            $this->state = $value;
+            // $this->state = $value;
             $this->cat_state = $value;
             $this->loadDistricts();
             $this->loadAllTypeOfCities();

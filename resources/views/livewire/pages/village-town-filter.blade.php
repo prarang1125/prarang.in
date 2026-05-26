@@ -1048,7 +1048,7 @@
                                             {{ $parts[0] }}
 
                                             @if (isset($parts[1]))
-                                                <span class="text-xs text-gray-500">
+                                                <span class="text-xs hover:text-white text-gray-500">
                                                     [{{ $parts[1] }}]
                                                 </span>
                                             @endif
