@@ -44,13 +44,13 @@
 
                         Prarang country partnerships
                     </a>
-                    @if ($side == 'right')
-                        <a href="https://www.prarang.in/yp/czech-republic" target="_blank"
+                    @if ($side == 'left')
+                        <a href="https://www.prarang.in/yp/india" target="_blank"
                             class="btn btn-warning fw-bold px-4 rounded-pill shadow-sm text-xs">
                             Example - Czech Republic companies in India
                         </a>
                     @else
-                        <a href="https://www.prarang.in/yp/india" target="_blank"
+                        <a href="https://www.prarang.in/yp/czech-republic" target="_blank"
                             class="btn btn-warning fw-bold px-4 rounded-pill shadow-sm text-xs">
                             Example - Indian companies in Czech Republic
                         </a>
