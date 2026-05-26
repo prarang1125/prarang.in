@@ -13,12 +13,16 @@ class ImportantLinks extends Component
 
     public function __construct($data, $side = 'left')
     {
+
         $this->data = $data;
         $this->side = $side;
     }
 
     public function render(): View|Closure|string
     {
-        return view('components.biletral-portal-aside.important-links');
+        return view('components.biletral-portal-aside.important-links', [
+            'data' => $this->data,
+            'side' => $this->side
+        ]);
     }
 }

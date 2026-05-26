@@ -131,9 +131,6 @@ class PortalController extends Controller
         } catch (\Exception $e) {
             return view('portal::portal.country_new', compact('pageSlm', 'main', 'primary', 'secondary', 'locale', "indianCities", 'stateZones'));
         }
-        // return view('portal::portal.country_new', compact('main', 'primary', 'secondary', 'locale', "indianCities", 'stateZones'));
-
-        // return view('portal::portal.country', compact('main', 'primary', 'secondary', 'locale', "indianCities", 'stateZones'));
     }
 
     private function resolveView(): string

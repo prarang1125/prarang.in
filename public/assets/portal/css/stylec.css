@@ -2499,4 +2499,35 @@ body {
  margin-top:10px;
  font-size:12px;
 }
+#sidebar-right .bg-white:nth-child(5){
+ min-height:243px;
+}
+
+/* Font bold */
+.sidebar-left__inner div h2.font-bold{
+ font-size:22px;
+ position:relative;
+ top:-6px;
+}
+
+/* Justify center */
+.sidebar-left__inner div .justify-center{
+ padding-top:3px !important;
+}
+
+/* Font bold */
+.sidebar-right__inner div h2.font-bold{
+ font-size:22px;
+ position:relative;
+ top:-6px;
+}
+
+/* Justify center */
+.sidebar-right__inner div .justify-center{
+ padding-top:3px !important;
+}
+/* Table Data */
+#sidebar-right .transition:nth-child(14) .py-3:nth-child(1){
+ height:42px;
+}
 
