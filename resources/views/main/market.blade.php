@@ -567,24 +567,23 @@
     </style>
     <style>
         /* Link */
-.container .flex-column a{
- background-color:#134de1;
- padding-left:5px;
- padding-right:5px;
- padding-top:5px;
- padding-bottom:5px;
- margin-top:9px;
- width:185px;
- text-align:center;
- text-decoration:none;
- border-top-left-radius:6px;
- border-top-right-radius:6px;
- border-bottom-left-radius:6px;
- border-bottom-right-radius:6px;
-}
-
-
+        .container .flex-column a {
+            background-color: #134de1;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            margin-top: 9px;
+            width: 185px;
+            text-align: center;
+            text-decoration: none;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+        }
     </style>
+
     <section class="container">
         <div class="row">
             <div class="col-lg-8 mb-4">
@@ -608,9 +607,9 @@
                         Digital Divide -
                         India</button>
                 </div>
-                 <div class="d-flex flex-column gap-2 align-items-start">
+                <div class="d-flex flex-column gap-2 align-items-start">
                     <a href="/lang-webs?q=digital-divide-languages" class="text-light">Digital Divide 148</a>
-                      <a href="/lang-webs?q=digital-balance-languages" class="text-light">Digital Balance 30</a>
+                    <a href="/lang-webs?q=digital-balance-languages" class="text-light">Digital Balance 30</a>
                 </div>
 
 
@@ -635,8 +634,8 @@
                         </li>
                         <li><a type="button" data-bs-toggle="modal" data-bs-target="#TheseMT2"> Indian Languages -
                                 Unity of Script in Diversity of Languages.</a></li>
-                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#box25l"> India-Big non District
-                                Capital Cities</a></li>
+                        {{-- <li><a type="button" data-bs-toggle="modal" data-bs-target="#box25l"> India-Big non District
+                                Capital Cities</a></li> --}}
                         <li><a type="button" data-bs-toggle="modal" data-bs-target="#box25l2"> Multilingualism in
                                 India</a></li>
                         <li><a type="button" data-bs-toggle="modal" data-bs-target="#newbox"> India Print
