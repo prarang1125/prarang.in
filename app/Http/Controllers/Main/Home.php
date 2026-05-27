@@ -554,16 +554,18 @@ class Home extends Controller
         ]);
     }
 
-    public function indiaKnowledgeWebs(){
+    public function indiaKnowledgeWebs()
+    {
         return view('main.india_knowledge_webs');
     }
 
-    public function czechKnowledgeWebs(){
+    public function czechKnowledgeWebs()
+    {
         return view('main.czech_knowledge_webs');
     }
 
-    public function nepalKnowledgeWebs(){
+    public function nepalKnowledgeWebs()
+    {
         return view('main.nepal_knowledge_webs');
     }
-
 }
