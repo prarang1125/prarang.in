@@ -409,6 +409,62 @@
         padding-top: 5px;
 
     }
+
+    /* Paragraph */
+    #showLocalizationBox div p {
+        text-align: center;
+        height: 62px;
+        transform: translatex(0px) translatey(0px);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #86cef3;
+        border-style: solid;
+        border-color: #020202;
+        border-width: 1px;
+    }
+
+    /* Paragraph */
+    .container #showLocalizationBox .modal-xlg .modal-content .modal-body div p {
+        width: 82% !important;
+    }
+
+    /* Division */
+    #showLocalizationBox .modal-body div {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transform: translatex(0px) translatey(0px);
+    }
+
+    /* Text black */
+    #showAIReportModal .modal-xlg .text-black {
+        color: #020202 !important;
+    }
+
+    /* Link */
+    #showAIReportModal .modal-xlg a {
+        color: #020202 !important;
+    }
+
+    /* Modal body */
+
+
+    /* Text black */
+    .container .modal-xlg .text-black:nth-child(2) {
+        background-color: #fadb60;
+    }
+
+    /* Text black */
+    .container .modal-xlg .text-black:nth-child(3) {
+        background-color: #f2f6bb;
+    }
+
+    /* Image */
+    .m-0 .nkw-card img {
+        width: 100%;
+        height: 270px;
+    }
 </style>
 <x-layout.main.base :metaData="$metaData">
 
@@ -429,7 +485,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="nkw-card accent-blue">
                         <div class="nkw-img-wrap">
-                            <img src="{{ asset('assets/images/webs1.png') }}" alt="Nepal Data">
+                            <img src="{{ asset('assets/images/Data.png') }}" alt="Nepal Data">
                             <div class="nkw-img-overlay"></div>
 
                         </div>
@@ -455,7 +511,7 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="nkw-card accent-yellow">
                         <div class="nkw-img-wrap">
-                            <img src="{{ asset('assets/images/webs2.png') }}" alt="Nepal AI">
+                            <img src="{{ asset('assets/images/Text.png') }}" alt="Nepal AI">
                             <div class="nkw-img-overlay"></div>
 
                         </div>
@@ -481,16 +537,18 @@
                 <div class="col-md-6 col-lg-4">
                     <div class="nkw-card accent-red">
                         <div class="nkw-img-wrap">
-                            <img src="{{ asset('assets/images/webs3.png') }}" alt="Nepal Images">
+                            <img src="{{ asset('assets/images/Image_Nepal.png') }}" alt="Nepal Images">
                             <div class="nkw-img-overlay"></div>
 
                         </div>
                         <div class="nkw-card-body">
-                            <span class="nkw-btn btn-red btn-disabled">
+                            <span class="nkw-btn btn-red " data-bs-toggle="modal" data-bs-target="#showNepalCNModal">
 
                                 NEPAL – CULTURE/NATURE IMAGES
                             </span>
-                            <span class="nkw-btn btn-red btn-disabled">
+                            <span class="nkw-btn btn-red" data-bs-toggle="modal" data-bs-target="#showNepalCitiesModal">
+
+                                NEPAL –
 
                                 CITIES/VILLAGES : OLD/NEW IMAGES
                             </span>
@@ -513,32 +571,22 @@
         </div>
     </section>
 
-
-
-    {{-- AI Report Modal --}}
-    <div class="modal fade" id="showAIReportModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-xlg modal-dialog-centered">
+    {{-- nepal cn  --}}
+    <div class="modal fade" id="showNepalCNModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content"
                 style="border-radius:16px; overflow:hidden; border:none; box-shadow:0 20px 60px rgba(0,0,0,0.15);">
 
-                <div class="modal-header"
-                    style="background:linear-gradient(135deg,#1A4FD6,#2563eb); border:none; padding:16px 24px;">
-                    <h5 class="modal-title" style="color:#fff; font-weight:700; font-size:1.1rem;">Nepal
-                        AI Report </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        style="filter:invert(1) brightness(2);"></button>
-                </div>
+
 
                 <div class="modal-body" style="background:#f8f9fc; padding:32px 24px;">
 
-                    <p class="text-center">
-                        Nepal is divided into 7 provinces.
-                    </p>
-                    <p class="bg-blue-400 text-black py-2 rounded text-center">Nepal</p>
-                    <p class="bg-blue-200 border border-blue-400 text-black py-2 rounded text-center">Province AI
-                        Reports – Coming Soon
-                    </p>
+                    <img src="{{ asset('assets/images/NEPAL-CN-60.png') }}" alt="Nepal CN">
+                    <div class="text-end">
 
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#showOtherImgModal"
+                            class="btn btn-outline-primary btn-sm px-4">+ Others</button>
+                    </div>
                 </div>
 
                 <div class="modal-footer"
@@ -549,7 +597,94 @@
             </div>
         </div>
     </div>
+    </div>
+    <div class="modal fade" id="showNepalCitiesModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content"
+                style="border-radius:16px; overflow:hidden; border:none; box-shadow:0 20px 60px rgba(0,0,0,0.15);">
 
+
+
+                <div class="modal-body" style="background:#f8f9fc; padding:32px 24px;">
+
+                    <img src="{{ asset('assets/images/NEPAL CITIES.png') }}" alt="Nepal CN" </div>
+
+                    <div class="modal-footer"
+                        style="background:#f8f9fc; border-top:1px solid rgba(0,0,0,0.06); padding:12px 24px;">
+                        <button type="button" class="btn btn-secondary btn-sm px-4"
+                            data-bs-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="showOtherImgModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+            <div class="modal-content"
+                style="border-radius:16px; overflow:hidden; border:none; box-shadow:0 20px 60px rgba(0,0,0,0.15);">
+
+
+
+                <div class="modal-body" style="background:#f8f9fc; padding:32px 24px;">
+
+                    <img src="{{ asset('https://prarang.in/images/Process_Chart_Prarang_3.jpg') }}" alt="Nepal CN"
+                        </div>
+
+                    <div class="modal-footer"
+                        style="background:#f8f9fc; border-top:1px solid rgba(0,0,0,0.06); padding:12px 24px;">
+                        <button type="button" class="btn btn-secondary btn-sm px-4"
+                            data-bs-dismiss="modal">Close</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {{-- AI Report Modal --}}
+    <div class="modal fade" id="showAIReportModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-xlg modal-dialog-centered">
+            <div class="modal-content"
+                style="border-radius:16px; overflow:hidden; border:none; box-shadow:0 20px 60px rgba(0,0,0,0.15);">
+
+                <div class="modal-header"
+                    style="background:linear-gradient(135deg,#ffffff,#ffffff); border:none; padding:16px 24px;">
+                    <h5 class="modal-title" style="color:#000000; font-weight:700; font-size:1.1rem;">Nepal
+                        AI Report </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                        style="filter:invert(1) brightness(2);"></button>
+                </div>
+
+                <div class="modal-body" style="background:#f8f9fc; padding:32px 24px;">
+
+                    <p class="text-center">
+                        Nepal is divided into 7 provinces.
+                    </p>
+                    <p class="bg-blue-400 text-black py-2 rounded text-center">
+                        <a href="https://g2c.prarang.in/ai/nepal" class="text-white" target="_blank">Nepal</a>
+                    </p>
+                    <p class="bg-blue-200 border border-blue-400 text-black py-2 rounded text-center">Province AI
+                        Reports – Coming Soon
+                    </p>
+
+                </div>
+
+                <div class="modal-footer"
+                    style="background:#f8f9fc; border-top:1px solid rgba(0,0,0,0.06); padding:12px 24px;">
+                    <button type="button" class="btn btn-secondary btn-sm px-4"
+                        data-bs-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <style>
+        /* Modal body */
+        #showLocalizationBox .modal-xlg .modal-body {
+            padding-top: 18px !important;
+            padding-bottom: 0px !important;
+        }
+    </style>
     {{-- ══════════════════════════════════════════
          Localisation Modal
     ══════════════════════════════════════════ --}}
@@ -558,91 +693,15 @@
             <div class="modal-content"
                 style="border-radius:16px; overflow:hidden; border:none; box-shadow:0 20px 60px rgba(0,0,0,0.15);">
 
-                <div class="modal-header"
-                    style="background:linear-gradient(135deg,#1A4FD6,#2563eb); border:none; padding:16px 24px;">
-                    <h5 class="modal-title" style="color:#fff; font-weight:700; font-size:1.1rem;">🌐 Nepal
-                        Localisation</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                        style="filter:invert(1) brightness(2);"></button>
-                </div>
 
-                <div class="modal-body" style="background:#f8f9fc; padding:32px 24px;">
 
-                    <svg width="100%" viewBox="0 0 700 300" xmlns="http://www.w3.org/2000/svg" style="display:block;">
-                        <defs>
-                            <marker id="arrowB" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6"
-                                markerHeight="6" orient="auto-start-reverse">
-                                <path d="M2 1L8 5L2 9" fill="none" stroke="#1A4FD6" stroke-width="1.5"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </marker>
-                            <marker id="arrowY" viewBox="0 0 10 10" refX="8" refY="5"
-                                markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                                <path d="M2 1L8 5L2 9" fill="none" stroke="#c89000" stroke-width="1.5"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </marker>
-                            <marker id="arrowR" viewBox="0 0 10 10" refX="8" refY="5"
-                                markerWidth="6" markerHeight="6" orient="auto-start-reverse">
-                                <path d="M2 1L8 5L2 9" fill="none" stroke="#D92B2B" stroke-width="1.5"
-                                    stroke-linecap="round" stroke-linejoin="round" />
-                            </marker>
-                        </defs>
+                <div class="modal-body" style="background:#f8f9fc;">
 
-                        <!-- Central box -->
-                        <rect x="215" y="120" width="270" height="54" rx="6" fill="#fff"
-                            stroke="#b0aaa0" stroke-width="1.2" />
-                        <text x="350" y="141" text-anchor="middle" font-family="inherit" font-size="13"
-                            fill="#1a1a2e" font-weight="500">Native language translator</text>
-                        <text x="350" y="161" text-anchor="middle" font-family="inherit" font-size="12"
-                            fill="#6b7280">to be contracted</text>
-
-                        <!-- LEFT: TAG CZECH (blue) -->
-                        <rect x="10" y="44" width="172" height="40" rx="6" fill="#1A4FD6" />
-                        <text x="96" y="64" text-anchor="middle" font-family="inherit" font-size="11" fill="#fff"
-                            font-weight="700">TAG CZECH LOCALISATION</text>
-
-                        <!-- LEFT: TAG NEPALI (blue) -->
-                        <rect x="10" y="210" width="192" height="40" rx="6" fill="#1A4FD6" />
-                        <text x="96" y="230" text-anchor="middle" font-family="inherit" font-size="11"
-                            fill="#fff" font-weight="700">TAG NEPALI/HINDI LOCALISATION</text>
-
-                        <!-- Blue L-bend arrows → centre left -->
-                        <path d="M182 64 L205 64 L205 140 L215 140" fill="none" stroke="#1A4FD6"
-                            stroke-width="1.5" marker-end="url(#arrowB)" />
-                        <path d="M182 230 L205 230 L205 158 L215 158" fill="none" stroke="#1A4FD6"
-                            stroke-width="1.5" marker-end="url(#arrowB)" />
-
-                        <!-- CENTER-TOP: TEXT CZECH (yellow) -->
-                        <rect x="262" y="14" width="176" height="40" rx="6" fill="#F5C800" />
-                        <text x="350" y="34" text-anchor="middle" font-family="inherit" font-size="11"
-                            fill="#1a1a1a" font-weight="700">TEXT CZECH LOCALISATION</text>
-
-                        <!-- CENTER-BOTTOM: TEXT NEPALI (yellow) -->
-                        <rect x="262" y="240" width="176" height="40" rx="6" fill="#F5C800" />
-                        <text x="350" y="260" text-anchor="middle" font-family="inherit" font-size="11"
-                            fill="#1a1a1a" font-weight="700">TEXT NEPALI/HINDI LOCALISATION</text>
-
-                        <!-- Yellow arrows → centre top/bottom -->
-                        <line x1="350" y1="54" x2="350" y2="118" stroke="#c89000"
-                            stroke-width="1.5" marker-end="url(#arrowY)" />
-                        <line x1="350" y1="240" x2="350" y2="176" stroke="#c89000"
-                            stroke-width="1.5" marker-end="url(#arrowY)" />
-
-                        <!-- RIGHT: TITLE CZECH (red) -->
-                        <rect x="518" y="44" width="172" height="40" rx="6" fill="#D92B2B" />
-                        <text x="604" y="64" text-anchor="middle" font-family="inherit" font-size="11"
-                            fill="#fff" font-weight="700">TITLE CZECH LOCALISATION</text>
-
-                        <!-- RIGHT: TITLE NEPALI (red) -->
-                        <rect x="518" y="210" width="172" height="40" rx="6" fill="#D92B2B" />
-                        <text x="604" y="230" text-anchor="middle" font-family="inherit" font-size="11"
-                            fill="#fff" font-weight="700">TITLE NEPALI/HINDI LOCALISATION</text>
-
-                        <!-- Red L-bend arrows → centre right -->
-                        <path d="M518 64 L495 64 L495 140 L485 140" fill="none" stroke="#D92B2B"
-                            stroke-width="1.5" marker-end="url(#arrowR)" />
-                        <path d="M518 230 L495 230 L495 158 L485 158" fill="none" stroke="#D92B2B"
-                            stroke-width="1.5" marker-end="url(#arrowR)" />
-                    </svg>
+                    <div class="">
+                        <p class="text-cenetr">
+                            Native language translator to be contracted
+                        </p>
+                    </div>
 
                 </div>
 
