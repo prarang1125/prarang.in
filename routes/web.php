@@ -16,6 +16,7 @@ use App\Livewire\Pages\CzeComparisonTool;
 use App\Livewire\Pages\CzeCountryComparison;
 use App\Livewire\Pages\NepalCountryComparison;
 use App\Livewire\Pages\Partners\IndiaCity;
+use App\Livewire\Pages\Partners\IndiaCityVillage;
 use App\Livewire\Pages\UpmanaAi;
 use App\View\Components\Layout\Main\Base;
 use Illuminate\Support\Facades\Route;
@@ -50,6 +51,7 @@ Route::prefix('/')->group(function () {
 Route::prefix('partners')->group(function () {
     Route::get('/', [Partners::class, 'partners'])->name('partners');
     Route::get('/india-city/{hashId?}', IndiaCity::class)->name('partners.india-city');
+    Route::get('/city-village-selector/{hashId?}', IndiaCityVillage::class)->name('partners.india-town');
 });
 
 

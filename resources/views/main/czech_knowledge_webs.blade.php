@@ -7,7 +7,6 @@
         ]),
         'nav-sub-heading' => '',
     ];
-
     $title = 'Czech Republic';
     $code = 'czech-republic';
 @endphp
@@ -442,7 +441,6 @@
     }
 </style>
 <x-layout.main.base :metaData="$metaData">
-
     <section class="nepal-webs-section nepal-webs">
         <div class="m-0 p-0">
 

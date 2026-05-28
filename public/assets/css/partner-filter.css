@@ -1,0 +1,106 @@
+/* .pf-panel {
+    min-height: 95vh !important;
+    overflow-y: scroll !important;
+    overflow-x: hidden !important;
+} */
+/* partner-filter.css */
+
+#cities-village-filter-main .pf-panel {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* or a fixed height, e.g. 480px */
+    /* max-height: 80vh; */
+
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* clips children to rounded corners */
+}
+
+/* ── Header ── */
+#cities-village-filter-main .pf-header {
+    flex-shrink: 0; /* never squish */
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 14px 20px;
+    background: #fff;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+/* ── Scrollable body ── */
+#cities-village-filter-main .pf-body {
+    flex: 1; /* takes all remaining space */
+    overflow-y: auto;
+    padding: 16px 20px;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ── Footer ── */
+#cities-village-filter-main .pf-footer {
+    flex-shrink: 0; /* never squish */
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+
+    padding: 12px 20px;
+    background: #fff;
+    border-top: 1px solid #e5e7eb;
+}
+
+@keyframes rotate {
+    100% {
+        transform: rotate(1turn);
+    }
+}
+
+.rainbow {
+    position: relative;
+    z-index: 0;
+
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+    font-weight: bold;
+
+    &::before {
+        content: "";
+        position: absolute;
+        z-index: -2;
+        left: -50%;
+        top: -50%;
+        width: 200%;
+        height: 200%;
+        background-color: #399953;
+        background-repeat: no-repeat;
+        background-size:
+            50% 50%,
+            50% 50%;
+        background-position:
+            0 0,
+            100% 0,
+            100% 100%,
+            0 100%;
+        background-image:
+            linear-gradient(#399953, #399953),
+            linear-gradient(#fbb300, #fbb300),
+            linear-gradient(#d53e33, #d53e33), linear-gradient(#377af5, #377af5);
+        animation: rotate 4s linear infinite;
+    }
+
+    &::after {
+        content: "";
+        position: absolute;
+        z-index: -1;
+        left: 6px;
+        top: 6px;
+        width: calc(100% - 12px);
+        height: calc(100% - 12px);
+        background: white;
+        border-radius: 5px;
+    }
+}
