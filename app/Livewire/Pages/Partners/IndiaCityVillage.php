@@ -139,7 +139,9 @@ class IndiaCityVillage extends Component
 
         $this->selectedTownsList[] = [
             'id' => $townId,
-            'name' => $townName
+            'name' => $townName,
+            'state_id' => $this->townState,
+            'district_id' => $this->townDistrict,
         ];
     }
 
@@ -181,7 +183,9 @@ class IndiaCityVillage extends Component
 
         $this->selectedVillagesList[] = [
             'id' => $villageId,
-            'name' => $villageName
+            'name' => $villageName,
+            'state_id' => $this->villageState,
+            'district_id' => $this->villageDistrict,
         ];
     }
 
@@ -200,24 +204,18 @@ class IndiaCityVillage extends Component
 
     public function confirmSelection()
     {
-        dd([
-            'selected_towns' => $this->selectedTownsList,
-            'selected_villages' => $this->selectedVillagesList,
-        ]);
+        $formattedTowns = collect($this->selectedTownsList)->map(function ($town) {
+            $parts = array_filter([$town['state_id'] ?? null, $town['district_id'] ?? null, $town['id']]);
+            return implode('-', $parts);
+        })->toArray();
 
-        $this->dispatch('partner-location-selection-updated', [
-            'townState' => $this->townState,
-            'townDistrict' => $this->townDistrict,
-            'villageState' => $this->villageState,
-            'villageDistrict' => $this->villageDistrict,
-            'villageSubDistrict' => $this->villageSubDistrict,
-            'towns' => $this->selectedTownIds,
-            'villages' => $this->selectedVillageIds,
+        $formattedVillages = collect($this->selectedVillagesList)->map(function ($village) {
+            return ($village['state_id'] ?? '') . '-' . ($village['district_id'] ?? '') . '-' . $village['id'];
+        })->toArray();
 
-            // Keep these for backward compatibility if parent expects them
-            'state' => $this->townState ?: $this->villageState,
-            'district' => $this->townDistrict ?: $this->villageDistrict,
-            'subDistrict' => $this->villageSubDistrict,
+        $this->dispatch('submit-partner-step-2', [
+            'cities' => $formattedTowns,
+            'villages' => $formattedVillages,
         ]);
     }
 
@@ -264,6 +262,7 @@ class IndiaCityVillage extends Component
 
     protected function getCachedFilterData(array $params)
     {
+        $params['for_partner'] = 1;
         $cacheKey = 'partner_city_village_filter_' . md5(json_encode($params));
 
         return cache()->remember($cacheKey, now()->addDay(), function () use ($params) {

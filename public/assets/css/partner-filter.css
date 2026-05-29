@@ -182,3 +182,8 @@
 [x-cloak] {
     display: none !important;
 }
+
+/* Shadow */
+.pf-body .sm\:p-6>.shadow-sm {
+    margin-top: 18px !important;
+}
