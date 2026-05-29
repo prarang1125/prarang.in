@@ -8,18 +8,20 @@
 #cities-village-filter-main .pf-panel {
     display: flex;
     flex-direction: column;
-    height: 100%; /* or a fixed height, e.g. 480px */
+    /* height: 100%; or a fixed height, e.g. 480px */
     /* max-height: 80vh; */
 
     background: #fff;
     border-radius: 12px;
     box-shadow: 0 4px 24px rgba(0, 0, 0, 0.1);
-    overflow: hidden; /* clips children to rounded corners */
+    overflow: hidden;
+    /* clips children to rounded corners */
 }
 
 /* ── Header ── */
 #cities-village-filter-main .pf-header {
-    flex-shrink: 0; /* never squish */
+    flex-shrink: 0;
+    /* never squish */
     position: sticky;
     top: 0;
     z-index: 10;
@@ -30,7 +32,8 @@
 
 /* ── Scrollable body ── */
 #cities-village-filter-main .pf-body {
-    flex: 1; /* takes all remaining space */
+    flex: 1;
+    /* takes all remaining space */
     overflow-y: auto;
     padding: 16px 20px;
     -webkit-overflow-scrolling: touch;
@@ -38,7 +41,8 @@
 
 /* ── Footer ── */
 #cities-village-filter-main .pf-footer {
-    flex-shrink: 0; /* never squish */
+    flex-shrink: 0;
+    /* never squish */
     position: sticky;
     bottom: 0;
     z-index: 10;
@@ -103,4 +107,78 @@
         background: white;
         border-radius: 5px;
     }
+}
+
+/* Heading */
+.sm\:p-6 .shadow-sm h3 {
+    margin-bottom: 10px !important;
+}
+
+/* Heading */
+.sm\:p-6 .mt-4 h3 {
+    margin-bottom: 10px !important;
+}
+
+/* Relative */
+.sm\:p-6 .shadow-sm .grid .relative {
+    padding-top: 11px !important;
+    padding-bottom: 10px !important;
+}
+
+/* Grid */
+.sm\:p-6 .shadow-sm .grid {
+    border-style: none;
+    box-shadow: 0px 0px 0px -50px #212529;
+}
+
+#cities-village-filter-main .pf-panel .pf-body {
+    padding-top: 4px;
+}
+
+/* Division */
+.pf-panel .pf-body .sm\:p-6 {
+    padding-top: 6px !important;
+}
+
+/* Relative */
+.sm\:p-6 .mt-4 .relative {
+    padding-top: 2px !important;
+    padding-bottom: 8px !important;
+}
+
+/* Hover */
+.sm\:p-6 .mt-4 .hover\:shadow-md {
+    position: relative;
+    top: -1px;
+}
+
+/* Relative */
+.container #cities-village-filter-main .pf-panel .pf-body .sm\:p-6 div .grid .relative {
+    padding-top: 10px !important;
+    padding-bottom: 6px !important;
+}
+
+
+/* Items center */
+.sm\:p-6>div>.items-center {
+    margin-bottom: 10px !important;
+}
+
+/* Span Tag */
+.sm\:p-6 .justify-between .font-semibold span {
+    font-size: 14px;
+}
+
+/* Font semibold */
+.sm\:p-6 .mt-4 .justify-between .font-semibold {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* Font semibold */
+.sm\:p-6 .mt-4 .font-semibold:nth-child(2) {
+    background-color: #0757f7;
+}
+
+[x-cloak] {
+    display: none !important;
 }
