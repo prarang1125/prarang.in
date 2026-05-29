@@ -630,7 +630,7 @@
                     <div class="hidden lg:flex items-center justify-center text-xl text-dark">
                         <i class="bi bi-plus-circle-fill"></i>
                     </div>
-                    <a href="/india-nepal"
+                    <a href="/nepal-knowledge-webs" target="_blank"
                         class="flex  items-center justify-center flex-col justify-between text-4xl text-dark">
                         <div class="flex items-center justify-center gap-3">
                             <div class="w-6 h-6 rounded-full  bg-blue-600"></div>
@@ -688,7 +688,7 @@
                 <div class="flex gap-4  items-center justify-center">
 
 
-                    <a href="https://indiaczech.com" target="_blank"
+                    <a href="/czech-knowledge-webs" target="_blank"
                         class="hidden lg:flex flex-col items-center justify-center justify-between text-4xl text-dark ">
                         <div class="flex items-center justify-center gap-3">
                             <div class="w-6 h-6 rounded-full bg-blue-600"></div>

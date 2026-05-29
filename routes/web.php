@@ -117,5 +117,7 @@ Route::get('/{country1}/{country2}/{type}-comparison/{code1}/{code2}', NepalCoun
 Route::get('/search-trends/{city_id}/{city_name}', [PostController::class, 'searchTrends'])->name('search-trends');
 
 Route::get('/india-knowledge-webs', [Home::class, 'indiaKnowledgeWebs'])->name('home.india-knowledge-webs');
+Route::get('/czech-knowledge-webs', [Home::class, 'czechKnowledgeWebs'])->name('home.czech-knowledge-webs');
+Route::get('/nepal-knowledge-webs', [Home::class, 'nepalKnowledgeWebs'])->name('home.nepal-knowledge-webs');
 
 include __DIR__ . '/townvillaes.php';

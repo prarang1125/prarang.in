@@ -1,29 +1,29 @@
 <div class="min-h-screen  py-2 px-4 sm:px-6 lg:px-8">
     <style>
         .grid .space-y-3 label {
-            font-size: 12px;
+            font-size: .75rem;
         }
 
         .grid .space-y-3 .justify-center {
-            font-size: 12px;
+            font-size: .75rem;
         }
 
         .grid .relative .hover\:bg-white {
-            padding-top: 10px !important;
-            padding-bottom: 10px !important;
+            padding-top: .625rem !important;
+            padding-bottom: .625rem !important;
         }
 
         .min-h-screen .md\:p-12 {
-            padding-bottom: 14px;
+            padding-bottom: .875rem;
         }
 
         .md\:p-12 div .border-t {
-            margin-top: 17px;
-            padding-top: 8px;
+            margin-top: 1.0625rem;
+            padding-top: .5rem;
         }
 
         .sm\:flex-row .transition-all a {
-            height: 40px;
+            height: 2.5rem;
             display: flex;
             justify-content: flex-end;
             text-decoration: none;
@@ -40,28 +40,28 @@
         }
 
         .shadow-lg div .hover\:shadow-xl {
-            padding-left: 15px;
-            height: 158px;
+            padding-left: .9375rem;
+            height: 9.875rem;
             background-color: #f0efef !important;
-            box-shadow: 0px 0px 10px 3px #dfe1e1;
+            box-shadow: 0rem 0rem .625rem .1875rem #dfe1e1;
         }
 
         .shadow-lg div h3.tracking-tight {
-            margin-bottom: 14px;
+            margin-bottom: .875rem;
         }
 
         .shadow-lg .md\:p-12>.border {
-            padding-top: 0px !important;
-            padding-bottom: 3px !important;
+            padding-top: 0rem !important;
+            padding-bottom: .1875rem !important;
             display: flex;
             border-style: none !important;
-            margin-bottom: 19px;
-            padding-left: 5px !important;
+            margin-bottom: 1.1875rem;
+            padding-left: .3125rem !important;
         }
 
         .sm\:items-center .flex-wrap label {
-            padding-left: 7px !important;
-            padding-right: 18px !important;
+            padding-left: .4375rem !important;
+            padding-right: 1.125rem !important;
         }
 
         [x-cloak] {
@@ -69,7 +69,7 @@
         }
 
         .custom-scrollbar-premium::-webkit-scrollbar {
-            width: 5px;
+            width: .3125rem;
         }
 
         .custom-scrollbar-premium::-webkit-scrollbar-track {
@@ -78,7 +78,7 @@
 
         .custom-scrollbar-premium::-webkit-scrollbar-thumb {
             background: #e2e8f0;
-            border-radius: 10px;
+            border-radius: .625rem;
         }
 
         .custom-scrollbar-premium::-webkit-scrollbar-thumb:hover {
@@ -86,24 +86,24 @@
         }
 
         .md\:p-12 .space-y-2 label {
-            font-size: 12px;
-            height: 5px;
-            min-height: 36px;
+            font-size: .75rem;
+            height: .3125rem;
+            min-height: 2.25rem;
             display: flex;
             justify-content: normal;
             align-items: center;
         }
 
         .md\:p-12 .grid .tracking-wider {
-            min-height: 36px;
+            min-height: 2.25rem;
             display: flex;
             align-items: center;
         }
 
         .border-t .grid .justify-between {
-            padding-top: 10px !important;
-            padding-bottom: 10px !important;
-            height: 47px;
+            padding-top: .625rem !important;
+            padding-bottom: .625rem !important;
+            height: 2.9375rem;
         }
 
         .md\:p-12 .grid .tracking-wider {
@@ -111,56 +111,56 @@
         }
 
         .md\:p-12 .mb-4 h4 {
-            font-size: 15px;
+            font-size: .9375rem;
         }
 
         .md\:p-12>div>h4 {
-            font-size: 16px;
+            font-size: 1rem;
             font-weight: 700;
         }
 
         .md\:p-12 div .border-t {
             border-color: #e2dddd !important;
-            padding-top: 38px !important;
-            padding-bottom: 48px;
-            border-bottom-width: 3px;
+            padding-top: 2.375rem !important;
+            padding-bottom: 3rem;
+            border-bottom-width: .1875rem;
         }
 
         .md\:p-12 div h3 {
-            margin-top: 29px !important;
+            margin-top: 1.8125rem !important;
             border-style: none;
             border-color: #e2dddd;
-            border-width: 1px;
-            border-top-width: 3px;
+            border-width: .0625rem;
+            border-top-width: .1875rem;
             border-top-color: #efeff0;
         }
 
         .border-t .justify-between .font-bold {
-            font-size: 15px;
+            font-size: .9375rem;
         }
 
-        @media (max-width:576px) {
+        @media (max-width:36rem) {
             .md\:p-12 div .justify-center {
                 align-items: center;
             }
 
             .md\:p-12 div .border-t .grid {
-                row-gap: 0px !important;
+                row-gap: 0rem !important;
             }
 
             .md\:p-12 .grid .tracking-wider {
-                min-height: 3px !important;
-                margin-top: 9px;
+                min-height: .1875rem !important;
+                margin-top: .5625rem;
             }
         }
 
-        @media (max-width:576px) {
+        @media (max-width:36rem) {
             .border-t .grid .justify-between {
-                height: 40px !important;
+                height: 2.5rem !important;
             }
 
             .md\:p-12 div .hover\:bg-white {
-                height: 40px;
+                height: 2.5rem;
             }
 
             .space-y-6 div .flex-wrap {
@@ -172,25 +172,25 @@
             }
 
             .space-y-6 div a.hover\:shadow-lg {
-                padding-right: 3px !important;
-                padding-left: 9px !important;
-                width: 135px;
+                padding-right: .1875rem !important;
+                padding-left: .5625rem !important;
+                width: 8.4375rem;
                 flex-direction: column;
-                padding-top: 4px !important;
-                padding-bottom: 9px !important;
+                padding-top: .25rem !important;
+                padding-bottom: .5625rem !important;
             }
 
             .space-y-6 .relative .hover\:shadow-lg {
                 flex-direction: column;
                 width: 91%;
-                padding-top: 7px !important;
-                padding-bottom: 9px !important;
+                padding-top: .4375rem !important;
+                padding-bottom: .5625rem !important;
             }
         }
 
-        @media (max-width:576px) {
+        @media (max-width:36rem) {
             .md\:p-12 .grid .tracking-wider {
-                margin-top: 21px !important;
+                margin-top: 1.3125rem !important;
                 color: #587087;
             }
 
@@ -199,30 +199,30 @@
             }
         }
 
-        @media (max-width:576px) {
+        @media (max-width:36rem) {
             .border-t .grid .hover\:text-white {
-                font-size: 12px;
+                font-size: .75rem;
             }
         }
 
         .min-h-screen .md\:p-12 {
             position: relative;
-            top: -20px;
+            top: -1.25rem;
         }
 
         .md\:p-12 div .border-t {
-            margin-top: 50px !important;
-            border-width: 0px;
-            border-top-width: 3px;
+            margin-top: 3.125rem !important;
+            border-width: 0rem;
+            border-top-width: .1875rem;
         }
 
         .border-t .tracking-tighter span {
-            font-size: 16px;
+            font-size: 1rem;
         }
 
         .justify-end .transition-all a {
-            padding-top: 16px !important;
-            padding-bottom: 17px !important;
+            padding-top: 1rem !important;
+            padding-bottom: 1.0625rem !important;
         }
 
         .md\:p-12 div h3 {
@@ -230,16 +230,16 @@
         }
 
         .md\:p-12 div .border-t {
-            border-bottom-width: 2px !important;
-            padding-bottom: 38px !important;
+            border-bottom-width: .125rem !important;
+            padding-bottom: 2.375rem !important;
         }
 
         .container .min-h-screen .shadow-lg .md\:p-12 div .border-t {
-            padding-top: 30px !important;
+            padding-top: 1.875rem !important;
         }
 
         .md\:p-12 .space-y-3:nth-child(1) .tracking-wider {
-            padding-left: 9px;
+            padding-left: .5625rem;
         }
 
         .border-t .grid .space-y-3>.relative {
@@ -250,18 +250,18 @@
 
         .border-t .grid span {
             font-weight: 500;
-            font-size: 13px !important;
+            font-size: .8125rem !important;
             text-transform: capitalize;
-            padding-top: 2px;
+            padding-top: .125rem;
         }
 
-        @media (max-width:576px) {
+        @media (max-width:36rem) {
             .border-t .grid .space-y-3>.relative {
                 align-items: flex-start;
             }
 
             .border-t .grid span {
-                padding-left: 13px;
+                padding-left: .8125rem;
             }
         }
 
@@ -271,7 +271,7 @@
         }
 
         .border-t .tracking-tighter .font-extrabold {
-            font-size: 20px;
+            font-size: 1.25rem;
         }
 
         .md\:p-12 span span {
@@ -303,9 +303,9 @@
     <style>
         /* Border */
         .min-h-screen .md\:p-12 .border-t {
-            padding-bottom: 2px !important;
-            padding-top: 14px !important;
-            height: 90px;
+            padding-bottom: .125rem !important;
+            padding-top: .875rem !important;
+            height: 5.625rem;
             border-color: #c8b0b0;
 
         }
@@ -313,16 +313,16 @@
     <div class="rounded shadow-lg">
         <style>
             .container .min-h-screen .shadow-lg {
-                box-shadow: 0px 16px 48px -50px rgba(0, 0, 0, 0.176) !important;
+                box-shadow: 0rem 1rem 3rem -3.125rem rgba(0, 0, 0, 0.176) !important;
             }
 
             .shadow-lg div .border-t:nth-child(3) {
-                border-top-width: 2px;
+                border-top-width: .125rem;
                 border-top-color: #1973db;
             }
 
             .shadow-lg div h3 {
-                margin-top: 16px;
+                margin-top: 1rem;
             }
         </style>
 
@@ -332,7 +332,8 @@
                 <div class="mt-8 border-slate-100">
                     <div class="pb-4 text-center">
                         <h2 class="text-xl md:text-xl text-slate-800 tracking-tighter mb-2">
-                            Explore <span class="text-blue-700 font-extrabold text-[20px] md:text-[22px]">756</span>
+                            Explore <span
+                                class="text-blue-700 font-extrabold text-[1.25rem] md:text-[1.375rem]">756</span>
                             State/District Capital Cities of India
                             <br>
                             <span class="text-gray-500">Select <span class="text-blue-600">One</span> (out of 5)
@@ -344,7 +345,7 @@
 
                         {{-- State selector for categorised filter --}}
                         <div class="space-y-3" x-data="{ open: false, search: '' }">
-                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">Select
+                            <label class="text-[.625rem] font-black text-slate-400 uppercase tracking-wider">Select
                                 State</label>
                             <div class="relative">
                                 <button type="button" @click="open = !open"
@@ -387,7 +388,7 @@
 
                         {{-- SC --}}
                         <div class="space-y-3" x-data="{ open: false, search: '' }">
-                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">01. State
+                            <label class="text-[.625rem] font-black text-slate-400 uppercase tracking-wider">01. State
                                 Capital</label>
                             <div class="relative">
                                 <button type="button" @click="if({{ $cat_state ? 'true' : 'false' }}) open = !open"
@@ -432,7 +433,7 @@
 
                         {{-- DHQ --}}
                         <div class="space-y-3" x-data="{ open: false, search: '' }">
-                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">02.
+                            <label class="text-[.625rem] font-black text-slate-400 uppercase tracking-wider">02.
                                 District Capital (DHQ)</label>
                             <div class="relative">
                                 <button type="button" @click="if({{ $cat_state ? 'true' : 'false' }}) open = !open"
@@ -477,7 +478,7 @@
 
                         {{-- UA --}}
                         <div class="space-y-3" x-data="{ open: false, search: '' }">
-                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">03. Urban
+                            <label class="text-[.625rem] font-black text-slate-400 uppercase tracking-wider">03. Urban
                                 Agglomeration</label>
                             <div class="relative">
                                 <button type="button" @click="if({{ $cat_state ? 'true' : 'false' }}) open = !open"
@@ -522,7 +523,7 @@
 
                         {{-- MCP --}}
                         <div class="space-y-3" x-data="{ open: false, search: '' }">
-                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">04.
+                            <label class="text-[.625rem] font-black text-slate-400 uppercase tracking-wider">04.
                                 Municipal Corporation</label>
                             <div class="relative">
                                 <button type="button" @click="if({{ $cat_state ? 'true' : 'false' }}) open = !open"
@@ -567,7 +568,7 @@
 
                         {{-- SMC --}}
                         <div class="space-y-3" x-data="{ open: false, search: '' }">
-                            <label class="text-[10px] font-black text-slate-400 uppercase tracking-wider">05. Smart
+                            <label class="text-[.625rem] font-black text-slate-400 uppercase tracking-wider">05. Smart
                                 Cities</label>
                             <div class="relative">
                                 <button type="button" @click="if({{ $cat_state ? 'true' : 'false' }}) open = !open"
@@ -626,7 +627,7 @@
                         <div class="mt-8 flex justify-end">
                             <div class="w-full sm:w-auto transition-all duration-500 opacity-100 scale-100">
                                 <a target="_blank"
-                                    href="{{ url('/') }}/city/{{ url_encoder($state . '-' . $catDistrict . '-' . $catTown) }}/{{ $this->selectedSlug }}"
+                                    href="{{ url('/') }}/city/{{ url_encoder($cat_state . '-' . $catDistrict . '-' . $catTown) }}/{{ $this->selectedSlug }}"
                                     class="inline-flex items-center justify-center w-full sm:w-auto px-10 py-4
                                             bg-blue-600 text-white font-black text-sm tracking-[0.1em] uppercase rounded-2xl
                                             shadow-xl shadow-blue-200 hover:bg-blue-700 hover:shadow-blue-300 hover:-translate-y-1
@@ -645,7 +646,8 @@
                 <div class="my-12 p-4 border-t border-b border-slate-100">
                     <div class="pb-4 text-center">
                         <h2 class="text-xl md:text-xl text-slate-800 tracking-tighter mb-2">
-                            List of <span class="text-blue-700 font-extrabold text-[20px] md:text-[22px]">114</span>
+                            List of <span
+                                class="text-blue-700 font-extrabold text-[1.25rem] md:text-[1.375rem]">114</span>
                             non-State/District Capital Cities of India
                             <br>
                             <span class="text-gray-500">(with Population 1 Lakh+)
@@ -663,7 +665,7 @@
                 <div class="pb-4 text-center">
                     <h2 class="text-xl md:text-xl text-slate-800 tracking-tighter mb-2">
                         Explore All
-                        <span class="text-blue-700 font-extrabold text-[20px] md:text-[22px]">592,765</span>
+                        <span class="text-blue-700 font-extrabold text-[1.25rem] md:text-[1.375rem]">592,765</span>
                         Inhabited Villages of India
                     </h2>
                 </div>
@@ -671,7 +673,7 @@
                 <div class="pb-4 text-center">
                     <h2 class="text-xl md:text-xl text-slate-800 tracking-tighter mb-2">
                         Explore All
-                        <span class="text-blue-700 font-extrabold text-[20px] md:text-[22px]">6,331</span>
+                        <span class="text-blue-700 font-extrabold text-[1.25rem] md:text-[1.375rem]">6,331</span>
                         Cities of India (Including State/District Capitals)
                     </h2>
                 </div>
@@ -705,7 +707,7 @@
                             <button type="button" @click="open = !open"
                                 class="w-full flex items-center justify-between px-5 py-4 bg-slate-50 border-2 {{ $state ? 'border-blue-200 bg-white' : 'border-slate-100' }} rounded-2xl hover:border-blue-400 hover:bg-white transition-all duration-300 group">
                                 <span
-                                    class="text-[15px] font-bold {{ $state ? 'text-slate-900' : 'text-slate-400' }} truncate">
+                                    class="text-[.9375rem] font-bold {{ $state ? 'text-slate-900' : 'text-slate-400' }} truncate">
                                     @php
                                         $sState = collect($states)->where('id', $state)->first();
                                         echo $sState
@@ -787,7 +789,7 @@
                                 {{-- In town mode with state selected, hint that district is optional --}}
                                 @if ($type === 'town' && $state && !$district)
                                     <span
-                                        class="text-[10px] font-normal text-blue-400 ml-1 normal-case tracking-normal">(optional)</span>
+                                        class="text-[.625rem] font-normal text-blue-400 ml-1 normal-case tracking-normal">(optional)</span>
                                 @endif
                             </label>
                         </div>
@@ -797,7 +799,7 @@
                                 {{ !$state ? 'disabled' : '' }}
                                 class="w-full flex items-center justify-between px-5 py-2 bg-slate-50 border-2 {{ $district ? 'border-blue-200 bg-white' : ($state ? 'border-slate-100' : 'border-slate-50 opacity-50') }} rounded-2xl {{ $state ? 'hover:border-blue-400 hover:bg-white' : 'cursor-not-allowed' }} transition-all duration-300 group">
                                 <span
-                                    class="text-[15px] font-bold {{ $district ? 'text-slate-900' : 'text-slate-400' }} truncate">
+                                    class="text-[.9375rem] font-bold {{ $district ? 'text-slate-900' : 'text-slate-400' }} truncate">
                                     @php
                                         $sDistrict = collect($districts)->where('id', $district)->first();
                                         echo $sDistrict
@@ -888,7 +890,7 @@
                                     {{ !$district ? 'disabled' : '' }}
                                     class="w-full flex items-center justify-between px-5 py-2 bg-slate-50 border-2 {{ $subDistrict ? 'border-blue-200 bg-white' : ($district ? 'border-slate-100' : 'border-slate-50 opacity-50') }} rounded-2xl {{ $district ? 'hover:border-blue-400 hover:bg-white' : 'cursor-not-allowed' }} transition-all duration-300 group">
                                     <span
-                                        class="text-[15px] font-bold {{ $subDistrict ? 'text-slate-900' : 'text-slate-400' }} truncate">
+                                        class="text-[.9375rem] font-bold {{ $subDistrict ? 'text-slate-900' : 'text-slate-400' }} truncate">
                                         @php
                                             $sSubDistrict = collect($subDistricts)->where('id', $subDistrict)->first();
                                             echo $sSubDistrict
@@ -984,7 +986,7 @@
                                 {{ !$stepActive ? 'disabled' : '' }}
                                 class="w-full flex items-center justify-between px-5 py-2 bg-slate-50 border-2 {{ $stepDone ? 'border-blue-200 bg-white' : ($stepActive ? 'border-slate-100' : 'border-slate-50 opacity-50') }} rounded-2xl {{ $stepActive ? 'hover:border-blue-400 hover:bg-white' : 'cursor-not-allowed' }} transition-all duration-300 group">
                                 <span
-                                    class="text-[15px] font-bold {{ $stepDone ? 'text-slate-900' : 'text-slate-400' }} truncate">
+                                    class="text-[.9375rem] font-bold {{ $stepDone ? 'text-slate-900' : 'text-slate-400' }} truncate">
                                     @if ($type === 'town')
                                         @php
                                             $selectedTown = collect($towns)->where('id', (string) $town)->first();
@@ -1048,7 +1050,7 @@
                                             {{ $parts[0] }}
 
                                             @if (isset($parts[1]))
-                                                <span class="text-xs text-gray-500">
+                                                <span class="text-xs hover:text-white text-gray-500">
                                                     [{{ $parts[1] }}]
                                                 </span>
                                             @endif
@@ -1198,7 +1200,7 @@
                                                     class="absolute left-0 mt-2 w-48 bg-white border border-slate-100 rounded-2xl shadow-2xl p-2 z-[100]">
                                                     @foreach ($links as $link)
                                                         <a href="{{ $link['url'] }}" target="_blank"
-                                                            class="block w-full text-left px-4 py-2.5 rounded-xl text-[13px] font-bold text-slate-700 hover:bg-blue-600 hover:text-white transition-all duration-200 no-underline">
+                                                            class="block w-full text-left px-4 py-2.5 rounded-xl text-[.8125rem] font-bold text-slate-700 hover:bg-blue-600 hover:text-white transition-all duration-200 no-underline">
                                                             {{ $link['label'] }}
                                                         </a>
                                                     @endforeach
@@ -1232,7 +1234,7 @@
                 @else
                     <style>
                         .hover\:shadow-md .overflow-hidden img {
-                            height: 46px;
+                            height: 2.875rem;
                         }
 
                         .container .min-h-screen .shadow-lg .md\:p-12 div .grid .hover\:shadow-md .overflow-hidden img {
@@ -1246,16 +1248,16 @@
                         }
 
                         .md\:p-12 div .flex-1 {
-                            height: 82px;
-                            padding-top: 12px !important;
+                            height: 5.125rem;
+                            padding-top: .75rem !important;
                         }
 
                         .hover\:shadow-md .flex-1 p.text-xs {
-                            margin-bottom: 0px;
+                            margin-bottom: 0rem;
                         }
 
                         .md\:p-12 div .hover\:shadow-md {
-                            width: 340px;
+                            width: 21.25rem;
                         }
 
                         .md\:p-12 div h3 {
@@ -1299,24 +1301,23 @@
                 <div class="modal-body">
 
 
-                    <p>There are more than 800 districts in India as of 2024. A District Headquarter, also known as a
-                        District
-                        Capital, is the main administrative centre of a district. Each district has its own
-                        headquarters, serving
-                        as the administrative centre for the district. </p>
+                    <p>
+                        There are more than 800 districts in India as of 2026. A District Headquarters, also known as a
+                        District Capital, is the main administrative centre of a district. Each district has its own
+                        headquarters, serving as the administrative centre for the district. </p>
 
-                    <p>According to the Prarang database, there are 768 District Headquarters, of which 368 have a
+                    <p>According to the Prarang database, there are 756 District Capitals, of which 373 have a
                         population greater than 1 lakh. This data is based on estimates for 2023, derived from the 2011
                         Census by the Government of India and population growth rates. </p>
 
                     <p>As per the 2011 Census by the Government of India, there were 640 districts in India, and of
-                        these,
-                        593 districts had a population of more than 1 lakh.</p>
+                        these, 593 districts had a population of more than 1 lakh.</p>
 
                     <p>
-                        Here is a list of those cities that has population more than 1 Lakh but they are neither
-                        District
-                        Capitals nor State Capitals. </p>
+                        Here is a list of those cities that have a population of more than 1 Lakh, but they are neither
+                        District Capitals nor State Capitals.
+
+                    </p>
 
                     <img class="m-3 responsive img-fluid "
                         src="https://prarang.s3.amazonaws.com/posts-2017-24/abc_cropped_page-0001.jpg">
