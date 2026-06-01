@@ -187,3 +187,7 @@
 .pf-body .sm\:p-6>.shadow-sm {
     margin-top: 18px !important;
 }
+
+.src-tooltip-box {
+    display: none;
+}

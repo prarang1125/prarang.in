@@ -19,6 +19,12 @@ class IndiaCityVillageStepTwo extends Component
     public $selectedPlans = [];
     public $cirusData = null;
     public $hashId = null;
+    public $selectedCityPosts = [];
+    public $selectedYellowPages = [];
+    public $selectedOutdoorAds = [];
+    public $selectedDistrictAnalytics = [];
+    public $selectedSemiotics = [];
+    public $selectedPartnerMetrics = [];
 
     public $cities = [];
     public $villages = [];
@@ -45,29 +51,18 @@ class IndiaCityVillageStepTwo extends Component
             $this->cities = $request->post('cities', []);
             $this->villages = $request->post('villages', []);
 
-            $allIds = [];
-            foreach ($this->cities as $cityStr) {
-                $parts = explode('-', $cityStr);
-                $allIds[] = end($parts);
-            }
-            foreach ($this->villages as $villageStr) {
-                $parts = explode('-', $villageStr);
-                $allIds[] = end($parts);
-            }
+
 
             if (count($this->cities) > 0 || count($this->villages) > 0) {
-                Log::info('Cities submitted to step 2:', ['cities' => $this->cities, 'villages' => $this->villages]);
                 $response = httpGet('/v1/partner-filter/for-step-2', [
                     'cities' => $this->cities,
                     'villages' => $this->villages
                 ]);
 
-                Log::info('Step 2 API Response:', ['response' => $response]);
-
                 if (isset($response['Status']) && $response['Status'] === 'Success') {
                     $this->step = 2;
                     $grouped = [];
-
+                    $response = $response['data'];
                     if (isset($response['dhqs'])) {  // $data → $response
                         foreach ($response['dhqs'] as $distId => $dhq) {
                             $dhq['location_type'] = 'District Capital';
@@ -103,7 +98,7 @@ class IndiaCityVillageStepTwo extends Component
                         }
                     }
 
-                    dd($grouped);
+
                     $this->cityData = $grouped;
                     $this->sourceData = $response['source'] ?? [];
                 }
@@ -151,10 +146,24 @@ class IndiaCityVillageStepTwo extends Component
         }
     }
 
+    /**
+     * Proceed to Step 4 after selecting hosting plans.
+     */
     public function confirmPlanSelection()
     {
         $this->step = 4;
     }
+
+    /**
+     * Finalize the fourth step (city post selections).
+     */
+    public function confirmCityPostsSelection()
+    {
+        // Currently just stays on step 4; adjust if further steps are added.
+        $this->step = 4;
+    }
+
+
 
     public function changeStep($move = 'next')
     {
@@ -176,6 +185,7 @@ class IndiaCityVillageStepTwo extends Component
             'selectedPlans' => $this->selectedPlans,
             'cityData' => $this->cityData,
             'sourceData' => $this->sourceData,
+            'selectedCityPosts' => $this->selectedCityPosts,
         ];
 
         DB::table('partner-plan-ref')->insert([
