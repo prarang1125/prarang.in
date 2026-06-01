@@ -11,14 +11,19 @@ class IndiaCityVillage extends Component
     private LocationFilter $service;
 
     public array $states = [];
-    public array $districts = [];
-    public array $subDistricts = [];
+    public array $townDistricts = [];
+    public array $villageDistricts = [];
+    public array $villageSubDistricts = [];
     public array $villages = [];
     public array $towns = [];
 
-    public $state, $district, $subDistrict, $village, $town;
+    public $townState, $townDistrict, $townCityType;
+    public $villageState, $villageDistrict, $villageSubDistrict;
     public array $selectedTownIds = [];
     public array $selectedVillageIds = [];
+
+    public array $selectedTownsList = [];
+    public array $selectedVillagesList = [];
 
     public function boot()
     {
@@ -30,67 +35,82 @@ class IndiaCityVillage extends Component
         $this->states = $this->service->loadStates();
     }
 
-    public function updatedState($value)
+    public function updatedTownState($value)
     {
         if ($value) {
-            $this->district = null;
-            $this->subDistrict = null;
-            $this->village = null;
-            $this->town = null;
-            $this->districts = [];
-            $this->subDistricts = [];
-            $this->villages = [];
+            $this->townDistrict = null;
+            $this->townCityType = '';
+            $this->townDistricts = [];
             $this->towns = [];
-            $this->selectedTownIds = [];
-            $this->selectedVillageIds = [];
 
-            $this->loadDistricts();
+            $this->loadTownDistricts();
             $this->loadTownOptions();
         } else {
-            $this->resetLocationState();
+            $this->townDistrict = null;
+            $this->townCityType = '';
+            $this->townDistricts = [];
+            $this->towns = [];
         }
     }
 
-    public function updatedDistrict($value)
+    public function updatedTownCityType($value)
     {
-        if ($value) {
-            $this->subDistrict = null;
-            $this->village = null;
-            $this->town = null;
-            $this->subDistricts = [];
-            $this->villages = [];
-            $this->towns = [];
-            $this->selectedTownIds = [];
-            $this->selectedVillageIds = [];
+        $this->loadTownOptions();
+    }
 
-            $this->loadSubDistricts();
+    public function updatedTownDistrict($value)
+    {
+        $this->towns = [];
+
+        if ($value) {
             $this->loadTownOptions();
         } else {
-            $this->subDistrict = null;
-            $this->village = null;
-            $this->town = null;
-            $this->subDistricts = [];
-            $this->villages = [];
-            $this->towns = [];
-            $this->selectedTownIds = [];
-            $this->selectedVillageIds = [];
-
             $this->loadTownOptions();
         }
     }
 
-    public function updatedSubDistrict($value)
+    public function updatedVillageState($value)
     {
         if ($value) {
-            $this->village = null;
+            $this->villageDistrict = null;
+            $this->villageSubDistrict = null;
+            $this->villageDistricts = [];
+            $this->villageSubDistricts = [];
             $this->villages = [];
-            $this->selectedVillageIds = [];
+
+            $this->loadVillageDistricts();
+        } else {
+            $this->villageDistrict = null;
+            $this->villageSubDistrict = null;
+            $this->villageDistricts = [];
+            $this->villageSubDistricts = [];
+            $this->villages = [];
+        }
+    }
+
+    public function updatedVillageDistrict($value)
+    {
+        if ($value) {
+            $this->villageSubDistrict = null;
+            $this->villageSubDistricts = [];
+            $this->villages = [];
+
+            $this->loadVillageSubDistricts();
+        } else {
+            $this->villageSubDistrict = null;
+            $this->villageSubDistricts = [];
+            $this->villages = [];
+        }
+    }
+
+    public function updatedVillageSubDistrict($value)
+    {
+        if ($value) {
+            $this->villages = [];
 
             $this->loadVillageOptions();
         } else {
-            $this->village = null;
             $this->villages = [];
-            $this->selectedVillageIds = [];
         }
     }
 
@@ -104,10 +124,25 @@ class IndiaCityVillage extends Component
                 fn($selectedId) => (string) $selectedId !== $townId
             ));
 
+            $this->selectedTownsList = array_values(array_filter(
+                $this->selectedTownsList,
+                fn($item) => (string) $item['id'] !== $townId
+            ));
+
             return;
         }
 
         $this->selectedTownIds[] = $townId;
+
+        $town = collect($this->towns)->firstWhere('id', $townId);
+        $townName = $town ? $town['name'] : 'Unknown Town';
+
+        $this->selectedTownsList[] = [
+            'id' => $townId,
+            'name' => $townName,
+            'state_id' => $this->townState,
+            'district_id' => $this->townDistrict,
+        ];
     }
 
     public function removeTownSelection($townId)
@@ -115,6 +150,11 @@ class IndiaCityVillage extends Component
         $this->selectedTownIds = array_values(array_filter(
             $this->selectedTownIds,
             fn($selectedId) => (string) $selectedId !== (string) $townId
+        ));
+
+        $this->selectedTownsList = array_values(array_filter(
+            $this->selectedTownsList,
+            fn($item) => (string) $item['id'] !== (string) $townId
         ));
     }
 
@@ -128,10 +168,25 @@ class IndiaCityVillage extends Component
                 fn($selectedId) => (string) $selectedId !== $villageId
             ));
 
+            $this->selectedVillagesList = array_values(array_filter(
+                $this->selectedVillagesList,
+                fn($item) => (string) $item['id'] !== $villageId
+            ));
+
             return;
         }
 
         $this->selectedVillageIds[] = $villageId;
+
+        $village = collect($this->villages)->firstWhere('id', $villageId);
+        $villageName = $village ? $village['name'] : 'Unknown Village';
+
+        $this->selectedVillagesList[] = [
+            'id' => $villageId,
+            'name' => $villageName,
+            'state_id' => $this->villageState,
+            'district_id' => $this->villageDistrict,
+        ];
     }
 
     public function removeVillageSelection($villageId)
@@ -140,48 +195,41 @@ class IndiaCityVillage extends Component
             $this->selectedVillageIds,
             fn($selectedId) => (string) $selectedId !== (string) $villageId
         ));
+
+        $this->selectedVillagesList = array_values(array_filter(
+            $this->selectedVillagesList,
+            fn($item) => (string) $item['id'] !== (string) $villageId
+        ));
     }
 
     public function confirmSelection()
     {
-        $this->dispatch('partner-location-selection-updated', [
-            'state' => $this->state,
-            'district' => $this->district,
-            'subDistrict' => $this->subDistrict,
-            'towns' => $this->selectedTownIds,
-            'villages' => $this->selectedVillageIds,
+        $formattedTowns = collect($this->selectedTownsList)->map(function ($town) {
+            $parts = array_filter([$town['state_id'] ?? null, $town['district_id'] ?? null, $town['id']]);
+            return implode('-', $parts);
+        })->toArray();
+
+        $formattedVillages = collect($this->selectedVillagesList)->map(function ($village) {
+            return ($village['state_id'] ?? '') . '-' . ($village['district_id'] ?? '') . '-' . $village['id'];
+        })->toArray();
+
+        $this->dispatch('submit-partner-step-2', [
+            'cities' => $formattedTowns,
+            'villages' => $formattedVillages,
         ]);
     }
 
     public function getSelectedTownItemsProperty(): array
     {
-        return collect($this->towns)
-            ->whereIn('id', $this->selectedTownIds)
-            ->values()
-            ->toArray();
+        return $this->selectedTownsList;
     }
 
     public function getSelectedVillageItemsProperty(): array
     {
-        return collect($this->villages)
-            ->whereIn('id', $this->selectedVillageIds)
-            ->values()
-            ->toArray();
+        return $this->selectedVillagesList;
     }
 
-    protected function resetLocationState(): void
-    {
-        $this->district = null;
-        $this->subDistrict = null;
-        $this->village = null;
-        $this->town = null;
-        $this->districts = [];
-        $this->subDistricts = [];
-        $this->villages = [];
-        $this->towns = [];
-        $this->selectedTownIds = [];
-        $this->selectedVillageIds = [];
-    }
+    // Reset method removed as it's no longer used centrally
 
     protected function transformLocationItems(array $data): array
     {
@@ -214,6 +262,7 @@ class IndiaCityVillage extends Component
 
     protected function getCachedFilterData(array $params)
     {
+        $params['for_partner'] = 1;
         $cacheKey = 'partner_city_village_filter_' . md5(json_encode($params));
 
         return cache()->remember($cacheKey, now()->addDay(), function () use ($params) {
@@ -223,61 +272,83 @@ class IndiaCityVillage extends Component
         });
     }
 
-    protected function loadDistricts()
+    protected function loadTownDistricts()
     {
-        if (!$this->state) {
-            $this->districts = [];
-
+        if (!$this->townState) {
+            $this->townDistricts = [];
             return;
         }
 
         try {
             $districtsData = $this->getCachedFilterData([
                 'type' => 'town',
-                'state_id' => $this->state,
+                'state_id' => $this->townState,
             ])['districts'] ?? [];
 
-            $this->districts = $this->transformLocationItems($districtsData);
+            $this->townDistricts = $this->transformLocationItems($districtsData);
         } catch (\Exception $e) {
-            $this->districts = [];
+            $this->townDistricts = [];
         }
     }
 
-    protected function loadSubDistricts()
+    protected function loadVillageDistricts()
     {
-        if (!$this->district) {
-            $this->subDistricts = [];
+        if (!$this->villageState) {
+            $this->villageDistricts = [];
+            return;
+        }
 
+        try {
+            $districtsData = $this->getCachedFilterData([
+                'type' => 'village',
+                'state_id' => $this->villageState,
+            ])['districts'] ?? [];
+
+            $this->villageDistricts = $this->transformLocationItems($districtsData);
+        } catch (\Exception $e) {
+            $this->villageDistricts = [];
+        }
+    }
+
+    protected function loadVillageSubDistricts()
+    {
+        if (!$this->villageDistrict) {
+            $this->villageSubDistricts = [];
             return;
         }
 
         try {
             $subDistrictsData = $this->getCachedFilterData([
                 'type' => 'village',
-                'state_id' => $this->state,
-                'district_id' => $this->district,
+                'state_id' => $this->villageState,
+                'district_id' => $this->villageDistrict,
             ])['sub_districts'] ?? [];
 
-            $this->subDistricts = $this->transformLocationItems($subDistrictsData);
+            $this->villageSubDistricts = $this->transformLocationItems($subDistrictsData);
         } catch (\Exception $e) {
-            $this->subDistricts = [];
+            $this->villageSubDistricts = [];
         }
     }
 
     protected function loadTownOptions()
     {
-        if (!$this->state) {
+        if (!$this->townState) {
             $this->towns = [];
-
             return;
         }
 
         try {
-            $townsData = $this->getCachedFilterData([
+            $params = [
                 'type' => 'town',
-                'state_id' => $this->state,
-                'district_id' => $this->district ?: null,
-            ])['towns'] ?? [];
+                'state_id' => $this->townState,
+                'district_id' => $this->townDistrict ?: null,
+            ];
+
+            if (!empty($this->townCityType)) {
+                $params['sub_filter'] = $this->townCityType;
+            }
+
+            $townsData = $this->getCachedFilterData($params)['towns'] ?? [];
 
             $this->towns = $this->transformLocationItems($townsData);
         } catch (\Exception $e) {
@@ -287,19 +358,24 @@ class IndiaCityVillage extends Component
 
     protected function loadVillageOptions()
     {
-        if (!$this->state || !$this->district || !$this->subDistrict) {
+        if (!$this->villageState || !$this->villageDistrict || !$this->villageSubDistrict) {
             $this->villages = [];
-
             return;
         }
 
         try {
-            $villagesData = $this->getCachedFilterData([
+            $params = [
                 'type' => 'village',
-                'state_id' => $this->state,
-                'district_id' => $this->district,
-                'sub_district_id' => $this->subDistrict,
-            ])['villages'] ?? [];
+                'state_id' => $this->villageState,
+                'district_id' => $this->villageDistrict,
+                'sub_district_id' => $this->villageSubDistrict,
+            ];
+
+            if (!empty($this->townCityType)) {
+                $params['sub_filter'] = $this->townCityType;
+            }
+
+            $villagesData = $this->getCachedFilterData($params)['villages'] ?? [];
 
             $this->villages = $this->transformLocationItems($villagesData);
         } catch (\Exception $e) {

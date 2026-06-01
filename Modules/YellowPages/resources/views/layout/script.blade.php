@@ -18,7 +18,8 @@
     <meta property="og:site_name" content="Yellow Pages" />
 
     <meta property="og:title" content="@yield('meta_og_title', 'Yellow Pages - Business Directory')">
-    <meta property="og:description" content="@yield('meta_og_description', 'Find the best businesses and services near you.')">
+    <meta property="og:description"
+        content="@yield('meta_og_description', 'Find the best businesses and services near you.')">
     <meta property="og:image" content="@yield('meta_og_image', asset('assets/images/yp_logo_img.jpg'))">
     <meta property="og:url" content="{{ url()->current() }}">
 
@@ -79,7 +80,7 @@
     <script src="{{ asset('assets/vendor/purecounter/purecounter_vanilla.js') }}"></script>
     <script src="{{ asset('assets/vendor/imagesloaded/imagesloaded.pkgd.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <!-- Include Swiper JS and CSS -->
 
     <script src="{{ asset('assets/js/main.js') }}"></script>
