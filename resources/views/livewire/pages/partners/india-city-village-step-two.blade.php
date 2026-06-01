@@ -14,13 +14,13 @@
     @endsection
     <section class="mb-8">
         <div class=" p-2 overflow-x-auto">
-            <table class="w-full text-sm text-left text-gray-500 border-collapse">
+            <table class="compact-table w-full text-sm text-left text-gray-500 border-collapse">
                 <thead class="text-xs text-gray-700  bg-gray-50 border-b">
                     <tr>
-                        <th class="px-2 py-1 text-xs border text-center">Sr.</th>
-                        <th class="px-2 py-1 text-xs border text-center">City Name</th>
-                        <th class="px-2 py-1 text-xs border text-center">State</th>
-                        <th class="px-2 py-1 text-xs border text-center">
+                        <th class="px-1 py-0.5 text-xs border text-center">Sr.</th>
+                        <th class="px-1 py-0.5 text-xs border text-center">City Name</th>
+                        <th class="px-1 py-0.5 text-xs border text-center">State</th>
+                        <th class="px-1 py-0.5 text-xs border text-center">
                             Population 2011
                             <span class="src-tooltip">
                                 <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
@@ -33,7 +33,7 @@
                             </span>
                             <br> (in '000)
                         </th>
-                        <th class="px-2 py-1 text-xs border text-center">
+                        <th class="px-1 py-0.5 text-xs border text-center">
                             Population 2026
                             <span class="src-tooltip">
                                 <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
@@ -47,7 +47,7 @@
                             </span>
                             <br> (in '000)
                         </th>
-                        <th class="px-2 py-1 text-xs border text-center">
+                        <th class="px-1 py-0.5 text-xs border text-center">
                             Literacy (%)
                             <span class="src-tooltip">
                                 <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
@@ -60,7 +60,7 @@
                                     can read and write with understanding in any Language (Script) - Census 2011</span>
                             </span>
                         </th>
-                        <th class="px-2 py-1 text-xs border text-center">
+                        <th class="px-1 py-0.5 text-xs border text-center">
                             Internet Users
                             <span class="src-tooltip">
                                 <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
@@ -74,7 +74,7 @@
                             </span>
                             <br> (in '000)
                         </th>
-                        <th class="px-2 py-1 text-xs border text-center">
+                        <th class="px-1 py-0.5 text-xs border text-center">
                             Facebook Users (%)
                             <span class="src-tooltip">
                                 <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
@@ -87,7 +87,7 @@
                                     Report, FB Ad Module</span>
                             </span>
                         </th>
-                        <th class="px-2 py-1 text-xs border text-center">
+                        <th class="px-1 py-0.5 text-xs border text-center">
                             Instagram Users (%)
                             <span class="src-tooltip">
                                 <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
@@ -100,7 +100,7 @@
                                     Report, Instagram Ad Module</span>
                             </span>
                         </th>
-                        <th class="px-2 py-1 text-xs border text-center">
+                        <th class="px-1 py-0.5 text-xs border text-center">
                             LinkedIn Users (%)
                             <span class="src-tooltip">
                                 <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
@@ -113,7 +113,7 @@
                                     Report, LinkedIn Ad Module</span>
                             </span>
                         </th>
-                        <th class="px-2 py-1 text-xs border text-center">
+                        <th class="px-1 py-0.5 text-xs border text-center">
                             X (Twitter) Users (%)
                             <span class="src-tooltip">
                                 <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
@@ -126,7 +126,7 @@
                                     Ad Module</span>
                             </span>
                         </th>
-                        <th class="px-2 py-1 text-xs border text-center hover:text-blue-800 hover:font-bold cursor-pointer text-blue-600"
+                        <th class="px-1 py-0.5 text-xs border text-center hover:text-blue-800 hover:font-bold cursor-pointer text-blue-600"
                             onclick="window.open('/cirus','_blank')">
                             Cyber Risk Index
                             <span class="src-tooltip">
@@ -140,7 +140,7 @@
                                     Capitals on 12 metrics, standardised 0-10 scale</span>
                             </span>
                         </th>
-                        <th class="px-2 py-1 text-xs border text-center">
+                        <th class="px-1 py-0.5 text-xs border text-center">
                             Top 3 Languages &nbsp;<span class="text-blue-600"><a href="#language-star">*</a></span><br>
                             <span class="src-tooltip">
                                 <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
@@ -170,42 +170,42 @@
                     @endphp
 
                     @if($hasDhq)
-                    <tr class="bg-white border-b hover:bg-gray-50 text-gray-900">
-                        <td class="px-2 py-1 text-sm border text-center font-bold text-black">{{ $sr }}</td>
-                        <td class="px-2 py-1 text-sm border font-bold text-black">{{ $dhq['city_name'] ?? '' }}
+                    <tr class="bg-white border-b hover:bg-gray-50 odd:bg-gray-50 text-gray-900">
+                        <td class="px-1 py-0.5 text-sm border text-center font-bold text-black">{{ $sr }}</td>
+                        <td class="px-1 py-0.5 text-sm border font-bold text-black">{{ $dhq['city_name'] ?? '' }}
                             (District Capital)</td>
 
                         <td rowspan="{{ $rowspan }}"
-                            class="px-2 py-1 text-sm border font-medium text-black align-middle text-center">{{
+                            class="px-1 py-0.5 text-sm border font-medium text-black align-middle text-center">{{
                             $dhq['demo']['MSTR1'] ?? '-' }}</td>
 
-                        <td class="px-2 py-1 text-sm border font-medium text-black">{{ round((int)str_replace(',', '',
+                        <td class="px-1 py-0.5 text-sm border font-medium text-black">{{ round((int)str_replace(',', '',
                             $dhq['demo']['MSTR3'] ?? 0) / 1000) }}</td>
-                        <td class="px-2 py-1 text-sm border font-medium text-black">{{ round((int)str_replace(',', '',
+                        <td class="px-1 py-0.5 text-sm border font-medium text-black">{{ round((int)str_replace(',', '',
                             $dhq['internet']['city_population'] ?? 0) / 1000) }}</td>
-                        <td class="px-2 py-1 text-sm border text-center font-medium text-black">{{
+                        <td class="px-1 py-0.5 text-sm border text-center font-medium text-black">{{
                             isset($dhq['demo']['LAN1']) ? round((float)($dhq['demo']['LAN1'] ?? 0), 1) . '%' : '-' }}
                         </td>
-                        <td class="px-2 py-1 text-sm border text-center font-medium text-black">{{
+                        <td class="px-1 py-0.5 text-sm border text-center font-medium text-black">{{
                             round((float)($dhq['internet']['internet_users'] ?? 0)) }}</td>
-                        <td class="px-2 py-1 text-sm border text-center font-medium text-black">{{
+                        <td class="px-1 py-0.5 text-sm border text-center font-medium text-black">{{
                             isset($dhq['internet']['facebook_users']) ? round((float)($dhq['internet']['facebook_users']
                             ?? 0)) . '%' : '-' }}</td>
-                        <td class="px-2 py-1 text-sm border text-center font-medium text-black">{{
+                        <td class="px-1 py-0.5 text-sm border text-center font-medium text-black">{{
                             isset($dhq['internet']['instagram_users']) ?
                             round((float)($dhq['internet']['instagram_users'] ?? 0)) . '%' : '-' }}</td>
-                        <td class="px-2 py-1 text-sm border text-center font-medium text-black">{{
+                        <td class="px-1 py-0.5 text-sm border text-center font-medium text-black">{{
                             isset($dhq['internet']['linkedin_users']) ? round((float)($dhq['internet']['linkedin_users']
                             ?? 0)) . '%' : '-' }}</td>
-                        <td class="px-2 py-1 text-sm border text-center font-medium text-black">{{
+                        <td class="px-1 py-0.5 text-sm border text-center font-medium text-black">{{
                             isset($dhq['internet']['twitter_users']) ? round((float)($dhq['internet']['twitter_users']
                             ?? 0)) . '%' : '-' }}</td>
-                        <td class="px-2 py-1 text-sm border text-center font-medium text-black hover:text-blue-600 hover:font-bold cursor-pointer"
+                        <td class="px-1 py-0.5 text-sm border text-center font-medium text-black hover:text-blue-600 hover:font-bold cursor-pointer"
                             onclick="window.open('/cirus','_blank')">
                             {{ round((float)($cirusData[$dhq['city_id']]['risk_index'] ?? 0),1) }}
                         </td>
 
-                        <td rowspan="{{ $rowspan }}" class="px-2 py-1 text-sm border min-w-[250px] align-middle">
+                        <td rowspan="{{ $rowspan }}" class="px-1 py-0.5 text-sm border min-w-[250px] align-middle">
                             @if(isset($dhq['languages']) && is_array($dhq['languages']))
                             @php
                             $topLangs = array_slice($dhq['languages'], 0, 3, true);
@@ -232,58 +232,58 @@
                     @endif
 
                     @foreach($towns as $town)
-                    <tr class="bg-white border-b hover:bg-gray-50 text-gray-900">
-                        <td class="px-2 py-1 text-sm border text-center font-bold text-black">{{ $sr }} ({{
+                    <tr class="bg-white border-b hover:bg-gray-50 odd:bg-gray-50 text-gray-900">
+                        <td class="px-1 py-0.5 text-sm border text-center font-bold text-black">{{ $sr }} ({{
                             chr($subCharCode++) }})</td>
-                        <td class="px-2 py-1 text-sm border font-bold text-black">{{ $town['city_name'] ?? '' }} (City)
+                        <td class="px-1 py-0.5 text-sm border font-bold text-black">{{ $town['city_name'] ?? '' }} (City)
                         </td>
                         @if(!$hasDhq && $firstRow)
                         <td rowspan="{{ $rowspan }}"
-                            class="px-2 py-1 text-sm border font-medium text-black align-middle text-center">-</td>
+                            class="px-1 py-0.5 text-sm border font-medium text-black align-middle text-center">-</td>
                         @endif
-                        <td class="px-2 py-1 text-sm border font-medium text-black">{{ round((int)str_replace(',', '',
+                        <td class="px-1 py-0.5 text-sm border font-medium text-black">{{ round((int)str_replace(',', '',
                             $town['demo']['MSTR3'] ?? 0) / 1000) }}</td>
-                        <td class="px-2 py-1 text-sm border font-medium text-black">{{ round((int)str_replace(',', '',
+                        <td class="px-1 py-0.5 text-sm border font-medium text-black">{{ round((int)str_replace(',', '',
                             $town['internet']['city_population'] ?? 0) / 1000) }}</td>
-                        <td class="px-2 py-1 text-sm border text-center font-medium text-black">-</td>
-                        <td class="px-2 py-1 text-sm border text-center font-medium text-black">{{
+                        <td class="px-1 py-0.5 text-sm border text-center font-medium text-black">-</td>
+                        <td class="px-1 py-0.5 text-sm border text-center font-medium text-black">{{
                             round((float)($town['internet']['internet_users'] ?? 0)) }}</td>
-                        <td class="px-2 py-1 text-sm border text-center font-medium text-black">-</td>
-                        <td class="px-2 py-1 text-sm border text-center font-medium text-black">-</td>
-                        <td class="px-2 py-1 text-sm border text-center font-medium text-black">-</td>
-                        <td class="px-2 py-1 text-sm border text-center font-medium text-black">-</td>
-                        <td class="px-2 py-1 text-sm border text-center font-medium text-black">-</td>
+                        <td class="px-1 py-0.5 text-sm border text-center font-medium text-black">-</td>
+                        <td class="px-1 py-0.5 text-sm border text-center font-medium text-black">-</td>
+                        <td class="px-1 py-0.5 text-sm border text-center font-medium text-black">-</td>
+                        <td class="px-1 py-0.5 text-sm border text-center font-medium text-black">-</td>
+                        <td class="px-1 py-0.5 text-sm border text-center font-medium text-black">-</td>
                         @if(!$hasDhq && $firstRow)
-                        <td rowspan="{{ $rowspan }}" class="px-2 py-1 text-sm border min-w-[250px] align-middle">-</td>
+                        <td rowspan="{{ $rowspan }}" class="px-1 py-0.5 text-sm border min-w-[250px] align-middle">-</td>
                         @endif
                     </tr>
                     @php $firstRow = false; @endphp
                     @endforeach
 
                     @foreach($villages as $village)
-                    <tr class="bg-white border-b hover:bg-gray-50 text-gray-900">
-                        <td class="px-2 py-1 text-sm border text-center font-bold text-black">{{ $sr }} ({{
+                    <tr class="bg-white border-b hover:bg-gray-50 odd:bg-gray-50 text-gray-900">
+                        <td class="px-1 py-0.5 text-sm border text-center font-bold text-black">{{ $sr }} ({{
                             chr($subCharCode++) }})</td>
-                        <td class="px-2 py-1 text-sm border font-bold text-black">{{ $village['city_name'] ?? '' }}
+                        <td class="px-1 py-0.5 text-sm border font-bold text-black">{{ $village['city_name'] ?? '' }}
                             (Village)</td>
                         @if(!$hasDhq && $firstRow)
                         <td rowspan="{{ $rowspan }}"
-                            class="px-2 py-1 text-sm border font-medium text-black align-middle text-center">-</td>
+                            class="px-1 py-0.5 text-sm border font-medium text-black align-middle text-center">-</td>
                         @endif
-                        <td class="px-2 py-1 text-sm border font-medium text-black">{{ round((int)str_replace(',', '',
+                        <td class="px-1 py-0.5 text-sm border font-medium text-black">{{ round((int)str_replace(',', '',
                             $village['demo']['MSTR3'] ?? 0) / 1000) }}</td>
-                        <td class="px-2 py-1 text-sm border font-medium text-black">{{ round((int)str_replace(',', '',
+                        <td class="px-1 py-0.5 text-sm border font-medium text-black">{{ round((int)str_replace(',', '',
                             $village['internet']['city_population'] ?? 0) / 1000) }}</td>
-                        <td class="px-2 py-1 text-sm border text-center font-medium text-black">-</td>
-                        <td class="px-2 py-1 text-sm border text-center font-medium text-black">{{
+                        <td class="px-1 py-0.5 text-sm border text-center font-medium text-black">-</td>
+                        <td class="px-1 py-0.5 text-sm border text-center font-medium text-black">{{
                             round((float)($village['internet']['internet_users'] ?? 0)) }}</td>
-                        <td class="px-2 py-1 text-sm border text-center font-medium text-black">-</td>
-                        <td class="px-2 py-1 text-sm border text-center font-medium text-black">-</td>
-                        <td class="px-2 py-1 text-sm border text-center font-medium text-black">-</td>
-                        <td class="px-2 py-1 text-sm border text-center font-medium text-black">-</td>
-                        <td class="px-2 py-1 text-sm border text-center font-medium text-black">-</td>
+                        <td class="px-1 py-0.5 text-sm border text-center font-medium text-black">-</td>
+                        <td class="px-1 py-0.5 text-sm border text-center font-medium text-black">-</td>
+                        <td class="px-1 py-0.5 text-sm border text-center font-medium text-black">-</td>
+                        <td class="px-1 py-0.5 text-sm border text-center font-medium text-black">-</td>
+                        <td class="px-1 py-0.5 text-sm border text-center font-medium text-black">-</td>
                         @if(!$hasDhq && $firstRow)
-                        <td rowspan="{{ $rowspan }}" class="px-2 py-1 text-sm border min-w-[250px] align-middle">-</td>
+                        <td rowspan="{{ $rowspan }}" class="px-1 py-0.5 text-sm border min-w-[250px] align-middle">-</td>
                         @endif
                     </tr>
                     @php $firstRow = false; @endphp
@@ -351,7 +351,7 @@
     @if(count($cityData) > 0 && $step == 3)
     @section('p-header')
     <div class="text-center space-y-2">
-        <p class="text-xl font-semibold text-red-600 border-b-2 border-red-600 pb-1 inline-block mb-0">
+        <p class="text-xl font-semibold text-red-600 border-b-2 ☺border-red-600 pb-1 inline-block mb-0">
             2.A. Select Web Hosting Location
         </p>
         <p class="text-sm text-gray-600 m-0">
@@ -375,17 +375,17 @@
             </div>
 
 
-            <table class="w-full text-sm text-left text-gray-700 border-collapse border border-gray-300"
+            <table class="compact-table w-full text-sm text-left text-gray-700 border-collapse border border-gray-300"
                 x-data="{ showSocial: false }" :class="showSocial ? 'show-social' : ''">
                 <thead class="text-xs bg-gray-50 border-b border-gray-300">
                     <tr>
-                        <th rowspan="2" class="px-2 py-2 border text-center align-middle font-bold text-gray-800">S. No.
+                        <th rowspan="2" class="px-1 py-0.5 border text-center align-middle font-bold text-gray-800">S. No.
                         </th>
-                        <th rowspan="2" class="px-2 py-2 border text-center align-middle font-bold text-gray-800">City
+                        <th rowspan="2" class="px-1 py-0.5 border text-center align-middle font-bold text-gray-800">City
                         </th>
-                        <th rowspan="2" class="px-2 py-2 border text-center align-middle font-bold text-gray-800">State
+                        <th rowspan="2" class="px-1 py-0.5 border text-center align-middle font-bold text-gray-800">State
                         </th>
-                        <th rowspan="2" class="px-2 py-2 border text-center align-middle font-bold text-gray-800">
+                        <th rowspan="2" class="px-1 py-0.5 border text-center align-middle font-bold text-gray-800">
                             Population (2026)<br>('000)
                             <span class="src-tooltip">
                                 <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
@@ -398,7 +398,7 @@
                                     Census 2011</span>
                             </span>
                         </th>
-                        <th rowspan="2" class="px-2 py-2 border text-center align-middle font-bold text-gray-800">
+                        <th rowspan="2" class="px-1 py-0.5 border text-center align-middle font-bold text-gray-800">
                             Literacy (%)
                             <span class="src-tooltip">
                                 <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
@@ -411,7 +411,7 @@
                                     can read and write with understanding in any Language (Script) - Census 2011</span>
                             </span>
                         </th>
-                        <th rowspan="2" class="px-2 py-2 border text-center align-middle font-bold text-gray-800">
+                        <th rowspan="2" class="px-1 py-0.5 border text-center align-middle font-bold text-gray-800">
                             Internet Users<br>('000)
                             <span class="src-tooltip">
                                 <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
@@ -431,7 +431,7 @@
                             </button> --}}
                         </th>
 
-                        <th rowspan="2" class="px-2 py-2 border text-center align-middle font-bold text-gray-800">
+                        <th rowspan="2" class="px-1 py-0.5 border text-center align-middle font-bold text-gray-800">
                             Selected Language
                             <span class="src-tooltip">
                                 <svg class="w-3.5 h-3.5 text-gray-400 cursor-help" fill="currentColor"
@@ -444,22 +444,22 @@
                                     clubbed into 13 scripts; English includes multilingual speakers)</span>
                             </span>
                         </th>
-                        <th colspan="3" class="px-2 py-2 border text-center font-bold text-gray-800 bg-indigo-100">
+                        <th colspan="3" class="px-1 py-0.5 border text-center font-bold text-gray-800 bg-indigo-100">
                             Select Host Location</th>
                     </tr>
                     <tr class="bg-white">
-                        <th class="px-2 py-2 border text-center font-bold text-gray-800 bg-indigo-50">
+                        <th class="px-1 py-0.5 border text-center font-bold text-gray-800 bg-indigo-50">
                             Prarang.in<br>
                             <span
                                 class="text-[10px] text-gray-500 font-normal normal-case block mt-1 leading-tight">Subdomain<br>(e.g.
                                 prarang.in/partner/yourco)</span>
                         </th>
-                        <th class="px-2 py-2 border text-center font-bold text-gray-800 bg-indigo-50">
+                        <th class="px-1 py-0.5 border text-center font-bold text-gray-800 bg-indigo-50">
                             Your Website<br>
                             <span
                                 class="text-[10px] text-gray-500 font-normal normal-case block mt-1 leading-tight">Subdomain</span>
                         </th>
-                        <th class="px-2 py-2 border text-center font-bold text-gray-800 bg-indigo-50">
+                        <th class="px-1 py-0.5 border text-center font-bold text-gray-800 bg-indigo-50">
                             New Website<br>
                             <span
                                 class="text-[10px] text-gray-500 font-normal normal-case block mt-1 leading-tight">Homepage</span>
@@ -550,58 +550,59 @@
                     @php
                     $langName = isset($lang_titles[$langCode]) ? $lang_titles[$langCode] : $langCode;
                     @endphp
-                    <tr class="bg-white border-b hover:bg-gray-50">
+                    <tr class="bg-white border-b hover:bg-gray-50 odd:bg-gray-50">
                         @if($firstLang)
                         <td rowspan="{{ $langCount }}"
-                            class="px-2 py-2 text-sm border text-center font-medium align-middle">
-                            {{ $srNo }} @if($locIdx > 0 || !$hasDhq) ({{ chr($subAlphaCharCode++) }}) @endif
+                            class="px-1 py-0.5 text-sm border text-center font-medium align-middle">
+                            {{ $srNo }} @if($locIdx > 0 || !$hasDhq) ({{ chr($subAlphaCharCode++) }})
+                            @endif
                         </td>
 
                         <td rowspan="{{ $langCount }}"
-                            class="px-2 py-2 text-sm border font-semibold text-gray-900 align-middle">
+                            class="px-1 py-0.5 text-sm border font-semibold text-gray-900 align-middle">
                             {{ $loc['city_name'] ?? '' }} ({{ $loc['location_type'] === 'City' ? 'City' :
                             ($loc['location_type'] === 'District Capital' ? 'District Capital' : 'Village') }})
                         </td>
 
                         @if($isFirstLocation)
-                        <td rowspan="{{ $totalRows }}" class="px-2 py-2 text-sm border align-middle text-center">
+                        <td rowspan="{{ $totalRows }}" class="px-1 py-0.5 text-sm border align-middle text-center">
                             {{ $dhq['demo']['MSTR1'] ?? '-' }}
                         </td>
                         @endif
 
-                        <td rowspan="{{ $langCount }}" class="px-2 py-2 text-sm border text-center align-middle">
+                        <td rowspan="{{ $langCount }}" class="px-1 py-0.5 text-sm border text-center align-middle">
                             {{ number_format($pop2026InThousands, 0) }}
                         </td>
 
                         @if($isFirstLocation)
-                        <td rowspan="{{ $totalRows }}" class="px-2 py-2 text-sm border text-center align-middle">
+                        <td rowspan="{{ $totalRows }}" class="px-1 py-0.5 text-sm border text-center align-middle">
                             {{ isset($dhq['demo']['LAN1']) ? $dhq['demo']['LAN1'] . '%' : '-' }}
                         </td>
                         @endif
 
-                        <td rowspan="{{ $langCount }}" class="px-2 py-2 text-sm border text-center align-middle">
+                        <td rowspan="{{ $langCount }}" class="px-1 py-0.5 text-sm border text-center align-middle">
                             {{ number_format($internetUsersInThousands, 0) }}
                         </td>
 
                         @endif
 
-                        <td class="px-2 py-2 text-sm border align-middle">
+                        <td class="px-1 py-0.5 text-sm border align-middle">
                             <span class="text-gray-800 font-medium">{{ $langName }}</span>
                         </td>
 
-                        <td class="px-2 py-2 text-sm border text-center align-middle bg-indigo-50/30">
+                        <td class="px-1 py-0.5 text-sm border text-center align-middle bg-indigo-50/30">
                             <input type="radio" name="plan_{{ $loc['city_id'] }}_{{ $langCode }}"
                                 wire:model.live="selectedPlans.{{ $loc['city_id'] }}-{{ $langCode }}"
                                 value="{{ $loc['city_id'] }}-{{ $langCode }}-prarang"
                                 class="w-5 h-5 text-indigo-600 focus:ring-indigo-500 cursor-pointer">
                         </td>
-                        <td class="px-2 py-2 text-sm border text-center align-middle bg-indigo-50/30">
+                        <td class="px-1 py-0.5 text-sm border text-center align-middle bg-indigo-50/30">
                             <input type="radio" name="plan_{{ $loc['city_id'] }}_{{ $langCode }}"
                                 wire:model.live="selectedPlans.{{ $loc['city_id'] }}-{{ $langCode }}"
                                 value="{{ $loc['city_id'] }}-{{ $langCode }}-yourwebsite"
                                 class="w-5 h-5 text-indigo-600 focus:ring-indigo-500 cursor-pointer">
                         </td>
-                        <td class="px-2 py-2 text-sm border text-center align-middle bg-indigo-50/30">
+                        <td class="px-1 py-0.5 text-sm border text-center align-middle bg-indigo-50/30">
                             <input type="radio" name="plan_{{ $loc['city_id'] }}_{{ $langCode }}"
                                 wire:model.live="selectedPlans.{{ $loc['city_id'] }}-{{ $langCode }}"
                                 value="{{ $loc['city_id'] }}-{{ $langCode }}-newwebsite"
@@ -622,22 +623,22 @@
                 </tbody>
                 <tfoot class="bg-gray-100 border-t-2 border-gray-400 font-bold text-gray-800">
                     <tr>
-                        <td class="px-2 py-2 border text-left text-sm">Total</td>
+                        <td class="px-1 py-0.5 border text-left text-sm">Total</td>
                         <td colspan="2">{{ $countWithLanguage }}</td>
-                        <td class="px-2 py-2 border text-center text-sm">{{ number_format($totalPop2026, 0) }}</td>
-                        <td class="px-2 py-2 border text-center text-sm"></td>
-                        <td class="px-2 py-2 border text-center text-sm">{{ number_format($totalInternetUsers, 0) }}
+                        <td class="px-1 py-0.5 border text-center text-sm">{{ number_format($totalPop2026, 0) }}</td>
+                        <td class="px-1 py-0.5 border text-center text-sm"></td>
+                        <td class="px-1 py-0.5 border text-center text-sm">{{ number_format($totalInternetUsers, 0) }}
                         </td>
 
-                        <td class="px-2 py-2 border text-center text-sm font-semibold text-gray-700 bg-gray-50">Monthly
+                        <td class="px-1 py-0.5 border text-center text-sm font-semibold text-gray-700 bg-gray-50">Monthly
                             Hosting Cost</td>
-                        <td class="px-2 py-2 border text-center text-sm text-indigo-700 font-bold">₹{{
+                        <td class="px-1 py-0.5 border text-center text-sm text-indigo-700 font-bold">₹{{
                             number_format($liteTotal) }}
                         </td>
-                        <td class="px-2 py-2 border text-center text-sm text-indigo-700 font-bold">₹{{
+                        <td class="px-1 py-0.5 border text-center text-sm text-indigo-700 font-bold">₹{{
                             number_format($plusTotal) }}
                         </td>
-                        <td class="px-2 py-2 border text-center text-sm text-indigo-700 font-bold">₹{{
+                        <td class="px-1 py-0.5 border text-center text-sm text-indigo-700 font-bold">₹{{
                             number_format($primeTotal) }}
                         </td>
                     </tr>
@@ -736,7 +737,7 @@
                         <div class="mt-8 pt-6 border-t border-gray-200">
 
                             <div class="overflow-hidden border border-gray-200 rounded-lg">
-                                <table class="inclusions-table">
+                                <table class="compact-table inclusions-table">
                                     <thead>
                                         <tr>
                                             <th>Feature</th>
@@ -840,62 +841,62 @@
     @endsection
     <section class="mb-8">
         <div class="p-2 overflow-x-auto">
-            <table class="w-full text-sm text-left text-gray-700 border-collapse border border-gray-300">
+            <table class="compact-table w-full text-sm text-left text-gray-700 border-collapse border border-gray-300">
                 <thead class="text-xs bg-gray-50 border-b border-gray-300">
                     <tr>
-                        <th rowspan="3" class="px-2 py-2 border text-center align-middle font-bold text-gray-800">S. No.
+                        <th rowspan="3" class="px-1 py-0.5 border text-center align-middle font-bold text-gray-800">S. No.
                         </th>
-                        <th rowspan="3" class="px-2 py-2 border text-center align-middle font-bold text-gray-800">City
+                        <th rowspan="3" class="px-1 py-0.5 border text-center align-middle font-bold text-gray-800">City
                         </th>
-                        <th rowspan="3" class="px-2 py-2 border text-center align-middle font-bold text-gray-800">State
+                        <th rowspan="3" class="px-1 py-0.5 border text-center align-middle font-bold text-gray-800">State
                         </th>
-                        <th rowspan="3" class="px-2 py-2 border text-center align-middle font-bold text-gray-800">
+                        <th rowspan="3" class="px-1 py-0.5 border text-center align-middle font-bold text-gray-800">
                             Selected Host Location</th>
-                        <th colspan="6" class="px-2 py-2 border text-center font-bold text-gray-800 bg-green-100">
+                        <th colspan="6" class="px-1 py-0.5 border text-center font-bold text-gray-800 bg-green-100">
                             Standard Solutions</th>
-                        <th colspan="9" class="px-2 py-2 border text-center font-bold text-gray-800 bg-blue-100">City
+                        <th colspan="9" class="px-1 py-0.5 border text-center font-bold text-gray-800 bg-blue-100">City
                             Interaction Solutions</th>
                     </tr>
                     <tr>
                         <th rowspan="2"
-                            class="px-2 py-2 border text-center font-bold text-xs text-gray-800 bg-green-50">
+                            class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-green-50">
                             Content<br><span class="font-normal">(Automated Text Headlines)</span></th>
                         <th rowspan="2"
-                            class="px-2 py-2 border text-center font-bold text-xs text-gray-800 bg-green-50">
+                            class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-green-50">
                             Enrollment<br><span class="font-normal">(City-e-Cards, City Yellow Pages)</span></th>
                         <th rowspan="2"
-                            class="px-2 py-2 border text-center font-bold text-xs text-gray-800 bg-green-50">
+                            class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-green-50">
                             Planners<br><span class="font-normal">(Market Development, Cyber Risk Analysis)</span></th>
                         <th rowspan="2"
-                            class="px-2 py-2 border text-center font-bold text-xs text-gray-800 bg-green-50">District
+                            class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-green-50">District
                             Analytics<br><span class="font-normal">(Ranks Only)</span></th>
                         <th rowspan="2"
-                            class="px-2 py-2 border text-center font-bold text-xs text-gray-800 bg-green-50">
+                            class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-green-50">
                             Widgets<br><span class="font-normal">(Time, News, Weather, Maps)</span></th>
                         <th rowspan="2"
-                            class="px-2 py-2 border text-center font-bold text-xs text-gray-800 bg-green-50">Comparison
+                            class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-green-50">Comparison
                             AI</th>
 
-                        <th colspan="3" class="px-2 py-2 border text-center font-bold text-xs text-gray-800 bg-blue-50">
+                        <th colspan="3" class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-blue-50">
                             City Posts</th>
 
-                        <th rowspan="2" class="px-2 py-2 border text-center font-bold text-xs text-gray-800 bg-blue-50">
+                        <th rowspan="2" class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-blue-50">
                             City Yellow Pages<br><span class="font-normal">(Digital Marketing)</span></th>
-                        <th rowspan="2" class="px-2 py-2 border text-center font-bold text-xs text-gray-800 bg-blue-50">
+                        <th rowspan="2" class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-blue-50">
                             City Outdoor Ad Analytics<br><span class="font-normal">(Monthly)</span></th>
-                        <th rowspan="2" class="px-2 py-2 border text-center font-bold text-xs text-gray-800 bg-blue-50">
+                        <th rowspan="2" class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-blue-50">
                             District Analytics</th>
-                        <th rowspan="2" class="px-2 py-2 border text-center font-bold text-xs text-gray-800 bg-blue-50">
+                        <th rowspan="2" class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-blue-50">
                             Semiotics</th>
-                        <th rowspan="2" class="px-2 py-2 border text-center font-bold text-xs text-gray-800 bg-blue-50">
+                        <th rowspan="2" class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-blue-50">
                             Partner Metrics</th>
                     </tr>
                     <tr>
-                        <th class="px-2 py-2 border text-center font-bold text-xs text-gray-800 bg-blue-50">
+                        <th class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-blue-50">
                             Weekly<br><span class="font-normal">(₹14,000)</span></th>
-                        <th class="px-2 py-2 border text-center font-bold text-xs text-gray-800 bg-blue-50">Alternate
+                        <th class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-blue-50">Alternate
                             Day<br><span class="font-normal">(₹45,000)</span></th>
-                        <th class="px-2 py-2 border text-center font-bold text-xs text-gray-800 bg-blue-50">
+                        <th class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-blue-50">
                             Daily<br><span class="font-normal">(₹5,00,000)</span></th>
                     </tr>
                 </thead>
@@ -915,39 +916,65 @@
                     $cityHasSelectedLangs4 = false;
                     $selectedLangsForCity4 = [];
                     if($dhq && isset($dhq['languages']) && is_array($dhq['languages'])){
-                    $topLangs = array_slice($dhq['languages'], 0, 3, true);
-                    foreach($topLangs as $langCode => $langData) {
-                    if(!empty($selectedLanguages["{$distId}-{$langCode}"])) {
-                    $cityHasSelectedLangs4 = true;
-                    $selectedLangsForCity4[$langCode] = $langData;
+                        $topLangs = array_slice($dhq['languages'], 0, 3, true);
+                        foreach($topLangs as $langCode => $langData) {
+                            if(!empty($selectedLanguages["{$distId}-{$langCode}"])) {
+                                $cityHasSelectedLangs4 = true;
+                                $selectedLangsForCity4[$langCode] = $langData;
+                            }
+                        }
                     }
-                    }
+
+                    $validLocations4 = [];
+                    $totalRows4 = 0;
+                    $hasDhq4 = !is_null($dhq);
+                    
+                    if ($cityHasSelectedLangs4) {
+                        $tempLocations = [];
+                        if($dhq) $tempLocations[] = $dhq;
+                        foreach($towns as $t4) $tempLocations[] = $t4;
+                        foreach($villages as $v4) $tempLocations[] = $v4;
+
+                        foreach($tempLocations as $tLoc4) {
+                            $langsWithPlan = [];
+                            foreach($selectedLangsForCity4 as $lc4 => $ld4) {
+                                $planKey = $tLoc4['city_id'] . '-' . $lc4;
+                                // ONLY ADD TO STEP 4 IF A PLAN WAS SELECTED IN STEP 3!
+                                if (!empty($selectedPlans[$planKey])) {
+                                    $langsWithPlan[$lc4] = $ld4;
+                                }
+                            }
+                            if (count($langsWithPlan) > 0) {
+                                $validLocations4[] = [
+                                    'loc' => $tLoc4,
+                                    'langs' => $langsWithPlan
+                                ];
+                                $totalRows4 += count($langsWithPlan);
+                            }
+                        }
                     }
                     @endphp
 
-                    @if($cityHasSelectedLangs4)
+                    @if($totalRows4 > 0)
                     @php
-                    $langCount4 = count($selectedLangsForCity4);
                     $subAlpha4 = 65;
-                    $hasDhq4 = !is_null($dhq);
-                    $locations4 = [];
-                    if($dhq) $locations4[] = $dhq;
-                    foreach($towns as $t4) $locations4[] = $t4;
-                    foreach($villages as $v4) $locations4[] = $v4;
-                    $totalRows4 = count($locations4) * $langCount4;
                     $isFirstLoc4 = true;
                     @endphp
 
-                    @foreach($locations4 as $locIdx4 => $loc4)
+                    @foreach($validLocations4 as $locIdx4 => $item4)
                     @php
+                    $loc4 = $item4['loc'];
+                    $langsWithPlan = $item4['langs'];
+                    $langCount4 = count($langsWithPlan);
+
                     $firstLang4 = true;
                     $locAlpha4 = '';
                     if($locIdx4 > 0 || !$hasDhq4) {
-                    $locAlpha4 = ' (' . chr($subAlpha4++) . ')';
+                        $locAlpha4 = ' (' . chr($subAlpha4++) . ')';
                     }
                     @endphp
 
-                    @foreach($selectedLangsForCity4 as $lc4 => $ld4)
+                    @foreach($langsWithPlan as $lc4 => $ld4)
                     @php
                     $langName4 = isset($lang_titles[$lc4]) ? $lang_titles[$lc4] : $lc4;
                     $planKey4 = $loc4['city_id'] . '-' . $lc4;
@@ -965,27 +992,27 @@
                     }
                     }
                     @endphp
-                    <tr class="bg-white border-b hover:bg-gray-50">
-                        <td class="px-2 py-2 text-sm border text-center font-medium align-middle">
+                    <tr class="bg-white border-b hover:bg-gray-50 odd:bg-gray-50">
+                        <td class="px-1 py-0.5 text-sm border text-center font-medium align-middle">
                             {{ $srNo4 }}{{ $locAlpha4 }} - {{ $langName4 }}
                         </td>
                         @if($firstLang4)
                         <td rowspan="{{ $langCount4 }}"
-                            class="px-2 py-2 text-sm border font-semibold text-gray-900 align-middle">
+                            class="px-1 py-0.5 text-sm border font-semibold text-gray-900 align-middle">
                             {{ $loc4['city_name'] ?? '' }}
                             <br><span class="text-xs font-normal text-gray-500">({{ $loc4['location_type'] === 'City' ?
                                 'City' : ($loc4['location_type'] === 'District Capital' ? 'District Capital' :
                                 'Village') }})</span>
                         </td>
                         @if($isFirstLoc4)
-                        <td rowspan="{{ $totalRows4 }}" class="px-2 py-2 text-sm border align-middle text-center">
+                        <td rowspan="{{ $totalRows4 }}" class="px-1 py-0.5 text-sm border align-middle text-center">
                             {{ $dhq['demo']['MSTR1'] ?? '-' }}
                         </td>
                         @endif
                         @endif
 
                         {{-- Selected Host Location --}}
-                        <td class="px-2 py-2 text-xs border text-center align-middle font-medium
+                        <td class="px-1 py-0.5 text-xs border text-center align-middle font-medium
                             @if($hostingType4 == 'prarang') text-indigo-700
                             @elseif($hostingType4 == 'yourwebsite') text-green-700
                             @elseif($hostingType4 == 'newwebsite') text-purple-700
@@ -994,80 +1021,80 @@
                         </td>
 
                         {{-- Standard Solutions: Content --}}
-                        <td class="px-2 py-2 text-xs border text-center align-middle bg-green-50/40">
+                        <td class="px-1 py-0.5 text-xs border text-center align-middle bg-green-50/40">
                             @if($hostingType4) <span class="text-green-600">✓</span> @else <span
                                 class="text-gray-300">-</span> @endif
                         </td>
                         {{-- Enrollment --}}
-                        <td class="px-2 py-2 text-xs border text-center align-middle bg-green-50/40">
+                        <td class="px-1 py-0.5 text-xs border text-center align-middle bg-green-50/40">
                             @if($enrollCost4 > 0)
                             <span class="text-green-700 font-semibold">✓ ₹{{ number_format($enrollCost4) }}</span>
                             @else <span class="text-gray-300">-</span> @endif
                         </td>
                         {{-- Planners --}}
-                        <td class="px-2 py-2 text-xs border text-center align-middle bg-green-50/40">
+                        <td class="px-1 py-0.5 text-xs border text-center align-middle bg-green-50/40">
                             @if($hostingType4) <span class="text-green-600">✓</span> @else <span
                                 class="text-gray-300">-</span> @endif
                         </td>
                         {{-- District Analytics --}}
-                        <td class="px-2 py-2 text-xs border text-center align-middle bg-green-50/40">
+                        <td class="px-1 py-0.5 text-xs border text-center align-middle bg-green-50/40">
                             @if($hostingType4) <span class="text-green-600">✓</span> @else <span
                                 class="text-gray-300">-</span> @endif
                         </td>
                         {{-- Widgets --}}
-                        <td class="px-2 py-2 text-xs border text-center align-middle bg-green-50/40">
+                        <td class="px-1 py-0.5 text-xs border text-center align-middle bg-green-50/40">
                             @if($hostingType4) <span class="text-green-600">✓</span> @else <span
                                 class="text-gray-300">-</span> @endif
                         </td>
                         {{-- Comparison AI --}}
-                        <td class="px-2 py-2 text-xs border text-center align-middle bg-green-50/40">
+                        <td class="px-1 py-0.5 text-xs border text-center align-middle bg-green-50/40">
                             @if($hostingType4) <span class="text-green-600">✓</span> @else <span
                                 class="text-gray-300">-</span> @endif
                         </td>
 
                         {{-- City Posts: Weekly --}}
-                        <td class="px-2 py-2 text-xs border text-center align-middle bg-blue-50/30">
+                        <td class="px-1 py-0.5 text-xs border text-center align-middle bg-blue-50/30">
                             <input type="radio" name="citypost_{{ $loc4['city_id'] }}_{{ $lc4 }}"
                                 wire:model.live="selectedCityPosts.{{ $planKey4 }}" value="{{ $planKey4 }}-weekly"
                                 class="w-4 h-4 text-blue-600 cursor-pointer">
                         </td>
                         {{-- City Posts: Alternate Day --}}
-                        <td class="px-2 py-2 text-xs border text-center align-middle bg-blue-50/30">
+                        <td class="px-1 py-0.5 text-xs border text-center align-middle bg-blue-50/30">
                             <input type="radio" name="citypost_{{ $loc4['city_id'] }}_{{ $lc4 }}"
                                 wire:model.live="selectedCityPosts.{{ $planKey4 }}" value="{{ $planKey4 }}-alternateday"
                                 class="w-4 h-4 text-blue-600 cursor-pointer">
                         </td>
                         {{-- City Posts: Daily --}}
-                        <td class="px-2 py-2 text-xs border text-center align-middle bg-blue-50/30">
+                        <td class="px-1 py-0.5 text-xs border text-center align-middle bg-blue-50/30">
                             <input type="radio" name="citypost_{{ $loc4['city_id'] }}_{{ $lc4 }}"
                                 wire:model.live="selectedCityPosts.{{ $planKey4 }}" value="{{ $planKey4 }}-daily"
                                 class="w-4 h-4 text-blue-600 cursor-pointer">
                         </td>
                         {{-- City Yellow Pages --}}
-                        {{-- <td class="px-2 py-2 text-xs border text-center align-middle bg-blue-50/30"><span
+                        {{-- <td class="px-1 py-0.5 text-xs border text-center align-middle bg-blue-50/30"><span
                                 class="text-gray-300">-</span></td> --}}
                         {{-- City Yellow Pages --}}
-                        <td class="px-2 py-2 text-xs border text-center align-middle bg-blue-50/30">
+                        <td class="px-1 py-0.5 text-xs border text-center align-middle bg-blue-50/30">
                             <input type="checkbox" wire:model.live="selectedYellowPages.{{ $planKey4 }}" value="50000"
                                 class="w-4 h-4 text-blue-600 rounded cursor-pointer">
                         </td>
                         {{-- City Outdoor Ad Analytics --}}
-                        <td class="px-2 py-2 text-xs border text-center align-middle bg-blue-50/30">
+                        <td class="px-1 py-0.5 text-xs border text-center align-middle bg-blue-50/30">
                             <input type="checkbox" wire:model.live="selectedOutdoorAds.{{ $planKey4 }}" value="50000"
                                 class="w-4 h-4 text-blue-600 rounded cursor-pointer">
                         </td>
                         {{-- District Analytics --}}
-                        <td class="px-2 py-2 text-xs border text-center align-middle bg-blue-50/30">
+                        <td class="px-1 py-0.5 text-xs border text-center align-middle bg-blue-50/30">
                             <input type="checkbox" wire:model.live="selectedDistrictAnalytics.{{ $planKey4 }}" value="1"
                                 class="w-4 h-4 text-blue-600 rounded cursor-pointer">
                         </td>
                         {{-- Semiotics --}}
-                        <td class="px-2 py-2 text-xs border text-center align-middle bg-blue-50/30">
+                        <td class="px-1 py-0.5 text-xs border text-center align-middle bg-blue-50/30">
                             <input type="checkbox" wire:model.live="selectedSemiotics.{{ $planKey4 }}" value="1"
                                 class="w-4 h-4 text-blue-600 rounded cursor-pointer">
                         </td>
                         {{-- Partner Metrics --}}
-                        <td class="px-2 py-2 text-xs border text-center align-middle bg-blue-50/30">
+                        <td class="px-1 py-0.5 text-xs border text-center align-middle bg-blue-50/30">
                             <input type="checkbox" wire:model.live="selectedPartnerMetrics.{{ $planKey4 }}" value="1"
                                 class="w-4 h-4 text-blue-600 rounded cursor-pointer">
                         </td>
@@ -1092,22 +1119,22 @@
                 @endphp
                 <tfoot class="bg-gray-100 border-t-2 border-gray-400 font-bold text-gray-800">
                     <tr>
-                        <td colspan="4" class="px-2 py-2 border text-left text-sm">Total</td>
-                        <td colspan="6" class="px-2 py-2 border text-center text-xs text-gray-400">Standard Solutions
+                        <td colspan="4" class="px-1 py-0.5 border text-left text-sm">Total</td>
+                        <td colspan="6" class="px-1 py-0.5 border text-center text-xs text-gray-400">Standard Solutions
                             Included</td>
-                        <td class="px-2 py-2 border text-center text-sm text-blue-700">₹{{
+                        <td class="px-1 py-0.5 border text-center text-sm text-blue-700">₹{{
                             number_format($weeklyTotalCalc) }}</td>
-                        <td class="px-2 py-2 border text-center text-sm text-blue-700">₹{{
+                        <td class="px-1 py-0.5 border text-center text-sm text-blue-700">₹{{
                             number_format($alternateDayTotalCalc) }}</td>
-                        <td class="px-2 py-2 border text-center text-sm text-blue-700">₹{{
+                        <td class="px-1 py-0.5 border text-center text-sm text-blue-700">₹{{
                             number_format($dailyTotalCalc) }}</td>
-                        <td class="px-2 py-2 border text-center text-sm text-blue-700">₹{{
+                        <td class="px-1 py-0.5 border text-center text-sm text-blue-700">₹{{
                             number_format($yellowPagesTotalCalc) }}</td>
-                        <td class="px-2 py-2 border text-center text-sm text-blue-700">₹{{
+                        <td class="px-1 py-0.5 border text-center text-sm text-blue-700">₹{{
                             number_format($outdoorAdTotalCalc) }}</td>
-                        <td class="px-2 py-2 border text-center text-sm"></td>
-                        <td class="px-2 py-2 border text-center text-sm"></td>
-                        <td class="px-2 py-2 border text-center text-sm"></td>
+                        <td class="px-1 py-0.5 border text-center text-sm"></td>
+                        <td class="px-1 py-0.5 border text-center text-sm"></td>
+                        <td class="px-1 py-0.5 border text-center text-sm"></td>
                     </tr>
                 </tfoot>
             </table>

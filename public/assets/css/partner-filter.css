@@ -191,3 +191,12 @@
 .src-tooltip-box {
     display: none;
 }
+
+/* Compact styling for tighter tables */
+.compact-table th,
+.compact-table td {
+    padding: 0.25rem 0.125rem !important; /* sm padding */
+}
+.compact-table tr:nth-child(odd) {
+    background-color: #f9fafb !important; /* subtle stripe */
+}

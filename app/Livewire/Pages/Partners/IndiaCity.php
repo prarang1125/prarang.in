@@ -33,8 +33,7 @@ class IndiaCity extends Component
 
     public function mount($hashId = null)
     {
-        $this->hashId = $hashId;
-        $this->loadStates();
+
         $this->fetchCirusData();
 
         if ($this->hashId) {

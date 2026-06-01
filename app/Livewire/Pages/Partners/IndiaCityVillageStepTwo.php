@@ -6,6 +6,7 @@ use Livewire\Component;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Str;
@@ -32,6 +33,10 @@ class IndiaCityVillageStepTwo extends Component
     public function mount(Request $request, $hashId = null)
     {
         $this->hashId = $hashId;
+        if (!$hashId and !$request->isMethod('post')) {
+            $this->redirectRoute('partners.india-town');
+            return;
+        }
         $this->fetchCirusData();
 
         if ($this->hashId) {
@@ -41,11 +46,27 @@ class IndiaCityVillageStepTwo extends Component
 
             if ($record) {
                 $data = json_decode($record->data, true);
-                $this->selectedLanguages = $data['selectedLanguages'] ?? [];
-                $this->selectedPlans = $data['selectedPlans'] ?? [];
-                $this->cityData = $data['cityData'] ?? [];
-                $this->sourceData = $data['sourceData'] ?? [];
+
+                $this->selectedLanguages         = $data['selectedLanguages'] ?? [];
+                $this->selectedPlans             = $data['selectedPlans'] ?? [];
+
+                $this->selectedCityPosts         = $data['selectedCityPosts'] ?? [];
+                $this->selectedYellowPages       = $data['selectedYellowPages'] ?? [];
+                $this->selectedOutdoorAds        = $data['selectedOutdoorAds'] ?? [];
+                $this->selectedDistrictAnalytics = $data['selectedDistrictAnalytics'] ?? [];
+                $this->selectedSemiotics         = $data['selectedSemiotics'] ?? [];
+                $this->selectedPartnerMetrics    = $data['selectedPartnerMetrics'] ?? [];
+
+                $this->cities                    = $data['cities'] ?? [];
+                $this->villages                  = $data['villages'] ?? [];
+
+                $this->cityData                  = $data['cityData'] ?? [];
+                $this->sourceData                = $data['sourceData'] ?? [];
+
                 $this->step = $record->step ?? 2;
+            }
+            if ($this->step > 4) {
+                $this->redirectRoute('partners.step-5', $this->hashId);
             }
         } elseif ($request->isMethod('post')) {
             $this->cities = $request->post('cities', []);
@@ -159,8 +180,44 @@ class IndiaCityVillageStepTwo extends Component
      */
     public function confirmCityPostsSelection()
     {
-        // Currently just stays on step 4; adjust if further steps are added.
-        $this->step = 4;
+        $payload = [
+            'selectedLanguages'         => $this->selectedLanguages,
+            'selectedPlans'             => $this->selectedPlans,
+
+            'selectedCityPosts'         => $this->selectedCityPosts,
+            'selectedYellowPages'       => $this->selectedYellowPages,
+            'selectedOutdoorAds'        => $this->selectedOutdoorAds,
+            'selectedDistrictAnalytics' => $this->selectedDistrictAnalytics,
+            'selectedSemiotics'         => $this->selectedSemiotics,
+            'selectedPartnerMetrics'    => $this->selectedPartnerMetrics,
+
+            'cities'                    => $this->cities,
+            'villages'                  => $this->villages,
+
+            'cityData'                  => $this->cityData,
+            'sourceData'                => $this->sourceData,
+        ];
+
+        $data = json_encode($payload);
+
+        // Generate Hash Only Once
+        if (empty($this->hashId)) {
+            $this->hashId = 'SID_' . date('d-m-Y') . '_' . Str::upper(Str::random(10));
+        }
+        DB::table('partner-plan-ref')->updateOrInsert(
+            ['hash_id' => $this->hashId],
+            [
+                'step' => $this->step + 1,
+                'data' => $data,
+                'updated_at' => now(),
+                'created_at' => now(),
+            ]
+        );
+
+        return redirect()->route(
+            'partners.step-5',
+            ['hashId' => $this->hashId]
+        );
     }
 
 
