@@ -689,7 +689,7 @@
     @section('p-header')
     <div class="text-center space-y-2">
         <p class="text-xl font-semibold pb-1 border-b-2 inline-block mb-0">
-            4. Go Beyond Standard Solution & activate KW-Interaction Solution (Including Social Media Marketing)
+            4. Go Beyond Standard Solution & activate KW-Interaction <br>Solution (Including Social Media Marketing)
         </p>
     </div>
     @endsection
@@ -1046,7 +1046,7 @@
                 <tfoot class="bg-gray-100 border-t-2 border-gray-400 font-bold text-gray-800">
                     <tr>
                         <td colspan="3" class="px-1 py-0.5 border text-left text-sm">Total: </td>
-                        <td colspan="1" class="px-1 py-0.5 border text-left text-sm">{{ $totalRowsCount }} </td>
+                        <td colspan="2" class="px-1 py-0.5 border text-left text-sm">{{ $totalRowsCount }} </td>
                         <td colspan="6" class="px-1 py-0.5 border text-center text-sm text-green-700">₹{{
                             number_format($totalHostingCost) }}</td>
 

@@ -403,7 +403,7 @@ class IndiaCityVillageStepTwo extends Component
             'lang_titles' => $langTitle
         ])->layout('components.layout.main.base', [
             'metaData' => [
-                'nav-heading' => 'India – Cities & Villages – Digital Marketing',
+                'nav-heading' => 'Select India Knowladge Webs for Partnerships',
                 'nav-sub-heading' => ""
             ],
         ]);

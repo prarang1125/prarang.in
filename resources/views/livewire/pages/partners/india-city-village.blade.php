@@ -5,7 +5,7 @@
             1. Select Your Target KW Geographies
         </p>
         <p class="text-sm text-gray-600 m-0">
-            (Select from 6,331 Indian Cities and 592,765 Indian Villages)
+            (Select from <b>6,331</b> Indian Cities and <b>592,765</b> Indian Villages)
 
         </p>
     </div>
@@ -107,29 +107,21 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                             </svg>
-                            <span>Cities</span>
+                            <span>Cities {{ count($selectedTownIds) > 0 ? "# ".count($selectedTownIds) : ""
+                                }}</span>
                             <div wire:loading wire:target="townState, townDistrict, townCityType"
                                 class="spinner-border spinner-border-sm text-blue-600" role="status" aria-hidden="true">
                             </div>
                         </div>
-                        <div
-                            class="flex items-center gap-1.5 rounded-full bg-blue-600 px-3 py-1 text-[10px] font-bold text-white shadow-sm ring-2 ring-blue-200">
-                            <span wire:loading wire:target="toggleTownSelection, removeTownSelection"
-                                class="spinner-border spinner-border-sm"></span>
-                            <span wire:loading.remove wire:target="toggleTownSelection, removeTownSelection"># {{
-                                count($selectedTownIds) }}</span>
-                        </div>
+
                     </div>
 
                     <div class="mt-2 relative" x-data="{ open: false, search: '' }">
                         <button type="button" @click="open = !open"
                             class="flex w-full items-center justify-between rounded-xl border border-blue-200 bg-white px-3 py-2.5 text-left text-sm font-semibold text-slate-700 shadow-sm transition hover:border-blue-400 hover:shadow-md active:scale-[0.99]">
                             <span class="truncate">
-                                @if (count($selectedTownIds))
-                                <span class="text-blue-700">{{ count($selectedTownIds) }} towns selected</span>
-                                @else
-                                <span class="text-slate-400 font-normal">Search towns/cities</span>
-                                @endif
+                                <span class="text-slate-400 font-normal">Select Cities</span>
+
                             </span>
                             <svg class="h-4 w-4 text-blue-500 transition-transform duration-200 flex-shrink-0"
                                 :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -297,18 +289,12 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
                             </svg>
-                            <span>Villages</span>
+                            <span>Villages {{ count($selectedVillageIds) > 0 ? "# ". count($selectedVillageIds) : ""}}</span>
                             <div wire:loading wire:target="villageState, villageDistrict, villageSubDistrict"
                                 class="spinner-border spinner-border-sm text-emerald-600" role="status"
                                 aria-hidden="true"></div>
                         </div>
-                        <div
-                            class="flex items-center gap-1.5 rounded-full bg-emerald-600 px-3 py-1 text-[10px] font-bold text-white shadow-sm ring-2 ring-emerald-200">
-                            <span wire:loading wire:target="toggleVillageSelection, removeVillageSelection"
-                                class="spinner-border spinner-border-sm"></span>
-                            <span wire:loading.remove wire:target="toggleVillageSelection, removeVillageSelection"># {{
-                                count($selectedVillageIds) }}</span>
-                        </div>
+
                     </div>
 
                     <div class="mt-2 relative" x-data="{
@@ -320,13 +306,7 @@
                         <button type="button" @click="open = !open"
                             class="flex w-full items-center justify-between rounded-xl border border-emerald-200 bg-white px-3 py-2.5 text-left text-sm font-semibold text-slate-700 shadow-sm transition hover:border-emerald-400 hover:shadow-md active:scale-[0.99]">
                             <span class="truncate">
-                                <template x-if="selectedIds.length > 0">
-                                    <span class="text-emerald-700"
-                                        x-text="selectedIds.length + ' villages selected'"></span>
-                                </template>
-                                <template x-if="selectedIds.length === 0">
-                                    <span class="text-slate-400 font-normal">Search villages</span>
-                                </template>
+                                <span class="text-slate-400 font-normal">Select villages</span>
                             </span>
                             <svg class="h-4 w-4 text-emerald-500 transition-transform duration-200 flex-shrink-0"
                                 :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">

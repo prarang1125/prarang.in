@@ -47,6 +47,6 @@ class LocationFilter
             ['id' => 38, 'name' => 'Dadra and Nagar Haveli and Daman and Diu',       'type' => 'ut',    'population' => 585764],
         ];
 
-        return collect($data)->sortBy('name')->values()->toArray();
+        return collect($data)->sortByDesc('population')->sortBy('type')->values()->toArray();
     }
 }

@@ -408,3 +408,13 @@ input[type="checkbox"]:disabled:checked {
     border-radius: 50px !important;
     border-color: #2023d6;
 }
+
+/* Link */
+.pf-header .grid a {
+    text-decoration: none;
+}
+
+/* Relative */
+.container #cities-village-filter-main .pf-panel .pf-body .sm\:p-6 div .grid .relative>.relative {
+    padding-top: 0px !important;
+}

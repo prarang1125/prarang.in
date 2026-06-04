@@ -47,7 +47,32 @@
 
         {{-- Sticky Header --}}
         <div class="pf-header flex flex-col items-center justify-center">
-            @yield('p-header')
+            <div class="grid grid-cols-6">
+                <div class="col-span-1">
+
+                </div>
+                <div class="col-span-4">
+                    @yield('p-header')
+                </div>
+                <div class="col-span-1 flex items-end justify-end">
+                    <div class="flex flex-col justify-center items-center border-2 p-2 border-gray-300 rounded-lg shadow">
+                        <span class="text-sm font-bold text-blue-600 uppercase tracking-wider">
+                            <i class="ti ti-map-pin text-xs"></i> Analyse India
+                        </span>
+                        <div class="flex divide-x divide-gray-200 border border-gray-300 rounded-lg overflow-hidden">
+                            <a href="https://www.prarang.in/city-webs" target="_blank" class="flex items-center gap-1 px-3 py-1.5 text-sm text-white bg-blue-600 hover:bg-blue-800 hover:text-white transition">
+                                <i class="ti ti-building-community text-sm"></i> District
+                            </a>
+                            <a href="https://www.prarang.in/town-webs" target="_blank" class="flex items-center gap-1 px-3 py-1.5 text-sm text-white bg-blue-600 hover:bg-blue-800 hover:text-white transition">
+                                <i class="ti ti-buildings text-sm"></i> Cities
+                            </a>
+                            <a href="https://www.prarang.in/india-rural" target="_blank" class="flex items-center gap-1 px-3 py-1.5 text-sm text-white bg-blue-600 hover:bg-blue-800 hover:text-white transition">
+                                <i class="ti ti-home text-sm"></i> Villages
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <div class="flex justify-end items-end mt-1 px-4 gap-4">
@@ -60,7 +85,7 @@
                 Sources
             </button>
             @endif
-            @if($step >= 1 && $step <=5) <button type="button" data-bs-toggle="modal" data-bs-target="#TheseMTw1"
+            @if($step >= 3 && $step <=5) <button type="button" data-bs-toggle="modal" data-bs-target="#TheseMTw1"
                 class="text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-1.5 border border-blue-200">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
