@@ -417,7 +417,7 @@ class IndiaCityVillage extends Component
     {
         return view('livewire.pages.partners.india-city-village')->layout('components.layout.main.base', [
             'metaData' => [
-                'nav-heading' => 'India - Cities: Digital Marketing',
+                'nav-heading' => 'India – Cities & Villages – Digital Marketing',
                 'nav-sub-heading' => ""
             ],
         ]);

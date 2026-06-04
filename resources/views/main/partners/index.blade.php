@@ -259,6 +259,21 @@ $metaData = [
             <span class="country-name">Nepal</span>
             <span class="country-sub">Knowledge Webs</span>
           </div>
+          <div class="flex gap-1 mt-3">
+            <button
+              type="button"
+              @click="showModal = true"
+              class="w-52 rounded-lg bg-blue-400 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:bg-blue-500">
+              Cities &amp; Villages
+            </button>
+
+            <button
+              type="button"
+              @click="showModal = true"
+              class="w-52 rounded-lg bg-blue-400 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:bg-blue-500">
+              World Bilateral
+            </button>
+          </div>
         </div>
 
 
@@ -278,6 +293,19 @@ $metaData = [
               <span class="country-name lg">India</span>
               <span class="country-sub">Knowledge Webs</span>
             </div>
+            <div class="flex gap-1 mt-3">
+              <a href="{{ route('partners.india-town') }}"
+                class="w-52 rounded-lg bg-blue-600 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:bg-blue-700">
+                Cities &amp; Villages
+              </a>
+
+              <button
+                type="button"
+                @click="showModal = true"
+                class="w-52 rounded-lg bg-blue-400 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:bg-blue-500">
+                World Bilateral
+              </button>
+            </div>
           </div>
         </div>
 
@@ -294,53 +322,24 @@ $metaData = [
             <span class="country-name">Czech</span>
             <span class="country-sub">Knowledge Webs</span>
           </div>
+          <div class="flex gap-1 mt-3">
+            <button
+              type="button"
+              @click="showModal = true"
+              class="w-52 rounded-lg bg-blue-400 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:bg-blue-500">
+              Cities &amp; Villages
+            </button>
+
+            <button
+              type="button"
+              @click="showModal = true"
+              class="w-52 rounded-lg bg-blue-400 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:bg-blue-500">
+              World Bilateral
+            </button>
+          </div>
         </div>
       </div>
 
-      <!-- Bottom row -->
-      <div class="flex flex-wrap justify-center gap-3">
-
-        <button
-          type="button"
-          @click="showModal = true"
-          class="w-52 rounded-lg bg-blue-400 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:bg-blue-500">
-          Cities &amp; Villages
-        </button>
-
-        <button
-          type="button"
-          @click="showModal = true"
-          class="w-52 rounded-lg bg-blue-400 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:bg-blue-500">
-          World Bilateral
-        </button>
-
-        <a href="{{ route('partners.india-town') }}"
-          class="w-52 rounded-lg bg-blue-600 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:bg-blue-700">
-          Cities &amp; Villages
-        </a>
-
-        <button
-          type="button"
-          @click="showModal = true"
-          class="w-52 rounded-lg bg-blue-400 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:bg-blue-500">
-          World Bilateral
-        </button>
-
-        <button
-          type="button"
-          @click="showModal = true"
-          class="w-52 rounded-lg bg-blue-400 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:bg-blue-500">
-          Cities &amp; Villages
-        </button>
-
-        <button
-          type="button"
-          @click="showModal = true"
-          class="w-52 rounded-lg bg-blue-400 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:bg-blue-500">
-          World Bilateral
-        </button>
-
-      </div>
 
       <div x-show="showModal" x-transition:enter="transition ease-out duration-300"
 
@@ -513,8 +512,57 @@ $metaData = [
     .partner-wrap .top-section .col-side {
       width: 260px;
     }
-  </style>
 
+    /* Font semibold */
+    .top-section .col-side .font-semibold {
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+      padding-top: 10px !important;
+      padding-bottom: 10px !important;
+      font-size: 14px;
+      width: 128px;
+    }
+
+    /* Font semibold */
+    .col-center .flex .font-semibold {
+      padding-left: 0px !important;
+      padding-right: 0px !important;
+      padding-top: 11px !important;
+      padding-bottom: 11px !important;
+      font-size: 15px;
+      width: 155px;
+    }
+
+    /* Top section */
+    .flex-col .partner-wrap .top-section {
+      align-items: flex-end !important;
+    }
+
+    /* Country box */
+    .top-section .col-center .country-box {
+      position: relative;
+      top: 11px;
+    }
+
+    @media (max-width:576px) {
+
+      /* Top section */
+      .container .flex-col .partner-wrap .top-section {
+        align-items: center !important;
+      }
+
+      /* Flex col */
+      .container .flex-col {
+        padding-bottom: 8px;
+      }
+
+      /* Full */
+      .container>.w-full {
+        padding-top: 4px !important;
+      }
+
+    }
+  </style>
 
 
 </x-layout.main.base>
