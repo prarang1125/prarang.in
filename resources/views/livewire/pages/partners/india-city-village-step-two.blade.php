@@ -871,7 +871,7 @@
                     @endphp
                     <tr class="bg-white border-b hover:bg-gray-50 odd:bg-gray-50">
                         <td class="px-1 py-0.5 text-sm border font-medium align-middle text-start">
-                            {{ $srNo4 }}.{{ $locAlpha4 }}
+                            {{ $srNo4 }}{{ $locAlpha4 }}
                         </td>
 
 
