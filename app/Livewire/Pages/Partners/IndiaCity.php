@@ -57,14 +57,8 @@ class IndiaCity extends Component
 
     public function createShareLink()
     {
-        $hashId = \Illuminate\Support\Str::random(8);
-        $data = [
-            'selectedCities' => $this->selectedCities,
-            'selectedLanguages' => $this->selectedLanguages,
-            'selectedPlans' => $this->selectedPlans,
-            'cityData' => $this->cityData,
-            'sourceData' => $this->sourceData,
-        ];
+        $hashId = $this->hashId;
+        $data = [];
 
         \Illuminate\Support\Facades\DB::table('partner-plan-ref')->insert([
             'hash_id' => $hashId,
@@ -74,7 +68,7 @@ class IndiaCity extends Component
             'updated_at' => now(),
         ]);
 
-        $this->shareUrl = url('/partners/india-city/' . $hashId);
+        $this->shareUrl = "";
     }
 
     public function selectState($stateId, $stateName)

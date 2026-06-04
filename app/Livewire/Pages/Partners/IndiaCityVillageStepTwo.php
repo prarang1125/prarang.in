@@ -26,6 +26,9 @@ class IndiaCityVillageStepTwo extends Component
     public $selectedDistrictAnalytics = [];
     public $selectedSemiotics = [];
     public $selectedPartnerMetrics = [];
+    public $shareUrl = null;
+    public $pricing = [];
+    public $planData = [];
 
     public $cities = [];
     public $villages = [];
@@ -33,6 +36,8 @@ class IndiaCityVillageStepTwo extends Component
     public function mount(Request $request, $hashId = null)
     {
         $this->hashId = $hashId;
+        $this->pricing = config('data.partners-filter.pricing');
+
         if (!$hashId and !$request->isMethod('post')) {
             $this->redirectRoute('partners.india-town');
             return;
@@ -40,6 +45,7 @@ class IndiaCityVillageStepTwo extends Component
         $this->fetchCirusData();
 
         if ($this->hashId) {
+
             $record = DB::table('partner-plan-ref')
                 ->where('hash_id', $this->hashId)
                 ->first();
@@ -49,7 +55,7 @@ class IndiaCityVillageStepTwo extends Component
 
                 $this->selectedLanguages         = $data['selectedLanguages'] ?? [];
                 $this->selectedPlans             = $data['selectedPlans'] ?? [];
-
+                $this->planData                  = $data['planData'] ?? [];
                 $this->selectedCityPosts         = $data['selectedCityPosts'] ?? [];
                 $this->selectedYellowPages       = $data['selectedYellowPages'] ?? [];
                 $this->selectedOutdoorAds        = $data['selectedOutdoorAds'] ?? [];
@@ -64,11 +70,15 @@ class IndiaCityVillageStepTwo extends Component
                 $this->sourceData                = $data['sourceData'] ?? [];
 
                 $this->step = $record->step ?? 2;
+                if ($this->step >= 3) {
+                    $this->initializeDefaultPlans();
+                }
             }
             if ($this->step > 4) {
                 $this->redirectRoute('partners.step-5', $this->hashId);
             }
         } elseif ($request->isMethod('post')) {
+
             $this->cities = $request->post('cities', []);
             $this->villages = $request->post('villages', []);
 
@@ -121,7 +131,55 @@ class IndiaCityVillageStepTwo extends Component
 
 
                     $this->cityData = $grouped;
+
                     $this->sourceData = $response['source'] ?? [];
+                }
+            }
+        }
+        if (empty($this->hashId)) {
+            $this->hashId = 'SID_' . date('d-m-Y') . '_' . Str::upper(Str::random(10));
+        }
+    }
+
+    public function initializeDefaultPlans()
+    {
+        if (empty($this->cityData)) {
+            return;
+        }
+        foreach ($this->cityData as $distId => $group) {
+            $dhq = $group['dhq'];
+            $towns = $group['towns'] ?? [];
+            $villages = $group['villages'] ?? [];
+
+            $selectedLangsForCity = [];
+            if ($dhq && isset($dhq['languages']) && is_array($dhq['languages'])) {
+                $topLangs = array_slice($dhq['languages'], 0, 3, true);
+                foreach ($topLangs as $langCode => $langData) {
+                    if (!empty($this->selectedLanguages["{$distId}-{$langCode}"])) {
+                        $selectedLangsForCity[$langCode] = $langData;
+                    }
+                }
+            }
+
+            $locations = [];
+            if ($dhq) {
+                $locations[] = $dhq;
+            }
+            foreach ($towns as $town) {
+                $locations[] = $town;
+            }
+            foreach ($villages as $village) {
+                $locations[] = $village;
+            }
+
+            foreach ($locations as $loc) {
+                $locId = $loc['city_id'] ?? null;
+                if (!$locId) continue;
+                foreach ($selectedLangsForCity as $langCode => $langData) {
+                    $planKey = "{$locId}-{$langCode}";
+                    if (empty($this->selectedPlans[$planKey])) {
+                        $this->selectedPlans[$planKey] = "{$locId}-{$langCode}-prarang";
+                    }
                 }
             }
         }
@@ -164,6 +222,9 @@ class IndiaCityVillageStepTwo extends Component
 
         if (count($selectedValues) > 0) {
             $this->step = 3;
+            $this->initializeDefaultPlans();
+        } else {
+            session()->flash('error', 'Please select at least one language');
         }
     }
 
@@ -172,7 +233,20 @@ class IndiaCityVillageStepTwo extends Component
      */
     public function confirmPlanSelection()
     {
-        $this->step = 4;
+        $selectedValues = [];
+        if (is_array($this->selectedPlans)) {
+            foreach ($this->selectedPlans as $key => $isChecked) {
+                if ($isChecked) {
+                    $selectedValues[] = $key;
+                }
+            }
+        }
+
+        if (count($selectedValues) > 0) {
+            $this->step = 4;
+        } else {
+            session()->flash('error', 'Please select at least one plan');
+        }
     }
 
     /**
@@ -180,6 +254,10 @@ class IndiaCityVillageStepTwo extends Component
      */
     public function confirmCityPostsSelection()
     {
+        if (empty($this->selectedCityPosts)) {
+            session()->flash('error', 'Please select at least one option from each.');
+            return;
+        }
         $payload = [
             'selectedLanguages'         => $this->selectedLanguages,
             'selectedPlans'             => $this->selectedPlans,
@@ -201,9 +279,7 @@ class IndiaCityVillageStepTwo extends Component
         $data = json_encode($payload);
 
         // Generate Hash Only Once
-        if (empty($this->hashId)) {
-            $this->hashId = 'SID_' . date('d-m-Y') . '_' . Str::upper(Str::random(10));
-        }
+
         DB::table('partner-plan-ref')->updateOrInsert(
             ['hash_id' => $this->hashId],
             [
@@ -222,6 +298,23 @@ class IndiaCityVillageStepTwo extends Component
 
 
 
+    public function applyPlanDefaults($key, $planType)
+    {
+        if ($planType === 'daily') {
+            $this->selectedDistrictAnalytics[$key] = true;
+            $this->selectedSemiotics[$key] = true;
+            $this->selectedPartnerMetrics[$key] = true;
+        } elseif ($planType === 'alternateday') {
+            $this->selectedDistrictAnalytics[$key] = false;
+            $this->selectedSemiotics[$key] = true;
+            $this->selectedPartnerMetrics[$key] = true;
+        } elseif ($planType === 'weekly') {
+            $this->selectedDistrictAnalytics[$key] = false;
+            $this->selectedSemiotics[$key] = true;
+            $this->selectedPartnerMetrics[$key] = true;
+        }
+    }
+
     public function changeStep($move = 'next')
     {
         if ($move == "back") {
@@ -236,25 +329,35 @@ class IndiaCityVillageStepTwo extends Component
 
     public function createShareLink()
     {
-        $hashId = Str::random(8);
-        $data = [
-            'selectedLanguages' => $this->selectedLanguages,
-            'selectedPlans' => $this->selectedPlans,
-            'cityData' => $this->cityData,
-            'sourceData' => $this->sourceData,
-            'selectedCityPosts' => $this->selectedCityPosts,
+
+        $payload = [
+            'selectedLanguages'         => $this->selectedLanguages,
+            'selectedPlans'             => $this->selectedPlans,
+
+            'selectedCityPosts'         => $this->selectedCityPosts,
+            'selectedYellowPages'       => $this->selectedYellowPages,
+            'selectedOutdoorAds'        => $this->selectedOutdoorAds,
+            'selectedDistrictAnalytics' => $this->selectedDistrictAnalytics,
+            'selectedSemiotics'         => $this->selectedSemiotics,
+            'selectedPartnerMetrics'    => $this->selectedPartnerMetrics,
+
+            'cities'                    => $this->cities,
+            'villages'                  => $this->villages,
+
+            'cityData'                  => $this->cityData,
+            'sourceData'                => $this->sourceData,
         ];
 
-        DB::table('partner-plan-ref')->insert([
-            'hash_id' => $hashId,
-            'data' => json_encode($data),
-            'step' => $this->step,
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
-
-        $this->hashId = $hashId;
-        // Optionally dispatch event to show link to user, for now it will just change the URL if needed.
+        DB::table('partner-plan-ref')->updateOrInsert(
+            ['hash_id' => $this->hashId],
+            [
+                'data' => json_encode($payload),
+                'step' => $this->step,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ]
+        );
+        $this->shareUrl = route('partners.step-2', ['hashId' => $this->hashId]);
     }
 
     public function getLanguageTitle($code)
@@ -272,7 +375,7 @@ class IndiaCityVillageStepTwo extends Component
             'LAN12' => 'Urdu',
             'LAN13' => 'Tamil',
             'LAN14' => 'Telugu',
-            'LAN17' => 'English (Multilingualism)',
+            'LAN17' => 'English',
         ];
 
         return $langTitle[$code] ?? $code;
@@ -293,7 +396,7 @@ class IndiaCityVillageStepTwo extends Component
             'LAN12' => 'Urdu',
             'LAN13' => 'Tamil',
             'LAN14' => 'Telugu',
-            'LAN17' => 'English (Multilingualism)',
+            'LAN17' => 'English',
         ];
 
         return view('livewire.pages.partners.india-city-village-step-two', [

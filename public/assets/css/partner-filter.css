@@ -195,8 +195,216 @@
 /* Compact styling for tighter tables */
 .compact-table th,
 .compact-table td {
-    padding: 0.25rem 0.125rem !important; /* sm padding */
+    padding: 0.25rem 0.125rem !important;
+    /* sm padding */
 }
+
 .compact-table tr:nth-child(odd) {
-    background-color: #f9fafb !important; /* subtle stripe */
+    background-color: #f9fafb !important;
+    /* subtle stripe */
+}
+
+/* ── Stepper ── */
+.pf-stepper {
+    display: flex;
+    width: 100%;
+}
+
+.pf-step {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 6px;
+    cursor: pointer;
+    transition: opacity 0.25s ease, filter 0.25s ease;
+    /* inactive by default */
+    opacity: 0.45;
+    filter: grayscale(0.3);
+    /* middle arrow shape */
+    clip-path: polygon(0% 0%, 88% 0%, 100% 50%, 88% 100%, 0% 100%, 12% 50%);
+    margin-left: -10px;
+}
+
+/* First step: no left indent */
+.pf-step--first {
+    clip-path: polygon(0% 0%, 88% 0%, 100% 50%, 88% 100%, 0% 100%);
+    margin-left: 0;
+}
+
+/* Last step: no right point */
+.pf-step--last {
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%, 12% 50%);
+}
+
+/* Active step */
+.pf-step.active {
+    opacity: 1;
+    filter: none;
+    box-shadow: inset 0 -3px 0 rgba(0, 0, 0, 0.12);
+}
+
+/* Completed step */
+.pf-step.done {
+    opacity: 0.75;
+    filter: none;
+}
+
+.pf-step.done .pf-step__num::before {
+    content: '✓';
+    font-size: 13px;
+}
+
+.pf-step.done .pf-step__num {
+    font-size: 0;
+    /* hide number, show tick */
+}
+
+/* Number circle */
+.pf-step__num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 13px;
+    flex-shrink: 0;
+    color: #fff;
+}
+
+/* Label */
+.pf-step__label {
+    font-weight: 600;
+    font-size: 12px;
+    line-height: 1.3;
+}
+
+@media (max-width: 480px) {
+    .pf-step__label {
+        font-size: 10px;
+    }
+
+    .pf-step__num {
+        width: 22px;
+        height: 22px;
+        font-size: 11px;
+    }
+}
+
+/* ── Color variants ── */
+.pf-step--red {
+    background-color: #E60000;
+    color: #FFFFFF;
+}
+
+.pf-step--amber {
+    background-color: #FFC000;
+    color: #000000;
+}
+
+.pf-step--light-green {
+    background-color: #92D050;
+    color: #000000;
+}
+
+.pf-step--dark-green {
+    background-color: #00B050;
+    color: #FFFFFF;
+}
+
+.pf-step--light-blue {
+    background-color: #00B0F0;
+    color: #FFFFFF;
+}
+
+.pf-step--dark-blue {
+    background-color: #0070C0;
+    color: #FFFFFF;
+}
+
+.pf-step--red .pf-step__num,
+.pf-step--dark-green .pf-step__num,
+.pf-step--light-blue .pf-step__num,
+.pf-step--dark-blue .pf-step__num {
+    color: #FFFFFF;
+}
+
+.pf-step--amber .pf-step__num,
+.pf-step--light-green .pf-step__num {
+    color: #000000;
+}
+
+.pf-step--red .pf-step__label,
+.pf-step--dark-green .pf-step__label,
+.pf-step--light-blue .pf-step__label,
+.pf-step--dark-blue .pf-step__label {
+    color: #FFFFFF;
+}
+
+.pf-step--amber .pf-step__label,
+.pf-step--light-green .pf-step__label {
+    color: #000000;
+}
+
+/* Shadow */
+.pf-body .sm\:p-6>.shadow-sm {
+    padding-top: 4px !important;
+}
+
+/* Text base */
+.sm\:p-6 .flex-col .text-base {
+    font-size: 14px;
+}
+
+/* Inline flex */
+.sm\:p-6 .flex-col .inline-flex {
+    color: #020202 !important;
+}
+
+/* Font medium */
+.compact-table tbody .font-medium {
+    text-align: center;
+}
+
+/* Items center */
+.mt-6 .justify-between .items-center {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+/* Items center */
+.mt-6 .grid .items-center:nth-child(2) {
+    background-color: #156fe4;
+}
+
+/* Th */
+.compact-table tr th {
+    text-align: center !important;
+}
+
+/* 1. Reset native input styles */
+input[type="checkbox"]:disabled {
+    appearance: none;
+    -webkit-appearance: none;
+    cursor: pointer;
+}
+
+
+
+/* 4. Target the custom disabled color states */
+input[type="checkbox"]:disabled {
+    background-color: #e0e0e0;
+    border-color: #a0a0a0;
+    cursor: not-allowed;
+    border-radius: 50px !important;
+}
+
+/* 5. Target the disabled state when it's also checked */
+input[type="checkbox"]:disabled:checked {
+    background-color: #3668ce;
+    border-radius: 50px !important;
+    border-color: #2023d6;
 }

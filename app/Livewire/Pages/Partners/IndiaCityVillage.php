@@ -117,10 +117,11 @@ class IndiaCityVillage extends Component
     public function toggleTownSelection($townId)
     {
         $townId = (string) $townId;
+        $currentIds = $this->selectedTownIds;
 
-        if (in_array($townId, $this->selectedTownIds, true)) {
+        if (in_array($townId, $currentIds)) {
             $this->selectedTownIds = array_values(array_filter(
-                $this->selectedTownIds,
+                $currentIds,
                 fn($selectedId) => (string) $selectedId !== $townId
             ));
 
@@ -132,17 +133,20 @@ class IndiaCityVillage extends Component
             return;
         }
 
-        $this->selectedTownIds[] = $townId;
+        $currentIds[] = $townId;
+        $this->selectedTownIds = $currentIds;
 
         $town = collect($this->towns)->firstWhere('id', $townId);
         $townName = $town ? $town['name'] : 'Unknown Town';
 
-        $this->selectedTownsList[] = [
+        $tempList = $this->selectedTownsList;
+        $tempList[] = [
             'id' => $townId,
             'name' => $townName,
             'state_id' => $this->townState,
             'district_id' => $this->townDistrict,
         ];
+        $this->selectedTownsList = $tempList;
     }
 
     public function removeTownSelection($townId)
@@ -161,10 +165,11 @@ class IndiaCityVillage extends Component
     public function toggleVillageSelection($villageId)
     {
         $villageId = (string) $villageId;
+        $currentIds = $this->selectedVillageIds;
 
-        if (in_array($villageId, $this->selectedVillageIds, true)) {
+        if (in_array($villageId, $currentIds)) {
             $this->selectedVillageIds = array_values(array_filter(
-                $this->selectedVillageIds,
+                $currentIds,
                 fn($selectedId) => (string) $selectedId !== $villageId
             ));
 
@@ -176,17 +181,20 @@ class IndiaCityVillage extends Component
             return;
         }
 
-        $this->selectedVillageIds[] = $villageId;
+        $currentIds[] = $villageId;
+        $this->selectedVillageIds = $currentIds;
 
         $village = collect($this->villages)->firstWhere('id', $villageId);
         $villageName = $village ? $village['name'] : 'Unknown Village';
 
-        $this->selectedVillagesList[] = [
+        $tempList = $this->selectedVillagesList;
+        $tempList[] = [
             'id' => $villageId,
             'name' => $villageName,
             'state_id' => $this->villageState,
             'district_id' => $this->villageDistrict,
         ];
+        $this->selectedVillagesList = $tempList;
     }
 
     public function removeVillageSelection($villageId)
@@ -213,10 +221,14 @@ class IndiaCityVillage extends Component
             return ($village['state_id'] ?? '') . '-' . ($village['district_id'] ?? '') . '-' . $village['id'];
         })->toArray();
 
-        $this->dispatch('submit-partner-step-2', [
-            'cities' => $formattedTowns,
-            'villages' => $formattedVillages,
-        ]);
+        if ($formattedTowns || $formattedVillages) {
+            $this->dispatch('submit-partner-step-2', [
+                'cities' => $formattedTowns,
+                'villages' => $formattedVillages,
+            ]);
+        } else {
+            session()->flash('error', 'Please select at least one city or village.');
+        }
     }
 
     public function getSelectedTownItemsProperty(): array
@@ -229,7 +241,25 @@ class IndiaCityVillage extends Component
         return $this->selectedVillagesList;
     }
 
-    // Reset method removed as it's no longer used centrally
+    public function clearAll()
+    {
+        $this->townState = null;
+        $this->townDistrict = null;
+        $this->townCityType = '';
+        $this->townDistricts = [];
+        $this->towns = [];
+        $this->selectedTownIds = [];
+        $this->selectedTownsList = [];
+
+        $this->villageState = null;
+        $this->villageDistrict = null;
+        $this->villageSubDistrict = null;
+        $this->villageDistricts = [];
+        $this->villageSubDistricts = [];
+        $this->villages = [];
+        $this->selectedVillageIds = [];
+        $this->selectedVillagesList = [];
+    }
 
     protected function transformLocationItems(array $data): array
     {

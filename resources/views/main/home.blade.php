@@ -532,11 +532,12 @@
                     margin-top: 12px;
                 }
 
-            }/* Justify between */
-.desktop-grid .box .justify-between:nth-child(6){
- box-shadow:0px 0px 3px 2px #abd1f6;
-}
+            }
 
+            /* Justify between */
+            .desktop-grid .box .justify-between:nth-child(6) {
+                box-shadow: 0px 0px 3px 2px #abd1f6;
+            }
         </style>
         <!-- DESKTOP -->
         <div class="desktop-grid ">
@@ -977,40 +978,41 @@
                     }
 
                 }
-                @media (max-width:576px){
 
- /* Tracking tight */
- .lg\:hidden div .tracking-tight{
-  margin-bottom:12px !important;
- }
+                @media (max-width:576px) {
 
- /* Tracking tight */
- .lg\:hidden .box:nth-child(5) .tracking-tight{
-  margin-bottom:19px !important;
- }
+                    /* Tracking tight */
+                    .lg\:hidden div .tracking-tight {
+                        margin-bottom: 12px !important;
+                    }
 
- /* Language webs card */
- #languageWebsCard{
-  height:77px !important;
-  /* transform:translatex(0px) translatey(0px); */
- }
+                    /* Tracking tight */
+                    .lg\:hidden .box:nth-child(5) .tracking-tight {
+                        margin-bottom: 19px !important;
+                    }
 
- /* Object contain */
- #languageWebsCard .transition-transform .object-contain{
-  height:56px !important;
- }
+                    /* Language webs card */
+                    #languageWebsCard {
+                        height: 77px !important;
+                        /* transform:translatex(0px) translatey(0px); */
+                    }
 
- /* Transition all */
- .lg\:hidden div .transition-all{
-  padding-bottom:19px;
- }
+                    /* Object contain */
+                    #languageWebsCard .transition-transform .object-contain {
+                        height: 56px !important;
+                    }
 
- /* Object contain */
- #countryWebsCard .transition-transform .object-contain{
-  padding-bottom:5px;
- }
+                    /* Transition all */
+                    .lg\:hidden div .transition-all {
+                        padding-bottom: 19px;
+                    }
 
-}
+                    /* Object contain */
+                    #countryWebsCard .transition-transform .object-contain {
+                        padding-bottom: 5px;
+                    }
+
+                }
             </style>
             <div>
                 <div class="box rounded b1">

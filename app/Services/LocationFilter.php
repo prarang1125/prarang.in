@@ -8,7 +8,7 @@ class LocationFilter
 
     public function loadStates()
     {
-        return [
+        $data = [
             ['id' => 1,  'name' => 'Jammu And Kashmir',                              'type' => 'ut',    'population' => 12541302],
             ['id' => 2,  'name' => 'Himachal Pradesh',                               'type' => 'state', 'population' => 6864602],
             ['id' => 3,  'name' => 'Punjab',                                         'type' => 'state', 'population' => 27743338],
@@ -46,5 +46,7 @@ class LocationFilter
             ['id' => 37, 'name' => 'Ladakh',                                         'type' => 'ut',    'population' => 274000],
             ['id' => 38, 'name' => 'Dadra and Nagar Haveli and Daman and Diu',       'type' => 'ut',    'population' => 585764],
         ];
+
+        return collect($data)->sortBy('name')->values()->toArray();
     }
 }

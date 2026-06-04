@@ -765,193 +765,194 @@
                     <div class="col-md-9 text-center">
                         <h1 class="header-title mb-0 text-primary">
                             {{ $navHeading ?? 'Prarang Knowledge Webs' }}</h1>
-                        <p class="header-tagline mb-0">Bridging the Digital Divide – By Location, By Language</p>
-                    </div>
-                    <div class="col-md-3 text-end">
-                        <a href="/" class="text-decoration-none" 2>
-                            <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
-                                alt="Prarang" height="60">
-                        </a>
-                    </div>
-                </div> --}}
+                <p class="header-tagline mb-0">Bridging the Digital Divide – By Location, By Language</p>
             </div>
-        </header>
-        @endif
-        <nav class="navbar navbar-expand-lg bg-white shadow-sm">
-            <div class="container">
-                <!-- Mobile Header Area (Toggler + Brand + Logo) -->
-                <div class="d-flex w-100 align-items-center justify-content-between d-lg-none py-2">
-                    <!-- Mobile Toggler -->
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#mainNavbarMenu" aria-controls="mainNavbarMenu" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+            <div class="col-md-3 text-end">
+                <a href="/" class="text-decoration-none" 2>
+                    <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
+                        alt="Prarang" height="60">
+                </a>
+            </div>
+    </div> --}}
+    </div>
+    </header>
+    @endif
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm">
+        <div class="container">
+            <!-- Mobile Header Area (Toggler + Brand + Logo) -->
+            <div class="d-flex w-100 align-items-center justify-content-between d-lg-none py-2">
+                <!-- Mobile Toggler -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#mainNavbarMenu" aria-controls="mainNavbarMenu" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                    <!-- Mobile Brand Content -->
-                    <div class="text-center px-2">
-                        <div class="header-content">
-                            <h1 class="header-title mb-0 text-primary">
-                                {{ $navHeading ?? 'Prarang Knowledge Webs' }}</h1>
-                            <p class="header-tagline mb-0">{{ $navSubHeading }}
-                            </p>
-                        </div>
+                <!-- Mobile Brand Content -->
+                <div class="text-center px-2">
+                    <div class="header-content">
+                        <h1 class="header-title mb-0 text-primary">
+                            {{ $navHeading ?? 'Prarang Knowledge Webs' }}
+                        </h1>
+                        <p class="header-tagline mb-0">{{ $navSubHeading }}
+                        </p>
                     </div>
-
-                    <!-- Mobile Logo -->
-                    <a class="navbar-brand me-0" href="/">
-                        <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
-                            alt="Prarang" height="35" style="width: auto;">
-                    </a>
-
                 </div>
 
-                <div class="collapse navbar-collapse" id="mainNavbarMenu">
-                    <ul class="navbar-nav w-100 justify-content-between">
-                        @if (url()->current() != '/')
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">
-                                Home
-                            </a>
-                        </li>
-                        @endif
-                        <li class="nav-item">
-                            <a class="nav-link" href="/digital-divide">Digital Divide</a>
-                        </li>
+                <!-- Mobile Logo -->
+                <a class="navbar-brand me-0" href="/">
+                    <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
+                        alt="Prarang" height="35" style="width: auto;">
+                </a>
 
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                                aria-expanded="false">
-                                Solutions
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li class="dropdown">
-                                    <a class="dropdown-item dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
-                                        Content
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item"
-                                                href="{{ route('home.knowledge-posts') }}">Knowledge Posts
-                                            </a></li>
-                                        <li><a class="dropdown-item" href="{{ route('home.business-apps') }}">Business
-                                                Apps
-                                            </a></li>
+            </div>
+
+            <div class="collapse navbar-collapse" id="mainNavbarMenu">
+                <ul class="navbar-nav w-100 justify-content-between">
+                    @if (url()->current() != '/')
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            Home
+                        </a>
+                    </li>
+                    @endif
+                    <li class="nav-item">
+                        <a class="nav-link" href="/digital-divide">Digital Divide</a>
+                    </li>
+
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Solutions
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li class="dropdown">
+                                <a class="dropdown-item dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
+                                    Content
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item"
+                                            href="{{ route('home.knowledge-posts') }}">Knowledge Posts
+                                        </a></li>
+                                    <li><a class="dropdown-item" href="{{ route('home.business-apps') }}">Business
+                                            Apps
+                                        </a></li>
 
 
-                                    </ul>
-                                    {{-- <a class="dropdown-item" href="/content">Content</a> --}}
-                                </li>
-                                <li class="dropdown">
-                                    <a class="dropdown-item dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
-                                        Analytics
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" target="_blank"
-                                                href="https://g2c.prarang.in/india">India Analytics</a></li>
-                                        <li><a class="dropdown-item" target="_blank"
-                                                href="https://g2c.prarang.in/world">World Analytics</a></li>
-                                        {{-- <li><a class="dropdown-item"
+                                </ul>
+                                {{-- <a class="dropdown-item" href="/content">Content</a> --}}
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-item dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
+                                    Analytics
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" target="_blank"
+                                            href="https://g2c.prarang.in/india">India Analytics</a></li>
+                                    <li><a class="dropdown-item" target="_blank"
+                                            href="https://g2c.prarang.in/world">World Analytics</a></li>
+                                    {{-- <li><a class="dropdown-item"
                                                 href="https://g2c.prarang.in/planners">Planners</a>
                                         </li>
                                         <li><a class="dropdown-item" href="/cirus">Cyber Risk Analyser
                                             </a></li> --}}
 
-                                    </ul>
-                                </li>
-                                <li class="dropdown">
-                                    <a class="dropdown-item dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
-                                        Planners
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item"
-                                                href="https://g2c.prarang.in/planners/development">Development
-                                                Planner</a>
-                                        </li>
-                                        <li><a class="dropdown-item"
-                                                href="https://g2c.prarang.in/planners/market">Market
-                                                Planner</a>
-                                        </li>
-                                        <li><a class="dropdown-item" href="https://www.prarang.in/cirus">Cyber Risk
-                                                Analyser
-                                            </a></li>
-                                        <li><a class="dropdown-item"
-                                                href="https://g2c.prarang.in/planners/communication">Comunication
-                                                Planner</a>
-                                        </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-item dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
+                                    Planners
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item"
+                                            href="https://g2c.prarang.in/planners/development">Development
+                                            Planner</a>
+                                    </li>
+                                    <li><a class="dropdown-item"
+                                            href="https://g2c.prarang.in/planners/market">Market
+                                            Planner</a>
+                                    </li>
+                                    <li><a class="dropdown-item" href="https://www.prarang.in/cirus">Cyber Risk
+                                            Analyser
+                                        </a></li>
+                                    <li><a class="dropdown-item"
+                                            href="https://g2c.prarang.in/planners/communication">Comunication
+                                            Planner</a>
+                                    </li>
 
 
-                                    </ul>
-                                </li>
+                                </ul>
+                            </li>
 
-                                <li class="dropdown">
-                                    <a class="dropdown-item dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
-                                        Artificial Intelligence
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" target="_blank" href="/ai/upmana">Comparative
-                                                A.I.
-                                            </a></li>
+                            <li class="dropdown">
+                                <a class="dropdown-item dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
+                                    Artificial Intelligence
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" target="_blank" href="/ai/upmana">Comparative
+                                            A.I.
+                                        </a></li>
 
-                                    </ul>
-                                    {{-- <a class="dropdown-item" href="/ai/upmana">Artificial Intelligence</a> --}}
-                                </li>
-                                <li class="dropdown">
-                                    <a class="dropdown-item dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
-                                        Performance Metrics
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="/semiotics">Semiotics</a></li>
-                                        <li><a class="dropdown-item" href="/partners-metrics">Partner Metrics
-                                            </a></li>
-                                    </ul>
-                                </li>
+                                </ul>
+                                {{-- <a class="dropdown-item" href="/ai/upmana">Artificial Intelligence</a> --}}
+                            </li>
+                            <li class="dropdown">
+                                <a class="dropdown-item dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
+                                    Performance Metrics
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="/semiotics">Semiotics</a></li>
+                                    <li><a class="dropdown-item" href="/partners-metrics">Partner Metrics
+                                        </a></li>
+                                </ul>
+                            </li>
 
-                                <li class="dropdown">
-                                    <a class="dropdown-item dropdown-toggle" href="#" role="button"
-                                        data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
-                                        Portals
+                            <li class="dropdown">
+                                <a class="dropdown-item dropdown-toggle" href="#" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
+                                    Portals
 
-                                    </a>
-                                    <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{ route('home.city-portals') }}">City
-                                                Portals
-                                            </a></li>
-                                        <li><a class="dropdown-item" href="{{ route('home.country-portals') }}">Country
-                                                Portals
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="{{ route('home.city-portals') }}">City
+                                            Portals
+                                        </a></li>
+                                    <li><a class="dropdown-item" href="{{ route('home.country-portals') }}">Country
+                                            Portals
 
-                                            </a></li>
-                                    </ul>
-                                </li>
+                                        </a></li>
+                                </ul>
+                            </li>
 
 
-                            </ul>
-                        </li>
+                        </ul>
+                    </li>
 
-                        <li class="nav-item">
-                            <a class="nav-link" href="/partners">Partners</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/about-us">About Us</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="javascript:void(0);" id="viveks-modal">Blogs</a>
-                        </li>
-                        <li class="nav-item">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/partners">Partners</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about-us">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="javascript:void(0);" id="viveks-modal">Blogs</a>
+                    </li>
+                    <li class="nav-item">
 
-                            <a class="nav-link text-center" href="/knowledge">Knowledge</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/intelligence">Intelligence</a>
-                        </li>
-                    </ul>
-                </div>
+                        <a class="nav-link text-center" href="/knowledge">Knowledge</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/intelligence">Intelligence</a>
+                    </li>
+                </ul>
             </div>
-        </nav>
+        </div>
+    </nav>
     </div>
     @props(['resetMainMinHeight' => false])
     <main class="container" @if (!$resetMainMinHeight) style="min-height: 70vh !important;" @endif>

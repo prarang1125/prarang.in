@@ -11,15 +11,17 @@ class PartnerEnrolmentMail extends Mailable
     use Queueable, SerializesModels;
 
     public $data;
+    public $pdfContent;
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($data)
+    public function __construct($data, $pdfContent = null)
     {
         $this->data = $data;
+        $this->pdfContent = $pdfContent;
     }
 
     /**
@@ -29,7 +31,15 @@ class PartnerEnrolmentMail extends Mailable
      */
     public function build()
     {
-        return $this->subject('Prarang Indian Cities Enrolment - ' . $this->data['name'])
-            ->view('emails.partner-enrolment');
+        $mail = $this->subject('Prarang Indian Cities/Villages Enrolment - ' . $this->data['name'])
+            ->view('emails.partner-enrolment-simple');
+
+        if ($this->pdfContent) {
+            $mail->attachData($this->pdfContent, 'Prarang_Enrolment.pdf', [
+                'mime' => 'application/pdf',
+            ]);
+        }
+
+        return $mail;
     }
 }
