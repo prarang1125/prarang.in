@@ -165,9 +165,12 @@ class IndiaCityVillageStepFive extends Component
                     $langName = $langTitle[$langCode] ?? $langCode;
 
                     // FIX #2
-                    $sNo = $locType === 'District Capital'
-                        ? $serial . ' - ' . $langName
-                        : $serial . '.' . $subSerial . ' - ' . $langName;
+                    // Determine serial part without language for row grouping
+                    $serialPart = $locType === 'District Capital'
+                        ? (string)$serial
+                        : $serial . '.' . $subSerial;
+                    $sNo = $serialPart; // serial number column
+                    $language = $langName; // separate language column
 
                     $planKey = $locId . '-' . $langCode;
 
@@ -257,6 +260,7 @@ class IndiaCityVillageStepFive extends Component
 
                     $cityRows[] = [
                         's_no'               => $sNo,
+                        'language'           => $language,
                         'city'               => $locName,
                         'city_type'          => $locType,
                         'state'              => $state,
@@ -272,6 +276,8 @@ class IndiaCityVillageStepFive extends Component
                         'city_rowspan'       => 0,
                         'is_first_in_state'  => false,
                         'state_rowspan'      => 0,
+                        'is_first_in_sr'     => false,
+                        'sr_rowspan'         => 0,
                     ];
 
                     $cityRowspan++;
@@ -282,6 +288,9 @@ class IndiaCityVillageStepFive extends Component
 
                     $cityRows[0]['is_first_in_city'] = true;
                     $cityRows[0]['city_rowspan'] = $cityRowspan;
+                    // Set serial row span for the first language row of this location
+                    $cityRows[0]['is_first_in_sr'] = true;
+                    $cityRows[0]['sr_rowspan'] = $cityRowspan;
 
                     $stateRows = array_merge($stateRows, $cityRows);
                 }

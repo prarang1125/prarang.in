@@ -60,7 +60,7 @@
                 Sources
             </button>
             @endif
-            @if($step >= 3 && $step <=5) <button type="button" data-bs-toggle="modal" data-bs-target="#TheseMTw1"
+            @if($step >= 1 && $step <=5) <button type="button" data-bs-toggle="modal" data-bs-target="#TheseMTw1"
                 class="text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-1.5 border border-blue-200">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"

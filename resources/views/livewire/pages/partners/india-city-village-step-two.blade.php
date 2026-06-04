@@ -707,6 +707,8 @@
                             State
                         </th>
                         <th rowspan="3" class="px-1 py-0.5 border text-center align-middle font-bold text-gray-800">
+                            Selected Languages</th>
+                        <th rowspan="3" class="px-1 py-0.5 border text-center align-middle font-bold text-gray-800">
                             Selected Host Location</th>
                         <th colspan="6" class="px-1 py-0.5 border text-center font-bold text-gray-800 bg-green-100">
                             Standard Solutions</th>
@@ -869,8 +871,10 @@
                     @endphp
                     <tr class="bg-white border-b hover:bg-gray-50 odd:bg-gray-50">
                         <td class="px-1 py-0.5 text-sm border font-medium align-middle text-start">
-                            {{ $srNo4 }}{{ $locAlpha4 }} - {{ $langName4 }}
+                            {{ $srNo4 }}.{{ $locAlpha4 }}
                         </td>
+
+
                         @if($firstLang4)
                         <td rowspan="{{ $langCount4 }}"
                             class="px-1 py-0.5 text-sm border font-semibold text-gray-900 align-middle">
@@ -885,7 +889,9 @@
                         </td>
                         @endif
                         @endif
-
+                        <td class="px-1 py-0.5 text-xs border text-center align-middle font-medium">
+                            {{ $langName4 }}
+                        </td>
                         {{-- Selected Host Location --}}
                         <td class="px-1 py-0.5 text-xs border text-center align-middle font-medium
                             @if($hostingType4 == 'prarang') text-indigo-700

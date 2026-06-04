@@ -38,6 +38,7 @@
                         <th rowspan="2" class="align-middle text-start">S. No.</th>
                         <th rowspan="2" class="align-middle text-start">City</th>
                         <th rowspan="2" class="align-middle">State</th>
+                        <th rowspan="2" class="align-middle">Selected Language</th>
                         <th rowspan="2" class="align-middle">Selected Host Location</th>
                         <th colspan="2" class="align-middle">Selected Solution</th>
                         <th colspan="2" class="align-middle">Estimated Budget</th>
@@ -59,7 +60,11 @@
 
                     @foreach($tableData as $index => $row)
                     <tr>
-                        <td>{{ $row['s_no'] }}</td>
+                        @if($row['is_first_in_sr'])
+                        <td rowspan="{{ $row['sr_rowspan'] }}" class="align-middle">
+                            {{ $row['s_no'] }}
+                        </td>
+                        @endif
 
                         @if($row['is_first_in_city'])
                         <td rowspan="{{ $row['city_rowspan'] }}" class="align-middle">
@@ -72,6 +77,7 @@
                         @if($row['is_first_in_state'])
                         <td rowspan="{{ $row['state_rowspan'] }}" class="align-middle">{{ $row['state'] }}</td>
                         @endif
+                        <td>{{$row['language']}}</td>
 
                         <td>{{ $row['host_location'] }}</td>
 
@@ -103,7 +109,7 @@
                 </tbody>
                 <tfoot class="table-light font-weight-bold">
                     <tr>
-                        <td colspan="6" class="text-start ps-3"><strong>Total: {{ count($tableData) }}</strong></td>
+                        <td colspan="7" class="text-start ps-3"><strong>Total: {{ count($tableData) }}</strong></td>
                         {{-- <td colspan="2"></td> --}}
                         <td><strong>₹ {{ number_format($totalOneTimeCost) }}</strong></td>
                         <td><strong>₹ {{ number_format($totalMonthlyCost) }}</strong></td>
