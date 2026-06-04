@@ -246,7 +246,7 @@ $metaData = [
         color: #1623de;
       }
     </style>
-    <div class="partner-wrap" x-data="{ showModal: false }">
+    <div class="partner-wrap" x-data="{ showModal: false, modalTitle: '' }">
       <div class="top-section">
         <!-- Nepal -->
         <div class="col-side">
@@ -262,14 +262,14 @@ $metaData = [
           <div class="flex gap-1 mt-3">
             <button
               type="button"
-              @click="showModal = true"
+              @click="modalTitle='Coming: TBD'; showModal = true"
               class="w-52 rounded-lg bg-blue-400 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:bg-blue-500">
               Cities &amp; Villages
             </button>
 
             <button
               type="button"
-              @click="showModal = true"
+              @click="modalTitle='Coming: TBD'; showModal = true"
               class="w-52 rounded-lg bg-blue-400 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:bg-blue-500">
               World Bilateral
             </button>
@@ -301,7 +301,7 @@ $metaData = [
 
               <button
                 type="button"
-                @click="showModal = true"
+                @click="modalTitle='Coming Soon'; showModal = true"
                 class="w-52 rounded-lg bg-blue-400 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:bg-blue-500">
                 World Bilateral
               </button>
@@ -325,14 +325,14 @@ $metaData = [
           <div class="flex gap-1 mt-3">
             <button
               type="button"
-              @click="showModal = true"
+              @click="modalTitle='Coming: TBD'; showModal = true"
               class="w-52 rounded-lg bg-blue-400 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:bg-blue-500">
               Cities &amp; Villages
             </button>
 
             <button
               type="button"
-              @click="showModal = true"
+              @click="modalTitle='Coming: TBD'; showModal = true"
               class="w-52 rounded-lg bg-blue-400 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:bg-blue-500">
               World Bilateral
             </button>
@@ -371,7 +371,7 @@ $metaData = [
 
           </div>
 
-          <h3 class="text-xl font-bold text-gray-900 mb-2">Coming Soon</h3>
+          <h3 class="text-xl font-bold text-gray-900 mb-2" x-text="modalTitle"></h3>
 
           <button @click="showModal = false"
 
