@@ -1066,8 +1066,7 @@
                     </tr>
                 </tfoot>
             </table>
-            <p class="text-xs text-gray-500 mt-2">*Only District Capital pricing included above. Other cities and
-                villages within each district expected to be priced similarly. Please reconfirm.</p>
+            <p class="text-xs text-gray-500 mt-2">*Only District-Capital pricing for City-Interaction Solutions included above. Other Cities (Non-Capital) and Villages Interaction pricing are expected to be similar.</p>
 
             @section('p-footer')
             <div class="flex justify-between">

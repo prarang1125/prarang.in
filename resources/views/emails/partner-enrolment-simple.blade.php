@@ -24,8 +24,7 @@
 
             <p style="font-size: 16px; color: #1e293b; margin: 0 0 8px;">Dear {{ $data['name'] }},</p>
             <p style="font-size: 14px; color: #64748b; margin: 0 0 28px; line-height: 1.7;">
-                Thank you for your interest in Prarang. We are interested in enrolling for a digital marketing plan as estimated below. Please revert with final pricing.
-            </p>
+                We are interested in partnering with Prarang for the selected Knowledge Web Geographies by language below. Our preference for respective KW for the Standard Solution and the Optional City-Interaction Solution is also indicated in the selection. </p>
 
             {{-- Section Label --}}
             <p style="font-size: 11px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 12px;">Contact Details</p>
