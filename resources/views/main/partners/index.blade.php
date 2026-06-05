@@ -11,6 +11,16 @@ $metaData = [
 @endphp
 
 <x-layout.main.base :metaData="$metaData">
+  <style>
+    /* Link */
+    .container .justify-end a {
+      text-decoration: none;
+
+    }
+  </style>
+  <div class="flex justify-end items-center">
+    <a class="bg-black text-white p-2 rounded-lg hover:bg-zinc-800 hover:text-gray-300" href="https://b2b.prarang.in/login?lt=partner" target="_blank">Partner Login</a>
+  </div>
 
   <!-- Start of Partner Banner UI -->
 

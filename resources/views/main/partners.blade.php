@@ -1217,7 +1217,7 @@ $metaData = [
                                     aria-expanded="{{ $isFirst ? 'true' : 'false' }}">
                                     {{ $state }}
                                     {{-- <span class="zone-city-count">{{ count($statePortals) }}
-                                        {{ Str::plural('City', count($statePortals)) }}</span> --}}
+                                    {{ Str::plural('City', count($statePortals)) }}</span> --}}
                                     @if ($nonLiveCount > 0)
                                     <span class="zone-city-count">
                                         {{ $nonLiveCount }} {{ Str::plural('City', $nonLiveCount) }}
@@ -1244,59 +1244,59 @@ $metaData = [
                                             <button type="button"
                                                 class="city-card btn w-100 has-external dropdown-toggle"
                                                 id="{{ $dropdownId }}" data-bs-toggle="dropdown" aria-expanded="false">
-                                                {{ $portalItem->city_name }}
-                                            </button>
-                                            <ul class="dropdown-menu shadow border-0 py-2 w-100"
-                                                aria-labelledby="{{ $dropdownId }}">
-                                                <li>
-                                                    <a class="dropdown-item py-2 px-3" href="/{{ $portalItem->slug }}">
-                                                        Main Portal
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <hr class="dropdown-divider">
-                                                </li>
-                                                @php
-                                                $extUrls = is_string($portalItem->ext_urls)
-                                                ? json_decode($portalItem->ext_urls, true)
-                                                : $portalItem->ext_urls;
-                                                @endphp
-                                                @if (is_array($extUrls))
-                                                @foreach ($extUrls as $extUrl)
-                                                <li>
-                                                    <a class="dropdown-item py-2 px-3"
-                                                        href="{{ $extUrl['url'] ?? '#' }}" target="_blank"
-                                                        rel="noopener">
-                                                        {{ $extUrl['title'] ?? 'Link' }}
-                                                    </a>
-                                                </li>
-                                                @endforeach
-                                                @endif
-                                            </ul>
-                                        </div>
-                                        @else
-                                        <a href="/{{ $portalItem->slug }}" target="_blank"
-                                            class="zone-district-tab {{ $portalItem->is_live ? 'border-warning border-2' : '' }}">
-                                            {{ $portalItem->city_name }}
-                                        </a>
-                                        @endif --}}
-
-                                        @if (!$portalItem->is_live)
-                                        <a href="/{{ $portalItem->slug }}" target="_blank" class="zone-district-tab">
-                                            {{ $portalItem->city_name }}
-                                        </a>
-                                        @endif
-                                        @endforeach
+                                        {{ $portalItem->city_name }}
+                                        </button>
+                                        <ul class="dropdown-menu shadow border-0 py-2 w-100"
+                                            aria-labelledby="{{ $dropdownId }}">
+                                            <li>
+                                                <a class="dropdown-item py-2 px-3" href="/{{ $portalItem->slug }}">
+                                                    Main Portal
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            @php
+                                            $extUrls = is_string($portalItem->ext_urls)
+                                            ? json_decode($portalItem->ext_urls, true)
+                                            : $portalItem->ext_urls;
+                                            @endphp
+                                            @if (is_array($extUrls))
+                                            @foreach ($extUrls as $extUrl)
+                                            <li>
+                                                <a class="dropdown-item py-2 px-3"
+                                                    href="{{ $extUrl['url'] ?? '#' }}" target="_blank"
+                                                    rel="noopener">
+                                                    {{ $extUrl['title'] ?? 'Link' }}
+                                                </a>
+                                            </li>
+                                            @endforeach
+                                            @endif
+                                        </ul>
                                     </div>
+                                    @else
+                                    <a href="/{{ $portalItem->slug }}" target="_blank"
+                                        class="zone-district-tab {{ $portalItem->is_live ? 'border-warning border-2' : '' }}">
+                                        {{ $portalItem->city_name }}
+                                    </a>
+                                    @endif --}}
+
+                                    @if (!$portalItem->is_live)
+                                    <a href="/{{ $portalItem->slug }}" target="_blank" class="zone-district-tab">
+                                        {{ $portalItem->city_name }}
+                                    </a>
+                                    @endif
+                                    @endforeach
                                 </div>
                             </div>
                         </div>
-                        @endforeach
-
                     </div>
+                    @endforeach
+
                 </div>
             </div>
         </div>
+    </div>
     </div>
     @endforeach
 
