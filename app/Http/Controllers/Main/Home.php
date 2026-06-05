@@ -203,14 +203,10 @@ class Home extends Controller
     }
 
 
-
-
-
-
     public function market()
     {
-        $url1 = "{$this->apiDomain}/api/geo-scripts/total";
-        $url2 = "{$this->apiDomain}/api/w-in-target-language";
+        $url1 = "https://api.prarang.in/api/geo-scripts/total";
+        $url2 = "https://api.prarang.in/api/w-in-target-language";
 
         // Headers for the requests
         $headers = [

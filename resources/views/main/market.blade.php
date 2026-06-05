@@ -583,35 +583,80 @@
             border-bottom-right-radius: 6px;
         }
     </style>
+    <style>
+        /* List Item */
+        .rounded .analysis-list li {
+            font-size: 12px;
+            font-weight: 600;
+        }
 
+        /* Span Tag */
+        .container .font-semibold span {
+            background-color: #ffffff !important;
+            color: #020202 !important;
+        }
+
+
+        /* Column 8/12 */
+        .container .container>.row>.mb-4 {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Span Tag */
+        .inline-flex .font-semibold span {
+            background-color: #ffffff;
+            color: #020202 !important;
+        }
+
+        /* Inline flex */
+        .container .mb-4 .inline-flex {
+            background-color: #ffffff;
+        }
+
+        .container .mb-4 .font-semibold {
+            text-decoration: none;
+        }
+    </style>
     <section class="container">
         <div class="row">
             <div class="col-lg-8 mb-4">
-                <p>
-                    The issues of accessibility of content, affordability & digital literacy still create a digital
-                    divide in most parts of the world. As English readers with quick internet data access on multiple
-                    devices, we tend to forget this reality.
-                </p>
-                <p>The world is not flat. Geography still matters. For each location ( all 195 Countries of the World &
-                    all 800+ State/District Capitals of India), we have undertaken research on 3 factors of the
-                    respective populations – Internet (including Social Media) reach, Language ( multilingualism) &
-                    Literacy.</p>
+                <div>
+                    <p>
+                        The issues of accessibility of content, affordability & digital literacy still create a
+                        digital
+                        divide in most parts of the world. As English readers with quick internet data access on
+                        multiple
+                        devices, we tend to forget this reality.
+                    </p>
+                    <p>The world is not flat. Geography still matters. For each location ( all 195 Countries of the
+                        World &
+                        all 800+ State/District Capitals of India), we have undertaken research on 3 factors of the
+                        respective populations – Internet (including Social Media) reach, Language (
+                        multilingualism) &
+                        Literacy.</p>
 
-                <div class="d-flex flex-column gap-2 align-items-start">
-                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#TheseMTw1"
-                        style="background: #3f69bd; color: #fff; min-width: 185px;">Digital Divide
-                        -
-                        World</button>
-                    <button type="button" class="btn" data-bs-toggle="modal" data-bs-target="#TheseMTi1"
-                        style="background: #3f69bd; color: #fff; min-width: 185px;">
-                        Digital Divide -
-                        India</button>
-                </div>
-                <div class="d-flex flex-column gap-2 align-items-start">
-                    <a href="/lang-webs?q=digital-divide-languages" class="text-light">Digital Divide 148</a>
-                    <a href="/lang-webs?q=digital-balance-languages" class="text-light">Digital Balance 30</a>
-                </div>
 
+                </div>
+                <div class="flex p-1  justify-center mt-4 items-center gap-2">
+
+                    <a href="/lang-webs?q=digital-divide-languages"
+                        class="flex items-center gap-2 px-8 py-3 rounded-xl bg-blue-600 text-white font-semibold">
+                        Digital Divide
+                        <span class="px-2 py-0.5 text-xs rounded-full bg-white text-blue-600 font-bold">
+                            148
+                        </span>
+                    </a>
+
+                    <a href="/lang-webs?q=digital-balance-languages"
+                        class="flex items-center gap-2 px-8 py-3 rounded-xl bg-blue-600 text-white font-semibold">
+                        Digital Balance
+                        <span class="px-2 py-0.5 text-xs rounded-full bg-slate-700 text-white">
+                            30
+                        </span>
+                    </a>
+
+                </div>
 
             </div>
 
@@ -622,12 +667,10 @@
                     </p>
                     <ul class="analysis-list">
 
-                        {{-- <li><a type="button" data-bs-toggle="modal" data-bs-target="#TheseMTw1">Digital Divide -
-                                World</a></li>
-                        <li>
-                            <a type="button" data-bs-toggle="modal" data-bs-target="#TheseMTi1"> Digital Divide -
-                                India</a>
-                        </li> --}}
+                        <li>Digital Divide - <a type="button" data-bs-toggle="modal" data-bs-target="#TheseMTw1">
+                                World</a> - <a type="button" data-bs-toggle="modal" data-bs-target="#TheseMTi1">
+                                India</a></li>
+
                         <li>
                             <a type="button" data-bs-toggle="modal" data-bs-target="#TheseMT">Indian Languages -
                                 Largest 121 Mother Tongues.</a>
@@ -661,9 +704,11 @@
                                 Official Languages of 195 Countries </a></li>
                         <li><a type="button" data-bs-toggle="modal" data-bs-target="#TheseMT4"> World Languages -
                                 Largest 23 Mother Tongues </a></li>
-                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#TheseMT5">World Scripts - Scripts
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#TheseMT5">World Scripts -
+                                Scripts
                                 & Writing Language Families</a></li>
-                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#box25"> World Scripts - 4 Writing
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#box25"> World Scripts - 4
+                                Writing
                                 Systems</a></li>
 
 
@@ -683,10 +728,12 @@
                                     style="max-width: 100%; max-height: 100%; object-fit: contain;">
                             </div>
                             <div>
-                                <h5 style="margin: 0 0 8px 0; color: #2c4f92; font-weight: 600;">United Nations Digital
+                                <h5 style="margin: 0 0 8px 0; color: #2c4f92; font-weight: 600;">United Nations
+                                    Digital
                                     Divide</h5>
                                 <p style="font-size: 13px; color: #555; margin: 0 0 12px 0; line-height: 1.5;">
-                                    The United Nations has also highlighted Digital Divide as a focus area for global
+                                    The United Nations has also highlighted Digital Divide as a focus area for
+                                    global
                                     development.
 
                                 </p>
@@ -710,10 +757,12 @@
                                     style="max-width: 100%; max-height: 100%; object-fit: contain;">
                             </div>
                             <div>
-                                <h5 style="margin: 0 0 8px 0; color: #2c4f92; font-weight: 600;">Prarang Language Webs
+                                <h5 style="margin: 0 0 8px 0; color: #2c4f92; font-weight: 600;">Prarang Language
+                                    Webs
                                 </h5>
                                 <p style="font-size: 13px; color: #555; margin: 0 0 12px 0; line-height: 1.5;">
-                                    Prarang has quantified the worldwide Digital Divide across 178 official languages in
+                                    Prarang has quantified the worldwide Digital Divide across 178 official
+                                    languages in
                                     all 195 countries of the world.
 
                                 </p>
@@ -831,7 +880,8 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h4><b>List of District Capitals with more than 30K Literate <?= $languageId[$nkey] ?> speakers with
+                    <h4><b>List of District Capitals with more than 30K Literate <?= $languageId[$nkey] ?> speakers
+                            with
                             Internet Access.</b></h4>
                     <div class="col-sm">
                         <table class="table table-responsive table-bordered table-striped table-hover table-sm">
@@ -971,9 +1021,11 @@
                 <div class="modal-body">
                     <p class="p-1">
                         Indian language diversity as defined in the last national census (2011) - There are 19,569
-                        languages, inclusive of all dialects. When rationalised, they quantify to 1,369 Mother Tongues
+                        languages, inclusive of all dialects. When rationalised, they quantify to 1,369 Mother
+                        Tongues
                         spoken in India. Only 121 of the Mother Tongues had more than 10,000 speakers. There are 22
-                        Official i.e. Scheduled Indian Languages of which 20 are in Varna-mala Script (i.e. Abugida),
+                        Official i.e. Scheduled Indian Languages of which 20 are in Varna-mala Script (i.e.
+                        Abugida),
                         one in Perso-Arabic Script (i.e. Abjad) & one in Latin Script (i.e. Alphabetical).
                     </p>
                     <img src="home-assets/image/lp1.png" class="img-fluid" alt="">
@@ -995,38 +1047,58 @@
 
                     <img src="home-assets/image/bl2a.jfif" class="img-fluid" alt="">
                     <p class="p-1 mt-2 text-start">
-                        The diversity of Indian languages was defined in the last national census ( 2011) - including
-                        all dialects, there are 19,569 languages. When "rationalised", these resulted in 1,369 Mother
-                        Tongues (MT) spoken in India. But just 121 of these MT have more than 10,000 speakers & 96.7% of
+                        The diversity of Indian languages was defined in the last national census ( 2011) -
+                        including
+                        all dialects, there are 19,569 languages. When "rationalised", these resulted in 1,369
+                        Mother
+                        Tongues (MT) spoken in India. But just 121 of these MT have more than 10,000 speakers &
+                        96.7% of
                         India's entire 1.21 billion people have just one of the 22 "scheduled" languages ( of Indian
                         constitution) as their MT. <br><br>
-                        India is approx. a sixth of world population & as such 1,369 MTs spoken out ofthe 7,117 world
-                        total ( Ethnologue survey), is a representative mix. But is this diversity of Indian languages,
+                        India is approx. a sixth of world population & as such 1,369 MTs spoken out ofthe 7,117
+                        world
+                        total ( Ethnologue survey), is a representative mix. But is this diversity of Indian
+                        languages,
                         a governance/communication challenge ? How multi-lingual are Indians - For eg. - how many
                         Tamilians speak Bengali ? English is MT for just a negligible number of Indians but how many
-                        Indians speak some level of the English language ? The Census of 2011 was a landmark linguistic
-                        census in history & its results eventually published in 2018, are the first ever Multilingualism
-                        data available for such a significant size of world population. European Union multilingualism
-                        studies have yet to undertake a survey of this scale. In the Census 2011 India data, the top 3
+                        Indians speak some level of the English language ? The Census of 2011 was a landmark
+                        linguistic
+                        census in history & its results eventually published in 2018, are the first ever
+                        Multilingualism
+                        data available for such a significant size of world population. European Union
+                        multilingualism
+                        studies have yet to undertake a survey of this scale. In the Census 2011 India data, the top
+                        3
                         (of 121 MTs) known to each of the 1.2 billion people surveyed, was recorded.
                     </p>
                     <br>
                     <img src="home-assets/image/bl2b.png" class="img-fluid" alt="">
                     <br><br>
                     <p class="p-1 text-start">
-                        Indian Unity is Scriptual but often mistaken for Spiritual. There is a hidden unity of Indian
-                        language diversity embedded in the scripts of its Mother Tongues. Of the 121 Indian MTs, except
-                        the ones using the Roman/English script of 26 alphabet characters & the Perso-Arabic/Urdu script
-                        of 40 , almost all the others are Abugida i.e. a phonetical arrangement of approx. 56 character
-                        sounds, known as " Varnamala" ( literally, Colour-Sequence). This uniformity of scripts isn't
-                        accidental but a forgotten project undertaken in antiquity to embed a unity of sounds, music,
+                        Indian Unity is Scriptual but often mistaken for Spiritual. There is a hidden unity of
+                        Indian
+                        language diversity embedded in the scripts of its Mother Tongues. Of the 121 Indian MTs,
+                        except
+                        the ones using the Roman/English script of 26 alphabet characters & the Perso-Arabic/Urdu
+                        script
+                        of 40 , almost all the others are Abugida i.e. a phonetical arrangement of approx. 56
+                        character
+                        sounds, known as " Varnamala" ( literally, Colour-Sequence). This uniformity of scripts
+                        isn't
+                        accidental but a forgotten project undertaken in antiquity to embed a unity of sounds,
+                        music,
                         maths & language, to create one sanskriti/culture, using the entire human audio-range in a
-                        scientific arrangement of sounds. Of the 22 "Scheduled" languages of India, 20 have " Varnamala"
-                        scripts, and 73% of India's few English MT speakers also know one of the 20 Varnamala scripts.
-                        While 61% of the Urdu MT speakers claim (in the census) to know at least one more of the other
-                        21 scheduled languages, majority of the literate Urdu MT speakers in India actually do read Urdu
+                        scientific arrangement of sounds. Of the 22 "Scheduled" languages of India, 20 have "
+                        Varnamala"
+                        scripts, and 73% of India's few English MT speakers also know one of the 20 Varnamala
+                        scripts.
+                        While 61% of the Urdu MT speakers claim (in the census) to know at least one more of the
+                        other
+                        21 scheduled languages, majority of the literate Urdu MT speakers in India actually do read
+                        Urdu
                         in respective location scripts ( Devanagari, Tamil, Malayalam etc) & are multilingual. This
-                        anomaly was not quantified in the 2011 survey since the emphasis was on spoken languages (not
+                        anomaly was not quantified in the 2011 survey since the emphasis was on spoken languages
+                        (not
                         written). Anyways historically, Urdu is an Indian language designed to bridge the Varnamala
                         phonetics with the Persian-Arabic phonetics of early medieval era, by extending the Persian
                         script of the time (which itself was an extension of the Arabic script).
@@ -1037,28 +1109,41 @@
                     <img src="home-assets/image/bl2d.jfif" class="img-fluid" alt="">
                     <br>
                     <p class="p-1 text-start">
-                        How Multilingual is the Indian population ? Take a look at the data collated by us - 25.42 % of
-                        the Indian population knows more than one language. Over 6.9% of the Indian population knows at
-                        least 3 languages. While a mere 0.02% of Indians have English as their MT, the vexing question
-                        of how many Indians know some level of English, has effectively been answered in the 2011 census
-                        - 128.5 Million i.e. a little more than 10% of the population. This includes many (estimated 50+
+                        How Multilingual is the Indian population ? Take a look at the data collated by us - 25.42 %
+                        of
+                        the Indian population knows more than one language. Over 6.9% of the Indian population knows
+                        at
+                        least 3 languages. While a mere 0.02% of Indians have English as their MT, the vexing
+                        question
+                        of how many Indians know some level of English, has effectively been answered in the 2011
+                        census
+                        - 128.5 Million i.e. a little more than 10% of the population. This includes many (estimated
+                        50+
                         Mn) who can't actually read or write a full page of english text. More than 93.3% of Indians
                         have the main 13 languages ( Hindi, Bengali, Marathi, Gujarati, Punjabi, Tamil, Malayalam,
-                        Kannada, Telugu, Assamese, Odia, Urdu, English) as their MT. The 6.7% who don't have these 13
-                        (but have another of the 108 MTs as their MT), actually are the most multilingual Indians with
+                        Kannada, Telugu, Assamese, Odia, Urdu, English) as their MT. The 6.7% who don't have these
+                        13
+                        (but have another of the 108 MTs as their MT), actually are the most multilingual Indians
+                        with
                         58.2% who know at least one more language, hindi (29%) being the most popular. It's also
-                        interesting to note that Punjabi MT speakers are the Most Multilingual Indians (53%), followed
+                        interesting to note that Punjabi MT speakers are the Most Multilingual Indians (53%),
+                        followed
                         by Marathi speakers (46%) & then Gujarati speakers (42%). India's hindi MT speakers are the
                         least multilingual ( 11% ) Indians.
                     </p>
                     <p class="p-1 text-start">
-                        To get back to the earlier question raised i.e how many Tamilians speak Bengali , let us look at
+                        To get back to the earlier question raised i.e how many Tamilians speak Bengali , let us
+                        look at
                         the data - 41416 i.e. 0.06% of Tamil MT. But Bengali MTs don't reciprocate & just 4171 speak
-                        Tamil. This data also highlights the "second" language fight between Hindi & English languages
+                        Tamil. This data also highlights the "second" language fight between Hindi & English
+                        languages
                         in India. Approximately 13.48% of India's Non-Hindi MT population speak Hindi as the
-                        second/third language & 10.59% of Non-English MT population speaks English. This also answers
-                        the long unanswered question of India's most widely spoken language - 691 Million Indians know
-                        some level of Hindi ( including 528 Million Hindi MT speakers). The next language now is English
+                        second/third language & 10.59% of Non-English MT population speaks English. This also
+                        answers
+                        the long unanswered question of India's most widely spoken language - 691 Million Indians
+                        know
+                        some level of Hindi ( including 528 Million Hindi MT speakers). The next language now is
+                        English
                         with 128.5 Million, followed by Bengali with 107.5 Million & Marathi with 99 Million.
                     </p>
                     <br>
@@ -1067,34 +1152,46 @@
                     <p class="p-1 text-start">
                         Several hundred years of English colonial rule & a continuity of 75 years more of English
                         language as the aspirational language for access to both government ( including legal &
-                        administrative) jobs & private sector's formal jobs, English language is barely recognized by
-                        260K Indians as their MT. But the aspiration (not quality level) reflects in the 128.5 Million
-                        who claim to speak it as their second or third language. An English speaking traveler in India
+                        administrative) jobs & private sector's formal jobs, English language is barely recognized
+                        by
+                        260K Indians as their MT. But the aspiration (not quality level) reflects in the 128.5
+                        Million
+                        who claim to speak it as their second or third language. An English speaking traveler in
+                        India
                         who doesn't know any hindi or other Indian languages, is likely to be best understood in
-                        Nagaland (33%), Manipur (32%), Punjab (30%), and least understood in Chhatisgarh (2.3%) & Bihar
+                        Nagaland (33%), Manipur (32%), Punjab (30%), and least understood in Chhatisgarh (2.3%) &
+                        Bihar
                         (2.7%). While UP's angrezi claim is (6.4%), the tourist friendly state of Rajasthan is less
                         english savvy ( 4.5%).
                     </p>
 
                     <p class="p-1 text-start">
                         In summary, if you're traveling across India, Hindi is by far (7 to 10 times more than any
-                        Indian or Foreign language), the best way to communicate. While the push towards moving India to
+                        Indian or Foreign language), the best way to communicate. While the push towards moving
+                        India to
                         a single language ( Hindi) speaking country has consistently found political resistance, the
-                        underlying writing unity (Varnamala) which has already been achieved lies dormant, awaiting its
+                        underlying writing unity (Varnamala) which has already been achieved lies dormant, awaiting
+                        its
                         utility in new AI technology. This unity of scripts truly has the power to facilitate Indian
                         governance/communication challenges. Instead, English language (alphabet) based machine
                         translation & related AI tools are being used extensively to create technology-device driven
                         textual unity in India.
                     </p>
                     <p class="p-1 text-start">
-                        Today, approx 74.04% of India is literate & therefore knows how to read/write in one of the 22
-                        scripts of the respective 121 MTs. Two of the 121 MTs ( Santhali & Gondhi) actually do not have
-                        a script , 50 of the other 119 MTs have Latin/English or Urdu/Perso-Arabic ( approx 4% of the
+                        Today, approx 74.04% of India is literate & therefore knows how to read/write in one of the
+                        22
+                        scripts of the respective 121 MTs. Two of the 121 MTs ( Santhali & Gondhi) actually do not
+                        have
+                        a script , 50 of the other 119 MTs have Latin/English or Urdu/Perso-Arabic ( approx 4% of
+                        the
                         population) but the rest of literate India writes in 20 scripts which all adhere to the
                         phonetical unity of Varnamala. More than 95% of literate India speaks in a MT which has an
-                        associated Varnamala script. Almost the entire literate of the rest of the 5% population, knows
-                        Varnamala in one of the other 20 scripts too. This is the single most significant aspect of the
-                        unity of Indian culture/sanskriti. The spread of Varnamala is noteworthy - Burmese (Mon), Sri
+                        associated Varnamala script. Almost the entire literate of the rest of the 5% population,
+                        knows
+                        Varnamala in one of the other 20 scripts too. This is the single most significant aspect of
+                        the
+                        unity of Indian culture/sanskriti. The spread of Varnamala is noteworthy - Burmese (Mon),
+                        Sri
                         Lankan ( Sinhalese), Thai, Laos & Indonesian ( Balinese)still use the Varnamala in their
                         respective scripts.
                     </p>
@@ -1181,7 +1278,8 @@
                 <div class="modal-body">
                     <h3 style="text-align: center; font-weight: bold;">23 spoken languages.</h3>
                     <p>
-                        Just 23 Mother Tongue languages account for more than half the world’s population. These include
+                        Just 23 Mother Tongue languages account for more than half the world’s population. These
+                        include
                         7 which are widely spoken in India.
                     </p>
                     <img src="{{ asset('assets/images/home/lp4.png') }}" class="img-fluid" alt="">
@@ -1201,14 +1299,16 @@
                 </div>
                 <div class="modal-body">
                     <p style="font-size: 12px; margin-bottom: 5px !important;">
-                        Although there are over 800 cities/state capitals, and 9,389 cities overall, hyperlocal print
+                        Although there are over 800 cities/state capitals, and 9,389 cities overall, hyperlocal
+                        print
                         dailies are available in only 240 cities.
 
                     </p>
                     <img src="{{ asset('images/citiesimage.png') }}" class="img-fluid" alt="">
 
                     <p style="font-size: 10px !important;">
-                        <span style="color: #000; ">*</span> Language population is the aggregation of Mother Tongue
+                        <span style="color: #000; ">*</span> Language population is the aggregation of Mother
+                        Tongue
                         population and
                         Multilingual population
 
@@ -1248,9 +1348,11 @@
                         <span style="font-weight:600;">Notes :</span>
                         <ul style="list-style: disc;">
                             <li><strong>Population, Literacy %</strong> – Census 2011</li>
-                            <li><strong>Books / Year</strong> – 2004 Figures – "60 Years of Book Publishing in India."
+                            <li><strong>Books / Year</strong> – 2004 Figures – "60 Years of Book Publishing in
+                                India."
                                 Federation of Indian Publishers, 2007</li>
-                            <li><strong>Periodicals, Circulation & Dailies</strong> – Press Registrar General of India –
+                            <li><strong>Periodicals, Circulation & Dailies</strong> – Press Registrar General of
+                                India –
                                 Press in India – Annual Report 2022-23</li>
                             <li><strong>Circulation</strong> – Average number of copies sold and distributed for all
                                 Periodicals per publishing day.</li>
@@ -1542,7 +1644,8 @@
                                         <li><strong>Books / Year – 2004 Figures %</strong> – "60 Years of Book
                                             Publishing in India." Federation of Indian Publishers, 2007
                                         </li>
-                                        <li><strong>Manuscripts</strong> – Refered to as (books) before printing began
+                                        <li><strong>Manuscripts</strong> – Refered to as (books) before printing
+                                            began
                                             in India
                                             – Subhash C. Bishwas and M.K. Prajapati, Bibliography Survey of Indian
                                             Manuscript Catalogues, 1998
@@ -1791,7 +1894,8 @@
 
                                 <div class="annual-notes no-bullet mt-3">
                                     <ul>
-                                        <li><strong>Source</strong> : K. C. Subrahmanyam et al (Eds.), A Union Catalogue
+                                        <li><strong>Source</strong> : K. C. Subrahmanyam et al (Eds.), A Union
+                                            Catalogue
                                             of Tamil Manuscripts, Vol. V, Tanjore University, Thanjavur 1991, pp.
                                             2148-2156
                                         </li>
@@ -1833,11 +1937,13 @@
                                 stations and transmitters
 
                             </li>
-                            <li><strong>AIR</strong> – Total (Medium Wave+FM) National Coverage – 90%, Population – 98%
+                            <li><strong>AIR</strong> – Total (Medium Wave+FM) National Coverage – 90%, Population –
+                                98%
 
                             </li>
 
-                            <li><strong>*AIR Stations Estimated </strong> – based on each city’s respective Most Spoken
+                            <li><strong>*AIR Stations Estimated </strong> – based on each city’s respective Most
+                                Spoken
                                 Mother Tongue Language
 
                             </li>
@@ -1854,7 +1960,8 @@
 
                             </li>
 
-                            <li><strong>Internet Users </strong> – Estimated based on Language Distribution of India and
+                            <li><strong>Internet Users </strong> – Estimated based on Language Distribution of India
+                                and
                                 TRAI Data – Jul-Sept, 2025
 
                             </li>
@@ -1878,8 +1985,10 @@
                 <div class="modal-body ">
                     <div class="p-3">
                         <h3 style="text-align: center; font-weight: bold;">17 Script Language Families.</h5>
-                            <p>The 178 Official Spoken Languages of the world can be categorized into 32 Scripts and 17
-                                Writing Language Families. Do note that "Writing Language Families" are distinct from "
+                            <p>The 178 Official Spoken Languages of the world can be categorized into 32 Scripts and
+                                17
+                                Writing Language Families. Do note that "Writing Language Families" are distinct
+                                from "
                                 Writing Language Systems".</p>
                             <hr>
                             <table class="table table-sm text-start">
@@ -1975,16 +2084,19 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Nearly 40% of the World’s languages are now endangered, with fewer than 1000 users.According to
+                    <p>Nearly 40% of the World’s languages are now endangered, with fewer than 1000 users.According
+                        to
                         leading language analysis firm, Ethnologue (Non-Profit US entity of a Christian Missionary
                         organisation), there are approximately 7,198 known languages in the world ,and they can be
-                        categorised into four writing systems, namely - Abugida, Abjad, Alphabetical & Logo-Syllabic.
+                        categorised into four writing systems, namely - Abugida, Abjad, Alphabetical &
+                        Logo-Syllabic.
                     </p>
                     <img src="home-assets/image/bl3a.JPG" alt="" class="img-fluid">
                     <br> <br>
                     <table id="box25x" class="table table-border">
                         <tr>
-                            <td colspan='10' class="h2">World Languages -Script Unity of 4 Writing Systems</td>
+                            <td colspan='10' class="h2">World Languages -Script Unity of 4 Writing Systems
+                            </td>
                         </tr>
                         <tr>
                             <td colspan="2" rowspan="2" class="text-center">Languages(MT)/Countries</td>
@@ -2027,14 +2139,16 @@
                 <div class="modal-body">
 
 
-                    <p>There are more than 800 districts in India as of 2024. A District Headquarter, also known as a
+                    <p>There are more than 800 districts in India as of 2024. A District Headquarter, also known as
+                        a
                         District
                         Capital, is the main administrative centre of a district. Each district has its own
                         headquarters, serving
                         as the administrative centre for the district. </p>
 
                     <p>According to the Prarang database, there are 768 District Headquarters, of which 368 have a
-                        population greater than 1 lakh. This data is based on estimates for 2023, derived from the 2011
+                        population greater than 1 lakh. This data is based on estimates for 2023, derived from the
+                        2011
                         Census by the Government of India and population growth rates. </p>
 
                     <p>As per the 2011 Census by the Government of India, there were 640 districts in India, and of
