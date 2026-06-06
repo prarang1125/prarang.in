@@ -82,7 +82,7 @@
         </div>
 
         <div class="flex justify-end items-end mt-1 px-4 gap-4">
-            @if ($step == 2 || $step == 3)
+            @if ($step == 2 )
             <button type="button" data-bs-toggle="modal" data-bs-target="#source"
                 class="text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-1.5 border border-blue-200">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
