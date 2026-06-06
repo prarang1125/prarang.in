@@ -92,7 +92,7 @@
                 Sources
             </button>
             @endif
-            @if ($step >= 3 && $step <= 5)
+            @if ($step >= 1 && $step <= 6)
                 <button type="button" data-bs-toggle="modal" data-bs-target="#TheseMTw1"
                 class="text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-1.5 border border-blue-200">
                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -139,289 +139,414 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <div class="accordion" id="faqAccordion">
+                    @switch($step)
+                    @case(1)
+                    <ol>
+                        <li><strong>Q. How do I select my target KW Geographies?</strong></li>
+                    </ol>
+                    <p>Choose the cities and/or villages where you want Prarang to build and operate Knowledge Web (KW) portals. These locations define the geographic scope of your partnership.</p>
+                    <ul>
+                        <li><strong><strong>Cities</strong></strong>(Section A) &mdash; Urban settlements including District Capitals, Municipal Corporations, Urban Agglomerations, and Smart Cities. Select via State &rarr; District &rarr; Category (optional) &rarr; Cities.</li>
+                        <li><strong><strong>Villages</strong></strong>(Section B) &mdash; Rural settlements. Select via State &rarr; District &rarr; Sub-District &rarr; Villages. You must pick a Sub-District before villages appear.</li>
+                    </ul>
+                    <p>Both can be combined in one plan. Use the <strong><strong>Analyse India</strong></strong>&nbsp;panel (top right) to research District, City, and Village data before making your selection.</p>
+                    <ol>
+                        <li><strong><strong>Q. What is the "Analyse India" panel?</strong></strong></li>
+                    </ol>
+                    <p>It links to Prarang's analytics tools so you can research geographies before making your selection.</p>
+                    <ul>
+                        <li><strong><strong>Districts</strong></strong>&mdash; Analysis of all 766 Indian districts (up from 640 in 2011), each with a District Capital. Useful for understanding district-level language, script, and population profiles before selecting your target geographies.</li>
+                        <li><strong><strong>Cities</strong></strong>&mdash; Analysis of 6,331 cities and towns across India, including 768 State/District Capitals, 301 Urban Agglomerations, 278 Municipal Corporations, and 100 Smart Cities.</li>
+                        <li><strong><strong>Villages</strong></strong>&mdash; Analysis of 592,765 inhabited villages, cross-referenced between Census 2011 and the Panchayat Raj LGD database (March 2026).</li>
+                    </ul>
+                    <p>&nbsp;</p>
+                    @break
 
-                        <!-- Q1: Hosting Location -->
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq1">
-                                    Q1. What is a Hosting Location?
-                                </button>
-                            </h2>
-                            <div id="faq1" class="accordion-collapse collapse show"
-                                data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
-                                    <p>Hosting Location determines where your city and village portals will be published
-                                        and accessed by users.</p>
+                    @case(2)
+                    <p><strong>Q. How to interpret the data?</strong><br />Thedata tableis generated for every location you selected, showing Population (2011 and projected 2026), Literacy %, Internet Users, Social Media platform penetration &mdash; so you can evaluate the actual digital market size before committing to a plan along with the District&rsquo;s Cyber Risk Index.</p>
+                    <p><strong>Q. How&nbsp;</strong><strong>to further define the KW Geography</strong><strong>?</strong></p>
+                    <p>Select at least one language for each District Capital row. Language checkboxes appear in the last column ("Top 3 Languages"). You must tick at least one language per capital to proceed.&nbsp;</p>
+                    <p><strong><strong>Q. Why do </strong></strong><strong><strong>L</strong></strong><strong><strong>anguage checkboxes and several data columns appear blank for N</strong></strong><strong><strong>o</strong></strong><strong><strong>n-</strong></strong><strong><strong>C</strong></strong><strong><strong>apital </strong></strong><strong><strong>C</strong></strong><strong><strong>ities and </strong></strong><strong><strong>V</strong></strong><strong><strong>illages?</strong></strong><br />Language selection operates at the district group level &mdash; the language(s) you choose for a District Capital automatically apply to all other cities and villages within the same district, so no separate selection is needed for them. Similarly, metrics like Literacy %, Social Media penetration, and the Cyber Risk Index are available at the District Capital level and are not shown for non-capital cities or villages.</p>
+                    <p>&nbsp;</p>
+                    @break
 
-                                    <h6 class="fw-bold mt-3">Hosting Options</h6>
+                    @case(3)
+                    <p><strong>Q. What is a Hosting Location?</strong><strong><br /></strong>A Hosting Location determines where the Knowledge Web (KW) of city and village portals will be published and accessed by users.</p>
+                    <p><strong><strong>Hosting Options</strong></strong></p>
+                    <p><strong><strong>Prarang.in - Sub-Domain:</strong></strong></p>
+                    <p>Your portal is hosted on Prarang under a dedicated partner directory (e.g.&nbsp;<a href="http://prarang.in/partner/xyz"><u>prarang.in/partner/xyz</u></a>).</p>
+                    <p>&nbsp;</p>
+                    <p><strong><strong>Your Website&nbsp;- Sub-Domain:</strong></strong></p>
+                    <p>If you already have a website, Prarang can provide APIs and integration support to make the portal content and apps available on your own domain.</p>
+                    <p>&nbsp;</p>
+                    <p><strong><strong>New Website - Homepage:</strong></strong></p>
+                    <p>If you need a separate website, Prarang can assist in setting up and deploying the portal on a new website.</p>
+                    <p><strong><strong>Hosting Cost</strong></strong></p>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td width="159">
+                                    <p><strong><strong>Hosting Location</strong></strong></p>
+                                </td>
+                                <td width="140">
+                                    <p><strong><strong>One-Time Cost</strong></strong></p>
+                                </td>
+                                <td width="124">
+                                    <p><strong><strong>Monthly Cost</strong></strong></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="159">
+                                    <p>Prarang.in</p>
+                                </td>
+                                <td width="140">
+                                    <p>₹0</p>
+                                </td>
+                                <td width="124">
+                                    <p>₹1,000</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="159">
+                                    <p>Your Website</p>
+                                </td>
+                                <td width="140">
+                                    <p>₹10,000</p>
+                                </td>
+                                <td width="124">
+                                    <p>₹2,000</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="159">
+                                    <p>New Website</p>
+                                </td>
+                                <td width="140">
+                                    <p>₹10,000</p>
+                                </td>
+                                <td width="124">
+                                    <p>₹2,000</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><strong><strong>&nbsp;</strong></strong></p>
+                    <p><strong><strong>Q. Why does Prarang.in show "Free" for some District Capital rows?</strong></strong></p>
+                    <p>If your selected district contains at least one other city or village (beyond the District Capital itself), the District Capital's Standard Solution hosting on Prarang.in is provided free of cost to you. This free hosting applies only to Prarang.in &mdash; not to Your Website or New Website options.</p>
+                    <p>&nbsp;</p>
+                    @break
 
-                                    <p><strong>Prarang.in – Sub-Domain:</strong><br>
-                                        Your portal is hosted on Prarang under a dedicated partner directory (e.g.
-                                        prarang.in/partner/xyz). You can display your own advertisements and promotional
-                                        content within the portal.</p>
+                    @case(4)
+                    <p><strong>Q. What is a Standard Solution?</strong><strong><br /></strong>The Standard Solution is the base package included with every selected location. It provides the essential portal, content, analytics, and enrolment capabilities required to establish a digital presence for a city or village.</p>
+                    <p>The Standard Solution is automatically included for all locations and cannot be removed.</p>
+                    <p><strong><strong>What's Included?</strong></strong></p>
+                    <ul>
+                        <li><strong><strong>Automated City/Village Portal Content</strong></strong></li>
+                        <li><strong><strong>Enrollment</strong></strong></li>
+                    </ul>
+                    <ul>
+                        <li>City e-Cards &mdash; Free digital business and personal cards containing contact details, address, social links, and QR-code sharing.</li>
+                        <li>City Yellow Pages &mdash; Free business listings showcasing products, services, and contact information.
+                            <ul>
+                                <li><strong><strong>Planners</strong></strong></li>
+                            </ul>
+                        </li>
+                        <li>Market Planner &mdash; Identifies the most suitable districts and markets for business expansion across India.</li>
+                        <li>Development Planner &mdash; Compares districts and states using ranked indicators to support development-focused decisions.</li>
+                        <li>Cyber Risk Analyser &mdash; Identifies locations with elevated cyber-risk based on digital activity and potential fake-ID exposure.
+                            <ul>
+                                <li><strong><strong>District Analytics</strong></strong></li>
+                            </ul>
+                        </li>
+                        <li>Rank-Based Insights &mdash; Shows how a district ranks against India's other 755 districts across multiple development categories.
+                            <ul>
+                                <li><strong><strong>Utility Widgets</strong></strong></li>
+                            </ul>
+                        </li>
+                        <li>Time Widget &mdash; Displays the current local time for the selected location.</li>
+                        <li>News Widget &mdash; Displays location-specific news and updates.</li>
+                        <li>Weather Widget &mdash; Displays current weather conditions and forecasts for the location.</li>
+                        <li>Maps Widget &mdash; Displays the location on an interactive map.
+                            <ul>
+                                <li><strong><strong>Comparison AI</strong></strong>&mdash; Compares selected districts, cities, villages, states, or countries across multiple indicators and datasets.</li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <p><strong><strong>Note:</strong></strong>&nbsp;Standard Solutions are mandatory for all selected locations. Additional City Interaction Solutions may be added separately to enhance engagement, visibility, and local market intelligence.</p>
+                    <p>&nbsp;</p>
+                    <p><strong><strong>Q. What are City Interaction Solutions?</strong></strong><strong><strong><br /></strong></strong>City Interaction Solutions are optional add-on services designed to increase visibility, engagement, market intelligence, and performance measurement for a selected city or village. Digital marketing costs are expensive and dependent on the social media popular in the city or village which you have mutually selected with us.<br />Unlike the Standard Solution, these services can be added based on your objectives and budget.</p>
+                    <p><strong><strong>Available Solutions</strong></strong><strong><strong><br /></strong></strong><strong><strong>City Posts</strong></strong><strong><strong><br /></strong></strong>Regular city-focused content published across Prarang's digital ecosystem to improve local visibility and audience engagement.</p>
+                    <ul>
+                        <li><strong><strong>Weekly</strong></strong>&mdash; One curated city post every week.</li>
+                        <li><strong><strong>Alternate Day</strong></strong>&mdash; One city post every alternate day.</li>
+                        <li><strong><strong>Daily</strong></strong>&mdash; One city post every day for maximum reach and engagement.</li>
+                    </ul>
+                    <p><strong><strong>City Yellow Pages Promotion</strong></strong><strong><strong><br /></strong></strong>Enhanced visibility and digital promotion for businesses listed in the City Yellow Pages.</p>
+                    <p><strong><strong>City Outdoor Ad Analytics</strong></strong><strong><strong><br /></strong></strong>Monthly tracking of outdoor advertisements across the city, including brands, industries, and advertising formats. Provides visibility into local advertising activity and competitor presence.</p>
+                    <p><strong><strong>District Analytics</strong></strong><strong><strong><br /></strong></strong>Access district-level intelligence built from 140+ indicators across demographic, socio-economic, and culture-nature categories, standardized across India's 756 districts.</p>
+                    <p><strong><strong>Semiotics</strong></strong><strong><strong><br /></strong></strong>Insights into the city's mood, interests, occupations, educational preferences, and local versus foreign cultural orientation.</p>
+                    <p><strong><strong>Partner Metrics</strong></strong><strong><strong><br /></strong></strong>A comprehensive performance dashboard designed to measure engagement, audience growth, and digital visibility. It includes the following:</p>
+                    <ul>
+                        <li><strong><strong>Content Metrics</strong></strong>&mdash; Reach and engagement reporting across Facebook, WhatsApp, Mobile Apps, Email Campaigns, and Google (SEO).</li>
+                        <li><strong><strong>CTR Analytics</strong></strong>&mdash; City-level click-through-rate analysis with tag-wise performance insights.</li>
+                        <li><strong><strong>Subscriber Profile</strong></strong>&mdash; Growth and reach tracking across all supported digital channels.</li>
+                        <li><strong><strong>Internet Trends</strong></strong>&mdash; Population, language, internet penetration, social media usage, and digital adoption insights for the city.</li>
+                    </ul>
+                    <p><strong><strong>Important Notes</strong></strong></p>
+                    <ul>
+                        <li>City Interaction Solutions are optional and may be selected individually.</li>
+                        <li>Some solutions automatically enable related analytics and reporting features.</li>
+                        <li>Pricing for each solution is displayed during budget estimation.</li>
+                    </ul>
+                    <p><strong><strong>City Interaction Solution Pricing</strong></strong></p>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td width="223">
+                                    <p><strong><strong>Feature</strong></strong></p>
+                                </td>
+                                <td width="189">
+                                    <p><strong><strong>City Posts (Weekly)</strong></strong></p>
+                                </td>
+                                <td width="177">
+                                    <p><strong><strong>City Posts (Alternate Day)</strong></strong></p>
+                                </td>
+                                <td width="224">
+                                    <p><strong><strong>City Posts (Daily)</strong></strong></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="223">
+                                    <p>Monthly Cost</p>
+                                </td>
+                                <td width="189">
+                                    <p>₹14,000</p>
+                                </td>
+                                <td width="177">
+                                    <p>₹45,000</p>
+                                </td>
+                                <td width="224">
+                                    <p>₹5,00,000</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="223">
+                                    <p>Includes</p>
+                                </td>
+                                <td width="189">
+                                    <p>City Posts, Semiotics, Partner Metrics</p>
+                                </td>
+                                <td width="177">
+                                    <p>City Posts,</p>
+                                    <p>Semiotics,</p>
+                                    <p>Partner Metrics</p>
+                                </td>
+                                <td width="224">
+                                    <p>City Posts, District Analytics, Semiotics, Partner Metrics</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="223">
+                                    <p>Posts per Month</p>
+                                </td>
+                                <td width="189">
+                                    <p>4</p>
+                                </td>
+                                <td width="177">
+                                    <p>15</p>
+                                </td>
+                                <td width="224">
+                                    <p>31</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="223">
+                                    <p>Posting Frequency</p>
+                                </td>
+                                <td width="189">
+                                    <p>Weekly</p>
+                                </td>
+                                <td width="177">
+                                    <p>Alternate Day</p>
+                                </td>
+                                <td width="224">
+                                    <p>Daily</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="223">
+                                    <p>Minimum Subscriber Base</p>
+                                </td>
+                                <td width="189">
+                                    <p>300+</p>
+                                </td>
+                                <td width="177">
+                                    <p>300+</p>
+                                </td>
+                                <td width="224">
+                                    <p>10,000+</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="223">
+                                    <p>Hyperlocal Reach per Post (7 Days)</p>
+                                </td>
+                                <td width="189">
+                                    <p>3,000+</p>
+                                </td>
+                                <td width="177">
+                                    <p>3,000+</p>
+                                </td>
+                                <td width="224">
+                                    <p>3,000+</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="223">
+                                    <p>Estimated Monthly Reach</p>
+                                </td>
+                                <td width="189">
+                                    <p>12,000+</p>
+                                </td>
+                                <td width="177">
+                                    <p>45,000+</p>
+                                </td>
+                                <td width="224">
+                                    <p>93,000+</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="223">
+                                    <p>Creative Formats Included</p>
+                                </td>
+                                <td width="189">
+                                    <p>3 Stills, 1 Video</p>
+                                </td>
+                                <td width="177">
+                                    <p>13 Stills, 2 Videos</p>
+                                </td>
+                                <td width="224">
+                                    <p>27 Stills, 4 Videos</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="223">
+                                    <p>Monthly Topic Discussion</p>
+                                </td>
+                                <td width="189">
+                                    <p>&mdash;</p>
+                                </td>
+                                <td width="177">
+                                    <p>&mdash;</p>
+                                </td>
+                                <td width="224">
+                                    <p>✓</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="223">
+                                    <p>District Analytics</p>
+                                </td>
+                                <td width="189">
+                                    <p>&mdash;</p>
+                                </td>
+                                <td width="177">
+                                    <p>&mdash;</p>
+                                </td>
+                                <td width="224">
+                                    <p>✓</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="223">
+                                    <p>Boost Posts / Collaborations</p>
+                                </td>
+                                <td width="189">
+                                    <p>&mdash;</p>
+                                </td>
+                                <td width="177">
+                                    <p>&mdash;</p>
+                                </td>
+                                <td width="224">
+                                    <p>✓</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="223">
+                                    <p>Subscriber Research &amp; Focus Groups</p>
+                                </td>
+                                <td width="189">
+                                    <p>&mdash;</p>
+                                </td>
+                                <td width="177">
+                                    <p>&mdash;</p>
+                                </td>
+                                <td width="224">
+                                    <p>✓</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><strong><strong>Other City Interaction Solutions</strong></strong></p>
+                    <table>
+                        <tbody>
+                            <tr>
+                                <td width="223">
+                                    <p><strong><strong>Solution</strong></strong></p>
+                                </td>
+                                <td width="140">
+                                    <p><strong><strong>Monthly Cost</strong></strong></p>
+                                </td>
+                                <td width="438">
+                                    <p><strong><strong>Includes</strong></strong></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="223">
+                                    <p>City Yellow Pages Promotion</p>
+                                </td>
+                                <td width="140">
+                                    <p>₹50,000</p>
+                                </td>
+                                <td width="438">
+                                    <p>Digital promotion and visibility enhancement for City Yellow Pages listings</p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="223">
+                                    <p>City Outdoor Ad Analytics</p>
+                                </td>
+                                <td width="140">
+                                    <p>₹50,000</p>
+                                </td>
+                                <td width="438">
+                                    <p>Monthly outdoor advertising intelligence report covering brands, industries, and ad formats across the city</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <p><strong><strong>Note:</strong></strong>&nbsp;Semiotics and Partner Metrics are automatically included with all City Posts plans. District Analytics is automatically included with the Daily City Posts plan.</p>
+                    @break
 
-                                    <p><strong>Your Website – Sub-Domain:</strong><br>
-                                        If you already have a website, Prarang can provide APIs and integration support
-                                        to make the portal available on your own domain.</p>
+                    @case(5)
+                    <p><strong>Q. How should I read the budget table, and can I still make changes?</strong></p>
+                    <p>The budget table summarises your full plan. For each KW Geography&nbsp;:</p>
+                    <ul>
+                        <li><strong><strong>One-Time Cost</strong></strong>&mdash; Setup fee charged once (₹10,000 for Your Website or New Website; ₹&ndash; for Prarang.in).</li>
+                        <li><strong><strong>Monthly Cost</strong></strong>&mdash; Recurring charge for hosting + all selected solutions combined.</li>
+                    </ul>
+                    <p>These are <strong><strong>estimates</strong></strong>&nbsp;&mdash; Prarang&nbsp;Sales will revert to you with an optimal Pricing Offer, with applicable taxes (e.g. GST) added. To adjust your plan, click <strong><strong>Revise Plan</strong></strong>.</p>
+                    @break
+                    @case(6)
+                    <p><strong><strong>Q. What happens when I submit this form?</strong></strong><strong><strong><br /></strong></strong>Your full plan (geographies, languages, hosting choices, and solutions selected) is sent to Prarang's sales team along with your contact details. Prarang will respond with a formal Pricing Offer and next steps for onboarding. Please note that GST has not been included and digital marketing costs of social media are subject to continuous change.</p>
+                    <p><strong><strong>Q. Can I still change my plan after submitting?</strong></strong><br />Once submitted, your plan cannot be edited. To make changes, either start a new plan from Step 1 or contact Prarang Sales directly. Please note that this is not a binding contract &mdash; we will revert to you based on your inputs.</p>
+                    <p><strong>Q. What if I want to share my plan with a colleague before submitting?</strong></p>
+                    <p>Use the Share button on any earlier screen (steps 2&ndash;5). It generates a link that saves your current plan state and can be shared with anyone. They can open it and see or continue your plan.</p>
+                    <p>&nbsp;</p> @break
 
-                                    <p><strong>New Website – Homepage:</strong><br>
-                                        If you need a separate website, Prarang can assist in setting up and deploying
-                                        the portal on a new website, subject to feasibility and availability.</p>
+                    @default
 
-                                    <h6 class="fw-bold mt-3">Hosting Cost</h6>
-                                    <table class="table table-bordered table-sm">
-                                        <thead class="table-light">
-                                            <tr>
-                                                <th>Hosting Location</th>
-                                                <th>One-Time Cost</th>
-                                                <th>Monthly Cost</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Prarang.in</td>
-                                                <td>₹0</td>
-                                                <td>₹1,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Your Website</td>
-                                                <td>₹10,000</td>
-                                                <td>₹2,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>New Website</td>
-                                                <td>₹10,000</td>
-                                                <td>₹2,000</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                    <p class="text-muted small"><strong>Note:</strong> When a district includes both
-                                        its
-                                        District Capital and at least one selected city or village from the same
-                                        district, the District Capital receives free Standard Solution hosting on
-                                        Prarang.in. This benefit is not available when the District Capital is the only
-                                        selected location in the district, when hosting is moved to another website, or
-                                        when paid City Interaction Solutions are selected for the District Capital.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Q2: Standard Solution -->
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq2">
-                                    Q2. What is a Standard Solution?
-                                </button>
-                            </h2>
-                            <div id="faq2" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
-                                    <p>The Standard Solution is the base package included with every selected location.
-                                        It provides the essential portal, content, analytics, and enrollment
-                                        capabilities required to establish a digital presence for a city or village.</p>
-                                    <p>The Standard Solution is <strong>automatically included</strong> for all
-                                        locations and <strong>cannot be removed</strong>.</p>
-
-                                    <h6 class="fw-bold mt-3">What's Included?</h6>
-
-                                    <p><strong>Automated City/Village Portal Content</strong></p>
-
-                                    <p><strong>Enrollment</strong></p>
-
-                                    <p><strong>City e-Cards</strong> — Free digital business and personal cards
-                                        containing contact details, address, social links, and QR-code sharing.</p>
-
-                                    <p><strong>City Yellow Pages</strong> — Free business listings showcasing products,
-                                        services, and contact information.</p>
-
-                                    <p><strong>Planners</strong></p>
-                                    <ul>
-                                        <li><strong>Market Planner</strong> — Identifies the most suitable districts and
-                                            markets for business expansion across India.</li>
-                                        <li><strong>Development Planner</strong> — Compares districts and states using
-                                            ranked indicators to support development-focused decisions.</li>
-                                        <li><strong>Cyber Risk Analyser</strong> — Identifies locations with elevated
-                                            cyber-risk based on digital activity and potential fake-ID exposure.</li>
-                                    </ul>
-
-                                    <p><strong>District Analytics</strong></p>
-                                    <ul>
-                                        <li><strong>Rank-Based Insights</strong> — Shows how a district ranks against
-                                            India's other 755 districts across multiple development categories.</li>
-                                    </ul>
-
-                                    <p><strong>Utility Widgets</strong></p>
-                                    <ul>
-                                        <li><strong>Time Widget</strong> — Displays the current local time for the
-                                            selected location.</li>
-                                        <li><strong>News Widget</strong> — Displays location-specific news and updates.
-                                        </li>
-                                        <li><strong>Weather Widget</strong> — Displays current weather conditions and
-                                            forecasts for the location.</li>
-                                        <li><strong>Maps Widget</strong> — Displays the location on an interactive map.
-                                        </li>
-                                    </ul>
-
-                                    <p><strong>Comparison AI</strong> — Compares selected districts, cities, villages,
-                                        states, or countries across multiple indicators and datasets.</p>
-
-                                    <p class="text-muted small"><strong>Note:</strong> Additional City Interaction
-                                        Solutions may be added separately to enhance engagement, visibility, and local
-                                        market intelligence.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Q3: City Interaction Solutions -->
-                        <div class="accordion-item">
-                            <h2 class="accordion-header">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
-                                    data-bs-target="#faq3">
-                                    Q3. What are City Interaction Solutions?
-                                </button>
-                            </h2>
-                            <div id="faq3" class="accordion-collapse collapse" data-bs-parent="#faqAccordion">
-                                <div class="accordion-body">
-                                    <p>City Interaction Solutions are <strong>optional</strong> add-on services designed
-                                        to increase visibility, engagement, market intelligence, and performance
-                                        measurement for a selected city or village. Unlike the Standard Solution, these
-                                        services can be added based on your objectives and budget.</p>
-
-                                    <h6 class="fw-bold mt-3">Available Solutions</h6>
-
-                                    <p><strong>City Posts</strong><br>
-                                        Regular city-focused content published across Prarang's digital ecosystem to
-                                        improve local visibility and audience engagement.</p>
-
-                                    <table class="table table-bordered table-sm">
-                                        <thead class="table-light">
-                                            <tr>
-                                                <th>Feature</th>
-                                                <th>Weekly</th>
-                                                <th>Alternate Day</th>
-                                                <th>Daily</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td>Monthly Cost</td>
-                                                <td>₹14,000</td>
-                                                <td>₹45,000</td>
-                                                <td>₹5,00,000</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Includes</td>
-                                                <td>City Posts, Semiotics, Partner Metrics</td>
-                                                <td>City Posts, Semiotics, Partner Metrics</td>
-                                                <td>City Posts, District Analytics, Semiotics, Partner Metrics</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Posts per Month</td>
-                                                <td>4</td>
-                                                <td>15</td>
-                                                <td>31</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Minimum Subscriber Base</td>
-                                                <td>300+</td>
-                                                <td>300+</td>
-                                                <td>10,000+</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Hyperlocal Reach per Post (7 Days)</td>
-                                                <td>3,000+</td>
-                                                <td>3,000+</td>
-                                                <td>3,000+</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Estimated Monthly Reach</td>
-                                                <td>12,000+</td>
-                                                <td>45,000+</td>
-                                                <td>93,000+</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Creative Formats Included</td>
-                                                <td>3 Stills, 1 Video</td>
-                                                <td>13 Stills, 2 Videos</td>
-                                                <td>27 Stills, 4 Videos</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Monthly Topic Discussion</td>
-                                                <td>—</td>
-                                                <td>—</td>
-                                                <td>✓</td>
-                                            </tr>
-                                            <tr>
-                                                <td>District Analytics</td>
-                                                <td>—</td>
-                                                <td>—</td>
-                                                <td>✓</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Boost Posts / Collaborations</td>
-                                                <td>—</td>
-                                                <td>—</td>
-                                                <td>✓</td>
-                                            </tr>
-                                            <tr>
-                                                <td>Subscriber Research &amp; Focus Groups</td>
-                                                <td>—</td>
-                                                <td>—</td>
-                                                <td>✓</td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
-
-                                    <p><strong>City Yellow Pages Promotion</strong><br>
-                                        Enhanced visibility and digital promotion for businesses listed in the City
-                                        Yellow Pages.<br>
-                                        <span class="text-muted small">Monthly Cost: ₹50,000</span>
-                                    </p>
-
-                                    <p><strong>City Outdoor Ad Analytics</strong><br>
-                                        Monthly tracking of outdoor advertisements across the city, including brands,
-                                        industries, and advertising formats. Provides visibility into local advertising
-                                        activity and competitor presence.<br>
-                                        <span class="text-muted small">Monthly Cost: ₹50,000</span>
-                                    </p>
-
-                                    <p><strong>District Analytics</strong><br>
-                                        Access district-level intelligence built from 140+ indicators across
-                                        demographic, socio-economic, and culture-nature categories, standardized across
-                                        India's 756 districts.</p>
-
-                                    <p><strong>Semiotics</strong><br>
-                                        Insights into the city's mood, interests, occupations, educational preferences,
-                                        and local versus foreign cultural orientation.</p>
-
-                                    <p><strong>Partner Metrics</strong><br>
-                                        A comprehensive performance dashboard designed to measure engagement, audience
-                                        growth, and digital visibility. Includes:</p>
-                                    <ul>
-                                        <li><strong>Content Metrics</strong> — Reach and engagement reporting across
-                                            Facebook, WhatsApp, Mobile Apps, Email Campaigns, and Google (SEO).</li>
-                                        <li><strong>CTR Analytics</strong> — City-level click-through-rate analysis with
-                                            tag-wise performance insights.</li>
-                                        <li><strong>Subscriber Profile</strong> — Growth and reach tracking across all
-                                            supported digital channels.</li>
-                                        <li><strong>Internet Trends</strong> — Population, language, internet
-                                            penetration, social media usage, and digital adoption insights for the city.
-                                        </li>
-                                    </ul>
-
-                                    <p class="text-muted small"><strong>Note:</strong> Semiotics and Partner Metrics
-                                        are
-                                        automatically included with all City Posts plans. District Analytics is
-                                        automatically included with the Daily City Posts plan. City Interaction
-                                        Solutions are optional and may be selected individually.</p>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+                    @endswitch
                 </div>
             </div>
         </div>
@@ -495,5 +620,12 @@
             </div>
         </div>
     </div>
+    <style>
+        /* Table Data */
+        #cities-village-filter-main .modal td {
+            border-style: solid;
+            border-width: 2px;
+        }
+    </style>
 
 </section>
