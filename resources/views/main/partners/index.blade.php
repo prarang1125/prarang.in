@@ -409,7 +409,7 @@ $metaData = [
     </p>
 
     <div class="flex flex-wrap items-center justify-center gap-6">
-      <div>
+      <!-- <div>
         <p class="text-center">
           Indoeuropeans India Pvt. Ltd.
         </p>
@@ -418,7 +418,7 @@ $metaData = [
           <img src="https://i.ibb.co/RGVNrCbR/IEU-Logo.gif" alt="IEU Logo" class=" max-w-[200px] object-contain">
           <p class="font-bold text-xs">Respect for Diversity, A Belief in Unity</p>
         </a>
-      </div>
+      </div> -->
 
       <div>
         <p>Dr. Shroff’s Charity Eye Hospital</p>

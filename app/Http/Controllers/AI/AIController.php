@@ -71,8 +71,8 @@ class AIController extends Controller
                 'chatgpt' => 'openai/gpt-5-nano',
                 'claude' => 'anthropic/claude-3-haiku',
                 'grok' => 'x-ai/grok-4-fast',
-                'deepseek' => 'deepseek/deepseek-r1-0528-qwen3-8b:free',
-                'meta' => 'meta-llama/llama-4-maverick:free',
+                'deepseek' => 'deepseek/deepseek-v4-flash',
+                'meta' => 'meta-llama/llama-3.3-70b-instruct:free',
                 'perplexity' => 'perplexity/sonar',
             ];
 
