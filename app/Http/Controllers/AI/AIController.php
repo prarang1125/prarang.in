@@ -66,8 +66,8 @@ class AIController extends Controller
             // Step 5: Generate responses for each model using OpenRouter API
             $openRouterUrl = 'http://localhost:4000/run';
             $openRouterModels = [
-                'google' => 'google/gemma-4-26b-a4b-it:free',
-                'gemini' => 'google/gemma-4-26b-a4b-it:free',
+                'google' => 'google/gemma-3-4b-it',
+                'gemini' => 'google/gemma-3-4b-it',
                 'chatgpt' => 'openai/gpt-5-nano',
                 'claude' => 'anthropic/claude-3-haiku',
                 'grok' => 'x-ai/grok-4-fast',
