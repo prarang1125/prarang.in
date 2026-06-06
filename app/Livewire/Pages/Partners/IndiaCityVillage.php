@@ -418,7 +418,8 @@ class IndiaCityVillage extends Component
         return view('livewire.pages.partners.india-city-village')->layout('components.layout.main.base', [
             'metaData' => [
                 'nav-heading' => 'Select India Knowledge Webs for Partnerships',
-                'nav-sub-heading' => ""
+                'nav-sub-heading' => "",
+                'image' => "https://i.ibb.co/BHRqJZgW/eeps.png"
             ],
         ]);
     }

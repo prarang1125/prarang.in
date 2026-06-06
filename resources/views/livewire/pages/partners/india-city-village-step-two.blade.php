@@ -1166,9 +1166,45 @@
                             <span x-show="copied" x-cloak>Copied!</span>
                         </button>
                     </div>
+                    @php
+                    $shareTitle = urlencode('India Knowledge Webs for Partnerships');
+                    @endphp
 
+                    <div class="mt-6 flex items-center justify-center gap-3">
+
+                        <!-- WhatsApp -->
+                        <a href="https://wa.me/?text={{ $shareTitle }}%20{{ urlencode($shareUrl) }}"
+                            target="_blank"
+                            class="flex h-11 w-11 items-center justify-center rounded-full bg-green-100 text-green-600 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:bg-green-600 hover:text-white">
+                            <i class="bi bi-whatsapp text-xl"></i>
+                        </a>
+
+                        <!-- Facebook -->
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ urlencode($shareUrl) }}"
+                            target="_blank"
+                            class="flex h-11 w-11 items-center justify-center rounded-full bg-blue-100 text-blue-600 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:bg-blue-600 hover:text-white">
+                            <i class="bi bi-facebook text-xl"></i>
+                        </a>
+
+                        <!-- X -->
+                        <a href="https://twitter.com/intent/tweet?text={{ $shareTitle }}&url={{ urlencode($shareUrl) }}"
+                            target="_blank"
+                            class="flex h-11 w-11 items-center justify-center rounded-full bg-gray-100 text-gray-800 shadow-sm transition-all duration-200 hover:-translate-y-1 hover:bg-black hover:text-white">
+                            <i class="bi bi-twitter-x text-xl"></i>
+                        </a>
+
+                        <!-- LinkedIn -->
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url={{ urlencode($shareUrl) }}"
+                            target="_blank"
+                            class="flex h-11 w-11 items-center justify-center rounded-full bg-blue-100 text-black shadow-sm transition-all duration-200 hover:-translate-y-1 hover:bg-sky-700 hover:text-white">
+                            <i class="bi bi-linkedin text-xl"></i>
+                        </a>
+
+
+
+                    </div>
                     <button wire:click="$set('shareUrl', null)"
-                        class="text-gray-400 hover:text-gray-600 text-sm font-medium transition-colors">
+                        class="text-gray-400 hover:text-gray-600 text-sm mt-2 font-medium transition-colors">
                         Close
                     </button>
                 </div>

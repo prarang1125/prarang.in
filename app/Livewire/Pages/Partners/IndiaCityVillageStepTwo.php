@@ -404,7 +404,8 @@ class IndiaCityVillageStepTwo extends Component
         ])->layout('components.layout.main.base', [
             'metaData' => [
                 'nav-heading' => 'Select India Knowledge Webs for Partnerships',
-                'nav-sub-heading' => ""
+                'nav-sub-heading' => "",
+                'image' => "https://i.ibb.co/BHRqJZgW/eeps.png"
             ],
         ]);
     }
