@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Prarang Indian Cities Enrolment</title>
+    <title>Prarang Partner Enrolment</title>
     <style>
         * {
             box-sizing: border-box;
@@ -238,6 +238,8 @@
             </tr>
         </tfoot>
     </table>
+    <p style="text-align: right;"> * This is merely an estimated budget for a 1-month subscription (based on recent (dynamic daily) social media location pricing). Applicable taxes (e.g., GST) will be added to the pricing offer.​
+    </p>
 
     <div class="pdf-footer">
         © {{ date('Y') }} Prarang. All rights reserved. &nbsp;|&nbsp; Our team will contact you shortly regarding your enrolment.

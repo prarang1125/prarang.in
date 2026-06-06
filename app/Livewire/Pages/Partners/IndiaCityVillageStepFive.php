@@ -457,9 +457,9 @@ class IndiaCityVillageStepFive extends Component
                 ->setPaper('a4', 'landscape');
             $pdfContent = $pdf->output();
 
-            \Illuminate\Support\Facades\Mail::to($this->email)
+            \Illuminate\Support\Facades\Mail::to('sales@prarang.in')
                 ->cc([
-                    'sales@prarang.in',
+                    $this->email,
                 ])
                 ->send(new \App\Mail\PartnerEnrolmentMail($enrolmentData, $pdfContent));
 

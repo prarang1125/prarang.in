@@ -3,7 +3,7 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Prarang Indian Cities Enrolment</title>
+    <title>Prarang Partner Enrolment</title>
 </head>
 
 <body style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color: #333; background-color: #f1f5f9; margin: 0; padding: 24px;">
@@ -22,12 +22,12 @@
         {{-- ===== BODY ===== --}}
         <div style="padding: 32px;">
 
-            <p style="font-size: 16px; color: #1e293b; margin: 0 0 8px;">Dear {{ $data['name'] }},</p>
+            <!-- <p style="font-size: 16px; color: #1e293b; margin: 0 0 8px;">Dear {{ $data['name'] }},</p> -->
             <p style="font-size: 14px; color: #64748b; margin: 0 0 28px; line-height: 1.7;">
                 We are interested in partnering with Prarang for the selected Knowledge Web Geographies by language below. Our preference for respective KW for the Standard Solution and the Optional City-Interaction Solution is also indicated in the selection. </p>
 
             {{-- Section Label --}}
-            <p style="font-size: 11px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 12px;">Contact Details</p>
+            <p style="font-size: 11px; font-weight: 600; color: #94a3b8; text-transform: uppercase; letter-spacing: 0.08em; margin: 0 0 12px;">Details</p>
 
             {{-- Info Grid (2-column table layout for email clients) --}}
             <table style="width: 100%; border-collapse: separate; border-spacing: 10px; margin: 0 -10px 16px; table-layout: fixed;">
@@ -83,13 +83,13 @@
             <hr style="border: none; border-top: 1px solid #e2e8f0; margin: 0 0 24px;">
 
             {{-- Signature --}}
-            <div style="display: flex; align-items: center; gap: 12px;">
+            <!-- <div style="display: flex; align-items: center; gap: 12px;">
                 <div style="width: 42px; height: 42px; min-width: 42px; border-radius: 50%; background: #dbeafe; display: flex; align-items: center; justify-content: center; font-size: 14px; font-weight: 700; color: #1e40af; text-align: center; line-height: 42px;">PR</div>
                 <div>
                     <p style="margin: 0; font-size: 14px; font-weight: 600; color: #1e293b;">Prarang Team</p>
                     <p style="margin: 2px 0 0; font-size: 12px; color: #94a3b8;">Partnership &amp; Digital Marketing</p>
                 </div>
-            </div>
+            </div> -->
 
         </div>
 
