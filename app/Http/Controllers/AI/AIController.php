@@ -87,7 +87,7 @@ class AIController extends Controller
                 // Call OpenRouter API
                 if (!empty($apiModels)) {
                     $openRouterPayload = [
-                        'prompt' => $prompt, # "The paragraph summarizes key insights using actual numbers.Percentages and ratios are calculated and phrased naturally.The table aligns all fields cleanly.Give the source of data and consume only a maximum of 700 tokens.",
+                        'prompt' => $prompt . "Compare the given locations in a structured report. Start with a short 4–5 line overview paragraph comparing geography, administrative type, area, population, and notable differences. Then create a separate section for each location explaining key facts, rankings, economy, culture, infrastructure, and important metrics. After that, provide comparison tables for all major fields. End with a source section that lists the source and year for every metric used.",
                         'models' => $apiModels,
                     ];
 
