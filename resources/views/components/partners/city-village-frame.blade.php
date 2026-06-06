@@ -1,5 +1,5 @@
 {{-- layouts/partner-filter.blade.php --}}
-@props(['step'=>1])
+@props(['step' => 1])
 <section id="cities-village-filter-main">
     <link rel="stylesheet" href="{{ asset('assets/css/partner-filter.css') }}">
 
@@ -7,36 +7,36 @@
     <div class="pf-stepper mb-2" id="pf-stepper">
 
         {{-- Step 1: Red --}}
-        <div class="pf-step pf-step--red pf-step--first {{ $step >=1 ? 'active':"" }}" data-step="1">
+        <div class="pf-step pf-step--red pf-step--first {{ $step >= 1 ? 'active' : '' }}" data-step="1">
             <div class="pf-step__num">1</div>
             <div class="pf-step__label">Select Geography</div>
         </div>
 
         {{-- Step 2: Amber --}}
-        <div class="pf-step pf-step--amber {{ $step >=2 ? 'active':"" }}" data-step="2">
+        <div class="pf-step pf-step--amber {{ $step >= 2 ? 'active' : '' }}" data-step="2">
             <div class="pf-step__num">2</div>
             <div class="pf-step__label">Market Size</div>
         </div>
 
         {{-- Step 3: Light Green --}}
-        <div class="pf-step pf-step--light-green {{ $step >=3 ? 'active':"" }}" data-step="3">
+        <div class="pf-step pf-step--light-green {{ $step >= 3 ? 'active' : '' }}" data-step="3">
             <div class="pf-step__num">3</div>
             <div class="pf-step__label">Web Hosting</div>
         </div>
 
         {{-- Step 4: Dark Green --}}
-        <div class="pf-step pf-step--dark-green  {{ $step >=4 ? 'active':"" }}" data-step="4">
+        <div class="pf-step pf-step--dark-green  {{ $step >= 4 ? 'active' : '' }}" data-step="4">
             <div class="pf-step__num">4</div>
             <div class="pf-step__label">Select Solutions</div>
         </div>
         {{-- Step 5: Light Blue --}}
-        <div class="pf-step pf-step--light-blue {{ $step >=5 ? 'active':"" }}" data-step="5">
+        <div class="pf-step pf-step--light-blue {{ $step >= 5 ? 'active' : '' }}" data-step="5">
             <div class="pf-step__num">5</div>
             <div class="pf-step__label">Est. Budget</div>
         </div>
 
         {{-- Step 6: Dark Blue --}}
-        <div class="pf-step pf-step--dark-blue pf-step--last {{ $step >=6 ? 'active':"" }}" data-step="6">
+        <div class="pf-step pf-step--dark-blue pf-step--last {{ $step >= 6 ? 'active' : '' }}" data-step="6">
             <div class="pf-step__num">6</div>
             <div class="pf-step__label">Partnership Request</div>
         </div>
@@ -55,45 +55,54 @@
                     @yield('p-header')
                 </div>
                 <div class="col-span-1 flex items-end justify-end">
-                    <div class="flex flex-col justify-center items-center border-2 p-2 border-gray-300 rounded-lg shadow">
-                        <span class="text-sm font-bold text-blue-600 uppercase tracking-wider">
-                            <i class="ti ti-map-pin text-xs"></i> Analyse India
-                        </span>
-                        <div class="flex divide-x divide-gray-200 border border-gray-300 rounded-lg overflow-hidden">
-                            <a href="https://www.prarang.in/city-webs" target="_blank" class="flex items-center gap-1 px-3 py-1.5 text-sm text-white bg-blue-600 hover:bg-blue-800 hover:text-white transition">
-                                <i class="ti ti-building-community text-sm"></i> District
-                            </a>
-                            <a href="https://www.prarang.in/town-webs" target="_blank" class="flex items-center gap-1 px-3 py-1.5 text-sm text-white bg-blue-600 hover:bg-blue-800 hover:text-white transition">
-                                <i class="ti ti-buildings text-sm"></i> Cities
-                            </a>
-                            <a href="https://www.prarang.in/india-rural" target="_blank" class="flex items-center gap-1 px-3 py-1.5 text-sm text-white bg-blue-600 hover:bg-blue-800 hover:text-white transition">
-                                <i class="ti ti-home text-sm"></i> Villages
-                            </a>
+                    @if ($step == 1)
+                        <div
+                            class="flex flex-col justify-center items-center border-2 p-2 border-gray-300 rounded-lg shadow">
+                            <span class="text-sm font-bold text-blue-600 uppercase tracking-wider">
+                                <i class="ti ti-map-pin text-xs"></i> Analyse India
+                            </span>
+                            <div
+                                class="flex divide-x divide-gray-200 border border-gray-300 rounded-lg overflow-hidden">
+                                <a href="https://www.prarang.in/city-webs" target="_blank"
+                                    class="flex items-center gap-1 px-3 py-1.5 text-sm text-white bg-blue-600 hover:bg-blue-800 hover:text-white transition">
+                                    <i class="ti ti-building-community text-sm"></i> District
+                                </a>
+                                <a href="https://www.prarang.in/town-webs" target="_blank"
+                                    class="flex items-center gap-1 px-3 py-1.5 text-sm text-white bg-blue-600 hover:bg-blue-800 hover:text-white transition">
+                                    <i class="ti ti-buildings text-sm"></i> Cities
+                                </a>
+                                <a href="https://www.prarang.in/india-rural" target="_blank"
+                                    class="flex items-center gap-1 px-3 py-1.5 text-sm text-white bg-blue-600 hover:bg-blue-800 hover:text-white transition">
+                                    <i class="ti ti-home text-sm"></i> Villages
+                                </a>
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
             </div>
         </div>
 
         <div class="flex justify-end items-end mt-1 px-4 gap-4">
-            @if($step ==2 || $step ==3) <button type="button" data-bs-toggle="modal" data-bs-target="#source"
-                class="text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-1.5 border border-blue-200">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                Sources
-            </button>
-            @endif
-            @if($step >= 3 && $step <=5) <button type="button" data-bs-toggle="modal" data-bs-target="#TheseMTw1"
-                class="text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-1.5 border border-blue-200">
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                </svg>
-                FAQs
+            @if ($step == 2 || $step == 3)
+                <button type="button" data-bs-toggle="modal" data-bs-target="#source"
+                    class="text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-1.5 border border-blue-200">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    Sources
                 </button>
-                @endif
+            @endif
+            @if ($step >= 3 && $step <= 5)
+                <button type="button" data-bs-toggle="modal" data-bs-target="#TheseMTw1"
+                    class="text-blue-600 hover:text-blue-800 bg-blue-50 hover:bg-blue-100 px-3 py-1.5 rounded-lg text-sm font-semibold transition-colors flex items-center gap-1.5 border border-blue-200">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                    </svg>
+                    FAQs
+                </button>
+            @endif
         </div>
 
         {{-- Scrollable Body --}}
@@ -101,15 +110,15 @@
             {{ $slot }}
         </div>
         <div class="w-full px-4 pt-2">
-            @if(session()->has('error'))
-            <div class="alert alert-danger">
-                {{ session('error') }}
-            </div>
+            @if (session()->has('error'))
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
             @endif
-            @if(session()->has('success'))
-            <div class="alert alert-success">
-                {{ session('success') }}
-            </div>
+            @if (session()->has('success'))
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
             @endif
         </div>
         {{-- Sticky Footer --}}
@@ -141,7 +150,8 @@
                                     Q1. What is a Hosting Location?
                                 </button>
                             </h2>
-                            <div id="faq1" class="accordion-collapse collapse show" data-bs-parent="#faqAccordion">
+                            <div id="faq1" class="accordion-collapse collapse show"
+                                data-bs-parent="#faqAccordion">
                                 <div class="accordion-body">
                                     <p>Hosting Location determines where your city and village portals will be published
                                         and accessed by users.</p>
@@ -189,7 +199,8 @@
                                         </tbody>
                                     </table>
 
-                                    <p class="text-muted small"><strong>Note:</strong> When a district includes both its
+                                    <p class="text-muted small"><strong>Note:</strong> When a district includes both
+                                        its
                                         District Capital and at least one selected city or village from the same
                                         district, the District Capital receives free Standard Solution hosting on
                                         Prarang.in. This benefit is not available when the District Capital is the only
@@ -402,7 +413,8 @@
                                         </li>
                                     </ul>
 
-                                    <p class="text-muted small"><strong>Note:</strong> Semiotics and Partner Metrics are
+                                    <p class="text-muted small"><strong>Note:</strong> Semiotics and Partner Metrics
+                                        are
                                         automatically included with all City Posts plans. District Analytics is
                                         automatically included with the Daily City Posts plan. City Interaction
                                         Solutions are optional and may be selected individually.</p>
@@ -448,7 +460,8 @@
                                     Tongue Language.</td>
                             </tr>
                             <tr>
-                                <td><strong>Internet Users</strong> <span class="text-muted small">(in '000)</span></td>
+                                <td><strong>Internet Users</strong> <span class="text-muted small">(in '000)</span>
+                                </td>
                                 <td>Estimate — Population ratio of State Internet Users, TRAI QTR Report</td>
                             </tr>
                             <tr>

@@ -200,7 +200,7 @@
                 <th class="col-host">Languages</th>
                 <th class="col-host">Host Location</th>
                 <th class="col-std">Standard<br>Solutions</th>
-                <th class="col-optional">Optional Solutions</th>
+                <th class="col-optional">City-Interaction Solutions</th>
                 <th class="col-onetime">One Time Cost</th>
                 <th class="col-monthly">Monthly Cost</th>
             </tr>

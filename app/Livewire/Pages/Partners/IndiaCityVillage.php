@@ -417,7 +417,7 @@ class IndiaCityVillage extends Component
     {
         return view('livewire.pages.partners.india-city-village')->layout('components.layout.main.base', [
             'metaData' => [
-                'nav-heading' => 'Select India Knowladge Webs for Partnerships',
+                'nav-heading' => 'Select India Knowledge Webs for Partnerships',
                 'nav-sub-heading' => ""
             ],
         ]);

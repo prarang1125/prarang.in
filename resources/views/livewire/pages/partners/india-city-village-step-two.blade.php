@@ -292,7 +292,8 @@
                 </div>
                 <div class="modal-footer border-0 justify-content-center gap-3">
                     <button type="button" class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg font-medium transition-colors" data-bs-dismiss="modal">Revise plan</button>
-                    <button type="button" wire:click="confirmLanguageSelection" data-bs-dismiss="modal" wire:loading.attr="disabled"
+                    <button type="button" x-on:click="window.scrollTo({ top: 30, behavior: 'smooth' })"
+                        wire:click="confirmLanguageSelection" data-bs-dismiss="modal" wire:loading.attr="disabled"
                         wire:target="confirmLanguageSelection" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center gap-2">
                         <span wire:loading.remove wire:target="confirmLanguageSelection">Next</span>
                         <span wire:loading wire:target="confirmLanguageSelection" class="flex items-center gap-2">
@@ -651,6 +652,7 @@
 
                     <!-- Confirm Hosting Button -->
                     <button type="button" wire:click="confirmPlanSelection" wire:loading.attr="disabled"
+                        x-on:click="window.scrollTo({ top: 30, behavior: 'smooth' })"
                         class="bg-blue-600 hover:bg-blue-700 transition-colors px-6 py-2 rounded-lg text-white font-medium shadow-sm flex items-center justify-center gap-2 min-w-[160px]">
                         <span wire:loading.remove wire:target="confirmPlanSelection">
                             Next <i class="bi bi-arrow-right ms-2"></i>
@@ -1108,6 +1110,7 @@
                 <div class="flex gap-4">
 
                     <button wire:click="confirmCityPostsSelection" wire:loading.attr="disabled"
+                        x-on:click="window.scrollTo({ top: 30, behavior: 'smooth' })"
                         class="bg-blue-600 hover:bg-blue-700 transition-colors px-6 py-2 rounded-lg text-white font-medium shadow-sm flex items-center justify-center gap-2 min-w-[160px]">
                         <span wire:loading.remove wire:target="confirmCityPostsSelection">
                             Next <i class="bi bi-arrow-right ms-2"></i>

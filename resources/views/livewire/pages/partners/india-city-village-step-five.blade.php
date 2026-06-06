@@ -163,7 +163,9 @@
 
             </div>
 
-            <button wire:click="confirmFinalStep" wire:loading.attr="disabled" class="btn btn-primary"
+            <button wire:click="confirmFinalStep"
+                x-on:click="window.scrollTo({ top: 30, behavior: 'smooth' })"
+                wire:loading.attr="disabled" class="btn btn-primary"
                 style="min-width: 100px;">
                 <span wire:loading.remove wire:target="confirmFinalStep">Partner Request</span>
                 <span wire:loading wire:target="confirmFinalStep">
