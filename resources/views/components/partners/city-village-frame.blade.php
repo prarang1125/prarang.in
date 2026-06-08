@@ -237,296 +237,342 @@
                     @break
 
                     @case(4)
-                    <p><strong>Q. What is a Standard Solution?</strong><strong><br /></strong>The Standard Solution is the base package included with every selected location. It provides the essential portal, content, analytics, and enrolment capabilities required to establish a digital presence for a city or village.</p>
-                    <p>The Standard Solution is automatically included for all locations and cannot be removed.</p>
-                    <p><strong><strong>What's Included?</strong></strong></p>
-                    <ul>
-                        <li><strong><strong>Automated City/Village Portal Content</strong></strong></li>
-                        <li><strong><strong>Enrollment</strong></strong></li>
-                    </ul>
-                    <ul>
-                        <li>City e-Cards &mdash; Free digital business and personal cards containing contact details, address, social links, and QR-code sharing.</li>
-                        <li>City Yellow Pages &mdash; Free business listings showcasing products, services, and contact information.
-                            <ul>
-                                <li><strong><strong>Planners</strong></strong></li>
+                    <p style="margin-left: 0pt; text-indent: 0pt; background: rgb(255, 255, 255);"><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">Q. What is a Standard Solution?</span></b><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;"><br></span></b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">The Standard Solution is the base package included with every selected location. It provides the essential portal, content, analytics, and enrolment capabilities required to establish a digital presence for a city or village.</span></p>
+                    <p style="background: rgb(255, 255, 255);"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">The Standard Solution is automatically included for all locations and cannot be removed.</span></p>
+                    <p style="margin-left: 0pt; text-indent: 0pt; background: rgb(255, 255, 255);"><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">What's Included?</span></b></p>
+                    <ul level="1" style="margin-left: 36pt; list-style-type: disc;">
+                        <li style="margin-top: 0pt; margin-bottom: 0pt; background: rgb(255, 255, 255);">
+                            <p><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">Automated City/Village Portal Content — </span></b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: normal; font-size: 11pt;">Automatically generated location-specific content based on data from our continuously updated databases.</span></p>
+                        </li>
+                        <li style="margin-top: 0pt; margin-bottom: 0pt; background: rgb(255, 255, 255);">
+                            <p><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">Enrollment</span></b></p>
+                            <ul level="2" style="list-style-type: circle;">
+                                <li style="margin-top: 0pt; margin-bottom: 0pt; background: rgb(255, 255, 255);">
+                                    <p><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">City e-Cards — Free digital business and personal cards containing contact details, address, social links, and QR-code sharing.</span></p>
+                                </li>
+                                <li style="margin-top: 0pt; margin-bottom: 0pt; background: rgb(255, 255, 255);">
+                                    <p><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">City Yellow Pages — Free business listings showcasing products, services, and contact information.</span></p>
+                                </li>
                             </ul>
                         </li>
-                        <li>Market Planner &mdash; Identifies the most suitable districts and markets for business expansion across India.</li>
-                        <li>Development Planner &mdash; Compares districts and states using ranked indicators to support development-focused decisions.</li>
-                        <li>Cyber Risk Analyser &mdash; Identifies locations with elevated cyber-risk based on digital activity and potential fake-ID exposure.
-                            <ul>
-                                <li><strong><strong>District Analytics</strong></strong></li>
+                        <li style="margin-top: 0pt; margin-bottom: 0pt; background: rgb(255, 255, 255);">
+                            <p><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">Planners</span></b></p>
+                            <ul level="2" style="list-style-type: circle;">
+                                <li style="margin-top: 0pt; margin-bottom: 0pt; background: rgb(255, 255, 255);">
+                                    <p><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Market Planner — Identifies the most suitable districts and markets for business expansion across India.</span></p>
+                                </li>
+                                <li style="margin-top: 0pt; margin-bottom: 0pt; background: rgb(255, 255, 255);">
+                                    <p><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Development Planner — Compares districts and states using ranked indicators to support development-focused decisions.</span></p>
+                                </li>
+                                <li style="margin-top: 0pt; margin-bottom: 0pt; background: rgb(255, 255, 255);">
+                                    <p><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Cyber Risk Analyser — Identifies locations with elevated cyber-risk based on digital activity and potential fake-ID exposure.</span></p>
+                                </li>
                             </ul>
                         </li>
-                        <li>Rank-Based Insights &mdash; Shows how a district ranks against India's other 755 districts across multiple development categories.
-                            <ul>
-                                <li><strong><strong>Utility Widgets</strong></strong></li>
+                        <li style="margin-top: 0pt; margin-bottom: 0pt; background: rgb(255, 255, 255);">
+                            <p><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">District Analytics</span></b></p>
+                            <ul level="2" style="list-style-type: circle;">
+                                <li style="margin-top: 0pt; margin-bottom: 0pt; background: rgb(255, 255, 255);">
+                                    <p><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Rank-Based Insights — Shows how a district ranks against India's other 755 districts across multiple development categories.</span></p>
+                                </li>
                             </ul>
                         </li>
-                        <li>Time Widget &mdash; Displays the current local time for the selected location.</li>
-                        <li>News Widget &mdash; Displays location-specific news and updates.</li>
-                        <li>Weather Widget &mdash; Displays current weather conditions and forecasts for the location.</li>
-                        <li>Maps Widget &mdash; Displays the location on an interactive map.
-                            <ul>
-                                <li><strong><strong>Comparison AI</strong></strong>&mdash; Compares selected districts, cities, villages, states, or countries across multiple indicators and datasets.</li>
+                        <li style="margin-top: 0pt; margin-bottom: 0pt; background: rgb(255, 255, 255);">
+                            <p><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">Utility Widgets</span></b></p>
+                            <ul level="2" style="list-style-type: circle;">
+                                <li style="margin-top: 0pt; margin-bottom: 0pt; background: rgb(255, 255, 255);">
+                                    <p><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Time Widget — Displays the current local time for the selected location.</span></p>
+                                </li>
+                                <li style="margin-top: 0pt; margin-bottom: 0pt; background: rgb(255, 255, 255);">
+                                    <p><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">News Widget — Displays location-specific news and updates.</span></p>
+                                </li>
+                                <li style="margin-top: 0pt; margin-bottom: 0pt; background: rgb(255, 255, 255);">
+                                    <p><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Weather Widget — Displays current weather conditions and forecasts for the location.</span></p>
+                                </li>
+                                <li style="margin-top: 0pt; margin-bottom: 0pt; background: rgb(255, 255, 255);">
+                                    <p><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Maps Widget — Displays the location on an interactive map.</span></p>
+                                </li>
                             </ul>
                         </li>
+                        <li style="margin-top: 0pt; background: rgb(255, 255, 255);">
+                            <p><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">Comparison AI</span></b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">&nbsp;— Compares selected districts, cities, villages, states, or countries across multiple indicators and datasets.</span></p>
+                        </li>
                     </ul>
-                    <p><strong><strong>Note:</strong></strong>&nbsp;Standard Solutions are mandatory for all selected locations. Additional City Interaction Solutions may be added separately to enhance engagement, visibility, and local market intelligence.</p>
-                    <p>&nbsp;</p>
-                    <p><strong><strong>Q. What are City Interaction Solutions?</strong></strong><strong><strong><br /></strong></strong>City Interaction Solutions are optional add-on services designed to increase visibility, engagement, market intelligence, and performance measurement for a selected city or village. Digital marketing costs are expensive and dependent on the social media popular in the city or village which you have mutually selected with us.<br />Unlike the Standard Solution, these services can be added based on your objectives and budget.</p>
-                    <p><strong><strong>Available Solutions</strong></strong><strong><strong><br /></strong></strong><strong><strong>City Posts</strong></strong><strong><strong><br /></strong></strong>Regular city-focused content published across Prarang's digital ecosystem to improve local visibility and audience engagement.</p>
-                    <ul>
-                        <li><strong><strong>Weekly</strong></strong>&mdash; One curated city post every week.</li>
-                        <li><strong><strong>Alternate Day</strong></strong>&mdash; One city post every alternate day.</li>
-                        <li><strong><strong>Daily</strong></strong>&mdash; One city post every day for maximum reach and engagement.</li>
+                    <p style="margin-top: 0pt; background: rgb(255, 255, 255);"><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">Note:</span></b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">&nbsp;Standard Solutions are mandatory for all selected locations. Additional City Interaction Solutions may be added separately to enhance engagement, visibility, and local market intelligence.</span></p>
+                    <p style="margin-top: 0pt; margin-bottom: 0pt; background: rgb(255, 255, 255);"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">&nbsp;</span></p>
+                    <p style="margin-left: 0pt; text-indent: 0pt; background: rgb(255, 255, 255);"><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">Q. What are City Interaction Solutions?</span></b><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;"><br></span></b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">City Interaction Solutions are optional add-on services designed to increase visibility, engagement, market intelligence, and performance measurement for a selected city or village. Digital marketing costs are expensive and dependent on the social media popular in the city or village which you have mutually selected with us.</span><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;"><br></span><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Unlike the Standard Solution, these services can be added based on your objectives and budget.</span></p>
+                    <p style="margin-left: 0pt; text-indent: 0pt; background: rgb(255, 255, 255);"><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">Available Solutions</span></b><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;"><br></span></b><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">City Posts</span></b><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;"><br></span></b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Regular city-focused content published across Prarang's digital ecosystem to improve local visibility and audience engagement.</span></p>
+                    <ul level="1" style="margin-left: 36pt; list-style-type: disc;">
+                        <li style="margin-top: 0pt; margin-bottom: 0pt; background: rgb(255, 255, 255);">
+                            <p><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">4 Posts — Weekly</span></b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">&nbsp;— One curated city post every week.</span></p>
+                        </li>
+                        <li style="margin-top: 0pt; margin-bottom: 0pt; background: rgb(255, 255, 255);">
+                            <p><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">15 Posts — Alternate Day</span></b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">&nbsp;— One city post every alternate day.</span></p>
+                        </li>
+                        <li style="margin-top: 0pt; background: rgb(255, 255, 255);">
+                            <p><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">31 Posts — Daily</span></b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">&nbsp;— One city post every day for maximum reach and engagement.</span></p>
+                        </li>
                     </ul>
-                    <p><strong><strong>City Yellow Pages Promotion</strong></strong><strong><strong><br /></strong></strong>Enhanced visibility and digital promotion for businesses listed in the City Yellow Pages.</p>
-                    <p><strong><strong>City Outdoor Ad Analytics</strong></strong><strong><strong><br /></strong></strong>Monthly tracking of outdoor advertisements across the city, including brands, industries, and advertising formats. Provides visibility into local advertising activity and competitor presence.</p>
-                    <p><strong><strong>District Analytics</strong></strong><strong><strong><br /></strong></strong>Access district-level intelligence built from 140+ indicators across demographic, socio-economic, and culture-nature categories, standardized across India's 756 districts.</p>
-                    <p><strong><strong>Semiotics</strong></strong><strong><strong><br /></strong></strong>Insights into the city's mood, interests, occupations, educational preferences, and local versus foreign cultural orientation.</p>
-                    <p><strong><strong>Partner Metrics</strong></strong><strong><strong><br /></strong></strong>A comprehensive performance dashboard designed to measure engagement, audience growth, and digital visibility. It includes the following:</p>
-                    <ul>
-                        <li><strong><strong>Content Metrics</strong></strong>&mdash; Reach and engagement reporting across Facebook, WhatsApp, Mobile Apps, Email Campaigns, and Google (SEO).</li>
-                        <li><strong><strong>CTR Analytics</strong></strong>&mdash; City-level click-through-rate analysis with tag-wise performance insights.</li>
-                        <li><strong><strong>Subscriber Profile</strong></strong>&mdash; Growth and reach tracking across all supported digital channels.</li>
-                        <li><strong><strong>Internet Trends</strong></strong>&mdash; Population, language, internet penetration, social media usage, and digital adoption insights for the city.</li>
+                    <p style="margin-left: 0pt; text-indent: 0pt; background: rgb(255, 255, 255);"><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">City Yellow Pages Promotion</span></b><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;"><br></span></b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Enhanced visibility and digital promotion for businesses listed in the City Yellow Pages.</span></p>
+                    <p style="margin-left: 0pt; text-indent: 0pt; background: rgb(255, 255, 255);"><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">City Outdoor Ad Analytics</span></b><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;"><br></span></b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Monthly tracking of outdoor advertisements across the city, including brands, industries, and advertising formats. Provides visibility into local advertising activity and competitor presence.</span></p>
+                    <p style="margin-left: 0pt; text-indent: 0pt; background: rgb(255, 255, 255);"><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">District Analytics</span></b><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;"><br></span></b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Access district-level intelligence built from 140+ indicators across demographic, socio-economic, and culture-nature categories, standardized across India's 756 districts.</span></p>
+                    <p style="margin-left: 0pt; text-indent: 0pt; background: rgb(255, 255, 255);"><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">Semiotics</span></b><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;"><br></span></b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Insights into the city's mood, interests, occupations, educational preferences, and local versus foreign cultural orientation.</span></p>
+                    <p style="margin-left: 0pt; text-indent: 0pt; background: rgb(255, 255, 255);"><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">Partner Metrics</span></b><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;"><br></span></b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">A comprehensive performance dashboard designed to measure engagement, audience growth, and digital visibility. It includes the following:</span></p>
+                    <ul level="1" style="margin-left: 36pt; list-style-type: disc;">
+                        <li style="margin-top: 0pt; margin-bottom: 0pt; background: rgb(255, 255, 255);">
+                            <p><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">Content Metrics</span></b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">&nbsp;— Reach and engagement reporting across Facebook, WhatsApp, Mobile Apps, Email Campaigns, and Google (SEO).</span></p>
+                        </li>
+                        <li style="margin-top: 0pt; margin-bottom: 0pt; background: rgb(255, 255, 255);">
+                            <p><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">CTR Analytics</span></b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">&nbsp;— City-level click-through-rate analysis with tag-wise performance insights.</span></p>
+                        </li>
+                        <li style="margin-top: 0pt; margin-bottom: 0pt; background: rgb(255, 255, 255);">
+                            <p><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">Subscriber Profile</span></b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">&nbsp;— Growth and reach tracking across all supported digital channels.</span></p>
+                        </li>
+                        <li style="margin-top: 0pt; background: rgb(255, 255, 255);">
+                            <p><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">Internet Trends</span></b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">&nbsp;— Population, language, internet penetration, social media usage, and digital adoption insights for the city.</span></p>
+                        </li>
                     </ul>
-                    <p><strong><strong>Important Notes</strong></strong></p>
-                    <ul>
-                        <li>City Interaction Solutions are optional and may be selected individually.</li>
-                        <li>Some solutions automatically enable related analytics and reporting features.</li>
-                        <li>Pricing for each solution is displayed during budget estimation.</li>
+                    <p style="margin-left: 0pt; text-indent: 0pt; background: rgb(255, 255, 255);"><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">Important Notes</span></b></p>
+                    <ul level="1" style="margin-left: 36pt; list-style-type: disc;">
+                        <li style="margin-top: 0pt; margin-bottom: 0pt; background: rgb(255, 255, 255);">
+                            <p><span style="font-family: Symbol; color: rgb(0, 0, 0); font-size: 10pt;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">City Interaction Solutions are optional and may be selected individually.</span></p>
+                        </li>
+                        <li style="margin-top: 0pt; margin-bottom: 0pt; background: rgb(255, 255, 255);">
+                            <p><span style="font-family: Symbol; color: rgb(0, 0, 0); font-size: 10pt;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Some solutions automatically enable related analytics and reporting features.</span></p>
+                        </li>
+                        <li style="margin-top: 0pt; background: rgb(255, 255, 255);">
+                            <p><span style="font-family: Symbol; color: rgb(0, 0, 0); font-size: 10pt;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Pricing for each solution is displayed during budget estimation.</span></p>
+                        </li>
                     </ul>
-                    <p><strong><strong>City Interaction Solution Pricing</strong></strong></p>
-                    <table>
+                    <p style="margin-left: 0pt; text-indent: 0pt; background: rgb(255, 255, 255);"><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">City Interaction Solution Pricing</span></b></p>
+                    <table border="1" class="table" cellspacing="0" style="width: 488.65pt; margin-left: 5.7pt; border-width: medium; border-style: none;" class="e-rte-paste-table">
                         <tbody>
                             <tr>
-                                <td width="223">
-                                    <p><strong><strong>Feature</strong></strong></p>
+                                <td width="223" valign="center" style="width: 134.1pt; padding: 0pt 1.1pt; border-width: 1pt; border-style: outset; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">Feature</span></b></p>
                                 </td>
-                                <td width="189">
-                                    <p><strong><strong>City Posts (Weekly)</strong></strong></p>
+                                <td width="189" valign="center" style="width: 113.45pt; padding: 0pt 1.1pt; border-width: 1pt 1pt 1pt medium; border-style: outset outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">4</span></b><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;"><span>&nbsp;</span>Posts (Weekly)</span></b></p>
                                 </td>
-                                <td width="177">
-                                    <p><strong><strong>City Posts (Alternate Day)</strong></strong></p>
+                                <td width="177" valign="center" style="width: 106.25pt; padding: 0pt 1.1pt; border-width: 1pt 1pt 1pt medium; border-style: outset outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">15</span></b><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;"><span>&nbsp;</span>Posts</span></b></p>
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">(Alternate Day)</span></b></p>
                                 </td>
-                                <td width="224">
-                                    <p><strong><strong>City Posts (Daily)</strong></strong></p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="223">
-                                    <p>Monthly Cost</p>
-                                </td>
-                                <td width="189">
-                                    <p>₹14,000</p>
-                                </td>
-                                <td width="177">
-                                    <p>₹45,000</p>
-                                </td>
-                                <td width="224">
-                                    <p>₹5,00,000</p>
+                                <td width="224" valign="center" style="width: 134.85pt; padding: 0pt 1.1pt; border-width: 1pt 1pt 1pt medium; border-style: outset outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">31</span></b><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;"><span>&nbsp;</span>Posts (Daily)</span></b></p>
                                 </td>
                             </tr>
                             <tr>
-                                <td width="223">
-                                    <p>Includes</p>
+                                <td width="223" valign="center" style="width: 134.1pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt; border-style: none outset outset; background: rgb(255, 255, 255);">
+                                    <p style="margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Monthly Cost</span></p>
                                 </td>
-                                <td width="189">
-                                    <p>City Posts, Semiotics, Partner Metrics</p>
+                                <td width="189" valign="center" style="width: 113.45pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;"><span style="font-family: &quot;Times New Roman&quot;;">₹14,000</span></span></p>
                                 </td>
-                                <td width="177">
-                                    <p>City Posts,</p>
-                                    <p>Semiotics,</p>
-                                    <p>Partner Metrics</p>
+                                <td width="177" valign="center" style="width: 106.25pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;"><span style="font-family: &quot;Times New Roman&quot;;">₹45,000</span></span></p>
                                 </td>
-                                <td width="224">
-                                    <p>City Posts, District Analytics, Semiotics, Partner Metrics</p>
+                                <td width="224" valign="center" style="width: 134.85pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;"><span style="font-family: &quot;Times New Roman&quot;;">₹5,00,000</span></span></p>
                                 </td>
                             </tr>
                             <tr>
-                                <td width="223">
-                                    <p>Posts per Month</p>
+                                <td width="223" valign="center" style="width: 134.1pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt; border-style: none outset outset; background: rgb(255, 255, 255);">
+                                    <p style="margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Includes</span></p>
                                 </td>
-                                <td width="189">
-                                    <p>4</p>
+                                <td width="189" valign="center" style="width: 113.45pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p style="margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">City Posts, Semiotics, Partner Metrics</span></p>
                                 </td>
-                                <td width="177">
-                                    <p>15</p>
+                                <td width="177" valign="center" style="width: 106.25pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p style="margin-top: 0pt; margin-right: -128.3pt; margin-bottom: 0pt;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">City Posts, </span></p>
+                                    <p style="margin-top: 0pt; margin-right: -128.3pt; margin-bottom: 0pt;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Semiotics, </span></p>
+                                    <p style="margin-top: 0pt; margin-right: -128.3pt; margin-bottom: 0pt;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Partner Metrics</span></p>
                                 </td>
-                                <td width="224">
-                                    <p>31</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="223">
-                                    <p>Posting Frequency</p>
-                                </td>
-                                <td width="189">
-                                    <p>Weekly</p>
-                                </td>
-                                <td width="177">
-                                    <p>Alternate Day</p>
-                                </td>
-                                <td width="224">
-                                    <p>Daily</p>
+                                <td width="224" valign="center" style="width: 134.85pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p style="margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">City Posts, District Analytics, Semiotics, Partner Metrics</span></p>
                                 </td>
                             </tr>
                             <tr>
-                                <td width="223">
-                                    <p>Minimum Subscriber Base</p>
+                                <td width="223" valign="center" style="width: 134.1pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt; border-style: none outset outset; background: rgb(255, 255, 255);">
+                                    <p style="margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Posts per Month</span></p>
                                 </td>
-                                <td width="189">
-                                    <p>300+</p>
+                                <td width="189" valign="center" style="width: 113.45pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">4</span></p>
                                 </td>
-                                <td width="177">
-                                    <p>300+</p>
+                                <td width="177" valign="center" style="width: 106.25pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">15</span></p>
                                 </td>
-                                <td width="224">
-                                    <p>10,000+</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="223">
-                                    <p>Hyperlocal Reach per Post (7 Days)</p>
-                                </td>
-                                <td width="189">
-                                    <p>3,000+</p>
-                                </td>
-                                <td width="177">
-                                    <p>3,000+</p>
-                                </td>
-                                <td width="224">
-                                    <p>3,000+</p>
+                                <td width="224" valign="center" style="width: 134.85pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">31</span></p>
                                 </td>
                             </tr>
                             <tr>
-                                <td width="223">
-                                    <p>Estimated Monthly Reach</p>
+                                <td width="223" valign="center" style="width: 134.1pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt; border-style: none outset outset; background: rgb(255, 255, 255);">
+                                    <p style="margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Posting Frequency</span></p>
                                 </td>
-                                <td width="189">
-                                    <p>12,000+</p>
+                                <td width="189" valign="center" style="width: 113.45pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Weekly</span></p>
                                 </td>
-                                <td width="177">
-                                    <p>45,000+</p>
+                                <td width="177" valign="center" style="width: 106.25pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Alternate Day</span></p>
                                 </td>
-                                <td width="224">
-                                    <p>93,000+</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="223">
-                                    <p>Creative Formats Included</p>
-                                </td>
-                                <td width="189">
-                                    <p>3 Stills, 1 Video</p>
-                                </td>
-                                <td width="177">
-                                    <p>13 Stills, 2 Videos</p>
-                                </td>
-                                <td width="224">
-                                    <p>27 Stills, 4 Videos</p>
+                                <td width="224" valign="center" style="width: 134.85pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Daily</span></p>
                                 </td>
                             </tr>
                             <tr>
-                                <td width="223">
-                                    <p>Monthly Topic Discussion</p>
+                                <td width="223" valign="center" style="width: 134.1pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt; border-style: none outset outset; background: rgb(255, 255, 255);">
+                                    <p style="margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Minimum Subscriber Base</span></p>
                                 </td>
-                                <td width="189">
-                                    <p>&mdash;</p>
+                                <td width="189" valign="center" style="width: 113.45pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">300+</span></p>
                                 </td>
-                                <td width="177">
-                                    <p>&mdash;</p>
+                                <td width="177" valign="center" style="width: 106.25pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">300+</span></p>
                                 </td>
-                                <td width="224">
-                                    <p>✓</p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="223">
-                                    <p>District Analytics</p>
-                                </td>
-                                <td width="189">
-                                    <p>&mdash;</p>
-                                </td>
-                                <td width="177">
-                                    <p>&mdash;</p>
-                                </td>
-                                <td width="224">
-                                    <p>✓</p>
+                                <td width="224" valign="center" style="width: 134.85pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">10,000+</span></p>
                                 </td>
                             </tr>
                             <tr>
-                                <td width="223">
-                                    <p>Boost Posts / Collaborations</p>
+                                <td width="223" valign="center" style="width: 134.1pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt; border-style: none outset outset; background: rgb(255, 255, 255);">
+                                    <p style="margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Hyperlocal Reach per Post (7 Days)</span></p>
                                 </td>
-                                <td width="189">
-                                    <p>&mdash;</p>
+                                <td width="189" valign="center" style="width: 113.45pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">3,000+</span></p>
                                 </td>
-                                <td width="177">
-                                    <p>&mdash;</p>
+                                <td width="177" valign="center" style="width: 106.25pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">3,000+</span></p>
                                 </td>
-                                <td width="224">
-                                    <p>✓</p>
+                                <td width="224" valign="center" style="width: 134.85pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">3,000+</span></p>
                                 </td>
                             </tr>
                             <tr>
-                                <td width="223">
-                                    <p>Subscriber Research &amp; Focus Groups</p>
+                                <td width="223" valign="center" style="width: 134.1pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt; border-style: none outset outset; background: rgb(255, 255, 255);">
+                                    <p style="margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Estimated Monthly Reach</span></p>
                                 </td>
-                                <td width="189">
-                                    <p>&mdash;</p>
+                                <td width="189" valign="center" style="width: 113.45pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">12,000+</span></p>
                                 </td>
-                                <td width="177">
-                                    <p>&mdash;</p>
+                                <td width="177" valign="center" style="width: 106.25pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">45,000+</span></p>
                                 </td>
-                                <td width="224">
-                                    <p>✓</p>
+                                <td width="224" valign="center" style="width: 134.85pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">93,000+</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="223" valign="center" style="width: 134.1pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt; border-style: none outset outset; background: rgb(255, 255, 255);">
+                                    <p style="margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Creative Formats Included</span></p>
+                                </td>
+                                <td width="189" valign="center" style="width: 113.45pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">3 Stills, 1 Video</span></p>
+                                </td>
+                                <td width="177" valign="center" style="width: 106.25pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">13 Stills, 2 Videos</span></p>
+                                </td>
+                                <td width="224" valign="center" style="width: 134.85pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">27 Stills, 4 Videos</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="223" valign="center" style="width: 134.1pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt; border-style: none outset outset; background: rgb(255, 255, 255);">
+                                    <p style="margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Monthly Topic Discussion</span></p>
+                                </td>
+                                <td width="189" valign="center" style="width: 113.45pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;"><span style="font-family: &quot;Times New Roman&quot;;">—</span></span></p>
+                                </td>
+                                <td width="177" valign="center" style="width: 106.25pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;"><span style="font-family: &quot;Times New Roman&quot;;">—</span></span></p>
+                                </td>
+                                <td width="224" valign="center" style="width: 134.85pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;"><span style="font-family: &quot;Times New Roman&quot;;">✓</span></span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="223" valign="center" style="width: 134.1pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt; border-style: none outset outset; background: rgb(255, 255, 255);">
+                                    <p style="margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">District Analytics</span></p>
+                                </td>
+                                <td width="189" valign="center" style="width: 113.45pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;"><span style="font-family: &quot;Times New Roman&quot;;">—</span></span></p>
+                                </td>
+                                <td width="177" valign="center" style="width: 106.25pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;"><span style="font-family: &quot;Times New Roman&quot;;">—</span></span></p>
+                                </td>
+                                <td width="224" valign="center" style="width: 134.85pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;"><span style="font-family: &quot;Times New Roman&quot;;">✓</span></span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="223" valign="center" style="width: 134.1pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt; border-style: none outset outset; background: rgb(255, 255, 255);">
+                                    <p style="margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Boost Posts / Collaborations</span></p>
+                                </td>
+                                <td width="189" valign="center" style="width: 113.45pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;"><span style="font-family: &quot;Times New Roman&quot;;">—</span></span></p>
+                                </td>
+                                <td width="177" valign="center" style="width: 106.25pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;"><span style="font-family: &quot;Times New Roman&quot;;">—</span></span></p>
+                                </td>
+                                <td width="224" valign="center" style="width: 134.85pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;"><span style="font-family: &quot;Times New Roman&quot;;">✓</span></span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="223" valign="center" style="width: 134.1pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt; border-style: none outset outset; background: rgb(255, 255, 255);">
+                                    <p style="margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Subscriber Research &amp; Focus Groups</span></p>
+                                </td>
+                                <td width="189" valign="center" style="width: 113.45pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;"><span style="font-family: &quot;Times New Roman&quot;;">—</span></span></p>
+                                </td>
+                                <td width="177" valign="center" style="width: 106.25pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;"><span style="font-family: &quot;Times New Roman&quot;;">—</span></span></p>
+                                </td>
+                                <td width="224" valign="center" style="width: 134.85pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;"><span style="font-family: &quot;Times New Roman&quot;;">✓</span></span></p>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <p><strong><strong>Other City Interaction Solutions</strong></strong></p>
-                    <table>
+                    <p style="margin-left: 0pt; text-indent: 0pt; background: rgb(255, 255, 255);"><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">Other City Interaction Solutions</span></b></p>
+                    <table border="0" cellspacing="0" style="width: 481.6pt; margin-left: 5.7pt; border-width: medium; border-style: none;" class="e-rte-paste-table">
                         <tbody>
                             <tr>
-                                <td width="223">
-                                    <p><strong><strong>Solution</strong></strong></p>
+                                <td width="223" valign="center" style="width: 134.3pt; padding: 0pt 1.1pt; border-width: 1pt; border-style: outset; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">Solution</span></b></p>
                                 </td>
-                                <td width="140">
-                                    <p><strong><strong>Monthly Cost</strong></strong></p>
+                                <td width="140" valign="center" style="width: 84.05pt; padding: 0pt 1.1pt; border-width: 1pt 1pt 1pt medium; border-style: outset outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="right" style="margin: 0pt 8.5pt 0pt 0pt; text-indent: 0pt; text-align: right;"><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">Monthly Cost</span></b></p>
                                 </td>
-                                <td width="438">
-                                    <p><strong><strong>Includes</strong></strong></p>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td width="223">
-                                    <p>City Yellow Pages Promotion</p>
-                                </td>
-                                <td width="140">
-                                    <p>₹50,000</p>
-                                </td>
-                                <td width="438">
-                                    <p>Digital promotion and visibility enhancement for City Yellow Pages listings</p>
+                                <td width="438" valign="center" style="width: 263.25pt; padding: 0pt 1.1pt; border-width: 1pt 1pt 1pt medium; border-style: outset outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-right: 34.7pt; margin-bottom: 0pt; text-align: center;"><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">Includes</span></b></p>
                                 </td>
                             </tr>
                             <tr>
-                                <td width="223">
-                                    <p>City Outdoor Ad Analytics</p>
+                                <td width="223" valign="center" style="width: 134.3pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt; border-style: none outset outset; background: rgb(255, 255, 255);">
+                                    <p style="margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">City Yellow Pages Promotion</span></p>
                                 </td>
-                                <td width="140">
-                                    <p>₹50,000</p>
+                                <td width="140" valign="center" style="width: 84.05pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;"><span style="font-family: &quot;Times New Roman&quot;;">₹50,000</span></span></p>
                                 </td>
-                                <td width="438">
-                                    <p>Monthly outdoor advertising intelligence report covering brands, industries, and ad formats across the city</p>
+                                <td width="438" valign="center" style="width: 263.25pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Digital promotion and visibility enhancement for City Yellow Pages listings</span></p>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td width="223" valign="center" style="width: 134.3pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt; border-style: none outset outset; background: rgb(255, 255, 255);">
+                                    <p style="margin-top: 0pt; margin-bottom: 0pt;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">City Outdoor Ad Analytics</span></p>
+                                </td>
+                                <td width="140" valign="center" style="width: 84.05pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;"><span style="font-family: &quot;Times New Roman&quot;;">₹50,000</span></span></p>
+                                </td>
+                                <td width="438" valign="center" style="width: 263.25pt; padding: 0pt 1.1pt; border-width: medium 1pt 1pt medium; border-style: none outset outset none; background: rgb(255, 255, 255);">
+                                    <p align="center" style="margin-top: 0pt; margin-bottom: 0pt; text-align: center;"><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">Monthly outdoor advertising intelligence report covering brands, industries, and ad formats across the city</span></p>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
-                    <p><strong><strong>Note:</strong></strong>&nbsp;Semiotics and Partner Metrics are automatically included with all City Posts plans. District Analytics is automatically included with the Daily City Posts plan.</p>
-                    @break
+                    <p><b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-weight: bold; font-size: 11pt;">Note:</span></b><span style="font-family: &quot;Times New Roman&quot;; color: rgb(0, 0, 0); font-size: 11pt;">&nbsp;Semiotics and Partner Metrics are automatically included with all City Posts plans. District Analytics is automatically included with the Daily City Posts plan.</span></p> @break
 
                     @case(5)
                     <p><strong>Q. How should I read the budget table, and can I still make changes?</strong></p>

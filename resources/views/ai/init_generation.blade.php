@@ -1,8 +1,8 @@
 @php
-    $metaData = [
-        'nav-heading' => 'Comparison Report',
-        'nav-sub-heading' => '',
-    ];
+$metaData = [
+'nav-heading' => 'Comparison Report',
+'nav-sub-heading' => '',
+];
 @endphp
 <x-layout.main.base :metaData="$metaData">
 
@@ -176,6 +176,18 @@
         .ai-response blockquote p {
             margin: 0;
         }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 0mm;
+            }
+
+            body {
+                margin: 0;
+                padding: 0;
+            }
+        }
     </style>
     <div class="action-buttons-corner" style="top: 92vh;height: 100px !important;">
         <button class=" action-button print" style="height: 42px !important;" onclick="printResponses()" title="Print">
@@ -185,28 +197,28 @@
             @csrf
             <input type="hidden" name="prompt" value="{{ $prompt }}">
             @if (isset($content))
-                <input type="hidden" name="upmana_response" value="{{ $content }}">
+            <input type="hidden" name="upmana_response" value="{{ $content }}">
             @endif
             @if (isset($gptResponse))
-                <input type="hidden" name="gpt_response" value="{{ $gptResponse }}">
+            <input type="hidden" name="gpt_response" value="{{ $gptResponse }}">
             @endif
             @if (isset($geminiResponse))
-                <input type="hidden" name="gemini_response" value="{{ $geminiResponse }}">
+            <input type="hidden" name="gemini_response" value="{{ $geminiResponse }}">
             @endif
             @if (isset($claudeResponse))
-                <input type="hidden" name="claude_response" value="{{ $claudeResponse }}">
+            <input type="hidden" name="claude_response" value="{{ $claudeResponse }}">
             @endif
             @if (isset($grokResponse))
-                <input type="hidden" name="grok_response" value="{{ $grokResponse }}">
+            <input type="hidden" name="grok_response" value="{{ $grokResponse }}">
             @endif
             @if (isset($deepseekResponse))
-                <input type="hidden" name="deepseek_response" value="{{ $deepseekResponse }}">
+            <input type="hidden" name="deepseek_response" value="{{ $deepseekResponse }}">
             @endif
             @if (isset($perplexityResponse))
-                <input type="hidden" name="perplexity_response" value="{{ $perplexityResponse }}">
+            <input type="hidden" name="perplexity_response" value="{{ $perplexityResponse }}">
             @endif
             @if (isset($metaResponse))
-                <input type="hidden" name="meta_response" value="{{ $metaResponse }}">
+            <input type="hidden" name="meta_response" value="{{ $metaResponse }}">
             @endif
             <button type="button" onclick="handleShare()" class="action-button share" title="share">
                 {{-- <i class="fas fa-share-alt"></i> --}}
@@ -224,7 +236,8 @@
             (isset($claudeResponse) && !empty(trim($claudeResponse)) ? 1 : 0) +
             (isset($grokResponse) && !empty(trim($grokResponse)) ? 1 : 0) +
             (isset($perplexityResponse) && !empty(trim($perplexityResponse)) ? 1 : 0) }}
-        {{ $label['ai_modal_lable'] }}</div>
+        {{ $label['ai_modal_lable'] }}
+    </div>
 
     <div class="info-box">
         <div class="timestamp">
@@ -251,20 +264,20 @@
                             'grok' => 'grokResponse',
                             'perplexity' => 'perplexityResponse',
                         ];
-                        
+
                         $displayedLinks = [];
                         foreach ($model as $modelName) {
                             $varName = $responseTypes[$modelName] ?? null;
                             if ($varName) {
                                 $responseContent = $varName === 'content' ? $content ?? '' : $$varName ?? '';
-                        
+
                                 if (!empty(trim($responseContent))) {
                                     $modelCount++;
                                     $displayedLinks[] = '<a class="model-link" href="javascript:void(0);" data-container="' . ($modelName === 'upmana' ? 'upmana-container' : $modelName . '-container') . '" onclick="window.scrollToResponse(\'' . ($modelName === 'upmana' ? 'upmana-container' : $modelName . '-container') . '\')">(' . chr(96 + $modelCount) . ')' . ($modelName === 'meta' ? 'Meta Llama' : ucfirst($modelName)) . '</a>';
                                 }
                             }
                         }
-                        
+
                         echo implode(' ', $displayedLinks);
                         ?>
                     </div>
@@ -274,107 +287,107 @@
     </div>
     <div class="container-row">
         @php
-            $count = 1;
-            $upmanaPosition = 'last';
+        $count = 1;
+        $upmanaPosition = 'last';
 
-            // Determine Upmana's position
-if (in_array('upmana', $model)) {
-    $upmanaPosition = 'selected';
-}
+        // Determine Upmana's position
+        if (in_array('upmana', $model)) {
+        $upmanaPosition = 'selected';
+        }
 
-$modelLogos = [
-    'chatgpt' => 'https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg',
-    'gemini' => 'https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg',
-    'claude' => 'https://upload.wikimedia.org/wikipedia/commons/7/78/Anthropic_logo.svg',
-    'grok' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/X_Logo.svg/2048px-X_Logo.svg.png',
-    'deepseek' => 'https://chat.deepseek.com/favicon.svg',
-    'meta' =>
+        $modelLogos = [
+        'chatgpt' => 'https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg',
+        'gemini' => 'https://upload.wikimedia.org/wikipedia/commons/8/8a/Google_Gemini_logo.svg',
+        'claude' => 'https://upload.wikimedia.org/wikipedia/commons/7/78/Anthropic_logo.svg',
+        'grok' => 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/X_Logo.svg/2048px-X_Logo.svg.png',
+        'deepseek' => 'https://chat.deepseek.com/favicon.svg',
+        'meta' =>
         'https://t0.gstatic.com/faviconV2?client=SOCIAL&type=FAVICON&fallback_opts=TYPE,SIZE,URL&url=https://ai.meta.com/&size=256',
-    'upmana' => asset('assets/ai/images/byr-btn.png'),
-    'perplexity' =>
+        'upmana' => asset('assets/ai/images/byr-btn.png'),
+        'perplexity' =>
         'https://framerusercontent.com/images/gcMkPKyj2RX8EOEja8A1GWvCb7E.jpg?width=2000&height=2000', // Replace with actual logo URL
-];
+        ];
 
-$modelFullNames = [
-    'chatgpt' => 'ChatGPT',
-    'gemini' => 'Gemini',
-    'claude' => 'Claude',
-    'grok' => 'Grok',
-    'deepseek' => 'Deepseek',
-    'meta' => 'Meta Llama',
-    'upmana' => 'UPMANA - Knowledge By Comparision',
-    'perplexity' => 'Perplexity AI',
-];
+        $modelFullNames = [
+        'chatgpt' => 'ChatGPT',
+        'gemini' => 'Gemini',
+        'claude' => 'Claude',
+        'grok' => 'Grok',
+        'deepseek' => 'Deepseek',
+        'meta' => 'Meta Llama',
+        'upmana' => 'UPMANA - Knowledge By Comparision',
+        'perplexity' => 'Perplexity AI',
+        ];
 
-$responseTypes = [
-    'meta' => 'metaResponse',
-    'gemini' => 'geminiResponse',
-    'deepseek' => 'deepseekResponse',
-    'chatgpt' => 'gptResponse',
-    'upmana' => 'content',
-    'claude' => 'claudeResponse',
-    'grok' => 'grokResponse',
-    'perplexity' => 'perplexityResponse',
-            ];
+        $responseTypes = [
+        'meta' => 'metaResponse',
+        'gemini' => 'geminiResponse',
+        'deepseek' => 'deepseekResponse',
+        'chatgpt' => 'gptResponse',
+        'upmana' => 'content',
+        'claude' => 'claudeResponse',
+        'grok' => 'grokResponse',
+        'perplexity' => 'perplexityResponse',
+        ];
         @endphp
 
         @foreach ($model as $modelName)
-            @php
-                $varName = $responseTypes[$modelName] ?? null;
-                $responseContent = $varName === 'content' ? $content ?? '' : $$varName ?? '';
-            @endphp
+        @php
+        $varName = $responseTypes[$modelName] ?? null;
+        $responseContent = $varName === 'content' ? $content ?? '' : $$varName ?? '';
+        @endphp
 
-            @if (!empty(trim($responseContent)))
-                @if ($modelName === 'upmana' && $upmanaPosition === 'selected')
-                    <div class="response-container" id="content-container">
-                        <div class="response-content">
-                            <div class="ai-name">({{ chr(96 + $count++) }}) {{ $modelFullNames[$modelName] }}</div>
-                            <div class="prompt-box upman">
-                                <strong>{{ $label['prompt'] }}:</strong> {{ $prompt }}
-                            </div>
-                            <div class="p-3 ai-response h-100">
-                                {!! $responseContent !!}
-                            </div>
-                        </div>
-                    </div>
-                @elseif($modelName !== 'upmana')
-                    <div class="response-container" id="{{ $modelName }}-container">
-                        @if ($modelLogos[$modelName])
-                            <img src="{{ $modelLogos[$modelName] }}" alt="{{ $modelFullNames[$modelName] }} Logo"
-                                class="ai-logo">
-                        @endif
-                        <div class="response-content">
-                            <div class="ai-name">({{ chr(96 + $count++) }}) {{ $modelFullNames[$modelName] }}</div>
-                            <div class="prompt-box {{ $modelName }}">
-                                <strong>{{ $label['prompt'] }}:</strong> {{ $prompt }}
-                            </div>
-                            <div class="p-3 ai-response h-100">
-                                {!! $responseContent !!}
-                            </div>
-                        </div>
-                    </div>
-                @endif
+        @if (!empty(trim($responseContent)))
+        @if ($modelName === 'upmana' && $upmanaPosition === 'selected')
+        <div class="response-container" id="content-container">
+            <div class="response-content">
+                <div class="ai-name">({{ chr(96 + $count++) }}) {{ $modelFullNames[$modelName] }}</div>
+                <div class="prompt-box upman">
+                    <strong>{{ $label['prompt'] }}:</strong> {{ $prompt }}
+                </div>
+                <div class="p-3 ai-response h-100">
+                    {!! $responseContent !!}
+                </div>
+            </div>
+        </div>
+        @elseif($modelName !== 'upmana')
+        <div class="response-container" id="{{ $modelName }}-container">
+            @if ($modelLogos[$modelName])
+            <img src="{{ $modelLogos[$modelName] }}" alt="{{ $modelFullNames[$modelName] }} Logo"
+                class="ai-logo">
             @endif
+            <div class="response-content">
+                <div class="ai-name">({{ chr(96 + $count++) }}) {{ $modelFullNames[$modelName] }}</div>
+                <div class="prompt-box {{ $modelName }}">
+                    <strong>{{ $label['prompt'] }}:</strong> {{ $prompt }}
+                </div>
+                <div class="p-3 ai-response h-100">
+                    {!! $responseContent !!}
+                </div>
+            </div>
+        </div>
+        @endif
+        @endif
         @endforeach
 
         @if ($upmanaPosition === 'last' && isset($content))
-            <div class="response-container" id="content-container">
-                <div class="response-content">
-                    <div class="ai-name">({{ chr(96 + $count++) }}) {{ $modelFullNames['upmana'] }}</div>
-                    <div class="prompt-box upman">
-                        <strong>{{ $label['prompt'] }}:</strong> {{ $prompt }}
-                    </div>
-                    <div class="p-3 ai-response h-100">
-                        {!! $content !!}
-                    </div>
+        <div class="response-container" id="content-container">
+            <div class="response-content">
+                <div class="ai-name">({{ chr(96 + $count++) }}) {{ $modelFullNames['upmana'] }}</div>
+                <div class="prompt-box upman">
+                    <strong>{{ $label['prompt'] }}:</strong> {{ $prompt }}
+                </div>
+                <div class="p-3 ai-response h-100">
+                    {!! $content !!}
                 </div>
             </div>
+        </div>
         @endif
 
         @if (empty($model))
-            <div class="error-container">
-                No response available for the selected model.
-            </div>
+        <div class="error-container">
+            No response available for the selected model.
+        </div>
         @endif
     </div>
 

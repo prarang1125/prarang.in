@@ -1058,8 +1058,10 @@
     @props(['resetMainMinHeight' => false])
 
     <main class="container" @if (!$resetMainMinHeight) style="min-height: 70vh !important;" @endif>
+        @if($isHome)
         <a class="text-decoration-none d-block d-lg-none icone h-30 w-30" href="/ai/upmana" class="nav-link">
             <img class="" src="https://i.ibb.co/9kBKBcpj/cai.png" alt="ai"></a>
+        @endif
         <br>
         {{ $slot }}
     </main>

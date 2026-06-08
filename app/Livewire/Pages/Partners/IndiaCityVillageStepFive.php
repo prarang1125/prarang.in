@@ -195,7 +195,7 @@ class IndiaCityVillageStepFive extends Component
                     $hasOutdoorAds = !empty($this->selectedOutdoorAds[$planKey]);
 
                     if (str_ends_with($cityPostValue, '-weekly')) {
-                        $optionalSolutions[] = 'Weekly Posts';
+                        $optionalSolutions[] = '4 Posts/Month (Weekly)';
                         if ($hasYellowPages) {
                             $optionalSolutions[] = 'City Yellow Pages (DM)';
                         }
@@ -205,7 +205,7 @@ class IndiaCityVillageStepFive extends Component
                         $optionalSolutions[] = 'Semiotics';
                         $optionalSolutions[] = 'Partner Metrics';
                     } elseif (str_ends_with($cityPostValue, '-alternateday')) {
-                        $optionalSolutions[] = 'Alternate Day Posts';
+                        $optionalSolutions[] = '15 Posts/Month (Alternate Day)';
                         if ($hasYellowPages) {
                             $optionalSolutions[] = 'City Yellow Pages (DM)';
                         }
@@ -215,7 +215,7 @@ class IndiaCityVillageStepFive extends Component
                         $optionalSolutions[] = 'Semiotics';
                         $optionalSolutions[] = 'Partner Metrics';
                     } elseif (str_ends_with($cityPostValue, '-daily')) {
-                        $optionalSolutions[] = 'Daily Posts';
+                        $optionalSolutions[] = '30 Posts/Month (Daily)';
                         if ($hasYellowPages) {
                             $optionalSolutions[] = 'City Yellow Pages (DM)';
                         }

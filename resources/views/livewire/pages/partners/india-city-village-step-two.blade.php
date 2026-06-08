@@ -695,6 +695,18 @@
         </p>
     </div>
     @endsection
+    <style>
+        /* Font bold */
+        .compact-table tr:nth-child(2) .font-bold:nth-child(1) {
+            text-align: left !important;
+            font-weight: 500;
+        }
+
+        /* Font bold */
+        .container #cities-village-filter-main .pf-panel .pf-body .mb-8 .overflow-x-auto .compact-table .text-xs tr:nth-child(2) .font-bold:nth-child(1) {
+            width: 1050px !important;
+        }
+    </style>
     <section class="mb-8">
         <div class="p-2 overflow-x-auto">
             <table class="compact-table w-full text-sm text-left text-gray-700 border-collapse border border-gray-300">
@@ -717,25 +729,16 @@
                         <th colspan="9" class="px-1 py-0.5 border text-center font-bold text-gray-800 bg-blue-100">KW (City)-Interaction Solution*</th>
                     </tr>
                     <tr>
-                        <th rowspan="2"
+                        <th rowspan="2" colspan="6"
                             class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-green-50">
-                            Content<br><span class="font-normal">(Automated Text Headlines)</span></th>
-                        <th rowspan="2"
-                            class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-green-50">
-                            Enrollment<br><span class="font-normal">(City-e-Cards, City Yellow Pages)</span></th>
-                        <th rowspan="2"
-                            class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-green-50">
-                            Planners<br><span class="font-normal">(Market Development, Cyber Risk Analysis)</span></th>
-                        <th rowspan="2"
-                            class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-green-50">District
-                            Analytics<br><span class="font-normal">(Ranks Only)</span></th>
-                        <th rowspan="2"
-                            class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-green-50">
-                            Widgets<br><span class="font-normal">(Time, News, Weather, Maps)</span></th>
-                        <th rowspan="2"
-                            class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-green-50">
-                            Comparison
-                            AI</th>
+                            <b>Content:</b> (Automated Text Headlines) <br>
+                            <b>Enrollment:</b> (City-e-Cards, City Yellow Pages) <br>
+                            <b>Planners:</b> (Market Development, Cyber Risk Analysis) <br>
+                            <b>District Analytics:</b> (Ranks Only) <br>
+                            <b>Widgets:</b> (Time, News, Weather, Maps) <br>
+                            <b>Comparison AI</b>
+                        </th>
+
 
                         <th colspan="3"
                             class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-blue-50">
@@ -743,10 +746,11 @@
 
                         <th rowspan="2"
                             class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-blue-50">
-                            City Yellow Pages<br><span class="font-normal">(Digital Marketing)</span></th>
+                            City Yellow Pages<br><span class="font-normal">(Digital Marketing -
+                                ₹50,000/ month)</span></th>
                         <th rowspan="2"
                             class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-blue-50">
-                            City Outdoor Ad Analytics<br><span class="font-normal">(Monthly)</span></th>
+                            City Outdoor Ad Analytics<br><span class="font-normal">(₹50,000/ month)</span></th>
                         <th rowspan="2"
                             class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-blue-50">
                             District Analytics</th>
@@ -759,15 +763,14 @@
                     </tr>
                     <tr>
                         <th class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-blue-50">
-                            Weekly<br><span class="font-normal">(₹{{
-                                number_format($pricing['optional_solutions']['Weekly Posts']['monthly']) }})</span>
+                            4 Posts<br><span class="font-normal">(₹{{
+                                number_format($pricing['optional_solutions']['Weekly Posts']['monthly']) }}/month)</span>
                         </th>
-                        <th class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-blue-50">Alternate
-                            Day<br><span class="font-normal">(₹{{
+                        <th class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-blue-50">15 Posts<br><span class="font-normal">(₹{{
                                 number_format($pricing['optional_solutions']['Alternate Day Posts']['monthly'])
-                                }})</span></th>
+                                }}/month)</span></th>
                         <th class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-blue-50">
-                            Daily<br><span class="font-normal">(₹{{ number_format($pricing['optional_solutions']['Daily Posts']['monthly']) }})</span>
+                            30 Posts<br><span class="font-normal">(₹{{ number_format($pricing['optional_solutions']['Daily Posts']['monthly']) }}/month)</span>
                         </th>
                     </tr>
                 </thead>
@@ -1199,9 +1202,6 @@
                             class="flex h-11 w-11 items-center justify-center rounded-full bg-blue-100 text-black shadow-sm transition-all duration-200 hover:-translate-y-1 hover:bg-sky-700 hover:text-white">
                             <i class="bi bi-linkedin text-xl"></i>
                         </a>
-
-
-
                     </div>
                     <button wire:click="$set('shareUrl', null)"
                         class="text-gray-400 hover:text-gray-600 text-sm mt-2 font-medium transition-colors">
