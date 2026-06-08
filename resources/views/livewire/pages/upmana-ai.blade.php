@@ -65,7 +65,8 @@
                             <h5>{{ $lables['upmana_sub_title'] }}</h5>
                             @if (session()->has('message'))
                             <p class="text-success" style="font-size: 14px!important; margin: 0px; padding: 0px;">
-                                {{ session('message') }}</p>
+                                {{ session('message') }}
+                            </p>
                             @endif
                             <br><br>
 
@@ -564,386 +565,387 @@
                                         <div class="accordion-body">
                                             {{-- <div>
                                                 <input type="checkbox" wire:model="cities" id="group-{{ $continentId }}"
-                                                    value="{{ json_encode(['name' => __('location.' . str_replace(' ', '_', strtolower($continent))), 'real_name' => $continent]) }}">
+                                            value="{{ json_encode(['name' => __('location.' . str_replace(' ', '_', strtolower($continent))), 'real_name' => $continent]) }}">
 
-                                                <label for="group-{{ $continentId }}">
-                                                    {{ __('location.' . str_replace(' ', '_', strtolower($continent)))
+                                            <label for="group-{{ $continentId }}">
+                                                {{ __('location.' . str_replace(' ', '_', strtolower($continent)))
                                                     ?? $continent }}
+                                            </label>
+
+
+                                        </div> --}}
+                                        <div class="row">
+                                            @foreach ($countries as $country)
+                                            <div class="col-6">
+
+                                                <input class="form-check-input me-1" type="checkbox"
+                                                    wire:model="cities"
+                                                    value="{{ json_encode(['name' => $country['name'], 'real_name' => $country['Country']]) }}"
+                                                    id="country-{{ $country['id'] }}">
+                                                <label class="form-check-label" for="country-{{ $country['id'] }}">
+                                                    {{ $country['Country'] }}
                                                 </label>
-
-
-                                            </div> --}}
-                                            <div class="row">
-                                                @foreach ($countries as $country)
-                                                <div class="col-6">
-
-                                                    <input class="form-check-input me-1" type="checkbox"
-                                                        wire:model="cities"
-                                                        value="{{ json_encode(['name' => $country['name'], 'real_name' => $country['Country']]) }}"
-                                                        id="country-{{ $country['id'] }}">
-                                                    <label class="form-check-label" for="country-{{ $country['id'] }}">
-                                                        {{ $country['Country'] }}
-                                                    </label>
-                                                </div>
-                                                @endforeach
                                             </div>
-
+                                            @endforeach
                                         </div>
+
                                     </div>
                                 </div>
-                                @endforeach
                             </div>
-                            {{-- Indian Cities --}}
-                            <div class="col-sm-6">
-                                <h5 class="mb-3">{{ $lables['geo_select_ind'] }}</h5>
-
-                                @foreach ($citiesTOChose['city'] as $group => $cities)
-                                @php $groupId = Str::slug($group, '_'); @endphp
-                                <div class="accordion-item">
-                                    <h2 class="accordion-header" id="heading-city-{{ $groupId }}">
-                                        <button class="accordion-button collapsed" type="button"
-                                            data-bs-toggle="collapse" data-bs-target="#collapse-city-{{ $groupId }}"
-                                            aria-expanded="false" aria-controls="collapse-city-{{ $groupId }}">
-                                            {{ __('location.' . str_replace(' ', '_', strtolower($group))) ?? $group }}
-                                        </button>
-                                    </h2>
-                                    <div id="collapse-city-{{ $groupId }}" class="accordion-collapse collapse"
-                                        aria-labelledby="heading-city-{{ $groupId }}"
-                                        data-bs-parent="#accordionCitiesCountries">
-                                        <div class="accordion-body">
-
-                                            <div class="row">
-                                                @foreach ($cities as $city)
-                                                <div class="col-6">
-                                                    <input class="form-check-input me-1" type="checkbox"
-                                                        wire:model="cities"
-                                                        value="{{ json_encode(['name' => $city['name'], 'real_name' => $city['city']]) }}"
-                                                        id="city-{{ $city['id'] }}">
-                                                    <label class="form-check-label" for="city-{{ $city['id'] }}">
-                                                        {{ $city['city'] }}
-                                                    </label>
-                                                </div>
-                                                @endforeach
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                @endforeach
-                            </div>
-
+                            @endforeach
                         </div>
+                        {{-- Indian Cities --}}
+                        <div class="col-sm-6">
+                            <h5 class="mb-3">{{ $lables['geo_select_ind'] }}</h5>
+
+                            @foreach ($citiesTOChose['city'] as $group => $cities)
+                            @php $groupId = Str::slug($group, '_'); @endphp
+                            <div class="accordion-item">
+                                <h2 class="accordion-header" id="heading-city-{{ $groupId }}">
+                                    <button class="accordion-button collapsed" type="button"
+                                        data-bs-toggle="collapse" data-bs-target="#collapse-city-{{ $groupId }}"
+                                        aria-expanded="false" aria-controls="collapse-city-{{ $groupId }}">
+                                        {{ __('location.' . str_replace(' ', '_', strtolower($group))) ?? $group }}
+                                    </button>
+                                </h2>
+                                <div id="collapse-city-{{ $groupId }}" class="accordion-collapse collapse"
+                                    aria-labelledby="heading-city-{{ $groupId }}"
+                                    data-bs-parent="#accordionCitiesCountries">
+                                    <div class="accordion-body">
+
+                                        <div class="row">
+                                            @foreach ($cities as $city)
+                                            <div class="col-6">
+                                                <input class="form-check-input me-1" type="checkbox"
+                                                    wire:model="cities"
+                                                    value="{{ json_encode(['name' => $city['name'], 'real_name' => $city['city']]) }}"
+                                                    id="city-{{ $city['id'] }}">
+                                                <label class="form-check-label" for="city-{{ $city['id'] }}">
+                                                    {{ $city['city'] }}
+                                                </label>
+                                            </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+
                     </div>
                 </div>
-                <div class="modal-footer">
-                    <p class="text-center me-5"><span id="location-selecte-alert">0</span> {{ $lables['selected'] }}
-                    </p>
-                    <button type="button" class="btn btn-primary" onclick="geoSelect()">{{ $lables['done'] }}</button>
-                </div>
             </div>
-
-        </div>
-    </div>
-
-
-    <!-- Modal -->
-    <div class="modal fade" id="aiFaqModal" tabindex="-1" aria-labelledby="aiFaqModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="aiFaqModalLabel">FAQ</h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    ...
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-                </div>
+            <div class="modal-footer">
+                <p class="text-center me-5"><span id="location-selecte-alert">0</span> {{ $lables['selected'] }}
+                </p>
+                <button type="button" class="btn btn-primary" onclick="geoSelect()">{{ $lables['done'] }}</button>
             </div>
         </div>
-    </div>
-    @livewire('utility.popupreg')
-    <!-- What is Upmana Modal -->
-    <div class="modal fade" id="whatIsUpmanaModal" tabindex="-1" aria-labelledby="whatIsUpmanaLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <span class="pr1c">●</span><span class="pr2c">●</span><span class="pr3c">●</span>
-                    <h5 class="text-center modal-title" id="whatIsUpmanaLabel">
 
-                        {{ __('faq.comparison_ai.modal.title') }}
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    {!! __('faq.comparison_ai.modal.body') !!}
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('faq.close')
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="aiFaqModal" tabindex="-1" aria-labelledby="aiFaqModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="aiFaqModalLabel">FAQ</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                ...
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+
+            </div>
+        </div>
+    </div>
+</div>
+@livewire('utility.popupreg')
+<!-- What is Upmana Modal -->
+<div class="modal fade" id="whatIsUpmanaModal" tabindex="-1" aria-labelledby="whatIsUpmanaLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <span class="pr1c">●</span><span class="pr2c">●</span><span class="pr3c">●</span>
+                <h5 class="text-center modal-title" id="whatIsUpmanaLabel">
+
+                    {{ __('faq.comparison_ai.modal.title') }}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {!! __('faq.comparison_ai.modal.body') !!}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('faq.close')
                         }}</button>
-                </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- AI vs AGI Comparison Modal -->
-    <div class="modal fade" id="aiVsAgiModal" tabindex="-1" aria-labelledby="aiVsAgiLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-lg">
-            <div class="modal-content">
-                <div class="modal-header"> <span class="pr1c">●</span><span class="pr2c">●</span><span
-                        class="pr3c">●</span>
-                    <h5 class="modal-title" id="aiVsAgiLabel">{{ __('faq.prompt.modal.title') }}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    {!! __('faq.prompt.modal.body') !!}
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('faq.close')
+<!-- AI vs AGI Comparison Modal -->
+<div class="modal fade" id="aiVsAgiModal" tabindex="-1" aria-labelledby="aiVsAgiLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header"> <span class="pr1c">●</span><span class="pr2c">●</span><span
+                    class="pr3c">●</span>
+                <h5 class="modal-title" id="aiVsAgiLabel">{{ __('faq.prompt.modal.title') }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {!! __('faq.prompt.modal.body') !!}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('faq.close')
                         }}</button>
-                </div>
             </div>
         </div>
     </div>
+</div>
 
-    <!-- Upmana Benefits Modal -->
-    <div class="modal fade" id="upmanabenefitsModal" tabindex="-1" aria-labelledby="upmanaBenefitsLabel"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered modal-xl">
-            <div class="modal-content">
-                <div class="modal-header"> <span class="pr1c">●</span><span class="pr2c">●</span><span
-                        class="pr3c">●</span>
-                    <h5 class="text-center modal-title" id="upmanaBenefitsLabel">
-                        {{ __('faq.com_ai_agi.modal.title') }}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    {!! __('faq.com_ai_agi.modal.body') !!}
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('faq.close')
+<!-- Upmana Benefits Modal -->
+<div class="modal fade" id="upmanabenefitsModal" tabindex="-1" aria-labelledby="upmanaBenefitsLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header"> <span class="pr1c">●</span><span class="pr2c">●</span><span
+                    class="pr3c">●</span>
+                <h5 class="text-center modal-title" id="upmanaBenefitsLabel">
+                    {{ __('faq.com_ai_agi.modal.title') }}
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {!! __('faq.com_ai_agi.modal.body') !!}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ __('faq.close')
                         }}</button>
-                </div>
             </div>
         </div>
     </div>
-    <!-- Offcanvas Component -->
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="openFaqExample" aria-labelledby="openFaqExampleLabel">
-        <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="openFaqExampleLabel"></h5>
-            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body">
-            @livewire('utility.upman-sidebar')
-        </div>
+</div>
+<!-- Offcanvas Component -->
+<div class="offcanvas offcanvas-end" tabindex="-1" id="openFaqExample" aria-labelledby="openFaqExampleLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="openFaqExampleLabel"></h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
+    <div class="offcanvas-body">
+        @livewire('utility.upman-sidebar')
+    </div>
+</div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-
-
-            // Debugging logs
-            console.log('Upmana AI page loaded');
-
-            // Log the output content
-            const outputElement = document.getElementById('outChat');
-            if (outputElement) {
-                console.log('Output Content:', outputElement.innerHTML.trim());
-            } else {
-                console.error('Output element #outChat not found!');
-            }
-        });
-
-        function setContents() {
-
-            const outChatElement = document.getElementById('outChat');
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
 
 
-            if (!outChatElement) {
-                alert('Please generate Upmana content first!');
-                return false;
-            }
+        // Debugging logs
+        console.log('Upmana AI page loaded');
 
-            const content = outChatElement.innerHTML.trim();
-            if (!content) {
-                alert('Please generate Upmana content first!');
-                return false;
-            }
+        // Log the output content
+        const outputElement = document.getElementById('outChat');
+        if (outputElement) {
+            console.log('Output Content:', outputElement.innerHTML.trim());
+        } else {
+            console.error('Output element #outChat not found!');
+        }
+    });
 
-            const contentInput = document.getElementById('content-input');
-            if (!contentInput) {
-                alert('Error setting content!');
-                return false;
-            }
+    function setContents() {
 
-            contentInput.value = content;
+        const outChatElement = document.getElementById('outChat');
 
 
-            return true; // Allow form to submit
+        if (!outChatElement) {
+            alert('Please generate Upmana content first!');
+            return false;
         }
 
-        // Ensure content is set before form submission
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.querySelector('form[data-parallel="true"]');
-            if (form) {
-                form.addEventListener('submit', function(event) {
-                    if (!setContent()) {
-                        event.preventDefault();
-                    }
-                });
+        const content = outChatElement.innerHTML.trim();
+        if (!content) {
+            alert('Please generate Upmana content first!');
+            return false;
+        }
+
+        const contentInput = document.getElementById('content-input');
+        if (!contentInput) {
+            alert('Error setting content!');
+            return false;
+        }
+
+        contentInput.value = content;
+
+
+        return true; // Allow form to submit
+    }
+
+    // Ensure content is set before form submission
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.querySelector('form[data-parallel="true"]');
+        if (form) {
+            form.addEventListener('submit', function(event) {
+                if (!setContent()) {
+                    event.preventDefault();
+                }
+            });
+        }
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const accordion = document.getElementById('accordionCitiesCountries');
+        const checkboxes = accordion.querySelectorAll('input[type="checkbox"]');
+        const countDisplay = document.getElementById('citiesCount');
+        const locationSelecteAlert = document.getElementById('location-selecte-alert');
+        const maxLimit = 5;
+
+        function updateCountAndToggle() {
+            const checkedBoxes = Array.from(checkboxes).filter(cb => cb.checked);
+            const checkedCount = checkedBoxes.length;
+            if (countDisplay) {
+                countDisplay.textContent = checkedCount;
             }
+            if (locationSelecteAlert) {
+                locationSelecteAlert.textContent = checkedCount;
+            }
+
+            checkboxes.forEach(cb => {
+                if (!cb.checked) {
+                    cb.disabled = checkedCount >= maxLimit;
+                } else {
+                    cb.disabled = false;
+                }
+            });
+        }
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', updateCountAndToggle);
         });
-    </script>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const accordion = document.getElementById('accordionCitiesCountries');
-            const checkboxes = accordion.querySelectorAll('input[type="checkbox"]');
-            const countDisplay = document.getElementById('citiesCount');
-            const locationSelecteAlert = document.getElementById('location-selecte-alert');
-            const maxLimit = 5;
+        updateCountAndToggle();
+    });
+</script>
 
-            function updateCountAndToggle() {
-                const checkedBoxes = Array.from(checkboxes).filter(cb => cb.checked);
-                const checkedCount = checkedBoxes.length;
-                if (countDisplay) {
-                    countDisplay.textContent = checkedCount;
-                }
-                if (locationSelecteAlert) {
-                    locationSelecteAlert.textContent = checkedCount;
-                }
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const checkboxes = document.querySelectorAll('#categoryTabsContent input[type="checkbox"]');
+        const resetButton = document.getElementById('resetAllBtn');
+        const categoryBadges = document.getElementById('category-count');
+        const metricsSelecteAlert = document.getElementById('metrics-selecte-alert');
 
+        function updateCheckboxStates() {
+            const selectedCheckboxes = document.querySelectorAll(
+                '#categoryTabsContent input[type="checkbox"]:checked');
+            const selectedCount = selectedCheckboxes.length;
+
+            if (selectedCount >= 5) {
                 checkboxes.forEach(cb => {
                     if (!cb.checked) {
-                        cb.disabled = checkedCount >= maxLimit;
-                    } else {
-                        cb.disabled = false;
+                        cb.disabled = true;
                     }
                 });
-            }
-            checkboxes.forEach(cb => {
-                cb.addEventListener('change', updateCountAndToggle);
-            });
-            updateCountAndToggle();
-        });
-    </script>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const checkboxes = document.querySelectorAll('#categoryTabsContent input[type="checkbox"]');
-            const resetButton = document.getElementById('resetAllBtn');
-            const categoryBadges = document.getElementById('category-count');
-            const metricsSelecteAlert = document.getElementById('metrics-selecte-alert');
-
-            function updateCheckboxStates() {
-                const selectedCheckboxes = document.querySelectorAll(
-                    '#categoryTabsContent input[type="checkbox"]:checked');
-                const selectedCount = selectedCheckboxes.length;
-
-                if (selectedCount >= 5) {
-                    checkboxes.forEach(cb => {
-                        if (!cb.checked) {
-                            cb.disabled = true;
-                        }
-                    });
-                } else {
-                    checkboxes.forEach(cb => cb.disabled = false);
-                }
-
-                if (selectedCount > 0) {
-                    // categoryBadges.classList.remove('d-none');/
-                    categoryBadges.innerHTML = `${selectedCount}`
-                }
-                if (metricsSelecteAlert) {
-                    metricsSelecteAlert.innerHTML = `${selectedCount}`
-                }
+            } else {
+                checkboxes.forEach(cb => cb.disabled = false);
             }
 
-            checkboxes.forEach(cb => {
-                cb.addEventListener('change', function() {
-                    updateCheckboxStates();
-                });
-            });
+            if (selectedCount > 0) {
+                // categoryBadges.classList.remove('d-none');/
+                categoryBadges.innerHTML = `${selectedCount}`
+            }
+            if (metricsSelecteAlert) {
+                metricsSelecteAlert.innerHTML = `${selectedCount}`
+            }
+        }
 
-            resetButton.addEventListener('click', () => {
-                checkboxes.forEach(cb => {
-                    cb.checked = false;
-                    cb.disabled = false;
-                });
+        checkboxes.forEach(cb => {
+            cb.addEventListener('change', function() {
                 updateCheckboxStates();
             });
+        });
 
+        resetButton.addEventListener('click', () => {
+            checkboxes.forEach(cb => {
+                cb.checked = false;
+                cb.disabled = false;
+            });
             updateCheckboxStates();
         });
-    </script>
 
-    <script>
-        function geoSelect() {
+        updateCheckboxStates();
+    });
+</script>
 
-            // Close Bootstrap modal
-            const modalEl = document.getElementById('geographyModal');
-            const modalInstance = bootstrap.Modal.getInstance(modalEl);
-            if (modalInstance) modalInstance.hide();
+<script>
+    function geoSelect() {
+
+        // Close Bootstrap modal
+        const modalEl = document.getElementById('geographyModal');
+        const modalInstance = bootstrap.Modal.getInstance(modalEl);
+        if (modalInstance) modalInstance.hide();
+    }
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const registerModal = new bootstrap.Modal(document.getElementById('popupregister'));
+        // registerModal.show();
+
+        window.addEventListener('show-register-modal', () => {
+            registerModal.show();
+        });
+        window.addEventListener('close-register-modal', () => {
+            registerModal.hide();
+        });
+    });
+</script>
+
+<script>
+    let selectedSequence = [];
+    document.addEventListener('DOMContentLoaded', function() {
+
+        function updateOrderNumbers() {
+
+            document.querySelectorAll('.order-number').forEach(span => {
+                span.textContent = '';
+                span.classList.remove('d-inline-block');
+            });
+            selectedSequence.forEach((model, index) => {
+                const checkbox = document.querySelector(`input[name="model[]"][data-ai="${model}"]`);
+                if (checkbox && checkbox.checked) {
+                    const orderSpan = checkbox.closest('label').querySelector('.order-number'); // SAFER
+                    if (orderSpan) {
+                        let mainModal = checkbox.getAttribute('data-ai');
+                        checkbox.value = mainModal + '-' + (index + 1);
+                        orderSpan.textContent = index + 1;
+                        orderSpan.classList.add('d-inline-block');
+                    }
+                }
+            });
         }
-    </script>
-    <script>
-        document.addEventListener("DOMContentLoaded", () => {
-            const registerModal = new bootstrap.Modal(document.getElementById('popupregister'));
-            // registerModal.show();
-
-            window.addEventListener('show-register-modal', () => {
-                registerModal.show();
-            });
-            window.addEventListener('close-register-modal', () => {
-                registerModal.hide();
-            });
-        });
-    </script>
-
-    <script>
-        let selectedSequence = [];
-        document.addEventListener('DOMContentLoaded', function() {
-
-            function updateOrderNumbers() {
-
-                document.querySelectorAll('.order-number').forEach(span => {
-                    span.textContent = '';
-                    span.classList.remove('d-inline-block');
-                });
-                selectedSequence.forEach((model, index) => {
-                    const checkbox = document.querySelector(`input[name="model[]"][data-ai="${model}"]`);
-                    if (checkbox && checkbox.checked) {
-                        const orderSpan = checkbox.closest('label').querySelector('.order-number'); // SAFER
-                        if (orderSpan) {
-                            let mainModal = checkbox.getAttribute('data-ai');
-                            checkbox.value = mainModal + '-' + (index + 1);
-                            orderSpan.textContent = index + 1;
-                            orderSpan.classList.add('d-inline-block');
-                        }
-                    }
-                });
+        document.querySelectorAll('input[name="model[]"]:checked').forEach(checkbox => {
+            const value = checkbox.getAttribute('data-ai');
+            if (!selectedSequence.includes(value)) {
+                selectedSequence.push(value);
             }
-            document.querySelectorAll('input[name="model[]"]:checked').forEach(checkbox => {
-                const value = checkbox.getAttribute('data-ai');
-                if (!selectedSequence.includes(value)) {
-                    selectedSequence.push(value);
-                }
-            });
-            updateOrderNumbers();
-
-            document.addEventListener('change', function(e) {
-                if (e.target.matches('input[name="model[]"]')) {
-                    const value = e.target.getAttribute('data-ai');
-                    if (e.target.checked) {
-                        if (!selectedSequence.includes(value)) {
-                            selectedSequence.push(value);
-                        }
-                    } else {
-                        selectedSequence = selectedSequence.filter(v => v !== value);
-                    }
-                    updateOrderNumbers();
-                }
-            });
         });
-    </script>
+        updateOrderNumbers();
+
+        document.addEventListener('change', function(e) {
+            if (e.target.matches('input[name="model[]"]')) {
+                const value = e.target.getAttribute('data-ai');
+                if (e.target.checked) {
+                    if (!selectedSequence.includes(value)) {
+                        selectedSequence.push(value);
+                    }
+                } else {
+                    selectedSequence = selectedSequence.filter(v => v !== value);
+                }
+                updateOrderNumbers();
+            }
+        });
+    });
+</script>
 </div>
