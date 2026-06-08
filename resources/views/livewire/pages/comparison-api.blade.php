@@ -302,9 +302,9 @@
 
             @if ($loading || !empty(trim($responseContent)))
             @if ($modelName === 'upmana' && $upmanaPosition === 'selected')
-            <div class="response-container" id="content-container">
+            <div class="response-container" id="content-container" wire:key="container-upmana-selected">
                 <div class="response-content">
-                    <div class="ai-name">({{ chr(96 + $count++) }}) {{ $modelFullNames[$modelName] }}</div>
+                    <div class="ai-name">({{ chr(96 + $count++) }}) {{ $modelFullNames[$modelName] ?? 'Upmana' }}</div>
                     <div class="prompt-box upman">
                         <strong>{{ $label['prompt'] ?? 'Prompt' }}:</strong> {{ $prompt }}
                     </div>
@@ -314,7 +314,7 @@
                 </div>
             </div>
             @elseif($modelName !== 'upmana')
-            <div class="response-container" id="{{ $modelName }}-container">
+            <div class="response-container" id="{{ $modelName }}-container" wire:key="container-{{ $modelName }}">
                 @if (isset($modelLogos[$modelName]))
                 <img src="{{ $modelLogos[$modelName] }}" alt="{{ $modelFullNames[$modelName] }} Logo"
                     class="ai-logo">
@@ -328,7 +328,7 @@
                         @if($loading)
                         <div class="d-flex align-items-center text-primary mt-3">
                             <span class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" style="width: 1.5rem; height: 1.5rem;"></span>
-                            Generating {{ $modelFullNames[$modelName] }} response...
+                            Generating {{ $modelFullNames[$modelName] ?? ucfirst($modelName) }} response...
                         </div>
                         @else
                         {!! $responseContent !!}
