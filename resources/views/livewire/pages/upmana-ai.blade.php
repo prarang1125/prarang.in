@@ -273,7 +273,7 @@
                         <div class="col-sm-4">
                             <section class="id-selector">
                                 <p>{{ $lables['compare_response'] }}</p>
-                                <form action="{{ route('ai.generate.response') }}" method="POST" target="_blank">
+                                <form id="compareForm" onsubmit="handleCompareSubmit(event)">
                                     @csrf
                                     <input type="hidden" name="prompt" value="{{ $prompt }}">
                                     <input type="hidden" name="content" id="content-input" />
@@ -795,6 +795,25 @@
                 }
             });
         }
+    });
+
+    function handleCompareSubmit(event) {
+        event.preventDefault();
+        if (!setContents()) return;
+        
+        let formData = new FormData(event.target);
+        let data = {
+            prompt: formData.get('prompt'),
+            content: formData.get('content'),
+            selected_models_sequence: formData.get('selected_models_sequence'),
+            models: formData.getAll('model[]')
+        };
+        
+        @this.saveToCacheAndRedirect(data);
+    }
+
+    window.addEventListener('open-new-tab', event => {
+        window.open(event.detail.url, '_blank');
     });
 </script>
 <script>

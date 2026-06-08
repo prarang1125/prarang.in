@@ -22,7 +22,7 @@ class AIController extends Controller
 
     public function generateAIResponse(Request $request)
     {
-        ini_set('max_execution_time', 300); // Increase to 5 minutes for multiple API calls
+        ini_set('max_execution_time', 300);
         $local = session('locale');
         $label = httpGet('/local/lable', ['local' => $local])['data'];
 

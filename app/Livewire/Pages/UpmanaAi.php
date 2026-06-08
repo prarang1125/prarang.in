@@ -234,6 +234,13 @@ class UpmanaAi extends Component
         $this->dispatch('compare-now', ['prompt' => $this->prompt]);
     }
 
+    public function saveToCacheAndRedirect($data)
+    {
+        $key = uniqid('ai_');
+        \Illuminate\Support\Facades\Cache::put($key, json_encode($data), now()->addHours(1));
+        $this->dispatch('open-new-tab', url: route('ai.response', ['key' => $key]));
+    }
+
     public function makeSource($fields)
     {
         return httpGet('/upamana/make-source', ['fields' => $fields])['data'];
