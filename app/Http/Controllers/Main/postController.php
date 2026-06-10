@@ -162,31 +162,31 @@ class postController extends Controller
 
 
 
-public function searchTrends($city_id, $city_name)
-{
-    $categoryQueriesByMonth = DB::table('trends_category_queries')
-        ->where('city_id', $city_id)
-        ->orderByDesc('month_year')
-        ->get()
-        ->groupBy('month_year');
+    public function searchTrends($city_id, $city_name)
+    {
+        $categoryQueriesByMonth = DB::table('trends_category_queries')
+            ->where('city_id', $city_id)
+            ->orderByDesc('id')
+            ->get()
+            ->groupBy('month_year');
 
-    $trends = DB::table('city_search_trends')
-        ->where('city_id', $city_id)
-        ->orderByDesc('month_year')
-        ->get()
-        ->groupBy('month_year')
-        ->map(function ($items, $month) use ($categoryQueriesByMonth) {
-            return [
-                'english' => $items->where('language_type', 0)
-                                   ->sortByDesc('popularity')
-                                   ->values(),
-                'hindi'   => $items->where('language_type', 1)
-                                   ->sortByDesc('popularity')
-                                   ->values(),
-                'category_queries' => $categoryQueriesByMonth->get($month, collect())->values(),
-            ];
-        });
-
-    return view('main.search_trends', compact('trends', 'city_id', 'city_name'));
-}
+        $trends = DB::table('city_search_trends')
+            ->where('city_id', $city_id)
+            ->orderByDesc('id')
+            ->get()
+            ->groupBy('month_year')
+            ->map(function ($items, $month) use ($categoryQueriesByMonth) {
+                return [
+                    'english' => $items->where('language_type', 0)
+                        ->sortByDesc('popularity')
+                        ->values(),
+                    'hindi'   => $items->where('language_type', 1)
+                        ->sortByDesc('popularity')
+                        ->values(),
+                    'category_queries' => $categoryQueriesByMonth->get($month, collect())->values(),
+                ];
+            });
+        dd($trends->toArray());
+        return view('main.search_trends', compact('trends', 'city_id', 'city_name'));
+    }
 }
