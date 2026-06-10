@@ -208,7 +208,11 @@
         <tbody>
             @foreach($data['tableData'] as $row)
             <tr>
-                <td style="text-align:center;">{{ $row['s_no'] }}</td>
+                @if($row['is_first_in_sr'])
+                <td rowspan="{{ $row['sr_rowspan'] }}" class="align-middle">
+                    {{ $row['s_no'] }}
+                </td>
+                @endif
                 <td><strong>{{ $row['city'] }}</strong></td>
                 <td style="text-align:center; color:#6b7280;">{{ $row['city_type'] }}</td>
                 <td style="text-align:center;">{{ $row['state'] }}</td>
