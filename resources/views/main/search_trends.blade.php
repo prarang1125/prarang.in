@@ -185,6 +185,11 @@ $metaData = [
             margin-bottom: 0px;
             margin-right: 43px;
         }
+
+        /* Focus */
+        .sm\:justify-between div .focus\:outline-none {
+            text-decoration: none;
+        }
     </style>
     <div class="d-flex justify-content-center">
         {{ $trends->appends(request()->except('page'))->links() }}
