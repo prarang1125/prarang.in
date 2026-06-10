@@ -12,6 +12,8 @@ use App\Services\PortalUnion;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Modules\Portal\Models\BiletralPortal;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 
 class postController extends Controller
 {
@@ -164,15 +166,30 @@ class postController extends Controller
 
     public function searchTrends($city_id, $city_name)
     {
+        // 1. Get all unique months present for this city to paginate them
+        $allMonths = DB::table('city_search_trends')
+            ->where('city_id', $city_id)
+            ->orderBy('month_year', 'desc')
+            ->distinct()
+            ->pluck('month_year');
+
+        // 2. Setup manual pagination variables (3 months per page)
+        $perPage = 3;
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $currentMonthsPage = $allMonths->forPage($currentPage, $perPage);
+
+        // 3. Fetch data ONLY for the 3 months on the current page
         $categoryQueriesByMonth = DB::table('trends_category_queries')
             ->where('city_id', $city_id)
-            ->orderByDesc('id')
+            ->whereIn('month_year', $currentMonthsPage)
+            ->orderBy('month_year', 'desc')
             ->get()
             ->groupBy('month_year');
 
-        $trends = DB::table('city_search_trends')
+        $trendsData = DB::table('city_search_trends')
             ->where('city_id', $city_id)
-            ->orderByDesc('id')
+            ->whereIn('month_year', $currentMonthsPage)
+            ->orderBy('month_year', 'desc')
             ->get()
             ->groupBy('month_year')
             ->map(function ($items, $month) use ($categoryQueriesByMonth) {
@@ -186,7 +203,16 @@ class postController extends Controller
                     'category_queries' => $categoryQueriesByMonth->get($month, collect())->values(),
                 ];
             });
-        dd($trends->toArray());
+
+        // 4. Create the paginator instance to pass to the view
+        $trends = new LengthAwarePaginator(
+            $trendsData,
+            $allMonths->count(),
+            $perPage,
+            $currentPage,
+            ['path' => LengthAwarePaginator::resolveCurrentPath()]
+        );
+
         return view('main.search_trends', compact('trends', 'city_id', 'city_name'));
     }
 }

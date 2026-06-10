@@ -34,7 +34,8 @@ $metaData = [
             border-color: #3a5fa0;
         }
 
-        .trend-table td, .trend-table th {
+        .trend-table td,
+        .trend-table th {
             padding: 7px 10px;
             vertical-align: middle;
             font-size: 14px;
@@ -112,7 +113,9 @@ $metaData = [
                                     <td class="text-center">{{ $item->popularity }}</td>
                                 </tr>
                                 @empty
-                                <tr><td colspan="3" class="text-center text-muted">No data</td></tr>
+                                <tr>
+                                    <td colspan="3" class="text-center text-muted">No data</td>
+                                </tr>
                                 @endforelse
                             </tbody>
                         </table>
@@ -136,7 +139,9 @@ $metaData = [
                                     <td class="text-center">{{ $item->popularity }}</td>
                                 </tr>
                                 @empty
-                                <tr><td colspan="3" class="text-center text-muted">No Significant Searches</td></tr>
+                                <tr>
+                                    <td colspan="3" class="text-center text-muted">No Significant Searches</td>
+                                </tr>
                                 @endforelse
                             </tbody>
                         </table>
@@ -162,6 +167,27 @@ $metaData = [
         @endforeach
 
     </div>
+    <style>
+        /* Division */
+        .container .sm\:justify-between div {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Division */
+        .container .sm\:justify-between div:nth-child(1) {
+            flex-direction: row;
+        }
+
+        /* Text */
+        .sm\:justify-between div p.text-sm {
+            margin-bottom: 0px;
+            margin-right: 43px;
+        }
+    </style>
+    <div class="d-flex justify-content-center">
+        {{ $trends->appends(request()->except('page'))->links() }}
+    </div>
 
 </x-layout.main.base>
-
