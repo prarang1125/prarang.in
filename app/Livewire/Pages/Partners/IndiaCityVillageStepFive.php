@@ -215,7 +215,7 @@ class IndiaCityVillageStepFive extends Component
                         $optionalSolutions[] = 'Semiotics';
                         $optionalSolutions[] = 'Partner Metrics';
                     } elseif (str_ends_with($cityPostValue, '-daily')) {
-                        $optionalSolutions[] = '30 Posts/Month (Daily)';
+                        $optionalSolutions[] = '31 Posts/Month (Daily)';
                         if ($hasYellowPages) {
                             $optionalSolutions[] = 'City Yellow Pages (DM)';
                         }

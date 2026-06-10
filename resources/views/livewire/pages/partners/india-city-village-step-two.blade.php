@@ -770,7 +770,7 @@
                                 number_format($pricing['optional_solutions']['Alternate Day Posts']['monthly'])
                                 }}/month)</span></th>
                         <th class="px-1 py-0.5 border text-center font-bold text-xs text-gray-800 bg-blue-50">
-                            30 Posts<br><span class="font-normal">(₹{{ number_format($pricing['optional_solutions']['Daily Posts']['monthly']) }}/month)</span>
+                            31 Posts<br><span class="font-normal">(₹{{ number_format($pricing['optional_solutions']['Daily Posts']['monthly']) }}/month)</span>
                         </th>
                     </tr>
                 </thead>
