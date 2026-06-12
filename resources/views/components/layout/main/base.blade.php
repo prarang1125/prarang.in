@@ -1003,11 +1003,13 @@
                             <li class="dropdown">
                                 <a class="dropdown-item dropdown-toggle" href="#" role="button"
                                     data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
-                                    Performance Metrics
+                                    Partner Login
                                 </a>
                                 <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="https://www.prarang.in/partners-metrics">Performance Metrics</a></li>
                                     <li><a class="dropdown-item" href="/semiotics">Semiotics</a></li>
-                                    <li><a class="dropdown-item" href="/partners-metrics">Partner Metrics
+                                    <li><a class="dropdown-item" href=" https://b2b.prarang.in/login?lt=partner">City Ad OOH Listing</a></li>
+                                    <li><a class="dropdown-item" href=" https://b2b.prarang.in/login?lt=partner">District Analytics
                                         </a></li>
                                 </ul>
                             </li>
@@ -1019,12 +1021,11 @@
 
                                 </a>
                                 <ul class="dropdown-menu">
-                                    <li><a class="dropdown-item" href="{{ route('home.city-portals') }}">City
+                                    <li><a class="dropdown-item" href="https://www.prarang.in/city-portals">City/Village
                                             Portals
                                         </a></li>
                                     <li><a class="dropdown-item"
-                                            href="{{ route('home.country-portals') }}">Country
-                                            Portals
+                                            href="https://www.prarang.in/country-portals">World Bilateral Portal
 
                                         </a></li>
                                 </ul>
