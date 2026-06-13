@@ -182,12 +182,13 @@ $language = [
 
 
     @media (max-width: 576px) {
-       .anchorshadow{
-        font-size: 14px;
-       }
-       .gapsm{
-        gap: 1rem !important;
-       }
+        .anchorshadow {
+            font-size: 14px;
+        }
+
+        .gapsm {
+            gap: 1rem !important;
+        }
     }
 </style>
 
@@ -330,7 +331,7 @@ $language = [
                     class="flex flex-col items-center md:w-1/4 rounded-xl px-4 py-3 shadow-md transition hover:-translate-y-1 text-decoration-none">
 
                     <span class="font-bold text-gray-900 text-sm text-center">
-                        Hindi Webs
+                        Hindi Web
                     </span>
 
                     <!-- LIVE badge -->
@@ -346,7 +347,7 @@ $language = [
                     @foreach($language as $value)
                     <a href="javascript:void(0)" @click="showModal = true"
                         class="flex items-center justify-center text-center text-decoration-none py-2 px-3 rounded-lg  text-sm text-gray-800   shadow-sm transition hover:-translate-y-0.5">
-                        {{ $value['name'] }} Webs
+                        {{ $value['name'] }} Web
                     </a>
                     @endforeach
 
@@ -442,37 +443,37 @@ $language = [
     </section>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function () {
+        document.addEventListener('DOMContentLoaded', function() {
 
-        const dropbtn = document.querySelector('.dropbtn');
-        const dropdownMenu = document.getElementById('myDropdown');
-        const dropdownIcon = document.getElementById('dropdownIcon');
+            const dropbtn = document.querySelector('.dropbtn');
+            const dropdownMenu = document.getElementById('myDropdown');
+            const dropdownIcon = document.getElementById('dropdownIcon');
 
-        if (dropbtn) {
+            if (dropbtn) {
 
-            dropbtn.addEventListener('click', function (e) {
+                dropbtn.addEventListener('click', function(e) {
 
-                e.preventDefault();
+                    e.preventDefault();
 
-                dropdownMenu.classList.toggle('show');
-                dropdownIcon.classList.toggle('rotate');
+                    dropdownMenu.classList.toggle('show');
+                    dropdownIcon.classList.toggle('rotate');
 
-            });
+                });
 
-            window.addEventListener('click', function (event) {
+                window.addEventListener('click', function(event) {
 
-                if (!event.target.closest('.dropdownss')) {
+                    if (!event.target.closest('.dropdownss')) {
 
-                    dropdownMenu.classList.remove('show');
-                    dropdownIcon.classList.remove('rotate');
+                        dropdownMenu.classList.remove('show');
+                        dropdownIcon.classList.remove('rotate');
 
-                }
+                    }
 
-            });
+                });
 
-        }
+            }
 
-    });
+        });
     </script>
 
 </x-layout.main.base>

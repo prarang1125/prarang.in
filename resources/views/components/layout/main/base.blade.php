@@ -998,7 +998,7 @@
                                         </a></li>
 
                                 </ul>
-                                {{-- <a class="dropdown-item" href="/ai/upmana">Artificial Intelligence</a> --}}
+
                             </li>
                             <li class="dropdown">
                                 <a class="dropdown-item dropdown-toggle" href="#" role="button"

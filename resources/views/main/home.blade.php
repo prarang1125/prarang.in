@@ -550,7 +550,7 @@
                     <div id="cityWebsCard"
                         class="border-2 border-blue-200 rounded-3xl p-10 mb-8 bg-white shadow-inner relative overflow-hidden group-hover:border-blue-400 transition-colors">
 
-                        <div onclick="showImage('{{ asset('assets/images/home/city-portal.jpg') }}')"
+                        <div onclick="showImage('{{ asset('assets/images/home/cv.png') }}')"
                             class="flex justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
                             <img src="{{ asset('assets/images/home/3.png') }}" alt="City Icon"
                                 class=" object-contain drop-shadow-md">
@@ -572,7 +572,7 @@
                     </h2>
                     <div id="countryWebsCard"
                         class="border-2 border-red-200 rounded-3xl p-10 mb-8 bg-white shadow-inner relative overflow-hidden group-hover:border-red-400 transition-colors">
-                        <div onclick="showImage('{{ asset('assets/images/home/country-portal.jpg') }}')"
+                        <div onclick="showImage('{{ asset('assets/images/home/wbw.png') }}')"
                             class="flex justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
                             <img src="{{ asset('assets/images/home/2.png') }}" alt="Country Icon"
                                 class="object-contain drop-shadow-md">
@@ -594,7 +594,7 @@
                     <div id="languageWebsCard"
                         class="border-2 border-yellow-200 rounded-3xl p-10 mb-8 bg-white shadow-inner relative overflow-hidden group-hover:border-yellow-400 transition-colors">
 
-                        <div onclick="showImage('{{ asset('assets/images/home/language-portal.jpg') }}')"
+                        <div onclick="showImage('{{ asset('assets/images/home/lw.png') }}')"
                             class="flex justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
                             <img src="{{ asset('assets/images/home/1.png') }}" alt="Language Icon"
                                 class=" object-contain drop-shadow-md">
@@ -1024,7 +1024,7 @@
                         <div id="cityWebsCard"
                             class="border-2 border-blue-200 rounded-3xl p-10 mb-8 bg-white shadow-inner relative overflow-hidden group-hover:border-blue-400 transition-colors">
 
-                            <div onclick="showImage('{{ asset('assets/images/home/city-portal.jpg') }}')"
+                            <div onclick="showImage('{{ asset('assets/images/home/city-portal.png') }}')"
                                 class="flex justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
                                 <img src="{{ asset('assets/images/home/3.png') }}" alt="City Icon"
                                     class=" object-contain drop-shadow-md">
@@ -1046,7 +1046,7 @@
                         </h2>
                         <div id="countryWebsCard"
                             class="border-2 border-red-200 rounded-3xl p-10 mb-8 bg-white shadow-inner relative overflow-hidden group-hover:border-red-400 transition-colors">
-                            <div onclick="showImage('{{ asset('assets/images/home/country-portal.jpg') }}')"
+                            <div onclick="showImage('{{ asset('assets/images/home/country-portal.png') }}')"
                                 class="flex justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
                                 <img src="{{ asset('assets/images/home/2.png') }}" alt="Country Icon"
                                     class="object-contain drop-shadow-md">
@@ -1068,7 +1068,7 @@
                         <div id="languageWebsCard"
                             class="border-2 border-yellow-200 rounded-3xl p-10 mb-8 bg-white shadow-inner relative overflow-hidden group-hover:border-yellow-400 transition-colors">
 
-                            <div onclick="showImage('{{ asset('assets/images/home/language-portal.jpg') }}')"
+                            <div onclick="showImage('{{ asset('assets/images/home/language-portal.png') }}')"
                                 class="flex justify-center mb-6 transform group-hover:scale-110 transition-transform duration-300">
                                 <img src="{{ asset('assets/images/home/1.png') }}" alt="Language Icon"
                                     class=" object-contain drop-shadow-md">
@@ -1354,18 +1354,18 @@
 
     <!-- Custom Tooltips -->
     <div id="cityTooltip" class="custom-tooltip tooltip-blue">
-        <h1 class="text-center">City Portal</h1>
-        <img class="w-100 h-100 rounded" src="{{ asset('assets/images/home/city-portal.jpg') }}" alt="">
+        <h1 class="text-center">City/Village Portal</h1>
+        <img class="w-100 h-100 rounded" src="{{ asset('assets/images/home/city-portal.png') }}" alt="">
     </div>
 
-    <div id="languageTooltip" class="custom-tooltip tooltip-yellow">
+    <div id="languageTooltip" class="custom-tooltip tooltip-red">
         <h1 class="text-center">Language Portal</h1>
-        <img class="w-100 h-100 rounded" src="{{ asset('assets/images/home/language-portal.jpg') }}" alt="">
+        <img class="w-100 h-100 rounded" src="{{ asset('assets/images/home/language-portal.png') }}" alt="">
     </div>
 
-    <div id="countryTooltip" class="custom-tooltip tooltip-red">
-        <h1 class="text-center">Country Portal</h1>
-        <img class="w-100 h-100 rounded" src="{{ asset('assets/images/home/country-portal.jpg') }}" alt="">
+    <div id="countryTooltip" class="custom-tooltip  tooltip-yellow">
+        <h1 class="text-center">World Bilateral Portal</h1>
+        <img class="w-100 h-100 rounded" src="{{ asset('assets/images/home/country-portal.png') }}" alt="">
     </div>
 
     <style>
