@@ -30,7 +30,7 @@ $metaData = [
         <div class="space-y-6">
 
             <div>
-                <h4 class="text-sm  text-slate-900  tracking-wide mb-3 text-center">
+                <h4 class="  text-slate-900  tracking-wide mb-3 text-center font-bold text-xl">
                     Live City/Village Interaction
 
                 </h4>
@@ -118,7 +118,7 @@ $metaData = [
                 </div>
             </div>
             <div>
-                <h4 class="text-sm  text-slate-900  tracking-wide mb-3 text-center">
+                <h4 class="  text-slate-900  tracking-wide mb-3 text-center font-bold text-xl">
                     Ready for City/Village Interaction
 
                 </h4>
