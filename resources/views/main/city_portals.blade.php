@@ -187,7 +187,7 @@ $metaData = [
 
                 </div>
             </a>
-            <a href="">
+            <a href="https://www.prarang.in/webs/filter/city">
                 <div class="flex flex-col justify-center items-center border-1 border-blue-600 rounded-xl shadow-sm bg-slate-50 px-5 py-2 ">
 
                     <img class="max-h-20 mb-2" src="https://www.prarang.in/assets/images/town1.png" alt="">
