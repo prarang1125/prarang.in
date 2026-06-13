@@ -308,6 +308,12 @@ class Home extends Controller
     }
 
 
+    public function languageWebs()
+    {
+        return view('main.language_webs');
+    }
+
+
     public function indiaCityWebs()
     {
         $portal =

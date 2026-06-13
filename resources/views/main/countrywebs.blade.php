@@ -1,12 +1,12 @@
 @php
-    $metaData = [
-        'nav-heading' => view('components.nav-heading', [
-            'text' => 'World - 195 Country Webs',
-            'leftImg' => asset('assets/images/home/2.png'),
-            'rightImg' => asset('assets/images/home/2.png'),
-        ]),
-        'nav-sub-heading' => '',
-    ];
+$metaData = [
+'nav-heading' => view('components.nav-heading', [
+'text' => 'World - 195 Country Webs',
+'leftImg' => asset('assets/images/home/2.png'),
+'rightImg' => asset('assets/images/home/2.png'),
+]),
+'nav-sub-heading' => '',
+];
 @endphp
 <x-layout.main.base :metaData="$metaData">
     <style>
@@ -351,9 +351,9 @@
 
         <h4 class=" flex text-danger  justify-center items-center text-center text-primary font-bold">
             <img class="h-10 w-10" src="{{ asset('assets/images/home/2.png') }}" alt="">
-            World - 195 Country Webs
-            <img class="h-10 w-10" src="{{ asset('assets/images/home/2.png') }}" alt="">
-        </h4>
+    World - 195 Country Webs
+    <img class="h-10 w-10" src="{{ asset('assets/images/home/2.png') }}" alt="">
+    </h4>
     </section> --}}
 
     <small class="">All 195 countries are grouped into seven major regions/continents. The table below
@@ -509,62 +509,62 @@
     </section>
 
     @foreach ($data as $key => $value)
-        <div class="modal fade" id="modal-{{ $key }}" tabindex="-1"
-            aria-labelledby="modal-{{ $key }}Label" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-xl">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modal-{{ $key }}Label">
-                            {{ config('countryweb.cid.' . $key) }} Digital Demography
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <table class="table table-sm table-striped table-bordered table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Sr</th>
-                                    <th id="Country">Country</th>
-                                    <th id="Population">Population 2025 (in mil.)</th>
-                                    <th id="Literacy">Literacy (%)</th>
-                                    <th id="InternetAccess">Internet Access (%)</th>
-                                    <th id="FacebookUsers">Facebook Users (%)</th>
-                                    <th id="InstagramUsers">Instagram Users (%)</th>
-                                    <th id="LinkedInUsers">LinkedIn Users (%)</th>
-                                    <th id="TwitterUsers">X (Twitter) Users (%)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($value as $v)
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $v['country'] }}</td>
-                                        <td>{{ $v['pop'] }}</td>
-                                        <td>{{ $v['literacy'] }}</td>
-                                        <td>{{ $v['internate'] }}</td>
-                                        <td>{{ $v['facebook'] }}</td>
-                                        <td>{{ $v['internate_user'] }}</td>
-                                        <td>{{ $v['linkedin'] }}</td>
-                                        <td>{{ $v['twitter'] }}</td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+    <div class="modal fade" id="modal-{{ $key }}" tabindex="-1"
+        aria-labelledby="modal-{{ $key }}Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modal-{{ $key }}Label">
+                        {{ config('countryweb.cid.' . $key) }} Digital Demography
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table class="table table-sm table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Sr</th>
+                                <th id="Country">Country</th>
+                                <th id="Population">Population 2025 (in mil.)</th>
+                                <th id="Literacy">Literacy (%)</th>
+                                <th id="InternetAccess">Internet Access (%)</th>
+                                <th id="FacebookUsers">Facebook Users (%)</th>
+                                <th id="InstagramUsers">Instagram Users (%)</th>
+                                <th id="LinkedInUsers">LinkedIn Users (%)</th>
+                                <th id="TwitterUsers">X (Twitter) Users (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($value as $v)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $v['country'] }}</td>
+                                <td>{{ $v['pop'] }}</td>
+                                <td>{{ $v['literacy'] }}</td>
+                                <td>{{ $v['internate'] }}</td>
+                                <td>{{ $v['facebook'] }}</td>
+                                <td>{{ $v['internate_user'] }}</td>
+                                <td>{{ $v['linkedin'] }}</td>
+                                <td>{{ $v['twitter'] }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
 
-
-                    </div>
-                    <div class="scroll-hint">&larr; Scroll horizontally &rarr;</div>
-                    <p class="small" style="text-align: justify !important; padding: 0px 15px;">
-                        Notes: Population (2025) figures are based on the UN Population Division Report (2024).
-                        Literacy rates are derived from the CIA World Factbook (2022). Internet access data is
-                        sourced from UN ICT Data (2024). Social media usage percentages (Facebook, Instagram,
-                        LinkedIn, and X) are based on respective advertising modules as of December 2025.
-
-                    </p>
 
                 </div>
+                <div class="scroll-hint">&larr; Scroll horizontally &rarr;</div>
+                <p class="small" style="text-align: justify !important; padding: 0px 15px;">
+                    Notes: Population (2025) figures are based on the UN Population Division Report (2024).
+                    Literacy rates are derived from the CIA World Factbook (2022). Internet access data is
+                    sourced from UN ICT Data (2024). Social media usage percentages (Facebook, Instagram,
+                    LinkedIn, and X) are based on respective advertising modules as of December 2025.
+
+                </p>
+
             </div>
         </div>
+    </div>
     @endforeach
 
 </x-layout.main.base>

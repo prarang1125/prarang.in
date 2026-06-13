@@ -16,7 +16,7 @@ $metaData = [
         }
     </style>
     <section class=" parent-portal ">
-        <p>Portals are an aggregator of Content, Analytics, Planners, Artificial Intelligence and Performance Metrics (under Partner Login). World Bilateral Portals are integrated digital platforms that combine Prarang’s content and business information with relevant Bilateral specific tools delivered through local updates in major domestic languages.</p>
+        <p>World Bilateral Portals are integrated digital platforms that facilitate interaction between two countries — connecting their shared history, cultural ties, and bilateral opportunities through local updates in English & the primary languages of both countries. <br>The portals are an aggregated curation of Prarang's solutions for the two Countries - Content, Analytics, Planners, Artificial Intelligence and Performance Metrics (under Partner Login). These portals can also be launched on our Corporate and Government partner's websites (using our APIs).</p>
         <br><br>
         <div>
             <h4 class="text-sm  text-slate-900  tracking-wide mb-3 text-center">

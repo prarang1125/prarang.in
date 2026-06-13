@@ -24,7 +24,8 @@ $metaData = [
         }
     </style>
     <section class=" parent-portal ">
-        <p>Portals are an aggregator of Content, Analytics, Planners, Artificial Intelligence and Performance Metrics (under Partner Login). City/Village Portals are integrated digital platforms that combine Prarang’s content and business information with relevant City/Village specific tools delivered through hyperlocal City/Village-level updates in regional languages.
+        <p>Prarang's City/Village portals are hyper-local solutions containing text with context (not mere translations) in local languages for targeted communities. Global knowledge, localized & socially useful. Created by detailed primary & secondary research on the location & its community. These are built on Urban Planning foundations i.e.- Work, Place & Citizenship.
+            <br>The portals are an aggregated curation of Prarang's solutions for the City/Village - Content, Analytics, Planners, Artificial Intelligence and Performance Metrics (under Partner Login). These portals can also be launched on our Corporate and Government partner's websites (using our APIs).
         </p>
         <div class="space-y-6">
 

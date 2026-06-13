@@ -66,6 +66,8 @@ Route::get('town-webs-in', [Home::class, 'townWebsIn'])->name('home.town-webs-in
 Route::get('village-webs', [Home::class, 'villageWebs'])->name('home.village-webs');
 Route::get('india-rural', [Home::class, 'indiaRural'])->name('home.india-rural');
 Route::get('country-webs/', [Home::class, 'countryWebs'])->name('home.country-webs');
+Route::get('language-webs/', [Home::class, 'languageWebs'])->name('home.language-webs');
+
 
 Route::get('lang-webs', [Home::class, 'langWebs'])->name('home.lang-webs');
 Route::get('/get-countries/{langId}', [Home::class, 'geCountrytByLanguage'])
