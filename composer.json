@@ -19,7 +19,7 @@
         "laravel/tinker": "^2.9",
         "league/flysystem-aws-s3-v3": "^3.29",
         "livewire/livewire": "^3.6",
-        "nwidart/laravel-modules": "^11.1",
+        "nwidart/laravel-modules": "*",
         "phpoffice/phpspreadsheet": "^5.2",
         "simplesoftwareio/simple-qrcode": "^4.2",
         "spatie/laravel-sitemap": "^7.3",
@@ -38,6 +38,7 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/",
+            "Modules\\Partner\\Providers\\": "Modules/Partner/app/Providers/",
             "Database\\Factories\\": "database/factories/",
             "Database\\Seeders\\": "database/seeders/",
              "Modules\\": "Modules/"

@@ -419,10 +419,15 @@ $metaData = [
           <p class="font-bold text-xs">Respect for Diversity, A Belief in Unity</p>
         </a>
       </div> -->
-
+      <style>
+        /* Image */
+        .container .w-full .flex-wrap div .justify-center img {
+          width: 130% !important;
+        }
+      </style>
       <div>
         <p>Dr. Shroff’s Charity Eye Hospital</p>
-        <a href="javascript:void(0)"
+        <a href="/partner/sceh"
           class="flex items-center justify-center bg-white border border-gray-200 rounded-xl px-8 py-1 min-w-[160px] min-h-[90px] hover:border-gray-400 hover:bg-gray-50 transition-all duration-200">
           <img src="https://i.ibb.co/zHr5Wq7G/SCEH.png" alt="SCEH" class=" max-w-[340px] object-contain">
         </a>

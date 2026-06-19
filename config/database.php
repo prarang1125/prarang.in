@@ -34,6 +34,18 @@ return [
             'strict' => true,
             'engine' => null,
         ],
+        'extended' => [
+            'driver' => 'mysql',
+            'host' => env('DB3_HOST', '127.0.0.1'),
+            'database' => env('DB3_DATABASE', 'prarang-ext'),
+            'username' => env('DB3_USERNAME', 'root'),
+            'password' => env('DB3_PASSWORD', ''),
+            'charset' => 'utf8mb4',
+            'collation' => 'utf8mb4_unicode_ci',
+            'prefix' => '',
+            'strict' => true,
+            'engine' => null,
+        ],
 
     ],
 
