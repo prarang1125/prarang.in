@@ -56,37 +56,13 @@
 
             {{-- Body (empty) --}}
             <div style="padding: 24px; min-height: 100px; max-height: 75vh; overflow-y: auto;" class="custom-scroll">
-                {{-- Ranking Table --}}
-                <div class="table-responsive shadow-sm border border-gray-200 rounded-lg mb-4">
-                    <table class="table table-hover table-striped table-sm m-0 border-0 align-middle text-sm" style="width:100%;">
-                        <thead class="bg-gray-50 text-gray-700">
-                            <tr>
-                                <th class="border-0 font-semibold py-2 px-3 text-center w-[50px]">Sr.No</th>
-                                <th class="border-0 font-semibold py-2 px-3">Fields</th>
-                                <th class="border-0 font-semibold py-2 px-3 text-center">India Average</th>
-                                <th class="border-0 font-semibold py-2 px-3 text-right">Rank out of 756</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach($data['dhq-rank_data'] as $key=>$item)
-                            <tr class="transition-colors hover:bg-gray-100">
-                                <td class="py-2 px-3 text-center text-gray-500">{{ $loop->iteration }}</td>
-                                <td class="py-2 px-3 font-medium text-gray-800">{{ $data['source'][$key][0]['name'] ?? "---" }}</td>
-                                <td class="py-2 px-3 text-center text-gray-600">{{ number_format($data['avg_data'][$key], 1) }}</td>
-                                <td class="py-2 px-3 text-right font-semibold text-gray-700">{!! getSuperScript($item) !!}</td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-
+                <p class="py-3">SCEH Hospitals and Vision Centers located within this district are displayed below, categorized by city and village locations. You may click the button below to visit the District Capital's web page partnered with SCEH.
+                    Additionally, the district health metrics below are ranked from 1 to 756 across Indian districts and state capitals based on government census and healthcare infrastructure data. These rankings provide a relative comparison of healthcare resources and facilities available in the district.
+                </p>
                 {{-- SCEH Facilities Table --}}
                 @if(!empty($data['sceh_list']))
                 <div class="mt-4">
-                    <h6 class="font-bold text-gray-800 mb-3 flex items-center gap-2">
-                        <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background-color:#2563eb;"></span>
-                        SCEH Facilities & Knowledge Web
-                    </h6>
+
                     <div class="table-responsive shadow-sm border border-gray-200 rounded-lg">
                         <table class="table table-hover table-striped table-sm m-0 border-0 align-middle text-sm" style="width:100%;">
                             <thead class="bg-blue-50 text-blue-900">
@@ -116,6 +92,36 @@
                     </div>
                 </div>
                 @endif
+                {{-- Ranking Table --}}
+                <h6 class="mt-3 font-bold text-gray-800 mb-3 flex items-center gap-2">
+                    <!-- <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background-color:#2563eb;"></span> -->
+                    Meerut District SCEH Facilities:
+                </h6>
+
+                <div class="table-responsive shadow-sm border border-gray-200 rounded-lg mb-4">
+                    <table class="table table-hover table-striped table-sm m-0 border-0 align-middle text-sm" style="width:100%;">
+                        <thead class="bg-gray-50 text-gray-700">
+                            <tr>
+                                <th class="border-0 font-semibold py-2 px-3 text-center w-[50px]">Sr.No</th>
+                                <th class="border-0 font-semibold py-2 px-3">Fields</th>
+                                <th class="border-0 font-semibold py-2 px-3 text-center">India Average</th>
+                                <th class="border-0 font-semibold py-2 px-3 text-right">Rank out of 756</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($data['dhq-rank_data'] as $key=>$item)
+                            <tr class="transition-colors hover:bg-gray-100">
+                                <td class="py-2 px-3 text-center text-gray-500">{{ $loop->iteration }}</td>
+                                <td class="py-2 px-3 font-medium text-gray-800">{{ $data['source'][$key][0]['name'] ?? "---" }}</td>
+                                <td class="py-2 px-3 text-center text-gray-600">{{ number_format($data['avg_data'][$key], 1) }}</td>
+                                <td class="py-2 px-3 text-right font-semibold text-gray-700">{!! getSuperScript($item) !!}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
+
             </div>
         </div>
     </div>

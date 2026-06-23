@@ -12,7 +12,6 @@ class ShowDhqRanks extends Component
     public $title = 'Dhq-Name';
     public $code = 0;
     public $showModal = false;
-
     public function mount($title = 'Dhq-Name', $code = 0)
     {
         $this->title = $title;
@@ -22,6 +21,7 @@ class ShowDhqRanks extends Component
     public function getDhqData()
     {
         $data = httpGet('v1/partner/get-ranked-data', ['dhq_id' => $this->code, 'table_name' => "e_healths"]);
+
         $this->data = $data ?? [];
         $this->showModal = true;
     }

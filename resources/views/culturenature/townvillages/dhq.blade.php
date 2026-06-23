@@ -63,7 +63,7 @@ $metaData[] = '';
     }
 </style>
 
-<x-layout.pages.dhq :data="$dhq">
+<x-layout.pages.dhq :data="$dhq" :isAdsEnable="$isAdsEnable">
 
     <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
         <div class="lg:col-span-3  space-y-6 order-3 lg:order-1">
@@ -403,12 +403,12 @@ $metaData[] = '';
                         @if($uaCount > 3)
                         {{ $item['name'] ?? '' }}{{ $index < 2 ? ',' : '' }} @else {{ $item['name'] ?? '' }}{{
                             ($index==$uaCount - 2) ? ' and' : ($index < $uaCount - 2 ? ',' : '' ) }} @endif @endforeach
-                            </span>
-                            @if($uaCount > 3)
-                            <button @click="openUA = true" class="text-blue-900 hover:text-blue-400">
-                                <span>+{{ $uaCount - 3 }} more</span>
-                            </button>
-                            @endif
+                    </span>
+                    @if($uaCount > 3)
+                    <button @click="openUA = true" class="text-blue-900 hover:text-blue-400">
+                        <span>+{{ $uaCount - 3 }} more</span>
+                    </button>
+                    @endif
                 </p>
 
                 <!-- UA Modal Table -->
@@ -467,13 +467,16 @@ $metaData[] = '';
                                             <tr class="hover:bg-blue-50/30 transition-colors group">
                                                 <td
                                                     class="py-2.5 px-4 text-[10px] font-bold text-slate-400 tracking-tight">
-                                                    {{ $loop->iteration }}</td>
+                                                    {{ $loop->iteration }}
+                                                </td>
                                                 <td
                                                     class="py-2.5 px-4 text-xs font-bold text-slate-700 group-hover:text-blue-600 transition-colors">
-                                                    {{ $item['name'] ?? 'N/A' }}</td>
+                                                    {{ $item['name'] ?? 'N/A' }}
+                                                </td>
                                                 <td
                                                     class="py-2.5 px-4 text-xs font-bold text-slate-700 group-hover:text-blue-600 transition-colors">
-                                                    {{ number_format($item['TOT_P'] ?? 'N/A') }}</td>
+                                                    {{ number_format($item['TOT_P'] ?? 'N/A') }}
+                                                </td>
                                             </tr>
                                             @endforeach
                                         </tbody>
@@ -534,20 +537,20 @@ $metaData[] = '';
                     </p>
                 </div>
                 <!-- Sanskriti & Prakriti Dual Section -->
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-4 py-4 border-t border-gray-100">
-                    <!-- Sanskriti (Culture) -->
-                    <div class="flex flex-col items-center">
-                        <h4 class="text-lg font-bold text-gray-900 mb-1">संस्कृति</h4>
+                <!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-4 py-4 border-t border-gray-100"> -->
+                <!-- Sanskriti (Culture) -->
+                <!-- <div class="flex flex-col items-center">
+                        <h4 class="text-lg font-bold text-gray-900 mb-1">संस्कृति</h4> -->
 
-                        <!-- Sanskriti Color Bar -->
-                        <div class="flex w-full h-9  overflow-hidden mb-1 max-w-[320px] shadow-sm">
+                <!-- Sanskriti Color Bar -->
+                <!-- <div class="flex w-full h-9  overflow-hidden mb-1 max-w-[320px] shadow-sm">
                             <div class="flex-1" style="background-color: #ff0000;"></div>
                             <div class="flex-1" style="background-color: #f7f601;"></div>
                             <div class="flex-1" style="background-color: #0000ff;"></div>
-                        </div>
+                        </div> -->
 
-                        <!-- Card Entries -->
-                        <div class="w-full space-y-2">
+                <!-- Card Entries -->
+                <!-- <div class="w-full space-y-2">
                             @for ($i = 1; $i <= 2; $i++) <div class="flex gap-4 group/entry cursor-default">
                                 <div
                                     class="w-20 h-20 bg-gray-50 rounded-2xl border border-indigo-100/50 flex items-center justify-center flex-shrink-0 shadow-sm transition-all group-hover/entry:border-indigo-200">
@@ -559,151 +562,163 @@ $metaData[] = '';
                                     <span class="text-sm font-bold text-gray-800">Culture Insight
                                         {{ $i }}</span>
                                 </div>
-                        </div>
-                        @endfor
-                    </div>
-                </div>
+                        </div> -->
+                <!-- @endfor -->
+                <!-- </div> -->
+                <!-- </div> -->
 
                 <!-- Prakriti (Nature) -->
-                <div class="flex flex-col items-center">
+                <!-- <div class="flex flex-col items-center">
                     <h4 class="text-lg font-bold text-gray-900 mb-1">प्रकृति</h4>
 
                     <!-- Nature Color Bar -->
-                    <div class="flex w-full h-9  overflow-hidden mb-1 max-w-[320px] shadow-sm">
-                        <div class="flex-1" style="background-color: #fef08a;"></div>
-                        <div class="flex-1" style="background-color: #bef264;"></div>
-                        <div class="flex-1" style="background-color: #22c55e;"></div>
-                    </div>
+                <!-- <div class="flex w-full h-9  overflow-hidden mb-1 max-w-[320px] shadow-sm">
+                    <div class="flex-1" style="background-color: #fef08a;"></div>
+                    <div class="flex-1" style="background-color: #bef264;"></div>
+                    <div class="flex-1" style="background-color: #22c55e;"></div>
+                </div> -->
 
-                    <!-- Card Entries -->
-                    <div class="w-full space-y-2">
-                        @for ($i = 1; $i <= 2; $i++) <div class="flex gap-4 group/entry cursor-default">
-                            <div
-                                class="w-20 h-20 bg-gray-50 rounded-2xl border border-green-100/50 flex items-center justify-center flex-shrink-0 shadow-sm transition-all group-hover/entry:border-green-200">
-                                <span class="text-[10px] font-bold text-gray-400">Image
-                                    {{ $i }}</span>
+                <!-- Card Entries -->
+                <!-- <div class="w-full space-y-2">
+                    @for ($i = 1; $i <= 2; $i++) <div class="flex gap-4 group/entry cursor-default">
+                        <div
+                            class="w-20 h-20 bg-gray-50 rounded-2xl border border-green-100/50 flex items-center justify-center flex-shrink-0 shadow-sm transition-all group-hover/entry:border-green-200">
+                            <span class="text-[10px] font-bold text-gray-400">Image
+                                {{ $i }}</span>
+                        </div>
+                        <div
+                            class="flex-grow bg-white border border-slate-100 rounded-2xl px-6 flex items-center shadow-sm transition-all group-hover/entry:border-slate-200">
+                            <span class="text-sm font-bold text-gray-800">Nature Insight
+                                {{ $i }}</span>
+                        </div>
+                </div>
+                @endfor
+            </div> -->
+                <!-- </div> -->
+
+
+
+            </div>
+            @if($isAdsEnable)
+            <style>
+                /* Image */
+                .mx-auto .grid .lg\:col-span-6 .justify-center img {
+                    width: 100% !important;
+                }
+            </style>
+            <div class="flex justify-center">
+                <img class="rounded-lg" src="{{config('portal.sceh_ads.non-interaction')}}" alt="">
+            </div>
+            @endif
+
+            <!-- City Action Buttons -->
+            <div class="flex gap-6 mt-6 mb-8 text-black">
+                <a target="_blank" href="https://g2c.prarang.in/{{ $dhq['dhq']['city'] ?? '' }}?data"
+                    class="flex-1 text-center bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-700 transition-all duration-300">
+                    {{ $dhq['dhq']['city'] ?? '' }} Analytics
+                </a>
+
+                <a target="_blank" href="https://g2c.prarang.in/ai/{{ $dhq['dhq']['city'] ?? '' }}"
+                    class="flex-1 text-center bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-700 transition-all duration-300">
+                    {{ $dhq['dhq']['city'] ?? '' }} A.I. Report
+                </a>
+            </div>
+
+
+
+            <!-- Instruments Section -->
+            <div class="p-2 bg-white">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Business Instrument -->
+                    <div
+                        class="group relative bg-blue-400 shadow-xl hover:shadow-2xl transition-all duration-500  overflow-hidden">
+                        <div class="absolute inset-0 opacity-30">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-3xl opacity-50"></div>
+                            <div class="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full blur-2xl opacity-50"></div>
+                        </div>
+                        <div class="relative">
+                            <div class="flex items-center justify-center mb-6 text-center">
+                                <div>
+                                    <h5 class="text-3xl md:text-4xl font-extrabold text-white mb-2 tracking-tight">Business
+                                        Planner</h5>
+                                    <p class="text-blue-50 text-sm md:text-base font-medium">Find new opportunities for your
+                                        business</p>
+                                </div>
                             </div>
-                            <div
-                                class="flex-grow bg-white border border-slate-100 rounded-2xl px-6 flex items-center shadow-sm transition-all group-hover/entry:border-slate-200">
-                                <span class="text-sm font-bold text-gray-800">Nature Insight
-                                    {{ $i }}</span>
+                            <div class="space-y-4 mb-6">
+                                <a href="https://g2c.prarang.in/india/market-planner/states?city={{ $dhq['town']['dhq_code'] ?? '-675' }}"
+                                    target="_blank"
+                                    class="block p-4 bg-white/20 backdrop-blur-sm rounded-xl hover:bg-white/30 transition-all duration-300 group/link border border-white/30 hover:border-white/50">
+                                    <div class="flex items-center justify-between">
+                                        <span
+                                            class="text-white font-bold text-base md:text-lg group-hover/link:translate-x-1 transition-transform">Find
+                                            New Opportunities in India</span>
+                                        <span class="text-white/70 group-hover/link:text-white text-xl transition-all">→</span>
+                                    </div>
+                                    <small class="text-white/80 font-medium">(Select Cities)</small>
+                                </a>
+                                <a href="https://g2c.prarang.in/world/market-planner?country=63" target="_blank"
+                                    class="block p-4 bg-white/20 backdrop-blur-sm rounded-xl hover:bg-white/30 transition-all duration-300 group/link border border-white/30 hover:border-white/50">
+                                    <div class="flex items-center justify-between">
+                                        <span
+                                            class="text-white font-bold text-base md:text-lg group-hover/link:translate-x-1 transition-transform">Find
+                                            New Opportunities in the World</span>
+                                        <span class="text-white/70 group-hover/link:text-white text-xl transition-all">→</span>
+                                    </div>
+                                    <small class="text-white/80 font-medium">(Select Countries)</small>
+                                </a>
                             </div>
+                        </div>
                     </div>
-                    @endfor
+                    <!-- Development Instrument -->
+                    <div
+                        class="group relative bg-green-500  shadow-xl hover:shadow-2xl transition-all duration-500  overflow-hidden">
+                        <div class="absolute inset-0 opacity-30">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-3xl opacity-50"></div>
+                            <div class="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full blur-2xl opacity-50"></div>
+                        </div>
+                        <div class="relative">
+                            <div class="flex items-center justify-center mb-6 text-center">
+                                <div>
+                                    <h5 class="text-3xl md:text-4xl font-extrabold text-white mb-2 tracking-tight">
+                                        Development Planner</h5>
+                                    <p class="text-green-50 text-sm md:text-base font-medium">Compare the progress of your
+                                        city/country</p>
+                                </div>
+                            </div>
+                            <div class="space-y-4 mb-6">
+                                <a href="https://g2c.prarang.in/india/development-planners?city={{ $dhq['town']['dhq_code'] ?? '-675' }}"
+                                    target="_blank"
+                                    class="block p-4 bg-white/20 backdrop-blur-sm rounded-xl hover:bg-white/30 transition-all duration-300 group/link border border-white/30 hover:border-white/50">
+                                    <div class="flex items-center justify-between">
+                                        <span
+                                            class="text-white font-bold text-base md:text-lg group-hover/link:translate-x-1 transition-transform">Compare
+                                            Development in India</span>
+                                        <span class="text-white/70 group-hover/link:text-white text-xl transition-all">→</span>
+                                    </div>
+                                    <small class="text-white/80 font-medium">(Select Cities)</small>
+                                </a>
+                                <a href="https://g2c.prarang.in/world/development-planner?country=63" target="_blank"
+                                    class="block p-4 bg-white/20 backdrop-blur-sm rounded-xl hover:bg-white/30 transition-all duration-300 group/link border border-white/30 hover:border-white/50">
+                                    <div class="flex items-center justify-between">
+                                        <span
+                                            class="text-white font-bold text-base md:text-lg group-hover/link:translate-x-1 transition-transform">Compare
+                                            Development in the World</span>
+                                        <span class="text-white/70 group-hover/link:text-white text-xl transition-all">→</span>
+                                    </div>
+                                    <small class="text-white/80 font-medium">(Select Countries)</small>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
         </div>
 
-    </div>
-    <!-- City Action Buttons -->
-    <div class="flex gap-6 mt-6 mb-8 text-black">
-        <a target="_blank" href="https://g2c.prarang.in/{{ $dhq['dhq']['city'] ?? '' }}?data"
-            class="flex-1 text-center bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-700 transition-all duration-300">
-            {{ $dhq['dhq']['city'] ?? '' }} Analytics
-        </a>
-
-        <a target="_blank" href="https://g2c.prarang.in/ai/{{ $dhq['dhq']['city'] ?? '' }}"
-            class="flex-1 text-center bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-700 transition-all duration-300">
-            {{ $dhq['dhq']['city'] ?? '' }} A.I. Report
-        </a>
-    </div>
-
-
-
-    <!-- Instruments Section -->
-    <div class="p-2 bg-white">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <!-- Business Instrument -->
-            <div
-                class="group relative bg-blue-400 shadow-xl hover:shadow-2xl transition-all duration-500  overflow-hidden">
-                <div class="absolute inset-0 opacity-30">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-3xl opacity-50"></div>
-                    <div class="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full blur-2xl opacity-50"></div>
-                </div>
-                <div class="relative">
-                    <div class="flex items-center justify-center mb-6 text-center">
-                        <div>
-                            <h5 class="text-3xl md:text-4xl font-extrabold text-white mb-2 tracking-tight">Business
-                                Planner</h5>
-                            <p class="text-blue-50 text-sm md:text-base font-medium">Find new opportunities for your
-                                business</p>
-                        </div>
-                    </div>
-                    <div class="space-y-4 mb-6">
-                        <a href="https://g2c.prarang.in/india/market-planner/states?city={{ $dhq['town']['dhq_code'] ?? '-675' }}"
-                            target="_blank"
-                            class="block p-4 bg-white/20 backdrop-blur-sm rounded-xl hover:bg-white/30 transition-all duration-300 group/link border border-white/30 hover:border-white/50">
-                            <div class="flex items-center justify-between">
-                                <span
-                                    class="text-white font-bold text-base md:text-lg group-hover/link:translate-x-1 transition-transform">Find
-                                    New Opportunities in India</span>
-                                <span class="text-white/70 group-hover/link:text-white text-xl transition-all">→</span>
-                            </div>
-                            <small class="text-white/80 font-medium">(Select Cities)</small>
-                        </a>
-                        <a href="https://g2c.prarang.in/world/market-planner?country=63" target="_blank"
-                            class="block p-4 bg-white/20 backdrop-blur-sm rounded-xl hover:bg-white/30 transition-all duration-300 group/link border border-white/30 hover:border-white/50">
-                            <div class="flex items-center justify-between">
-                                <span
-                                    class="text-white font-bold text-base md:text-lg group-hover/link:translate-x-1 transition-transform">Find
-                                    New Opportunities in the World</span>
-                                <span class="text-white/70 group-hover/link:text-white text-xl transition-all">→</span>
-                            </div>
-                            <small class="text-white/80 font-medium">(Select Countries)</small>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <!-- Development Instrument -->
-            <div
-                class="group relative bg-green-500  shadow-xl hover:shadow-2xl transition-all duration-500  overflow-hidden">
-                <div class="absolute inset-0 opacity-30">
-                    <div class="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-3xl opacity-50"></div>
-                    <div class="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full blur-2xl opacity-50"></div>
-                </div>
-                <div class="relative">
-                    <div class="flex items-center justify-center mb-6 text-center">
-                        <div>
-                            <h5 class="text-3xl md:text-4xl font-extrabold text-white mb-2 tracking-tight">
-                                Development Planner</h5>
-                            <p class="text-green-50 text-sm md:text-base font-medium">Compare the progress of your
-                                city/country</p>
-                        </div>
-                    </div>
-                    <div class="space-y-4 mb-6">
-                        <a href="https://g2c.prarang.in/india/development-planners?city={{ $dhq['town']['dhq_code'] ?? '-675' }}"
-                            target="_blank"
-                            class="block p-4 bg-white/20 backdrop-blur-sm rounded-xl hover:bg-white/30 transition-all duration-300 group/link border border-white/30 hover:border-white/50">
-                            <div class="flex items-center justify-between">
-                                <span
-                                    class="text-white font-bold text-base md:text-lg group-hover/link:translate-x-1 transition-transform">Compare
-                                    Development in India</span>
-                                <span class="text-white/70 group-hover/link:text-white text-xl transition-all">→</span>
-                            </div>
-                            <small class="text-white/80 font-medium">(Select Cities)</small>
-                        </a>
-                        <a href="https://g2c.prarang.in/world/development-planner?country=63" target="_blank"
-                            class="block p-4 bg-white/20 backdrop-blur-sm rounded-xl hover:bg-white/30 transition-all duration-300 group/link border border-white/30 hover:border-white/50">
-                            <div class="flex items-center justify-between">
-                                <span
-                                    class="text-white font-bold text-base md:text-lg group-hover/link:translate-x-1 transition-transform">Compare
-                                    Development in the World</span>
-                                <span class="text-white/70 group-hover/link:text-white text-xl transition-all">→</span>
-                            </div>
-                            <small class="text-white/80 font-medium">(Select Countries)</small>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    </div>
-
-    <div class="lg:col-span-3 space-y-6  order-2 lg:order-3">
-        <!-- Location Card -->
-        {{-- <div
+        <div class="lg:col-span-3 space-y-6  order-2 lg:order-3">
+            <!-- Location Card -->
+            {{-- <div
             class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
             <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
                 <h3 class="text-base text-center font-bold text-blue-600">Location</h3>
@@ -725,283 +740,283 @@ $metaData[] = '';
                 @foreach ($details as $detail)
                 <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
                     <span class="text-[13px] font-medium text-gray-500">{{ $detail['label'] }}</span>
-                    <span class="text-[13px] font-bold text-gray-800 tracking-tight">{{ $detail['value'] }}</span>
-                </div>
-                @endforeach
-            </div>
-        </div> --}}
-        <div class="bg-white rounded-2xl p-4 border border-gray-100/80 shadow-sm">
-            <table class="w-full border-collapse">
-                <tbody class="text-[13px]">
-                    <tr>
-                        <td class="py-1 text-gray-500 font-medium">State</td>
-                        <td class="py-1 text-gray-800 font-bold text-right">
-                            {{ $dhq['state']['state_name'] ?? '-' }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="py-1 text-gray-500 font-medium">District</td>
-                        <td class="py-1 text-gray-800 font-bold text-right">
-                            {{ $dhq['town']['district'] ?? '-' }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="py-1 text-gray-500 font-medium whitespace-nowrap">
-                            Pop. 2011
-                            <x-source source="Population - Census 2011" />
-                        </td>
-                        <td class="py-1 text-gray-800 font-bold text-right tabular-nums">
-                            {{ isset($dhq['town']['TOT_P']) ? number_format($dhq['pop']['pop11'], 0) : '-' }}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="py-1 text-gray-500 font-medium whitespace-nowrap">
-                            Pop. 2026 (Est.)
-                            <x-source source="Estimate - Population based on District Growth Rate - Census 2011" />
-                        </td>
-                        <td class="py-1 text-indigo-600 font-bold text-right tabular-nums">
-                            {{ isset($dhq['town']['TOT_P']) ? number_format($dhq['pop']['pop26'], 0) : '-' }}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+            <span class="text-[13px] font-bold text-gray-800 tracking-tight">{{ $detail['value'] }}</span>
         </div>
-        <div x-data="{ openModal: false, modalType: '' }"
-            class="shadow bg-white rounded-2xl py-3 px-2 border border-gray-100/80">
+        @endforeach
+    </div>
+    </div> --}}
+    <div class="bg-white rounded-2xl p-4 border border-gray-100/80 shadow-sm">
+        <table class="w-full border-collapse">
+            <tbody class="text-[13px]">
+                <tr>
+                    <td class="py-1 text-gray-500 font-medium">State</td>
+                    <td class="py-1 text-gray-800 font-bold text-right">
+                        {{ $dhq['state']['state_name'] ?? '-' }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="py-1 text-gray-500 font-medium">District</td>
+                    <td class="py-1 text-gray-800 font-bold text-right">
+                        {{ $dhq['town']['district'] ?? '-' }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="py-1 text-gray-500 font-medium whitespace-nowrap">
+                        Pop. 2011
+                        <x-source source="Population - Census 2011" />
+                    </td>
+                    <td class="py-1 text-gray-800 font-bold text-right tabular-nums">
+                        {{ isset($dhq['town']['TOT_P']) ? number_format($dhq['pop']['pop11'], 0) : '-' }}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="py-1 text-gray-500 font-medium whitespace-nowrap">
+                        Pop. 2026 (Est.)
+                        <x-source source="Estimate - Population based on District Growth Rate - Census 2011" />
+                    </td>
+                    <td class="py-1 text-indigo-600 font-bold text-right tabular-nums">
+                        {{ isset($dhq['town']['TOT_P']) ? number_format($dhq['pop']['pop26'], 0) : '-' }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div x-data="{ openModal: false, modalType: '' }"
+        class="shadow bg-white rounded-2xl py-3 px-2 border border-gray-100/80">
 
-            <div class="grid grid-cols-2 gap-6">
-                <button @click="openModal = true; modalType = 'towns'"
-                    class="cursor-pointer bg-blue-600 text-white    flex items-center justify-center py-4  border border-slate-200 text-sm font-black text-slate-700 rounded-2xl hover:bg-blue-600 hover:text-white transition-all shadow-lg hover:shadow-blue-500/20">
-                    District Towns #{{ $otherVilTown['towns']['count'] ?? 0 }}
-                </button>
-                <button @click="openModal = true; modalType = 'villages'"
-                    class="cursor-pointer bg-blue-600 text-white flex items-center justify-center py-4  border border-slate-200 text-sm font-black text-slate-700 rounded-2xl hover:bg-blue-600 hover:text-white transition-all shadow-lg hover:shadow-blue-500/20">
-                    District Villages #{{ $otherVilTown['villages']['count'] ?? 0 }}
-                </button>
-            </div>
+        <div class="grid grid-cols-2 gap-6">
+            <button @click="openModal = true; modalType = 'towns'"
+                class="cursor-pointer bg-blue-600 text-white    flex items-center justify-center py-4  border border-slate-200 text-sm font-black text-slate-700 rounded-2xl hover:bg-blue-600 hover:text-white transition-all shadow-lg hover:shadow-blue-500/20">
+                District Towns #{{ $otherVilTown['towns']['count'] ?? 0 }}
+            </button>
+            <button @click="openModal = true; modalType = 'villages'"
+                class="cursor-pointer bg-blue-600 text-white flex items-center justify-center py-4  border border-slate-200 text-sm font-black text-slate-700 rounded-2xl hover:bg-blue-600 hover:text-white transition-all shadow-lg hover:shadow-blue-500/20">
+                District Villages #{{ $otherVilTown['villages']['count'] ?? 0 }}
+            </button>
+        </div>
 
-            <!-- Premium Modal for Towns/Villages -->
-            <template x-teleport="body">
-                <div x-show="openModal" x-cloak
-                    class="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm"
-                    x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
-                    x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200"
-                    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
-                    @click.self="openModal = false">
+        <!-- Premium Modal for Towns/Villages -->
+        <template x-teleport="body">
+            <div x-show="openModal" x-cloak
+                class="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm"
+                x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
+                x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200"
+                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                @click.self="openModal = false">
 
-                    <div class="bg-white rounded-[32px] w-full max-w-4xl h-[90vh] flex flex-col shadow-2xl overflow-hidden"
-                        x-show="openModal" x-transition:enter="transition ease-out duration-300"
-                        x-transition:enter-start="opacity-0 scale-95 translate-y-10"
-                        x-transition:enter-end="opacity-100 scale-100 translate-y-0">
+                <div class="bg-white rounded-[32px] w-full max-w-4xl h-[90vh] flex flex-col shadow-2xl overflow-hidden"
+                    x-show="openModal" x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 scale-95 translate-y-10"
+                    x-transition:enter-end="opacity-100 scale-100 translate-y-0">
 
-                        <!-- Header -->
-                        <div
-                            class="px-8 py-6 bg-gradient-to-r from-slate-50 to-white border-b border-slate-100 flex items-center justify-between">
-                            <div class="flex items-center gap-4">
-                                <div class="w-12 h-12 rounded-2xl flex items-center justify-center shadow-inner"
-                                    :class="modalType === 'towns' ? 'bg-blue-50 text-blue-600' : 'bg-emerald-50 text-emerald-600'">
-                                    <svg x-show="modalType === 'towns'" class="w-6 h-6" fill="none"
-                                        stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                                    </svg>
-                                    <svg x-show="modalType === 'villages'" class="w-6 h-6" fill="none"
-                                        stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-                                    </svg>
-                                </div>
-                                <div>
-                                    <h3 class="text-2xl font-black text-slate-900 tracking-tight"
-                                        x-text="modalType === 'towns' ? 'Towns' : 'Villages'"></h3>
-                                    <p class="text-sm font-bold text-slate-400">Total Count: <span
-                                            class="text-slate-900"
-                                            x-text="modalType === 'towns' ? '{{ $otherVilTown['towns']['count'] ?? 0 }}' : '{{ $otherVilTown['villages']['count'] ?? 0 }}'"></span>
-                                    </p>
-                                </div>
-                            </div>
-                            <button @click="openModal = false"
-                                class="w-10 h-10 flex items-center justify-center bg-slate-100 hover:bg-slate-200 rounded-full transition-all text-slate-600">
-                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <!-- Header -->
+                    <div
+                        class="px-8 py-6 bg-gradient-to-r from-slate-50 to-white border-b border-slate-100 flex items-center justify-between">
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 rounded-2xl flex items-center justify-center shadow-inner"
+                                :class="modalType === 'towns' ? 'bg-blue-50 text-blue-600' : 'bg-emerald-50 text-emerald-600'">
+                                <svg x-show="modalType === 'towns'" class="w-6 h-6" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M6 18L18 6M6 6l12 12" />
+                                        d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
                                 </svg>
-                            </button>
+                                <svg x-show="modalType === 'villages'" class="w-6 h-6" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                                </svg>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-black text-slate-900 tracking-tight"
+                                    x-text="modalType === 'towns' ? 'Towns' : 'Villages'"></h3>
+                                <p class="text-sm font-bold text-slate-400">Total Count: <span
+                                        class="text-slate-900"
+                                        x-text="modalType === 'towns' ? '{{ $otherVilTown['towns']['count'] ?? 0 }}' : '{{ $otherVilTown['villages']['count'] ?? 0 }}'"></span>
+                                </p>
+                            </div>
                         </div>
+                        <button @click="openModal = false"
+                            class="w-10 h-10 flex items-center justify-center bg-slate-100 hover:bg-slate-200 rounded-full transition-all text-slate-600">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M6 18L18 6M6 6l12 12" />
+                            </svg>
+                        </button>
+                    </div>
 
-                        <!-- Content List -->
-                        <div class="flex-grow overflow-y-auto p-8 bg-slate-50/30 custom-scrollbar">
-                            <div x-show="modalType === 'towns'"
-                                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                                @foreach($otherVilTown['towns']['data'] ?? [] as $id => $name)
-                                <a href="/city/{{ url_encoder($dhq['state']['state_code']."
+                    <!-- Content List -->
+                    <div class="flex-grow overflow-y-auto p-8 bg-slate-50/30 custom-scrollbar">
+                        <div x-show="modalType === 'towns'"
+                            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                            @foreach($otherVilTown['towns']['data'] ?? [] as $id => $name)
+                            <a href="/city/{{ url_encoder($dhq['state']['state_code']."
                                     -".$dhq['dhq']['DHQ_Code']."-".$id) }}/{{ Str::kebab($name) }}"
-                                    class="block px-4 py-4 bg-white border border-slate-100 rounded-2xl hover:border-blue-200 hover:shadow-lg hover:shadow-blue-500/5 transition-all group hover:text-blue-600">
-                                    <div class="flex items-center gap-3">
-                                        <span class="text-xs font-bold text-blue-400 italic">0{{ $loop->iteration
+                                class="block px-4 py-4 bg-white border border-slate-100 rounded-2xl hover:border-blue-200 hover:shadow-lg hover:shadow-blue-500/5 transition-all group hover:text-blue-600">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-xs font-bold text-blue-400 italic">0{{ $loop->iteration
                                             }}</span>
-                                        <span class="text-[13px] font-bold text-slate-700 transition-colors">{{ $name
+                                    <span class="text-[13px] font-bold text-slate-700 transition-colors">{{ $name
                                             }}</span>
-                                    </div>
-                                </a>
-                                @endforeach
-                            </div>
+                                </div>
+                            </a>
+                            @endforeach
+                        </div>
 
-                            <div x-show="modalType === 'villages'"
-                                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
-                                @foreach($otherVilTown['villages']['data'] ?? [] as $id => $name)
-                                <a href="/village/{{ url_encoder($dhq['state']['state_code']."
+                        <div x-show="modalType === 'villages'"
+                            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                            @foreach($otherVilTown['villages']['data'] ?? [] as $id => $name)
+                            <a href="/village/{{ url_encoder($dhq['state']['state_code']."
                                     -".$dhq['dhq']['district_LGD_code']."-".$id) }}/{{ Str::kebab($name) }}"
-                                    class="block px-4 py-4 bg-white border border-slate-100 rounded-2xl hover:border-blue-200 hover:shadow-lg hover:shadow-blue-500/5 transition-all group hover:text-blue-600">
-                                    <div class="flex items-center gap-3">
-                                        <span class="text-xs font-bold text-blue-400 italic">0{{ $loop->iteration
+                                class="block px-4 py-4 bg-white border border-slate-100 rounded-2xl hover:border-blue-200 hover:shadow-lg hover:shadow-blue-500/5 transition-all group hover:text-blue-600">
+                                <div class="flex items-center gap-3">
+                                    <span class="text-xs font-bold text-blue-400 italic">0{{ $loop->iteration
                                             }}</span>
-                                        <span class="text-[13px] font-bold text-slate-700 transition-colors">{{ $name
+                                    <span class="text-[13px] font-bold text-slate-700 transition-colors">{{ $name
                                             }}</span>
-                                    </div>
-                                </a>
-                                @endforeach
-                            </div>
-                        </div>
-
-                        <!-- Footer -->
-                        <div class="px-8 py-5 bg-white border-t border-slate-100 flex justify-center">
-                            <button @click="openModal = false"
-                                class="px-10 py-3 bg-slate-900 text-white text-xs font-black rounded-2xl hover:bg-black hover:scale-105 transition-all shadow-xl shadow-slate-900/20">
-                                DONE
-                            </button>
+                                </div>
+                            </a>
+                            @endforeach
                         </div>
                     </div>
-                </div>
-            </template>
-        </div>
-        <!-- Internet Trends Card -->
-        <div
-            class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
-            <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
-                <h3 class="text-base text-center font-bold text-blue-600">Internet Trends</h3>
-            </div>
 
-            <div class="divide-y divide-gray-50">
-                @php
-                $trends = [
-
-                [
-                'label' => 'Facebook Users',
-                'source' => "FB Users – FB Ad Module - Dec 2025",
-                'value' => isset($intData['facebook_users']['value']) ?
-                number_format($intData['facebook_users']['value'], 0) : '-',
-                ],
-                [
-                'label' => 'LinkedIn Users',
-                'source' => "LinkedIn Users – LinkedIn Ad Module - Dec 2025",
-                'value' => isset($intData['linkedin_users']['value']) ?
-                number_format($intData['linkedin_users']['value'], 0) : '-',
-                ],
-                [
-                'label' => 'Twitter Users',
-                'source' => "Twitter Users – X Ad Module - Dec 2025",
-                'value' => isset($intData['twitter_users']['value']) ? number_format($intData['twitter_users']['value'],
-                0) : '-',
-                ],
-                [
-                'label' => 'Instagram Users',
-                'source' => "Instagram Users – FB Ad Module - Dec 2025",
-                'value' => isset($intData['instagram_users']['value']) ?
-                number_format($intData['instagram_users']['value'], 0) : '-',
-                ],
-                [
-                'label' => 'City Internet Users (Est.)',
-                'source' => "Estimate - Population ratio of State Urban Internet Users - TRAI QTR Report",
-                'value' => isset($intData['internet_users']['value']) ?
-                number_format($intData['internet_users']['value'], 0) : '-',
-                ],
-                [
-                'label' => 'District Internet Users (Est.)',
-                'source' => "Estimate - District Urban + Rural Internet Users - TRAI QTR Report",
-                'value' => $dhq['internet_users']['district_int_users'] ?? '-',
-                ],
-                [
-                'label' => 'State Internet Users',
-                'source' => "Urban + Rural Internet Users - TRAI QTR Report",
-                'value' => $dhq['internet_users']['state_int'] ?? '-',
-                ],
-                [
-                'label' => 'City Cyber Risk Index',
-                'source' => "",
-                'value' => $cirusData['risk_index'] ?? '-',
-                ],
-                ];
-                @endphp
-
-
-
-                @foreach ($trends as $trend)
-                <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
-                    <span class="text-[13px] font-medium text-gray-500">{{ $trend['label'] }}
-                        <x-source source="{{ $trend['source'] }}" />
-                    </span>
-                    <span class="text-[13px] font-bold text-gray-800 tabular-nums">{{ $trend['value'] }}</span>
-                </div>
-                @endforeach
-                <p class="text-end">
-                    <a href="https://www.prarang.in/cirus" class="text-blue-600 text-xs">See More >> </a>
-                </p>
-
-            </div>
-
-
-
-
-        </div>
-        <!-- Languages Card -->
-        <div id="toLanguage"
-            class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
-            <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
-                <h3 class="text-base text-center font-bold text-blue-600">Languages</h3>
-            </div>
-
-            <div class="divide-y divide-gray-50">
-                @foreach($dhq['top5_languages'] ?? [] as $key => $lang)
-                <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
-                    <div class="flex items-center gap-2">
-                        <span class="text-[11px] font-black text-blue-400 w-4">0{{ $lang['rank'] ?? $loop->iteration
-                            }}</span>
-                        <span class="text-[13px] font-medium text-gray-500">{{ $lang['language'] ?? 'N/A' }}</span>
+                    <!-- Footer -->
+                    <div class="px-8 py-5 bg-white border-t border-slate-100 flex justify-center">
+                        <button @click="openModal = false"
+                            class="px-10 py-3 bg-slate-900 text-white text-xs font-black rounded-2xl hover:bg-black hover:scale-105 transition-all shadow-xl shadow-slate-900/20">
+                            DONE
+                        </button>
                     </div>
-                    <span class="text-[13px] font-bold text-gray-800 tabular-nums">{{
-                        ($lang['spek'] ?? 0)}}%</span>
                 </div>
-                @endforeach
             </div>
-            <p class="text-end px-4 py-2">
-                <a target="_blank"
-                    href="https://g2c.prarang.in/india/multilingualism/{{ $dhq['dhq']['DHQ_Code'] }}/{{ $dhq['town']['town_code'] }}"
-                    class="text-[12px] font-bold text-blue-600 hover:text-blue-800 transition-colors italic">
-                    see more >>
-                </a>
+        </template>
+    </div>
+    <!-- Internet Trends Card -->
+    <div
+        class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
+        <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
+            <h3 class="text-base text-center font-bold text-blue-600">Internet Trends</h3>
+        </div>
+
+        <div class="divide-y divide-gray-50">
+            @php
+            $trends = [
+
+            [
+            'label' => 'Facebook Users',
+            'source' => "FB Users – FB Ad Module - Dec 2025",
+            'value' => isset($intData['facebook_users']['value']) ?
+            number_format($intData['facebook_users']['value'], 0) : '-',
+            ],
+            [
+            'label' => 'LinkedIn Users',
+            'source' => "LinkedIn Users – LinkedIn Ad Module - Dec 2025",
+            'value' => isset($intData['linkedin_users']['value']) ?
+            number_format($intData['linkedin_users']['value'], 0) : '-',
+            ],
+            [
+            'label' => 'Twitter Users',
+            'source' => "Twitter Users – X Ad Module - Dec 2025",
+            'value' => isset($intData['twitter_users']['value']) ? number_format($intData['twitter_users']['value'],
+            0) : '-',
+            ],
+            [
+            'label' => 'Instagram Users',
+            'source' => "Instagram Users – FB Ad Module - Dec 2025",
+            'value' => isset($intData['instagram_users']['value']) ?
+            number_format($intData['instagram_users']['value'], 0) : '-',
+            ],
+            [
+            'label' => 'City Internet Users (Est.)',
+            'source' => "Estimate - Population ratio of State Urban Internet Users - TRAI QTR Report",
+            'value' => isset($intData['internet_users']['value']) ?
+            number_format($intData['internet_users']['value'], 0) : '-',
+            ],
+            [
+            'label' => 'District Internet Users (Est.)',
+            'source' => "Estimate - District Urban + Rural Internet Users - TRAI QTR Report",
+            'value' => $dhq['internet_users']['district_int_users'] ?? '-',
+            ],
+            [
+            'label' => 'State Internet Users',
+            'source' => "Urban + Rural Internet Users - TRAI QTR Report",
+            'value' => $dhq['internet_users']['state_int'] ?? '-',
+            ],
+            [
+            'label' => 'City Cyber Risk Index',
+            'source' => "",
+            'value' => $cirusData['risk_index'] ?? '-',
+            ],
+            ];
+            @endphp
+
+
+
+            @foreach ($trends as $trend)
+            <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
+                <span class="text-[13px] font-medium text-gray-500">{{ $trend['label'] }}
+                    <x-source source="{{ $trend['source'] }}" />
+                </span>
+                <span class="text-[13px] font-bold text-gray-800 tabular-nums">{{ $trend['value'] }}</span>
+            </div>
+            @endforeach
+            <p class="text-end">
+                <a href="https://www.prarang.in/cirus" class="text-blue-600 text-xs">See More >> </a>
             </p>
-        </div>
-        <!-- Literacy Card -->
-        <div
-            class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
-            <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
-                <h3 class="text-base text-center font-bold text-blue-600">Literacy (2011)</h3>
-            </div>
 
-            <div class="divide-y divide-gray-50">
-                <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
-                    <span class="text-[13px] font-medium text-gray-500">Literate Population</span>
-                    <span class="text-[13px] font-bold text-gray-800 tabular-nums">{{
+        </div>
+
+
+
+
+    </div>
+    <!-- Languages Card -->
+    <div id="toLanguage"
+        class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
+        <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
+            <h3 class="text-base text-center font-bold text-blue-600">Languages</h3>
+        </div>
+
+        <div class="divide-y divide-gray-50">
+            @foreach($dhq['top5_languages'] ?? [] as $key => $lang)
+            <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
+                <div class="flex items-center gap-2">
+                    <span class="text-[11px] font-black text-blue-400 w-4">0{{ $lang['rank'] ?? $loop->iteration
+                            }}</span>
+                    <span class="text-[13px] font-medium text-gray-500">{{ $lang['language'] ?? 'N/A' }}</span>
+                </div>
+                <span class="text-[13px] font-bold text-gray-800 tabular-nums">{{
+                        ($lang['spek'] ?? 0)}}%</span>
+            </div>
+            @endforeach
+        </div>
+        <p class="text-end px-4 py-2">
+            <a target="_blank"
+                href="https://g2c.prarang.in/india/multilingualism/{{ $dhq['dhq']['DHQ_Code'] }}/{{ $dhq['town']['town_code'] }}"
+                class="text-[12px] font-bold text-blue-600 hover:text-blue-800 transition-colors italic">
+                see more >>
+            </a>
+        </p>
+    </div>
+    <!-- Literacy Card -->
+    <div
+        class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
+        <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
+            <h3 class="text-base text-center font-bold text-blue-600">Literacy (2011)</h3>
+        </div>
+
+        <div class="divide-y divide-gray-50">
+            <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
+                <span class="text-[13px] font-medium text-gray-500">Literate Population</span>
+                <span class="text-[13px] font-bold text-gray-800 tabular-nums">{{
                         number_format($dhq['literacy']['literate'] ?? 0) }}</span>
-                </div>
-                <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
-                    <span class="text-[13px] font-medium text-gray-500">Illiterate Population</span>
-                    <span class="text-[13px] font-bold text-gray-800 tabular-nums">{{
+            </div>
+            <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
+                <span class="text-[13px] font-medium text-gray-500">Illiterate Population</span>
+                <span class="text-[13px] font-bold text-gray-800 tabular-nums">{{
                         number_format($dhq['literacy']['illiterate'] ?? 0) }}</span>
-                </div>
             </div>
         </div>
+    </div>
 
     </div>
     </div>

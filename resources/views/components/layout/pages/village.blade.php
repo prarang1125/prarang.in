@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+@props(['isAdsEnable' => false])
 
 <head>
     <meta charset="UTF-8">
@@ -90,7 +91,12 @@
                 </div>
 
                 <!-- Main Branding -->
-                <div class="lg:col-span-6 flex flex-col items-center order-1 lg:order-2">
+                <div class="lg:col-span-6 flex justify-between items-center order-1 lg:order-2">
+                    @if($isAdsEnable)
+                    <div class="flex justify-center">
+                        <img class="rounded" src="{{config('portal.sceh_ads.logo')}}" alt="">
+                    </div>
+                    @endif
                     <div class="flex items-center mb-4 group cursor-default">
                         <div>
                             <img class="h-14 w-14 " src="https://www.prarang.in/assets/images/home/Villages-1.png"
@@ -119,12 +125,14 @@
                             <div>
                                 <p class="text-xs font-medium text-gray-500 mb-0.5">District</p>
                                 <p class="text-sm font-bold text-gray-800">
-                                    {{ $data['district']['district_name'] ?? '-' }}</p>
+                                    {{ $data['district']['district_name'] ?? '-' }}
+                                </p>
                             </div>
                             <div>
                                 <p class="text-xs font-medium text-gray-500 mb-0.5">State</p>
                                 <p class="text-sm font-bold text-gray-800">
-                                    {{ $data['state']['state_name'] ?? '-' }}</p>
+                                    {{ $data['state']['state_name'] ?? '-' }}
+                                </p>
                             </div>
                             <div class="pt-1 border-t border-gray-50">
                                 <p class="text-xs font-medium text-gray-500 mb-0.5">Pop. 2026 (Est.)
@@ -133,7 +141,8 @@
                                 </p>
                                 <p class="text-sm font-bold text-indigo-600">
                                     {{ isset($data['pop']['pop_2026']) ? number_format($data['pop']['pop_2026'], 0) :
-                                    '-' }} </p>
+                                    '-' }}
+                                </p>
                             </div>
                             <div class="pt-1 border-t border-gray-50">
                                 <p class="text-xs font-medium text-gray-500 mb-0.5">Pop. 2011
@@ -141,7 +150,8 @@
                                 </p>
                                 <p class="text-sm font-bold text-gray-800">
                                     {{ isset($data['pop']['pop_2011']) ? number_format($data['pop']['pop_2011'], 0) :
-                                    '-' }}</p>
+                                    '-' }}
+                                </p>
                             </div>
                         </div>
                     </div>

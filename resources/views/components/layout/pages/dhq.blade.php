@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+@props(['isAdsEnable'=>false])
 
 <head>
     <meta charset="UTF-8">
@@ -172,88 +173,131 @@
 
 
                 <!-- Main Branding -->
-                <div class="lg:col-span-5 flex flex-col items-center order-1 lg:order-3">
-                    <div class="flex items-center mb-4 group cursor-default">
+                <div class="lg:col-span-5 flex-col  items-center order-1 lg:order-3">
 
-                        <div>
-                            <img class="h-20 w-20" src="https://www.prarang.in/assets/images/home/town-1.png"
-                                alt="Village Icon">
+                    <div class="flex justify-between">
+                        @if($isAdsEnable)
+                        <style>
+                            /* Heading */
+                            header div h1 {
+                                margin-left: 5px !important;
+                            }
+
+                            /* Image */
+                            header .justify-between .justify-center img {
+                                min-height: 8px;
+                                width: 184px;
+                            }
+
+                            /* Image */
+                            header .mx-auto .items-center .items-center .justify-between .justify-center img {
+                                height: 80px !important;
+                            }
+
+                            /* Justify between */
+                            header .mx-auto .items-center .items-center>.justify-between {
+                                margin-bottom: 8px;
+                                align-items: center;
+                                /* transform: translatex(0px) translatey(0px); */
+                                position: relative;
+                                top: -20px;
+                            }
+
+                            /* Image */
+                            header .justify-between .items-center img {
+                                width: 60px;
+                            }
+
+                            @media (min-width:577px) {
+
+                                /* Heading */
+                                header div h1 {
+                                    font-size: 28px !important;
+                                }
+
+                            }
+                        </style>
+                        <div class="flex justify-center">
+                            <img src="{{config('portal.sceh_ads.logo')}}" alt="">
                         </div>
-                        <div>
-                            <h1
-                                class="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 ml-6 tracking-tight">
-                                {{ $data['dhq']['Town_Name'] ?? '-' }}
-                                @switch($data['dhq']['MSTR24'])
+                        @endif
+                        <div class="flex items-center mb-4 group cursor-default">
 
-                                {{-- State & National Level --}}
-                                @case('NC')
-                                National Capital
-                                @break
+                            <div>
+                                <img class="h-20 w-20" src="https://www.prarang.in/assets/images/home/town-1.png"
+                                    alt="Village Icon">
+                            </div>
+                            <div>
+                                <h1
+                                    class="text-4xl font-extrabold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-indigo-600 to-purple-600 ml-6 tracking-tight">
+                                    {{ $data['dhq']['Town_Name'] ?? '-' }}
+                                    @switch($data['dhq']['MSTR24'])
 
-                                @case('SC')
-                                State Capital
-                                @break
+                                    {{-- State & National Level --}}
+                                    @case('NC')
+                                    National Capital
+                                    @break
 
-                                {{-- Districts & New Areas --}}
-                                {{-- @case('D')--}}
-                                @case('DC')
-                                District Capital
-                                @break
+                                    @case('SC')
+                                    State Capital
+                                    @break
 
-                                {{-- @case('ND')
+                                    {{-- Districts & New Areas --}}
+                                    {{-- @case('D')--}}
+                                    @case('DC')
+                                    District Capital
+                                    @break
+
+                                    {{-- @case('ND')
                                 State Capital
                                 @break --}}
 
-                                @case('ND/SC')
-                                State Capital
-                                @break
+                                    @case('ND/SC')
+                                    State Capital
+                                    @break
 
-                                {{-- Union Territories --}}
-                                {{-- @case('UT')
+                                    {{-- Union Territories --}}
+                                    {{-- @case('UT')
                                 Union Territory
                                 @break --}}
 
-                                @case('UT/SC')
-                                UT Capital
-                                @break
-                                @case('UT/SC/SC')
-                                UT Capital
-                                @break
-                                {{-- @case('UTs')
+                                    @case('UT/SC')
+                                    UT Capital
+                                    @break
+                                    @case('UT/SC/SC')
+                                    UT Capital
+                                    @break
+                                    {{-- @case('UTs')
                                 Union Territory Capital
                                 @break --}}
 
-                                {{-- Cities & Headquarters --}}
-                                @case('CH')
-                                City Headquarters
-                                @break
+                                    {{-- Cities & Headquarters --}}
+                                    @case('CH')
+                                    City Headquarters
+                                    @break
 
-                                {{-- @case('MC')
+                                    {{-- @case('MC')
                                 Municipal Corporation
                                 @break --}}
 
-                                {{-- @case('SD')
+                                    {{-- @case('SD')
                                 Sub-District
                                 @break --}}
 
-                                {{-- Fallback --}}
-                                @default
-                                City
-                                @endswitch
-                            </h1>
+                                    {{-- Fallback --}}
+                                    @default
+                                    City
+                                    @endswitch
+                                </h1>
+                            </div>
                         </div>
+
                     </div>
                     <button id="subscribe-trigger"
                         class="block w-full text-center text-lg font-medium text-white cursor-pointer border-2 border-slate-800 shadow-lg rounded-full ">
                         Join now for a free subscription
                     </button>
-                    {{-- <div class="px-6 py-1.5 rounded-full bg-gray-50 border border-gray-100">
-                        <p class="text-center text-lg font-medium text-gray-500 tracking-wide">
-                            @if(($data['town']['Town_Code'] ?? null) == 800864)
-                            Capital of Panchalas – Ancient Indian Metropolis but now a City
-                            @endif
-                        </p>
-                    </div> --}}
+
                 </div>
 
                 <!-- Village Stats -->
@@ -511,36 +555,36 @@
                 submitBtn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> Submitting...';
 
                 fetch('/api/v1/subscribe', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
-                    },
-                    body: JSON.stringify(data)
-                })
-                .then(response => {
-                    if (response.ok) {
-                        formContent.classList.add('hidden');
-                        successContent.classList.remove('hidden');
-                    } else {
-                        throw new Error('Subscription failed');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        },
+                        body: JSON.stringify(data)
+                    })
+                    .then(response => {
+                        if (response.ok) {
+                            formContent.classList.add('hidden');
+                            successContent.classList.remove('hidden');
+                        } else {
+                            throw new Error('Subscription failed');
+                        }
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
 
-                })
-                .finally(() => {
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = originalBtnText;
-                });
+                    })
+                    .finally(() => {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = originalBtnText;
+                    });
             });
 
             // ---- Stats Fetching Logic ----
             const citySubscriberPlaceHolder = document.getElementById('city-subscriber-count');
             const cityMonthlyPlaceHolder = document.getElementById('city-monthly-count');
             const cityDailyPlaceHolder = document.getElementById('city-daily-count');
-            const cityCode = @json($data['portal']['city_code']??'');
+            const cityCode = @json($data['portal']['city_code'] ?? '');
             if (cityCode) {
                 // ---- Subscribers Count ----
                 fetch(`https://b2b.prarang.in/api/readers?city_code=${cityCode}`)
@@ -568,7 +612,9 @@
 
                 fetch(`https://www.prarang.in/api/v1/daily-posts/list?${params.toString()}`, {
                         method: "GET",
-                        headers: { "Accept": "application/json" }
+                        headers: {
+                            "Accept": "application/json"
+                        }
                     })
                     .then(response => {
                         if (!response.ok) throw new Error(`HTTP ${response.status}`);
@@ -593,16 +639,21 @@
 
                 const displayHours = String(hours).padStart(2, '0');
                 const strTime = `${displayHours}:${minutes}:${seconds}`;
-                const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
+                const options = {
+                    weekday: 'short',
+                    month: 'short',
+                    day: 'numeric',
+                    year: 'numeric'
+                };
                 const strDate = now.toLocaleDateString('en-US', options);
 
                 const clockEl = document.getElementById('realtime-clock');
                 const ampmEl = document.getElementById('realtime-ampm');
                 const dateEl = document.getElementById('realtime-date');
 
-                if(clockEl) clockEl.textContent = strTime;
-                if(ampmEl) ampmEl.textContent = ampm;
-                if(dateEl) dateEl.textContent = strDate;
+                if (clockEl) clockEl.textContent = strTime;
+                if (ampmEl) ampmEl.textContent = ampm;
+                if (dateEl) dateEl.textContent = strDate;
             }
 
             function animateCounter(element, target, duration = 1200) {

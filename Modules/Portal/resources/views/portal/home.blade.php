@@ -1,6 +1,6 @@
-<x-layout.portal.base :portal="$portal">
+<x-layout.portal.base :portal="$portal" :isAdsEnable="$isAdsEnable">
 
-    <section class="w-full px-4 py-8">
+    <section class=" w-full px-4 py-8">
         @if (session('back_error') || session('success') || session('error'))
         <div class="toast toast-top toast-center z-[9999] p-3 m-5 flex justify-center items-center " id="portal-toast">
             @if (session('back_error'))
@@ -39,14 +39,14 @@
 
         <script>
             setTimeout(() => {
-                    const toast = document.getElementById('portal-toast');
-                    if (toast) {
-                        toast.style.transition = 'all 0.5s ease';
-                        toast.style.opacity = '0';
-                        toast.style.transform = 'translateY(-20px)';
-                        setTimeout(() => toast.remove(), 500);
-                    }
-                }, 5000);
+                const toast = document.getElementById('portal-toast');
+                if (toast) {
+                    toast.style.transition = 'all 0.5s ease';
+                    toast.style.opacity = '0';
+                    toast.style.transform = 'translateY(-20px)';
+                    setTimeout(() => toast.remove(), 500);
+                }
+            }, 5000);
         </script>
         @endif
         <div class="container mx-auto flex flex-col lg:flex-row gap-8">
@@ -117,7 +117,12 @@
                         </h1>
                     </div> --}}
                 </div>
-
+                @if($isAdsEnable)
+                <div class="">
+                    <img style="height: 213px;" class="rounded" src="{{ config('portal.sceh_ads.interaction')}}"
+                        alt="">
+                </div>
+                @endif
                 {{-- <div class="text-center py-5 rounded bg-black/50 text-2xl text-white font-bold shadow-md">
                     {!! $portal->city_slogan !!}
                 </div> --}}
@@ -369,14 +374,14 @@
 
                 <script>
                     setTimeout(() => {
-                            const toast = document.getElementById('portal-toast');
-                            if (toast) {
-                                toast.style.transition = 'all 0.5s ease';
-                                toast.style.opacity = '0';
-                                toast.style.transform = 'translateY(-20px)';
-                                setTimeout(() => toast.remove(), 500);
-                            }
-                        }, 5000);
+                        const toast = document.getElementById('portal-toast');
+                        if (toast) {
+                            toast.style.transition = 'all 0.5s ease';
+                            toast.style.opacity = '0';
+                            toast.style.transform = 'translateY(-20px)';
+                            setTimeout(() => toast.remove(), 500);
+                        }
+                    }, 5000);
                 </script>
                 @endif
 

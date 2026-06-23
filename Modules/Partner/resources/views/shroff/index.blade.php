@@ -34,19 +34,24 @@ $metaData = [
   <section>
     <div class="row g-4">
       {{-- City Interaction Webs --}}
-      <div class="col-xl-4 col-lg-6 col-md-12">
+      <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden h-100 flex flex-col">
-          <div class="bg-blue-600 text-white p-2 text-center font-bold text-sm tracking-wide uppercase">City Interaction Webs</div>
+          <div class="bg-blue-600 text-white p-2 text-center font-bold text-sm tracking-wide uppercase">City/Village Webs - Interaction</div>
           <div class="table-responsive flex-grow-1" style="max-height: 500px;">
             <table class="table table-hover table-striped table-sm m-0 border-0 align-middle">
               <thead class="sticky-top bg-light shadow-sm" style="z-index: 1;">
                 <tr>
                   <th class="border-0 text-gray-600 text-xs py-2 text-center w-[30px]">#</th>
                   <th class="border-0 text-gray-600 text-xs py-2">City</th>
+                  <th class="border-0 text-gray-600 text-xs py-2">Language</th>
+
                   <th class="border-0 text-gray-600 text-xs py-2">District</th>
                   <th class="border-0 text-gray-600 text-xs py-2">State</th>
-                  <th class="border-0 text-gray-600 text-xs py-2">Facility Type</th>
-                  <th class="border-0 text-gray-600 text-xs py-2 text-right">POP. 2026</th>
+                  <th class="border-0 text-gray-600 text-xs py-2">Hospital / Vision Centre</th>
+                  <th class="border-0 text-gray-600 text-xs py-2">Contacts</th>
+                  <th class="border-0 text-gray-600 text-xs py-2">Address</th>
+                  <th class="border-0 text-gray-600 text-xs py-2">GPS Coordinates</th>
+                  <th class="border-0 text-gray-600 text-xs py-2">POP. 2026</th>
                   <th class="border-0 text-gray-600 text-xs py-2 text-center">City KW</th>
                 </tr>
               </thead>
@@ -55,9 +60,14 @@ $metaData = [
                 <tr class="transition-colors hover:bg-blue-50">
                   <td class="text-xs text-center text-gray-500">{{ $loop->iteration }}</td>
                   <td class="text-xs font-medium text-gray-800">{{ $item['city'] }}</td>
+                  <td class="text-xs font-medium text-gray-800">{{ $item['language'] }}</td>
                   <td class="text-xs"><livewire:modules.partner.util.show-dhq-ranks :title="$item['district_name']" :code="$item['dhq_code']" /></td>
                   <td class="text-xs text-gray-600">{{ $item['state_name'] }}</td>
                   <td class="text-xs text-gray-600">{{$item['facility_type']}}</td>
+                  <td class="text-xs text-gray-600">{{$item['ph_no']}}</td>
+                  <td class="text-xs text-gray-600">{{$item['address']}}</td>
+                  <td class="text-xs text-gray-600"><a target="_blank" href="{{$item['map_link']}}">Click Here</a></td>
+
                   <td class="text-xs text-right font-medium text-gray-700">{{number_format($cityPop[$item['dhq_code']]* pow(1 + (str_replace('%','',$item['AEGR_pct']) / 100), 15)) ?? 0}}</td>
                   <td class="text-xs text-center">
                     <a target="_blank" href="https://www.prarang.in/{{strtolower($item['city'])}}" class="inline-block bg-blue-100 text-blue-700 px-2 py-1 rounded text-[8px]  hover:bg-blue-200 transition-colors whitespace-nowrap">Click <br> Here</a>
@@ -71,7 +81,7 @@ $metaData = [
       </div>
 
       {{-- City Webs --}}
-      <div class="col-xl-4 col-lg-6 col-md-12">
+      <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden h-100 flex flex-col">
           <div class="bg-blue-600 text-white p-2 text-center font-bold text-sm tracking-wide uppercase">City Webs</div>
           <div class="table-responsive flex-grow-1" style="max-height: 500px;">
@@ -80,10 +90,15 @@ $metaData = [
                 <tr>
                   <th class="border-0 text-gray-600 text-xs py-2 text-center w-[30px]">#</th>
                   <th class="border-0 text-gray-600 text-xs py-2">City</th>
+                  <th class="border-0 text-gray-600 text-xs py-2">Language</th>
+
                   <th class="border-0 text-gray-600 text-xs py-2">District</th>
                   <th class="border-0 text-gray-600 text-xs py-2">State</th>
-                  <th class="border-0 text-gray-600 text-xs py-2">Facility Type</th>
-                  <th class="border-0 text-gray-600 text-xs py-2 text-right">POP. 2026</th>
+                  <th class="border-0 text-gray-600 text-xs py-2">Hospital / Vision Centre</th>
+                  <th class="border-0 text-gray-600 text-xs py-2">Contacts</th>
+                  <th class="border-0 text-gray-600 text-xs py-2">Address</th>
+                  <th class="border-0 text-gray-600 text-xs py-2">GPS Coordinates</th>
+                  <th class="border-0 text-gray-600 text-xs py-2">POP. 2026</th>
                   <th class="border-0 text-gray-600 text-xs py-2 text-center">City KW</th>
                 </tr>
               </thead>
@@ -92,9 +107,13 @@ $metaData = [
                 <tr class="transition-colors hover:bg-indigo-50">
                   <td class="text-xs text-center text-gray-500">{{ $loop->iteration }}</td>
                   <td class="text-xs font-medium text-gray-800">{{ $item['town_village_name'] }}</td>
+                  <td class="text-xs font-medium text-gray-800">{{ $item['language'] }}</td>
                   <td class="text-xs"><livewire:modules.partner.util.show-dhq-ranks :title="$item['district_name']" :code="$item['dhq_code']" /></td>
                   <td class="text-xs text-gray-600">{{ $item['state_name'] }}</td>
                   <td class="text-xs text-gray-600">{{$item['facility_type']}}</td>
+                  <td class="text-xs text-gray-600">{{$item['ph_no']}}</td>
+                  <td class="text-xs text-gray-600">{{$item['address']}}</td>
+                  <td class="text-xs text-gray-600"><a target="_blank" href="{{$item['map_link']}}">Click Here</a></td>
                   <td class="text-xs text-right font-medium text-gray-700">{{ number_format($townPop[$item['town_village_code']] * pow(1 + (str_replace('%','',$item['AEGR_pct']) / 100), 15)) ?? 0}}</td>
                   <td class="text-xs text-center">
                     <a target="_blank" href="{{ url('/') }}/city/{{ url_encoder($item['state_LGD_code'] . '-' . $item['district_LGD_code'] . '-' . $item['town_village_code']) }}/{{strtolower($item['town_village_name'])}}" class="inline-block bg-indigo-100 text-indigo-700 px-2 py-1 rounded text-[10px] font-semibold hover:bg-indigo-200 transition-colors whitespace-nowrap">Click <br> Here</a>
@@ -108,7 +127,7 @@ $metaData = [
       </div>
 
       {{-- Village Webs --}}
-      <div class="col-xl-4 col-lg-6 col-md-12">
+      <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="bg-white rounded-lg shadow-sm border border-gray-200 overflow-hidden h-100 flex flex-col">
           <div class="bg-blue-600 text-white p-2 text-center font-bold text-sm tracking-wide uppercase">Village Webs</div>
           <div class="table-responsive flex-grow-1" style="max-height: 500px;">
@@ -117,9 +136,14 @@ $metaData = [
                 <tr>
                   <th class="border-0 text-gray-600 text-xs py-2 text-center w-[30px]">#</th>
                   <th class="border-0 text-gray-600 text-xs py-2">Village</th>
+                  <th class="border-0 text-gray-600 text-xs py-2">Language</th>
+
                   <th class="border-0 text-gray-600 text-xs py-2">District</th>
                   <th class="border-0 text-gray-600 text-xs py-2">State</th>
-                  <th class="border-0 text-gray-600 text-xs py-2">Facility Type</th>
+                  <th class="border-0 text-gray-600 text-xs py-2">Hospital / Vision Centre</th>
+                  <th class="border-0 text-gray-600 text-xs py-2">Contacts</th>
+                  <th class="border-0 text-gray-600 text-xs py-2">Address</th>
+                  <th class="border-0 text-gray-600 text-xs py-2">GPS Coordinates</th>
                   <th class="border-0 text-gray-600 text-xs py-2 text-right">POP. 2026</th>
                   <th class="border-0 text-gray-600 text-xs py-2 text-center">Village KW</th>
                 </tr>
@@ -129,9 +153,14 @@ $metaData = [
                 <tr class="transition-colors hover:bg-emerald-50">
                   <td class="text-xs text-center text-gray-500">{{ $loop->iteration }}</td>
                   <td class="text-xs font-medium text-gray-800">{{ $item['town_village_name'] }}</td>
+                  <td class="text-xs font-medium text-gray-800">{{ $item['language'] }}</td>
                   <td class="text-xs"><livewire:modules.partner.util.show-dhq-ranks :title="$item['district_name']" :code="$item['dhq_code']" /></td>
                   <td class="text-xs text-gray-600">{{ $item['state_name'] }}</td>
                   <td class="text-xs text-gray-600">{{$item['facility_type']}}</td>
+                  <td class="text-xs text-gray-600">{{$item['ph_no']}}</td>
+                  <td class="text-xs text-gray-600">{{$item['address']}}</td>
+                  <td class="text-xs text-gray-600"><a target="_blank" href="{{$item['map_link']}}">Click Here</a></td>
+
                   <td class="text-xs text-right font-medium text-gray-700">{{ number_format($villagePop[$item['town_village_code']] * pow(1 + (str_replace('%','',$item['AEGR_pct']) / 100), 15)) ?? 0}}</td>
                   <td class="text-xs text-center">
                     <a target="_blank" href="{{ url('/') }}/village/{{ url_encoder($item['state_LGD_code'] . '-' . $item['district_LGD_code'] . '-' . $item['town_village_code']) }}/{{strtolower($item['town_village_name'])}}" class="inline-block bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-[10px] font-semibold hover:bg-emerald-200 transition-colors whitespace-nowrap">Click <br> Here</a>
