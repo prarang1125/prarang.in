@@ -2,7 +2,7 @@
     <style>
         .custom-scroll .mt-4 .table-responsive {
             overflow: scroll;
-            width: 426px;
+            /* width: 426px; */
         }
     </style>
     {{-- Trigger link --}}
