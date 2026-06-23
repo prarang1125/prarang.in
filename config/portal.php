@@ -136,5 +136,9 @@ return [
         'interaction' => "https://i.ibb.co/ksrsd79v/Meerut-Portal-Lvl1.jpg",
         'logo' => 'https://i.ibb.co/Rkwbw5nN/Logo-850x300.png'
     ],
+    "ads_url" => [
+        'meerut' => 'https://sceh.net/contact-us/meerut/',
+        'url' => 'https://sceh.net/',
+    ],
 
 ];

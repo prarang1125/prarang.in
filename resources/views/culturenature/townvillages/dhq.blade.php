@@ -607,7 +607,8 @@ $metaData[] = '';
                 }
             </style>
             <div class="flex justify-center">
-                <img class="rounded-lg" src="{{config('portal.sceh_ads.non-interaction')}}" alt="">
+                <a href="{{config('portal.ads_url.url')}}" target="_blank">
+                    <img class="rounded-lg" src="{{config('portal.sceh_ads.non-interaction')}}" alt=""></a>
             </div>
             @endif
 

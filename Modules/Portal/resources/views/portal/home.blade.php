@@ -119,8 +119,15 @@
                 </div>
                 @if($isAdsEnable)
                 <div class="">
-                    <img style="height: 213px;" class="rounded" src="{{ config('portal.sceh_ads.interaction')}}"
-                        alt="">
+                    @if($portal->slug=='meerut')
+                    <a href="{{config('portal.ads_url.meerut')}}" target="_blank">
+                        <img style="height: 213px;" class="rounded" src="{{ config('portal.sceh_ads.interaction')}}"
+                            alt=""></a>
+                    @else
+                    <a href="{{config('portal.ads_url.url')}}" target="_blank">
+                        <img style="height: 213px;" class="rounded" src="{{ config('portal.sceh_ads.interaction')}}"
+                            alt=""></a>
+                    @endif
                 </div>
                 @endif
                 {{-- <div class="text-center py-5 rounded bg-black/50 text-2xl text-white font-bold shadow-md">

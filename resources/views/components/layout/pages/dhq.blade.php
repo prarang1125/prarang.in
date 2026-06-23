@@ -218,7 +218,9 @@
                             }
                         </style>
                         <div class="flex justify-center">
-                            <img src="{{config('portal.sceh_ads.logo')}}" alt="">
+                            <a href="{{config('portal.ads_url.url')}}" target="_blank">
+                                <img src="{{config('portal.sceh_ads.logo')}}" alt="">
+                            </a>
                         </div>
                         @endif
                         <div class="flex items-center mb-4 group cursor-default">
