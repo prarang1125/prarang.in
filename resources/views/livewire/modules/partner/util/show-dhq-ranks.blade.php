@@ -66,8 +66,11 @@
             <div style="padding: 24px; min-height: 100px; max-height: 75vh; overflow-y: auto;" class="custom-scroll">
                 <h6 class="font-bold text-gray-800 mb-3 flex items-center gap-2">
                     <!-- <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background-color:#2563eb;"></span> -->
-                    {{ $title }} District SCEH Facilities:
+                    {{ $title }} District SCEH Hospital & Vision Centre:
                 </h6>
+                <div class="flex justify-end items-end">
+                    <img src="https://i.ibb.co/Rkwbw5nN/Logo-850x300.png" class="h-12" alt="">
+                </div>
                 <p class="">SCEH Hospitals and Vision Centers located within this district are displayed below,
                     categorized by city and village locations. You may click the button below to visit the District
                     Capital's web page partnered with SCEH. <br>
@@ -87,8 +90,8 @@
                                     <th class="border-0 font-semibold py-2 px-3 text-center w-[50px]">#</th>
                                     <th class="border-0 font-semibold py-2 px-3">SCEH Eye Care Facilities</th>
                                     <th class="border-0 font-semibold py-2 px-3 text-center">Contacts</th>
-                                    <th class="border-0 font-semibold py-2 px-3 text-center">Address</th>
-                                    <th class="border-0 font-semibold py-2 px-3 text-center">GPS Coordinates</th>
+                                    <th class="border-0 font-semibold py-2 px-3 text-center">SCEH's Address</th>
+
                                     <th class="border-0 font-semibold py-2 px-3 text-center">Knowledge Web</th>
                                 </tr>
                             </thead>
@@ -103,9 +106,12 @@
                                             href="{{ $items['h_link'] }}">{{ $items['sceh_eye_care'] }} &nbsp;({{
                                             $items['h_type'] }})</a></td>
                                     <td class="py-2 px-3 text-center text-gray-500">{{ $items['ph_no'] }}</td>
-                                    <td class="py-2 px-3  text-gray-500">{{ $items['address'] }}</td>
-                                    <td class="py-2 px-3 text-center text-gray-500"><a href="{{ $items['map_link'] }}"
-                                            target="_blank">Click Here</a></td>
+                                    <td class="py-2 px-3  text-gray-500">{{ $items['address'] }}
+                                        <br>
+                                        <a href="{{ $items['map_link'] }}"
+                                            target="_blank"> <i class="bi bi-geo-fill"></i> Map</a>
+                                    </td>
+
                                     <td class="py-2 px-3 text-gray-600">
                                         <a target="_blank" rel="noopener noreferrer"
                                             href="{{ url(($items['is_town']=='village'?'village':'city').'/'.url_encoder($kwsData['state_code'] . '-' . $items['dhq_code'] . '-' . $items['town_village_code']) . '/' . \Illuminate\Support\Str::slug($kwsData['town_village_name'])) }}">

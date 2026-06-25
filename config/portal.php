@@ -141,4 +141,18 @@ return [
         'url' => 'https://sceh.net/',
     ],
 
+    'ads' => [
+        'interaction' => [
+            'meerut' => [
+                'image' => 'https://i.ibb.co/b5Kpr7RJ/Meerut-Portal-Lvl1.jpg',
+                'url' => 'https://sceh.net/contact-us/meerut/'
+            ],
+            'shahjahanpur' => [
+                'image' => 'https://i.ibb.co/jkCcWfcC/Shahjahanpur-Portal-Lvl1.jpg',
+                'url' => 'https://sceh.net/'
+            ]
+        ]
+    ]
+
+
 ];
