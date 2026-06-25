@@ -122,9 +122,9 @@
                     <a href="{{ config('portal.ads.interaction.' . $portal->slug . '.url') }}" target="_blank">
                         <img
 
-                        class="rounded"
-                        src="{{ config('portal.ads.interaction.' . $portal->slug . '.image') }}"
-                        alt="">
+                            class="rounded"
+                            src="{{ config('portal.ads.interaction.' . $portal->slug . '.image') }}"
+                            alt="">
                     </a>
                 </div>
                 @endif

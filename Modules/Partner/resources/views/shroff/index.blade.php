@@ -11,6 +11,13 @@ $metaData = [
     background-color: white !important;
   }
 
+  .pr_bg {
+    background-color: #a1d4f1 !important;
+  }
+
+  .sceh_bg {
+    background-color: rgba(213, 46, 63, 0.58) !important;
+  }
 
 
   /* Flex grow 1 */
@@ -88,21 +95,21 @@ $metaData = [
             <table class="table table-border table-bordered table-sm">
               <thead class="sticky-top bg-light shadow-sm" style="z-index: 1;">
                 <tr>
-                  <td colspan="4" class="bg-warning text-center text-xs">Prarang</td>
-                  <td colspan="3" class="bg-info text-center text-xs">SCEH’s</td>
-                  <td colspan="3" class="bg-warning text-center text-xs">Prarang</td>
+                  <td colspan="4" class="font-bold pr_bg text-center text-xs"></td>
+                  <td colspan="3" class="font-bold sceh_bg text-center text-xs">Shroff Hospital / Vision Centre</td>
+                  <td colspan="3" class="font-bold pr_bg text-center text-xs">Prarang</td>
                 </tr>
                 <tr>
-                  <th class="text-center bg-warning border-0 text-gray-600 text-xs py-2 text-center w-[30px]">#</th>
-                  <th class="text-center bg-warning border-0 text-gray-600 text-xs py-2">City</th>
-                  <th class="text-center bg-warning border-0 text-gray-600 text-xs py-2">District</th>
-                  <th class="text-center bg-warning border-0 text-gray-600 text-xs py-2">State</th>
-                  <th class="text-center bg-info border-0 text-gray-600 text-xs py-2">Hospital / Vision Centre</th>
-                  <th class="text-center bg-info border-0 text-gray-600 text-xs py-2">SCEH's Contacts</th>
-                  <th class="text-center bg-info border-0 text-gray-600 text-xs py-2">SCEH’s Address</th>
-                  <th class="text-center bg-warning border-0 text-gray-600 text-xs py-2">POP. 2026</th>
-                  <th class="text-center bg-warning border-0 text-gray-600 text-xs py-2 text-center">Prarang KW</th>
-                  <th class="text-center bg-warning border-0 text-gray-600 text-xs py-2">Language</th>
+                  <th class="text-center pr_bg border-0 text-gray-600 text-xs py-2 text-center w-[30px]">#</th>
+                  <th class="text-center pr_bg border-0 text-gray-600 text-xs py-2">City</th>
+                  <th class="text-center pr_bg border-0 text-gray-600 text-xs py-2">District</th>
+                  <th class="text-center pr_bg border-0 text-gray-600 text-xs py-2">State</th>
+                  <th class="text-center sceh_bg border-0 text-gray-600 text-xs py-2">Hospital / Vision<br> Centre</th>
+                  <th class="text-center sceh_bg border-0 text-gray-600 text-xs py-2"> Contacts</th>
+                  <th class="text-center sceh_bg border-0 text-gray-600 text-xs py-2"> Address</th>
+                  <th class="text-center pr_bg border-0 text-gray-600 text-xs py-2">POP. 2026</th>
+                  <th class="text-center pr_bg border-0 text-gray-600 text-xs py-2 text-center">City KW</th>
+                  <th class="text-center pr_bg border-0 text-gray-600 text-xs py-2">Language</th>
                 </tr>
               </thead>
               @php
@@ -187,21 +194,21 @@ $metaData = [
             <table class="table table-border table-bordered  table-sm">
               <thead class="sticky-top bg-light table-bordered shadow-sm" style="z-index: 1;">
                 <tr>
-                  <td colspan="4" class="bg-warning text-center text-xs">Prarang</td>
-                  <td colspan="3" class="bg-info text-center text-xs">SCEH’s</td>
-                  <td colspan="3" class="bg-warning text-center text-xs">Prarang</td>
+                  <td colspan="4" class="font-bold pr_bg text-center text-xs"></td>
+                  <td colspan="3" class="font-bold sceh_bg text-center text-xs">Shroff Hospital / Vision Centre</td>
+                  <td colspan="3" class="font-bold pr_bg text-center text-xs">Prarang</td>
                 </tr>
                 <tr>
-                  <th class="text-center bg-warning border-0 text-gray-600 text-xs py-2 text-center w-[30px]">#</th>
-                  <th class="text-center bg-warning border-0 text-gray-600 text-xs py-2">City</th>
-                  <th class="text-center bg-warning border-0 text-gray-600 text-xs py-2">District</th>
-                  <th class="text-center bg-warning border-0 text-gray-600 text-xs py-2">State</th>
-                  <th class="text-center bg-info border-0 text-gray-600 text-xs py-2">Hospital / Vision Centre</th>
-                  <th class="text-center bg-info border-0 text-gray-600 text-xs py-2">SCEH's Contacts</th>
-                  <th class=" bg-info text-center border-0 text-gray-600 text-xs py-2">SCEH’s Address</th>
-                  <th class="text-center bg-warning border-0 text-gray-600 text-xs py-2">POP. 2026</th>
-                  <th class=" bg-warning border-0 text-gray-600 text-xs py-2 text-center">Prarang KW</th>
-                  <th class="text-center bg-warning border-0 text-gray-600 text-xs py-2">Language</th>
+                  <th class="text-center pr_bg border-0 text-gray-600 text-xs py-2 text-center w-[30px]">#</th>
+                  <th class="text-center pr_bg border-0 text-gray-600 text-xs py-2">City</th>
+                  <th class="text-center pr_bg border-0 text-gray-600 text-xs py-2">District</th>
+                  <th class="text-center pr_bg border-0 text-gray-600 text-xs py-2">State</th>
+                  <th class="text-center sceh_bg border-0 text-gray-600 text-xs py-2">Hospital / Vision Centre</th>
+                  <th class="text-center sceh_bg border-0 text-gray-600 text-xs py-2"> Contacts</th>
+                  <th class="sceh_bg text-center border-0 text-gray-600 text-xs py-2"> Address</th>
+                  <th class="text-center pr_bg border-0 text-gray-600 text-xs py-2">POP. 2026</th>
+                  <th class="pr_bg border-0 text-gray-600 text-xs py-2 text-center">City KW</th>
+                  <th class="text-center pr_bg border-0 text-gray-600 text-xs py-2">Language</th>
                 </tr>
               </thead>
               @php
@@ -300,21 +307,21 @@ $metaData = [
             <table class="table table-border table-bordered  table-sm">
               <thead class="sticky-top bg-light shadow-sm" style="z-index: 1;">
                 <tr>
-                  <td colspan="4" class="bg-warning text-center text-xs">Prarang</td>
-                  <td colspan="3" class="bg-info text-center text-xs">SCEH’s</td>
-                  <td colspan="3" class="bg-warning text-center text-xs">Prarang</td>
+                  <td colspan="4" class="font-bold pr_bg text-center text-xs"></td>
+                  <td colspan="3" class="font-bold sceh_bg text-center text-xs">Shroff Hospital / Vision Centre</td>
+                  <td colspan="3" class="font-bold pr_bg text-center text-xs">Prarang</td>
                 </tr>
                 <tr>
-                  <th class="text-center bg-warning border-0 text-gray-600 text-xs py-2 text-center w-[30px]">#</th>
-                  <th class="text-center bg-warning border-0 text-gray-600 text-xs py-2">Village</th>
-                  <th class="text-center bg-warning border-0 text-gray-600 text-xs py-2">District</th>
-                  <th class="text-center bg-warning border-0 text-gray-600 text-xs py-2">State</th>
-                  <th class="text-center bg-info border-0 text-gray-600 text-xs py-2">Hospital / Vision Centre</th>
-                  <th class="text-center bg-info border-0 text-gray-600 text-xs py-2">SCEH's Contacts</th>
-                  <th class="text-center bg-info border-0 text-gray-600 text-xs py-2">SCEH’s Address</th>
-                  <th class="text-center bg-warning border-0 text-gray-600 text-xs py-2 text-right">POP. 2026</th>
-                  <th class="text-center bg-warning border-0 text-gray-600 text-xs py-2 text-center">Prarang KW</th>
-                  <th class="text-center bg-warning border-0 text-gray-600 text-xs py-2">Language</th>
+                  <th class="text-center pr_bg border-0 text-gray-600 text-xs py-2 text-center w-[30px]">#</th>
+                  <th class="text-center pr_bg border-0 text-gray-600 text-xs py-2">Village</th>
+                  <th class="text-center pr_bg border-0 text-gray-600 text-xs py-2">District</th>
+                  <th class="text-center pr_bg border-0 text-gray-600 text-xs py-2">State</th>
+                  <th class="text-center sceh_bg border-0 text-gray-600 text-xs py-2">Hospital / Vision <br> Centre</th>
+                  <th class="text-center sceh_bg border-0 text-gray-600 text-xs py-2"> Contacts</th>
+                  <th class="text-center sceh_bg border-0 text-gray-600 text-xs py-2"> Address</th>
+                  <th class="text-center pr_bg border-0 text-gray-600 text-xs py-2 text-right">POP. 2026</th>
+                  <th class="text-center pr_bg border-0 text-gray-600 text-xs py-2 text-center">Village KW</th>
+                  <th class="text-center pr_bg border-0 text-gray-600 text-xs py-2">Language</th>
                 </tr>
               </thead>
               @php
