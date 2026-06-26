@@ -325,7 +325,8 @@ $metaData[] = '';
 
             @if($isAdsEnable)
             <div class="flex justify-center p-2">
-                <img class="rounded-lg" src="{{config('portal.sceh_ads.non-interaction')}}" alt="">
+                <a href="https://sceh.net/" target="_blank">
+                    <img class="rounded-lg" src="{{config('portal.sceh_ads.non-interaction')}}" alt=""></a>
             </div>
             @endif
 
