@@ -19,7 +19,6 @@ $metaData = [
     background-color: rgba(213, 46, 63, 0.58) !important;
   }
 
-
   /* Flex grow 1 */
   .container section .row .col-xl-12 .overflow-hidden .flex-grow-1 {
     height: 100% !important;
