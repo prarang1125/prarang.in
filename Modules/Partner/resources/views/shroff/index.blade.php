@@ -276,7 +276,7 @@ $metaData = [
 
                   <td rowspan="{{ $rowspan }}" class="text-xs text-center">
                     <a target="_blank"
-                      href="{{ url('/') }}/city/{{ url_encoder($first['state_LGD_code'].'-'.$first['district_LGD_code'].'-'.$first['town_village_code']) }}/{{ strtolower($first['town_village_name']) }}"
+                      href="{{ url('/') }}/city/{{ url_encoder($first['state_LGD_code'].'-'.$first['dhq_code'].'-'.$first['town_village_code']) }}/{{ strtolower($first['town_village_name']) }}"
                       class="inline-block  text-blue-700 px-2 py-1 rounded text-[10px] font-semibold hover:bg-indigo-200 transition-colors whitespace-nowrap">
                       Click<br>Here
                     </a>
