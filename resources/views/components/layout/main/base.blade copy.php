@@ -808,7 +808,7 @@
                 its entirety. If you do not agree with any part of this disclaimer, please refrain from using
                 our
                 website. For
-                any questions or clarifications, please contact us at query@prararag.in
+                any questions or clarifications, please contact us at query@prarang.in
             </p>
             <p id="demo">
             </p>
