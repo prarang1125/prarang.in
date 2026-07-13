@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en-US">
+@props(['isAdsEnable' => true])
 
 <head>
     <meta charset="UTF-8">
@@ -54,7 +55,12 @@
 
             <!-- Title Box -->
 
-            <div class="flex-grow flex items-center justify-center">
+            <div class="flex-grow flex items-center justify-center gap-3">
+                @if($isAdsEnable)
+                <div> <a href="{{config('portal.ads_url.url')}}" target="_blank">
+                        <img style="height: 75px;" class="rounded" src="{{ config('portal.sceh_ads.logo')}}" alt="">
+                    </a></div>
+                @endif
                 @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-1', 'slug' => $portal->slug, 'portal' =>
                 $portal, 'locale' => $portal->local_lang])
 

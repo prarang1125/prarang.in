@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+@props(['isAdsEnable'=>false])
 
 <head>
     <meta charset="UTF-8">
@@ -126,7 +127,13 @@
                 </div>
 
                 <!-- Main Branding -->
-                <div class="lg:col-span-6 flex flex-col items-center order-1 lg:order-2">
+                <div class="lg:col-span-6 flex  justify-between items-center order-1 lg:order-2">
+                    @if($isAdsEnable)
+                    <div class="flex justify-center">
+                        <a href="{{config('portal.ads_url.url')}}" target="_blank">
+                            <img src="{{config('portal.sceh_ads.logo')}}" alt=""></a>
+                    </div>
+                    @endif
                     <div class="flex items-center mb-4 group cursor-default">
                         <div>
                             <img class="h-20 w-20" src="https://www.prarang.in/assets/images/home/town-1.png"
@@ -139,7 +146,7 @@
                             </h1>
                         </div>
                     </div>
-                    <div class="px-6 py-1.5 rounded-full bg-gray-50 border border-gray-100">
+                    <div class=" px-6 py-1.5 rounded-full bg-gray-50 border border-gray-100">
                         <p class="text-center text-lg font-medium text-gray-500 tracking-wide">
                             @if(($data['town']['Town_Code'] ?? null) == 800864)
                             Capital of Panchalas – Ancient Indian Metropolis but now a City

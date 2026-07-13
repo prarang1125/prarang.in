@@ -893,7 +893,7 @@
                         <h1 class="header-title mb-0 text-primary">
                             {{ $navHeading ?? 'Prarang Knowledge Webs' }}
                         </h1>
-                        <p class="header-tagline mb-0">{{ $navSubHeading }}
+                        <p class="header-tagline mb-0">{!! $navSubHeading !!}
                         </p>
                     </div>
                 </div>

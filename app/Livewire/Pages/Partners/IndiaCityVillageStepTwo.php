@@ -275,10 +275,9 @@ class IndiaCityVillageStepTwo extends Component
             'cityData'                  => $this->cityData,
             'sourceData'                => $this->sourceData,
         ];
-
+  
         $data = json_encode($payload);
-
-        // Generate Hash Only Once
+       
 
         DB::table('partner-plan-ref')->updateOrInsert(
             ['hash_id' => $this->hashId],

@@ -20,9 +20,7 @@ class PortalController extends Controller
     public function portal($portal)
     {
         $isCityPortal = Portal::where('slug', $portal)->exists();
-
         $isCityPortalBiletral = BiletralPortal::where('slug', $portal)->exists();
-
         if ($isCityPortal) {
             return $this->indianCitiesPortal($portal);
         } elseif ($isCityPortalBiletral) {
@@ -34,6 +32,8 @@ class PortalController extends Controller
 
     public function indianCitiesPortal($portal)
     {
+        $isAdsEnable = in_array(strtolower($portal), config('portal.portal'));
+
         $portal = Portal::where('slug', $portal)->firstOrFail();
         try {
             $books = json_decode($portal->books, true);
@@ -51,7 +51,7 @@ class PortalController extends Controller
         });
         $portal['analytics_name'] = $analyticsCities[$portal->city_id];
 
-        return view('portal::portal.home', compact('cityCode', 'portal', 'yellowPages', 'locale', 'books', 'links'));
+        return view('portal::portal.home', compact('cityCode', 'portal', 'yellowPages', 'locale', 'books', 'links', 'isAdsEnable'));
     }
 
     public function bilateralCountriesPortal(string $slug)

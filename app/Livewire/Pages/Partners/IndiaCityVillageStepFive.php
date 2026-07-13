@@ -191,10 +191,25 @@ class IndiaCityVillageStepFive extends Component
                     $optionalSolutions = [];
 
                     $cityPostValue = $this->selectedCityPosts[$planKey] ?? '';
+                  
                     $hasYellowPages = !empty($this->selectedYellowPages[$planKey]);
                     $hasOutdoorAds = !empty($this->selectedOutdoorAds[$planKey]);
 
-                    if (str_ends_with($cityPostValue, '-weekly')) {
+                   
+                    $isFree = false;
+                    if ($locType === 'District Capital') {
+                        $hasSubLocations = !empty($group['towns']) || !empty($group['villages']);
+                        if ($hasSubLocations && $hostLocation === 'Prarang.in') {
+                            $isFree = true;
+                        }
+                    }
+
+                    $oneTime = $isFree ? 0 : ($basePricing[$hostLocation]['one_time'] ?? 0);
+                    $monthly = $isFree ? 0 : ($basePricing[$hostLocation]['monthly'] ?? 0);
+
+                     if (str_ends_with($cityPostValue, '-weekly')) {
+                         $monthly += $optionalPricing['Weekly Posts']['monthly'] ?? 0;
+                        // here price is 14000 for weekly posts
                         $optionalSolutions[] = '4 Posts/Month (Weekly)';
                         if ($hasYellowPages) {
                             $optionalSolutions[] = 'City Yellow Pages (DM)';
@@ -205,6 +220,7 @@ class IndiaCityVillageStepFive extends Component
                         $optionalSolutions[] = 'Semiotics';
                         $optionalSolutions[] = 'Partner Metrics';
                     } elseif (str_ends_with($cityPostValue, '-alternateday')) {
+                        $monthly += $optionalPricing['Alternate Day Posts']['monthly'] ?? 0;
                         $optionalSolutions[] = '15 Posts/Month (Alternate Day)';
                         if ($hasYellowPages) {
                             $optionalSolutions[] = 'City Yellow Pages (DM)';
@@ -215,6 +231,7 @@ class IndiaCityVillageStepFive extends Component
                         $optionalSolutions[] = 'Semiotics';
                         $optionalSolutions[] = 'Partner Metrics';
                     } elseif (str_ends_with($cityPostValue, '-daily')) {
+                        $monthly += $optionalPricing['Daily Posts']['monthly'] ?? 0;
                         $optionalSolutions[] = '31 Posts/Month (Daily)';
                         if ($hasYellowPages) {
                             $optionalSolutions[] = 'City Yellow Pages (DM)';
@@ -234,16 +251,7 @@ class IndiaCityVillageStepFive extends Component
                         }
                     }
 
-                    $isFree = false;
-                    if ($locType === 'District Capital') {
-                        $hasSubLocations = !empty($group['towns']) || !empty($group['villages']);
-                        if ($hasSubLocations && $hostLocation === 'Prarang.in') {
-                            $isFree = true;
-                        }
-                    }
 
-                    $oneTime = $isFree ? 0 : ($basePricing[$hostLocation]['one_time'] ?? 0);
-                    $monthly = $isFree ? 0 : ($basePricing[$hostLocation]['monthly'] ?? 0);
 
                     foreach ($optionalSolutions as $solution) {
                         $monthly += $optionalPricing[$solution]['monthly'] ?? 0;

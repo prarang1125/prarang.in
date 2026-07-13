@@ -16,8 +16,6 @@ class TownVillage extends Controller
     public $cityDatabaseId;
     public function villages($id, $slug)
     {
-
-
         $parts = explode('-', url_decoder($id));
         if (count($parts) === 4) {
             list($state, $districts, $subDistrict, $village) = $parts;
@@ -25,6 +23,7 @@ class TownVillage extends Controller
             list($state, $districts, $village) = $parts;
             $subDistrict = null;
         }
+        $isAdsEnable = in_array($village, config('portal.village_list'));
 
         $village = httpGet('v1/pages/vilage', [
             'state_id' => $state,
@@ -40,8 +39,7 @@ class TownVillage extends Controller
             'dhq_id' => $village['district']['dhq_code'],
             'request_for' => 'town-village'
         ])['data'];
-
-        return view('culturenature.townvillages.index', compact('village', 'otherVilTown'));
+        return view('culturenature.townvillages.index', compact('village', 'otherVilTown', 'isAdsEnable'));
     }
 
     public function towns($id, $slug)
@@ -53,7 +51,7 @@ class TownVillage extends Controller
             list($state, $districts, $town) = $parts;
             $subDistrict = null;
         }
-
+        $isAdsEnable = in_array($town, config('portal.town_list'));
         $towndata = httpGet('v1/pages/town', [
             'state_id' => $state,
             'district_id' => $districts,
@@ -61,14 +59,14 @@ class TownVillage extends Controller
         ])['data'];
 
         if ($towndata['is_dhq']) {
-            return $this->dhq($towndata);
+            return $this->dhq($towndata, $isAdsEnable);
         } else {
-            return $this->cities($towndata);
+            return $this->cities($towndata, $isAdsEnable);
         }
         //   return $this->dhq($towndata);
 
     }
-    public function cities($town)
+    public function cities($town, $isAdsEnable = false)
     {
         $town['name'] = $town['town']['Name'] ?? $town['gram_panchayat']['village_name_en'] ?? '-';
         $otherVilTown = httpGet('v1/pages/get-village-town-dhq', [
@@ -76,10 +74,10 @@ class TownVillage extends Controller
             'dhq_id' => $town['dhq']['DHQ_Code'],
             'request_for' => 'town-village'
         ])['data'];
-        return view('culturenature.townvillages.town', compact('town', 'otherVilTown'));
+        return view('culturenature.townvillages.town', compact('town', 'otherVilTown', 'isAdsEnable'));
     }
 
-    public function dhq($dhq)
+    public function dhq($dhq, $isAdsEnable = false)
     {
         $dhq['name'] = $dhq['dhq']['city'];
 
@@ -99,7 +97,7 @@ class TownVillage extends Controller
         $this->cityDatabaseId = $dhq['dhq']['DHQ_Code'];
         $cirusData = $this->fetchCirusData();
 
-        return view('culturenature.townvillages.dhq', compact('dhq', 'otherVilTown', 'intData', 'cirusData'));
+        return view('culturenature.townvillages.dhq', compact('dhq', 'otherVilTown', 'intData', 'cirusData', 'isAdsEnable'));
     }
 
     public function fetchInternateData($city_id)
