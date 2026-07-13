@@ -498,9 +498,25 @@ $metaData[] = '';
             @endif
             <!-- Village Banner Image -->
             <div class="rounded-2xl overflow-hidden border border-gray-100 shadow-sm transition-all hover:shadow-md">
-                <img src="{{ asset('assets/images/urban_states/' . ($dhq['state']['state_LGD_code'] ?? 'default')) }}.jpg"
-                    alt="Village Banner" class="w-full h-[400px] object-cover">
-            </div>
+    <img
+        id="village-banner"
+        src="https://prarang.s3.ap-south-1.amazonaws.com/town_villages_images/city_webs/756_Capitals/{{ $dhq['town']['town_code'] }}.jpg"
+        alt="Village Banner"
+        class="w-full h-[400px] object-cover"
+        onerror="handleImageError(this)"
+    >
+</div>
+
+<script>
+function handleImageError(img) {
+    if (img.src.endsWith('.jpg')) {
+        img.src = img.src.replace('.jpg', '.png');
+    } else {
+        // Optional: Show a default image if both fail
+        img.src = '/images/no-image.jpg';
+    }
+}
+</script>
 
             {{-- @endif --}}
             @if (true)

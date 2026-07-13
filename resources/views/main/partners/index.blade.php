@@ -11,6 +11,7 @@ $metaData = [
 @endphp
 
 <x-layout.main.base :metaData="$metaData">
+  
   <style>
     /* Link */
     .container .justify-end a {
