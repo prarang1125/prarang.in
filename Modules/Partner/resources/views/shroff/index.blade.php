@@ -231,19 +231,15 @@ $metaData = [
             <div class="col-lg-2">
                 <div class="side-panel">
                     <div class="logo-box">
-                        <img src="https://i.ibb.co/Rkwbw5nN/Logo-850x300.png"
-                            class="hospital-logo">
+                        <img src="https://i.ibb.co/Rkwbw5nN/Logo-850x300.png" class="hospital-logo">
                     </div>
                     <div class="row-box">
-                        <a href="https://sceh.net/"
-                            target="_blank"
-                            class="btn btn-danger w-100">
+                        <a href="https://sceh.net/" target="_blank" class="btn btn-danger w-100">
                             SCEH Website
                         </a>
                     </div>
                     <div class="row-box">
-                        <a href="https://g2c.prarang.in/india/health"
-                            class="btn btn-primary w-100">
+                        <a href="https://g2c.prarang.in/india/health" class="btn btn-primary w-100">
                             India Healthcare<br>
                             Snapshot
                         </a>
@@ -263,8 +259,7 @@ $metaData = [
             <div class="col-lg-2">
                 <div class="side-panel">
                     <div class="logo-box">
-                        <img src="https://www.prarang.in/home-assets/image/logo.png"
-                            class="elephant-logo">
+                        <img src="https://www.prarang.in/home-assets/image/logo.png" class="elephant-logo">
                     </div>
                     <div class="row-box w-100">
                         <div class="social-box">
@@ -272,22 +267,17 @@ $metaData = [
                                 Partnership Social Media
                             </div>
                             <div class="social-icons">
-                                <a href="https://www.facebook.com/prarang.in"
-                                    class="facebook"
-                                    target="_blank">
+                                <a href="https://www.facebook.com/prarang.in" class="facebook" target="_blank">
                                     <i class="bi bi-facebook"></i>
                                 </a>
-                                <a href="https://wa.me/9319701249"
-                                    class="whatsapp"
-                                    target="_blank">
+                                <a href="https://wa.me/9319701249" class="whatsapp" target="_blank">
                                     <i class="bi bi-whatsapp"></i>
                                 </a>
                             </div>
                         </div>
                     </div>
                     <div class="row-box">
-                        <a href="https://b2b.prarang.in/login?lt=partner"
-                            class="btn btn-success w-100">
+                        <a href="https://b2b.prarang.in/login?lt=partner" class="btn btn-success w-100">
                             Partner Login
                         </a>
                     </div>
@@ -312,15 +302,19 @@ $metaData = [
                             <thead class="shadow-sm sticky-top bg-light" style="z-index: 1;">
                                 <tr>
                                     <td colspan="4" class="text-xs font-bold text-center pr_bg"></td>
-                                    <td colspan="3" class="text-xs font-bold text-center sceh_bg">Shroff Hospital / Vision Centre</td>
+                                    <td colspan="3" class="text-xs font-bold text-center sceh_bg">Shroff Hospital /
+                                        Vision Centre</td>
                                     <td colspan="3" class="text-xs font-bold text-center pr_bg">Prarang</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-center pr_bg border-0 text-gray-600 text-xs py-2 text-center w-[30px]">#</th>
+                                    <th
+                                        class="text-center pr_bg border-0 text-gray-600 text-xs py-2 text-center w-[30px]">
+                                        #</th>
                                     <th class="py-2 text-xs text-center text-gray-600 border-0 pr_bg">City</th>
                                     <th class="py-2 text-xs text-center text-gray-600 border-0 pr_bg">District</th>
                                     <th class="py-2 text-xs text-center text-gray-600 border-0 pr_bg">State</th>
-                                    <th class="py-2 text-xs text-center text-gray-600 border-0 sceh_bg">Hospital / Vision<br> Centre</th>
+                                    <th class="py-2 text-xs text-center text-gray-600 border-0 sceh_bg">Hospital /
+                                        Vision<br> Centre</th>
                                     <th class="py-2 text-xs text-center text-gray-600 border-0 sceh_bg"> Contacts</th>
                                     <th class="py-2 text-xs text-center text-gray-600 border-0 sceh_bg"> Address</th>
                                     <th class="py-2 text-xs text-center text-gray-600 border-0 pr_bg">POP. 2026</th>
@@ -376,13 +370,15 @@ $metaData = [
                                     @if($index == 0)
                                     <td rowspan="{{ $rowspan }}" class="text-end">
                                         {{ number_format(
-                    $cityPop[$first['dhq_code']] *
-                    pow(1 + (str_replace('%','',$first['AEGR_pct']) / 100),15)
-                    ) }}
+                                        $cityPop[$first['dhq_code']] *
+                                        pow(1 + (str_replace('%','',$first['AEGR_pct']) / 100),15)
+                                        ) }}
                                     </td>
 
                                     <td rowspan="{{ $rowspan }}" class="text-center">
-                                        <a target="_blank" href="https://www.prarang.in/{{ strtolower($first['city']) }}" class="font-bold">
+                                        <a target="_blank"
+                                            href="https://www.prarang.in/{{ strtolower($first['city']) }}"
+                                            class="font-bold">
                                             Click <br> Here
                                         </a>
                                     </td>
@@ -409,15 +405,19 @@ $metaData = [
                             <thead class="shadow-sm sticky-top bg-light table-bordered" style="z-index: 1;">
                                 <tr>
                                     <td colspan="4" class="text-xs font-bold text-center pr_bg"></td>
-                                    <td colspan="3" class="text-xs font-bold text-center sceh_bg">Shroff Hospital / Vision Centre</td>
+                                    <td colspan="3" class="text-xs font-bold text-center sceh_bg">Shroff Hospital /
+                                        Vision Centre</td>
                                     <td colspan="3" class="text-xs font-bold text-center pr_bg">Prarang</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-center pr_bg border-0 text-gray-600 text-xs py-2 text-center w-[30px]">#</th>
+                                    <th
+                                        class="text-center pr_bg border-0 text-gray-600 text-xs py-2 text-center w-[30px]">
+                                        #</th>
                                     <th class="py-2 text-xs text-center text-gray-600 border-0 pr_bg">City</th>
                                     <th class="py-2 text-xs text-center text-gray-600 border-0 pr_bg">District</th>
                                     <th class="py-2 text-xs text-center text-gray-600 border-0 pr_bg">State</th>
-                                    <th class="py-2 text-xs text-center text-gray-600 border-0 sceh_bg">Hospital / Vision Centre</th>
+                                    <th class="py-2 text-xs text-center text-gray-600 border-0 sceh_bg">Hospital /
+                                        Vision Centre</th>
                                     <th class="py-2 text-xs text-center text-gray-600 border-0 sceh_bg"> Contacts</th>
                                     <th class="py-2 text-xs text-center text-gray-600 border-0 sceh_bg"> Address</th>
                                     <th class="py-2 text-xs text-center text-gray-600 border-0 pr_bg">POP. 2026</th>
@@ -482,11 +482,11 @@ $metaData = [
                                     @if($index == 0)
                                     <td rowspan="{{ $rowspan }}" class="text-xs font-medium text-right text-gray-700">
                                         {{
-                    number_format(
-                    $townPop[$first['town_village_code']] *
-                    pow(1 + (str_replace('%','',$first['AEGR_pct']) / 100), 15)
-                    )
-                    }}
+                                        number_format(
+                                        $townPop[$first['town_village_code']] *
+                                        pow(1 + (str_replace('%','',$first['AEGR_pct']) / 100), 15)
+                                        )
+                                        }}
                                     </td>
 
                                     <td rowspan="{{ $rowspan }}" class="text-xs text-center">
@@ -522,18 +522,23 @@ $metaData = [
                             <thead class="shadow-sm sticky-top bg-light" style="z-index: 1;">
                                 <tr>
                                     <td colspan="4" class="text-xs font-bold text-center pr_bg"></td>
-                                    <td colspan="3" class="text-xs font-bold text-center sceh_bg">Shroff Hospital / Vision Centre</td>
+                                    <td colspan="3" class="text-xs font-bold text-center sceh_bg">Shroff Hospital /
+                                        Vision Centre</td>
                                     <td colspan="3" class="text-xs font-bold text-center pr_bg">Prarang</td>
                                 </tr>
                                 <tr>
-                                    <th class="text-center pr_bg border-0 text-gray-600 text-xs py-2 text-center w-[30px]">#</th>
+                                    <th
+                                        class="text-center pr_bg border-0 text-gray-600 text-xs py-2 text-center w-[30px]">
+                                        #</th>
                                     <th class="py-2 text-xs text-center text-gray-600 border-0 pr_bg">Village</th>
                                     <th class="py-2 text-xs text-center text-gray-600 border-0 pr_bg">District</th>
                                     <th class="py-2 text-xs text-center text-gray-600 border-0 pr_bg">State</th>
-                                    <th class="py-2 text-xs text-center text-gray-600 border-0 sceh_bg">Hospital / Vision <br> Centre</th>
+                                    <th class="py-2 text-xs text-center text-gray-600 border-0 sceh_bg">Hospital /
+                                        Vision <br> Centre</th>
                                     <th class="py-2 text-xs text-center text-gray-600 border-0 sceh_bg"> Contacts</th>
                                     <th class="py-2 text-xs text-center text-gray-600 border-0 sceh_bg"> Address</th>
-                                    <th class="py-2 text-xs text-center text-right text-gray-600 border-0 pr_bg">POP. 2026</th>
+                                    <th class="py-2 text-xs text-center text-right text-gray-600 border-0 pr_bg">POP.
+                                        2026</th>
                                     <th class="py-2 text-xs text-center text-gray-600 border-0 pr_bg">Village KW</th>
                                     <th class="py-2 text-xs text-center text-gray-600 border-0 pr_bg">Language</th>
                                 </tr>
@@ -595,14 +600,14 @@ $metaData = [
                                     @if($index == 0)
                                     <td rowspan="{{ $rowspan }}" class="text-xs font-medium text-right text-gray-700">
                                         {{
-                    number_format(
-                    $villagePop[$first['town_village_code']] *
-                    pow(
-                    1 + (str_replace('%', '', $first['AEGR_pct']) / 100),
-                    15
-                    )
-                    )
-                    }}
+                                        number_format(
+                                        $villagePop[$first['town_village_code']] *
+                                        pow(
+                                        1 + (str_replace('%', '', $first['AEGR_pct']) / 100),
+                                        15
+                                        )
+                                        )
+                                        }}
                                     </td>
 
                                     <td rowspan="{{ $rowspan }}" class="text-xs text-center">
