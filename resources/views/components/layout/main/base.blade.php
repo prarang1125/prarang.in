@@ -683,19 +683,63 @@
         z-index: -1;
     }
 </style>
+<style>
+    @keyframes flash {
+        0% {
+            transform: translateX(-150%) skewX(-20deg);
+        }
+
+        100% {
+            transform: translateX(250%) skewX(-20deg);
+        }
+    }
+
+    .flash-sweep {
+        animation: flash 2.2s ease-in-out infinite;
+    }
+
+    /* Division */
+    #main-header .d-lg-block>div:nth-child(2) {
+        display: flex !important;
+        align-items: center;
+    }
+    .star-animation {
+    display: inline-block;
+    animation: starPulse 1.8s ease-in-out infinite;
+    transform-origin: center;
+}
+
+@keyframes starPulse {
+    0%, 100% {
+        transform: scale(1.1) rotate(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.25) rotate(0deg);
+        opacity: 1;
+    }
+}
+/* Division */
+#main-header .d-lg-block > div:nth-child(2){
+ align-items:flex-end;
+ flex-direction:row;
+}
+
+/* Transition transform */
+.d-lg-block div .transition-transform{
+ left:-7px;
+}
 
 
-<body class="bg-light" style="min-height: 100vh !important;" style="background: #ffffff !important;">
-    @php
-    $isHome = request()->url() === url('/');
-    $navHeading = $metaData['nav-heading'] ?? 'Prarang Knowledge Webs';
-    $navSubHeading = $metaData['nav-sub-heading'] ?? 'Bridging the Digital Divide – By Location, By Language';
-    $headerClass = $metaData['headerClass'] ?? null;
+</style>
+
+<body class="bg-light" style="min-height: 100vh !important;" style="background: #ffffff !important;">@php $isHome
+    =request()->url()===url('/');
+    $navHeading =$metaData['nav-heading'] ?? 'Prarang Knowledge Webs';
+    $navSubHeading =$metaData['nav-sub-heading'] ?? 'Bridging the Digital Divide – By Location, By Language';
+    $headerClass =$metaData['headerClass'] ?? null;
     // dd($headerClass);
-    @endphp
-    <div id="main-header" class="">
-        @if ($isHome)
-        <style>
+    @endphp <div id="main-header" class="">@if ($isHome) <style>
             /* Image (hover) */
             .d-lg-block .nav-link img:hover {
                 width: 98px;
@@ -788,8 +832,22 @@
                 </div>
             </div>
             <div class="">
-                <a href="/ai/upmana" class="nav-link">
-                    <img class="" src="https://i.ibb.co/9kBKBcpj/cai.png" alt="ai"></a>
+                {{-- <a href="/ai/upmana" class="nav-link">
+                    <img class="" src="https://i.ibb.co/9kBKBcpj/cai.png" alt="ai"></a> --}}
+                <button class=" group relative overflow-hidden inline-flex items-center gap-2 p-2  px-4 rounded-full
+           bg-gradient-to-r from-yellow-100 via-yellow-100  to-yellow-100
+           text-white font-semibold tracking-wide text-sm border-2
+           shadow-lg
+           animate-pulseGlow
+           transition-transform duration-200 ease-out
+           hover:scale-105 active:scale-95">
+                  <span>
+    <i class="bi bi-stars text-red-500 text-xl "></i>
+</span>
+                    <span class="relative z-10 text-blue-800">Comparison A.I.</span>
+                    <!-- diagonal flash sweep -->
+                    
+                </button>
             </div>
         </header>
         @else
@@ -949,9 +1007,11 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" target="_blank"
-                                                href="https://g2c.prarang.in/india">India Analytics</a></li>
+                                                href="https://g2c.prarang.in/india">India
+                                                Analytics</a></li>
                                         <li><a class="dropdown-item" target="_blank"
-                                                href="https://g2c.prarang.in/world">World Analytics</a></li>
+                                                href="https://g2c.prarang.in/world">World
+                                                Analytics</a></li>
                                         {{-- <li><a class="dropdown-item"
                                                 href="https://g2c.prarang.in/planners">Planners</a>
                                         </li>
@@ -1006,14 +1066,17 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item"
-                                                href="https://www.prarang.in/partners-metrics">Performance Metrics</a>
+                                                href="https://www.prarang.in/partners-metrics">Performance
+                                                Metrics</a>
                                         </li>
                                         <li><a class="dropdown-item" href="/semiotics">Semiotics</a></li>
                                         <li><a class="dropdown-item"
-                                                href=" https://b2b.prarang.in/login?lt=partner">City Ad OOH Listing</a>
+                                                href=" https://b2b.prarang.in/login?lt=partner">City Ad OOH
+                                                Listing</a>
                                         </li>
                                         <li><a class="dropdown-item"
-                                                href=" https://b2b.prarang.in/login?lt=partner">District Analytics
+                                                href=" https://b2b.prarang.in/login?lt=partner">District
+                                                Analytics
                                             </a></li>
                                     </ul>
                                 </li>
@@ -1213,6 +1276,7 @@
         //     );
         // });
     </script>
+
     @livewireScripts
 </body>
 

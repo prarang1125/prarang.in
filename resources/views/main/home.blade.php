@@ -535,9 +535,13 @@
                                         <span class="dot dot-yellow"></span>
                                         <span class="dot dot-red"></span>
                                     </div>
-                                    <div class="flex justify-center items-center gap-2 mb-1.5">
+                                    <div class="border-1 border-yellow-200 flex justify-center items-center gap-2 mb-1.5 group relative overflow-hidden rounded-full p-1 px-3 animate-pulseGlow
+           transition-transform duration-200 ease-out">
                                         <span class="country-name font-bold">INDIA</span>
-                                        <span class="badge badge-live">LIVE</span>
+                                        <span class="badge badge-live star-animation">LIVE</span>
+                                        <span class="flash-sweep pointer-events-none absolute inset-y-0 left-0 w-1/3
+                                        bg-gradient-to-r from-transparent via-white to-transparent
+                                        animate-flash"></span>
                                     </div>
                                     <div class="dots">
                                         <span class="dot dot-1"></span>
@@ -1383,6 +1387,13 @@
         .container .section-wrapper:nth-child(2) .country-unit:nth-child(1) div:nth-child(2) {
             border-color: #b2adad;
         }
+        /* Card  live */
+.md\:block .card-link .card--live{
+ padding-bottom:8px;
+ padding-top:9px;
+}
+
+
     </style>
     <script>
         //     function openComingSoon(label) {
