@@ -131,8 +131,18 @@ $liveCity=[
         transform: translateY(-2px) scale(.99);
     }
 
-    /* Continuous shiny sweeping flash/shimmer effect */
-    .custom-card::after {
+    /* Continuous shiny sweeping flash/shimmer effect on selected button inside cards */
+    .card-inner-btn {
+        position: relative;
+        overflow: hidden;
+        display: inline-flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 16px;
+    }
+
+    .card-inner-btn::after {
         content: '';
         position: absolute;
         top: 0;
@@ -188,19 +198,19 @@ $liveCity=[
     }
 
     .bar-blue {
-        background: #2563eb;
+        background: blue;
     }
 
     .bar-yellow {
-        background: #eab308;
+        background: yellow;
     }
 
     .bar-red {
-        background: #dc2626;
+        background: red;
     }
 
     .bar-light-yellow {
-        background: #fef08a;
+        background: yellow;
     }
 
     .bar-lime {
@@ -572,7 +582,7 @@ $liveCity=[
                                 <div class="icon-circle">
                                     <img loading="lazy" src="{{ asset('assets/images/Villages1.png') }}" alt="Villages">
                                 </div>
-                                <div class="border-blue-200 border-2 rounded-full w-50 ">
+                                <div class="border-blue-200 border-2 rounded-full w-50 card-inner-btn">
                                     <div class="card-title-small" style="color: rgb(29 78 215);">
                                         Villages
                                     </div>
@@ -607,7 +617,7 @@ $liveCity=[
                                 <div class="icon-circle">
                                     <img loading="lazy" src="{{ asset('assets/images/town1.png') }}" alt="Cities">
                                 </div>
-                                <div class="border-blue-200 border-2 rounded-full w-50 ">
+                                <div class="border-blue-200 border-2 rounded-full w-50 card-inner-btn">
                                     <div class="card-title-small" style="color: rgb(29 78 215);">
                                         Cities
                                     </div>
@@ -643,7 +653,7 @@ $liveCity=[
                                     <img loading="lazy" src="{{ asset('assets/images/World.png') }}"
                                         alt="World Bilateral">
                                 </div>
-                                <div class="border-blue-200 border-2 rounded-full w-75 ">
+                                <div class="border-blue-200 border-2 rounded-full w-75 card-inner-btn">
                                     <div class="card-title-small" style="color: rgb(29 78 215);">
                                         World-Bilateral
                                     </div>
