@@ -834,7 +834,7 @@
             <div class="">
                 {{-- <a href="/ai/upmana" class="nav-link">
                     <img class="" src="https://i.ibb.co/9kBKBcpj/cai.png" alt="ai"></a> --}}
-                <button class=" group relative overflow-hidden inline-flex items-center gap-2 p-2  px-4 rounded-full
+                <a href="/ai/upmana"  class=" group relative overflow-hidden inline-flex items-center gap-2 p-2  px-4 rounded-full
            bg-gradient-to-r from-yellow-100 via-yellow-100  to-yellow-100
            text-white font-semibold tracking-wide text-sm border-2
            shadow-lg
@@ -847,7 +847,7 @@
                     <span class="relative z-10 text-blue-800">Comparison A.I.</span>
                     <!-- diagonal flash sweep -->
                     
-                </button>
+</a>
             </div>
         </header>
         @else
@@ -1132,8 +1132,33 @@
 
     <main class="container" @if (!$resetMainMinHeight) style="min-height: 70vh !important;" @endif>
         @if($isHome)
-        <a class="text-decoration-none d-block d-lg-none icone h-30 w-30" href="/ai/upmana" class="nav-link">
-            <img class="" src="https://i.ibb.co/9kBKBcpj/cai.png" alt="ai"></a>
+        <style>@media (max-width:576px){
+
+ /* Block */
+ .container .d-block{
+  width:172px !important;
+  padding-right:7px !important;
+  padding-left:12px !important;
+  padding-top:2px !important;
+  padding-bottom:2px !important;
+  transform:translatex(-23px) translatey(4px);
+ }
+ 
+}</style>
+         <a href="/ai/upmana"  class="d-block d-md-none  group relative overflow-hidden inline-flex items-center gap-2 p-2  px-4 rounded-full
+           bg-gradient-to-r from-yellow-100 via-yellow-100  to-yellow-100
+           text-white font-semibold tracking-wide text-sm border-2
+           shadow-lg
+           animate-pulseGlow
+           transition-transform duration-200 ease-out
+           hover:scale-105 active:scale-95">
+                  <span>
+    <i class="bi bi-stars text-red-500 text-xl "></i>
+</span>
+                    <span class="relative z-10 text-blue-800">Comparison A.I.</span>
+                    <!-- diagonal flash sweep -->
+                    
+</a>
         @endif
         <br>
         {{ $slot }}

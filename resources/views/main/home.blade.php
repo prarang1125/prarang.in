@@ -487,7 +487,7 @@
                 <div class="grid country-grid gap-3 mt-3 items-start">
                     <!-- Nepal (WIP) -->
                     <div class="country-unit">
-                        <a href="#nepal" class="card-link" aria-label="Open Nepal knowledge web">
+                        <a href="https://www.prarang.in/nepal-knowledge-webs" class="card-link" aria-label="Open Nepal knowledge web">
 
                             <div class="card card--wip">
                                 <div class="flex justify-between items-center">
@@ -526,7 +526,7 @@
 
                     <!-- India (LIVE) — wider column -->
                     <div class="country-unit">
-                        <a href="#india" class="card-link" aria-label="Open India knowledge web">
+                        <a href="https://www.prarang.in/india-knowledge-webs" class="card-link" aria-label="Open India knowledge web">
 
                             <div class="card card--live">
                                 <div class="flex justify-between items-center">
@@ -569,7 +569,7 @@
 
                     <!-- Czech Republic (WIP) -->
                     <div class="country-unit">
-                        <a href="#czech-republic" class="card-link" aria-label="Open Czech Republic knowledge web">
+                        <a href="https://www.prarang.in/czech-knowledge-webs" class="card-link" aria-label="Open Czech Republic knowledge web">
 
                             <div class="card card--wip">
                                 <div class="flex justify-between items-center">
@@ -784,7 +784,7 @@
             <div style="position: relative; z-index: 2;">
                 <!-- India Card -->
                 <div class="country-unit mb-3">
-                    <a href="#india" class="card-link" aria-label="Open India knowledge web">
+                    <a href="https://www.prarang.in/india-knowledge-webs" class="card-link" aria-label="Open India knowledge web">
 
                         <div class="card card--live">
                             <div class="flex justify-between items-center">
@@ -880,7 +880,7 @@
             <div style="position: relative; z-index: 2;">
                 <!-- Nepal Card -->
                 <div class="country-unit mb-3">
-                    <a href="#nepal" class="card-link" aria-label="Open Nepal knowledge web">
+                    <a href="https://www.prarang.in/nepal-knowledge-webs" class="card-link" aria-label="Open Nepal knowledge web">
 
                         <div class="card card--wip">
                             <div class="flex justify-between items-center">
@@ -961,7 +961,7 @@
             <div style="position: relative; z-index: 2;">
                 <!-- Czech Republic Card -->
                 <div class="country-unit mb-3">
-                    <a href="#czech-republic" class="card-link" aria-label="Open Czech Republic knowledge web">
+                    <a href="https://www.prarang.in/czech-knowledge-webs" class="card-link" aria-label="Open Czech Republic knowledge web">
 
                         <div class="card card--wip">
                             <div class="flex justify-between items-center">
