@@ -703,34 +703,37 @@
         display: flex !important;
         align-items: center;
     }
+
     .star-animation {
-    display: inline-block;
-    animation: starPulse 1.8s ease-in-out infinite;
-    transform-origin: center;
-}
-
-@keyframes starPulse {
-    0%, 100% {
-        transform: scale(1.1) rotate(0deg);
-        opacity: 1;
+        display: inline-block;
+        animation: starPulse 1.8s ease-in-out infinite;
+        transform-origin: center;
     }
-    50% {
-        transform: scale(1.25) rotate(0deg);
-        opacity: 1;
+
+    @keyframes starPulse {
+
+        0%,
+        100% {
+            transform: scale(1.1) rotate(0deg);
+            opacity: 1;
+        }
+
+        50% {
+            transform: scale(1.25) rotate(0deg);
+            opacity: 1;
+        }
     }
-}
-/* Division */
-#main-header .d-lg-block > div:nth-child(2){
- align-items:flex-end;
- flex-direction:row;
-}
 
-/* Transition transform */
-.d-lg-block div .transition-transform{
- left:-7px;
-}
+    /* Division */
+    #main-header .d-lg-block>div:nth-child(2) {
+        align-items: flex-end;
+        flex-direction: row;
+    }
 
-
+    /* Transition transform */
+    .d-lg-block div .transition-transform {
+        left: -7px;
+    }
 </style>
 
 <body class="bg-light" style="min-height: 100vh !important;" style="background: #ffffff !important;">@php $isHome
@@ -834,20 +837,20 @@
             <div class="">
                 {{-- <a href="/ai/upmana" class="nav-link">
                     <img class="" src="https://i.ibb.co/9kBKBcpj/cai.png" alt="ai"></a> --}}
-                <a href="/ai/upmana"  class=" group relative overflow-hidden inline-flex items-center gap-2 p-2  px-4 rounded-full
+                <a href="/ai/upmana" class=" group relative overflow-hidden inline-flex items-center gap-2 p-2  px-4 rounded-full
            bg-gradient-to-r from-yellow-100 via-yellow-100  to-yellow-100
            text-white font-semibold tracking-wide text-sm border-2
            shadow-lg
            animate-pulseGlow
            transition-transform duration-200 ease-out
            hover:scale-105 active:scale-95">
-                  <span>
-    <i class="bi bi-stars text-red-500 text-xl "></i>
-</span>
+                    <span>
+                        <i class="bi bi-stars text-red-500 text-xl "></i>
+                    </span>
                     <span class="relative z-10 text-blue-800">Comparison A.I.</span>
                     <!-- diagonal flash sweep -->
-                    
-</a>
+
+                </a>
             </div>
         </header>
         @else
@@ -1132,33 +1135,35 @@
 
     <main class="container" @if (!$resetMainMinHeight) style="min-height: 70vh !important;" @endif>
         @if($isHome)
-        <style>@media (max-width:576px){
+        <style>
+            @media (max-width:576px) {
 
- /* Block */
- .container .d-block{
-  width:172px !important;
-  padding-right:7px !important;
-  padding-left:12px !important;
-  padding-top:2px !important;
-  padding-bottom:2px !important;
-  transform:translatex(-23px) translatey(4px);
- }
- 
-}</style>
-         <a href="/ai/upmana"  class="d-block d-md-none  group relative overflow-hidden inline-flex items-center gap-2 p-2  px-4 rounded-full
+                /* Block */
+                .container .d-block {
+                    width: 172px !important;
+                    padding-right: 7px !important;
+                    padding-left: 12px !important;
+                    padding-top: 2px !important;
+                    padding-bottom: 2px !important;
+                    transform: translatex(-23px) translatey(4px);
+                }
+
+            }
+        </style>
+        <a href="/ai/upmana" class="d-block d-md-none  group relative overflow-hidden inline-flex items-center gap-2 p-2  px-4 rounded-full
            bg-gradient-to-r from-yellow-100 via-yellow-100  to-yellow-100
            text-white font-semibold tracking-wide text-sm border-2
            shadow-lg
            animate-pulseGlow
            transition-transform duration-200 ease-out
            hover:scale-105 active:scale-95">
-                  <span>
-    <i class="bi bi-stars text-red-500 text-xl "></i>
-</span>
-                    <span class="relative z-10 text-blue-800">Comparison A.I.</span>
-                    <!-- diagonal flash sweep -->
-                    
-</a>
+            <span>
+                <i class="bi bi-stars text-red-500 text-xl "></i>
+            </span>
+            <span class="relative z-10 text-blue-800">Comparison A.I.</span>
+            <!-- diagonal flash sweep -->
+
+        </a>
         @endif
         <br>
         {{ $slot }}
