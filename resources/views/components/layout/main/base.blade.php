@@ -835,17 +835,19 @@
                 </div>
             </div>
             <div class="">
+
+
                 {{-- <a href="/ai/upmana" class="nav-link">
                     <img class="" src="https://i.ibb.co/9kBKBcpj/cai.png" alt="ai"></a> --}}
-                <a href="/ai/upmana" class=" group relative overflow-hidden inline-flex items-center gap-2 p-2  px-4 rounded-full
-           bg-gradient-to-r from-yellow-100 via-yellow-100  to-yellow-100
+                <a style="background: rgba(255,255,0,0.37) " href="/ai/upmana" class=" group relative overflow-hidden inline-flex items-center gap-2 p-2  px-4 rounded-full
+
            text-white font-semibold tracking-wide text-sm border-2
            shadow-lg
            animate-pulseGlow
            transition-transform duration-200 ease-out
            hover:scale-105 active:scale-95">
                     <span>
-                        <i class="bi bi-stars text-red-500 text-xl "></i>
+                        <i class="bi bi-stars text-blue-800 text-xl "></i>
                     </span>
                     <span class="relative z-10 text-blue-800">Comparison A.I.</span>
                     <!-- diagonal flash sweep -->

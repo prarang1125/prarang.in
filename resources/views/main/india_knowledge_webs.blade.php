@@ -556,6 +556,48 @@ $liveCity=[
             transform: scale(1.3);
         }
     }
+
+    /* Card title small */
+    .top-card-section .d-block .card-title-small {
+        font-size: 14px;
+    }
+
+    /* Card inner */
+    .top-card-section .d-block .card-inner-btn {
+        height: 52px;
+        transform: translatex(0px) translatey(0px);
+        padding-bottom: 0px;
+        background-color: rgba(250, 245, 122, 0.58);
+        padding-left: 3px;
+        padding-right: 4px;
+    }
+
+    /* Card number */
+    .top-card-section .d-block .card-number {
+        position: relative;
+        top: -5px;
+        font-size: 14px;
+    }
+
+    /* Card inner */
+    .justify-content-center .col-md-6:nth-child(3) .card-inner-btn {
+        width: 208px !important;
+    }
+
+    /* Card inner */
+    .container section .top-card-section .justify-content-center .col-md-6 .d-block .custom-card .card-body-wrapper .card-inner-btn {
+        width: 51% !important;
+    }
+
+    /* Link */
+    .md\:items-start .md\:justify-start a {
+        width: 120px;
+    }
+
+    /* Division */
+    .container section .justify-center .md\:flex-row {
+        padding-top: 15px !important;
+    }
 </style>
 
 <x-layout.main.base :metaData="$metaData">
