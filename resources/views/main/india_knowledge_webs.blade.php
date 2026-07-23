@@ -598,6 +598,11 @@ $liveCity=[
     .container section .justify-center .md\:flex-row {
         padding-top: 15px !important;
     }
+
+    /* Shadow */
+    .container section .shadow-xl {
+        box-shadow: 0px 0px 50px 34px rgba(0, 0, 0, 0.59);
+    }
 </style>
 
 <x-layout.main.base :metaData="$metaData">
