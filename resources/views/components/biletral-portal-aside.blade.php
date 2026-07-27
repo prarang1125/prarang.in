@@ -796,7 +796,7 @@
                                 हिंदी येलो पेज (Yellow Pages)
                             </h4>
                         </div>
-                    @endif
+                   
 
 
                 </div>
@@ -959,19 +959,19 @@
                         <!-- Yellow Pages Modal -->
                         <div class="modal fade" id="yellowPagesModal_{{ $side }}" tabindex="-1"
                             aria-hidden="true">
-                            <div class="modal-dialog modal-dialog-centered rounded-xl">
-                                <div class="modal-content border-0 shadow rounded-xl">
-                                    <div class="modal-header border-0 pb-0">
+                            <div class="rounded-xl modal-dialog modal-dialog-centered">
+                                <div class="shadow border-0 rounded-xl modal-content">
+                                    <div class="pb-0 border-0 modal-header">
                                         <h4 class="fw-bold">Yellow Pages</h4>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
                                     </div>
-                                    <div class="modal-body text-justify px-4 p-2  pb-4 border-t mt-1">
+                                    <div class="mt-1 p-2 px-4 pb-4 border-t text-justify modal-body">
                                         {{-- <div class="mb-4 text-warning">
                                         <i class="fa fa-book fa-3x"></i>
                                     </div> --}}
-                                        {{-- <h4 class="fw-bold mb-3">Yellow Pages</h4> --}}
-                                        <p class="text-muted mb-4">
+                                        {{-- <h4 class="mb-3 fw-bold">Yellow Pages</h4> --}}
+                                        <p class="mb-4 text-muted">
                                             Free listing of products and services of {{ $ypData[0] ?? '' }}.
                                             <br>
                                             Thank you for
@@ -981,17 +981,17 @@
                                         </p>
                                         <div class="flex justify-between items-center gap-3">
                                             <a href="https://www.prarang.in/partners" target="_blank"
-                                                class="btn btn-warning fw-bold px-4 rounded-pill shadow-sm text-xs">
+                                                class="shadow-sm px-4 rounded-pill text-xs btn btn-warning fw-bold">
                                                 Prarang Country Partnerships
                                             </a>
                                              @if ($side == 'left')
                         <a href="https://www.prarang.in/yp/india" target="_blank"
-                            class="btn btn-warning fw-bold px-4 rounded-pill shadow-sm text-xs">
+                            class="shadow-sm px-4 rounded-pill text-xs btn btn-warning fw-bold">
                             Example - Czech Republic companies in India
                         </a>
                     @else
                         <a href="https://www.prarang.in/yp/czech-republic" target="_blank"
-                            class="btn btn-warning fw-bold px-4 rounded-pill shadow-sm text-xs">
+                            class="shadow-sm px-4 rounded-pill text-xs btn btn-warning fw-bold">
                             Example - Indian companies in Czech Republic
                         </a>
                     @endif
@@ -1008,7 +1008,7 @@
 
             <!-- Toast Element -->
             <div id="comingSoonToast" class="custom-toast">
-                <i class="fa fa-info-circle me-2"></i> Coming Soon.
+                <i class="me-2 fa fa-info-circle"></i> Coming Soon.
             </div>
         </div>
     </aside>
@@ -1129,12 +1129,12 @@
                 container.classList.remove('expanded');
                 container.style.maxHeight = collapsedHeight + 'px';
                 btn.setAttribute('aria-expanded', 'false');
-                btn.innerHTML = '<i class="fa fa-angle-double-down me-1"></i>';
+                btn.innerHTML = '<i class="me-1 fa fa-angle-double-down"></i>';
             } else {
                 container.classList.add('expanded');
                 container.style.maxHeight = container.scrollHeight + 'px';
                 btn.setAttribute('aria-expanded', 'true');
-                btn.innerHTML = '<i class="fa fa-angle-double-up me-1"></i>';
+                btn.innerHTML = '<i class="me-1 fa fa-angle-double-up"></i>';
             }
         }
 

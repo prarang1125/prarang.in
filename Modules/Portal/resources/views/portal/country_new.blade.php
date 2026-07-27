@@ -130,24 +130,24 @@
     </style>
     <div id="wrapper">
         <header class="px-5 lsvr-container">
-            <div class="flex flex-col lg:flex-row items-center justify-between gap-6 max-w-[1920px] mx-auto">
+            <div class="flex lg:flex-row flex-col justify-between items-center gap-6 mx-auto max-w-[1920px]">
 
                 <!-- Logo & Language Toggle Section -->
                 <div class="flex items-center gap-6">
                     <div class="flex flex-col items-center">
                         <img src="https://i.ibb.co/TDKtQQrd/prarang-logo-dark.png" alt="Prarang Logo"
-                            class="h-[100px] w-auto lg:h-[120px]">
+                            class="w-auto h-[100px] lg:h-[120px]">
                     </div>
 
                     <!-- Language Selector / All Posts -->
                     <div class="flex flex-col gap-2">
-                        <div class="flex items-center bg-gray-100 p-1 rounded-full border">
+                        <div class="flex items-center bg-gray-100 p-1 border rounded-full">
                             <button id="primary-language"
-                                class="px-4 py-1 rounded-full text-xs font-bold bg-blue-600 text-white shadow-sm">{{ strtoupper(substr($primary->locale_lang ?? '', 0, 2)) }}
+                                class="bg-blue-600 shadow-sm px-4 py-1 rounded-full font-bold text-white text-xs">{{ strtoupper(substr($primary->locale_lang ?? '', 0, 2)) }}
                             </button>
                             <button id="secondary-language"
                                 onclick="showComingSoonToast('{{ $secondary->locale_lang }} Language Content - Coming Soon.')"
-                                class="px-4 py-1 rounded-full text-xs font-bold text-gray-500 hover:bg-gray-200 transition-colors">{{ strtoupper(substr($secondary->locale_lang ?? '', 0, 2)) }}</button>
+                                class="hover:bg-gray-200 px-4 py-1 rounded-full font-bold text-gray-500 text-xs transition-colors">{{ strtoupper(substr($secondary->locale_lang ?? '', 0, 2)) }}</button>
                         </div>
 
                     </div>
@@ -165,18 +165,18 @@
                 <div class="flex flex-col gap-1 w-full lg:w-auto">
                     <!-- Stats Grid -->
                     @if ($main->is_active)
-                        <div class="bg-slate-900 text-white  px-2 p-1 rounded-lg border border-slate-700 shadow-inner">
-                            <div class="grid grid-cols-1  text-[10px]">
+                        <div class="bg-slate-900 shadow-inner p-1 px-2 border border-slate-700 rounded-lg text-white">
+                            <div class="grid grid-cols-1 text-[10px]">
                                 <div class="flex justify-between items-center gap-4">
                                     <span class="opacity-80 text-[12px]">Subscribers:</span>
                                     <span class="font-mono font-bold text-green-400"
                                         id="city-subscriber-count">12</span>
                                 </div>
-                                <div class="flex justify-between items-center gap-4 border-t border-slate-800 ">
+                                <div class="flex justify-between items-center gap-4 border-slate-800 border-t">
                                     <span class="opacity-80 text-[12px]">Monthly Website Reach:</span>
                                     <span class="font-mono font-bold text-blue-400" id="city-monthly-count">32</span>
                                 </div>
-                                <div class="flex justify-between items-center gap-4 border-t border-slate-800">
+                                <div class="flex justify-between items-center gap-4 border-slate-800 border-t">
                                     <span class="opacity-80 text-[12px]">Daily Readers:</span>
                                     <span class="font-mono font-bold text-amber-400" id="city-daily-count">8</span>
                                 </div>
@@ -186,11 +186,11 @@
                     <!-- Login Buttons -->
                     <div class="flex gap-1 w-full lg:w-auto" style="width: 286px;">
                         <a target="_blank" href="https://b2b.prarang.in/login?lt=partner"
-                            class="flex-1 text-center bg-amber-400 hover:bg-amber-500 text-black text-[12px] font-bold rounded shadow hover:shadow-md transition-all"
+                            class="flex-1 bg-amber-400 hover:bg-amber-500 shadow hover:shadow-md rounded font-bold text-[12px] text-black text-center transition-all"
                             style="display:flex; align-items:center; justify-content:center; min-height:34px; line-height:1; text-decoration:none; height: 30px;">Business
                             Login</a>
                         <a target="_blank" href="https://b2b.prarang.in/login?lt=g2c"
-                            class="flex-1 text-center bg-amber-400 hover:bg-amber-500 text-black text-[12px] font-bold rounded shadow hover:shadow-md transition-all"
+                            class="flex-1 bg-amber-400 hover:bg-amber-500 shadow hover:shadow-md rounded font-bold text-[12px] text-black text-center transition-all"
                             style="display:flex; align-items:center; justify-content:center; min-height:34px; line-height:1; text-decoration:none; height: 30px;">Govt./NGO
                             Login</a>
                     </div>
@@ -218,13 +218,13 @@
                                     <main id="main">
                                         <div class="main__inner">
                                             <div class="post-207 page type-page status-publish hentry">
-                                                <div class=" my-3 rounded shadow">
-                                                    <img class="rounded shadow"
+                                                <div class="shadow my-3 rounded">
+                                                    <img class="shadow rounded"
                                                         src="{{ !empty($main->header_image) ? Storage::url($main->header_image) : asset('images/default.jpg') }}"
                                                         alt="">
                                                 </div>
                                                 <div
-                                                    class="page__content rounded-lg shadow bg-light p-3 text-sm text-justify mb-3">
+                                                    class="bg-light shadow mb-3 p-3 rounded-lg text-sm text-justify page__content">
                                                     <p>
                                                         @foreach ($pageSlm['sentences'] as $sentence)
                                                             {!! $sentence !!}
@@ -252,9 +252,9 @@
                                             </div>
 
                                         </div>
-                                        <div class="shadow mt-2 bg-light">
-                                            <h3 class="text-center h5 fw-bold ">Knowledge By Comparison A.I.</h3>
-                                            <div class="comparison-links-new px-3 pb-2">
+                                        <div class="bg-light shadow mt-2">
+                                            <h3 class="text-center h5 fw-bold">Knowledge By Comparison A.I.</h3>
+                                            <div class="px-3 pb-2 comparison-links-new">
                                                 <a class="comparison-btn" target="_blank"
                                                     href="{{ url('/' . $primary->country_name . '/' . $secondary->country_name . '/country-comparison/' . $secondary->anlytics_code . '/' . $primary->anlytics_code) }}">
                                                     <strong>Country Comparison :&nbsp;</strong>
@@ -279,11 +279,11 @@
                                                             href="https://g2c.prarang.in/india/development-planners">India</a>
                                                     </div>
                                                 </div>
-                                                <div class=" col-sm-6">
+                                                <div class="col-sm-6">
                                                     <div class="flex flex-col">
 
                                                         <h4 class="text-center fw-bold">Market Planners</h4>
-                                                        <a class="planner-btns btn btn-primary " target="_blank"
+                                                        <a class="planner-btns btn btn-primary" target="_blank"
                                                             href="https://g2c.prarang.in/world/market-planner?country={{ $primary->anlytics_code }}-{{ $secondary->anlytics_code }}">World
                                                         </a>
                                                         <a class="planner-btns btn btn-primary" target="_blank"
@@ -308,15 +308,15 @@
 
                                             <div class="row">
                                                 <div class="col-sm-6">
-                                                    <div class="widget lsvr-townpress-analytics-widget lsvr-townpress-analytics-widget--has-background shadow-sm mb-4 border rounded"
+                                                    <div class="shadow-sm mb-4 border rounded widget lsvr-townpress-analytics-widget lsvr-townpress-analytics-widget--has-background"
                                                         id="-analytics-widget">
-                                                        <div class="widget__inner p-3">
+                                                        <div class="p-3 widget__inner">
                                                             <h3
-                                                                class="widget__title widget__title--has-icon ps-2 mb-3 text-center text-secondary fw-bold">
-                                                                {{-- <i class="fa fa-line-chart me-2"></i> --}}
+                                                                class="mb-3 ps-2 text-secondary text-center widget__title widget__title--has-icon fw-bold">
+                                                                {{-- <i class="me-2 fa fa-line-chart"></i> --}}
                                                                 {{ $primary->country_name ?? 'N/A' }} Data Analytics
                                                             </h3>
-                                                            <div class="widget__content text-center">
+                                                            <div class="text-center widget__content">
                                                                 <x-portal.cityanaytics :title="$primary->country_name ?? 'N/A'"
                                                                     :code="$primary->analytics_slug ?? 'country'" />
                                                             </div>
@@ -324,15 +324,15 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <div class="widget lsvr-townpress-analytics-widget lsvr-townpress-analytics-widget--has-background shadow-sm mb-4 border rounded"
+                                                    <div class="shadow-sm mb-4 border rounded widget lsvr-townpress-analytics-widget lsvr-townpress-analytics-widget--has-background"
                                                         id="-analytics-widget">
-                                                        <div class="widget__inner p-3">
+                                                        <div class="p-3 widget__inner">
                                                             <h3
-                                                                class="widget__title widget__title--has-icon ps-2 mb-3 text-center text-secondary fw-bold">
-                                                                {{-- <i class="fa fa-line-chart me-2"></i> --}}
+                                                                class="mb-3 ps-2 text-secondary text-center widget__title widget__title--has-icon fw-bold">
+                                                                {{-- <i class="me-2 fa fa-line-chart"></i> --}}
                                                                 {{ $secondary->country_name ?? 'N/A' }} Data Analytics
                                                             </h3>
-                                                            <div class="widget__content text-center">
+                                                            <div class="text-center widget__content">
 
                                                                 <x-portal.cityanaytics :title="$secondary->country_name ?? 'N/A'"
                                                                     :code="$secondary->analytics_slug ?? 'country'" :isActive="$main->is_analytics_active" />
@@ -348,13 +348,13 @@
                                     <!-- MAIN : end -->
                                 </div>
                                 <div
-                                    class="columns__sidebar columns__sidebar--left lsvr-grid__col lsvr-grid__col--span-3 lsvr-grid__col--pull-6 left-section">
+                                    class="columns__sidebar--left left-section columns__sidebar lsvr-grid__col lsvr-grid__col--span-3 lsvr-grid__col--pull-6">
                                     <!-- LEFT SIDEBAR : begin -->
                                     <x-biletral-portal-aside :data="$primary" side="left" :main="$main" />
                                     <!-- LEFT SIDEBAR : end -->
                                 </div>
                                 <div
-                                    class="columns__sidebar columns__sidebar--right lsvr-grid__col lsvr-grid__col--span-3 right-section">
+                                    class="columns__sidebar--right right-section columns__sidebar lsvr-grid__col lsvr-grid__col--span-3">
                                     <x-biletral-portal-aside :data="$secondary" side="right" :main="$main" />
                                 </div>
                             </div>
@@ -367,12 +367,12 @@
                     </style>
 
                     <footer class="portal-footer">
-                        <div class="container py-5">
+                        <div class="py-5 container">
                             <div class="row g-4">
                                 {{-- About Section --}}
-                                <div class="col-lg-5 col-md-6 pe-lg-5">
-                                    <h5 class="footer-title text-center">About Prarang</h5>
-                                    <p class="footer-text text-start text-white-50"
+                                <div class="pe-lg-5 col-lg-5 col-md-6">
+                                    <h5 class="text-center footer-title">About Prarang</h5>
+                                    <p class="text-white-50 text-start footer-text"
                                         style="width: 100%; font-size: 12px;">
                                         Prarang provides integrated digital solutions and unique insights to understand
                                         the
@@ -388,9 +388,9 @@
                                 </div>
 
                                 {{-- Social Connect --}}
-                                <div class="col-lg-3 col-md-6 text-center">
+                                <div class="text-center col-lg-3 col-md-6">
                                     <h5 class="footer-title">Connect With Us</h5>
-                                    <div class="social-grid justify-content-center mt-3">
+                                    <div class="justify-content-center social-grid mt-3">
                                         <a href="javascript:void(0)" onclick="showComingSoon(event)"
                                             class="social-btn" title="Facebook">
                                             <i class="fa fa-facebook"></i>
@@ -414,20 +414,20 @@
 
                                 {{-- Address Section --}}
                                 <div class="col-lg-4 col-md-12">
-                                    <h5 class="footer-title text-center text-md-center text-lg-start">Contact Us</h5>
-                                    <ul class="list-unstyled footer-text text-white-50 text-start text-md-center text-lg-start"
+                                    <h5 class="text-md-center text-lg-start text-center footer-title">Contact Us</h5>
+                                    <ul class="text-md-center text-white-50 text-lg-start text-start list-unstyled footer-text"
                                         style="width: 100%">
                                         <li class="mb-2">
-                                            <i class="fa fa-map-marker me-2 text-primary"></i>
+                                            <i class="me-2 text-primary fa fa-map-marker"></i>
                                             Office #25, 11th Floor, The I-Thum, A40, Sector 62<br>
                                             Noida (U.P), India 201309
                                         </li>
                                         <li class="mb-2">
-                                            <i class="fa fa-phone me-2 text-primary"></i>
+                                            <i class="me-2 text-primary fa fa-phone"></i>
                                             +91-1204561284
                                         </li>
                                         <li>
-                                            <i class="fa fa-envelope me-2 text-primary"></i>
+                                            <i class="me-2 text-primary fa fa-envelope"></i>
                                             <a href="mailto:ask_me@prarang.in"
                                                 class="text-white-50 text-decoration-none hover-white">
                                                 ask_me@prarang.in
@@ -440,12 +440,12 @@
 
                         {{-- Bottom Copyright --}}
                         <div class="footer-bottom">
-                            <div class="container text-center">
+                            <div class="text-center container">
                                 <p class="mb-0 text-white-50 small">
                                     © 2017 - {{ date('Y') }} Indoeuropeans India Pvt. Ltd. | All
                                     rights reserved.
                                 </p>
-                                <p class="mb-0 text-white-50 x-small mt-1 opacity-50">
+                                <p class="opacity-50 mt-1 mb-0 text-white-50 x-small">
                                     Content protected by international copyright laws.
                                 </p>
                             </div>
@@ -565,12 +565,12 @@
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content" style="border-radius: 15px; overflow: hidden;">
                                         <div class="modal-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
-                                            <h5 class="modal-title text-white fw-bold">
-                                                <i class="fa fa-clock-o me-2"></i>Coming Soon
+                                            <h5 class="text-white modal-title fw-bold">
+                                                <i class="me-2 fa fa-clock-o"></i>Coming Soon
                                             </h5>
                                             <button type="button" class="btn-close btn-close-white" onclick="closeComingSoon()"></button>
                                         </div>
-                                        <div class="modal-body text-center p-5">
+                                        <div class="p-5 text-center modal-body">
                                             <p class="text-muted" style="font-size: 1.1rem;">
                                                 Coming Soon...
                                             </p>
