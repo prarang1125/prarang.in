@@ -9,7 +9,6 @@ $metaData = [
 ];
 
 
-
 $language = [
 ['name'=>'Bengali','slug'=>'bengali'],
 ['name'=>'Marathi','slug'=>'marathi'],
@@ -26,802 +25,386 @@ $language = [
 
 $liveCity=[
 ['name'=>'Lucknow','slug'=>'lucknow'],
-['name'=>'Meerut','slug'=>'meerut'],
+[
+    'name' => 'Meerut',
+    'slug' => 'meerut',
+    'subUrl' => [
+        [
+            'name' => 'Prarang Domain',
+            'url'  => 'https://prarang.in/meerut',
+        ],
+        [
+            'name' => 'Hindi Domain',
+            'url'  => 'https://meerutrang.in',
+        ],
+    ],
+],
+
 ['name'=>'Rampur','slug'=>'rampur'],
 ['name'=>'Jaunpur','slug'=>'jaunpur'],
 ['name'=>'Shahjahanpur','slug'=>'shahjahanpur'],
 ];
 @endphp
-
 <style>
-    :root {
-        --ink: #1e2a4a;
-        --brand: #0d6efd;
-        --brand-dark: #1d4ed8;
-        --flash-color: rgba(13, 110, 253, 0.35);
+    /* Only kept what Tailwind utilities truly can't express */
+    @keyframes shimmer-sweep {
+        0% { left: -150%; }
+        35% { left: 150%; }
+        100% { left: 150%; }
     }
-
-    .top-card-section {
-        padding: 8px 0;
-    }
-
-    /* ============ RIPPLE / FLASH EFFECT ============ */
-    /* Applied to any element with .ripple-btn */
-    .ripple-btn {
-        position: relative;
-        overflow: hidden;
-        -webkit-tap-highlight-color: transparent;
-    }
-
-    .ripple-span {
-        position: absolute;
-        border-radius: 50%;
-        transform: scale(0);
-        background: var(--flash-color);
-        pointer-events: none;
-        animation: ripple-grow 600ms ease-out forwards;
-    }
-
-    @keyframes ripple-grow {
-        to {
-            transform: scale(2.6);
-            opacity: 0;
-        }
-    }
-
-    /* quick full-surface flash on top of the ripple */
-    .flash-overlay {
+    .shimmer::after {
+        content: '';
         position: absolute;
         inset: 0;
-        background: #fff;
-        opacity: 0;
-        pointer-events: none;
-        border-radius: inherit;
-    }
-
-    .flash-overlay.flash-active {
-        animation: flash-pulse 350ms ease-out;
-    }
-
-    @keyframes flash-pulse {
-        0% {
-            opacity: .55;
-        }
-
-        100% {
-            opacity: 0;
-        }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-
-        .ripple-span,
-        .flash-overlay.flash-active {
-            animation: none !important;
-            display: none !important;
-        }
-    }
-
-    /* ============ TOP CARDS ============ */
-    .custom-card {
-        position: relative;
-        border-radius: 24px;
-        padding: 24px 20px;
-        text-align: center;
-        background: rgba(255, 255, 255, 0.9);
-        backdrop-filter: blur(10px);
-        overflow: hidden;
-        transition: transform .3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow .3s cubic-bezier(0.4, 0, 0.2, 1), border-color .3s ease;
-        box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.08), 0 1px 3px rgba(0, 0, 0, 0.02);
-        height: 100%;
-        border: 1px solid rgba(13, 110, 253, 0.06);
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    .custom-card:hover {
-        transform: translateY(-8px);
-        box-shadow: 0 20px 40px -15px rgba(13, 110, 253, 0.25), 0 0 15px 2px rgba(13, 110, 253, 0.1);
-        border-color: rgba(13, 110, 253, 0.35);
-    }
-
-    .custom-card:active {
-        transform: translateY(-2px) scale(.99);
-    }
-
-    /* Continuous shiny sweeping flash/shimmer effect on selected button inside cards */
-    .card-inner-btn {
-        position: relative;
-        overflow: hidden;
-        display: inline-flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 8px 16px;
-    }
-
-    .card-inner-btn::after {
-        content: '';
-        position: absolute;
-        top: 0;
         left: -150%;
         width: 100%;
-        height: 100%;
-        background: linear-gradient(90deg,
-                transparent,
-                rgba(255, 255, 255, 0.4),
-                rgba(255, 255, 255, 0.7),
-                rgba(255, 255, 255, 0.4),
-                transparent);
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
         transform: skewX(-25deg);
-        animation: continuous-shimmer 3.5s infinite ease-in-out;
+        animation: shimmer-sweep 3.5s ease-in-out infinite;
+        pointer-events: none;
     }
-
-    @keyframes continuous-shimmer {
-        0% {
-            left: -150%;
-        }
-
-        35% {
-            left: 150%;
-        }
-
-        100% {
-            left: 150%;
-        }
+    @media (prefers-reduced-motion: reduce) {
+        .shimmer::after { animation: none; display: none; }
     }
-
-    /* Accents & Color Bars */
-    .top-color-bar,
-    .bottom-color-bar {
-        display: flex;
-        height: 4px;
-        width: 100%;
-        border-radius: 2px;
-        overflow: hidden;
-    }
-
-    .top-color-bar {
-        margin-bottom: 18px;
-    }
-
-    .bottom-color-bar {
-        margin-top: 18px;
-    }
-
-    .top-color-bar span,
-    .bottom-color-bar span {
-        flex: 1;
-        height: 100%;
-    }
-
-    .bar-blue {
-        background: blue;
-    }
-
-    .bar-yellow {
-        background: yellow;
-    }
-
-    .bar-red {
-        background: red;
-    }
-
-    .bar-light-yellow {
-        background: yellow;
-    }
-
-    .bar-lime {
-        background: #bef264;
-    }
-
-    .bar-green {
-        background: #22c55e;
-    }
-
-    /* Icon */
-    .icon-circle {
-        width: 60px;
-        height: 60px;
-        margin: 0 auto 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #f8fafc;
-        border-radius: 50%;
-        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        border: 1px solid rgba(13, 110, 253, 0.05);
-    }
-
-    .custom-card:hover .icon-circle {
-        transform: scale(1.1) rotate(4deg);
-        background: rgba(13, 110, 253, 0.06);
-        border-color: rgba(13, 110, 253, 0.15);
-    }
-
-    .icon-circle img {
-        width: 36px;
-        height: 36px;
-        object-fit: contain;
-        transition: transform 0.3s ease;
-    }
-
-    .custom-card:hover .icon-circle img {
-        transform: scale(1.05);
-    }
-
-    .card-title-small {
-        font-size: 18px;
-        letter-spacing: 0.5px;
-        font-weight: 700;
-        text-transform: uppercase;
-        margin-bottom: 2px;
-    }
-
-    .card-number {
-        font-size: 16px;
-        font-weight: 600;
-        color: #475569;
-    }
-
-    .card-body-wrapper {
-        width: 100%;
-        position: relative;
-    }
-
-    /* User Requested Styles */
-    /* Top color bar */
-    .top-card-section .d-block .top-color-bar {
-        height: 30px;
-        margin-bottom: 0px;
-    }
-
-    /* Bar yellow */
-    .top-card-section .d-block .bar-yellow {
-        background-color: #effb12;
-    }
-
-    /* Bottom color bar */
-    .top-card-section .d-block .bottom-color-bar {
-        height: 30px;
-        margin-top: 0px;
-    }
-
-    /* Custom card */
-    .top-card-section .d-block .custom-card {
-        padding-top: 0px;
-        padding-bottom: 0px;
-        height: 259px;
-        border-radius: 32px;
-    }
-
-    .top-card-section .d-block .card-body-wrapper {
-        height: 136px;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-    }
-
-    /* Dropdown */
-    .dropdown-icon {
-        font-size: 20px;
-        display: inline-flex;
-        align-items: center;
-        transition: transform .25s ease;
-    }
-
-    .dropdown-icon.rotate {
-        transform: rotate(180deg);
-    }
-
-    .dropdownss {
-        position: relative;
-        display: inline-block;
-        width: 100%;
-    }
-
-    .dropdown-content {
-        display: none;
-        position: absolute;
-        left: 0;
-        right: 0;
-        top: calc(100% + 6px);
-        background-color: #fff;
-        min-width: 180px;
-        border-radius: 12px;
-        overflow: hidden;
-        box-shadow: 0 10px 26px rgba(0, 0, 0, 0.16);
-        z-index: 99;
-    }
-
-    .dropdown-content a {
-        color: #222;
-        padding: 10px 14px;
-        text-decoration: none;
-        display: block;
-        transition: background .2s ease;
-        text-align: left;
-    }
-
-    .dropdown-content a:hover {
-        background-color: #eef4ff;
-        color: var(--brand-dark);
-    }
-
-    .show {
-        display: block;
-    }
-
-    /* ============ ANALYTICS BUTTONS ============ */
-    .analytics-card {
-        position: relative;
-        border-radius: 14px;
-        text-align: center;
-        color: var(--brand);
-        font-size: 17px;
-        font-weight: 600;
-        text-decoration: none !important;
-        padding: 14px 18px;
-        background: #ffffff;
-        border: 1.5px solid rgba(13, 110, 253, 0.18);
-        box-shadow: 0 3px 10px rgba(13, 110, 253, 0.06);
-        transition: transform .2s ease, box-shadow .2s ease, background .2s ease, color .2s ease;
-        cursor: pointer;
-    }
-
-    .analytics-card:hover {
-        background: var(--brand);
-        color: #fff;
-        transform: translateY(-3px);
-        box-shadow: 0 10px 22px rgba(13, 110, 253, 0.25);
-    }
-
-    .analytics-card:active {
-        transform: translateY(-1px) scale(.98);
-    }
-
-    .blue {
-        background: #0d6efd;
-    }
-
-    .yellow {
-        background: yellow;
-    }
-
-    .red {
-        background: rgb(220 38 38);
-    }
-
-    /* ============ LANGUAGE / CITY CHIPS ============ */
-    .hoverbox {
-        display: inline-block;
-        padding: 12px 16px;
-        margin-bottom: 5px;
-        border-radius: 10px;
-        transition: all 0.3s ease;
-    }
-
-    .hoverbox:hover {
-        background: rgba(13, 110, 253, 0.08);
-    }
-
-    .lang-chip {
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        text-decoration: none !important;
-        padding: 10px 14px;
-        border-radius: 999px;
-        font-size: 14px;
-        font-weight: 500;
-        color: #1e2a4a;
-        background: #f4f6fb;
-        border: 1px solid transparent;
-        transition: transform .18s ease, box-shadow .18s ease, background .18s ease, border-color .18s ease, color .18s ease;
-    }
-
-    .lang-chip:hover {
-        transform: translateY(-3px);
-        background: #ffffff;
-        border-color: rgba(13, 110, 253, 0.35);
-        color: var(--brand-dark);
-        box-shadow: 0 8px 18px rgba(13, 110, 253, 0.14);
-    }
-
-    .lang-chip:active {
-        transform: translateY(-1px) scale(.97);
-    }
-
-    .city-chip {
-        position: relative;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        text-decoration: none !important;
-        padding: 8px 16px;
-        border-radius: 999px;
-        font-size: 14px;
-        font-weight: 600;
-        color: #fff;
-        background: linear-gradient(135deg, var(--brand), var(--brand-dark));
-        box-shadow: 0 4px 12px rgba(13, 110, 253, 0.25);
-        transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
-        margin-right: 4px;
-    }
-
-    .city-chip:hover {
-        transform: translateY(-2px);
-        filter: brightness(1.08);
-        box-shadow: 0 8px 18px rgba(13, 110, 253, 0.32);
-    }
-
-    .city-chip:active {
-        transform: translateY(0) scale(.97);
-    }
-
-    .anchorshadow:hover {
-        background: rgba(0, 0, 0, 0.06);
-        border-radius: 10px;
-        transition: all 0.3s ease;
-    }
-
-    @media (max-width: 576px) {
-        .anchorshadow {
-            font-size: 14px;
-        }
-
-        .gapsm {
-            gap: 1rem !important;
-        }
-    }
-
-    /* Custom card */
-    .top-card-section .d-block .custom-card {
-        height: 189px;
-        width: 332px;
-        padding-right: 0px;
-        padding-left: 0px;
-        border-top-left-radius: 0px;
-        border-top-right-radius: 0px;
-        border-bottom-left-radius: 0px;
-        border-bottom-right-radius: 0px;
-        transform: translatex(0px) translatey(0px);
-    }
-
-    /* Image */
-    .top-card-section .d-block img {
-        width: 50px;
-        height: 50px;
-    }
-
-    /* Link */
-    .top-card-section a {
-        display: flex !important;
-        justify-content: center;
-    }
-
-    /* Live Blinking Indicator */
-    .live-blink {
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        background: #e8e5e5;
-        color: #045f04;
-        font-size: 11px;
-        font-weight: 700;
-        text-transform: uppercase;
-        padding: 3px 10px;
-        border-radius: 9999px;
-        letter-spacing: 0.5px;
-        margin-left: 8px;
-        animation: pulse-live-indicator 1.2s infinite alternate;
-        box-shadow: 0 0 8px rgba(220, 38, 38, 0.2);
-    }
-
-    .live-blink::before {
-        content: '';
-        display: inline-block;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background-color: #024802;
-        animation: pulse-dot 1.2s infinite;
-    }
-
-    @keyframes pulse-live-indicator {
-        0% {
-            opacity: 0.85;
-            box-shadow: 0 0 4px rgba(220, 38, 38, 0.15);
-        }
-
-        100% {
-            opacity: 1;
-            box-shadow: 0 0 12px rgba(220, 38, 38, 0.4);
-        }
-    }
-
-    @keyframes pulse-dot {
-
-        0%,
-        100% {
-            transform: scale(0.9);
-        }
-
-        50% {
-            transform: scale(1.3);
-        }
-    }
-
-    /* Card title small */
-    .top-card-section .d-block .card-title-small {
-        font-size: 14px;
-    }
-
-    /* Card inner */
-    .top-card-section .d-block .card-inner-btn {
-        height: 52px;
-        transform: translatex(0px) translatey(0px);
-        padding-bottom: 0px;
-        background-color: rgba(250, 245, 122, 0.58);
-        padding-left: 3px;
-        padding-right: 4px;
-    }
-
-    /* Card number */
-    .top-card-section .d-block .card-number {
-        position: relative;
-        top: -5px;
-        font-size: 14px;
-    }
-
-    /* Card inner */
-    .justify-content-center .col-md-6:nth-child(3) .card-inner-btn {
-        width: 208px !important;
-    }
-
-    /* Card inner */
-    .container section .top-card-section .justify-content-center .col-md-6 .d-block .custom-card .card-body-wrapper .card-inner-btn {
-        width: 51% !important;
-    }
-
-    /* Link */
-    .md\:items-start .md\:justify-start a {
-        width: 120px;
-    }
-
-    /* Division */
-    .container section .justify-center .md\:flex-row {
-        padding-top: 15px !important;
-    }
-
-    /* Shadow */
-    .container section .shadow-xl {
-        box-shadow: 0px 0px 50px 34px rgba(0, 0, 0, 0.59);
-    }
+    /* Shimmer */
+.container .py-6 .shimmer{
+ text-decoration:none;
+ background-color:rgba(235,243,88,0.45);
+ width:207px;
+ border-color:#c2db04;
+ border-width:1px;
+ padding-right:7px !important;
+ padding-left:13px !important;
+}
+
+/* Tracking wide */
+.container .py-6 .tracking-wide{
+ text-decoration:none;
+}
+
+/* Span Tag */
+.container .grid span{
+ height:30px;
+ border-top-left-radius:0px;
+}
+
+/* Division */
+.container .py-6 .md\:items-start{
+ flex-direction:column;
+ justify-content:center;
+ align-items:center;
+ border-right-width:3px;
+}
+
+/* Division */
+.md\:flex-row .md\:items-start .md\:justify-start{
+ justify-content:center;
+ align-items:center;
+}
+
+/* Hover */
+.md\:items-start .md\:justify-start .hover\:shadow-lg{
+ width:123px;
+ text-align:center;
+ text-decoration:none;
+}
+
+/* Hover */
+.container .py-6 a.hover\:text-white{
+ padding-top:3px !important;
+ padding-bottom:3px !important;
+ min-height:56px;
+ display:flex;
+ justify-content:center;
+ align-items:center;
+ text-decoration:none;
+ border-color:rgba(15,74,153,0.49) !important;
+}
+
+/* Hover */
+.items-stretch .relative .hover\:text-white{
+ padding-top:1px !important;
+ padding-bottom:6px !important;
+}
+
+/* Hover (hover) */
+.container .py-6 a.hover\:text-white:hover{
+ color:#0940b8;
+}
+
+/* Items center */
+.hover\:shadow-xl > .items-center{
+ padding-top:16px;
+ padding-bottom:8px;
+}
+
+/* Column 2/12 */
+.container .grid a{
+ border-top-left-radius:2px;
+ border-top-right-radius:0px;
+ border-bottom-left-radius:0px;
+ border-bottom-right-radius:0px;
+ height:184px;
+}
+
+/* Image */
+.container .py-6 .mx-auto .grid .hover\:shadow-xl .items-center .justify-center img{
+ width:110px !important;
+}
+
+@media (max-width:576px){
+
+ /* Division */
+ .container .py-6 .md\:items-start{
+  border-bottom-width:2px;
+  padding-bottom:10px;
+  border-right-style:none;
+ }
+ 
+}
+@media (max-width:576px){
+
+ /* Section */
+ .container > .py-6{
+  padding-top:0px;
+  transform:translatex(0px) translatey(0px);
+  position:relative;
+  top:-41px;
+ }
+ 
+ /* Flex */
+ .navbar .d-flex{
+  height:67px;
+ }
+ 
+ /* Grid */
+ .container .py-6 .mx-auto .grid{
+  grid-template-columns:1fr 1fr !important;
+  grid-template-rows:1fr 1fr !important;
+ }
+ 
+ /* Grid */
+ .container .py-6 .grid{
+  align-content:center;
+  justify-content:center;
+  transform:translatex(0px) translatey(0px);
+ }
+ 
+ /* Shimmer */
+ .container .py-6 .shimmer{
+  width:128px;
+  font-size:10px;
+ }
+ 
+ /* Tracking wide */
+ .container .py-6 .tracking-wide{
+  font-size:10px;
+ }
+ 
+ /* Link */
+ .container .grid a{
+  height:178px;
+ }
+ 
+}
 </style>
 
 <x-layout.main.base :metaData="$metaData">
 
-    <section class=" bg-gray-50" x-data="{ showModal: false }">
+    <section class="bg-gray-50 py-6" x-data="{ showModal: false }">
 
         <!-- TOP CARDS -->
-        <div class="container top-card-section">
-            <div class="row justify-content-center g-4">
+        <div class="mx-auto px-4 max-w-6xl">
+            <div class="gap-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
 
                 <!-- Villages -->
-                <div class="col-md-6 col-lg-4">
-                    <a href="{{ url('webs/filter/villages') }}" class="text-decoration-none d-block h-100">
-                        <div class="custom-card ripple-btn">
-                            <div class="flash-overlay"></div>
+                <a href="{{ url('webs/filter/villages') }}"
+                   class="group block bg-white shadow-md hover:shadow-xl border border-blue-100 hover:border-blue-300 rounded-3xl overflow-hidden transition hover:-translate-y-1 duration-300">
+                    <div class="flex h-2">
+                        <span class="flex-1 bg-blue-600"></span>
+                        <span class="flex-1 bg-yellow-300"></span>
+                        <span class="flex-1 bg-red-600"></span>
+                    </div>
 
-                            <div class="top-color-bar">
-                                <span class="bar-blue"></span>
-                                <span class="bar-yellow"></span>
-                                <span class="bar-red"></span>
-                            </div>
-
-                            <div class="card-body-wrapper">
-                                <div class="icon-circle">
-                                    <img loading="lazy" src="{{ asset('assets/images/Villages1.png') }}" alt="Villages">
-                                </div>
-                                <div class="border-blue-200 border-2 rounded-full w-50 card-inner-btn">
-                                    <div class="card-title-small" style="color: rgb(29 78 215);">
-                                        Villages
-                                    </div>
-                                    <div class="card-number">
-                                        592,765
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bottom-color-bar">
-                                <span class="bar-light-yellow"></span>
-                                <span class="bar-lime"></span>
-                                <span class="bar-green"></span>
-                            </div>
+                    <div class="flex flex-col items-center gap-2 px-4 py-6">
+                        <div class="flex justify-center items-center bg-slate-50 group-hover:bg-blue-50 rounded-full w-14 h-14 transition">
+                            <img loading="lazy" src="{{ asset('assets/images/Villages1.png') }}" alt="Villages" class="w-9 h-9 object-contain">
                         </div>
-                    </a>
-                </div>
+                        <div class="relative bg-yellow-100/60 shadow-sm px-4 py-2 rounded-full overflow-hidden shimmer">
+                            <div class="font-bold text-blue-700 text-sm text-center uppercase tracking-wide">Villages</div>
+                            <div class="font-semibold text-slate-600 text-sm text-center">592,765</div>
+                        </div>
+                    </div>
+
+                    <div class="flex h-2">
+                        <span class="flex-1 bg-yellow-200"></span>
+                        <span class="flex-1 bg-lime-400"></span>
+                        <span class="flex-1 bg-green-500"></span>
+                    </div>
+                </a>
 
                 <!-- Cities -->
-                <div class="col-md-6 col-lg-4">
-                    <a href="{{ url('webs/filter/cities') }}" class="text-decoration-none d-block h-100">
-                        <div class="custom-card ripple-btn">
-                            <div class="flash-overlay"></div>
+                <a href="{{ url('webs/filter/cities') }}"
+                   class="group block bg-white shadow-md hover:shadow-xl border border-blue-100 hover:border-blue-300 rounded-3xl overflow-hidden transition hover:-translate-y-1 duration-300">
+                    <div class="flex h-2">
+                        <span class="flex-1 bg-blue-600"></span>
+                        <span class="flex-1 bg-yellow-300"></span>
+                        <span class="flex-1 bg-red-600"></span>
+                    </div>
 
-                            <div class="top-color-bar">
-                                <span class="bar-blue"></span>
-                                <span class="bar-yellow"></span>
-                                <span class="bar-red"></span>
-                            </div>
-
-                            <div class="card-body-wrapper">
-                                <div class="icon-circle">
-                                    <img loading="lazy" src="{{ asset('assets/images/town1.png') }}" alt="Cities">
-                                </div>
-                                <div class="border-blue-200 border-2 rounded-full w-50 card-inner-btn">
-                                    <div class="card-title-small" style="color: rgb(29 78 215);">
-                                        Cities
-                                    </div>
-                                    <div class="card-number">
-                                        6,331
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bottom-color-bar">
-                                <span class="bar-light-yellow"></span>
-                                <span class="bar-lime"></span>
-                                <span class="bar-green"></span>
-                            </div>
+                    <div class="flex flex-col items-center gap-2 px-4 py-6">
+                        <div class="flex justify-center items-center bg-slate-50 group-hover:bg-blue-50 rounded-full w-14 h-14 transition">
+                            <img loading="lazy" src="{{ asset('assets/images/town1.png') }}" alt="Cities" class="w-9 h-9 object-contain">
                         </div>
-                    </a>
-                </div>
+                        <div class="relative bg-yellow-100/60 shadow-sm px-4 py-2 rounded-full overflow-hidden shimmer">
+                            <div class="font-bold text-blue-700 text-sm text-center uppercase tracking-wide">Cities</div>
+                            <div class="font-semibold text-slate-600 text-sm text-center">6,331</div>
+                        </div>
+                    </div>
+
+                    <div class="flex h-2">
+                        <span class="flex-1 bg-yellow-200"></span>
+                        <span class="flex-1 bg-lime-400"></span>
+                        <span class="flex-1 bg-green-500"></span>
+                    </div>
+                </a>
 
                 <!-- World -->
-                <div class="col-md-6 col-lg-4">
-                    <a href="{{ url('/country-webs-filter') }}" class="text-decoration-none d-block h-100">
-                        <div class="custom-card ripple-btn">
-                            <div class="flash-overlay"></div>
+                <a href="{{ url('/country-webs-filter') }}"
+                   class="group block sm:col-span-2 lg:col-span-1 bg-white shadow-md hover:shadow-xl border border-blue-100 hover:border-blue-300 rounded-3xl overflow-hidden transition hover:-translate-y-1 duration-300">
+                    <div class="flex h-2">
+                        <span class="flex-1 bg-blue-600"></span>
+                        <span class="flex-1 bg-yellow-300"></span>
+                        <span class="flex-1 bg-red-600"></span>
+                    </div>
 
-                            <div class="top-color-bar">
-                                <span class="bar-blue"></span>
-                                <span class="bar-yellow"></span>
-                                <span class="bar-red"></span>
-                            </div>
-
-                            <div class="card-body-wrapper">
-                                <div class="icon-circle">
-                                    <img loading="lazy" src="{{ asset('assets/images/World.png') }}"
-                                        alt="World Bilateral">
-                                </div>
-                                <div class="border-blue-200 border-2 rounded-full w-75 card-inner-btn">
-                                    <div class="card-title-small" style="color: rgb(29 78 215);">
-                                        World-Bilateral
-                                    </div>
-                                    <div class="card-number">
-                                        194
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bottom-color-bar">
-                                <span class="bar-light-yellow"></span>
-                                <span class="bar-lime"></span>
-                                <span class="bar-green"></span>
-                            </div>
+                    <div class="flex flex-col items-center gap-2 px-4 py-6">
+                        <div class="flex justify-center items-center bg-slate-50 group-hover:bg-blue-50 rounded-full w-14 h-14 transition">
+                            <img loading="lazy" src="{{ asset('assets/images/World.png') }}" alt="World Bilateral" class="w-9 h-9 object-contain">
                         </div>
-                    </a>
-                </div>
+                        <div class="relative bg-yellow-100/60 shadow-sm px-5 py-2 rounded-full overflow-hidden shimmer">
+                            <div class="font-bold text-blue-700 text-sm text-center uppercase tracking-wide">World-Bilateral</div>
+                            <div class="font-semibold text-slate-600 text-sm text-center">194</div>
+                        </div>
+                    </div>
+
+                    <div class="flex h-2">
+                        <span class="flex-1 bg-yellow-200"></span>
+                        <span class="flex-1 bg-lime-400"></span>
+                        <span class="flex-1 bg-green-500"></span>
+                    </div>
+                </a>
 
             </div>
         </div>
 
         <!-- LANGUAGE BUTTONS -->
-        <div class="flex justify-center mt-4 px-3">
-            <div
-                class="w-full max-w-6xl bg-white rounded-2xl shadow-lg p-5 flex flex-col md:flex-row gap-6 items-start">
-                <div class="flex flex-col justify-start items-center md:items-start min-w-[220px] w-full md:w-auto">
-                    <div class="flex items-center text-sm font-bold text-gray-500 uppercase tracking-wider mb-3">
-                        Hindi <span class="live-blink">Live</span>
+        <div class="mx-auto mt-8 px-4 max-w-6xl">
+            <div class="flex md:flex-row flex-col gap-6 bg-white shadow-lg p-5 rounded-2xl">
+
+                <div class="flex flex-col items-center md:items-start w-full md:w-auto md:min-w-[220px]">
+                    <div class="flex items-center gap-2 mb-3 font-bold text-gray-500 text-sm uppercase tracking-wider">
+                        Hindi
+                        <span class="inline-flex items-center gap-1.5 bg-green-50 px-2 py-0.5 rounded-full font-bold text-[10px] text-green-700 uppercase">
+                            <span class="bg-green-600 rounded-full w-1.5 h-1.5 animate-pulse"></span>
+                            Live
+                        </span>
                     </div>
-                    <div class="flex flex-wrap gap-2 justify-center md:justify-start w-full">
+                    <div class="flex flex-wrap justify-center md:justify-start gap-2 w-full">
                         @foreach ($liveCity as $ct)
-                        <a href="/{{$ct['slug']}}" class="city-chip ripple-btn">
-                            <div class="flash-overlay"></div>
+                        @isset($ct['subUrl'])
+                        <div x-data="{ open: false }" @click.outside="open = false" class="relative">
+                            <button type="button" @click="open = !open"
+                                    class="bg-gradient-to-br from-blue-600 to-blue-800 shadow-md hover:shadow-lg px-4 py-2 rounded-full font-semibold text-white text-sm transition hover:-translate-y-0.5">
+                                {{ $ct['name'] }}
+                                <i class="text-sm transition-transform bi bi-chevron-down" :class="open && 'rotate-180'"></i>
+                            </button>
+                            <div x-show="open" x-transition x-cloak
+                                 class="top-[calc(100%+6px)] left-0 z-10 absolute bg-white shadow-xl rounded-xl w-full overflow-hidden">
+                                @foreach ($ct['subUrl'] as $sub)
+                                <a href="{{ $sub['url'] }}" target="_blank"
+                                   class="block hover:bg-blue-50 px-4 py-2.5 text-gray-700 hover:text-blue-700 text-sm text-left transition">
+                                    {{ $sub['name'] }}
+                                </a>
+                                @endforeach
+                            </div>
+                        </div>                         
+                      @else
+                        <a href="/{{ $ct['slug'] }}"
+                           class="bg-gradient-to-br from-blue-600 to-blue-800 shadow-md hover:shadow-lg px-4 py-2 rounded-full font-semibold text-white text-sm transition hover:-translate-y-0.5">
                             {{ $ct['name'] }}
                         </a>
+                          @endisset
                         @endforeach
-                        <a href="https://humsabek.in/" class="city-chip ripple-btn">
-                            <div class="flash-overlay"></div>
+                        <a href="https://humsabek.in/"
+                           class="bg-gradient-to-br from-blue-600 to-blue-800 shadow-md hover:shadow-lg px-4 py-2 rounded-full font-semibold text-white text-sm transition hover:-translate-y-0.5">
                             All
                         </a>
                     </div>
                 </div>
-                <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 w-full">
+
+                <div class="gap-2 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 w-full">
                     @foreach($language as $value)
-                    <a href="javascript:void(0)" @click="showModal = true" class="lang-chip ripple-btn">
-                        <div class="flash-overlay"></div>
+                    <button type="button" @click="showModal = true"
+                       class="bg-slate-100 hover:bg-white shadow-sm hover:shadow-md px-3 py-2 border border-transparent hover:border-blue-300 rounded-full font-medium text-slate-700 hover:text-blue-700 text-sm transition hover:-translate-y-0.5">
                         {{ $value['name'] }} Web
-                    </a>
+                    </button>
                     @endforeach
                 </div>
 
             </div>
         </div>
 
-        <!-- Modal -->
-        <div x-show="showModal" x-transition class="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
-            @click.self="showModal = false">
-
-            <div class="bg-white rounded-2xl p-6 w-80 text-center shadow-xl">
-                <h3 class="text-xl font-bold mb-2">
-                    Coming Soon
-                </h3>
-                <p class="text-gray-500 mb-4">
-                    India Stack Language Localization
-                </p>
+        <!-- MODAL -->
+        <div x-show="showModal" x-transition x-cloak
+             class="z-50 fixed inset-0 flex justify-center items-center bg-black/40 p-4"
+             @click.self="showModal = false">
+            <div class="bg-white shadow-2xl p-6 rounded-2xl w-full max-w-xs text-center">
+                <h3 class="mb-2 font-bold text-xl">Coming Soon</h3>
+                <p class="mb-4 text-gray-500">India Stack Language Localization</p>
                 <button @click="showModal = false"
-                    class="ripple-btn w-full py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">
-                    <div class="flash-overlay"></div>
+                        class="bg-blue-600 hover:bg-blue-700 py-2 rounded-lg w-full text-white transition">
                     Close
                 </button>
             </div>
         </div>
 
-        <!-- Analytics Heading -->
-        <div class="text-center mb-6 mt-12">
-            <h1 class="text-xl md:text-2xl font-bold text-gray-800">
-                Understanding India: Analytics
-            </h1>
+        <!-- ANALYTICS HEADING -->
+        <div class="mt-12 mb-6 text-center">
+            <h1 class="font-bold text-gray-800 text-xl md:text-2xl">Understanding India: Analytics</h1>
         </div>
 
         <!-- ANALYTICS -->
-        <div class="flex justify-center px-4">
-            <div class="flex flex-wrap justify-center gapsm items-center gap-5 sm:gap-3 w-full max-w-5xl">
+        <div class="mx-auto px-4 max-w-5xl">
+            <div class="flex flex-wrap justify-center items-stretch gap-4">
 
                 <a href="{{ url('/india-rural') }}"
-                    class="analytics-card ripple-btn anchorshadow flex-1 min-w-[140px] sm:min-w-[180px] lg:min-w-0 lg:flex-[1_1_22%] max-w-[240px]">
-                    <div class="flash-overlay"></div>
+                   class="flex-1 bg-white hover:bg-blue-600 shadow-sm hover:shadow-lg px-5 py-3 border border-blue-100 rounded-xl min-w-[140px] sm:min-w-[180px] max-w-[240px] font-semibold text-blue-600 hover:text-white text-center transition hover:-translate-y-1">
                     Rural
                 </a>
 
                 <a href="{{ url('/town-webs') }}"
-                    class="analytics-card ripple-btn anchorshadow flex-1 min-w-[140px] sm:min-w-[180px] lg:min-w-0 lg:flex-[1_1_22%] max-w-[240px]">
-                    <div class="flash-overlay"></div>
+                   class="flex-1 bg-white hover:bg-blue-600 shadow-sm hover:shadow-lg px-5 py-3 border border-blue-100 rounded-xl min-w-[140px] sm:min-w-[180px] max-w-[240px] font-semibold text-blue-600 hover:text-white text-center transition hover:-translate-y-1">
                     Urban
                 </a>
 
                 <a href="{{ url('/city-webs') }}"
-                    class="analytics-card ripple-btn anchorshadow flex-1 min-w-[140px] sm:min-w-[180px] lg:min-w-0 lg:flex-[1_1_22%] max-w-[240px]">
-                    <div class="flash-overlay"></div>
+                   class="flex-1 bg-white hover:bg-blue-600 shadow-sm hover:shadow-lg px-5 py-3 border border-blue-100 rounded-xl min-w-[140px] sm:min-w-[180px] max-w-[240px] font-semibold text-blue-600 hover:text-white text-center transition hover:-translate-y-1">
                     Districts
                 </a>
 
-                <div class="flex-1 min-w-[140px] sm:min-w-[180px] lg:min-w-0 lg:flex-[1_1_22%] max-w-[240px]">
-                    <div class="dropdownss w-full">
-                        <button type="button"
-                            class="city-tab dropbtn ripple-btn whitespace-nowrap analytics-card anchorshadow w-full">
-                            <div class="flash-overlay"></div>
-                            Language Distribution
-                            <span id="dropdownIcon" class="dropdown-icon">
-                                <i class="bi bi-chevron-down"></i>
-                            </span>
-                        </button>
+                <div class="relative flex-1 min-w-[140px] sm:min-w-[180px] max-w-[240px]"
+                     x-data="{ open: false }" @click.outside="open = false">
+                    <button type="button" @click="open = !open"
+                            class="flex justify-center items-center gap-1 bg-white hover:bg-blue-600 shadow-sm hover:shadow-lg px-5 py-3 border border-blue-100 rounded-xl w-full font-semibold text-blue-600 hover:text-white transition hover:-translate-y-1">
+                        Language Distribution
+                        <i class="text-sm transition-transform bi bi-chevron-down" :class="open && 'rotate-180'"></i>
+                    </button>
 
-                        <div id="myDropdown" class="dropdown-content">
-                            <a href="/town-webs-in" target="_blank">
-                                Cities
-                            </a>
-                            <a href="/village-webs" target="_blank">
-                                Villages
-                            </a>
-                        </div>
+                    <div x-show="open" x-transition x-cloak
+                         class="top-[calc(100%+6px)] left-0 z-10 absolute bg-white shadow-xl rounded-xl w-full overflow-hidden">
+                        <a href="/town-webs-in" target="_blank" class="block hover:bg-blue-50 px-4 py-2.5 text-gray-700 hover:text-blue-700 text-sm text-left transition">Cities</a>
+                        <a href="/village-webs" target="_blank" class="block hover:bg-blue-50 px-4 py-2.5 text-gray-700 hover:text-blue-700 text-sm text-left transition">Villages</a>
                     </div>
                 </div>
 
@@ -829,92 +412,7 @@ $liveCity=[
         </div>
 
     </section>
-    <style>
-        /* Analytics card (hover) */
-        .container .gapsm a.analytics-card:hover {
-            color: #000000;
-        }
-
-        /* Division */
-        .container section .md\:items-start {
-            justify-content: center;
-            align-items: center;
-            padding-top: 19px;
-            padding-bottom: 17px;
-            border-right-width: 4px;
-        }
-
-        /* Division */
-        .md\:flex-row .md\:items-start .md\:justify-start {
-            justify-content: center;
-            align-items: center;
-            transform: translatex(0px) translatey(0px);
-        }
-
-        /* Division */
-        .container section .md\:flex-row {
-            padding-top: 8px !important;
-            padding-bottom: 10px !important;
-        }
-
-        /* City tab */
-        .gapsm .dropdownss .city-tab {
-            width: 106%;
-        }
-
-        /* City tab (hover) */
-        .gapsm .dropdownss .city-tab:hover {
-            color: #000000;
-        }
-    </style>
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-
-            const dropbtn = document.querySelector('.dropbtn');
-            const dropdownMenu = document.getElementById('myDropdown');
-            const dropdownIcon = document.getElementById('dropdownIcon');
-
-            if (dropbtn) {
-                dropbtn.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    dropdownMenu.classList.toggle('show');
-                    dropdownIcon.classList.toggle('rotate');
-                });
-
-                window.addEventListener('click', function(event) {
-                    if (!event.target.closest('.dropdownss')) {
-                        dropdownMenu.classList.remove('show');
-                        dropdownIcon.classList.remove('rotate');
-                    }
-                });
-            }
-
-            // ============ RIPPLE + FLASH CLICK EFFECT ============
-            document.querySelectorAll('.ripple-btn').forEach(function(el) {
-                el.addEventListener('click', function(e) {
-                    const rect = el.getBoundingClientRect();
-
-                    // ripple circle positioned at click point
-                    const ripple = document.createElement('span');
-                    ripple.className = 'ripple-span';
-                    const size = Math.max(rect.width, rect.height);
-                    ripple.style.width = ripple.style.height = size + 'px';
-                    ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
-                    ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
-                    el.appendChild(ripple);
-                    ripple.addEventListener('animationend', () => ripple.remove());
-
-                    // quick full-surface flash
-                    const flash = el.querySelector('.flash-overlay');
-                    if (flash) {
-                        flash.classList.remove('flash-active');
-                        // force reflow so the animation can restart on rapid clicks
-                        void flash.offsetWidth;
-                        flash.classList.add('flash-active');
-                    }
-                });
-            });
-        });
-    </script>
 
 </x-layout.main.base>
+
+

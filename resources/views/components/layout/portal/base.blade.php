@@ -31,31 +31,31 @@
     {!! $portal->header_scripts ?? '' !!}
 </head>
 
-<body class="bg-no-repeat bg-fixed bg-cover bg-center"
+<body class="bg-cover bg-no-repeat bg-center bg-fixed"
     style="background-image: linear-gradient(to top, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.8) 100%)">
-    <header class="px-5 py-4 ">
-        <div class="flex flex-col lg:flex-row items-center justify-between gap-4">
+    <header class="px-5 py-4">
+        <div class="flex lg:flex-row flex-col justify-between items-center gap-4">
             <!-- Logo Section -->
             <div class="flex flex-col items-center">
-                <img src="https://i.ibb.co/6c4JQSpJ/Prarang-logox.png" alt="Prarang Logo" class="h-[130px] w-[130px]">
+                <img src="https://i.ibb.co/6c4JQSpJ/Prarang-logox.png" alt="Prarang Logo" class="w-[130px] h-[130px]">
             </div>
             <!-- Time Box -->
             <div
-                class="hidden md:flex flex-col items-center justify-center bg-black text-white p-3 rounded-md border border-gray-700 w-48 shadow-lg">
-                <div class="text-sm font-medium mb-1">{{ $portal->city_name_local ?? 'मेरठ' }} का समय</div>
+                class="hidden md:flex flex-col justify-center items-center bg-black shadow-lg p-3 border border-gray-700 rounded-md w-48 text-white">
+                <div class="mb-1 font-medium text-sm">{{ $portal->city_name_local ?? 'मेरठ' }} का समय</div>
                 <div class="flex items-center gap-2 mb-1">
-                    <i class="fa fa-clock-o text-white"></i>
-                    <span class="text-lg font-bold" id="current-time">--:--:-- --</span>
+                    <i class="text-white fa fa-clock-o"></i>
+                    <span class="font-bold text-lg" id="current-time">--:--:-- --</span>
                 </div>
-                <div class="flex items-center gap-2 text-[10px] opacity-80">
-                    <i class="fa fa-calendar text-white text-[10px]"></i>
+                <div class="flex items-center gap-2 opacity-80 text-[10px]">
+                    <i class="text-[10px] text-white fa fa-calendar"></i>
                     <span>{{ now()->translatedFormat('l, d F Y') }}</span>
                 </div>
             </div>
 
             <!-- Title Box -->
 
-            <div class="flex-grow flex items-center justify-center gap-3">
+            <div class="flex flex-grow justify-center items-center gap-3">
                 @if($isAdsEnable)
                 <div> <a href="{{config('portal.ads_url.url')}}" target="_blank">
                         <img style="height: 75px;" class="rounded" src="{{ config('portal.sceh_ads.logo')}}" alt="">
@@ -64,10 +64,10 @@
                 @livewire('portal.elements.sub-pop-up', ['banner' => 'sub-1', 'slug' => $portal->slug, 'portal' =>
                 $portal, 'locale' => $portal->local_lang])
 
-                {{-- <div class="bg-blue-600 text-white px-8 py-4 rounded-sm shadow-md text-center max-w-2xl">
+                {{-- <div class="bg-blue-600 shadow-md px-8 py-4 rounded-sm max-w-2xl text-white text-center">
                     <h2
-                        class="text-xl md:text-2xl font-bold flex flex-wrap items-center justify-center gap-2 tracking-wide">
-                        <sup><span class="text-sm font-normal">प्रारंग के</span></sup>
+                        class="flex flex-wrap justify-center items-center gap-2 font-bold text-xl md:text-2xl tracking-wide">
+                        <sup><span class="font-normal text-sm">प्रारंग के</span></sup>
                         <span class="text-yellow-300">{{ $portal->city_name_local ?? '' }} रंग:</span>
                         <span>{{ $portal->city_name_local ?? '' }}वासियों की अपनी वेबसाइट</span>
                     </h2>
@@ -77,26 +77,26 @@
             <!-- Stats & Login Box -->
             <div class="flex flex-col gap-2 w-full md:w-72">
                 <!-- Stats -->
-                <div class="bg-black text-white p-1 px-2 rounded-md border border-gray-700 text-[11px] ">
+                <div class="bg-black p-1 px-2 border border-gray-700 rounded-md text-[11px] text-white">
                     <div class="flex justify-between">
                         <span>{{ $portal->city_name_local ?? 'मेरठ' }} स्थानीय सब्सक्राइबर:</span>
                         <span class="font-bold" id="city-subscriber-count">0</span>
                     </div>
-                    <div class="flex justify-between border-t border-gray-800">
+                    <div class="flex justify-between border-gray-800 border-t">
                         <span>{{ $portal->city_name_local ?? 'मेरठ' }} वेबपेज मासिक पहुँच:</span>
-                        <span class="font-bold " id="city-monthly-count">0</span>
+                        <span class="font-bold" id="city-monthly-count">0</span>
                     </div>
-                    <div class="flex justify-between border-t border-gray-800 ">
+                    <div class="flex justify-between border-gray-800 border-t">
                         <span>आज के {{ $portal->city_name_local ?? 'मेरठ' }} पाठक:</span>
                         <span class="font-bold" id="city-daily-count">0</span>
                     </div>
                 </div>
                 <!-- Login Buttons -->
-                <div class="flex gap-2 justify-center items-center">
+                <div class="flex justify-center items-center gap-2">
                     <a target="_blank" href="https://b2b.prarang.in/login?lt=partner"
-                        class="btn btn-yellow w-full bg-amber-400 p-1 rounded-sm shadow-md">Business Login</a>
+                        class="bg-amber-400 shadow-md p-1 rounded-sm w-full btn btn-yellow">Business Login</a>
                     <a target="_blank" href="https://b2b.prarang.in/login?lt=g2c"
-                        class="btn btn-yellow w-full bg-amber-400 p-1 rounded-sm shadow-md">Govt. & NGO Login</a>
+                        class="bg-amber-400 shadow-md p-1 rounded-sm w-full btn btn-yellow">Govt. & NGO Login</a>
                 </div>
             </div>
         </div>
