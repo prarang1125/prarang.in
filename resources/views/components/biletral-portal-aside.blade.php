@@ -1,5 +1,16 @@
+@php
+    // Icon color map for info icons
+    $iconColors = [
+        'en-in' => '#007bff', // blue
+        'hi-in' => '#28a745', // green
+        'bn-in' => '#ffc107', // yellow
+        'en-cz' => '#007bff', // blue
+        'cz-cz' => '#e83e8c', // pink
+        'sk-cz' => '#17a2b8', // cyan
+        'lit-src' => '#fd7e14', // orange
+    ];
+@endphp
 <div class="px-2 container-fluid">
-
     <style>
         /* Division */
         #sidebar-left div .weather-widgetx>div {
@@ -637,10 +648,10 @@
                     <p class="mb-0 text-muted small">Weather data not available</p>
                 @endif
             </div>
-            <div class="bg-light shadow shadow mt-3 p-2 border rounded">
-                <h4 class="ps-2 text-dark text-center h5">
-                    <i class="me-2 fa fa-analysis-o"></i>
-                    {{ $data->country_name }} Local Metrics
+            <div class="bg-light shadow shadow mt-3 p-2 border rounded metricsdata">
+                <h4 class="ps-2 text-dark text-center fw-bold">
+                    <i class="me-2 fa fa-info-circle"></i>
+                    {{ $data->country_name }} Info
                 </h4>
                 @php
                     $source = (array) $memo['source'] ?? [];
@@ -659,46 +670,148 @@
                     $activeWarNames = array_map(fn($k) => $wars[$k], $activeWars);
                 @endphp
 
-                @if (is_array($metrics))
-                    <table class="table table-bordered">
+                <div class="">
+                    <div class="p-1 rounded-2xl overflow-hidden">
+                        <table
+                            class="[&_tr:nth-child(even)]:bg-gray-300/30 border border-gray-600 w-full text-sm border-collapse">
 
-                        <tbody>
-                            @foreach ($metrics as $row)
-                                <tr>
-                                    <td>{{ $row['key'] ?? '' }}</td>
-                                    <td>{{ $row['value'] ?? '' }}</td>
+                            <tbody class="divide-y divide-gray-100">
+
+                                {{-- Location --}}
+                                <tr class="bg-gray-50">
+                                    <td colspan="2"
+                                        class="px-5 py-2 font-semibold text-gray-400 text-xs uppercase tracking-wider">
+                                        📍 Location
+                                    </td>
                                 </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                @else
-                    <p class="text-danger">Invalid JSON format in <code>local_metrics</code>.</p>
-                    <pre>{{ $data->local_metrics }}</pre>
-                @endif
+                                @foreach ([['label' => 'Country Capital', 'key' => 'WMEMO14'], ['label' => 'Area (sq km)', 'key' => 'WMEMO22']] as $row)
+                                    <tr class="hover:bg-gray-50 transition">
+                                        <td class="px-5 py-3 text-gray-600">{{ $row['label'] }}</td>
+                                        <td class="px-5 py-3 font-medium text-gray-800">
+                                            {{ $memo[$row['key']] ?? '—' }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                                {{-- Terrain --}}
+                                <tr class="bg-gray-50">
+                                    <td colspan="2"
+                                        class="px-5 py-2 font-semibold text-gray-400 text-xs uppercase tracking-wider">
+                                        ⛰️ Terrain
+                                    </td>
+                                </tr>
+                                @foreach ([['label' => 'Highest Point', 'key' => 'WMEMO15'], ['label' => 'Maximum Elevation', 'key' => 'WMEMO16'], ['label' => 'Lowest Point', 'key' => 'WMEMO17'], ['label' => 'Minimum Elevation', 'key' => 'WMEMO18']] as $row)
+                                    <tr class="hover:bg-gray-50 transition">
+                                        <td class="px-5 py-3 text-gray-600">{{ $row['label'] }}</td>
+                                        <td class="px-5 py-3 font-medium text-gray-800">
+                                            {{ $memo[$row['key']] ?? '—' }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+
+                                {{-- Demographics --}}
+                                <tr class="bg-gray-50">
+                                    <td colspan="2"
+                                        class="px-5 py-2 font-semibold text-gray-400 text-xs uppercase tracking-wider">
+                                        👥 Demographics
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-5 py-3 text-gray-600">% of World Population</td>
+                                    <td class="px-5 py-3 font-medium text-gray-800">
+                                        {{ isset($memo['WMEMO24']) && $memo['WMEMO24'] !== '' ? $memo['WMEMO24'] . '%' : '—' }}
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-5 py-3 text-gray-600">Population Density</td>
+                                    <td class="px-5 py-3 font-medium text-gray-800">
+                                        {{ $memo['WDEM9'] ?? '—' }}
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-5 py-3 text-gray-600">Sex Ratio</td>
+                                    <td class="px-5 py-3 font-medium text-gray-800">
+                                        @if (isset($memo['WDEM10']) && is_numeric($memo['WDEM10']))
+                                            {{ round((float) $memo['WDEM10'] * 1000) }} female / 1000 male
+                                        @else
+                                            —
+                                        @endif
+                                    </td>
+                                </tr>
+
+                                {{-- Logistics --}}
+                                <tr class="bg-gray-50">
+                                    <td colspan="2"
+                                        class="px-5 py-2 font-semibold text-gray-400 text-xs uppercase tracking-wider">
+                                        🚚 Logistics
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-5 py-3 text-gray-600">No. of Time Zones</td>
+                                    <td class="px-5 py-3 font-medium text-gray-800">
+                                        {{ $memo['WMEMO20'] ?? '—' }}
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-5 py-3 text-gray-600">Dialing Code</td>
+                                    <td class="px-5 py-3 font-medium text-gray-800">
+                                        {{ $memo['WMEMO19'] ?? '—' }}
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-5 py-3 text-gray-600">Currency</td>
+                                    <td class="px-5 py-3 font-medium text-gray-800">
+                                        @if (isset($memo['WMEMO12']) || isset($memo['WMEMO13']))
+                                            {!! trim(
+                                                ($memo['WMEMO12'] ?? '') . (isset($memo['WMEMO13']) && $memo['WMEMO13'] ? '<br>(' . $memo['WMEMO13'] . ')' : ''),
+                                            ) !!}
+                                        @else
+                                            —
+                                        @endif
+                                    </td>
+                                </tr>
+
+                                {{-- World Wars --}}
+                                <tr class="bg-gray-50">
+                                    <td colspan="2"
+                                        class="px-5 py-2 font-semibold text-gray-400 text-xs uppercase tracking-wider">
+                                        ⚔️ World Wars
+                                    </td>
+                                </tr>
+                                <tr class="hover:bg-gray-50 transition">
+                                    <td class="px-5 py-3 text-gray-600">Participated In</td>
+                                    <td class="px-5 py-3">
+                                        @forelse($activeWarNames as $war)
+                                            <span
+                                                class="inline-block bg-red-100 mr-1 px-3 py-1 rounded-full font-medium text-red-800 text-xs">
+                                                {{ $war }}
+                                            </span>
+                                        @empty
+                                            <span class="text-gray-400 italic">—</span>
+                                        @endforelse
+                                    </td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
             <!-- News Widget -->
             <div class="shadow-sm mb-4 border rounded widget lsvr-townpress-news-widget lsvr-townpress-news-widget--has-background"
                 id="{{ $side }}-news-widget">
-                <div class="p-3 widget__inner">
-                    <h3 class="mb-3 ps-2 text-info text-center widget__title widget__title--has-icon fw-bold">
-                        <i class="me-2 fa fa-newspaper-o"></i>
-                        {{ $data->country_name ?? 'N/A' }} News
-                    </h3>
-                    <div class="widget__content">
 
-                        <div class="bg-light p-3 border rounded text-center">
-                            @if (!empty($data->news))
-                                <a href="{{ str_replace(' ', '"', $data->news) }}" target="_blank"
-                                    class="text-primary text-decoration-none fw-semibold">
-                                    <i class="me-1 fa fa-external-link"></i>
-                                    {{ $data->country_name ?? ' N/A' }} News </a>
-                            @else
-                                <p class="mb-0 text-muted small">No news available</p>
-                            @endif
-                        </div>
-                    </div>
-                </div>
+                <h3 class="mb-3 ps-2 text-dark text-center widget__title widget__title--has-icon fw-bold">
+                    <i class="me-2 fa fa-newspaper-o"></i>
+                    {{ $data->country_name ?? 'N/A' }} News
+                </h3>
+
+
+                <x-portal.news :url="$data->news" :side="$side" class="p-2" />
+
+
+
             </div>
             <style>
                 /* Text primary */
@@ -708,15 +821,22 @@
                 }
             </style>
             <!-- Embassy Section -->
+            @php
+                if ($side == 'left') {
+                    $embassy_link = $main->primary_embassy_link;
+                } else {
+                    $embassy_link = $main->secondary_embassy_link;
+                }
+            @endphp
+
             <div class="shadow-sm mb-4 border-0 rounded card" id="{{ $side }}-embassy-card">
                 <div class="text-center card-body">
-                    <h5 class="mb-3 text-primary card-title fw-bold">
+                    <h5 class="mb-3 text-dark card-title fw-bold">
                         <i class="me-2 fa fa-building-o"></i>
                         Embassy of {{ $data->country_name ?? 'N/A' }}
                     </h5>
-
-                    @if (!empty($data->embassy_link))
-                        <a href="{{ $data->embassy_link }}" class="w-100 btn btn-primary fw-semibold" target="_blank">
+                    @if ($embassy_link)
+                        <a href="{{ $embassy_link }}" target="_blank" class="w-100 btn btn-primary fw-semibold">
                             <i class="me-1 fa fa-external-link"></i> Visit Embassy Website
                         </a>
                     @else
@@ -733,228 +853,108 @@
             {{-- place here --}}
 
 
-            <!-- Important Links Widget -->
-            <div class="shadow-sm border rounded widget lsvr-townpress-embassy-widget lsvr-townpress-embassy-widget--has-background"
-                id="{{ $side }}-links-widget">
-                <div class="p-3 widget__inner">
-                    <h3 class="mb-3 ps-2 text-danger text-center widget__title widget__title--has-icon fw-bold">
-                        <i class="me-2 fa fa-link"></i>
-                        Important Links of {{ $data->country_name ?? 'N/A' }}
-                    </h3>
+            <!-- Important Links Section -->
+            <div
+                class="bg-white shadow-sm p-2 border rounded widget lsvr-townpress-embassy-widget lsvr-townpress-embassy-widget--has-background">
 
-                    <div class="widget__content">
-                        @if (!empty($data->important_links) && is_array($data->important_links))
+                <h5 class="mb-3 text-dark text-center card-title fw-bold">
+                    <i class="me-2 fa fa-link"></i>Important Links
+                </h5>
+                <div id="{{ $side }}-links-widget"
+                    style="overflow: hidden; max-height: 41px; transition: max-height 0.3s ease;">
+                    @if (!empty($data->important_links) && is_array($data->important_links))
 
-                            @foreach ($data->important_links as $key => $links)
-                                <div class="">
-                                    <h6 class="text-primary text-capitalize fw-bold">
-                                        {{ str_replace('_', ' ', $key) }}
-                                    </h6>
-                                    <ul class="list-unstyled">
-                                        @foreach ($links as $link)
-                                            <li class="">
-                                                <a href="{{ $link['url'] }}" target="_blank"
-                                                    class="d-flex align-items-center hover-shadow rounded text-muted text-decoration-none">
-                                                    <i class="me-2 text-secondary fa fa-external-link"></i>
-                                                    <span>{{ $link['name'] }}</span>
-                                                </a>
-                                            </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
-                            @endforeach
-                        @else
-                            <p class="mb-0 text-muted small">No important links available</p>
-                        @endif
-                    </div>
+                        @foreach ($data->important_links as $key => $links)
+                            <div class="">
+                                <h6 class="text-dark text-capitalize fw-bold">
+                                    {{ str_replace('_', ' ', $key) }}
+                                </h6>
+
+                                <ul class="list-unstyled">
+                                    @foreach ($links as $link)
+                                        <li>
+                                            <a href="{{ $link['url'] }}" target="_blank"
+                                                class="d-flex align-items-center hover-shadow rounded text-muted text-decoration-none">
+                                                <i class="me-2 text-secondary fa fa-external-link"></i>
+                                                <span>{{ $link['name'] }}</span>
+                                            </a>
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endforeach
+                    @else
+                        <p class="mb-0 text-muted small">No important links available</p>
+                    @endif
+                </div>
+
+                <!-- Toggle Button -->
+                <!-- Toggle Button — id add kiya, tabhi dikhe jab scrollHeight > 241 ho -->
+                <div class="mt-2 text-center">
+                    <button type="button" id="{{ $side }}-links-toggle-btn"
+                        class="btn-link h3 toggle-links-btn" aria-expanded="false"
+                        onclick="toggleImportantLinks(this, '{{ $side }}-links-widget')">
+                        <i class="me-1 fa fa-angle-double-down"></i>
+                    </button>
                 </div>
             </div>
 
 
-            <div class="bg-light shadow shadow mt-3 p-2 border rounded">
-                <div class="mt-3">
-                    <a href="https://prarang.in/yp/" target="_blank"
-                        class="group block relative rounded-lg overflow-hidden">
+            <div class="bg-white shadow-lg mt-4 p-0 border rounded-lg overflow-hidden">
+                <div class="">
 
-                        <!-- IMAGE -->
-                        <img src="https://meerutrang.in/images/yellow-pages-row.png" alt="Login"
-                            class="w-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
+                    @php
+                        if ($side == 'left') {
+                            $ypData = explode('|', $main->primary_yp) ?? [];
+                        } elseif ($side == 'right') {
+                            $ypData = explode('|', $main->secondary_yp) ?? [];
+                        }
+                    @endphp
 
-                        <!-- OVERLAY -->
-                        <div class="absolute inset-0"></div>
-
-                        <!-- TEXT ON IMAGE -->
-                        <div class="z-10 absolute inset-0 flex flex-col justify-center items-center text-center">
-                            <h2 class="drop-shadow-md font-bold text-[36px] text-black">
-                                @if ($side == 'left')
-                                    Indian Companies In Czech Republic
-                                @else
-                                    Czech Republic Companies In India
-                                @endif
-                            </h2>
-                            <h4 class="drop-shadow mt-1 font-semibold text-black text-sm">
-                                हिंदी येलो पेज (Yellow Pages)
-                            </h4>
-                        </div>
-                   
+                    @if (isset($ypData) && count($ypData) > 1)
+                        <a href="{{ $ypData[1] }}" target="_blank" class="group block relative overflow-hidden">
 
 
-                </div>
-            </div>
+                            <img src="https://meerutrang.in/images/yellow-pages-row.png" alt="Yellow Pages"
+                                class="w-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                style="height: 180px;" />
 
-            <!-- Toast Element -->
-            <div id="comingSoonToast" class="custom-toast">
-                <i class="me-2 fa fa-info-circle"></i> Coming Soon.
-            </div>
-        </div>
-    </aside>
+                            <!-- TEXT ON IMAGE -->
+                            <div
+                                class="z-10 absolute inset-0 flex flex-col justify-center items-center p-3 text-center">
+                                <h2 class="mb-1 font-bold text-[24px] text-dark lg:text-[28px]"
+                                    style="font-family: 'DM Sans', sans-serif; line-height: 1.2;">
+                                    {{ $ypData[0] ?? '' }}
+                                    <br>
+                                </h2>
+                                <h4 class="font-bold text-muted text-xs uppercase tracking-widest">
+                                    Yellow Pages
+                                </h4>
+                            </div>
+                        </a>
+                    @else
+                        <a href="javascript:void(0)" data-bs-toggle="modal"
+                            data-bs-target="#yellowPagesModal_{{ $side }}"
+                            class="group block relative overflow-hidden">
 
-    <!-- JS for Time Display -->
-    <script>
-        // Universal Tooltip Function
-        function showToolTip(key, text) {
-            // Remove any existing tooltip with the same key
-            const existingTooltip = document.getElementById(`tooltip-${key}`);
-            if (existingTooltip) {
-                existingTooltip.remove();
-            }
 
-            // Create tooltip container
-            const tooltip = document.createElement('div');
-            tooltip.id = `tooltip-${key}`;
-            tooltip.className = 'universal-tooltip';
-            // Replace \n with <br> for multiline support
-            tooltip.innerHTML = text.replace(/\n/g, '<br>');
-            document.body.appendChild(tooltip);
+                            <img src="https://meerutrang.in/images/yellow-pages-row.png" alt="Yellow Pages"
+                                class="w-full object-cover group-hover:scale-110 transition-transform duration-500"
+                                style="height: 180px;" />
 
-            // Get the element that triggered the tooltip
-            const triggerElement = event.target;
-            const rect = triggerElement.getBoundingClientRect();
-
-            // Position the tooltip above the element
-            const tooltipHeight = tooltip.offsetHeight;
-            const topPosition = rect.top - tooltipHeight - 10; // 10px gap
-            const leftPosition = rect.left + rect.width / 2;
-
-            tooltip.style.top = topPosition + 'px';
-            tooltip.style.left = leftPosition + 'px';
-
-            // Add show class for animation
-            setTimeout(() => {
-                tooltip.classList.add('show');
-            }, 10);
-
-            // Hide tooltip on mouseout
-            triggerElement.addEventListener('mouseout', function hideTooltip() {
-                tooltip.classList.remove('show');
-                setTimeout(() => {
-                    if (tooltip.parentNode) {
-                        tooltip.remove();
-                    }
-                }, 300);
-                triggerElement.removeEventListener('mouseout', hideTooltip);
-            });
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            function updateTime() {
-                const timezone = '{{ $data->timezone ??
-                    '
-                                UTC ' }}';
-                const side = '{{ $side ??
-                    '
-                                right ' }}';
-
-                try {
-                    const now = new Date();
-                    const options = {
-                        timeZone: timezone,
-                        hour12: true,
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        second: '2-digit'
-                    };
-
-                    const dateOptions = {
-                        timeZone: timezone,
-                        weekday: 'long',
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric'
-                    };
-
-                    const timeString = now.toLocaleTimeString('en-US', options);
-                    const dateString = now.toLocaleDateString('en-US', dateOptions);
-
-                    const timeElement = document.getElementById(side + '-time');
-                    const dateElement = document.getElementById(side + '-date');
-
-                    if (timeElement && dateElement) {
-                        timeElement.textContent = timeString;
-                        timeElement.classList.add('updated');
-                        dateElement.textContent = dateString;
-                        setTimeout(() => timeElement.classList.remove('updated'), 600);
-                    }
-                } catch (error) {
-                    console.error('Error updating time for ' + side + ':', error);
-                    const timeElement = document.getElementById(side + '-time');
-                    if (timeElement) timeElement.textContent = 'Time unavailable';
-                }
-            }
-
-            updateTime();
-            setInterval(updateTime, 1000);
-        });
-
-        function showComingSoonToast() {
-            const toast = document.getElementById('comingSoonToast');
-            toast.classList.add('show');
-            setTimeout(() => {
-                toast.classList.remove('show');
-            }, 3000);
-        }
-
-        {{-- JS --}}
-
-        function toggleImportantLinks(btn, id) {
-            const container = document.getElementById(id);
-            if (!container) return;
-
-            const collapsedHeight = 100;
-            if (container.classList.contains('expanded')) {
-                container.classList.remove('expanded');
-                container.style.maxHeight = collapsedHeight + 'px';
-                btn.setAttribute('aria-expanded', 'false');
-                btn.innerHTML = '<i class="me-1 fa fa-angle-double-down"></i>';
-            } else {
-                container.classList.add('expanded');
-                container.style.maxHeight = container.scrollHeight + 'px';
-                btn.setAttribute('aria-expanded', 'true');
-                btn.innerHTML = '<i class="me-1 fa fa-angle-double-up"></i>';
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const linksContainer = document.getElementById('{{ $side }}-links-widget');
-            const toggleBtn = document.getElementById('{{ $side }}-links-toggle-btn');
-            if (!linksContainer || !toggleBtn) return;
-
-            linksContainer.style.maxHeight = '100px';
-            linksContainer.style.overflow = 'hidden';
-
-            // ✅ Button tabhi dikhe jab content bada ho
-            if (linksContainer.scrollHeight <= 100) {
-                toggleBtn.style.display = 'none';
-            }
-
-            window.addEventListener('resize', function() {
-                if (linksContainer.classList.contains('expanded')) {
-                    linksContainer.style.maxHeight = linksContainer.scrollHeight + 'px';
-                }
-            });
-        });
-    </script>
-</div>
+                            <!-- TEXT ON IMAGE -->
+                            <div
+                                class="z-10 absolute inset-0 flex flex-col justify-center items-center p-3 text-center">
+                                <h2 class="mb-1 font-bold text-[24px] text-dark lg:text-[28px]"
+                                    style="font-family: 'DM Sans', sans-serif; line-height: 1.2;">
+                                    {{ $ypData[0] ?? '' }}
+                                    <br>
+                                </h2>
+                                <h4 class="font-bold text-muted text-xs uppercase tracking-widest">
+                                    Yellow Pages
+                                </h4>
+                            </div>
+                        </a>
 
                         <!-- Yellow Pages Modal -->
                         <div class="modal fade" id="yellowPagesModal_{{ $side }}" tabindex="-1"
