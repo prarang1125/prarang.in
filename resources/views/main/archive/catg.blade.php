@@ -75,12 +75,12 @@
     <section>
         @switch($catg)
             @case('time')
-                <div class="p-3 mt-3 shadow">
+                <div class="shadow mt-3 p-3">
                     <h1 class="text-center">Time</h1>
                     <p>List of cities</p>
                     <div class="row">
                         @foreach ($portal as $item)
-                            <div class="city-a col-sm-2 p-1 rounded border border-primary m-1 ">
+                            <div class="m-1 p-1 border border-primary rounded city-a col-sm-2">
                                 <a target="_blank" class="text-primary fw-bold fs-6" style="text-decoration: none; "
                                     href="{{ route('posts.city', ['city' => $item->slug]) }}">{{ $item->city_name }}</a>
                             </div>
@@ -91,20 +91,26 @@
             @break
 
             @case('work')
-                <div class="p-3 mt-3 shadow">
+                <div class="shadow mt-3 p-3">
                     <h1 class="text-center">Work</h1>
 
                     <div class="row">
                         @foreach ($profession as $key => $items)
                             @if (array_key_exists($key, config('tagmaping.profession')))
                                 <div class="col-sm-6">
-                                    <div class="rounded border p-1 mb-3">
-                                        <h6 class="text-center border-bottom fw-bold p-1">
+                                    <div class="mb-3 p-1 border rounded">
+                                        <h6 class="p-1 border-bottom text-center fw-bold">
                                             {{ config('tagmaping.profession')[$key] }}</h5>
                                             <ul>
                                                 @foreach ($items as $item)
-                                                    <li><a
-                                                            href="{{ route('post-archive', ['catg' => $catg, 'ids' => implode('-', $item['tags']), 'name' => \Illuminate\Support\Str::slug($item['profession']), 'cityCode' => $cityCode]) }}">{{ $item['profession'] }}</a>
+                                                    <li><a href="{{ route('post-archive', [
+    'catg' => $catg,
+    'ids' => implode('-', $item['tags']),
+    'name' => strtoupper(str_replace('/', ', ', $item['profession'])),
+    'cityCode' => $cityCode
+]) }}">
+    {{ strtoupper(str_replace('/', ', ', $item['profession'])) }}
+</a>
                                                     </li>
                                                 @endforeach
                                             </ul>
@@ -118,19 +124,21 @@
             @break
 
             @case('education')
-                <div class="p-3 mt-3 shadow">
+                <div class="shadow mt-3 p-3">
                     <h1 class="text-center">Education</h1>
                     <div class="row">
                         @foreach ($education as $key => $items)
                             @if (array_key_exists($key, config('tagmaping.education')))
                                 <div class="col-sm-6">
-                                    <div class="rounded border p-1 mb-3">
-                                        <h6 class="text-center border-bottom fw-bold p-1">
+                                    <div class="mb-3 p-1 border rounded">
+                                        <h6 class="p-1 border-bottom text-center fw-bold">
                                             {{ config('tagmaping.education')[$key] }}</h5>
                                             <ul>
                                                 @foreach ($items as $item)
                                                     <li><a
-                                                            href="{{ route('post-archive', ['catg' => $catg, 'ids' => implode('-', $item['tags']), 'name' => \Illuminate\Support\Str::slug($item['subjectname']), 'cityCode' => $cityCode]) }}">{{ $item['subjectname'] }}</a>
+                                                            href="{{ route('post-archive', ['catg' => $catg, 'ids' => implode('-', $item['tags']), 
+                                                             'name' => strtoupper(str_replace('/', ',', $item['subjectname'])),
+                                                            'cityCode' => $cityCode]) }}">{{ $item['subjectname'] }}</a>
                                                     </li>
                                                 @endforeach
                                             </ul>
@@ -143,16 +151,16 @@
             @break
 
             @case('place')
-                <div class="p-3 mt-3 shadow">
+                <div class="shadow mt-3 p-3">
                     <h1 class="text-center">Place</h1>
-                    <div class="row text-center">
-                        <div class="col-sm-6 text-center">
-                            <div class="shadow p-2 w-50 text-center pt-3 pb-3 rounded border"><a
+                    <div class="text-center row">
+                        <div class="text-center col-sm-6">
+                            <div class="shadow p-2 pt-3 pb-3 border rounded w-50 text-center"><a
                                     href="{{ route('post-archive', ['catg' => $catg, 'ids' => 0, 'name' => 'For The City', 'cityCode' => $cityCode]) }}">For
                                     The City</a></div>
                         </div>
-                        <div class="col-sm-6 text-center">
-                            <div class="shadow p-2 w-50 text-center pt-3 pb-3 rounded border"><a
+                        <div class="text-center col-sm-6">
+                            <div class="shadow p-2 pt-3 pb-3 border rounded w-50 text-center"><a
                                     href="{{ route('post-archive', ['catg' => $catg, 'ids' => 1, 'name' => 'About The City', 'cityCode' => $cityCode]) }}">About
                                     The City</a></div>
                         </div>
@@ -162,12 +170,12 @@
             @break
 
             @case('emotion')
-                <div class="p-3 mt-3 shadow">
+                <div class="shadow mt-3 p-3">
                     <h1 class="text-center">Emotion</h1> <br>
-                    <div class="row text-center">
+                    <div class="text-center row">
                         @foreach (config('tagmaping.emotionIdName') as $key => $items)
-                            <div class="col-sm-4 text-center">
-                                <div class="shadow w-75 m-2 p-2 text-center pt-3 pb-3 rounded border"><a
+                            <div class="text-center col-sm-4">
+                                <div class="shadow m-2 p-2 pt-3 pb-3 border rounded w-75 text-center"><a
                                         href="{{ route('post-archive', ['catg' => $catg, 'ids' => implode('-', config('tagmaping.emotionIdToId')[$key]), 'name' => $items, 'cityCode' => $cityCode]) }}">
                                         {{ $items }}</a></a></div>
                             </div>

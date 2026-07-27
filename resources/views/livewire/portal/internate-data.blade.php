@@ -1,4 +1,4 @@
-<div class="w-full bg-white shadow-sm p-4 mt-2">
+<div class="bg-white shadow-sm mt-2 p-4 w-full">
     <style>
         /* Hover */
         .home-bg div .hover\:shadow-md {
@@ -84,19 +84,19 @@
     </style>
 
     <div class="flex justify-center items-center mb-1">
-        <h3 class="text-lg font-semibold text-gray-800 text-center">{{ $cityName }} का इंटरनेट गणित</h3>
+        <h3 class="font-semibold text-gray-800 text-lg text-center">{{ $cityName }} का इंटरनेट गणित</h3>
     </div>
 
-    <p class="text-end mb-3">
-        <small>नयी अपडेट : {{ $lastUpdate }}</small>
+    <p class="mb-3 text-end">
+        <small>नई अपडेट : {{ $lastUpdate }}</small>
     </p>
 
     @if ($loading)
-    <div class="text-center text-gray-500 py-4">लोड हो रहा है...</div>
+    <div class="py-4 text-gray-500 text-center">लोड हो रहा है...</div>
     @else
     {{-- INTERNATE DATA SECTION --}}
     @if ($internateError)
-    <div class="text-center text-red-500 py-4">त्रुटि: {{ $internateError }}</div>
+    <div class="py-4 text-red-500 text-center">त्रुटि: {{ $internateError }}</div>
     @elseif($internateData && !empty($internateData))
     <div class="space-y-3">
         <div class="space-y-2">
@@ -143,29 +143,29 @@
             @endphp
             @foreach ($categories as $key => $category)
             @if (isset($internateData[$key]))
-            <div class="p-1 flex justify-between items-center">
+            <div class="flex justify-between items-center p-1">
                 <div class="flex items-center gap-3">
                     <i class="{{ $category['icon'] }} text-2xl {{ $category['icon_color'] }}"></i>
 
-                    <span class="text-base font-semibold text-gray-800 flex items-center gap-2 relative group">
+                    <span class="group relative flex items-center gap-2 font-semibold text-gray-800 text-base">
                         {{ $category['label'] }}
 
                         <i
-                            class="fa fa-info-circle text-gray-400 cursor-pointer hover:text-blue-500 transition-colors"></i>
+                            class="text-gray-400 hover:text-blue-500 transition-colors cursor-pointer fa fa-info-circle"></i>
 
                         <!-- Custom Tailwind Tooltip -->
                         <div
-                            class="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 hidden group-hover:block z-50 min-w-[200px]">
+                            class="hidden group-hover:block bottom-full left-1/2 z-50 absolute mb-2 min-w-[200px] -translate-x-1/2">
                             <div
-                                class="bg-slate-900/95 backdrop-blur-sm text-white text-[11px] rounded-lg p-2 shadow-xl border border-white/10 relative text-center">
-                                <span class="block text-sky-400 font-bold mb-1 border-b border-white/10 pb-1">{{
+                                class="relative bg-slate-900/95 shadow-xl backdrop-blur-sm p-2 border border-white/10 rounded-lg text-[11px] text-white text-center">
+                                <span class="block mb-1 pb-1 border-white/10 border-b font-bold text-sky-400">{{
                                     $category['label'] }}</span>
-                                <span class="italic opacity-90">Source:
+                                <span class="opacity-90 italic">Source:
                                     {{ $internateData[$key]['source']['source'] ?? 'N/A' }}</span>
 
                                 <!-- Tooltip Arrow -->
                                 <div
-                                    class="absolute top-full left-1/2 -translate-x-1/2 -mt-px border-4 border-transparent border-t-slate-900/95">
+                                    class="top-full left-1/2 absolute -mt-px border-4 border-transparent border-t-slate-900/95 -translate-x-1/2">
                                 </div>
                             </div>
                         </div>
@@ -173,7 +173,7 @@
                 </div>
 
                 <div class="text-right">
-                    <span class="text-lg font-bold text-gray-900">
+                    <span class="font-bold text-gray-900 text-lg">
                         {{ is_numeric($internateData[$key]['value'] ?? null)
                         ? number_format($internateData[$key]['value'])
                         : $internateData[$key]['value'] ?? '-' }}
@@ -186,65 +186,65 @@
         </div>
     </div>
     @else
-    <div class="text-center text-gray-500 py-8">कोई डेटा उपलब्ध नहीं</div>
+    <div class="py-8 text-gray-500 text-center">कोई डेटा उपलब्ध नहीं</div>
     @endif
     @php
     $allowedCities = ['lucknow', 'rampur', 'shahjahanpur', 'jaunpur', 'meerut'];
     @endphp
     @if(in_array($citySlug, $allowedCities))
-    <div class="mt-4 border-t-4 border-red-900 pt-4 bg-red-50/30 p-4 rounded-b-lg shadow-inner">
+    <div class="bg-red-50/30 shadow-inner mt-4 p-4 pt-4 border-red-900 border-t-4 rounded-b-lg">
         <a href="{{ route('search-trends', ['city_id' => $city_id, 'city_name' => $citySlug]) }}" target="_blank"
-            class="btn btn-outline-red-700 hover:btn-red-900 btn btn-primary  font-bold px-4 py-2 rounded-full">
-            <i class="fa fa-shield-alt text-red-600 mr-2"></i>
+            class="px-4 py-2 rounded-full btn-outline-red-700 font-bold btn hover:btn-red-900 btn btn-primary">
+            <i class="mr-2 text-red-600 fa fa-shield-alt"></i>
             <span class="arabic-numbers">{{ $cityName }}</span> &nbsp; के सर्च ट्रेंड्स
         </a>
     </div>
 
     @endif
 
-    <div class="mt-4 border-t-4 border-red-900 pt-4 bg-red-50/30 p-4 rounded-b-lg shadow-inner">
+    <div class="bg-red-50/30 shadow-inner mt-4 p-4 pt-4 border-red-900 border-t-4 rounded-b-lg">
         <a href="https://g2c.prarang.in/india/multilingualism/{{ $city_id }}" target="_blank"
-            class="btn btn-outline-red-700 hover:btn-red-900 btn btn-primary  font-bold px-4 py-2 rounded-full">
-            <i class="fa fa-shield-alt text-red-600 mr-2"></i>
+            class="px-4 py-2 rounded-full btn-outline-red-700 font-bold btn hover:btn-red-900 btn btn-primary">
+            <i class="mr-2 text-red-600 fa fa-shield-alt"></i>
             <span class="arabic-numbers">{{ $cityName }}</span> &nbsp; की भाषा</a>
         </a>
     </div>
     @if(in_array($citySlug, $allowedCities) && $citySlug != 'shahjahanpur')
-    <div class="mt-4 border-t-4 border-red-900 pt-4 bg-red-50/30 p-4 rounded-b-lg shadow-inner">
+    <div class="bg-red-50/30 shadow-inner mt-4 p-4 pt-4 border-red-900 border-t-4 rounded-b-lg">
         <a href="https://b2b.prarang.in/semiotic/{{ base64_encode($city_code) }}" target="_blank"
-            class="btn btn-outline-red-700 hover:btn-red-900 btn btn-primary  font-bold px-4 py-2 rounded-full">
+            class="px-4 py-2 rounded-full btn-outline-red-700 font-bold btn hover:btn-red-900 btn btn-primary">
 
             <span class="arabic-numbers">{{ $cityName }}&nbsp; की सांकेतिकता <span class="text-mute">(Semiotics)</span>
         </a>
     </div>
 
     @endif
-    <div class="mt-4 border-t-4 border-red-900 pt-4 bg-red-50/30 p-4 rounded-b-lg shadow-inner">
+    <div class="bg-red-50/30 shadow-inner mt-4 p-4 pt-4 border-red-900 border-t-4 rounded-b-lg">
         <a href="https://www.prarang.in/archives/{{ $citySlug }}" target="_blank"
-            class="btn btn-outline-red-700 hover:btn-red-900 btn btn-primary  font-bold px-4 py-2 rounded-full">
-            <i class="fa fa-shield-alt text-red-600 mr-2"></i>
+            class="px-4 py-2 rounded-full btn-outline-red-700 font-bold btn hover:btn-red-900 btn btn-primary">
+            <i class="mr-2 text-red-600 fa fa-shield-alt"></i>
             <span class="arabic-numbers">{{ $cityName }}</span> &nbsp;की खोज
         </a>
     </div>
 
     {{-- CIRUS Data Section --}}
     @if ($cirusData)
-    <div class="mt-4 border-t-4 border-red-900 pt-4 bg-red-50/30 p-4 rounded-b-lg shadow-inner">
-        <h3 class="font-bold text-red-900 mb-2 flex items-center gap-2">
-            <i class="fa fa-shield-alt text-red-600"></i> {{ $cityName }} में साइबर सुरक्षा
+    <div class="bg-red-50/30 shadow-inner mt-4 p-4 pt-4 border-red-900 border-t-4 rounded-b-lg">
+        <h3 class="flex items-center gap-2 mb-2 font-bold text-red-900">
+            <i class="text-red-600 fa fa-shield-alt"></i> {{ $cityName }} में साइबर सुरक्षा
         </h3>
         <div class="space-y-2 text-sm">
-            <div class="flex justify-between items-center bg-white p-2 rounded border border-red-100">
-                <span class="text-gray-700 font-medium">साइबर जोखिम सूचकांक:</span>
+            <div class="flex justify-between items-center bg-white p-2 border border-red-100 rounded">
+                <span class="font-medium text-gray-700">साइबर जोखिम सूचकांक:</span>
                 <span class="font-bold text-red-900 text-lg">{{ $cirusData['risk_index'] ?? '-' }}</span>
             </div>
         </div>
         <div class="flex justify-end items-center mt-3">
             <a href="https://prarang.in/cirus" target="_blank"
-                class="text-sm font-bold text-blue-800 hover:text-blue-600 flex items-center gap-1 group">
+                class="group flex items-center gap-1 font-bold text-blue-800 hover:text-blue-600 text-sm">
                 अधिक देखें और समझे <br>
                 (In English)
-                <i class="fa fa-external-link-alt text-[10px] group-hover:translate-x-0.5 transition-transform"></i>
+                <i class="text-[10px] transition-transform group-hover:translate-x-0.5 fa fa-external-link-alt"></i>
             </a>
         </div>
     </div>
