@@ -10,7 +10,9 @@ use Exception;
 use Illuminate\Support\Facades\Hash;
 use Modules\Portal\Models\BiletralPortal;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use Illuminate\Validation\Rules\Can;
 
 class Home extends Controller
 {
@@ -162,7 +164,27 @@ class Home extends Controller
                 ->groupBy('zone')
                 ->map(fn($zone) => $zone->groupBy('state'));
         });
-        return view('main.partners', compact('portal'));
+
+
+        $state = collect(config('cityweb.data'))->pluck('state', '#')->toArray();
+        $more_then_30k = collect(config('cityweb.cities_more_than_30k'))->groupBy('State_ID')->toArray();
+
+        $less_then_30k = collect(config('cityweb.cities_less_than_30k'))->groupBy('State_ID')->toArray();
+        $countriesByLanguage = collect(config('count_lang.languages'))
+            ->groupBy('language_id')
+            ->map(function ($items) {
+                return $items->pluck('country')
+                    ->unique()
+                    ->sort()
+                    ->values();
+            })
+            ->toArray();
+
+
+
+
+
+        return view('main.partners', compact('portal', 'state', 'more_then_30k', 'less_then_30k', 'countriesByLanguage'));
     }
 
     public function privacyPolicy()
@@ -181,70 +203,76 @@ class Home extends Controller
     }
 
 
-
-
-
-
     public function market()
     {
-        // $url1 = "{$this->apiDomain}/api/geo-scripts/total";
-        // $url2 = "{$this->apiDomain}/api/w-in-target-language";
+        $url1 = "https://api.prarang.in/api/geo-scripts/total";
+        $url2 = "https://api.prarang.in/api/w-in-target-language";
 
-        // // Headers for the requests
-        // $headers = [
-        //     'Accept' => 'application/json',
-        //     'Content-Type' => 'application/json',
-        //     'api-auth-token' => $this->apiToken,
-        //     'api-auth-type' => $this->apiType,
-        // ];
+        // Headers for the requests
+        $headers = [
+            'Accept' => 'application/json',
+            'Content-Type' => 'application/json',
+            'api-auth-token' => $this->apiToken,
+            'api-auth-type' => $this->apiType,
+        ];
 
-        // try {
-        //     // Fetch data from the first URL
-        //     $response1 = Http::withHeaders($headers)->get($url1);
-        //     if ($response1->status() !== 200) {
-        //         throw new Exception("Failed to fetch data from $url1: HTTP {$response1->status()}");
-        //     }
-        //     $data = $response1->json();  // Convert response to array
+        try {
+            // Fetch data from the first URL
+            $cacheKey = "market_data_{$url1}";
+            $data = Cache::remember($cacheKey, now()->addDays(30), function () use ($url1, $headers) {
+                $response1 = Http::withHeaders($headers)->get($url1);
+                if ($response1->status() !== 200) {
+                    throw new Exception("Failed to fetch data from $url1: HTTP {$response1->status()}");
+                }
+                return $response1->json();  // Convert response to array
+            });
 
-        //     // Fetch data from the second URL
-        //     $response2 = Http::withHeaders($headers)->get($url2);
-        //     if ($response2->status() !== 200) {
-        //         throw new Exception("Failed to fetch data from $url2: HTTP {$response2->status()}");
-        //     }
-        //     $languageData = $response2->json();  // Convert response to array
+            // Fetch data from the second URL
+            $cacheKey = "market_data_{$url2}";
+            $languageData = Cache::remember($cacheKey, now()->addDays(30), function () use ($url2, $headers) {
+                $response2 = Http::withHeaders($headers)->get($url2);
+                if ($response2->status() !== 200) {
+                    throw new Exception("Failed to fetch data from $url2: HTTP {$response2->status()}");
+                }
+                return $response2->json();  // Convert response to array
+            });
 
-        //     // Process the metadata and data
-        //     $metaData = [
-        //         'title' => 'Geo-by-Languages',
-        //         'sub-title' => 'Geography by Language and Languages by Mother Tongue Scripts'
-        //     ];
+            // Process the metadata and data
+            $metaData = [
+                'title' => 'Geo-by-Languages',
+                'sub-title' => 'Geography by Language and Languages by Mother Tongue Scripts'
+            ];
 
-        //     $scripts = $data['scripts'] ?? [];
-        //     $total = $data['total'] ?? [];
-        //     $languageCountry = $data['languageCountry'] ?? [];
-        //     $worldLanguageData = $languageData['data']['worldLanguageData'] ?? [];
-        //     $indiaLanguageData = $languageData['data']['indiaLanguageData'] ?? [];
-        //     $languageId = $languageData['data']['languageId'] ?? [];
+            $scripts = $data['scripts'] ?? [];
+            $total = $data['total'] ?? [];
+            $languageCountry = $data['languageCountry'] ?? [];
+            $worldLanguageData = $languageData['data']['worldLanguageData'] ?? [];
+            $indiaLanguageData = $languageData['data']['indiaLanguageData'] ?? [];
+            $languageId = $languageData['data']['languageId'] ?? [];
 
-        // return view('main.market', compact('metaData', 'scripts', 'total', 'languageCountry', 'worldLanguageData', 'indiaLanguageData', 'languageId'));
-        return view('main.market');
-        // } catch (Exception $e) {
-        //     // Handle errors and display message
-        //     return response()->json(['error' => $e->getMessage()], 500);
-        // }
+            return view('main.market', compact('metaData', 'scripts', 'total', 'languageCountry', 'worldLanguageData', 'indiaLanguageData', 'languageId'));
+            // return view('main.market');
+        } catch (Exception $e) {
+            // Handle errors and display message
+            return response()->json(['error' => $e->getMessage()], 500);
+        }
     }
 
 
     public function cityWebs()
     {
         $popData = Cache::remember("cityweb-popup", 30 * 60 * 60, function () {
-            return collect(config('cityweb.popup'))->groupBy('StateID')->toArray();
+            return collect(config('cityweb.popup'))->sortBy('City')->groupBy('StateID')->toArray();
         });
 
-        $state = Cache::remember("cityweb-state", 30 * 60 * 60, function () {
-            return collect(config('cityweb.data'))->pluck('state', '#')->toArray();
+        $state = Cache::remember("cityweb-stateswxs", 30 * 60 * 60, function () {
+            return collect(config('cityweb.data'))->pluck('state', 'id')->toArray();
         });
-        return view('main.citywebs', compact('popData', 'state'));
+
+        $total = Cache::remember("cityweb-total", 30 * 60 * 60, function () {
+            return collect(config('cityweb.total'))->toArray();
+        });
+        return view('main.citywebs', compact('popData', 'state', 'total'));
     }
 
 
@@ -277,6 +305,12 @@ class Home extends Controller
             return collect(config('countryweb.data'))->groupBy('cid')->toArray();
         });
         return view('main.countrywebs', compact('data'));
+    }
+
+
+    public function languageWebs()
+    {
+        return view('main.language_webs');
     }
 
 
@@ -341,5 +375,199 @@ class Home extends Controller
     public function countryPortals()
     {
         return view('main.country_portals');
+    }
+
+
+    public function partnersMetrics()
+    {
+        return view('main.partners_metrics');
+    }
+
+    // public function townWebs()
+    // {
+    //     $datas = httpGet('v1/state-wise-language')['data'];
+    //     // dd($datas);
+
+    //     return view('main.townwebs', compact('datas'));
+    // }
+    public function townWebsIn()
+    {
+        $data = httpGet('v1/state-wise-language')['data'];
+        $datas = $data['language'];
+        $scripts = $data['script'];
+        $stateTotal = $data['state_total'];
+
+        $mainScripts = $data['main_scripts'];
+
+
+        $mainLanguages = [
+            'Assamese',
+            'Bengali',
+            'Hindi',
+            'Punjabi',
+            'Kannada',
+            'Malayalam',
+            'Marathi',
+            'Gujarati',
+            'Odia',
+            'Urdu',
+            'Tamil',
+            'Telugu',
+            'English'
+        ];
+
+        $tableData = [];
+        $modalData = [];
+
+        foreach ($datas as $row) {
+
+            $otherScript = 0;
+            $otherLanguages = [];
+            $intSum = $stateTotal[$row['state_code']];
+
+
+            foreach ($row as $key => $value) {
+                if (!in_array($key, $mainLanguages) && !in_array($key, ['state_name', 'state_or_ut', 'state_code', 'main_script_count', 'scripts_count'])) {
+
+                    $otherScript += (int)$value;
+                }
+                if (!in_array($key, ['state_name', 'state_or_ut', 'state_code', 'main_script_count', 'scripts_count'])) {
+
+                    if ((int)$value > 0) {
+                        $otherLanguages[$key]['value'] = $value / $intSum * 100;
+                        $otherLanguages[$key]['script'] = $scripts[$key];
+                    }
+                }
+            }
+            $sum[$row['state_code']] = $intSum;
+            $row['other_script'] = $otherScript;
+
+            $tableData[] = $row;
+
+            $modalData[$row['state_name']] = $otherLanguages;
+        }
+
+
+
+        return view('main.townwebsin', compact('tableData', 'modalData', 'scripts', 'mainScripts', 'stateTotal'));
+    }
+    public function townWebs()
+    {
+
+        $newVIllages = Cache::remember('village_webs.new_town_villages', 30 * 60 * 60, function () {
+            return collect(config('data.town.newvillage'))->groupBy('State_Code');
+        });
+        $MPC = Cache::remember('village_webs.mpc', 30 * 60 * 60, function () {
+            return collect(config('data.town.mpc'))->groupBy('State_Code');
+        });
+        $smartCities = Cache::remember('village_webs.smart_cities', 30 * 60 * 60, function () {
+            return collect(config('data.town.smartcity'))->groupBy('State_Code');
+        });
+        return view('main.townwebs', compact('newVIllages', 'MPC', 'smartCities'));
+    }
+
+    public function villageWebs()
+    {
+
+        $villagedata = Cache::remember('village_webs.villagesd3', 30 * 60 * 60, function () {
+            return  httpGet('v1/state-wise-language-rural')['data'];
+        });
+
+        // dd($villagedata);
+        return view('main.villagewebs', compact('villagedata'));
+    }
+
+
+    public function indiaRural()
+    {
+        try {
+            $stateSummaryRaw = Cache::remember('village_webs.state_sum', 30 * 60 * 60, function () {
+                return collect(config('state.stateWise'))->toArray();
+            });
+
+            // dd($stateSummaryRaw);
+        } catch (Exception $e) {
+            $e->getMessage();
+        }
+
+
+        return view('main.indiarural', compact('stateSummaryRaw'));
+    }
+
+    public function getVillageDetails($stateCode, $type)
+    {
+        if ($type === "removed") {
+            $stateName = collect(config('state.stateWise'))
+                ->firstWhere('state_code', $stateCode)['state'] ?? '';
+            $data = collect(config('state.removed-villages'))
+                ->where('state_code', $stateCode)
+                ->map(function ($item) {
+                    return [
+                        'district' => $item['district'] ?? '',
+                        'village'  => $item['village'] ?? '',
+                    ];
+                })
+                ->values()
+                ->toArray();
+
+            return response()->json([
+                'title' => 'Villages Aggregated to Form DHQs',
+                'state_name' => $stateName,
+                'description' => 'List of Villages from Census 2011 aggregated to form District Headquarters.',
+                'villages' => $data
+            ]);
+        }
+
+        $table = match ($type) {
+            'repo' => 'repo_village',
+            'new' => 'new_villages',
+            'missing' => 'missing_village',
+
+            default => null,
+        };
+
+        if (!$table) {
+            return response()->json(['error' => 'Invalid type'], 400);
+        }
+
+        $villages = DB::table($table)->where('state_code', $stateCode)->get();
+
+        if ($villages->isEmpty()) {
+            return response()->json(['error' => 'No data found'], 404);
+        }
+
+        $title = match ($type) {
+            'repo' => 'Repopulated Villages — Min. of Panchayati Raj, March 2026',
+            'new' => 'New Villages — Min. of Panchayati Raj, March 2026',
+            'missing' => 'Missing Villages — Min. of Panchayati Raj, March 2026',
+        };
+
+        $description = match ($type) {
+            'repo' => 'These villages were uninhabited in Census 2011 but are present in Panchayati Raj Database.',
+            'new' => 'These villages are present in LGD but absent from Census 2011 — added after the census was conducted.',
+            'missing' => 'These villages were recorded as Inhabited in Census 2011 but are currently absent from the Ministry of Panchayati Raj\'s Local Government Directory (March 2026).',
+        };
+
+        return response()->json([
+            'title' => $title,
+            'state_name' => $villages->first()->state_ut_name,
+            'description' => $description,
+            'villages' => $villages
+        ]);
+    }
+
+    public function indiaKnowledgeWebs()
+    {
+        return view('main.india_knowledge_webs');
+    }
+
+    public function czechKnowledgeWebs()
+    {
+        return view('main.czech_knowledge_webs');
+    }
+
+    public function nepalKnowledgeWebs()
+    {
+        return view('main.nepal_knowledge_webs');
     }
 }

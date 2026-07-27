@@ -20,7 +20,8 @@ if (!function_exists('httpGet')) {
             // Log::info("API Request: " . $fullUrl, ['params' => $parameters]);
 
             $response = Http::withHeaders($headers)->timeout(180)->get($fullUrl, $parameters);
-            // dd($response->json());
+
+
             if ($response->failed()) {
                 Log::error("API Failed: " . $response->status(), ['response' => $response->body()]);
                 return ['status' => 'error', 'message' => 'API request failed.', 'code' => $response->status()];
@@ -121,5 +122,52 @@ if (!function_exists('is_assoc')) {
             return false;
         }
         return array_keys($array) !== range(0, count($array) - 1);
+    }
+}
+
+
+if (! function_exists('getSuperScript')) {
+    function getSuperScript($number)
+    {
+        $lastDigit = $number % 10;
+        $lastTwoDigits = $number % 100;
+        if ($lastTwoDigits >= 11 && $lastTwoDigits <= 13) {
+            $ordinal = 'th';
+        } else {
+            switch ($lastDigit) {
+                case 1:
+                    $ordinal = 'st';
+                    break;
+                case 2:
+                    $ordinal = 'nd';
+                    break;
+                case 3:
+                    $ordinal = 'rd';
+                    break;
+                default:
+                    $ordinal = 'th';
+                    break;
+            }
+        }
+        echo number_format($number, 0, '.', ',') . '<sup>' . $ordinal . '</sup>';
+    }
+}
+
+
+if (!function_exists('url_encoder')) {
+    function url_encoder($data)
+    {
+        // 1. Standard base64 encode
+        // 2. Replace + and / with - and _ to make it URL-safe
+        // 3. Trim the = padding from the end
+        return rtrim(strtr(base64_encode($data), '+/', '-_'), '=');
+    }
+}
+
+if (!function_exists('url_decoder')) {
+    function url_decoder($data)
+    {
+        // PHP's base64_decode handles missing padding (=) automatically
+        return base64_decode(strtr($data, '-_', '+/'));
     }
 }

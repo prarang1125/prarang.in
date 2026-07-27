@@ -1,0 +1,175 @@
+<?php
+
+namespace App\Http\Controllers\CultureNaturePages;
+
+use App\Http\Controllers\Controller;
+use App\Models\Portal;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Http;
+
+
+
+class TownVillage extends Controller
+{
+    //TO Display the Selection Of State + Villages + Towns
+    public $cityDatabaseId;
+    public function villages($id, $slug)
+    {
+        $parts = explode('-', url_decoder($id));
+        if (count($parts) === 4) {
+            list($state, $districts, $subDistrict, $village) = $parts;
+        } else {
+            list($state, $districts, $village) = $parts;
+            $subDistrict = null;
+        }
+        $isAdsEnable = in_array($village, config('portal.village_list'));
+
+        $village = httpGet('v1/pages/vilage', [
+            'state_id' => $state,
+            'district_id' => $districts,
+            'sub_district_id' => $subDistrict,
+            'village_id' => $village
+        ])['data'];
+
+        $village['name'] = $village['village']['Name'] ?? $village['gram_panchayat']['village_name_en'] ?? '-';
+
+        $otherVilTown = httpGet('v1/pages/get-village-town-dhq', [
+            'district_id' => $village['district']['district_LGD_code'],
+            'dhq_id' => $village['district']['dhq_code'],
+            'request_for' => 'town-village'
+        ])['data'];
+        return view('culturenature.townvillages.index', compact('village', 'otherVilTown', 'isAdsEnable'));
+    }
+
+    public function towns($id, $slug)
+    {
+        $parts = explode('-', url_decoder($id));
+        if (count($parts) === 4) {
+            list($state, $districts, $subDistrict, $town) = $parts;
+        } else {
+            list($state, $districts, $town) = $parts;
+            $subDistrict = null;
+        }
+        $isAdsEnable = in_array($town, config('portal.town_list'));
+        $towndata = httpGet('v1/pages/town', [
+            'state_id' => $state,
+            'district_id' => $districts,
+            'town_id' => $town
+        ])['data'];
+
+        if ($towndata['is_dhq']) {
+            return $this->dhq($towndata, $isAdsEnable);
+        } else {
+            return $this->cities($towndata, $isAdsEnable);
+        }
+        //   return $this->dhq($towndata);
+
+    }
+    public function cities($town, $isAdsEnable = false)
+    {
+        $town['name'] = $town['town']['Name'] ?? $town['gram_panchayat']['village_name_en'] ?? '-';
+        $otherVilTown = httpGet('v1/pages/get-village-town-dhq', [
+            'district_id' => $town['dhq']['district_LGD_code'],
+            'dhq_id' => $town['dhq']['DHQ_Code'],
+            'request_for' => 'town-village'
+        ])['data'];
+        return view('culturenature.townvillages.town', compact('town', 'otherVilTown', 'isAdsEnable'));
+    }
+
+    public function dhq($dhq, $isAdsEnable = false)
+    {
+        $dhq['name'] = $dhq['dhq']['city'];
+
+        $otherVilTown = httpGet('v1/pages/get-village-town-dhq', [
+            'district_id' => $dhq['dhq']['district_LGD_code'],
+            'dhq_id' => $dhq['dhq']['DHQ_Code'],
+            'request_for' => 'town-village'
+        ])['data'];
+
+        $portal = Portal::where('city_id', $dhq['dhq']['DHQ_Code'])->where('local_lang', 'hi')->first();
+        if ($portal) {
+            $dhq['portal'] = $portal;
+        } else {
+            $dhq['portal'] = null;
+        }
+        $intData = $this->fetchInternateData($dhq['dhq']['DHQ_Code']);
+        $this->cityDatabaseId = $dhq['dhq']['DHQ_Code'];
+        $cirusData = $this->fetchCirusData();
+
+        return view('culturenature.townvillages.dhq', compact('dhq', 'otherVilTown', 'intData', 'cirusData', 'isAdsEnable'));
+    }
+
+    public function fetchInternateData($city_id)
+    {
+        try {
+            $cacheKey = "internateData_{$city_id}_newsx";
+            // Check cache first (equivalent to localStorage in React)
+
+
+            if (isset($cachedData)) {
+                $internateData = $cachedData;
+                return $internateData;
+            }
+
+            // Fetch from API
+
+            $filteredData = httpGet('/internate-data/cities', ['city_id' => $city_id]);
+            $source = $filteredData['source'];
+            $aligned = [];
+            $map = [
+                'MSTR5' => 'city_population',
+                'INT5'  => 'internet_users',
+                'INT2'  => 'facebook_users',
+                'INT10' => 'linkedin_users',
+                'INT17' => 'twitter_users',
+                'INT19' => 'instagram_users',
+            ];
+            $data = $filteredData['data'];
+            foreach ($map as $code => $field) {
+                $sourceItem = $filteredData['source'][$code][0] ?? null;
+                $aligned[$field] = [
+                    'field' => $field,
+                    'value' => $data[$field] ?? null,
+                    'source' => is_array($sourceItem) ? $sourceItem : ['source' => 'N/A'],
+                ];
+            }
+            $filteredData = $aligned;
+            // Cache for a while (e.g., 24 hours) as per React localStorage intent
+            Cache::put($cacheKey, $filteredData, now()->addDay());
+
+            return $filteredData;
+        } catch (\Exception $e) {
+            $internateError = $e->getMessage();
+        }
+    }
+    public function fetchCirusData()
+    {
+        try {
+            $cacheKey = "cirusData_{$this->cityDatabaseId}-1";
+            $cachedData = Cache::get($cacheKey);
+
+            if ($cachedData) {
+                return $cachedData;
+            }
+
+            $response = Http::withHeaders(['accept' => 'application/json'])
+                ->get('https://api.apratyaksh.org/api/v1/cirus/dhq');
+
+            if ($response->successful()) {
+                $result = $response->json();
+                if ($result['success'] && isset($result['data'])) {
+                    // Filter for the specific city database ID (string comparison as per React)
+                    $filtered = collect($result['data'])->firstWhere('id', (string)$this->cityDatabaseId);
+                    // dd($filtered);
+                    if ($filtered) {
+                        Cache::put($cacheKey, $filtered, now()->addDay());
+                        return $filtered;
+                    }
+                }
+            }
+        } catch (\Exception $e) {
+            // Silently fail for CIRUS as it's secondary
+        }
+    }
+}

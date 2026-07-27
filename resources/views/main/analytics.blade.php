@@ -1,12 +1,12 @@
-<x-layout.main.base>
+@php
+    $metaData = [
+        'nav-heading' => 'English Web',
+        'nav-sub-heading' => '',
+    ];
+@endphp
+<x-layout.main.base :metaData="$metaData">
 
-    <section class="bs5-top-heading">
-        <p class="">English Web</p>
-        {{-- <p>Geographic Intelligence through Comparison</p> --}}
-    </section>
-    {{-- <p class="text-end">
-        <a href="https://g2c.prarang.in/login" class="btn btn-warning btn-sm">Partner Login</a>
-    </p> --}}
+
     <section class="container">
         {{-- <p>Prarang's Geographic Intelligence is a comprehensive big data solution that provides valuable insights
             into

@@ -1,4 +1,14 @@
-<x-layout.main.base>
+@php
+    $metaData = [
+        'nav-heading' => view('components.nav-heading', [
+            'text' => 'World - 178 Language Webs',
+            'leftImg' => asset('images/lang2.png'),
+            'rightImg' => asset('images/langlogo.png'),
+        ]),
+        'nav-sub-heading' => '',
+    ];
+@endphp
+<x-layout.main.base :metaData="$metaData">
 
     <style>
         .scroll-hint {
@@ -125,6 +135,21 @@
             box-shadow: none;
         }
 
+        .bg-war {
+            background: #ffff00 !important;
+            color: black;
+        }
+
+        /* Text dark */
+        .table-wrapper .table-striped thead .text-dark .text-dark {
+            background-color: #ffff00;
+        }
+
+        /* Text dark */
+        .table-responsive .table-striped thead .text-dark .text-dark {
+            background-color: #ffff00;
+        }
+
         /* #countryModal #countryTableBody tr:hover td:not(:empty) {
             background: #fff3cd;
         } */
@@ -197,6 +222,16 @@
             .table-responsive .table-striped thead .text-dark .text-dark {
                 background-color: #ffff00;
             }
+
+            /* Text dark */
+            .table-wrapper .table-striped thead .text-dark .text-dark {
+                background-color: #f0f820;
+            }
+
+            /* Text dark */
+            .table-responsive .table-striped thead .text-dark .text-dark {
+                background-color: #f0f820;
+            }
     </style>
 
     {{-- Back Button --}}
@@ -214,13 +249,13 @@
             <img src="{{ asset('images/langlogo.png') }}" alt="Globe" style="width: 50px; height: 50px;">
         </h2>
     </div> --}}
-    <section>
+    {{-- <section>
         <h4 class=" flex  justify-center items-center text-center text-dark font-bold">
             <img src="{{ asset('images/lang2.png') }}" alt="Globe" style="width: 56px;height: 44px;">
             World - 178 Language Webs
             <img src="{{ asset('images/langlogo.png') }}" alt="Globe" style="width: 50px; height: 50px;">
         </h4>
-    </section>
+    </section> --}}
     <section class="flex flex-col justify-center items-center">
 
         <p>There are 195 Countries in the world, and each country selects its own Official language(s). For example,
@@ -233,6 +268,7 @@
         </p>
     </section>
 
+@if(request()->query('q')=='digital-divide-languages')
 
     {{-- ================= DIGITAL DIVIDE ================= --}}
     <section class="text-center mt-3">
@@ -307,13 +343,13 @@
         <div class="scroll-hint">&larr; Scroll horizontally &rarr;</div>
 
     </section>
-
+@else
     {{-- ================= BALANCED LANGUAGES ================= --}}
     <section class="text-center mt-3">
         <h4 class="text-dark fw-bold" style="display: flex; align-items: center; justify-content: center; gap: 10px;">
             <img src="{{ asset('images/langlogo3.png') }}" alt="Globe"
                 style="width: 35px; height: 35px; transform: scaleX(-1);">
-            Digital Divide Languages
+            Digital Balanced Languages
         </h4>
     </section>
 
@@ -392,7 +428,7 @@
 
 
     </section>
-
+@endif
     {{-- ================= NOTES ================= --}}
     <section class="mt-4">
         <p class="small">

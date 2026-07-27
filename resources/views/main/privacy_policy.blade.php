@@ -1,10 +1,16 @@
-<x-layout.main.base>
+@php
+    $metaData = [
+        'nav-heading' => 'Privacy Policy',
+        'nav-sub-heading' => '',
+    ];
+@endphp
+<x-layout.main.base :metaData="$metaData">
     <section class="container mt-3 p-2">
 
 
         <p>
 
-            <!--<strong>Privacy Policy</strong>-->
+            <!--<strong></strong>-->
         </p>
         <p>
             <strong> Updated on 20-02-2020</strong>

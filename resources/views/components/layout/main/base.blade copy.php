@@ -33,7 +33,7 @@
         content="{{ $metaData['image'] ?? 'https://prarang.s3.amazonaws.com/posts-2017-24/og_home_image.png' }}">
     <meta name="google-site-verification" content="-DA48RRV_4JbpmDcYV7r8QBnMMtBXSzO4GmHj-gow2Q" />
     <!-- CSS Files -->
-    <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet"> -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="{{ asset('assets/main/css/style.css') }}">
@@ -648,7 +648,7 @@
                 <div class="row align-items-center">
                     <div class="col-md-9 text-center">
                         <h1 class="header-title mb-0 text-primary">Prarang Knowledge Webs</h1>
-                        <p class="header-tagline mb-0">Bridging the Digital Divide – By City, By Language</p>
+                        <p class="header-tagline mb-0">Bridging the Digital Divide – By Location, By Language</p>
                     </div>
                     <div class="col-md-3 text-end">
                         <a href="/" class="text-decoration-none">
@@ -674,7 +674,7 @@
                     <div class="text-center px-2">
                         <div class="header-content">
                             <h1 class="header-title mb-0 text-primary">Prarang Knowledge Webs</h1>
-                            <p class="header-tagline mb-0">Bridging the Digital Divide – By City, By Language</p>
+                            <p class="header-tagline mb-0">Bridging the Digital Divide – By Location, By Language</p>
                         </div>
                     </div>
 
@@ -808,7 +808,7 @@
                 its entirety. If you do not agree with any part of this disclaimer, please refrain from using
                 our
                 website. For
-                any questions or clarifications, please contact us at query@prararag.in
+                any questions or clarifications, please contact us at query@prarang.in
             </p>
             <p id="demo">
             </p>

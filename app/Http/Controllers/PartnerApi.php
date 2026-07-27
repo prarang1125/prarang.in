@@ -2,22 +2,32 @@
 
 namespace App\Http\Controllers;
 
-use AWS\CRT\HTTP\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class PartnerApi extends Controller
 {
 
     public function getChittiByDateRange(Request $request)
     {
-        // return 2;
+
         // Validate the incoming request
-        $validated = $request->validate([
+        $validator = Validator::make($request->all(), [
             'city_code' => 'required|string',
             'start_date' => 'required',
             'end_date' => 'required',
         ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Validation failed',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        $validated = $validator->validated();
 
         $city_code = $validated['city_code'];
         $start_date = $validated['start_date'];
@@ -57,7 +67,6 @@ class PartnerApi extends Controller
                 'status' => 'success',
                 'data' => $data,
             ], 200);
-
         } catch (\Exception $e) {
             // Handle exceptions and return a server error response
             return response()->json([
@@ -66,18 +75,17 @@ class PartnerApi extends Controller
                 'error' => $e->getMessage(), // Include error message for debugging (optional)
             ], 500);
         }
-
     }
     public function getChittiData(Request $request)
-{
-    $city_code = $request->input('city_code');
+    {
+        $city_code = $request->input('city_code');
 
-    if (is_null($city_code)) {
-        return response()->json(['status' => 'error', 'message' => 'Required: city_code.'], 404);
-    }
+        if (is_null($city_code)) {
+            return response()->json(['status' => 'error', 'message' => 'Required: city_code.'], 404);
+        }
 
-    try {
-        $query = "
+        try {
+            $query = "
             (
                 SELECT
                     chitti.chittiId,
@@ -145,17 +153,15 @@ class PartnerApi extends Controller
             )
         ";
 
-        // Execute raw query with bindings
-        $data = DB::select($query, [$city_code, $city_code, $city_code]);
+            // Execute raw query with bindings
+            $data = DB::select($query, [$city_code, $city_code, $city_code]);
 
-        // Group data by MonthGroup
-        $groupedData = collect($data)->groupBy('MonthGroup');
+            // Group data by MonthGroup
+            $groupedData = collect($data)->groupBy('MonthGroup');
 
-        return response()->json(['status' => 'success', 'data' => $groupedData], 200);
-    } catch (\Exception $e) {
-        return response()->json(['status' => 'error', 'message' => 'Unable to fetch data, Server error.'], 500);
+            return response()->json(['status' => 'success', 'data' => $groupedData], 200);
+        } catch (\Exception $e) {
+            return response()->json(['status' => 'error', 'message' => 'Unable to fetch data, Server error.'], 500);
+        }
     }
-}
-
-
 }

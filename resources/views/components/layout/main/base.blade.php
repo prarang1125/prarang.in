@@ -4,36 +4,36 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <title>{{ $metaData['title'] ?? 'Prarang : Knowledge Webs' }}</title>
-    <meta name="description" content="Knowledge webs for smarter citizenship, advertising, and governance.">
+    <title>{{ $metaData['title'] ?? 'Prarang ' }}</title>
+    <meta name="description" content="Knowledge Webs: Bridging the Digital Divide – By Location, By Language.">
     <meta charset="utf-8">
-    <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport">
+    {{--
+    <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport"> --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('/apple-touch-icon.png') }}">
-    <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('/favicon-32x32.png') }}">
-    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('/favicon-16x16.png') }}">
-    <link rel="manifest" href="{{ asset('/site.webmanifest') }}">
+
+    {{--
+    <link rel="manifest" href="{{ asset('/site.webmanifest') }}"> --}}
     <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="{{ $metaData['title'] ?? 'Prarang : Knowledge Webs' }}">
-    <meta name="title" property="og:title" content="{{ $metaData['title'] ?? 'Prarang : Knowledge Webs' }}">
+    <meta property="og:title" content="{{ $metaData['title'] ?? 'Prarang ' }}">
+    <meta name="title" property="og:title" content="{{ $metaData['title'] ?? 'Prarang ' }}">
     <meta name="image" property="og:image"
         content="{{ $metaData['image'] ?? 'https://prarang.s3.amazonaws.com/posts-2017-24/og_home_image.png' }}">
     <meta name="description" property="og:description"
-        content="{{ $metaData['description'] ?? 'Knowledge webs for smarter citizenship, advertising, and governance.' }}">
+        content="{{ $metaData['description'] ?? 'Knowledge webs: Bridging the Digital Divide – By Location, By Language' }}">
     <meta property="og:url" content="https://prarang.in">
     <meta property="og:type" content="website">
 
     <!-- Twitter Meta Tags -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="Prarang">
-    <meta name="twitter:title" content="{{ $metaData['title'] ?? 'Prarang : Knowledge Webs' }}">
+    <meta name="twitter:title" content="{{ $metaData['title'] ?? 'Prarang ' }}">
     <meta name="twitter:description"
-        content="{{ $metaData['description'] ?? 'Knowledge webs for smarter citizenship, advertising, and governance.' }}">
+        content="{{ $metaData['description'] ?? 'Knowledge webs: Bridging the Digital Divide – By Location, By Language' }}">
     <meta name="twitter:image"
         content="{{ $metaData['image'] ?? 'https://prarang.s3.amazonaws.com/posts-2017-24/og_home_image.png' }}">
     <meta name="google-site-verification" content="-DA48RRV_4JbpmDcYV7r8QBnMMtBXSzO4GmHj-gow2Q" />
     <!-- CSS Files -->
-    <link href="https://unpkg.com/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@^2.0/dist/tailwind.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="{{ asset('assets/main/css/style.css') }}">
@@ -81,7 +81,7 @@
             display: block;
             opacity: 1;
             visibility: visible;
-            transform: translateY(0);
+            /* transform: translateY(0); */
         }
     }
 
@@ -229,7 +229,7 @@
             to {
                 opacity: 1;
                 max-height: 800px;
-                transform: translateY(0);
+                /* transform: translateY(0); */
             }
         }
 
@@ -464,6 +464,30 @@
         width: 511px;
     }
 
+    .d-lg-block .custom-header-width {
+        width: 818px !important;
+    }
+
+
+    @media (max-width:576px) {
+
+        /* Block */
+        .container .d-block {
+            width: 12% !important;
+            position: absolute;
+            right: 6px;
+            /* bottom: 10px; */
+            top: 80px;
+            /* transform: translatex(-6px) translatey(-6px); */
+        }
+
+        /* Auto */
+        .container .mx-auto {
+            padding-top: 36px !important;
+        }
+
+    }
+
     @media (max-width:991px) {
 
         /* Container */
@@ -506,6 +530,10 @@
             flex-direction: row;
             justify-content: center;
             margin-top: 9px !important;
+        }
+
+        .mobile-align-center {
+            align-items: center !important;
         }
 
     }
@@ -639,26 +667,278 @@
         flex-direction: row;
     }
 </style>
+<style>
+    #main-header .d-lg-block .header-home {
+        padding-left: 125px;
+    }
 
-<body class="bg-light" style="min-height: 100vh !important;" style="background: #ffffff !important;">
+    /* Image */
+    .navbar-nav .nav-item img {
+        position: absolute;
+        top: -35px;
+        width: 7% !important;
+        height: 100% !important;
+        min-height: 122px;
+        transform: translatex(14px) translatey(-75px);
+        z-index: -1;
+    }
+</style>
+<style>
+    @keyframes flash {
+        0% {
+            transform: translateX(-150%) skewX(-20deg);
+        }
 
-    <div id="main-header" class="">
-        <header class="bg-white container-fluid py-3 d-none d-lg-block">
-            <div class="container">
-                <div class="row align-items-center">
-                    <div class="col-md-9 text-center">
-                        <h1 class="header-title mb-0 text-primary">Prarang Knowledge Webs</h1>
-                        <p class="header-tagline mb-0">Bridging the Digital Divide – By City, By Language</p>
+        100% {
+            transform: translateX(250%) skewX(-20deg);
+        }
+    }
+
+    .flash-sweep {
+        animation: flash 2.2s ease-in-out infinite;
+    }
+
+    /* Division */
+    #main-header .d-lg-block>div:nth-child(2) {
+        display: flex !important;
+        align-items: center;
+    }
+
+    .star-animation {
+        display: inline-block;
+        animation: starPulse 1.8s ease-in-out infinite;
+        transform-origin: center;
+    }
+
+    @keyframes starPulse {
+
+        0%,
+        100% {
+            transform: scale(1.1) rotate(0deg);
+            opacity: 1;
+        }
+
+        50% {
+            transform: scale(1.25) rotate(0deg);
+            opacity: 1;
+        }
+    }
+
+    /* Division */
+    #main-header .d-lg-block>div:nth-child(2) {
+        align-items: flex-end;
+        flex-direction: row;
+    }
+
+    /* Transition transform */
+    .d-lg-block div .transition-transform {
+        left: -7px;
+    }
+</style>
+
+<body class="bg-light" style="min-height: 100vh !important;" style="background: #ffffff !important;">@php $isHome
+    =request()->url()===url('/');
+    $navHeading =$metaData['nav-heading'] ?? 'Prarang Knowledge Webs';
+    $navSubHeading =$metaData['nav-sub-heading'] ?? 'Bridging the Digital Divide – By Location, By Language';
+    $headerClass =$metaData['headerClass'] ?? null;
+    // dd($headerClass);
+    @endphp <div id="main-header" class="">@if ($isHome) <style>
+            /* Image (hover) */
+            .d-lg-block .nav-link img:hover {
+                width: 98px;
+            }
+
+
+            /* Header */
+            #main-header header {
+                display: grid !important;
+                padding-bottom: 1px !important;
+                grid-template-columns: 77fr 23fr;
+            }
+
+            /* Nav link */
+            .d-lg-block div .nav-link {
+                background-color: rgba(0, 0, 0, 0);
+                justify-content: normal;
+                align-items: normal;
+            }
+
+            /* Image */
+            .d-lg-block .nav-link img {
+                width: 97px;
+            }
+
+            /* Row */
+            .d-lg-block .header-home>.justify-center {
+                justify-content: flex-end;
+            }
+
+            @media (max-width:991px) {
+
+                /* Header */
+                #main-header header {
+                    transform: translatex(0px) translatey(0px);
+                    visibility: hidden;
+                    height: 5px;
+                }
+
+                /* Image */
+                .d-flex a img {
+                    width: 48px !important;
+                }
+
+            }
+
+            @media (max-width:767px) {
+
+                /* Header */
+                /* #main-header header {
+                        transform: translatex(0px) translatey(0px) !important;
+                    } */
+
+            }
+
+            @media (max-width:576px) {
+
+                /* Header */
+                #main-header header {
+                    visibility: hidden;
+                    height: 5px;
+                }
+
+            }
+
+            @media (min-width:992px) {
+
+                /* Nav link */
+                .d-lg-block div .nav-link {
+                    padding-top: 4px !important;
+                    padding-bottom: 3px !important;
+                }
+
+            }
+        </style>
+        <header class="bg-white container-fluid py-3 d-none d-lg-block relative">
+            <div class="container header-home">
+                <div class="row justify-center items-center">
+                    <div class="col-md-9 text-center {{ $headerClass }} justify-center items-center">
+                        <h1 class="header-title mb-0 text-primary">
+                            Prarang Knowledge Webs</h1>
+                        <p class="header-tagline mb-0">Bridging the Digital Divide – By Location, By Language</p>
                     </div>
                     <div class="col-md-3 text-end">
-                        <a href="/" class="text-decoration-none">
+                        <a href="/" class="text-decoration-none" 2>
                             <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
                                 alt="Prarang" height="60">
                         </a>
                     </div>
                 </div>
             </div>
+            <div class="">
+
+
+                {{-- <a href="/ai/upmana" class="nav-link">
+                    <img class="" src="https://i.ibb.co/9kBKBcpj/cai.png" alt="ai"></a> --}}
+                <a style="background: rgba(255,255,0,0.37) " href="/ai/upmana" class=" group relative overflow-hidden inline-flex items-center gap-2 p-2  px-4 rounded-full
+
+           text-white font-semibold tracking-wide text-sm border-2
+           shadow-lg
+           animate-pulseGlow
+           transition-transform duration-200 ease-out
+           hover:scale-105 active:scale-95">
+                    <span>
+                        <i class="bi bi-stars text-blue-800 text-xl "></i>
+                    </span>
+                    <span class="relative z-10 text-blue-800">Comparison A.I.</span>
+                    <!-- diagonal flash sweep -->
+
+                </a>
+            </div>
         </header>
+        @else
+        <style>
+            /* Heading */
+            .d-lg-block .justify-center h1 {
+                color: #0d6efd !important;
+            }
+
+
+            /* Header */
+            #main-header header {
+                padding-bottom: 2px !important;
+                height: 86px;
+                padding-top: 1px !important;
+                /* transform: translatex(0px) translatey(0px); */
+            }
+
+            /* Font bold */
+            .col-sm-8 .header-title .font-bold {
+                color: #0d6efd !important;
+                font-size: 24px;
+            }
+
+
+            /* Justify center */
+            .d-lg-block .justify-center {
+                padding-top: 3px;
+            }
+
+            .justify-center h1 {
+                font-size: 24px;
+            }
+
+            /* Col 8 */
+            .d-lg-block .col-sm-8 {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 86px;
+            }
+
+            /* #main-header .container-fluid .container .row .col-sm-8 .justify-center .text-center h1 {
+                    width: 118% !important;
+                } */
+        </style>
+        <header class="bg-white container-fluid py-3 d-none d-lg-block">
+            <div class="container header-none-home">
+                <div class="row">
+                    <div class="col-2">
+                        <a href="/" class="text-decoration-none" 2>
+                            <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
+                                alt="Prarang" height="60">
+                        </a>
+                    </div>
+                    <div class="col-sm-8">
+                        <div class="flex justify-center items-center">
+                            <div class="col-md-9 text-center {{ $headerClass }}">
+                                <h1 class="header-title mb-0 text-primary">
+                                    {!! $navHeading !!}</h1>
+                                <p class="header-tagline mb-0">
+                                    {!! $navSubHeading !!}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-2"></div>
+                </div>
+
+
+                {{-- <div class="row justify-center items-center">
+                    <div class="col-md-9 text-center">
+                        <h1 class="header-title mb-0 text-primary">
+                            {{ $navHeading ?? 'Prarang Knowledge Webs' }}</h1>
+                        <p class="header-tagline mb-0">Bridging the Digital Divide – By Location, By Language</p>
+                    </div>
+                    <div class="col-md-3 text-end">
+                        <a href="/" class="text-decoration-none" 2>
+                            <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
+                                alt="Prarang" height="60">
+                        </a>
+                    </div>
+                </div> --}}
+            </div>
+        </header>
+        @endif
         <nav class="navbar navbar-expand-lg bg-white shadow-sm">
             <div class="container">
                 <!-- Mobile Header Area (Toggler + Brand + Logo) -->
@@ -673,8 +953,11 @@
                     <!-- Mobile Brand Content -->
                     <div class="text-center px-2">
                         <div class="header-content">
-                            <h1 class="header-title mb-0 text-primary">Prarang Knowledge Webs</h1>
-                            <p class="header-tagline mb-0">Bridging the Digital Divide – By City, By Language</p>
+                            <h1 class="header-title mb-0 text-primary">
+                                {{ $navHeading ?? 'Prarang Knowledge Webs' }}
+                            </h1>
+                            <p class="header-tagline mb-0">{!! $navSubHeading !!}
+                            </p>
                         </div>
                     </div>
 
@@ -683,24 +966,25 @@
                         <img class="bs5-logo-image" src="https://www.prarang.in/home-assets/image/logo.png"
                             alt="Prarang" height="35" style="width: auto;">
                     </a>
+
                 </div>
 
                 <div class="collapse navbar-collapse" id="mainNavbarMenu">
                     <ul class="navbar-nav w-100 justify-content-between">
                         @if (url()->current() != '/')
-                            <li class="nav-item">
-                                <a class="nav-link" href="/">
-                                    Home
-                                </a>
-                            </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">
+                                Home
+                            </a>
+                        </li>
                         @endif
                         <li class="nav-item">
                             <a class="nav-link" href="/digital-divide">Digital Divide</a>
                         </li>
 
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
                                 Solutions
                             </a>
                             <ul class="dropdown-menu">
@@ -713,8 +997,7 @@
                                         <li><a class="dropdown-item"
                                                 href="{{ route('home.knowledge-posts') }}">Knowledge Posts
                                             </a></li>
-                                        <li><a class="dropdown-item"
-                                                href="{{ route('home.business-apps') }}">Business
+                                        <li><a class="dropdown-item" href="{{ route('home.business-apps') }}">Business
                                                 Apps
                                             </a></li>
 
@@ -729,14 +1012,41 @@
                                     </a>
                                     <ul class="dropdown-menu">
                                         <li><a class="dropdown-item" target="_blank"
-                                                href="https://g2c.prarang.in/india">India Analytics</a></li>
+                                                href="https://g2c.prarang.in/india">India
+                                                Analytics</a></li>
                                         <li><a class="dropdown-item" target="_blank"
-                                                href="https://g2c.prarang.in/world">World Analytics</a></li>
-                                        <li><a class="dropdown-item"
+                                                href="https://g2c.prarang.in/world">World
+                                                Analytics</a></li>
+                                        {{-- <li><a class="dropdown-item"
                                                 href="https://g2c.prarang.in/planners">Planners</a>
                                         </li>
                                         <li><a class="dropdown-item" href="/cirus">Cyber Risk Analyser
+                                            </a></li> --}}
+
+                                    </ul>
+                                </li>
+                                <li class="dropdown">
+                                    <a class="dropdown-item dropdown-toggle" href="#" role="button"
+                                        data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
+                                        Planners
+                                    </a>
+                                    <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item"
+                                                href="https://g2c.prarang.in/planners/development">Development
+                                                Planner</a>
+                                        </li>
+                                        <li><a class="dropdown-item"
+                                                href="https://g2c.prarang.in/planners/market">Market
+                                                Planner</a>
+                                        </li>
+                                        <li><a class="dropdown-item" href="https://www.prarang.in/cirus">Cyber Risk
+                                                Analyser
                                             </a></li>
+                                        <li><a class="dropdown-item"
+                                                href="https://g2c.prarang.in/planners/communication">Comunication
+                                                Planner</a>
+                                        </li>
+
 
                                     </ul>
                                 </li>
@@ -752,16 +1062,26 @@
                                             </a></li>
 
                                     </ul>
-                                    {{-- <a class="dropdown-item" href="/ai/upmana">Artificial Intelligence</a> --}}
+
                                 </li>
                                 <li class="dropdown">
                                     <a class="dropdown-item dropdown-toggle" href="#" role="button"
                                         data-bs-toggle="dropdown" aria-expanded="false" data-bs-reference="parent">
-                                        Performance Metrics
+                                        Partner Login
                                     </a>
                                     <ul class="dropdown-menu">
+                                        <li><a class="dropdown-item"
+                                                href="https://www.prarang.in/partners-metrics">Performance
+                                                Metrics</a>
+                                        </li>
                                         <li><a class="dropdown-item" href="/semiotics">Semiotics</a></li>
-                                        <li><a class="dropdown-item" href="/partners">Partner Metrics
+                                        <li><a class="dropdown-item"
+                                                href=" https://b2b.prarang.in/login?lt=partner">City Ad OOH
+                                                Listing</a>
+                                        </li>
+                                        <li><a class="dropdown-item"
+                                                href=" https://b2b.prarang.in/login?lt=partner">District
+                                                Analytics
                                             </a></li>
                                     </ul>
                                 </li>
@@ -773,12 +1093,16 @@
 
                                     </a>
                                     <ul class="dropdown-menu">
-                                        <li><a class="dropdown-item" href="{{ route('home.city-portals') }}">City
+                                        <li><a class="dropdown-item"
+                                                href="https://www.prarang.in/city-portals">City/Village
                                                 Portals
                                             </a></li>
+                                        <li><a class="dropdown-item" href="https://www.prarang.in/country-portals">World
+                                                Bilateral Portal
+
+                                            </a></li>
                                         <li><a class="dropdown-item"
-                                                href="{{ route('home.country-portals') }}">Country
-                                                Portals
+                                                href="https://www.prarang.in/language-webs">Language Portal
 
                                             </a></li>
                                     </ul>
@@ -798,7 +1122,8 @@
                             <a class="nav-link" href="javascript:void(0);" id="viveks-modal">Blogs</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/knowledge">Knowledge</a>
+
+                            <a class="nav-link text-center" href="/knowledge">Knowledge</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/intelligence">Intelligence</a>
@@ -808,7 +1133,41 @@
             </div>
         </nav>
     </div>
-    <main class="container" style="min-height: 70vh !important;">
+    @props(['resetMainMinHeight' => false])
+
+    <main class="container" @if (!$resetMainMinHeight) style="min-height: 70vh !important;" @endif>
+        @if($isHome)
+        <style>
+            @media (max-width:576px) {
+
+                /* Block */
+                .container .d-block {
+                    width: 172px !important;
+                    padding-right: 7px !important;
+                    padding-left: 12px !important;
+                    padding-top: 2px !important;
+                    padding-bottom: 2px !important;
+                    transform: translatex(-23px) translatey(4px);
+                }
+
+            }
+        </style>
+        <a href="/ai/upmana" class="d-block d-md-none  group relative overflow-hidden inline-flex items-center gap-2 p-2  px-4 rounded-full
+           bg-gradient-to-r from-yellow-100 via-yellow-100  to-yellow-100
+           text-white font-semibold tracking-wide text-sm border-2
+           shadow-lg
+           animate-pulseGlow
+           transition-transform duration-200 ease-out
+           hover:scale-105 active:scale-95">
+            <span>
+                <i class="bi bi-stars text-red-500 text-xl "></i>
+            </span>
+            <span class="relative z-10 text-blue-800">Comparison A.I.</span>
+            <!-- diagonal flash sweep -->
+
+        </a>
+        @endif
+        <br>
         {{ $slot }}
     </main>
     <footer>
@@ -861,7 +1220,7 @@
                 its entirety. If you do not agree with any part of this disclaimer, please refrain from using
                 our
                 website. For
-                any questions or clarifications, please contact us at query@prararag.in
+                any questions or clarifications, please contact us at query@prarang.in
             </p>
             <p id="demo">
             </p>
@@ -912,8 +1271,7 @@
     {{-- <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
 
     <!-- Dynamic Generic Modal -->
-    <div class="modal fade" id="dynamicModal" tabindex="-1" aria-labelledby="dynamicModalLabel"
-        aria-hidden="true">
+    <div class="modal fade" id="dynamicModal" tabindex="-1" aria-labelledby="dynamicModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content border-0" style="border-radius: 28px;">
                 <div class="modal-header border-0 p-4 pb-0">
@@ -950,6 +1308,7 @@
         //     );
         // });
     </script>
+
     @livewireScripts
 </body>
 

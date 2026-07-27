@@ -14,6 +14,11 @@ class BiletralPortal extends Model
     protected $table = 'byletral_portals';
     protected $connection = 'main';
     protected $guarded = [];
+
+    protected $casts = [
+        'extended_primary_link'   => 'array',
+        'extended_secondary_link' => 'array',
+    ];
     public function primaryCountry()
     {
         return $this->belongsTo(CountryPortal::class, 'primary_country_id');

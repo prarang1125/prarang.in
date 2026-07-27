@@ -152,14 +152,18 @@ class UpmanaAi extends Component
             ->all();
 
         $topic = array_diff($this->activeMainChecks, $topic);
-        $newOutput = httpGet('/upamana/transformer', [
-            'ids' => $this->geography()['city'],
-            'fields' => $fields,
-            'prompt' => $this->prompt,
-            'topic' => $topic,
-            'locale' => app()->getLocale()
-        ])['data'];
-        // dd($newOutput);
+        try {
+            $newOutput = httpGet('/upamana/transformer', [
+                'ids' => $this->geography()['city'],
+                'fields' => $fields,
+                'prompt' => $this->prompt,
+                'topic' => $topic,
+                'locale' => app()->getLocale()
+            ])['data'];
+        } catch (\Exception $e) {
+            dd($e->getMessage());
+        }
+
         if ($newOutput == 400) {
             $this->messages['warning'][] = 'Please choose/Compare a different location or field.';
             return;
@@ -237,7 +241,11 @@ class UpmanaAi extends Component
 
     public function render()
     {
-        return view('livewire.pages.upmana-ai')->layout('components.layout.main.base');
+        $metaData = [
+            'nav-heading' => 'Artificial Intelligence: Comparative A.I.',
+            'nav-sub-heading' => ''
+        ];
+        return view('livewire.pages.upmana-ai')->layout('components.layout.main.base', compact('metaData'));
     }
 
     public function flattenValuesOnly(array $array): array

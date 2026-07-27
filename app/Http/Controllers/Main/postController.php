@@ -12,6 +12,8 @@ use App\Services\PortalUnion;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 use Modules\Portal\Models\BiletralPortal;
+use Illuminate\Pagination\LengthAwarePaginator;
+
 
 class postController extends Controller
 {
@@ -34,7 +36,6 @@ class postController extends Controller
 
         $chittiIds = ChittiGeography::where('Geography', $geography->geographycode)
             ->pluck('chittiId');
-
         $chittis = Chitti::whereIn('chittiId', $chittiIds)
             ->where('finalStatus', 'approved')
 
@@ -108,7 +109,7 @@ class postController extends Controller
         })
 
             ->where('chittiId', '!=', $postId)
-            ->whereRaw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y %h:%i %p') BETWEEN DATE_SUB(CURDATE(), INTERVAL 4 DAY) AND DATE_ADD(CURDATE(), INTERVAL 1 DAY)")
+            ->whereRaw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y %h:%i %p') BETWEEN DATE_SUB(CURDATE(), INTERVAL 60 DAY) AND DATE_ADD(CURDATE(), INTERVAL 1 DAY)")
             ->where('finalStatus', 'approved')
             ->whereRaw("STR_TO_DATE(dateOfApprove, '%d-%m-%Y %h:%i %p') != STR_TO_DATE('" . $post->dateOfApprove . "', '%d-%m-%Y %h:%i %p')")
             //->orderBy('chittiId', 'desc')
@@ -159,5 +160,59 @@ class postController extends Controller
             ->where('chitti.finalStatus', 'approved')
             ->where('vg.Geography', $portal->city_code)
             ->first();
+    }
+
+
+
+    public function searchTrends($city_id, $city_name)
+    {
+        // 1. Get all unique months present for this city to paginate them
+        $allMonths = DB::table('city_search_trends')
+            ->where('city_id', $city_id)
+            ->orderBy('month_year', 'desc')
+            ->distinct()
+            ->pluck('month_year');
+
+        // 2. Setup manual pagination variables (3 months per page)
+        $perPage = 3;
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $currentMonthsPage = $allMonths->forPage($currentPage, $perPage);
+
+        // 3. Fetch data ONLY for the 3 months on the current page
+        $categoryQueriesByMonth = DB::table('trends_category_queries')
+            ->where('city_id', $city_id)
+            ->whereIn('month_year', $currentMonthsPage)
+            ->orderBy('month_year', 'desc')
+            ->get()
+            ->groupBy('month_year');
+
+        $trendsData = DB::table('city_search_trends')
+            ->where('city_id', $city_id)
+            ->whereIn('month_year', $currentMonthsPage)
+            ->orderBy('month_year', 'desc')
+            ->get()
+            ->groupBy('month_year')
+            ->map(function ($items, $month) use ($categoryQueriesByMonth) {
+                return [
+                    'english' => $items->where('language_type', 0)
+                        ->sortByDesc('popularity')
+                        ->values(),
+                    'hindi'   => $items->where('language_type', 1)
+                        ->sortByDesc('popularity')
+                        ->values(),
+                    'category_queries' => $categoryQueriesByMonth->get($month, collect())->values(),
+                ];
+            });
+
+        // 4. Create the paginator instance to pass to the view
+        $trends = new LengthAwarePaginator(
+            $trendsData,
+            $allMonths->count(),
+            $perPage,
+            $currentPage,
+            ['path' => LengthAwarePaginator::resolveCurrentPath()]
+        );
+
+        return view('main.search_trends', compact('trends', 'city_id', 'city_name'));
     }
 }

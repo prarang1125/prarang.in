@@ -6,7 +6,7 @@ $encodedUrl = urlencode($shareUrl);
 $shareText = urlencode('Check this out: ' . $shareUrl);
 @endphp
 
-<link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+<link href='https://cdn.jsdelivr.net/npm/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 
 <style>
     .pr-ai-section .share-back-print {

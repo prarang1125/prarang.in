@@ -1,0 +1,327 @@
+<?php
+
+namespace App\Livewire\Pages;
+
+use Livewire\Component;
+use Illuminate\Support\Facades\Log;
+use App\Services\SentenceService;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
+
+
+class NepalCountryComparison extends Component
+{
+    public $output = [];
+    public $entity = [];
+    public $prompt = '';
+    public $response = '';
+    public $cities = [];
+    public $mainChecks = [];
+    public $activeMainChecks = [];
+    public $subChecks = [];
+    public $messages = [];
+    public $comparisonSentence = '';
+    public $activeSection = [];
+    public $selectedModels = [];
+    public $selectedSequence = [];
+
+    protected $sentenceService;
+
+    public $source;
+    public $genHit, $isRegistered;
+    public $localLocation, $lables;
+    public $selectedLanguage = '';
+    public $citiesTOChose;
+    public $share;
+    public $country1, $country2, $code1, $code2;
+
+
+    public function mount(Request $request, $country1, $country2, $code1, $code2, SentenceService $sentenceService, $lang = null)
+    {
+        $this->country1 = $country1;
+        $this->country2 = $country2;
+        $this->code1 = $code1;
+        $this->code2 = $code2;
+
+        if ($lang) {
+            session()->put('locale', $lang);
+            App::setLocale($lang);
+        } else {
+            $this->selectedLanguage = session('locale', 'en');
+            app()->setLocale($this->selectedLanguage);
+        }
+
+        session(['chat_id' => uniqid('chat_', true)]);
+
+        $verticalService = httpGet('/upamana/get-verticals/' . app()->getLocale())['data'];
+        $this->sentenceService = $sentenceService;
+        $this->mainChecks = $verticalService;
+
+        $this->messages['success'][] = 'Session started!';
+
+        $this->activeSection = [
+            'firstPrompt' => true,
+            'category'    => true,
+            'promptBox'   => true,
+            'geography'   => true,
+            'output'      => false,
+        ];
+
+        $this->citiesTOChose = $this->sentenceService->geography();
+        $this->genHit = session()->get('gen-hit', 0);
+        $this->isRegistered = session()->has('upmana-auth');
+
+        $local = App::getLocale();
+        $this->lables = cache()->remember('local-labelss' . $local, now()->addDays(1), function () use ($local) {
+            $lable = httpGet('/local/lable/', ['local' => $local]);
+            return $lable['status'] === 'success' ? $lable['data'] : [];
+        });
+
+        // Pre-select the two countries passed via route
+        $city1 = ['name' => $this->country1, 'real_name' => $this->country1];
+        $city2 = ['name' => $this->country2, 'real_name' => $this->country2];
+        $this->cities[] = json_encode($city1);
+        $this->cities[] = json_encode($city2);
+
+        // Handle share link
+        $this->share = $request->query('share', null);
+        if ($this->share) {
+            $this->handleShareLink($this->share);
+        }
+    }
+
+
+    protected function handleShareLink($shareToken)
+    {
+        try {
+            $decoded = base64_decode($shareToken);
+            if (!$decoded) {
+                return;
+            }
+
+            // Format: locations@metrics
+            $parts = explode('@', $decoded);
+            if (count($parts) !== 2) {
+                return;
+            }
+
+            [$locations, $metrics] = $parts;
+
+            $locationParts = array_filter(explode('-', $locations));
+            foreach ($locationParts as $part) {
+                $this->cities[] = json_encode(['name' => $part, 'real_name' => $part]);
+            }
+
+            $metricIds = array_filter(explode('-', $metrics));
+            if (!empty($metricIds)) {
+                $this->subChecks = [];
+                foreach ($metricIds as $metricId) {
+                    if (!isset($this->subChecks['World'])) {
+                        $this->subChecks['World'] = [];
+                    }
+                    $this->subChecks['World'][$metricId] = true;
+                }
+            }
+
+            $this->prompt = '';
+
+            if (!empty($locationParts) && !empty($metricIds)) {
+                $this->generate();
+            }
+        } catch (\Exception $e) {
+            logger()->error('Share link parsing failed: ' . $e->getMessage());
+        }
+    }
+
+
+    public function changeLanguage(SentenceService $sentenceService)
+    {
+        if ($this->selectedLanguage) {
+            session()->put('locale', $this->selectedLanguage);
+            App::setLocale($this->selectedLanguage);
+        }
+
+        $local = App::getLocale();
+
+        if (isset($this->output) && $this->output != []) {
+            $this->updatePromptFromState();
+            $this->generate();
+            $this->lables = cache()->remember('local-labelss' . $local, now()->addDays(1), function () use ($local) {
+                $lable = httpGet('/local/lable/', ['local' => $local]);
+                return $lable['status'] === 'success' ? $lable['data'] : [];
+            });
+        } else {
+            return redirect()->route('upmana-ai');
+        }
+    }
+
+
+    public function toggleMainCheck($main)
+    {
+        if (in_array($main, $this->activeMainChecks)) {
+            $this->activeMainChecks = array_diff($this->activeMainChecks, [$main]);
+        } else {
+            $this->activeMainChecks[] = $main;
+        }
+    }
+
+
+    public function generate($locationIds = null, $fieldIds = null)
+    {
+        if (!$fieldIds) {
+            $this->validate(
+                [
+                    'subChecks'   => 'required|array|min:1',
+                    'subChecks.*' => 'required|array',
+                ],
+                [
+                    'subChecks.required'   => 'Please choose at least one thing.',
+                    'subChecks.min'        => 'Please choose at least one thing.',
+                    'subChecks.*.required' => 'Please choose at least one thing.',
+                ]
+            );
+        }
+
+        $fields = collect($this->subChecks)
+            ->flatMap(fn($group) => array_keys(array_filter($group)))
+            ->unique()
+            ->values()
+            ->all();
+
+        if ($locationIds && $fieldIds) {
+            $fields = $fieldIds;
+            $cities = $locationIds;
+        }
+
+        $this->activeSection['firstPrompt'] = false;
+        $this->activeSection['promptBox']   = false;
+        $this->activeSection['output']      = true;
+
+        $this->messages = [];
+        $this->messages['danger'][] = 'Failed to generate response!';
+
+        $topic = array_keys($this->subChecks);
+        $topic = array_diff($this->activeMainChecks, $topic);
+
+        $this->updatePromptFromState();
+
+        $newOutput = httpGet('/upamana/transformer', [
+            'ids'    => $cities ?? $this->geography()['city'],
+            'fields' => $fields,
+            'prompt' => $this->prompt,
+            'topic'  => $topic,
+            'locale' => app()->getLocale(),
+        ])['data'];
+
+        if ($newOutput == 400) {
+            $this->messages['warning'][] = 'Please choose/Compare a different location or field.';
+            return;
+        }
+
+        if (isset($newOutput['comparison_sentence'])) {
+            $this->comparisonSentence = $newOutput['comparison_sentence'];
+        }
+
+        $this->source = collect($this->makeSource($fields))->toArray();
+        $this->output = $newOutput;
+    }
+
+
+    public function toggleAllSubChecks($main)
+    {
+        if (!isset($this->subChecks[$main])) {
+            $this->subChecks[$main] = [];
+        }
+
+        $current = $this->subChecks[$main];
+
+        if (count($current) === count($this->mainChecks[$main])) {
+            $this->subChecks[$main] = [];
+        } else {
+            $allIds = [];
+            foreach ($this->mainChecks[$main] as $sub) {
+                $allIds[$sub->id] = true;
+            }
+            $this->subChecks[$main] = $allIds;
+        }
+    }
+
+
+    public function updatePromptFromState()
+    {
+        if (!$this->sentenceService) {
+            $this->sentenceService = new SentenceService;
+        }
+
+        if (count($this->geography()['city']) == 2) {
+            $this->comparisonSentence = "In comparison, {$this->geography()['city'][0]} is :area km² in size, and :population in population, while {$this->geography()['city'][1]} is :area2 km² in size, and :population2 in population.";
+        } else {
+            $this->comparisonSentence = '';
+        }
+
+        $this->dispatch('closemodal');
+
+        $fields = collect($this->subChecks)
+            ->flatMap(fn($group) => array_keys(array_filter($group)))
+            ->unique()
+            ->values()
+            ->all();
+
+        $this->prompt = $this->sentenceService->makePrompt($this->geography()['local_name'], $fields);
+    }
+
+
+    public function compareResponse()
+    {
+        Log::info('Models for Comparison: ', [
+            'selectedModels'   => $this->selectedModels,
+            'selectedSequence' => $this->selectedSequence,
+        ]);
+
+        $this->dispatch('compare-now', ['prompt' => $this->prompt]);
+    }
+
+
+    public function makeSource($fields)
+    {
+        return httpGet('/upamana/make-source', ['fields' => $fields])['data'];
+    }
+
+
+    public function flattenValuesOnly(array $array): array
+    {
+        $flat = [];
+        foreach ($array as $value) {
+            if (is_array($value)) {
+                $flat = array_merge($flat, $this->flattenValuesOnly($value));
+            } else {
+                $flat[] = $value;
+            }
+        }
+        return $flat;
+    }
+
+
+    private function geography()
+    {
+        $cities = ['city' => [], 'local_name' => []];
+
+        foreach ($this->cities as $city) {
+            $decoded = json_decode($city);
+            $cities['city'][]       = $decoded->name;
+            $cities['local_name'][] = $decoded->real_name;
+        }
+
+        if (count($cities['city']) < 2) {
+            session()->flash('cityerror', 'Please select at least two countries to compare.');
+        }
+
+        return $cities;
+    }
+
+
+    public function render()
+    {
+        return view('livewire.pages.nepal-country-comparison')->layout('components.layout.main.cze');
+    }
+}

@@ -3,6 +3,7 @@
 use App\Http\Controllers\DisplayPostImage;
 use App\Http\Controllers\LandingPages;
 use App\Http\Controllers\Main\Home;
+use App\Http\Controllers\Main\Partners;
 use App\Http\Controllers\Main\PostArchives;
 use App\Http\Controllers\Main\postController;
 use App\Http\Controllers\AI\AIController;
@@ -13,11 +14,18 @@ use App\Http\Controllers\ShortnerUrl;
 use App\Livewire\Pages\ComparisonApi;
 use App\Livewire\Pages\CzeComparisonTool;
 use App\Livewire\Pages\CzeCountryComparison;
+use App\Livewire\Pages\NepalCountryComparison;
+use App\Livewire\Pages\Partners\IndiaCity;
+use App\Livewire\Pages\Partners\IndiaCityVillage;
+use App\Livewire\Pages\Partners\IndiaCityVillageStepFive;
+use App\Livewire\Pages\Partners\IndiaCityVillageStepTwo;
 use App\Livewire\Pages\UpmanaAi;
 use App\View\Components\Layout\Main\Base;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+
+
 
 Route::get('/partner-api/get-chitti-data', [PartnerApi::class, 'getChittiByDateRange']);
 Route::get('/partner-api/get-top-3-posts/', [PartnerApi::class, 'getChittiData']);
@@ -35,20 +43,38 @@ Route::prefix('/')->group(function () {
     Route::get('/semiotics', [Home::class, 'semiotics'])->name('semiotics');
     Route::get('/analytics', [Home::class, 'analytics'])->name('analytics');
     Route::get('/about-us', [Home::class, 'aboutUs'])->name('about-us');
-    Route::get('/partners', [Home::class, 'partners'])->name('partners');
+
     Route::get('/privacy-policy', [Home::class, 'privacyPolicy'])->name('privacy-policy');
     Route::get('/refund-cancellation', [Home::class, 'refundCancellation'])->name('refund-cancellation');
     Route::get('/terms-conditions', [Home::class, 'termsConditions'])->name('terms-conditions');
 });
 
+// Partners
+Route::prefix('partners')->group(function () {
+    Route::get('/', [Partners::class, 'partners'])->name('partners');
+    Route::get('/india-city/{hashId?}', IndiaCity::class)->name('partners.india-city');
+    Route::get('/city-village-selector/{hashId?}', IndiaCityVillage::class)->name('partners.india-town');
+    Route::any('/step-2/{hashId?}', IndiaCityVillageStepTwo::class)->name('partners.step-2');
+    Route::any('/step-5/{hashId?}', IndiaCityVillageStepFive::class)->name('partners.step-5');
+});
+
+
+Route::get('partners-metrics', [Home::class, 'partnersMetrics'])->name('home.partners-metrics');
 Route::get('city-webs', [Home::class, 'cityWebs'])->name('home.city-webs');
+Route::get('town-webs', [Home::class, 'townWebs'])->name('home.town-webs');
+Route::get('town-webs-in', [Home::class, 'townWebsIn'])->name('home.town-webs-in');
+Route::get('village-webs', [Home::class, 'villageWebs'])->name('home.village-webs');
+Route::get('india-rural', [Home::class, 'indiaRural'])->name('home.india-rural');
 Route::get('country-webs/', [Home::class, 'countryWebs'])->name('home.country-webs');
+Route::get('language-webs/', [Home::class, 'languageWebs'])->name('home.language-webs');
+
 
 Route::get('lang-webs', [Home::class, 'langWebs'])->name('home.lang-webs');
 Route::get('/get-countries/{langId}', [Home::class, 'geCountrytByLanguage'])
     ->name('countries.by.language');
 
 Route::get('india-city-webs', [Home::class, 'indiaCityWebs'])->name('home.india-city-webs');
+Route::get('/get-village-details/{stateCode}/{type}', [Home::class, 'getVillageDetails'])->name('village.details');
 
 Route::get('knowledge-posts', [Home::class, 'knowledgePosts'])->name('home.knowledge-posts');
 Route::get('business-apps', [Home::class, 'businessApps'])->name('home.business-apps');
@@ -88,6 +114,18 @@ Route::get('/00-{query?}', [ShortnerUrl::class, 'index'])->name('shortner-url');
 Route::get('/q/{query?}/{custom?}', [ShortnerUrl::class, 'qShort'])->name('q-url');
 
 Route::get('/cirus/{type?}', App\Livewire\Pages\Cirus::class)->name('cirus.dashboard');
-
+Route::get('/webs/filter/{type?}', App\Livewire\Pages\VillageTownFilter::class);
+Route::get('/country-webs-filter', App\Livewire\Pages\CountryFilter::class);
 // Route::get('/czech-republic-regional-comparison', CzeComparisonTool::class);
 Route::get('/czech-republic-{type}-comparison', CzeCountryComparison::class);
+// Route::get('/nepal-{type}-comparison', NepalCountryComparison::class);
+Route::get('/{country1}/{country2}/{type}-comparison/{code1}/{code2}', NepalCountryComparison::class);
+
+
+Route::get('/search-trends/{city_id}/{city_name}', [PostController::class, 'searchTrends'])->name('search-trends');
+
+Route::get('/india-knowledge-webs', [Home::class, 'indiaKnowledgeWebs'])->name('home.india-knowledge-webs');
+Route::get('/czech-knowledge-webs', [Home::class, 'czechKnowledgeWebs'])->name('home.czech-knowledge-webs');
+Route::get('/nepal-knowledge-webs', [Home::class, 'nepalKnowledgeWebs'])->name('home.nepal-knowledge-webs');
+
+include __DIR__ . '/townvillaes.php';

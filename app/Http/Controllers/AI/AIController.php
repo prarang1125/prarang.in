@@ -66,13 +66,13 @@ class AIController extends Controller
             // Step 5: Generate responses for each model using OpenRouter API
             $openRouterUrl = 'http://localhost:4000/run';
             $openRouterModels = [
-                'google' => 'google/gemini-2.0-flash-lite-001',
-                'gemini' => 'google/gemini-2.0-flash-lite-001',
+                'google' => 'google/gemma-3-4b-it',
+                'gemini' => 'google/gemma-3-4b-it',
                 'chatgpt' => 'openai/gpt-5-nano',
                 'claude' => 'anthropic/claude-3-haiku',
                 'grok' => 'x-ai/grok-4-fast',
-                'deepseek' => 'deepseek/deepseek-r1-0528-qwen3-8b:free',
-                'meta' => 'meta-llama/llama-4-maverick:free',
+                'deepseek' => 'deepseek/deepseek-v4-flash',
+                'meta' => 'meta-llama/llama-3.1-8b-instruct',
                 'perplexity' => 'perplexity/sonar',
             ];
 
@@ -87,7 +87,7 @@ class AIController extends Controller
                 // Call OpenRouter API
                 if (!empty($apiModels)) {
                     $openRouterPayload = [
-                        'prompt' => $prompt, # "The paragraph summarizes key insights using actual numbers.Percentages and ratios are calculated and phrased naturally.The table aligns all fields cleanly.Give the source of data and consume only a maximum of 700 tokens.",
+                        'prompt' => $prompt,
                         'models' => $apiModels,
                     ];
 

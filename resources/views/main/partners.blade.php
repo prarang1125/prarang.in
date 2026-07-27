@@ -1,4 +1,10 @@
-<x-layout.main.base>
+@php
+$metaData = [
+'nav-heading' => 'Partners',
+'nav-sub-heading' => '',
+];
+@endphp
+<x-layout.main.base :metaData="$metaData">
 
     <style>
         .scroll-hint {
@@ -185,6 +191,7 @@
             line-height: 1.1;
             margin: 4px 4px 0 0;
             border: 1px solid #3b5f9a;
+            min-width: 112px;
         }
 
         .matrix-pill-lite {
@@ -201,6 +208,96 @@
         .matrix-pill-block {
             display: inline-block;
             margin-top: 6px;
+        }
+
+        .table-container {
+            border: 1px solid #0b2f6a;
+            background: #ffffff;
+            padding: 8px 10px 10px;
+        }
+
+        .table-container h6 {
+            text-align: center;
+            font-size: 13px;
+        }
+
+        .table-wrapper {
+            max-height: 320px;
+            overflow-y: auto;
+            border: 1px solid #0b2f6a;
+        }
+
+        .modal-city-table thead th {
+            background: #2c4f92;
+            color: #ffffff;
+            font-weight: 700;
+            text-align: center;
+            font-size: 12px;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .modal-city-table td {
+            font-size: 12px;
+        }
+
+        .country-table-wrapper {
+            max-height: 260px;
+            overflow-y: auto;
+            border: 1px solid #0b2f6a;
+            background: #ffffff;
+
+            margin: 0 auto;
+        }
+
+        .modal-country-table {
+            width: 100%;
+        }
+
+        .country-pill-badge {
+            display: inline-block;
+            background: #ffffff;
+            color: #000000;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 13px;
+            border: 1px solid #0b2f6a;
+        }
+
+        /* .country-pill-badge:hover {
+            background: #f4f8ff;
+            border-color: #2c4f92;
+        } */
+
+        .modal-country-table thead th {
+            background: #2c4f92;
+            color: #ffffff;
+            font-weight: 700;
+            text-align: center;
+            font-size: 12px;
+            position: sticky;
+            top: 0;
+            z-index: 1;
+        }
+
+        .modal-country-table td {
+            font-size: 12px;
+        }
+
+        .matrix-language-button {
+            width: 100%;
+            background: transparent;
+            border: 0;
+            padding: 0;
+            text-align: center;
+            color: inherit;
+            cursor: pointer;
+        }
+
+        .matrix-language-button:focus {
+            outline: none;
+            box-shadow: none;
         }
 
         .pune-stack {
@@ -338,6 +435,61 @@
 
         .zone-modal .dropdown-menu {
             min-width: 100%;
+        }
+
+        .dropdownss {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .dropbtn {
+            width: 100%;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            z-index: 999;
+            border-radius: 6px;
+            padding: 6px 0;
+        }
+
+        .dropdown-content a {
+            color: #000000;
+            padding: 10px 15px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdownss a:hover {
+            background-color: #f5f5f5;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .dropdown-icon {
+            font-size: 12px;
+            display: inline-flex;
+            align-items: center;
+            margin-left: 6px;
+            transition: transform 0.3s ease;
+        }
+
+        .dropdown-icon.rotate {
+            transform: rotate(180deg);
+        }
+
+        .matrix-bg tr .dropbtn {
+            width: 46% !important;
         }
 
         .zone-accordion .accordion-body {
@@ -523,6 +675,7 @@
             background: #ffffff;
             padding: 8px 6px;
             min-height: 64px;
+            cursor: pointer;
         }
 
         .language-tab-title {
@@ -605,7 +758,7 @@
             margin-left: 15px;
         }
     </style>
-    <section class=" container mt-4">
+    <section class=" container">
         <div class="row">
             <div class="col-sm-8">
                 <p class="mb-3">Prarang is open to Partnership in select 901+ Indian Markets & 195 World Markets. Each
@@ -621,6 +774,10 @@
                         <li><a type="button" data-bs-toggle="modal" data-bs-target="#TheseMTw1">Product</a></li>
                         <li>
                             <a type="button" data-bs-toggle="modal" data-bs-target="#TheseMTi1">Advertising</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('home.partners-metrics') }}"
+                                style="text-decoration: none; color: inherit;">Partner Metrics</a>
                         </li>
                     </ul>
                 </div>
@@ -699,28 +856,31 @@
                 <tbody class="matrix-bg">
                     <tr>
                         <td class="text-center">
-                            <div class="text-2xl font-black">हिन्दी</div>
-                            <div class="text-sm font-semibold">Hindi - 297 City Webs</div>
+                            <button type="button" class="matrix-language-button" data-bs-toggle="modal"
+                                data-bs-target="#LanguageModal-60">
+                                <div class="text-2xl font-black">हिन्दी</div>
+                                <div class="text-sm font-semibold">Hindi - 297 City Webs</div>
+                            </button>
                         </td>
                         <td class="text-center">
                             <div class="text-sm font-bold">292 Knowledge Webs</div>
                             <div class="mt-2">
 
-                                @foreach ($portal as $zone => $state)
-                                    @if ($zone == 'Union Territories')
-                                        @continue
-                                    @endif
-                                    <button type="button" class="matrix-pill" data-bs-toggle="modal"
-                                        data-bs-target="#ZoneModal-{{ Str::slug($zone) }}">{{ $zone }} Zone
-                                    </button>
+                                @foreach ($portal as $zone => $zoneStates)
+                                @if ($zone == 'Union Territories')
+                                @continue
+                                @endif
+                                <button type="button" class="matrix-pill" data-bs-toggle="modal"
+                                    data-bs-target="#ZoneModal-{{ Str::slug($zone) }}">{{ $zone }} Zone
+                                </button>
                                 @endforeach
-                                @foreach ($portal as $zone => $state)
-                                    @if ($zone != 'Union Territories')
-                                        @continue
-                                    @endif
-                                    <button type="button" class="matrix-pill" data-bs-toggle="modal"
-                                        data-bs-target="#ZoneModal-{{ Str::slug($zone) }}">{{ $zone }}
-                                    </button>
+                                @foreach ($portal as $zone => $zoneStates)
+                                @if ($zone != 'Union Territories')
+                                @continue
+                                @endif
+                                <button type="button" class="matrix-pill" data-bs-toggle="modal"
+                                    data-bs-target="#ZoneModal-{{ Str::slug($zone) }}">{{ $zone }}
+                                </button>
                                 @endforeach
                             </div>
                         </td>
@@ -750,58 +910,53 @@
                         </td>
                         <td class="text-center">
                             @php
-                                $meerutPortal = collect($portal)->flatten(2)->firstWhere('slug', 'meerut');
-                                $meerutPortal =
-                                    $meerutPortal ?: collect($portal)->flatten(2)->firstWhere('city_name', 'Meerut');
+                            $meerutPortal = collect($portal)->flatten(2)->firstWhere('slug', 'meerut');
+                            $meerutPortal =
+                            $meerutPortal ?: collect($portal)->flatten(2)->firstWhere('city_name', 'Meerut');
                             @endphp
                             @if ($meerutPortal && $meerutPortal->is_ext_url)
-                                @php
-                                    $dropdownId = 'portal-dropdown-meerut';
-                                    $extUrls = is_string($meerutPortal->ext_urls)
-                                        ? json_decode($meerutPortal->ext_urls, true)
-                                        : $meerutPortal->ext_urls;
-                                @endphp
-                                <div class="dropdown w-100">
-                                    <button type="button" class="matrix-pill matrix-pill-lite dropdown-toggle"
-                                        id="{{ $dropdownId }}" data-bs-toggle="dropdown" aria-expanded="false">
-                                        {{ $meerutPortal->city_name ?? 'Meerut' }}
-                                    </button>
-                                    <ul class="dropdown-menu shadow border-0 py-2 w-100"
-                                        aria-labelledby="{{ $dropdownId }}">
-                                        <li>
-                                            <a class="dropdown-item py-2 px-3" href="/{{ $meerutPortal->slug }}">
-                                                Main Portal
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <hr class="dropdown-divider">
-                                        </li>
-                                        @if (is_array($extUrls))
-                                            @foreach ($extUrls as $extUrl)
-                                                <li>
-                                                    <a class="dropdown-item py-2 px-3"
-                                                        href="{{ $extUrl['url'] ?? '#' }}" target="_blank"
-                                                        rel="noopener">
-                                                        {{ $extUrl['title'] ?? 'Link' }}
-                                                    </a>
-                                                </li>
-                                            @endforeach
-                                        @endif
-                                    </ul>
+                            @php
+                            $dropdownId = 'portal-dropdown-meerut';
+                            $extUrls = is_string($meerutPortal->ext_urls)
+                            ? json_decode($meerutPortal->ext_urls, true)
+                            : $meerutPortal->ext_urls;
+                            @endphp
+                            <div class="dropdownss w-100">
+                                <button type="button" class="matrix-pill matrix-pill-lite dropbtn"
+                                    data-dropdown="meerut">
+                                    {{ $meerutPortal->city_name ?? 'Meerut' }}
+                                    <span class="dropdown-icon" aria-hidden="true">
+                                        <i class="bi bi-chevron-down"></i>
+                                    </span>
+                                </button>
+                                <div class="dropdown-content" data-dropdown-menu="meerut">
+                                    <a href="/{{ $meerutPortal->slug }}">Main Portal</a>
+                                    <hr style="margin: 0">
+                                    @if (is_array($extUrls))
+                                    @foreach ($extUrls as $extUrl)
+                                    <a href="{{ $extUrl['url'] ?? '#' }}" target="_blank" rel="noopener">
+                                        {{ $extUrl['title'] ?? 'Link' }}
+                                    </a>
+                                    @endforeach
+                                    @endif
                                 </div>
+                            </div>
                             @else
-                                <a href="/meerut/all-posts" target="_blank" class="matrix-pill matrix-pill-lite"
-                                    style="text-decoration: none">
-                                    Meerut
-                                </a>
+                            <a href="/meerut/all-posts" target="_blank" class="matrix-pill matrix-pill-lite"
+                                style="text-decoration: none">
+                                Meerut
+                            </a>
                             @endif
 
                         </td>
                     </tr>
                     <tr>
                         <td class="text-center">
-                            <div class="text-2xl font-black">मराठी</div>
-                            <div class="text-sm font-semibold">Marathi - 44 City Webs</div>
+                            <button type="button" class="matrix-language-button" data-bs-toggle="modal"
+                                data-bs-target="#LanguageModal-94">
+                                <div class="text-2xl font-black">मराठी</div>
+                                <div class="text-sm font-semibold">Marathi - 44 City Webs</div>
+                            </button>
                         </td>
                         <td class="text-center">
                             <div class="city-meta">44 Knowledge Webs</div>
@@ -810,7 +965,7 @@
                                     style="text-decoration: none">
                                     Pune
                                 </a>
-                                <span class="matrix-pill matrix-pill-outline matrix-pill-block">+33 Coming Soon</span>
+                                <span class="matrix-pill matrix-pill-outline matrix-pill-block">+43 Coming Soon</span>
                             </div>
                         </td>
                         <td class="text-center">
@@ -830,98 +985,252 @@
 
         <div class="coming-soon-divider"><span>Coming Soon</span></div>
         <div class="language-tabs">
-            <div class="language-tab">
+            <button type="button" class="language-tab" data-bs-toggle="modal" data-bs-target="#LanguageModal-39">
                 <div class="language-tab-title script">English</div>
                 <div class="language-tab-subtitle">English - 192 City Webs</div>
-            </div>
-            <div class="language-tab">
+            </button>
+            <button type="button" class="language-tab" data-bs-toggle="modal" data-bs-target="#LanguageModal-154">
                 <div class="language-tab-title">తెలుగు</div>
                 <div class="language-tab-subtitle">Telugu - 67 City Webs</div>
-            </div>
-            <div class="language-tab">
+            </button>
+            <button type="button" class="language-tab" data-bs-toggle="modal" data-bs-target="#LanguageModal-167">
                 <div class="language-tab-title">اردو</div>
                 <div class="language-tab-subtitle">Urdu - 51 City Webs</div>
-            </div>
-            <div class="language-tab">
+            </button>
+            <button type="button" class="language-tab" data-bs-toggle="modal" data-bs-target="#LanguageModal-152">
                 <div class="language-tab-title">தமிழ்</div>
                 <div class="language-tab-subtitle">Tamil - 44 City Webs</div>
-            </div>
-            <div class="language-tab">
+            </button>
+            <button type="button" class="language-tab" data-bs-toggle="modal" data-bs-target="#LanguageModal-55">
                 <div class="language-tab-title">ગુજરાતી</div>
                 <div class="language-tab-subtitle">Gujarati - 40 City Webs</div>
-            </div>
-            <div class="language-tab">
+            </button>
+            <button type="button" class="language-tab" data-bs-toggle="modal" data-bs-target="#LanguageModal-13">
                 <div class="language-tab-title">বাংলা</div>
                 <div class="language-tab-subtitle">Bengali - 39 City Webs</div>
-            </div>
-            <div class="language-tab">
+            </button>
+            <button type="button" class="language-tab" data-bs-toggle="modal" data-bs-target="#LanguageModal-56">
                 <div class="language-tab-title">ਗੁਰਮੁਖੀ</div>
                 <div class="language-tab-subtitle">Gurmukhi - 38 City Webs</div>
-            </div>
-            <div class="language-tab">
+            </button>
+            <button type="button" class="language-tab" data-bs-toggle="modal" data-bs-target="#LanguageModal-70">
                 <div class="language-tab-title">ಕನ್ನಡ</div>
                 <div class="language-tab-subtitle">Kannada - 34 City Webs</div>
-            </div>
-            <div class="language-tab">
+            </button>
+            <button type="button" class="language-tab" data-bs-toggle="modal" data-bs-target="#LanguageModal-115">
                 <div class="language-tab-title">ଓଡ଼ିଆ</div>
                 <div class="language-tab-subtitle">Odia - 21 City Webs</div>
-            </div>
-            <div class="language-tab">
+            </button>
+            <button type="button" class="language-tab" data-bs-toggle="modal" data-bs-target="#LanguageModal-7">
                 <div class="language-tab-title">অসমীয়া</div>
                 <div class="language-tab-subtitle">Assamese - 15 City Webs</div>
-            </div>
-            <div class="language-tab">
+            </button>
+            <button type="button" class="language-tab" data-bs-toggle="modal" data-bs-target="#LanguageModal-89">
                 <div class="language-tab-title">മലയാളം</div>
                 <div class="language-tab-subtitle">Malayalam - 19 City Webs</div>
-            </div>
+            </button>
         </div>
     </section>
 
-    @foreach ($portal as $zone => $states)
-        @php
-            $zoneId = Str::slug($zone);
-        @endphp
-        <div class="modal fade zone-modal" id="ZoneModal-{{ $zoneId }}" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-md modal-dialog-scrollable">
-                <div class="modal-content ">
-                    <div class="modal-header">
-                        <h5 class="modal-title">{{ $zone }}
-                            {{ $zone != 'Union Territories' ? 'Zone' : '' }}
-                        </h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
-                    </div>
-                    <div class="modal-body p-2">
+    @php
+    $languageModals = [
+    ['id' => '39', 'title' => 'English'],
+    ['id' => '154', 'title' => 'Telugu'],
+    ['id' => '167', 'title' => 'Urdu'],
+    ['id' => '152', 'title' => 'Tamil'],
+    ['id' => '55', 'title' => 'Gujarati'],
+    ['id' => '13', 'title' => 'Bengali'],
+    ['id' => '56', 'title' => 'Gurmukhi'],
+    ['id' => '70', 'title' => 'Kannada'],
+    ['id' => '115', 'title' => 'Odia'],
+    ['id' => '7', 'title' => 'Assamese'],
+    ['id' => '89', 'title' => 'Malayalam'],
+    ['id' => '60', 'title' => 'Hindi'],
+    ['id' => '94', 'title' => 'Marathi'],
+    ];
+    @endphp
+    @foreach ($languageModals as $language)
+    @php
+    $moreThen30k = collect($more_then_30k)
+    ->flatten(1)
+    ->where('Langauge_ID', $language['id'])
+    ->sortBy(['State_ID', 'City'])
+    ->values();
 
-                        <div class="accordion zone-accordion" id="ZoneAccordion-{{ $zoneId }}">
-                            @foreach ($states as $state => $statePortals)
-                                @php
-                                    $stateId = Str::slug($zone . '-' . $state);
-                                    $isFirst = $loop->first;
-                                @endphp
-                                <div class="accordion-item">
-                                    @php
-                                        $nonLiveCount = $statePortals->where('is_live', false)->count();
-                                    @endphp
-                                    <h2 class="accordion-header" id="{{ $stateId }}">
-                                        <button class="accordion-button collapsed" data-bs-toggle="collapse"
-                                            data-bs-target="#collapse{{ $stateId }}"
-                                            aria-expanded="{{ $isFirst ? 'true' : 'false' }}">
-                                            {{ $state }}
-                                            {{-- <span class="zone-city-count">{{ count($statePortals) }}
-                                        {{ Str::plural('City', count($statePortals)) }}</span> --}}
-                                            @if ($nonLiveCount > 0)
-                                                <span class="zone-city-count">
-                                                    {{ $nonLiveCount }} {{ Str::plural('City', $nonLiveCount) }}
-                                                </span>
-                                            @endif
-                                        </button>
-                                    </h2>
-                                    <div id="collapse{{ $stateId }}" class="accordion-collapse collapse"
-                                        data-bs-parent="#ZoneAccordion-{{ $zoneId }}">
-                                        <div class="accordion-body">
-                                            <div class="zone-district-tabs">
-                                                @foreach ($statePortals as $portalItem)
-                                                    {{-- @if ($portalItem->is_ext_url)
+    $lessThen30k = collect($less_then_30k)
+    ->flatten(1)
+    ->where('Langauge_ID', $language['id'])
+    ->sortBy(['State_ID', 'City'])
+    ->values();
+    @endphp
+    <div class="modal fade" id="LanguageModal-{{ $language['id'] }}" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h5 class="modal-title">{{ $language['title'] }} City Webs</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row g-3">
+                        @if ($moreThen30k->isNotEmpty())
+                        <div class="{{ $lessThen30k->isEmpty() ? 'col-12' : 'col-lg-6' }}">
+                            <div class="table-container">
+                                <h6 class="mb-3 text-dark fw-bold">
+                                    List of Cities with more than 30K Literate Netizens in
+                                    {{ $language['title'] }}.
+                                </h6>
+                                <div class="table-wrapper">
+                                    <table
+                                        class="table table-sm table-striped table-bordered table-hover modal-city-table">
+                                        <thead class="sticky-top">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>District Capital</th>
+                                                <th>State/UT</th>
+                                                <th>State Capital</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($moreThen30k as $item)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item['City'] ?? '' }}</td>
+                                                <td>{{ $state[(string) ($item['State_ID'])]?? "" }}
+                                                </td>
+                                                <td>{{ $item['State_Capital'] ?? '' }}</td>
+                                            </tr>
+                                            @empty
+                                            <tr>
+                                                <td colspan="4" class="text-center">No cities available
+                                                </td>
+                                            </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+
+                        @if ($lessThen30k->isNotEmpty())
+                        <div class="{{ $moreThen30k->isEmpty() ? 'col-12' : 'col-lg-6' }}">
+                            <div class="table-container">
+                                <h6 class="mb-3 text-dark fw-bold">
+                                    List of Cities with less than 30K Literate Netizens in
+                                    {{ $language['title'] }}.
+                                </h6>
+                                <div class="table-wrapper">
+                                    <table
+                                        class="table table-sm table-striped table-bordered table-hover modal-city-table">
+                                        <thead class="sticky-top">
+                                            <tr>
+                                                <th>#</th>
+                                                <th>District Capital</th>
+                                                <th>State/UT</th>
+                                                <th>State Capital</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @forelse ($lessThen30k as $item)
+                                            <tr>
+                                                <td>{{ $loop->iteration }}</td>
+                                                <td>{{ $item['City'] ?? '' }}</td>
+                                                <td>{{ $state[(string) ($item['State_ID'] ?? '')] ?? ($state[(int)
+                                                    ($item['State_ID'] ?? 0)] ?? '') }}
+                                                </td>
+                                                <td>{{ $item['State_Capital'] ?? '' }}</td>
+                                            </tr>
+                                            @empty
+                                            <tr>
+                                                <td colspan="4" class="text-center">No cities available
+                                                </td>
+                                            </tr>
+                                            @endforelse
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        @endif
+
+                    </div>
+                    @php
+                    $countries = collect($countriesByLanguage[$language['id']] ?? [])
+                    ->filter(fn($c) => strtolower($c) !== 'india')
+                    ->values();
+                    @endphp
+
+                    @if ($countries->isNotEmpty())
+                    <div class="mt-4">
+                        <h6 class="mb-3 text-dark fw-bold text-center">
+                            List of Countries with Literate Netizens in {{ $language['title'] }}.
+                        </h6>
+                        <div class="row">
+                            @foreach ($countries as $index => $country)
+                            <div class="col-6 col-sm-6 col-md-6 col-lg-4 col-xl-3 my-1">
+                                <div class="country-pill-badge w-100 text-center">
+                                    {{ $index + 1 }}. {{ $country }}
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+                    </div>
+                    @endif
+
+                </div>
+            </div>
+        </div>
+    </div>
+    @endforeach
+
+
+
+
+    @foreach ($portal as $zone => $states)
+    @php
+    $zoneId = Str::slug($zone);
+    @endphp
+    <div class="modal fade zone-modal" id="ZoneModal-{{ $zoneId }}" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-md modal-dialog-scrollable">
+            <div class="modal-content ">
+                <div class="modal-header">
+                    <h5 class="modal-title">{{ $zone }}
+                        {{ $zone != 'Union Territories' ? 'Zone' : '' }}
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body p-2">
+
+                    <div class="accordion zone-accordion" id="ZoneAccordion-{{ $zoneId }}">
+                        @foreach ($states as $state => $statePortals)
+                        @php
+                        $stateId = Str::slug($zone . '-' . $state);
+                        $isFirst = $loop->first;
+                        @endphp
+                        <div class="accordion-item">
+                            @php
+                            $nonLiveCount = $statePortals->where('is_live', false)->count();
+                            @endphp
+                            <h2 class="accordion-header" id="{{ $stateId }}">
+                                <button class="accordion-button collapsed" data-bs-toggle="collapse"
+                                    data-bs-target="#collapse{{ $stateId }}"
+                                    aria-expanded="{{ $isFirst ? 'true' : 'false' }}">
+                                    {{ $state }}
+                                    {{-- <span class="zone-city-count">{{ count($statePortals) }}
+                                    {{ Str::plural('City', count($statePortals)) }}</span> --}}
+                                    @if ($nonLiveCount > 0)
+                                    <span class="zone-city-count">
+                                        {{ $nonLiveCount }} {{ Str::plural('City', $nonLiveCount) }}
+                                    </span>
+                                    @endif
+                                </button>
+                            </h2>
+                            <div id="collapse{{ $stateId }}" class="accordion-collapse collapse"
+                                data-bs-parent="#ZoneAccordion-{{ $zoneId }}">
+                                <div class="accordion-body">
+                                    <div class="zone-district-tabs">
+                                        @foreach ($statePortals as $portalItem)
+                                        {{-- @if ($portalItem->is_ext_url)
                                         @php
                                         $dropdownId =
                                         'portal-dropdown-' .
@@ -935,61 +1244,60 @@
                                             <button type="button"
                                                 class="city-card btn w-100 has-external dropdown-toggle"
                                                 id="{{ $dropdownId }}" data-bs-toggle="dropdown" aria-expanded="false">
-                                                {{ $portalItem->city_name }}
-                                            </button>
-                                            <ul class="dropdown-menu shadow border-0 py-2 w-100"
-                                                aria-labelledby="{{ $dropdownId }}">
-                                                <li>
-                                                    <a class="dropdown-item py-2 px-3" href="/{{ $portalItem->slug }}">
-                                                        Main Portal
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <hr class="dropdown-divider">
-                                                </li>
-                                                @php
-                                                $extUrls = is_string($portalItem->ext_urls)
-                                                ? json_decode($portalItem->ext_urls, true)
-                                                : $portalItem->ext_urls;
-                                                @endphp
-                                                @if (is_array($extUrls))
-                                                @foreach ($extUrls as $extUrl)
-                                                <li>
-                                                    <a class="dropdown-item py-2 px-3"
-                                                        href="{{ $extUrl['url'] ?? '#' }}" target="_blank"
-                                                        rel="noopener">
-                                                        {{ $extUrl['title'] ?? 'Link' }}
-                                                    </a>
-                                                </li>
-                                                @endforeach
-                                                @endif
-                                            </ul>
-                                        </div>
-                                        @else
-                                        <a href="/{{ $portalItem->slug }}" target="_blank"
-                                            class="zone-district-tab {{ $portalItem->is_live ? 'border-warning border-2' : '' }}">
-                                            {{ $portalItem->city_name }}
-                                        </a>
-                                        @endif --}}
-
-                                                    @if (!$portalItem->is_live)
-                                                        <a href="/{{ $portalItem->slug }}" target="_blank"
-                                                            class="zone-district-tab">
-                                                            {{ $portalItem->city_name }}
-                                                        </a>
-                                                    @endif
-                                                @endforeach
-                                            </div>
-                                        </div>
+                                        {{ $portalItem->city_name }}
+                                        </button>
+                                        <ul class="dropdown-menu shadow border-0 py-2 w-100"
+                                            aria-labelledby="{{ $dropdownId }}">
+                                            <li>
+                                                <a class="dropdown-item py-2 px-3" href="/{{ $portalItem->slug }}">
+                                                    Main Portal
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <hr class="dropdown-divider">
+                                            </li>
+                                            @php
+                                            $extUrls = is_string($portalItem->ext_urls)
+                                            ? json_decode($portalItem->ext_urls, true)
+                                            : $portalItem->ext_urls;
+                                            @endphp
+                                            @if (is_array($extUrls))
+                                            @foreach ($extUrls as $extUrl)
+                                            <li>
+                                                <a class="dropdown-item py-2 px-3"
+                                                    href="{{ $extUrl['url'] ?? '#' }}" target="_blank"
+                                                    rel="noopener">
+                                                    {{ $extUrl['title'] ?? 'Link' }}
+                                                </a>
+                                            </li>
+                                            @endforeach
+                                            @endif
+                                        </ul>
                                     </div>
-                                </div>
-                            @endforeach
+                                    @else
+                                    <a href="/{{ $portalItem->slug }}" target="_blank"
+                                        class="zone-district-tab {{ $portalItem->is_live ? 'border-warning border-2' : '' }}">
+                                        {{ $portalItem->city_name }}
+                                    </a>
+                                    @endif --}}
 
+                                    @if (!$portalItem->is_live)
+                                    <a href="/{{ $portalItem->slug }}" target="_blank" class="zone-district-tab">
+                                        {{ $portalItem->city_name }}
+                                    </a>
+                                    @endif
+                                    @endforeach
+                                </div>
+                            </div>
                         </div>
                     </div>
+                    @endforeach
+
                 </div>
             </div>
         </div>
+    </div>
+    </div>
     @endforeach
 
 
@@ -1012,9 +1320,8 @@
                         <p>Free browsing of City retail, businesses, government offices &amp; entrepreneurs. Integrated
                             city employment listing &amp; related product/services listing. Secure password controlled
                             &amp; easy updation in local languages.</p>
-                        <h3 class="text-primary">City e-Cards<a href="/vCard/" target="_blank"
-                                contenteditable="false" id="style-o178n" class="style-o178n"><i
-                                    class="bi bi-arrow-up-right-square"></i></a>
+                        <h3 class="text-primary">City e-Cards<a href="/vCard/" target="_blank" contenteditable="false"
+                                id="style-o178n" class="style-o178n"><i class="bi bi-arrow-up-right-square"></i></a>
                         </h3>
                         <p>Free web-address to enable first step of digitization for informal sector workers &amp;
                             micro/small businesses with low literacy</p>
@@ -1025,8 +1332,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="city-btn">
-                                        <a target="_blank"
-                                            href="{{ route('city.show', ['city_name' => 'lucknow']) }}"
+                                        <a target="_blank" href="{{ route('city.show', ['city_name' => 'lucknow']) }}"
                                             contenteditable="false" id="style-9wwWF" class="style-9wwWF">Lucknow,
                                             U.P</a>
                                     </div>
@@ -1047,8 +1353,7 @@
                                 </div>
                                 <div class="col-sm-2">
                                     <div class="city-btn">
-                                        <a target="_blank"
-                                            href="{{ route('city.show', ['city_name' => 'jaunpur']) }}"
+                                        <a target="_blank" href="{{ route('city.show', ['city_name' => 'jaunpur']) }}"
                                             contenteditable="false" id="style-twSAO" class="style-twSAO">Jaunpur,
                                             U.P</a>
                                     </div>
@@ -1056,8 +1361,7 @@
                             </div>
                         </div>
                         <div class="img">
-                            <img src="https://b2c.prarang.in/assets/image/meerut-y.png" alt=""
-                                width="100%">
+                            <img src="https://b2c.prarang.in/assets/image/meerut-y.png" alt="" width="100%">
                         </div>
                     </section>
                 </div>
@@ -1087,27 +1391,25 @@
                     <form id="meetingRequest">
                         <div class="m-2">
                             <label for="meetingRequest-name">Name: </label>
-                            <input id="meetingRequest-name" type="text" class="form-control w-100"
-                                name='name'>
+                            <input id="meetingRequest-name" type="text" class="form-control w-100" name='name'>
                         </div>
                         <div class="m-2">
                             <label for="meetingRequest-phone">Phone No:</label>
-                            <input id="meetingRequest-phone" type="number" class="form-control w-100"
-                                name='phone'>
+                            <input id="meetingRequest-phone" type="number" class="form-control w-100" name='phone'>
                         </div>
                         <div class="m-2">
                             <label for="meetingRequest-email">Email</label>
-                            <input id="meetingRequest-email" type="email" class="form-control w-100"
-                                name='email'>
+                            <input id="meetingRequest-email" type="email" class="form-control w-100" name='email'>
                         </div>
                         <div class="m-2 mt-4">
-                            <textarea name="desc" id="" class="form-control" rows="2" placeholder="Say Something....."></textarea>
+                            <textarea name="desc" id="" class="form-control" rows="2"
+                                placeholder="Say Something....."></textarea>
                         </div>
                         <p class="text-danger ps-3" id="request-error"></p>
                         <p class="text-end">
 
-                            <button type="submit" class="btn btn-warning"><i
-                                    class="fa fa-spinner fa-spin fa-fw d-none" id="loader"></i>Send</button>
+                            <button type="submit" class="btn btn-warning"><i class="fa fa-spinner fa-spin fa-fw d-none"
+                                    id="loader"></i>Send</button>
                         </p>
                     </form>
                     <div id="mail-success"></div>
@@ -1119,8 +1421,8 @@
         </div>
     </div>
 
-    <div class="modal fade modal-xl" id="TheseMTw1" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="TheseMTw1Label" aria-hidden="true">
+    <div class="modal fade modal-xl" id="TheseMTw1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="TheseMTw1Label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1211,8 +1513,8 @@
             </div>
         </div>
     </div>
-    <div class="modal fade modal-xl" id="TheseMTi1" data-bs-backdrop="static" data-bs-keyboard="false"
-        tabindex="-1" aria-labelledby="TheseMTi1Label" aria-hidden="true">
+    <div class="modal fade modal-xl" id="TheseMTi1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+        aria-labelledby="TheseMTi1Label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -1333,5 +1635,50 @@
                 });
         });
     </script>
+
+    <script>
+        document.querySelectorAll('.dropbtn').forEach((button) => {
+            const key = button.getAttribute('data-dropdown');
+            const menu = document.querySelector(`.dropdown-content[data-dropdown-menu="${key}"]`);
+            const icon = button.querySelector('.dropdown-icon');
+
+            if (!menu) {
+                return;
+            }
+
+            button.addEventListener('click', (event) => {
+                event.preventDefault();
+                menu.classList.toggle('show');
+                if (icon) {
+                    icon.classList.toggle('rotate');
+                }
+            });
+
+            menu.querySelectorAll('a').forEach((link) => {
+                link.addEventListener('click', () => {
+                    menu.classList.remove('show');
+                    if (icon) {
+                        icon.classList.remove('rotate');
+                    }
+                });
+            });
+        });
+
+        window.addEventListener('click', (event) => {
+            document.querySelectorAll('.dropdownss').forEach((wrapper) => {
+                if (!wrapper.contains(event.target)) {
+                    const menu = wrapper.querySelector('.dropdown-content');
+                    const icon = wrapper.querySelector('.dropdown-icon');
+                    if (menu) {
+                        menu.classList.remove('show');
+                    }
+                    if (icon) {
+                        icon.classList.remove('rotate');
+                    }
+                }
+            });
+        });
+    </script>
+
 
 </x-layout.main.base>

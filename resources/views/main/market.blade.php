@@ -1,8 +1,37 @@
-<x-layout.main.base>
+@php
+    $metaData = [
+        'nav-heading' => view('components.nav-heading', [
+            'text' => 'Digital Divide',
+            'rightImg' => asset('assets/images/home/dd.png'),
+            'leftImg' => asset('assets/images/home/dd.png'),
+        ]),
+        'nav-sub-heading' => '',
+    ];
+@endphp
+<x-layout.main.base :metaData="$metaData">
     <style>
+        /* Remove padding and margin from modal-body for full-width image */
+
+        /* Make annualprint image fill modal width */
+        .modal-body img.imagechange {
+            display: block;
+            width: 100%;
+            max-width: 100%;
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
         /* Modal */
         main .modal {
             background-color: rgba(255, 255, 255, 0);
+        }
+
+        /* Blur effect for parent modal when child is open */
+        .modal-blur {
+            filter: blur(4px) grayscale(0.2) brightness(0.9);
+            transition: filter 0.2s;
         }
 
         /* List Item */
@@ -62,7 +91,7 @@
             font-weight: 500;
         } */
 
-        @media (min-width:1201px) {
+        @media(min-width:1201px) {
 
             /* Heading */
             main h5 {
@@ -101,7 +130,7 @@
             font-weight: 600;
         }
 
-        @media (min-width:1201px) {
+        @media(min-width:1201px) {
 
             /* Th */
             main .modal th {
@@ -121,7 +150,7 @@
 
         /* Modal content */
         main .modal .modal-content {
-            top: -30px;
+            top: -10px;
         }
 
         /* Table striped */
@@ -156,7 +185,7 @@
             top: -1px;
         }
 
-        @media (min-width:1201px) {
+        @media(min-width:1201px) {
 
             /* Table Data */
             .container .table-striped tbody tr td {
@@ -197,7 +226,7 @@
             font-size: 12px;
         }
 
-        @media (max-width:1200px) {
+        @media(max-width:1200px) {
 
             /* Table main lang */
             .table-main-lang {
@@ -208,13 +237,10 @@
 
         }
 
-        @media (max-width:1200px) {
-
-            /* Modal header */
-            main .modal .modal-header {
-                padding-top: 32px;
-                padding-bottom: 7px;
-            }
+        <blade media|%20(max-width%3A1200px)%20%7B>main .modal .modal-header {
+            padding-top: 32px;
+            padding-bottom: 7px;
+        }
 
         }
 
@@ -277,7 +303,7 @@
         .rounded ul a {
             font-size: 12px !important;
             font-weight: 600 !important;
-            color: #0d6efd !important;
+            color: #000 !important;
             text-decoration: none !important;
         }
 
@@ -285,6 +311,20 @@
             text-decoration: underline !important;
 
         }
+
+        /* Analysis list bullets/text */
+        .analysis-list {
+            list-style: disc;
+            list-style-position: outside;
+            padding-left: 20px;
+            margin-bottom: 0;
+        }
+
+
+
+
+
+
 
         /* Link */
         .table-main-lang tr a:hover {
@@ -352,7 +392,7 @@
             z-index: 42;
         }
 
-        @media (max-width:576px) {
+        @media(max-width:576px) {
 
             /* City */
             .container .container .row .live-cities .row .col-sm-2 .city-btn {
@@ -390,12 +430,29 @@
             flex-direction: column;
         }
 
+        .newbox .modal-header {
+            padding-top: 7px !important;
+            padding-bottom: 7px !important;
+            display: flex !important;
+            flex-direction: row !important;
+            align-items: center !important;
+            justify-content: space-between !important;
+            text-align: center !important;
+        }
+
+        .newbox .modal-title {
+            flex: 1;
+            text-align: center !important;
+            font-weight: bold;
+        }
+
+
         /* Modal header */
         .container .modal .modal-dialog .modal-content .modal-header {
             transform: translatex(0px) translatey(0px) !important;
         }
 
-        @media (min-width:1201px) {
+        @media(min-width:1201px) {
 
             /* Modal header */
             .container .modal .modal-header {
@@ -404,49 +461,522 @@
             }
 
         }
+
+        /* Mobile responsive - full width cards */
+        <blade media|%20(max-width%3A%20768px)%20%7B>.row.mt-5 {
+            margin-left: 0 !important;
+            margin-right: 0 !important;
+            padding-left: 0 !important;
+            padding-right: 0 !important;
+        }
+
+        .row.mt-5>.col-md-6 {
+            padding-left: 12px !important;
+            padding-right: 12px !important;
+        }
+        }
+
+        /* Desktop responsive - remove right gap from second column */
+        <blade media|%20(min-width%3A%20769px)%20%7B>.row.mt-5>.col-md-6:last-child {
+            padding-right: 0 !important;
+        }
+        }
     </style>
+    <style>
+        @media(max-width:576px) {
 
-    <section class="bs5-top-heading mt-2 mb-4 flex gap-2 justify-center items-center">
-        <img class="h-8 w-8" src="{{ asset('assets/images/home/dd.png') }}" alt="">
-        <div class="text-dark text-xl md:text-2xl font-bold uppercase">Digital Divide</div>
-        <img class="h-8 w-8" src="{{ asset('assets/images/home/dd.png') }}" alt="">
-    </section>
+            /* Modal body */
+            .container .modal .modal-body {
+                overflow: scroll;
+
+            }
+
+            /* Modal body */
+            .container .modal .modal-dialog .modal-content .modal-body {
+                height: 90vh !important;
+                /* transform: translatex(0px) translatey(0px) !important; */
+            }
+
+        }
+    </style>
+    <style>
+        .annual-print-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 10px;
+        }
+
+        .annual-print-title {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+            flex: 1;
+        }
+
+        .manuscript-btn {
+            background: yellow;
+            color: black;
+            border: 2px solid #388e3c;
+            font-weight: bold;
+            padding: 4px 12px;
+            border-radius: 2px;
+            margin-left: 12px;
+            position: relative;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1000px) {
+            .annual-print-header {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 8px;
+            }
+
+            .manuscript-btn {
+                margin-left: 0;
+                max-width: 320px;
+                align-self: center;
+            }
+        }
+
+        .annual-notes {
+            font-size: 13px;
+            margin-top: 18px;
+            margin-bottom: 0;
+            color: #111;
+        }
+
+        .annual-notes strong {
+            font-weight: 600;
+        }
+
+        .annual-notes ul {
+            margin: 0 0 0 18px;
+            padding: 0;
+        }
+
+        .annual-notes li {
+            margin-bottom: 2px;
+            line-height: 1.4;
+            font-size: 10px;
+        }
+    </style>
+    <style>
+        /* Link */
+        .container .flex-column a {
+            background-color: #134de1;
+            padding-left: 5px;
+            padding-right: 5px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            margin-top: 9px;
+            width: 185px;
+            text-align: center;
+            text-decoration: none;
+            border-top-left-radius: 6px;
+            border-top-right-radius: 6px;
+            border-bottom-left-radius: 6px;
+            border-bottom-right-radius: 6px;
+        }
+    </style>
+    <style>
+        /* List Item */
+        .rounded .analysis-list li {
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        /* Span Tag */
+        .container .font-semibold span {
+            background-color: #ffffff !important;
+            color: #020202 !important;
+        }
+
+
+        /* Column 8/12 */
+        .container .container>.row>.mb-4 {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Span Tag */
+        .inline-flex .font-semibold span {
+            background-color: #ffffff;
+            color: #020202 !important;
+        }
+
+        /* Inline flex */
+        .container .mb-4 .inline-flex {
+            background-color: #ffffff;
+        }
+
+        .container .mb-4 .font-semibold {
+            text-decoration: none;
+        }
+    </style>
     <section class="container">
-
         <div class="row">
-            <div class="col-sm-12">
-                <p>
-                    The issues of accessibility of content, affordability & digital literacy still create a digital
-                    divide in most parts of the world. As English readers with quick internet data access on multiple
-                    devices, we tend to forget this reality.
-                </p>
-                <p>The world is not flat. Geography still matters. For each location ( all 195 Countries of the World &
-                    all 800+ State/District Capitals of India), we have undertaken research on 3 factors of the
-                    respective populations – Internet (including Social Media) reach, Language ( multilingualism) &
-                    Literacy.</p>
+            <div class="col-lg-8 mb-4">
+                <div>
+                    <p>
+                        The issues of accessibility of content, affordability & digital literacy still create a
+                        digital
+                        divide in most parts of the world. As English readers with quick internet data access on
+                        multiple
+                        devices, we tend to forget this reality.
+                    </p>
+                    <p>The world is not flat. Geography still matters. For each location ( all 195 Countries of the
+                        World &
+                        all 800+ State/District Capitals of India), we have undertaken research on 3 factors of the
+                        respective populations – Internet (including Social Media) reach, Language (
+                        multilingualism) &
+                        Literacy.</p>
+
+
+                </div>
+                <div class="flex p-1  justify-center mt-4 items-center gap-2">
+
+                    <a href="/lang-webs?q=digital-divide-languages"
+                        class="flex items-center gap-2 px-8 py-3 rounded-xl bg-blue-600 text-white font-semibold">
+                        Digital Divide
+                        <span class="px-2 py-0.5 text-xs rounded-full bg-white text-blue-600 font-bold">
+                            148
+                        </span>
+                    </a>
+
+                    <a href="/lang-webs?q=digital-balance-languages"
+                        class="flex items-center gap-2 px-8 py-3 rounded-xl bg-blue-600 text-white font-semibold">
+                        Digital Balance
+                        <span class="px-2 py-0.5 text-xs rounded-full bg-slate-700 text-white">
+                            30
+                        </span>
+                    </a>
+
+                </div>
+
             </div>
 
-            <div class="flex flex-col">
-                <a class="font-bold text-lg no-underline" type="button" data-bs-toggle="modal"
-                    data-bs-target="#TheseMTw1">World Digital Divide</a>
+            <div class="col-lg-4">
+                <div class="p-2 border rounded">
+                    <p class="h4" style="color: #2c4f92; font-size: 19px; text-align: center;">Prarang Language
+                        Analysis
+                    </p>
+                    <ul class="analysis-list">
 
-                <a class="font-bold text-lg no-underline" type="button" data-bs-toggle="modal"
-                    data-bs-target="#TheseMTi1">India Digital Divide</a>
+                        <li>Digital Divide - <a type="button" data-bs-toggle="modal" data-bs-target="#TheseMTw1">
+                                World</a> - <a type="button" data-bs-toggle="modal" data-bs-target="#TheseMTi1">
+                                India</a></li>
 
+                        <li>
+                            <a type="button" data-bs-toggle="modal" data-bs-target="#TheseMT">Indian Languages -
+                                Largest 121 Mother Tongues.</a>
+                        </li>
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#TheseMT2"> Indian Languages -
+                                Unity of Script in Diversity of Languages.</a></li>
+                        {{-- <li><a type="button" data-bs-toggle="modal" data-bs-target="#box25l"> India-Big non District
+                                Capital Cities</a></li> --}}
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#box25l2"> Multilingualism in
+                                India</a></li>
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#newbox"> India Print
+                                Divide-Cities with Local Dailies
+                            </a>
+                        </li>
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#newbox1"> India Print Divide –
+                                Annual Print Estimates
+
+                            </a>
+                        </li>
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#newbox2"> India Digital Media
+                                Estimates
+
+                            </a>
+                        </li>
+                        <li style="list-style: none;  margin-bottom: 10px; padding-bottom: 8px; width: 100%;">
+                        </li>
+
+                        </li>
+
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#box23"> World Languages - 178
+                                Official Languages of 195 Countries </a></li>
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#TheseMT4"> World Languages -
+                                Largest 23 Mother Tongues </a></li>
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#TheseMT5">World Scripts -
+                                Scripts
+                                & Writing Language Families</a></li>
+                        <li><a type="button" data-bs-toggle="modal" data-bs-target="#box25"> World Scripts - 4
+                                Writing
+                                Systems</a></li>
+
+
+
+                    </ul>
+                </div>
             </div>
+
+            <div class="row mt-5 w-100">
+                <div class="col-12 col-md-6 mb-4">
+                    <div
+                        style="background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); padding: 24px; border-radius: 8px; border-left: 5px solid #3f69bd; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="display: flex; align-items: flex-start; gap: 12px;">
+                            <div
+                                style="min-width: 50px; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <img src="{{ asset('images/undplogo.png') }}" alt=""
+                                    style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                            </div>
+                            <div>
+                                <h5 style="margin: 0 0 8px 0; color: #2c4f92; font-weight: 600;">United Nations
+                                    Digital
+                                    Divide</h5>
+                                <p style="font-size: 13px; color: #555; margin: 0 0 12px 0; line-height: 1.5;">
+                                    The United Nations has also highlighted Digital Divide as a focus area for
+                                    global
+                                    development.
+
+                                </p>
+                                <a href="https://www.undp.org/digital/standards/2-bridge-digital-divide" target="_blank"
+                                    style="display: inline-block; background: #3f69bd; color: #fff; text-decoration: none; padding: 8px 16px; border-radius: 4px; font-size: 12px; font-weight: 600; transition: all 0.3s ease; cursor: pointer;"
+                                    onmouseover="this.style.background='#2d5399'; this.style.transform='translateY(-2px); this.style.boxShadow='0 4px 12px rgba(63, 105, 189, 0.3)';"
+                                    onmouseout="this.style.background='#3f69bd'; this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                                    Learn More →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 mb-4">
+                    <div
+                        style="background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%); padding: 24px; border-radius: 8px; border-left: 5px solid #3f69bd; box-shadow: 0 2px 8px rgba(0,0,0,0.1);">
+                        <div style="display: flex; align-items: flex-start; gap: 12px;">
+                            <div
+                                style="min-width: 50px; width: 50px; height: 50px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                                <img src="{{ asset('images/langlogo.png') }}" alt=""
+                                    style="max-width: 100%; max-height: 100%; object-fit: contain;">
+                            </div>
+                            <div>
+                                <h5 style="margin: 0 0 8px 0; color: #2c4f92; font-weight: 600;">Prarang Language
+                                    Webs
+                                </h5>
+                                <p style="font-size: 13px; color: #555; margin: 0 0 12px 0; line-height: 1.5;">
+                                    Prarang has quantified the worldwide Digital Divide across 178 official
+                                    languages in
+                                    all 195 countries of the world.
+
+                                </p>
+                                <a href="https://www.prarang.in/lang-webs" target="_blank"
+                                    style="display: inline-block; background: #3f69bd; color: #fff; text-decoration: none; padding: 8px 16px; border-radius: 4px; font-size: 12px; font-weight: 600; transition: all 0.3s ease; cursor: pointer;"
+                                    onmouseover="this.style.background='#2d5399'; this.style.transform='translateY(-2px); this.style.boxShadow='0 4px 12px rgba(63, 105, 189, 0.3)';"
+                                    onmouseout="this.style.background='#3f69bd'; this.style.transform='translateY(0)'; this.style.boxShadow='none';">
+                                    Learn More →
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
 
 
     </section>
 
 
 
+    <?php foreach ($worldLanguageData as $nkey => $value) { ?>
+    <div class="modal fade" id="w<?= $nkey ?>" tabindex="-1" aria-labelledby="w<?= $nkey ?>Label" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="w<?= $nkey ?>Label"><?= $languageId[$nkey] ?> Web</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4><b>List of Cities with more than 100K <?= $languageId[$nkey] ?> Speakers.</b></h4>
+                    <div class="col-sm">
+                        <table class="table table-responsive table-bordered table-striped table-hover table-sm">
+                            <thead class="text-start bg-info">
+                                <tr class="world-tr">
+                                    <th>Sn</th>
+                                    <th>City</th>
+                                    <th>Country</th>
+                                    <th>Continents</th>
+                                    <th>Country Capital</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-light text-start">
+                                <?php
+                                    $count = 1;
+                                    foreach ($value as $city) {
+                                        if ($city['is_other'] == 0) { ?>
+                                <tr>
+                                    <td><?= $count++ ?></td>
+                                    <td><?= $city['city_name'] ?></td>
+                                    <td><?= $city['country'] ?></td>
+                                    <td><?= $city['continant'] ?></td>
+                                    <td>
+                                        <?php if ($city['is_capital']) { ?>
+                                        <b class="">Yes</b>
+                                        <?php } else { ?>
+                                        No
+                                        <?php } ?>
+                                    </td>
+                                </tr>
+                                <?php }
+                                    } ?>
+                            </tbody>
+                        </table>
+                        <?php if ($count == 1) { ?>
+                        <h6 class="p-2 border">No City or Country Capital with more than 100K Speakers.</h6>
+                        <?php } ?>
+                    </div>
+                    <br>
+                    <h4><b>List of Country Capitals with less than 100K <?= $languageId[$nkey] ?> Speakers.</b></h4>
+                    <div class="col-sm">
+                        <table class="table table-responsive table-bordered table-striped table-sm table-hover">
+                            <thead class="text-start bg-info">
+                                <tr class="bg-info">
+                                    <th>Sn</th>
+                                    <th>City</th>
+                                    <th>Country</th>
+                                    <th>Continents</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-light text-start">
+                                <?php
+                                    $count = 1;
+                                    foreach ($value as $city) {
+                                        if ($city['is_other'] == 1) { ?>
+                                <tr>
+                                    <td><?= $count++ ?></td>
+                                    <td><?= $city['city_name'] ?></td>
+                                    <td><?= $city['country'] ?></td>
+                                    <td><?= $city['continant'] ?></td>
+                                </tr>
+                                <?php }
+                                    } ?>
+                            </tbody>
+                        </table>
+                        <?php if ($count == 1) { ?>
+                        <h6 class="p-2 border">No other Country Capital.</h6>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
+
+    <?php foreach ($indiaLanguageData as $nkey => $value) { ?>
+    <div class="modal fade" id="in<?= $nkey ?>" tabindex="-1" aria-labelledby="in<?= $nkey ?>Label"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="in<?= $nkey ?>Label"><?= $languageId[$nkey] ?> Web</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <h4><b>List of District Capitals with more than 30K Literate <?= $languageId[$nkey] ?> speakers
+                            with
+                            Internet Access.</b></h4>
+                    <div class="col-sm">
+                        <table class="table table-responsive table-bordered table-striped table-hover table-sm">
+                            <thead class="text-start bg-info">
+                                <tr class="world-tr">
+                                    <th>Sn</th>
+                                    <th>District/DHQ</th>
+                                    <th>State/Ut</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-light text-start">
+                                <?php
+                                    $count = 1;
+                                    foreach ($value as $city) {
+                                        if ($city['is_other'] == 0) { ?>
+                                <tr>
+                                    <td><?= $count++ ?></td>
+                                    <td><?= $city['city_name'] ?></td>
+                                    <td><?= $city['state'] ?></td>
+                                </tr>
+                                <?php }
+                                    } ?>
+                            </tbody>
+                        </table>
+                        <?php if ($count == 1) { ?>
+                        <h6 class="p-2 border">No Records found.</h6>
+                        <?php } ?>
+                    </div>
+                    <br>
+                    <h4><b>List of District Capitals with less than 30K <?= $languageId[$nkey] ?> speakers.</b></h4>
+                    <div class="col-sm">
+                        <table class="table table-responsive table-bordered table-striped table-sm table-hover">
+                            <thead class="text-start bg-info">
+                                <tr class="bg-info">
+                                    <th>Sn</th>
+                                    <th>City</th>
+                                    <th>State</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-light text-start">
+                                <?php
+                                    $count = 1;
+                                    foreach ($value as $city) {
+                                        if ($city['is_other'] == 1) { ?>
+                                <tr>
+                                    <td><?= $count++ ?></td>
+                                    <td><?= $city['city_name'] ?></td>
+                                    <td><?= $city['state'] ?></td>
+                                </tr>
+                                <?php }
+                                    } ?>
+                            </tbody>
+                        </table>
+                        <?php if ($count == 1) { ?>
+                        <h6 class="p-2 border">No Records found.</h6>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
+
+    <?php foreach ($languageCountry as $lkey => $value) { ?>
+    <div class="modal country-modal fade" id="lc<?= $lkey ?>" tabindex="-1"
+        aria-labelledby="lc<?= $lkey ?>ModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="lc<?= $lkey ?>ModalLabel"><?= $languageId[$lkey] ?> Speaking
+                        Countries</h1>
+                    <button type="button" class="btn-close btn-sm" data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-start">
+                    <div class="row">
+                        <?php
+                            $count = 1;
+                            foreach ($value as $cont) { ?>
+                        <div class="col-md-6">
+                            <small><?= $count++ ?>. <?= $cont['country'] ?></small>
+                        </div>
+                        <?php } ?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php } ?>
 
 
 
 
-
-    <div class="modal fade modal-xl" id="TheseMTw1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="TheseMTw1Label" aria-hidden="true">
+    <div class="modal fade modal-xl" id="TheseMTw1" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="TheseMTw1Label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -461,8 +991,8 @@
             </div>
         </div>
     </div>
-    <div class="modal fade modal-xl" id="TheseMTi1" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="TheseMTi1Label" aria-hidden="true">
+    <div class="modal fade modal-xl" id="TheseMTi1" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="TheseMTi1Label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -480,8 +1010,8 @@
 
 
 
-    <div class="modal fade modal-xl" id="TheseMT" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="TheseMTLabel" aria-hidden="true">
+    <div class="modal fade modal-xl" id="TheseMT" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="TheseMTLabel" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -491,9 +1021,11 @@
                 <div class="modal-body">
                     <p class="p-1">
                         Indian language diversity as defined in the last national census (2011) - There are 19,569
-                        languages, inclusive of all dialects. When rationalised, they quantify to 1,369 Mother Tongues
+                        languages, inclusive of all dialects. When rationalised, they quantify to 1,369 Mother
+                        Tongues
                         spoken in India. Only 121 of the Mother Tongues had more than 10,000 speakers. There are 22
-                        Official i.e. Scheduled Indian Languages of which 20 are in Varna-mala Script (i.e. Abugida),
+                        Official i.e. Scheduled Indian Languages of which 20 are in Varna-mala Script (i.e.
+                        Abugida),
                         one in Perso-Arabic Script (i.e. Abjad) & one in Latin Script (i.e. Alphabetical).
                     </p>
                     <img src="home-assets/image/lp1.png" class="img-fluid" alt="">
@@ -503,8 +1035,8 @@
         </div>
     </div>
 
-    <div class="modal fade modal-xl" id="TheseMT2" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-        aria-labelledby="TheseMT2Label" aria-hidden="true">
+    <div class="modal fade modal-xl" id="TheseMT2" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="TheseMT2Label" aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
@@ -515,38 +1047,58 @@
 
                     <img src="home-assets/image/bl2a.jfif" class="img-fluid" alt="">
                     <p class="p-1 mt-2 text-start">
-                        The diversity of Indian languages was defined in the last national census ( 2011) - including
-                        all dialects, there are 19,569 languages. When "rationalised", these resulted in 1,369 Mother
-                        Tongues (MT) spoken in India. But just 121 of these MT have more than 10,000 speakers & 96.7% of
+                        The diversity of Indian languages was defined in the last national census ( 2011) -
+                        including
+                        all dialects, there are 19,569 languages. When "rationalised", these resulted in 1,369
+                        Mother
+                        Tongues (MT) spoken in India. But just 121 of these MT have more than 10,000 speakers &
+                        96.7% of
                         India's entire 1.21 billion people have just one of the 22 "scheduled" languages ( of Indian
                         constitution) as their MT. <br><br>
-                        India is approx. a sixth of world population & as such 1,369 MTs spoken out ofthe 7,117 world
-                        total ( Ethnologue survey), is a representative mix. But is this diversity of Indian languages,
+                        India is approx. a sixth of world population & as such 1,369 MTs spoken out ofthe 7,117
+                        world
+                        total ( Ethnologue survey), is a representative mix. But is this diversity of Indian
+                        languages,
                         a governance/communication challenge ? How multi-lingual are Indians - For eg. - how many
                         Tamilians speak Bengali ? English is MT for just a negligible number of Indians but how many
-                        Indians speak some level of the English language ? The Census of 2011 was a landmark linguistic
-                        census in history & its results eventually published in 2018, are the first ever Multilingualism
-                        data available for such a significant size of world population. European Union multilingualism
-                        studies have yet to undertake a survey of this scale. In the Census 2011 India data, the top 3
+                        Indians speak some level of the English language ? The Census of 2011 was a landmark
+                        linguistic
+                        census in history & its results eventually published in 2018, are the first ever
+                        Multilingualism
+                        data available for such a significant size of world population. European Union
+                        multilingualism
+                        studies have yet to undertake a survey of this scale. In the Census 2011 India data, the top
+                        3
                         (of 121 MTs) known to each of the 1.2 billion people surveyed, was recorded.
                     </p>
                     <br>
                     <img src="home-assets/image/bl2b.png" class="img-fluid" alt="">
                     <br><br>
                     <p class="p-1 text-start">
-                        Indian Unity is Scriptual but often mistaken for Spiritual. There is a hidden unity of Indian
-                        language diversity embedded in the scripts of its Mother Tongues. Of the 121 Indian MTs, except
-                        the ones using the Roman/English script of 26 alphabet characters & the Perso-Arabic/Urdu script
-                        of 40 , almost all the others are Abugida i.e. a phonetical arrangement of approx. 56 character
-                        sounds, known as " Varnamala" ( literally, Colour-Sequence). This uniformity of scripts isn't
-                        accidental but a forgotten project undertaken in antiquity to embed a unity of sounds, music,
+                        Indian Unity is Scriptual but often mistaken for Spiritual. There is a hidden unity of
+                        Indian
+                        language diversity embedded in the scripts of its Mother Tongues. Of the 121 Indian MTs,
+                        except
+                        the ones using the Roman/English script of 26 alphabet characters & the Perso-Arabic/Urdu
+                        script
+                        of 40 , almost all the others are Abugida i.e. a phonetical arrangement of approx. 56
+                        character
+                        sounds, known as " Varnamala" ( literally, Colour-Sequence). This uniformity of scripts
+                        isn't
+                        accidental but a forgotten project undertaken in antiquity to embed a unity of sounds,
+                        music,
                         maths & language, to create one sanskriti/culture, using the entire human audio-range in a
-                        scientific arrangement of sounds. Of the 22 "Scheduled" languages of India, 20 have " Varnamala"
-                        scripts, and 73% of India's few English MT speakers also know one of the 20 Varnamala scripts.
-                        While 61% of the Urdu MT speakers claim (in the census) to know at least one more of the other
-                        21 scheduled languages, majority of the literate Urdu MT speakers in India actually do read Urdu
+                        scientific arrangement of sounds. Of the 22 "Scheduled" languages of India, 20 have "
+                        Varnamala"
+                        scripts, and 73% of India's few English MT speakers also know one of the 20 Varnamala
+                        scripts.
+                        While 61% of the Urdu MT speakers claim (in the census) to know at least one more of the
+                        other
+                        21 scheduled languages, majority of the literate Urdu MT speakers in India actually do read
+                        Urdu
                         in respective location scripts ( Devanagari, Tamil, Malayalam etc) & are multilingual. This
-                        anomaly was not quantified in the 2011 survey since the emphasis was on spoken languages (not
+                        anomaly was not quantified in the 2011 survey since the emphasis was on spoken languages
+                        (not
                         written). Anyways historically, Urdu is an Indian language designed to bridge the Varnamala
                         phonetics with the Persian-Arabic phonetics of early medieval era, by extending the Persian
                         script of the time (which itself was an extension of the Arabic script).
@@ -557,28 +1109,41 @@
                     <img src="home-assets/image/bl2d.jfif" class="img-fluid" alt="">
                     <br>
                     <p class="p-1 text-start">
-                        How Multilingual is the Indian population ? Take a look at the data collated by us - 25.42 % of
-                        the Indian population knows more than one language. Over 6.9% of the Indian population knows at
-                        least 3 languages. While a mere 0.02% of Indians have English as their MT, the vexing question
-                        of how many Indians know some level of English, has effectively been answered in the 2011 census
-                        - 128.5 Million i.e. a little more than 10% of the population. This includes many (estimated 50+
+                        How Multilingual is the Indian population ? Take a look at the data collated by us - 25.42 %
+                        of
+                        the Indian population knows more than one language. Over 6.9% of the Indian population knows
+                        at
+                        least 3 languages. While a mere 0.02% of Indians have English as their MT, the vexing
+                        question
+                        of how many Indians know some level of English, has effectively been answered in the 2011
+                        census
+                        - 128.5 Million i.e. a little more than 10% of the population. This includes many (estimated
+                        50+
                         Mn) who can't actually read or write a full page of english text. More than 93.3% of Indians
                         have the main 13 languages ( Hindi, Bengali, Marathi, Gujarati, Punjabi, Tamil, Malayalam,
-                        Kannada, Telugu, Assamese, Odia, Urdu, English) as their MT. The 6.7% who don't have these 13
-                        (but have another of the 108 MTs as their MT), actually are the most multilingual Indians with
+                        Kannada, Telugu, Assamese, Odia, Urdu, English) as their MT. The 6.7% who don't have these
+                        13
+                        (but have another of the 108 MTs as their MT), actually are the most multilingual Indians
+                        with
                         58.2% who know at least one more language, hindi (29%) being the most popular. It's also
-                        interesting to note that Punjabi MT speakers are the Most Multilingual Indians (53%), followed
+                        interesting to note that Punjabi MT speakers are the Most Multilingual Indians (53%),
+                        followed
                         by Marathi speakers (46%) & then Gujarati speakers (42%). India's hindi MT speakers are the
                         least multilingual ( 11% ) Indians.
                     </p>
                     <p class="p-1 text-start">
-                        To get back to the earlier question raised i.e how many Tamilians speak Bengali , let us look at
+                        To get back to the earlier question raised i.e how many Tamilians speak Bengali , let us
+                        look at
                         the data - 41416 i.e. 0.06% of Tamil MT. But Bengali MTs don't reciprocate & just 4171 speak
-                        Tamil. This data also highlights the "second" language fight between Hindi & English languages
+                        Tamil. This data also highlights the "second" language fight between Hindi & English
+                        languages
                         in India. Approximately 13.48% of India's Non-Hindi MT population speak Hindi as the
-                        second/third language & 10.59% of Non-English MT population speaks English. This also answers
-                        the long unanswered question of India's most widely spoken language - 691 Million Indians know
-                        some level of Hindi ( including 528 Million Hindi MT speakers). The next language now is English
+                        second/third language & 10.59% of Non-English MT population speaks English. This also
+                        answers
+                        the long unanswered question of India's most widely spoken language - 691 Million Indians
+                        know
+                        some level of Hindi ( including 528 Million Hindi MT speakers). The next language now is
+                        English
                         with 128.5 Million, followed by Bengali with 107.5 Million & Marathi with 99 Million.
                     </p>
                     <br>
@@ -587,34 +1152,46 @@
                     <p class="p-1 text-start">
                         Several hundred years of English colonial rule & a continuity of 75 years more of English
                         language as the aspirational language for access to both government ( including legal &
-                        administrative) jobs & private sector's formal jobs, English language is barely recognized by
-                        260K Indians as their MT. But the aspiration (not quality level) reflects in the 128.5 Million
-                        who claim to speak it as their second or third language. An English speaking traveler in India
+                        administrative) jobs & private sector's formal jobs, English language is barely recognized
+                        by
+                        260K Indians as their MT. But the aspiration (not quality level) reflects in the 128.5
+                        Million
+                        who claim to speak it as their second or third language. An English speaking traveler in
+                        India
                         who doesn't know any hindi or other Indian languages, is likely to be best understood in
-                        Nagaland (33%), Manipur (32%), Punjab (30%), and least understood in Chhatisgarh (2.3%) & Bihar
+                        Nagaland (33%), Manipur (32%), Punjab (30%), and least understood in Chhatisgarh (2.3%) &
+                        Bihar
                         (2.7%). While UP's angrezi claim is (6.4%), the tourist friendly state of Rajasthan is less
                         english savvy ( 4.5%).
                     </p>
 
                     <p class="p-1 text-start">
                         In summary, if you're traveling across India, Hindi is by far (7 to 10 times more than any
-                        Indian or Foreign language), the best way to communicate. While the push towards moving India to
+                        Indian or Foreign language), the best way to communicate. While the push towards moving
+                        India to
                         a single language ( Hindi) speaking country has consistently found political resistance, the
-                        underlying writing unity (Varnamala) which has already been achieved lies dormant, awaiting its
+                        underlying writing unity (Varnamala) which has already been achieved lies dormant, awaiting
+                        its
                         utility in new AI technology. This unity of scripts truly has the power to facilitate Indian
                         governance/communication challenges. Instead, English language (alphabet) based machine
                         translation & related AI tools are being used extensively to create technology-device driven
                         textual unity in India.
                     </p>
                     <p class="p-1 text-start">
-                        Today, approx 74.04% of India is literate & therefore knows how to read/write in one of the 22
-                        scripts of the respective 121 MTs. Two of the 121 MTs ( Santhali & Gondhi) actually do not have
-                        a script , 50 of the other 119 MTs have Latin/English or Urdu/Perso-Arabic ( approx 4% of the
+                        Today, approx 74.04% of India is literate & therefore knows how to read/write in one of the
+                        22
+                        scripts of the respective 121 MTs. Two of the 121 MTs ( Santhali & Gondhi) actually do not
+                        have
+                        a script , 50 of the other 119 MTs have Latin/English or Urdu/Perso-Arabic ( approx 4% of
+                        the
                         population) but the rest of literate India writes in 20 scripts which all adhere to the
                         phonetical unity of Varnamala. More than 95% of literate India speaks in a MT which has an
-                        associated Varnamala script. Almost the entire literate of the rest of the 5% population, knows
-                        Varnamala in one of the other 20 scripts too. This is the single most significant aspect of the
-                        unity of Indian culture/sanskriti. The spread of Varnamala is noteworthy - Burmese (Mon), Sri
+                        associated Varnamala script. Almost the entire literate of the rest of the 5% population,
+                        knows
+                        Varnamala in one of the other 20 scripts too. This is the single most significant aspect of
+                        the
+                        unity of Indian culture/sanskriti. The spread of Varnamala is noteworthy - Burmese (Mon),
+                        Sri
                         Lankan ( Sinhalese), Thai, Laos & Indonesian ( Balinese)still use the Varnamala in their
                         respective scripts.
                     </p>
@@ -626,16 +1203,22 @@
                     <p id="ember50" class="ember-view reader-content-blocks__paragraph text-start">
                         <a class="app-aware-link " target="_self"
                             href="https://indianexpress.com/article/india/more-than-19500-mother-tongues-spoken-in-india-census-5241056/"
-                            data-test-app-aware-link=""><!---->https://indianexpress.com/article/india/more-than-19500-mother-tongues-spoken-in-india-census-5241056/<!----></a>
+                            data-test-app-aware-link="">
+                            <!---->https://indianexpress.com/article/india/more-than-19500-mother-tongues-spoken-in-india-census-5241056/
+                            <!----></a>
                         <br>
 
                         <a class="app-aware-link " target="_self"
                             href="https://www.theintrepidguide.com/how-many-languages-are-there-in-the-world/"
-                            data-test-app-aware-link=""><!---->https://www.theintrepidguide.com/how-many-languages-are-there-in-the-world/<!----></a>
+                            data-test-app-aware-link="">
+                            <!---->https://www.theintrepidguide.com/how-many-languages-are-there-in-the-world/
+                            <!----></a>
                         <br>
                         <a class="app-aware-link " target="_self"
                             href="https://censusindia.gov.in/2011-prov-results/paper2/data_files/india2/1.%20data%20highlight.pdf"
-                            data-test-app-aware-link=""><!---->https://censusindia.gov.in/2011-prov-results/paper2/data_files/india2/1.%20data%20highlight.pdf<!----></a>
+                            data-test-app-aware-link="">
+                            <!---->https://censusindia.gov.in/2011-prov-results/paper2/data_files/india2/1.%20data%20highlight.pdf
+                            <!----></a>
                         <!---->
                     </p>
                     </p>
@@ -693,12 +1276,698 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <h3>23 spoken languages.</h3>
+                    <h3 style="text-align: center; font-weight: bold;">23 spoken languages.</h3>
                     <p>
-                        Just 23 Mother Tongue languages account for more than half the world’s population. These include
+                        Just 23 Mother Tongue languages account for more than half the world’s population. These
+                        include
                         7 which are widely spoken in India.
                     </p>
-                    <img src="home-assets/image/lp4.jpg" class="img-fluid" alt="">
+                    <img src="{{ asset('assets/images/home/lp4.png') }}" class="img-fluid" alt="">
+                    <!-- <p class="text-end h6"> Source: </p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modal-xl newbox" id="newbox" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="newboxLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="newboxLabel">Indian Cities with Local Dailies</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p style="font-size: 12px; margin-bottom: 5px !important;">
+                        Although there are over 800 cities/state capitals, and 9,389 cities overall, hyperlocal
+                        print
+                        dailies are available in only 240 cities.
+
+                    </p>
+                    <img src="{{ asset('images/citiesimage.png') }}" class="img-fluid" alt="">
+
+                    <p style="font-size: 10px !important;">
+                        <span style="color: #000; ">*</span> Language population is the aggregation of Mother
+                        Tongue
+                        population and
+                        Multilingual population
+
+
+                    </p>
+                    <!-- <p class="text-end h6"> Source: </p> -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modal-xl newbox" id="newbox1" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="newbox1Label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- <h1 class="modal-title fs-5" id="newbox1Label">Indian Cities with Local Dailies</h1> -->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="annual-print-header">
+                        <p class="annual-print-title">
+                            Indian Annual Print Media Estimates
+                        </p>
+                        <button type="button" data-bs-toggle="modal" data-bs-target="#newbox11"
+                            class="manuscript-btn">
+                            Indian Manuscript History
+                        </button>
+
+                    </div>
+
+                    <img src="{{ asset('images/annualprint.png') }}" class="img-fluid imagechange" alt=""
+                        style="pointer-events:none; user-select:none;" oncontextmenu="return false;"
+                        ondragstart="return false;">
+
+                    <div class="annual-notes">
+                        <span style="font-weight:600;">Notes :</span>
+                        <ul style="list-style: disc;">
+                            <li><strong>Population, Literacy %</strong> – Census 2011</li>
+                            <li><strong>Books / Year</strong> – 2004 Figures – "60 Years of Book Publishing in
+                                India."
+                                Federation of Indian Publishers, 2007</li>
+                            <li><strong>Periodicals, Circulation & Dailies</strong> – Press Registrar General of
+                                India –
+                                Press in India – Annual Report 2022-23</li>
+                            <li><strong>Circulation</strong> – Average number of copies sold and distributed for all
+                                Periodicals per publishing day.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+        /* Modal cards */
+        .info-card {
+            border: 1.5px solid #bfc9d1;
+            /* border-radius: 12px; */
+            /* box-shadow: 0 4px 18px rgba(44, 79, 146, 0.10),
+                0 1.5px 4px rgba(44, 79, 146, 0.08); */
+            background: #fff;
+            padding: 22px 18px 18px 18px;
+            height: 600px;
+            overflow-y: scroll;
+        }
+
+        /* .scrolltable {
+            height: 500px;
+            overflow-y: scroll;
+        } */
+
+        @media (max-width: 992px) {
+            .info-card {
+                height: auto;
+            }
+        }
+
+        /* Table styling */
+        .custom-table {
+            width: 100%;
+            border: 1px solid #222;
+            border-radius: 8px;
+            background: #fff;
+            font-size: 13px;
+            margin-bottom: 10px;
+            border-collapse: collapse;
+        }
+
+
+
+        .custom-table th,
+        .custom-table td {
+            padding: 8px;
+            border: 1px solid #222;
+        }
+
+        .custom-table thead th {
+            background: #3f69bd !important;
+            color: white;
+        }
+
+        /* .custom-table .modal th {
+            background: #3f69bd !important;
+            color: white;
+        } */
+
+        .custom-table th {
+            border: 1px solid #222;
+            text-align: center;
+        }
+
+        /* Title */
+        .annual-print-title {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* Notes */
+        .annual-notes ul {
+            list-style: disc;
+        }
+
+        .annual-notes.no-bullet ul {
+            list-style: none;
+            padding-left: 0;
+        }
+    </style>
+    <div class="modal fade modal-xl newbox" id="newbox11" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="newbox11Label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+
+                <div class="modal-body">
+                    <div class="row">
+
+                        <!-- ===== CARD 1 ===== -->
+                        <div class="col-lg-6 mb-4">
+                            <div class="info-card">
+                                <div class="annual-print-header">
+                                    <p class="annual-print-title">
+                                        Ancient India Manuscript Estimates
+
+                                    </p>
+                                </div>
+                                <div class="scrolltable table-responsive">
+                                    <table class="custom-table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Language</th>
+                                                <th># Books / Year</th>
+                                                <th>%</th>
+                                                <th>Manuscripts *</th>
+                                                <th>%</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Hindi</td>
+                                                <td>22,119</td>
+                                                <td>27%</td>
+                                                <td>87,412</td>
+                                                <td>8.3%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>English</td>
+                                                <td>18,752</td>
+                                                <td>23%</td>
+                                                <td>-</td>
+                                                <td>0.0%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Bengali</td>
+                                                <td>5,538</td>
+                                                <td>7%</td>
+                                                <td>4,915</td>
+                                                <td>0.5%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>Marathi</td>
+                                                <td>5,475</td>
+                                                <td>7%</td>
+                                                <td>6,552</td>
+                                                <td>0.6%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>Telugu</td>
+                                                <td>3,428</td>
+                                                <td>4%</td>
+                                                <td>9,216</td>
+                                                <td>0.9%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>6</td>
+                                                <td>Tamil</td>
+                                                <td>7,525</td>
+                                                <td>9%</td>
+                                                <td>39,666</td>
+                                                <td>3.8%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7</td>
+                                                <td>Urdu</td>
+                                                <td>2,172</td>
+                                                <td>3%</td>
+                                                <td>10,029</td>
+                                                <td>0.9%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>8</td>
+                                                <td>Gujarati</td>
+                                                <td>3,213</td>
+                                                <td>4%</td>
+                                                <td>16,121</td>
+                                                <td>1.5%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>9</td>
+                                                <td>Kannada</td>
+                                                <td>1,998</td>
+                                                <td>2%</td>
+                                                <td>13,818</td>
+                                                <td>1.3%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>10</td>
+                                                <td>Odia</td>
+                                                <td>763</td>
+                                                <td>1%</td>
+                                                <td>1,826</td>
+                                                <td>0.2%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>11</td>
+                                                <td>Gurumukhi</td>
+                                                <td>1,298</td>
+                                                <td>2%</td>
+                                                <td>4,107</td>
+                                                <td>0.4%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>12</td>
+                                                <td>Malayalam</td>
+                                                <td>3,358</td>
+                                                <td>4%</td>
+                                                <td>11,815</td>
+                                                <td>1.1%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>13</td>
+                                                <td>Assamese</td>
+                                                <td>1,285</td>
+                                                <td>2%</td>
+                                                <td>-</td>
+                                                <td>0.0%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>14</td>
+                                                <td>Sanskrit, Prakrit, Apabhramsa</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>8,29,653</td>
+                                                <td>78.5%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>15</td>
+                                                <td>Persian</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>14,722</td>
+                                                <td>1.4%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>16</td>
+                                                <td>Arabic</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>2,949</td>
+                                                <td>0.3%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>17</td>
+                                                <td>Pali</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>2,050</td>
+                                                <td>0.2%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>18</td>
+                                                <td>Tibetan</td>
+                                                <td>-</td>
+                                                <td>-</td>
+                                                <td>1,364</td>
+                                                <td>0.1%</td>
+                                            </tr>
+                                            <tr>
+                                                <td></td>
+                                                <td>Others</td>
+                                                <td>5,613</td>
+                                                <td>7%</td>
+                                                <td>892</td>
+                                                <td>0.1%</td>
+                                            </tr>
+
+                                            <tr style="background:#f5f7fa; font-weight:600;">
+                                                <td colspan="2" style="text-align: center;">Total</td>
+                                                <td>82,537</td>
+                                                <td>100%</td>
+                                                <td>10,57,107</td>
+                                                <td>100%</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+
+                                <div class="annual-notes mt-3">
+                                    <span style="font-weight:600;">Notes :</span>
+                                    <ul>
+                                        <li><strong>Books / Year – 2004 Figures %</strong> – "60 Years of Book
+                                            Publishing in India." Federation of Indian Publishers, 2007
+                                        </li>
+                                        <li><strong>Manuscripts</strong> – Refered to as (books) before printing
+                                            began
+                                            in India
+                                            – Subhash C. Bishwas and M.K. Prajapati, Bibliography Survey of Indian
+                                            Manuscript Catalogues, 1998
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== CARD 3 ===== -->
+                        <div class="col-lg-6  mb-4">
+                            <div class="info-card">
+                                <div class="annual-print-header">
+                                    <p class="annual-print-title">
+                                        Sanskrit Manuscripts on Science in Kerala and Tamil Nadu
+
+                                    </p>
+                                </div>
+                                <div class="scrolltable table-responsive">
+                                    <table class="custom-table ">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Discipline</th>
+                                                <th>No. of Manuscripts</th>
+                                                <th>% of Total</th>
+                                                <th>No. of Texts</th>
+                                                <th>No. of Texts Edited so far</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Astrology</td>
+                                                <td>6,794</td>
+                                                <td>4.53</td>
+                                                <td>1,572</td>
+                                                <td>65</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Astronomy & Mathematics</td>
+                                                <td>2,919</td>
+                                                <td>1.95</td>
+                                                <td>934</td>
+                                                <td>100</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Medicine</td>
+                                                <td>1,286</td>
+                                                <td>0.86</td>
+                                                <td>586</td>
+                                                <td>28</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>Architecture</td>
+                                                <td>599</td>
+                                                <td>0.4</td>
+                                                <td>200</td>
+                                                <td>10</td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>Musicology</td>
+                                                <td>326</td>
+                                                <td>0.22</td>
+                                                <td>82</td>
+                                                <td>9</td>
+                                            </tr>
+                                            <tr>
+                                                <td>6</td>
+                                                <td>Chemistry</td>
+                                                <td>166</td>
+                                                <td>0.11</td>
+                                                <td>61</td>
+                                                <td>13</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7</td>
+                                                <td>Veterinary Science</td>
+                                                <td>146</td>
+                                                <td>0.1</td>
+                                                <td>31</td>
+                                                <td>4</td>
+                                            </tr>
+                                            <tr>
+                                                <td>8</td>
+                                                <td>Agriculture</td>
+                                                <td>8</td>
+                                                <td></td>
+                                                <td>7</td>
+                                                <td>0</td>
+                                            </tr>
+
+                                            <tr style="background:#f5f7fa; font-weight:600;">
+                                                <td></td>
+                                                <td>Total</td>
+                                                <td>12,244</td>
+                                                <td>8.16</td>
+                                                <td>3,473</td>
+                                                <td>229</td>
+                                            </tr>
+
+                                            <tr style="background:#f5f7fa; font-weight:600;">
+                                                <td colspan="2">Total Manuscripts Surveyed</td>
+                                                <td>1,50,000</td>
+                                                <td colspan="3"></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+
+                                <div class="annual-notes no-bullet mt-3">
+                                    <ul>
+                                        <li>
+                                            <strong>Source</strong> :
+                                            K.V. Sarma, Science Texts in Sanskrit in the Manuscript Repositories of
+                                            Kerala and Tamil Nadu, Rashtriya Sanskrit Sansthan, New Delhi 2002, p.15
+
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ===== CARD 2 ===== -->
+                        <div class="col-lg-6 mb-4 ms-auto">
+                            <div class="info-card">
+                                <div class="annual-print-header">
+                                    <p class="annual-print-title">
+                                        Subject-wise Distribution of Tamil Manuscripts
+
+                                    </p>
+                                </div>
+
+                                <div class="scrolltable table-responsive">
+                                    <table class="custom-table">
+                                        <thead>
+                                            <tr>
+                                                <th>#</th>
+                                                <th>Subject/Discipline</th>
+                                                <th>Number of <br>Manuscripts</th>
+                                                <th>% of Total</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>1</td>
+                                                <td>Medicine</td>
+                                                <td>3,350</td>
+                                                <td>15.31%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>2</td>
+                                                <td>Astrology</td>
+                                                <td>1,250</td>
+                                                <td>5.71%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>3</td>
+                                                <td>Astronomy and Mathematics</td>
+                                                <td>120</td>
+                                                <td>0.55%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>4</td>
+                                                <td>Chemistry</td>
+                                                <td>120</td>
+                                                <td>0.55%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>5</td>
+                                                <td>Architecture</td>
+                                                <td>60</td>
+                                                <td>0.27%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>6</td>
+                                                <td>Veterinary Science</td>
+                                                <td>40</td>
+                                                <td>0.18%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>7</td>
+                                                <td>Grammar, Prosody, Lexicon</td>
+                                                <td>1,300</td>
+                                                <td>5.94%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>8</td>
+                                                <td>Music & Dance</td>
+                                                <td>220</td>
+                                                <td>1.01%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>9</td>
+                                                <td>Drama</td>
+                                                <td>210</td>
+                                                <td>0.96%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>10</td>
+                                                <td>Literature</td>
+                                                <td>6,100</td>
+                                                <td>27.89%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>11</td>
+                                                <td>Religion (Samayam)</td>
+                                                <td>6,700</td>
+                                                <td>30.63%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>12</td>
+                                                <td>Philosophy</td>
+                                                <td>1,725</td>
+                                                <td>7.89%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>13</td>
+                                                <td>Dharmasastra (Nitini)</td>
+                                                <td>400</td>
+                                                <td>1.83%</td>
+                                            </tr>
+                                            <tr>
+                                                <td>14</td>
+                                                <td>Other Humanities and Social Sciences</td>
+                                                <td>280</td>
+                                                <td>1.28%</td>
+                                            </tr>
+                                            <tr style="background:#f5f7fa; font-weight:600;">
+
+                                                <td colspan="2" style="text-align: center;">Total</td>
+                                                <td>21,875</td>
+                                                <td>100</td>
+
+                                            </tr>
+                                        </tbody>
+                                    </table>
+
+                                </div>
+
+                                <div class="annual-notes no-bullet mt-3">
+                                    <ul>
+                                        <li><strong>Source</strong> : K. C. Subrahmanyam et al (Eds.), A Union
+                                            Catalogue
+                                            of Tamil Manuscripts, Vol. V, Tanjore University, Thanjavur 1991, pp.
+                                            2148-2156
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade modal-xl newbox" id="newbox2" data-bs-backdrop="static" data-bs-keyboard="false"
+        tabindex="-1" aria-labelledby="newbox2Label" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <!-- <h1 class="modal-title fs-5" id="newbox2Label">Indian Cities with Local Dailies</h1> -->
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p class="annual-print-title">
+                        Indian Digital Media Estimates
+
+                    </p>
+                    <img src="{{ asset('images/digitalmedia.png') }}" class="img-fluid" alt="">
+
+                    <div class="annual-notes">
+                        <span style="font-weight:600;">Notes :</span>
+                        <ul style="list-style: disc;">
+                            <li><strong>All India Radio (AIR) Stations </strong> – Prasar Bharti – List of existing
+                                stations and transmitters
+
+                            </li>
+                            <li><strong>AIR</strong> – Total (Medium Wave+FM) National Coverage – 90%, Population –
+                                98%
+
+                            </li>
+
+                            <li><strong>*AIR Stations Estimated </strong> – based on each city’s respective Most
+                                Spoken
+                                Mother Tongue Language
+
+                            </li>
+
+
+                            <li><strong>Population, Literacy % </strong> – Figures sourced from Census 2011
+
+
+                            </li>
+
+
+                            <li><strong>TV Channels </strong> – List of Television Channels in India (Wikipedia)
+
+
+                            </li>
+
+                            <li><strong>Internet Users </strong> – Estimated based on Language Distribution of India
+                                and
+                                TRAI Data – Jul-Sept, 2025
+
+                            </li>
+
+                        </ul>
+                    </div>
                     <!-- <p class="text-end h6"> Source: </p> -->
                 </div>
             </div>
@@ -715,89 +1984,91 @@
                 </div>
                 <div class="modal-body ">
                     <div class="p-3">
-                        <h5>17 Script Language Families.</h5>
-                        <p>The 178 Official Spoken Languages of the world can be categorized into 32 Scripts and 17
-                            Writing Language Families. Do note that "Writing Language Families" are distinct from "
-                            Writing Language Systems".</p>
-                        <hr>
-                        <table class="table table-sm text-start">
-                            <thead>
-                                <tr>
-                                    <th>Writing System</th>
-                                    <th>Language Family</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Abjad</td>
-                                    <td>Arabic</td>
-                                </tr>
-                                <tr>
-                                    <td>Abjad</td>
-                                    <td>Hebrew</td>
-                                </tr>
-                                <tr>
-                                    <td>Abjad</td>
-                                    <td>Tifinagh</td>
-                                </tr>
-                                <tr>
-                                    <td>Abugida</td>
-                                    <td>Canadian syllabic</td>
-                                </tr>
-                                <tr>
-                                    <td>Abugida</td>
-                                    <td>Ethiopic</td>
-                                </tr>
-                                <tr>
-                                    <td>Abugida</td>
-                                    <td>North Indic</td>
-                                </tr>
-                                <tr>
-                                    <td>Abugida</td>
-                                    <td>South Indic</td>
-                                </tr>
-                                <tr>
-                                    <td>Abugida</td>
-                                    <td>Thaana</td>
-                                </tr>
-                                <tr>
-                                    <td>Alphabetical</td>
-                                    <td>Armenian</td>
-                                </tr>
-                                <tr>
-                                    <td>Alphabetical</td>
-                                    <td>Cyrillic</td>
-                                </tr>
-                                <tr>
-                                    <td>Alphabetical</td>
-                                    <td>Georgian</td>
-                                </tr>
-                                <tr>
-                                    <td>Alphabetical</td>
-                                    <td>Greek</td>
-                                </tr>
-                                <tr>
-                                    <td>Alphabetical</td>
-                                    <td>Hangul</td>
-                                </tr>
-                                <tr>
-                                    <td>Alphabetical</td>
-                                    <td>Latin</td>
-                                </tr>
-                                <tr>
-                                    <td>Alphabetical</td>
-                                    <td>Mongolian</td>
-                                </tr>
-                                <tr>
-                                    <td>Logo_Syllabic</td>
-                                    <td>Hanzi [L]</td>
-                                </tr>
-                                <tr>
-                                    <td>Logo_Syllabic</td>
-                                    <td>Kana [S] / Kanji [L]</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <h3 style="text-align: center; font-weight: bold;">17 Script Language Families.</h5>
+                            <p>The 178 Official Spoken Languages of the world can be categorized into 32 Scripts and
+                                17
+                                Writing Language Families. Do note that "Writing Language Families" are distinct
+                                from "
+                                Writing Language Systems".</p>
+                            <hr>
+                            <table class="table table-sm text-start">
+                                <thead>
+                                    <tr>
+                                        <th>Writing System</th>
+                                        <th>Language Family</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Abjad</td>
+                                        <td>Arabic</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Abjad</td>
+                                        <td>Hebrew</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Abjad</td>
+                                        <td>Tifinagh</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Abugida</td>
+                                        <td>Canadian syllabic</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Abugida</td>
+                                        <td>Ethiopic</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Abugida</td>
+                                        <td>North Indic</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Abugida</td>
+                                        <td>South Indic</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Abugida</td>
+                                        <td>Thaana</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alphabetical</td>
+                                        <td>Armenian</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alphabetical</td>
+                                        <td>Cyrillic</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alphabetical</td>
+                                        <td>Georgian</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alphabetical</td>
+                                        <td>Greek</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alphabetical</td>
+                                        <td>Hangul</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alphabetical</td>
+                                        <td>Latin</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Alphabetical</td>
+                                        <td>Mongolian</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Logo_Syllabic</td>
+                                        <td>Hanzi [L]</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Logo_Syllabic</td>
+                                        <td>Kana [S] / Kanji [L]</td>
+                                    </tr>
+                                </tbody>
+                            </table>
 
                     </div>
                 </div>
@@ -813,16 +2084,19 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>Nearly 40% of the World’s languages are now endangered, with fewer than 1000 users.According to
+                    <p>Nearly 40% of the World’s languages are now endangered, with fewer than 1000 users.According
+                        to
                         leading language analysis firm, Ethnologue (Non-Profit US entity of a Christian Missionary
                         organisation), there are approximately 7,198 known languages in the world ,and they can be
-                        categorised into four writing systems, namely - Abugida, Abjad, Alphabetical & Logo-Syllabic.
+                        categorised into four writing systems, namely - Abugida, Abjad, Alphabetical &
+                        Logo-Syllabic.
                     </p>
                     <img src="home-assets/image/bl3a.JPG" alt="" class="img-fluid">
                     <br> <br>
                     <table id="box25x" class="table table-border">
                         <tr>
-                            <td colspan='10' class="h2">World Languages -Script Unity of 4 Writing Systems</td>
+                            <td colspan='10' class="h2">World Languages -Script Unity of 4 Writing Systems
+                            </td>
                         </tr>
                         <tr>
                             <td colspan="2" rowspan="2" class="text-center">Languages(MT)/Countries</td>
@@ -865,14 +2139,16 @@
                 <div class="modal-body">
 
 
-                    <p>There are more than 800 districts in India as of 2024. A District Headquarter, also known as a
+                    <p>There are more than 800 districts in India as of 2024. A District Headquarter, also known as
+                        a
                         District
                         Capital, is the main administrative centre of a district. Each district has its own
                         headquarters, serving
                         as the administrative centre for the district. </p>
 
                     <p>According to the Prarang database, there are 768 District Headquarters, of which 368 have a
-                        population greater than 1 lakh. This data is based on estimates for 2023, derived from the 2011
+                        population greater than 1 lakh. This data is based on estimates for 2023, derived from the
+                        2011
                         Census by the Government of India and population growth rates. </p>
 
                     <p>As per the 2011 Census by the Government of India, there were 640 districts in India, and of
@@ -937,7 +2213,7 @@
 
                         <div>
                             <h3 class="text-lg font-bold mb-1">
-                                • <a href="https://g2c.prarang.in/india/reacho-o-meter" target="_blank"
+                                • <a href="https://g2c.prarang.in/india/multilingualism" target="_blank"
                                     class="text-blue-600 hover:underline">
                                     India - Citywise Linguistic Diversity -
                                 </a>
@@ -959,7 +2235,33 @@
         </div>
     </div>
 
-
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var btn = document.querySelector('#newbox1 .manuscript-btn');
+            if (btn) {
+                btn.removeAttribute('data-bs-toggle');
+                btn.removeAttribute('data-bs-target');
+                btn.onclick = function() {
+                    var modal = new bootstrap.Modal(document.getElementById('newbox11'), {
+                        backdrop: false,
+                        focus: false
+                    });
+                    modal.show();
+                };
+            }
+            // Blur parent modal when child modal is open
+            var childModal = document.getElementById('newbox11');
+            var parentModalContent = document.querySelector('#newbox1 .modal-content');
+            if (childModal && parentModalContent) {
+                childModal.addEventListener('show.bs.modal', function() {
+                    parentModalContent.classList.add('modal-blur');
+                });
+                childModal.addEventListener('hidden.bs.modal', function() {
+                    parentModalContent.classList.remove('modal-blur');
+                });
+            }
+        });
+    </script>
 
     <script>
         // Function to fetch the JSONL file
@@ -992,8 +2294,10 @@
         // Main function to fetch data and create table
         async function main() {
             try {
-                const jsonData = await fetchJSONL('https://www.prarang.in/home-assets/lang-data.jsonl');
+                const jsonData = await fetchJSONL('home-assets/lang-data.jsonl');
                 const table = createTable(jsonData, 'box23x');
+                // console.log(table);
+
                 // Set the table ID
                 // document.body.appendChild(table); // Append the table to the document body
             } catch (error) {
@@ -1003,7 +2307,7 @@
 
         async function mainx() {
             try {
-                const jsonData = await fetchJSONL('https://www.prarang.in/home-assets/lang-data-2.txt');
+                const jsonData = await fetchJSONL('home-assets/lang-data-2.txt');
                 const table = createTable(jsonData, 'box25x');
                 // Set the table ID
                 // document.body.appendChild(table); // Append the table to the document body
@@ -1016,5 +2320,4 @@
         main();
         mainx();
     </script>
-
 </x-layout.main.base>
