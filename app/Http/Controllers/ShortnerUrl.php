@@ -58,4 +58,74 @@ class ShortnerUrl extends Controller
         $redirectUrl = url("post-summary/{$city}/{$post->chittiId}/{$slug}?source={$platform}");
         return redirect($redirectUrl);
     }
+
+
+
+    public function qShort(Request $request, $query = null, $custom = null)
+    {
+        $qUrl = $request->query('q', null);
+        // Create Short URL
+        if ($qUrl) {
+
+            // Validate URL
+            if (!filter_var($qUrl, FILTER_VALIDATE_URL)) {
+                return response()->json([
+                    'error' => 'Invalid URL',
+                ], 400);
+            }
+
+            // If URL already exists, return existing hash
+            $record = DB::table('q_short')
+                ->where('url', $qUrl)
+                ->first();
+
+            if ($record) {
+                return response()->json([
+                    'hash' => $record->hash,
+                ]);
+            }
+
+            // Use custom hash if provided
+            if (!empty($custom)) {
+
+                // Check if custom hash already exists
+                if (DB::table('q_short')->where('hash', $custom)->exists()) {
+                    return response()->json([
+                        'error' => 'Custom hash already exists.',
+                    ], 409);
+                }
+
+                $hash = $custom;
+            } else {
+
+                // Generate unique random hash
+                do {
+                    $hash = Str::random(10);
+                } while (
+                    DB::table('q_short')->where('hash', $hash)->exists()
+                );
+            }
+
+            // Save URL
+            DB::table('q_short')->insert([
+                'hash' => $hash,
+                'url'  => $$qUrl,
+            ]);
+
+            return response()->json([
+                'hash' => $hash,
+            ]);
+        }
+
+        // Redirect using hash
+        $url = DB::table('q_short')
+            ->where('hash', $query)
+            ->value('url');
+
+        if (!$url) {
+            abort(404);
+        }
+
+        return redirect()->away($url);
+    }
 }

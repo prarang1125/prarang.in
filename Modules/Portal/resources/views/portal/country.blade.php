@@ -48,21 +48,21 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="mapModalLabel">
-                            <i class="fa fa-map-marker me-2"></i>Country Maps
+                            <i class="me-2 fa fa-map-marker"></i>Country Maps
                         </h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         <div class="mb-3">
-                            <label class="form-label d-block mb-2">Select Country:</label>
+                            <label class="d-block mb-2 form-label">Select Country:</label>
                             <div id="countrySelectGroup">
-                                <div class="form-check form-check-inline">
+                                <div class="form-check-inline form-check">
                                     <input class="form-check-input" type="radio" name="countrySelect"
                                         id="countryPrimary" value="primary">
                                     <label class="form-check-label"
                                         for="countryPrimary">{{ $primary->country_name ?? 'Primary Country' }}</label>
                                 </div>
-                                <div class="form-check form-check-inline">
+                                <div class="form-check-inline form-check">
                                     <input class="form-check-input" type="radio" name="countrySelect"
                                         id="countrySecondary" value="secondary">
                                     <label class="form-check-label"
@@ -137,15 +137,15 @@
 
 
                                         </div>
-                                        <div class="shadow mt-2 bg-light">
-                                            <h3 class="text-center h5 fw-bold ">Knowledge By Comparison</h3>
-                                            <div class="comparison-links-new px-3 pb-2">
+                                        <div class="bg-light shadow mt-2">
+                                            <h3 class="text-center h5 fw-bold">Knowledge By Comparison</h3>
+                                            <div class="px-3 pb-2 comparison-links-new">
                                                 <a class="comparison-btn" target="_blank"
                                                     href="/czech-republic-country-comparison">
                                                     <strong>Country Comparison :</strong> <span>Compare Czech with Other
                                                         Countries</span>
                                                 </a>
-                                                <a class="comparison-btn mt-2" target="_blank"
+                                                <a class="mt-2 comparison-btn" target="_blank"
                                                     href="/czech-republic-regional-comparison">
                                                     <strong>India-Czech Comparison :</strong> <span>Compare Czech with
                                                         Indian Regions</span>
@@ -158,15 +158,15 @@
 
                                             <div class="row">
                                                 <div class="col-sm-6">
-                                                    <div class="widget lsvr-townpress-analytics-widget lsvr-townpress-analytics-widget--has-background shadow-sm mb-4 border rounded"
+                                                    <div class="shadow-sm mb-4 border rounded widget lsvr-townpress-analytics-widget lsvr-townpress-analytics-widget--has-background"
                                                         id="-analytics-widget">
-                                                        <div class="widget__inner p-3">
+                                                        <div class="p-3 widget__inner">
                                                             <h3
-                                                                class="widget__title widget__title--has-icon ps-2 mb-3 text-center text-secondary fw-bold">
-                                                                {{-- <i class="fa fa-line-chart me-2"></i> --}}
+                                                                class="mb-3 ps-2 text-secondary text-center widget__title widget__title--has-icon fw-bold">
+                                                                {{-- <i class="me-2 fa fa-line-chart"></i> --}}
                                                                 {{ $primary->country_name ?? 'N/A' }} Data Analytics
                                                             </h3>
-                                                            <div class="widget__content text-center">
+                                                            <div class="text-center widget__content">
                                                                 <x-portal.cityanaytics :title="$primary->country_name ?? 'N/A'"
                                                                     :code="$primary->analytics_slug ?? 'country'" />
                                                             </div>
@@ -174,15 +174,15 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6">
-                                                    <div class="widget lsvr-townpress-analytics-widget lsvr-townpress-analytics-widget--has-background shadow-sm mb-4 border rounded"
+                                                    <div class="shadow-sm mb-4 border rounded widget lsvr-townpress-analytics-widget lsvr-townpress-analytics-widget--has-background"
                                                         id="-analytics-widget">
-                                                        <div class="widget__inner p-3">
+                                                        <div class="p-3 widget__inner">
                                                             <h3
-                                                                class="widget__title widget__title--has-icon ps-2 mb-3 text-center text-secondary fw-bold">
-                                                                {{-- <i class="fa fa-line-chart me-2"></i> --}}
+                                                                class="mb-3 ps-2 text-secondary text-center widget__title widget__title--has-icon fw-bold">
+                                                                {{-- <i class="me-2 fa fa-line-chart"></i> --}}
                                                                 {{ $secondary->country_name ?? 'N/A' }} Data Analytics
                                                             </h3>
-                                                            <div class="widget__content text-center">
+                                                            <div class="text-center widget__content">
 
                                                                 <x-portal.cityanaytics :title="$secondary->country_name ?? 'N/A'"
                                                                     :code="$secondary->analytics_slug ?? 'country'" />
@@ -198,13 +198,13 @@
                                     <!-- MAIN : end -->
                                 </div>
                                 <div
-                                    class="columns__sidebar columns__sidebar--left lsvr-grid__col lsvr-grid__col--span-3 lsvr-grid__col--pull-6">
+                                    class="columns__sidebar--left columns__sidebar lsvr-grid__col lsvr-grid__col--span-3 lsvr-grid__col--pull-6">
                                     <!-- LEFT SIDEBAR : begin -->
                                     <x-biletral-portal-aside :data="$primary" side="left" />
                                     <!-- LEFT SIDEBAR : end -->
                                 </div>
                                 <div
-                                    class="columns__sidebar columns__sidebar--right lsvr-grid__col lsvr-grid__col--span-3">
+                                    class="columns__sidebar--right columns__sidebar lsvr-grid__col lsvr-grid__col--span-3">
                                     <x-biletral-portal-aside :data="$secondary" side="right" />
                                 </div>
                             </div>
@@ -235,7 +235,7 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <a href="javascript:void(0)" onclick="showComingSoon(event)" target="_blank">
-                                            <i class="p-2 shadow fa fa-facebook rounded-circle fa-2x"></i> <span
+                                            <i class="shadow p-2 rounded-circle fa fa-facebook fa-2x"></i> <span
                                                 class="h4">Facebook</span>
                                         </a>
                                     </div>
@@ -251,13 +251,13 @@
                                 <div class="row">
                                     <div class="col-6">
                                         <a href=" https://www.instagram.com/prarang_in/?hl=en" target="_blank">
-                                            <i class="p-2 shadow fa fa-instagram rounded-circle fa-2x"></i> <span
+                                            <i class="shadow p-2 rounded-circle fa fa-instagram fa-2x"></i> <span
                                                 class="h4">Instagram</span>
                                         </a>
                                     </div>
                                     <div class="col-6">
                                         <a href="https://www.linkedin.com/company/indeur-prarang/" target="_blank">
-                                            <i class="p-2 shadow fa fa-linkedin rounded-circle fa-2x"></i> <span
+                                            <i class="shadow p-2 rounded-circle fa fa-linkedin fa-2x"></i> <span
                                                 class="h4">
                                                 LinkedIn</span>
 
@@ -265,7 +265,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm ps-3">
+                            <div class="ps-3 col-sm">
                                 <h4 class="text-center h4"><i class="tp tp-eye"></i> Address</h4>
                                 <p class="text-center">Office #25, 11th Floor, The I-Thum, A40,</p>
                                 <p class="text-center">Sector 62, Noida (U.P), India 201309</p>
@@ -296,12 +296,12 @@
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content" style="border-radius: 15px; overflow: hidden;">
                                         <div class="modal-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none;">
-                                            <h5 class="modal-title text-white fw-bold">
-                                                <i class="fa fa-clock-o me-2"></i>Coming Soon
+                                            <h5 class="text-white modal-title fw-bold">
+                                                <i class="me-2 fa fa-clock-o"></i>Coming Soon
                                             </h5>
                                             <button type="button" class="btn-close btn-close-white" onclick="closeComingSoon()"></button>
                                         </div>
-                                        <div class="modal-body text-center p-5">
+                                        <div class="p-5 text-center modal-body">
                                             <p class="text-muted" style="font-size: 1.1rem;">
                                                 Coming Soon...
                                             </p>

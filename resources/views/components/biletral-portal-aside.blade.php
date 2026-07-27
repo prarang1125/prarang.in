@@ -1,4 +1,4 @@
-<div class="container-fluid px-2">
+<div class="px-2 container-fluid">
 
     <style>
         /* Division */
@@ -149,15 +149,15 @@
         <div class="sidebar-{{ $side }}__inner">
 
             <!-- Time Widget -->
-            <div class="widget lsvr-townpress-weather-widget lsvr-townpress-weather-widget--has-background shadow-sm mb-4 border rounded"
+            <div class="shadow-sm mb-4 border rounded widget lsvr-townpress-weather-widget lsvr-townpress-weather-widget--has-background"
                 id="{{ $side }}-time-widget">
-                <div class="widget__inner p-3">
-                    <h3 class="widget__title widget__title--has-icon ps-2 mb-3 text-center text-primary fw-bold">
-                        <i class="fa fa-clock-o me-2"></i>
+                <div class="p-3 widget__inner">
+                    <h3 class="mb-3 ps-2 text-primary text-center widget__title widget__title--has-icon fw-bold">
+                        <i class="me-2 fa fa-clock-o"></i>
                         {{ $data->country_name ?? 'N/A' }} Time
                     </h3>
-                    <div class="widget__content text-center">
-                        <div id="{{ $side }}-time" class="h4 text-success fw-semibold mb-1">Loading...</div>
+                    <div class="text-center widget__content">
+                        <div id="{{ $side }}-time" class="mb-1 text-success h4 fw-semibold">Loading...</div>
                         <div id="{{ $side }}-date" class="text-muted small"></div>
                     </div>
                 </div>
@@ -169,12 +169,12 @@
                 @if (!empty($data->weather))
                     <div class="weather-widgetx">{!! $data->weather !!}</div>
                 @else
-                    <p class="text-muted small mb-0">Weather data not available</p>
+                    <p class="mb-0 text-muted small">Weather data not available</p>
                 @endif
             </div>
-            <div class="border shadow p-2 mt-3 shadow bg-light rounded">
-                <h4 class=" ps-2 text-center  text-dark h5">
-                    <i class="fa fa-analysis-o me-2"></i>
+            <div class="bg-light shadow shadow mt-3 p-2 border rounded">
+                <h4 class="ps-2 text-dark text-center h5">
+                    <i class="me-2 fa fa-analysis-o"></i>
                     {{ $data->country_name }} Local Metrics
                 </h4>
                 @php
@@ -184,7 +184,7 @@
                 @endphp
 
                 @if (is_array($metrics))
-                    <table class="table table-bordered ">
+                    <table class="table table-bordered">
 
                         <tbody>
                             @foreach ($metrics as $row)
@@ -204,39 +204,39 @@
 
 
             <!-- News Widget -->
-            <div class="widget lsvr-townpress-news-widget lsvr-townpress-news-widget--has-background shadow-sm mb-4 border rounded"
+            <div class="shadow-sm mb-4 border rounded widget lsvr-townpress-news-widget lsvr-townpress-news-widget--has-background"
                 id="{{ $side }}-news-widget">
-                <div class="widget__inner p-3">
-                    <h3 class="widget__title widget__title--has-icon ps-2 mb-3 text-center text-info fw-bold">
-                        <i class="fa fa-newspaper-o me-2"></i>
+                <div class="p-3 widget__inner">
+                    <h3 class="mb-3 ps-2 text-info text-center widget__title widget__title--has-icon fw-bold">
+                        <i class="me-2 fa fa-newspaper-o"></i>
                         {{ $data->country_name ?? 'N/A' }} News
                     </h3>
                     <div class="widget__content">
 
-                        <div class="rounded p-3 bg-light border text-center">
+                        <div class="bg-light p-3 border rounded text-center">
                             @if (!empty($data->news))
                                 <a href="{{ str_replace(' ', '"', $data->news) }}" target="_blank"
-                                    class="fw-semibold text-decoration-none text-primary">
-                                    <i class="fa fa-external-link me-1"></i>
+                                    class="text-primary text-decoration-none fw-semibold">
+                                    <i class="me-1 fa fa-external-link"></i>
                                     {{ $data->country_name ?? ' N/A' }} News </a>
                             @else
-                                <p class="text-muted small mb-0">No news available</p>
+                                <p class="mb-0 text-muted small">No news available</p>
                             @endif
                         </div>
                     </div>
                 </div>
             </div>
             <!-- Embassy Section -->
-            <div class="card shadow-sm mb-4 border-0 rounded" id="{{ $side }}-embassy-card">
-                <div class="card-body text-center">
-                    <h5 class="card-title mb-3 fw-bold text-primary">
-                        <i class="fa fa-building-o me-2"></i>
+            <div class="shadow-sm mb-4 border-0 rounded card" id="{{ $side }}-embassy-card">
+                <div class="text-center card-body">
+                    <h5 class="mb-3 text-primary card-title fw-bold">
+                        <i class="me-2 fa fa-building-o"></i>
                         Embassy of {{ $data->country_name ?? 'N/A' }}
                     </h5>
 
                     @if (!empty($data->embassy_link))
-                        <a href="{{ $data->embassy_link }}" class="btn btn-primary w-100 fw-semibold" target="_blank">
-                            <i class="fa fa-external-link me-1"></i> Visit Embassy Website
+                        <a href="{{ $data->embassy_link }}" class="w-100 btn btn-primary fw-semibold" target="_blank">
+                            <i class="me-1 fa fa-external-link"></i> Visit Embassy Website
                         </a>
                     @else
                         <span class="text-danger small">Embassy link not available.</span>
@@ -248,11 +248,11 @@
 
 
             <!-- Important Links Widget -->
-            <div class="widget lsvr-townpress-embassy-widget lsvr-townpress-embassy-widget--has-background shadow-sm border rounded"
+            <div class="shadow-sm border rounded widget lsvr-townpress-embassy-widget lsvr-townpress-embassy-widget--has-background"
                 id="{{ $side }}-links-widget">
-                <div class="widget__inner p-3">
-                    <h3 class="widget__title widget__title--has-icon ps-2 mb-3 text-center fw-bold text-danger">
-                        <i class="fa fa-link me-2"></i>
+                <div class="p-3 widget__inner">
+                    <h3 class="mb-3 ps-2 text-danger text-center widget__title widget__title--has-icon fw-bold">
+                        <i class="me-2 fa fa-link"></i>
                         Important Links of {{ $data->country_name ?? 'N/A' }}
                     </h3>
 
@@ -261,15 +261,15 @@
 
                             @foreach ($data->important_links as $key => $links)
                                 <div class="">
-                                    <h6 class="fw-bold text-primary text-capitalize">
+                                    <h6 class="text-primary text-capitalize fw-bold">
                                         {{ str_replace('_', ' ', $key) }}
                                     </h6>
                                     <ul class="list-unstyled">
                                         @foreach ($links as $link)
                                             <li class="">
                                                 <a href="{{ $link['url'] }}" target="_blank"
-                                                    class="text-muted text-decoration-none d-flex align-items-center rounded hover-shadow">
-                                                    <i class="fa fa-external-link me-2 text-secondary"></i>
+                                                    class="d-flex align-items-center hover-shadow rounded text-muted text-decoration-none">
+                                                    <i class="me-2 text-secondary fa fa-external-link"></i>
                                                     <span>{{ $link['name'] }}</span>
                                                 </a>
                                             </li>
@@ -278,35 +278,35 @@
                                 </div>
                             @endforeach
                         @else
-                            <p class="text-muted small mb-0">No important links available</p>
+                            <p class="mb-0 text-muted small">No important links available</p>
                         @endif
                     </div>
                 </div>
             </div>
 
 
-            <div class="border shadow p-2 mt-3 shadow bg-light rounded">
+            <div class="bg-light shadow shadow mt-3 p-2 border rounded">
                 <div class="mt-3">
                     <a href="https://prarang.in/yp/" target="_blank"
-                        class="relative block overflow-hidden rounded-lg group">
+                        class="group block relative rounded-lg overflow-hidden">
 
                         <!-- IMAGE -->
                         <img src="https://meerutrang.in/images/yellow-pages-row.png" alt="Login"
-                            class="w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]" />
+                            class="w-full object-cover group-hover:scale-[1.02] transition-transform duration-300" />
 
                         <!-- OVERLAY -->
-                        <div class="absolute inset-0 "></div>
+                        <div class="absolute inset-0"></div>
 
                         <!-- TEXT ON IMAGE -->
-                        <div class="absolute inset-0 flex flex-col items-center justify-center text-center z-10">
-                            <h2 class="text-[36px] font-bold text-black drop-shadow-md">
+                        <div class="z-10 absolute inset-0 flex flex-col justify-center items-center text-center">
+                            <h2 class="drop-shadow-md font-bold text-[36px] text-black">
                                 @if ($side == 'left')
                                     Indian Companies In Czech Republic
                                 @else
                                     Czech Republic Companies In India
                                 @endif
                             </h2>
-                            <h4 class="text-sm font-semibold text-black mt-1 drop-shadow">
+                            <h4 class="drop-shadow mt-1 font-semibold text-black text-sm">
                                 हिंदी येलो पेज (Yellow Pages)
                             </h4>
                         </div>

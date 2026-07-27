@@ -85,7 +85,7 @@ Route::get('/share/{uuid}', [SharedResponseController::class, 'show'])->name('sh
 
 Route::get('/ai/upmana/{lang?}', UpmanaAi::class)->name('upmana-ai');
 Route::get('/00-{query?}', [ShortnerUrl::class, 'index'])->name('shortner-url');
-
+Route::get('/q/{query?}/{custom?}', [ShortnerUrl::class, 'qShort'])->name('q-url');
 
 Route::get('/cirus/{type?}', App\Livewire\Pages\Cirus::class)->name('cirus.dashboard');
 
