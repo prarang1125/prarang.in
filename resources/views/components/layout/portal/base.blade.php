@@ -42,7 +42,7 @@
             <!-- Time Box -->
             <div
                 class="hidden md:flex flex-col justify-center items-center bg-black shadow-lg p-3 border border-gray-700 rounded-md w-48 text-white">
-                <div class="mb-1 font-medium text-sm">{{ $portal->city_name_local ?? 'मेरठ' }} का समय</div>
+                <div class="mb-1 font-medium text-sm"> स्थानीय समय</div>
                 <div class="flex items-center gap-2 mb-1">
                     <i class="text-white fa fa-clock-o"></i>
                     <span class="font-bold text-lg" id="current-time">--:--:-- --</span>

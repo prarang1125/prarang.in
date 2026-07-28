@@ -223,7 +223,7 @@
         <a href="https://www.prarang.in/archives/{{ $citySlug }}" target="_blank"
             class="px-4 py-2 rounded-full btn-outline-red-700 font-bold btn hover:btn-red-900 btn btn-primary">
             <i class="mr-2 text-red-600 fa fa-shield-alt"></i>
-            <span class="arabic-numbers">{{ $cityName }}</span> &nbsp;की खोज
+            <span class="arabic-numbers">{{ $cityName }}</span> &nbsp;के व्यवस्थित लेख
         </a>
     </div>
 
