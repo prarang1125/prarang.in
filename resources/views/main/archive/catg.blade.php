@@ -137,7 +137,7 @@
                                                 @foreach ($items as $item)
                                                     <li><a
                                                             href="{{ route('post-archive', ['catg' => $catg, 'ids' => implode('-', $item['tags']), 
-                                                             'name' => strtoupper(str_replace('/', ',', $item['subjectname'])),
+                                                             'name' => strtoupper(str_replace('/', ', ', $item['subjectname'])),
                                                             'cityCode' => $cityCode]) }}">{{ $item['subjectname'] }}</a>
                                                     </li>
                                                 @endforeach
