@@ -251,7 +251,7 @@ $liveCity=[
             <img src="{{ asset('assets/images/sticker.png') }}" alt="Sticker" class="w-32 h-auto">
 
             <div class="absolute inset-0 flex flex-col items-center justify-center">
-                <span class="text-xl font-bold leading-none">599290</span>
+                <span class="text-xl font-bold leading-none">5,99,290</span>
                 <span class="text-sm leading-none">Webs</span>
             </div>
         </div>
@@ -553,6 +553,41 @@ $liveCity=[
                 margin-bottom: 1px;
                 margin-top: 5px !important;
                 padding-top: 3px !important;
+            }
+
+        }
+
+        /* Font bold */
+        .inline-block .justify-center .font-bold {
+            font-size: 15px;
+        }
+
+        /* Font bold */
+        .inline-block .justify-center .font-bold {
+            font-size: 15px;
+            font-size: 15px;
+        }
+
+        /* Inline block */
+        .container section .inline-block {
+            transform: translatex(368px) translatey(-26px) !important;
+            width: 98px;
+            transform: translatex(368px) translatey(-26px) !important;
+            width: 109px;
+        }
+
+        @media (max-width:576px) {
+
+            /* Inline block */
+            .container section .inline-block {
+                left: -54px;
+                right: auto !important;
+                width: 98px;
+            }
+
+            /* Font bold */
+            .inline-block .justify-center .font-bold {
+                font-size: 13px;
             }
 
         }
