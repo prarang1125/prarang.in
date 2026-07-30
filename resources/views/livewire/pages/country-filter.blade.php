@@ -1,235 +1,193 @@
 {{-- livewire/pages/country-filter.blade.php --}}
-<div class="pb-4 text-center">
+<div class="pb-2 text-center">
+    <div class="pb-1 text-center">
+        <div class="flex items-center justify-center gap-1">
 
-    {{-- ── Header ── --}}
-    <h2 class="text-xl md:text-xl text-slate-800 tracking-tighter mb-2">
-        Explore India's Connection with
-        <span class="text-blue-700 font-extrabold text-[20px] md:text-[22px]">
-            {{ collect($data)->flatten(1)->count() }}
-        </span>
-        Countries of the World
-    </h2>
+            <div class="relative w-20 h-20 shrink-0">
+                <img
+                    src="{{ asset('assets/images/sticker.png') }}"
+                    alt="Sticker"
+                    class="w-full h-full">
 
-    {{-- ── 2-Step Filter Grid ── --}}
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mt-6">
-
-        {{-- ── Step 1 : Continent ── --}}
-        <div class="space-y-3" x-data="{ open: false, search: '' }">
-
-            {{-- Step badge + label --}}
-            <div class="flex items-center gap-3 mb-2">
-                <span class="flex items-center justify-center w-8 h-8 rounded-xl
-                    {{ $selectedContinent ? 'bg-green-100 text-green-600' : 'bg-blue-100 text-blue-600' }}
-                    font-bold text-sm transition-colors duration-300">
-                    @if($selectedContinent)
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/>
-                        </svg>
-                    @else
-                        01
-                    @endif
+                <span class="absolute inset-0 flex items-center justify-center text-xs font-extrabold text-black">
+                    194 <br>Webs
                 </span>
-                <label class="text-sm font-bold text-slate-500 uppercase tracking-widest">
-                    Select Continent
-                    @if(count($continents))
-                        <span class="text-blue-600">#{{ count($continents) }}</span>
-                    @endif
-                </label>
             </div>
+            <h2 class="mt-1 text-xl font-semibold tracking-tighter text-blue-800 md:text-xl">
+                India Bilateral - Website of Websites
 
-            {{-- Trigger button --}}
-            <div class="relative">
-                <button type="button" @click="open = !open"
-                    class="w-full flex items-center justify-between px-5 py-4 bg-slate-50 border-2
+            </h2>
+        </div>
+    </div>
+
+{{-- ── 2-Step Filter Grid ── --}}
+
+<div class="w-full mx-auto md:w-3/5">
+    <div class="grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-4">
+        {{-- ── Step 1 : Continent ── --}}
+        <div class="space-y-1" x-data="{ open: false, search: '' }">
+            <!-- <div class="flex flex-col w-full p-1 transition-all duration-300 bg-white border rounded shadow-md group border-slate-200 hover:-translate-y-1 hover:border-blue-300 hover:shadow-2xl"> -->
+            <div
+                class="w-full p-2 transition-all duration-300 bg-white border-2 border-yellow-300 shadow-400 rounded-2xl hover:border-blue-300 hover:shadow-md">
+                <div class="flex flex-col items-center w-full">
+                    <img src="{{ asset('assets/images/filter/continent.png') }}"
+                        class="object-contain w-16 h-16 transition-all duration-300 group-hover:scale-110">
+                    <h3 class="text-sm font-bold text-center text-slate-800">
+                        Select Continent
+                    </h3>
+                    <p class="text-xs font-semibold">
+                        Total : {{ count($continents) }}
+                    </p>
+                    {{-- Trigger button --}}
+                    <div class="relative w-full ">
+                        <button type="button" @click="open = !open"
+                            class="w-full h-12  flex items-center justify-between px-5 py-4 bg-slate-50 border-2
                         {{ $selectedContinent ? 'border-blue-200 bg-white' : 'border-slate-100' }}
                         rounded-2xl hover:border-blue-400 hover:bg-white transition-all duration-300 group">
-                    <span class="text-[15px] font-bold
-                        {{ $selectedContinent ? 'text-slate-900' : 'text-slate-400' }} truncate">
-                        {{ $selectedContinent ?? 'Choose a continent...' }}
-                    </span>
-                    <svg class="w-5 h-5 text-slate-400 group-hover:text-blue-500 transition-transform duration-300"
-                        :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                </button>
-
-                {{-- Dropdown --}}
-                <div x-show="open" @click.away="open = false" x-cloak
-                    x-transition:enter="transition ease-out duration-200"
-                    x-transition:enter-start="opacity-0 translate-y-2"
-                    x-transition:enter-end="opacity-100 translate-y-0"
-                    class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-2xl p-3 overflow-hidden">
-
-                    {{-- Search --}}
-                    <div class="relative mb-3">
-                        <input type="text" x-model="search" placeholder="Search continent..."
-                            autocomplete="off"
-                            class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border-none rounded-xl text-sm
-                                   font-semibold focus:ring-2 focus:ring-blue-100 outline-none transition-all">
-                        <svg class="absolute left-3.5 top-3 w-4 h-4 text-slate-400" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                        </svg>
-                    </div>
-
-                    <div class="max-h-60 overflow-y-auto custom-scrollbar-premium">
-                        @forelse($continents as $continent)
-                            <button type="button"
-                                wire:key="continent-{{ $continent }}"
-                                x-show="'{{ strtolower($continent) }}'.includes(search.toLowerCase())"
-                                @click="$wire.set('selectedContinent', '{{ $continent }}'); open = false; search = ''"
-                                class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-bold
-                                       text-slate-700 hover:bg-blue-600 hover:text-white transition-all duration-200">
-                                {{ $continent }}
-                                <span class="text-xs font-normal opacity-60 ml-1">
-                                    ({{ count($data[$continent]) }})
-                                </span>
-                            </button>
-                        @empty
-                            <div class="px-4 py-3 text-sm text-slate-400 font-medium">No continents found</div>
-                        @endforelse
+                            <span class="flex-1 min-w-0 text-left text-sm font-semibold
+                        {{ $selectedContinent ? 'text-slate-900' : 'text-slate-400' }} ">
+                                {{ $selectedContinent ?? 'Choose a continent...' }}
+                            </span>
+                            <svg class="w-5 h-5 transition-transform duration-300 text-slate-400 group-hover:text-blue-500"
+                                :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        {{-- Dropdown --}}
+                        <div x-show="open" @click.away="open = false" x-cloak
+                            x-transition:enter="transition ease-out duration-200"
+                            x-transition:enter-start="opacity-0 translate-y-2"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            class="absolute left-0 z-50 w-full overflow-hidden bg-white border shadow-2xl top-full border-slate-100 rounded-2xl">
+                            {{-- Search --}}
+                            <div class="relative mb-1">
+                                <input type="text" x-model="search" placeholder="Search continent..."
+                                    autocomplete="off"
+                                    class="w-full py-1 pl-10 pr-4 text-sm font-semibold transition-all border-none outline-none bg-slate-50 rounded-xl focus:ring-2 focus:ring-blue-100">
+                                <svg class="absolute left-3.5 top-3 w-4 h-4 text-slate-400" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
+                            </div>
+                            <div class="overflow-y-auto max-h-40 custom-scrollbar-premium">
+                                @forelse($continents as $continent)
+                                <button type="button"
+                                    wire:key="continent-{{ $continent }}"
+                                    x-show="'{{ strtolower($continent) }}'.includes(search.toLowerCase())"
+                                    @click="$wire.set('selectedContinent', '{{ $continent }}'); open = false; search = ''"
+                                    class="w-full px-4 py-1 text-sm font-bold text-left transition-all duration-200 rounded-xl text-slate-700 hover:bg-blue-600 hover:text-white">
+                                    {{ $continent }}
+                                    <span class="ml-1 text-xs font-normal opacity-60">
+                                        ({{ count($data[$continent]) }})
+                                    </span>
+                                </button>
+                                @empty
+                                <div class="px-4 py-3 text-sm font-medium text-slate-400">No continents found</div>
+                                @endforelse
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
         {{-- ── Step 2 : Country ── --}}
         <div class="space-y-3" x-data="{ open: false, search: '' }">
-
-            {{-- Step badge + label --}}
-            <div class="flex items-center gap-3 mb-2">
-                <span class="flex items-center justify-center w-8 h-8 rounded-xl
-                    {{ $selectedCountryId
-                        ? 'bg-green-100 text-green-600'
-                        : ($selectedContinent ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-300') }}
-                    font-bold text-sm transition-colors duration-300">
-
-                    {{-- Spinner while continent loads --}}
-                    <div wire:loading wire:target="selectedContinent">
-                        <svg class="w-4 h-4 animate-spin" fill="none" viewBox="0 0 24 24">
-                            <circle class="opacity-25" cx="12" cy="12" r="10"
-                                stroke="currentColor" stroke-width="4"></circle>
-                            <path class="opacity-75" fill="currentColor"
-                                d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2
-                                   5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824
-                                   3 7.938l3-2.647z"></path>
-                        </svg>
-                    </div>
-
-                    <div wire:loading.remove wire:target="selectedContinent">
-                        @if($selectedCountryId)
-                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="3" d="M5 13l4 4L19 7"/>
-                            </svg>
-                        @else
-                            02
-                        @endif
-                    </div>
-                </span>
-
-                <label class="text-sm font-bold text-slate-500 uppercase tracking-widest">
-                    Select Country
-                    @if(count($filteredCountries))
-                        <span class="text-blue-600">#{{ count($filteredCountries) }}</span>
-                    @endif
-                </label>
-            </div>
-
-            {{-- Trigger button --}}
-            <div class="relative">
-                <button type="button"
-                    @click="if({{ $selectedContinent ? 'true' : 'false' }}) open = !open"
-                    {{ !$selectedContinent ? 'disabled' : '' }}
-                    class="w-full flex items-center justify-between px-5 py-4 bg-slate-50 border-2
+            <!-- <div class="flex flex-col w-full p-1 transition-all duration-300 bg-white border rounded shadow-md group border-slate-200 hover:-translate-y-1 hover:border-blue-300 hover:shadow-2xl"> -->
+            <div
+                class="w-full p-2 transition-all duration-300 bg-white border-2 border-yellow-300 shadow-400 rounded-2xl hover:border-blue-300 hover:shadow-md">
+                <div class="flex flex-col items-center w-full">
+                    <img src="{{ asset('assets/images/filter/country.png') }}"
+                        class="object-contain w-16 h-16 transition-all duration-300 group-hover:scale-110">
+                    <h3 class="text-sm font-bold text-center text-slate-800">
+                        Select Country
+                    </h3>
+                    <p class="text-xs font-semibold">
+                        Total : {{ count($filteredCountries) }}
+                    </p>
+                    {{-- Trigger button --}}
+                    <div class="relative w-full px-2">
+                        <button type="button"
+                            @click="if({{ $selectedContinent ? 'true' : 'false' }}) open = !open"
+                            {{ !$selectedContinent ? 'disabled' : '' }}
+                            class="w-full  h-12 flex items-center justify-between px-5 py-4 bg-slate-50 border-2
                         {{ $selectedCountryId
                             ? 'border-blue-200 bg-white'
                             : ($selectedContinent ? 'border-slate-100' : 'border-slate-50 opacity-50') }}
                         rounded-2xl
                         {{ $selectedContinent ? 'hover:border-blue-400 hover:bg-white' : 'cursor-not-allowed' }}
                         transition-all duration-300 group">
-                    <span class="text-[15px] font-bold
-                        {{ $selectedCountryId ? 'text-slate-900' : 'text-slate-400' }} truncate">
-                        @php
-                            $selectedCountry = collect($filteredCountries)
+                            <span class="flex-1 min-w-0 text-left text-sm font-semibold
+                        {{ $selectedCountryId ? 'text-slate-900' : 'text-slate-400' }} ">
+                                @php
+                                $selectedCountry = collect($filteredCountries)
                                 ->firstWhere('id', $selectedCountryId);
-                        @endphp
-                        {{ $selectedCountry ? $selectedCountry['Country'] : 'Choose a country...' }}
-                    </span>
-                    <svg class="w-5 h-5 text-slate-400 group-hover:text-blue-500 transition-transform duration-300"
-                        :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/>
-                    </svg>
-                </button>
-
-                {{-- Dropdown --}}
-                <div x-show="open" @click.away="open = false" x-cloak
-                    x-transition:enter="transition ease-out duration-200"
-                    x-transition:enter-start="opacity-0 translate-y-2"
-                    x-transition:enter-end="opacity-100 translate-y-0"
-                    class="absolute z-50 w-full mt-2 bg-white border border-slate-100 rounded-2xl shadow-2xl p-3 overflow-hidden">
-
-                    {{-- Search --}}
-                    <div class="relative mb-3">
-                        <input type="text" x-model="search" placeholder="Search country..."
-                            autocomplete="off"
-                            class="w-full pl-10 pr-4 py-2.5 bg-slate-50 border-none rounded-xl text-sm
-                                   font-semibold focus:ring-2 focus:ring-blue-100 outline-none transition-all">
-                        <svg class="absolute left-3.5 top-3 w-4 h-4 text-slate-400" fill="none"
-                            stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
-                        </svg>
-                    </div>
-
-                    <div class="max-h-60 overflow-y-auto custom-scrollbar-premium">
-                        @forelse($filteredCountries as $country)
-                            <button type="button"
-                                wire:key="country-{{ $country['id'] }}"
-                                x-show="'{{ strtolower($country['Country']) }}'.includes(search.toLowerCase())"
-                                @click="$wire.set('selectedCountryId', {{ $country['id'] }}); open = false; search = ''"
-                                class="w-full text-left px-4 py-2.5 rounded-xl text-sm font-bold
-                                       text-slate-700 hover:bg-blue-600 hover:text-white transition-all duration-200">
-                                {{ $country['Country'] }}
-                            </button>
-                        @empty
-                            <div class="px-4 py-3 text-sm text-slate-400 font-medium">
-                                Select a continent first
+                                @endphp
+                                {{ $selectedCountry ? $selectedCountry['Country'] : 'Choose a country...' }}
+                            </span>
+                            <svg class="w-5 h-5 transition-transform duration-300 text-slate-400 group-hover:text-blue-500"
+                                :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7" />
+                            </svg>
+                        </button>
+                        {{-- Dropdown --}}
+                        <div x-show="open" @click.away="open = false" x-cloak
+                            x-transition:enter="transition ease-out duration-200"
+                            x-transition:enter-start="opacity-0 translate-y-2"
+                            x-transition:enter-end="opacity-100 translate-y-0"
+                            class="absolute left-0 z-50 w-full overflow-hidden bg-white border shadow-2xl top-full border-slate-100 rounded-2xl">
+                            {{-- Search --}}
+                            <div class="relative mb-1">
+                                <input type="text" x-model="search" placeholder="Search country..."
+                                    autocomplete="off"
+                                    class="w-full py-1 pl-10 pr-4 text-sm font-semibold transition-all border-none outline-none bg-slate-50 rounded-xl focus:ring-2 focus:ring-blue-100">
+                                <svg class="absolute left-3.5 top-3 w-4 h-4 text-slate-400" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                </svg>
                             </div>
-                        @endforelse
+                            <div class="h-40 overflow-y-auto custom-scrollbar-premium">
+                                @forelse($filteredCountries as $country)
+                                <button type="button"
+                                    wire:key="country-{{ $country['id'] }}"
+                                    x-show="'{{ strtolower($country['Country']) }}'.includes(search.toLowerCase())"
+                                    @click="$wire.set('selectedCountryId', {{ $country['id'] }}); open = false; search = ''"
+                                    class="w-full px-4 py-1 text-sm font-bold text-left transition-all duration-200 rounded-xl text-slate-700 hover:bg-blue-600 hover:text-white">
+                                    {{ $country['Country'] }}
+                                </button>
+                                @empty
+                                <div class="px-4 py-3 text-sm font-medium text-slate-400">
+                                    Select a continent first
+                                </div>
+                                @endforelse
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-
-    </div>{{-- /grid --}}
-
+    </div>
     {{-- ── Confirm Button (shows after country selected) ── --}}
     @if($selectedCountryId)
-        <div class="mt-12 pt-8 border-t border-slate-100">
-            <div class="flex flex-col sm:flex-row items-center justify-between gap-6">
-                <div class="text-sm text-slate-500 font-medium">
-
-                </div>
-
-                <div class="w-full sm:w-auto transition-all duration-500 opacity-100 scale-100">
-                    <a target="_blank"
-                        href="{{ url('/') }}/{{ $selectedIs }}"
-                        class="inline-flex items-center justify-center w-full sm:w-auto px-10 py-4
-                               bg-blue-600 text-white font-black text-sm tracking-[0.1em] uppercase
-                               rounded-2xl shadow-xl shadow-blue-200 hover:bg-blue-700 hover:shadow-blue-300
-                               hover:-translate-y-1 active:scale-95 transition-all duration-300 gap-3 group">
-                        Confirm Selection
-                        <svg class="w-5 h-5 group-hover:translate-x-1 transition-transform"
-                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
-                        </svg>
-                    </a>
-                </div>
+    <div class="mt-2 border-t border-slate-100">
+        <div class="flex justify-end">
+            <div class="w-full transition-all duration-500 scale-100 opacity-100 sm:w-auto">
+                <a
+                    target="_blank"
+                    href="{{ url('/') }}/{{ $selectedIs }}"
+                    class="inline-flex items-center justify-center px-2 py-1 text-sm font-black text-white no-underline transition-all bg-blue-600 rounded-xl hover:bg-blue-700">
+                    Confirm Selection
+                    <svg class="w-5 h-5 transition-transform group-hover:translate-x-1"
+                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                </a>
+                </a>
             </div>
         </div>
+    </div>
     @endif
-
+</div>
 </div>
