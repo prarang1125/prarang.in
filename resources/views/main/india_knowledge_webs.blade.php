@@ -678,7 +678,7 @@ $liveCity=[
         <!-- LANGUAGE BUTTONS -->
         <div class="flex justify-center mt-4 px-3">
             <div
-                class="w-full max-w-6xl bg-white rounded-2xl shadow-lg p-5 flex flex-col md:flex-row gap-6 items-start">
+                class="w-full max-w-6xl bg-white rounded-2xl shadow-lg p-4 flex flex-col md:flex-row gap-6 items-start">
                 <div class="flex flex-col justify-start items-center md:items-start min-w-[220px] w-full md:w-auto">
                     <div class="flex items-center text-sm font-bold text-gray-500 uppercase tracking-wider mb-3">
                         Hindi <span class="live-blink">Live</span>
@@ -695,6 +695,9 @@ $liveCity=[
                             All
                         </a>
                     </div>
+                    <div class="flex items-center text-sm font-bold text-gray-500 uppercase tracking-wider mt-2">
+                        Hindi <span class="text-red-500 animate-pulse">&nbsp (Ready for Interactions)</span>
+                    </div>
                 </div>
                 <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2 w-full">
                     @foreach($language as $value)
@@ -707,8 +710,8 @@ $liveCity=[
 
             </div>
         </div>
-
         <!-- Modal -->
+
         <div x-show="showModal" x-transition class="fixed inset-0 z-50 flex items-center justify-center bg-black/40"
             @click.self="showModal = false">
 
@@ -759,7 +762,7 @@ $liveCity=[
                 <div class="flex-1 min-w-[140px] sm:min-w-[180px] lg:min-w-0 lg:flex-[1_1_22%] max-w-[240px]">
                     <div class="dropdownss w-full">
                         <button type="button"
-                            class="city-tab dropbtn ripple-btn whitespace-nowrap analytics-card anchorshadow w-full">
+                            class="city-tab dropbtn ripple-btn  analytics-card anchorshadow w-full">
                             <div class="flash-overlay"></div>
                             Language Distribution
                             <span id="dropdownIcon" class="dropdown-icon">
