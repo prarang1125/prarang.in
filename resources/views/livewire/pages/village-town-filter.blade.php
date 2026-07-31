@@ -4,31 +4,31 @@
             <section class="section-one">
                 @if ($type === 'village')
                 <div class="flex items-center justify-center gap-1">
-                    <div class="relative w-20 h-20 shrink-0">
+                    <div class="relative w-24 h-24 shrink-0">
                         <img
                             src="{{ asset('assets/images/sticker.png') }}"
                             alt="Sticker"
                             class="w-full h-full">
-                        <span class="absolute inset-0 flex items-center justify-center text-xs font-extrabold text-black">
+                        <span class="absolute inset-0 flex items-center  text-xs font-extrabold md:mt-1 pl-6  text-black">
                             592,765 <br>&nbsp Webs
                         </span>
                     </div>
-                    <h2 class="text-xl font-semibold tracking-tighter text-blue-800 md:text-xl">
+                    <h2 class="text-xl pt-3 font-semibold tracking-tighter text-blue-800 md:text-xl">
                         Rural India - Website of Websites
                     </h2>
                 </div>
                 @else
                 <div class="flex items-center justify-center gap-1">
-                    <div class="relative w-20 h-20 shrink-0">
+                    <div class="relative w-24 h-24 shrink-0">
                         <img
                             src="{{ asset('assets/images/sticker.png') }}"
                             alt="Sticker"
                             class="w-full h-full">
-                        <span class="absolute inset-0 flex items-center justify-center text-xs font-extrabold text-black">
+                        <span class="absolute inset-0 flex  md:mt-1 pl-8  items-center  text-xs font-extrabold   text-black">
                             6,331<br>Webs
                         </span>
                     </div>
-                    <h2 class="text-xl font-semibold tracking-tighter text-blue-800 md:text-xl">
+                    <h2 class="pt-3 text-xl font-semibold tracking-tighter text-blue-800 md:text-xl">
                         Urban India - Website of Websites
                     </h2>
                 </div>
@@ -679,16 +679,16 @@
             <section class=" section-three">
                 @if ($type === 'town')
                 <div class="flex items-center justify-center gap-1">
-                    <div class="relative w-20 h-20 shrink-0">
+                    <div class="relative w-24 h-24 shrink-0">
                         <img
                             src="{{ asset('assets/images/sticker.png') }}"
                             alt="Sticker"
                             class="w-full h-full">
-                        <span class="absolute inset-0 flex items-center justify-center text-xs font-extrabold text-black">
-                            &nbsp 756 <br>Webs
+                        <span class="absolute inset-0 flex md:mt-1 pl-8 items-center  text-xs font-extrabold text-black ">
+                            &nbsp;756 <br>Webs
                         </span>
                     </div>
-                    <h2 class="mt-1 text-xl font-semibold tracking-tighter text-blue-800 md:text-xl">
+                    <h2 class="pt-3 text-xl font-semibold tracking-tighter text-blue-800 md:text-xl">
                         State & District Capital
                     </h2>
                 </div>
