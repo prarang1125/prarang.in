@@ -120,10 +120,7 @@
                 @if($isAdsEnable)
                 <div class="">
                     <a href="{{ config('portal.ads.interaction.' . $portal->slug . '.url') }}" target="_blank">
-                        <img
-
-                            class="rounded"
-                            src="{{ config('portal.ads.interaction.' . $portal->slug . '.image') }}"
+                        <img class="rounded" src="{{ config('portal.ads.interaction.' . $portal->slug . '.image') }}"
                             alt="">
                     </a>
                 </div>
@@ -173,12 +170,14 @@
 
 
                 <div class="flex gap-6 mt-2 mb-3 text-black">
-                    <a target="_blank" href="https://hindi.prarang.in/{{ $portal->analytics_name }}" class="flex-1 bg-blue-500 hover:bg-blue-600 py-3 rounded-lg font-bold text-white text-center transition-colors duration-200">
+                    <a target="_blank" href="https://hindi.prarang.in/{{ $portal->analytics_name }}"
+                        class="flex-1 bg-blue-500 hover:bg-blue-600 py-3 rounded-lg font-bold text-white text-center transition-colors duration-200">
                         {{ $portal->city_name_local }}
                         {{ $locale['ui']['statistics'] ?? 'Statistics' }}
                     </a>
 
-                    <a target="_blank" href="https://hindi.prarang.in/ai/{{ $portal->analytics_name }}" class="flex-1 bg-blue-500 hover:bg-blue-600 py-3 rounded-lg font-bold text-white text-center transition-colors duration-200">
+                    <a target="_blank" href="https://hindi.prarang.in/ai/{{ $portal->analytics_name }}"
+                        class="flex-1 bg-blue-500 hover:bg-blue-600 py-3 rounded-lg font-bold text-white text-center transition-colors duration-200">
                         {{ $portal->city_name_local }} ए.आई. रिपोर्ट
                     </a>
                 </div>

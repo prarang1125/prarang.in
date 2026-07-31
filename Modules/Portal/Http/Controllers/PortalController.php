@@ -33,7 +33,7 @@ class PortalController extends Controller
     public function indianCitiesPortal($portal)
     {
         $isAdsEnable = in_array(strtolower($portal), config('portal.portal'));
-
+        // dd($isAdsEnable);
         $portal = Portal::where('slug', $portal)->firstOrFail();
         try {
             $books = json_decode($portal->books, true);

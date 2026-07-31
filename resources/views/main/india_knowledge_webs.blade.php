@@ -256,7 +256,7 @@ $liveCity=[
             </div>
         </div>
         <div class="flex justify-center items-center text-xl font-bold">
-            <p class="uppercase text-blue-600">  website of websites</p>
+            <p class="uppercase text-blue-600"> website of websites</p>
         </div>
 
         <!-- TOP CARDS -->

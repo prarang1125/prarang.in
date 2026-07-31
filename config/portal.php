@@ -5,7 +5,9 @@ return [
 
     'portal' => [
         'meerut',
-        'shahjahanpur'
+        'shahjahanpur',
+        'munger',
+        'saharanpur'
     ],
 
     'village_list' => [
@@ -148,6 +150,14 @@ return [
                 'url' => 'https://sceh.net/contact-us/meerut/'
             ],
             'shahjahanpur' => [
+                'image' => 'https://i.ibb.co/jkCcWfcC/Shahjahanpur-Portal-Lvl1.jpg',
+                'url' => 'https://sceh.net/'
+],
+'munger' => [
+                'image' => 'https://i.ibb.co/b5Kpr7RJ/Meerut-Portal-Lvl1.jpg',
+                'url' => 'https://sceh.net/contact-us/meerut/'
+            ],
+            'saharanpur' => [
                 'image' => 'https://i.ibb.co/jkCcWfcC/Shahjahanpur-Portal-Lvl1.jpg',
                 'url' => 'https://sceh.net/'
             ]

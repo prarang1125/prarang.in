@@ -5,7 +5,9 @@
 
 return [
   'portal' => [
-    'meerut'
+    'meerut',
+    'munger',
+    'rampur'
   ],
 
   'village_list' => [
