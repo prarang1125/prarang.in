@@ -767,7 +767,7 @@
                     <x-filter-card title="05. Smart City" image="assets/images/filter/smart-city.png" model="selected_smc"
                         :selected="$selected_smc ? collect($smc)->where('id', $selected_smc)->first()->name ?? null : null" :options="$smc" placeholder="Choose..." :disabled="!$cat_state" :count="count($smc)" />
                 </div>
-                {{-- Confirm button for categorised selection --}}
+                {{-- Confirm button for category selection --}}
                 @php
                 // Categorised selections always carry district embedded in $town
                 if ($town && str_contains($town, '-')) {
