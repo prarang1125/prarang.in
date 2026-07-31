@@ -591,6 +591,65 @@ $liveCity=[
             }
 
         }
+
+        @media (max-width:576px) {
+
+            /* Division */
+            .container section .mx-auto .md\:flex-row {
+                grid-template-columns: 113.63fr 1.59fr 1fr !important;
+            }
+
+            /* Division */
+            .container section .md\:flex-row {
+                display: flex !important;
+                justify-content: center;
+                align-items: center;
+                min-height: 565px;
+            }
+
+            /* Division */
+            .container section .md\:items-start {
+                border-style: none;
+                border-bottom-color: #595959;
+                min-height: 184px;
+            }
+
+            /* Division */
+            .container section .mx-auto .md\:flex-row .md\:items-start {
+                border-bottom-width: 2px !important;
+            }
+
+            /* Division */
+            .md\:flex-row .md\:items-start .md\:justify-start {
+                border-bottom-width: 1px;
+                padding-bottom: 5px;
+                transform: translatex(0px) translatey(0px);
+                display: grid;
+                align-content: center;
+            }
+
+            /* Division */
+            .container section .mx-auto .md\:flex-row .md\:items-start .md\:justify-start {
+                grid-template-rows: 1fr 1fr !important;
+                grid-template-columns: auto auto !important;
+            }
+
+            /* Inline block */
+            .container section .inline-block {
+                transform: translatex(31px) translatey(-26px) !important;
+            }
+
+        }
+
+        @media (max-width:576px) {
+
+            /* Inline block */
+            .container section .inline-block {
+                left: -24px !important;
+                right: auto !important;
+            }
+
+        }
     </style>
 
 </x-layout.main.base>
