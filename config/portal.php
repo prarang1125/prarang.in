@@ -152,14 +152,14 @@ return [
             'shahjahanpur' => [
                 'image' => 'https://i.ibb.co/jkCcWfcC/Shahjahanpur-Portal-Lvl1.jpg',
                 'url' => 'https://sceh.net/'
-],
-'munger' => [
-                'image' => 'https://i.ibb.co/b5Kpr7RJ/Meerut-Portal-Lvl1.jpg',
-                'url' => 'https://sceh.net/contact-us/meerut/'
+            ],
+            'munger' => [
+                'image' => 'https://i.ibb.co/35crbTcz/Munger-Porta.jpg',
+                'url' => 'https://sceh.net/contact-us/munger/'
             ],
             'saharanpur' => [
-                'image' => 'https://i.ibb.co/jkCcWfcC/Shahjahanpur-Portal-Lvl1.jpg',
-                'url' => 'https://sceh.net/'
+                'image' => 'https://i.ibb.co/5WTbR84j/Saharanpur-Porta.jpg',
+                'url' => 'https://sceh.net/contact-us/saharanpur-eye-hospital_shroff-charity-eye-hospital-best-eye-hospital/'
             ]
         ]
     ]
