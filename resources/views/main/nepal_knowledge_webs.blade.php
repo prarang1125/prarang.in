@@ -1,15 +1,15 @@
 @php
-    $metaData = [
-        'nav-heading' => view('components.nav-heading', [
-            'text' => 'Nepal Knowledge Webs',
-            'leftImg' => 'https://sarganga.org/assets/img/concept-center.JPG',
-            'rightImg' => 'https://sarganga.org/assets/img/concept-center.JPG',
-        ]),
-        'nav-sub-heading' => '',
-    ];
+$metaData = [
+'nav-heading' => view('components.nav-heading', [
+'text' => 'Nepal Knowledge Webs',
+'leftImg' => 'https://sarganga.org/assets/img/concept-center.JPG',
+'rightImg' => 'https://sarganga.org/assets/img/concept-center.JPG',
+]),
+'nav-sub-heading' => '',
+];
 
-    $title = 'Nepal';
-    $code = 'nepal';
+$title = 'Nepal';
+$code = 'nepal';
 @endphp
 
 <style>
@@ -519,8 +519,7 @@
                             <a data-bs-toggle="modal" data-bs-target="#showAIReportModal" class="nkw-btn btn-yellow">
                                 Nepal AI Report
                             </a>
-                            <a href="https://www.prarang.in/india-nepal/all-posts" target="_blank"
-                                class="nkw-btn btn-yellow">
+                            <a href="https://www.prarang.in/india-nepal" target="_blank" class="nkw-btn btn-yellow">
 
                                 BILATERAL : INDIA-NEPAL
                             </a>
@@ -571,7 +570,7 @@
         </div>
     </section>
 
-    {{-- nepal cn  --}}
+    {{-- nepal cn --}}
     <div class="modal fade" id="showNepalCNModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content"
@@ -671,8 +670,7 @@
 
                 <div class="modal-footer"
                     style="background:#f8f9fc; border-top:1px solid rgba(0,0,0,0.06); padding:12px 24px;">
-                    <button type="button" class="btn btn-secondary btn-sm px-4"
-                        data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary btn-sm px-4" data-bs-dismiss="modal">Close</button>
                 </div>
 
             </div>
@@ -686,7 +684,7 @@
         }
     </style>
     {{-- ══════════════════════════════════════════
-         Localisation Modal
+    Localisation Modal
     ══════════════════════════════════════════ --}}
     <div class="modal fade" id="showLocalizationBox" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-xlg modal-dialog-centered">
@@ -707,8 +705,7 @@
 
                 <div class="modal-footer"
                     style="background:#f8f9fc; border-top:1px solid rgba(0,0,0,0.06); padding:12px 24px;">
-                    <button type="button" class="btn btn-secondary btn-sm px-4"
-                        data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary btn-sm px-4" data-bs-dismiss="modal">Close</button>
                 </div>
 
             </div>

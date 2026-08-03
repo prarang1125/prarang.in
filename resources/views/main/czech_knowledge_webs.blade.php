@@ -1,14 +1,14 @@
 @php
-    $metaData = [
-        'nav-heading' => view('components.nav-heading', [
-            'text' => 'CZECH Knowledge Webs',
-            'leftImg' => 'https://sarganga.org/assets/img/concept-center.JPG',
-            'rightImg' => 'https://sarganga.org/assets/img/concept-center.JPG',
-        ]),
-        'nav-sub-heading' => '',
-    ];
-    $title = 'Czech Republic';
-    $code = 'czech-republic';
+$metaData = [
+'nav-heading' => view('components.nav-heading', [
+'text' => 'CZECH Knowledge Webs',
+'leftImg' => 'https://sarganga.org/assets/img/concept-center.JPG',
+'rightImg' => 'https://sarganga.org/assets/img/concept-center.JPG',
+]),
+'nav-sub-heading' => '',
+];
+$title = 'Czech Republic';
+$code = 'czech-republic';
 @endphp
 
 <style>
@@ -493,14 +493,13 @@
                             <a data-bs-toggle="modal" data-bs-target="#czechRegionsModal" class="nkw-btn btn-yellow">
                                 CZECH AI REPORTS
                             </a>
-                            <a href="https://www.prarang.in/india-czech-republic/all-posts" target="_blank"
+                            <a href="https://www.prarang.in/india-czech-republic" target="_blank"
                                 class="nkw-btn btn-yellow">
 
                                 BILATERAL : INDIA-CZECH
                             </a>
                             <button class="nkw-btn btn-yellow" data-bs-toggle="modal"
                                 data-bs-target="#showLocalizationBox">
-
                                 TEXT CZECH LOCALISATION
                             </button>
                         </div>
@@ -565,7 +564,7 @@
     </style>
 
     {{-- ══════════════════════════════════════════
-         Localisation Modal
+    Localisation Modal
     ══════════════════════════════════════════ --}}
     <div class="modal fade" id="showLocalizationBox" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-xlg modal-dialog-centered">
@@ -603,28 +602,28 @@
                 </div>
 
                 @php
-                    $czRegions = [
-                        [
-                            'name' => 'Prague and Central Bohemia',
-                            'url' => 'https://g2c.prarang.in/czech-republic/prague-and-central-bohemia',
-                        ],
-                        ['name' => 'South Bohemia', 'url' => 'https://g2c.prarang.in/czech-republic/south-bohemia'],
-                        ['name' => 'Pilsen', 'url' => 'https://g2c.prarang.in/czech-republic/pilsen'],
-                        ['name' => 'South Moravia', 'url' => 'https://g2c.prarang.in/czech-republic/south-moravia'],
-                        ['name' => 'Vysocina', 'url' => 'https://g2c.prarang.in/czech-republic/vysocina'],
-                        [
-                            'name' => 'Moravia-Silesia',
-                            'url' => 'https://g2c.prarang.in/czech-republic/moravia--silesia',
-                        ],
-                        ['name' => 'Usti nad Labem', 'url' => 'https://g2c.prarang.in/czech-republic/usti-and-labem'],
-                        ['name' => 'Olomouc', 'url' => 'https://g2c.prarang.in/czech-republic/olomouc'],
-                        ['name' => 'Hradec Kralove', 'url' => 'https://g2c.prarang.in/czech-republic/hradec-kralove'],
-                        ['name' => 'Pardubice', 'url' => 'https://g2c.prarang.in/czech-republic/pardubice'],
-                        ['name' => 'Zlin', 'url' => 'https://g2c.prarang.in/czech-republic/zlin'],
-                        ['name' => 'Karlovy Vary', 'url' => 'https://g2c.prarang.in/czech-republic/karlovy-vary'],
-                        ['name' => 'Liberec', 'url' => 'https://g2c.prarang.in/czech-republic/liberec'],
-                        ['name' => 'Czech Republic', 'url' => 'https://g2c.prarang.in/Czech Republic'],
-                    ];
+                $czRegions = [
+                [
+                'name' => 'Prague and Central Bohemia',
+                'url' => 'https://g2c.prarang.in/czech-republic/prague-and-central-bohemia',
+                ],
+                ['name' => 'South Bohemia', 'url' => 'https://g2c.prarang.in/czech-republic/south-bohemia'],
+                ['name' => 'Pilsen', 'url' => 'https://g2c.prarang.in/czech-republic/pilsen'],
+                ['name' => 'South Moravia', 'url' => 'https://g2c.prarang.in/czech-republic/south-moravia'],
+                ['name' => 'Vysocina', 'url' => 'https://g2c.prarang.in/czech-republic/vysocina'],
+                [
+                'name' => 'Moravia-Silesia',
+                'url' => 'https://g2c.prarang.in/czech-republic/moravia--silesia',
+                ],
+                ['name' => 'Usti nad Labem', 'url' => 'https://g2c.prarang.in/czech-republic/usti-and-labem'],
+                ['name' => 'Olomouc', 'url' => 'https://g2c.prarang.in/czech-republic/olomouc'],
+                ['name' => 'Hradec Kralove', 'url' => 'https://g2c.prarang.in/czech-republic/hradec-kralove'],
+                ['name' => 'Pardubice', 'url' => 'https://g2c.prarang.in/czech-republic/pardubice'],
+                ['name' => 'Zlin', 'url' => 'https://g2c.prarang.in/czech-republic/zlin'],
+                ['name' => 'Karlovy Vary', 'url' => 'https://g2c.prarang.in/czech-republic/karlovy-vary'],
+                ['name' => 'Liberec', 'url' => 'https://g2c.prarang.in/czech-republic/liberec'],
+                ['name' => 'Czech Republic', 'url' => 'https://g2c.prarang.in/Czech Republic'],
+                ];
                 @endphp
 
 
@@ -639,10 +638,10 @@
 
 
                         @foreach ($czRegions as $region)
-                            <div class="col-6 col-sm-4">
-                                <a target="_blank" href="{{ $region['url'] }}"
-                                    class="btn btn-primary w-100">{{ $region['name'] }}</a>
-                            </div>
+                        <div class="col-6 col-sm-4">
+                            <a target="_blank" href="{{ $region['url'] }}" class="btn btn-primary w-100">{{
+                                $region['name'] }}</a>
+                        </div>
                         @endforeach
                     </div>
 
@@ -656,7 +655,7 @@
             </div>
         </div>
     </div>
-    {{-- nepal cn  --}}
+    {{-- nepal cn --}}
     <div class="modal fade" id="showNepalCNModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-lg modal-dialog-centered">
             <div class="modal-content"
@@ -676,8 +675,7 @@
 
                 <div class="modal-footer"
                     style="background:#f8f9fc; border-top:1px solid rgba(0,0,0,0.06); padding:12px 24px;">
-                    <button type="button" class="btn btn-secondary btn-sm px-4"
-                        data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary btn-sm px-4" data-bs-dismiss="modal">Close</button>
                 </div>
 
             </div>
