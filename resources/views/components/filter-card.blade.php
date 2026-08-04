@@ -52,21 +52,26 @@
                     x-show="open"
                     @click.away="open=false"
                     x-cloak
-                    class="absolute z-50 w-full mt-1 overflow-hidden bg-white border border-yellow-300 rounded-md shadow-lg">
-                    <div class="relative ">
+                    class="absolute z-50 w-full mt-1 overflow-hidden bg-white border shadow-2xl border-slate-100 rounded-2xl">
+                    <div class="relative mb-1">
                         <input
                             x-model="search"
                             type="text"
                             placeholder="Search..."
-                            class="w-full py-2 pr-4 text-sm font-medium transition-all duration-200 border-none outline-none bg-slate-50 pl-9 focus:bg-white focus:ring-2 focus:ring-blue-100">
+                            class="w-full py-2 pl-10 text-sm font-semibold transition-all border-none outline-none bg-slate-50 rounded-xl focus:ring-2 focus:ring-blue-100">
+                        <svg class="absolute left-3.5 top-3 w-4 h-4 text-slate-400" fill="none"
+                            stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
                     </div>
-                    <div class="overflow-y-auto max-h-40 custom-scrollbar-premium">
+                    <div class="overflow-y-auto max-h-48 custom-scrollbar-premium">
                         @foreach($options as $item)
                         <button
                             type=" button"
                             x-show="'{{ strtolower($item->name) }}'.includes(search.toLowerCase())"
                             @click="$wire.set('{{ $model }}','{{ $item->id }}');open=false;search=''"
-                            class="flex items-center w-full px-2 py-1 text-xs font-semibold text-left transition-all duration-200 border text-slate-700 hover:translate-x-1 hover:bg-blue-50 hover:text-blue-700">
+                            class="items-center w-full px-2 py-1 text-xs font-semibold text-left transition-all duration-200 text-slate-700 hover:translate-x-1 hover:bg-blue-50 hover:text-blue-700">
                             {{ $item->name }}
                         </button>
                         @endforeach
