@@ -2,337 +2,142 @@
     <div class="grid grid-cols-1 gap-6 content-wrapper xl:grid-cols-5 xl:items-start">
         <div class="main-content xl:col-span-5">
             <section class="section-one">
-                @if ($type === 'village')
-                <div class="flex items-center justify-center gap-1">
-                    <div class="relative w-24 h-24 shrink-0">
-                        <img
-                            src="{{ asset('assets/images/sticker.png') }}"
-                            alt="Sticker"
-                            class="w-full h-full">
-                        <span class="absolute inset-0 flex items-center  text-xs font-extrabold md:mt-1 pl-6  text-black">
-                            592,765 <br>&nbsp Webs
-                        </span>
+                <div class="grid items-center grid-cols-1 gap-4 lg:grid-cols-3">
+                    <div class="hidden lg:block"></div>
+                    @if ($type === 'village')
+                    <div class="flex flex-col items-center justify-center text-center sm:flex-row lg:gap-1">
+                        <div class="relative w-20 h-20 shrink-0 sm:w-24 sm:h-24">
+                            <img
+                                src="{{ asset('assets/images/sticker.png') }}"
+                                alt="Sticker"
+                                class="w-full h-full">
+                            <span class="absolute inset-0 flex items-center pl-5 text-xs font-extrabold text-black md:mt-1">
+                                592,765 <br> Webs
+                            </span>
+                        </div>
+                        <h2 class="pt-3 text-xl font-semibold tracking-tighter text-blue-800 md:text-xl">
+                            Rural India - Website of Websites
+                        </h2>
                     </div>
-                    <h2 class="text-xl pt-3 font-semibold tracking-tighter text-blue-800 md:text-xl">
-                        Rural India - Website of Websites
-                    </h2>
-                </div>
-                @else
-                <div class="flex items-center justify-center gap-1">
-                    <div class="relative w-24 h-24 shrink-0">
-                        <img
-                            src="{{ asset('assets/images/sticker.png') }}"
-                            alt="Sticker"
-                            class="w-full h-full">
-                        <span class="absolute inset-0 flex  md:mt-1 pl-8  items-center  text-xs font-extrabold   text-black">
-                            6,331<br>Webs
-                        </span>
+                    @else
+                    <div class="flex flex-col items-center justify-center text-center sm:flex-row lg:gap-1">
+                        <div class="relative w-16 h-16 shrink-0 sm:w-20 sm:h-20">
+                            <img
+                                src="{{ asset('assets/images/sticker.png') }}"
+                                alt="Sticker"
+                                class="w-full h-full">
+                            <span class="absolute inset-0 flex items-center pl-4 text-xs font-bold text-black md:mt-1 ">
+                                6,331 <br> Webs
+                            </span>
+                        </div>
+                        <h2 class="pt-3 text-lg font-semibold tracking-tight text-center text-blue-800 sm:text-xl lg:text-xl">
+                            Urban India - Website of Websites
+                        </h2>
                     </div>
-                    <h2 class="pt-3 text-xl font-semibold tracking-tighter text-blue-800 md:text-xl">
-                        Urban India - Website of Websites
-                    </h2>
+                    @endif
+                    <div class="flex justify-center lg:justify-end">
+                        <div class="w-full max-w-sm p-2 border-yellow-400 border-1 rounded-xl lg:w-auto">
+                            <p class="text-xs font-bold text-center uppercase tracking-[0.2em] text-blue-700">
+                                Analyse India
+                            </p>
+                            <div class="grid grid-cols-2 gap-0.5 lg:grid-cols-4">
+                                <a href="https://www.prarang.in/city-webs" target="_blank"
+                                    class="flex items-center justify-center gap-1 px-2 py-2 text-white no-underline bg-blue-500 rounded sm:px-1 sm:py-1">
+                                    <i class="text-base ti ti-building-community"></i>
+                                    <span class="text-xs">District</span>
+                                </a>
+                                <a href="https://www.prarang.in/town-webs" target="_blank"
+                                    class="flex items-center justify-center gap-1 px-2 py-2 text-white no-underline bg-yellow-300 rounded sm:px-1 sm:py-1">
+                                    <i class="text-base ti ti-buildings"></i>
+                                    <span class="text-xs">Cities</span>
+                                </a>
+                                <a href="https://www.prarang.in/india-rural" target="_blank"
+                                    class="flex items-center justify-center gap-1 px-2 py-2 text-white no-underline bg-red-500 rounded sm:px-1 sm:py-1">
+                                    <i class="text-base ti ti-home"></i>
+                                    <span class="text-xs">Villages</span>
+                                </a>
+                                <a href="https://www.prarang.in/language-webs" target="_blank"
+                                    class="flex flex-col items-center justify-center gap-1 px-2 py-2 text-white no-underline bg-green-500 rounded sm:px-1 sm:py-1">
+                                    <i class="text-base ti ti-language"></i>
+                                    <span class="text-xs">Language</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                @endif
-                <div class="flex justify-center mt-2">
-                    <div class="inline-grid gap-8 {{ $type === 'village' ? 'grid-cols-1 md:grid-cols-2 xl:grid-cols-4': 'grid-cols-1 md:grid-cols-2 xl:grid-cols-3' }}">
+            </section>
+            <section class="section-two">
+                <div class="flex justify-center ">
+                    <div class="mt-1 w-full lg:w-[90%] xl:w-[95%] mx-auto grid gap-3  {{ $type === 'village' ? 'grid-cols-1 sm:grid-cols-2 xl:grid-cols-4' : 'grid-cols-1 sm:grid-cols-2 xl:grid-cols-3' }}">
                         {{-- ── Step 1: State ──────────────────────────────────────────── --}}
                         <div
-                            class="w-64 p-2 transition-all duration-300 bg-white border-2 border-yellow-300 shadow-400 rounded-2xl hover:border-blue-300 hover:shadow-md">
-                            <div class="space-y-1" x-data="{ open: false, search: '' }">
-                                <div class="flex items-center justify-between ">
-                                    <div class="flex items-center gap-2">
-                                        <span
-                                            class="flex items-center justify-center w-10 h-10 rounded-xl shadow-sm {{ $state ? 'bg-emerald-100 text-emerald-600' : 'bg-blue-100 text-blue-600' }}font-bold transition-all duration-300">
-                                            @if ($state)
-                                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
-                                                    d="M5 13l4 4L19 7" />
-                                            </svg>
-                                            @else
-                                            01
-                                            @endif
-                                        </span>
-                                        <div>
-                                            <h4 class="text-sm font-bold text-slate-800">
-                                                Select State / UT
-                                            </h4>
-                                            <p class="text-xs text-slate-500">
-                                                {{ count($states) }} States / UT Available
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="relative">
-                                    <button type="button" @click="open = !open"
-                                        class="group relative w-full overflow-hidden rounded-xl border {{ $state ? 'border-blue-300 bg-white shadow-md' : 'border-slate-200 bg-white hover:border-blue-300' }} transition-all duration-300">
-                                        <div class="flex items-center justify-between px-3 py-2">
-                                            <div class="flex items-center gap-2">
-                                                <div
-                                                    class="flex h-8 w-8 items-center justify-center rounded-xl{{ $state ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-400' }}">
-                                                </div>
-                                                <div class="text-left">
-                                                    <div class="text-xs tracking-wider uppercase text-slate-400">
-                                                        <img class="items-center object-contain transition-all duration-300 h-14 w-15 group-hover:scale-110"
-                                                            src="{{ asset('assets/images/filter/state.png') }}" />
-                                                    </div>
-                                                    <div
-                                                        class=" font-semibold{{ $state ? 'text-slate-800' : 'text-slate-400' }}">
-                                                        @php
-                                                        $sState = collect($states)->where('id', $state)->first();
-                                                        echo $sState
-                                                        ? (is_array($sState)
-                                                        ? $sState['name'] ?? 'Selected'
-                                                        : $sState->name ?? 'Selected')
-                                                        : 'Choose a state...';
-                                                        @endphp
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <svg class="w-4 h-4 transition-transform duration-300 text-slate-400"
-                                                :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                                    d="M19 9l-7 7-7-7" />
-                                            </svg>
-                                        </div>
-                                    </button>
-                                    <div x-show="open" @click.away="open = false" x-cloak
-                                        x-transition:enter="transition ease-out duration-200"
-                                        x-transition:enter-start="opacity-0 translate-y-2"
-                                        x-transition:enter-end="opacity-100 translate-y-0"
-                                        class="absolute z-50 w-full mt-1 overflow-hidden bg-white border shadow-2xl border-slate-100 rounded-2xl">
-                                        <div class="relative mb-1">
-                                            <input type="text" x-model="search" placeholder="Search states..."
-                                                autocomplete="off"
-                                                class="w-full py-2 pl-10 text-sm font-semibold transition-all border-none outline-none bg-slate-50 rounded-xl focus:ring-2 focus:ring-blue-100">
-                                            <svg class="absolute left-3.5 top-3 w-4 h-4 text-slate-400" fill="none"
-                                                stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                            </svg>
-                                        </div>
-                                        <div class="overflow-y-auto max-h-48 custom-scrollbar-premium">
-                                            @forelse($states as $item)
-                                            @php $itemName = is_array($item) ? $item['name'] : $item->name; @endphp
-                                            <button type="button"
-                                                wire:key="state-{{ is_array($item) ? $item['id'] : $item->id }}"
-                                                x-show="'{{ strtolower($itemName) }}'.includes(search.toLowerCase())"
-                                                @click="$wire.set('state', '{{ is_array($item) ? $item['id'] : $item->id }}'); open = false; search = ''"
-                                                class="flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-all text-slate-700 hover:bg-blue-50 hover:text-blue-700 rounded-xl">
-                                                {{ $itemName }}
-                                            </button>
-                                            @empty
-                                            <div class="px-3 py-2 text-xs font-medium text-slate-400">
-                                                No states found</div>
-                                            @endforelse
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- ── Step 2: District ───────────────────────────────────────── --}}
-                        <div
-                            class="w-64 p-2 transition-all duration-300 bg-white border-2 border-yellow-300 shadow-400 rounded-2xl hover:border-blue-300 hover:shadow-md">
-                            <div class="space-y-1" x-data="{ open: false, search: '' }">
-                                <div class="flex items-center justify-between ">
-                                    <div class="flex items-center gap-2">
-                                        <span
-                                            class="flex items-center justify-center w-10 h-10 rounded-xl shadow-sm {{ $district ? 'bg-emerald-100 text-emerald-600' : ($state ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-400') }}">
-                                            <div wire:loading wire:target="state">
-                                                <svg class="w-5 h-5 animate-spin" fill="" viewBox="0 0 24 24">
-                                                    <circle class="opacity-25" cx="12" cy="12" r="10"
-                                                        stroke="currentColor" stroke-width="4">
-                                                    </circle>
-                                                    <path class="opacity-75" fill="currentColor"
-                                                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                                    </path>
-                                                </svg>
-                                            </div>
-                                            <div wire:loading.remove wire:target="state">
-                                                @if($district)
-                                                <svg class="w-5 h-5" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="3" d="M5 13l4 4L19 7" />
-                                                </svg>
-                                                @else
-                                                02
-                                                @endif
-                                            </div>
-                                        </span>
-                                        <div>
-                                            <h4 class="text-sm font-bold text-slate-800">
-                                                Select District
-                                            </h4>
-                                            <p class="text-xs text-slate-500 ">
-                                                {{ count($districts) }} Districts Available
-                                                @if ($type === 'town' && $state && !$district)
-                                                <span class="ml-1 text-blue-400">
-                                                    (Optional)
-                                                </span>
-                                                @endif
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="relative">
-                                    <button type="button" @click="if({{ $state ? 'true' : 'false' }}) open = !open" {{ !$state ? 'disabled' : '' }}
-                                        class="group relative w-full overflow-hidden rounded-xl border {{ $district ? 'border-blue-300 bg-white shadow-md' : ($state ? 'border-slate-200 bg-white hover:border-blue-300' : 'border-slate-100 bg-slate-50 opacity-60 cursor-not-allowed') }} transition-all duration-300">
-                                        <div class="flex items-center justify-between px-3 py-2">
-                                            <div class="flex items-center gap-2">
-                                                <div
-                                                    class="flex h-8 w-8 items-center justify-center rounded-xl{{ $district ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-400' }}">
-                                                </div>
-                                                <div class="text-left">
-                                                    <div class="text-xs tracking-wider uppercase text-slate-400">
-                                                        <img class="object-contain transition-all duration-300 h-14 w-15 group-hover:scale-110"
-                                                            src="{{ asset('assets/images/filter/district.png') }}" />
-                                                    </div>
-                                                    <div
-                                                        class="font-semibold{{ $district ? 'text-slate-800' : 'text-slate-400' }}">
-                                                        @php
-                                                        $sDistrict = collect($districts)->where('id', $district)->first();
-                                                        echo $sDistrict
-                                                        ? (is_array($sDistrict)
-                                                        ? $sDistrict['name'] ?? 'Selected'
-                                                        : $sDistrict->name ?? 'Selected')
-                                                        : ($type === 'town' && $state
-                                                        ? 'All Districts...'
-                                                        : 'Choose a district...');
-                                                        @endphp
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <svg class="w-4 h-4 transition-transform duration-300 text-slate-400"
-                                                :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                                    d="M19 9l-7 7-7-7" />
-                                            </svg>
-                                        </div>
-                                    </button>
-                                    <div x-show="open" @click.away="open = false" x-cloak
-                                        x-transition:enter="transition ease-out duration-200"
-                                        x-transition:enter-start="opacity-0 translate-y-2"
-                                        x-transition:enter-end="opacity-100 translate-y-0"
-                                        class="absolute z-50 w-full mt-1 overflow-hidden bg-white border shadow-2xl border-slate-100 rounded-2xl">
-                                        <div class="relative mb-1 ">
-                                            <input type="text" x-model="search" placeholder="Search districts..."
-                                                autocomplete="off"
-                                                class="w-full py-2 pl-10 text-sm font-semibold transition-all border-none outline-none bg-slate-50 rounded-xl focus:ring-2 focus:ring-blue-100">
-                                            <svg class="absolute left-3.5 top-3 w-4 h-4 text-slate-400" fill="none"
-                                                stroke="currentColor" viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    stroke-width="2.5"
-                                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                            </svg>
-                                        </div>
-                                        <div class="overflow-y-auto max-h-48 custom-scrollbar-premium">
-                                            @forelse($districts as $item)
-                                            @php
-                                            $itemName = is_array($item) ? $item['name'] : $item->name;
-                                            @endphp
-                                            <button type="button"
-                                                wire:key="district-{{ is_array($item) ? $item['id'] : $item->id }}"
-                                                x-show="'{{ strtolower($itemName) }}'.includes(search.toLowerCase())"
-                                                @click="$wire.set('district', '{{ is_array($item) ? $item['id'] : $item->id }}'); open = false; search = ''"
-                                                class="flex items-center justify-between w-full px-2 py-1 text-sm font-semibold text-left transition-all rounded-xl text-slate-700 hover:bg-blue-50 hover:text-blue-700">
-                                                {{ $itemName }}
-                                            </button>
-                                            @empty
-                                            <div class="px-3 py-2 text-xs font-medium text-slate-400">
-                                                Select a state first
-                                            </div>
-                                            @endforelse
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        {{-- ── Step 3 (Village Only): Block ───────────────────────── --}}
-                        @if ($type === 'village')
-                        <div
-                            class="w-64 p-2 transition-all duration-300 bg-white border-2 border-yellow-300 shadow-400 rounded-2xl hover:border-blue-300 hover:shadow-md">
-                            <div class="space-y-1" x-data="{ open: false, search: '' }">
-                                <div class="flex items-center justify-between ">
-                                    <div class="flex items-center gap-2">
-                                        <span
-                                            class="flex items-center justify-center w-10 h-10 rounded-xl shadow-sm  {{ $subDistrict ? 'bg-emerald-100 text-emerald-600' : ($district ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-400') }}">
-                                            <div wire:loading wire:target="district">
-                                                <svg class="w-5 h-5 animate-spin" fill="" viewBox="0 0 24 24">
-                                                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                                        stroke-width="4">
-                                                    </circle>
-                                                    <path class="opacity-75" fill="currentColor"
-                                                        d="M4 12a8 8 0 018-8V0C5.373 0 0  5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                                    </path>
-                                                </svg>
-                                            </div>
-                                            <div wire:loading.remove wire:target="district">
-                                                @if($subDistrict)
+                            class="flex flex-col items-center w-full p-1 transition-all duration-300 bg-white border-yellow-300 shadow-md border-1 rounded-2xl hover:-translate-y-1 hover:border-yellow-400 hover:shadow-xl">
+                            <div class="flex flex-col items-center">
+                                <div class="space-y-1" x-data="{ open: false, search: '' }">
+                                    <div class="flex items-center justify-between ">
+                                        <div class="flex items-center gap-2">
+                                            <span
+                                                class="flex items-center justify-center w-8 h-8 rounded-xl shadow-sm {{ $state ? 'bg-emerald-100 text-emerald-600' : 'bg-blue-100 text-blue-600' }} font-bold transition-all duration-300">
+                                                @if ($state)
                                                 <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
-                                                        d="M5 13l4 4L19 7" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
                                                 </svg>
                                                 @else
-                                                03
+                                                01
                                                 @endif
-                                            </div>
-                                        </span>
-                                        <div>
-                                            <h4 class="text-sm font-bold text-slate-800">
-                                                Select Block
-                                            </h4>
-                                            <p class="text-xs text-slate-500">
-                                                {{ count($subDistricts) }} Blocks Available
-                                            </p>
+                                            </span>
+                                            <img class="object-contain w-20 h-20 transition-transform duration-300 group-hover:scale-105"
+                                                src="{{ asset('assets/images/filter/state.png') }}" />
                                         </div>
                                     </div>
-                                </div>
-                                <div class="relative">
-                                    <button type="button" @click="if({{ $district ? 'true' : 'false' }}) open = !open" {{ !$district ? 'disabled' : ''}}
-                                        class="group relative w-full overflow-hidden rounded-xl border {{ $subDistrict? 'border-blue-300 bg-white shadow-md': ($district? 'border-slate-200 bg-white hover:border-blue-300' : 'border-slate-100 bg-slate-50 opacity-60 cursor-not-allowed') }} transition-all duration-300">
-                                        <div class="flex items-center justify-between px-3 py-2">
-                                            <div class="flex items-center gap-2">
-                                                <!-- <div
-                                                    class="flex h-8 w-8 items-center justify-center rounded-xl {{ $subDistrict ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-400' }}">
-                                                </div> -->
-                                                <div class="flex w-8 h-8 shrink-0"></div>
-                                                <div class="text-left">
-                                                    <div class="text-xs tracking-wider uppercase text-slate-400">
-                                                        <img
-                                                            class="object-contain transition-all duration-300 h-14 w-15 group-hover:scale-110"
-                                                            src="{{ asset('assets/images/filter/block.png') }}" />
-                                                    </div>
-                                                    <div
-                                                        class="font-semibold{{ $subDistrict ? 'text-slate-800' : 'text-slate-400' }}">
-                                                        @php
-                                                        $sSubDistrict = collect($subDistricts)->where('id', $subDistrict)->first();
-                                                        echo $sSubDistrict
-                                                        ? (is_array($sSubDistrict)
-                                                        ? $sSubDistrict['name'] ?? 'Selected'
-                                                        : $sSubDistrict->name ?? 'Selected')
-                                                        : 'Choose a block...';
-                                                        @endphp
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <svg class="w-4 h-4 transition-transform duration-300 text-slate-400"
-                                                :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                                    d="M19 9l-7 7-7-7" />
-                                            </svg>
-                                        </div>
-                                    </button>
-                                    <div x-show="open" @click.away="open = false" x-cloak
-                                        x-transition:enter="transition ease-out duration-200"
-                                        x-transition:enter-start="opacity-0 translate-y-2"
-                                        x-transition:enter-end="opacity-100 translate-y-0"
-                                        class="absolute z-50 w-full mt-1 overflow-hidden bg-white border shadow-2xl border-slate-100 rounded-2xl">
-                                        <div>
+                                    <div>
+                                        <h4 class="mt-1 text-xs font-bold text-center text-slate-800">
+                                            Select State / UT
+                                        </h4>
+                                        <p class="mb-2 text-xs text-center text-slate-500">
+                                            {{ count($states) }} States / UT Available
+                                        </p>
+                                    </div>
+
+                                    <div class="relative w-40 mb-1">
+                                        <button
+                                            type="button"
+                                            @click="open = !open"
+                                            class="flex items-center justify-between w-full overflow-hidden bg-white border border-yellow-400 rounded-md">
+                                            <!-- Selected State -->
+                                            <span class="flex-1 px-3 py-1.5 text-xs font-medium text-left truncate {{ $state ? 'text-slate-700' : 'text-slate-400' }}">
+                                                @php
+                                                $sState = collect($states)->where('id', $state)->first();
+                                                echo $sState
+                                                ? (is_array($sState)
+                                                ? $sState['name'] ?? 'Selected'
+                                                : $sState->name ?? 'Selected')
+                                                : 'Choose...';
+                                                @endphp
+                                            </span>
+                                            <!-- Yellow Arrow -->
+                                            <span class="flex items-center self-stretch justify-center w-8 bg-yellow-400 border-l border-yellow-400 shrink-0">
+                                                <svg
+                                                    class="w-4 h-4 transition-transform duration-200 text-slate-800"
+                                                    :class="open ? 'rotate-180' : ''"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2.5"
+                                                        d="M19 9l-7 7-7-7" />
+                                                </svg>
+                                            </span>
+                                        </button>
+                                        <div x-show="open" @click.away="open = false" x-cloak
+                                            x-transition:enter="transition ease-out duration-200"
+                                            x-transition:enter-start="opacity-0 translate-y-2"
+                                            x-transition:enter-end="opacity-100 translate-y-0"
+                                            class="absolute z-50 w-full mt-1 overflow-hidden bg-white border shadow-2xl border-slate-100 rounded-2xl">
                                             <div class="relative mb-1">
-                                                <input type="text" x-model="search" placeholder="Search blocks..."
+                                                <input type="text" x-model="search" placeholder="Search states..."
                                                     autocomplete="off"
                                                     class="w-full py-2 pl-10 text-sm font-semibold transition-all border-none outline-none bg-slate-50 rounded-xl focus:ring-2 focus:ring-blue-100">
                                                 <svg class="absolute left-3.5 top-3 w-4 h-4 text-slate-400" fill="none"
@@ -341,24 +146,259 @@
                                                         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                                 </svg>
                                             </div>
-                                        </div>
-                                        <div class="overflow-y-auto max-h-48 custom-scrollbar-premium">
-                                            @forelse($subDistricts as $item)
-                                            @php
-                                            $itemName = is_array($item) ? $item['name'] : $item->name;
-                                            @endphp
-                                            <button type="button"
-                                                wire:key="subDistrict-{{ is_array($item) ? $item['id'] : $item->id }}"
-                                                x-show="'{{ strtolower($itemName) }}'.includes(search.toLowerCase())"
-                                                @click="$wire.set('subDistrict', '{{ is_array($item) ? $item['id'] : $item->id }}'); open = false; search = ''"
-                                                class="flex items-center justify-between w-full px-2 py-1 text-sm font-semibold text-left transition-all rounded-xl text-slate-700 hover:bg-blue-50 hover:text-blue-700">
-                                                {{ $itemName }}
-                                            </button>
-                                            @empty
-                                            <div class="px-3 py-2 text-sm text-slate-400">
-                                                Select a District first
+                                            <div class="overflow-y-auto max-h-48 custom-scrollbar-premium">
+                                                @forelse($states as $item)
+                                                @php $itemName = is_array($item) ? $item['name'] : $item->name; @endphp
+                                                <button type="button"
+                                                    wire:key="state-{{ is_array($item) ? $item['id'] : $item->id }}"
+                                                    x-show="'{{ strtolower($itemName) }}'.includes(search.toLowerCase())"
+                                                    @click="$wire.set('state', '{{ is_array($item) ? $item['id'] : $item->id }}'); open = false; search = ''"
+                                                    class="flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-all text-slate-700 hover:bg-blue-50 hover:text-blue-700 rounded-xl">
+                                                    {{ $itemName }}
+                                                </button>
+                                                @empty
+                                                <div class="px-3 py-2 text-xs font-medium text-slate-400">
+                                                    No states found</div>
+                                                @endforelse
                                             </div>
-                                            @endforelse
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- ── Step 2: District ───────────────────────────────────────── --}}
+                        <div class="flex flex-col items-center w-full p-1 transition-all duration-300 bg-white border-yellow-300 shadow-md border-1 rounded-2xl hover:-translate-y-1 hover:border-yellow-400 hover:shadow-xl">
+                            <div class="flex flex-col items-center">
+                                <div class="space-y-1" x-data="{ open: false, search: '' }">
+                                    <div class="flex items-center justify-between ">
+                                        <div class="flex items-center gap-2">
+                                            <span
+                                                class="flex items-center justify-center w-8 h-8 rounded-xl shadow-sm {{ $district ? 'bg-emerald-100 text-emerald-600' : ($state ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-400') }}">
+                                                <div wire:loading wire:target="state">
+                                                    <svg class="w-5 h-5 animate-spin" fill="" viewBox="0 0 24 24">
+                                                        <circle class="opacity-25" cx="12" cy="12" r="10"
+                                                            stroke="currentColor" stroke-width="4">
+                                                        </circle>
+                                                        <path class="opacity-75" fill="currentColor"
+                                                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                                        </path>
+                                                    </svg>
+                                                </div>
+                                                <div wire:loading.remove wire:target="state">
+                                                    @if($district)
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="3" d="M5 13l4 4L19 7" />
+                                                    </svg>
+                                                    @else
+                                                    02
+                                                    @endif
+                                                </div>
+                                            </span>
+                                            <img class="object-contain w-20 h-20 transition-all duration-300 group-hover:scale-110"
+                                                src="{{ asset('assets/images/filter/district.png') }}" />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h4 class="mt-1 text-xs font-bold text-center text-slate-800">
+                                            Select District
+                                        </h4>
+                                        <p class="mb-2 text-xs text-center text-slate-500">
+                                            {{ count($districts) }} Districts Available
+                                            @if ($type === 'town' && $state && !$district)
+                                            <span class="text-blue-400 ">
+                                                (Opt.)
+                                            </span>
+                                            @endif
+                                        </p>
+                                    </div>
+                                    <div class="relative w-40 mb-1">
+                                        <div
+                                            x-data="{ open:false, search:'' }"
+                                            class="relative w-full">
+                                            <button
+                                                type="button"
+                                                @click="if({{ $state ? 'true' : 'false' }}) open = !open"
+                                                {{ !$state ? 'disabled' : '' }}
+                                                class="flex w-full items-center justify-between overflow-hidden rounded-md border border-yellow-400 bg-white {{ !$state ? 'opacity-60 cursor-not-allowed bg-slate-100' : '' }}">
+                                                <!-- Left Text -->
+                                                <span class="flex-1 px-3 py-1.5 text-xs font-medium text-left truncate {{ $district ? 'text-slate-700' : 'text-slate-400' }}">
+                                                    @php
+                                                    $sDistrict = collect($districts)->where('id', $district)->first();
+                                                    echo $sDistrict
+                                                    ? (is_array($sDistrict)
+                                                    ? $sDistrict['name'] ?? 'Selected'
+                                                    : $sDistrict->name ?? 'Selected')
+                                                    : ($type === 'town' && $state
+                                                    ? 'All Districts...'
+                                                    : 'Choose...');
+                                                    @endphp
+                                                </span>
+                                                <!-- Yellow Arrow -->
+                                                <span class="flex items-center self-stretch justify-center w-8 bg-yellow-400 border-l border-yellow-400 shrink-0">
+                                                    <svg
+                                                        class="w-4 h-4 transition-transform duration-200 text-slate-800"
+                                                        :class="open ? 'rotate-180' : ''"
+                                                        fill="none"
+                                                        stroke="currentColor"
+                                                        viewBox="0 0 24 24">
+                                                        <path
+                                                            stroke-linecap="round"
+                                                            stroke-linejoin="round"
+                                                            stroke-width="2.5"
+                                                            d="M19 9l-7 7-7-7" />
+                                                    </svg>
+                                                </span>
+                                            </button>
+                                            <div x-show="open" @click.away="open = false" x-cloak
+                                                x-transition:enter="transition ease-out duration-200"
+                                                x-transition:enter-start="opacity-0 translate-y-2"
+                                                x-transition:enter-end="opacity-100 translate-y-0"
+                                                class="absolute z-50 w-full mt-1 overflow-hidden bg-white border shadow-2xl border-slate-100 rounded-2xl">
+                                                <div class="relative mb-1 ">
+                                                    <input type="text" x-model="search" placeholder="Search districts..."
+                                                        autocomplete="off"
+                                                        class="w-full py-2 pl-10 text-sm font-semibold transition-all border-none outline-none bg-slate-50 rounded-xl focus:ring-2 focus:ring-blue-100">
+                                                    <svg class="absolute left-3.5 top-3 w-4 h-4 text-slate-400" fill="none"
+                                                        stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2.5"
+                                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                                    </svg>
+                                                </div>
+                                                <div class="overflow-y-auto max-h-48 custom-scrollbar-premium">
+                                                    @forelse($districts as $item)
+                                                    @php
+                                                    $itemName = is_array($item) ? $item['name'] : $item->name;
+                                                    @endphp
+                                                    <button type="button"
+                                                        wire:key="district-{{ is_array($item) ? $item['id'] : $item->id }}"
+                                                        x-show="'{{ strtolower($itemName) }}'.includes(search.toLowerCase())"
+                                                        @click="$wire.set('district', '{{ is_array($item) ? $item['id'] : $item->id }}'); open = false; search = ''"
+                                                        class="flex items-center justify-between w-full px-2 py-1 text-sm font-semibold text-left transition-all rounded-xl text-slate-700 hover:bg-blue-50 hover:text-blue-700">
+                                                        {{ $itemName }}
+                                                    </button>
+                                                    @empty
+                                                    <div class="px-3 py-2 text-xs font-medium text-slate-400">
+                                                        Select a state first
+                                                    </div>
+                                                    @endforelse
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        {{-- ── Step 3 (Village Only): Block ───────────────────────── --}}
+                        @if ($type === 'village')
+                        <div class="flex flex-col items-center w-full p-1 transition-all duration-300 bg-white border-yellow-300 shadow-md border-1 rounded-2xl hover:-translate-y-1 hover:border-yellow-400 hover:shadow-xl">
+                            <div class="flex flex-col items-center">
+                                <div class="space-y-1" x-data="{ open: false, search: '' }">
+                                    <div class="flex items-center justify-between ">
+                                        <div class="flex items-center gap-2">
+                                            <span
+                                                class="flex items-center justify-center w-8 h-8 rounded-xl shadow-sm  {{ $subDistrict ? 'bg-emerald-100 text-emerald-600' : ($district ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-400') }}">
+                                                <div wire:loading wire:target="district">
+                                                    <svg class="w-5 h-5 animate-spin" fill="" viewBox="0 0 24 24">
+                                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                                            stroke-width="4">
+                                                        </circle>
+                                                        <path class="opacity-75" fill="currentColor"
+                                                            d="M4 12a8 8 0 018-8V0C5.373 0 0  5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                                        </path>
+                                                    </svg>
+                                                </div>
+                                                <div wire:loading.remove wire:target="district">
+                                                    @if($subDistrict)
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                                                            d="M5 13l4 4L19 7" />
+                                                    </svg>
+                                                    @else
+                                                    03
+                                                    @endif
+                                                </div>
+                                            </span>
+                                            <img
+                                                class="object-contain w-20 h-20 transition-all duration-300 group-hover:scale-110"
+                                                src="{{ asset('assets/images/filter/block.png') }}" />
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h4 class="mt-1 text-xs font-bold text-center text-slate-800">
+                                            Select Block
+                                        </h4>
+                                        <p class="mb-2 text-xs text-center text-slate-500">
+                                            {{ count($subDistricts) }} Blocks Available
+                                        </p>
+                                    </div>
+                                    <div class="relative w-40 mb-1">
+                                        <button
+                                            type="button"
+                                            @click="if({{ $district ? 'true' : 'false' }}) open = !open"
+                                            {{ !$district ? 'disabled' : '' }}
+                                            class="flex w-full items-center justify-between overflow-hidden rounded-md border border-yellow-400 bg-white {{ !$district ? 'opacity-60 cursor-not-allowed bg-slate-100' : '' }}">
+                                            <!-- Selected Block -->
+                                            <span class="flex-1 px-3 py-1.5 text-xs font-medium text-left truncate {{ $subDistrict ? 'text-slate-700' : 'text-slate-400' }}">
+                                                @php
+                                                $sSubDistrict = collect($subDistricts)->where('id', $subDistrict)->first();
+                                                echo $sSubDistrict
+                                                ? (is_array($sSubDistrict)
+                                                ? $sSubDistrict['name'] ?? 'Selected'
+                                                : $sSubDistrict->name ?? 'Selected')
+                                                : 'Choose...';
+                                                @endphp
+                                            </span>
+                                            <!-- Yellow Arrow -->
+                                            <span class="flex items-center self-stretch justify-center w-8 bg-yellow-400 border-l border-yellow-400 shrink-0">
+                                                <svg
+                                                    class="w-4 h-4 transition-transform duration-200 text-slate-800"
+                                                    :class="open ? 'rotate-180' : ''"
+                                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2.5"
+                                                        d="M19 9l-7 7-7-7" />
+                                                </svg>
+                                            </span>
+                                        </button>
+                                        <div x-show="open" @click.away="open = false" x-cloak
+                                            x-transition:enter="transition ease-out duration-200"
+                                            x-transition:enter-start="opacity-0 translate-y-2"
+                                            x-transition:enter-end="opacity-100 translate-y-0"
+                                            class="absolute z-50 w-full mt-1 overflow-hidden bg-white border shadow-2xl border-slate-100 rounded-2xl">
+                                            <div>
+                                                <div class="relative mb-1">
+                                                    <input type="text" x-model="search" placeholder="Search blocks..."
+                                                        autocomplete="off"
+                                                        class="w-full py-2 pl-10 text-sm font-semibold transition-all border-none outline-none bg-slate-50 rounded-xl focus:ring-2 focus:ring-blue-100">
+                                                    <svg class="absolute left-3.5 top-3 w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                                    </svg>
+                                                </div>
+                                            </div>
+                                            <div class="overflow-y-auto max-h-48 custom-scrollbar-premium">
+                                                @forelse($subDistricts as $item)
+                                                @php
+                                                $itemName = is_array($item) ? $item['name'] : $item->name;
+                                                @endphp
+                                                <button type="button"
+                                                    wire:key="subDistrict-{{ is_array($item) ? $item['id'] : $item->id }}"
+                                                    x-show="'{{ strtolower($itemName) }}'.includes(search.toLowerCase())"
+                                                    @click="$wire.set('subDistrict', '{{ is_array($item) ? $item['id'] : $item->id }}'); open = false; search = ''"
+                                                    class="flex items-center justify-between w-full px-2 py-1 text-sm font-semibold text-left transition-all rounded-xl text-slate-700 hover:bg-blue-50 hover:text-blue-700">
+                                                    {{ $itemName }}
+                                                </button>
+                                                @empty
+                                                <div class="px-3 py-2 text-sm text-slate-400">
+                                                    Select a District first
+                                                </div>
+                                                @endforelse
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -366,151 +406,151 @@
                         </div>
                         @endif
                         {{-- ── Step 3/4 : Village / City ───────────────────────────── --}}
-                        <div
-                            class="w-64 p-2 transition-all duration-300 bg-white border-2 border-yellow-300 shadow-400 rounded-2xl hover:border-blue-300 hover:shadow-md">
-                            <div class="space-y-1" x-data="{ open: false, search: '' }">
-                                @php
-                                // For town mode: active once state is selected (district optional)
-                                $stepActive = $type === 'town' ? $state : $subDistrict;
-                                $stepDone = $type === 'town' ? $town : $village;
-                                @endphp
-                                <div class="flex items-center justify-between ">
-                                    <div class="flex items-center gap-2">
-                                        <span
-                                            class="flex items-center justify-center w-10 h-10 rounded-2xl shadow-sm {{ $stepDone ? 'bg-emerald-100 text-emerald-600' : ($stepActive ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-400') }}">
-                                            <div wire:loading
-                                                wire:target="{{ $type === 'town' ? 'state' : 'subDistrict' }}">
-                                                <svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
-                                                    <circle class="opacity-25" cx="12" cy="12" r="10"
-                                                        stroke="currentColor" stroke-width="4"></circle>
-                                                    <path class="opacity-75" fill="currentColor"
-                                                        d="M4 12a8 8 0 018-8V0C5.373 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
-                                                    </path>
-                                                </svg>
-                                            </div>
-                                            <div wire:loading.remove
-                                                wire:target="{{ $type === 'town' ? 'state' : 'subDistrict' }}">
-                                                @if($stepDone)
-                                                <svg class="w-5 h-5" fill="none" stroke="currentColor"
-                                                    viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="3" d="M5 13l4 4L19 7" />
-                                                </svg>
-                                                @else
-                                                {{ $type === 'town' ? '03' : '04' }}
-                                                @endif
-                                            </div>
-                                        </span>
-                                        <div>
-                                            <h4 class="text-sm font-bold text-slate-800">
-                                                Select
-                                                {{ $type === 'town' ? 'City' : 'Village' }}
-                                            </h4>
-                                            <p class="text-xs text-slate-500">
-                                                {{ count($type === 'town' ? $towns : $villages) }}
-                                                {{ $type === 'town' ? 'Cities' : 'Villages' }}
-                                                Available
-                                            </p>
+                        <div class="flex flex-col items-center w-full p-1 transition-all duration-300 bg-white border-yellow-300 shadow-md border-1 rounded-2xl hover:-translate-y-1 hover:border-yellow-400 hover:shadow-xl">
+                            <div class="flex flex-col items-center">
+                                <div class="space-y-1 " x-data=" { open: false, search: '' }">
+                                    @php
+                                    // For town mode: active once state is selected (district optional)
+                                    $stepActive = $type === 'town' ? $state : $subDistrict;
+                                    $stepDone = $type === 'town' ? $town : $village;
+                                    @endphp
+                                    <div class="flex items-center justify-between ">
+                                        <div class="flex items-center gap-2">
+                                            <span
+                                                class="flex items-center justify-center w-8 h-8 rounded-xl shadow-sm {{ $stepDone ? 'bg-emerald-100 text-emerald-600' : ($stepActive ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-400') }}">
+                                                <div wire:loading
+                                                    wire:target="{{ $type === 'town' ? 'state' : 'subDistrict' }}">
+                                                    <svg class="w-5 h-5 animate-spin" fill="none" viewBox="0 0 24 24">
+                                                        <circle class="opacity-25" cx="12" cy="12" r="10"
+                                                            stroke="currentColor" stroke-width="4"></circle>
+                                                        <path class="opacity-75" fill="currentColor"
+                                                            d="M4 12a8 8 0 018-8V0C5.373 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                                        </path>
+                                                    </svg>
+                                                </div>
+                                                <div wire:loading.remove
+                                                    wire:target="{{ $type === 'town' ? 'state' : 'subDistrict' }}">
+                                                    @if($stepDone)
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="3" d="M5 13l4 4L19 7" />
+                                                    </svg>
+                                                    @else
+                                                    {{ $type === 'town' ? '03' : '04' }}
+                                                    @endif
+                                                </div>
+                                            </span>
+                                            <img
+                                                class="object-contain w-20 h-20 transition-all duration-300 group-hover:scale-110"
+                                                src=" {{ asset($type === 'town' ? 'assets/images/filter/city.png' : 'assets/images/filter/village.png') }}"
+                                                alt="{{ $type === 'town' ? 'City' : 'Village' }}">
                                         </div>
                                     </div>
-                                </div>
-                                <div class="relative">
-                                    <button type="button" @click="if({{ $stepActive ? 'true' : 'false' }}) open = !open"
-                                        {{ !$stepActive ? 'disabled' : '' }}
-                                        class="group relative w-full overflow-hidden rounded-xl border {{ $stepDone ? 'border-blue-300 bg-white shadow-md' : ($stepActive ? 'border-slate-200 bg-white hover:border-blue-300' : 'border-slate-100 bg-slate-50 opacity-60 cursor-not-allowed') }} transition-all duration-300">
-                                        <div class="flex items-center justify-between px-3 py-2">
-                                            <div class="flex items-center gap-2">
-                                                <div class="flex w-8 h-8 shrink-0"></div>
-                                                <div class="text-left">
-                                                    <div class="text-xs tracking-wider uppercase text-slate-400">
-                                                        <img
-                                                            class="object-contain transition-all duration-300 h-14 w-15 group-hover:scale-110"
-                                                            src=" {{ asset($type === 'town' ? 'assets/images/filter/city.png' : 'assets/images/filter/village.png') }}"
-                                                            alt="{{ $type === 'town' ? 'City' : 'Village' }}">
-                                                    </div>
-                                                    <div
-                                                        class="font-semibold{{ $stepDone ? 'text-slate-800' : 'text-slate-400' }}">
-                                                        @if ($type === 'town')
-                                                        @php
-                                                        $selectedTown = collect($towns)->where('id', (string) $town)->first();
-                                                        echo $selectedTown
-                                                        ? (is_array($selectedTown)
-                                                        ? $selectedTown['name'] ?? 'Selected'
-                                                        : $selectedTown->name ?? 'Selected')
-                                                        : 'Choose a city...';
-                                                        @endphp
-                                                        @else
-                                                        @php
-                                                        $selectedVillage = collect($villages)
-                                                        ->where('id', (string) $village)
-                                                        ->first();
-                                                        echo $selectedVillage
-                                                        ? (is_array($selectedVillage)
-                                                        ? $selectedVillage['name'] ?? 'Selected'
-                                                        : $selectedVillage->name ?? 'Selected')
-                                                        : 'Choose a village...';
-                                                        @endphp
-                                                        @endif
-                                                    </div>
+                                    <div>
+                                        <h4 class="mt-1 text-xs font-bold text-center text-slate-800">
+                                            Select
+                                            {{ $type === 'town' ? 'City' : 'Village' }}
+                                        </h4>
+                                        <p class="mb-2 text-xs text-center text-slate-500">
+                                            {{ count($type === 'town' ? $towns : $villages) }}
+                                            {{ $type === 'town' ? 'Cities' : 'Villages' }}
+                                            Available
+                                        </p>
+                                    </div>
+                                    <div class="relative w-40 mb-1">
+                                        <button
+                                            type="button"
+                                            @click="if({{ $stepActive ? 'true' : 'false' }}) open = !open"
+                                            {{ !$stepActive ? 'disabled' : '' }}
+                                            class="flex w-full items-center justify-between overflow-hidden rounded-md border border-yellow-400 bg-white {{ !$stepActive ? 'opacity-60 cursor-not-allowed bg-slate-100' : '' }}">
+                                            <!-- Selected City / Village -->
+                                            <span class="flex-1 px-3 py-1.5 text-xs font-medium text-left truncate {{ $stepDone ? 'text-slate-700' : 'text-slate-400' }}">
+                                                @if ($type === 'town')
+                                                @php
+                                                $selectedTown = collect($towns)->where('id', (string)$town)->first();
+                                                echo $selectedTown
+                                                ? (is_array($selectedTown)
+                                                ? $selectedTown['name'] ?? 'Selected'
+                                                : $selectedTown->name ?? 'Selected')
+                                                : 'Choose...';
+                                                @endphp
+                                                @else
+                                                @php
+                                                $selectedVillage = collect($villages)->where('id',(string)$village)->first();
+                                                echo $selectedVillage
+                                                ? (is_array($selectedVillage)
+                                                ? $selectedVillage['name'] ?? 'Selected'
+                                                : $selectedVillage->name ?? 'Selected')
+                                                : 'Choose...';
+                                                @endphp
+                                                @endif
+                                            </span>
+                                            <!-- Yellow Arrow -->
+                                            <span class="flex items-center self-stretch justify-center w-8 bg-yellow-400 border-l border-yellow-400 shrink-0">
+                                                <svg
+                                                    class="w-4 h-4 transition-transform duration-200 text-slate-800"
+                                                    :class="open ? 'rotate-180' : ''"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path
+                                                        stroke-linecap="round"
+                                                        stroke-linejoin="round"
+                                                        stroke-width="2.5"
+                                                        d="M19 9l-7 7-7-7" />
+                                                </svg>
+                                            </span>
+                                        </button>
+                                        <div x-show="open" @click.away="open = false" x-cloak
+                                            x-transition:enter="transition ease-out duration-200"
+                                            x-transition:enter-start="opacity-0 translate-y-2"
+                                            x-transition:enter-end="opacity-100 translate-y-0"
+                                            class="absolute z-50 w-full mt-1 overflow-hidden bg-white border shadow-2xl border-slate-100 rounded-2xl">
+                                            <div class="border-b border-slate-100 bg-slate-50">
+                                                <div class="relative mb-1">
+                                                    <input type="text" x-model="search"
+                                                        placeholder="Search {{ $type === 'town' ? 'cities' : 'villages' }}..."
+                                                        autocomplete="off"
+                                                        class="w-full py-2 pl-10 pr-4 text-sm font-semibold bg-white border-none outline-none rounded-xl focus:ring-2 focus:ring-blue-100">
+                                                    <svg class="absolute left-3.5 top-3 w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2.5"
+                                                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                                                    </svg>
                                                 </div>
                                             </div>
-                                            <svg class="w-4 h-4 transition-transform duration-300 text-slate-400"
-                                                :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor"
-                                                viewBox="0 0 24 24">
-                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
-                                                    d="M19 9l-7 7-7-7" />
-                                            </svg>
-                                        </div>
-                                    </button>
-                                    <div x-show="open" @click.away="open = false" x-cloak
-                                        x-transition:enter="transition ease-out duration-200"
-                                        x-transition:enter-start="opacity-0 translate-y-2"
-                                        x-transition:enter-end="opacity-100 translate-y-0"
-                                        class="absolute z-50 w-full mt-1 overflow-hidden bg-white border shadow-2xl border-slate-100 rounded-2xl">
-                                        <div class="border-b border-slate-100 bg-slate-50">
-                                            <div class="relative mb-1">
-                                                <input type="text" x-model="search"
-                                                    placeholder="Search {{ $type === 'town' ? 'cities' : 'villages' }}..."
-                                                    autocomplete="off"
-                                                    class="w-full py-2 pl-10 pr-4 text-sm font-semibold bg-white border-none outline-none rounded-xl focus:ring-2 focus:ring-blue-100">
-                                                <svg class="absolute left-3.5 top-3 w-4 h-4 text-slate-400" fill="none"
-                                                    stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                                        stroke-width="2.5"
-                                                        d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                                                </svg>
+                                            <div class="overflow-y-auto max-h-48 custom-scrollbar-premium">
+                                                @php
+                                                $items = $type === 'town' ? $towns : $villages;
+                                                @endphp
+                                                @forelse($items as $item)
+                                                @php
+                                                $itemId = is_array($item) ? $item['id'] : $item->id;
+                                                $itemName = is_array($item) ? $item['name'] : $item->name;
+                                                $parts = explode('|', $itemName);
+                                                @endphp
+                                                <button type="button" wire:key="{{ $type }}-{{ $itemId }}"
+                                                    x-show="'{{ strtolower($itemName) }}'.includes(search.toLowerCase())"
+                                                    @click="$wire.set('{{ $type === 'town' ? 'town' : 'village' }}','{{ $itemId }}'); open = false; search = ''"
+                                                    class="flex items-center justify-between w-full px-2 py-1 text-sm font-semibold text-left transition-all rounded-xl text-slate-700 hover:bg-blue-50 hover:text-blue-700">
+                                                    <span>{{ $parts[0] }}</span>
+                                                    @if(isset($parts[1]))
+                                                    <span class="text-xs text-slate-400">
+                                                        {{ $parts[1] }}
+                                                    </span>
+                                                    @endif
+                                                </button>
+                                                @empty
+                                                <div class="px-3 py-2 text-sm font-medium text-slate-400">
+                                                    @if($type === 'town')
+                                                    Select a state first
+                                                    @else
+                                                    Select a block first
+                                                    @endif
+                                                </div>
+                                                @endforelse
                                             </div>
-                                        </div>
-                                        <div class="overflow-y-auto max-h-48 custom-scrollbar-premium">
-                                            @php
-                                            $items = $type === 'town' ? $towns : $villages;
-                                            @endphp
-                                            @forelse($items as $item)
-                                            @php
-                                            $itemId = is_array($item) ? $item['id'] : $item->id;
-                                            $itemName = is_array($item) ? $item['name'] : $item->name;
-                                            $parts = explode('|', $itemName);
-                                            @endphp
-                                            <button type="button" wire:key="{{ $type }}-{{ $itemId }}"
-                                                x-show="'{{ strtolower($itemName) }}'.includes(search.toLowerCase())"
-                                                @click="$wire.set('{{ $type === 'town' ? 'town' : 'village' }}','{{ $itemId }}'); open = false; search = ''"
-                                                class="flex items-center justify-between w-full px-2 py-1 text-sm font-semibold text-left transition-all rounded-xl text-slate-700 hover:bg-blue-50 hover:text-blue-700">
-                                                <span>{{ $parts[0] }}</span>
-                                                @if(isset($parts[1]))
-                                                <span class="text-xs text-slate-400">
-                                                    {{ $parts[1] }}
-                                                </span>
-                                                @endif
-                                            </button>
-                                            @empty
-                                            <div class="px-3 py-2 text-sm font-medium text-slate-400">
-                                                @if($type === 'town')
-                                                Select a state first
-                                                @else
-                                                Select a block first
-                                                @endif
-                                            </div>
-                                            @endforelse
                                         </div>
                                     </div>
                                 </div>
@@ -573,122 +613,24 @@
                     </div>
                 </div>
                 @endif
-                @if($type === 'village')
-                <!-- <div class="mt-3"> -->
-                <div class="flex justify-end mt-3">
-                    <div class="w-full p-2 lg:w-1/3">
-                        <div class="p-2 border-yellow-400 border-1 rounded-xl ">
-                            <p class="text-xs text-center font-bold uppercase tracking-[0.2em] text-blue-700">
-                                Analyse India
-                            </p>
-                            <div class="grid grid-cols-2 gap-0.5  lg:grid-cols-4">
-                                <a href="https://www.prarang.in/city-webs" target="_blank"
-                                    class="flex items-center justify-center gap-1 px-1 py-1 text-sm font-semibold text-white no-underline transition-all duration-300 bg-blue-500 rounded hover:-translate-y-1 hover:shadow-lg">
-                                    <i class="text-base ti ti-building-community"></i>
-                                    <span class="text-xs leading-tight text-center">
-                                        District
-                                    </span>
-                                </a>
-                                <a href="https://www.prarang.in/town-webs" target="_blank"
-                                    class="flex items-center justify-center gap-1 px-1 py-1 text-sm font-semibold text-white no-underline transition-all duration-300 bg-yellow-300 rounded hover:-translate-y-1 hover:shadow-lg">
-                                    <i class="text-base ti ti-buildings"></i>
-                                    <span class="text-xs leading-tight text-center">
-                                        Cities
-                                    </span>
-                                </a>
-                                <a href="https://www.prarang.in/india-rural" target="_blank"
-                                    class="flex items-center justify-center gap-1 px-1 py-1 text-sm font-semibold text-white no-underline transition-all duration-300 bg-red-500 rounded hover:-translate-y-1 hover:shadow-lg">
-                                    <i class="text-base ti ti-home"></i>
-                                    <span class="text-xs leading-tight text-center">
-                                        Villages
-                                    </span>
-                                </a>
-                                <a href="https://www.prarang.in/language-webs" target="_blank"
-                                    class="flex flex-col items-center justify-center gap-1 px-1 py-1 text-sm font-semibold text-center text-white no-underline transition-all duration-300 bg-green-500 rounded hover:-translate-y-1 hover:shadow-lg">
-                                    <i class="text-base ti ti-language"></i>
-                                    <span class="text-xs leading-tight text-center">
-                                        Language
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- </div> -->
-                @endif
             </section>
-            @if($type === 'town')
-            <section class="section-two">
-                <!-- <div class="p-1 mt-1 mb-1 border-slate-100">
-                    <div class="grid items-center grid-cols-1 gap-15 lg:grid-cols-3"> -->
-                <!-- <div class="lg:col-span-2">
-                            <div class="pb-1 text-center">
-                                <h2 class="text-xl tracking-tighter text-blue-700 md:text-xl">
-                                    List of <span
-                                        class="text-red-700 font-extrabold text-[1.25rem] md:text-[1.375rem]">114</span>
-                                    Non-State/District Capital Cities of India
-                                    <span class="text-black">(with Population 1 Lakh+)
-                                        <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#box25l"
-                                            class="inline-block px-1 text-white no-underline bg-red-500 border border-red-500 rounded hover:text-blue-800">
-                                            Click Here</a>
-                                    </span>
-                                </h2>
-                            </div>
-                        </div> -->
-                <div class="flex justify-end mt-3">
-                    <div class="w-full p-2 lg:w-1/3">
-                        <div class="p-2 border-yellow-400 border-1 rounded-xl ">
-                            <p class="text-xs text-center font-bold uppercase tracking-[0.2em] text-blue-700">
-                                Analyse India
-                            </p>
-                            <div class="grid grid-cols-2 gap-0.5  lg:grid-cols-4">
-                                <a href="https://www.prarang.in/city-webs" target="_blank"
-                                    class="flex items-center justify-center gap-1 px-1 py-1 text-sm font-semibold text-white no-underline transition-all duration-300 bg-blue-500 rounded hover:-translate-y-1 hover:shadow-lg">
-                                    <i class="text-base ti ti-building-community"></i>
-                                    <span class="text-xs leading-tight text-center">
-                                        District
-                                    </span>
-                                </a>
-                                <a href="https://www.prarang.in/town-webs" target="_blank"
-                                    class="flex items-center justify-center gap-1 px-1 py-1 text-sm font-semibold text-white no-underline transition-all duration-300 bg-yellow-300 rounded hover:-translate-y-1 hover:shadow-lg">
-                                    <i class="text-base ti ti-buildings"></i>
-                                    <span class="text-xs leading-tight text-center">
-                                        Cities
-                                    </span>
-                                </a>
-                                <a href="https://www.prarang.in/india-rural" target="_blank"
-                                    class="flex items-center justify-center gap-1 px-1 py-1 text-sm font-semibold text-white no-underline transition-all duration-300 bg-red-500 rounded hover:-translate-y-1 hover:shadow-lg">
-                                    <i class="text-base ti ti-home"></i>
-                                    <span class="text-xs leading-tight text-center">
-                                        Villages
-                                    </span>
-                                </a>
-                                <a href="https://www.prarang.in/language-webs" target="_blank"
-                                    class="flex flex-col items-center justify-center gap-1 px-1 py-1 text-sm font-semibold text-center text-white no-underline transition-all duration-300 bg-green-500 rounded hover:-translate-y-1 hover:shadow-lg">
-                                    <i class="text-base ti ti-language"></i>
-                                    <span class="text-xs leading-tight text-center">
-                                        Language
-                                    </span>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            @endif
+            <hr>
+
+
+
             <section class=" section-three">
                 @if ($type === 'town')
                 <div class="flex items-center justify-center gap-1">
-                    <div class="relative w-24 h-24 shrink-0">
+                    <div class="relative w-20 h-20 shrink-0">
                         <img
                             src="{{ asset('assets/images/sticker.png') }}"
                             alt="Sticker"
                             class="w-full h-full">
-                        <span class="absolute inset-0 flex md:mt-1 pl-8 items-center  text-xs font-extrabold text-black ">
+                        <span class="absolute inset-0 flex items-center pl-6 text-xs font-bold text-black ">
                             &nbsp;756 <br>Webs
                         </span>
                     </div>
-                    <h2 class="pt-3 text-xl font-semibold tracking-tighter text-blue-800 md:text-xl">
+                    <h2 class="pt-3 text-lg font-semibold tracking-tight text-center text-blue-800 sm:text-xl lg:text-xl">
                         State & District Capital
                     </h2>
                 </div>
@@ -697,7 +639,7 @@
                         <button
                             type="button"
                             @click="open = !open"
-                            class="relative w-full overflow-hidden transition-all duration-300 bg-white border group rounded-xl border-slate-200 hover:border-blue-300 hover:shadow-md">
+                            class="relative w-full overflow-hidden transition-all duration-300 bg-white border group rounded-xl border-slate-200 hover:border-yellow-500 hover:shadow-md">
                             <div class="flex items-center justify-between px-3 py-2">
                                 <div class="flex items-center">
                                     <div class="text-left">
@@ -748,9 +690,7 @@
                         </div>
                     </div>
                 </div>
-                <span class="pt-2 text-sm text-slate-400">Select <span class="text-red-700" text-semibold>One</span> (out
-                    of 5)
-                    Categories</span>
+                <span class="pt-2 text-sm text-slate-400">Select <span class="text-red-700" text-semibold>One</span> (out of 5) Categories</span>
                 <div class="grid grid-cols-1 gap-2 mt-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
                     <x-filter-card title="01. State Capital" image="assets/images/filter/state-capital.png"
                         model="selected_sc" :selected="$selected_sc ? collect($sc)->where('id', $selected_sc)->first()->name ?? null : null" :options="$sc" placeholder="Choose..."
