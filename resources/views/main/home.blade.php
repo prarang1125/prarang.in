@@ -1,6 +1,6 @@
 <x-layout.main.base>
 
-    <style>
+<style>
         :root {
             --ink: #12151c;
             --muted: #6b7280;
@@ -484,7 +484,7 @@
                 class="bgic-backdrop">
             <div class="section-content">
                 <!-- Country cards row -->
-                <div class="grid country-grid gap-3 mt-3 items-start">
+                <div class="items-start gap-3 country-grid grid mt-3">
                     <!-- Nepal (WIP) -->
                     <div class="country-unit">
                         <a href="https://www.prarang.in/nepal-knowledge-webs" class="card-link"
@@ -507,7 +507,7 @@
                                         <span class="dot dot-3"></span>
                                     </div>
                                 </div>
-                                <div class="grid grid-cols-2 gap-2">
+                                <div class="gap-2 grid grid-cols-2">
                                     <div class="stat-wip tick-blue">
                                         <div class="stat-label">Cities / towns</div>
                                         <div class="stat-value mono">293</div>
@@ -517,7 +517,7 @@
                                         <div class="stat-value mono">460</div>
                                     </div>
                                 </div>
-                                <div class="stat-wip tick-red w-full">
+                                <div class="w-full stat-wip tick-red">
                                     <div class="stat-label">World bilateral</div>
                                     <div class="stat-value mono">194</div>
                                 </div>
@@ -537,13 +537,10 @@
                                         <span class="dot dot-yellow"></span>
                                         <span class="dot dot-red"></span>
                                     </div>
-                                    <div class="border-1 border-yellow-200 flex justify-center items-center gap-2 mb-1.5 group relative overflow-hidden rounded-full p-1 px-3 animate-pulseGlow
-           transition-transform duration-200 ease-out">
-                                        <span class="country-name font-bold">INDIA</span>
+                                    <div class="group relative flex justify-center items-center gap-2 mb-1.5 p-1 px-3 border-1 border-yellow-200 rounded-full overflow-hidden transition-transform animate-pulseGlow duration-200 ease-out">
+                                        <span class="font-bold country-name">INDIA</span>
                                         <span class="badge badge-live star-animation">LIVE</span>
-                                        <span class="flash-sweep pointer-events-none absolute inset-y-0 left-0 w-1/3
-                                        bg-gradient-to-r from-transparent via-white to-transparent
-                                        animate-flash"></span>
+                                        <span class="left-0 absolute inset-y-0 bg-gradient-to-r from-transparent via-white to-transparent w-1/3 animate-flash pointer-events-none flash-sweep"></span>
                                     </div>
                                     <div class="dots">
                                         <span class="dot dot-1"></span>
@@ -551,7 +548,7 @@
                                         <span class="dot dot-3"></span>
                                     </div>
                                 </div>
-                                <div class="grid grid-cols-2 gap-2" style="position: relative; z-index: 1">
+                                <div class="gap-2 grid grid-cols-2" style="position: relative; z-index: 1">
                                     <div class="stat-live blue">
                                         <div class="stat-label">Cities / towns</div>
                                         <div class="stat-value mono">6,331</div>
@@ -561,7 +558,7 @@
                                         <div class="stat-value mono">592,765</div>
                                     </div>
                                 </div>
-                                <div class="stat-live red w-full" style="position: relative; z-index: 1">
+                                <div class="w-full stat-live red" style="position: relative; z-index: 1">
                                     <div class="stat-label">World bilateral</div>
                                     <div class="stat-value mono">194</div>
                                 </div>
@@ -591,7 +588,7 @@
                                         <span class="dot dot-3"></span>
                                     </div>
                                 </div>
-                                <div class="grid grid-cols-2 gap-2">
+                                <div class="gap-2 grid grid-cols-2">
                                     <div class="stat-wip tick-blue">
                                         <div class="stat-label">Cities / towns</div>
                                         <div class="stat-value mono">843</div>
@@ -601,7 +598,7 @@
                                         <div class="stat-value mono">5,415</div>
                                     </div>
                                 </div>
-                                <div class="stat-wip tick-red w-full">
+                                <div class="w-full stat-wip tick-red">
                                     <div class="stat-label">World bilateral</div>
                                     <div class="stat-value mono">194</div>
                                 </div>
@@ -633,7 +630,7 @@
                                         <span class="dot dot-3"></span>
                                     </div>
                                 </div>
-                                <div class="grid grid-cols-2 gap-2">
+                                <div class="gap-2 grid grid-cols-2">
                                     <div class="stat-wip tick-blue">
                                         <div class="stat-label">Cities / towns</div>
                                         <div class="stat-value mono">300+</div>
@@ -643,7 +640,7 @@
                                         <div class="stat-value mono">1,200</div>
                                     </div>
                                 </div>
-                                <div class="stat-wip tick-red w-full">
+                                <div class="w-full stat-wip tick-red">
                                     <div class="stat-label">World bilateral</div>
                                     <div class="stat-value mono">194</div>
                                 </div>
@@ -672,8 +669,8 @@
                 <!-- Section label 1: block-level, sits between the two grids above,
            so it is guaranteed to render after the cards row and before
            the arrows row on every breakpoint (mobile, tablet, desktop). -->
-                <div class="text-center mt-2 mb-1" id="labelBaseline">
-                    <span class="section-labelx text-lg font-semibold">Country Stack: English
+                <div class="mt-2 mb-1 text-center" id="labelBaseline">
+                    <span class="font-semibold text-lg section-labelx">Country Stack: English
                         <span class="font-light">(Latin alphabet)</span> language localised
                         base-line</span>
                 </div>
@@ -686,7 +683,7 @@
                 class="bgic-backdrop-bottom-right">
             <div class="section-content">
                 <!-- Arrow + language boxes row (aligned under the cards above) -->
-                <div class="grid country-grid gap-3 items-start">
+                <div class="items-start gap-3 country-grid grid">
                     <div class="country-unit">
                         <div class="connector connector--lg">&#8593;</div>
                         <div class="lang-box">Nepali / Devanagari</div>
@@ -729,37 +726,37 @@
                 </div>
 
                 <!-- Section label 2 -->
-                <div class="text-center mt-6 mb-4">
-                    <span class="section-labelx text-lg font-semibold">Language knowledge (<span
+                <div class="mt-6 mb-4 text-center">
+                    <span class="font-semibold text-lg section-labelx">Language knowledge (<span
                             class="font-light">script</span>) webs — written</span>
                 </div>
 
                 <!-- Federal / Scheduled / Primary / Official row -->
-                <div class="grid country-grid gap-3 mt-1">
-                    <div class="flex flex-col items-center justify-center gap-1">
+                <div class="gap-3 country-grid grid mt-1">
+                    <div class="flex flex-col justify-center items-center gap-1">
                         <div class="connector connector--lg">&#8593;</div>
-                        <div class="summary-btn border-[#0000ff] border-4">
-                            <div class="stat-labelx text-black">Federal</div>
+                        <div class="border-[#0000ff] border-4 summary-btn">
+                            <div class="text-black stat-labelx">Federal</div>
                             <div class="stat-value mono">1</div>
                         </div>
                     </div>
-                    <div class="flex flex-col items-center justify-center gap-1">
+                    <div class="flex flex-col justify-center items-center gap-1">
                         <div class="connector connector--lg">&#8593;</div>
-                        <div class="summary-btn border-[#0000ff] border-4">
-                            <div class="stat-labelx text-black">Scheduled</div>
+                        <div class="border-[#0000ff] border-4 summary-btn">
+                            <div class="text-black stat-labelx">Scheduled</div>
                             <div class="stat-value mono">22</div>
                         </div>
                     </div>
-                    <div class="flex flex-col items-center justify-center gap-1">
+                    <div class="flex flex-col justify-center items-center gap-1">
                         <div class="connector connector--lg">&#8593;</div>
-                        <div class="summary-btn border-[#0000ff] border-4">
-                            <div class="stat-labelx text-black">Primary</div>
+                        <div class="border-[#0000ff] border-4 summary-btn">
+                            <div class="text-black stat-labelx">Primary</div>
                             <div class="stat-value mono">1</div>
                         </div>
                     </div>
-                    <div class="flex flex-col items-center justify-center gap-1">
+                    <div class="flex flex-col justify-center items-center gap-1">
                         <div class="connector connector--lg">&#8593;</div>
-                        <div class="summary-btn border-[#0000ff] border-4">
+                        <div class="border-[#0000ff] border-4 summary-btn">
                             <div class="stat-labelx">Official</div>
                             <div class="stat-value mono">16</div>
                         </div>
@@ -768,8 +765,8 @@
                 </div>
 
                 <!-- Section label 3 -->
-                <div class="text-center mt-5">
-                    <span class="section-labelx text-lg font-semibold">Official languages
+                <div class="mt-5 text-center">
+                    <span class="font-semibold text-lg section-labelx">Official languages
                         <span class="font-light">(country constitution)</span> — spoken</span>
                 </div>
             </div>
@@ -778,7 +775,7 @@
     </div>
 
     <!-- Mobile Version -->
-    <div class="block md:hidden px-2">
+    <div class="md:hidden block px-2">
         <!-- India -->
         <div class="mobile-country-block">
             {{-- <img src="https://www.prarang.in/assets/images/home/2.png" alt="" class="mobile-bg-image-1">
@@ -786,7 +783,7 @@
 
             <div style="position: relative; z-index: 2;">
                 <!-- India Card -->
-                <div class="country-unit mb-3">
+                <div class="mb-3 country-unit">
                     <a href="https://www.prarang.in/india-knowledge-webs" class="card-link"
                         aria-label="Open India knowledge web">
 
@@ -807,7 +804,7 @@
                                     <span class="dot dot-3"></span>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-2 gap-2">
+                            <div class="gap-2 grid grid-cols-2">
                                 <div class="stat-live blue">
                                     <div class="stat-label">Cities / towns</div>
                                     <div class="stat-value mono">6,331</div>
@@ -817,7 +814,7 @@
                                     <div class="stat-value mono">592,765</div>
                                 </div>
                             </div>
-                            <div class="stat-live red w-full">
+                            <div class="w-full stat-live red">
                                 <div class="stat-label">World bilateral</div>
                                 <div class="stat-value mono">194</div>
                             </div>
@@ -826,7 +823,7 @@
                 </div>
 
                 <!-- Label 1 -->
-                <div class="text-center mt-3 mb-1">
+                <div class="mt-3 mb-1 text-center">
                     <span class="mobile-section-label">Country Stack: English
                         <span class="font-light">(Latin alphabet)</span> language localised
                         base-line</span>
@@ -835,7 +832,7 @@
                 <!-- Arrow + Language Box -->
                 <div class="flex flex-col items-center gap-1 mb-3">
                     <div class="connector connector--lg">&#8593;</div>
-                    <div class="lang-box lang-box--cols2 w-full">
+                    <div class="w-full lang-box lang-box--cols2">
                         <ol>
                             <li>Hindi / Devanagari</li>
                             <li>Bengali</li>
@@ -854,7 +851,7 @@
                 </div>
 
                 <!-- Label 2 -->
-                <div class="text-center mt-3 mb-2">
+                <div class="mt-3 mb-2 text-center">
                     <span class="mobile-section-label">Language knowledge (<span class="font-light">script</span>) webs
                         — written</span>
                 </div>
@@ -862,14 +859,14 @@
                 <!-- Arrow + Stat Box -->
                 <div class="flex flex-col items-center gap-1 mb-2">
                     <div class="connector connector--lg">&#8593;</div>
-                    <div class="summary-btn border-[#0000ff] border-4 w-full">
-                        <div class="stat-labelx text-black">Scheduled</div>
+                    <div class="border-[#0000ff] border-4 w-full summary-btn">
+                        <div class="text-black stat-labelx">Scheduled</div>
                         <div class="stat-value mono">22</div>
                     </div>
                 </div>
 
                 <!-- Label 3 -->
-                <div class="text-center mt-3">
+                <div class="mt-3 text-center">
                     <span class="mobile-section-label">Official languages
                         <span class="font-light">(country constitution)</span> — spoken</span>
                 </div>
@@ -883,7 +880,7 @@
 
             <div style="position: relative; z-index: 2;">
                 <!-- Nepal Card -->
-                <div class="country-unit mb-3">
+                <div class="mb-3 country-unit">
                     <a href="https://www.prarang.in/nepal-knowledge-webs" class="card-link"
                         aria-label="Open Nepal knowledge web">
 
@@ -904,7 +901,7 @@
                                     <span class="dot dot-3"></span>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-2 gap-2">
+                            <div class="gap-2 grid grid-cols-2">
                                 <div class="stat-wip tick-blue">
                                     <div class="stat-label">Cities / towns</div>
                                     <div class="stat-value mono">293</div>
@@ -914,7 +911,7 @@
                                     <div class="stat-value mono">460</div>
                                 </div>
                             </div>
-                            <div class="stat-wip tick-red w-full">
+                            <div class="w-full stat-wip tick-red">
                                 <div class="stat-label">World bilateral</div>
                                 <div class="stat-value mono">194</div>
                             </div>
@@ -923,7 +920,7 @@
                 </div>
 
                 <!-- Label 1 -->
-                <div class="text-center mt-3 mb-1">
+                <div class="mt-3 mb-1 text-center">
                     <span class="mobile-section-label">Country Stack: English
                         <span class="font-light">(Latin alphabet)</span> language localised
                         base-line</span>
@@ -932,11 +929,11 @@
                 <!-- Arrow + Language Box -->
                 <div class="flex flex-col items-center gap-1 mb-3">
                     <div class="connector connector--lg">&#8593;</div>
-                    <div class="lang-box w-full">Nepali / Devanagari</div>
+                    <div class="w-full lang-box">Nepali / Devanagari</div>
                 </div>
 
                 <!-- Label 2 -->
-                <div class="text-center mt-3 mb-2">
+                <div class="mt-3 mb-2 text-center">
                     <span class="mobile-section-label">Language knowledge (<span class="font-light">script</span>) webs
                         — written</span>
                 </div>
@@ -944,14 +941,14 @@
                 <!-- Arrow + Stat Box -->
                 <div class="flex flex-col items-center gap-1 mb-2">
                     <div class="connector connector--lg">&#8593;</div>
-                    <div class="summary-btn border-[#0000ff] border-4 w-full">
-                        <div class="stat-labelx text-black">Federal</div>
+                    <div class="border-[#0000ff] border-4 w-full summary-btn">
+                        <div class="text-black stat-labelx">Federal</div>
                         <div class="stat-value mono">1</div>
                     </div>
                 </div>
 
                 <!-- Label 3 -->
-                <div class="text-center mt-3">
+                <div class="mt-3 text-center">
                     <span class="mobile-section-label">Official languages
                         <span class="font-light">(country constitution)</span> — spoken</span>
                 </div>
@@ -965,7 +962,7 @@
 
             <div style="position: relative; z-index: 2;">
                 <!-- Czech Republic Card -->
-                <div class="country-unit mb-3">
+                <div class="mb-3 country-unit">
                     <a href="https://www.prarang.in/czech-knowledge-webs" class="card-link"
                         aria-label="Open Czech Republic knowledge web">
 
@@ -986,7 +983,7 @@
                                     <span class="dot dot-3"></span>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-2 gap-2">
+                            <div class="gap-2 grid grid-cols-2">
                                 <div class="stat-wip tick-blue">
                                     <div class="stat-label">Cities / towns</div>
                                     <div class="stat-value mono">843</div>
@@ -996,7 +993,7 @@
                                     <div class="stat-value mono">5,415</div>
                                 </div>
                             </div>
-                            <div class="stat-wip tick-red w-full">
+                            <div class="w-full stat-wip tick-red">
                                 <div class="stat-label">World bilateral</div>
                                 <div class="stat-value mono">194</div>
                             </div>
@@ -1005,7 +1002,7 @@
                 </div>
 
                 <!-- Label 1 -->
-                <div class="text-center mt-3 mb-1">
+                <div class="mt-3 mb-1 text-center">
                     <span class="mobile-section-label">Country Stack: English
                         <span class="font-light">(Latin alphabet)</span> language localised
                         base-line</span>
@@ -1014,11 +1011,11 @@
                 <!-- Arrow + Language Box -->
                 <div class="flex flex-col items-center gap-1 mb-3">
                     <div class="connector connector--lg">&#8593;</div>
-                    <div class="lang-box w-full">Czech</div>
+                    <div class="w-full lang-box">Czech</div>
                 </div>
 
                 <!-- Label 2 -->
-                <div class="text-center mt-3 mb-2">
+                <div class="mt-3 mb-2 text-center">
                     <span class="mobile-section-label">Language knowledge (<span class="font-light">script</span>) webs
                         — written</span>
                 </div>
@@ -1026,14 +1023,14 @@
                 <!-- Arrow + Stat Box -->
                 <div class="flex flex-col items-center gap-1 mb-2">
                     <div class="connector connector--lg">&#8593;</div>
-                    <div class="summary-btn border-[#0000ff] border-4 w-full">
-                        <div class="stat-labelx text-black">Primary</div>
+                    <div class="border-[#0000ff] border-4 w-full summary-btn">
+                        <div class="text-black stat-labelx">Primary</div>
                         <div class="stat-value mono">1</div>
                     </div>
                 </div>
 
                 <!-- Label 3 -->
-                <div class="text-center mt-3">
+                <div class="mt-3 text-center">
                     <span class="mobile-section-label">Official languages
                         <span class="font-light">(country constitution)</span> — spoken</span>
                 </div>
@@ -1047,7 +1044,7 @@
 
             <div style="position: relative; z-index: 2;">
                 <!-- Zimbabwe Card -->
-                <div class="country-unit mb-3">
+                <div class="mb-3 country-unit">
                     <a href="#zimbabwe" class="card-link" aria-label="Open Zimbabwe knowledge web" onclick="
               event.preventDefault();
               openComingSoon('Coming Soon...');
@@ -1070,7 +1067,7 @@
                                     <span class="dot dot-3"></span>
                                 </div>
                             </div>
-                            <div class="grid grid-cols-2 gap-2">
+                            <div class="gap-2 grid grid-cols-2">
                                 <div class="stat-wip tick-blue">
                                     <div class="stat-label">Cities / towns</div>
                                     <div class="stat-value mono">300+</div>
@@ -1080,7 +1077,7 @@
                                     <div class="stat-value mono">1,200</div>
                                 </div>
                             </div>
-                            <div class="stat-wip tick-red w-full">
+                            <div class="w-full stat-wip tick-red">
                                 <div class="stat-label">World bilateral</div>
                                 <div class="stat-value mono">194</div>
                             </div>
@@ -1089,7 +1086,7 @@
                 </div>
 
                 <!-- Label 1 -->
-                <div class="text-center mt-3 mb-1">
+                <div class="mt-3 mb-1 text-center">
                     <span class="mobile-section-label">Country Stack: English
                         <span class="font-light">(Latin alphabet)</span> language localised
                         base-line</span>
@@ -1098,11 +1095,11 @@
                 <!-- Arrow + Language Box -->
                 <div class="flex flex-col items-center gap-1 mb-3">
                     <div class="connector connector--lg">&#8593;</div>
-                    <div class="lang-box w-full">Shona</div>
+                    <div class="w-full lang-box">Shona</div>
                 </div>
 
                 <!-- Label 2 -->
-                <div class="text-center mt-3 mb-2">
+                <div class="mt-3 mb-2 text-center">
                     <span class="mobile-section-label">Language knowledge (<span class="font-light">script</span>) webs
                         — written</span>
                 </div>
@@ -1110,14 +1107,14 @@
                 <!-- Arrow + Stat Box -->
                 <div class="flex flex-col items-center gap-1 mb-2">
                     <div class="connector connector--lg">&#8593;</div>
-                    <div class="summary-btn border-[#0000ff] border-4 w-full">
-                        <div class="stat-labelx text-black">Official</div>
+                    <div class="border-[#0000ff] border-4 w-full summary-btn">
+                        <div class="text-black stat-labelx">Official</div>
                         <div class="stat-value mono">16</div>
                     </div>
                 </div>
 
                 <!-- Label 3 -->
-                <div class="text-center mt-3">
+                <div class="mt-3 text-center">
                     <span class="mobile-section-label">Official languages
                         <span class="font-light">(country constitution)</span> — spoken</span>
                 </div>
@@ -1142,13 +1139,13 @@
     <!-- Coming soon modal -->
     <div class="modal fade" id="comingSoonModal" tabindex="-1" aria-labelledby="comingSoonTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content border-0 rounded-3 shadow">
-                <div class="modal-body text-center p-4">
-                    <h5 class="modal-title text-slate-800 fw-semibold mb-4" id="comingSoonTitle">
+            <div class="shadow border-0 rounded-3 modal-content">
+                <div class="p-4 text-center modal-body">
+                    <h5 class="mb-4 text-slate-800 modal-title fw-semibold" id="comingSoonTitle">
                         Hi
                     </h5>
 
-                    <button type="button" class="btn btn-primary px-4" onclick="closeComingSoon()">
+                    <button type="button" class="px-4 btn btn-primary" onclick="closeComingSoon()">
                         Close
                     </button>
                 </div>
