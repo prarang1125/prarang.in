@@ -605,7 +605,7 @@
                         <a target="_blank" href="{{ $confirmUrl }}"
                             class="inline-flex items-center justify-center px-2 py-1 text-sm font-black text-white no-underline transition-all bg-blue-600 rounded hover:bg-blue-700">
                             @if($type === 'town')
-                            Enter city Web
+                            Enter City Web
                             @else
                             Enter Village Web
                             @endif
