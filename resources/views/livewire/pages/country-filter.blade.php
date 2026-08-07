@@ -3,16 +3,13 @@
     <div class="text-center ">
         <div class="flex items-center justify-center ">
             <div class="relative w-24 h-24 shrink-0">
-                <img
-                    src="{{ asset('assets/images/sticker.png') }}"
-                    alt="Sticker"
-                    class="w-full h-full">
+                <img src="{{ asset('assets/images/sticker.png') }}" alt="Sticker" class="w-full h-full">
                 <span class="absolute inset-0 flex items-center pl-8 text-xs font-extrabold text-black md:mt-1">
                     194 <br>Webs
                 </span>
             </div>
             <h2 class="pt-3 text-xl font-semibold tracking-tighter text-blue-800 md:text-xl">
-                India Bilateral - Website of Websites
+                India Bilateral Stack: Website of Websites
             </h2>
         </div>
     </div>
@@ -37,9 +34,7 @@
                             {{-- Trigger button --}}
                             <!-- <div class="relative w-full "> -->
                             <div class="relative w-40 mb-1">
-                                <button
-                                    type="button"
-                                    @click="open = !open"
+                                <button type="button" @click="open = !open"
                                     class="flex items-center justify-between w-full overflow-hidden bg-white border border-yellow-400 rounded-md">
                                     <!-- Selected Text -->
                                     <span class="flex-1 px-3 py-1.5 text-xs font-medium text-left truncate
@@ -47,17 +42,12 @@
                                         {{ $selectedContinent ?? 'Choose...' }}
                                     </span>
                                     <!-- Yellow Arrow -->
-                                    <span class="flex items-center self-stretch justify-center w-8 bg-yellow-400 border-l border-yellow-400 shrink-0">
-                                        <svg
-                                            class="w-4 h-4 transition-transform duration-200 text-slate-800"
-                                            :class="open ? 'rotate-180' : ''"
-                                            fill="none"
-                                            stroke="currentColor"
+                                    <span
+                                        class="flex items-center self-stretch justify-center w-8 bg-yellow-400 border-l border-yellow-400 shrink-0">
+                                        <svg class="w-4 h-4 transition-transform duration-200 text-slate-800"
+                                            :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24">
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2.5"
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                                 d="M19 9l-7 7-7-7" />
                                         </svg>
                                     </span>
@@ -81,8 +71,7 @@
                                     </div>
                                     <div class="overflow-y-auto max-h-40 custom-scrollbar-premium">
                                         @forelse($continents as $continent)
-                                        <button type="button"
-                                            wire:key="continent-{{ $continent }}"
+                                        <button type="button" wire:key="continent-{{ $continent }}"
                                             x-show="'{{ strtolower($continent) }}'.includes(search.toLowerCase())"
                                             @click="$wire.set('selectedContinent', '{{ $continent }}'); open = false; search = ''"
                                             class="w-full px-4 py-1 text-sm font-bold text-left transition-all duration-200 rounded-xl text-slate-700 hover:bg-blue-600 hover:text-white">
@@ -92,7 +81,8 @@
                                             </span>
                                         </button>
                                         @empty
-                                        <div class="px-4 py-3 text-sm font-medium text-slate-400">No continents found</div>
+                                        <div class="px-4 py-3 text-sm font-medium text-slate-400">No continents found
+                                        </div>
                                         @endforelse
                                     </div>
                                 </div>
@@ -116,13 +106,13 @@
                             {{-- Trigger button --}}
                             <!-- <div class="relative w-full "> -->
                             <div class="relative w-40 mb-1">
-                                <button
-                                    type="button"
-                                    @click="if({{ $selectedContinent ? 'true' : 'false' }}) open = !open"
-                                    {{ !$selectedContinent ? 'disabled' : '' }}
+                                <button type="button"
+                                    @click="if({{ $selectedContinent ? 'true' : 'false' }}) open = !open" {{
+                                    !$selectedContinent ? 'disabled' : '' }}
                                     class="flex items-center justify-between w-full overflow-hidden bg-white border border-yellow-400 rounded-md {{ !$selectedContinent ? 'opacity-60 cursor-not-allowed bg-slate-100' : '' }}">
                                     <!-- Selected Country -->
-                                    <span class="flex-1 px-3 py-1.5 text-xs font-medium text-left truncate {{ $selectedCountryId ? 'text-slate-700' : 'text-slate-400' }}">
+                                    <span
+                                        class="flex-1 px-3 py-1.5 text-xs font-medium text-left truncate {{ $selectedCountryId ? 'text-slate-700' : 'text-slate-400' }}">
                                         @php
                                         $selectedCountry = collect($filteredCountries)
                                         ->firstWhere('id', $selectedCountryId);
@@ -130,17 +120,12 @@
                                         {{ $selectedCountry ? $selectedCountry['Country'] : 'Choose...' }}
                                     </span>
                                     <!-- Yellow Arrow -->
-                                    <span class="flex items-center self-stretch justify-center w-8 bg-yellow-400 border-l border-yellow-400 shrink-0">
-                                        <svg
-                                            class="w-4 h-4 transition-transform duration-200 text-slate-800"
-                                            :class="open ? 'rotate-180' : ''"
-                                            fill="none"
-                                            stroke="currentColor"
+                                    <span
+                                        class="flex items-center self-stretch justify-center w-8 bg-yellow-400 border-l border-yellow-400 shrink-0">
+                                        <svg class="w-4 h-4 transition-transform duration-200 text-slate-800"
+                                            :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor"
                                             viewBox="0 0 24 24">
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2.5"
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                                 d="M19 9l-7 7-7-7" />
                                         </svg>
                                     </span>
@@ -164,8 +149,7 @@
                                     </div>
                                     <div class="h-40 overflow-y-auto custom-scrollbar-premium">
                                         @forelse($filteredCountries as $country)
-                                        <button type="button"
-                                            wire:key="country-{{ $country['id'] }}"
+                                        <button type="button" wire:key="country-{{ $country['id'] }}"
                                             x-show="'{{ strtolower($country['Country']) }}'.includes(search.toLowerCase())"
                                             @click="$wire.set('selectedCountryId', {{ $country['id'] }}); open = false; search = ''"
                                             class="w-full px-4 py-1 text-sm font-bold text-left transition-all duration-200 rounded-xl text-slate-700 hover:bg-blue-600 hover:text-white">
@@ -184,20 +168,18 @@
                 </div>
                 <div class="hidden xl:block"></div>
             </div>
-            {{-- Confirm Button  --}}
+            {{-- Confirm Button --}}
             @if($selectedCountryId)
             <div class="mt-2 border-t border-slate-100">
                 <div class="grid justify-center mt-2">
                     <div class="w-full transition-all duration-500 scale-100 opacity-100 sm:w-auto">
-                        <a
-                            target="_blank"
-                            href="{{ url('/') }}/{{ $selectedIs }}"
+                        <a target="_blank" href="{{ url('/') }}/{{ $selectedIs }}"
                             class="inline-flex items-center justify-center px-2 py-1 text-sm font-black text-white no-underline transition-all bg-blue-600 rounded-xl hover:bg-blue-700">
                             Confirm Selection
-                            <svg class="w-5 h-5 transition-transform group-hover:translate-x-1"
-                                fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round"
-                                    stroke-width="3" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                            <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none"
+                                stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
+                                    d="M13 7l5 5m0 0l-5 5m5-5H6" />
                             </svg>
                         </a>
                         </a>

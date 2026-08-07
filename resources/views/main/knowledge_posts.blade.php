@@ -1,8 +1,8 @@
 @php
-    $metaData = [
-        'nav-heading' => 'Content: Knowledge Posts',
-        'nav-sub-heading' => 'Glocal For Hyperlocal',
-    ];
+$metaData = [
+'nav-heading' => 'Content: Knowledge Posts',
+'nav-sub-heading' => 'Glocal For Hyperlocal',
+];
 @endphp
 <x-layout.main.base :metaData="$metaData">
     <style>
@@ -222,42 +222,296 @@
             </div>
         </div>
 
-        <div class="city-tabs">
-            <div class="city-tabs-label">India-Cities-Hindi :</div>
-            <div class="city-tabs-list">
-                <a class="city-tab" href="https://www.prarang.in/lucknow/all-posts" target="_blank">Lucknow</a>
-                <a class="city-tab" href="https://www.prarang.in/meerut/all-posts" target="_blank">Meerut</a>
-                <a class="city-tab" href="https://www.prarang.in/rampur/all-posts" target="_blank">Rampur</a>
-                <a class="city-tab" href="https://www.prarang.in/jaunpur/all-posts" target="_blank">Jaunpur</a>
-                <a class="city-tab" href="https://www.prarang.in/shahjahanpur/all-posts"
-                    target="_blank">Shahjahanpur</a>
+        <div class="space-y-6">
 
+            <div>
+
+                <h4 class="text-sm font-black text-slate-900 uppercase tracking-wide mb-3 ">
+                    India-Cities-Hindi
+
+                </h4>
+                <div class="flex flex-wrap gap-3">
+
+                    <a href="https://prarang.in/lucknow/all-posts" target="_blank"
+                        class="group flex items-center gap-3 bg-white border border-slate-200 px-4 py-3 rounded-2xl hover:shadow-lg hover:border-blue-300 transition-all duration-300 no-underline cursor-pointer">
+                        <div
+                            class="w-10 h-10 rounded-full overflow-hidden border-2 border-slate-100 group-hover:border-blue-200 transition-colors duration-300 flex-shrink-0">
+                            <img src="https://www.prarang.in/assets/images/home/town-1.png" alt="Lucknow"
+                                class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        </div>
+                        <span
+                            class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors whitespace-nowrap">
+                            Lucknow
+                        </span>
+                        <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </a>
+                    <!--[if ENDBLOCK]><![endif]-->
+                    <!--[if BLOCK]><![endif]-->
+                    <div x-data="{ open: false }" class="relative">
+                        <button @click="open = !open"
+                            class="group flex items-center gap-3 bg-white border border-slate-200 px-4 py-3 rounded-2xl hover:shadow-lg hover:border-blue-300 transition-all duration-300 no-underline cursor-pointer">
+                            <div
+                                class="w-10 h-10 rounded-full overflow-hidden border-2 border-slate-100 group-hover:border-blue-200 transition-colors duration-300 flex-shrink-0">
+                                <img src="https://www.prarang.in/assets/images/home/town-1.png" alt="Meerut"
+                                    class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            </div>
+                            <span
+                                class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors whitespace-nowrap">
+                                Meerut
+                            </span>
+                            <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-600 transition-all duration-300 flex-shrink-0"
+                                :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div x-show="open" @click.away="open = false" x-transition=""
+                            class="absolute left-0 mt-2 w-48 bg-white border border-slate-100 rounded-2xl shadow-2xl p-2 z-[100]"
+                            style="display: none;">
+                            <!--[if BLOCK]><![endif]--> <a href="https://prarang.in/meerut/all-posts" target="_blank"
+                                class="block w-full text-left px-4 py-2.5 rounded-xl text-[.8125rem] font-bold text-slate-700 hover:bg-blue-600 hover:text-white transition-all duration-200 no-underline">
+                                Main Portal
+                            </a>
+                            <a href="https://meerutrang.in/लेख" target="_blank"
+                                class="block w-full text-left px-4 py-2.5 rounded-xl text-[.8125rem] font-bold text-slate-700 hover:bg-blue-600 hover:text-white transition-all duration-200 no-underline">
+                                English Domain
+                            </a>
+                            <a href="https://मेरठरंग.भारत/लेख" target="_blank"
+                                class="block w-full text-left px-4 py-2.5 rounded-xl text-[.8125rem] font-bold text-slate-700 hover:bg-blue-600 hover:text-white transition-all duration-200 no-underline">
+                                Hindi Domain
+                            </a>
+                            <!--[if ENDBLOCK]><![endif]-->
+                        </div>
+                    </div>
+                    <!--[if ENDBLOCK]><![endif]-->
+                    <!--[if BLOCK]><![endif]--> <a href="https://prarang.in/rampur/all-posts" target="_blank"
+                        class="group flex items-center gap-3 bg-white border border-slate-200 px-4 py-3 rounded-2xl hover:shadow-lg hover:border-blue-300 transition-all duration-300 no-underline cursor-pointer">
+                        <div
+                            class="w-10 h-10 rounded-full overflow-hidden border-2 border-slate-100 group-hover:border-blue-200 transition-colors duration-300 flex-shrink-0">
+                            <img src="https://www.prarang.in/assets/images/home/town-1.png" alt="Rampur"
+                                class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        </div>
+                        <span
+                            class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors whitespace-nowrap">
+                            Rampur
+                        </span>
+                        <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </a>
+                    <!--[if ENDBLOCK]><![endif]-->
+                    <!--[if BLOCK]><![endif]--> <a href="https://prarang.in/jaunpur/all-posts" target="_blank"
+                        class="group flex items-center gap-3 bg-white border border-slate-200 px-4 py-3 rounded-2xl hover:shadow-lg hover:border-blue-300 transition-all duration-300 no-underline cursor-pointer">
+                        <div
+                            class="w-10 h-10 rounded-full overflow-hidden border-2 border-slate-100 group-hover:border-blue-200 transition-colors duration-300 flex-shrink-0">
+                            <img src="https://www.prarang.in/assets/images/home/town-1.png" alt="Jaunpur"
+                                class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        </div>
+                        <span
+                            class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors whitespace-nowrap">
+                            Jaunpur
+                        </span>
+                        <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </a>
+                    <!--[if ENDBLOCK]><![endif]-->
+                    <!--[if BLOCK]><![endif]--> <a href="https://prarang.in/shahjahanpur/all-posts" target="_blank"
+                        class="group flex items-center gap-3 bg-white border border-slate-200 px-4 py-3 rounded-2xl hover:shadow-lg hover:border-blue-300 transition-all duration-300 no-underline cursor-pointer">
+                        <div
+                            class="w-10 h-10 rounded-full overflow-hidden border-2 border-slate-100 group-hover:border-blue-200 transition-colors duration-300 flex-shrink-0">
+                            <img src="https://www.prarang.in/assets/images/home/town-1.png" alt="Shahjahanpur"
+                                class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        </div>
+                        <span
+                            class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors whitespace-nowrap">
+                            Shahjahanpur
+                        </span>
+                        <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="https://prarang.in/munger/all-posts" target="_blank"
+                        class="group flex items-center gap-3 bg-white border border-slate-200 px-4 py-3 rounded-2xl hover:shadow-lg hover:border-blue-300 transition-all duration-300 no-underline cursor-pointer">
+                        <div
+                            class="w-10 h-10 rounded-full overflow-hidden border-2 border-slate-100 group-hover:border-blue-200 transition-colors duration-300 flex-shrink-0">
+                            <img src="https://www.prarang.in/assets/images/home/town-1.png" alt="munger"
+                                class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        </div>
+                        <span
+                            class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors whitespace-nowrap">
+                            Munger
+                        </span>
+                        <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </a>
+                    <a href="https://prarang.in/saharanpur/all-posts" target="_blank"
+                        class="group flex items-center gap-3 bg-white border border-slate-200 px-4 py-3 rounded-2xl hover:shadow-lg hover:border-blue-300 transition-all duration-300 no-underline cursor-pointer">
+                        <div
+                            class="w-10 h-10 rounded-full overflow-hidden border-2 border-slate-100 group-hover:border-blue-200 transition-colors duration-300 flex-shrink-0">
+                            <img src="https://www.prarang.in/assets/images/home/town-1.png" alt="saharanpur"
+                                class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        </div>
+                        <span
+                            class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors whitespace-nowrap">
+                            Saharanpur
+                        </span>
+                        <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+            <div>
+
+                <div class="flex flex-wrap gap-3">
+                    <!--[if BLOCK]><![endif]-->
+                    <!--[if BLOCK]><![endif]--> <a href="https://prarang.in/haridwar/all-posts" target="_blank"
+                        class="group flex items-center gap-3 bg-white border border-slate-200 px-4 py-3 rounded-2xl hover:shadow-lg hover:border-blue-300 transition-all duration-300 no-underline cursor-pointer">
+                        <div
+                            class="w-10 h-10 rounded-full overflow-hidden border-2 border-slate-100 group-hover:border-blue-200 transition-colors duration-300 flex-shrink-0">
+                            <img src="https://www.prarang.in/assets/images/home/town-1.png" alt="Haridwar"
+                                class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        </div>
+                        <span
+                            class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors whitespace-nowrap">
+                            Haridwar
+                        </span>
+                        <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </a>
+                    <!--[if ENDBLOCK]><![endif]-->
+                    <!--[if BLOCK]><![endif]--> <a href="https://prarang.in/pithoragarh/all-posts" target="_blank"
+                        class="group flex items-center gap-3 bg-white border border-slate-200 px-4 py-3 rounded-2xl hover:shadow-lg hover:border-blue-300 transition-all duration-300 no-underline cursor-pointer">
+                        <div
+                            class="w-10 h-10 rounded-full overflow-hidden border-2 border-slate-100 group-hover:border-blue-200 transition-colors duration-300 flex-shrink-0">
+                            <img src="https://www.prarang.in/assets/images/home/town-1.png" alt="Pithoragarh"
+                                class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        </div>
+                        <span
+                            class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors whitespace-nowrap">
+                            Pithoragarh
+                        </span>
+                        <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </a>
+
+                </div>
+            </div>
+            <div>
+                <h4 class="text-sm font-black text-slate-900 uppercase tracking-wide mb-3">
+                    India-Cities-Marathi
+                </h4>
+                <div class="flex flex-wrap gap-3">
+                    <!--[if BLOCK]><![endif]-->
+                    <!--[if BLOCK]><![endif]--> <a href="https://www.prarang.in/pune/all-posts" target="_blank"
+                        class="group flex items-center gap-3 bg-white border border-slate-200 px-4 py-3 rounded-2xl hover:shadow-lg hover:border-blue-300 transition-all duration-300 no-underline cursor-pointer">
+                        <div
+                            class="w-10 h-10 rounded-full overflow-hidden border-2 border-slate-100 group-hover:border-blue-200 transition-colors duration-300 flex-shrink-0">
+                            <img src="https://www.prarang.in/assets/images/home/town-1.png" alt="Pune"
+                                class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        </div>
+                        <span
+                            class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors whitespace-nowrap">
+                            Pune
+                        </span>
+                        <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </a>
+
+                </div>
+            </div>
+
+            <div>
+                <h4 class="text-sm font-black text-slate-900 uppercase tracking-wide mb-3">
+                    Countries:
+                </h4>
+                <div class="flex flex-wrap gap-3">
+
+
+                    <div x-data="{ open: false }" class="relative">
+                        <button @click="open = !open"
+                            class="group flex items-center gap-3 bg-white border border-slate-200 px-4 py-3 rounded-2xl hover:shadow-lg hover:border-blue-300 transition-all duration-300 no-underline cursor-pointer">
+                            <div
+                                class="w-10 h-10 rounded-full overflow-hidden  group-hover:border-blue-200 transition-colors duration-300 flex-shrink-0">
+                                <img src="https://www.prarang.in/assets/images/World.png" alt="Meerut"
+                                    class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                            </div>
+                            <span
+                                class="text-sm font-bold text-blue-600 group-hover:text-blue-600 transition-colors whitespace-nowrap">
+                                India - Czech
+                            </span>
+                            <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-600 transition-all duration-300 flex-shrink-0"
+                                :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                    d="M19 9l-7 7-7-7"></path>
+                            </svg>
+                        </button>
+                        <div x-show="open" @click.away="open = false" x-transition=""
+                            class="absolute left-0 mt-2 w-48 bg-white border border-slate-100 rounded-2xl shadow-2xl p-2 z-[100]"
+                            style="display: none;">
+                            <!--[if BLOCK]><![endif]--> <a href="https://www.prarang.in/india-czech-republic/all-posts"
+                                target="_blank"
+                                class="block w-full text-left px-4 py-2.5 rounded-xl text-[.8125rem] font-bold text-slate-700 hover:bg-blue-600 hover:text-white transition-all duration-200 no-underline">
+                                Indo-Czech (Prarang Domain)
+                            </a>
+                            <a href="https://www.indiaczech.com" target="_blank"
+                                class="block w-full text-left px-4 py-2.5 rounded-xl text-[.4125rem] font-bold text-slate-700 hover:bg-blue-600 hover:text-white transition-all duration-200 no-underline">
+                                Indo-Czech (External Domain)
+                            </a>
+
+                            <!--[if ENDBLOCK]><![endif]-->
+                        </div>
+                    </div>
+                    <a href="https://www.prarang.in/india-nepal/all-posts" target="_blank"
+                        class="group flex items-center gap-3 bg-white border border-slate-200 px-4 py-3 rounded-2xl hover:shadow-lg hover:border-blue-300 transition-all duration-300 no-underline cursor-pointer">
+                        <div
+                            class="w-10 h-10 rounded-full overflow-hidden  group-hover:border-blue-200 transition-colors duration-300 flex-shrink-0">
+                            <img src="https://www.prarang.in/assets/images/World.png" alt="Lucknow"
+                                class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        </div>
+                        <span
+                            class="text-sm font-bold text-slate-800 group-hover:text-blue-600 transition-colors whitespace-nowrap">
+                            India - Nepal
+                        </span>
+                        <svg class="w-4 h-4 text-slate-400 group-hover:text-blue-600 group-hover:translate-x-1 transition-all duration-300 flex-shrink-0"
+                            fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7">
+                            </path>
+                        </svg>
+                    </a>
+
+                </div>
             </div>
         </div>
 
-        <div class="city-tabs">
-            <div class="city-tabs-label">India-Cities-Marathi:</div>
-            <div class="city-tabs-list">
-                <a class="city-tab" href="https://www.prarang.in/pune/all-posts" target="_blank">Pune</a>
 
 
-            </div>
-        </div>
 
-        <div class="city-tabs">
-            <div class="city-tabs-label">Country :</div>
-            <div class="city-tabs-list">
-                <a class="city-tab" href="https://www.indiaczech.com/india-czech-republic/all-posts"
-                    target="_blank">India-Czech</a>
-                {{-- <a class="city-tab" href="#" target="_blank">India-Nepal</a> --}}
-                <span class="tooltip-wrap">
-                    <button type="button" class="btn btn-secondary city-tab" data-tooltip="Coming soon">
-                        India-Nepal
-                    </button>
-                    <span class="tooltip-bubble" role="status">Coming soon</span>
-                </span>
-            </div>
-        </div>
 
 
         <div class="modal fade modal-xl feature-modal" id="TheseMTw1" data-bs-backdrop="static" data-bs-keyboard="false"

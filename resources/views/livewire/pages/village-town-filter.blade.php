@@ -7,31 +7,27 @@
                     @if ($type === 'village')
                     <div class="flex flex-col items-center justify-center text-center sm:flex-row lg:gap-1">
                         <div class="relative w-20 h-20 shrink-0 sm:w-24 sm:h-24">
-                            <img
-                                src="{{ asset('assets/images/sticker.png') }}"
-                                alt="Sticker"
-                                class="w-full h-full">
-                            <span class="absolute inset-0 flex items-center pl-5 text-xs font-extrabold text-black md:mt-1">
+                            <img src="{{ asset('assets/images/sticker.png') }}" alt="Sticker" class="w-full h-full">
+                            <span
+                                class="absolute inset-0 flex items-center pl-5 text-xs font-extrabold text-black md:mt-1">
                                 592,765 <br> Webs
                             </span>
                         </div>
                         <h2 class="pt-3 text-xl font-semibold tracking-tighter text-blue-800 md:text-xl">
-                            Rural India - Website of Websites
+                            Rural India Stack: Website of Websites
                         </h2>
                     </div>
                     @else
                     <div class="flex flex-col items-center justify-center text-center sm:flex-row lg:gap-1">
                         <div class="relative w-16 h-16 shrink-0 sm:w-20 sm:h-20">
-                            <img
-                                src="{{ asset('assets/images/sticker.png') }}"
-                                alt="Sticker"
-                                class="w-full h-full">
+                            <img src="{{ asset('assets/images/sticker.png') }}" alt="Sticker" class="w-full h-full">
                             <span class="absolute inset-0 flex items-center pl-4 text-xs font-bold text-black md:mt-1 ">
                                 6,331 <br> Webs
                             </span>
                         </div>
-                        <h2 class="pt-3 text-lg font-semibold tracking-tight text-center text-blue-800 sm:text-xl lg:text-xl">
-                            Urban India - Website of Websites
+                        <h2
+                            class="pt-3 text-lg font-semibold tracking-tight text-center text-blue-800 sm:text-xl lg:text-xl">
+                            Urban India Stack: Website of Websites
                         </h2>
                     </div>
                     @endif
@@ -68,7 +64,8 @@
             </section>
             <section class="section-two">
                 <div class="flex justify-center ">
-                    <div class="mt-1 w-full lg:w-[90%] xl:w-[95%] mx-auto grid gap-3  {{ $type === 'village' ? 'grid-cols-1 sm:grid-cols-2 xl:grid-cols-4' : 'grid-cols-1 sm:grid-cols-2 xl:grid-cols-3' }}">
+                    <div
+                        class="mt-1 w-full lg:w-[90%] xl:w-[95%] mx-auto grid gap-3  {{ $type === 'village' ? 'grid-cols-1 sm:grid-cols-2 xl:grid-cols-4' : 'grid-cols-1 sm:grid-cols-2 xl:grid-cols-3' }}">
                         {{-- ── Step 1: State ──────────────────────────────────────────── --}}
                         <div
                             class="flex flex-col items-center w-full p-1 transition-all duration-300 bg-white border-yellow-300 shadow-md border-1 rounded-2xl hover:-translate-y-1 hover:border-yellow-400 hover:shadow-xl">
@@ -79,8 +76,10 @@
                                             <span
                                                 class="flex items-center justify-center w-8 h-8 rounded-xl shadow-sm {{ $state ? 'bg-emerald-100 text-emerald-600' : 'bg-blue-100 text-blue-600' }} font-bold transition-all duration-300">
                                                 @if ($state)
-                                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+                                                <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="3" d="M5 13l4 4L19 7" />
                                                 </svg>
                                                 @else
                                                 01
@@ -100,12 +99,11 @@
                                     </div>
 
                                     <div class="relative w-40 mb-1">
-                                        <button
-                                            type="button"
-                                            @click="open = !open"
+                                        <button type="button" @click="open = !open"
                                             class="flex items-center justify-between w-full overflow-hidden bg-white border border-yellow-400 rounded-md">
                                             <!-- Selected State -->
-                                            <span class="flex-1 px-3 py-1.5 text-xs font-medium text-left truncate {{ $state ? 'text-slate-700' : 'text-slate-400' }}">
+                                            <span
+                                                class="flex-1 px-3 py-1.5 text-xs font-medium text-left truncate {{ $state ? 'text-slate-700' : 'text-slate-400' }}">
                                                 @php
                                                 $sState = collect($states)->where('id', $state)->first();
                                                 echo $sState
@@ -116,18 +114,13 @@
                                                 @endphp
                                             </span>
                                             <!-- Yellow Arrow -->
-                                            <span class="flex items-center self-stretch justify-center w-8 bg-yellow-400 border-l border-yellow-400 shrink-0">
-                                                <svg
-                                                    class="w-4 h-4 transition-transform duration-200 text-slate-800"
-                                                    :class="open ? 'rotate-180' : ''"
-                                                    fill="none"
-                                                    stroke="currentColor"
+                                            <span
+                                                class="flex items-center self-stretch justify-center w-8 bg-yellow-400 border-l border-yellow-400 shrink-0">
+                                                <svg class="w-4 h-4 transition-transform duration-200 text-slate-800"
+                                                    :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24">
-                                                    <path
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        stroke-width="2.5"
-                                                        d="M19 9l-7 7-7-7" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2.5" d="M19 9l-7 7-7-7" />
                                                 </svg>
                                             </span>
                                         </button>
@@ -142,7 +135,8 @@
                                                     class="w-full py-2 pl-10 text-sm font-semibold transition-all border-none outline-none bg-slate-50 rounded-xl focus:ring-2 focus:ring-blue-100">
                                                 <svg class="absolute left-3.5 top-3 w-4 h-4 text-slate-400" fill="none"
                                                     stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2.5"
                                                         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                                 </svg>
                                             </div>
@@ -167,7 +161,8 @@
                             </div>
                         </div>
                         {{-- ── Step 2: District ───────────────────────────────────────── --}}
-                        <div class="flex flex-col items-center w-full p-1 transition-all duration-300 bg-white border-yellow-300 shadow-md border-1 rounded-2xl hover:-translate-y-1 hover:border-yellow-400 hover:shadow-xl">
+                        <div
+                            class="flex flex-col items-center w-full p-1 transition-all duration-300 bg-white border-yellow-300 shadow-md border-1 rounded-2xl hover:-translate-y-1 hover:border-yellow-400 hover:shadow-xl">
                             <div class="flex flex-col items-center">
                                 <div class="space-y-1" x-data="{ open: false, search: '' }">
                                     <div class="flex items-center justify-between ">
@@ -214,16 +209,14 @@
                                         </p>
                                     </div>
                                     <div class="relative w-40 mb-1">
-                                        <div
-                                            x-data="{ open:false, search:'' }"
-                                            class="relative w-full">
-                                            <button
-                                                type="button"
-                                                @click="if({{ $state ? 'true' : 'false' }}) open = !open"
-                                                {{ !$state ? 'disabled' : '' }}
+                                        <div x-data="{ open:false, search:'' }" class="relative w-full">
+                                            <button type="button"
+                                                @click="if({{ $state ? 'true' : 'false' }}) open = !open" {{ !$state
+                                                ? 'disabled' : '' }}
                                                 class="flex w-full items-center justify-between overflow-hidden rounded-md border border-yellow-400 bg-white {{ !$state ? 'opacity-60 cursor-not-allowed bg-slate-100' : '' }}">
                                                 <!-- Left Text -->
-                                                <span class="flex-1 px-3 py-1.5 text-xs font-medium text-left truncate {{ $district ? 'text-slate-700' : 'text-slate-400' }}">
+                                                <span
+                                                    class="flex-1 px-3 py-1.5 text-xs font-medium text-left truncate {{ $district ? 'text-slate-700' : 'text-slate-400' }}">
                                                     @php
                                                     $sDistrict = collect($districts)->where('id', $district)->first();
                                                     echo $sDistrict
@@ -236,18 +229,13 @@
                                                     @endphp
                                                 </span>
                                                 <!-- Yellow Arrow -->
-                                                <span class="flex items-center self-stretch justify-center w-8 bg-yellow-400 border-l border-yellow-400 shrink-0">
-                                                    <svg
-                                                        class="w-4 h-4 transition-transform duration-200 text-slate-800"
-                                                        :class="open ? 'rotate-180' : ''"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        viewBox="0 0 24 24">
-                                                        <path
-                                                            stroke-linecap="round"
-                                                            stroke-linejoin="round"
-                                                            stroke-width="2.5"
-                                                            d="M19 9l-7 7-7-7" />
+                                                <span
+                                                    class="flex items-center self-stretch justify-center w-8 bg-yellow-400 border-l border-yellow-400 shrink-0">
+                                                    <svg class="w-4 h-4 transition-transform duration-200 text-slate-800"
+                                                        :class="open ? 'rotate-180' : ''" fill="none"
+                                                        stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2.5" d="M19 9l-7 7-7-7" />
                                                     </svg>
                                                 </span>
                                             </button>
@@ -257,11 +245,11 @@
                                                 x-transition:enter-end="opacity-100 translate-y-0"
                                                 class="absolute z-50 w-full mt-1 overflow-hidden bg-white border shadow-2xl border-slate-100 rounded-2xl">
                                                 <div class="relative mb-1 ">
-                                                    <input type="text" x-model="search" placeholder="Search districts..."
-                                                        autocomplete="off"
+                                                    <input type="text" x-model="search"
+                                                        placeholder="Search districts..." autocomplete="off"
                                                         class="w-full py-2 pl-10 text-sm font-semibold transition-all border-none outline-none bg-slate-50 rounded-xl focus:ring-2 focus:ring-blue-100">
-                                                    <svg class="absolute left-3.5 top-3 w-4 h-4 text-slate-400" fill="none"
-                                                        stroke="currentColor" viewBox="0 0 24 24">
+                                                    <svg class="absolute left-3.5 top-3 w-4 h-4 text-slate-400"
+                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             stroke-width="2.5"
                                                             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -293,7 +281,8 @@
                         </div>
                         {{-- ── Step 3 (Village Only): Block ───────────────────────── --}}
                         @if ($type === 'village')
-                        <div class="flex flex-col items-center w-full p-1 transition-all duration-300 bg-white border-yellow-300 shadow-md border-1 rounded-2xl hover:-translate-y-1 hover:border-yellow-400 hover:shadow-xl">
+                        <div
+                            class="flex flex-col items-center w-full p-1 transition-all duration-300 bg-white border-yellow-300 shadow-md border-1 rounded-2xl hover:-translate-y-1 hover:border-yellow-400 hover:shadow-xl">
                             <div class="flex flex-col items-center">
                                 <div class="space-y-1" x-data="{ open: false, search: '' }">
                                     <div class="flex items-center justify-between ">
@@ -302,8 +291,8 @@
                                                 class="flex items-center justify-center w-8 h-8 rounded-xl shadow-sm  {{ $subDistrict ? 'bg-emerald-100 text-emerald-600' : ($district ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-400') }}">
                                                 <div wire:loading wire:target="district">
                                                     <svg class="w-5 h-5 animate-spin" fill="" viewBox="0 0 24 24">
-                                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
-                                                            stroke-width="4">
+                                                        <circle class="opacity-25" cx="12" cy="12" r="10"
+                                                            stroke="currentColor" stroke-width="4">
                                                         </circle>
                                                         <path class="opacity-75" fill="currentColor"
                                                             d="M4 12a8 8 0 018-8V0C5.373 0 0  5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
@@ -312,17 +301,17 @@
                                                 </div>
                                                 <div wire:loading.remove wire:target="district">
                                                     @if($subDistrict)
-                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3"
-                                                            d="M5 13l4 4L19 7" />
+                                                    <svg class="w-5 h-5" fill="none" stroke="currentColor"
+                                                        viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="3" d="M5 13l4 4L19 7" />
                                                     </svg>
                                                     @else
                                                     03
                                                     @endif
                                                 </div>
                                             </span>
-                                            <img
-                                                class="object-contain w-20 h-20 transition-all duration-300 group-hover:scale-110"
+                                            <img class="object-contain w-20 h-20 transition-all duration-300 group-hover:scale-110"
                                                 src="{{ asset('assets/images/filter/block.png') }}" />
                                         </div>
                                     </div>
@@ -335,15 +324,16 @@
                                         </p>
                                     </div>
                                     <div class="relative w-40 mb-1">
-                                        <button
-                                            type="button"
-                                            @click="if({{ $district ? 'true' : 'false' }}) open = !open"
-                                            {{ !$district ? 'disabled' : '' }}
+                                        <button type="button"
+                                            @click="if({{ $district ? 'true' : 'false' }}) open = !open" {{ !$district
+                                            ? 'disabled' : '' }}
                                             class="flex w-full items-center justify-between overflow-hidden rounded-md border border-yellow-400 bg-white {{ !$district ? 'opacity-60 cursor-not-allowed bg-slate-100' : '' }}">
                                             <!-- Selected Block -->
-                                            <span class="flex-1 px-3 py-1.5 text-xs font-medium text-left truncate {{ $subDistrict ? 'text-slate-700' : 'text-slate-400' }}">
+                                            <span
+                                                class="flex-1 px-3 py-1.5 text-xs font-medium text-left truncate {{ $subDistrict ? 'text-slate-700' : 'text-slate-400' }}">
                                                 @php
-                                                $sSubDistrict = collect($subDistricts)->where('id', $subDistrict)->first();
+                                                $sSubDistrict = collect($subDistricts)->where('id',
+                                                $subDistrict)->first();
                                                 echo $sSubDistrict
                                                 ? (is_array($sSubDistrict)
                                                 ? $sSubDistrict['name'] ?? 'Selected'
@@ -352,16 +342,13 @@
                                                 @endphp
                                             </span>
                                             <!-- Yellow Arrow -->
-                                            <span class="flex items-center self-stretch justify-center w-8 bg-yellow-400 border-l border-yellow-400 shrink-0">
-                                                <svg
-                                                    class="w-4 h-4 transition-transform duration-200 text-slate-800"
-                                                    :class="open ? 'rotate-180' : ''"
-                                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                    <path
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        stroke-width="2.5"
-                                                        d="M19 9l-7 7-7-7" />
+                                            <span
+                                                class="flex items-center self-stretch justify-center w-8 bg-yellow-400 border-l border-yellow-400 shrink-0">
+                                                <svg class="w-4 h-4 transition-transform duration-200 text-slate-800"
+                                                    :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor"
+                                                    viewBox="0 0 24 24">
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2.5" d="M19 9l-7 7-7-7" />
                                                 </svg>
                                             </span>
                                         </button>
@@ -375,8 +362,10 @@
                                                     <input type="text" x-model="search" placeholder="Search blocks..."
                                                         autocomplete="off"
                                                         class="w-full py-2 pl-10 text-sm font-semibold transition-all border-none outline-none bg-slate-50 rounded-xl focus:ring-2 focus:ring-blue-100">
-                                                    <svg class="absolute left-3.5 top-3 w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
+                                                    <svg class="absolute left-3.5 top-3 w-4 h-4 text-slate-400"
+                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                                            stroke-width="2.5"
                                                             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                                     </svg>
                                                 </div>
@@ -406,7 +395,8 @@
                         </div>
                         @endif
                         {{-- ── Step 3/4 : Village / City ───────────────────────────── --}}
-                        <div class="flex flex-col items-center w-full p-1 transition-all duration-300 bg-white border-yellow-300 shadow-md border-1 rounded-2xl hover:-translate-y-1 hover:border-yellow-400 hover:shadow-xl">
+                        <div
+                            class="flex flex-col items-center w-full p-1 transition-all duration-300 bg-white border-yellow-300 shadow-md border-1 rounded-2xl hover:-translate-y-1 hover:border-yellow-400 hover:shadow-xl">
                             <div class="flex flex-col items-center">
                                 <div class="space-y-1 " x-data=" { open: false, search: '' }">
                                     @php
@@ -441,8 +431,7 @@
                                                     @endif
                                                 </div>
                                             </span>
-                                            <img
-                                                class="object-contain w-20 h-20 transition-all duration-300 group-hover:scale-110"
+                                            <img class="object-contain w-20 h-20 transition-all duration-300 group-hover:scale-110"
                                                 src=" {{ asset($type === 'town' ? 'assets/images/filter/city.png' : 'assets/images/filter/village.png') }}"
                                                 alt="{{ $type === 'town' ? 'City' : 'Village' }}">
                                         </div>
@@ -459,13 +448,13 @@
                                         </p>
                                     </div>
                                     <div class="relative w-40 mb-1">
-                                        <button
-                                            type="button"
-                                            @click="if({{ $stepActive ? 'true' : 'false' }}) open = !open"
-                                            {{ !$stepActive ? 'disabled' : '' }}
+                                        <button type="button"
+                                            @click="if({{ $stepActive ? 'true' : 'false' }}) open = !open" {{
+                                            !$stepActive ? 'disabled' : '' }}
                                             class="flex w-full items-center justify-between overflow-hidden rounded-md border border-yellow-400 bg-white {{ !$stepActive ? 'opacity-60 cursor-not-allowed bg-slate-100' : '' }}">
                                             <!-- Selected City / Village -->
-                                            <span class="flex-1 px-3 py-1.5 text-xs font-medium text-left truncate {{ $stepDone ? 'text-slate-700' : 'text-slate-400' }}">
+                                            <span
+                                                class="flex-1 px-3 py-1.5 text-xs font-medium text-left truncate {{ $stepDone ? 'text-slate-700' : 'text-slate-400' }}">
                                                 @if ($type === 'town')
                                                 @php
                                                 $selectedTown = collect($towns)->where('id', (string)$town)->first();
@@ -477,7 +466,8 @@
                                                 @endphp
                                                 @else
                                                 @php
-                                                $selectedVillage = collect($villages)->where('id',(string)$village)->first();
+                                                $selectedVillage =
+                                                collect($villages)->where('id',(string)$village)->first();
                                                 echo $selectedVillage
                                                 ? (is_array($selectedVillage)
                                                 ? $selectedVillage['name'] ?? 'Selected'
@@ -487,18 +477,13 @@
                                                 @endif
                                             </span>
                                             <!-- Yellow Arrow -->
-                                            <span class="flex items-center self-stretch justify-center w-8 bg-yellow-400 border-l border-yellow-400 shrink-0">
-                                                <svg
-                                                    class="w-4 h-4 transition-transform duration-200 text-slate-800"
-                                                    :class="open ? 'rotate-180' : ''"
-                                                    fill="none"
-                                                    stroke="currentColor"
+                                            <span
+                                                class="flex items-center self-stretch justify-center w-8 bg-yellow-400 border-l border-yellow-400 shrink-0">
+                                                <svg class="w-4 h-4 transition-transform duration-200 text-slate-800"
+                                                    :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor"
                                                     viewBox="0 0 24 24">
-                                                    <path
-                                                        stroke-linecap="round"
-                                                        stroke-linejoin="round"
-                                                        stroke-width="2.5"
-                                                        d="M19 9l-7 7-7-7" />
+                                                    <path stroke-linecap="round" stroke-linejoin="round"
+                                                        stroke-width="2.5" d="M19 9l-7 7-7-7" />
                                                 </svg>
                                             </span>
                                         </button>
@@ -513,7 +498,8 @@
                                                         placeholder="Search {{ $type === 'town' ? 'cities' : 'villages' }}..."
                                                         autocomplete="off"
                                                         class="w-full py-2 pl-10 pr-4 text-sm font-semibold bg-white border-none outline-none rounded-xl focus:ring-2 focus:ring-blue-100">
-                                                    <svg class="absolute left-3.5 top-3 w-4 h-4 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <svg class="absolute left-3.5 top-3 w-4 h-4 text-slate-400"
+                                                        fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                         <path stroke-linecap="round" stroke-linejoin="round"
                                                             stroke-width="2.5"
                                                             d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -622,23 +608,19 @@
                 @if ($type === 'town')
                 <div class="flex items-center justify-center gap-1">
                     <div class="relative w-20 h-20 shrink-0">
-                        <img
-                            src="{{ asset('assets/images/sticker.png') }}"
-                            alt="Sticker"
-                            class="w-full h-full">
+                        <img src="{{ asset('assets/images/sticker.png') }}" alt="Sticker" class="w-full h-full">
                         <span class="absolute inset-0 flex items-center pl-6 text-xs font-bold text-black ">
                             &nbsp;756 <br>Webs
                         </span>
                     </div>
-                    <h2 class="pt-3 text-lg font-semibold tracking-tight text-center text-blue-800 sm:text-xl lg:text-xl">
+                    <h2
+                        class="pt-3 text-lg font-semibold tracking-tight text-center text-blue-800 sm:text-xl lg:text-xl">
                         State & District Capital
                     </h2>
                 </div>
                 <div class="space-y-2" x-data="{ open: false, search: '' }">
                     <div class="relative w-full border-yellow-500 sm:w-56 border-1 rounded-xl">
-                        <button
-                            type="button"
-                            @click="open = !open"
+                        <button type="button" @click="open = !open"
                             class="relative w-full overflow-hidden transition-all duration-300 bg-white border group rounded-xl border-slate-200 hover:border-yellow-500 hover:shadow-md">
                             <div class="flex items-center justify-between px-3 py-2">
                                 <div class="flex items-center">
@@ -646,21 +628,17 @@
                                         <div class="text-xs tracking-wider uppercase text-slate-400">
                                             State / UT
                                         </div>
-                                        <div class="font-semibold {{ $cat_state ? 'text-slate-800' : 'text-slate-400' }}">
-                                            {{ $cat_state ? collect($states)->where('id', $cat_state)->first()->name ?? 'Selected' : 'Choose State...' }}
+                                        <div
+                                            class="font-semibold {{ $cat_state ? 'text-slate-800' : 'text-slate-400' }}">
+                                            {{ $cat_state ? collect($states)->where('id', $cat_state)->first()->name ??
+                                            'Selected' : 'Choose State...' }}
                                         </div>
                                     </div>
                                 </div>
-                                <svg
-                                    class="w-5 h-5 text-black transition-transform duration-300 "
-                                    :class="open ? 'rotate-180' : ''"
-                                    fill="none"
-                                    stroke="currentColor"
+                                <svg class="w-5 h-5 text-black transition-transform duration-300 "
+                                    :class="open ? 'rotate-180' : ''" fill="none" stroke="currentColor"
                                     viewBox="0 0 24 24">
-                                    <path
-                                        stroke-linecap="round"
-                                        stroke-linejoin="round"
-                                        stroke-width="2.5"
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                         d="M19 9l-7 7-7-7" />
                                 </svg>
                             </div>
@@ -670,10 +648,9 @@
                             <div class="relative ">
                                 <input type="text" x-model="search" placeholder="Search..."
                                     class="w-full py-2 pr-4 text-sm font-medium transition-all duration-200 border-none outline-none rounded-xl bg-slate-50 pl-9 focus:bg-white focus:ring-2 focus:ring-blue-100">
-                                <svg class="absolute left-2.5 top-2 w-3.5 h-3.5 text-slate-400"
-                                    fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2.5"
+                                <svg class="absolute left-2.5 top-2 w-3.5 h-3.5 text-slate-400" fill="none"
+                                    stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                         d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                                 </svg>
                             </div>
@@ -690,22 +667,29 @@
                         </div>
                     </div>
                 </div>
-                <span class="pt-2 text-sm text-slate-400">Select <span class="text-red-700" text-semibold>One</span> (out of 5) Categories</span>
+                <span class="pt-2 text-sm text-slate-400">Select <span class="text-red-700" text-semibold>One</span>
+                    (out of 5) Categories</span>
                 <div class="grid grid-cols-1 gap-2 mt-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5">
                     <x-filter-card title="01. State Capital" image="assets/images/filter/state-capital.png"
-                        model="selected_sc" :selected="$selected_sc ? collect($sc)->where('id', $selected_sc)->first()->name ?? null : null" :options="$sc" placeholder="Choose..."
-                        :disabled="!$cat_state" :count="count($sc)" />
+                        model="selected_sc"
+                        :selected="$selected_sc ? collect($sc)->where('id', $selected_sc)->first()->name ?? null : null"
+                        :options="$sc" placeholder="Choose..." :disabled="!$cat_state" :count="count($sc)" />
                     <x-filter-card title="02. District Capital (DHQ)" image="assets/images/filter/district-hq.png"
-                        model="selected_dhq" :selected="$selected_dhq ? collect($dhq)->where('id', $selected_dhq)->first()->name ?? null : null" :options="$dhq" placeholder="Choose..."
-                        :disabled="!$cat_state" :count="count($dhq)" />
+                        model="selected_dhq"
+                        :selected="$selected_dhq ? collect($dhq)->where('id', $selected_dhq)->first()->name ?? null : null"
+                        :options="$dhq" placeholder="Choose..." :disabled="!$cat_state" :count="count($dhq)" />
                     <x-filter-card title="03. Urban Agglomeration" image="assets/images/filter/urban-agglomeration.png"
-                        model="selected_ua" :selected="$selected_ua ? collect($ua)->where('id', $selected_ua)->first()->name ?? null : null" :options="$ua" placeholder="Choose..."
-                        :disabled="!$cat_state" :count="count($ua)" />
-                    <x-filter-card title="04. Municipal Corporation" image="assets/images/filter/municipal-corporation.png"
-                        model="selected_mcp" :selected="$selected_mcp ? collect($mcp)->where('id', $selected_mcp)->first()->name ?? null : null" :options="$mcp" placeholder="Choose..."
-                        :disabled="!$cat_state" :count="count($mcp)" />
-                    <x-filter-card title="05. Smart City" image="assets/images/filter/smart-city.png" model="selected_smc"
-                        :selected="$selected_smc ? collect($smc)->where('id', $selected_smc)->first()->name ?? null : null" :options="$smc" placeholder="Choose..." :disabled="!$cat_state" :count="count($smc)" />
+                        model="selected_ua"
+                        :selected="$selected_ua ? collect($ua)->where('id', $selected_ua)->first()->name ?? null : null"
+                        :options="$ua" placeholder="Choose..." :disabled="!$cat_state" :count="count($ua)" />
+                    <x-filter-card title="04. Municipal Corporation"
+                        image="assets/images/filter/municipal-corporation.png" model="selected_mcp"
+                        :selected="$selected_mcp ? collect($mcp)->where('id', $selected_mcp)->first()->name ?? null : null"
+                        :options="$mcp" placeholder="Choose..." :disabled="!$cat_state" :count="count($mcp)" />
+                    <x-filter-card title="05. Smart City" image="assets/images/filter/smart-city.png"
+                        model="selected_smc"
+                        :selected="$selected_smc ? collect($smc)->where('id', $selected_smc)->first()->name ?? null : null"
+                        :options="$smc" placeholder="Choose..." :disabled="!$cat_state" :count="count($smc)" />
                 </div>
                 {{-- Confirm button for category selection --}}
                 @php
@@ -721,8 +705,7 @@
                 ($selected_sc || $selected_dhq || $selected_ua || $selected_mcp || $selected_smc)
                 )
                 <div class="flex justify-end mt-2">
-                    <a
-                        target="_blank"
+                    <a target="_blank"
                         href="{{ url('/') }}/city/{{ url_encoder($cat_state . '-' . $catDistrict . '-' . $catTown) }}/{{ $this->selectedSlug }}"
                         class="inline-flex items-center justify-center px-2 py-1 text-sm font-black text-white no-underline transition-all bg-blue-600 rounded-xl no-underlinerounded hover:bg-blue-700">
                         Confirm Selection
@@ -736,8 +719,7 @@
     @if ($type === 'town')
     <div class="pt-4 text-center">
         <h2 class="text-xl tracking-tighter text-blue-700 md:text-xl">
-            List of <span
-                class="text-red-700 font-extrabold text-[1.25rem] md:text-[1.375rem]">114</span>
+            List of <span class="text-red-700 font-extrabold text-[1.25rem] md:text-[1.375rem]">114</span>
             Non-State/District Capital Cities of India
             <span class="text-black">(with Population 100K+)
                 <a href="javascript:void(0)" data-bs-toggle="modal" data-bs-target="#box25l"
