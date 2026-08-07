@@ -38,7 +38,7 @@ class PostService extends BaseService
                 ->whereRaw('vCg.Geography NOT LIKE ?', ['%CON%'])
                 // use a truthy condition check for $location
                 ->when($location, function ($query) use ($location) {
-                    $query->whereRaw('vCg.Geography  LIKE ?', ['%' . $location . '%']);
+                    $query->whereRaw('vCg.Geography  LIKE ?', [$location]);
                 });
 
             $locale = PortalLocaleizetion::where('lang_code', $language)->first()['json'];
