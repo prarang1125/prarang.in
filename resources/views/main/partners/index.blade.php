@@ -11,7 +11,7 @@ $metaData = [
 @endphp
 
 <x-layout.main.base :metaData="$metaData">
-  
+
   <style>
     /* Link */
     .container .justify-end a {
@@ -20,16 +20,19 @@ $metaData = [
     }
   </style>
   <div class="flex justify-end items-center">
-    <a class="bg-black text-white p-2 rounded-lg hover:bg-zinc-800 hover:text-gray-300" href="https://b2b.prarang.in/login?lt=partner" target="_blank">Partner Login</a>
+    <a class="bg-black text-white p-2 rounded-lg hover:bg-zinc-800 hover:text-gray-300"
+      href="https://b2b.prarang.in/login?lt=partner" target="_blank">Partner Login</a>
   </div>
 
   <!-- Start of Partner Banner UI -->
 
   <div class="w-full flex flex-col items-center pt-8 pb-10">
 
-    <h2 class="text-[#0070C0] text-2xl font-normal text-center mb-1">Partner with Prarang and build your brand by Bridging the Digital Divide</h2>
+    <h2 class="text-[#0070C0] text-2xl font-normal text-center mb-1">Partner with Prarang and build your brand by
+      Bridging the Digital Divide</h2>
 
-    <h3 class="text-black text-[1.1rem] font-normal text-center mb-2">Select Knowledge-Web Geographies (India & Export Markets) and Estimate Digital Marketing Budget</h3>
+    <h3 class="text-black text-[1.1rem] font-normal text-center mb-2">Select Knowledge-Web Geographies (India & Export
+      Markets) and Estimate Digital Marketing Budget</h3>
 
     <div class="mb-4 text-center leading-none">
 
@@ -271,16 +274,12 @@ $metaData = [
             <span class="country-sub">Knowledge Webs</span>
           </div>
           <div class="flex gap-1 mt-3">
-            <button
-              type="button"
-              @click="modalTitle='Coming: TBD'; showModal = true"
+            <button type="button" @click="modalTitle='Coming: TBD'; showModal = true"
               class="w-52 rounded-lg bg-blue-400 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:bg-blue-500">
               Cities &amp; Villages
             </button>
 
-            <button
-              type="button"
-              @click="modalTitle='Coming: TBD'; showModal = true"
+            <button type="button" @click="modalTitle='Coming: TBD'; showModal = true"
               class="w-52 rounded-lg bg-blue-400 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:bg-blue-500">
               World Bilateral
             </button>
@@ -300,7 +299,8 @@ $metaData = [
               <div class="flag-seg" style="background:#bef264"></div>
               <div class="flag-seg" style="background:#22c55e"></div>
             </div>
-            <div style="background:#e8eef3;width:100%;border-radius:6px;padding:10px;display:flex;flex-direction:column;align-items:center;">
+            <div
+              style="background:#e8eef3;width:100%;border-radius:6px;padding:10px;display:flex;flex-direction:column;align-items:center;">
               <span class="country-name lg">India</span>
               <span class="country-sub">Knowledge Webs</span>
             </div>
@@ -310,9 +310,7 @@ $metaData = [
                 Cities &amp; Villages
               </a>
 
-              <button
-                type="button"
-                @click="modalTitle='Coming Soon'; showModal = true"
+              <button type="button" @click="modalTitle='Coming Soon'; showModal = true"
                 class="w-52 rounded-lg bg-blue-400 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:bg-blue-500">
                 World Bilateral
               </button>
@@ -334,16 +332,12 @@ $metaData = [
             <span class="country-sub">Knowledge Webs</span>
           </div>
           <div class="flex gap-1 mt-3">
-            <button
-              type="button"
-              @click="modalTitle='Coming: TBD'; showModal = true"
+            <button type="button" @click="modalTitle='Coming: TBD'; showModal = true"
               class="w-52 rounded-lg bg-blue-400 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:bg-blue-500">
               Cities &amp; Villages
             </button>
 
-            <button
-              type="button"
-              @click="modalTitle='Coming: TBD'; showModal = true"
+            <button type="button" @click="modalTitle='Coming: TBD'; showModal = true"
               class="w-52 rounded-lg bg-blue-400 px-4 py-3 text-center font-semibold text-white shadow-md transition hover:bg-blue-500">
               World Bilateral
             </button>
@@ -353,29 +347,21 @@ $metaData = [
 
 
       <div x-show="showModal" x-transition:enter="transition ease-out duration-300"
-
         x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
-
         x-transition:leave="transition ease-in duration-200" x-transition:leave-start="opacity-100 scale-100"
-
         x-transition:leave-end="opacity-0 scale-95"
-
         class="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-gray-900/40 backdrop-blur-sm"
-
         @click.self="showModal = false" x-cloak>
 
         <div
-
           class="bg-white rounded-2xl shadow-2xl p-8 max-w-sm w-full text-center transform transition-all border border-gray-100">
 
           <div
-
             class="w-16 h-16 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-4 border border-blue-100">
 
             <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
 
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-
                 d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
 
             </svg>
@@ -385,7 +371,6 @@ $metaData = [
           <h3 class="text-xl font-bold text-gray-900 mb-2" x-text="modalTitle"></h3>
 
           <button @click="showModal = false"
-
             class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl shadow-lg transition-all active:scale-95">
 
             Close
@@ -438,7 +423,8 @@ $metaData = [
         <p>Story Design</p>
         <a href="javascript:void(0)"
           class="flex items-center justify-center bg-white border border-gray-200 rounded-xl px-8 py-1 min-w-[160px] min-h-[90px] hover:border-gray-400 hover:bg-gray-50 transition-all duration-200">
-          <img src="https://i.ibb.co/G3TCxxD8/Story-Design.png" alt="Story Design" class=" max-w-[340px] object-contain">
+          <img src="https://i.ibb.co/G3TCxxD8/Story-Design.png" alt="Story Design"
+            class=" max-w-[340px] object-contain">
         </a>
       </div>
 
