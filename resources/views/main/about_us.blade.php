@@ -46,19 +46,20 @@ $metaData = ['nav-heading' => 'About us', 'nav-sub-heading' => ''];
                         with objectivity.
                     </p>
                 </div>
-                <div class="mx-auto mt-10 flex w-full max-w-3xl items-center justify-center gap-2 sm:gap-6">
+                <div class="flex items-center justify-center w-full max-w-3xl gap-2 mx-auto mt-10 sm:gap-6">
                     <img
-                        src="{{ asset('assets/images/filter/prarang-elephant1.png') }}"
+                        src="{{ asset('http://prarang.in/images/prarang-3.jpg') }}"
                         alt="Prarang elephant motif"
-                        class="h-auto max-h-56 min-w-0 flex-1 rounded-2xl border border-slate-200 p-2 sm:p-4">
-                    <img
+                        class="flex-1 h-auto min-w-0 p-2 border max-h-56 rounded-2xl border-slate-200 sm:p-4">
+                    <!-- <img
                         src="{{ asset('assets/images/arrow.png') }}"
                         alt="Arrow"
-                        class="h-5 w-5 shrink-0 sm:h-8 sm:w-8">
+                        class="w-5 h-5 shrink-0 sm:h-8 sm:w-8"> -->
+                    <div></div>
                     <img
-                        src="{{ asset('assets/images/filter/prarang-elephant2.png') }}"
+                        src="{{ asset('http://prarang.in/images/prarang-4.jpg.png') }}"
                         alt="Prarang elephant motif"
-                        class="h-auto max-h-56 min-w-0 flex-1 rounded-2xl border border-slate-200 p-2 sm:p-4">
+                        class="flex-1 h-auto min-w-0 p-2 border max-h-56 rounded-2xl border-slate-200 sm:p-4">
                 </div>
                 <p class="max-w-3xl mx-auto mt-8 text-sm italic leading-relaxed text-slate-600 sm:text-base">
                     Seeing the entire elephant, in all his colours and splendour, is true unity in diversity.
@@ -115,7 +116,7 @@ $metaData = ['nav-heading' => 'About us', 'nav-sub-heading' => ''];
                                     stroke-width="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    class="h-4 w-4 shrink-0 text-blue-600">
+                                    class="w-4 h-4 text-blue-600 shrink-0">
                                     <circle cx="12" cy="7" r="3"></circle>
                                     <path d="M6 21v-2a6 6 0 0 1 12 0v2"></path>
                                     <circle cx="5" cy="10" r="2"></circle>
@@ -135,7 +136,7 @@ $metaData = ['nav-heading' => 'About us', 'nav-sub-heading' => ''];
                                     stroke-width="2"
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
-                                    class="h-4 w-4 shrink-0 text-red-500">
+                                    class="w-4 h-4 text-red-500 shrink-0">
                                     <circle cx="12" cy="6" r="3"></circle>
                                     <circle cx="5" cy="12" r="3"></circle>
                                     <circle cx="19" cy="12" r="3"></circle>
@@ -375,10 +376,50 @@ $metaData = ['nav-heading' => 'About us', 'nav-sub-heading' => ''];
                             the idea further still: complete knowledge of the universe is impossible for anyone
                             to collect or curate.
                         </p>
-                        <a href="https://sarganga.org/" target="_blank" rel="noopener noreferrer">
-                            <img src="{{ asset('assets/images/filter/museum.png') }}" alt="Prarang Museum"
+                        <!-- <a href="https://sarganga.org/" target="_blank" rel="noopener noreferrer">
+                            <img src="https://sarganga.org/assets/main/images/logo.jpg" alt="Sarganga Logo"
                                 class="w-auto h-auto p-4 mx-auto border max-h-56 rounded-2xl border-slate-200">
-                        </a>
+                        </a> -->
+                        <div class="max-w-sm mx-auto my-4">
+                            <a
+                                href="https://sarganga.org/" target="_blank" rel="noopener noreferrer"
+                                class="group flex items-center gap-5 rounded-2xl border border-slate-100 bg-white p-3 shadow-sm transition-all duration-300 hover:-translate-y-0.5 hover:shadow-md no-underline">
+
+                                <div class="flex items-center justify-center w-40 overflow-hidden bg-white h-36 shrink-0 rounded-xl">
+                                    <img
+                                        src="https://sarganga.org/assets/main/images/logo.jpg"
+                                        alt="Sarganga Logo"
+                                        class="object-contain w-full h-full">
+                                </div>
+                                
+                                <div class="flex-1 min-w-0">
+                                    <h4 class="text-2xl font-bold leading-tight text-black ">
+                                        Saraswati<br>
+                                        by Ganga<br>
+                                        Museum
+                                    </h4>
+                                    <p class="mt-2 text-sm text-slate-600">
+                                        sarganga.org
+                                    </p>
+                                </div>
+
+                                <div class="px-2 shrink-0">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        viewBox="0 0 24 24"
+                                        fill="none"
+                                        stroke="currentColor"
+                                        stroke-width="1.5"
+                                        stroke-linecap="round"
+                                        stroke-linejoin="round"
+                                        class="w-5 h-5 transition-transform duration-300 text-slate-300 group-hover:translate-x-1 group-hover:text-slate-500">
+                                        <path d="M5 12h14"></path>
+                                        <path d="m13 6 6 6-6 6"></path>
+                                    </svg>
+                                </div>
+                            </a>
+                        </div>
+
                         <p>
                             We aim to curate a <strong class="text-slate-900">Prarang Museum</strong> showcasing
                             the story of Indian civilization through the evolution of its cities and towns,
@@ -432,26 +473,26 @@ $metaData = ['nav-heading' => 'About us', 'nav-sub-heading' => ''];
                 <p class="mb-2 text-center text-xs font-semibold uppercase tracking-[0.3em] text-yellow-600">
                     Who's behind it
                 </p>
-                <h2 class="mb-2 text-center font-serif text-3xl font-bold text-slate-900 sm:text-4xl">
+                <h2 class="mb-2 font-serif text-3xl font-bold text-center text-slate-900 sm:text-4xl">
                     Our Team
                 </h2>
-                <p class="mb-10 text-center text-sm text-slate-600">
+                <p class="mb-10 text-sm text-center text-slate-600">
                     Prarang is an 8+ year old venture, funded and incubated by
                     Indoeuropeans (India) Pvt. Ltd.
                 </p>
                 <div class="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7">
                     @forelse($team as $member)
                     <div
-                        class="group flex h-full min-w-0 flex-col items-center rounded-2xl border border-slate-200 p-4 text-center transition-shadow hover:shadow-md">
+                        class="flex flex-col items-center h-full min-w-0 p-4 text-center transition-shadow border group rounded-2xl border-slate-200 hover:shadow-md">
                         <!-- Profile Image -->
-                        <div class="mb-3 flex h-16 w-16 shrink-0 items-center justify-center">
+                        <div class="flex items-center justify-center w-16 h-16 mb-3 shrink-0">
                             <img
                                 src="{{ Storage::url($member['profile_image']) }}"
                                 alt="{{ $member['display_name'] }}"
-                                class="h-16 w-16 shrink-0 rounded-full object-cover ring-2 ring-slate-100 transition group-hover:ring-blue-200">
+                                class="object-cover w-16 h-16 transition rounded-full shrink-0 ring-2 ring-slate-100 group-hover:ring-blue-200">
                         </div>
                         <!-- Name -->
-                        <h5 class="w-full truncate text-sm font-semibold text-slate-900">
+                        <h5 class="w-full text-sm font-semibold truncate text-slate-900">
                             {{ $member['display_name'] }}
                         </h5>
                         <!-- Role -->
@@ -467,11 +508,11 @@ $metaData = ['nav-heading' => 'About us', 'nav-sub-heading' => ''];
                             <img
                                 src="https://cdn-icons-png.flaticon.com/512/174/174857.png"
                                 alt="LinkedIn"
-                                class="h-5 w-5 opacity-70 transition-opacity hover:opacity-100">
+                                class="w-5 h-5 transition-opacity opacity-70 hover:opacity-100">
                         </a>
                     </div>
                     @empty
-                    <p class="col-span-full text-center text-sm text-slate-500">
+                    <p class="text-sm text-center col-span-full text-slate-500">
                         No team members found.
                     </p>
                     @endforelse

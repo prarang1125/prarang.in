@@ -6,7 +6,7 @@
 return [
   'portal' => [
     'meerut',
-    'munger',
+    // 'munger',
     'rampur'
   ],
 
