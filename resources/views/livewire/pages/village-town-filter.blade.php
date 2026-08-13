@@ -97,7 +97,6 @@
                                             {{ count($states) }} States / UT Available
                                         </p>
                                     </div>
-
                                     <div class="relative w-40 mb-1">
                                         <button type="button" @click="open = !open"
                                             class="flex items-center justify-between w-full overflow-hidden bg-white border border-yellow-400 rounded-md">
@@ -147,7 +146,7 @@
                                                     wire:key="state-{{ is_array($item) ? $item['id'] : $item->id }}"
                                                     x-show="'{{ strtolower($itemName) }}'.includes(search.toLowerCase())"
                                                     @click="$wire.set('state', '{{ is_array($item) ? $item['id'] : $item->id }}'); open = false; search = ''"
-                                                    class="flex items-center justify-between w-full px-2 py-1 text-sm font-semibold transition-all text-slate-700 hover:bg-blue-50 hover:text-blue-700 rounded-xl">
+                                                    class="flex items-center justify-between w-full px-2 py-1 text-sm font-semibold text-left transition-all text-slate-700 hover:bg-blue-50 hover:text-blue-700 rounded-xl">
                                                     {{ $itemName }}
                                                 </button>
                                                 @empty
@@ -591,7 +590,7 @@
                         <a target="_blank" href="{{ $confirmUrl }}"
                             class="inline-flex items-center justify-center px-2 py-1 text-sm font-black text-white no-underline transition-all bg-blue-600 rounded hover:bg-blue-700">
                             @if($type === 'town')
-                            Enter city Web
+                            Enter City Web
                             @else
                             Enter Village Web
                             @endif
@@ -601,9 +600,6 @@
                 @endif
             </section>
             <hr>
-
-
-
             <section class=" section-three">
                 @if ($type === 'town')
                 <div class="flex items-center justify-center gap-1">
