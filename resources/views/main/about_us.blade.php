@@ -79,7 +79,7 @@ $metaData = ['nav-heading' => 'About us', 'nav-sub-heading' => ''];
                 <div>
                     {{-- Mission --}}
                     <!-- <div class="border shadow-sm rounded-2xl border-slate-200 p-7"> -->
-                    <div >
+                    <div>
                         <h2 class="mb-2 text-xl font-bold text-center text-slate-900">Mission</h2>
                         <p class="mb-4 flex flex-wrap justify-center gap-x-1.5 gap-y-1 text-center text-base font-semibold text-blue-700">
                             <span class="inline-flex items-center gap-1.5">
