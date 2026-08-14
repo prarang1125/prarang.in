@@ -65,16 +65,16 @@ $metaData[] = '';
 
 <x-layout.pages.dhq :data="$dhq" :isAdsEnable="$isAdsEnable">
 
-    <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
-        <div class="lg:col-span-3  space-y-6 order-3 lg:order-1">
+    <div class="gap-6 grid grid-cols-1 lg:grid-cols-12">
+        <div class="space-y-6 order-3 lg:order-1 lg:col-span-3">
             <!-- Travel Logistics Card -->
-            <div class="bg-white rounded-2xl border border-green-200 shadow-sm overflow-hidden mb-6">
+            <div class="bg-white shadow-sm mb-6 border border-green-200 rounded-2xl overflow-hidden">
                 <div class="px-5 py-4 text-center">
 
-                    <h3 class="text-base text-center font-bold text-blue-600">Travel Logistics</h3>
+                    <h3 class="font-bold text-blue-600 text-base text-center">Travel Logistics</h3>
                 </div>
 
-                <div class="px-6 pb-8 space-y-1" x-data="{ active: null }">
+                <div class="space-y-1 px-6 pb-8" x-data="{ active: null }">
                     @php
                     $logistics = [
                     [
@@ -126,20 +126,20 @@ $metaData[] = '';
                     ];
                     @endphp
                     @foreach ($logistics as $index => $item)
-                    <div class="border-b border-gray-50 last:border-0">
+                    <div class="border-gray-50 last:border-0 border-b">
                         @if (!isset($item['value']))
                         <a href="{{ ($dhq['town']['Town_Code'] ?? null) == 800864 ? $item['link'] ?? '#' : '#' }}" {{
                             ($dhq['town']['Town_Code'] ?? null)==800864 ? 'target="_blank"' : '' }}
-                            class="w-full py-2.5 flex items-center gap-3 transition-colors hover:bg-gray-50/50 rounded-lg px-2 -mx-2">
-                            <span class="text-base w-6 shrink-0">{{ $item['icon'] ?? '' }}</span>
-                            <span class="text-sm font-bold text-gray-800">{{ $item['label'] ?? '-' }}</span>
+                            class="flex items-center gap-3 hover:bg-gray-50/50 -mx-2 px-2 py-2.5 rounded-lg w-full transition-colors">
+                            <span class="w-6 text-base shrink-0">{{ $item['icon'] ?? '' }}</span>
+                            <span class="font-bold text-gray-800 text-sm">{{ $item['label'] ?? '-' }}</span>
                         </a>
                         @else
                         <button @click="active = active === {{ $index }} ? null : {{ $index }}"
-                            class="w-full py-2.5 flex items-center justify-between group transition-colors hover:bg-gray-50/50 rounded-lg px-2 -mx-2">
+                            class="group flex justify-between items-center hover:bg-gray-50/50 -mx-2 px-2 py-2.5 rounded-lg w-full transition-colors">
                             <div class="flex items-center gap-3">
-                                <span class="text-base w-6 shrink-0">{{ $item['icon'] ?? '' }}</span>
-                                <span class="text-sm font-bold text-gray-800">{{ $item['label'] ?? '-' }}</span>
+                                <span class="w-6 text-base shrink-0">{{ $item['icon'] ?? '' }}</span>
+                                <span class="font-bold text-gray-800 text-sm">{{ $item['label'] ?? '-' }}</span>
                             </div>
                             <svg class="w-4 h-4 text-gray-400 transition-transform duration-300"
                                 :class="active === {{ $index }} ? 'rotate-180 text-blue-600' : ''" fill="none"
@@ -152,12 +152,12 @@ $metaData[] = '';
                         <div x-show="active === {{ $index }}" x-collapse x-cloak class="ml-9 pb-2">
                             @if (($dhq['town']['Town_Code'] ?? null) == 800864)
                             <a href="{{ $item['link'] ?? '#' }}" target="_blank"
-                                class="block text-xs font-semibold text-gray-600 hover:text-blue-700 transition-colors">
+                                class="block font-semibold text-gray-600 hover:text-blue-700 text-xs transition-colors">
                                 • {{ $item['value'] ?? '-' }}
                             </a>
                             @else
                             <a href="#"
-                                class="block text-xs font-semibold text-gray-600 hover:text-blue-700 transition-colors">
+                                class="block font-semibold text-gray-600 hover:text-blue-700 text-xs transition-colors">
                                 Coming soon.
                             </a>
                             @endif
@@ -170,12 +170,12 @@ $metaData[] = '';
             </div>
 
             <!-- Local Amenities Card -->
-            <div class="bg-white rounded-2xl border border-green-200 shadow-sm overflow-hidden mb-6">
+            <div class="bg-white shadow-sm mb-6 border border-green-200 rounded-2xl overflow-hidden">
                 <div class="px-5 py-4 text-center">
-                    <h3 class="text-base text-center font-bold text-blue-600">Local Amenities</h3>
+                    <h3 class="font-bold text-blue-600 text-base text-center">Local Amenities</h3>
                 </div>
 
-                <div class="px-6 pb-6 space-y-2" x-data="{ active: null }">
+                <div class="space-y-2 px-6 pb-6" x-data="{ active: null }">
                     @php
                     $amenityGroups = [
                     [
@@ -267,12 +267,12 @@ $metaData[] = '';
                     ];
                     @endphp
                     @foreach ($amenityGroups as $index => $group)
-                    <div class="border-b border-gray-50 last:border-0">
+                    <div class="border-gray-50 last:border-0 border-b">
                         <button @click="active = active === {{ $index }} ? null : {{ $index }}"
-                            class="w-full py-3 flex items-center justify-between group transition-colors hover:bg-gray-50/50 rounded-lg px-2 -mx-2">
+                            class="group flex justify-between items-center hover:bg-gray-50/50 -mx-2 px-2 py-3 rounded-lg w-full transition-colors">
                             <div class="flex items-center gap-3">
-                                <span class="text-base w-6 shrink-0">{{ $group['icon'] }}</span>
-                                <span class="text-sm font-bold text-gray-800">{{ $group['label'] }}</span>
+                                <span class="w-6 text-base shrink-0">{{ $group['icon'] }}</span>
+                                <span class="font-bold text-gray-800 text-sm">{{ $group['label'] }}</span>
                             </div>
                             <svg class="w-4 h-4 text-gray-400 transition-transform duration-300"
                                 :class="active === {{ $index }} ? 'rotate-180 text-blue-600' : ''" fill="none"
@@ -282,16 +282,16 @@ $metaData[] = '';
                             </svg>
                         </button>
 
-                        <div x-show="active === {{ $index }}" x-collapse x-cloak class="ml-9 pb-3 space-y-2">
+                        <div x-show="active === {{ $index }}" x-collapse x-cloak class="space-y-2 ml-9 pb-3">
                             @if (($dhq['town']['Town_Code'] ?? null) == 800864)
                             @foreach ($group['items'] ?? [] as $item)
                             <a href="{{ $item['link'] ?? '#' }}" target="_blank"
-                                class="block text-xs font-semibold text-gray-600 hover:text-blue-700 transition-colors">
+                                class="block font-semibold text-gray-600 hover:text-blue-700 text-xs transition-colors">
                                 • {{ $item['name'] ?? '-' }}
                             </a>
                             @endforeach
                             @else
-                            <p class="text-xs font-semibold text-gray-600">Coming Soon.</p>
+                            <p class="font-semibold text-gray-600 text-xs">Coming Soon.</p>
                             @endif
 
                         </div>
@@ -299,12 +299,12 @@ $metaData[] = '';
                     @endforeach
                 </div>
             </div>
-            <div class="bg-white rounded-2xl border border-green-200 shadow-sm overflow-hidden mb-6">
+            <div class="bg-white shadow-sm mb-6 border border-green-200 rounded-2xl overflow-hidden">
                 <div class="px-5 py-4 text-center">
-                    <h3 class="text-base text-center font-bold text-blue-600">Useful web Links</h3>
+                    <h3 class="font-bold text-blue-600 text-base text-center">Useful web Links</h3>
                 </div>
 
-                <div class="px-6 pb-6 space-y-2" x-data="{ active: null }">
+                <div class="space-y-2 px-6 pb-6" x-data="{ active: null }">
                     @php
                     $linksGroups = [];
                     $corpData = $dhq['extanded']['corporations'] ?? [];
@@ -355,12 +355,12 @@ $metaData[] = '';
                     @endphp
 
                     @forelse ($linksGroups as $index => $group)
-                    <div class="border-b border-gray-50 last:border-0 text-left">
+                    <div class="border-gray-50 last:border-0 border-b text-left">
                         <button @click="active = active === {{ $index }} ? null : {{ $index }}"
-                            class="w-full py-3 flex items-center justify-between group transition-colors hover:bg-gray-50/50 rounded-lg px-2 -mx-2">
+                            class="group flex justify-between items-center hover:bg-gray-50/50 -mx-2 px-2 py-3 rounded-lg w-full transition-colors">
                             <div class="flex items-center gap-3">
-                                <span class="text-base w-6 shrink-0">{{ $group['icon'] }}</span>
-                                <span class="text-sm font-bold text-gray-800">{{ $group['label'] }}</span>
+                                <span class="w-6 text-base shrink-0">{{ $group['icon'] }}</span>
+                                <span class="font-bold text-gray-800 text-sm">{{ $group['label'] }}</span>
                             </div>
                             <svg class="w-4 h-4 text-gray-400 transition-transform duration-300"
                                 :class="active === {{ $index }} ? 'rotate-180 text-blue-600' : ''" fill="none"
@@ -370,24 +370,24 @@ $metaData[] = '';
                             </svg>
                         </button>
 
-                        <div x-show="active === {{ $index }}" x-collapse x-cloak class="ml-9 pb-3 space-y-2">
+                        <div x-show="active === {{ $index }}" x-collapse x-cloak class="space-y-2 ml-9 pb-3">
                             @foreach ($group['items'] ?? [] as $item)
                             <a href="{{ $item['link'] ?? '#' }}" target="_blank"
-                                class="block text-xs font-semibold text-gray-600 hover:text-blue-700 transition-colors">
+                                class="block font-semibold text-gray-600 hover:text-blue-700 text-xs transition-colors">
                                 • {{ $item['name'] ?? '-' }}
                             </a>
                             @endforeach
                         </div>
                     </div>
                     @empty
-                    <p class="text-center text-sm font-bold text-gray-700 leading-relaxed shadow rounded p-2 bg-white">
+                    <p class="bg-white shadow p-2 rounded font-bold text-gray-700 text-sm text-center leading-relaxed">
                         No Useful web Links found</p>
                     @endforelse
                 </div>
             </div>
         </div>
 
-        <div class="lg:col-span-6 space-y-6  order-1 lg:order-2">
+        <div class="space-y-6 order-1 lg:order-2 lg:col-span-6">
             @if($dhq['ua_data'] != null)
             <div x-data="{ openUA: false }" class="mb-6">
                 @php
@@ -396,7 +396,7 @@ $metaData[] = '';
                 $uaDisplay = array_slice($uaArr, 0, 3);
                 @endphp
 
-                <p class="text-center text-sm font-bold text-gray-700 leading-relaxed shadow rounded p-2 bg-white">
+                <p class="bg-white shadow p-2 rounded font-bold text-gray-700 text-sm text-center leading-relaxed">
                     Urban Agglomeration (UA) comprising of
                     <span class="text-blue-600">
                         @foreach($uaDisplay as $index => $item)
@@ -414,30 +414,30 @@ $metaData[] = '';
                 <!-- UA Modal Table -->
                 <template x-teleport="body">
                     <div x-show="openUA" x-cloak
-                        class="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-md"
+                        class="z-[9999] fixed inset-0 flex justify-center items-center bg-slate-900/80 backdrop-blur-md p-4"
                         x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
                         x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200"
                         x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
                         @click.self="openUA = false">
 
-                        <div class="bg-white rounded-[32px] w-full max-w-lg max-h-[80vh] flex flex-col shadow-2xl overflow-hidden border border-slate-200"
+                        <div class="flex flex-col bg-white shadow-2xl border border-slate-200 rounded-[32px] w-full max-w-lg max-h-[80vh] overflow-hidden"
                             x-show="openUA" x-transition:enter="transition ease-out duration-300"
                             x-transition:enter-start="opacity-0 scale-95 translate-y-10"
                             x-transition:enter-end="opacity-100 scale-100 translate-y-0">
 
                             <!-- Modal Header -->
                             <div
-                                class="px-8 py-6 bg-slate-50 border-b border-slate-100 flex items-center justify-between relative">
+                                class="relative flex justify-between items-center bg-slate-50 px-8 py-6 border-slate-100 border-b">
                                 <div>
-                                    <h5 class="text-xl font-black text-slate-900 tracking-tight">Urban Agglomeration
+                                    <h5 class="font-black text-slate-900 text-xl tracking-tight">Urban Agglomeration
                                     </h5>
                                     {{-- <p
-                                        class="text-[11px] font-bold text-blue-500 mt-0.5 uppercase tracking-widest">
+                                        class="mt-0.5 font-bold text-[11px] text-blue-500 uppercase tracking-widest">
                                         {{ $uaCount }} entities found
                                     </p> --}}
                                 </div>
                                 <button @click="openUA = false"
-                                    class="w-8 h-8 flex items-center justify-center bg-white border border-slate-200 hover:bg-slate-50 rounded-full transition-all text-slate-400 hover:text-slate-900 shadow-sm">
+                                    class="flex justify-center items-center bg-white hover:bg-slate-50 shadow-sm border border-slate-200 rounded-full w-8 h-8 text-slate-400 hover:text-slate-900 transition-all">
                                     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"
                                             d="M6 18L18 6M6 6l12 12" />
@@ -446,35 +446,35 @@ $metaData[] = '';
                             </div>
 
                             <!-- Modal Table Content -->
-                            <div class="flex-grow overflow-y-auto p-6 custom-scrollbar bg-white">
-                                <div class="overflow-hidden border border-slate-100 rounded-2xl">
+                            <div class="flex-grow bg-white p-6 overflow-y-auto custom-scrollbar">
+                                <div class="border border-slate-100 rounded-2xl overflow-hidden">
                                     <table class="w-full text-left border-collapse">
                                         <thead>
                                             <tr class="bg-slate-50/50">
                                                 <th
-                                                    class="py-3 px-4 text-[9px] font-black text-slate-400  tracking-widest border-b border-slate-100 w-16">
+                                                    class="px-4 py-3 border-slate-100 border-b w-16 font-black text-[9px] text-slate-400 tracking-widest">
                                                     #</th>
                                                 <th
-                                                    class="py-3 px-4 text-[9px] font-black text-slate-400  tracking-widest border-b border-slate-100">
+                                                    class="px-4 py-3 border-slate-100 border-b font-black text-[9px] text-slate-400 tracking-widest">
                                                     Town</th>
                                                 <th
-                                                    class="py-3 px-4 text-[9px] font-black text-slate-400  tracking-widest border-b border-slate-100">
+                                                    class="px-4 py-3 border-slate-100 border-b font-black text-[9px] text-slate-400 tracking-widest">
                                                     Population</th>
                                             </tr>
                                         </thead>
                                         <tbody class="divide-y divide-slate-50">
                                             @foreach($uaArr as $index => $item)
-                                            <tr class="hover:bg-blue-50/30 transition-colors group">
+                                            <tr class="group hover:bg-blue-50/30 transition-colors">
                                                 <td
-                                                    class="py-2.5 px-4 text-[10px] font-bold text-slate-400 tracking-tight">
+                                                    class="px-4 py-2.5 font-bold text-[10px] text-slate-400 tracking-tight">
                                                     {{ $loop->iteration }}
                                                 </td>
                                                 <td
-                                                    class="py-2.5 px-4 text-xs font-bold text-slate-700 group-hover:text-blue-600 transition-colors">
+                                                    class="px-4 py-2.5 font-bold text-slate-700 group-hover:text-blue-600 text-xs transition-colors">
                                                     {{ $item['name'] ?? 'N/A' }}
                                                 </td>
                                                 <td
-                                                    class="py-2.5 px-4 text-xs font-bold text-slate-700 group-hover:text-blue-600 transition-colors">
+                                                    class="px-4 py-2.5 font-bold text-slate-700 group-hover:text-blue-600 text-xs transition-colors">
                                                     {{ number_format($item['TOT_P'] ?? 'N/A') }}
                                                 </td>
                                             </tr>
@@ -485,9 +485,9 @@ $metaData[] = '';
                             </div>
 
                             <!-- Modal Footer -->
-                            <div class="px-8 py-5 bg-slate-50 border-t border-slate-100 flex justify-center">
+                            <div class="flex justify-center bg-slate-50 px-8 py-5 border-slate-100 border-t">
                                 <button @click="openUA = false"
-                                    class="px-10 py-2.5 bg-slate-900 text-white text-[10px] font-bold rounded-xl hover:bg-black transition-all shadow-lg tracking-widest uppercase">
+                                    class="bg-slate-900 hover:bg-black shadow-lg px-10 py-2.5 rounded-xl font-bold text-[10px] text-white uppercase tracking-widest transition-all">
                                     Close
                                 </button>
                             </div>
@@ -497,7 +497,7 @@ $metaData[] = '';
             </div>
             @endif
             <!-- Village Banner Image -->
-            <div class="rounded-2xl overflow-hidden border border-gray-100 shadow-sm transition-all hover:shadow-md">
+            <div class="shadow-sm hover:shadow-md border border-gray-100 rounded-2xl overflow-hidden transition-all">
     <img
         id="village-banner"
         src="https://prarang.s3.ap-south-1.amazonaws.com/town_villages_images/city_webs/756_Capitals/{{ $dhq['town']['town_code'] }}.jpg"
@@ -509,11 +509,18 @@ $metaData[] = '';
 
 <script>
 function handleImageError(img) {
-    if (img.src.endsWith('.jpg')) {
-        img.src = img.src.replace('.jpg', '.png');
+    const src = img.src;
+
+    // Prevent infinite loop
+    img.onerror = null;
+
+    if (src.endsWith('.jpg')) {
+        img.src = src.replace('.jpg', '.jpeg');
+    } else if (src.endsWith('.jpeg')) {
+        img.src = src.replace('.jpeg', '.png');
     } else {
-        // Optional: Show a default image if both fail
-        img.src = '/images/no-image.jpg';
+        // All formats failed → blank image
+        img.src = '';
     }
 }
 </script>
@@ -521,9 +528,9 @@ function handleImageError(img) {
             {{-- @endif --}}
             @if (true)
             <!-- Village Description -->
-            <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm transition-all hover:shadow-md">
+            <div class="bg-white shadow-sm hover:shadow-md p-6 border border-gray-100 rounded-2xl transition-all">
                 <div class="space-y-1 text-justify">
-                    <p class="text-[15px] text-gray-700 leading-relaxed font-medium">
+                    <p class="font-medium text-[15px] text-gray-700 leading-relaxed">
                         {!! $dhq['slm']['town']['s1'] ?? '' !!}
                         {!! $dhq['slm']['district'] ?? '-' !!}
                         {!! $dhq['slm']['town']['s2'] ?? '' !!}
@@ -533,14 +540,14 @@ function handleImageError(img) {
             @endif
 
             {{-- Village Speak Section --}}
-            <div class="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm transition-all hover:shadow-md">
+            <div class="bg-white shadow-sm hover:shadow-md p-6 border border-gray-100 rounded-2xl transition-all">
                 {{-- <div class="flex flex-col items-center mb-6">
-                    <h3 class="text-xl font-black text-gray-900 mb-1 ">City Capital Speak</h3>
-                    <div class="w-10 h-0.5 bg-blue-600 rounded-full"></div>
+                    <h3 class="mb-1 font-black text-gray-900 text-xl">City Capital Speak</h3>
+                    <div class="bg-blue-600 rounded-full w-10 h-0.5"></div>
                 </div> --}}
 
                 <div class="space-y-2">
-                    <p class="text-[14px] text-gray-700 leading-relaxed font-medium">
+                    <p class="font-medium text-[14px] text-gray-700 leading-relaxed">
                         {!! $dhq['slm_lang']['p1'] ?? '-' !!} For detailed language breakup of {{ $town['name'] ?? '-'
                         }} <a class="text-blue-600 hover:text-blue-800" href="#toLanguage">please see language box.</a>
                     </p>
@@ -548,34 +555,34 @@ function handleImageError(img) {
 
 
                 <div class="space-y-2">
-                    <p class="text-[14px] text-gray-700 leading-relaxed font-medium">
+                    <p class="font-medium text-[14px] text-gray-700 leading-relaxed">
                         {!! $dhq['cn-slm'] ?? '-' !!}
                     </p>
                 </div>
                 <!-- Sanskriti & Prakriti Dual Section -->
-                <!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-10 mt-4 py-4 border-t border-gray-100"> -->
+                <!-- <div class="gap-10 grid grid-cols-1 md:grid-cols-2 mt-4 py-4 border-gray-100 border-t"> -->
                 <!-- Sanskriti (Culture) -->
                 <!-- <div class="flex flex-col items-center">
-                        <h4 class="text-lg font-bold text-gray-900 mb-1">संस्कृति</h4> -->
+                        <h4 class="mb-1 font-bold text-gray-900 text-lg">संस्कृति</h4> -->
 
                 <!-- Sanskriti Color Bar -->
-                <!-- <div class="flex w-full h-9  overflow-hidden mb-1 max-w-[320px] shadow-sm">
+                <!-- <div class="flex shadow-sm mb-1 w-full max-w-[320px] h-9 overflow-hidden">
                             <div class="flex-1" style="background-color: #ff0000;"></div>
                             <div class="flex-1" style="background-color: #f7f601;"></div>
                             <div class="flex-1" style="background-color: #0000ff;"></div>
                         </div> -->
 
                 <!-- Card Entries -->
-                <!-- <div class="w-full space-y-2">
-                            @for ($i = 1; $i <= 2; $i++) <div class="flex gap-4 group/entry cursor-default">
+                <!-- <div class="space-y-2 w-full">
+                            @for ($i = 1; $i <= 2; $i++) <div class="group/entry flex gap-4 cursor-default">
                                 <div
-                                    class="w-20 h-20 bg-gray-50 rounded-2xl border border-indigo-100/50 flex items-center justify-center flex-shrink-0 shadow-sm transition-all group-hover/entry:border-indigo-200">
-                                    <span class="text-[10px] font-bold text-gray-400">Image
+                                    class="flex flex-shrink-0 justify-center items-center bg-gray-50 shadow-sm border border-indigo-100/50 group-hover/entry:border-indigo-200 rounded-2xl w-20 h-20 transition-all">
+                                    <span class="font-bold text-[10px] text-gray-400">Image
                                         {{ $i }}</span>
                                 </div>
                                 <div
-                                    class="flex-grow bg-white border border-slate-100 rounded-2xl px-6 flex items-center shadow-sm transition-all group-hover/entry:border-slate-200">
-                                    <span class="text-sm font-bold text-gray-800">Culture Insight
+                                    class="flex flex-grow items-center bg-white shadow-sm px-6 border border-slate-100 group-hover/entry:border-slate-200 rounded-2xl transition-all">
+                                    <span class="font-bold text-gray-800 text-sm">Culture Insight
                                         {{ $i }}</span>
                                 </div>
                         </div> -->
@@ -585,26 +592,26 @@ function handleImageError(img) {
 
                 <!-- Prakriti (Nature) -->
                 <!-- <div class="flex flex-col items-center">
-                    <h4 class="text-lg font-bold text-gray-900 mb-1">प्रकृति</h4>
+                    <h4 class="mb-1 font-bold text-gray-900 text-lg">प्रकृति</h4>
 
                     <!-- Nature Color Bar -->
-                <!-- <div class="flex w-full h-9  overflow-hidden mb-1 max-w-[320px] shadow-sm">
+                <!-- <div class="flex shadow-sm mb-1 w-full max-w-[320px] h-9 overflow-hidden">
                     <div class="flex-1" style="background-color: #fef08a;"></div>
                     <div class="flex-1" style="background-color: #bef264;"></div>
                     <div class="flex-1" style="background-color: #22c55e;"></div>
                 </div> -->
 
                 <!-- Card Entries -->
-                <!-- <div class="w-full space-y-2">
-                    @for ($i = 1; $i <= 2; $i++) <div class="flex gap-4 group/entry cursor-default">
+                <!-- <div class="space-y-2 w-full">
+                    @for ($i = 1; $i <= 2; $i++) <div class="group/entry flex gap-4 cursor-default">
                         <div
-                            class="w-20 h-20 bg-gray-50 rounded-2xl border border-green-100/50 flex items-center justify-center flex-shrink-0 shadow-sm transition-all group-hover/entry:border-green-200">
-                            <span class="text-[10px] font-bold text-gray-400">Image
+                            class="flex flex-shrink-0 justify-center items-center bg-gray-50 shadow-sm border border-green-100/50 group-hover/entry:border-green-200 rounded-2xl w-20 h-20 transition-all">
+                            <span class="font-bold text-[10px] text-gray-400">Image
                                 {{ $i }}</span>
                         </div>
                         <div
-                            class="flex-grow bg-white border border-slate-100 rounded-2xl px-6 flex items-center shadow-sm transition-all group-hover/entry:border-slate-200">
-                            <span class="text-sm font-bold text-gray-800">Nature Insight
+                            class="flex flex-grow items-center bg-white shadow-sm px-6 border border-slate-100 group-hover/entry:border-slate-200 rounded-2xl transition-all">
+                            <span class="font-bold text-gray-800 text-sm">Nature Insight
                                 {{ $i }}</span>
                         </div>
                 </div>
@@ -631,12 +638,12 @@ function handleImageError(img) {
             <!-- City Action Buttons -->
             <div class="flex gap-6 mt-6 mb-8 text-black">
                 <a target="_blank" href="https://g2c.prarang.in/{{ $dhq['dhq']['city'] ?? '' }}?data"
-                    class="flex-1 text-center bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-700 transition-all duration-300">
+                    class="flex-1 bg-blue-600 hover:bg-blue-700 shadow-lg py-4 rounded-xl font-bold text-white text-center transition-all duration-300">
                     {{ $dhq['dhq']['city'] ?? '' }} Analytics
                 </a>
 
                 <a target="_blank" href="https://g2c.prarang.in/ai/{{ $dhq['dhq']['city'] ?? '' }}"
-                    class="flex-1 text-center bg-blue-600 text-white font-bold py-4 rounded-xl shadow-lg hover:bg-blue-700 transition-all duration-300">
+                    class="flex-1 bg-blue-600 hover:bg-blue-700 shadow-lg py-4 rounded-xl font-bold text-white text-center transition-all duration-300">
                     {{ $dhq['dhq']['city'] ?? '' }} A.I. Report
                 </a>
             </div>
@@ -644,86 +651,86 @@ function handleImageError(img) {
 
 
             <!-- Instruments Section -->
-            <div class="p-2 bg-white">
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="bg-white p-2">
+                <div class="gap-8 grid grid-cols-1 md:grid-cols-2">
                     <!-- Business Instrument -->
                     <div
-                        class="group relative bg-blue-400 shadow-xl hover:shadow-2xl transition-all duration-500  overflow-hidden">
+                        class="group relative bg-blue-400 shadow-xl hover:shadow-2xl overflow-hidden transition-all duration-500">
                         <div class="absolute inset-0 opacity-30">
-                            <div class="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-3xl opacity-50"></div>
-                            <div class="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full blur-2xl opacity-50"></div>
+                            <div class="top-0 right-0 absolute bg-white opacity-50 blur-3xl rounded-full w-32 h-32"></div>
+                            <div class="bottom-0 left-0 absolute bg-white opacity-50 blur-2xl rounded-full w-24 h-24"></div>
                         </div>
                         <div class="relative">
-                            <div class="flex items-center justify-center mb-6 text-center">
+                            <div class="flex justify-center items-center mb-6 text-center">
                                 <div>
-                                    <h5 class="text-3xl md:text-4xl font-extrabold text-white mb-2 tracking-tight">Business
+                                    <h5 class="mb-2 font-extrabold text-white text-3xl md:text-4xl tracking-tight">Business
                                         Planner</h5>
-                                    <p class="text-blue-50 text-sm md:text-base font-medium">Find new opportunities for your
+                                    <p class="font-medium text-blue-50 text-sm md:text-base">Find new opportunities for your
                                         business</p>
                                 </div>
                             </div>
                             <div class="space-y-4 mb-6">
                                 <a href="https://g2c.prarang.in/india/market-planner/states?city={{ $dhq['town']['dhq_code'] ?? '-675' }}"
                                     target="_blank"
-                                    class="block p-4 bg-white/20 backdrop-blur-sm rounded-xl hover:bg-white/30 transition-all duration-300 group/link border border-white/30 hover:border-white/50">
-                                    <div class="flex items-center justify-between">
+                                    class="group/link block bg-white/20 hover:bg-white/30 backdrop-blur-sm p-4 border border-white/30 hover:border-white/50 rounded-xl transition-all duration-300">
+                                    <div class="flex justify-between items-center">
                                         <span
-                                            class="text-white font-bold text-base md:text-lg group-hover/link:translate-x-1 transition-transform">Find
+                                            class="font-bold text-white text-base md:text-lg transition-transform group-hover/link:translate-x-1">Find
                                             New Opportunities in India</span>
                                         <span class="text-white/70 group-hover/link:text-white text-xl transition-all">→</span>
                                     </div>
-                                    <small class="text-white/80 font-medium">(Select Cities)</small>
+                                    <small class="font-medium text-white/80">(Select Cities)</small>
                                 </a>
                                 <a href="https://g2c.prarang.in/world/market-planner?country=63" target="_blank"
-                                    class="block p-4 bg-white/20 backdrop-blur-sm rounded-xl hover:bg-white/30 transition-all duration-300 group/link border border-white/30 hover:border-white/50">
-                                    <div class="flex items-center justify-between">
+                                    class="group/link block bg-white/20 hover:bg-white/30 backdrop-blur-sm p-4 border border-white/30 hover:border-white/50 rounded-xl transition-all duration-300">
+                                    <div class="flex justify-between items-center">
                                         <span
-                                            class="text-white font-bold text-base md:text-lg group-hover/link:translate-x-1 transition-transform">Find
+                                            class="font-bold text-white text-base md:text-lg transition-transform group-hover/link:translate-x-1">Find
                                             New Opportunities in the World</span>
                                         <span class="text-white/70 group-hover/link:text-white text-xl transition-all">→</span>
                                     </div>
-                                    <small class="text-white/80 font-medium">(Select Countries)</small>
+                                    <small class="font-medium text-white/80">(Select Countries)</small>
                                 </a>
                             </div>
                         </div>
                     </div>
                     <!-- Development Instrument -->
                     <div
-                        class="group relative bg-green-500  shadow-xl hover:shadow-2xl transition-all duration-500  overflow-hidden">
+                        class="group relative bg-green-500 shadow-xl hover:shadow-2xl overflow-hidden transition-all duration-500">
                         <div class="absolute inset-0 opacity-30">
-                            <div class="absolute top-0 right-0 w-32 h-32 bg-white rounded-full blur-3xl opacity-50"></div>
-                            <div class="absolute bottom-0 left-0 w-24 h-24 bg-white rounded-full blur-2xl opacity-50"></div>
+                            <div class="top-0 right-0 absolute bg-white opacity-50 blur-3xl rounded-full w-32 h-32"></div>
+                            <div class="bottom-0 left-0 absolute bg-white opacity-50 blur-2xl rounded-full w-24 h-24"></div>
                         </div>
                         <div class="relative">
-                            <div class="flex items-center justify-center mb-6 text-center">
+                            <div class="flex justify-center items-center mb-6 text-center">
                                 <div>
-                                    <h5 class="text-3xl md:text-4xl font-extrabold text-white mb-2 tracking-tight">
+                                    <h5 class="mb-2 font-extrabold text-white text-3xl md:text-4xl tracking-tight">
                                         Development Planner</h5>
-                                    <p class="text-green-50 text-sm md:text-base font-medium">Compare the progress of your
+                                    <p class="font-medium text-green-50 text-sm md:text-base">Compare the progress of your
                                         city/country</p>
                                 </div>
                             </div>
                             <div class="space-y-4 mb-6">
                                 <a href="https://g2c.prarang.in/india/development-planners?city={{ $dhq['town']['dhq_code'] ?? '-675' }}"
                                     target="_blank"
-                                    class="block p-4 bg-white/20 backdrop-blur-sm rounded-xl hover:bg-white/30 transition-all duration-300 group/link border border-white/30 hover:border-white/50">
-                                    <div class="flex items-center justify-between">
+                                    class="group/link block bg-white/20 hover:bg-white/30 backdrop-blur-sm p-4 border border-white/30 hover:border-white/50 rounded-xl transition-all duration-300">
+                                    <div class="flex justify-between items-center">
                                         <span
-                                            class="text-white font-bold text-base md:text-lg group-hover/link:translate-x-1 transition-transform">Compare
+                                            class="font-bold text-white text-base md:text-lg transition-transform group-hover/link:translate-x-1">Compare
                                             Development in India</span>
                                         <span class="text-white/70 group-hover/link:text-white text-xl transition-all">→</span>
                                     </div>
-                                    <small class="text-white/80 font-medium">(Select Cities)</small>
+                                    <small class="font-medium text-white/80">(Select Cities)</small>
                                 </a>
                                 <a href="https://g2c.prarang.in/world/development-planner?country=63" target="_blank"
-                                    class="block p-4 bg-white/20 backdrop-blur-sm rounded-xl hover:bg-white/30 transition-all duration-300 group/link border border-white/30 hover:border-white/50">
-                                    <div class="flex items-center justify-between">
+                                    class="group/link block bg-white/20 hover:bg-white/30 backdrop-blur-sm p-4 border border-white/30 hover:border-white/50 rounded-xl transition-all duration-300">
+                                    <div class="flex justify-between items-center">
                                         <span
-                                            class="text-white font-bold text-base md:text-lg group-hover/link:translate-x-1 transition-transform">Compare
+                                            class="font-bold text-white text-base md:text-lg transition-transform group-hover/link:translate-x-1">Compare
                                             Development in the World</span>
                                         <span class="text-white/70 group-hover/link:text-white text-xl transition-all">→</span>
                                     </div>
-                                    <small class="text-white/80 font-medium">(Select Countries)</small>
+                                    <small class="font-medium text-white/80">(Select Countries)</small>
                                 </a>
                             </div>
                         </div>
@@ -733,12 +740,12 @@ function handleImageError(img) {
 
         </div>
 
-        <div class="lg:col-span-3 space-y-6  order-2 lg:order-3">
+        <div class="space-y-6 order-2 lg:order-3 lg:col-span-3">
             <!-- Location Card -->
             {{-- <div
-            class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
-            <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
-                <h3 class="text-base text-center font-bold text-blue-600">Location</h3>
+            class="bg-white shadow-sm hover:shadow-md border border-gray-100 rounded-2xl overflow-hidden transition-all">
+            <div class="bg-gray-50/50 px-4 py-3 border-gray-50 border-b">
+                <h3 class="font-bold text-blue-600 text-base text-center">Location</h3>
             </div>
 
             <div class="divide-y divide-gray-50">
@@ -755,43 +762,43 @@ function handleImageError(img) {
                 ];
                 @endphp
                 @foreach ($details as $detail)
-                <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
-                    <span class="text-[13px] font-medium text-gray-500">{{ $detail['label'] }}</span>
-            <span class="text-[13px] font-bold text-gray-800 tracking-tight">{{ $detail['value'] }}</span>
+                <div class="flex justify-between items-center hover:bg-gray-50/30 px-4 py-2 transition-colors">
+                    <span class="font-medium text-[13px] text-gray-500">{{ $detail['label'] }}</span>
+            <span class="font-bold text-[13px] text-gray-800 tracking-tight">{{ $detail['value'] }}</span>
         </div>
         @endforeach
     </div>
     </div> --}}
-    <div class="bg-white rounded-2xl p-4 border border-gray-100/80 shadow-sm">
+    <div class="bg-white shadow-sm p-4 border border-gray-100/80 rounded-2xl">
         <table class="w-full border-collapse">
             <tbody class="text-[13px]">
                 <tr>
-                    <td class="py-1 text-gray-500 font-medium">State</td>
-                    <td class="py-1 text-gray-800 font-bold text-right">
+                    <td class="py-1 font-medium text-gray-500">State</td>
+                    <td class="py-1 font-bold text-gray-800 text-right">
                         {{ $dhq['state']['state_name'] ?? '-' }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="py-1 text-gray-500 font-medium">District</td>
-                    <td class="py-1 text-gray-800 font-bold text-right">
+                    <td class="py-1 font-medium text-gray-500">District</td>
+                    <td class="py-1 font-bold text-gray-800 text-right">
                         {{ $dhq['town']['district'] ?? '-' }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="py-1 text-gray-500 font-medium whitespace-nowrap">
+                    <td class="py-1 font-medium text-gray-500 whitespace-nowrap">
                         Pop. 2011
                         <x-source source="Population - Census 2011" />
                     </td>
-                    <td class="py-1 text-gray-800 font-bold text-right tabular-nums">
+                    <td class="py-1 font-bold tabular-nums text-gray-800 text-right">
                         {{ isset($dhq['town']['TOT_P']) ? number_format($dhq['pop']['pop11'], 0) : '-' }}
                     </td>
                 </tr>
                 <tr>
-                    <td class="py-1 text-gray-500 font-medium whitespace-nowrap">
+                    <td class="py-1 font-medium text-gray-500 whitespace-nowrap">
                         Pop. 2026 (Est.)
                         <x-source source="Estimate - Population based on District Growth Rate - Census 2011" />
                     </td>
-                    <td class="py-1 text-indigo-600 font-bold text-right tabular-nums">
+                    <td class="py-1 font-bold tabular-nums text-indigo-600 text-right">
                         {{ isset($dhq['town']['TOT_P']) ? number_format($dhq['pop']['pop26'], 0) : '-' }}
                     </td>
                 </tr>
@@ -799,15 +806,15 @@ function handleImageError(img) {
         </table>
     </div>
     <div x-data="{ openModal: false, modalType: '' }"
-        class="shadow bg-white rounded-2xl py-3 px-2 border border-gray-100/80">
+        class="bg-white shadow px-2 py-3 border border-gray-100/80 rounded-2xl">
 
-        <div class="grid grid-cols-2 gap-6">
+        <div class="gap-6 grid grid-cols-2">
             <button @click="openModal = true; modalType = 'towns'"
-                class="cursor-pointer bg-blue-600 text-white    flex items-center justify-center py-4  border border-slate-200 text-sm font-black text-slate-700 rounded-2xl hover:bg-blue-600 hover:text-white transition-all shadow-lg hover:shadow-blue-500/20">
+                class="flex justify-center items-center bg-blue-600 hover:bg-blue-600 shadow-lg hover:shadow-blue-500/20 py-4 border border-slate-200 rounded-2xl font-black text-slate-700 text-white hover:text-white text-sm transition-all cursor-pointer">
                 District Towns #{{ $otherVilTown['towns']['count'] ?? 0 }}
             </button>
             <button @click="openModal = true; modalType = 'villages'"
-                class="cursor-pointer bg-blue-600 text-white flex items-center justify-center py-4  border border-slate-200 text-sm font-black text-slate-700 rounded-2xl hover:bg-blue-600 hover:text-white transition-all shadow-lg hover:shadow-blue-500/20">
+                class="flex justify-center items-center bg-blue-600 hover:bg-blue-600 shadow-lg hover:shadow-blue-500/20 py-4 border border-slate-200 rounded-2xl font-black text-slate-700 text-white hover:text-white text-sm transition-all cursor-pointer">
                 District Villages #{{ $otherVilTown['villages']['count'] ?? 0 }}
             </button>
         </div>
@@ -815,22 +822,22 @@ function handleImageError(img) {
         <!-- Premium Modal for Towns/Villages -->
         <template x-teleport="body">
             <div x-show="openModal" x-cloak
-                class="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-gray-900/60 backdrop-blur-sm"
+                class="z-[999] fixed inset-0 flex justify-center items-center bg-gray-900/60 backdrop-blur-sm p-4"
                 x-transition:enter="transition ease-out duration-300" x-transition:enter-start="opacity-0"
                 x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200"
                 x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
                 @click.self="openModal = false">
 
-                <div class="bg-white rounded-[32px] w-full max-w-4xl h-[90vh] flex flex-col shadow-2xl overflow-hidden"
+                <div class="flex flex-col bg-white shadow-2xl rounded-[32px] w-full max-w-4xl h-[90vh] overflow-hidden"
                     x-show="openModal" x-transition:enter="transition ease-out duration-300"
                     x-transition:enter-start="opacity-0 scale-95 translate-y-10"
                     x-transition:enter-end="opacity-100 scale-100 translate-y-0">
 
                     <!-- Header -->
                     <div
-                        class="px-8 py-6 bg-gradient-to-r from-slate-50 to-white border-b border-slate-100 flex items-center justify-between">
+                        class="flex justify-between items-center bg-gradient-to-r from-slate-50 to-white px-8 py-6 border-slate-100 border-b">
                         <div class="flex items-center gap-4">
-                            <div class="w-12 h-12 rounded-2xl flex items-center justify-center shadow-inner"
+                            <div class="flex justify-center items-center shadow-inner rounded-2xl w-12 h-12"
                                 :class="modalType === 'towns' ? 'bg-blue-50 text-blue-600' : 'bg-emerald-50 text-emerald-600'">
                                 <svg x-show="modalType === 'towns'" class="w-6 h-6" fill="none"
                                     stroke="currentColor" viewBox="0 0 24 24">
@@ -844,16 +851,16 @@ function handleImageError(img) {
                                 </svg>
                             </div>
                             <div>
-                                <h3 class="text-2xl font-black text-slate-900 tracking-tight"
+                                <h3 class="font-black text-slate-900 text-2xl tracking-tight"
                                     x-text="modalType === 'towns' ? 'Towns' : 'Villages'"></h3>
-                                <p class="text-sm font-bold text-slate-400">Total Count: <span
+                                <p class="font-bold text-slate-400 text-sm">Total Count: <span
                                         class="text-slate-900"
                                         x-text="modalType === 'towns' ? '{{ $otherVilTown['towns']['count'] ?? 0 }}' : '{{ $otherVilTown['villages']['count'] ?? 0 }}'"></span>
                                 </p>
                             </div>
                         </div>
                         <button @click="openModal = false"
-                            class="w-10 h-10 flex items-center justify-center bg-slate-100 hover:bg-slate-200 rounded-full transition-all text-slate-600">
+                            class="flex justify-center items-center bg-slate-100 hover:bg-slate-200 rounded-full w-10 h-10 text-slate-600 transition-all">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M6 18L18 6M6 6l12 12" />
@@ -862,17 +869,17 @@ function handleImageError(img) {
                     </div>
 
                     <!-- Content List -->
-                    <div class="flex-grow overflow-y-auto p-8 bg-slate-50/30 custom-scrollbar">
+                    <div class="flex-grow bg-slate-50/30 p-8 overflow-y-auto custom-scrollbar">
                         <div x-show="modalType === 'towns'"
-                            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                            class="gap-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                             @foreach($otherVilTown['towns']['data'] ?? [] as $id => $name)
                             <a href="/city/{{ url_encoder($dhq['state']['state_code']."
                                     -".$dhq['dhq']['DHQ_Code']."-".$id) }}/{{ Str::kebab($name) }}"
-                                class="block px-4 py-4 bg-white border border-slate-100 rounded-2xl hover:border-blue-200 hover:shadow-lg hover:shadow-blue-500/5 transition-all group hover:text-blue-600">
+                                class="group block bg-white hover:shadow-blue-500/5 hover:shadow-lg px-4 py-4 border border-slate-100 hover:border-blue-200 rounded-2xl hover:text-blue-600 transition-all">
                                 <div class="flex items-center gap-3">
-                                    <span class="text-xs font-bold text-blue-400 italic">0{{ $loop->iteration
+                                    <span class="font-bold text-blue-400 text-xs italic">0{{ $loop->iteration
                                             }}</span>
-                                    <span class="text-[13px] font-bold text-slate-700 transition-colors">{{ $name
+                                    <span class="font-bold text-[13px] text-slate-700 transition-colors">{{ $name
                                             }}</span>
                                 </div>
                             </a>
@@ -880,15 +887,15 @@ function handleImageError(img) {
                         </div>
 
                         <div x-show="modalType === 'villages'"
-                            class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
+                            class="gap-3 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
                             @foreach($otherVilTown['villages']['data'] ?? [] as $id => $name)
                             <a href="/village/{{ url_encoder($dhq['state']['state_code']."
                                     -".$dhq['dhq']['district_LGD_code']."-".$id) }}/{{ Str::kebab($name) }}"
-                                class="block px-4 py-4 bg-white border border-slate-100 rounded-2xl hover:border-blue-200 hover:shadow-lg hover:shadow-blue-500/5 transition-all group hover:text-blue-600">
+                                class="group block bg-white hover:shadow-blue-500/5 hover:shadow-lg px-4 py-4 border border-slate-100 hover:border-blue-200 rounded-2xl hover:text-blue-600 transition-all">
                                 <div class="flex items-center gap-3">
-                                    <span class="text-xs font-bold text-blue-400 italic">0{{ $loop->iteration
+                                    <span class="font-bold text-blue-400 text-xs italic">0{{ $loop->iteration
                                             }}</span>
-                                    <span class="text-[13px] font-bold text-slate-700 transition-colors">{{ $name
+                                    <span class="font-bold text-[13px] text-slate-700 transition-colors">{{ $name
                                             }}</span>
                                 </div>
                             </a>
@@ -897,9 +904,9 @@ function handleImageError(img) {
                     </div>
 
                     <!-- Footer -->
-                    <div class="px-8 py-5 bg-white border-t border-slate-100 flex justify-center">
+                    <div class="flex justify-center bg-white px-8 py-5 border-slate-100 border-t">
                         <button @click="openModal = false"
-                            class="px-10 py-3 bg-slate-900 text-white text-xs font-black rounded-2xl hover:bg-black hover:scale-105 transition-all shadow-xl shadow-slate-900/20">
+                            class="bg-slate-900 hover:bg-black shadow-slate-900/20 shadow-xl px-10 py-3 rounded-2xl font-black text-white text-xs hover:scale-105 transition-all">
                             DONE
                         </button>
                     </div>
@@ -909,9 +916,9 @@ function handleImageError(img) {
     </div>
     <!-- Internet Trends Card -->
     <div
-        class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
-        <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
-            <h3 class="text-base text-center font-bold text-blue-600">Internet Trends</h3>
+        class="bg-white shadow-sm hover:shadow-md border border-gray-100 rounded-2xl overflow-hidden transition-all">
+        <div class="bg-gray-50/50 px-4 py-3 border-gray-50 border-b">
+            <h3 class="font-bold text-blue-600 text-base text-center">Internet Trends</h3>
         </div>
 
         <div class="divide-y divide-gray-50">
@@ -969,11 +976,11 @@ function handleImageError(img) {
 
 
             @foreach ($trends as $trend)
-            <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
-                <span class="text-[13px] font-medium text-gray-500">{{ $trend['label'] }}
+            <div class="flex justify-between items-center hover:bg-gray-50/30 px-4 py-2 transition-colors">
+                <span class="font-medium text-[13px] text-gray-500">{{ $trend['label'] }}
                     <x-source source="{{ $trend['source'] }}" />
                 </span>
-                <span class="text-[13px] font-bold text-gray-800 tabular-nums">{{ $trend['value'] }}</span>
+                <span class="font-bold tabular-nums text-[13px] text-gray-800">{{ $trend['value'] }}</span>
             </div>
             @endforeach
             <p class="text-end">
@@ -988,48 +995,48 @@ function handleImageError(img) {
     </div>
     <!-- Languages Card -->
     <div id="toLanguage"
-        class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
-        <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
-            <h3 class="text-base text-center font-bold text-blue-600">Languages</h3>
+        class="bg-white shadow-sm hover:shadow-md border border-gray-100 rounded-2xl overflow-hidden transition-all">
+        <div class="bg-gray-50/50 px-4 py-3 border-gray-50 border-b">
+            <h3 class="font-bold text-blue-600 text-base text-center">Languages</h3>
         </div>
 
         <div class="divide-y divide-gray-50">
             @foreach($dhq['top5_languages'] ?? [] as $key => $lang)
-            <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
+            <div class="flex justify-between items-center hover:bg-gray-50/30 px-4 py-2 transition-colors">
                 <div class="flex items-center gap-2">
-                    <span class="text-[11px] font-black text-blue-400 w-4">0{{ $lang['rank'] ?? $loop->iteration
+                    <span class="w-4 font-black text-[11px] text-blue-400">0{{ $lang['rank'] ?? $loop->iteration
                             }}</span>
-                    <span class="text-[13px] font-medium text-gray-500">{{ $lang['language'] ?? 'N/A' }}</span>
+                    <span class="font-medium text-[13px] text-gray-500">{{ $lang['language'] ?? 'N/A' }}</span>
                 </div>
-                <span class="text-[13px] font-bold text-gray-800 tabular-nums">{{
+                <span class="font-bold tabular-nums text-[13px] text-gray-800">{{
                         ($lang['spek'] ?? 0)}}%</span>
             </div>
             @endforeach
         </div>
-        <p class="text-end px-4 py-2">
+        <p class="px-4 py-2 text-end">
             <a target="_blank"
                 href="https://g2c.prarang.in/india/multilingualism/{{ $dhq['dhq']['DHQ_Code'] }}/{{ $dhq['town']['town_code'] }}"
-                class="text-[12px] font-bold text-blue-600 hover:text-blue-800 transition-colors italic">
+                class="font-bold text-[12px] text-blue-600 hover:text-blue-800 italic transition-colors">
                 see more >>
             </a>
         </p>
     </div>
     <!-- Literacy Card -->
     <div
-        class="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all hover:shadow-md">
-        <div class="px-4 py-3 border-b border-gray-50 bg-gray-50/50">
-            <h3 class="text-base text-center font-bold text-blue-600">Literacy (2011)</h3>
+        class="bg-white shadow-sm hover:shadow-md border border-gray-100 rounded-2xl overflow-hidden transition-all">
+        <div class="bg-gray-50/50 px-4 py-3 border-gray-50 border-b">
+            <h3 class="font-bold text-blue-600 text-base text-center">Literacy (2011)</h3>
         </div>
 
         <div class="divide-y divide-gray-50">
-            <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
-                <span class="text-[13px] font-medium text-gray-500">Literate Population</span>
-                <span class="text-[13px] font-bold text-gray-800 tabular-nums">{{
+            <div class="flex justify-between items-center hover:bg-gray-50/30 px-4 py-2 transition-colors">
+                <span class="font-medium text-[13px] text-gray-500">Literate Population</span>
+                <span class="font-bold tabular-nums text-[13px] text-gray-800">{{
                         number_format($dhq['literacy']['literate'] ?? 0) }}</span>
             </div>
-            <div class="flex justify-between items-center px-4 py-2 hover:bg-gray-50/30 transition-colors">
-                <span class="text-[13px] font-medium text-gray-500">Illiterate Population</span>
-                <span class="text-[13px] font-bold text-gray-800 tabular-nums">{{
+            <div class="flex justify-between items-center hover:bg-gray-50/30 px-4 py-2 transition-colors">
+                <span class="font-medium text-[13px] text-gray-500">Illiterate Population</span>
+                <span class="font-bold tabular-nums text-[13px] text-gray-800">{{
                         number_format($dhq['literacy']['illiterate'] ?? 0) }}</span>
             </div>
         </div>
